@@ -228,7 +228,7 @@ function reuseOptions() {
         props: () => ({ base: {}, locale: undefined }),
         overrides: (raw, selection) => {
           assert.deepEqual(selection.languages, ['uk']);
-          assert.ok(raw.section.additionalItems.bridge);
+          assert.deepEqual(raw.params.sections, { allowSkipping: false });
           return {
             id: reusedLessonId,
             base: { locale: { title: 'Adapted' } },
@@ -237,27 +237,18 @@ function reuseOptions() {
         },
       },
     },
-    rawPatch: {
-      section: {
-        additionalItems: {
-          bridge: { type: 'content', build: { props: () => ({}) } },
-        },
-      },
-    },
-    rawPatchSource: '{ section: { additionalItems: { bridge: sharedSection } } }',
-    rawPatchSourceSha: sha,
-    rawPatchImports: ['import { sharedSection } from "#lessonsData/sharedSections";'],
+    rawPatch: { params: { sections: { allowSkipping: false } } },
   });
   return params;
 }
-test('existing Lesson preserves verified TypeScript Configurator patch expressions and placement', () => {
+test('existing Lesson preserves source-authored plain Config patch and placement', () => {
   const result = materializeCourseStage5(patchedSource(), reuseOptions());
   const patchSource = result.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
   assert.ok(patchSource);
-  assert.match(patchSource.content, /sharedSection/);
-  assert.match(patchSource.content, /additionalItems/);
+  assert.match(patchSource.content, /allowSkipping/);
+  assert.match(patchSource.content, /sections/);
   assert.match(patchSource.content, /"directLesson"/);
-  assert.match(patchSource.content, /import \{ sharedSection \}/);
+  assert.doesNotMatch(patchSource.content, /import \{ sharedSection \}/);
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /export \{ authoredCourseOverrides \}/);
   const wrapper = result.files.find(file => file.path === root + '/content/directLesson/index.ts');
@@ -267,11 +258,12 @@ test('existing Lesson preserves verified TypeScript Configurator patch expressio
 test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
   const stale = reuseOptions();
   const resolver = stale.resolveExistingLesson;
-  stale.resolveExistingLesson = (...args) => ({
-    ...resolver(...args),
-    rawPatchSourceSha: '0'.repeat(40),
-  });
-  assert.throws(() => materializeCourseStage5(patchedSource(), stale), /not pinned/);
+  stale.resolveExistingLesson = (...args) => {
+    const verified = resolver(...args);
+    delete verified.rawPatch;
+    return verified;
+  };
+  assert.throws(() => materializeCourseStage5(patchedSource(), stale), /raw|not provided|patch/i);
   const incompatible = patchedSource();
   incompatible.config.content.items.directLesson.production.existing.base.locale.title = 'Different';
   assert.throws(() => materializeCourseStage5(incompatible, reuseOptions()), /does not reproduce/);
@@ -345,15 +337,15 @@ test('existing Lesson fails closed for a mismatched Course Skill even if resolve
     /identity, SHA, Build API or source locale not verified/,
   );
 });
-test('reviewed patch expression rejects executable side-effect imports', () => {
+test('non-plain Course patch Configurator cannot be serialized into TypeScript', () => {
   const input = patchedSource();
   const opts = reuseOptions();
   const resolver = opts.resolveExistingLesson;
   opts.resolveExistingLesson = (...args) => ({
     ...resolver(...args),
-    rawPatchImports: ['import "unsafe-side-effect";'],
+    rawPatch: { content: { items: { unsafe: { build: { props() {} } } } } },
   });
-  assert.throws(() => materializeCourseStage5(input, opts), /side-effect-only patch import/);
+  assert.throws(() => materializeCourseStage5(input, opts), /JSON-safe/);
 });
 
 test('Course Lesson seed refuses an authored title without the reviewed document locale', () => {
