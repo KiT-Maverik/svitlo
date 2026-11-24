@@ -66,16 +66,27 @@ renderers and **both** public Engine entries (`dist/build.js` and
 modules can import `@svitlo/engine/runtime`. Neither prebuilt dist output nor
 an npm lifecycle script is a prerequisite. The bundles remain untracked,
 trusted temporary build artifacts; this preparation does not substitute for
-Engine package typechecking or permit candidate source execution. The Ready
-Course Stage 5 regression exercises a transitive runtime import plus en/uk
-file-relative Markdown in the genuine Configurator resolver, with plain reuse
-and sparse overrides. A passing regression is not evidence that a live Course
-PR has materialized: verify the subsequent authorized Actions run and commit.
+Engine package typechecking or permit candidate source execution. Both reviewed
+input and virtual generated-source semantic checks explicitly resolve
+`@svitlo/engine/build` and `@svitlo/engine/runtime` to trusted TypeScript sources.
+This also covers Episode generated-source validation. The temporary esbuild
+outputs need no declarations; the canonical Engine package build separately
+emits the real public declarations and is verified in Ready Course CI.
+
+The Ready Course Stage 5 full-path regression uses the actual Playground
+Lesson and the reviewed #806 Course fixture (only the two Lesson source
+revision pins are adapted to the separate candidate Git checkout). It checks
+clean preparation, both reuse variants, two new Lesson seeds, four Episode
+handoffs, real semantic compilation, exact deterministic privileged replay and
+no-clobber enforcement. A passing regression is not evidence that a live
+Course PR has materialized: verify the subsequent authorized Actions run and
+commit.
 
 ### Validation and activation
 
 Run on a checkout containing this PR with dependencies installed:
 
+    node --test scripts/ci/courseMaterialization/trusted-course-full-path.spec.mjs
     node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
     node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
     node --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
