@@ -2,20 +2,22 @@
 
 `publishCourseData.mjs` publishes compact Course resources built from the new stateless Configurator API.
 
-The build-time caller passes the result of `defineCourse` and, optionally, the
-Course-owned authoring patch accepted by `course.build.overrides`. No standalone
-Lesson resource is built into the resulting Course files.
+The build-time caller passes a `defineCourse` Configurator containing its
+complete authored hierarchy. Reused Lessons may use `placeLesson(source, rawPatch)`
+**at each immediate placement**; no separate Course-root authoring patch is
+accepted by the publisher. No standalone Lesson resource is built into the
+resulting Course files.
 
 ```js
 import { publishCourse } from './publishCourseData.mjs';
 
 // course: defineCourse(...)
-// courseOverrides: optional nested Course_Overrides authoring patch
+// Inline Lesson patches belong in the Course Configurator's content.items
 publishCourse(course, {
   packageRoot: '/absolute/path/to/content/playground',
   // outputRoot: '/absolute/path/to/content/playground/generated/courses',
   // Pass outputRoot to select a different generated staging directory.
-  overrides: courseOverrides,
+  // No Course-root overrides: use placeLesson at each child placement.
   // languages: ['uk', 'en'], // default: Course-supported languages
   // check: true,             // compare, never write
 });
@@ -30,8 +32,10 @@ an authored resource or a runtime import.
 The Course root, Modules and Chapters carry their full Props-shaped metadata
 and their ordered, slug-keyed `content: { items, order }` collections. Each Lesson appears only as
 `{ "type": "lesson", "id": "<uuid>" }`, with an optional `overrides` field
-containing the **already-built sparse Lesson override Props**. Course-specific
-Lesson patches are _not_ applied to the standalone Lesson's published resources.
+containing the **already-built sparse Lesson override Props**. These are obtained
+through the real Lesson `build.overrides` API from the authored patch attached
+to that placement. Course-specific patches never mutate the standalone Lesson's
+published resources; even repeated Lesson IDs can carry different patches.
 
 The locale patch is Props-shaped and has **no extra locale wrapper**. Course
 `content.items` is keyed by slug and sparse locale patches include only changed
