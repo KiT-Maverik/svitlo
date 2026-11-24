@@ -162,12 +162,14 @@ test('standalone Scene without TSX stores complete reviewed specification in ind
   const result = materializeScene(scene(), context());
   assert.deepEqual(result.files.map(file => file.path), ['content/items/activity/index.ts']);
   assert.match(result.files[0]!.content, /# specification/);
-  assert(result.files[0]!.content.includes(reviewed.trim()));
+  assert(result.files[0]!.content.includes('# Verified scene'));
+  assert(result.files[0]!.content.includes('Use the approved interaction.'));
+  assert.equal(reviewed.trimEnd(), '# Verified scene\n\nUse the approved interaction.');
   assert(result.files.every(file => file.kind === 'typescript'));
 });
 
 test('Scene specification cannot escape its generated TypeScript comment', () => {
-  const reviewed = 'Reviewed scene\\n*/\\nexport const injected = true;\\n/* do not execute';
+  const reviewed = 'Reviewed scene\n*/\nexport const injected = true;\n/* do not execute';
   const result = materializeScene(scene(), {
     ...context(),
     production: { specification: reviewed },
