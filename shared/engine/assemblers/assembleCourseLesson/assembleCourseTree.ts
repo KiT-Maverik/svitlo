@@ -1,3 +1,14 @@
+import { scene_Props_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import { carousel_Props_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
+import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+import { subtitles_Props_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { audio_Props_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import { video_Props_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import { image_Props_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import { code_Props_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import { markdown_Props_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas';
 import { episode_Props_Schema, type Episode_Props } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import { contentSection_Props_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
@@ -55,6 +66,20 @@ const sectionSchemas = {
   learningFlow: learningFlowSection_Props_Schema,
 } as const;
 
+const blockSchemas = {
+  text: text_Props_Schema,
+  markdown: markdown_Props_Schema,
+  code: code_Props_Schema,
+  image: image_Props_Schema,
+  video: video_Props_Schema,
+  audio: audio_Props_Schema,
+  subtitles: subtitles_Props_Schema,
+  youtube: youtube_Props_Schema,
+  carousel: carousel_Props_Schema,
+  checkpoint: checkpoint_Props_Schema,
+  scene: scene_Props_Schema,
+} as const;
+
 /** Episode.events is an opaque JSON authoring field, not an implemented reaction protocol. */
 export function validateEpisodeRuntime(value: unknown, language: LanguageCode): LocalizedEpisode {
   const episode = episode_Props_Schema.parse(value);
@@ -66,7 +91,13 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
     if (!Object.hasOwn(sectionSchemas, section.type)) throw Error('Unsupported Episode Section: ' + section.type);
     if (ids.has(section.id)) throw Error('Duplicate Episode Section ID: ' + section.id);
     ids.add(section.id);
-    sectionSchemas[section.type as keyof typeof sectionSchemas].parse(section);
+    const resolved = sectionSchemas[section.type as keyof typeof sectionSchemas].parse(section);
+    const blocks = new Set<string>();
+    for (const block of resolved.content) {
+      if (blocks.has(block.id) || !Object.hasOwn(blockSchemas, block.type)) throw Error('Invalid Episode block identity/type: ' + block.id);
+      blocks.add(block.id);
+      blockSchemas[block.type as keyof typeof blockSchemas].parse(block);
+    }
   }
   return episode as LocalizedEpisode;
 }

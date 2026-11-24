@@ -10,7 +10,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { validateEpisodeRuntime } from '@svitlo/engine/runtime';
+import { assembleCourseTree } from '@svitlo/engine/runtime';
 import { assertSafeDirectoryPath } from '../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -147,7 +147,6 @@ function compactEntity(value, lessonPatches, language, location) {
       throw new Error('Incomplete Episode or unsupported Episode events: ' + value.id);
     if (value.section.some(section => !['content', 'practice', 'codingTask', 'learningFlow'].includes(section.type)))
       throw new Error('Unsupported Episode Section: ' + value.id);
-    if (language) validateEpisodeRuntime(value, language);
     return clone(value);
   }
   if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content)) {
@@ -173,6 +172,11 @@ function compactEntity(value, lessonPatches, language, location) {
 function assertSameCourseStructure(base, localized, location = 'course') {
   if (!isObject(base) || !isObject(localized) || base.id !== localized.id || base.type !== localized.type) {
     throw new Error('Localized Course identity mismatch at ' + location);
+  }
+  if (base.type === 'episode') {
+    const identity = section => [section.id, section.type, section.slug];
+    if (JSON.stringify(base.section.map(identity)) !== JSON.stringify(localized.section.map(identity)))
+      throw new Error('Localized Episode Section identity mismatch at ' + location);
   }
   if (!base.content && !localized.content) return;
   if (!isObject(base.content) || !isObject(localized.content)) {
@@ -244,6 +248,9 @@ export function renderCourseFiles(
     const localizedRaw = compactEntity(resolved, lessonPatches, language, course.slug);
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
+    // Validate fully localized Episode Props after media projection, including nested blocks.
+    const containsEpisode = node => node.type === 'episode' || Object.values(node.content?.items ?? {}).some(containsEpisode);
+    if (containsEpisode(localized)) assembleCourseTree(base, difference(base, localized), course.id, language);
     const delta = difference(base, localized);
     if (delta !== undefined) {
       assertJson(delta, 'Course locale ' + language);

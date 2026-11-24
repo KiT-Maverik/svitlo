@@ -83,6 +83,33 @@ export function discoverCourseSources(directory) {
   return sources.sort();
 }
 
+/** Strict publication must not discard editorial placements or human review/resource blockers.
+ * Draft previews intentionally keep materialized content inspectable; pending draft files are never executed.
+ */
+export function checkCourseSourceReadiness(source, mode) {
+  if (path.basename(source) !== 'index.ts') return [];
+  const root = path.dirname(source);
+  const pending = [];
+  function visit(dir) {
+    assertSafeDirectoryPath(dir);
+    for (const item of fs.readdirSync(dir,{withFileTypes:true})) {
+      const file=path.join(dir,item.name);
+      if (item.isSymbolicLink()) throw Error('Unsafe Course-owned source: '+file);
+      if (item.isDirectory()) visit(file);
+      else if (item.isFile() && item.name.endsWith('.ts')) {
+        if (item.name === 'draft.ts') pending.push(path.relative(root,file)+': editorial source not materialized');
+        else {
+          const text=fs.readFileSync(file,'utf8');
+          if (/^\s*\/\/\s*TODO \(BLOCKER\):/m.test(text)) pending.push(path.relative(root,file)+': unresolved production blocker');
+        }
+      }
+    }
+  }
+  visit(root);
+  if (mode === 'production' && pending.length) throw Error('Course source is not release-ready: '+source+'\n'+pending.join('\n'));
+  return pending;
+}
+
 async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
@@ -91,6 +118,7 @@ async function render(pkg, mode) {
   if (!fs.existsSync(directory)) return files;
   const ids = new Set();
   for (const source of discoverCourseSources(directory)) {
+    for (const pending of checkCourseSourceReadiness(source, mode)) console.warn('Draft Course preview: '+pending);
     const { configurators, moduleExports } = await loadAuthoredConfigurators(source, 'course', {
       includeExports: true,
     });
