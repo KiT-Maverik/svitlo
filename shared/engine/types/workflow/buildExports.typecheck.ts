@@ -1,6 +1,7 @@
 import type {
   LessonWorkflowStage1,
-  LessonWorkflowStage1CourseHandoff,
+  CourseWorkflowLessonSeed,
+  CourseWorkflowStage3NewLesson,
   LessonWorkflowStage2,
   LessonWorkflowMaterializerInput,
   QuestionBankWorkflowStage1,
@@ -13,6 +14,7 @@ import type {
   FlashcardBankWorkflowMaterializerInput,
 } from '../../build';
 
+import type { CourseWorkflowLessonSeed as InternalSeed } from './courseWorkflow.types';
 import type { LessonWorkflowStage1 as InternalLessonStage1 } from './lessonWorkflow.types';
 import type { QuestionBankWorkflowStage3 as InternalQuestionsStage3 } from './questionBankWorkflow.types';
 import type { FlashcardBankWorkflowStage3 as InternalFlashcardsStage3 } from './flashcardBankWorkflow.types';
@@ -27,7 +29,11 @@ export type EngineWorkflowBuildExports = [
   Expect<Equal<LessonWorkflowMaterializerInput, LessonWorkflowStage2>>,
   Expect<Equal<QuestionBankWorkflowMaterializerInput, InternalQuestionsStage3>>,
   Expect<Equal<FlashcardBankWorkflowMaterializerInput, InternalFlashcardsStage3>>,
-  LessonWorkflowStage1CourseHandoff,
+  Expect<Equal<CourseWorkflowLessonSeed, InternalSeed>>,
+  Expect<Equal<CourseWorkflowLessonSeed extends LessonWorkflowStage1 ? true : false, false>>,
+  Expect<Equal<LessonWorkflowStage1 extends CourseWorkflowLessonSeed ? true : false, false>>,
+  Expect<Equal<CourseWorkflowStage3NewLesson extends LessonWorkflowStage1 ? true : false, false>>,
+  Expect<Equal<CourseWorkflowLessonSeed extends LessonWorkflowMaterializerInput ? true : false, false>>,
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage2,
   FlashcardBankWorkflowStage1,

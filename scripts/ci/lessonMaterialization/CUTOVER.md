@@ -18,22 +18,20 @@ cutover plan; there is no YAML command fallback in this branch.
   recursive renderer, assessment draft adapters, tests and documentation.
 - Obsolete Lesson YAML command entries from root and Engine npm scripts.
 
-The `requireStageSixPending` authorization logic now belongs directly to
-`lesson-typed-gate.mjs`, so removal of the legacy gate cannot break the new
-typed command. The typed command continues to use the trusted
-`courseMaterialization/course-gate.mjs` shared authorization primitives;
-these are **not** obsolete Lesson YAML code.
+The original typed gate retained editorial state checks temporarily; #812
+removes those checks from the current Lesson execution path. The shared
+`courseMaterialization/course-gate.mjs` authorization primitives remain in use.
 
 ## Active typed contract
 
-The exact Stage 2 reviewed `index.ts` is parsed without evaluating untrusted
-PR code, checked semantically using trusted Engine declarations, and converted
-to deterministic Lesson/Section/ContentBlock source files. Its exact bytes are
-archived as `workflow.stage2.ts` in one SHA-attested, no-clobber, non-force
-Git transition. Course parent provenance, review SHAs, stable UUIDs, original
-bank Configurator references, locale scope and production blockers remain
-mandatory. Scene implementations, assessment banks and translations are
-separate authoring stages; incomplete sources must not publish.
+The canonical Stage 2 `draft.ts` is parsed without executing untrusted PR
+code, checked semantically against trusted Engine declarations, then
+atomically consumed while generating modular `index.ts` and its children.
+The exact original bytes remain in the pinned Git commit/blob, not a second
+editorial file. The authorized command, immutable source, stable UUIDs,
+original assessment references, locale scope, no-clobber and production
+blockers remain required. Editorial checklist and Course provenance are
+not inputs to Lesson materialization.
 
 The implementation remains a PR until merged. Existing default-branch YAML
 workflows may remain live **on that branch** until the change merges, but they

@@ -21,7 +21,6 @@ import type { ContentBlock_Carousel_Config } from '../../configurators/contentBl
 import type { ContentBlock_Checkpoint_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
 import type { ContentBlock_CheckpointItem_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import type { ContentBlock_CheckpointAnswer_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import type { CourseWorkflowStage1Languages, CourseWorkflowStage3NewLesson } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /**
@@ -38,41 +37,34 @@ export type LessonWorkflowStage1Config = Pick<Lesson_Config, 'id' | 'type' | 'sl
   events?: never;
 };
 
-/**
- * The Course's reviewed new-Lesson intent is preserved without copying its schema.
- * Full source-domain facts, examples, misconceptions, audience, prerequisites,
- * cognitive assessment methods and limitations belong in methodology prose.
- */
-export type LessonWorkflowStage1Production = Pick<
-  CourseWorkflowStage3NewLesson['production'],
-  'methodology' | 'objective' | 'depth' | 'sequenceReason' | 'assessmentEvidence'
-> & {
-  /** Source locale plus nonempty future locale plan; no invented translations. */
-  languages: CourseWorkflowStage1Languages;
+type LessonLanguage = Lesson_Config['params']['languages'][number];
+
+/** Completed Lesson-owned methodology, regardless of the editorial inputs used. */
+export type LessonWorkflowStage1Production = {
+  /** Full pedagogical specification, including scope, prerequisites and misconceptions. */
+  methodology: string;
+  /** Observable learning objective. */
+  objective: string;
+  /** Pedagogical depth and limits. */
+  depth: string;
+  /** Explain sequencing and dependencies. */
+  sequenceReason: string;
+  /** Explain how intended learning is evaluated. */
+  assessmentEvidence: string;
+  /** Actual source locale and nonempty intended publication locales. */
+  languages: {
+    document: LessonLanguage;
+    planned: readonly [LessonLanguage, ...LessonLanguage[]];
+  };
   /** Bank ownership is independent of Quiz/Flashcards Section presence. */
   assessment: LessonProductionAssessmentRequirements;
   /** Verified references and unresolved editorial decisions, when applicable. */
   sourceEvidence?: string;
 };
 
+/** The canonical deliverable of authorized Lesson Stage 1. */
 export type LessonWorkflowStage1 = {
   config: LessonWorkflowStage1Config;
-  production: LessonWorkflowStage1Production;
-};
-
-/**
- * Course Stage 5 provides exactly one new Lesson Stage 1 draft.ts at the
- * persisted UUID-addressed path. The Course source and this handoff share
- * every substantive planning field; Lesson identity is newly allocated.
- * Neither Course nor Lesson Stage 1 builds Sections or Configurators.
- */
-export type LessonWorkflowStage1CourseHandoff = {
-  config: Pick<CourseWorkflowStage3NewLesson['config'], 'type' | 'slug' | 'locale'> & {
-    id: Lesson_Config['id'];
-    skills: LessonWorkflowStage1Config['skills'];
-    params?: LessonWorkflowStage1Config['params'];
-    section?: never;
-  };
   production: LessonWorkflowStage1Production;
 };
 

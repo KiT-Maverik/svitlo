@@ -7,7 +7,8 @@ import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/le
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix, resolve, sep } from 'node:path';
+import { posix, resolve, sep, dirname, join } from 'node:path';
+import { existsSync } from 'node:fs';
 import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -86,14 +87,12 @@ const blobSha = (source: string) =>
 const reviewed = {
   sourcePath: folder + 'draft.ts',
   sourceBlobSha: blobSha(stage2Source),
-  reviewCommitSha: '1'.repeat(40),
-  reviewEvidenceSha: '2'.repeat(40),
-  stage6Authorized: true as const,
+  sourceCommitSha: '1'.repeat(40),
 };
 const options = {
   sourceText: stage2Source,
-  review: reviewed,
-  verifyReviewedInput: () => true,
+  source: reviewed,
+  verifySourceInput: () => true,
 };
 function produce(value = valid(), config = options) {
   return materializeLessonStage6(value as unknown as LessonWorkflowMaterializerInput, config);
@@ -145,7 +144,13 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
 
 test('generated Lesson source passes the real TypeScript semantic checker', () => {
   const plan = produce();
-  const workspace = resolve(process.cwd(), '../..');
+  // Resolve the checkout containing the compiled test, never the caller's cwd.
+  let workspace = __dirname;
+  while (!existsSync(join(workspace, 'shared/engine/package.json'))) {
+    const parent = dirname(workspace);
+    assert.notEqual(parent, workspace, 'repository root not found');
+    workspace = parent;
+  }
   const files = new Map(
     plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
   );
@@ -219,20 +224,26 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   assert.equal(props.base.section[0].type, 'content');
   assert.deepEqual(props.base.skills, [id('04')]);
 });
-test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff can materialize', () => {
+test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
   delete (stage1.config as unknown as { section?: unknown }).section;
   assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
   assert.equal(produce().lessonId, id('01'));
 });
-test('trust rejects source SHA drift, missing Stage 6 authorization and unverified independent review', () => {
+test('standalone and Course-originated Stage 2 inputs use identical source materialization', () => {
+  const standalone = valid();
+  const courseOrigin = structuredClone(standalone);
+  const first = produce(standalone);
+  assert.deepEqual(produce(courseOrigin), first);
+});
+test('trust rejects source SHA drift, invalid path and unverified pinned source', () => {
   assert.throws(() => produce(valid(), { ...options, sourceText: 'tampered' }), /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, verifyReviewedInput: () => false }), /untrusted source/);
+  assert.throws(() => produce(valid(), { ...options, verifySourceInput: () => false }), /untrusted source/);
   assert.throws(
     () =>
       produce(valid(), {
         ...options,
-        review: {
+        source: {
           ...reviewed,
           sourceBlobSha: '0'.repeat(40),
         },
@@ -243,18 +254,7 @@ test('trust rejects source SHA drift, missing Stage 6 authorization and unverifi
     () =>
       produce(valid(), {
         ...options,
-        review: {
-          ...reviewed,
-          stage6Authorized: false as never,
-        },
-      }),
-    /untrusted source/,
-  );
-  assert.throws(
-    () =>
-      produce(valid(), {
-        ...options,
-        review: {
+        source: {
           ...reviewed,
           sourcePath: 'content/math/data/lessons/1/../../../other/index.ts',
         },
@@ -348,7 +348,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
     return {
       ...options,
       sourceText,
-      review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+      source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     };
   };
   const plan = materializeLessonStage6(input, sourceFor(input));
@@ -389,7 +389,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: literal,
-        review: { ...reviewed, sourceBlobSha: blobSha(literal) },
+        source: { ...reviewed, sourceBlobSha: blobSha(literal) },
       }),
     /requires imported Question/,
   );
@@ -399,7 +399,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: unbound,
-        review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
+        source: { ...reviewed, sourceBlobSha: blobSha(unbound) },
       }),
     /without an executable Configurator import/,
   );
@@ -409,7 +409,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: expression,
-        review: { ...reviewed, sourceBlobSha: blobSha(expression) },
+        source: { ...reviewed, sourceBlobSha: blobSha(expression) },
       }),
     /must reference a static member/,
   );
@@ -424,7 +424,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const bankPlan = materializeLessonStage6(input, {
     ...options,
     sourceText: throughBank,
-    review: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
+    source: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
   });
   const bankQuiz = bankPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
   assert(bankQuiz.includes('import { questions as stage6_ref_0 } from "../../questions";'));

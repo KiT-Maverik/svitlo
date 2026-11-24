@@ -12,8 +12,8 @@ import { gitBlob, sha256 } from './bank-gate.mjs';
 const owner = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const folder = 'content/math/data/lessons/c/' + owner;
 const events = {
-  questions: '/questions materialize typed',
-  flashcards: '/flashcards materialize typed',
+  questions: '/questions materialize',
+  flashcards: '/flashcards materialize',
 };
 const canonical = bank => ({
   version: 2,
@@ -95,6 +95,7 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
 test('typed commands require exact top-level issue_comment actor, bank and stage', () => {
   for (const [bank, body] of Object.entries(events)) {
     const event = {
+      action: 'created',
       issue: { number: 888, pull_request: {} },
       comment: {
         body,
@@ -109,7 +110,7 @@ test('typed commands require exact top-level issue_comment actor, bank and stage
     assert.deepEqual(
       typedCommand(
         {
-          inputs: { mode: 'typed', bank, pr_number: '888' },
+          inputs: { bank, pr_number: '888' },
         },
         'workflow_dispatch',
         'owner',
@@ -120,7 +121,7 @@ test('typed commands require exact top-level issue_comment actor, bank and stage
       body + ' --force',
       body + '\nanything',
       ' ' + body,
-      body.replace(' typed', ''),
+      body + ' typed',
       '/lesson materialize',
     ]) {
       assert.throws(() =>
@@ -135,6 +136,7 @@ test('typed commands require exact top-level issue_comment actor, bank and stage
       );
     }
     assert.throws(() => typedCommand(event, 'issue_comment', 'intruder'));
+    assert.throws(() => typedCommand({ ...event, action: 'edited' }, 'issue_comment', 'owner'));
     assert.throws(() => typedCommand({ ...event, issue: { number: 888 } }, 'issue_comment', 'owner'));
     assert.throws(() =>
       typedCommand(
@@ -155,7 +157,6 @@ test('typed commands require exact top-level issue_comment actor, bank and stage
       typedCommand(
         {
           inputs: {
-            mode: 'typed',
             bank: 'questions',
             pr_number: n,
           },
@@ -248,8 +249,8 @@ test('typed publisher imports in a zero-dependency read-only environment', () =>
 test('workflow separates tokenless candidate analysis from scoped trusted publication', () => {
   const root = fileURLToPath(new URL('../../..', import.meta.url));
   const flow = requireWorkflow(root);
-  assert.match(flow, /\/questions materialize typed/);
-  assert.match(flow, /\/flashcards materialize typed/);
+  assert.match(flow, /\/questions materialize/);
+  assert.match(flow, /\/flashcards materialize/);
   const analyze = flow.split('\n  typed_analyze:\n')[1]?.split('\n  typed_publish:\n')[0];
   const publish = flow.split('\n  typed_publish:\n')[1];
   assert.ok(analyze && publish);

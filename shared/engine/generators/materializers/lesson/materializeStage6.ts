@@ -27,30 +27,20 @@ import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpoi
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { preserveAssessmentReferences } from './preserveAssessmentReferences';
 
-/**
- * An authorization must originate at a trusted PR/source reader, never from
- * user-authored Stage 2 `production`. Stage 3–5 review the same editor file.
- * The caller must verify the independent reviewer and exact review/source SHA.
- */
-export type LessonStage6Review = {
+/** Pinned source metadata for a trusted caller; editorial state is not input. */
+export type LessonStage6Source = {
   sourcePath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
-  reviewEvidenceSha: string;
-  stage6Authorized: true;
+  sourceCommitSha: string;
 };
 export type LessonStage6Options = {
-  /** Exact reviewed draft.ts blob, not a regenerated TS serialization. */
+  /** Exact draft.ts blob, not regenerated TypeScript. */
   sourceText: string;
-  review: LessonStage6Review;
-  /**
-   * Trusted input boundary verifies that the parsed Stage 2 object came from
-   * the pinned source, the independent review evidence is genuine and Stage 6
-   * was authorized. Absent or failed verification refuses all output.
-   */
-  verifyReviewedInput: (
-    source: Readonly<LessonWorkflowMaterializerInput>,
-    review: Readonly<LessonStage6Review>,
+  source: LessonStage6Source;
+  /** Verify that the inert parsed object and exact bytes came from the pinned source. */
+  verifySourceInput: (
+    input: Readonly<LessonWorkflowMaterializerInput>,
+    source: Readonly<LessonStage6Source>,
     sourceText: string,
   ) => boolean;
 };
@@ -59,8 +49,7 @@ export type LessonStage6Plan = {
   sourcePath: string;
   materializedPath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
-  reviewEvidenceSha: string;
+  sourceCommitSha: string;
   publishable: false;
   files: Result['files'];
   diagnostics: Result['diagnostics'];
@@ -216,29 +205,29 @@ export function materializeLessonStage6(
   options: LessonStage6Options,
 ): LessonStage6Plan {
   if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
-    throw new Error('Lesson Stage 6 requires the canonical reviewed Stage 2 envelope');
+    throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
   const config = input.config;
-  const review = options?.review;
-  const match = review?.sourcePath?.match(
+  const source = options?.source;
+  const match = source?.sourcePath?.match(
     /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
   );
   if (
-    !review ||
+    !source ||
     config.type !== 'lesson' ||
     !uuid.test(config.id) ||
+    typeof config.slug !== 'string' ||
+    !safeSlug.test(config.slug) ||
     !match ||
     match[3] !== config.id ||
     match[2] !== config.id.slice(-1).toLowerCase() ||
-    !sha.test(review.sourceBlobSha) ||
-    !sha.test(review.reviewCommitSha) ||
-    !sha.test(review.reviewEvidenceSha) ||
-    review.stage6Authorized !== true ||
+    !sha.test(source.sourceBlobSha) ||
+    !sha.test(source.sourceCommitSha) ||
     typeof options.sourceText !== 'string' ||
-    gitBlobSha(options.sourceText) !== review.sourceBlobSha ||
-    typeof options.verifyReviewedInput !== 'function' ||
-    options.verifyReviewedInput(input, review, options.sourceText) !== true
+    gitBlobSha(options.sourceText) !== source.sourceBlobSha ||
+    typeof options.verifySourceInput !== 'function' ||
+    options.verifySourceInput(input, source, options.sourceText) !== true
   )
-    throw new Error('Lesson Stage 6: untrusted source, stale review or missing explicit authorization');
+    throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
 
   const documentLanguage = input.production.languages?.document;
   const planned = input.production.languages?.planned;
@@ -407,18 +396,17 @@ export function materializeLessonStage6(
       renderSection: section,
     },
   );
-  const root = review.sourcePath.slice(0, -'draft.ts'.length);
+  const root = source.sourcePath.slice(0, -'draft.ts'.length);
   return {
     lessonId: config.id,
-    sourcePath: review.sourcePath,
+    sourcePath: source.sourcePath,
     materializedPath: root + 'index.ts',
-    sourceBlobSha: review.sourceBlobSha,
-    reviewCommitSha: review.reviewCommitSha,
-    reviewEvidenceSha: review.reviewEvidenceSha,
+    sourceBlobSha: source.sourceBlobSha,
+    sourceCommitSha: source.sourceCommitSha,
     publishable: false,
     files: preserveAssessmentReferences(
       options.sourceText,
-      review.sourcePath,
+      source.sourcePath,
       input,
       result.files.map(file => ({ ...file, path: root + file.path })),
     ),

@@ -18,7 +18,7 @@ import {
   reviewedLessonPatchResolver,
 } from './typed-course-source.mjs';
 import { verifyTypedCourseManifest, checkTypedCourseTargets, oneCommitTree } from './typed-course-publish.mjs';
-import { gitBlob } from './course-gate.mjs';
+import { gitBlob, materializationInvocation } from './course-gate.mjs';
 import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
 import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
 
@@ -259,12 +259,15 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
   assert.throws(() => checkedSource({ ...scoped, sourceBlobSha: 'b'.repeat(40) }, root), /Git blob/);
 });
 
-test('typed Course workflow is manual-only', () => {
+test('typed Course workflow supports exact comments and manual dispatch', () => {
   const local = filename => fs.readFileSync(fileURLToPath(new URL(filename, import.meta.url)), 'utf8');
   const workflow = YAML.parse(local('../../../.github/workflows/course-typed-materialization.yml'));
   assert.equal(workflow.permissions && Object.keys(workflow.permissions).length, 0);
   assert(workflow.on.workflow_dispatch);
-  assert.equal(workflow.on.issue_comment, undefined);
+  assert.deepEqual(workflow.on.issue_comment.types, ['created']);
+  assert.deepEqual(Object.keys(workflow.on.workflow_dispatch.inputs), ['pr_number']);
+  assert.match(workflow.jobs.resolve.if, /\/course materialize'/);
+  assert.match(workflow.concurrency.group, /github.event.issue.number/);
   assert.equal(workflow.jobs.analyze.permissions.contents, 'read');
   assert.equal(workflow.jobs.publish.permissions.contents, 'write');
   assert(!local('./typed-course-source.mjs').includes('eval('));
@@ -768,4 +771,69 @@ export const ${key} = defineMarkdown({
     git(root, 'add', lessonRoot + '/draft.ts');
   }
   assert.throws(() => createTrustedCourseLessonResolver(options)(args), /Unmaterialized editorial draft/);
+});
+
+test('Course and Episode commands resolve exact comment and dispatch identities', () => {
+  for (const kind of ['course', 'episode']) {
+    const command = '/' + kind + ' materialize';
+    const event = {
+      action: 'created',
+      issue: { number: 42, pull_request: {} },
+      comment: { body: command, user: { login: 'owner' } },
+    };
+    const parse = (value, name = 'issue_comment', actor = 'owner') =>
+      materializationInvocation(value, name, actor, command, kind === 'episode' ? ['parent_pr'] : []);
+    assert.equal(parse(event), 42);
+    assert.equal(parse({ inputs: { pr_number: '42' } }, 'workflow_dispatch'), 42);
+    if (kind === 'episode')
+      assert.equal(parse({ inputs: { pr_number: '42', parent_pr: '41' } }, 'workflow_dispatch'), 42);
+    for (const body of [command + ' typed', command + '\nextra', ' ' + command, command + ' 41'])
+      assert.throws(() => parse({ ...event, comment: { ...event.comment, body } }));
+    assert.throws(() => parse({ ...event, action: 'edited' }));
+    assert.throws(() => parse({ ...event, issue: { number: 42 } }));
+    assert.throws(() => parse(event, 'issue_comment', 'other'));
+    assert.throws(() => parse({ inputs: { pr_number: 42, mode: 'typed' } }, 'workflow_dispatch'));
+    assert.throws(() => parse({ inputs: { pr_number: 0 } }, 'workflow_dispatch'));
+  }
+});
+
+test('all five materialization commands route to trusted resolve jobs with per-PR concurrency', () => {
+  const workflows = [
+    ['course-typed', 'resolve', ['course'], ['pr_number'], 'courseMaterialization/typed-course-gate.mjs'],
+    ['episode', 'resolve', ['episode'], ['pr_number', 'parent_pr'], 'episodeMaterialization/episode-gate.mjs'],
+    ['lesson', 'typed-resolve', ['lesson'], ['pr_number'], 'lessonMaterialization/lesson-typed-gate.mjs'],
+    [
+      'bank',
+      'typed_resolve',
+      ['questions', 'flashcards'],
+      ['pr_number', 'bank'],
+      'bankMaterialization/bank-typed-gate.mjs',
+    ],
+  ];
+  for (const [filename, resolve, commands, inputs, gate] of workflows) {
+    const flow = YAML.parse(
+      fs.readFileSync(
+        fileURLToPath(new URL('../../../.github/workflows/' + filename + '-materialization.yml', import.meta.url)),
+        'utf8',
+      ),
+    );
+    assert.deepEqual(flow.on.issue_comment.types, ['created']);
+    assert.deepEqual(Object.keys(flow.on.workflow_dispatch.inputs), inputs);
+    assert.match(flow.concurrency.group, /github\.event\.issue\.number/);
+    assert.match(flow.concurrency.group, /inputs\.pr_number/);
+    assert.equal(flow.concurrency['cancel-in-progress'], false);
+    const resolver = flow.jobs[resolve];
+    assert.match(resolver.if, /github\.event\.issue\.pull_request/);
+    assert.match(resolver.if, /github\.event\.repository\.default_branch/);
+    for (const entity of commands) {
+      assert(resolver.if.includes("github.event.comment.body == '/" + entity + " materialize'"));
+      assert(!resolver.if.includes('/' + entity + ' materialize typed'));
+    }
+    assert(resolver.steps.some(step => step.run === 'node scripts/ci/' + gate + ' resolve'));
+    assert.equal(resolver.permissions.contents, 'read');
+    const analyze = flow.jobs.analyze ?? flow.jobs['typed-analyze'] ?? flow.jobs.typed_analyze;
+    const publish = flow.jobs.publish ?? flow.jobs['typed-publish'] ?? flow.jobs.typed_publish;
+    assert.equal(analyze.permissions.contents, 'read');
+    assert.equal(publish.permissions.contents, 'write');
+  }
 });

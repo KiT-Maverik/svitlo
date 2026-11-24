@@ -12,7 +12,7 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { inspectTyped, typedPath } from './lesson-typed-gate.mjs';
+import { inspectTyped, lessonSourceIdentity, typedPath } from './lesson-typed-gate.mjs';
 import { gitBlob, github, requireActor, report } from '../courseMaterialization/course-gate.mjs';
 
 const sha = /^[0-9a-f]{40}$/;
@@ -30,25 +30,14 @@ export function typedMeta(encoded = process.env.LESSON_TYPED_META_B64) {
   if (
     !Number.isSafeInteger(info.number) ||
     info.number < 1 ||
-    info.operation !== 'materialize-typed' ||
+    info.operation !== 'lesson-stage6' ||
     info.repo !== process.env.GITHUB_REPOSITORY ||
     !sha.test(info.head || '') ||
     !sha.test(info.sourceBlob || '') ||
     !/^[A-Za-z0-9-]+$/.test(info.actor || '') ||
+    !sha.test(info.baseHead || '') ||
     !info.identity?.source ||
-    !info.identity?.folder ||
-    info.identity.source !== info.identity.folder + '/draft.ts' ||
-    !Array.isArray(info.reviews) ||
-    info.reviews.length !== 3 ||
-    !info.reviews.every(
-      (item, index) =>
-        item.stage === index + 3 &&
-        item.verdict === 'accepted' &&
-        sha.test(item.commit || '') &&
-        sha.test(item.blob || ''),
-    ) ||
-    info.reviews[2].commit !== info.head ||
-    info.reviews[2].blob !== info.sourceBlob
+    JSON.stringify(info.identity) !== JSON.stringify(lessonSourceIdentity(info.identity.source))
   )
     throw Error('Malformed typed Lesson authorization snapshot');
   return info;
@@ -124,16 +113,15 @@ export function matchingSnapshot(a, b) {
     a.head === b.head &&
     a.branch === b.branch &&
     a.base === b.base &&
+    a.baseHead === b.baseHead &&
     a.sourceBlob === b.sourceBlob &&
-    JSON.stringify(a.identity) === JSON.stringify(b.identity) &&
-    JSON.stringify(a.reviews) === JSON.stringify(b.reviews) &&
-    JSON.stringify(a.parent) === JSON.stringify(b.parent)
+    JSON.stringify(a.identity) === JSON.stringify(b.identity)
   );
 }
 async function fresh(meta) {
   await requireActor(meta.actor);
   const live = await inspectTyped(meta.number, meta.head);
-  if (!matchingSnapshot(meta, live)) throw Error('Typed Lesson HEAD, identity, parent or review source changed');
+  if (!matchingSnapshot(meta, live)) throw Error('Typed Lesson HEAD, identity or pinned source changed');
 }
 function sourceBytes(root, meta) {
   const filename = safeTarget(root, meta.identity.source, true);
@@ -160,14 +148,14 @@ export function typedManifest(plan, meta, original, tracked, root) {
     plan.materializedPath !== meta.identity.folder + '/index.ts' ||
     plan.lessonId !== meta.identity.id ||
     plan.sourceBlobSha !== meta.sourceBlob ||
-    plan.reviewCommitSha !== meta.reviews[2].commit ||
+    plan.sourceCommitSha !== meta.head ||
     plan.publishable !== false ||
     !Array.isArray(plan.files) ||
     plan.files.length < 1 ||
     plan.files.length > MAX_COUNT - 1 ||
     !Array.isArray(plan.diagnostics)
   )
-    throw Error('Invalid or unreviewed Engine Lesson Stage 6 result');
+    throw Error('Invalid Engine Lesson Stage 6 result');
   const entries = [];
   const seen = new Set();
   for (const file of plan.files) {
@@ -192,10 +180,9 @@ export function typedManifest(plan, meta, original, tracked, root) {
   entries.push(asEntry(meta.identity.source, 'delete', original));
   entries.sort((a, b) => a.path.localeCompare(b.path));
   const manifest = {
-    version: 2,
+    version: 3,
     meta,
     sourceSha256: digest(original),
-    reviewEvidenceSha: plan.reviewEvidenceSha,
     publishable: false,
     diagnostics: plan.diagnostics,
     entries,
@@ -206,20 +193,19 @@ export function typedManifest(plan, meta, original, tracked, root) {
 
 export function verifyTypedManifest(manifest, meta, root, tracked, original) {
   if (
-    manifest?.version !== 2 ||
+    manifest?.version !== 3 ||
     !matchingSnapshot(manifest.meta || {}, meta) ||
     manifest.meta?.actor !== meta.actor ||
-    manifest.meta?.operation !== 'materialize-typed' ||
+    manifest.meta?.operation !== 'lesson-stage6' ||
     manifest.publishable !== false ||
     manifest.sourceSha256 !== digest(original) ||
-    manifest.reviewEvidenceSha !== gitBlob(Buffer.from(JSON.stringify(meta.reviews))) ||
     !Array.isArray(manifest.diagnostics) ||
     manifest.diagnostics.length > MAX_COUNT ||
     !Array.isArray(manifest.entries) ||
     manifest.entries.length < 3 ||
     manifest.entries.length > MAX_COUNT
   )
-    throw Error('Typed Lesson artifact failed immutable source/review attestation');
+    throw Error('Typed Lesson artifact failed immutable source attestation');
   let total = 0,
     source = false,
     index = false;
@@ -250,7 +236,7 @@ export function verifyTypedManifest(manifest, meta, root, tracked, original) {
     safeTarget(root, entry.path);
     if (entry.path === meta.identity.source) {
       if (entry.action !== 'delete' || !tracked.has(entry.path) || !bytes.equals(original))
-        throw Error('Expected exact reviewed Lesson draft deletion');
+        throw Error('Expected exact pinned Lesson draft deletion');
       source = true;
     } else {
       if (entry.action !== 'create' || tracked.has(entry.path) || fs.existsSync(path.join(root, entry.path)))
@@ -339,30 +325,26 @@ async function analyze(root, meta) {
   await fresh(meta);
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
-  if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the reviewed PR');
+  if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the pinned PR');
   if (tracked.has(meta.identity.folder + '/index.ts')) throw Error('Lesson Stage 6 already materialized; no overwrite');
   const { parseTypedLesson, typecheckTypedLesson } = await import('./lesson-typed-source.mjs');
   const input = parseTypedLesson(root, meta.identity.source, original.toString('utf8'));
   typecheckTypedLesson(root, meta.identity.source);
-  if (input.config.slug !== meta.identity.slug) throw Error('Stage 2 reviewed slug disagrees with Lesson PR identity');
   const requireTrusted = createRequire(import.meta.url);
   const { materializeLessonStage6 } = requireTrusted(
     path.join(ROOT, 'shared/engine/dist/generators/materializers/lesson/materializeStage6.js'),
   );
-  const reviewEvidenceSha = gitBlob(Buffer.from(JSON.stringify(meta.reviews)));
   const text = original.toString('utf8');
   const plan = materializeLessonStage6(input, {
     sourceText: text,
-    review: {
+    source: {
       sourcePath: meta.identity.source,
       sourceBlobSha: meta.sourceBlob,
-      reviewCommitSha: meta.reviews[2].commit,
-      reviewEvidenceSha,
-      stage6Authorized: true,
+      sourceCommitSha: meta.head,
     },
-    verifyReviewedInput: (evaluated, reviewed, bytes) =>
-      reviewed.sourceBlobSha === meta.sourceBlob &&
-      reviewed.reviewCommitSha === meta.head &&
+    verifySourceInput: (evaluated, pinned, bytes) =>
+      pinned.sourceBlobSha === meta.sourceBlob &&
+      pinned.sourceCommitSha === meta.head &&
       bytes === text &&
       JSON.stringify(evaluated) === JSON.stringify(input),
   });
@@ -382,7 +364,7 @@ async function analyze(root, meta) {
   report(
     'Typed Lesson Stage 6.1 analyzed ' +
       manifest.entries.length +
-      ' file operations from reviewed HEAD ' +
+      ' file operations from pinned HEAD ' +
       meta.head +
       '; generated source remains nonpublishable pending separate gates',
   );
@@ -409,16 +391,14 @@ export async function publish(root, meta) {
   if (!sha.test(tree?.sha || '')) throw Error('Unable to create trusted Lesson Git tree');
   const commit = await github('git/commits', 'POST', {
     message:
-      'Materialize reviewed typed Lesson ' +
+      'Materialize typed Lesson ' +
       meta.identity.id +
       '\n\nLesson-PR: #' +
       meta.number +
       '\nLesson-Source-Commit: ' +
       meta.head +
       '\nLesson-Source-Blob: ' +
-      meta.sourceBlob +
-      '\nLesson-Review-Evidence: ' +
-      manifest.reviewEvidenceSha,
+      meta.sourceBlob,
     tree: tree.sha,
     parents: [meta.head],
   });
@@ -428,7 +408,7 @@ export async function publish(root, meta) {
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: commit.sha, force: false });
   if (updated?.object?.sha !== commit.sha) throw Error('Lesson branch did not advance to exact commit');
   report(
-    'Committed reviewed typed Lesson Stage 6.1 (' +
+    'Committed typed Lesson Stage 6.1 (' +
       count +
       ' operations) to PR #' +
       meta.number +

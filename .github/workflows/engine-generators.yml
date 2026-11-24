@@ -93,9 +93,14 @@ jobs:
             shared/engine/generators/materializers/module/*.spec.mjs \
             shared/engine/generators/materializers/chapter/*.spec.mjs \
             shared/engine/generators/materializers/lesson/*.spec.mjs \
+            shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
             shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
+
+      - name: Verify Lesson semantic checker also works from the Engine workspace
+        working-directory: shared/engine
+        run: node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test --test-name-pattern="generated Lesson source passes the real TypeScript semantic checker" .test-build/generators/materializers/lesson/materializeStage6.spec.js
 
       - name: Test typed Bank source and PR-command security
         run: |
