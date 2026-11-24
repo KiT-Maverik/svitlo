@@ -9,7 +9,7 @@
 
 Each draft operation creates only the owning bank's editable `questions/draft.ts` or `flashcards/draft.ts` satisfying its canonical Stage 1 workflow type. A Question draft records only its owner Lesson UUID and source/planned languages; Lesson review SHAs, Skill analysis and assessment decisions belong to the existing Lesson/Questions PR and trusted authorization, not to duplicate bank fields. Stage 1 does not mint Questions/Cards, create Section selections or publish Props.
 
-The final-stage operations require the exact final `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowMaterializerInput`. They call all nine existing concrete Question-kind source materializers or, for Cards, the existing per-Card and Side materializers. The shared Block dispatcher invokes actual concrete Block implementations (including Carousel and Checkpoint). All members are exported, not just Lesson-Section selections.
+The final-stage operations require the exact final `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowMaterializerInput`. They call all nine existing concrete Question-kind source materializers or, for Cards, the existing per-Card and Side materializers. The shared Block dispatcher invokes actual concrete Block implementations (including Carousel and Checkpoint). All members are exported, not just Lesson-Section selections. The Lesson's `constants.ts` owns the reviewed locale restoration plan: nested bank ContentBlocks emit only the document language and do not repeat `Restore reviewed languages` TODOs.
 
 ## Trusted source transition and Git commit boundary
 

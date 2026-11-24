@@ -28,6 +28,24 @@ test('one pinned Prettier plugin sorts Node, external, Svitlo, aliases and relat
   assert.equal(await prettier(result), result, 'import sorting must be idempotent');
 });
 
+test('package @/ aliases group beside # aliases, after workspace dependencies', async () => {
+  const result = await prettier([
+    "import { local } from './local';",
+    "import { page } from '@/pages';",
+    "import { hash } from '#registry';",
+    "import { engine } from '@svitlo/engine/build';",
+    "import { readFileSync } from 'node:fs';",
+    'export const answer = [local, page, hash, engine, readFileSync];',
+  ].join('\n'));
+  const workspace = result.indexOf("from '@svitlo/engine/build'");
+  const aliasAt = result.indexOf("from '@/pages'");
+  const aliasHash = result.indexOf("from '#registry'");
+  const relative = result.indexOf("from './local'");
+  assert(workspace >= 0 && aliasAt >= 0 && aliasHash >= 0 && relative >= 0);
+  assert(workspace < aliasAt && workspace < aliasHash, 'aliases must follow the workspace group');
+  assert(aliasAt < relative && aliasHash < relative, 'aliases must precede local relative imports');
+});
+
 test('side-effect imports retain their relative order and act as barriers', async () => {
   const input = [
     "import { local } from './local';",

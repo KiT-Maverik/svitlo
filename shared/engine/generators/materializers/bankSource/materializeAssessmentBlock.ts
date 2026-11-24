@@ -117,7 +117,9 @@ export function materializeAssessmentBlock(
     directory: context.directory,
     documentLanguage,
     languagesImport,
-    plannedLanguages: planned,
+    // The Lesson owns the complete restoration plan. Each nested Bank Block
+    // materializes source-language copy only, without duplicate locale TODOs.
+    plannedLanguages: [documentLanguage],
     production: node.production,
   };
   if (

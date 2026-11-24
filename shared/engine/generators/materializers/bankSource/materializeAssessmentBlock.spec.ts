@@ -155,3 +155,27 @@ test('Question unregistered Scene emits TODO while Flashcard remains strictly ve
     /Scene has no verified executable registry/,
   );
 });
+
+test('Lesson-owned bank languages do not create repeated ContentBlock restoration blockers', () => {
+  for (const bank of ['questions', 'flashcards'] as const) {
+    const result = materializeAssessmentBlock(
+      {
+        config: {
+          id: id(99),
+          slug: 'prompt',
+          type: 'text',
+          params: {},
+          locale: { value: { uk: 'Розглянь приклад.' } },
+        },
+      } as never,
+      { directory: bank + '/sample/prompt', documentLanguage: 'uk' },
+      ['uk', 'en'],
+      bank,
+      ownerImport,
+      evidence,
+    );
+    assert(!result.diagnostics.some(item => item.code === 'pending-locales'));
+    assert(!result.files.some(file => file.content.includes('Restore reviewed languages')));
+    assert(result.files.some(file => file.content.includes(ownerImport)));
+  }
+});

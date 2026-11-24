@@ -171,7 +171,14 @@ test('existing six-file Scene drafts remain blocked and cannot be overwritten', 
   const name = 'Visual';
   const files = {
     'index.ts': '// TODO (BLOCKER): Register after review.\nexport { Visual as default } from "./Visual";\n',
-    'Visual.tsx': '// TODO (BLOCKER): Implement reviewed Scene.\nexport function Visual() { return <div />; }\n',
+    'Visual.tsx': [
+      '// TODO (BLOCKER): Implement reviewed Scene.',
+      '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)',
+      '// # Reviewed interaction',
+      '// END REVIEWED SCENE SPECIFICATION',
+      'export function Visual() { return <div />; }',
+      '',
+    ].join('\n'),
     'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
     'Visual.constants.ts': '// TODO (BLOCKER): Supply test IDs.\nexport const testIds = {};\n',
     'Visual.stories.tsx': '// TODO (BLOCKER): Supply Stories.\nexport const Default = {};\n',
@@ -186,6 +193,13 @@ test('existing six-file Scene drafts remain blocked and cannot be overwritten', 
   assert.deepEqual([...draft.existingDraftSceneIds], [sceneId]);
   assert.deepEqual([...draft.newSceneIds], []);
   assert.deepEqual([...draft.registeredSceneIds], []);
+  const changedSpec = f.input({ visual: f.scene() });
+  changedSpec.config.questions.selectOneAnswer.test.config.content.question.items.visual.production.specification =
+    '# Different reviewed interaction\n';
+  assert.throws(
+    () => f.resolve(changedSpec),
+    /Existing Bank Scene reviewed specification differs from pinned Bank source/,
+  );
   f.meta.bank = 'flashcards';
   const flashcardInput = f.input({ visual: f.scene() });
   flashcardInput.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };

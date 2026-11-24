@@ -280,6 +280,24 @@ function classifyUnregisteredScene(root, meta, config, production, git, ts) {
     throw Error('Unregistered Bank Scene is not a verified unfinished draft: ' + config.id);
   for (const i of [0, 3]) staticFile(ts, folder + names[i], contents[i]);
   for (const i of [1, 4, 5]) staticFile(ts, folder + names[i], contents[i], ts.ScriptKind.TSX);
+  // Never reuse an unfinished Scene with a changed reviewed specification.
+  // Compare against the exact inert comments emitted by the shared Scene
+  // template; reject incompatible drafts instead of overwriting source.
+  const marker = '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)\n';
+  const endMarker = '\n// END REVIEWED SCENE SPECIFICATION';
+  const reviewedLines = production.specification
+    .trimEnd()
+    .replace(/\r\n?|\u2028|\u2029/g, '\n')
+    .split('\n')
+    .map(line => '// ' + line)
+    .join('\n');
+  const source = contents[1];
+  if (
+    !source.includes(marker + reviewedLines + endMarker) ||
+    source.indexOf(marker) !== source.lastIndexOf(marker) ||
+    source.indexOf(endMarker) !== source.lastIndexOf(endMarker)
+  )
+    throw Error('Existing Bank Scene reviewed specification differs from pinned Bank source: ' + config.id);
   return 'existingDraft';
 }
 
