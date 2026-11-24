@@ -6,6 +6,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
 import { createJiti } from 'jiti';
+import { formatGeneratedPlan } from './format-generated-plan.mjs';
 
 const require = createRequire(import.meta.url);
 const {
@@ -141,6 +142,7 @@ const plan = await executeMaterializerEntrypoint(
         }
       : undefined,
 );
+const formatted = await formatGeneratedPlan(plan);
 process.stdout.write(
-  JSON.stringify(selectedBank || operation === 'episode-stage5' ? { plan, input: capturedInput } : plan),
+  JSON.stringify(selectedBank || operation === 'episode-stage5' ? { plan: formatted, input: capturedInput } : formatted),
 );
