@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { QuestionBankWorkflowStage2 } from './questionBankWorkflow.types';
 import { workflowOrdered_Schema } from './lessonWorkflow.types';
 import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -128,7 +129,7 @@ const questionContent = {
     slots: fillBlanksWithText_Config_Schema.shape.content.shape.slots,
   }),
 };
-const questionKinds_Schema = z.strictObject({
+const questionKinds_Schema: z.ZodType<QuestionBankWorkflowStage2['config']['questions']> = z.strictObject({
   selectOneAnswer: z.record(z.string(), z.strictObject({
     config: selectOneAnswer_Config_Schema.extend({ content: questionContent.selectOneAnswer }),
     production: questionProduction_Schema,
