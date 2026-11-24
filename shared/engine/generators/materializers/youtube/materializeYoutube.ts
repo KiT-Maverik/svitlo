@@ -4,6 +4,7 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube';
 import { youtube_Config_Schema } from '../../../configurators/contentBlocks/defineYoutube';
 
@@ -196,31 +197,6 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
       block('locale.' + field, 'pending-copy', 'Supply ' + description);
     }
   }
-  function requireMedia(field: string, ext: string): void {
-    const locale = isRecord(fields.locale) ? fields.locale : {};
-    const prior = locale[field];
-    const missing =
-      prior === undefined ||
-      prior === null ||
-      (isRecord(prior) && (Object.keys(prior).length === 0 || prior[language] === undefined));
-    const placeholder = nilUuid + '.' + ext;
-    if (missing) {
-      locale[field] =
-        isRecord(config.locale) && isRecord((config.locale as Record<string, unknown>)[field])
-          ? { [language]: placeholder }
-          : placeholder;
-    }
-    const current = locale[field];
-    if (missing || current === placeholder || (isRecord(current) && current[language] === placeholder)) {
-      blockers.push('// TODO(asset): Replace ' + field + ' reserved Nil UUID with a verified ' + ext + ' asset.');
-      block(
-        'locale.' + field,
-        'pending-media',
-        'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)',
-      );
-    }
-    fields.locale = locale;
-  }
   if (planned.length > 1) {
     blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
     diagnostics.push({
@@ -231,7 +207,30 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     });
   }
 
-  requireCopy('href', 'verified YouTube URL');
+  const hrefLocale = isRecord(fields.locale) ? fields.locale : {};
+  const href = hrefLocale.href;
+  if (href === undefined || (isRecord(href) && !Object.hasOwn(href, language))) {
+    hrefLocale.href = isRecord(config.locale?.href)
+      ? { [language]: UNRESOLVED_YOUTUBE_HREF }
+      : UNRESOLVED_YOUTUBE_HREF;
+  }
+  const resolvedHref = hrefLocale.href;
+  if (resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
+      (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF)) {
+    const fieldPath = 'locale.href' + (isRecord(resolvedHref) ? '.' + language : '');
+    expressions[fieldPath] =
+      '// TODO (BLOCKER): Supply a verified YouTube URL before publication.\n' +
+      JSON.stringify(UNRESOLVED_YOUTUBE_HREF);
+    diagnostics.push({
+      path: '$.config.' + fieldPath,
+      code: 'pending-media',
+      message: 'Supply a verified YouTube URL; the reserved sentinel is not a video reference.',
+      severity: 'warning',
+    });
+  } else {
+    requireCopy('href', 'verified YouTube URL');
+  }
+  fields.locale = hrefLocale;
   requireCopy('label', 'accessible YouTube label');
   const params = isRecord(fields.params) ? fields.params : {};
   if (params.mode !== 'link' && params.mode !== 'embed') {
@@ -241,7 +240,7 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   // The returned index.ts must satisfy the *actual* defineYoutube Config type.
   // A TODO cannot make a missing required field type-valid. Refuse to emit
   // executable source until reviewed mandatory fields exist. Media's reserved
-  // Nil UUID filename is the single explicitly permitted pending Config value.
+  // The reserved non-URL sentinel is the only pending YouTube href.
   const incomplete = diagnostics.filter(item => item.code !== 'pending-locales' && item.code !== 'pending-media');
   if (incomplete.length) {
     throw new Error(
