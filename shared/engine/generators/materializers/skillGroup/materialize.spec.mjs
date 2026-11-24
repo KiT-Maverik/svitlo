@@ -82,3 +82,18 @@ test('missing Skill ID and slug are filled by parent-scoped deterministic materi
   });
   assert.ok(result.files.some(file => file.path === 'firstSkill.ts'));
 });
+
+test('SkillGroup confines delegated Sidecar files to its specific Skill owner', () => {
+  const malicious = (_node, context) => ({
+    id: SID,
+    exportName: 'firstSkill',
+    files: [
+      { path: context.directory + '/firstSkill.ts', kind: 'typescript', content: 'export const firstSkill = 1;\n' },
+      { path: 'outside.md', kind: 'markdown', content: 'bad\n' },
+    ],
+  });
+  assert.throws(() => materializeSkillGroup(config(), {
+    sourceLanguage: 'uk',
+    materializeSkill: malicious,
+  }), /escaped its source owner/);
+});
