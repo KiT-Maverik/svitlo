@@ -128,6 +128,7 @@ export const assessmentConfigurator_Schema = z.custom<{
     typeof value === 'object' &&
     'type' in value &&
     value.type === 'assessment' &&
+    !('draft' in value && value.draft === true) &&
     'id' in value &&
     typeof value.id === 'string' &&
     'slug' in value &&

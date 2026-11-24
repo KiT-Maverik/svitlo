@@ -6,6 +6,7 @@ import type { DeepPartial } from '#types';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
 import type { Section_Configurator, Section_Props } from '../../sections/section.types';
 
@@ -44,14 +45,26 @@ const sectionResolved = z
   })
   .catchall(z.unknown());
 
-export const episode_Props_Schema = identity
+export const episode_Completed_Props_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
     section: z.array(sectionResolved),
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
-export type Episode_Props = Omit<z.infer<typeof episode_Props_Schema>, 'section'> & {
+/** Explicit draft preview; it cannot pass the completed Episode schema. */
+export const episode_Draft_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    draft: z.literal(true),
+    section: z.array(contentSection_Props_Schema).nonempty(),
+    events: z.record(z.string(), z.json()).optional(),
+  })
+  .strict()
+  .refine(value => value.section.some(section => section.params.disabled !== true && section.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')), 'Episode draft needs the Not implemented Text ContentBlock');
+export const episode_Props_Schema = z.union([episode_Completed_Props_Schema, episode_Draft_Props_Schema]);
+export type Episode_Draft_Props = z.infer<typeof episode_Draft_Props_Schema>;
+export type Episode_Props = Omit<z.infer<typeof episode_Completed_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
 export type Episode_PropsBase = Pick<Episode_Props, 'id' | 'slug' | 'type' | 'params'> & {
@@ -97,6 +110,7 @@ export const episodeConfigurator_Schema = z.custom<{
     typeof value === 'object' &&
     'type' in value &&
     value.type === 'episode' &&
+    !('draft' in value && value.draft === true) &&
     'id' in value &&
     typeof value.id === 'string' &&
     'slug' in value &&

@@ -7,6 +7,9 @@ import {
   defineChapter,
   defineCourse,
   placeLesson,
+  defineLessonStub,
+  defineEpisodeStub,
+  defineAssessmentStub,
   defineLesson,
   defineModule,
   defineEpisode,
@@ -567,4 +570,21 @@ test('real placement-local Lesson patch publishes only sparse overrides at each 
     content: { items: { shadow: tampered }, order: ['shadow'] },
   });
   assert.throws(() => renderCourseFiles(invalid), /Mismatched immutable Lesson placement identity/);
+});
+
+test('strict Course publication rejects every reserved draft stub even when Build preview succeeds', () => {
+  const makers = [defineLessonStub, defineEpisodeStub, defineAssessmentStub];
+  for (const [index, maker] of makers.entries()) {
+    const slot = maker({ id: 'b275647f-203d-481a-a1c7-4d331c779d' + String(index + 1).padStart(2, '0'), slug: 'slot' });
+    const course = defineCourse({
+      id: 'b275647f-203d-481a-a1c7-4d331c779d40',
+      slug: 'courseStub',
+      type: 'course',
+      params: { languages: ['en'] },
+      locale: { title: 'Preview', description: 'Draft only' },
+      content: { items: { slot }, order: ['slot'] },
+    });
+    assert.equal(course.build.props({ languages: ['en'] }).base.content[0].draft, true);
+    assert.throws(() => renderCourseFiles(course, { languages: ['en'] }), /draft stub cannot be published/i);
+  }
 });
