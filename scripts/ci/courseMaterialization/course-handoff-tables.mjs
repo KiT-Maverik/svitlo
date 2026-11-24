@@ -5,18 +5,22 @@ const safePath = value =>
   typeof value === 'string' &&
   pathPattern.test(value) &&
   value.split('/').every(part => part && part !== '.' && part !== '..');
-const headings = '| UUID | Placement | Order | Kind | Source | Status | Child PR | Next action | Evidence |';
-const divider = '| --- | --- | --- | --- | --- | --- | --- | --- | --- |';
+const headings = kind =>
+  '| UUID | Placement | Order | Kind | Source | ' +
+  (kind === 'assessments' ? 'Lesson dependencies | ' : '') +
+  'Status | Child PR | Next action | Evidence |';
+const divider = kind =>
+  '| ' + Array.from({ length: kind === 'assessments' ? 10 : 9 }, () => '---').join(' | ') + ' |';
 const markers = kind => ['<!-- svitlo-course-' + kind + ':v1:begin -->', '<!-- svitlo-course-' + kind + ':v1:end -->'];
 const cell = value =>
   String(value)
     .replaceAll('|', '&#124;')
     .replace(/[\r\n]/g, ' ');
 const key = (id, placement) => id + '\0' + placement;
-function splitRow(line) {
+function splitRow(line, kind) {
   if (!line.startsWith('| ') || !line.endsWith(' |')) throw Error('Malformed managed Course inventory row');
   const cells = line.slice(2, -2).split(' | ');
-  if (cells.length !== 9 || !uuid.test(cells[0]) || !safePath(cells[1]))
+  if (cells.length !== (kind === 'assessments' ? 10 : 9) || !uuid.test(cells[0]) || !safePath(cells[1]))
     throw Error('Malformed managed Course inventory row');
   return cells;
 }
@@ -38,10 +42,10 @@ function locate(body, kind) {
     .slice(a + start.length, b)
     .trim()
     .split(/\r?\n/);
-  if (lines[0] !== headings || lines[1] !== divider) throw Error('Malformed managed Course inventory headings');
+  if (lines[0] !== headings(kind) || lines[1] !== divider(kind)) throw Error('Malformed managed Course inventory headings');
   const prior = new Map();
   for (const line of lines.slice(2)) {
-    const cells = splitRow(line);
+    const cells = splitRow(line, kind);
     const identity = key(cells[0], cells[1]);
     if (prior.has(identity)) throw Error('Duplicate managed Course placement');
     prior.set(identity, cells);
@@ -57,12 +61,12 @@ function render(kind, rows, previous) {
       !uuid.test(row.id) ||
       !safePath(row.placementPath) ||
       !safePath(row.sourcePath) ||
-      row.type !== (kind === 'lessons' ? 'lesson' : 'episode') ||
+      row.type !== (kind === 'lessons' ? 'lesson' : kind === 'episodes' ? 'episode' : 'assessment') ||
       !Array.isArray(row.orderPath) ||
       !row.orderPath.length ||
       row.orderPath.some(n => !Number.isSafeInteger(n) || n < 0) ||
       !['new', 'reused', 'overridden'].includes(row.kind) ||
-      !['pending-lesson-stage1', 'pending-episode-scenario', 'verified-reference', 'materialized-source'].includes(
+      !['pending-lesson-stage1', 'pending-episode-scenario', 'pending-assessment-design', 'verified-reference', 'materialized-source'].includes(
         row.status,
       )
     )
@@ -70,13 +74,19 @@ function render(kind, rows, previous) {
     const identity = key(row.id, row.placementPath);
     if (seen.has(identity)) throw Error('Duplicate Course placement');
     seen.add(identity);
+    if (kind === 'assessments' && (!Array.isArray(row.lessonDependencies) || !row.lessonDependencies.length ||
+      row.lessonDependencies.some(path => !safePath(path))))
+      throw Error('Assessment inventory requires verified Lesson dependency paths');
     const old = previous?.get(identity);
+    const statusColumn = kind === 'assessments' ? 6 : 5;
     const next =
       row.status === 'pending-lesson-stage1'
         ? 'Authorize Lesson Stage 1'
         : row.status === 'pending-episode-scenario'
           ? 'Authorize Episode Stage 1'
-          : 'Verify downstream publication gates';
+          : row.status === 'pending-assessment-design'
+            ? 'Authorize Assessment Stage 1'
+            : 'Verify downstream publication gates';
     return (
       '| ' +
       [
@@ -85,10 +95,11 @@ function render(kind, rows, previous) {
         row.orderPath.map(n => n + 1).join('.'),
         row.kind,
         row.sourcePath,
-        old?.[5] ?? row.status,
-        old?.[6] ?? '—',
-        old?.[7] ?? next,
-        old?.[8] ?? '—',
+        ...(kind === 'assessments' ? [row.lessonDependencies.join(', ')] : []),
+        old?.[statusColumn] ?? row.status,
+        old?.[statusColumn + 1] ?? '—',
+        old?.[statusColumn + 2] ?? next,
+        old?.[statusColumn + 3] ?? '—',
       ]
         .map(cell)
         .join(' | ') +
@@ -99,16 +110,16 @@ function render(kind, rows, previous) {
     if (!seen.has(identity))
       throw Error('Existing Course handoff identity missing from verified inventory; reconcile explicitly');
   }
-  return [start, headings, divider, ...lines, end].join('\n');
+  return [start, headings(kind), divider(kind), ...lines, end].join('\n');
 }
 export function reconcileCourseHandoffTables(body, inventory) {
   if (typeof body !== 'string') throw Error('Current PR body required');
-  const sections = ['lessons', 'episodes'].map(kind => {
+  const sections = ['lessons', 'episodes', 'assessments'].map(kind => {
     const location = locate(body, kind);
-    return { kind, location, table: render(kind, inventory?.[kind], location?.prior) };
+    return { kind, location, table: render(kind, kind === 'assessments' ? (inventory?.assessments ?? []) : inventory?.[kind], location?.prior) };
   });
   const located = sections.filter(section => section.location).sort((x, y) => y.location.a - x.location.a);
-  if (located.length === 2 && located[1].location.b > located[0].location.a)
+  if (located.some((section, index) => index > 0 && section.location.b > located[index - 1].location.a))
     throw Error('Overlapping managed Course inventory blocks');
   let result = body;
   for (const { location, table } of located) result = result.slice(0, location.a) + table + result.slice(location.b);
@@ -117,7 +128,7 @@ export function reconcileCourseHandoffTables(body, inventory) {
       result +=
         (result.endsWith('\n') ? '\n' : '\n\n') +
         '### ' +
-        (kind === 'lessons' ? 'Lessons' : 'Episodes') +
+        (kind === 'lessons' ? 'Lessons' : kind === 'episodes' ? 'Episodes' : 'Assessments') +
         '\n\n' +
         table +
         '\n';
