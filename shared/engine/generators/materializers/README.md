@@ -27,7 +27,7 @@ independent work; a green Draft guard is not a substitute for Ready CI.
 | EducationStandard | Standalone leaf; entire immutable original-language `description.frontend` dictionary retained | **N/A** to source-only language pruning: required original locale dictionary is the approved contract; preserve unique sidecars |
 | AssessmentMethod | Standalone typed leaf, source-localized descriptions, pending planned languages signaled by materializer | **N/A** to nested flattening; assessment method taxonomy remains Engine-owned |
 | Text, Markdown, Code, Carousel, Checkpoint, Sections | Direct nested source paths; optional semantic role boundaries preserved | Section educational notes must be integrated by owning Lesson/Episode, never discarded |
-| Scene / Image / Video / YouTube / Audio / Subtitles | Shared concrete emitters; Scene executable draft owned by Lesson/Episode, Bank Scene evidence pinned independently; YouTube avoids redundant empty-URL verification TODO | Incomplete content remains blocked; no fabricated asset, registered Scene or license approval |
+| Scene / Image / Video / YouTube / Audio / Subtitles | Shared emitters and the same six-file Scene draft template for Lesson, Episode, and newly reviewed Bank Scenes; Bank Scene evidence and no-clobber publishing independently pinned | Incomplete content remains blocked; no fabricated asset, registered Scene or license approval |
 
 The source materializers seal their emitted TypeScript bytes unchanged, with **no
 pre-seal formatter or handoff AST parser**. The existing `PR Auto-format` action
@@ -44,9 +44,10 @@ Skill modules generated within their parent Group/Domain are sibling `<slug>.ts`
 
 ## Integration evidence and outstanding boundaries
 
-- **Source-of-truth languages:** Lesson, Question Bank and Flashcard Bank comment precisely their reviewed planned locales and enable only their verified document language; no global language roster is reproduced.
+- **Source-of-truth languages:** Lesson owns the sole `constants.ts` source and reviewed planned locale restoration. Both Banks import its active `languages` and `Languages` type from `#lessonsData/*` without additional language files or duplicate translation TODOs; independent Bank translation and publisher gates still apply. Episode has its own typed `constants.ts` under its Course-owned content path.
 - **Reviewed Skill links:** the Lesson Stage 6 bridge only preserves imported Configurator `.id` references from its exact pinned authoring source, rooted in the owning textbook `#skillsData/*` alias. Unknown UUID strings produce blocked scaffolds rather than guessed imports.
 - **Unique specifications:** retain per-node reviewed source notes at their semantic owner. Section notes consolidate into Lesson methodology or Episode narrative; temporary Flashcards/Scene specifications are inert, removable source comments.
+- **Formatting:** root Prettier owns `quoteProps: as-needed`, import grouping and comment/string preservation through the pinned `@ianvs/prettier-plugin-sort-imports`. Do not add post-materialization rewriting or mass-format unrelated authored content. Run its focused idempotence test and the existing PR Auto-format lifecycle when ready.
 - **CI evidence:** pending latest-head Ready CI and focused Course/Episode/Lesson/Bank publisher checks must be explicitly verified before the parent PR can be considered merge-ready.
 - **Concurrent Course Assessment:** #826 owns Course/Module/Chapter architecture changes. This parent does not silently merge its unfinished work; verify compatibility with its eventual integration.
 
