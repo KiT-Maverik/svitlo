@@ -16,4 +16,4 @@ Focused validation (CI runs these on Ready):
 
 Verify the actual successful Actions run and exact generated Git commit on the Episode branch before recording Stage 5 completion. Do not repeat a successful materialization.
 
-The [Episode entity runtime readiness section](../../../studio/docs/entities/episode.md#runtime-and-publication-readiness) identifies the current compact Course publisher and Web host gaps. Do not record human QA or release readiness until they are resolved.
+The [Episode entity runtime readiness section](../../../studio/docs/entities/episode.md#runtime-and-publication-readiness) describes compact publication, supported Sections and Blocks, and the Web preview path. Run that preview at the exact candidate revision for human QA; a successful materialization or automated runtime test alone does not establish release readiness.
