@@ -7,7 +7,6 @@ const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const nonempty = x => typeof x === 'string' && !!x.trim();
 const same = (a, b) => isDeepStrictEqual(a, b);
-const nameOf = node => (ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined);
 const safe = x => typeof x === 'string' && slug.test(x) && !['constructor', 'prototype', '__proto__'].includes(x);
 
 /** Read the immutable Course-generated Episode Stage 1 literal.
