@@ -38,10 +38,7 @@ test('flashcards: delegates exact subtree and preserves explicit collection/orde
     materializeFlashcardsSection(config as Parameters<typeof materializeFlashcardsSection>[0], options),
     first,
   );
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
@@ -103,7 +100,8 @@ test('flashcards: unfinished assessment carries explicit blocker without fabrica
 
 test('flashcardsSection: Section notes are guarded without specification sidecars', () => {
   const result = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
-    documentLanguage: 'en', directory: 'sections/introduction',
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
     languagesImport: '../../languages',
     production: { sequenceReason: 'Reviewed sequence.' },
     renderContentBlock,
@@ -118,7 +116,9 @@ test('flashcards: unfinished selection blocker lives adjacent to source definiti
   const config = input();
   config.params.selection.flashcardIds = [];
   const pending = materializeFlashcardsSection(config as Parameters<typeof materializeFlashcardsSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
   }).files.find(file => file.path === 'index.ts')!.content;
   assert.match(pending, /TODO \(BLOCKER\): Implement reviewed Flashcards Section[^\n]*\nexport const/);
   assert.equal((pending.match(/TODO \(BLOCKER\)/g) ?? []).length, 1);
@@ -126,7 +126,9 @@ test('flashcards: unfinished selection blocker lives adjacent to source definiti
 });
 test('flashcards: verified bank Configurator import produces flashcard.id', () => {
   const code = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
     flashcardImports: { [id('03')]: { module: '#lessonsData/a/flashcards/selected', exportName: 'selectedCard' } },
   }).files.find(file => file.path === 'index.ts')!.content;
   assert.match(code, /selectedFlashcard_0\.id/);

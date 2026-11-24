@@ -198,9 +198,7 @@ export function materializeQuizSection(config: Source, options: Options): Result
     diagnostics.push(...child.diagnostics);
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';',
-    );
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
@@ -219,7 +217,11 @@ export function materializeQuizSection(config: Source, options: Options): Result
   const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.questionIds;
-  if (['selection', 'layout', 'feedbackMode', 'interaction', 'results'].some(field => !Object.hasOwn(params, field) || params[field] === undefined))
+  if (
+    ['selection', 'layout', 'feedbackMode', 'interaction', 'results'].some(
+      field => !Object.hasOwn(params, field) || params[field] === undefined,
+    )
+  )
     blocker.push('// TODO (BLOCKER): Design and complete reviewed Quiz parameters.');
   if (!Array.isArray(ids) || ids.length === 0) {
     blocker.push('// TODO (BLOCKER): Select verified Question Bank IDs.');

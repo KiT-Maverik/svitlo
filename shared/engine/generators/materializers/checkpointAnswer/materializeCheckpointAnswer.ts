@@ -150,9 +150,7 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid delegate export');
     }
     const alias = 'answer_' + key;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';',
-    );
+    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
     items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const file of result.files) {
       if (!file.path.startsWith(target + '/')) {

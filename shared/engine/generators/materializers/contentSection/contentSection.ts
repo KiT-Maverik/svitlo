@@ -197,9 +197,7 @@ export function materializeContentSection(config: Source, options: Options): Res
     diagnostics.push(...child.diagnostics);
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';',
-    );
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };

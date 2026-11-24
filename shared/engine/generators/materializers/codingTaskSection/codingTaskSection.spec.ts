@@ -38,10 +38,7 @@ test('codingTask: delegates exact subtree and preserves explicit collection/orde
     materializeCodingTaskSection(config as Parameters<typeof materializeCodingTaskSection>[0], options),
     first,
   );
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
@@ -90,7 +87,8 @@ test('codingTask: fails closed for invalid ordering, identifiers and path escape
 
 test('codingTaskSection: Section notes are guarded without specification sidecars', () => {
   const result = materializeCodingTaskSection(input() as Parameters<typeof materializeCodingTaskSection>[0], {
-    documentLanguage: 'en', directory: 'sections/introduction',
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
     languagesImport: '../../languages',
     production: { sequenceReason: 'Reviewed sequence.' },
     renderContentBlock,

@@ -38,10 +38,7 @@ test('learningFlow: delegates exact subtree and preserves explicit collection/or
     materializeLearningFlowSection(config as Parameters<typeof materializeLearningFlowSection>[0], options),
     first,
   );
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
@@ -90,7 +87,8 @@ test('learningFlow: fails closed for invalid ordering, identifiers and path esca
 
 test('learningFlowSection: Section notes are guarded without specification sidecars', () => {
   const result = materializeLearningFlowSection(input() as Parameters<typeof materializeLearningFlowSection>[0], {
-    documentLanguage: 'en', directory: 'sections/introduction',
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
     languagesImport: '../../languages',
     production: { sequenceReason: 'Reviewed sequence.' },
     renderContentBlock,

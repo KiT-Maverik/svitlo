@@ -199,9 +199,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     diagnostics.push(...child.diagnostics);
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';',
-    );
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
@@ -221,7 +219,9 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.flashcardIds;
   if (!Array.isArray(ids) || ids.length === 0) {
-    blocker.push('// TODO (BLOCKER): Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.');
+    blocker.push(
+      '// TODO (BLOCKER): Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.',
+    );
   } else {
     if (ids.some(id => typeof id !== 'string' || !uuid.test(id)))
       throw new Error('flashcards.params.selection.flashcardIds: invalid Flashcard UUID');
@@ -243,11 +243,15 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
       });
       own.params = { ...params, selection: { ...select, flashcardIds: selection } };
     } else {
-      blocker.push('// TODO (BLOCKER): Import reviewed Flashcard Configurators using flashcard.id; delete this TODO after integration.');
+      blocker.push(
+        '// TODO (BLOCKER): Import reviewed Flashcard Configurators using flashcard.id; delete this TODO after integration.',
+      );
     }
   }
   if (options.production?.pending === true && !blocker.length)
-    blocker.push('// TODO (BLOCKER): Complete independent Flashcard review and verified bank selection; remove this TODO after integration.');
+    blocker.push(
+      '// TODO (BLOCKER): Complete independent Flashcard review and verified bank selection; remove this TODO after integration.',
+    );
 
   if (blocker.length)
     diagnostics.push({

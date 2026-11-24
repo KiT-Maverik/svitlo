@@ -243,7 +243,10 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     diagnostics.push({
       path: destination(dir),
       code: 'pending-quest-methodology',
-      message: 'TODO (BLOCKER): Transfer reviewed Quest Section notes (' + sectionNotes.join(', ') + ') into Lesson methodology.',
+      message:
+        'TODO (BLOCKER): Transfer reviewed Quest Section notes (' +
+        sectionNotes.join(', ') +
+        ') into Lesson methodology.',
       severity: 'warning',
     });
   diagnostics.push({ path: destination(dir), code: 'quest-build-only', message: blocker, severity: 'warning' });

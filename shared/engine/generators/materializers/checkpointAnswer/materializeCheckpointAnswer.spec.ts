@@ -47,10 +47,7 @@ function context() {
 test('CheckpointAnswer delegates each ContentBlock and preserves order, imports and identity', () => {
   const { renderer, requests } = context();
   const result = materializeCheckpointAnswer(answer(), renderer);
-  assert.deepEqual(requests, [
-    'text:first/answer/second',
-    'text:first/answer/first',
-  ]);
+  assert.deepEqual(requests, ['text:first/answer/second', 'text:first/answer/first']);
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpointAnswer<"answer", typeof content.items, typeof languages>/);
   assert.match(code, /"second": answer_second/);

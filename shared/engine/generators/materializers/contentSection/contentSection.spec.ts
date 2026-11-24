@@ -39,10 +39,7 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
     materializeContentSection(config as Parameters<typeof materializeContentSection>[0], options),
     first,
   );
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
@@ -91,7 +88,8 @@ test('content: fails closed for invalid ordering, identifiers and path escapes',
 
 test('contentSection: Section notes are guarded without specification sidecars', () => {
   const result = materializeContentSection(input() as Parameters<typeof materializeContentSection>[0], {
-    documentLanguage: 'en', directory: 'sections/introduction',
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
     languagesImport: '../../languages',
     production: { sequenceReason: 'Reviewed sequence.' },
     renderContentBlock,

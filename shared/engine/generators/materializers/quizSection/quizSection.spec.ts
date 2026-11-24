@@ -49,10 +49,7 @@ test('quiz: delegates exact subtree and preserves explicit collection/order/sour
   };
   const first = materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], options);
   assert.deepEqual(materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], options), first);
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
@@ -115,7 +112,8 @@ test('quiz: unfinished assessment carries explicit blocker without fabricated ba
 
 test('quizSection: Section notes are guarded without specification sidecars', () => {
   const result = materializeQuizSection(input() as Parameters<typeof materializeQuizSection>[0], {
-    documentLanguage: 'en', directory: 'sections/introduction',
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
     languagesImport: '../../languages',
     production: { sequenceReason: 'Reviewed sequence.' },
     renderContentBlock,
@@ -134,7 +132,9 @@ test('quiz: missing params yield one TODO and Question selection a separate TODO
   delete params.results;
   config.params.selection.questionIds = [];
   const result = materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
   });
   const code = result.files.find(file => file.path === 'index.ts')!.content;
   assert.equal((code.match(/Design and complete reviewed Quiz parameters/g) ?? []).length, 1);
@@ -143,7 +143,9 @@ test('quiz: missing params yield one TODO and Question selection a separate TODO
 });
 test('quiz: reviewed import mapping emits real Question Configurator id', () => {
   const code = materializeQuizSection(input() as Parameters<typeof materializeQuizSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
     questionImports: { [id('03')]: { module: '#lessonsData/a/questions/selected', exportName: 'selectedQuestion' } },
   }).files.find(file => file.path === 'index.ts')!.content;
   assert.match(code, /selectedQuestion_0\.id/);
