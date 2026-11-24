@@ -39,24 +39,26 @@ test('canonical Lesson path and exact command are enforced', () => {
   ])
     assert.throws(() => lessonSourceIdentity(bad), /canonical/);
   const event = {
+    action: 'created',
     issue: { number: 794, pull_request: {} },
-    comment: { body: '/lesson materialize typed', user: { login: 'owner' } },
+    comment: { body: '/lesson materialize', user: { login: 'owner' } },
   };
   assert.deepEqual(parseTypedTrigger(event, 'issue_comment', 'owner'), { number: 794, actor: 'owner' });
   for (const body of [
-    '/lesson materialize',
-    '/lesson materialize typed\n',
+    '/lesson materialize typed',
+    '/lesson materialize\n',
     '/lesson finalize',
     '/lesson materialize typed #794',
   ]) {
     assert.throws(() => parseTypedTrigger({ ...event, comment: { ...event.comment, body } }, 'issue_comment', 'owner'));
   }
   assert.throws(() => parseTypedTrigger(event, 'issue_comment', 'attacker'));
+  assert.throws(() => parseTypedTrigger({ ...event, action: 'edited' }, 'issue_comment', 'owner'));
   assert.throws(() => parseTypedTrigger({ ...event, issue: { number: 794 } }, 'issue_comment', 'owner'));
-  assert.deepEqual(
-    parseTypedTrigger({ inputs: { operation: 'materialize-typed', pr_number: '794' } }, 'workflow_dispatch', 'owner'),
-    { number: 794, actor: 'owner' },
-  );
+  assert.deepEqual(parseTypedTrigger({ inputs: { pr_number: '794' } }, 'workflow_dispatch', 'owner'), {
+    number: 794,
+    actor: 'owner',
+  });
   assert.throws(() =>
     parseTypedTrigger({ inputs: { operation: 'finalize', pr_number: '794' } }, 'workflow_dispatch', 'owner'),
   );
@@ -176,7 +178,7 @@ function fixture(callback) {
       identity: lessonSourceIdentity(source),
       baseHead,
       actor: 'maintainer',
-      operation: 'materialize-typed',
+      operation: 'lesson-stage6',
     };
     const plan = {
       lessonId: id,
@@ -343,8 +345,9 @@ test('Lesson workflow has one typed-only entrypoint after YAML retirement', () =
   assert.match(workflow, /^  typed-resolve:/m);
   assert.match(workflow, /^  typed-analyze:/m);
   assert.match(workflow, /^  typed-publish:/m);
-  assert.match(workflow, /options: \[materialize-typed\]/);
-  assert.match(workflow, /github\.event\.comment\.body == '\/lesson materialize typed'/);
+  assert.doesNotMatch(workflow, /operation:|materialize-typed/);
+  assert.match(workflow, /github\.event\.issue\.number \|\| inputs\.pr_number/);
+  assert.match(workflow, /github\.event\.comment\.body == '\/lesson materialize'/);
   assert.doesNotMatch(workflow, /^  (?:resolve|analyze|publish):/m);
   assert.doesNotMatch(workflow, /options: \[[^\]]*\bfinalize\b/);
   assert.doesNotMatch(workflow, /lesson-materialization\.mjs|lesson-gate\.mjs/);

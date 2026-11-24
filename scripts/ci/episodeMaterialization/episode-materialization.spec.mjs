@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
-import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
+import { discoverEpisodeDraft, inspectEpisode, discoverOwningCourse } from './episode-gate.mjs';
 import { parseEpisodeDraft, verifyEpisodeHandoff, restoreEpisodePlacement } from './episode-source.mjs';
 import {
   prepareEpisode,
@@ -371,6 +371,59 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
     changeDuringDiscovery = true;
     prReads = 0;
     await assert.rejects(inspectEpisode(810, 808), /changed during review evidence/);
+  } finally {
+    globalThis.fetch = previous;
+    for (const [key, value] of Object.entries(env)) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
+});
+
+test('Episode comment discovers exactly one current owning Course PR without description parsing', async () => {
+  const repo = 'KiT-Maverik/svitlo';
+  const sha = 'a'.repeat(40);
+  const branch = 'course/sky';
+  const previous = globalThis.fetch;
+  const env = Object.fromEntries(
+    ['GITHUB_REPOSITORY', 'COURSE_DEFAULT_BRANCH', 'GH_TOKEN'].map(key => [key, process.env[key]]),
+  );
+  Object.assign(process.env, { GITHUB_REPOSITORY: repo, COURSE_DEFAULT_BRANCH: 'develop', GH_TOKEN: 'fixture' });
+  const pr = {
+    state: 'open',
+    draft: true,
+    body: 'irrelevant',
+    head: { repo: { full_name: repo } },
+    base: { ref: branch, sha, repo: { full_name: repo } },
+  };
+  const parent = {
+    number: 41,
+    state: 'open',
+    head: { ref: branch, sha, repo: { full_name: repo } },
+    base: { ref: 'develop', repo: { full_name: repo } },
+  };
+  let candidates = [parent];
+  globalThis.fetch = async url => {
+    const route = String(url).split('/repos/' + repo + '/')[1];
+    let payload;
+    if (route === 'pulls/42') payload = pr;
+    else if (route === 'pulls?state=open&head=KiT-Maverik%3Acourse%2Fsky&base=develop&per_page=100&page=1')
+      payload = candidates;
+    else throw Error('Unexpected GitHub API: ' + route);
+    return { ok: true, status: 200, json: async () => payload };
+  };
+  try {
+    assert.equal(await discoverOwningCourse(42), 41);
+    for (const invalid of [
+      [],
+      [parent, { ...parent, number: 43 }],
+      [{ ...parent, head: { ...parent.head, sha: 'b'.repeat(40) } }],
+      [{ ...parent, head: { ...parent.head, repo: { full_name: 'fork/svitlo' } } }],
+      [{ ...parent, state: 'closed' }],
+    ]) {
+      candidates = invalid;
+      await assert.rejects(discoverOwningCourse(42), /Exactly one open owning Course/);
+    }
   } finally {
     globalThis.fetch = previous;
     for (const [key, value] of Object.entries(env)) {

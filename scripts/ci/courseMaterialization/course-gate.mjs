@@ -62,3 +62,25 @@ export function report(message) {
   console.log(message);
   if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, message + '\n');
 }
+
+/** Resolve an exact created PR comment or the explicitly supported dispatch inputs. */
+export function materializationInvocation(event, name, actor, command, extraInputs = []) {
+  if (!/^[A-Za-z0-9-]+$/.test(actor ?? '')) throw Error('Invalid invoking actor');
+  let number;
+  if (name === 'issue_comment') {
+    if (
+      event.action !== 'created' ||
+      !event.issue?.pull_request ||
+      event.comment?.user?.login !== actor ||
+      event.comment?.body !== command
+    )
+      throw Error('Requires exact created top-level PR command');
+    number = event.issue.number;
+  } else if (name === 'workflow_dispatch') {
+    if (Object.keys(event.inputs ?? {}).some(key => !['pr_number', ...extraInputs].includes(key)))
+      throw Error('Unsupported materialization dispatch input');
+    number = Number(event.inputs?.pr_number);
+  } else throw Error('Unsupported materialization event');
+  if (!Number.isSafeInteger(number) || number < 1) throw Error('Invalid materialization PR number');
+  return number;
+}
