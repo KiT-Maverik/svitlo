@@ -50,7 +50,11 @@ test('matchBlocks: deterministic modular source, nested imports, source locale a
   assert.match(main.content, /child_content_question_items_prompt/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/pairs/pairOne/left/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/pairs/pairOne/right/index.ts')));
   assert(!a.files.some(file => file.path.includes('/items/')));
+  assert.match(main.content, /from "\\.\\/sampleQuestion\\/pairs\\/pairOne\\/left"/);
+  assert.match(main.content, /from "\\.\\/sampleQuestion\\/pairs\\/pairOne\\/right"/);
   assert.match(main.content, /from "\.\/sampleQuestion\/question\/prompt"/);
   for (const file of a.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
