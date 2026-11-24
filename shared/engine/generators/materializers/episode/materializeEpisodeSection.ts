@@ -60,7 +60,6 @@ function block(value: unknown, context: Context): Result {
       return materializeScene(config as Parameters<typeof materializeScene>[0], {
         ...opts,
         registered: false,
-        specificationSidecar: false,
         production: {
           specification: typeof production?.specification === 'string' ? production.specification : undefined,
           pending: true,

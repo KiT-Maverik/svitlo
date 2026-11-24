@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 
 import { video_Config_Schema, type ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type VideoDraftConfig = Pick<ContentBlock_Video_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Video_Config['params']>;
@@ -263,21 +264,14 @@ export function materializeVideo(config: VideoDraftConfig, options: VideoMateria
     throw new Error('Cannot materialize type-valid Video Config: unsupported authored fields');
   }
 
-  if (options.production !== undefined) {
-    if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
-    const details = Object.entries(options.production).filter(
-      ([key]) => key !== 'pending' && key !== 'documentLanguage',
-    );
-    if (details.length) {
-      const body =
-        details
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n';
-      files.push({ path: 'specification.md', content: body, kind: 'specification' });
-    }
+  const inlineSpecification = renderTemporaryMediaSpecification(options.production, 'Video');
+  if (inlineSpecification) {
+    diagnostics.push({
+      path: '$.production.specification',
+      code: 'pending-temporary-specification',
+      message: 'Remove temporary Video specification after implementation and verification',
+      severity: 'warning',
+    });
   }
 
   const name = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
@@ -295,7 +289,8 @@ export function materializeVideo(config: VideoDraftConfig, options: VideoMateria
     JSON.stringify(config.slug) +
     ', typeof languages>(' +
     printValue(fields, expressions) +
-    ');\n';
+    ');\n' +
+    inlineSpecification;
   files.unshift({ path: 'index.ts', content: source, kind: 'typescript' });
   return {
     exportName: name,

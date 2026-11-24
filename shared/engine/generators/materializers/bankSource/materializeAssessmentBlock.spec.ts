@@ -32,11 +32,11 @@ test('Carousel retains reviewed nested Scene production specification', () => {
     slides: { items: { visual: scene() }, order: ['visual'] },
   };
   const result = render(carousel);
-  assert.equal(
-    result.files.find(file => file.path.endsWith('/slides/visual/specification.md'))?.content,
-    '# Reviewed nested Scene\n',
-  );
-  assert.equal(result.diagnostics.length, 0);
+  const sceneSource = result.files.find(file => file.path.endsWith('/slides/visual/index.ts'))?.content ?? '';
+  assert.match(sceneSource, /defineScene<[\s\S]*\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(sceneSource, /# specification[\s\S]*# Reviewed nested Scene/);
+  assert(!result.files.some(file => file.path.endsWith('/slides/visual/specification.md')));
+  assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-temporary-specification'));
 });
 
 test('Carousel checks pending Scene production instead of silently stripping it', () => {
@@ -89,11 +89,10 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
     },
   };
   const result = render(checkpoint);
-  assert.equal(
-    result.files.find(file => file.path.endsWith('/answer/visual/specification.md'))?.content,
-    '# Reviewed nested Scene\n',
-  );
-  assert.equal(result.diagnostics.length, 0);
+  const sceneSource = result.files.find(file => file.path.endsWith('/answer/visual/index.ts'))?.content ?? '';
+  assert.match(sceneSource, /# specification[\s\S]*# Reviewed nested Scene/);
+  assert(!result.files.some(file => file.path.endsWith('/answer/visual/specification.md')));
+  assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-temporary-specification'));
   const pending = structuredClone(checkpoint);
   (
     pending.content.items.first.config.answer.config.content.items.visual.production as {
