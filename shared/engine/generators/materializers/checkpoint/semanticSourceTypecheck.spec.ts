@@ -156,8 +156,16 @@ test('emitted Checkpoint → Item → Answer → Carousel → Scene modules type
 
   const generated = result.files.filter(file => file.kind === 'typescript');
   assert.equal(generated.length, 7, 'each nested Configurator has its own source module');
-  assert.equal(result.diagnostics.length, 0, 'reviewed and registered Scene should not be pending');
-  assert.ok(result.files.some(file => file.path.endsWith('specification.md')));
+  assert.deepEqual(
+    result.diagnostics.map(diagnostic => diagnostic.code),
+    ['pending-temporary-specification'],
+    'registered Scene needs only its temporary specification cleanup',
+  );
+  assert.ok(!result.files.some(file => file.path.endsWith('specification.md')));
+  const sceneSource = result.files.find(file => file.path.endsWith('/interactive/index.ts'));
+  assert.ok(sceneSource, 'nested Scene source must exist');
+  assert.match(sceneSource.content, /# Reviewed interactive specification/);
+  assert.match(sceneSource.content, /TODO \(BLOCKER\): Remove the temporary Scene specification/);
   assert.equal(new Set(result.files.map(file => file.path)).size, result.files.length);
 
   const engine = engineRoot();

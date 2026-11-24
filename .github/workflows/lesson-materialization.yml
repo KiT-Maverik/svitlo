@@ -36,13 +36,13 @@ jobs:
       head: ${{ steps.gate.outputs.head }}
     steps:
       - name: Check out immutable trusted command gate from default branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Authorize actor and locate pinned Lesson source
         id: gate
         env:
@@ -61,20 +61,20 @@ jobs:
       report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
     steps:
       - name: Check out pinned trusted Engine and worker
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
       - name: Check out pinned Lesson commit for isolated execution
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.typed-resolve.outputs.head }}
           path: candidate
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Install and build only trusted Engine code
@@ -83,7 +83,7 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Pull pinned isolated worker image
-        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - name: Execute pinned Lesson entrypoint in isolated worker
         id: analysis
         env:
@@ -94,7 +94,7 @@ jobs:
           LESSON_TYPED_REPORT: ${{ runner.temp }}/typed-lesson-stage6/report.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs analyze
       - name: Retain source-pinned and SHA256-attested analysis evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: typed-lesson-stage6-${{ needs.typed-resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/typed-lesson-stage6/report.json
@@ -111,22 +111,22 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out pinned trusted publisher with no dependencies
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
       - name: Check out pinned Lesson HEAD as data, never execute it
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.typed-resolve.outputs.head }}
           path: candidate
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Download the exact read-only analyzer artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: typed-lesson-stage6-${{ needs.typed-resolve.outputs.pr }}-${{ github.run_id }}
           path: report

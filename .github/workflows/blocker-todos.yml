@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Test blocker TODO guard
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs
       - name: Enforce blocking TODO guard
