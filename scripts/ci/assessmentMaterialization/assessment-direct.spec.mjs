@@ -108,7 +108,7 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   assert.match(root, /before, quiz, after,/);
   assert.match(root, /from "#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants"/);
   assert.match(root, /TODO \(BLOCKER\)/);
-  assert.doesNotMatch(root, /#coursesData/);
+  assert.doesNotMatch(root, /from "\.\/languages"/);
   const section = plan.files.find(f => f.path === placement + '/sections/quiz/index.ts').content;
   assert.match(section, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.equal(
