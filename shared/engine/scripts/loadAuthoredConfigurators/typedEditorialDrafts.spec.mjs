@@ -82,13 +82,6 @@ const flashcards = {
       languages,
       assessment,
     },
-    questions: {
-      kind: 'completed',
-      sourceSha: sha,
-      reviewSha: sha,
-      bankPath: 'content/example/data/lessons/5/' + id + '/questions/index.ts',
-      integrated: true,
-    },
     analysis: {
       recallObjectives: ['Recall definition'],
       sourceFactsAndConcepts: ['Observation'],
