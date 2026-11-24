@@ -38,6 +38,21 @@ function lessonExists(publicRoot: string, id: string, language: string): boolean
   return !!lesson && lesson.type === 'lesson' && lesson.id === normalized && supportsLanguage(lesson, language);
 }
 
+function courseContainsEpisode(node: unknown, episodeId: string, language: string): boolean {
+  if (!record(node)) return false;
+  if (node.type === 'episode') return node.id === episodeId && supportsLanguage(node, language);
+  if (!record(node.content) || !record(node.content.items)) return false;
+  return Object.values(node.content.items).some(child => courseContainsEpisode(child, episodeId, language));
+}
+
+function courseIncludesEpisode(publicRoot: string, courseId: string, episodeId: string, language: string): boolean {
+  if (!uuid.test(courseId) || !uuid.test(episodeId)) return false;
+  const normalized = courseId.toLowerCase();
+  const course = readPublicationBase(path.join(publicRoot, 'data', 'courses', normalized, 'base.json'));
+  return !!course && course.id === normalized && course.type === 'course' &&
+    supportsLanguage(course, language) && courseContainsEpisode(course, episodeId.toLowerCase(), language);
+}
+
 function courseContainsLesson(node: unknown, lessonId: string): boolean {
   if (!record(node)) return false;
   if (node.type === 'lesson') return node.id === lessonId;
@@ -77,7 +92,10 @@ export function isInvalidPublishedRoute(pathname: string, publicRoot: string): b
     return true;
   }
 
-  if (parts[1] === 'course' && parts[3] === 'episode') return true;
+  if (parts[1] === 'course' && parts[3] === 'episode') {
+    if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
+    return !courseIncludesEpisode(publicRoot, parts[2], parts[5], parts[4]);
+  }
   if (parts[1] === 'course' && parts[3] === 'lesson') {
     if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
     const [courseId, lessonId] = [parts[2], parts[5]];
