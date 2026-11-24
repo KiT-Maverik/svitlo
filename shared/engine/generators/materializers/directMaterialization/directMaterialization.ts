@@ -47,8 +47,8 @@ export function invokeMaterializer<Options, Result>(
   active.attempts++;
   if (active.attempts !== 1 || active.operation !== operation || options !== undefined)
     throw new Error('Entrypoint must invoke only its authorized materializer without execution options');
-  const options = active.onInput ? active.onInput(input) : active.options;
-  const result = materialize(options as Options);
+  const executionOptions = active.onInput ? active.onInput(input) : active.options;
+  const result = materialize(executionOptions as Options);
   active.result = result;
   active.completed = true;
   return result;
