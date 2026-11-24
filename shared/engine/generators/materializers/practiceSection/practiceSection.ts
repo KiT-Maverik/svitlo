@@ -137,17 +137,6 @@ const outputPath = (value: string): string => {
   return value;
 };
 const exportName = (value: string) => (reserved.has(value) ? 'config_' + value : value);
-const spec = (production: Record<string, unknown> | undefined): string | undefined => {
-  const entries = Object.entries(production ?? {}).filter(([key]) => key !== 'pending' && key !== 'documentLanguage');
-  return entries.length
-    ? entries
-        .map(
-          ([key, value]) =>
-            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-        )
-        .join('\n\n') + '\n'
-    : undefined;
-};
 function validateCollection(content: Source['content'], location: string): void {
   if (!isObject(content) || !isObject(content.items) || !Array.isArray(content.order))
     throw new Error(location + ': expected { items, order }');
@@ -191,11 +180,11 @@ export function materializePracticeSection(config: Source, options: Options): Re
   };
   for (const key of Object.keys(config.content.items).sort()) {
     const node = childConfig(config.content.items[key]);
-    const childDirectory = [directory, 'content', 'items', key].filter(Boolean).join('/');
+    const childDirectory = [directory, key].filter(Boolean).join('/');
     const child = options.renderContentBlock(node.config, {
       directory: childDirectory,
       documentLanguage: options.documentLanguage,
-      languagesImport: childLanguagesImport(options.languagesImport, 3),
+      languagesImport: childLanguagesImport(options.languagesImport, 1),
       ...(node.production ? { production: node.production } : {}),
     });
     if (child.exportName !== exportName(key))
@@ -209,7 +198,7 @@ export function materializePracticeSection(config: Source, options: Options): Re
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
     imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
+      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';',
     );
   }
   const { content: _ignored, ...rest } = config;
@@ -217,6 +206,15 @@ export function materializePracticeSection(config: Source, options: Options): Re
   const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
+  const sectionNotes = Object.keys(options.production ?? {}).filter(
+    key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
+  );
+  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+    blocker.push(
+      '// TODO (BLOCKER): Transfer reviewed practice Section notes (' +
+        sectionNotes.join(', ') +
+        ') into Lesson methodology; do not discard reviewed source metadata.',
+    );
   if (options.production?.pending === true)
     blocker.push('// TODO (BLOCKER): Complete reviewed practice Section production.');
   if (blocker.length)
@@ -243,13 +241,6 @@ export function materializePracticeSection(config: Source, options: Options): Re
     render(own) + ');',
     '',
   ].join('\n');
-  const specification = spec(options.production);
-  if (specification)
-    add({
-      path: [directory, 'specification.md'].filter(Boolean).join('/'),
-      content: specification,
-      kind: 'specification',
-    });
   add({ path: [directory, 'index.ts'].filter(Boolean).join('/'), content: source, kind: 'typescript' });
   return { exportName: name, files, diagnostics };
 }
