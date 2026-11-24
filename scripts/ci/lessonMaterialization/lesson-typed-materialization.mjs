@@ -42,7 +42,10 @@ export function typedMeta(encoded = process.env.LESSON_TYPED_META_B64) {
     info.reviews.length !== 3 ||
     !info.reviews.every(
       (item, index) =>
-        item.stage === index + 3 && item.verdict === 'accepted' && sha.test(item.commit || '') && sha.test(item.blob || ''),
+        item.stage === index + 3 &&
+        item.verdict === 'accepted' &&
+        sha.test(item.commit || '') &&
+        sha.test(item.blob || ''),
     ) ||
     info.reviews[2].commit !== info.head ||
     info.reviews[2].blob !== info.sourceBlob

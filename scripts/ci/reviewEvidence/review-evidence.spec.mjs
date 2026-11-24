@@ -29,17 +29,23 @@ test('rejects missing, stale, malformed, duplicate, rejected and contradictory e
     row(4).replace(head, 'not-a-sha'),
     '```text\n' + row(4) + '\n```',
     '<!--\n' + row(4) + '\n-->',
-  ]) await assert.rejects(verifyReviewEvidence(body, current), /evidence/i);
+  ])
+    await assert.rejects(verifyReviewEvidence(body, current), /evidence/i);
 });
 
 test('Lesson preserves independently reviewed historical revisions and verifies their ancestry', async () => {
   const body = [row(3, earlier, earlierBlob), row(4), row(5)].join('\n');
   const args = {
-    stages: [3, 4, 5], head, blob,
-    readBlob: async commit => commit === earlier ? earlierBlob : blob,
+    stages: [3, 4, 5],
+    head,
+    blob,
+    readBlob: async commit => (commit === earlier ? earlierBlob : blob),
     isAncestor: async (from, to) => (from === earlier || from === head) && to === head,
   };
-  assert.deepEqual((await verifyReviewEvidence(body, args)).map(item => item.stage), [3, 4, 5]);
+  assert.deepEqual(
+    (await verifyReviewEvidence(body, args)).map(item => item.stage),
+    [3, 4, 5],
+  );
   await assert.rejects(verifyReviewEvidence(body, { ...args, readBlob: async () => blob }), /historical source blob/);
   await assert.rejects(verifyReviewEvidence(body, { ...args, isAncestor: async () => false }), /ancestry order/);
 });

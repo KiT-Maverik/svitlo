@@ -143,9 +143,7 @@ async function reviewsFor(body, source, head, sourceBlob) {
     head,
     blob: sourceBlob,
     readBlob: async commit => {
-      const entry = await github(
-        'contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + commit,
-      );
+      const entry = await github('contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + commit);
       return entry?.type === 'file' ? entry.sha : null;
     },
     isAncestor: async (from, to) => {

@@ -281,7 +281,9 @@ async function publish() {
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.reviewVerdict + ' at ' + meta.reviewCommitSha +
+      meta.reviewVerdict +
+      ' at ' +
+      meta.reviewCommitSha +
       '\nCourse-Inventory-Manifest: ' +
       digest,
     tree: tree.sha,

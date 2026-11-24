@@ -99,7 +99,9 @@ export async function inspectTyped(number, bank, expected) {
   let parentHeadSha = null;
   let parentQuestionsReview = null;
   if (bank === 'flashcards') {
-    const decisions = [...parent.body.matchAll(/^- Questions(?: \(own bank\))?:[ \t]*(Completed|Not Applicable)\b[^\r\n]*$/gim)];
+    const decisions = [
+      ...parent.body.matchAll(/^- Questions(?: \(own bank\))?:[ \t]*(Completed|Not Applicable)\b[^\r\n]*$/gim),
+    ];
     const decision = decisions[0];
     if (decisions.length !== 1 || !SHA.test(parent.head?.sha || '')) {
       throw Error('Flashcards need a pinned parent Questions-first completion or N/A');
@@ -135,16 +137,26 @@ export async function inspectTyped(number, bank, expected) {
   });
   const again = await github('pulls/' + number);
   if (
-    again?.head?.sha !== pr.head.sha || again.head.ref !== pr.head.ref ||
-    again.head.repo?.full_name !== repo || again.base?.ref !== pr.base?.ref ||
-    again.base?.sha !== pr.base?.sha || again.state !== 'open' || !again.draft || again.body !== pr.body
-  ) throw Error('Bank PR changed during review evidence verification');
+    again?.head?.sha !== pr.head.sha ||
+    again.head.ref !== pr.head.ref ||
+    again.head.repo?.full_name !== repo ||
+    again.base?.ref !== pr.base?.ref ||
+    again.base?.sha !== pr.base?.sha ||
+    again.state !== 'open' ||
+    !again.draft ||
+    again.body !== pr.body
+  )
+    throw Error('Bank PR changed during review evidence verification');
   const parentAgain = await github('pulls/' + identity.parent);
   if (
-    parentAgain?.state !== parent.state || parentAgain.merged !== parent.merged ||
-    parentAgain.head?.ref !== parent.head?.ref || parentAgain.head?.sha !== parent.head?.sha ||
-    parentAgain.body !== parent.body || parentAgain.merge_commit_sha !== parent.merge_commit_sha
-  ) throw Error('Owning Lesson PR changed during Bank review evidence verification');
+    parentAgain?.state !== parent.state ||
+    parentAgain.merged !== parent.merged ||
+    parentAgain.head?.ref !== parent.head?.ref ||
+    parentAgain.head?.sha !== parent.head?.sha ||
+    parentAgain.body !== parent.body ||
+    parentAgain.merge_commit_sha !== parent.merge_commit_sha
+  )
+    throw Error('Owning Lesson PR changed during Bank review evidence verification');
   const result = {
     repo,
     number,

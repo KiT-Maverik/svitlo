@@ -79,7 +79,10 @@ test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity 
   process.env.COURSE_DEFAULT_BRANCH = 'develop';
   const row = '- Review evidence (v1): 4 | accepted | ' + head + ' | ' + sourceBlobSha;
   const pr = {
-    state: 'open', draft: true, body: row, user: { login: 'trusted' },
+    state: 'open',
+    draft: true,
+    body: row,
+    user: { login: 'trusted' },
     base: { ref: 'develop' },
     head: { sha: head, ref: meta.branch, repo: { full_name: meta.repo } },
   };
@@ -97,13 +100,23 @@ test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity 
     const verified = await inspectTypedCourse(456);
     assert.equal(verified.reviewVerdict, 'accepted');
     assert.equal(verified.reviewCommitSha, head);
-    for (const body of ['', row.replace(head, 'b'.repeat(40)), row.replace(sourceBlobSha, 'c'.repeat(40)), row + '\n' + row, row.replace('accepted', 'rejected')]) {
+    for (const body of [
+      '',
+      row.replace(head, 'b'.repeat(40)),
+      row.replace(sourceBlobSha, 'c'.repeat(40)),
+      row + '\n' + row,
+      row.replace('accepted', 'rejected'),
+    ]) {
       pr.body = body;
       await assert.rejects(inspectTypedCourse(456), /review evidence/i);
     }
   } finally {
     globalThis.fetch = previous;
-    for (const [key, value] of Object.entries({ GITHUB_REPOSITORY: oldRepo, GH_TOKEN: oldToken, COURSE_DEFAULT_BRANCH: oldBranch })) {
+    for (const [key, value] of Object.entries({
+      GITHUB_REPOSITORY: oldRepo,
+      GH_TOKEN: oldToken,
+      COURSE_DEFAULT_BRANCH: oldBranch,
+    })) {
       if (value === undefined) delete process.env[key];
       else process.env[key] = value;
     }

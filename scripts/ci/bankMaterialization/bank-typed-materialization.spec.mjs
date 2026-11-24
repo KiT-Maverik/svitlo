@@ -338,12 +338,18 @@ test('GitHub typed gate requires accepted exact-HEAD and blob evidence and Lesso
     // Questions N/A is reviewed against the actual materialized parent Lesson.
     const parentHead = 'b'.repeat(40);
     const parentBlob = 'd'.repeat(40);
-    const flashBody = reviewed.replace('create-questions-flow', 'create-flashcards-flow')
-      .replace('Question Design', 'Flashcard Design').replace('Quiz Section Design', 'Flashcards Section Design')
+    const flashBody = reviewed
+      .replace('create-questions-flow', 'create-flashcards-flow')
+      .replace('Question Design', 'Flashcard Design')
+      .replace('Quiz Section Design', 'Flashcards Section Design')
       .replace('Independent Assessment Review', 'Memory Design Review');
     const decisionRow = '- Review evidence (v1): questions-na | accepted | ' + parentHead + ' | ' + parentBlob;
     const parentBody = parent.body + '\n- Questions (own bank): Not Applicable — verified Methodologist rationale';
-    const parentSnapshot = { ...parent, head: { ref: 'agent/lesson', sha: parentHead }, body: parentBody + '\n' + decisionRow };
+    const parentSnapshot = {
+      ...parent,
+      head: { ref: 'agent/lesson', sha: parentHead },
+      body: parentBody + '\n' + decisionRow,
+    };
     const flashOverrides = {
       'pulls/888': { ...child, body: flashBody },
       'pulls/777': parentSnapshot,
@@ -362,7 +368,10 @@ test('GitHub typed gate requires accepted exact-HEAD and blob evidence and Lesso
       overrides = { ...flashOverrides, 'pulls/777': { ...parentSnapshot, body: bad } };
       await assert.rejects(inspectTyped(888, 'flashcards'), /review evidence/i);
     }
-    overrides = { ...flashOverrides, 'pulls/777': { ...parentSnapshot, body: parentSnapshot.body + '\n- Questions: Completed' } };
+    overrides = {
+      ...flashOverrides,
+      'pulls/777': { ...parentSnapshot, body: parentSnapshot.body + '\n- Questions: Completed' },
+    };
     await assert.rejects(inspectTyped(888, 'flashcards'), /Questions-first/);
 
     overrides = { 'pulls/888': { ...child, base: { ref: 'develop', sha: 'b'.repeat(40) } } };

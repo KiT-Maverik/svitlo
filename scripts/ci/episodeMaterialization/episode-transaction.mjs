@@ -34,9 +34,10 @@ const metadataKeys = [
   'parentBlobSha',
   'reviews',
 ];
-export const sameMeta = (a, b) => metadataKeys.every(key =>
-  key === 'reviews' ? JSON.stringify(a[key]) === JSON.stringify(b[key]) : a[key] === b[key],
-);
+export const sameMeta = (a, b) =>
+  metadataKeys.every(key =>
+    key === 'reviews' ? JSON.stringify(a[key]) === JSON.stringify(b[key]) : a[key] === b[key],
+  );
 export function parseEpisodeMetadata(encoded) {
   if (typeof encoded !== 'string' || !/^[A-Za-z0-9+/=]{1,16384}$/.test(encoded))
     throw Error('Missing Episode metadata');
@@ -56,12 +57,17 @@ export function parseEpisodeMetadata(encoded) {
       SHA.test(meta[key] ?? ''),
     ) ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '') ||
-    !Array.isArray(meta.reviews) || meta.reviews.length !== 2 ||
-    !meta.reviews.every((item, i) =>
-      item?.stage === i + 3 && item.verdict === 'accepted' &&
-      SHA.test(item.commit ?? '') && SHA.test(item.blob ?? ''),
+    !Array.isArray(meta.reviews) ||
+    meta.reviews.length !== 2 ||
+    !meta.reviews.every(
+      (item, i) =>
+        item?.stage === i + 3 &&
+        item.verdict === 'accepted' &&
+        SHA.test(item.commit ?? '') &&
+        SHA.test(item.blob ?? ''),
     ) ||
-    meta.reviews[1].commit !== meta.head || meta.reviews[1].blob !== meta.sourceBlobSha
+    meta.reviews[1].commit !== meta.head ||
+    meta.reviews[1].blob !== meta.sourceBlobSha
   )
     throw Error('Invalid pinned Episode transaction metadata');
   return meta;
@@ -301,9 +307,15 @@ async function main() {
       '\nReviewed-Draft-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.reviews[1].verdict + ' at ' + meta.reviews[1].commit +
-      '\nStage3-Review: ' + meta.reviews[0].verdict + ' at ' + meta.reviews[0].commit +
-      '\nStage3-Review-Blob: ' + meta.reviews[0].blob,
+      meta.reviews[1].verdict +
+      ' at ' +
+      meta.reviews[1].commit +
+      '\nStage3-Review: ' +
+      meta.reviews[0].verdict +
+      ' at ' +
+      meta.reviews[0].commit +
+      '\nStage3-Review-Blob: ' +
+      meta.reviews[0].blob,
     tree: tree.sha,
     parents: [meta.head],
   });

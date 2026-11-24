@@ -45,7 +45,13 @@ const identityBody = [
   '## Evidence',
 ].join('\n');
 
-async function exercise({ permission = 'write', advance = false, mutateEvidence = false, rejectLease = false, corruptArtifact = false } = {}) {
+async function exercise({
+  permission = 'write',
+  advance = false,
+  mutateEvidence = false,
+  rejectLease = false,
+  corruptArtifact = false,
+} = {}) {
   const originalFetch = globalThis.fetch;
   const env = Object.fromEntries(
     ['GH_TOKEN', 'GITHUB_REPOSITORY', 'LESSON_DEFAULT_BRANCH', 'LESSON_TYPED_REPORT', 'LESSON_TYPED_REPORT_SHA256'].map(
@@ -64,9 +70,10 @@ async function exercise({ permission = 'write', advance = false, mutateEvidence 
     git('-c', 'user.name=Fixture', '-c', 'user.email=f@example.invalid', 'commit', '-qm', 'reviewed Lesson');
     const head = git('rev-parse', 'HEAD');
     const blob = gitBlob(raw);
-    const reviewBody = identityBody + '\n' + [3, 4, 5].map(stage =>
-      '- Review evidence (v1): ' + stage + ' | accepted | ' + head + ' | ' + blob,
-    ).join('\n');
+    const reviewBody =
+      identityBody +
+      '\n' +
+      [3, 4, 5].map(stage => '- Review evidence (v1): ' + stage + ' | accepted | ' + head + ' | ' + blob).join('\n');
     const meta = {
       number: 710,
       repo,

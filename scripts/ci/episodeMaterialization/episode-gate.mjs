@@ -99,14 +99,22 @@ export async function inspectEpisode(number, parentNumber, expected) {
   const again = await github('pulls/' + number);
   const parentAgain = await github('pulls/' + parentNumber);
   if (
-    again?.state !== 'open' || !again.draft || again.body !== pr.body ||
-    again.head?.sha !== pr.head.sha || again.head?.ref !== pr.head.ref ||
-    again.head?.repo?.full_name !== repo || again.base?.sha !== parent.head.sha ||
-    again.base?.ref !== parent.head.ref || again.base?.repo?.full_name !== repo ||
-    parentAgain?.state !== 'open' || parentAgain.head?.sha !== parent.head.sha ||
-    parentAgain.head?.ref !== parent.head.ref || parentAgain.head?.repo?.full_name !== repo ||
+    again?.state !== 'open' ||
+    !again.draft ||
+    again.body !== pr.body ||
+    again.head?.sha !== pr.head.sha ||
+    again.head?.ref !== pr.head.ref ||
+    again.head?.repo?.full_name !== repo ||
+    again.base?.sha !== parent.head.sha ||
+    again.base?.ref !== parent.head.ref ||
+    again.base?.repo?.full_name !== repo ||
+    parentAgain?.state !== 'open' ||
+    parentAgain.head?.sha !== parent.head.sha ||
+    parentAgain.head?.ref !== parent.head.ref ||
+    parentAgain.head?.repo?.full_name !== repo ||
     parentAgain.base?.ref !== base
-  ) throw Error('Episode or parent PR changed during review evidence verification');
+  )
+    throw Error('Episode or parent PR changed during review evidence verification');
   return {
     repo,
     number,

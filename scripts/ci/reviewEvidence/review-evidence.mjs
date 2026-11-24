@@ -5,7 +5,8 @@
  */
 const SHA = /^[a-f0-9]{40}$/;
 const PREFIX = '- Review evidence (v1): ';
-const LINE = /^- Review evidence \(v1\): (3|4|5|questions-na) \| (accepted|rejected) \| ([a-f0-9]{40}) \| ([a-f0-9]{40})$/;
+const LINE =
+  /^- Review evidence \(v1\): (3|4|5|questions-na) \| (accepted|rejected) \| ([a-f0-9]{40}) \| ([a-f0-9]{40})$/;
 
 /** Required stages are in workflow order. Optional stages are explicitly scoped. */
 export function parseReviewEvidence(body, requiredStages, allowedStages = requiredStages) {
@@ -48,10 +49,12 @@ export async function verifyReviewEvidence(body, { stages, allowedStages, head, 
   if (!SHA.test(head ?? '') || !SHA.test(blob ?? '')) throw Error('Invalid reviewed source revision');
   const evidence = parseReviewEvidence(body, stages, allowedStages);
   const latest = evidence.at(-1);
-  if (latest.commit !== head || latest.blob !== blob) throw Error('Stale review evidence at current HEAD or source blob');
+  if (latest.commit !== head || latest.blob !== blob)
+    throw Error('Stale review evidence at current HEAD or source blob');
   for (let i = 0; i < evidence.length - 1; i++) {
     const item = evidence[i];
-    if ((await readBlob(item.commit)) !== item.blob) throw Error('Review evidence does not match historical source blob');
+    if ((await readBlob(item.commit)) !== item.blob)
+      throw Error('Review evidence does not match historical source blob');
     if (!(await isAncestor(item.commit, evidence[i + 1].commit)))
       throw Error('Review evidence commits are not in ancestry order');
   }

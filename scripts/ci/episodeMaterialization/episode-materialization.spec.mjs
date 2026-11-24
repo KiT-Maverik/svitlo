@@ -7,7 +7,13 @@ import { execFileSync } from 'node:child_process';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { parseEpisodeDraft, verifyEpisodeHandoff, restoreEpisodePlacement } from './episode-source.mjs';
-import { prepareEpisode, episodeCommitTree, checkEpisodeTargets, parseEpisodeMetadata, sameMeta } from './episode-transaction.mjs';
+import {
+  prepareEpisode,
+  episodeCommitTree,
+  checkEpisodeTargets,
+  parseEpisodeMetadata,
+  sameMeta,
+} from './episode-transaction.mjs';
 
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const episodeId = '663572e7-bd85-4516-86e2-3de07d209e04';
@@ -276,7 +282,6 @@ test('stale review, dirty checkout, extra paths, existing target and symlink fai
   assert.equal(fs.readFileSync(path.join(dir, sourcePath), 'utf8'), completed());
 });
 
-
 test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and current ancestry', async () => {
   const repo = 'KiT-Maverik/svitlo';
   const head = 'a'.repeat(40);
@@ -284,12 +289,16 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
   const earlier = 'c'.repeat(40);
   const blob = 'd'.repeat(40);
   const earlierBlob = 'e'.repeat(40);
-  const row = (stage, commit, sourceBlob) => '- Review evidence (v1): ' + stage + ' | accepted | ' + commit + ' | ' + sourceBlob;
+  const row = (stage, commit, sourceBlob) =>
+    '- Review evidence (v1): ' + stage + ' | accepted | ' + commit + ' | ' + sourceBlob;
   const stage3 = row(3, earlier, earlierBlob);
   const stage4 = row(4, head, blob);
   const body = stage3 + '\n' + stage4;
   const pr = {
-    state: 'open', draft: true, body, user: { login: 'owner' },
+    state: 'open',
+    draft: true,
+    body,
+    user: { login: 'owner' },
     head: { sha: head, ref: 'episode/one', repo: { full_name: repo } },
     base: { sha: parentHead, ref: 'course/sky', repo: { full_name: repo } },
   };
@@ -299,7 +308,9 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
     base: { ref: 'develop' },
   };
   const previous = globalThis.fetch;
-  const env = Object.fromEntries(['GITHUB_REPOSITORY', 'COURSE_DEFAULT_BRANCH', 'GH_TOKEN'].map(key => [key, process.env[key]]));
+  const env = Object.fromEntries(
+    ['GITHUB_REPOSITORY', 'COURSE_DEFAULT_BRANCH', 'GH_TOKEN'].map(key => [key, process.env[key]]),
+  );
   Object.assign(process.env, { GITHUB_REPOSITORY: repo, COURSE_DEFAULT_BRANCH: 'develop', GH_TOKEN: 'fixture' });
   let historicalBlob = earlierBlob;
   let ancestor = true;
@@ -313,13 +324,16 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
       payload = { ...pr, body: changeDuringDiscovery && prReads % 2 === 0 ? stage3 : pr.body };
     } else if (route === 'pulls/808') payload = parent;
     else if (route === 'pulls/810/files?per_page=100') payload = [{ filename: sourcePath, status: 'modified' }];
-    else if (route === 'compare/' + parentHead + '...' + head) payload = { status: 'ahead', merge_base_commit: { sha: parentHead } };
+    else if (route === 'compare/' + parentHead + '...' + head)
+      payload = { status: 'ahead', merge_base_commit: { sha: parentHead } };
     else if (route === 'compare/' + earlier + '...' + head)
       payload = { status: ancestor ? 'ahead' : 'diverged', merge_base_commit: { sha: earlier } };
     else if (route.startsWith('contents/')) {
       const [filename, commit] = route.slice('contents/'.length).split('?ref=');
       payload = {
-        type: 'file', path: filename, size: 100,
+        type: 'file',
+        path: filename,
+        size: 100,
         sha: commit === head ? blob : commit === earlier ? historicalBlob : 'f'.repeat(40),
       };
     } else throw Error('Unexpected GitHub API: ' + route);
@@ -331,9 +345,19 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
     const encode = value => Buffer.from(JSON.stringify(value)).toString('base64');
     assert.deepEqual(parseEpisodeMetadata(encode(meta)), meta);
     assert.equal(sameMeta(verified, meta), true);
-    assert.equal(sameMeta({ ...verified, reviews: verified.reviews.map(r => ({ ...r, blob: earlierBlob })) }, meta), false);
+    assert.equal(
+      sameMeta({ ...verified, reviews: verified.reviews.map(r => ({ ...r, blob: earlierBlob })) }, meta),
+      false,
+    );
     assert.throws(() => parseEpisodeMetadata(encode({ ...meta, reviews: meta.reviews.slice(1) })), /Invalid pinned/);
-    for (const invalid of [stage3, stage4, body + '\n' + stage3, body.replace('accepted', 'rejected'), body.replace(blob, earlierBlob), body.replace(head, earlier)]) {
+    for (const invalid of [
+      stage3,
+      stage4,
+      body + '\n' + stage3,
+      body.replace('accepted', 'rejected'),
+      body.replace(blob, earlierBlob),
+      body.replace(head, earlier),
+    ]) {
       pr.body = invalid;
       await assert.rejects(inspectEpisode(810, 808), /review evidence/i);
     }

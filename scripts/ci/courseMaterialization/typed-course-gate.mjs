@@ -88,8 +88,12 @@ export async function inspectTypedCourse(number, expectedHead) {
   });
   const again = await github('pulls/' + number);
   if (
-    again?.head?.sha !== pr.head.sha || again?.head?.ref !== pr.head.ref ||
-    again?.state !== 'open' || !again.draft || again.base?.ref !== base || again.body !== pr.body
+    again?.head?.sha !== pr.head.sha ||
+    again?.head?.ref !== pr.head.ref ||
+    again?.state !== 'open' ||
+    !again.draft ||
+    again.base?.ref !== base ||
+    again.body !== pr.body
   )
     throw Error('Course PR changed during independent Stage 4 evidence verification');
   return {

@@ -41,12 +41,11 @@ function metadata() {
     meta.reviewCommitSha !== meta.head ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor || '') ||
     meta.reviewVerdict !== 'accepted' ||
-    (meta.parentQuestions === 'notApplicable' && (
-      meta.parentQuestionsReview?.stage !== 'questions-na' ||
-      meta.parentQuestionsReview?.verdict !== 'accepted' ||
-      meta.parentQuestionsReview?.commit !== meta.parentHeadSha ||
-      !SHA.test(meta.parentQuestionsReview?.blob || '')
-    )) ||
+    (meta.parentQuestions === 'notApplicable' &&
+      (meta.parentQuestionsReview?.stage !== 'questions-na' ||
+        meta.parentQuestionsReview?.verdict !== 'accepted' ||
+        meta.parentQuestionsReview?.commit !== meta.parentHeadSha ||
+        !SHA.test(meta.parentQuestionsReview?.blob || ''))) ||
     meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/draft.ts' ||
     meta.identity?.bank !== meta.bank ||
     typeof meta.branch !== 'string'
@@ -219,7 +218,13 @@ function authorizations(meta, input, root, blocks) {
   if (questions.kind === 'notApplicable') {
     assertAncestor(root, questions.methodologySourceSha, 'Methodologist Questions N/A revision');
     assertAncestor(root, meta.parentHeadSha, 'Reviewed Questions N/A parent revision');
-    assertSourceRevision(root, meta.parentQuestionsReview.blob, lessonDirectory + '/index.ts', meta, 'Questions N/A reviewed Lesson source');
+    assertSourceRevision(
+      root,
+      meta.parentQuestionsReview.blob,
+      lessonDirectory + '/index.ts',
+      meta,
+      'Questions N/A reviewed Lesson source',
+    );
     if (questions.parentLessonPr !== meta.identity.parent || lesson.assessment?.questionBankRequired !== false) {
       throw Error('Questions N/A must match the owning Lesson decision and parent PR');
     }

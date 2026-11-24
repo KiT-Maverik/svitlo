@@ -7,12 +7,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
-import {
-  parseTypedIdentity,
-  parseTypedTrigger,
-  typedPath,
-  inspectTyped,
-} from './lesson-typed-gate.mjs';
+import { parseTypedIdentity, parseTypedTrigger, typedPath, inspectTyped } from './lesson-typed-gate.mjs';
 import {
   typedMeta,
   checkedTypedRoot,
@@ -76,10 +71,14 @@ function tracker({ course = false, approved = true } = {}) {
   ].join('\n');
 }
 const commit = sha('a');
-const reviewRows = [3, 4, 5].map(stage =>
-  '- Review evidence (v1): ' + stage + ' | accepted | ' +
-  (stage === 5 ? commit : sha(stage === 3 ? 'b' : 'c')) + ' | ' +
-  (stage === 5 ? gitBlob(original) : sha(stage === 3 ? 'd' : 'e')),
+const reviewRows = [3, 4, 5].map(
+  stage =>
+    '- Review evidence (v1): ' +
+    stage +
+    ' | accepted | ' +
+    (stage === 5 ? commit : sha(stage === 3 ? 'b' : 'c')) +
+    ' | ' +
+    (stage === 5 ? gitBlob(original) : sha(stage === 3 ? 'd' : 'e')),
 );
 const reviewedTracker = options => tracker(options) + '\n' + reviewRows.join('\n');
 
