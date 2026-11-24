@@ -316,6 +316,7 @@ export function materializeCourseStage5(input, options = {}) {
         '/index.ts',
       placementSourcePath: parentIndex(context.directory),
       sourceSha: lesson.sourceSha,
+      sourceExportName: lesson.exportName,
     });
     return {
       id: existing.id,
