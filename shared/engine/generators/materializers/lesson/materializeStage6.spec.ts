@@ -452,9 +452,10 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
   assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
-  assert.equal(
-    plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
-    false,
+  assert.deepEqual(
+    plan.diagnostics.filter(diagnostic => diagnostic.code.startsWith('pending-')),
+    [],
+    'complete imported assessment Sections should not have pending diagnostics',
   );
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
