@@ -36,10 +36,10 @@ export const courseStage3 = {
             kind: 'existing',
             existing: { id: howLightMoves.id },
             matching: {
-              methodologySourcePath: 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/index.ts',
-              sourceSha: 'af9db146258932eda68bd5f49139b0358f80e71c',
+              methodologySourcePath: 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
+              sourceSha: 'ed22809482b1960449b5b83043a7a8c827f0d2ec',
               matchingRationale:
-                'Reuse the real light-propagation fixture with theory, practice and its existing Quiz. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is requested; exact age fit, quantitative extension and accessibility need independent review. No canonical methodology.md exists: index.ts is provisional inspected implementation evidence, not an accepted methodology source. Trusted reuse is blocked until separately authorized canonical methodology is integrated.',
+                'Reuse the real light-propagation fixture with theory, practice and its existing Quiz. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is explicitly authorized by the owner; educational quality and age-fit certification are outside this fixture test. The canonical retrospective methodology.md integrated via PR #809 documents the unchanged Lesson, Skill, Sections, assessment ownership and locale scope. Trusted materialization remains subject to the actual technical and source verification gates.',
               languageEvidence:
                 'The inspected Lesson declares all default supported languages; English and Ukrainian titles, introductory Markdown and practice text exist. Full locale/review and asset readiness remain unverified.',
             },
@@ -142,10 +142,10 @@ export const courseStage3 = {
                     ),
                     matching: {
                       methodologySourcePath:
-                        'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/index.ts',
-                      sourceSha: 'af9db146258932eda68bd5f49139b0358f80e71c',
+                        'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
+                      sourceSha: 'ed22809482b1960449b5b83043a7a8c827f0d2ec',
                       matchingRationale:
-                        'Revisit the same light Skill through the existing theory, practice and Quiz while requiring the ordered experience rather than skipping. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is requested; exact age fit, quantitative extension and accessibility need independent review. No canonical methodology.md exists: index.ts is provisional inspected implementation evidence, not an accepted methodology source. Trusted reuse is blocked until separately authorized canonical methodology is integrated.',
+                        'Revisit the same light Skill through the existing theory, practice and Quiz while requiring the ordered experience rather than skipping. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is explicitly authorized by the owner; educational quality and age-fit certification are outside this fixture test. The canonical retrospective methodology.md integrated via PR #809 documents the unchanged Lesson, Skill, Sections, assessment ownership and locale scope. Trusted materialization remains subject to the actual technical and source verification gates.',
                       languageEvidence:
                         'The inspected Lesson declares all default supported languages; English and Ukrainian titles, introductory Markdown and practice text exist. Full locale/review and asset readiness remain unverified.',
                     },
