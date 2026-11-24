@@ -443,10 +443,9 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
 
 test('Lesson refuses cross-textbook Skill alias or mismatched UUID', () => {
   const input = { ...lesson(), skills: [id('66')] };
-  const options = {
+  const options: Parameters<typeof materializeLesson>[1] = {
     documentLanguage: 'en',
-    renderSection: (child: Parameters<typeof materializeLesson>[0]['section']['items'][string], opts: Parameters<typeof materializeLesson>[1]['renderSection'] extends (c: infer C, o: infer O) => unknown ? O : never) =>
-      renderSection(child as ContentSource, { ...opts, renderContentBlock }),
+    renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   };
   assert.throws(() => materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     ...options,
