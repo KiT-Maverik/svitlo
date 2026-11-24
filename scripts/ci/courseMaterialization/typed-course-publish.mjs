@@ -13,6 +13,7 @@ import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import {
   checkedSource,
+  checkCourseStage3Types,
   parseCanonicalCourseSource,
   buildTypedCourseManifest,
   reviewedLessonPatchResolver,
@@ -194,10 +195,10 @@ export function oneCommitTree(manifest) {
  * No PR code evaluation: both read-only analysis and the write-token job
  * compute the identical plan from a strictly literal TypeScript AST.
  */
-function replan(meta, source) {
+export function replan(meta, source, candidateRoot = process.env.COURSE_HEAD_ROOT) {
   const resolver = createTrustedCourseLessonResolver({
     trustedRoot: path.resolve(import.meta.dirname, '../../..'),
-    candidateRoot: process.env.COURSE_HEAD_ROOT,
+    candidateRoot,
     textbookRoot: meta.textbookRoot,
   });
   const patches = [];
@@ -205,6 +206,7 @@ function replan(meta, source) {
     resolveImport: resolver.loadImport,
     patches,
   });
+  checkCourseStage3Types(path.join(candidateRoot, meta.sourcePath));
   const plan = materializeCourseStage5(input, {
     textbookRoot: meta.textbookRoot,
     review: {

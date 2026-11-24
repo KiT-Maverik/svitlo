@@ -20,6 +20,7 @@ export function checkGeneratedCourseTypes(plan, textbookRoot) {
   const paths = {
     ...parsed.options.paths,
     '@svitlo/engine/build': ['build.ts'],
+    '@svitlo/engine/runtime': ['runtime.ts'],
     '#coursesData/*': [path.join(virtualRoot, textbookRoot, 'data/courses/*')],
     '#lessonsData/*': [
       path.join(virtualRoot, textbookRoot, 'data/lessons/*'),
