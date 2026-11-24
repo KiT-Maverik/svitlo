@@ -9,6 +9,8 @@ import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
+import { parseEpisodeHandoff } from './episode-source.mjs';
+import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
 import { pinnedGitReader as gitReader } from '../directMaterialization/pinned-git.mjs';
 
@@ -277,20 +279,13 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
     tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
   )
     throw Error('Episode parent/handoff source is not the authorized Git version');
-  const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
-  // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
-  // reading it does not require TypeScript, user code or npm packages.
-  const match = sourceHandoff.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
-  );
-  if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
-  const handoff = JSON.parse(match[1]);
+  const handoff = parseEpisodeHandoff(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     handoff.config.id !== manifest.episodeId ||
-    handoff.production.placement.courseId !== meta.courseId ||
-    handoff.production.placement.path !== meta.placement
+    handoff.config.slug !== meta.placement.split('/').at(-1) ||
+    deriveCourseEntityId(meta.courseId, 'episode', meta.placement.slice('content/'.length)) !== handoff.config.id
   )
-    throw Error('Episode worker output identity differs from approved Course handoff');
+    throw Error('Episode output identity differs from Course-reserved UUID/placement');
   let total = 0;
   const files = manifest.entries.map(entry => {
     const bytes = Buffer.from(entry.data || '', 'base64');
@@ -317,7 +312,6 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
     placement: meta.placement,
     slug: handoff.config.slug,
     episodeId: handoff.config.id,
-    orderIndex: handoff.production.placement.orderPath.at(-1),
     exportName: manifest.sourceExportName,
   });
   return manifest;
