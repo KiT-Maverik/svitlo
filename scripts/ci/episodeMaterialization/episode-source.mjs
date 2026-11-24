@@ -2,7 +2,6 @@
 import ts from 'typescript';
 import { isDeepStrictEqual } from 'node:util';
 import { createRequire } from 'node:module';
-import { parseGeneratedHandoff } from '../directMaterialization/parse-generated-handoff.mjs';
 
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -11,15 +10,18 @@ const same = (a, b) => isDeepStrictEqual(a, b);
 const nameOf = node => (ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined);
 const safe = x => typeof x === 'string' && slug.test(x) && !['constructor', 'prototype', '__proto__'].includes(x);
 
-/** Read the immutable Course-generated Episode Stage 1 handoff using only
- * a strict, non-executing TS literal parser, independent of quote/key style.
+/** Read the immutable Course-generated Episode Stage 1 handoff.
+ * The generated file is a canonical JSON object in a fixed TS wrapper; this
+ * reader does not interpret arbitrary TypeScript or execute authored code.
  */
 export function parseEpisodeHandoff(source) {
   if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
     throw Error('Invalid or oversized Course Episode handoff');
-  const result = parseGeneratedHandoff(source, {
-    symbol: 'episodeStage1', contract: 'EpisodeWorkflowStage1Handoff',
-  });
+  const match = source.match(
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+  );
+  if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
+  const result = JSON.parse(match[1]);
   if (
     !record(result) ||
     !record(result.config) ||
