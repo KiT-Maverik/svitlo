@@ -1,5 +1,8 @@
 # Create Course Flow
 
+**Final technical invocation (Stage 4):** The same reviewed `draft.ts` must import `materializeCourse` from `@svitlo/engine/build` and invoke `materializeCourse(reviewedCourse)` **exactly once** after its final `satisfies CourseWorkflowMaterializerInput` object. Normal imported Lesson Configurators are supplied as `production.source` (and `sourceExportName`); author original JSON-safe `sourcePatch` alongside any approved built override. The final file is executed only in the sandboxed read-only worker by the trusted Stage 5 gate, not parsed as an inert-literal AST by the privileged publisher. Retain exact source/review SHA authorization and never import unmaterialized or modified standalone Lessons. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
+
 **Role:** the single canonical eight-stage Course production workflow, operated in the **existing Course entity-owned PR**. Before acting read root `AGENTS.md`/`README.md`, [CI/branch rules](../../rules/ci-workflow.md), [GitHub rules](../../rules/github-labels-and-naming.md), [Course entity](../../docs/entities/course.md), [architecture index](../../docs/architecture/README.md), [UUID addressing](../../docs/architecture/entity-uuid-addressing.md), the current Engine contracts, source and tests. Select Personas by stage: [Methodologist](../../personas/methodist.persona.md) for Stages 1–2; Methodologist and [Learning Assessment Architect](../../personas/learning-assessment-architect.persona.md) for Stages 3–4 (also load the Assessment Architect earlier if the task genuinely requires assessment expertise); [Coding Agent](../../personas/coding-agent.persona.md) for Stage 5; [Technical Translator](../../personas/technical-translator.persona.md) for Stages 6–7. Stage 4 follows the [independent review rule](../../rules/independent-review.md). Stage 8 is owned exclusively by a human; no agent Persona can approve it.
 
 ## Authoritative source, contracts and PR state
@@ -161,7 +164,7 @@ export const courseStage3 = {
 } satisfies CourseWorkflowStage3;
 ```
 
-This is a conceptual Stage 3 transformation, not an executable trusted-parser input: persist the complete resolved object as inert literals and supported trusted Lesson expressions, not object spreads of prior stages. The import path and variables are illustrative: resolve them from the real textbook's aliases and source evidence. The replacement Course example preserves the Stage 2 Episode and its order. In real work, replace **every** unresolved Lesson slot throughout nested Modules/Chapters, not only the illustrated root slot. The two outcomes can be reviewed as `CourseWorkflowStage3NewLesson`/`CourseWorkflowStage3ExistingLesson` types; the single final whole-Course source must satisfy `CourseWorkflowStage3`.
+This is a conceptual Stage 3 transformation, not an executable trusted-parser input: persist the reviewed object as valid TypeScript and pass normal imported Lesson Configurators and a plain source patch directly to the Engine materializer. The import path and variables are illustrative: resolve them from the real textbook's aliases and source evidence. The replacement Course example preserves the Stage 2 Episode and its order. In real work, replace **every** unresolved Lesson slot throughout nested Modules/Chapters, not only the illustrated root slot. The two outcomes can be reviewed as `CourseWorkflowStage3NewLesson`/`CourseWorkflowStage3ExistingLesson` types; the single final whole-Course source must satisfy `CourseWorkflowStage3`.
 
 **Course-wide assessment design:** recheck every new and existing placement's four independent booleans, their evidence/ownership rationale, intended later Section position, whether Questions/Flashcards banks belong to this Lesson or verified upstream Lessons, and the distinction from `quizRequiredForCompletion`. Stage 4 checks both the decisions and their implications for later independent bank/Section handoffs. Decide meaningful instructional Quiz locations vs a justified ordinary assessment-only Lesson at Chapter/Module/Course boundaries; define target Skills, the learner evidence, feedback and item/bank ownership without prematurely generating Quiz/Question/Flashcard Configs or IDs. A full independent Question Bank normally belongs to each nontrivial teaching Lesson even when its own Quiz is absent. Cross-Lesson Quiz publication requires the upstream reviewed banks in the actual branch ancestry and working global Question resolver; this _publication_ dependency does not block Stage 4 methodology review if ownership and planned coverage are already sound.
 
@@ -172,23 +175,24 @@ This is a conceptual Stage 3 transformation, not an executable trusted-parser in
 1. Pin the exact current Course source Git SHA; read the **whole source**, referenced taxonomy/standards, Module/Chapter progression, new Lesson methodologies, real reused Lesson sources/SHAs, Course-local patches, Quiz/Flashcards Section and Question/Flashcard Bank decisions for **every** placement, `quizRequiredForCompletion` implications, upstream owners, locales, accessibility/offline constraints and unresolved decisions.
 2. Investigate learning science, scientific/source correctness, age/depth, Skill gaps and prerequisite loops, misconceptions, explicit learning evidence, suitability of matching and adaptations, honest standards claims and responsibility boundaries. Typechecking and a green Draft check do not establish pedagogical quality.
 3. **Immediately edit and commit every in-scope defect in this same Course PR**. This reviewer is the authorized final methodological specialist; even fundamental methodological corrections do **not** automatically reset Stage 3, require a second independent reviewer or move changes into a separate review PR. Escalate only a genuinely unresolved/out-of-scope ownership decision (e.g. changing an independently owned Lesson or Course scope not authorized by its owner).
-4. Finalize the existing exported Course declaration as described below and commit it as part of Stage 4. Re-read the resulting **entire corrected materializer input**, verify actual source evidence, trusted AST compatibility and type-contract consistency, inspect applicable CI for the final revision, pin the **final corrected SHA**, and record the initial SHA, findings, exact corrective changes, remaining genuine decisions and one final Stage 4 verdict in the existing Course PR using the [canonical review evidence format](../../rules/independent-review.md). One Stage 4 completion; do not create a second review record or silently claim that previous SHA evidence examined new content.
+4. Finalize the existing exported Course declaration as described below and commit it as part of Stage 4. Re-read the resulting **entire corrected materializer input**, verify actual source evidence, typed materializer compatibility and contract consistency, inspect applicable CI for the final revision, pin the **final corrected SHA**, and record the initial SHA, findings, exact corrective changes, remaining genuine decisions and one final Stage 4 verdict in the existing Course PR using the [canonical review evidence format](../../rules/independent-review.md). One Stage 4 completion; do not create a second review record or silently claim that previous SHA evidence examined new content.
 
-#### Final typed declaration (part of Stage 4)
+#### Final direct materializer invocation (part of Stage 4)
 
-Before the final reinspection, change only the type-only import and the existing exported Course object's closing `satisfies` clause (in addition to any required methodological corrections). Preserve the existing export name, UUID and complete resolved content. For the Stage 3 export shown above, the declaration change is:
+Before final independent review sign-off, keep the original `CourseWorkflowStage3` object, change its final type assertion to `satisfies CourseWorkflowMaterializerInput`, and add exactly **one** source-only materializer call in the same file:
 
-```diff
--  CourseWorkflowStage3,
-+  CourseWorkflowMaterializerInput,
-@@
--} satisfies CourseWorkflowStage3;
-+} satisfies CourseWorkflowMaterializerInput;
+```ts
+import { materializeCourse } from '@svitlo/engine/build';
+import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';
+
+export const reviewedCourse = {
+  // The existing, complete reviewed Course hierarchy and methodology.
+} satisfies CourseWorkflowMaterializerInput;
+
+materializeCourse(reviewedCourse);
 ```
 
-The final file has one exported Course materializer input, with the original full object initializer, not an additional `reviewedInput` alias or a second source. Use only literal data and supported trusted Lesson references/overrides; the trusted parser rejects ordinary object spreads and executable expressions. The [trusted regression fixture](../../../scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs) exercises this exact single-export form with a complete typed object, the actual parser and semantic checks.
-
-`CourseWorkflowMaterializerInput = CourseWorkflowStage3` in the [Engine contract](../../../shared/engine/types/workflow/courseWorkflow.types.ts); there is no Stage 4 authoring type. Commit the final declaration **before** the final reinspection, CI evidence and SHA/verdict. Stage 5 must consume those exact reviewed bytes without an intervening source edit. The declaration and CI do not authorize materialization.
+The displayed body is schematic: retain the fully authored object, real UUID and all reviewed evidence. Normal imports/spreads and imported `Lesson_Configurator` references may be used as TypeScript, but authored dependencies must be genuine, unchanged and independently source-pinned. For existing Lesson placements, `production.source`, `sourceExportName` and a plain `sourcePatch` (if overridden) must be supplied and checked against the actual Build API. No AST decoder, special importer or second authored source is an acceptance gate. Commit this invocation before the final Stage 4 reinspection/CI/source SHA verdict. Stage 5 must consume the exact reviewed bytes without editing the source.
 
 Stage 4 approval permits a **recommendation** for independently authorized Stage 5, not materialization, new Lesson Production, translation, publication or merge.
 

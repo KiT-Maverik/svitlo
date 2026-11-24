@@ -1,5 +1,8 @@
 # Create Questions Flow — resumable Lesson Question Bank production
 
+**Final technical invocation (Stage 5):** The SHA-reviewed bank `draft.ts` invokes `materializeQuestionBank(reviewedQuestionBank)` once from `@svitlo/engine/build` with a complete `QuestionBankWorkflowStage3` object. Independent review and Lesson ownership are checked outside the no-token worker; the write-token publisher never replays or compiles authored source. No AST literal decoder, local temporary Git writer or second materialization input is supported. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
+
 **Purpose:** produce an independent full Question Bank for an existing **bank-owning Lesson**, plus deliberate Quiz Section selections **only when that Lesson has approved Quizzes**. A full bank can exist with no Quiz Sections.
 Input is the Lesson UUID or its current parent Lesson PR number.
 The bank and each Quiz Section are separate deliverables; neither
