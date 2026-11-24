@@ -60,3 +60,9 @@ The CLI lives at `shared/engine/scripts/generateCourseProps/generateCourseProps.
 ### Course-owned Episodes
 
 A materialized Episode publishes full invariant Props plus atomic localized Sections at its reviewed placement. The runtime validates supported Section/Block schemas, immutable identities and locale. Nonempty opaque Episode events and assessment/Quest Sections are unsupported and fail closed. Lesson references remain sparse and may occur at distinct placements with independent override patches. The Course CLI's strict source gate rejects pending Course-owned drafts and unresolved blockers; explicit draft-mode previews are not production approval. See [Episode entity](../../../../studio/docs/entities/episode.md).
+
+## Draft preview and protected publication
+
+`renderCourseFiles(course, { mode: 'draft' })` keeps the full, typed `Not implemented` Section preview for reserved Lesson, Episode and Assessment Configurators, including their immutable UUID/slug and ordered placement. Draft-mode output is never a completed Lesson resource or Assessment/Question Bank. `generateCourseProps --draft` passes this mode explicitly; the Next.js host accepts those resources **only in development**, and its routes render a safe temporary preview for pending activities.
+
+The default `mode: 'production'` independently rejects every `draft: true` child before writing output. `assembleCourseTree` also defaults to production and rejects draft children regardless of publisher provenance; callers must opt into `mode: 'draft'` for local preview. The Ready stub-import check and unresolved source-blocker gate are separate, fail-closed protections and cannot be bypassed by the preview mode.
