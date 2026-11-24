@@ -135,8 +135,8 @@ test('generates six stable type-correct Scene files with embedded reviewed speci
   const output = fs.readFileSync(path.join(folder, 'CompareGroupsScene.tsx'), 'utf8');
   assert.match(output, /ContentBlock_Scene_Props\['locale'\]\['value'\]/);
   // Reviewed instructions now live in one actionable multiline TODO, not // sidecar comments.
-  assert.match(output, /\\* # Original instruction/);
-  assert.doesNotMatch(output, /\\/\\/ # Original instruction/);
+  assert.match(output, /\* # Original instruction/);
+  assert.doesNotMatch(output, /\/\/ # Original instruction/);
   assert.match(output, /TODO \(BLOCKER\)/);
   assert.doesNotMatch(output, /sceneImplementationRequired|sceneSourceLocaleRequired/);
   assert.doesNotMatch(output, /Do not duplicate|Порівняй|as any|@ts-ignore/);
