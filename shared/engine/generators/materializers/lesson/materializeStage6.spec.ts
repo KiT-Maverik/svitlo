@@ -223,6 +223,12 @@ test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff ca
   assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
   assert.equal(produce().lessonId, id('01'));
 });
+test('standalone and Course-originated Stage 2 inputs use identical source materialization', () => {
+  const standalone = valid();
+  const courseOrigin = structuredClone(standalone);
+  const first = produce(standalone);
+  assert.deepEqual(produce(courseOrigin), first);
+});
 test('trust rejects source SHA drift, invalid path and unverified pinned source', () => {
   assert.throws(() => produce(valid(), { ...options, sourceText: 'tampered' }), /untrusted source/);
   assert.throws(() => produce(valid(), { ...options, verifySourceInput: () => false }), /untrusted source/);

@@ -11,6 +11,7 @@ import { lessonSourceIdentity, parseTypedTrigger, typedPath, inspectTyped } from
 import {
   typedMeta,
   checkedTypedRoot,
+  safeTarget,
   matchingSnapshot,
   typedManifest,
   verifyTypedManifest,
@@ -194,6 +195,24 @@ function fixture(callback) {
     fs.rmSync(root, { recursive: true, force: true });
   }
 }
+
+test('candidate checkout must have the pinned HEAD, clean files and no symlink source', () =>
+  fixture(({ root, info }) => {
+    const previous = process.env.LESSON_TYPED_CANDIDATE;
+    try {
+      process.env.LESSON_TYPED_CANDIDATE = root;
+      assert.equal(checkedTypedRoot(info), fs.realpathSync(root));
+      assert.throws(() => checkedTypedRoot({ ...info, head: sha('0') }), /pinned Lesson HEAD/);
+      fs.writeFileSync(path.join(root, source), 'changed');
+      assert.throws(() => checkedTypedRoot(info), /must be clean/);
+      fs.unlinkSync(path.join(root, source));
+      fs.symlinkSync(path.join(root, '.git', 'HEAD'), path.join(root, source));
+      assert.throws(() => safeTarget(root, source, true), /Symlink/);
+    } finally {
+      if (previous === undefined) delete process.env.LESSON_TYPED_CANDIDATE;
+      else process.env.LESSON_TYPED_CANDIDATE = previous;
+    }
+  }));
 
 test('draft deletion/index creation are atomic, immutable, hashed and confined to one Lesson', () =>
   fixture(({ root, info, plan, tracked }) => {

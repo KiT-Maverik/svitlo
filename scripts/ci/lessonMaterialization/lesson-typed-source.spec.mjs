@@ -46,6 +46,8 @@ test('dynamic expressions, code imports, duplicate keys and spreads fail closed'
       plain.replace('order: []', 'order: Math.random()'),
       plain.replace('order: []', 'order: [...[]]'),
       plain.replace('slug: "intro"', 'slug: (() => "intro")()'),
+      plain.replace('slug: "intro"', 'slug: "../escape"'),
+      plain.replace('slug: "intro"', 'slug: ""'),
       plain.replace('slug: "intro"', 'slug: "intro", slug: "duplicate"'),
       plain.replace('config: {', 'config: { ...malicious,'),
       plain.replace('as const satisfies LessonWorkflowStage2', 'as const'),
