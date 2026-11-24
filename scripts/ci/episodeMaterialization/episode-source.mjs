@@ -1,7 +1,7 @@
 /** Inert Episode draft parsing and deterministic restoration of one reserved parent slot. */
 import { isDeepStrictEqual } from 'node:util';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
-import { replaceReservedParentSlot } from '../directMaterialization/reserved-parent-slot.mjs';
+import { replaceReservedParentSlot, readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -15,13 +15,10 @@ const safe = x => typeof x === 'string' && slug.test(x) && !['constructor', 'pro
  * reader does not interpret arbitrary TypeScript or execute authored code.
  */
 export function parseEpisodeHandoff(source) {
-  if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
-    throw Error('Invalid or oversized Course Episode handoff');
-  const match = source.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
-  );
-  if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
-  const result = JSON.parse(match[1]);
+  const result = readGeneratedCourseHandoff(source, {
+    variable: 'episodeStage1',
+    contract: 'EpisodeWorkflowStage1Handoff',
+  });
   if (
     !record(result) ||
     !record(result.config) ||
@@ -30,7 +27,12 @@ export function parseEpisodeHandoff(source) {
     !safe(result.config.slug) ||
     !/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(result.config.id ?? '') ||
     Object.keys(result.config).some(key => !['type', 'id', 'slug'].includes(key)) ||
-    Object.keys(result.production).some(key => !['focus', 'purpose', 'placement', 'languages'].includes(key))
+    Object.keys(result.production).some(key => !['focus', 'purpose', 'languages'].includes(key)) ||
+    !nonempty(result.production.focus) ||
+    !nonempty(result.production.purpose) ||
+    !record(result.production.languages) ||
+    typeof result.production.languages.document !== 'string' ||
+    !Array.isArray(result.production.languages.planned)
   )
     throw Error('Not a canonical Course-owned Episode handoff');
   return result;
