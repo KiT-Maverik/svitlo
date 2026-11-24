@@ -23,7 +23,6 @@ import type {
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowLessonSeed,
-  CourseWorkflowStage3,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,
