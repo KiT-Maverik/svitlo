@@ -12,6 +12,7 @@ import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
+import { parseGeneratedHandoff, parseGeneratedReference } from '../directMaterialization/parse-generated-handoff.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -60,9 +61,9 @@ function allowedOutput(filename, meta) {
   return !!lesson && lesson[1] === lesson[2].at(-1);
 }
 
-/** Bind generated Course-owned handoffs one-to-one to the sealed inventory.
- * This examines only fixed, JSON-literal outputs from trusted seed generators.
- * It never reads or parses candidate entrypoint TypeScript, or regenerates it.
+/** Bind only inert, AST-verified generated handoffs to the sealed Course
+ * inventory. Formatting cannot change the reviewed identities or create
+ * executable source; candidate entrypoints are never parsed or executed.
  */
 function assertCourseInventory(manifest, meta, entries) {
   const root = meta.textbookRoot + '/data/courses/' + meta.courseId.at(-1) + '/' + meta.courseId;
@@ -88,20 +89,12 @@ function assertCourseInventory(manifest, meta, entries) {
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
   const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
-  function outputLiteral(filename, symbol, marker) {
+  function outputLiteral(filename, symbol, contract) {
     const entry = entries.get(filename);
     if (entry?.kind !== 'typescript') throw Error('Missing canonical Course source handoff: ' + filename);
-    const source = Buffer.from(entry.data, 'base64').toString('utf8');
-    const head = 'export const ' + symbol + ' = ';
-    const begin = source.indexOf(head);
-    const end = source.indexOf(marker, begin + head.length);
-    if (begin < 0 || end < 0 || source.indexOf(head, begin + head.length) !== -1)
-      throw Error('Malformed generated handoff: ' + filename);
-    try {
-      return JSON.parse(source.slice(begin + head.length, end));
-    } catch {
-      throw Error('Invalid JSON seed handoff: ' + filename);
-    }
+    return parseGeneratedHandoff(Buffer.from(entry.data, 'base64').toString('utf8'), {
+      symbol, contract, filename,
+    });
   }
   for (const row of [...inventory.lessons, ...inventory.episodes]) {
     if (
@@ -142,7 +135,7 @@ function assertCourseInventory(manifest, meta, entries) {
           !seeds.delete(draft)
         )
           throw Error('Course Lesson inventory does not match a unique generated seed');
-        const source = outputLiteral(draft, 'lessonSeed', ' as const satisfies CourseWorkflowLessonSeed;');
+        const source = outputLiteral(draft, 'lessonSeed', 'CourseWorkflowLessonSeed');
         if (
           source?.config?.id !== row.id ||
           source.config.slug !== row.slug ||
@@ -162,13 +155,11 @@ function assertCourseInventory(manifest, meta, entries) {
         )
           throw Error('Course reused Lesson inventory does not match generated reference');
         const reference = Buffer.from(entries.get(row.placementSourcePath).data, 'base64').toString('utf8');
-        const parsed = /^export \{ ([A-Za-z][A-Za-z0-9]*) as ([A-Za-z][A-Za-z0-9]*) \} from ("[^"\n]+");\n$/.exec(
-          reference,
-        );
+        const parsed = parseGeneratedReference(reference, row.placementSourcePath);
         const reserved = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'];
         const expectedExport = reserved.includes(row.slug) ? 'config_' + row.slug : row.slug;
         const expectedImport = JSON.stringify('#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index');
-        if (!parsed || parsed[2] !== expectedExport || parsed[3] !== expectedImport)
+        if (parsed.alias !== expectedExport || parsed.module !== JSON.parse(expectedImport))
           throw Error('Course reused Lesson reference differs from inventory identity or canonical import');
       } else throw Error('Invalid Course Lesson kind');
     } else {
@@ -183,7 +174,7 @@ function assertCourseInventory(manifest, meta, entries) {
         throw Error('Episode inventory source missing or displaced');
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
-        const source = outputLiteral(filename, 'episodeStage1', ' as const satisfies EpisodeWorkflowStage1Handoff;');
+        const source = outputLiteral(filename, 'episodeStage1', 'EpisodeWorkflowStage1Handoff');
         const placement = source?.production?.placement;
         if (
           source?.config?.id !== row.id ||
