@@ -3,9 +3,9 @@
 ## Identity and scope
 
 - Lesson UUID: `d3048d21-8690-5255-b62c-984c69ac272c`.
-- Target Skill: [testExplainLightTravel.ts](../../../skills/testLight/testLightPropagation/testExplainLightTravel.ts) (`00000000-0000-4000-8000-000000000015`).
+- Target Skill: [testExplainLightTravel.ts](../../../skills/testLight/testLightPropagation/testExplainLightTravel.ts) (`00000000-0000-4000-8000-000000000015`), a synthetic Playground taxonomy fixture, not a certified curriculum Skill.
 - Purpose: exercise the existing Lesson Build API, localized content, Scenes, practice, Quiz and independent assessment banks in Playground.
-- Audience and prerequisites: readers able to follow introductory descriptions of light and compare familiar media. The existing Config does not specify age or grade; no curriculum certification is claimed.
+- Audience and prerequisites: the existing Config does not specify age, grade or formal prerequisites; no curriculum certification is claimed.
 
 ## Outcomes and approach
 
