@@ -4,6 +4,7 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 import { image_Config_Schema } from '../../../configurators/contentBlocks/defineImage';
 
@@ -33,7 +34,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const languagePattern = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-const nilUuid = '00000000-0000-0000-0000-000000000000';
+const nilUuid = UNRESOLVED_RESOURCE_UUID;
 const reserved = new Set([
   'await',
   'break',
@@ -211,13 +212,21 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
           : placeholder;
     }
     const current = locale[field];
-    if (missing || current === placeholder || (isRecord(current) && current[language] === placeholder)) {
-      blockers.push('// TODO(asset): Replace ' + field + ' reserved Nil UUID with a verified ' + ext + ' asset.');
-      block(
-        'locale.' + field,
-        'pending-media',
-        'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)',
-      );
+    const localized = isRecord(current);
+    const reference = localized ? current[language] : current;
+    if (typeof reference === 'string' && reference.startsWith(nilUuid + '.')) {
+      const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
+      const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
+      expressions[fieldPath] =
+        '// TODO(asset): Replace reserved Nil UUID with a verified asset.\n' +
+        '// TODO (BLOCKER): ' + instruction + ' for image ' + config.id + '.\n' +
+        JSON.stringify(reference);
+      diagnostics.push({
+        path: '$.config.' + fieldPath,
+        code: 'pending-media',
+        message: instruction,
+        severity: 'warning',
+      });
     }
     fields.locale = locale;
   }
