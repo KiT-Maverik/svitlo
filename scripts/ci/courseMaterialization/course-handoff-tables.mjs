@@ -9,8 +9,7 @@ const headings = kind =>
   '| UUID | Placement | Order | Kind | Source | ' +
   (kind === 'assessments' ? 'Lesson dependencies | ' : '') +
   'Status | Child PR | Next action | Evidence |';
-const divider = kind =>
-  '| ' + Array.from({ length: kind === 'assessments' ? 10 : 9 }, () => '---').join(' | ') + ' |';
+const divider = kind => '| ' + Array.from({ length: kind === 'assessments' ? 10 : 9 }, () => '---').join(' | ') + ' |';
 const markers = kind => ['<!-- svitlo-course-' + kind + ':v1:begin -->', '<!-- svitlo-course-' + kind + ':v1:end -->'];
 const cell = value =>
   String(value)
@@ -42,7 +41,8 @@ function locate(body, kind) {
     .slice(a + start.length, b)
     .trim()
     .split(/\r?\n/);
-  if (lines[0] !== headings(kind) || lines[1] !== divider(kind)) throw Error('Malformed managed Course inventory headings');
+  if (lines[0] !== headings(kind) || lines[1] !== divider(kind))
+    throw Error('Malformed managed Course inventory headings');
   const prior = new Map();
   for (const line of lines.slice(2)) {
     const cells = splitRow(line, kind);
@@ -66,16 +66,24 @@ function render(kind, rows, previous) {
       !row.orderPath.length ||
       row.orderPath.some(n => !Number.isSafeInteger(n) || n < 0) ||
       !['new', 'reused', 'overridden'].includes(row.kind) ||
-      !['pending-lesson-stage1', 'pending-episode-scenario', 'pending-assessment-design', 'verified-reference', 'materialized-source'].includes(
-        row.status,
-      )
+      ![
+        'pending-lesson-stage1',
+        'pending-episode-scenario',
+        'pending-assessment-design',
+        'verified-reference',
+        'materialized-source',
+      ].includes(row.status)
     )
       throw Error('Invalid verified Course inventory row');
     const identity = key(row.id, row.placementPath);
     if (seen.has(identity)) throw Error('Duplicate Course placement');
     seen.add(identity);
-    if (kind === 'assessments' && (!Array.isArray(row.lessonDependencies) || !row.lessonDependencies.length ||
-      row.lessonDependencies.some(path => !safePath(path))))
+    if (
+      kind === 'assessments' &&
+      (!Array.isArray(row.lessonDependencies) ||
+        !row.lessonDependencies.length ||
+        row.lessonDependencies.some(path => !safePath(path)))
+    )
       throw Error('Assessment inventory requires verified Lesson dependency paths');
     const old = previous?.get(identity);
     const statusColumn = kind === 'assessments' ? 6 : 5;
@@ -116,7 +124,11 @@ export function reconcileCourseHandoffTables(body, inventory) {
   if (typeof body !== 'string') throw Error('Current PR body required');
   const sections = ['lessons', 'episodes', 'assessments'].map(kind => {
     const location = locate(body, kind);
-    return { kind, location, table: render(kind, kind === 'assessments' ? (inventory?.assessments ?? []) : inventory?.[kind], location?.prior) };
+    return {
+      kind,
+      location,
+      table: render(kind, kind === 'assessments' ? (inventory?.assessments ?? []) : inventory?.[kind], location?.prior),
+    };
   });
   const located = sections.filter(section => section.location).sort((x, y) => y.location.a - x.location.a);
   if (located.some((section, index) => index > 0 && section.location.b > located[index - 1].location.a))

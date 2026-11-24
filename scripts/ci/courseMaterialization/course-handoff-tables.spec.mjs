@@ -64,7 +64,6 @@ test('rejects damaged blocks, duplicate placements, unsafe paths and dropped han
   );
 });
 
-
 const assessment = {
   ...lesson,
   type: 'assessment',
@@ -78,7 +77,8 @@ const assessment = {
 };
 test('Assessment table includes nested placement, dependencies, status and preserved manual review', () => {
   const initial = reconcileCourseHandoffTables('## Workflow\n- [ ] 7. Design Assessments', {
-    ...inventory, assessments: [assessment],
+    ...inventory,
+    assessments: [assessment],
   });
   assert.match(initial, /### Assessments/);
   assert.match(initial, /Lesson dependencies/);
@@ -93,7 +93,12 @@ test('Assessment table includes nested placement, dependencies, status and prese
   assert.match(again, /Stage 2 reviewed \| #901 \| Materialize \| SHA verified/);
   assert.equal(reconcileCourseHandoffTables(again, { ...inventory, assessments: [assessment] }), again);
   assert.throws(() => reconcileCourseHandoffTables(again, { ...inventory, assessments: [] }), /missing/);
-  assert.throws(() => reconcileCourseHandoffTables('', {
-    ...inventory, assessments: [{ ...assessment, lessonDependencies: ['../outside'] }],
-  }), /Lesson dependency/);
+  assert.throws(
+    () =>
+      reconcileCourseHandoffTables('', {
+        ...inventory,
+        assessments: [{ ...assessment, lessonDependencies: ['../outside'] }],
+      }),
+    /Lesson dependency/,
+  );
 });

@@ -386,7 +386,6 @@ test('inventory follows all four Episode nesting levels and retains repeated Les
   assert.deepEqual(result.inventory, materializeCourseStage5(input, reuseOptions()).inventory);
 });
 
-
 const assessmentSlot = (...dependencies) => ({
   config: {
     type: 'assessment',
@@ -405,9 +404,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
   chapterContent.order.push('chapterReview');
   moduleContent.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
   moduleContent.order.push('moduleReview');
-  rootContent.items.finalReview = assessmentSlot(
-    'content/moduleOne/chapterOne/lessonOne', 'content/directLesson',
-  );
+  rootContent.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
   rootContent.order.push('finalReview');
 
   const result = materializeCourseStage5(input, options());
@@ -423,8 +420,10 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     root + '/content/finalReview/draft.ts',
   ]);
   for (const row of result.inventory.assessments) {
-    assert.equal(row.id, deriveCourseEntityId(rootId, 'assessment',
-      row.placementPath.slice((root + '/content/').length)));
+    assert.equal(
+      row.id,
+      deriveCourseEntityId(rootId, 'assessment', row.placementPath.slice((root + '/content/').length)),
+    );
     assert.equal(row.status, 'pending-assessment-design');
     const seed = result.files.find(file => file.path === row.sourcePath);
     const parent = result.files.find(file => file.path === row.placementSourcePath);

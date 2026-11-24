@@ -52,7 +52,12 @@ export type CoursePlacementInventoryRow = {
   id: string;
   slug: string;
   kind: 'new' | 'reused' | 'overridden';
-  status: 'pending-lesson-stage1' | 'pending-episode-scenario' | 'pending-assessment-design' | 'verified-reference' | 'materialized-source';
+  status:
+    | 'pending-lesson-stage1'
+    | 'pending-episode-scenario'
+    | 'pending-assessment-design'
+    | 'verified-reference'
+    | 'materialized-source';
   placementPath: string;
   orderPath: readonly number[];
   sourcePath: string;

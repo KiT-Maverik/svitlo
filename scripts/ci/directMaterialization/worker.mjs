@@ -132,9 +132,15 @@ const options =
       : operation === 'episode-stage5'
         ? { source }
         : operation === 'assessment-stage4'
-          ? { source, sourceText, verifySourceInput: (_input, pinned, text) =>
-            pinned.sourcePath === source.sourcePath && pinned.sourceBlobSha === source.sourceBlobSha &&
-            pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText }
+          ? {
+              source,
+              sourceText,
+              verifySourceInput: (_input, pinned, text) =>
+                pinned.sourcePath === source.sourcePath &&
+                pinned.sourceBlobSha === source.sourceBlobSha &&
+                pinned.sourceCommitSha === source.sourceCommitSha &&
+                text === sourceText,
+            }
           : undefined;
 const plan = await executeMaterializerEntrypoint(
   operation,
@@ -143,9 +149,14 @@ const plan = await executeMaterializerEntrypoint(
   selectedBank
     ? bankOptions
     : ['episode-stage5', 'assessment-stage4'].includes(operation)
-      ? input => { capturedInput = input; return options; }
+      ? input => {
+          capturedInput = input;
+          return options;
+        }
       : undefined,
 );
 process.stdout.write(
-  JSON.stringify(selectedBank || ['episode-stage5', 'assessment-stage4'].includes(operation) ? { plan, input: capturedInput } : plan),
+  JSON.stringify(
+    selectedBank || ['episode-stage5', 'assessment-stage4'].includes(operation) ? { plan, input: capturedInput } : plan,
+  ),
 );

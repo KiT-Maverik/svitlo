@@ -33,8 +33,7 @@ export function materializeAssessmentPlaceholder(node, context) {
   const title = config.locale.title;
   if (
     (typeof title !== 'string' || !title.trim()) &&
-    (!isRecord(title) || typeof title[context.sourceLanguage] !== 'string' ||
-      !title[context.sourceLanguage].trim())
+    (!isRecord(title) || typeof title[context.sourceLanguage] !== 'string' || !title[context.sourceLanguage].trim())
   )
     throw Error(directory + ': Assessment title is missing reviewed source language');
   const id = context.deriveId('assessment', directory);
@@ -58,11 +57,14 @@ export function materializeAssessmentPlaceholder(node, context) {
   const source =
     "import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';\n" +
     '// TODO (BLOCKER): Complete independently authorized Assessment Stage 1, then Stage 2 and review.\n' +
-    'export const assessmentSeed = ' + JSON.stringify(seed, null, 2) +
+    'export const assessmentSeed = ' +
+    JSON.stringify(seed, null, 2) +
     ' as const satisfies AssessmentWorkflowSeed;\n';
   const placeholderSource =
-    'defineAssessment({ id: ' + JSON.stringify(id) +
-    ', type: "assessment", slug: ' + JSON.stringify(reservedSlug) +
+    'defineAssessment({ id: ' +
+    JSON.stringify(id) +
+    ', type: "assessment", slug: ' +
+    JSON.stringify(reservedSlug) +
     ', params: { languages }, locale: { title: "Not implemented" },' +
     ' section: { items: {}, order: [] } })';
   return {
@@ -70,11 +72,13 @@ export function materializeAssessmentPlaceholder(node, context) {
     pendingAssessment: true,
     placeholderSource,
     files: [{ path: sourcePath, kind: 'typescript', content: source }],
-    diagnostics: [{
-      path: directory,
-      code: 'pending-assessment-design',
-      severity: 'blocker',
-      message: 'Assessment has no reviewed Questions or enabled Quiz; Stage 7 production required',
-    }],
+    diagnostics: [
+      {
+        path: directory,
+        code: 'pending-assessment-design',
+        severity: 'blocker',
+        message: 'Assessment has no reviewed Questions or enabled Quiz; Stage 7 production required',
+      },
+    ],
   };
 }

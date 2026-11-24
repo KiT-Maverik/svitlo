@@ -192,8 +192,9 @@ export type LessonWorkflowStage2Block = z.infer<typeof block_Schema>;
 const sectionContent_Schema = workflowOrdered_Schema(block_Schema);
 
 /** Shared ordinary Section nodes are also used by Episode authoring. */
-export const lessonWorkflowContentSection_Schema =
-  node(contentSection_Config_Schema.extend({ content: sectionContent_Schema }));
+export const lessonWorkflowContentSection_Schema = node(
+  contentSection_Config_Schema.extend({ content: sectionContent_Schema }),
+);
 export const lessonWorkflowOrdinarySection_Schema = z.union([
   lessonWorkflowContentSection_Schema,
   node(practiceSection_Config_Schema.extend({ content: sectionContent_Schema })),

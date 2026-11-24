@@ -183,9 +183,7 @@ export function materializeCourseStage5(input, options = {}) {
       for (const key of owner.config.content.order) {
         const child = owner.config.content.items[key];
         const kind = child?.config?.type;
-        const path = parent
-          ? parent + (kind === 'assessment' ? '/content/' : '/') + key
-          : 'content/' + key;
+        const path = parent ? parent + (kind === 'assessment' ? '/content/' : '/') + key : 'content/' + key;
         if (kind === 'module' || kind === 'chapter') {
           inspect(child, path);
         } else if (kind === 'lesson') {
@@ -204,8 +202,7 @@ export function materializeCourseStage5(input, options = {}) {
               throw Error(path + ': unresolved, forward or ambiguous upstream Lesson dependency ' + value);
             return matches[0];
           });
-          if (new Set(resolved).size !== resolved.length)
-            throw Error(path + ': duplicated upstream Lesson dependency');
+          if (new Set(resolved).size !== resolved.length) throw Error(path + ': duplicated upstream Lesson dependency');
           resolvedAssessments.set(path, resolved);
         } else if (kind !== 'episode') {
           throw Error(path + ': unexpected Course placement type ' + kind);
@@ -406,10 +403,13 @@ export function materializeCourseStage5(input, options = {}) {
       const directory = assessmentContext.directory;
       const dependencies = resolvedAssessments.get(directory);
       if (!dependencies) throw Error(directory + ': unreviewed Assessment placement');
-      const result = materializeAssessmentPlaceholder({
-        ...node,
-        production: { ...node.production, lessonDependencies: dependencies },
-      }, assessmentContext);
+      const result = materializeAssessmentPlaceholder(
+        {
+          ...node,
+          production: { ...node.production, lessonDependencies: dependencies },
+        },
+        assessmentContext,
+      );
       const parent = directory.includes('/content/')
         ? directory.slice(0, directory.lastIndexOf('/content/')) + '/'
         : '';

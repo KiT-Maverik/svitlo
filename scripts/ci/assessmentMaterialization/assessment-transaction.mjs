@@ -17,10 +17,22 @@ const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const maxBytes = 32 * 1024 * 1024;
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const keys = [
-  'repo', 'number', 'parentNumber', 'branch', 'parentBranch',
-  'head', 'parentHead', 'sourcePath', 'courseRoot', 'courseId',
-  'placement', 'parentPath', 'textbookRoot', 'sourceBlobSha',
-  'handoffBlobSha', 'parentBlobSha',
+  'repo',
+  'number',
+  'parentNumber',
+  'branch',
+  'parentBranch',
+  'head',
+  'parentHead',
+  'sourcePath',
+  'courseRoot',
+  'courseId',
+  'placement',
+  'parentPath',
+  'textbookRoot',
+  'sourceBlobSha',
+  'handoffBlobSha',
+  'parentBlobSha',
 ];
 export const sameAssessmentMeta = (a, b) => keys.every(key => a[key] === b[key]);
 
@@ -32,15 +44,19 @@ export function parseAssessmentMetadata(encoded) {
   if (
     Object.keys(identity).some(key => identity[key] !== meta[key]) ||
     meta.repo !== process.env.GITHUB_REPOSITORY ||
-    !Number.isSafeInteger(meta.number) || meta.number < 1 ||
-    !Number.isSafeInteger(meta.parentNumber) || meta.parentNumber < 1 ||
+    !Number.isSafeInteger(meta.number) ||
+    meta.number < 1 ||
+    !Number.isSafeInteger(meta.parentNumber) ||
+    meta.parentNumber < 1 ||
     meta.number === meta.parentNumber ||
     !safeBranch(meta.branch, meta.parentBranch) ||
     !safeBranch(meta.parentBranch, process.env.COURSE_DEFAULT_BRANCH) ||
-    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha']
-      .every(key => SHA.test(meta[key] ?? '')) ||
+    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha'].every(key =>
+      SHA.test(meta[key] ?? ''),
+    ) ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '')
-  ) throw Error('Invalid pinned Assessment transaction metadata');
+  )
+    throw Error('Invalid pinned Assessment transaction metadata');
   return meta;
 }
 
@@ -50,15 +66,19 @@ export function parseAssessmentSeed(source) {
   const start = 'export const assessmentSeed = ';
   const end = ' as const satisfies AssessmentWorkflowSeed;';
   if (
-    typeof source !== 'string' || source.length > 2 * 1024 * 1024 ||
-    !source.startsWith(prefix) || !source.includes('// TODO (BLOCKER):') ||
+    typeof source !== 'string' ||
+    source.length > 2 * 1024 * 1024 ||
+    !source.startsWith(prefix) ||
+    !source.includes('// TODO (BLOCKER):') ||
     source.split(start).length !== 2 ||
     !source.trimEnd().endsWith(end)
-  ) throw Error('Not an immutable Course-generated Assessment seed');
+  )
+    throw Error('Not an immutable Course-generated Assessment seed');
   const literal = source.slice(source.indexOf(start) + start.length, source.lastIndexOf(end));
   const seed = JSON.parse(literal);
   if (
-    !seed || !UUID.test(seed.config?.id ?? '') ||
+    !seed ||
+    !UUID.test(seed.config?.id ?? '') ||
     seed.config?.type !== 'assessment' ||
     typeof seed.config.slug !== 'string' ||
     !seed.production?.purpose ||
@@ -68,14 +88,18 @@ export function parseAssessmentSeed(source) {
     !seed.production.placement.orderPath.length ||
     !SHA.test(seed.production.placement.reviewedCourseSourceBlobSha ?? '') ||
     !Array.isArray(seed.production.languages?.planned)
-  ) throw Error('Invalid pinned Assessment seed identity and planning data');
+  )
+    throw Error('Invalid pinned Assessment seed identity and planning data');
   return seed;
 }
 
 export function verifyAssessmentDesign(seed, input, meta, plan) {
   if (
-    !input || !plan || plan.publishable !== false ||
-    input.config?.id !== seed.config.id || input.config.slug !== seed.config.slug ||
+    !input ||
+    !plan ||
+    plan.publishable !== false ||
+    input.config?.id !== seed.config.id ||
+    input.config.slug !== seed.config.slug ||
     input.config.type !== 'assessment' ||
     input.production?.purpose !== seed.production.purpose ||
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
@@ -91,13 +115,15 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     plan.sourceCommitSha !== meta.head ||
     plan.sourcePath !== meta.sourcePath ||
     plan.materializedPath !== meta.sourcePath.replace(/draft\.ts$/, 'index.ts') ||
-    !Array.isArray(plan.selectedQuestionIds) || !plan.selectedQuestionIds.length ||
+    !Array.isArray(plan.selectedQuestionIds) ||
+    !plan.selectedQuestionIds.length ||
     plan.selectedQuestionIds.some(id => !UUID.test(id))
-  ) throw Error('Reviewed Assessment design diverges from immutable Course handoff');
+  )
+    throw Error('Reviewed Assessment design diverges from immutable Course handoff');
   const sourceTitle = seed.config.locale?.title;
   const reviewedTitle = input.config.locale?.title;
   const document = seed.production.languages.document;
-  const localized = title => typeof title === 'string' ? title : title?.[document];
+  const localized = title => (typeof title === 'string' ? title : title?.[document]);
   if (localized(sourceTitle) !== localized(reviewedTitle))
     throw Error('Assessment changed the Course-approved source title');
   const selected = Object.values(input.config.section?.items ?? {})
@@ -119,25 +145,22 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
       throw Error('Assessment must name resolved Course Lesson placement paths');
     const placementSource = meta.courseRoot + '/' + dep + '/index.ts';
     const placementEntry = tree.get(placementSource);
-    if (!ordinary(placementEntry))
-      throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
+    if (!ordinary(placementEntry)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
     const contents = reader.blob(placementEntry, placementSource);
     const reused = contents.match(/#lessonsData\/([a-f0-9])\/([a-f0-9-]{36})\/index/);
     const derived = deriveCourseEntityId(meta.courseId, 'lesson', dep.slice('content/'.length));
     const owner = reused ? reused[2] : derived;
-    if (reused && reused[1] !== owner.at(-1))
-      throw Error('Upstream Lesson import UUID bucket mismatch');
+    if (reused && reused[1] !== owner.at(-1)) throw Error('Upstream Lesson import UUID bucket mismatch');
     const bankRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/questions/';
     if (!ordinary(tree.get(bankRoot + 'index.ts')))
       throw Error('Upstream Lesson lacks a materialized Question Bank: ' + dep);
     let items = 0;
     for (const [filename, entry] of tree) {
-      if (!filename.startsWith(bankRoot) || !filename.endsWith('/index.ts') ||
-        filename === bankRoot + 'index.ts') continue;
+      if (!filename.startsWith(bankRoot) || !filename.endsWith('/index.ts') || filename === bankRoot + 'index.ts')
+        continue;
       if (!ordinary(entry)) throw Error('Unsafe upstream Question Bank source');
       const source = reader.blob(entry, filename);
-      for (const id of selectedQuestionIds)
-        if (source.includes(id)) found.add(id);
+      for (const id of selectedQuestionIds) if (source.includes(id)) found.add(id);
       items++;
     }
     if (!items) throw Error('Upstream Question Bank has no materialized Question sources: ' + dep);
@@ -149,29 +172,47 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
 
 function safeOutput(file, meta) {
   if (file === meta.parentPath) return true;
-  if (typeof file !== 'string' || !file.startsWith(meta.courseRoot + '/' + meta.placement + '/') ||
-    file.length > 500 || file.includes('\\')) return false;
+  if (
+    typeof file !== 'string' ||
+    !file.startsWith(meta.courseRoot + '/' + meta.placement + '/') ||
+    file.length > 500 ||
+    file.includes('\\')
+  )
+    return false;
   const parts = file.slice((meta.courseRoot + '/' + meta.placement + '/').length).split('/');
-  if (parts.slice(0, -1).some(value =>
-    !/^[A-Za-z][A-Za-z0-9]*$/.test(value) || ['constructor', 'prototype', '__proto__'].includes(value)
-  )) return false;
+  if (
+    parts
+      .slice(0, -1)
+      .some(value => !/^[A-Za-z][A-Za-z0-9]*$/.test(value) || ['constructor', 'prototype', '__proto__'].includes(value))
+  )
+    return false;
   const leaf = parts.at(-1);
-  return ['index.ts', 'languages.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
-    /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) || /^code\.[a-z0-9]{1,10}$/.test(leaf);
+  return (
+    ['index.ts', 'languages.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
+    /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
+    /^code\.[a-z0-9]{1,10}$/.test(leaf)
+  );
 }
 export function checkAssessmentTargets(meta, files, tree) {
   if (
-    !ordinary(tree.get(meta.sourcePath)) || tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
-    !ordinary(tree.get(meta.parentPath)) || tree.get(meta.parentPath).sha !== meta.parentBlobSha
-  ) throw Error('Assessment source/parent is not exact pinned regular Git blobs');
+    !ordinary(tree.get(meta.sourcePath)) ||
+    tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
+    !ordinary(tree.get(meta.parentPath)) ||
+    tree.get(meta.parentPath).sha !== meta.parentBlobSha
+  )
+    throw Error('Assessment source/parent is not exact pinned regular Git blobs');
   const seen = new Set();
   for (const file of files) {
     if (
-      !file || !safeOutput(file.path, meta) || seen.has(file.path) ||
+      !file ||
+      !safeOutput(file.path, meta) ||
+      seen.has(file.path) ||
       file.path === meta.sourcePath ||
       !['typescript', 'markdown', 'specification', 'code'].includes(file.kind) ||
-      typeof file.content !== 'string' || !file.content
-    ) throw Error('Assessment generated an unsafe or duplicate file path');
+      typeof file.content !== 'string' ||
+      !file.content
+    )
+      throw Error('Assessment generated an unsafe or duplicate file path');
     seen.add(file.path);
     if (file.path !== meta.parentPath && tree.has(file.path))
       throw Error('Assessment would overwrite existing authored source');
@@ -189,29 +230,40 @@ export function checkAssessmentTargets(meta, files, tree) {
 
 export function buildAssessmentManifest(meta, plan) {
   if (
-    plan.publishable !== false || !Array.isArray(plan.files) ||
-    !plan.files.length || plan.files.length > 1500 ||
+    plan.publishable !== false ||
+    !Array.isArray(plan.files) ||
+    !plan.files.length ||
+    plan.files.length > 1500 ||
     !UUID.test(plan.assessmentId)
-  ) throw Error('Invalid Assessment direct materialization plan');
+  )
+    throw Error('Invalid Assessment direct materialization plan');
   let bytes = 0;
-  const entries = plan.files.map(file => {
-    const data = Buffer.from(file.content, 'utf8');
-    bytes += data.length;
-    if (bytes > maxBytes) throw Error('Assessment source plan is oversized');
-    return { path: file.path, kind: file.kind, sha256: sha256(data), data: data.toString('base64') };
-  }).sort((a, b) => a.path.localeCompare(b.path));
+  const entries = plan.files
+    .map(file => {
+      const data = Buffer.from(file.content, 'utf8');
+      bytes += data.length;
+      if (bytes > maxBytes) throw Error('Assessment source plan is oversized');
+      return { path: file.path, kind: file.kind, sha256: sha256(data), data: data.toString('base64') };
+    })
+    .sort((a, b) => a.path.localeCompare(b.path));
   return {
-    version: 1, operation: 'typed-assessment-stage4', meta,
-    assessmentId: plan.assessmentId, publishable: false,
+    version: 1,
+    operation: 'typed-assessment-stage4',
+    meta,
+    assessmentId: plan.assessmentId,
+    publishable: false,
     sourceExportName: plan.sourceExportName,
     selectedQuestionIds: plan.selectedQuestionIds,
-    entries, diagnostics: plan.diagnostics,
+    entries,
+    diagnostics: plan.diagnostics,
   };
 }
 export function assessmentCommitTree(manifest) {
   return [
     ...manifest.entries.map(file => ({
-      path: file.path, mode: '100644', type: 'blob',
+      path: file.path,
+      mode: '100644',
+      type: 'blob',
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     { path: manifest.meta.sourcePath, mode: '100644', type: 'blob', sha: null },
@@ -224,9 +276,9 @@ export async function prepareAssessment(meta, root, execute = runIsolatedMateria
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
     reader.git('status', '--porcelain=v1', '--untracked-files=all').trim() ||
     reader.git('merge-base', meta.parentHead, meta.head).trim() !== meta.parentHead
-  ) throw Error('Assessment checkout is not clean or branch relationship is stale');
-  const changes = reader.git('diff', '--name-status', '-z', meta.parentHead, meta.head)
-    .split('\0').filter(Boolean);
+  )
+    throw Error('Assessment checkout is not clean or branch relationship is stale');
+  const changes = reader.git('diff', '--name-status', '-z', meta.parentHead, meta.head).split('\0').filter(Boolean);
   if (changes.length !== 2 || changes[0] !== 'M' || changes[1] !== meta.sourcePath)
     throw Error('Assessment PR may change only its canonical reviewed draft at Stage 4');
   const tree = reader.tree(meta.head, meta.textbookRoot);
@@ -236,7 +288,8 @@ export async function prepareAssessment(meta, root, execute = runIsolatedMateria
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
     tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
-  ) throw Error('Assessment parent and allocated seed changed after review');
+  )
+    throw Error('Assessment parent and allocated seed changed after review');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   const worker = execute({
     trustedRoot: path.resolve(import.meta.dirname, '../../..'),
@@ -255,7 +308,8 @@ export async function prepareAssessment(meta, root, execute = runIsolatedMateria
   const files = output.files.map(file => ({ ...file, path: meta.courseRoot + '/' + file.path }));
   const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
   files.push({
-    path: meta.parentPath, kind: 'typescript',
+    path: meta.parentPath,
+    kind: 'typescript',
     content: restoreAssessmentPlacement(parentSource, {
       id: seed.config.id,
       slug: seed.config.slug,
@@ -269,23 +323,28 @@ export async function prepareAssessment(meta, root, execute = runIsolatedMateria
 
 export function verifyDirectAssessmentManifest(meta, manifest, root) {
   if (
-    !manifest || manifest.version !== 1 ||
+    !manifest ||
+    manifest.version !== 1 ||
     manifest.operation !== 'typed-assessment-stage4' ||
     !sameAssessmentMeta(manifest.meta ?? {}, meta) ||
-    manifest.publishable !== false || !UUID.test(manifest.assessmentId ?? '') ||
+    manifest.publishable !== false ||
+    !UUID.test(manifest.assessmentId ?? '') ||
     !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(manifest.sourceExportName ?? '') ||
     !Array.isArray(manifest.selectedQuestionIds) ||
     !manifest.selectedQuestionIds.length ||
     manifest.selectedQuestionIds.some(id => !UUID.test(id)) ||
     !Array.isArray(manifest.entries) ||
-    !manifest.entries.length || manifest.entries.length > 1500
-  ) throw Error('Invalid sealed Assessment manifest');
+    !manifest.entries.length ||
+    manifest.entries.length > 1500
+  )
+    throw Error('Invalid sealed Assessment manifest');
   const reader = pinnedGitReader(root);
   if (
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
     reader.git('status', '--porcelain=v1', '--untracked-files=all').trim() ||
     reader.git('merge-base', meta.parentHead, meta.head).trim() !== meta.parentHead
-  ) throw Error('Assessment publisher source checkout is stale');
+  )
+    throw Error('Assessment publisher source checkout is stale');
   const tree = reader.tree(meta.head, meta.textbookRoot);
   const baseline = reader.tree(meta.parentHead, meta.textbookRoot);
   if (
@@ -293,43 +352,54 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
     tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
-  ) throw Error('Sealed Assessment original sources changed');
+  )
+    throw Error('Sealed Assessment original sources changed');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
     seed.production.placement.courseId !== meta.courseId ||
     seed.production.placement.path !== meta.placement
-  ) throw Error('Assessment manifest identity differs from reviewed Course seed');
+  )
+    throw Error('Assessment manifest identity differs from reviewed Course seed');
   checkAssessmentBanks(meta, seed, manifest.selectedQuestionIds, reader, tree);
   let size = 0;
   const files = manifest.entries.map(entry => {
     const bytes = Buffer.from(entry.data ?? '', 'base64');
     size += bytes.length;
     if (
-      !entry || !entry.path || typeof entry.kind !== 'string' ||
+      !entry ||
+      !entry.path ||
+      typeof entry.kind !== 'string' ||
       !/^[A-Za-z0-9+/]*={0,2}$/.test(entry.data ?? '') ||
       bytes.toString('base64') !== entry.data ||
-      !bytes.length || size > maxBytes ||
+      !bytes.length ||
+      size > maxBytes ||
       !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
       sha256(bytes) !== entry.sha256
-    ) throw Error('Invalid Assessment artifact file hashes or UTF-8');
+    )
+      throw Error('Invalid Assessment artifact file hashes or UTF-8');
     return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
   });
   checkAssessmentTargets(meta, files, tree);
   const originalParent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
   const revised = files.find(file => file.path === meta.parentPath);
   verifyAssessmentParentPatch(originalParent, revised.content, {
-    id: seed.config.id, slug: seed.config.slug,
-    placement: meta.placement, exportName: manifest.sourceExportName,
+    id: seed.config.id,
+    slug: seed.config.slug,
+    placement: meta.placement,
+    exportName: manifest.sourceExportName,
   });
   return manifest;
 }
 
 function readManifest(filename) {
   if (
-    !filename || fs.lstatSync(filename).isSymbolicLink() ||
-    !fs.statSync(filename).isFile() || fs.statSync(filename).size > 48 * 1024 * 1024
-  ) throw Error('Missing or unsafe Assessment analysis manifest');
+    !filename ||
+    fs.lstatSync(filename).isSymbolicLink() ||
+    !fs.statSync(filename).isFile() ||
+    fs.statSync(filename).size > 48 * 1024 * 1024
+  )
+    throw Error('Missing or unsafe Assessment analysis manifest');
   return JSON.parse(fs.readFileSync(filename, 'utf8'));
 }
 async function main() {
@@ -356,26 +426,37 @@ async function main() {
   if (original?.sha !== meta.head || !SHA.test(original.tree?.sha ?? ''))
     throw Error('Missing exact reviewed Assessment Git commit');
   const nextTree = await github('git/trees', 'POST', {
-    base_tree: original.tree.sha, tree: assessmentCommitTree(manifest),
+    base_tree: original.tree.sha,
+    tree: assessmentCommitTree(manifest),
   });
   if (!SHA.test(nextTree?.sha ?? '')) throw Error('Invalid Assessment generated Git tree');
   const nextCommit = await github('git/commits', 'POST', {
-    message: 'Materialize reviewed Assessment ' + manifest.assessmentId +
-      '\n\nAssessment-PR: #' + meta.number +
-      '\nCourse-PR: #' + meta.parentNumber +
-      '\nSource-Blob: ' + meta.sourceBlobSha,
-    tree: nextTree.sha, parents: [meta.head],
+    message:
+      'Materialize reviewed Assessment ' +
+      manifest.assessmentId +
+      '\n\nAssessment-PR: #' +
+      meta.number +
+      '\nCourse-PR: #' +
+      meta.parentNumber +
+      '\nSource-Blob: ' +
+      meta.sourceBlobSha,
+    tree: nextTree.sha,
+    parents: [meta.head],
   });
   if (!SHA.test(nextCommit?.sha ?? '')) throw Error('Invalid Assessment materialization commit');
   if (!sameAssessmentMeta(await inspectAssessment(meta.number, meta.parentNumber, meta), meta))
     throw Error('Assessment or Course branch moved before Git ref publication');
   const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', {
-    sha: nextCommit.sha, force: false,
+    sha: nextCommit.sha,
+    force: false,
   });
   if (updated?.object?.sha !== nextCommit.sha)
     throw Error('Assessment branch did not advance to the authorized atomic source commit');
-  report('Assessment Stage 4 committed ' + nextCommit.sha +
-    '; draft consumed and one Course placeholder replaced. Resources, translations and human QA remain pending.');
+  report(
+    'Assessment Stage 4 committed ' +
+      nextCommit.sha +
+      '; draft consumed and one Course placeholder replaced. Resources, translations and human QA remain pending.',
+  );
 }
 if (process.argv[1]?.endsWith('/assessment-transaction.mjs')) {
   main().catch(error => {

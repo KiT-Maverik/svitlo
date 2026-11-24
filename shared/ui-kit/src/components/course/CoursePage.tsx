@@ -22,7 +22,8 @@ import { CourseArtwork } from './CourseArtwork';
 
 function firstPlayable(items: readonly CourseOutlineItem[]): string | undefined {
   for (const item of items) {
-    if (item.href && (item.type === 'lesson' || item.type === 'episode' || item.type === 'assessment')) return item.href;
+    if (item.href && (item.type === 'lesson' || item.type === 'episode' || item.type === 'assessment'))
+      return item.href;
     const child = firstPlayable(item.children ?? []);
     if (child) return child;
   }

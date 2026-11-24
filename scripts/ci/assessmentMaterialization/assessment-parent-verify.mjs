@@ -10,18 +10,24 @@ const assessmentImport = "import { defineAssessment } from '@svitlo/engine/build
 
 export function restoreAssessmentPlacement(source, { id, slug, placement, exportName }) {
   if (
-    typeof source !== 'string' || source.length > 4 * 1024 * 1024 ||
-    !UUID.test(id) || !slugPattern.test(slug) ||
+    typeof source !== 'string' ||
+    source.length > 4 * 1024 * 1024 ||
+    !UUID.test(id) ||
+    !slugPattern.test(slug) ||
     ['constructor', '__proto__', 'prototype'].includes(slug) ||
     typeof placement !== 'string' ||
     !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(placement) ||
     placement.split('/').at(-1) !== slug ||
     placement.split('/').at(-2) !== 'content' ||
-    typeof exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName)
-  ) throw Error('Invalid reserved Assessment placement or source');
+    typeof exportName !== 'string' ||
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName)
+  )
+    throw Error('Invalid reserved Assessment placement or source');
   const inline =
-    'defineAssessment({ id: ' + JSON.stringify(id) +
-    ', type: "assessment", slug: ' + JSON.stringify(slug) +
+    'defineAssessment({ id: ' +
+    JSON.stringify(id) +
+    ', type: "assessment", slug: ' +
+    JSON.stringify(slug) +
     ', params: { languages }, locale: { title: "Not implemented" },' +
     ' section: { items: {}, order: [] } })';
   const target = JSON.stringify(slug) + ': ' + inline;
@@ -32,12 +38,13 @@ export function restoreAssessmentPlacement(source, { id, slug, placement, export
     !source.includes('const content = { items: { ') ||
     !source.includes(' }, order: ') ||
     !source.includes('export const ')
-  ) throw Error('Assessment parent no longer has the one exact reviewed placeholder');
+  )
+    throw Error('Assessment parent no longer has the one exact reviewed placeholder');
   const alias = 'child_' + slug;
   if (new RegExp('\\b' + alias + '\\b').test(source))
     throw Error('Assessment source already contains the reserved child alias');
-  const childImport = 'import { ' + exportName + ' as ' + alias +
-    ' } from ' + JSON.stringify('./content/' + slug) + ';\n';
+  const childImport =
+    'import { ' + exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/' + slug) + ';\n';
   let updated = childImport + source.replace(target, JSON.stringify(slug) + ': ' + alias);
   if (!updated.includes('defineAssessment({ id: ')) {
     updated = updated.replace(blocker, '').replace(assessmentImport, '');

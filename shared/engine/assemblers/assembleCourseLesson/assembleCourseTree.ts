@@ -14,7 +14,10 @@ import {
   episode_Props_Schema,
   type Episode_Props,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import { assessment_Props_Schema, type Assessment_Props } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import {
+  assessment_Props_Schema,
+  type Assessment_Props,
+} from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
 import { quizSection_Props_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import { contentSection_Props_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
@@ -122,7 +125,6 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
   }
   return episode as LocalizedEpisode;
 }
-
 
 /** Completed Assessments reuse published Content/Quiz Sections, not Lesson banks. */
 export function validateAssessmentRuntime(value: unknown, language: LanguageCode): LocalizedAssessment {
@@ -271,7 +273,8 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
     for (const key of content.order) {
       const node = content.items[key];
       const path = [...prefix, key];
-      if (node.type === 'lesson' || node.type === 'episode' || node.type === 'assessment') result.push({ node, placement: path.join('/') });
+      if (node.type === 'lesson' || node.type === 'episode' || node.type === 'assessment')
+        result.push({ node, placement: path.join('/') });
       else visit(node.content, path);
     }
   }

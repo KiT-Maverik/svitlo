@@ -44,7 +44,7 @@ Use the following `work: *` labels to classify the **educational artifact being 
 | ------------------ | ------------------------------------------------------------------------------------ |
 | `work: course`     | An authored Course definition, editorial plan or Course-specific educational content |
 | `work: episode`    | An authored Course-owned Episode definition, narrative scenario or Episode content   |
-| `work: assessment` | An authored Course-owned Assessment and its evaluation content                            |
+| `work: assessment` | An authored Course-owned Assessment and its evaluation content                       |
 | `work: lesson`     | An authored Lesson definition, methodology or canonical Lesson content               |
 | `work: questions`  | Authored Question Banks and assessment questions for Lessons                         |
 | `work: flashcards` | Authored Flashcard Banks and learning flashcards for Lessons                         |

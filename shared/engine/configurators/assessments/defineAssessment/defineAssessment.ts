@@ -61,10 +61,12 @@ const validate = (config: Assessment_Config): void => {
     }),
   ];
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-  if (!config.section.order.some(key => {
-    const child = config.section.items[key];
-    return child?.type === 'quiz' && child.config?.base?.params?.disabled !== true;
-  })) {
+  if (
+    !config.section.order.some(key => {
+      const child = config.section.items[key];
+      return child?.type === 'quiz' && child.config?.base?.params?.disabled !== true;
+    })
+  ) {
     throw new Error('Assessment requires at least one enabled Quiz Section');
   }
   const ids = new Set<string>();
@@ -269,7 +271,9 @@ export const defineAssessment = <
         const orderIssues = validateOrderedKeys({ items: active, order }, { path: 'section', allowDisabled: true });
         if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
         const enabled = Object.fromEntries(
-          Object.entries(active).filter((entry): entry is [string, Assessment_Section_Configurator] => entry[1] !== false),
+          Object.entries(active).filter(
+            (entry): entry is [string, Assessment_Section_Configurator] => entry[1] !== false,
+          ),
         );
         validate({
           ...mergedMetadata,

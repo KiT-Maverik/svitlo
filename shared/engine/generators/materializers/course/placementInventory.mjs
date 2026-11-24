@@ -12,9 +12,7 @@ export function buildPlacementInventory(input, rendered, root, files) {
     for (const [index, slug] of config.content.order.entries()) {
       const child = config.content.items[slug];
       const type = child.config.type;
-      const path = parentPath
-        ? parentPath + (type === 'assessment' ? '/content/' : '/') + slug
-        : 'content/' + slug;
+      const path = parentPath ? parentPath + (type === 'assessment' ? '/content/' : '/') + slug : 'content/' + slug;
       const order = [...orderPath, index];
       if (type === 'module' || type === 'chapter') {
         visit(child, path, order);

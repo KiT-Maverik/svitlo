@@ -14,18 +14,18 @@
 
 ## Ten stages
 
-| Stage | Responsible role | Acceptance boundary |
-| --- | --- | --- |
-| 1. Create Course Methodology | Methodologist | Complete Stage 1 methodology and Course scope; no Assessment-required flag (Assessment placement belongs to Stage 2) |
-| 2. Design Course Structure | Methodologist | Methodologist inserts zero or more directly owned Assessment slots into ordered Course/Module/Chapter content, alongside Lesson/Episode slots; no separate boolean |
-| 3. Design & Match Lessons | Methodologist + Assessment Architect | Resolve instructional Lesson slots, including ownership of Questions/Flashcards and Assessment prerequisite Lesson dependencies |
-| 4. Review Course Plan | Independent Methodologist + Assessment Architect | Correct and verify the final Stage 3 source in a separate context; pin the final revision and verdict |
-| 5. Materialize Course | Coding Agent | Authorized reviewed input → Course sources, immutable placements, Lesson/Episode handoffs and pending Assessment placeholders/inventory (Assessment integration unverified until Ready CI) |
-| 6. Verify Questions Readiness | Learning Assessment Architect | Verify required real Lesson-owned Question Banks, reviewed source UUIDs, provenance, locales and Assessment consumption dependencies; no duplicate Question authoring |
-| 7. Design Assessments (conditional) | Learning Assessment Architect + Methodologist | Coordinate reviewed design for every planned Assessment slot, or record **Skipped** on verified zero Assessment slots across the entire approved Course tree with source SHA |
-| 8. Translate Course | Technical Translator | Authored Course-local target locale fields only; independent child locales stay with their owners |
-| 9. Review Course Translations | Independent Technical Translator | Source-SHA-pinned semantic/linguistic approval for each required Course locale |
-| 10. QA — Human | Human reviewer | Explicit human pass on actual integrated Course with complete required Assessment/Lesson/Episode dependencies |
+| Stage                               | Responsible role                                 | Acceptance boundary                                                                                                                                                                        |
+| ----------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1. Create Course Methodology        | Methodologist                                    | Complete Stage 1 methodology and Course scope; no Assessment-required flag (Assessment placement belongs to Stage 2)                                                                       |
+| 2. Design Course Structure          | Methodologist                                    | Methodologist inserts zero or more directly owned Assessment slots into ordered Course/Module/Chapter content, alongside Lesson/Episode slots; no separate boolean                         |
+| 3. Design & Match Lessons           | Methodologist + Assessment Architect             | Resolve instructional Lesson slots, including ownership of Questions/Flashcards and Assessment prerequisite Lesson dependencies                                                            |
+| 4. Review Course Plan               | Independent Methodologist + Assessment Architect | Correct and verify the final Stage 3 source in a separate context; pin the final revision and verdict                                                                                      |
+| 5. Materialize Course               | Coding Agent                                     | Authorized reviewed input → Course sources, immutable placements, Lesson/Episode handoffs and pending Assessment placeholders/inventory (Assessment integration unverified until Ready CI) |
+| 6. Verify Questions Readiness       | Learning Assessment Architect                    | Verify required real Lesson-owned Question Banks, reviewed source UUIDs, provenance, locales and Assessment consumption dependencies; no duplicate Question authoring                      |
+| 7. Design Assessments (conditional) | Learning Assessment Architect + Methodologist    | Coordinate reviewed design for every planned Assessment slot, or record **Skipped** on verified zero Assessment slots across the entire approved Course tree with source SHA               |
+| 8. Translate Course                 | Technical Translator                             | Authored Course-local target locale fields only; independent child locales stay with their owners                                                                                          |
+| 9. Review Course Translations       | Independent Technical Translator                 | Source-SHA-pinned semantic/linguistic approval for each required Course locale                                                                                                             |
+| 10. QA — Human                      | Human reviewer                                   | Explicit human pass on actual integrated Course with complete required Assessment/Lesson/Episode dependencies                                                                              |
 
 Stage 10 is mandatory human-owned integrated Course QA, after Stage 9. Agents and CI provide evidence, not approval. See the canonical Skill for the human handoff, checklist and revision-specific verdict. Episode Stage 10 QA is separate.
 

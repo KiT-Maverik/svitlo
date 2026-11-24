@@ -18,16 +18,18 @@ export function discoverAssessmentDraft(files) {
   const match = typeof sourcePath === 'string' && sourcePath.match(pathPattern);
   const parts = match?.[4]?.split('/') ?? [];
   if (
-    !match || match[2] !== match[3].at(-1) ||
+    !match ||
+    match[2] !== match[3].at(-1) ||
     parts.some(s => bad.has(s)) ||
     ![2, 4, 5].includes(parts.length) ||
     parts[0] !== 'content' ||
     (parts.length > 2 && parts.at(-2) !== 'content')
-  ) throw Error('Invalid canonical Course-owned Assessment draft path');
-  const courseRoot = match[1], placement = match[4];
-  const parentPath = parts.length === 2
-    ? courseRoot + '/index.ts'
-    : courseRoot + '/' + parts.slice(0, -2).join('/') + '/index.ts';
+  )
+    throw Error('Invalid canonical Course-owned Assessment draft path');
+  const courseRoot = match[1],
+    placement = match[4];
+  const parentPath =
+    parts.length === 2 ? courseRoot + '/index.ts' : courseRoot + '/' + parts.slice(0, -2).join('/') + '/index.ts';
   return {
     sourcePath,
     courseRoot,

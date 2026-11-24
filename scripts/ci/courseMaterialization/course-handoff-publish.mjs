@@ -77,7 +77,11 @@ export async function verifyCommittedInventory(manifest, proof, api = github) {
     generated.add(file.path);
   }
   if (!generated.has(manifest.materializedPath)) throw Error('Missing committed Course index');
-  for (const row of [...manifest.inventory.lessons, ...manifest.inventory.episodes, ...manifest.inventory.assessments]) {
+  for (const row of [
+    ...manifest.inventory.lessons,
+    ...manifest.inventory.episodes,
+    ...manifest.inventory.assessments,
+  ]) {
     if (
       !generated.has(row.placementSourcePath) ||
       !blobs.has(row.placementSourcePath) ||

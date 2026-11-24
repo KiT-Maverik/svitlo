@@ -11,33 +11,39 @@ import { quizSection_Props_Schema } from '../../sections/defineQuizSection/defin
 import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
 
 /** Assessment reuses genuine Course-independent Content and Quiz Sections. */
-export type Assessment_Section_Configurator = ConfiguratorChild<
-  ContentSection_Configurator | QuizSection_Configurator
->;
+export type Assessment_Section_Configurator = ConfiguratorChild<ContentSection_Configurator | QuizSection_Configurator>;
 
-const languages = z.array(languageCode_Schema).nonempty()
+const languages = z
+  .array(languageCode_Schema)
+  .nonempty()
   .refine(values => new Set(values).size === values.length, 'Assessment languages must be unique');
 const identity = identityBase_Schema.extend({
   type: z.literal('assessment'),
   params: paramsBase_Schema.shape.params.extend({ languages }),
 });
 
-export const assessment_Config_Schema = identity.extend({
-  ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
-  section: z.strictObject({
-    items: z.record(z.string(), z.custom<Assessment_Section_Configurator>()),
-    order: z.array(z.string()),
-  }),
-}).strict();
+export const assessment_Config_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
+    section: z.strictObject({
+      items: z.record(z.string(), z.custom<Assessment_Section_Configurator>()),
+      order: z.array(z.string()),
+    }),
+  })
+  .strict();
 export type Assessment_Config = z.infer<typeof assessment_Config_Schema>;
 
-export const assessment_Props_Schema = identity.extend({
-  ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
-  section: z.array(z.union([contentSection_Props_Schema, quizSection_Props_Schema]))
-    .refine(sections => sections.some(section =>
-      section.type === 'quiz' && section.params.disabled !== true
-    ), 'A completed Assessment must contain an enabled Quiz Section'),
-}).strict();
+export const assessment_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    section: z
+      .array(z.union([contentSection_Props_Schema, quizSection_Props_Schema]))
+      .refine(
+        sections => sections.some(section => section.type === 'quiz' && section.params.disabled !== true),
+        'A completed Assessment must contain an enabled Quiz Section',
+      ),
+  })
+  .strict();
 export type Assessment_Props = z.infer<typeof assessment_Props_Schema>;
 export type Assessment_PropsBase = Pick<Assessment_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: { title?: string };
@@ -70,12 +76,21 @@ export const assessmentConfigurator_Schema = z.custom<{
   readonly type: 'assessment';
   readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
-  value => value !== null && typeof value === 'object'
-    && 'type' in value && value.type === 'assessment'
-    && 'id' in value && typeof value.id === 'string'
-    && 'slug' in value && typeof value.slug === 'string'
-    && 'build' in value && value.build !== null && typeof value.build === 'object'
-    && 'props' in value.build && typeof value.build.props === 'function'
-    && 'overrides' in value.build && typeof value.build.overrides === 'function',
+  value =>
+    value !== null &&
+    typeof value === 'object' &&
+    'type' in value &&
+    value.type === 'assessment' &&
+    'id' in value &&
+    typeof value.id === 'string' &&
+    'slug' in value &&
+    typeof value.slug === 'string' &&
+    'build' in value &&
+    value.build !== null &&
+    typeof value.build === 'object' &&
+    'props' in value.build &&
+    typeof value.build.props === 'function' &&
+    'overrides' in value.build &&
+    typeof value.build.overrides === 'function',
   { message: 'Expected defineAssessment Build configurator, not an editorial draft' },
 );

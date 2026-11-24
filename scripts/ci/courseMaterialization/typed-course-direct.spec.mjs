@@ -56,7 +56,11 @@ test('direct Course manifest binds reviewed source to deterministic authored out
   assert.throws(() =>
     verifyCourseDependencies(meta, '', '', {
       ...plan,
-      inventory: { lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }], episodes: [], assessments: [] },
+      inventory: {
+        lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }],
+        episodes: [],
+        assessments: [],
+      },
     }),
   );
 });
@@ -161,7 +165,6 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   );
 });
 
-
 test('trusted Course manifest seals Assessment seed, inline parent and upstream Lesson inventory', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
@@ -179,9 +182,15 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   actual.config.content.order.push('finalReview');
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
-    ...meta, repo: 'fixture/repo', head: 'b'.repeat(40), branch: 'test',
-    actor: 'tester', courseId, textbookRoot: 'content/math',
-    sourcePath, sourceBlobSha: 'a'.repeat(40),
+    ...meta,
+    repo: 'fixture/repo',
+    head: 'b'.repeat(40),
+    branch: 'test',
+    actor: 'tester',
+    courseId,
+    textbookRoot: 'content/math',
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
   };
   const plan = materializeCourseStage5(actual, {
     textbookRoot: 'content/math',
@@ -197,11 +206,22 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   const mutate = patch => {
     const copy = structuredClone(sealed);
     patch(copy);
-    assert.throws(() => verifyTypedCourseManifest(copy, pinned), /Assessment|inventory|seed|duplicate|handoff|generated|invalid/i);
+    assert.throws(
+      () => verifyTypedCourseManifest(copy, pinned),
+      /Assessment|inventory|seed|duplicate|handoff|generated|invalid/i,
+    );
   };
-  mutate(m => { m.inventory.assessments[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'; });
-  mutate(m => { m.inventory.assessments[0].lessonDependencies = ['content/notReviewed']; });
-  mutate(m => { m.entries = m.entries.filter(f => f.path !== row.sourcePath); });
-  mutate(m => { m.inventory.assessments.push(structuredClone(m.inventory.assessments[0])); });
+  mutate(m => {
+    m.inventory.assessments[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  });
+  mutate(m => {
+    m.inventory.assessments[0].lessonDependencies = ['content/notReviewed'];
+  });
+  mutate(m => {
+    m.entries = m.entries.filter(f => f.path !== row.sourcePath);
+  });
+  mutate(m => {
+    m.inventory.assessments.push(structuredClone(m.inventory.assessments[0]));
+  });
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });

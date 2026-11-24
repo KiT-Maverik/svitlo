@@ -124,10 +124,10 @@ const assessmentSlot = z.strictObject({
   config: assessment_Config_Schema.pick({ type: true, locale: true }),
   production: z.strictObject({
     purpose: rationale,
-    lessonDependencies: z.array(z.union([lessonPlacementPath, uid])).nonempty().refine(
-      values => new Set(values).size === values.length,
-      'Assessment Lesson dependencies must be unique',
-    ),
+    lessonDependencies: z
+      .array(z.union([lessonPlacementPath, uid]))
+      .nonempty()
+      .refine(values => new Set(values).size === values.length, 'Assessment Lesson dependencies must be unique'),
   }),
 });
 

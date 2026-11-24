@@ -5,19 +5,29 @@ import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './asses
 const id = 'a73572e7-bd85-4516-86e2-3de07d209e03';
 const second = 'a73572e7-bd85-4516-86e2-3de07d209e04';
 const placeholder = (uuid, slug) =>
-  'defineAssessment({ id: ' + JSON.stringify(uuid) +
-  ', type: "assessment", slug: ' + JSON.stringify(slug) +
+  'defineAssessment({ id: ' +
+  JSON.stringify(uuid) +
+  ', type: "assessment", slug: ' +
+  JSON.stringify(slug) +
   ', params: { languages }, locale: { title: "Not implemented" },' +
   ' section: { items: {}, order: [] } })';
-const intro = "import { defineAssessment } from '@svitlo/engine/build';\n" +
+const intro =
+  "import { defineAssessment } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n';
 const item = (slug, uuid) => JSON.stringify(slug) + ': ' + placeholder(uuid, slug);
 const parent = (items, order) =>
-  intro + 'const content = { items: { ' + items.join(', ') +
-  ' }, order: ' + JSON.stringify(order) + ' };\n' +
+  intro +
+  'const content = { items: { ' +
+  items.join(', ') +
+  ' }, order: ' +
+  JSON.stringify(order) +
+  ' };\n' +
   'export const module = defineModule({ content });\n';
 const placement = (slug = 'review', uuid = id) => ({
-  id: uuid, slug, placement: 'content/moduleOne/content/' + slug, exportName: slug,
+  id: uuid,
+  slug,
+  placement: 'content/moduleOne/content/' + slug,
+  exportName: slug,
 });
 
 test('restores only the exact Assessment slot at a nested parent, preserving order', () => {
@@ -41,8 +51,9 @@ test('rejects invented identity, parent edits, duplicate aliases and missing slo
   const updated = restoreAssessmentPlacement(original, placement());
   assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /reviewed placeholder/);
   assert.throws(() => restoreAssessmentPlacement(updated, placement()), /reviewed placeholder/);
-  assert.throws(() => verifyAssessmentParentPatch(original, updated + '// malicious\n', placement()),
-    /differs/);
-  assert.throws(() => restoreAssessmentPlacement(original.replace('const content', 'const changed'), placement()),
-    /reviewed placeholder/);
+  assert.throws(() => verifyAssessmentParentPatch(original, updated + '// malicious\n', placement()), /differs/);
+  assert.throws(
+    () => restoreAssessmentPlacement(original.replace('const content', 'const changed'), placement()),
+    /reviewed placeholder/,
+  );
 });

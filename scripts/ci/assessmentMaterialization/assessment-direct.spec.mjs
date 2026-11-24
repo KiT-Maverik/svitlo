@@ -14,26 +14,31 @@ const sectionId = 'b775647f-203d-481a-a1c7-4d331c000201';
 const questionId = '12345678-1234-4234-8234-123456789010';
 const placement = 'content/moduleOne/content/moduleReview';
 const sourcePath = 'content/math/data/courses/3/' + courseId + '/' + placement + '/draft.ts';
-const sourceText = "materializeAssessment(input);\n";
+const sourceText = 'materializeAssessment(input);\n';
 const sourceBlobSha = createHash('sha1')
   .update('blob ' + Buffer.byteLength(sourceText) + '\0')
-  .update(sourceText).digest('hex');
+  .update(sourceText)
+  .digest('hex');
 const options = {
   sourceText,
   source: { sourcePath, sourceBlobSha, sourceCommitSha: 'c'.repeat(40) },
-  verifySourceInput: (_input, source, text) =>
-    source.sourceBlobSha === sourceBlobSha && text === sourceText,
+  verifySourceInput: (_input, source, text) => source.sourceBlobSha === sourceBlobSha && text === sourceText,
 };
 const reviewed = () => ({
   config: {
-    id: assessmentId, slug: 'moduleReview', type: 'assessment',
+    id: assessmentId,
+    slug: 'moduleReview',
+    type: 'assessment',
     locale: { title: { uk: 'Підсумкове оцінювання' } },
     section: {
       items: {
         intro: {
           config: {
-            id: sectionId, slug: 'intro', type: 'content',
-            params: {}, locale: { title: { uk: 'Інструкція' }, navigationLabel: '1' },
+            id: sectionId,
+            slug: 'intro',
+            type: 'content',
+            params: {},
+            locale: { title: { uk: 'Інструкція' }, navigationLabel: '1' },
             content: { items: {}, order: [] },
           },
           production: { purpose: 'Clarify the rules' },
@@ -41,15 +46,20 @@ const reviewed = () => ({
         quiz: {
           config: {
             id: 'b775647f-203d-481a-a1c7-4d331c000202',
-            slug: 'quiz', type: 'quiz',
+            slug: 'quiz',
+            type: 'quiz',
             params: {
               selection: { mode: 'all', questionIds: [questionId] },
               layout: { mode: 'stack' },
               feedbackMode: 'after-completion',
               interaction: {
-                retries: 1, showErrors: true, showCorrectAnswers: true,
-                allowExplanations: true, allowDeferring: false,
-                allowQuestionNavigation: true, skippable: false,
+                retries: 1,
+                showErrors: true,
+                showCorrectAnswers: true,
+                allowExplanations: true,
+                allowDeferring: false,
+                allowQuestionNavigation: true,
+                skippable: false,
               },
               results: { visibility: 'immediate', showScore: true },
             },
@@ -66,7 +76,9 @@ const reviewed = () => ({
     purpose: 'Collect evidence after upstream lessons',
     lessonDependencies: ['content/moduleOne/lessonOne'],
     placement: {
-      courseId, path: placement, orderPath: [0, 2],
+      courseId,
+      path: placement,
+      orderPath: [0, 2],
       reviewedCourseSourceBlobSha: 'a'.repeat(40),
     },
     languages: { document: 'uk', planned: ['uk', 'en'] },
@@ -95,8 +107,12 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   assert.doesNotMatch(root, /#coursesData/);
   const section = plan.files.find(f => f.path === placement + '/sections/quiz/index.ts').content;
   assert.match(section, /\.\.\/\.\.\/languages/);
-  assert.equal(materializeAssessment(input, options).files.map(f => [f.path, f.content]).join('\n'),
-    plan.files.map(f => [f.path, f.content]).join('\n'));
+  assert.equal(
+    materializeAssessment(input, options)
+      .files.map(f => [f.path, f.content])
+      .join('\n'),
+    plan.files.map(f => [f.path, f.content]).join('\n'),
+  );
 });
 
 test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions or stale draft', () => {
@@ -108,7 +124,12 @@ test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions 
   fakeQuestion.config.section.items.quiz.config.params.selection.questionIds[0] =
     'feedc0de-1234-4234-8234-123456789010';
   assert.throws(() => materializeAssessment(fakeQuestion, options), /reviewed upstream|Invalid reviewed/);
-  assert.throws(() => materializeAssessment(reviewed(), {
-    ...options, source: { ...options.source, sourceBlobSha: 'f'.repeat(40) },
-  }), /untrusted|stale/);
+  assert.throws(
+    () =>
+      materializeAssessment(reviewed(), {
+        ...options,
+        source: { ...options.source, sourceBlobSha: 'f'.repeat(40) },
+      }),
+    /untrusted|stale/,
+  );
 });

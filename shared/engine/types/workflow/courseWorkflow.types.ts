@@ -152,7 +152,10 @@ export type CourseWorkflowStage2Chapter = {
     id?: never;
     params?: Partial<Chapter_Config['params']>;
     content: Omit<Chapter_Config['content'], 'items'> & {
-      items: Record<string, CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot>;
+      items: Record<
+        string,
+        CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+      >;
     };
   };
   production: CourseWorkflowStage2UnitProduction;
@@ -166,7 +169,10 @@ export type CourseWorkflowStage2Module = {
     content: Omit<Module_Config['content'], 'items'> & {
       items: Record<
         string,
-        CourseWorkflowStage2Chapter | CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+        | CourseWorkflowStage2Chapter
+        | CourseWorkflowStage2LessonSlot
+        | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage2AssessmentSlot
       >;
     };
   };
@@ -310,7 +316,10 @@ export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | Cou
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {
   config: Omit<CourseWorkflowStage2Chapter['config'], 'content'> & {
     content: Omit<CourseWorkflowStage2Chapter['config']['content'], 'items'> & {
-      items: Record<string, CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot>;
+      items: Record<
+        string,
+        CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+      >;
     };
   };
 };
@@ -320,7 +329,10 @@ export type CourseWorkflowStage3Module = Omit<CourseWorkflowStage2Module, 'confi
     content: Omit<CourseWorkflowStage2Module['config']['content'], 'items'> & {
       items: Record<
         string,
-        CourseWorkflowStage3Chapter | CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+        | CourseWorkflowStage3Chapter
+        | CourseWorkflowStage3LessonSlot
+        | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage2AssessmentSlot
       >;
     };
   };

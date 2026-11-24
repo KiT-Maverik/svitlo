@@ -68,10 +68,16 @@ describe('Course-owned Assessment Configurator', () => {
     const assessment = makeAssessment('finalAssessment', '10', '11');
     const result = assessment.build.props({ languages: ['en', 'uk'] });
     assert.equal(assessmentConfigurator_Schema.safeParse(assessment).success, true);
-    assert.deepEqual(result.base.section.map(s => s.type), ['content', 'quiz']);
+    assert.deepEqual(
+      result.base.section.map(s => s.type),
+      ['content', 'quiz'],
+    );
     assert.equal(result.locale?.uk?.locale?.title, 'Перевірка');
     assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Оберіть відповідь'));
-    assert.equal(assessment_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success, true);
+    assert.equal(
+      assessment_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
+      true,
+    );
     assert.equal('questions' in result.base, false);
     assert.equal('flashcards' in result.base, false);
     assert.equal('events' in result.base, false);
@@ -81,19 +87,28 @@ describe('Course-owned Assessment Configurator', () => {
   test('rejects a missing, disabled, or removed Quiz', () => {
     const assessment = makeAssessment('endOfModule', '12', '13');
     assert.throws(
-      () => defineAssessment({
-        id: id('14'), slug: 'noQuiz', type: 'assessment',
-        params: { languages }, locale: { title: 'Incomplete' },
-        section: { items: { intro }, order: ['intro'] },
-      }).build.props({ languages: ['en'] }),
+      () =>
+        defineAssessment({
+          id: id('14'),
+          slug: 'noQuiz',
+          type: 'assessment',
+          params: { languages },
+          locale: { title: 'Incomplete' },
+          section: { items: { intro }, order: ['intro'] },
+        }).build.props({ languages: ['en'] }),
       /enabled Quiz Section/,
     );
     assert.throws(
-      () => assessment.build.overrides({ section: { items: { quiz: false }, order: ['intro'] } }, { languages: ['en'] }),
+      () =>
+        assessment.build.overrides({ section: { items: { quiz: false }, order: ['intro'] } }, { languages: ['en'] }),
       /enabled Quiz Section/,
     );
     assert.throws(
-      () => assessment.build.overrides({ section: { items: { quiz: { params: { disabled: true } } } } }, { languages: ['en'] }),
+      () =>
+        assessment.build.overrides(
+          { section: { items: { quiz: { params: { disabled: true } } } } },
+          { languages: ['en'] },
+        ),
       /enabled Quiz Section/,
     );
   });
@@ -116,25 +131,38 @@ describe('Course-owned Assessment Configurator', () => {
     const moduleAssessment = makeAssessment('moduleAssessment', '32', '33');
     const chapterAssessment = makeAssessment('chapterAssessment', '34', '35');
     const chapter = defineChapter({
-      id: id('40'), slug: 'chapter', type: 'chapter', params: {},
+      id: id('40'),
+      slug: 'chapter',
+      type: 'chapter',
+      params: {},
       locale: { title: 'Chapter' },
       content: { items: { chapterAssessment }, order: ['chapterAssessment'] },
     });
     const module = defineModule({
-      id: id('41'), slug: 'module', type: 'module', params: {},
+      id: id('41'),
+      slug: 'module',
+      type: 'module',
+      params: {},
       locale: { title: 'Module' },
       content: { items: { chapter, moduleAssessment }, order: ['chapter', 'moduleAssessment'] },
     });
     const course = defineCourse({
-      id: id('42'), slug: 'course', type: 'course',
+      id: id('42'),
+      slug: 'course',
+      type: 'course',
       params: { languages },
       locale: { title: 'Course', description: 'Course description' },
       content: { items: { module, finalAssessment }, order: ['module', 'finalAssessment'] },
     });
     const result = course.build.props({ languages: ['en', 'uk'] });
     assert.equal(result.base.content[1]?.type, 'assessment');
-    const moduleContent = result.base.content[0] as { content: Array<{ type: string; content?: Array<{ type: string }> }> };
-    assert.deepEqual(moduleContent.content.map(item => item.type), ['chapter', 'assessment']);
+    const moduleContent = result.base.content[0] as {
+      content: Array<{ type: string; content?: Array<{ type: string }> }>;
+    };
+    assert.deepEqual(
+      moduleContent.content.map(item => item.type),
+      ['chapter', 'assessment'],
+    );
     assert.equal(moduleContent.content[0]?.content?.[0]?.type, 'assessment');
   });
 });
