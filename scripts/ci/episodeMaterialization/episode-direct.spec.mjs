@@ -3,7 +3,7 @@ import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
-import { buildEpisodeManifest, episodeCommitTree } from './episode-transaction.mjs';
+import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './episode-transaction.mjs';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const episodeId = '663572e7-bd85-4516-86e2-3de07d209e04';
 const courseRoot = 'content/playground/data/courses/3/' + courseId;
@@ -138,6 +138,44 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
       ),
     /preserve/,
   );
+});
+
+test('Episode Scene six-file drafts stay in textbook Scene tree with create-only publisher guards', () => {
+  const sceneId = '11111111-1111-4111-8111-11111111111a';
+  const scenePath = 'content/playground/scenes/a/' + sceneId + '/';
+  const component = 'IntroScene';
+  const leaves = [
+    'index.ts', component + '.tsx', component + '.module.css',
+    component + '.constants.ts', component + '.stories.tsx', component + '.unit.spec.tsx',
+  ];
+  const scoped = { ...meta, textbookRoot: 'content/playground', parentBlobSha: 'd'.repeat(40) };
+  const worker = {
+    episodeId,
+    exportName: 'episodeOne',
+    publishable: false,
+    diagnostics: [],
+    files: [
+      { path: placement + '/index.ts', kind: 'typescript', content: 'export const episodeOne = 1;\n' },
+      ...leaves.map(leaf => ({
+        path: scenePath + leaf,
+        kind: leaf.endsWith('.css') ? 'code' : 'typescript',
+        content: '// TODO (BLOCKER): Implement this Scene resource.\n',
+      })),
+    ],
+  };
+  const plan = composeEpisodeDirectPlan(handoff, reviewed, scoped, parent, worker);
+  const tree = new Map([
+    [scoped.sourcePath, { type: 'blob', mode: '100644', sha: scoped.sourceBlobSha }],
+    [scoped.parentPath, { type: 'blob', mode: '100644', sha: scoped.parentBlobSha }],
+  ]);
+  assert(plan.files.some(f => f.path === scenePath + component + '.tsx'));
+  assert.doesNotThrow(() => checkEpisodeTargets(scoped, plan.files, tree));
+  assert.throws(() => checkEpisodeTargets(scoped, plan.files.filter(f =>
+    f.path !== scenePath + component + '.module.css'), tree), /six-file scaffold/);
+  assert.throws(() => checkEpisodeTargets(scoped, plan.files, new Map([
+    ...tree,
+    [scenePath + 'index.ts', { type: 'blob', mode: '100644', sha: 'f'.repeat(40) }],
+  ])), /overwrite existing/);
 });
 
 test('canonical Course-generated Episode handoff is JSON in an exact TypeScript wrapper, never executable code', () => {
