@@ -39,7 +39,8 @@ type GeneratedFile = {
   kind: 'typescript' | 'specification' | 'markdown' | 'code';
   content: string;
 };
-type Diagnostic = { path: string; code: string; severity: 'warning' | 'blocker'; message?: string };
+type Diagnostic = { path: string; code: string; severity: 'warning'; message?: string };
+type PlanDiagnostic = Diagnostic | { path: string; code: string; severity: 'blocker'; message: string };
 type Result = { exportName: string; files: GeneratedFile[]; diagnostics: Diagnostic[] };
 type Config = Record<string, unknown> & { type: string; slug: string; id: string };
 type RenderOptions = {
@@ -59,7 +60,7 @@ export type AssessmentMaterializationPlan = {
   sourceExportName: string;
   selectedQuestionIds: readonly string[];
   files: GeneratedFile[];
-  diagnostics: Diagnostic[];
+  diagnostics: PlanDiagnostic[];
   publishable: false;
 };
 
@@ -177,7 +178,7 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
   const languageImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/languages';
   const ownDirectory = placement;
   const files: GeneratedFile[] = [];
-  const diagnostics: Diagnostic[] = [];
+  const diagnostics: PlanDiagnostic[] = [];
   const renderBlock = (block: Config, context: RenderOptions): Result => {
     const current = { ...context, ...(metadata.has(block.id) ? { production: metadata.get(block.id) } : {}) };
     switch (block.type) {
