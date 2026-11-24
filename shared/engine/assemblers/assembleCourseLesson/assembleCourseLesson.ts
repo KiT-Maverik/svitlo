@@ -24,9 +24,7 @@ export type CoursePublishedContent = {
 };
 
 export type CoursePublishedNode =
-  | CourseLessonEntry
-  | Episode_PropsBase
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  CourseLessonEntry | Episode_PropsBase | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';

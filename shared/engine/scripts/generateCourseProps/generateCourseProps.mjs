@@ -86,21 +86,23 @@ export function checkCourseSourceReadiness(source, mode) {
   const pending = [];
   function visit(dir) {
     assertSafeDirectoryPath(dir);
-    for (const item of fs.readdirSync(dir,{withFileTypes:true})) {
-      const file=path.join(dir,item.name);
-      if (item.isSymbolicLink()) throw Error('Unsafe Course-owned source: '+file);
+    for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
+      const file = path.join(dir, item.name);
+      if (item.isSymbolicLink()) throw Error('Unsafe Course-owned source: ' + file);
       if (item.isDirectory()) visit(file);
       else if (item.isFile() && item.name.endsWith('.ts')) {
-        if (item.name === 'draft.ts') pending.push(path.relative(root,file)+': editorial source not materialized');
+        if (item.name === 'draft.ts') pending.push(path.relative(root, file) + ': editorial source not materialized');
         else {
-          const text=fs.readFileSync(file,'utf8');
-          if (/^\s*\/\/\s*TODO \(BLOCKER\):/m.test(text)) pending.push(path.relative(root,file)+': unresolved production blocker');
+          const text = fs.readFileSync(file, 'utf8');
+          if (/^\s*\/\/\s*TODO \(BLOCKER\):/m.test(text))
+            pending.push(path.relative(root, file) + ': unresolved production blocker');
         }
       }
     }
   }
   visit(root);
-  if (mode === 'production' && pending.length) throw Error('Course source is not release-ready: '+source+'\n'+pending.join('\n'));
+  if (mode === 'production' && pending.length)
+    throw Error('Course source is not release-ready: ' + source + '\n' + pending.join('\n'));
   return pending;
 }
 
@@ -112,7 +114,7 @@ export async function render(pkg, mode) {
   if (!fs.existsSync(directory)) return files;
   const ids = new Set();
   for (const source of discoverCourseSources(directory, mode)) {
-    for (const pending of checkCourseSourceReadiness(source, mode)) console.warn('Draft Course preview: '+pending);
+    for (const pending of checkCourseSourceReadiness(source, mode)) console.warn('Draft Course preview: ' + pending);
     const { configurators, moduleExports } = await loadAuthoredConfigurators(source, 'course', {
       includeExports: true,
     });

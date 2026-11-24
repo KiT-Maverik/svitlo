@@ -49,8 +49,13 @@ function courseIncludesEpisode(publicRoot: string, courseId: string, episodeId: 
   if (!uuid.test(courseId) || !uuid.test(episodeId)) return false;
   const normalized = courseId.toLowerCase();
   const course = readPublicationBase(path.join(publicRoot, 'data', 'courses', normalized, 'base.json'));
-  return !!course && course.id === normalized && course.type === 'course' &&
-    supportsLanguage(course, language) && courseContainsEpisode(course, episodeId.toLowerCase(), language);
+  return (
+    !!course &&
+    course.id === normalized &&
+    course.type === 'course' &&
+    supportsLanguage(course, language) &&
+    courseContainsEpisode(course, episodeId.toLowerCase(), language)
+  );
 }
 
 function courseContainsLesson(node: unknown, lessonId: string): boolean {

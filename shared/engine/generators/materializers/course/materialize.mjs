@@ -353,9 +353,16 @@ export function materializeCourse(input, context = {}) {
       const handoffPath = childFolder + '/draft.ts';
       if (child.files.length !== 1 || child.files[0].path !== handoffPath || child.files[0].kind !== 'typescript')
         throw Error(childFolder + ': pending Episode requires exactly one typed draft');
-      pendingEpisodes.push({ path: childFolder, slug: key, episodeId: child.id, handoffPath, orderIndex: order.indexOf(key) });
+      pendingEpisodes.push({
+        path: childFolder,
+        slug: key,
+        episodeId: child.id,
+        handoffPath,
+        orderIndex: order.indexOf(key),
+      });
     }
-    if (!stage1Lesson && !stage1Episode && !child.exportName) throw Error(childFolder + ': completed child must export a Configurator');
+    if (!stage1Lesson && !stage1Episode && !child.exportName)
+      throw Error(childFolder + ': completed child must export a Configurator');
     if (raw.type !== 'lesson') {
       const resolvedId = raw.id ?? child.id;
       if (typeof resolvedId !== 'string' || !uuid.test(resolvedId))
@@ -396,10 +403,15 @@ export function materializeCourse(input, context = {}) {
       JSON.stringify(pendingPlacements.map(x => ({ slug: x.slug, lessonId: x.lessonId, handoffPath: x.handoffPath }))) +
       '\n'
     : '';
-  const ownPendingEpisodes = pendingEpisodes.filter(entry => entry.path === [dir, 'content', entry.slug].filter(Boolean).join('/'));
+  const ownPendingEpisodes = pendingEpisodes.filter(
+    entry => entry.path === [dir, 'content', entry.slug].filter(Boolean).join('/'),
+  );
   const episodeBlocker = ownPendingEpisodes.length
     ? '// TODO (BLOCKER): Episode Stage 1 handoffs are not completed Episode Configurators. Do not publish.\n// Reviewed original content order: ' +
-      JSON.stringify(order) + '\n// Pending Episode handoffs: ' + JSON.stringify(ownPendingEpisodes) + '\n'
+      JSON.stringify(order) +
+      '\n// Pending Episode handoffs: ' +
+      JSON.stringify(ownPendingEpisodes) +
+      '\n'
     : '';
   const itemsSource =
     '{ ' +
@@ -454,5 +466,13 @@ export function materializeCourse(input, context = {}) {
     if (paths.has(file.path)) throw Error('duplicate generated file: ' + file.path);
     paths.add(file.path);
   }
-  return { id, exportName: exportName(slug), files: produced, diagnostics, placements, pendingPlacements, pendingEpisodes };
+  return {
+    id,
+    exportName: exportName(slug),
+    files: produced,
+    diagnostics,
+    placements,
+    pendingPlacements,
+    pendingEpisodes,
+  };
 }

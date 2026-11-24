@@ -77,7 +77,11 @@ export async function loadPublishedCourseLessonProps(
 }
 
 /** Load the actual localized Course resource, including Course-owned Episodes. */
-export async function loadPublishedCourseTree(courseId: string, language: LanguageCode, coursesRoot = path.join(process.cwd(), 'public/data/courses')): Promise<LocalizedCourse> {
+export async function loadPublishedCourseTree(
+  courseId: string,
+  language: LanguageCode,
+  coursesRoot = path.join(process.cwd(), 'public/data/courses'),
+): Promise<LocalizedCourse> {
   const id = resolveEntityPath(courseId).split('/')[1];
   const code = languageCode_Schema.parse(language);
   const resource = await readPublication(path.join(coursesRoot, id), code);

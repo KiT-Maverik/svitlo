@@ -3,7 +3,9 @@
  */
 export function buildPlacementInventory(input, rendered, root, files) {
   const entries = new Set(files.map(file => file.path));
-  const lessons = [], episodes = [], seen = new Set();
+  const lessons = [],
+    episodes = [],
+    seen = new Set();
   function visit(node, parentPath, orderPath) {
     const config = node.config;
     for (const [index, slug] of config.content.order.entries()) {

@@ -64,10 +64,13 @@ export function parseArguments(args) {
   if (options.lesson && (!['lessons', 'questions'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
     throw new Error('--lesson requires Lessons/Questions and a canonical UUID');
   }
-  if (options.course && (!['courses','episodes'].includes(options.kind) || !uuidPattern.test(options.course))) {
+  if (options.course && (!['courses', 'episodes'].includes(options.kind) || !uuidPattern.test(options.course))) {
     throw new Error('--course requires Courses and a canonical UUID');
   }
-  if (options.kind === 'episodes' && (!options.course || !options.episode || !options.locale || !uuidPattern.test(options.episode)))
+  if (
+    options.kind === 'episodes' &&
+    (!options.course || !options.episode || !options.locale || !uuidPattern.test(options.episode))
+  )
     throw Error('Episodes require exact --course, --episode and --locale');
   if (options.episode && options.kind !== 'episodes') throw Error('--episode requires Episodes');
   if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
@@ -79,7 +82,11 @@ function checkTextbook(options) {
   const directory = path.join(root, options.package);
   const target = path.join(
     directory,
-    options.kind === 'skills' ? 'data/skills' : ['courses','episodes'].includes(options.kind) ? 'data/courses' : 'data/lessons',
+    options.kind === 'skills'
+      ? 'data/skills'
+      : ['courses', 'episodes'].includes(options.kind)
+        ? 'data/courses'
+        : 'data/lessons',
   );
   for (const location of [directory, target]) {
     if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
@@ -130,7 +137,7 @@ export async function generate(options) {
       component: options.component ?? null,
       lesson: options.lesson ?? null,
       course: options.course ?? null,
-      ...(options.kind === 'episodes' ? {episode:options.episode} : {}),
+      ...(options.kind === 'episodes' ? { episode: options.episode } : {}),
     },
     packages: options.package ? [options.package] : [],
     locales: options.locale ? [options.locale] : [],
@@ -229,9 +236,19 @@ export async function generate(options) {
       supportedLanguages: registered,
     });
   } else if (options.kind === 'episodes') {
-    const {generateEpisodeReviewArtifacts}=await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
-    await generateEpisodeReviewArtifacts({root,output,manifest,saveManifest,packageName:options.package,
-      courseId:options.course,episodeId:options.episode,languages,supportedLanguages:registered});
+    const { generateEpisodeReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
+    await generateEpisodeReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      courseId: options.course,
+      episodeId: options.episode,
+      languages,
+      supportedLanguages: registered,
+    });
   } else if (options.kind === 'assessment-methods') {
     const { generateAssessmentMethodsReviewArtifacts } =
       await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');

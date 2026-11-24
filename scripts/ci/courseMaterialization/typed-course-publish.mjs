@@ -284,7 +284,9 @@ async function publish() {
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.evidenceUrl + '\nCourse-Inventory-Manifest: ' + digest,
+      meta.evidenceUrl +
+      '\nCourse-Inventory-Manifest: ' +
+      digest,
     tree: tree.sha,
     parents: [meta.head],
   });
@@ -312,8 +314,15 @@ async function publish() {
       ' generated sources; reviewed draft consumed, exact bytes retained in Git history.',
   );
   if (process.env.GITHUB_OUTPUT) {
-    const proof = { repo: meta.repo, number: meta.number, branch: meta.branch, courseId: meta.courseId,
-      reviewedHead: meta.head, commit: commit.sha, digest };
+    const proof = {
+      repo: meta.repo,
+      number: meta.number,
+      branch: meta.branch,
+      courseId: meta.courseId,
+      reviewedHead: meta.head,
+      commit: commit.sha,
+      digest,
+    };
     fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
   }
   const placements = manifest.pendingPlacements ?? [];

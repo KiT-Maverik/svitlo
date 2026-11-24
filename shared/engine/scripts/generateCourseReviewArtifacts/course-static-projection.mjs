@@ -178,7 +178,7 @@ export function readModularCourse(item, supportedLanguages) {
     const match = specifier.match(/^#lessonsData\/([0-9a-f])\/([0-9a-f-]{36})\/index$/);
     if (!match || !UUID.test(match[2]) || match[2].at(-1) !== match[1])
       throw Error('Unresolvable Lesson UUID reference: ' + specifier);
-    return {type:'lesson',id:match[2],slug};
+    return { type: 'lesson', id: match[2], slug };
   };
   const visit = (file, depth, ids = new Set()) => {
     if (depth > 20) throw new Error('Course hierarchy exceeds depth limit');
@@ -188,8 +188,8 @@ export function readModularCourse(item, supportedLanguages) {
     if (depth === 0 && (config.type !== 'course' || config.id !== item.id))
       throw new Error('Root Course identity mismatch');
     if (config.type === 'episode') {
-      episodeEntries.push({id:config.id,slug:config.slug,entry:file});
-      return {type:'episode',id:config.id,slug:config.slug};
+      episodeEntries.push({ id: config.id, slug: config.slug, entry: file });
+      return { type: 'episode', id: config.id, slug: config.slug };
     }
     const { items, order } = config.content ?? {};
     if (
@@ -210,30 +210,38 @@ export function readModularCourse(item, supportedLanguages) {
         throw new Error('Invalid Course child import: ' + slug);
       const spec = items[slug].__courseImport.source;
       if (spec.startsWith('#lessonsData/')) {
-        children.push(lessonReference(spec,slug));
+        children.push(lessonReference(spec, slug));
       } else if (spec.startsWith(coursePrefix) || spec.startsWith('./')) {
         const candidate = spec.startsWith(coursePrefix)
-          ? path.join(root,spec.slice(coursePrefix.length))
-          : path.resolve(path.dirname(file),spec);
-        const nested = candidate.endsWith('/index') ? candidate + '.ts' : path.join(candidate,'index.ts');
-        const relative = path.relative(root,nested).split(path.sep).join('/');
-        if (!/^content\/(?:[a-zA-Z][a-zA-Z0-9]*\/){1,3}index\.ts$/.test(relative) ||
-            relative.split('/').some(key=>['__proto__','prototype','constructor'].includes(key)) ||
-            path.basename(path.dirname(nested)) !== slug)
+          ? path.join(root, spec.slice(coursePrefix.length))
+          : path.resolve(path.dirname(file), spec);
+        const nested = candidate.endsWith('/index') ? candidate + '.ts' : path.join(candidate, 'index.ts');
+        const relative = path.relative(root, nested).split(path.sep).join('/');
+        if (
+          !/^content\/(?:[a-zA-Z][a-zA-Z0-9]*\/){1,3}index\.ts$/.test(relative) ||
+          relative.split('/').some(key => ['__proto__', 'prototype', 'constructor'].includes(key)) ||
+          path.basename(path.dirname(nested)) !== slug
+        )
           throw Error('Unsafe or mismatched Course-owned child import: ' + spec);
-        safeFile(nested,root);
-        const ast = ts.createSourceFile(nested,fs.readFileSync(nested,'utf8'),ts.ScriptTarget.Latest,true);
+        safeFile(nested, root);
+        const ast = ts.createSourceFile(nested, fs.readFileSync(nested, 'utf8'), ts.ScriptTarget.Latest, true);
         // Stage 5 reused Lessons use one explicit re-export rather than a duplicate Configurator.
         const statement = ast.statements[0];
-        if (!ast.parseDiagnostics.length && ast.statements.length === 1 && ts.isExportDeclaration(statement) &&
-            statement.moduleSpecifier && ts.isStringLiteral(statement.moduleSpecifier) &&
-            statement.moduleSpecifier.text.startsWith('#lessonsData/') &&
-            statement.exportClause && ts.isNamedExports(statement.exportClause) &&
-            statement.exportClause.elements.length === 1) {
-          children.push(lessonReference(statement.moduleSpecifier.text,slug));
+        if (
+          !ast.parseDiagnostics.length &&
+          ast.statements.length === 1 &&
+          ts.isExportDeclaration(statement) &&
+          statement.moduleSpecifier &&
+          ts.isStringLiteral(statement.moduleSpecifier) &&
+          statement.moduleSpecifier.text.startsWith('#lessonsData/') &&
+          statement.exportClause &&
+          ts.isNamedExports(statement.exportClause) &&
+          statement.exportClause.elements.length === 1
+        ) {
+          children.push(lessonReference(statement.moduleSpecifier.text, slug));
         } else {
-          const child = visit(nested,depth+1,ids);
-          if (child.slug !== slug || !['module','chapter','episode'].includes(child.type))
+          const child = visit(nested, depth + 1, ids);
+          if (child.slug !== slug || !['module', 'chapter', 'episode'].includes(child.type))
             throw Error('Course child slug/type mismatch: ' + slug);
           children.push(child);
         }

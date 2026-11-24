@@ -41,7 +41,10 @@ function fixture() {
             type: 'module',
             content: {
               order: ['intro', 'story'],
-              items: { intro: { id: lessonId, type: 'lesson' }, story: {id:episodeId,type:'episode',params:{languages:['uk']}} },
+              items: {
+                intro: { id: lessonId, type: 'lesson' },
+                story: { id: episodeId, type: 'episode', params: { languages: ['uk'] } },
+              },
             },
           },
         },
@@ -107,13 +110,14 @@ describe('HTTP status preflight for streamed educational routes', () => {
 
 it('admits only canonical localized Episode routes for actual Course members', () => {
   const root = fixture();
-  expect(isInvalidPublishedRoute('/en/course/'+courseId+'/episode/uk/'+episodeId,root)).toBe(false);
-  for(const route of [
-    '/uk/course/'+courseId+'/episode/en/'+episodeId,
-    '/uk/course/'+courseId+'/episode/uk/'+otherId,
-    '/uk/course/'+otherId+'/episode/uk/'+episodeId,
-    '/xx/course/'+courseId+'/episode/uk/'+episodeId,
-    '/uk/course/'+courseId+'/episode/xx/'+episodeId,
-    '/uk/course/'+courseId+'/episode/'+episodeId,
-  ]) expect(isInvalidPublishedRoute(route,root),route).toBe(true);
+  expect(isInvalidPublishedRoute('/en/course/' + courseId + '/episode/uk/' + episodeId, root)).toBe(false);
+  for (const route of [
+    '/uk/course/' + courseId + '/episode/en/' + episodeId,
+    '/uk/course/' + courseId + '/episode/uk/' + otherId,
+    '/uk/course/' + otherId + '/episode/uk/' + episodeId,
+    '/xx/course/' + courseId + '/episode/uk/' + episodeId,
+    '/uk/course/' + courseId + '/episode/xx/' + episodeId,
+    '/uk/course/' + courseId + '/episode/' + episodeId,
+  ])
+    expect(isInvalidPublishedRoute(route, root), route).toBe(true);
 });

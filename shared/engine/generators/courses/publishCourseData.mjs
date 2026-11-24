@@ -249,7 +249,8 @@ export function renderCourseFiles(
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
     // Validate fully localized Episode Props after media projection, including nested blocks.
-    const containsEpisode = node => node.type === 'episode' || Object.values(node.content?.items ?? {}).some(containsEpisode);
+    const containsEpisode = node =>
+      node.type === 'episode' || Object.values(node.content?.items ?? {}).some(containsEpisode);
     if (containsEpisode(localized)) assembleCourseTree(base, difference(base, localized), course.id, language);
     const delta = difference(base, localized);
     if (delta !== undefined) {

@@ -132,14 +132,21 @@ test('provisional Episode emits only an allocated typed draft with reviewed Cour
     production: { focus: 'Learning context', purpose: 'Narrative transition' },
   };
   const context = {
-    ...ctx(), courseId: IDs.course, directory: 'content/transition', orderPath: [2],
-    plannedLanguages: ['uk'], reviewedCourseSourceBlobSha: '1'.repeat(40),
+    ...ctx(),
+    courseId: IDs.course,
+    directory: 'content/transition',
+    orderPath: [2],
+    plannedLanguages: ['uk'],
+    reviewedCourseSourceBlobSha: '1'.repeat(40),
     deriveId: () => 'f0000000-0000-4000-8000-000000000001',
   };
   const result = materializeEpisode(planned, context);
   assert.equal(result.id, 'f0000000-0000-4000-8000-000000000001');
   assert.equal(result.pendingEpisode, true);
-  assert.deepEqual(result.files.map(f => f.path), ['content/transition/draft.ts']);
+  assert.deepEqual(
+    result.files.map(f => f.path),
+    ['content/transition/draft.ts'],
+  );
   const draft = result.files[0].content;
   assert.match(draft, /TODO \(BLOCKER\)/);
   assert.match(draft, /satisfies EpisodeWorkflowStage1Handoff/);
@@ -148,7 +155,13 @@ test('provisional Episode emits only an allocated typed draft with reviewed Cour
   assert.doesNotMatch(draft, /defineEpisode|Not implemented/);
   syntax(result.files);
   assert.deepEqual(result, materializeEpisode(planned, context));
-  assert.throws(() => materializeEpisode(planned, { ...context, deriveId: undefined }), /parent deterministic deriveId/);
+  assert.throws(
+    () => materializeEpisode(planned, { ...context, deriveId: undefined }),
+    /parent deterministic deriveId/,
+  );
   assert.throws(() => materializeEpisode(planned, { ...context, courseId: undefined }), /verified owning Course/);
-  assert.throws(() => materializeEpisode({ ...planned, production: { focus: '', purpose: 'Transition' } }, context), /nonempty reviewed focus/);
+  assert.throws(
+    () => materializeEpisode({ ...planned, production: { focus: '', purpose: 'Transition' } }, context),
+    /nonempty reviewed focus/,
+  );
 });

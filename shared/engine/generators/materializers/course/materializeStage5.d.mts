@@ -93,7 +93,13 @@ export type CourseStage5Plan = {
   inventory: { lessons: readonly CoursePlacementInventoryRow[]; episodes: readonly CoursePlacementInventoryRow[] };
   placements: readonly { path: string; slug: string; lessonId: string; kind: string }[];
   pendingPlacements: readonly { path: string; slug: string; lessonId: string; handoffPath: string }[];
-  pendingEpisodes: readonly { path: string; slug: string; episodeId: string; handoffPath: string; orderIndex: number }[];
+  pendingEpisodes: readonly {
+    path: string;
+    slug: string;
+    episodeId: string;
+    handoffPath: string;
+    orderIndex: number;
+  }[];
   publishable: false;
 };
 

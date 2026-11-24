@@ -95,16 +95,18 @@ test('renders Course metadata and opaque Lesson and Episode UUID references', ()
     packageName: 'content/math',
     sourceRef: 'a'.repeat(40),
   });
-  for (const expected of [
-    'English course',
-    'English module',
-    'English chapter',
-    id.episode,
-    id.lesson,
-  ]) {
+  for (const expected of ['English course', 'English module', 'English chapter', id.episode, id.lesson]) {
     assert(markdown.includes(expected), expected);
   }
-  for (const forbidden of ['SECRET LESSON TITLE', 'SECRET LESSON CONTENT', 'SECRET QUESTION', 'SECRET FLASHCARD', 'English episode', 'English scene', 'Course-owned narrative'])
+  for (const forbidden of [
+    'SECRET LESSON TITLE',
+    'SECRET LESSON CONTENT',
+    'SECRET QUESTION',
+    'SECRET FLASHCARD',
+    'English episode',
+    'English scene',
+    'Course-owned narrative',
+  ])
     assert(!markdown.includes(forbidden), forbidden);
   const duplicated = sample();
   duplicated.content.push(sample().content[0]);
@@ -194,10 +196,7 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
   try {
     write(
       'languages.ts',
-      [
-        'export const languages = ["uk", "en"] as const satisfies SupportedLanguages;',
-        '',
-      ].join('\n'),
+      ['export const languages = ["uk", "en"] as const satisfies SupportedLanguages;', ''].join('\n'),
     );
     write(
       'index.ts',
@@ -285,13 +284,24 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     const episode = sample().content[0].content[0].content[1];
     const manifest = { sourceCommit: 'a'.repeat(40), generated: [], failures: [] };
     const options = {
-      root, output: path.join(root, 'temp/references'), manifest, saveManifest() {},
-      packageName: 'content/math', courseId: id.course, episodeId: id.episode,
-      supportedLanguages: ['uk', 'en', 'pl'], languages: ['en'],
+      root,
+      output: path.join(root, 'temp/references'),
+      manifest,
+      saveManifest() {},
+      packageName: 'content/math',
+      courseId: id.course,
+      episodeId: id.episode,
+      supportedLanguages: ['uk', 'en', 'pl'],
+      languages: ['en'],
       loader: async entry => {
         assert.equal(entry, path.join(owned, 'content/foundations/story/index.ts'));
-        return [{ ...episode, config: { base: { params: { languages: ['en'] } } },
-          build: { props: () => ({ base: episode }) } }];
+        return [
+          {
+            ...episode,
+            config: { base: { params: { languages: ['en'] } } },
+            build: { props: () => ({ base: episode }) },
+          },
+        ];
       },
     };
     assert.deepEqual(await generateEpisodeReviewArtifacts(options), { generated: 1, failures: 0 });
@@ -304,8 +314,14 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     assert(episodeMarkdown.includes('Course-owned narrative'));
     assert(!episodeMarkdown.includes('SECRET LESSON'));
     assert(!episodeMarkdown.includes('English course'));
-    assert.deepEqual(await generateEpisodeReviewArtifacts({ ...options, languages: ['pl'] }), { generated: 0, failures: 1 });
-    await assert.rejects(generateEpisodeReviewArtifacts({ ...options, episodeId: id.lesson }), /Exact materialized Episode/);
+    assert.deepEqual(await generateEpisodeReviewArtifacts({ ...options, languages: ['pl'] }), {
+      generated: 0,
+      failures: 1,
+    });
+    await assert.rejects(
+      generateEpisodeReviewArtifacts({ ...options, episodeId: id.lesson }),
+      /Exact materialized Episode/,
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -317,5 +333,14 @@ test('renders a complete Episode independently of Course and Lesson metadata', (
   assert(md.includes('English episode'));
   assert(md.includes('Course-owned narrative'));
   assert(!md.includes('English course'));
-  assert.throws(() => renderEpisodeMarkdown({ episode: { ...episode, section: [] }, locale: 'en', packageName: 'content/math', sourceRef: 'a'.repeat(40) }), /Complete resolved Episode Sections/);
+  assert.throws(
+    () =>
+      renderEpisodeMarkdown({
+        episode: { ...episode, section: [] },
+        locale: 'en',
+        packageName: 'content/math',
+        sourceRef: 'a'.repeat(40),
+      }),
+    /Complete resolved Episode Sections/,
+  );
 });

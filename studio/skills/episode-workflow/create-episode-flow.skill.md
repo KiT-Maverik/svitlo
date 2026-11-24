@@ -10,18 +10,18 @@ Reuse an existing Episode PR for that identity and parent; otherwise open one Dr
 
 ## Canonical stages
 
-| Stage | Responsible role | Completion evidence |
-| --- | --- | --- |
-| 1. Design Episode Scenario | [Educational Screenwriter](../../personas/educational-screenwriter.persona.md) | Complete scenario: approved focus/purpose, audience, continuity, entry/exit situation, scene and interaction intent, accessibility and narrative constraints. |
-| 2. Create Episode Content | Educational Screenwriter | Complete source-language typed editorial object: ordered supported Sections/Blocks, dialogue, supported events, Scene specifications and explicit media requirements. |
-| 3. Review Episode Content | Independent qualified Content Reviewer | Different agent/context from authoring, full source review and in-scope corrections in the same PR; final SHA and verdict. |
-| 4. Review Episode Experience | [Learning Experience Expert](../../personas/learning-experience-expert.persona.md) | Continuity, pacing, age fit, accessibility, interactions and actual runtime feasibility reviewed; bounded inline corrections and final SHA. |
-| 5. Materialize Episode | [Coding Agent](../../personas/coding-agent.persona.md), authorized trusted CI | Exact reviewed typed source transformed to deterministic, valid modular Configurators and derived specification. Atomic draft deletion, original placement integration and explicit unresolved blockers. |
-| 6. Complete Episode Resources | Coding Agent | Resource wiring, implemented/registered/tested Scenes, accessibility equivalents, precise media requirements and references. |
-| 7. Translation | [Technical Translator](../../personas/technical-translator.persona.md) | Genuine complete Episode-owned locales and localized resource plans in the same PR. |
-| 8. Translation Review | Independent Technical Translator | Different agent/context, verified source-derived locale scope, corrections in same PR and pinned final verdict. |
-| 9. Media Generation | Human | Actual required media produced/provided and verified; human-confirmed completion or explicit justified N/A. |
-| 10. QA | Human | Human inspection of running Episode in Course context and explicit verdict at tested revision. Mandatory. |
+| Stage                         | Responsible role                                                                   | Completion evidence                                                                                                                                                                                      |
+| ----------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Design Episode Scenario    | [Educational Screenwriter](../../personas/educational-screenwriter.persona.md)     | Complete scenario: approved focus/purpose, audience, continuity, entry/exit situation, scene and interaction intent, accessibility and narrative constraints.                                            |
+| 2. Create Episode Content     | Educational Screenwriter                                                           | Complete source-language typed editorial object: ordered supported Sections/Blocks, dialogue, supported events, Scene specifications and explicit media requirements.                                    |
+| 3. Review Episode Content     | Independent qualified Content Reviewer                                             | Different agent/context from authoring, full source review and in-scope corrections in the same PR; final SHA and verdict.                                                                               |
+| 4. Review Episode Experience  | [Learning Experience Expert](../../personas/learning-experience-expert.persona.md) | Continuity, pacing, age fit, accessibility, interactions and actual runtime feasibility reviewed; bounded inline corrections and final SHA.                                                              |
+| 5. Materialize Episode        | [Coding Agent](../../personas/coding-agent.persona.md), authorized trusted CI      | Exact reviewed typed source transformed to deterministic, valid modular Configurators and derived specification. Atomic draft deletion, original placement integration and explicit unresolved blockers. |
+| 6. Complete Episode Resources | Coding Agent                                                                       | Resource wiring, implemented/registered/tested Scenes, accessibility equivalents, precise media requirements and references.                                                                             |
+| 7. Translation                | [Technical Translator](../../personas/technical-translator.persona.md)             | Genuine complete Episode-owned locales and localized resource plans in the same PR.                                                                                                                      |
+| 8. Translation Review         | Independent Technical Translator                                                   | Different agent/context, verified source-derived locale scope, corrections in same PR and pinned final verdict.                                                                                          |
+| 9. Media Generation           | Human                                                                              | Actual required media produced/provided and verified; human-confirmed completion or explicit justified N/A.                                                                                              |
+| 10. QA                        | Human                                                                              | Human inspection of running Episode in Course context and explicit verdict at tested revision. Mandatory.                                                                                                |
 
 ### Stages 1–2: authoring
 
@@ -53,6 +53,7 @@ Initialize once in the existing Episode PR description and reconcile before each
 
 ```md
 <!-- svitlo-episode-flow:v1 -->
+
 - Episode UUID: <verified>
 - Course UUID / parent PR: <verified>
 - Textbook / ordered placement / source path: <verified>
@@ -72,6 +73,7 @@ Initialize once in the existing Episode PR description and reconcile before each
 - [ ] 10. QA
 
 ## Evidence and handoffs
+
 - <stage, owner, commit/blob, findings, actual checks, verdict, unresolved requirements>
 ```
 

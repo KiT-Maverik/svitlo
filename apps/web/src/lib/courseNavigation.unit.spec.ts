@@ -75,16 +75,25 @@ describe('coursePropsToTopics', () => {
   });
 });
 
-it('preserves mixed Episode and repeated Lesson navigation in reviewed order',()=>{
-  const mixed=structuredClone(course);
-  mixed.content.items.start={id:'episode-one',slug:'start',type:'episode',params:{languages:['en']},
-    locale:{title:'Start story'},section:[]};
-  mixed.content.items.repeat={id:'lesson-1',type:'lesson'};
-  mixed.content.order=['start','laboratory','repeat'];
-  const flat=flattenCourseTopics(coursePropsToTopics(mixed,'uk','en',{
-    ...titles,'placement:repeat':'Second placement',
-  }));
-  expect(flat.map(topic=>topic.href)).toEqual([
+it('preserves mixed Episode and repeated Lesson navigation in reviewed order', () => {
+  const mixed = structuredClone(course);
+  mixed.content.items.start = {
+    id: 'episode-one',
+    slug: 'start',
+    type: 'episode',
+    params: { languages: ['en'] },
+    locale: { title: 'Start story' },
+    section: [],
+  };
+  mixed.content.items.repeat = { id: 'lesson-1', type: 'lesson' };
+  mixed.content.order = ['start', 'laboratory', 'repeat'];
+  const flat = flattenCourseTopics(
+    coursePropsToTopics(mixed, 'uk', 'en', {
+      ...titles,
+      'placement:repeat': 'Second placement',
+    }),
+  );
+  expect(flat.map(topic => topic.href)).toEqual([
     '/uk/course/course-id/episode/en/episode-one',
     '/uk/course/course-id/lesson/en/lesson-1?placement=laboratory%2Ffundamentals%2Freflection',
     '/uk/course/course-id/lesson/en/lesson-2',

@@ -218,8 +218,13 @@ export function materializeCourseStage5(input, options = {}) {
         reviewedSourceSha: review.sourceBlobSha,
       });
       recordPlacement(context.directory, {
-        type: 'lesson', id: lessonId, slug: node.config.slug, kind: 'new', status: 'pending-lesson-stage1',
-        sourcePath: result.files[0].path, placementSourcePath: result.files[0].path,
+        type: 'lesson',
+        id: lessonId,
+        slug: node.config.slug,
+        kind: 'new',
+        status: 'pending-lesson-stage1',
+        sourcePath: result.files[0].path,
+        placementSourcePath: result.files[0].path,
       });
       return result;
     }
@@ -337,10 +342,20 @@ export function materializeCourseStage5(input, options = {}) {
     }
     const placementSlug = node.config.slug;
     recordPlacement(context.directory, {
-      type: 'lesson', id: existing.id, slug: placementSlug,
-      kind: hasPatch ? 'overridden' : 'reused', status: 'verified-reference',
-      sourcePath: textbookRoot + '/data/lessons/' + existing.id.at(-1).toLowerCase() + '/' + existing.id.toLowerCase() + '/index.ts',
-      placementSourcePath: root + '/' + context.directory + '/index.ts', sourceSha: lesson.sourceSha,
+      type: 'lesson',
+      id: existing.id,
+      slug: placementSlug,
+      kind: hasPatch ? 'overridden' : 'reused',
+      status: 'verified-reference',
+      sourcePath:
+        textbookRoot +
+        '/data/lessons/' +
+        existing.id.at(-1).toLowerCase() +
+        '/' +
+        existing.id.toLowerCase() +
+        '/index.ts',
+      placementSourcePath: root + '/' + context.directory + '/index.ts',
+      sourceSha: lesson.sourceSha,
     });
     const exportName = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'].includes(
       placementSlug,
@@ -383,13 +398,18 @@ export function materializeCourseStage5(input, options = {}) {
       const result = materializeEpisode(node, episodeContext);
       const directory = episodeContext.directory;
       const pending = result.diagnostics.some(d => d.code === 'pending-episode-scenario');
-      const source = result.files.find(file => file.path === directory + '/draft.ts') ??
+      const source =
+        result.files.find(file => file.path === directory + '/draft.ts') ??
         result.files.find(file => file.path === directory + '/index.ts');
       if (!source) throw Error('Episode inventory requires emitted source: ' + directory);
       recordPlacement(directory, {
-        type: 'episode', id: result.id, slug: node.config.slug, kind: 'new',
+        type: 'episode',
+        id: result.id,
+        slug: node.config.slug,
+        kind: 'new',
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
-        sourcePath: root + '/' + source.path, placementSourcePath: root + '/' + source.path,
+        sourcePath: root + '/' + source.path,
+        placementSourcePath: root + '/' + source.path,
       });
       return result;
     },

@@ -10,7 +10,10 @@ import { code_Props_Schema } from '../../configurators/contentBlocks/defineCode/
 import { markdown_Props_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
 import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas';
-import { episode_Props_Schema, type Episode_Props } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import {
+  episode_Props_Schema,
+  type Episode_Props,
+} from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import { contentSection_Props_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
@@ -21,12 +24,15 @@ import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLes
 export type EpisodeSection = Exclude<Section_Props, { type: 'quiz' | 'flashcards' }>;
 export type LocalizedEpisode = Omit<Episode_Props, 'section'> & { section: EpisodeSection[] };
 export type LocalizedCourseContent = { items: Record<string, LocalizedCourseNode>; order: string[] };
-export type LocalizedCourseNode = CourseLessonEntry | LocalizedEpisode | {
-  type: 'module' | 'chapter';
-  id: string;
-  locale: { title: string; [key: string]: unknown };
-  content: LocalizedCourseContent;
-};
+export type LocalizedCourseNode =
+  | CourseLessonEntry
+  | LocalizedEpisode
+  | {
+      type: 'module' | 'chapter';
+      id: string;
+      locale: { title: string; [key: string]: unknown };
+      content: LocalizedCourseContent;
+    };
 export type LocalizedCourse = Omit<CoursePublishedTree, 'content'> & {
   locale: { title: string; [key: string]: unknown };
   content: LocalizedCourseContent;
@@ -40,10 +46,18 @@ function assertRecord(value: unknown, at: string): asserts value is Record<strin
   if (!record(value)) throw Error('Invalid Course object: ' + at);
 }
 function assertSafeJson(value: unknown): void {
-  if (Array.isArray(value)) { value.forEach(assertSafeJson); return; }
+  if (Array.isArray(value)) {
+    value.forEach(assertSafeJson);
+    return;
+  }
   if (!record(value)) {
-    if (value !== null && typeof value !== 'string' && typeof value !== 'boolean' &&
-        !(typeof value === 'number' && Number.isFinite(value))) throw Error('Non-JSON Course value');
+    if (
+      value !== null &&
+      typeof value !== 'string' &&
+      typeof value !== 'boolean' &&
+      !(typeof value === 'number' && Number.isFinite(value))
+    )
+      throw Error('Non-JSON Course value');
     return;
   }
   for (const [key, child] of Object.entries(value)) {
@@ -94,7 +108,8 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
     const resolved = sectionSchemas[section.type as keyof typeof sectionSchemas].parse(section);
     const blocks = new Set<string>();
     for (const block of resolved.content) {
-      if (blocks.has(block.id) || !Object.hasOwn(blockSchemas, block.type)) throw Error('Invalid Episode block identity/type: ' + block.id);
+      if (blocks.has(block.id) || !Object.hasOwn(blockSchemas, block.type))
+        throw Error('Invalid Episode block identity/type: ' + block.id);
       blocks.add(block.id);
       blockSchemas[block.type as keyof typeof blockSchemas].parse(block);
     }
@@ -103,39 +118,62 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
 }
 
 function verifyIdentity(base: unknown, selected: unknown, at: string): void {
-  assertRecord(base, at); assertRecord(selected, at);
+  assertRecord(base, at);
+  assertRecord(selected, at);
   if (base.id !== selected.id || base.type !== selected.type) throw Error('Localized Course identity changed at ' + at);
   if (base.type === 'lesson') return;
   if (base.type === 'episode') {
-    if (base.slug !== selected.slug || !Array.isArray(base.section) || !Array.isArray(selected.section) ||
-        base.section.length !== selected.section.length)
+    if (
+      base.slug !== selected.slug ||
+      !Array.isArray(base.section) ||
+      !Array.isArray(selected.section) ||
+      base.section.length !== selected.section.length
+    )
       throw Error('Localized Episode Section structure changed at ' + at);
     for (let i = 0; i < base.section.length; i++) {
-      const original: unknown = base.section[i], translated: unknown = selected.section[i];
-      assertRecord(original, at); assertRecord(translated, at);
+      const original: unknown = base.section[i],
+        translated: unknown = selected.section[i];
+      assertRecord(original, at);
+      assertRecord(translated, at);
       if (original.id !== translated.id || original.type !== translated.type || original.slug !== translated.slug)
         throw Error('Localized Episode Section identity changed at ' + at);
-      if (!Array.isArray(original.content) || !Array.isArray(translated.content) || original.content.length !== translated.content.length)
+      if (
+        !Array.isArray(original.content) ||
+        !Array.isArray(translated.content) ||
+        original.content.length !== translated.content.length
+      )
         throw Error('Localized Episode Block structure changed at ' + at);
       for (let j = 0; j < original.content.length; j++) {
-        const a: unknown = original.content[j], b: unknown = translated.content[j];
-        assertRecord(a, at); assertRecord(b, at);
-        if (a.id !== b.id || a.type !== b.type || a.slug !== b.slug) throw Error('Localized Episode Block identity changed at ' + at);
+        const a: unknown = original.content[j],
+          b: unknown = translated.content[j];
+        assertRecord(a, at);
+        assertRecord(b, at);
+        if (a.id !== b.id || a.type !== b.type || a.slug !== b.slug)
+          throw Error('Localized Episode Block identity changed at ' + at);
       }
     }
     return;
   }
-  assertRecord(base.content, at); assertRecord(selected.content, at);
-  assertRecord(base.content.items, at); assertRecord(selected.content.items, at);
-  if (JSON.stringify(base.content.order) !== JSON.stringify(selected.content.order) ||
-      Object.keys(base.content.items).length !== Object.keys(selected.content.items).length)
+  assertRecord(base.content, at);
+  assertRecord(selected.content, at);
+  assertRecord(base.content.items, at);
+  assertRecord(selected.content.items, at);
+  if (
+    JSON.stringify(base.content.order) !== JSON.stringify(selected.content.order) ||
+    Object.keys(base.content.items).length !== Object.keys(selected.content.items).length
+  )
     throw Error('Localized Course order changed at ' + at);
   for (const [key, child] of Object.entries(base.content.items))
     verifyIdentity(child, selected.content.items[key], at + '/' + key);
 }
 
 /** Consume JSON only. Localized arrays are atomic; Course membership and IDs cannot change. */
-export function assembleCourseTree(base: unknown, locale: unknown, id: string, language: LanguageCode): LocalizedCourse {
+export function assembleCourseTree(
+  base: unknown,
+  locale: unknown,
+  id: string,
+  language: LanguageCode,
+): LocalizedCourse {
   languageCode_Schema.parse(language);
   assertSafeJson(base);
   if (locale !== undefined) assertSafeJson(locale);
@@ -149,13 +187,19 @@ export function assembleCourseTree(base: unknown, locale: unknown, id: string, l
   const visited = new Set([id]);
   function title(node: Record<string, unknown>) {
     assertRecord(node.locale, 'locale');
-    if (typeof node.locale.title !== 'string' || !node.locale.title.trim()) throw Error('Missing localized Course title');
+    if (typeof node.locale.title !== 'string' || !node.locale.title.trim())
+      throw Error('Missing localized Course title');
   }
   title(value);
   function visit(content: unknown, parent: 'course' | 'module' | 'chapter') {
-    assertRecord(content, parent); assertRecord(content.items, parent);
-    if (!Array.isArray(content.order) || content.order.length !== Object.keys(content.items).length ||
-        new Set(content.order).size !== content.order.length) throw Error('Invalid Course order');
+    assertRecord(content, parent);
+    assertRecord(content.items, parent);
+    if (
+      !Array.isArray(content.order) ||
+      content.order.length !== Object.keys(content.items).length ||
+      new Set(content.order).size !== content.order.length
+    )
+      throw Error('Invalid Course order');
     for (const key of content.order) {
       if (typeof key !== 'string' || forbidden.has(key) || !Object.hasOwn(content.items, key))
         throw Error('Invalid Course child slot');
@@ -165,9 +209,16 @@ export function assembleCourseTree(base: unknown, locale: unknown, id: string, l
       if (node.type === 'lesson') continue; // repeated references are distinct placements
       if (visited.has(node.id)) throw Error('Duplicate Course-owned identity: ' + node.id);
       visited.add(node.id);
-      if (node.type === 'episode') { validateEpisodeRuntime(node, language); continue; }
-      if ((node.type !== 'module' && node.type !== 'chapter') || parent === 'chapter' ||
-          (parent === 'module' && node.type === 'module')) throw Error('Invalid Course hierarchy');
+      if (node.type === 'episode') {
+        validateEpisodeRuntime(node, language);
+        continue;
+      }
+      if (
+        (node.type !== 'module' && node.type !== 'chapter') ||
+        parent === 'chapter' ||
+        (parent === 'module' && node.type === 'module')
+      )
+        throw Error('Invalid Course hierarchy');
       title(node);
       visit(node.content, node.type);
     }
@@ -191,7 +242,7 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   return result;
 }
 export function findCourseEpisode(course: LocalizedCourse, id: string): LocalizedEpisode | undefined {
-  return courseActivities(course).map(item => item.node).find(
-    (node): node is LocalizedEpisode => node.type === 'episode' && node.id === id,
-  );
+  return courseActivities(course)
+    .map(item => item.node)
+    .find((node): node is LocalizedEpisode => node.type === 'episode' && node.id === id);
 }

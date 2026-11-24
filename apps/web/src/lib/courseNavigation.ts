@@ -9,25 +9,50 @@ export type CourseNavigationTopic = {
   children?: readonly CourseNavigationTopic[];
 };
 
-export function coursePropsToTopics(course: LocalizedCourse, interfaceLanguage: string, lessonLanguage: string = interfaceLanguage,
-  lessonTitles: Readonly<Record<string,string>>): CourseNavigationTopic[] {
+export function coursePropsToTopics(
+  course: LocalizedCourse,
+  interfaceLanguage: string,
+  lessonLanguage: string = interfaceLanguage,
+  lessonTitles: Readonly<Record<string, string>>,
+): CourseNavigationTopic[] {
   const root = '/' + interfaceLanguage + '/course/' + course.id;
-  const counts = new Map<string,number>();
-  for (const {node} of courseActivities(course)) if(node.type==='lesson') counts.set(node.id,(counts.get(node.id)??0)+1);
+  const counts = new Map<string, number>();
+  for (const { node } of courseActivities(course))
+    if (node.type === 'lesson') counts.set(node.id, (counts.get(node.id) ?? 0) + 1);
   function convert(node: LocalizedCourseNode, slot: string): CourseNavigationTopic {
     if (node.type === 'lesson') {
-      const title = lessonTitles['placement:'+slot] ?? lessonTitles[node.id];
+      const title = lessonTitles['placement:' + slot] ?? lessonTitles[node.id];
       if (!title) throw Error('Missing localized Lesson title in Course ' + course.id + ': ' + node.id);
-      const repeated = (counts.get(node.id)??0)>1;
-      return {id:repeated?slot:node.id,title,type:'lesson',href:root+'/lesson/'+lessonLanguage+'/'+node.id+
-        (repeated?'?placement='+encodeURIComponent(slot):'')};
+      const repeated = (counts.get(node.id) ?? 0) > 1;
+      return {
+        id: repeated ? slot : node.id,
+        title,
+        type: 'lesson',
+        href:
+          root +
+          '/lesson/' +
+          lessonLanguage +
+          '/' +
+          node.id +
+          (repeated ? '?placement=' + encodeURIComponent(slot) : ''),
+      };
     }
-    if (node.type === 'episode') return {id:node.id,title:node.locale.title,type:'episode',href:root+'/episode/'+lessonLanguage+'/'+node.id};
-    return {id:node.id,title:node.locale.title,type:node.type,
-      children:node.content.order.map(key=>convert(node.content.items[key],slot+'/'+key))};
+    if (node.type === 'episode')
+      return {
+        id: node.id,
+        title: node.locale.title,
+        type: 'episode',
+        href: root + '/episode/' + lessonLanguage + '/' + node.id,
+      };
+    return {
+      id: node.id,
+      title: node.locale.title,
+      type: node.type,
+      children: node.content.order.map(key => convert(node.content.items[key], slot + '/' + key)),
+    };
   }
-  return course.content.order.map(key=>convert(course.content.items[key],key));
+  return course.content.order.map(key => convert(course.content.items[key], key));
 }
 export function flattenCourseTopics(topics: readonly CourseNavigationTopic[]): CourseNavigationTopic[] {
-  return topics.flatMap(topic => topic.href ? [topic] : flattenCourseTopics(topic.children ?? []));
+  return topics.flatMap(topic => (topic.href ? [topic] : flattenCourseTopics(topic.children ?? [])));
 }

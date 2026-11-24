@@ -162,7 +162,9 @@ function renderOwnedMarkdown({ entity, rootType, locale, packageName, sourceRef,
     if (!object(entry) || !UUID.test(entry.id) || !allowed.has(entry.type))
       throw new Error('Invalid Course-owned hierarchy node');
     if (entry.type === 'lesson' || (entry.type === 'episode' && rootType === 'course')) {
-      add('  '.repeat(depth) + '- ' + (entry.type === 'lesson' ? 'Lesson' : 'Episode') + ' UUID reference: ' + entry.id);
+      add(
+        '  '.repeat(depth) + '- ' + (entry.type === 'lesson' ? 'Lesson' : 'Episode') + ' UUID reference: ' + entry.id,
+      );
       return;
     }
     if (ids.has(entry.id)) throw new Error('Duplicate Course-owned ID: ' + entry.id);
@@ -176,9 +178,10 @@ function renderOwnedMarkdown({ entity, rootType, locale, packageName, sourceRef,
     write('Locale', entry.locale);
     if (entry.type === 'episode') {
       // Episode Sections, Scenes and blocks are Course-owned; no Lesson banks are followed.
-      if (!Array.isArray(entry.section) || !entry.section.length) throw Error('Complete resolved Episode Sections required');
+      if (!Array.isArray(entry.section) || !entry.section.length)
+        throw Error('Complete resolved Episode Sections required');
       write('Episode Sections', entry.section);
-      if (entry.events !== undefined) write('Events',entry.events);
+      if (entry.events !== undefined) write('Events', entry.events);
       add('');
       return;
     }
@@ -193,11 +196,11 @@ function renderOwnedMarkdown({ entity, rootType, locale, packageName, sourceRef,
   return md;
 }
 
-export function renderCourseMarkdown({course,...options}) {
-  return renderOwnedMarkdown({entity:course,rootType:'course',...options});
+export function renderCourseMarkdown({ course, ...options }) {
+  return renderOwnedMarkdown({ entity: course, rootType: 'course', ...options });
 }
-export function renderEpisodeMarkdown({episode,...options}) {
-  return renderOwnedMarkdown({entity:episode,rootType:'episode',...options});
+export function renderEpisodeMarkdown({ episode, ...options }) {
+  return renderOwnedMarkdown({ entity: episode, rootType: 'episode', ...options });
 }
 
 function courseSources(root, item) {
@@ -319,56 +322,111 @@ export async function generateCourseReviewArtifacts({
  * Build validates real localized Props; media file existence is a later human gate.
  */
 export async function generateEpisodeReviewArtifacts({
-  root,output,manifest,saveManifest,packageName,courseId,episodeId,languages,supportedLanguages,
+  root,
+  output,
+  manifest,
+  saveManifest,
+  packageName,
+  courseId,
+  episodeId,
+  languages,
+  supportedLanguages,
   loader = async entry => {
-    const {loadAuthoredConfigurators} = await import('../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs');
-    return loadAuthoredConfigurators(entry,'episode');
+    const { loadAuthoredConfigurators } = await import('../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs');
+    return loadAuthoredConfigurators(entry, 'episode');
   },
 }) {
-  if (!UUID.test(courseId ?? '') || !UUID.test(episodeId ?? '') || !Array.isArray(languages) ||
-      !languages.length || languages.some(locale=>!supportedLanguages.includes(locale)))
+  if (
+    !UUID.test(courseId ?? '') ||
+    !UUID.test(episodeId ?? '') ||
+    !Array.isArray(languages) ||
+    !languages.length ||
+    languages.some(locale => !supportedLanguages.includes(locale))
+  )
     throw Error('Exact Course, Episode and locale scope required');
-  const item = discoverCourses(root,packageName).find(entry=>entry.id===courseId);
+  const item = discoverCourses(root, packageName).find(entry => entry.id === courseId);
   if (!item) throw Error('Requested materialized Course not found: ' + courseId);
-  const projection = readModularCourse(item,supportedLanguages);
-  const matches = projection.episodeEntries.filter(entry=>entry.id===episodeId);
-  if (matches.length!==1) throw Error('Exact materialized Episode not found in verified Course composition');
+  const projection = readModularCourse(item, supportedLanguages);
+  const matches = projection.episodeEntries.filter(entry => entry.id === episodeId);
+  if (matches.length !== 1) throw Error('Exact materialized Episode not found in verified Course composition');
   const [slot] = matches;
   const configurators = await loader(slot.entry);
-  if (!Array.isArray(configurators) || configurators.length!==1 ||
-      configurators[0].id!==episodeId || configurators[0].slug!==slot.slug ||
-      configurators[0].type!=='episode' || typeof configurators[0].build?.props!=='function')
+  if (
+    !Array.isArray(configurators) ||
+    configurators.length !== 1 ||
+    configurators[0].id !== episodeId ||
+    configurators[0].slug !== slot.slug ||
+    configurators[0].type !== 'episode' ||
+    typeof configurators[0].build?.props !== 'function'
+  )
     throw Error('Episode Configurator identity differs from requested slot');
   const episode = configurators[0];
   const declared = episode.config?.base?.params?.languages;
-  if (!Array.isArray(declared) || new Set(declared).size!==declared.length ||
-      declared.some(code=>!supportedLanguages.includes(code)))
+  if (
+    !Array.isArray(declared) ||
+    new Set(declared).size !== declared.length ||
+    declared.some(code => !supportedLanguages.includes(code))
+  )
     throw Error('Invalid Episode active locale scope');
-  let generated=0,failures=0;
+  let generated = 0,
+    failures = 0;
   for (const locale of languages) {
     try {
       if (!declared.includes(locale)) throw Error('Locale is not active in materialized Episode');
-      const props=episode.build.props({languages:[locale]});
-      const resolved=mergeCourseReview(props.base,props.locale?.[locale]);
-      if (resolved.id!==episodeId || resolved.type!=='episode') throw Error('Resolved Episode identity mismatch');
-      const md=renderEpisodeMarkdown({episode:resolved,locale,packageName,sourceRef:manifest.sourceCommit,
-        sources:courseSources(root,{entry:slot.entry,directory:path.dirname(slot.entry),relative:'index.ts'})});
-      const relative='episodes/'+packageName.slice(8)+'/'+courseId.at(-1)+'/'+courseId+'/'+episodeId+'/'+locale+'.md';
-      const destination=path.join(output,relative);
-      fs.mkdirSync(path.dirname(destination),{recursive:true});
-      if (fs.existsSync(destination) && (fs.lstatSync(destination).isSymbolicLink()||!fs.statSync(destination).isFile()))
+      const props = episode.build.props({ languages: [locale] });
+      const resolved = mergeCourseReview(props.base, props.locale?.[locale]);
+      if (resolved.id !== episodeId || resolved.type !== 'episode') throw Error('Resolved Episode identity mismatch');
+      const md = renderEpisodeMarkdown({
+        episode: resolved,
+        locale,
+        packageName,
+        sourceRef: manifest.sourceCommit,
+        sources: courseSources(root, { entry: slot.entry, directory: path.dirname(slot.entry), relative: 'index.ts' }),
+      });
+      const relative =
+        'episodes/' +
+        packageName.slice(8) +
+        '/' +
+        courseId.at(-1) +
+        '/' +
+        courseId +
+        '/' +
+        episodeId +
+        '/' +
+        locale +
+        '.md';
+      const destination = path.join(output, relative);
+      fs.mkdirSync(path.dirname(destination), { recursive: true });
+      if (
+        fs.existsSync(destination) &&
+        (fs.lstatSync(destination).isSymbolicLink() || !fs.statSync(destination).isFile())
+      )
         throw Error('Unsafe Episode Markdown output');
-      fs.writeFileSync(destination,md);
-      const missing=(md.match(/%%MISSING%%/g)??[]).length;
-      manifest.generated.push({kind:'episode',textbook:packageName,course:courseId,episode:episodeId,
-        locale,path:relative,missing,reviewReady:missing===0});
+      fs.writeFileSync(destination, md);
+      const missing = (md.match(/%%MISSING%%/g) ?? []).length;
+      manifest.generated.push({
+        kind: 'episode',
+        textbook: packageName,
+        course: courseId,
+        episode: episodeId,
+        locale,
+        path: relative,
+        missing,
+        reviewReady: missing === 0,
+      });
       generated++;
-    } catch(error) {
+    } catch (error) {
       failures++;
-      manifest.failures.push({kind:'episode',textbook:packageName,course:courseId,episode:episodeId,
-        locale,error:String(error.message??error).slice(0,1500)});
+      manifest.failures.push({
+        kind: 'episode',
+        textbook: packageName,
+        course: courseId,
+        episode: episodeId,
+        locale,
+        error: String(error.message ?? error).slice(0, 1500),
+      });
     }
     saveManifest();
   }
-  return {generated,failures};
+  return { generated, failures };
 }
