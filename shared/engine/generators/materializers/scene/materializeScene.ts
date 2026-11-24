@@ -83,9 +83,9 @@ function literal(value: unknown, path: string, depth = 0): string {
   );
 }
 /**
- * Emit only the Engine defineScene Config module and its verified specification.
- * The executable SceneStub, TSX and lazy UUID registry are owned by the separate
- * sceneScaffolding workflow, not by this materializer.
+ * Emit the Engine defineScene Config module; the same reviewed Scene node
+ * is rendered into executable *draft* scaffolds by renderSceneFiles below.
+ * No Scene is registered or released at this stage.
  */
 export function materializeScene(config: SceneSource, context: SceneSourceContext): SceneMaterialization {
   if (
@@ -163,13 +163,113 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
     '',
   ].join('\n');
   const files: SceneSourceFile[] = [];
-  if (typeof specification === 'string' && specification.trim()) {
-    files.push({
-      path: (directory ? directory + '/' : '') + 'specification.md',
-      content: specification.trimEnd() + '\n',
-      kind: 'specification',
-    });
-  }
   files.push({ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
   return { exportName, files, diagnostics };
+}
+
+/** Shared deterministic templates for the trusted Lesson Stage 6.1 plan and
+ * the opt-in historical Scene scaffolding script. Never registers a Scene. */
+export function sceneComponentName(authoredSlug: string): string {
+  if (typeof authoredSlug !== 'string' || !/^[A-Za-z][A-Za-z0-9]*$/.test(authoredSlug))
+    throw new Error('Unsafe Scene slug: ' + String(authoredSlug));
+  return authoredSlug[0].toUpperCase() + authoredSlug.slice(1);
+}
+
+export function sceneSymbols(authoredSlug: string): { component: string; configurator: string } {
+  const component = sceneComponentName(authoredSlug);
+  return { component, configurator: component + 'Config' };
+}
+
+export type ExecutableSceneDraft = {
+  id: string;
+  slug: string;
+  documentLanguage: string;
+  specification?: string;
+};
+
+export function sceneFileNames(scene: { slug: string }): string[] {
+  const name = sceneComponentName(scene.slug);
+  return [
+    'index.ts',
+    name + '.tsx',
+    name + '.module.css',
+    name + '.constants.ts',
+    name + '.stories.tsx',
+    name + '.unit.spec.tsx',
+  ];
+}
+
+/** Each generated module has an explicit release blocker, not a fake Scene.
+ * Prefix every reviewed specification line with // to preserve it without
+ * enabling injected code or allowing block-comment delimiters to escape. */
+export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, string> {
+  const { id, slug: authoredSlug, documentLanguage, specification } = scene;
+  if (!uuid.test(id)) throw new Error('Scene scaffold requires a canonical UUID');
+  if (!locale.test(documentLanguage)) throw new Error('Invalid reviewed Scene document language');
+  if (typeof specification !== 'string' || !specification.trim())
+    throw new Error('Scene ' + id + ' needs its reviewed production.specification');
+  const name = sceneComponentName(authoredSlug);
+  const reviewedLines = specification.trimEnd()
+    .replace(/\r\n?|\u2028|\u2029/g, '\n')
+    .split('\n')
+    .map(line => '// ' + line);
+  const files = new Map<string, string>();
+  files.set('index.ts', [
+    '// TODO (BLOCKER): Register this Scene UUID only after the implementation, tests and review are complete.',
+    'export { ' + name + " as default } from './" + name + "';",
+    '',
+  ].join('\n'));
+  files.set(name + '.tsx', [
+    "'use client';",
+    '',
+    "import type { ContentBlock_Scene_Props } from '@svitlo/engine/runtime';",
+    "import styles from './" + name + ".module.css';",
+    '',
+    'export type ' + name + 'Props = {',
+    "  locales: ContentBlock_Scene_Props['locale']['value'];",
+    '};',
+    '',
+    '// TODO (BLOCKER): Implement and accessibly test the reviewed Scene ' + id +
+      ' before release; remove the specification comment only after implementation.',
+    '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)',
+    ...reviewedLines,
+    '// END REVIEWED SCENE SPECIFICATION',
+    'export function ' + name + '({ locales }: ' + name + 'Props) {',
+    '  void locales;',
+    '  return <section className={styles.root} aria-hidden="true" />;',
+    '}',
+    '',
+  ].join('\n'));
+  files.set(name + '.module.css', [
+    '/* TODO (BLOCKER): Implement accessible, responsive, reduced-motion Scene styling before release. */',
+    '.root {',
+    '  inline-size: 100%;',
+    '  min-inline-size: 0;',
+    '}',
+    '',
+  ].join('\n'));
+  files.set(name + '.constants.ts', [
+    '// TODO (BLOCKER): Define verified, implementation-owned test IDs before release.',
+    'export const testIds = {} as const;',
+    '',
+  ].join('\n'));
+  files.set(name + '.stories.tsx', [
+    "import { " + name + " } from './" + name + "';",
+    '',
+    '// TODO (BLOCKER): Implement a Storybook scenario with reviewed source-locale values before release.',
+    'export default { title: ' + JSON.stringify('Scenes/' + name) + ', component: ' + name + ' };',
+    'export const PendingImplementation = { render: () => null };',
+    '',
+  ].join('\n'));
+  files.set(name + '.unit.spec.tsx', [
+    "import { describe, it } from 'vitest';",
+    '',
+    '// TODO (BLOCKER): Replace pending checks with rendering, interactions, accessibility and reset tests before release.',
+    'describe(' + JSON.stringify(name) + ', () => {',
+    "  it.todo('implements the reviewed Scene interaction and reset behavior');",
+    "  it.todo('provides source-locale accessibility and keyboard/touch parity');",
+    '});',
+    '',
+  ].join('\n'));
+  return files;
 }

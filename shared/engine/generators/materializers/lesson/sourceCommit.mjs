@@ -72,6 +72,16 @@ function safeTarget(root, filename) {
     if (error.code !== 'ENOENT') throw error;
   }
 }
+/** Narrow same-textbook Scene path, not a generic escape from Lesson ownership. */
+function ownedScenePath(filename, book) {
+  const match = typeof filename === 'string' && filename.match(
+    /^content\/([a-z][a-z0-9-]*)\/scenes\/([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/(index\.ts|[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx))$/,
+  );
+  return match && book === match[1] && match[2] === match[3].at(-1)
+    ? { directory: filename.slice(0, filename.lastIndexOf('/')), filename: match[4] }
+    : null;
+}
+
 function validTypescript(file) {
   if (!/\.tsx?$/.test(file.path)) return;
   const source = ts.createSourceFile(
@@ -118,6 +128,8 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     throw new Error('Lesson Stage 6 requires the exact Git checkout root');
   const head = git(root, ['rev-parse', 'HEAD']);
   const ownPrefix = path.posix.dirname(plan.sourcePath) + '/';
+  const book = match[1];
+  const sceneGroups = new Map();
   const output = new Map();
   for (const file of plan.files) {
     if (
@@ -125,15 +137,30 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
       !kinds.has(file.kind) ||
       typeof file.content !== 'string' ||
       !validPath(file.path) ||
-      !file.path.startsWith(ownPrefix) ||
+      (!file.path.startsWith(ownPrefix) && !ownedScenePath(file.path, book)) ||
       file.path === plan.sourcePath ||
       /(?:^|\/)workflow\.stage\d+\.ts$/.test(file.path) ||
       output.has(file.path)
     )
       throw new Error('Invalid, duplicate or out-of-scope Lesson source: ' + file?.path);
     safeTarget(root, file.path);
+    const scene = ownedScenePath(file.path, book);
+    if (scene) {
+      const filenames = sceneGroups.get(scene.directory) ?? new Set();
+      filenames.add(scene.filename);
+      sceneGroups.set(scene.directory, filenames);
+    }
     validTypescript(file);
     output.set(file.path, file.content);
+  }
+  for (const [directory, names] of sceneGroups) {
+    const components = [...names].filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
+    if (components.length !== 1) throw new Error('Scene scaffold requires one component: ' + directory);
+    const base = components[0].slice(0, -4);
+    const expected = ['index.ts', base + '.tsx', base + '.module.css', base + '.constants.ts',
+      base + '.stories.tsx', base + '.unit.spec.tsx'];
+    if (names.size !== expected.length || expected.some(name => !names.has(name)))
+      throw new Error('Incomplete Scene scaffold: ' + directory);
   }
   if (!output.has(plan.materializedPath)) throw new Error('Stage 6 must create the canonical Lesson root index.ts');
   safeTarget(root, plan.sourcePath);
