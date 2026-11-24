@@ -1,7 +1,7 @@
 /** Trusted Git check/commit adapter for the existing Question Bank source plans. */
 import type {
   QuestionBankWorkflowStage1,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
 import {
   materializeQuestionBankDraft,
@@ -46,7 +46,7 @@ export function writeQuestionBankDraftSource(
 }
 
 export function checkReviewedQuestionBankSource(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCheck {
@@ -61,7 +61,7 @@ export function checkReviewedQuestionBankSource(
 }
 
 export function writeReviewedQuestionBankSource(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCommit {

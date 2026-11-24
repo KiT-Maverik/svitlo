@@ -23,7 +23,6 @@ import type {
   CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowLessonSeed,
-  CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,
@@ -422,9 +421,9 @@ const resolvedCourse = {
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
-const materializerInput: CourseWorkflowMaterializerInput = resolvedCourse;
+const materializerInput: CourseWorkflowStage3 = resolvedCourse;
 // @ts-expect-error Stage 2 cannot directly enter a Stage 3-complete materializer.
-const prematureMaterializerInput: CourseWorkflowMaterializerInput = planned;
+const prematureMaterializerInput: CourseWorkflowStage3 = planned;
 
 // @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;

@@ -116,15 +116,10 @@ jobs:
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
-      - name: Verify Lesson semantic checker also works from the Engine workspace
-        working-directory: shared/engine
-        run: node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test --test-name-pattern="generated Lesson source passes the real TypeScript semantic checker" .test-build/generators/materializers/lesson/materializeStage6.spec.js
-
       - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs \
-            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
             scripts/ci/bankMaterialization/bank-typed-block-evidence.spec.mjs
 
       - name: Test typed Lesson Stage 6 source and PR-command security
@@ -132,7 +127,10 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs \
-            scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
+            scripts/ci/directMaterialization/run-isolated.spec.mjs
+
+      - name: Exercise all five direct materializers through the pinned isolated worker
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/directMaterialization/pipeline.spec.mjs
 
       - name: Check formatting of typed Course Flow sources
         run: |

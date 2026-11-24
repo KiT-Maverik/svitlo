@@ -1,7 +1,4 @@
-import type {
-  CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3LessonMatch,
-} from '../../../types/workflow/courseWorkflow.types';
+import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
 import type { Lesson_Configurator } from '../../../configurators/lessons/defineLesson/defineLesson';
 
 export type SourceDiagnostic = {
@@ -35,26 +32,11 @@ export type ExistingLesson = {
   configurator: Lesson_Configurator;
   /** Original raw Lesson Build expression corresponding to reviewed built sparse output. */
   rawPatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
-  /** Source-authored raw patch expression (for nested Configurator references). */
-  rawPatchSource?: string;
-  /** Must equal the exact reviewed Course source blob SHA. */
-  rawPatchSourceSha?: string;
-  rawPatchImports?: readonly string[];
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
   source: CourseStage5Source;
-  verifySource: (arg: {
-    input: CourseWorkflowMaterializerInput;
-    source: CourseStage5Source;
-    textbookRoot: string;
-  }) => boolean;
-  resolveExistingLesson?: (arg: {
-    id: string;
-    matching: CourseWorkflowStage3LessonMatch;
-    placement: string;
-    languages: readonly string[];
-  }) => ExistingLesson;
+  verifySource: (arg: { input: CourseWorkflowStage3; source: CourseStage5Source; textbookRoot: string }) => boolean;
   materializeSection?: (
     node: unknown,
     context: {
@@ -99,7 +81,4 @@ export type CourseStage5Plan = {
 };
 
 /** Typed build-only root entrypoint; Stage 3/4 is NOT a complete Course_Config. */
-export function materializeCourseStage5(
-  input: CourseWorkflowMaterializerInput,
-  options: CourseStage5Options,
-): CourseStage5Plan;
+export function materializeCourseStage5(input: CourseWorkflowStage3, options: CourseStage5Options): CourseStage5Plan;

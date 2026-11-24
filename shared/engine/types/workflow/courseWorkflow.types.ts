@@ -1,3 +1,6 @@
+import type { z } from 'zod';
+import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
+import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
@@ -16,15 +19,8 @@ export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'sl
   locale?: Partial<Course_Config['locale']>;
 };
 
-type CourseLanguage = Course_Config['params']['languages'][number];
-
 /** The complete planned set is nonempty; publication initially uses only document. */
-export type CourseWorkflowStage1Languages = {
-  /** The actual editorial source language, not a guessed translation target. */
-  document: CourseLanguage;
-  /** Nonempty intended publication languages; each requires authentic localization and review. */
-  planned: readonly [CourseLanguage, ...CourseLanguage[]];
-};
+export type CourseWorkflowStage1Languages = z.infer<typeof workflowLanguages_Schema>;
 
 /** Required methodology fields mirror the Stage 1 YAML field names.
  * Fields formerly optional in YAML are required for a completed Stage 1 plan:
@@ -237,6 +233,11 @@ export type CourseWorkflowStage3ExistingLesson = {
     matching: CourseWorkflowStage3LessonMatch;
     /** Required explicit assessment decisions for the reused Lesson placement. */
     assessment: LessonProductionAssessmentRequirements;
+    /** Final invocation may directly pass the already-imported canonical Configurator. */
+    source?: Lesson_Configurator;
+    sourceExportName?: string;
+    /** Authored raw sparse Config patch, required when existing contains built overrides. */
+    sourcePatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */
@@ -324,13 +325,5 @@ export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'conte
   content: CourseWorkflowStage3Content;
 };
 
-export interface CourseWorkflowStage3 extends CourseWorkflowStage2 {
-  config: CourseWorkflowStage3Config;
-}
-
-/** Single canonical authored input to the Stage 5 Course source materializer.
- * Apply this alias to the existing exported Stage 3 object during Stage 4,
- * before final reinspection and sign-off. Stage 5 consumes the exact reviewed
- * bytes; implementation must additionally validate source/review evidence.
- */
-export type CourseWorkflowMaterializerInput = CourseWorkflowStage3;
+/** Final authoring contract: the executable Zod schema owns this shape. */
+export type CourseWorkflowStage3 = z.infer<typeof courseWorkflowStage3_Schema>;

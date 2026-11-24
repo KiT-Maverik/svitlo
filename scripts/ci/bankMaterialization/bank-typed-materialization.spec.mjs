@@ -16,7 +16,7 @@ const events = {
   flashcards: '/flashcards materialize',
 };
 const canonical = bank => ({
-  version: 2,
+  version: 3,
   meta: {
     bank,
     identity: { folder, bank, id: owner, pkg: 'content/math' },
@@ -42,7 +42,6 @@ function sample(bank) {
   return {
     ...data,
     inputSha256: sha256('{}'),
-    treeSha: 'b'.repeat(40),
     deletedSource: { path: data.meta.sourcePath, blobSha: data.meta.sourceBlob },
     files: [
       file(root + bank + '/index.ts', 'export const finished = {};\n'),
@@ -174,7 +173,7 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
   for (const bank of Object.keys(events)) {
     const valid = sample(bank);
     assert.doesNotThrow(() => verifyTypedManifest(valid, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, treeSha: 'bad' }, valid.meta));
+    assert.throws(() => verifyTypedManifest({ ...valid, version: 2 }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.slice(1) }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: [...valid.files, valid.files[0]] }, valid.meta));
     assert.throws(() =>

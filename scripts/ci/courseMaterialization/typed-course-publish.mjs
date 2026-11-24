@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Privileged typed Course Stage 5 publisher. NEVER imports or
- * executes PR-authored TypeScript. Recomputes the complete deterministic plan
- * from a literal AST using trusted Engine code, checks the artifact byte for
- * byte, and consumes the reviewed draft and commits outputs in ONE Git tree.
+ * executes PR-authored TypeScript. Verifies the previously sealed, scoped
+ * source manifest and commits its files in ONE guarded Git tree.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,17 +10,8 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
-import {
-  checkedSource,
-  checkCourseStage3Types,
-  parseCanonicalCourseSource,
-  buildTypedCourseManifest,
-  reviewedLessonPatchResolver,
-} from './typed-course-source.mjs';
-import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
-import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
-import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
-import { checkGeneratedCourseTypes } from './typed-course-semantics.mjs';
+import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
+import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -70,7 +60,167 @@ function allowedOutput(filename, meta) {
   return !!lesson && lesson[1] === lesson[2].at(-1);
 }
 
-/** Pure validation: manifest bytes and every path are constrained and hashed. */
+/** Bind generated Course-owned handoffs one-to-one to the sealed inventory.
+ * This examines only fixed, JSON-literal outputs from trusted seed generators.
+ * It never reads or parses candidate entrypoint TypeScript, or regenerates it.
+ */
+function assertCourseInventory(manifest, meta, entries) {
+  const root = meta.textbookRoot + '/data/courses/' + meta.courseId.at(-1) + '/' + meta.courseId;
+  const inventory = manifest.inventory;
+  if (
+    !inventory ||
+    !Array.isArray(inventory.lessons) ||
+    !Array.isArray(inventory.episodes) ||
+    inventory.lessons.some(row => row?.type !== 'lesson') ||
+    inventory.episodes.some(row => row?.type !== 'episode') ||
+    !Array.isArray(manifest.pendingPlacements) ||
+    !Array.isArray(manifest.pendingEpisodes)
+  )
+    throw Error('Missing complete Course inventory');
+  const seen = new Set(),
+    seenOrder = new Set();
+  const seeds = new Set(
+    [...entries.keys()].filter(p => p.startsWith(meta.textbookRoot + '/data/lessons/') && p.endsWith('/draft.ts')),
+  );
+  const episodes = new Set(
+    [...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/draft.ts')),
+  );
+  const pendingLessons = new Map(),
+    pendingEpisodes = new Map();
+  const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
+  function outputLiteral(filename, symbol, marker) {
+    const entry = entries.get(filename);
+    if (entry?.kind !== 'typescript') throw Error('Missing canonical Course source handoff: ' + filename);
+    const source = Buffer.from(entry.data, 'base64').toString('utf8');
+    const head = 'export const ' + symbol + ' = ';
+    const begin = source.indexOf(head);
+    const end = source.indexOf(marker, begin + head.length);
+    if (begin < 0 || end < 0 || source.indexOf(head, begin + head.length) !== -1)
+      throw Error('Malformed generated handoff: ' + filename);
+    try {
+      return JSON.parse(source.slice(begin + head.length, end));
+    } catch {
+      throw Error('Invalid JSON seed handoff: ' + filename);
+    }
+  }
+  for (const row of [...inventory.lessons, ...inventory.episodes]) {
+    if (
+      !row ||
+      !['lesson', 'episode'].includes(row.type) ||
+      !UUID.test(row.id) ||
+      typeof row.placementPath !== 'string' ||
+      !row.placementPath.startsWith(root + '/content/') ||
+      !isSlug(row.slug) ||
+      row.placementPath.split('/').at(-1) !== row.slug ||
+      !row.placementPath
+        .slice(root.length + 1)
+        .split('/')
+        .every(isSlug) ||
+      !Array.isArray(row.orderPath) ||
+      !row.orderPath.length ||
+      row.orderPath.length > 4 ||
+      row.orderPath.some(n => !Number.isSafeInteger(n) || n < 0)
+    )
+      throw Error('Invalid Course inventory identity, placement or order');
+    const order = JSON.stringify(row.orderPath);
+    if (seen.has(row.placementPath) || seenOrder.has(order))
+      throw Error('Duplicate Course inventory placement or order');
+    seen.add(row.placementPath);
+    seenOrder.add(order);
+    const rel = row.placementPath.slice(root.length + 1);
+    // Course's deterministic UUID namespace excludes the top-level content/ segment.
+    const allocationPath = rel.slice('content/'.length);
+    if (row.type === 'lesson') {
+      const lessonRoot = meta.textbookRoot + '/data/lessons/' + row.id.at(-1) + '/' + row.id;
+      if (row.kind === 'new') {
+        const draft = lessonRoot + '/draft.ts';
+        if (
+          row.id !== deriveCourseEntityId(meta.courseId, 'lesson', allocationPath) ||
+          row.status !== 'pending-lesson-stage1' ||
+          row.sourcePath !== draft ||
+          row.placementSourcePath !== draft ||
+          !seeds.delete(draft)
+        )
+          throw Error('Course Lesson inventory does not match a unique generated seed');
+        const source = outputLiteral(draft, 'lessonSeed', ' as const satisfies CourseWorkflowLessonSeed;');
+        if (
+          source?.config?.id !== row.id ||
+          source.config.slug !== row.slug ||
+          source.config.type !== 'lesson' ||
+          !source.proposal ||
+          !source.languageContext
+        )
+          throw Error('Generated Lesson seed differs from Course inventory identity');
+        pendingLessons.set(rel, row);
+      } else if (['reused', 'overridden'].includes(row.kind)) {
+        if (
+          row.status !== 'verified-reference' ||
+          row.sourcePath !== lessonRoot + '/index.ts' ||
+          row.placementSourcePath !== row.placementPath + '/index.ts' ||
+          !SHA.test(row.sourceSha || '') ||
+          entries.get(row.placementSourcePath)?.kind !== 'typescript'
+        )
+          throw Error('Course reused Lesson inventory does not match generated reference');
+        const reference = Buffer.from(entries.get(row.placementSourcePath).data, 'base64').toString('utf8');
+        const parsed = /^export \{ ([A-Za-z][A-Za-z0-9]*) as ([A-Za-z][A-Za-z0-9]*) \} from ("[^"\n]+");\n$/.exec(
+          reference,
+        );
+        const reserved = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'];
+        const expectedExport = reserved.includes(row.slug) ? 'config_' + row.slug : row.slug;
+        const expectedImport = JSON.stringify('#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index');
+        if (!parsed || parsed[2] !== expectedExport || parsed[3] !== expectedImport)
+          throw Error('Course reused Lesson reference differs from inventory identity or canonical import');
+      } else throw Error('Invalid Course Lesson kind');
+    } else {
+      if (
+        row.kind !== 'new' ||
+        !['pending-episode-scenario', 'materialized-source'].includes(row.status) ||
+        row.id !== deriveCourseEntityId(meta.courseId, 'episode', allocationPath)
+      )
+        throw Error('Invalid Course Episode inventory');
+      const filename = row.placementPath + (row.status === 'pending-episode-scenario' ? '/draft.ts' : '/index.ts');
+      if (row.sourcePath !== filename || row.placementSourcePath !== filename || !entries.has(filename))
+        throw Error('Episode inventory source missing or displaced');
+      if (row.status === 'pending-episode-scenario') {
+        if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
+        const source = outputLiteral(filename, 'episodeStage1', ' as const satisfies EpisodeWorkflowStage1Handoff;');
+        const placement = source?.production?.placement;
+        if (
+          source?.config?.id !== row.id ||
+          source.config.slug !== row.slug ||
+          source.config.type !== 'episode' ||
+          placement?.courseId !== meta.courseId ||
+          placement.path !== rel ||
+          JSON.stringify(placement.orderPath) !== order ||
+          placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha
+        )
+          throw Error('Episode handoff differs from Course inventory identity');
+        pendingEpisodes.set(rel, row);
+      }
+    }
+  }
+  function checkPending(list, expected, idField, filename) {
+    const seen = new Set();
+    for (const item of list) {
+      const row = expected.get(item?.path);
+      if (
+        !row ||
+        seen.has(item.path) ||
+        item.slug !== row.slug ||
+        item[idField] !== row.id ||
+        item.orderIndex !== row.orderPath.at(-1) ||
+        item.handoffPath !== filename(row)
+      )
+        throw Error('Invalid or duplicated pending Course handoff record');
+      seen.add(item.path);
+    }
+    if (seen.size !== expected.size) throw Error('Unregistered pending Course handoff');
+  }
+  checkPending(manifest.pendingPlacements, pendingLessons, 'lessonId', row => row.sourcePath);
+  checkPending(manifest.pendingEpisodes, pendingEpisodes, 'episodeId', row => row.sourcePath.slice(root.length + 1));
+  if (seeds.size || episodes.size) throw Error('Unregistered Course Lesson seed or Episode handoff');
+}
+
 export function verifyTypedCourseManifest(manifest, meta) {
   if (
     !manifest ||
@@ -94,6 +244,7 @@ export function verifyTypedCourseManifest(manifest, meta) {
     throw Error('Typed Course manifest does not match independently reviewed source metadata');
   let bytes = 0;
   const seen = new Set();
+  const entries = new Map();
   for (const file of manifest.entries) {
     if (
       !file ||
@@ -106,6 +257,7 @@ export function verifyTypedCourseManifest(manifest, meta) {
     )
       throw Error('Unsafe, duplicated or malformed typed Course manifest file');
     seen.add(file.path);
+    entries.set(file.path, file);
     const content = Buffer.from(file.data, 'base64');
     if (
       !content.length ||
@@ -120,6 +272,7 @@ export function verifyTypedCourseManifest(manifest, meta) {
   }
   if (seen.has(meta.sourcePath) || !seen.has(manifest.materializedPath))
     throw Error('Typed Course plan must consume draft.ts and create index.ts');
+  assertCourseInventory(manifest, meta, entries);
   return manifest.entries.length;
 }
 
@@ -188,37 +341,6 @@ export function oneCommitTree(manifest) {
   ];
 }
 
-/**
- * No PR code evaluation: both read-only analysis and the write-token job
- * compute the identical plan from a strictly literal TypeScript AST.
- */
-export function replan(meta, source, candidateRoot = process.env.COURSE_HEAD_ROOT) {
-  const resolver = createTrustedCourseLessonResolver({
-    trustedRoot: path.resolve(import.meta.dirname, '../../..'),
-    candidateRoot,
-    textbookRoot: meta.textbookRoot,
-  });
-  const patches = [];
-  const input = parseCanonicalCourseSource(source, {
-    resolveImport: resolver.loadImport,
-    patches,
-  });
-  checkCourseStage3Types(path.join(candidateRoot, meta.sourcePath));
-  const plan = materializeCourseStage5(input, {
-    textbookRoot: meta.textbookRoot,
-    source: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlobSha,
-    },
-    verifySource: ({ input: candidate, source, textbookRoot }) =>
-      candidate === input && source.sourceBlobSha === meta.sourceBlobSha && textbookRoot === meta.textbookRoot,
-    materializeSection: materializeCourseEpisodeSection,
-    resolveExistingLesson: reviewedLessonPatchResolver(input, resolver, patches, meta.sourceBlobSha),
-  });
-  checkGeneratedCourseTypes(plan, meta.textbookRoot);
-  return plan;
-}
-
 function readManifest(filename) {
   if (
     !filename ||
@@ -245,9 +367,13 @@ async function publish() {
   if (gitBlob(Buffer.from(source, 'utf8')) !== meta.sourceBlobSha) throw Error('Reviewed Course source bytes changed');
   const manifest = readManifest(process.env.COURSE_TYPED_REPORT);
   verifyTypedCourseManifest(manifest, meta);
-  const expected = buildTypedCourseManifest(meta, replan(meta, source));
-  if (JSON.stringify(manifest) !== JSON.stringify(expected))
-    throw Error('Manifest does not reproduce the trusted deterministic Course Stage 5 plan');
+  // The write-token job NEVER executes authored code or recomputes a plan.
+  // Reauthorize and verify the exact SHA-pinned manifest and existing Lesson dependencies.
+  verifyCourseDependencies(meta, root, path.resolve(import.meta.dirname, '../../..'), {
+    courseId: meta.courseId,
+    publishable: false,
+    inventory: manifest.inventory,
+  });
   checkTypedCourseTargets(meta, root, manifest);
   const original = await github('git/commits/' + meta.head);
   if (!SHA.test(original?.tree?.sha ?? '')) throw Error('Missing approved parent Git tree');
@@ -256,7 +382,7 @@ async function publish() {
     tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
-  const digest = sha256(Buffer.from(JSON.stringify(manifest)));
+  const digest = manifestDigest(manifest);
   const commit = await github('git/commits', 'POST', {
     message:
       'Materialize reviewed typed Course ' +
@@ -280,6 +406,20 @@ async function publish() {
   });
   if (updated?.object?.sha !== commit.sha)
     throw Error('Typed Course Git reference did not advance to exact approved commit');
+  // Post-commit inventory reconciliation is a separate, independently retryable job.
+  // Its failure cannot roll back or invalidate an already authorized source commit.
+  if (process.env.GITHUB_OUTPUT) {
+    const proof = {
+      repo: meta.repo,
+      number: meta.number,
+      branch: meta.branch,
+      courseId: meta.courseId,
+      reviewedHead: meta.head,
+      commit: commit.sha,
+      digest,
+    };
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
+  }
   report(
     'Typed Course Stage 5: one atomic commit ' +
       commit.sha +

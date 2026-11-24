@@ -2,9 +2,12 @@
  * Explicit Lesson-owned Flashcard Bank Stage 1/Stage 5 source operations.
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { flashcardBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowMaterializerInput,
+  FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import type {
   Flashcard_Relationship,
@@ -72,13 +75,7 @@ function validateStage1(
     throw new Error('Stale Lesson/reference approval for Flashcards');
   }
   assertBankLanguages(lesson.languages);
-  if (
-    !lesson.assessment ||
-    typeof lesson.assessment.questionBankRequired !== 'boolean' ||
-    typeof lesson.assessment.flashcardBankRequired !== 'boolean' ||
-    typeof lesson.assessment.quizSectionRequired !== 'boolean' ||
-    typeof lesson.assessment.flashcardsSectionRequired !== 'boolean'
-  ) {
+  if (!lessonProductionAssessmentRequirements_Schema.safeParse(lesson.assessment).success) {
     throw new Error('All four Lesson assessment decisions must be preserved');
   }
   if (!analysis || !Array.isArray(analysis.recallObjectives) || !analysis.recallObjectives.length) {
@@ -115,11 +112,11 @@ export function materializeFlashcardBankDraft(
   return preflightBankSource(files, authorization.snapshot);
 }
 
-type Card = FlashcardBankWorkflowMaterializerInput['config']['flashcards']['items'][string];
+type Card = FlashcardBankWorkflowStage3['config']['flashcards']['items'][string];
 
 /** Expand a single reviewed edge into both existing immutable Card UUID endpoints. */
 function projectRelationships(
-  bank: FlashcardBankWorkflowMaterializerInput,
+  bank: FlashcardBankWorkflowStage3,
 ): Readonly<Record<string, { items: Record<string, Flashcard_Relationship>; order: string[] }>> {
   const cards = bank.config.flashcards.items;
   const edges = bank.config.relationships;
@@ -188,7 +185,23 @@ function checkSides(card: Card, slug: string): void {
  * This is a source plan, NOT a write, Lesson Section change, or publication.
  */
 export function materializeFlashcardBank(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
+  authorization?: FlashcardBankFinalAuthorization,
+): BankSourceResult {
+  return invokeMaterializer(
+    'flashcards-stage5',
+    authorization,
+    approved => {
+      const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
+      if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+      return planFlashcardBank(input, approved);
+    },
+    input,
+  );
+}
+
+function planFlashcardBank(
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization);

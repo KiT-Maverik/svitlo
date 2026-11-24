@@ -2,9 +2,9 @@
 /**
  * Typed Question/Flashcard Stage 5 source materialization.
  *
- * analyze: no GitHub write credential; statically parse and typecheck reviewed
- * Stage 3 data, run the trusted concrete Engine Bank writer in a local Git
- * checkout, and seal its entire Git tree in a checksummed source manifest.
+ * analyze: verify a pinned checkout, execute exactly one direct authored
+ * materializer in the credential-free worker, independently check source
+ * ownership and media/Scene evidence, then attest the bounded file manifest.
  *
  * publish: no npm/Engine/candidate code execution; reauthorize and reconstruct
  * exactly that source tree through the Git Data API, with an immutable HEAD
@@ -146,15 +146,6 @@ function authorizations(meta, input, root, blocks) {
     referenceSourceSha: lesson.reference.sourceSha,
   };
 }
-function context(meta, root) {
-  return {
-    repositoryRoot: root,
-    branch: meta.branch,
-    expectedHeadSha: meta.head,
-    ownerLessonId: meta.identity.id,
-    lessonDirectory: meta.identity.folder,
-  };
-}
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
   if (
@@ -181,9 +172,8 @@ function validTypedPath(filename, meta) {
 export function verifyTypedManifest(result, meta) {
   if (
     !result ||
-    result.version !== 2 ||
+    result.version !== 3 ||
     JSON.stringify(result.meta) !== JSON.stringify(meta) ||
-    !SHA.test(result.treeSha || '') ||
     result.deletedSource?.path !== meta.sourcePath ||
     result.deletedSource?.blobSha !== meta.sourceBlob ||
     !Array.isArray(result.files) ||
@@ -310,12 +300,37 @@ export function assertTypedBankInventory(meta, input, files) {
 }
 
 async function analyze(meta) {
-  const { root, source } = verifyCandidate(meta);
-  const { readTypedBankStage3, typecheckTypedBankStage3 } = await import('./bank-typed-stage3.mjs');
-  const input = readTypedBankStage3(source, meta.bank);
-  typecheckTypedBankStage3(source, trustedRoot);
-  // Only SHA-pinned Git bytes and the validated Stage 3 source can
-  // establish technical media/Scene evidence.
+  if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
+    throw Error('Candidate execution must not receive GitHub credentials');
+  const { root, source: pinnedSource } = verifyCandidate(meta);
+  const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
+  const result = runIsolatedMaterialization({
+    trustedRoot,
+    candidateRoot: root,
+    textbook: meta.identity.pkg,
+    operation: meta.bank === 'questions' ? 'questions-stage5' : 'flashcards-stage5',
+    source: {
+      sourcePath: meta.sourcePath,
+      sourceBlobSha: meta.sourceBlob,
+      sourceCommitSha: meta.head,
+    },
+  });
+  const { plan, input } = result ?? {};
+  if (
+    !plan ||
+    plan.publishable !== false ||
+    !Array.isArray(plan.files) ||
+    !plan.transition ||
+    plan.transition.sourceDraftPath !== meta.bank + '/draft.ts' ||
+    plan.transition.materializedPath !== meta.bank + '/index.ts' ||
+    plan.transition.sourceDraftBlobSha !== meta.sourceBlob ||
+    plan.transition.expectedHeadSha !== meta.head
+  )
+    throw Error('Isolated Bank did not return the approved source transition');
+
+  // A direct invocation can inspect arbitrary imported code; the manifest
+  // alone cannot prove it produced the bytes. Verify its declared ownership,
+  // reference commits, and every real media/Scene asset against the pinned Git tree.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
     root,
@@ -324,75 +339,41 @@ async function analyze(meta) {
     git,
     ts: require('typescript'),
   });
-  const authorization = authorizations(meta, input, root, blocks);
-  const engineDir = '../../../shared/engine/dist/generators/materializers/';
-  const adapter =
-    meta.bank === 'questions'
-      ? require(engineDir + 'questionBank/questionBankGitTransaction.js')
-      : require(engineDir + 'flashcardBank/flashcardBankGitTransaction.js');
-  const gitContext = context(meta, root);
-  const checked =
-    meta.bank === 'questions'
-      ? adapter.checkReviewedQuestionBankSource(input, authorization, gitContext)
-      : adapter.checkReviewedFlashcardBankSource(input, authorization, gitContext);
-  if (checked.noop || checked.changedPaths.length < 5) {
-    throw Error('Expected one complete, not previously applied Stage 3 bank transition');
-  }
-  const committed =
-    meta.bank === 'questions'
-      ? adapter.writeReviewedQuestionBankSource(input, authorization, gitContext)
-      : adapter.writeReviewedFlashcardBankSource(input, authorization, gitContext);
-  if (!committed.worktreeRefreshRequired || committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
-    throw Error('Trusted Bank writer disagrees with checked atomic source plan');
-  }
-  if (
-    committed.changedPaths.filter(filename => filename === meta.sourcePath).length !== 1 ||
-    git(root, 'ls-tree', committed.commitSha, '--', meta.sourcePath)
-  ) {
-    throw Error('Trusted Bank writer must consume the exact reviewed draft');
-  }
-  const files = committed.changedPaths
-    .filter(filename => filename !== meta.sourcePath)
-    .map(filename => {
-      // Preserve exact Git blob bytes, including trailing newlines.
-      const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
-      if (!Buffer.from(exact.toString('utf8'), 'utf8').equals(exact)) {
-        throw Error('Generated Bank source is not valid UTF-8');
-      }
-      return { path: filename, sha256: sha256(exact), base64: exact.toString('base64') };
+  const approval = authorizations(meta, input, root, blocks);
+  if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
+    throw Error('Bank input differs from pinned reviewed source');
+  const files = plan.files
+    .map(file => {
+      const content = Buffer.from(file.content ?? '', 'utf8');
+      if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content)) throw Error('Invalid worker source bytes');
+      return {
+        path: meta.identity.folder + '/' + file.path,
+        sha256: sha256(content),
+        base64: content.toString('base64'),
+      };
     })
     .sort((a, b) => a.path.localeCompare(b.path));
-  const treeSha = git(root, 'rev-parse', committed.commitSha + '^{tree}');
   const reportData = {
-    version: 2,
+    version: 3,
     meta,
-    treeSha,
     deletedSource: { path: meta.sourcePath, blobSha: meta.sourceBlob },
-    inputSha256: authorization.source.inputSha256,
+    inputSha256: approval.source.inputSha256,
     files,
   };
   verifyTypedManifest(reportData, meta);
   assertTypedBankInventory(meta, input, files);
-  // Semantic TypeScript analysis of ALL generated Question kinds/Card Sides,
-  // against the actual @svitlo/engine/build declarations. Read-only.
-  const { typecheckGeneratedBankModules } = await import('./bank-typed-stage3.mjs');
-  typecheckGeneratedBankModules(
-    root,
-    committed.commitSha,
-    files.map(f => f.path),
-    trustedRoot,
-  );
   const location = process.env.BANK_REPORT;
+  if (!location) throw Error('Missing trusted bank report path');
   fs.mkdirSync(path.dirname(location), { recursive: true });
-  fs.writeFileSync(location, JSON.stringify(reportData) + '\n', { flag: 'wx' });
+  fs.writeFileSync(location, JSON.stringify(reportData) + '\\n', { flag: 'wx' });
   report(
-    'Verified typed ' +
+    'Isolated reviewed ' +
       meta.bank +
-      ' Stage 3 source at ' +
-      meta.head +
-      '; planned ' +
+      ' Stage 5 planned ' +
       files.length +
-      ' bank-owned Git objects; zero remote writes',
+      ' bank-owned sources from ' +
+      meta.sourceBlob +
+      '; zero Git writes',
   );
 }
 async function publish(meta) {
@@ -430,8 +411,8 @@ async function publish(meta) {
       }
     }
   }
-  // Engine's trusted local Git writer already computed this immutable tree.
-  // Rebuild it via the Git Data API, verify exact Git tree SHA before commit.
+  // Exactly one Git tree is constructed from the immutable worker artifact.
+  // Do not regenerate or execute reviewed TypeScript in this privileged job.
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
     tree: [
@@ -444,9 +425,7 @@ async function publish(meta) {
       { path: meta.sourcePath, mode: '100644', type: 'blob', sha: null },
     ],
   });
-  if (tree.sha !== reportData.treeSha) {
-    throw Error('Git Data API result differs from trusted Bank transaction tree');
-  }
+  if (!SHA.test(tree.sha ?? '')) throw Error('Git Data API returned no valid Bank source tree');
   await inspectTyped(meta.number, meta.bank, withoutActor(meta));
   const commit = await github('git/commits', 'POST', {
     message:
