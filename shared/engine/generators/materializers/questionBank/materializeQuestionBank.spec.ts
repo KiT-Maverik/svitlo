@@ -71,6 +71,7 @@ const finalAuth = (input: unknown = completeBank()) => ({
   },
   snapshot: snapshot(editorial),
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
+  ownerLanguages: { active: ['uk'], planned: (input as ReturnType<typeof completeBank>).production.languages.planned },
 });
 const completeBank = () => ({
   ...handoff(),
@@ -81,16 +82,18 @@ const completeBank = () => ({
   },
 });
 
-test('questions Bank languages are derived only from the reviewed locale plan', () => {
+test('Question source imports its Lesson-owned language type and creates no bank language module', () => {
   const input = completeBank();
   input.production.languages.planned = ['uk', 'en'] as never;
   const output = materializeQuestionBank(input as never, finalAuth(input));
-  const source = output.files.find(file => file.path === 'questionsLanguages.ts')!.content;
-  assert.match(source, /\/\/   "uk",/);
-  assert.match(source, /\/\/   "en",/);
-  assert.doesNotMatch(source, /\/\/   "zh",/);
-  assert.match(source, /export const languages = \["uk"\] as const satisfies SupportedLanguages/);
-  assert(output.diagnostics.some(entry => entry.code === 'pending-locales'));
+  const paths = output.files.map(file => file.path);
+  assert(!paths.includes('questionsLanguages.ts'));
+  const source = output.files.find(file => file.path === 'questions/selectOneAnswer/promptOne.ts')?.content ?? '';
+  assert.match(source, /import type \{ Languages \} from "#lessonsData\/0\//);
+  assert.match(source, /typeof content, Languages>/);
+  const root = output.files.find(file => file.path === 'questions/index.ts')?.content ?? '';
+  assert.match(root, /export type \{ Languages \} from/);
+  assert(output.files.some(file => file.content.includes('Restore independently reviewed translations')));
 });
 
 test('Question Bank Stage 1 creates exactly one type-annotated editable source', () => {

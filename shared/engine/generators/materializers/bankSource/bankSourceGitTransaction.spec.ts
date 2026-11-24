@@ -88,7 +88,6 @@ function final(kind: BankGitKind, original: string, context: BankGitContext): Ba
       file(kind + '/index.ts', 'export const ' + kind + ' = { first: true };\n'),
       file(member, 'export const answer = { id: "' + entityId + '" };\n'),
       ...barrel,
-      file(kind + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
     ],
     diagnostics: [],
     publishable: false,

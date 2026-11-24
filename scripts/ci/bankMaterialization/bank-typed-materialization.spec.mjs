@@ -26,6 +26,7 @@ const canonical = bank => ({
     base: 'agent/lesson',
     baseHead: 'b'.repeat(40),
     lessonBlob: 'c'.repeat(40),
+    lessonConstantsBlob: 'd'.repeat(40),
     actor: 'owner',
     number: 888,
     repo: 'KiT-Maverik/svitlo',
@@ -45,7 +46,7 @@ function sample(bank) {
     deletedSource: { path: data.meta.sourcePath, blobSha: data.meta.sourceBlob },
     files: [
       file(root + bank + '/index.ts', 'export const finished = {};\n'),
-      file(root + bank + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
+      file(root + bank + '/first/description.md', '# Owner-reviewed description\n'),
       file(root + bank + '/first.ts', 'export const first = true;\n'),
       file(root + bank + '/first/specification.md', '# reviewed\n'),
     ],
@@ -79,9 +80,9 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
   const paths = [
     'alpha.ts',
     'alpha/content/front/index.ts',
-    'alpha/content/front/items/prompt/index.ts',
+    'alpha/content/front/prompt/index.ts',
     'alpha/content/back/index.ts',
-    'alpha/content/back/items/answer/index.ts',
+    'alpha/content/back/answer/index.ts',
     'alpha/content/hint/index.ts',
   ];
   const files = paths.map(name => ({ path: root + name }));
@@ -269,6 +270,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
   const baseHead = 'b'.repeat(40);
   const source = 'c'.repeat(40);
   const lessonBlob = 'd'.repeat(40);
+  const constantsBlob = 'e'.repeat(40);
   const child = {
     state: 'open',
     draft: true,
@@ -300,6 +302,12 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       sha: lessonBlob,
       size: 100,
     },
+    ['contents/' + folder + '/constants.ts?ref=' + baseHead]: {
+      type: 'file',
+      path: folder + '/constants.ts',
+      sha: constantsBlob,
+      size: 100,
+    },
     ...overrides,
   });
   globalThis.fetch = async url => {
@@ -317,6 +325,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       const ok = await inspectTyped(888, bank);
       assert.equal(ok.sourceBlob, source);
       assert.equal(ok.lessonBlob, lessonBlob);
+      assert.equal(ok.lessonConstantsBlob, constantsBlob);
       assert.equal(ok.baseHead, baseHead);
       assert.equal(ok.head, head);
       assert.equal(ok.sourcePath, folder + '/' + bank + '/draft.ts');
@@ -338,7 +347,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       assert.deepEqual(await inspectTyped(888, bank, ok), ok);
       changeDuringDiscovery = null;
 
-      for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob']) {
+      for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob', 'lessonConstantsBlob']) {
         await assert.rejects(inspectTyped(888, bank, { ...ok, [key]: 'e'.repeat(40) }), /changed/);
       }
       const comparisonPath = 'compare/' + baseHead + '...' + head;
@@ -366,6 +375,9 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
         overrides = { [sourcePath]: bad };
         await assert.rejects(inspectTyped(888, bank), /Pinned typed Bank source/);
       }
+      const constantsPath = 'contents/' + folder + '/constants.ts?ref=' + baseHead;
+      overrides = { [constantsPath]: { type: 'symlink', path: folder + '/constants.ts', sha: constantsBlob } };
+      await assert.rejects(inspectTyped(888, bank), /Owning Lesson constants.ts/);
       const lessonPath = 'contents/' + folder + '/index.ts?ref=' + baseHead;
       overrides = { [lessonPath]: { type: 'symlink', path: folder + '/index.ts', sha: lessonBlob } };
       await assert.rejects(inspectTyped(888, bank), /Owning Lesson source/);
