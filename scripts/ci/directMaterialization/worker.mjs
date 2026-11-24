@@ -63,7 +63,7 @@ const collectBankBlocks = input => {
 };
 const bankAuthorization = input => {
   bankInput = input;
-  const ownerLessonId = source.sourcePath.split('/')[4];
+  const ownerLessonId = source.sourcePath.split('/')[5];
   const reviewed = {
     approved: true,
     content: sourceText,
