@@ -98,7 +98,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   const importedFile = formattedReference.entries.find(entry => entry.path === reused.placementSourcePath);
   const originalReference = Buffer.from(importedFile.data, 'base64').toString('utf8');
   const singleQuoted = originalReference.replace(
-    /from "([^"\\n]+)";/,
+    /from "([^"\n]+)";/,
     "from '$1';",
   );
   assert.notEqual(singleQuoted, originalReference);
