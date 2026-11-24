@@ -132,6 +132,18 @@ const completed = () => ({
   },
 });
 
+test('flashcards Bank languages are derived only from the reviewed locale plan', () => {
+  const input = completed();
+  input.production.lesson.languages.planned = ['uk', 'en'] as never;
+  const output = materializeFlashcardBank(input as never, finalAuthorization(input));
+  const source = output.files.find(file => file.path === 'flashcardsLanguages.ts')!.content;
+  assert.match(source, /\/\/   "uk",/);
+  assert.match(source, /\/\/   "en",/);
+  assert.doesNotMatch(source, /\/\/   "zh",/);
+  assert.match(source, /export const languages = \["uk"\] as const satisfies SupportedLanguages/);
+  assert(output.diagnostics.some(entry => entry.code === 'pending-locales'));
+});
+
 test('Flashcard Stage 1 produces one editorial source, no fake Card or Section', () => {
   const result = materializeFlashcardBankDraft(handoff() as never, draftAuthorization);
   assert.equal(result.publishable, false);
