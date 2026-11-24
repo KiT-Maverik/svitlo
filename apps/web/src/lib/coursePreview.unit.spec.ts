@@ -38,3 +38,20 @@ describe('published course presentation', () => {
     expect(getCourseMessages('pl')).toEqual(getCourseMessages('en'));
   });
 });
+
+it('does not count a Course-owned Assessment as a Lesson or Module', () => {
+  const withAssessment = structuredClone(course);
+  const module = withAssessment.content.items.module;
+  if (module.type !== 'module' && module.type !== 'chapter')
+    throw Error('Expected Module fixture');
+  module.content.items.review = {
+    id: '11111111-1111-4111-8111-111111111119',
+    type: 'assessment',
+    slug: 'review',
+    params: { languages: ['uk'] },
+    locale: { title: 'Review' },
+    section: [],
+  };
+  module.content.order.push('review');
+  expect(toCoursePreview(withAssessment)).toMatchObject({ lessons: 1, modules: 1 });
+});
