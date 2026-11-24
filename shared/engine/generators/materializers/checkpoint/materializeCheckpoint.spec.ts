@@ -123,15 +123,17 @@ test('Checkpoint recursively materializes Item → Text + Answer → Carousel �
   assert.deepEqual(result, materializeTree());
   const paths = result.files.map(file => file.path);
   for (const suffix of [
-    'content/items/first/index.ts',
-    'content/items/first/question/index.ts',
-    'content/items/first/answer/index.ts',
-    'content/items/first/answer/content/items/slides/index.ts',
-    'content/items/first/answer/content/items/slides/slides/items/practiceScene/index.ts',
-    'content/items/first/answer/content/items/slides/slides/items/practiceScene/specification.md',
+    'first/index.ts',
+    'first/question/index.ts',
+    'first/answer/index.ts',
+    'first/answer/slides/index.ts',
+    'first/answer/slides/slides/practiceScene/index.ts',
+    'first/answer/slides/slides/practiceScene/specification.md',
     'index.ts',
   ])
     assert.ok(paths.includes('sections/review/' + suffix), 'missing ' + suffix);
+  assert.equal(paths.filter(path => path.includes('/content/items/')).length, 0);
+  assert.equal(paths.filter(path => path.includes('/slides/items/')).length, 0);
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpoint<"review", typeof content.items, typeof languages>/);
   assert.match(code, /"uk": "Перевір себе"/);

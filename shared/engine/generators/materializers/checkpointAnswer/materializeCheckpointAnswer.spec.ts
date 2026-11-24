@@ -23,7 +23,7 @@ function context() {
   return {
     requests,
     renderer: {
-      directory: 'content/items/first/answer',
+      directory: 'first/answer',
       documentLanguage: 'uk',
       languagesImport: '../../../../languages',
       renderChild: (child: CheckpointAnswerBlockSource, directory: string) => {
@@ -48,8 +48,8 @@ test('CheckpointAnswer delegates each ContentBlock and preserves order, imports 
   const { renderer, requests } = context();
   const result = materializeCheckpointAnswer(answer(), renderer);
   assert.deepEqual(requests, [
-    'text:content/items/first/answer/content/items/second',
-    'text:content/items/first/answer/content/items/first',
+    'text:first/answer/second',
+    'text:first/answer/first',
   ]);
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpointAnswer<"answer", typeof content.items, typeof languages>/);
@@ -128,7 +128,7 @@ test('CheckpointAnswer forbids a child delegate from writing outside its assigne
         ...context().renderer,
         renderChild: child => ({
           exportName: child.slug,
-          files: [{ path: 'content/items/first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
+          files: [{ path: 'first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
           diagnostics: [],
         }),
       }),
