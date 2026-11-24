@@ -1,13 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { collectBankSceneDrafts, materializeBankSceneDrafts } from './materializeBankSceneDrafts';
+import type { AssessmentBlockEvidence } from './materializeAssessmentBlock';
 
 const uuid = '11111111-1111-4111-8111-11111111111a';
 const scene = () => ({
   config: { id: uuid, slug: 'visual', type: 'scene', params: {}, locale: { value: { title: { uk: 'Сцена' } } } },
   production: { specification: 'A reviewed choice\n*/\nexport const malicious = true;' },
 });
-const bank = value => ({
+const bank = (value: unknown) => ({
   questions: {
     selectOneAnswer: {
       choose: {
@@ -20,7 +21,7 @@ const bank = value => ({
     },
   },
 });
-const evidence = changes => ({
+const evidence = (changes: Partial<AssessmentBlockEvidence>) => ({
   registeredSceneIds: new Set<string>(),
   approvedMediaBlockIds: new Set<string>(),
   newSceneIds: new Set([uuid]),
