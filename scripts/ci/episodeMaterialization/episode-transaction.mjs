@@ -298,7 +298,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
   // reading it does not require TypeScript, user code or npm packages.
   const match = sourceHandoff.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
   );
   if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
   const handoff = JSON.parse(match[1]);
