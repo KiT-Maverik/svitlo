@@ -199,10 +199,16 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   assert.throws(() => materializeQuestionBank(completeBank() as never, badReview), /pinned bytes/);
   const empty = completeBank();
   empty.config.questions.selectOneAnswer = {} as never;
-  assert.throws(() => materializeQuestionBank(empty as never, finalAuth(empty)), /no members/);
+  assert.throws(
+    () => materializeQuestionBank(empty as never, finalAuth(empty)),
+    /Question Bank must contain a Question/,
+  );
   const wrong = completeBank();
   wrong.config.questions.selectOneAnswer.promptOne.config.type = 'otherKind' as never;
-  assert.throws(() => materializeQuestionBank(wrong as never, finalAuth(wrong)), /kind\/slug mismatch/);
+  assert.throws(
+    () => materializeQuestionBank(wrong as never, finalAuth(wrong)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
 });
 
 test('Question source materialization does not gate on editorial bank-required status', () => {
