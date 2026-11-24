@@ -49,12 +49,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Prove typed Lesson and bank publishers load without installed packages
         run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
 
@@ -63,12 +63,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
 
   generator-tests:
@@ -77,10 +77,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
