@@ -918,6 +918,11 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert(paths.includes(root + 'ChooseShape.tsx'));
   assert(paths.includes(root + 'ChooseShape.unit.spec.tsx'));
   assert(!paths.some(path => path === root + 'specification.md'));
+  const sceneConfigPath = folder + 'sections/introduction/chooseShape/';
+  assert(!paths.includes(sceneConfigPath + 'specification.md'));
+  const sceneConfig = result.files.find(file => file.path === sceneConfigPath + 'index.ts')!.content;
+  assert.match(sceneConfig, /defineScene<[\s\S]*TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(sceneConfig, /\* \/\n \* export const injected = true;/);
   const tsx = result.files.find(file => file.path === root + 'ChooseShape.tsx')!.content;
   assert.match(tsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
   assert.match(tsx, /TODO \(BLOCKER\)/);
