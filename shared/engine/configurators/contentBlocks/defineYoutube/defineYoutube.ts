@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import { UNRESOLVED_YOUTUBE_HREF, type AllLanguageCodes, type LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -35,6 +35,13 @@ const parseAndValidate = (config: ContentBlock_Youtube_Config): ContentBlock_You
 const validate = (config: ContentBlock_Youtube_Config): void => {
   parseAndValidate(config);
 };
+
+function assertResolvedHref(href: ContentBlock_Youtube_Config['locale']['href']): void {
+  if (href === UNRESOLVED_YOUTUBE_HREF ||
+      (typeof href === 'object' && Object.values(href).includes(UNRESOLVED_YOUTUBE_HREF))) {
+    throw new Error('YouTube publication blocked: unresolved video reference');
+  }
+}
 
 const buildYoutubeProps = (
   config: ContentBlock_Youtube_Config,
@@ -111,7 +118,9 @@ export const defineYoutube = <
     options: PublicationLanguageOptions<Languages>,
   ): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildYoutubeProps(parseAndValidate(copyAuthored()));
+    const parsed = parseAndValidate(copyAuthored());
+    assertResolvedHref(parsed.locale.href);
+    const result = buildYoutubeProps(parsed);
     result.locale = selectPublicationLocales(result.locale, languages);
     validateRequestedPublication(youtube_Props_Schema, result, languages);
     return result;
@@ -126,6 +135,7 @@ export const defineYoutube = <
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
       const effective = youtube_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
+      assertResolvedHref(effective.locale.href);
       const output = buildYoutubePatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
       validateRequestedPublication(youtube_Props_Schema, props(options), languages, output);
