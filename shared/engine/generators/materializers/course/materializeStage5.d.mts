@@ -22,7 +22,7 @@ export type SourceRenderResult = {
   files: SourceFile[];
   diagnostics?: SourceDiagnostic[];
 };
-export type CourseStage5Review = {
+export type CourseStage5Source = {
   sourcePath: string;
   sourceBlobSha: string;
   reviewCommitSha: string;
@@ -43,10 +43,10 @@ export type ExistingLesson = {
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
-  review: CourseStage5Review;
-  verifyReviewedSource: (arg: {
+  source: CourseStage5Source;
+  verifySource: (arg: {
     input: CourseWorkflowMaterializerInput;
-    review: CourseStage5Review;
+    source: CourseStage5Source;
     textbookRoot: string;
   }) => boolean;
   resolveExistingLesson?: (arg: {
@@ -81,7 +81,6 @@ export type CourseStage5Plan = {
   sourcePath: string;
   materializedPath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
   courseId: string;
   root: string;
   files: readonly SourceFile[];

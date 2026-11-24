@@ -76,7 +76,7 @@ or mistaken for a bank. Stage 4 reviews and directly corrects the Stage 3
 source in the same Questions PR, retaining baseline/final SHA evidence in the
 PR only. Stage 5 uses `QuestionBankWorkflowMaterializerInput`, an alias to
 the final Stage 3 type, and an explicit verified source-preserving transition to
-the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, immutable source SHA and independent review.
+the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, explicit authorized invocation and immutable source SHA. Independent review remains editorial; no PR prose or verdict is parsed.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
 does not prove unique order keys/UUIDs, source SHA, completed review, scoring,
@@ -184,7 +184,7 @@ rather than inventing assessment semantics.
 
 **Prerequisite:** verify the current bank-level bridge, safe writer and actual composition of the nine Question-kind materializers. The final input is exactly
 `QuestionBankWorkflowMaterializerInput = QuestionBankWorkflowStage3`;
-review evidence remains on the PR, not in a second MaterializeProps object.
+review evidence remains human-readable on the PR, not in a second MaterializeProps object or machine-parsed eligibility gate.
 A Stage 1 or Stage 2 source cannot call the final materializer.
 
 Once integrated and separately authorized, preflight exact Lesson UUID/path,

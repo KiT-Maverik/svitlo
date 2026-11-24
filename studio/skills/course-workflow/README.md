@@ -27,6 +27,6 @@ Stage 8 is mandatory human-owned integrated Course QA, after Stage 7. Agents and
 
 ## Operational boundary
 
-Verify the trusted workflow on the default branch and the actual authorized run, source/review SHAs and generated commit before declaring successful materialization.
+Verify the trusted workflow on the default branch and the actual authorized run, pinned source SHAs and generated commit before declaring successful materialization.
 
 For detailed methodology, partial/final acceptance, assessment-only Lesson dependencies, PR tracker format and Stage 5–8 handoffs, consult only [Create Course Flow](./create-course-flow.skill.md).

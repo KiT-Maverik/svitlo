@@ -96,13 +96,11 @@ const source = () => ({
 const root = 'content/playground/data/courses/3/' + rootId;
 const options = () => ({
   textbookRoot: 'content/playground',
-  review: {
+  source: {
     sourcePath: root + '/draft.ts',
     sourceBlobSha: sha,
-    reviewCommitSha: sha,
-    reviewVerdict: 'accepted',
   },
-  verifyReviewedSource: () => true,
+  verifySource: () => true,
 });
 
 test('historical UUID namespace uses full placement and remains deterministic on retry', () => {
@@ -172,10 +170,10 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content, /import \{ directLesson /);
 });
 
-test('Course Stage 5 fails closed on unauthorized review, duplicate order and partial Lesson intent', () => {
-  const noReview = options();
-  noReview.verifyReviewedSource = () => false;
-  assert.throws(() => materializeCourseStage5(source(), noReview), /not independently authorized/);
+test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
+  const unverified = options();
+  unverified.verifySource = () => false;
+  assert.throws(() => materializeCourseStage5(source(), unverified), /not independently verified/);
   const unordered = source();
   unordered.config.content.order = ['moduleOne', 'moduleOne'];
   assert.throws(() => materializeCourseStage5(unordered, options()), /order/);
@@ -183,7 +181,7 @@ test('Course Stage 5 fails closed on unauthorized review, duplicate order and pa
   delete incomplete.config.content.items.directLesson.production.assessment;
   assert.throws(() => materializeCourseStage5(incomplete, options()), /four explicit assessment/);
   const unreviewedSource = options();
-  delete unreviewedSource.review.sourceBlobSha;
+  delete unreviewedSource.source.sourceBlobSha;
   assert.throws(() => materializeCourseStage5(source(), unreviewedSource), /requires verified source/);
 });
 

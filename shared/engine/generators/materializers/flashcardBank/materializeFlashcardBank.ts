@@ -23,10 +23,10 @@ import {
   assertBankUuid,
   assertUniqueBankEntityIds,
   assertNoPendingBankSources,
-  assertReviewedBankInput,
+  assertPinnedBankInput,
   authoredBankLiteral,
   preflightBankSource,
-  type BankReviewedSource,
+  type BankPinnedSource,
   type BankSourceSnapshot,
   type BankSourceResult,
   type BankSourceFile,
@@ -39,16 +39,10 @@ export type FlashcardBankDraftAuthorization = {
   ownerLessonId: string;
   lessonSourceSha: string;
   referenceSourceSha: string;
-  /** Trusted current Question Stage 4/5 completion, or Methodologist N/A SHA. */
-  questionSourceSha?: string;
-  questionReviewSha?: string;
-  methodologySourceSha?: string;
-  /** Explicit Lesson owner exception when a standalone bank is not otherwise required. */
-  independentBankAuthorization?: { sourceSha: string; rationale: string };
   snapshot: BankSourceSnapshot;
 };
 export type FlashcardBankFinalAuthorization = Omit<FlashcardBankDraftAuthorization, 'authorized'> & {
-  reviewed: BankReviewedSource;
+  source: BankPinnedSource;
   blocks: AssessmentBlockEvidence;
 };
 
@@ -71,7 +65,7 @@ function validateStage1(
   auth: FlashcardBankDraftAuthorization | FlashcardBankFinalAuthorization,
 ): void {
   if (!input?.production?.lesson) throw new Error('Owning Lesson Stage 8 handoff required');
-  const { lesson, questions, analysis } = input.production;
+  const { lesson, analysis } = input.production;
   assertBankUuid(auth.ownerLessonId, 'Flashcard owner Lesson');
   if (lesson.id !== auth.ownerLessonId) throw new Error('Flashcard Bank Lesson UUID mismatch');
   assertBankSha(lesson.sourceSha, 'Lesson source SHA');
@@ -83,39 +77,6 @@ function validateStage1(
   assertBankLanguages(lesson.languages);
   if (!lessonProductionAssessmentRequirements_Schema.safeParse(lesson.assessment).success) {
     throw new Error('All four Lesson assessment decisions must be preserved');
-  }
-  if (lesson.assessment.flashcardBankRequired !== true) {
-    const independent = auth.independentBankAuthorization;
-    if (!independent) throw new Error('Flashcards N/A: independent bank authorization required');
-    assertBankSha(independent.sourceSha, 'Independent Flashcard Bank authorization');
-    assertBankStatement(independent.rationale, 'Independent Flashcard Bank rationale');
-    if (independent.sourceSha !== lesson.sourceSha) throw new Error('Stale independent Flashcard Bank authorization');
-  }
-  if (!questions || (questions.kind !== 'completed' && questions.kind !== 'notApplicable')) {
-    throw new Error('Explicit Questions-first prerequisite required');
-  }
-  if (questions.kind === 'completed') {
-    assertBankSha(questions.sourceSha, 'Completed Questions source');
-    assertBankSha(questions.reviewSha, 'Completed Questions review');
-    assertBankPath(questions.bankPath);
-    if (
-      questions.integrated !== true ||
-      questions.sourceSha !== auth.questionSourceSha ||
-      questions.reviewSha !== auth.questionReviewSha
-    ) {
-      throw new Error('Missing, unintegrated or stale independently reviewed Question Bank');
-    }
-  } else {
-    assertBankStatement(questions.rationale, 'Methodologist Questions N/A rationale');
-    assertBankSha(questions.methodologySourceSha, 'Methodologist Questions N/A source');
-    if (
-      !Number.isInteger(questions.parentLessonPr) ||
-      questions.parentLessonPr <= 0 ||
-      questions.methodologySourceSha !== auth.methodologySourceSha ||
-      lesson.assessment.questionBankRequired
-    ) {
-      throw new Error('Unauthenticated or contradictory Questions N/A decision');
-    }
   }
   if (!analysis || !Array.isArray(analysis.recallObjectives) || !analysis.recallObjectives.length) {
     throw new Error('Real Flashcard recall analysis required');
@@ -244,7 +205,7 @@ function planFlashcardBank(
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization);
-  assertReviewedBankInput(input, authorization.reviewed);
+  assertPinnedBankInput(input, authorization.source);
   const inventory = input.config.flashcards;
   assertBankOrder(inventory.items, inventory.order, 'Flashcard inventory', true);
   assertUniqueBankEntityIds(inventory);
@@ -340,7 +301,7 @@ function planFlashcardBank(
   const plan = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'flashcards/index.ts',
     draftPath: 'flashcards/draft.ts',
-    reviewed: authorization.reviewed,
+    source: authorization.source,
   });
   return { ...plan, diagnostics };
 }
