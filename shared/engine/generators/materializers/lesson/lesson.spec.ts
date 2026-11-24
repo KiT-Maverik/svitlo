@@ -105,8 +105,9 @@ test('Section subtree has parent-owned Lesson and Episode language imports', () 
     },
   });
   const sub = fromLesson.files.filter(f => f.path.startsWith('sections/introduction/'));
-  assert.match(sub.find(f => f.path.endsWith('/index.ts'))?.content ?? '', /#lessonsData/);
-  assert.match(fromEpisode.files.find(f => f.path.endsWith('/index.ts'))?.content ?? '', /#episodesData/);
+  const sectionPath = 'sections/introduction/index.ts';
+  assert.match(sub.find(f => f.path === sectionPath)?.content ?? '', /#lessonsData/);
+  assert.match(fromEpisode.files.find(f => f.path === sectionPath)?.content ?? '', /#episodesData/);
   const normalize = (files: typeof sub) =>
     files.map(file => ({
       ...file,

@@ -51,7 +51,10 @@ test('fillBlanksWithBlocks: deterministic modular source, nested imports, source
   assert.match(main.content, /child_content_question_items_prompt/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/slots/firstGap/correctAnswer/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/distractors/wrong/index.ts')));
   assert(!a.files.some(file => file.path.includes('/items/')));
+  assert.ok(main.content.includes('from "./sampleQuestion/slots/firstGap/correctAnswer"'));
   assert.match(main.content, /from "\.\/sampleQuestion\/question\/prompt"/);
   for (const file of a.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {

@@ -236,8 +236,8 @@ export function materializeFillBlanksWithBlocks(
       safeSlug(child.slug, location + '.slug');
       if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
-      // Keep semantic Question roles, but discard source-only content/items wrappers.
-      const childPath = [...parts.slice(1, -2), parts[parts.length - 1]].join('/');
+      // Preserve slot identity and correct-answer role without source-only items wrappers.
+      const childPath = parts[1] === 'slots' ? ['slots', parts[3], parts[4]].join('/') : [parts[1], parts[3]].join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(

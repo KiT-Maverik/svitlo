@@ -424,9 +424,11 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const sourceFor = (value: LessonWorkflowStage2) => {
     // These are executable Configurator imports, not handwritten bank UUIDs.
     const reviewedObject = JSON.stringify(value, null, 2)
+      .replace(reviewedSkillLiteral, '"skills": [identify2dShapes.id]')
       .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
       .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/, '"flashcardIds": [memoryCard.id]');
     const sourceText = [
+      "import { identify2dShapes } from '#skillsData/geometry/figures/identify2dShapes';",
       "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
       "import { reviewQuestion } from './questions/multipleChoice/example';",
       "import { reviewCard as memoryCard } from './flashcards/example';",
@@ -452,9 +454,10 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
   assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
-  assert.equal(
-    plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
-    false,
+  assert.deepEqual(
+    plan.diagnostics.filter(diagnostic => diagnostic.code.startsWith('pending-')),
+    [],
+    'complete imported assessment Sections should not have pending diagnostics',
   );
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);

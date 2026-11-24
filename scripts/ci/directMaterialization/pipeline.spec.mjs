@@ -125,6 +125,13 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
     );
     const episodeId = deriveCourseEntityId(courseId, 'episode', 'content/episodeOne');
     write(candidateRoot, paths.episode, typedCall('materializeEpisodeStage5', episodeStage2(episodeId)));
+    write(
+      candidateRoot,
+      bankRoot + '/constants.ts',
+      "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
+        "export const languages = ['uk'] as const satisfies SupportedLanguages;\n" +
+        'export type Languages = typeof languages;\n',
+    );
     write(candidateRoot, paths.questions, typedCall('materializeQuestionBank', questionStage3()));
     write(candidateRoot, paths.flashcards, typedCall('materializeFlashcardBank', flashcardStage3()));
 
@@ -158,7 +165,14 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
         candidateRoot,
         textbook,
         operation,
-        source: { sourcePath: filename, sourceBlobSha: blob, sourceCommitSha: head },
+        source: {
+          sourcePath: filename,
+          sourceBlobSha: blob,
+          sourceCommitSha: head,
+          ...(['questions-stage5', 'flashcards-stage5'].includes(operation)
+            ? { lessonConstantsBlobSha: git(candidateRoot, 'rev-parse', 'HEAD:' + bankRoot + '/constants.ts') }
+            : {}),
+        },
       });
     };
     const coursePlan = invoke('course-stage5', paths.course);

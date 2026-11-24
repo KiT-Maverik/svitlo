@@ -215,7 +215,9 @@ test('existing six-file Scene drafts remain blocked and cannot be overwritten', 
   git(f.root, 'add', '-A');
   git(f.root, 'commit', '-m', 'Implement reviewed Scene', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
-  const registered = f.resolve(f.input({ visual: f.scene() }));
+  const registeredInput = f.input({ visual: f.scene() });
+  registeredInput.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  const registered = f.resolve(registeredInput);
   assert.deepEqual([...registered.registeredSceneIds], [sceneId]);
   assert.deepEqual([...registered.existingDraftSceneIds], []);
 });
