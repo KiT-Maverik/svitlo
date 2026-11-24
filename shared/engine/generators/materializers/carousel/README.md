@@ -1,6 +1,6 @@
 # Composite Block and Scene typed source materializers
 
-**Integrated in #775:** five concrete, distinct source emitters, each with its own tests and owned nested source layout. They take reviewed plain Config-shaped data plus non-publishable `production` metadata and return deterministic source-file manifests and diagnostics; they never publish Props or write into unreviewed directories.
+**Source contract:** five concrete, distinct source emitters, each with its own tests and owned nested source layout. They take reviewed plain Config-shaped data plus non-publishable `production` metadata and return deterministic source-file manifests and diagnostics; they never publish Props or write into unreviewed directories.
 
 | Kind             | Build factory            | Owned nested source                                           |
 | ---------------- | ------------------------ | ------------------------------------------------------------- |
@@ -28,4 +28,4 @@ npm run code:check:types --workspace @svitlo/engine
 npm test --workspace @svitlo/engine
 ```
 
-The reviewed Stage 6.1 trusted [Lesson materialization](../../../../../scripts/ci/lessonMaterialization/README.md) enforces source/HEAD/reviewer/branch lease and no-clobber rules separately. Standalone renderer tests and Draft CI do not prove a deployed GitHub command, full locales, media, Scene registration or release readiness. Historical YAML feature-parity comparisons in #779 are **archival evidence only**, not supported migration instructions, runtime dependencies or an alternate authoring input.
+The reviewed Stage 6.1 trusted [Lesson materialization](../../../../../scripts/ci/lessonMaterialization/README.md) enforces source/HEAD/reviewer/branch lease and no-clobber rules separately. Standalone renderer tests and Draft CI do not prove a deployed GitHub command, full locales, media, Scene registration or release readiness.

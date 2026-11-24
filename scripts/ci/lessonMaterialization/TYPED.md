@@ -1,9 +1,6 @@
-# Trusted typed Lesson Stage 6.1 (PR #794)
+# Trusted typed Lesson Stage 6.1
 
-This is the **only** Lesson Stage 6.1 PR-command materializer. Legacy
-YAML-only Lesson Stage 6 jobs and their converters were removed in #797.
-The trusted workflow/scripts must land on the default branch before GitHub
-issue comments can invoke them. A Draft integration PR with passing lightweight
+This is the **only** Lesson Stage 6.1 PR-command materializer. Verify the trusted workflow/scripts on the default branch before invoking them. A Draft integration PR with passing lightweight
 CI is not deployment or operational validation.
 
 ## Before authorization
