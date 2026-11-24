@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import ts from 'typescript';
 import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
-import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
@@ -95,7 +95,7 @@ const options = {
   verifySourceInput: () => true,
 };
 function produce(value = valid(), config = options) {
-  return materializeLessonStage6(value as unknown as LessonWorkflowMaterializerInput, config);
+  return materializeLessonStage6(value as unknown as LessonWorkflowStage2, config);
 }
 test('reviewed source yields deterministic ordinary Lesson and nested Section/ContentBlock manifests', () => {
   const input = valid();
@@ -289,7 +289,7 @@ test('four independent assessment decisions, enabled required Sections and compl
   assert.throws(() => produce(noPolicy), /four independent assessment decisions/);
 });
 test('authored enabled Quiz and Flashcards Sections pass separate source materializers', () => {
-  const input = structuredClone(valid()) as unknown as LessonWorkflowMaterializerInput;
+  const input = structuredClone(valid()) as unknown as LessonWorkflowStage2;
   input.config.section.items.reviewQuiz = {
     config: {
       type: 'quiz',
@@ -314,7 +314,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       content: { items: {}, order: [] },
     },
     production: { purpose: 'Reviewed assessment' },
-  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.items.reviewCards = {
     config: {
       type: 'flashcards',
@@ -325,7 +325,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       content: { items: {}, order: [] },
     },
     production: { purpose: 'Reviewed recall practice' },
-  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.order.push('reviewQuiz', 'reviewCards');
   input.config.params = {
     ...input.config.params,
@@ -333,7 +333,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   };
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
-  const sourceFor = (value: LessonWorkflowMaterializerInput) => {
+  const sourceFor = (value: LessonWorkflowStage2) => {
     // These are executable Configurator imports, not handwritten bank UUIDs.
     const reviewedObject = JSON.stringify(value, null, 2)
       .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
