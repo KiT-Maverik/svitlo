@@ -14,6 +14,7 @@ import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
+const verifiedMathSkillId = '54f96aba-7db2-48bb-97ae-5ba2f3436095';
 const assessment = {
   questionBankRequired: false,
   flashcardBankRequired: false,
@@ -25,7 +26,7 @@ const valid = () => ({
     type: 'lesson' as const,
     id: id('01'),
     slug: 'basics',
-    skills: [id('04')],
+    skills: [verifiedMathSkillId],
     params: {
       quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
@@ -117,7 +118,9 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     ].sort(),
   );
   assert(paths.includes(folder + 'methodology.md'));
-  assert(paths.includes(folder + 'specification.md'));
+  assert(!paths.includes(folder + 'specification.md'));
+  assert(paths.includes(folder + 'constants.ts'));
+  assert(!paths.includes(folder + 'languages.ts'));
   assert(!paths.includes(folder + 'sections/introduction/specification.md'));
   assert(paths.includes(folder + 'sections/introduction/prompt/specification.md'));
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
@@ -129,14 +132,13 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     result.files.find(file => file.path === folder + 'methodology.md')!.content,
     /Source lesson methodology/,
   );
-  assert(
-    result.diagnostics.some(d => d.code === 'pending-content' && d.message.includes('purpose')),
-    'the Section notes cannot be dropped before #831 methodology integration',
-  );
-  assert.throws(
+  const rootMethodology = result.files.find(file => file.path === folder + 'methodology.md')!.content;
+  assert.match(rootMethodology, /One observable learning outcome/);
+  assert.match(rootMethodology, /Section: introduction/);
+  assert.match(rootMethodology, /Reviewed sequence/);
+  assert.doesNotThrow(
     () => assertLessonStage6ReleaseReady(result),
-    /publication blocked/,
-    'reviewed Section notes still require methodology transfer',
+    'no unresolved resources in a complete one-locale Lesson',
   );
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
@@ -176,6 +178,10 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
   host.directoryExists = dirname =>
     [...files.keys()].some(filename => filename.startsWith(resolve(dirname) + sep)) ||
     directoryExists?.(dirname) === true;
+  options.paths = {
+    '#lessonsData/*': [resolve(workspace, 'content/math/data/lessons/*')],
+    '#skillsData/*': [resolve(workspace, 'content/math/data/skills/*')],
+  };
   const program = ts.createProgram([...files.keys()], options, host);
   const errors = ts.getPreEmitDiagnostics(program).filter(issue => issue.category === ts.DiagnosticCategory.Error);
   assert.deepEqual(
@@ -213,6 +219,10 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
     const execute = vm.compileFunction(js, ['require', 'exports']);
     execute((specifier: string) => {
       if (specifier === '@svitlo/engine/build') return { defineLesson, defineContentSection, defineText };
+      if (specifier === '#skillsData/geometry/figures/identify2dShapes')
+        return { identify2dShapes: { id: verifiedMathSkillId } };
+      if (specifier.startsWith('#lessonsData/') && specifier.endsWith('/constants'))
+        return load('constants.ts');
       assert(specifier.startsWith('.'), 'only exact imported generated modules allowed');
       const next = posix.join(posix.dirname(normalized), specifier);
       return load(sources.has(next + '.ts') ? next + '.ts' : next + '/index.ts');
@@ -229,7 +239,7 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   const props = lesson.build.props({ languages: ['en'] });
   assert.equal(props.base.section.length, 1);
   assert.equal(props.base.section[0].type, 'content');
-  assert.deepEqual(props.base.skills, [id('04')]);
+  assert.deepEqual(props.base.skills, [verifiedMathSkillId]);
 });
 test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
@@ -390,10 +400,9 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
   assert.equal(
     plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
-    true,
-    'approved assessment imports do not waive the separate methodology handoff',
+    false,
   );
-  assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
   const quiz = provisional.config.section.items.reviewQuiz as unknown as {
     config: { params: { selection: { questionIds: string[] } } };
@@ -471,7 +480,7 @@ test('planned translations and missing Scene remain explicit nonpublishable bloc
   const translated = valid();
   translated.production.languages.planned.push('uk');
   const plan = produce(translated);
-  assert(plan.diagnostics.some(item => item.code === 'pending-lesson'));
+  assert(plan.diagnostics.some(item => item.code === 'pending-localizations'));
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
 });
 
@@ -524,7 +533,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const fixture: LessonWorkflowStage2 = {
     config: {
       ...base.config,
-      skills: [id('04')],
+      skills: [verifiedMathSkillId],
       section: {
         items: {
           introduction: {
@@ -686,13 +695,15 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   for (const path of ['link', 'embed']) {
     const source =
-      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')?.content ?? '';
+      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')
+        ?.content ?? '';
     assert.match(
       source,
       /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
     );
   }
-  const carouselSlide = plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
+  const carouselSlide =
+    plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);
