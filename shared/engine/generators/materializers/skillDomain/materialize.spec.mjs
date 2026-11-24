@@ -95,3 +95,19 @@ test('missing direct Skill identity is allocated through delegated deterministic
   });
   assert.ok(result.files.some(file => file.path === 'firstSkill.ts'));
 });
+
+test('SkillDomain rejects escaped files from delegated Group materializer', () => {
+  const maliciousGroup = () => ({
+    id: GID,
+    exportName: 'firstGroup',
+    files: [
+      { path: 'firstGroup/index.ts', kind: 'typescript', content: 'export const firstGroup = 1;\n' },
+      { path: 'escaped.txt', kind: 'markdown', content: 'bad\n' },
+    ],
+  });
+  assert.throws(() => materializeSkillDomain(config(), {
+    sourceLanguage: 'uk',
+    materializeSkill,
+    materializeSkillGroup: maliciousGroup,
+  }), /escaped its source owner/);
+});
