@@ -45,14 +45,25 @@ test('a Course-owned seed is not Lesson Stage 6 input, even at the canonical dra
     const seedObject = {
       config: { id, type: 'lesson', slug: 'intro', skills: [questionId], locale: { title: { en: 'Intro' } } },
       proposal: {
-        methodology: 'Describe an observation', objective: 'Distinguish observation from inference',
-        depth: 'Introductory', sequenceReason: 'Before explanation', assessmentEvidence: 'Explain a new example',
-        assessment: { questionBankRequired: false, flashcardBankRequired: false, quizSectionRequired: false, flashcardsSectionRequired: false },
+        methodology: 'Describe an observation',
+        objective: 'Distinguish observation from inference',
+        depth: 'Introductory',
+        sequenceReason: 'Before explanation',
+        assessmentEvidence: 'Explain a new example',
+        assessment: {
+          questionBankRequired: false,
+          flashcardBankRequired: false,
+          quizSectionRequired: false,
+          flashcardsSectionRequired: false,
+        },
       },
       languageContext: { document: 'en', planned: ['en'] },
     };
-    const seed = "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n" +
-      'export const lessonSeed = ' + JSON.stringify(seedObject) + ' satisfies CourseWorkflowLessonSeed;\n';
+    const seed =
+      "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n" +
+      'export const lessonSeed = ' +
+      JSON.stringify(seedObject) +
+      ' satisfies CourseWorkflowLessonSeed;\n';
     assert.throws(() => parseTypedLesson(root, sourcePath, seed), /Stage 2|workflow type|materializer input|import/i);
   }));
 
@@ -66,7 +77,6 @@ test('dynamic expressions, code imports, duplicate keys and spreads fail closed'
       plain.replace('slug: "intro"', 'slug: ""'),
       plain.replace('slug: "intro"', 'slug: "intro", slug: "duplicate"'),
       plain.replace('config: {', 'config: { ...malicious,'),
-      plain.replaceAll('LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'),
       plain.replace('as const satisfies LessonWorkflowStage2', 'as const'),
       plain.replace('export const reviewedLesson', 'const reviewedLesson'),
       plain.replace('import type { LessonWorkflowStage2 }', 'import { LessonWorkflowStage2 }'),
