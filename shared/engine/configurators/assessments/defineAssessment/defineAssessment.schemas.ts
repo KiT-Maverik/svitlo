@@ -10,8 +10,12 @@ import type { ContentSection_Configurator } from '../../sections/defineContentSe
 import { quizSection_Props_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
 
-/** Assessment reuses genuine Course-independent Content and Quiz Sections. */
-export type Assessment_Section_Configurator = ConfiguratorChild<ContentSection_Configurator | QuizSection_Configurator>;
+/** The one Quiz is structurally separate from optional supporting Content Sections. */
+export type Assessment_Content_Section_Configurator = ConfiguratorChild<ContentSection_Configurator>;
+export type Assessment_Quiz_Configurator = ConfiguratorChild<QuizSection_Configurator>;
+export type Assessment_Section_Configurator =
+  | Assessment_Content_Section_Configurator
+  | Assessment_Quiz_Configurator;
 
 const languages = z
   .array(languageCode_Schema)
@@ -22,30 +26,52 @@ const identity = identityBase_Schema.extend({
   params: paramsBase_Schema.shape.params.extend({ languages }),
 });
 
+const supportingSections = z.strictObject({
+  items: z.record(z.string(), z.custom<Assessment_Content_Section_Configurator>()),
+  order: z.array(z.string()),
+});
+
 export const assessment_Config_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
-    section: z.strictObject({
-      items: z.record(z.string(), z.custom<Assessment_Section_Configurator>()),
-      order: z.array(z.string()),
-    }),
+    before: supportingSections.optional(),
+    quiz: z.custom<Assessment_Quiz_Configurator>(),
+    after: supportingSections.optional(),
   })
   .strict();
 export type Assessment_Config = z.infer<typeof assessment_Config_Schema>;
 
-export const assessment_Props_Schema = identity
+const completedAssessment_Props_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
-    section: z
-      .array(z.union([contentSection_Props_Schema, quizSection_Props_Schema]))
-      .refine(
-        sections => sections.some(section => section.type === 'quiz' && section.params.disabled !== true),
-        'A completed Assessment must contain an enabled Quiz Section',
-      ),
+    section: z.array(z.union([contentSection_Props_Schema, quizSection_Props_Schema])),
   })
-  .strict();
+  .strict()
+  .refine(
+    value => value.section.filter(section => section.type === 'quiz').length === 1 &&
+      value.section.some(section => section.type === 'quiz' && section.params.disabled !== true),
+    'A completed Assessment must contain exactly one enabled Quiz',
+  );
+
+/** Course Stage 5 drafts can be rendered, but never count as a completed Quiz. */
+export const assessment_Draft_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    draft: z.literal(true),
+    section: z.array(contentSection_Props_Schema).nonempty(),
+  })
+  .strict()
+  .refine(
+    value => value.section.some(section =>
+      section.content.some(block => block.type === 'text' && block.locale.value === 'Not implemented'),
+    ),
+    'Assessment draft preview requires a real Not implemented Text ContentBlock',
+  );
+export const assessment_Completed_Props_Schema = completedAssessment_Props_Schema;
+export const assessment_Props_Schema = z.union([completedAssessment_Props_Schema, assessment_Draft_Props_Schema]);
 export type Assessment_Props = z.infer<typeof assessment_Props_Schema>;
 export type Assessment_PropsBase = Pick<Assessment_Props, 'id' | 'slug' | 'type' | 'params'> & {
+  draft?: true;
   locale?: { title?: string };
   section: ReturnType<Assessment_Section_Configurator['build']['props']>['base'][];
 };
@@ -59,15 +85,25 @@ export const assessment_Override_Metadata_Schema: z.ZodType<Assessment_Metadata_
   locale: z.deepPartial(deepStrict_Schema(assessment_Config_Schema.shape.locale)).optional(),
 });
 
+type SupportingSectionOverrides<
+  Sections extends Record<string, Assessment_Content_Section_Configurator>,
+  Added extends Record<string, Assessment_Content_Section_Configurator>,
+> = {
+  items?: { [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false };
+  additionalItems?: Added & { [Key in keyof Sections]?: never };
+  order?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
+};
+
 export type Assessment_Overrides<
-  Sections extends Record<string, Assessment_Section_Configurator>,
-  Added extends Record<string, Assessment_Section_Configurator> = {},
+  Before extends Record<string, Assessment_Content_Section_Configurator>,
+  Quiz extends Assessment_Quiz_Configurator,
+  After extends Record<string, Assessment_Content_Section_Configurator>,
+  AddedBefore extends Record<string, Assessment_Content_Section_Configurator> = {},
+  AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
 > = Assessment_Metadata_Overrides & {
-  section?: {
-    items?: { [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & { [Key in keyof Sections]?: never };
-    order?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
-  };
+  before?: SupportingSectionOverrides<Before, AddedBefore>;
+  quiz?: Parameters<Quiz['build']['overrides']>[0];
+  after?: SupportingSectionOverrides<After, AddedAfter>;
 };
 
 export const assessmentConfigurator_Schema = z.custom<{
