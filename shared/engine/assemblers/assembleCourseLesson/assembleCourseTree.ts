@@ -14,6 +14,8 @@ import {
   episode_Props_Schema,
   type Episode_Props,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import { assessment_Props_Schema, type Assessment_Props } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import { quizSection_Props_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import { contentSection_Props_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
@@ -23,10 +25,12 @@ import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLes
 
 export type EpisodeSection = Exclude<Section_Props, { type: 'quiz' | 'flashcards' }>;
 export type LocalizedEpisode = Omit<Episode_Props, 'section'> & { section: EpisodeSection[] };
+export type LocalizedAssessment = Assessment_Props;
 export type LocalizedCourseContent = { items: Record<string, LocalizedCourseNode>; order: string[] };
 export type LocalizedCourseNode =
   | CourseLessonEntry
   | LocalizedEpisode
+  | LocalizedAssessment
   | {
       type: 'module' | 'chapter';
       id: string;
@@ -80,6 +84,8 @@ const sectionSchemas = {
   learningFlow: learningFlowSection_Props_Schema,
 } as const;
 
+const assessmentSectionSchemas = { content: contentSection_Props_Schema, quiz: quizSection_Props_Schema } as const;
+
 const blockSchemas = {
   text: text_Props_Schema,
   markdown: markdown_Props_Schema,
@@ -117,39 +123,66 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
   return episode as LocalizedEpisode;
 }
 
+
+/** Completed Assessments reuse published Content/Quiz Sections, not Lesson banks. */
+export function validateAssessmentRuntime(value: unknown, language: LanguageCode): LocalizedAssessment {
+  const assessment = assessment_Props_Schema.parse(value);
+  if (!assessment.params.languages.includes(language) || !assessment.locale.title.trim()) {
+    throw Error('Assessment requires an active locale and a localized title');
+  }
+  const ids = new Set<string>();
+  for (const section of assessment.section) {
+    if (ids.has(section.id) || section.params.disabled === true) {
+      if (ids.has(section.id)) throw Error('Duplicate Assessment Section ID: ' + section.id);
+      continue;
+    }
+    ids.add(section.id);
+    const resolved = assessmentSectionSchemas[section.type].parse(section);
+    const blockIds = new Set<string>();
+    for (const block of resolved.content) {
+      if (blockIds.has(block.id) || !Object.hasOwn(blockSchemas, block.type)) {
+        throw Error('Invalid Assessment block identity/type: ' + block.id);
+      }
+      blockIds.add(block.id);
+      blockSchemas[block.type as keyof typeof blockSchemas].parse(block);
+    }
+  }
+  return assessment;
+}
+
 function verifyIdentity(base: unknown, selected: unknown, at: string): void {
   assertRecord(base, at);
   assertRecord(selected, at);
   if (base.id !== selected.id || base.type !== selected.type) throw Error('Localized Course identity changed at ' + at);
   if (base.type === 'lesson') return;
-  if (base.type === 'episode') {
+  if (base.type === 'episode' || base.type === 'assessment') {
     if (
       base.slug !== selected.slug ||
       !Array.isArray(base.section) ||
       !Array.isArray(selected.section) ||
       base.section.length !== selected.section.length
     )
-      throw Error('Localized Episode Section structure changed at ' + at);
+      throw Error('Localized activity Section structure changed at ' + at);
     for (let i = 0; i < base.section.length; i++) {
       const original: unknown = base.section[i],
         translated: unknown = selected.section[i];
       assertRecord(original, at);
       assertRecord(translated, at);
       if (original.id !== translated.id || original.type !== translated.type || original.slug !== translated.slug)
-        throw Error('Localized Episode Section identity changed at ' + at);
+        throw Error('Localized activity Section identity changed at ' + at);
       if (
         !Array.isArray(original.content) ||
         !Array.isArray(translated.content) ||
         original.content.length !== translated.content.length
       )
-        throw Error('Localized Episode Block structure changed at ' + at);
+        throw Error('Localized activity Block structure changed at ' + at);
       for (let j = 0; j < original.content.length; j++) {
         const a: unknown = original.content[j],
           b: unknown = translated.content[j];
         assertRecord(a, at);
         assertRecord(b, at);
         if (a.id !== b.id || a.type !== b.type || a.slug !== b.slug)
-          throw Error('Localized Episode Block identity changed at ' + at);
+          throw Error('Localized activity Block identity changed at ' + at);
       }
     }
     return;
@@ -213,6 +246,10 @@ export function assembleCourseTree(
         validateEpisodeRuntime(node, language);
         continue;
       }
+      if (node.type === 'assessment') {
+        validateAssessmentRuntime(node, language);
+        continue;
+      }
       if (
         (node.type !== 'module' && node.type !== 'chapter') ||
         parent === 'chapter' ||
@@ -227,14 +264,14 @@ export function assembleCourseTree(
   return value as LocalizedCourse;
 }
 
-export type CourseActivity = { node: CourseLessonEntry | LocalizedEpisode; placement: string };
+export type CourseActivity = { node: CourseLessonEntry | LocalizedEpisode | LocalizedAssessment; placement: string };
 export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   const result: CourseActivity[] = [];
   function visit(content: LocalizedCourseContent, prefix: string[]) {
     for (const key of content.order) {
       const node = content.items[key];
       const path = [...prefix, key];
-      if (node.type === 'lesson' || node.type === 'episode') result.push({ node, placement: path.join('/') });
+      if (node.type === 'lesson' || node.type === 'episode' || node.type === 'assessment') result.push({ node, placement: path.join('/') });
       else visit(node.content, path);
     }
   }
@@ -245,4 +282,10 @@ export function findCourseEpisode(course: LocalizedCourse, id: string): Localize
   return courseActivities(course)
     .map(item => item.node)
     .find((node): node is LocalizedEpisode => node.type === 'episode' && node.id === id);
+}
+
+export function findCourseAssessment(course: LocalizedCourse, id: string): LocalizedAssessment | undefined {
+  return courseActivities(course)
+    .map(item => item.node)
+    .find((node): node is LocalizedAssessment => node.type === 'assessment' && node.id === id);
 }
