@@ -209,7 +209,7 @@ function safeOutput(file, meta) {
     return false;
   const leaf = parts.at(-1);
   return (
-    ['index.ts', 'languages.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
+    ['index.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
     /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
     /^code\.[a-z0-9]{1,10}$/.test(leaf)
   );
