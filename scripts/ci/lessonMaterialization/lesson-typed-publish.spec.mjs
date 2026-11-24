@@ -5,7 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { parseTypedIdentity, parseReviewEvidence } from './lesson-typed-gate.mjs';
+import { parseTypedIdentity } from './lesson-typed-gate.mjs';
+import { parseReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { typedManifest, indexed, publish } from './lesson-typed-materialization.mjs';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
 
@@ -44,7 +45,13 @@ const identityBody = [
   '## Evidence',
 ].join('\n');
 
-async function exercise({ permission = 'write', advance = false, rejectLease = false, corruptArtifact = false } = {}) {
+async function exercise({
+  permission = 'write',
+  advance = false,
+  mutateEvidence = false,
+  rejectLease = false,
+  corruptArtifact = false,
+} = {}) {
   const originalFetch = globalThis.fetch;
   const env = Object.fromEntries(
     ['GH_TOKEN', 'GITHUB_REPOSITORY', 'LESSON_DEFAULT_BRANCH', 'LESSON_TYPED_REPORT', 'LESSON_TYPED_REPORT_SHA256'].map(
@@ -63,19 +70,10 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
     git('-c', 'user.name=Fixture', '-c', 'user.email=f@example.invalid', 'commit', '-qm', 'reviewed Lesson');
     const head = git('rev-parse', 'HEAD');
     const blob = gitBlob(raw);
-    const comments = [3, 4, 5].map(stage => ({
-      id: 100 + stage,
-      user: { login: 'reviewer' },
-      body: [
-        '<!-- svitlo-lesson-review:v1 -->',
-        'Stage: ' + stage,
-        'Source commit: ' + head,
-        'Source blob: ' + blob,
-        'Verdict: accepted',
-        'Reviewer context: review-' + stage,
-        ...(stage === 3 ? ['Author context: author-2'] : []),
-      ].join('\n'),
-    }));
+    const reviewBody =
+      identityBody +
+      '\n' +
+      [3, 4, 5].map(stage => '- Review evidence (v1): ' + stage + ' | accepted | ' + head + ' | ' + blob).join('\n');
     const meta = {
       number: 710,
       repo,
@@ -87,7 +85,7 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
       parent: null,
       actor: 'maintainer',
       operation: 'materialize-typed',
-      reviews: parseReviewEvidence(comments),
+      reviews: parseReviewEvidence(reviewBody, [3, 4, 5]),
     };
     const plan = {
       lessonId: id,
@@ -118,7 +116,7 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
       number: 710,
       state: 'open',
       draft: true,
-      body: identityBody,
+      body: reviewBody,
       head: { sha: head, ref: 'agent/lesson', repo: { full_name: repo } },
       base: { ref: 'develop', repo: { full_name: repo } },
     };
@@ -133,10 +131,9 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
         readPr++;
         // Each fresh() inspects twice; advance on the second fresh().
         if (advance && readPr >= 3) remote.head.sha = '0'.repeat(40);
+        if (mutateEvidence && readPr >= 3) remote.body = reviewBody.replace('accepted', 'rejected');
         payload = remote;
-      } else if (route === 'collaborators/maintainer/permission' || route === 'collaborators/reviewer/permission')
-        payload = { permission };
-      else if (route === 'issues/710/comments?per_page=100&page=1') payload = comments;
+      } else if (route === 'collaborators/maintainer/permission') payload = { permission };
       else if (route === 'compare/' + head + '...' + head) payload = { status: 'identical' };
       else if (route.includes('contents/') && route.endsWith('?ref=' + head))
         payload = { type: 'file', sha: blob, size: raw.length };
@@ -191,6 +188,10 @@ test('stale review/HEAD refuses branch write after constructing candidate commit
   }, /HEAD advanced/);
   // A failed call cannot return its local logs; remote HEAD verification
   // still fails before PATCH. The throw is the observable safety assertion.
+});
+
+test('changed PR review verdict is rejected before publish', async () => {
+  await assert.rejects(() => exercise({ mutateEvidence: true }), /Rejected review evidence/);
 });
 
 test('tampered manifest and unauthorized actor are rejected before any write', async () => {

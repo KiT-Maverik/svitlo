@@ -19,32 +19,11 @@ marker, correct parent Course PR and UUID, Lesson PR based on the current
 parent Course branch, and the original Stage 1 Lesson handoff at the same path
 in the parent's pinned branch. Standalone Lessons target the default branch.
 
-Each of the three reviews must have exactly one accepted, source-pinned
-attestation as a comment on the **same Lesson PR**:
-
-```text
-<!-- svitlo-lesson-review:v1 -->
-Stage: 3
-Source commit: <full 40-character Git commit SHA>
-Source blob: <full 40-character Stage 2 draft.ts Git blob SHA>
-Verdict: accepted
-Reviewer context: content-independent-review
-Author context: original-authoring-chat
-```
-
-For Stage 4 and Stage 5, use the same format with Stage: 4 or Stage: 5
-and omit the Author context line. The Stage 3 review context and author
-context must be different. A review must be recorded by a GitHub collaborator
-with write/maintain/admin access. Its source blob must exist at the recorded
-commit. Review commits must be ordered ancestors of the final Stage 5
-commit, which must equal the current Lesson PR HEAD and source Git blob.
-
-**Security/quality limitation:** the GitHub API can verify the actor,
-commit/blob provenance, comment records and declared context strings; it
-cannot prove that two external chat contexts were genuinely independent or
-that review judged pedagogy correctly. The owner must audit the substantive
-review and independence evidence before authorizing this command. The
-command itself cannot manufacture editorial approval.
+Record the three accepted Stage 3, 4 and 5 review evidence lines in the same
+Lesson PR description, using the [canonical independent review rule](../../../studio/rules/independent-review.md).
+Earlier stage source blobs must exist at their recorded commits, in ancestry
+order; Stage 5 must match the current PR HEAD and source Git blob. The owner
+authorizes materialization separately after verifying the substantive reviews.
 
 When authorized, a write-capable collaborator posts exactly this as a
 top-level comment on the Lesson PR:

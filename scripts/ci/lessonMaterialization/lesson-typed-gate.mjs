@@ -5,13 +5,13 @@
  * Independent review attestations belong to this existing Lesson PR.
  */
 import fs from 'node:fs';
+import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { github, requireActor, report, safeBranch } from '../courseMaterialization/course-gate.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const sha = /^[0-9a-f]{40}$/;
 const marker = '<!-- svitlo-create-lesson-flow:v1 -->';
 const courseMarker = '<!-- svitlo-course-lesson:v1 -->';
-const reviewMarker = '<!-- svitlo-lesson-review:v1 -->';
 
 function single(body, regex, name) {
   const matches = [...body.matchAll(regex)];
@@ -137,64 +137,20 @@ export function parseTypedTrigger(event, type, actor) {
   return { number, actor };
 }
 
-/** Accepted review attestations must be written by authorized collaborators.
- * GitHub cannot verify that two external AI chat contexts were independent:
- * that assertion must be audited by the owner before authorizing the command.
- */
-export function parseReviewEvidence(comments) {
-  const entries = [];
-  for (const comment of comments) {
-    if (typeof comment?.body !== 'string' || !comment.body.includes(reviewMarker)) continue;
-    const body = comment.body;
-    if (body.split(reviewMarker).length !== 2) throw Error('Duplicated review marker');
-    const stage = Number(single(body, /^Stage:\s*([345])\s*$/gm, 'review stage'));
-    const commit = single(body, /^Source commit:\s*([a-f0-9]{40})\s*$/gm, 'review commit');
-    const blob = single(body, /^Source blob:\s*([a-f0-9]{40})\s*$/gm, 'review blob');
-    const verdict = single(body, /^Verdict:\s*(accepted)\s*$/gm, 'review verdict');
-    const reviewerContext = single(body, /^Reviewer context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'reviewer context');
-    const authorContext =
-      stage === 3 ? single(body, /^Author context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'author context') : null;
-    if (
-      !sha.test(commit) ||
-      !sha.test(blob) ||
-      verdict !== 'accepted' ||
-      !/^[A-Za-z0-9-]+$/.test(comment.user?.login || '') ||
-      (stage === 3 && reviewerContext === authorContext)
-    )
-      throw Error('Invalid source-pinned review evidence or independence declaration');
-    entries.push({ stage, commit, blob, reviewerContext, actor: comment.user.login, commentId: comment.id });
-  }
-  if (entries.length !== 3 || [3, 4, 5].some(stage => entries.filter(item => item.stage === stage).length !== 1))
-    throw Error('Three unique accepted Stage 3/4/5 reviews are required');
-  return [3, 4, 5].map(stage => entries.find(item => item.stage === stage));
-}
-
-async function reviewsFor(number, source, head, sourceBlob) {
-  const comments = [];
-  for (let page = 1; page <= 10; page++) {
-    const batch = await github('issues/' + number + '/comments?per_page=100&page=' + page);
-    if (!Array.isArray(batch)) throw Error('Unable to read review comments');
-    comments.push(...batch);
-    if (batch.length < 100) break;
-    if (page === 10) throw Error('Review comment count exceeds safe bound');
-  }
-  const evidence = parseReviewEvidence(comments);
-  for (let i = 0; i < evidence.length; i++) {
-    const item = evidence[i];
-    await requireActor(item.actor);
-    const entry = await github(
-      'contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + item.commit,
-    );
-    if (entry?.type !== 'file' || entry.sha !== item.blob)
-      throw Error('Stage ' + item.stage + ' evidence does not match reviewed source');
-    if (i) {
-      const comparison = await github('compare/' + evidence[i - 1].commit + '...' + item.commit);
-      if (!['ahead', 'identical'].includes(comparison?.status)) throw Error('Review commits are not in ancestry order');
-    }
-  }
-  if (evidence[2].commit !== head || evidence[2].blob !== sourceBlob)
-    throw Error('Latest Stage 5 review is stale relative to the PR head');
-  return evidence;
+async function reviewsFor(body, source, head, sourceBlob) {
+  return verifyReviewEvidence(body, {
+    stages: [3, 4, 5],
+    head,
+    blob: sourceBlob,
+    readBlob: async commit => {
+      const entry = await github('contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + commit);
+      return entry?.type === 'file' ? entry.sha : null;
+    },
+    isAncestor: async (from, to) => {
+      const comparison = await github('compare/' + from + '...' + to);
+      return ['ahead', 'identical'].includes(comparison?.status);
+    },
+  });
 }
 
 async function courseProvenance(pr, identity, repo) {
@@ -264,14 +220,15 @@ export async function inspectTyped(number, expectedHead) {
     source.size > 4 * 1024 * 1024
   )
     throw Error('Reviewed Stage 2 Lesson draft.ts missing or oversized');
-  const reviews = await reviewsFor(number, identity.source, pr.head.sha, source.sha);
+  const reviews = await reviewsFor(pr.body, identity.source, pr.head.sha, source.sha);
   const again = await github('pulls/' + number);
   if (
     again?.head?.sha !== pr.head.sha ||
     again.head.ref !== pr.head.ref ||
     again.base?.ref !== pr.base?.ref ||
     !again.draft ||
-    again.state !== 'open'
+    again.state !== 'open' ||
+    again.body !== pr.body
   )
     throw Error('Lesson PR changed during source/review discovery');
   return {

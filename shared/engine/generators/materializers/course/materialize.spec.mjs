@@ -259,16 +259,19 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
     config: { type: 'episode' },
     production: { focus: 'Situation', purpose: 'Transition' },
   };
-  const result = materializeCourse(draft, ctx());
+  const context = { ...ctx(), courseId: IDs.course, reviewedCourseSourceBlobSha: '1'.repeat(40) };
+  const result = materializeCourse(draft, context);
   assert.ok(result.diagnostics.some(d => d.code === 'pending-episode-scenario' && d.severity === 'blocker'));
-  const placeholder = result.files.find(f => f.path === 'content/directEpisode/index.ts').content;
-  assert.match(placeholder, /TODO \(BLOCKER\): Not implemented/);
-  assert.match(placeholder, /section = \{ items: \{  \}, order: \[\] \}/);
-  const sidecar = result.files.find(f => f.path === 'content/directEpisode/specification.md').content;
-  assert.match(sidecar, /Situation/);
-  assert.match(sidecar, /Transition/);
+  const handoff = result.files.find(f => f.path === 'content/directEpisode/draft.ts').content;
+  assert.match(handoff, /TODO \(BLOCKER\)/);
+  assert.match(handoff, /Situation/);
+  assert.match(handoff, /Transition/);
+  assert.doesNotMatch(handoff, /defineEpisode/);
+  assert.ok(!result.files.some(f => f.path === 'content/directEpisode/index.ts'));
+  assert.equal(result.pendingEpisodes.length, 1);
+  assert.doesNotMatch(result.files.find(f => f.path === 'index.ts').content, /import.*directEpisode/);
   syntax(result.files);
-  assert.deepEqual(result.files, materializeCourse(draft, ctx()).files);
+  assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();
   old.config.content.items.directLesson.config.lessonId = IDs.lesson;
   assert.throws(() => materializeCourse(old, ctx()), /belong to production/);

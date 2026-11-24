@@ -6,6 +6,7 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/courseMaterialization/**'
+      - 'scripts/ci/reviewEvidence/**'
       - 'shared/engine/generators/materializers/**'
       - 'shared/engine/types/workflow/**'
       - 'shared/engine/configurators/**'
@@ -48,7 +49,7 @@ jobs:
       - name: Compile trusted concrete Course renderers for focused CI
         run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
       - name: Test trusted typed Course Stage 5 boundary
-        run: node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
+        run: node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs
       - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
         run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
@@ -57,7 +58,7 @@ jobs:
         run: npm run code:check:types --workspace @svitlo/engine
 
   resolve:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -133,6 +134,8 @@ jobs:
   publish:
     needs: [resolve, analyze]
     if: needs.analyze.result == 'success'
+    outputs:
+      proof: ${{ steps.commit.outputs.proof }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -169,6 +172,7 @@ jobs:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
       - name: Recheck Stage 4, SHA, deterministic output and branch lease; write one commit
+        id: commit
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -177,3 +181,31 @@ jobs:
           COURSE_HEAD_ROOT: candidate
           COURSE_TYPED_REPORT: report/manifest.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-publish.mjs publish
+
+  reconcile-pr-tables:
+    needs: [resolve, analyze, publish]
+    if: needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Verify committed manifest and reconcile current Course PR tables only
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COURSE_COMMIT_PROOF: ${{ needs.publish.outputs.proof }}
+          COURSE_TYPED_REPORT: report/manifest.json
+        run: node scripts/ci/courseMaterialization/course-handoff-publish.mjs

@@ -21,7 +21,6 @@ const snapshot = (entries: BankSourceSnapshot['entries']): BankSourceSnapshot =>
 const source = snapshot({ questions: { kind: 'directory' }, [draft.path]: { kind: 'file', content: editor } });
 const reviewed = {
   approved: true as const,
-  reviewer: 'independent',
   blobSha: gitBlobSha(editor),
   reviewedSourceBlobSha: gitBlobSha(editor),
   reviewedInputSha256: 'a'.repeat(64),
