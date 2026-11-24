@@ -239,14 +239,18 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
-  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+  const methodologyBlocker =
+    sectionNotes.length && options.production?.methodologyIntegrated !== true
+      ? renderBlockerTodo(
+          'Transfer reviewed Quest Section notes (' + sectionNotes.join(', ') +
+            ') into Lesson methodology; verify the transfer before removing this marker.',
+        )
+      : undefined;
+  if (methodologyBlocker)
     diagnostics.push({
       path: destination(dir),
       code: 'pending-quest-methodology',
-      message:
-        'TODO (BLOCKER): Transfer reviewed Quest Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology.',
+      message: methodologyBlocker,
       severity: 'warning',
     });
   diagnostics.push({ path: destination(dir), code: 'quest-build-only', message: blocker, severity: 'warning' });
@@ -256,6 +260,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     ...imports,
     '',
     blocker,
+    ...(methodologyBlocker ? [methodologyBlocker] : []),
     'const stages = ' + render(values.stages) + ';',
     'const tasks = ' + render(values.tasks) + ';',
     'export const ' +
