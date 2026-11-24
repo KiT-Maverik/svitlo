@@ -503,6 +503,9 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
   const root = result.files.find(f => f.path === 'index.ts')?.content ?? '';
   assert.match(root, /Stage 7.*Question Bank/);
   assert.match(root, /Stage 8.*Flashcard Bank/);
+  assert(result.diagnostics.some(item => item.code === 'pending-questions' && item.message.includes('Stage 7')));
+  assert(result.diagnostics.some(item => item.code === 'pending-flashcard-bank' && item.message.includes('Stage 8')));
+  assert(!result.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Stage 7')));
   assert.doesNotMatch(root, /Resolve pending Quiz\/Flashcards/);
 });
 
@@ -521,6 +524,7 @@ test('No required banks or pending Sections means no Stage 7/8 root blockers', (
   });
   const root = result.files.find(f => f.path === 'index.ts')?.content ?? '';
   assert.doesNotMatch(root, /Stage 7|Stage 8/);
+  assert(!result.diagnostics.some(item => ['pending-questions', 'pending-flashcard-bank'].includes(item.code)));
 });
 
 test('Lesson does not acknowledge Section notes omitted from methodology', () => {
