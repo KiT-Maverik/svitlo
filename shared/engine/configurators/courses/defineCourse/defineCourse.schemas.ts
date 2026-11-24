@@ -9,6 +9,7 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Stub_Configurator, Episode_Stub_Configurator, Lesson_Stub_Configurator } from '../defineCourseChildStubs/defineCourseChildStubs';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
+import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import {
   assessment_Props_Schema,
   type Assessment_Props,
@@ -70,7 +71,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
 });
 export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 export type Course_Child = ConfiguratorChild<
-  Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator | Assessment_Configurator | Lesson_Stub_Configurator | Episode_Stub_Configurator | Assessment_Stub_Configurator
+  Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator | Assessment_Configurator | Assessment_Draft_Configurator | Lesson_Stub_Configurator | Episode_Stub_Configurator | Assessment_Stub_Configurator
 >;
 export type Course_Child_Props = Module_Props | Chapter_Props | Lesson_Props | Episode_Props | Assessment_Props | Lesson_Draft_Props | Episode_Draft_Props;
 

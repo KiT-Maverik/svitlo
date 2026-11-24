@@ -43,7 +43,8 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             changed_files=$(git diff --no-renames --name-only "$BASE_SHA...$HEAD_SHA")
-            if grep -Eq '(^package(-lock)?\.json$|^tsconfig[^/]*\.json$|^(apps|content|shared|backend)/.*\.(ts|tsx|mts|cts|js|mjs|cjs|json)$)' <<< "$changed_files"; then
+            # All JS/TS changes, including scripts, must reach the stub reference guard.
+            if grep -Eq '(^package(-lock)?\.json$|^tsconfig[^/]*\.json$|^(apps|content|shared|backend)/.*\.json$|(^|.*/)[^/]+\.(ts|tsx|mts|cts|js|mjs|cjs)$)' <<< "$changed_files"; then
               echo "run=true" >> "$GITHUB_OUTPUT"
             else
               echo "run=false" >> "$GITHUB_OUTPUT"

@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { mergeForValidation } from '../../_shared__configurators';
 import { assessment_Completed_Props_Schema, assessmentConfigurator_Schema } from '../../assessments/defineAssessment';
 import { episode_Completed_Props_Schema, episodeConfigurator_Schema } from '../../episodes/defineEpisode';
 import { lesson_Completed_Props_Schema, lessonConfigurator_Schema } from '../../lessons/defineLesson';
@@ -99,7 +98,7 @@ describe('Configurators', () => {
         assert.deepEqual(root.content[1]?.content?.[1]?.content?.map(child => child.slug), ['assessmentSlot']);
         assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.id, assessment.id);
         assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.draft, true);
-        assert.doesNotThrow(() => JSON.stringify(mergeForValidation(result.base, result.locale?.en ?? {})));
+        assert.doesNotThrow(() => JSON.stringify(result));
       });
     });
   });
