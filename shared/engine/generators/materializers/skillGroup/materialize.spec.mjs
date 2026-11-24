@@ -88,7 +88,7 @@ test('SkillGroup confines delegated Sidecar files to its specific Skill owner', 
     id: SID,
     exportName: 'firstSkill',
     files: [
-      { path: context.directory + '/firstSkill.ts', kind: 'typescript', content: 'export const firstSkill = 1;\n' },
+      { path: [context.directory, context.entryFilename].filter(Boolean).join('/'), kind: 'typescript', content: 'export const firstSkill = 1;\n' },
       { path: 'outside.md', kind: 'markdown', content: 'bad\n' },
     ],
   });
