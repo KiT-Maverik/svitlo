@@ -9,46 +9,9 @@ const sha = (char: string) => char.repeat(40);
 const id = (num: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(num).padStart(6, '0');
 const lessonId = id(200);
 const languages = { document: 'uk' as const, planned: ['uk'] as ['uk'] };
-const assessment = {
-  questionBankRequired: true,
-  flashcardBankRequired: true,
-  quizSectionRequired: false,
-  flashcardsSectionRequired: false,
-  quizRequiredForCompletion: false,
-};
-const evidence = {
-  skillId: id(101),
-  outcome: 'Recall the principle',
-  assessmentMethod: 'retrieval',
-  cognitiveOperation: 'retrieve',
-  knowledgeAspect: 'principle',
-  cognitiveDemand: 'transfer',
-  misconception: 'one common mistake',
-  context: 'independent test',
-  expectedEvidence: 'correct explanation',
-};
 const handoff = () => ({
   config: { ownerLessonId: lessonId },
-  production: {
-    languages,
-    lesson: {
-      sourcePath: 'content/math/data/lessons/0/lesson.ts',
-      sourceSha: sha('a'),
-      referencePath: 'references/lesson.md',
-      referenceSha: sha('b'),
-      methodologyPath: 'references/methodology.md',
-      title: 'Mathematics lesson',
-    },
-    assessment: { ...assessment },
-    ownershipRationale: 'The independent Question Bank supports recall',
-    audience: 'Grade 3',
-    scope: 'Basic arithmetic',
-    prerequisites: 'Counting',
-    evidenceIntent: [evidence],
-    misconceptions: 'Order of operations',
-    mediaNeeds: 'No media needed',
-    sourcesAndDependencies: 'Approved Lesson source',
-  },
+  production: { languages },
 });
 const snapshot = (contents?: string): BankSourceSnapshot => ({
   complete: true,
@@ -67,7 +30,6 @@ const draftAuth = {
   authorized: true as const,
   ownerLessonId: lessonId,
   lessonSourceSha: sha('a'),
-  referenceSha: sha('b'),
   snapshot: snapshot(),
 };
 const block = (slug: string, num: number) => ({
@@ -96,12 +58,7 @@ const question = () => ({
       },
     },
   },
-  production: {
-    evidence,
-    distinction: 'Test a different application',
-    intendedUse: 'core' as const,
-    rationale: 'Directly measures the lesson objective',
-  },
+  production: { specification: 'Question response design' },
 });
 const editorial = 'export const reviewedBank = { reviewedAtStage3: true };\n';
 const finalAuth = (input: unknown = completeBank()) => ({
@@ -136,29 +93,17 @@ test('Question Bank Stage 1 creates exactly one type-annotated editable source',
   assert.doesNotMatch(result.files[0].content, /defineSelectOneAnswer|defineQuizSection/);
   assert.deepEqual(result, materializeQuestionBankDraft(handoff() as never, draftAuth));
 });
-test('Question Bank handoff rejects missing SHA, forged owner and no authorization', () => {
+test('Question Bank handoff validates owner, languages and trusted authorization', () => {
   assert.throws(
-    () =>
-      materializeQuestionBankDraft(handoff() as never, {
-        ...draftAuth,
-        referenceSha: sha('e'),
-      }),
-    /Stale Lesson\/assessment handoff/,
+    () => materializeQuestionBankDraft(handoff() as never, { ...draftAuth, lessonSourceSha: 'invalid' }),
+    /owning Lesson revision/,
   );
   assert.throws(
-    () =>
-      materializeQuestionBankDraft(handoff() as never, {
-        ...draftAuth,
-        ownerLessonId: id(300),
-      }),
+    () => materializeQuestionBankDraft(handoff() as never, { ...draftAuth, ownerLessonId: id(300) }),
     /owning Lesson/,
   );
   assert.throws(
-    () =>
-      materializeQuestionBankDraft(handoff() as never, {
-        ...draftAuth,
-        authorized: false as true,
-      }),
+    () => materializeQuestionBankDraft(handoff() as never, { ...draftAuth, authorized: false as true }),
     /authorization missing/,
   );
 });
@@ -211,7 +156,22 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   );
 });
 
-test('Question source materialization does not gate on editorial bank-required status', () => {
+test('Question Bank validates the source language and drops duplicated assessment state', () => {
+  const input = handoff();
+  assert.doesNotThrow(() => materializeQuestionBankDraft(input as never, draftAuth));
+  assert.throws(
+    () => materializeQuestionBankDraft({ ...input, production: { languages: { document: 'uk', planned: ['en'] } } } as never, draftAuth),
+    /Invalid Question Bank Stage 1/,
+  );
+});
+test('Question Bank ignores authored resource state flags by rejecting them at the Zod boundary', () => {
+  const input = completeBank();
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
+    production: { pending: true },
+  });
+  assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /Invalid reviewed questionBank Stage 3 input/);
+});
+ on editorial bank-required status', () => {
   const noBank = handoff();
   noBank.production.assessment.questionBankRequired = false;
   assert.doesNotThrow(() => materializeQuestionBankDraft(noBank as never, draftAuth));

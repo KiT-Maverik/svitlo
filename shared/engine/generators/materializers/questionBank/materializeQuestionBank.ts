@@ -2,9 +2,11 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
-import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
+import {
+  questionBankWorkflowStage1_Schema,
+  questionBankWorkflowStage3_Schema,
+} from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage3,
@@ -26,7 +28,6 @@ import {
   assertBankStatement,
   assertBankUuid,
   assertUniqueBankEntityIds,
-  assertNoPendingBankSources,
   assertPinnedBankInput,
   authoredBankLiteral,
   preflightBankSource,
@@ -57,7 +58,6 @@ export type QuestionBankDraftAuthorization = {
   authorized: true;
   ownerLessonId: string;
   lessonSourceSha: string;
-  referenceSha: string;
   snapshot: BankSourceSnapshot;
 };
 
@@ -75,52 +75,13 @@ function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): vo
   if (!input || input.config?.ownerLessonId !== lessonId) {
     throw new Error('Question Bank must use the actual owning Lesson UUID');
   }
-  const p = input.production;
-  if (!p) throw new Error('Question Bank Lesson Stage 7 handoff required');
-  assertBankLanguages(p.languages);
-  assertBankSha(p.lesson.sourceSha, 'Lesson source');
-  assertBankSha(p.lesson.referenceSha, 'Lesson reference');
-  for (const [label, value] of [
-    ['Lesson source path', p.lesson.sourcePath],
-    ['Lesson reference path', p.lesson.referencePath],
-    ['Lesson methodology path', p.lesson.methodologyPath],
-  ] as const)
-    assertBankPath(value);
-  for (const [label, value] of [
-    ['Lesson title', p.lesson.title],
-    ['Question ownership rationale', p.ownershipRationale],
-    ['audience', p.audience],
-    ['scope', p.scope],
-    ['prerequisites', p.prerequisites],
-    ['misconceptions', p.misconceptions],
-    ['media needs', p.mediaNeeds],
-    ['sources and dependencies', p.sourcesAndDependencies],
-  ] as const)
-    assertBankStatement(value, label);
-  if (
-    !lessonProductionAssessmentRequirements_Schema.safeParse(p.assessment).success ||
-    typeof p.assessment.quizRequiredForCompletion !== 'boolean'
-  ) {
-    throw new Error('Preserve all independent Lesson assessment decisions');
-  }
-  if (!Array.isArray(p.evidenceIntent) || !p.evidenceIntent.length) {
-    throw new Error('Methodologist assessment evidence is required');
-  }
-  for (const item of p.evidenceIntent) {
-    assertBankUuid(item.skillId, 'assessed Skill');
-    for (const key of [
-      'outcome',
-      'assessmentMethod',
-      'cognitiveOperation',
-      'knowledgeAspect',
-      'cognitiveDemand',
-      'misconception',
-      'context',
-      'expectedEvidence',
-    ] as const) {
-      assertBankStatement(item[key], 'evidenceIntent.' + key);
-    }
-  }
+  // Parse *only* Stage 1 fields: Stages 2/3 legally add Questions and Quiz.
+  const parsed = questionBankWorkflowStage1_Schema.safeParse({
+    config: { ownerLessonId: input.config.ownerLessonId },
+    production: { languages: input.production?.languages },
+  });
+  if (!parsed.success) throw new Error('Invalid Question Bank Stage 1 handoff: ' + parsed.error.message);
+  assertBankLanguages(parsed.data.production.languages);
 }
 
 /** Produce exactly one editable, nonpublishable Stage 1 TS module. */
@@ -130,12 +91,9 @@ export function materializeQuestionBankDraft(
 ): BankSourceResult {
   if (authorization.authorized !== true) throw new Error('Lesson Stage 7 authorization missing');
   validateStage1(input, authorization.ownerLessonId);
-  if (
-    input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
-    input.production.lesson.referenceSha !== authorization.referenceSha
-  ) {
-    throw new Error('Stale Lesson/assessment handoff');
-  }
+  // The trusted caller, not the mutable editorial source, pins the owning
+  // Lesson revision. The transaction separately pins the Bank source bytes.
+  assertBankSha(authorization.lessonSourceSha, 'owning Lesson revision');
   const files: BankSourceFile[] = [
     {
       path: 'questions/draft.ts',
@@ -257,7 +215,6 @@ function planQuestionBank(
     }
   }
   assertUniqueBankEntityIds(questions);
-  assertNoPendingBankSources(questions);
   const source = input.production.languages;
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
@@ -285,9 +242,6 @@ function planQuestionBank(
       assertBankUuid(config.id, 'Question ' + kind + '/' + slug);
       if (seenIds.has(config.id.toLowerCase())) throw new Error('Duplicate Question UUID: ' + config.id);
       seenIds.add(config.id.toLowerCase());
-      if (!production || production.pending) throw new Error('Unreviewed or pending Question ' + slug);
-      assertBankStatement(production.rationale, 'Question rationale');
-      assertBankStatement(production.distinction, 'Question distinction');
       const output = renderQuestion(kind, { config, production }, source, authorization.blocks);
       files.push(...output.files);
       diagnostics.push(...(output.diagnostics ?? []));
