@@ -280,8 +280,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     skillImports.set(skill.path, skill.name);
     return imported(skill.name + '.id');
   });
-  if (planned.length > 1)
-    blockers.push('// TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.');
+
   const sourceLanguages = [
     "import type { SupportedLanguages } from '@svitlo/engine/build';",
     '',
@@ -301,6 +300,13 @@ export function materializeLesson(config: Source, options: Options): Result {
     '',
   ].join('\n');
   add({ path: destination(dir, 'constants.ts'), kind: 'typescript', content: sourceLanguages });
+  if (planned.length > 1)
+    diagnostics.push({
+      path: destination(dir, 'constants.ts'),
+      code: 'pending-localizations',
+      message: 'TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.',
+      severity: 'warning',
+    });
   if (options.production?.assessment?.questionBankRequired === true ||
       diagnostics.some(item => item.code === 'pending-quiz'))
     blockers.push('// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.');
