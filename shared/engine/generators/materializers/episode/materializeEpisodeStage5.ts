@@ -91,6 +91,7 @@ export function materializeEpisodeStage5(
       const [, textbook, , courseId, root] = owned;
       const document = input.production.languages.document;
       const planned = [...input.production.languages.planned];
+      const courseLanguagesImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/constants';
       const sceneDrafts = episodeSceneDrafts(input, document, textbook);
       const result = materializeEpisode(
         {
@@ -105,7 +106,7 @@ export function materializeEpisodeStage5(
             materializeEpisodeSection(node, {
               ...context,
               documentLanguage: document,
-              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/constants',
+              languagesImport: courseLanguagesImport,
             }),
         },
       );
@@ -123,7 +124,7 @@ export function materializeEpisodeStage5(
       index.content = index.content
         .replace(
           "import type { SupportedLanguages } from '@svitlo/engine/build';",
-          "import { languages } from './constants';",
+          'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
         )
         .replace(originalLanguages, '')
         .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
@@ -140,30 +141,8 @@ export function materializeEpisodeStage5(
       return {
         episodeId: result.id,
         exportName: result.exportName,
-        files: [
-          ...result.files,
-          ...sceneDrafts,
-          {
-            path: root + '/constants.ts',
-            kind: 'typescript',
-            content: [
-              "import type { SupportedLanguages } from '@svitlo/engine/build';",
-              '',
-              ...(planned.length > 1
-                ? [
-                    '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
-                    '// export const languages = [',
-                    ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
-                    '// ] as const satisfies SupportedLanguages;',
-                    '',
-                  ]
-                : []),
-              'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;',
-              'export type Languages = typeof languages;',
-              '',
-            ].join('\n'),
-          },
-        ],
+        // All Course-owned children import the single root language tuple.
+        files: [...result.files, ...sceneDrafts],
         diagnostics: result.diagnostics ?? [],
         publishable: false,
       };
