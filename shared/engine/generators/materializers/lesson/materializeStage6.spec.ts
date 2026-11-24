@@ -795,3 +795,52 @@ test('direct Lesson invocation returns the same source plan using runner-owned m
   assert.deepEqual(actual, expected);
   assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
 });
+
+
+test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Config in one sealed output', () => {
+  const input = valid() as unknown as Record<string, any>;
+  const sceneId = id('05');
+  const collection = input.config.section.items.introduction.config.content;
+  collection.items.chooseShape = {
+    config: {
+      id: sceneId,
+      slug: 'chooseShape',
+      type: 'scene',
+      params: {},
+      locale: { value: { instruction: { en: 'Choose a shape' } } },
+    },
+    production: {
+      purpose: 'Review the selected shape',
+      specification: 'Review the selected color and shape.\n*/\nexport const injected = true;',
+      accessibility: 'Use typed source-locale feedback and keyboard equivalents',
+      offline: 'No remote services',
+    },
+  };
+  collection.order.push('chooseShape');
+  const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
+  const result = produce(input as unknown as ReturnType<typeof valid>, {
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+    verifySourceInput: () => true,
+  });
+  const root = 'content/math/scenes/5/' + sceneId + '/';
+  const paths = result.files.map(file => file.path);
+  const executable = paths.filter(path => path.startsWith(root));
+  assert.equal(executable.length, 6);
+  assert(paths.includes(folder + 'sections/introduction/content/items/chooseShape/index.ts'));
+  assert(paths.includes(root + 'ChooseShape.tsx'));
+  assert(paths.includes(root + 'ChooseShape.unit.spec.tsx'));
+  assert(!paths.some(path => path === root + 'specification.md'));
+  const tsx = result.files.find(file => file.path === root + 'ChooseShape.tsx')!.content;
+  assert.match(tsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
+  assert.match(tsx, /TODO \(BLOCKER\)/);
+  assert(result.diagnostics.some(diag => diag.code === 'pending-scene'));
+  assert.throws(() => assertLessonStage6ReleaseReady(result), /publication blocked/);
+  const withoutSpec = structuredClone(input);
+  withoutSpec.config.section.items.introduction.config.content.items.chooseShape.production.specification = '';
+  assert.throws(() => produce(withoutSpec as ReturnType<typeof valid>, {
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+    verifySourceInput: () => true,
+  }), /reviewed production\.specification/);
+});

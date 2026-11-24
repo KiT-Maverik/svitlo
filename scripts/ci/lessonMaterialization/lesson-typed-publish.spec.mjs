@@ -23,6 +23,7 @@ async function exercise({
   mutateProse = false,
   rejectLease = false,
   corruptArtifact = false,
+  withScene = false,
 } = {}) {
   const originalFetch = globalThis.fetch;
   const env = Object.fromEntries(
@@ -67,6 +68,15 @@ async function exercise({
         { path: folder + '/languages.ts', kind: 'typescript', content: 'export const languages = ["en"];\n' },
       ],
     };
+    if (withScene) {
+      const scene = '11111111-1111-4111-8111-11111111111a';
+      const prefix = 'content/math/scenes/a/' + scene + '/';
+      for (const filename of ['index.ts', 'ChooseColor.tsx', 'ChooseColor.module.css',
+        'ChooseColor.constants.ts', 'ChooseColor.stories.tsx', 'ChooseColor.unit.spec.tsx']) {
+        plan.files.push({ path: prefix + filename, kind: filename.endsWith('.css') ? 'code' : 'typescript',
+          content: '// TODO (BLOCKER): Scene draft awaits Stage 6.3\nexport {};\n' });
+      }
+    }
     const report = typedManifest(plan, meta, raw, indexed(root, 'content/math'), root);
     const reportFile = path.join(root, '.git', 'typed-report.json');
     const reportBytes = Buffer.from(JSON.stringify(report));
@@ -169,4 +179,19 @@ test('tampered manifest and unauthorized actor are rejected before any write', a
 
 test('non-fast-forward branch lease is never forced or silently retried', async () => {
   await assert.rejects(() => exercise({ rejectLease: true }), /GitHub HTTP 422 for git\/refs\/heads\/agent\/lesson/);
+});
+
+
+test('trusted publisher includes six Scene scaffolds in the same single SHA-pinned non-force commit', async () => {
+  const { calls } = await exercise({ withScene: true });
+  const commits = calls.filter(call => call.route === 'git/commits' && call.method === 'POST');
+  const trees = calls.filter(call => call.route === 'git/trees' && call.method === 'POST');
+  assert.equal(commits.length, 1);
+  assert.equal(trees.length, 1);
+  const paths = trees[0].data.tree.map(entry => entry.path);
+  assert.equal(paths.filter(p => p.startsWith('content/math/scenes/')).length, 6);
+  assert(paths.includes(source));
+  assert(paths.includes(folder + '/index.ts'));
+  assert.equal(calls.filter(call => call.method === 'PATCH').length, 1);
+  assert.equal(calls.find(call => call.method === 'PATCH').data.force, false);
 });

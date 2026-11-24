@@ -118,26 +118,25 @@ test('PascalCase Scene naming supports legacy lowerCamelCase and separates Confi
     assert.throws(() => sceneSymbols(bad), /Unsafe Scene slug/);
 });
 
-test('generates seven stable Scene files, preserves source specification, and leaves TSX unresolved but parseable', t => {
+test('generates six stable type-correct Scene files with embedded reviewed specification and blockers', t => {
   const f = fixture(t);
   const one = runOne(f.source, 'generate', f.repo);
-  assert.deepEqual(one, [{ id: sceneId, changed: 7, skipped: false }]);
+  assert.deepEqual(one, [{ id: sceneId, changed: 6, skipped: false }]);
   const folder = f.folder(sceneId);
   const names = [
     'index.ts',
-    'specification.md',
     'CompareGroupsScene.tsx',
     'CompareGroupsScene.module.css',
     'CompareGroupsScene.stories.tsx',
-    'CompareGroupsScene.spec.tsx',
+    'CompareGroupsScene.unit.spec.tsx',
     'CompareGroupsScene.constants.ts',
   ];
   assert.deepEqual(fs.readdirSync(folder).sort(), names.sort());
-  assert.equal(fs.readFileSync(path.join(folder, 'specification.md'), 'utf8'), '# Original instruction\n');
   const output = fs.readFileSync(path.join(folder, 'CompareGroupsScene.tsx'), 'utf8');
   assert.match(output, /ContentBlock_Scene_Props\['locale'\]\['value'\]/);
-  assert.match(output, /sceneImplementationRequired/);
-  assert.match(output, /TODO\(scene\)/);
+  assert.match(output, /\/\/ # Original instruction/);
+  assert.match(output, /TODO \(BLOCKER\)/);
+  assert.doesNotMatch(output, /sceneImplementationRequired|sceneSourceLocaleRequired/);
   assert.doesNotMatch(output, /Do not duplicate|Порівняй|as any|@ts-ignore/);
   const constants = fs.readFileSync(path.join(folder, 'CompareGroupsScene.constants.ts'), 'utf8');
   assert.match(constants, /export const testIds/);
@@ -168,14 +167,7 @@ test('generates seven stable Scene files, preserves source specification, and le
     .getPreEmitDiagnostics(program)
     .filter(d => d.code === 2304)
     .map(d => ts.flattenDiagnosticMessageText(d.messageText, ' '));
-  assert(
-    unresolved.some(x => x.includes('sceneImplementationRequired')),
-    'missing implementation should fail TS',
-  );
-  assert(
-    unresolved.some(x => x.includes('sceneSourceLocaleRequired')),
-    'missing Storybook locale should fail TS',
-  );
+  assert.deepEqual(unresolved, [], 'Scene draft must never depend on intentionally unresolved symbols');
   assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
 });
 
@@ -212,7 +204,7 @@ test('failed staged Scene write leaves no partial UUID tree and a clean retry su
   assert.equal(fs.existsSync(f.folder(sceneId)), false, 'the final Scene must not be partial');
   const parent = path.dirname(f.folder(sceneId));
   assert.deepEqual(fs.readdirSync(parent), [], 'temporary files and exclusive lease are cleaned up');
-  assert.deepEqual(runOne(f.source, 'generate', f.repo), [{ id: sceneId, changed: 7, skipped: false }]);
+  assert.deepEqual(runOne(f.source, 'generate', f.repo), [{ id: sceneId, changed: 6, skipped: false }]);
   assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
 });
 
@@ -226,7 +218,7 @@ test('exclusive Scene lease refuses races without deleting the existing owner', 
   assert.equal(fs.readFileSync(lease, 'utf8'), 'a competing writer');
   assert.equal(fs.existsSync(f.folder(sceneId)), false);
   fs.unlinkSync(lease);
-  assert.equal(runOne(f.source, 'generate', f.repo)[0].changed, 7);
+  assert.equal(runOne(f.source, 'generate', f.repo)[0].changed, 6);
 });
 
 test('supports recursive Carousel/Quest Scenes and selected Scene IDs, without implicit registration', t => {
@@ -259,7 +251,8 @@ test('rejects unsafe/duplicate identities and missing production specs before wr
   second.production.specification = 'Scene spec';
   second.config.slug = 'CompareGroupsScene';
   f.save();
-  assert.throws(() => runOne(f.source, 'generate', f.repo), /Colliding Scene component name/);
+  assert.equal(renderSceneFiles({ id: anotherId, slug: 'CompareGroupsScene', documentLanguage: 'uk', specification: 'Reviewed' }).has('CompareGroupsScene.tsx'), true,
+    'same component name is safe in independent UUID directories');
   second.config.slug = '../traversal';
   f.save();
   assert.throws(() => runOne(f.source, 'generate', f.repo), /Unsafe Scene slug/);
@@ -300,7 +293,7 @@ test('CLI only acts on an explicit source and select option', t => {
   assert.throws(() => main(['generate', '--source', f.source, '--unknown', 'x'], f.repo), /Usage/);
   const result = main(['generate', '--source', f.source, '--scene-id', sceneId], f.repo);
   assert.equal(result.length, 1);
-  assert.equal(result[0].changed, 7);
+  assert.equal(result[0].changed, 6);
 });
 
 test('rendered files are deterministic and no Scene scaffolding edits Lesson data', t => {
@@ -309,7 +302,7 @@ test('rendered files are deterministic and no Scene scaffolding edits Lesson dat
   const scene = { id: sceneId, component: 'DemoScene', specification: 'Spec', documentLanguage: 'qm' };
   const rendered = renderSceneFiles(scene);
   assert.deepEqual([...rendered], [...renderSceneFiles(scene)]);
-  assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 7);
+  assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 6);
   assert.equal(fs.readFileSync(f.authoredSceneModule(), 'utf8'), configBefore);
   assert.deepEqual(
     fs.readdirSync(f.source).sort(),
