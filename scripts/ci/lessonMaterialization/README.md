@@ -5,7 +5,7 @@ default-branch GitHub Actions workflow has three jobs:
 `typed-resolve`, `typed-analyze`, and `typed-publish`.
 
 The input is the exact source-commit/source-blob-pinned Lesson
-`draft.ts satisfies LessonWorkflowStage2` under the canonical
+`draft.ts` invoking `materializeLessonStage6(...)` under the canonical
 UUID bucket. An initial Course-owned seed or completed Lesson Stage 1 draft is not valid materializer input. The operation deletes the pinned draft and atomically creates `index.ts` and the deterministic Lesson-owned `define*` module tree. Exact original bytes remain in the pinned Git commit/blob. It does not generate translations, Question/Flashcard
 Banks, assets, Scene implementations or publishable runtime Props.
 
@@ -33,11 +33,23 @@ The read-only resolver verifies actor privileges, Draft/same-repository PR
 ownership and an unambiguous changed canonical Lesson-root draft.ts in the pinned
 base/head Git comparison. A missing, ambiguous, oversized or changed source fails
 closed. The command never reads PR descriptions, editorial checklists, review
-records or Course ancestry. Stages 1–5 remain editorial responsibilities. Analyzer installs
-only trusted dependencies and treats candidate TypeScript as **data**; its AST
-parser permits a conservative source subset and statically resolves
-imported owned bank Configurator `.id` values without executing candidate
-code. It uses the trusted Engine source materializer.
+records or Course ancestry. Stages 1–5 remain editorial responsibilities. Analyzer installs only trusted dependencies and builds Engine normally.
+It runs the pinned authored TypeScript entrypoint once inside a read-only,
+non-root, network-disabled worker with no GitHub credentials or repository
+metadata. The actual input is validated by the Engine materializer.
+
+```ts
+import { materializeLessonStage6 } from '@svitlo/engine/build';
+
+materializeLessonStage6(/* complete LessonWorkflowStage2 object */);
+```
+
+Execution options and source provenance come from the trusted runner, not
+the authored call. Bank Configurator references are preserved in generated
+Section source. Worker output is untrusted: the outer analyzer validates
+paths, sizes and source identity before creating the manifest. Attestation
+binds bytes and provenance; it does not prove arbitrary candidate code
+behaved honestly. Normal review and ordinary CI remain necessary.
 
 The SHA256-attested manifest contains an allowlisted create-only source
 inventory, the new root `index.ts`, and the pinned draft deletion with exact source bytes.
@@ -59,7 +71,7 @@ See [full trusted typed command specification](./TYPED.md) and the
 ```sh
 node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
 node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
-node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
+node --test scripts/ci/directMaterialization/run-isolated.spec.mjs
 npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
 ```

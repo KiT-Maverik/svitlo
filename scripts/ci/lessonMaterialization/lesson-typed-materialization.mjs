@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Typed Lesson Stage 6.1 GitHub PR orchestration.
- * ANALYZE: trusted read token, static TS extraction, real Engine materializer.
+ * ANALYZE: trusted read token and isolated direct materializer execution.
  * PUBLISH: dependency-free trusted Git API, exact SHA-attested manifest, one
  * no-clobber Git tree transition at the authorized PR head.
- * No candidate TS runs, no bank/asset/Scene creation, no Props publication.
+ * Candidate TS runs only in a credential-free worker, never in the publisher.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { inspectTyped, lessonSourceIdentity, typedPath } from './lesson-typed-gate.mjs';
 import { gitBlob, github, requireActor, report } from '../courseMaterialization/course-gate.mjs';
@@ -254,7 +253,7 @@ export function readTypedReport() {
   if (
     !filename ||
     !fs.existsSync(filename) ||
-    fs.lstatSync(filename).isSymbolicLink() ||
+    !fs.lstatSync(filename).isFile() ||
     fs.statSync(filename).size > 36 * 1024 * 1024 ||
     !hash.test(expected || '')
   )
@@ -264,96 +263,24 @@ export function readTypedReport() {
   return JSON.parse(bytes.toString('utf8'));
 }
 
-/** Semantic source-only validation uses the actual Engine declarations.
- * Draft Scene/media/selection blockers remain flagged; never suppress errors.
- */
-function syntaxGenerated(files) {
-  const requireTrusted = createRequire(import.meta.url);
-  const ts = requireTrusted(path.join(ROOT, 'node_modules/typescript'));
-  for (const file of files) {
-    if (!file.path.endsWith('.ts')) continue;
-    const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
-    if (parsed.parseDiagnostics.length) throw Error('Engine emitted invalid Lesson TypeScript: ' + file.path);
-  }
-}
-
-/** Complete, unblocked handoffs must also typecheck against the real built
- * Engine API. Drafts with explicit blockers defer this to Stage 6.2.
- */
-function semanticGenerated(files, root) {
-  const requireTrusted = createRequire(import.meta.url);
-  const ts = requireTrusted(path.join(ROOT, 'node_modules/typescript'));
-  const generated = new Map(
-    files.filter(file => file.kind === 'typescript').map(file => [path.resolve(root, file.path), file.content]),
-  );
-  const options = {
-    strict: true,
-    noEmit: true,
-    skipLibCheck: true,
-    target: ts.ScriptTarget.ES2022,
-    module: ts.ModuleKind.ESNext,
-    moduleResolution: ts.ModuleResolutionKind.Bundler,
-    baseUrl: ROOT,
-    paths: { '@svitlo/engine/build': [path.join(ROOT, 'shared/engine/dist/build.d.ts')] },
-  };
-  const host = ts.createCompilerHost(options);
-  const originalRead = host.readFile.bind(host);
-  const originalExists = host.fileExists.bind(host);
-  const originalDirectory = host.directoryExists?.bind(host);
-  host.readFile = filename => generated.get(path.resolve(filename)) ?? originalRead(filename);
-  host.fileExists = filename => generated.has(path.resolve(filename)) || originalExists(filename);
-  host.directoryExists = filename =>
-    [...generated.keys()].some(name => name.startsWith(path.resolve(filename) + path.sep)) ||
-    originalDirectory?.(filename) === true;
-  const program = ts.createProgram([...generated.keys()], options, host);
-  const errors = ts.getPreEmitDiagnostics(program).filter(error => error.category === ts.DiagnosticCategory.Error);
-  if (errors.length)
-    throw Error(
-      'Unblocked Stage 6 source failed actual Engine typechecking: ' +
-        errors
-          .slice(0, 8)
-          .map(
-            error =>
-              (error.file?.fileName || 'global') + ': ' + ts.flattenDiagnosticMessageText(error.messageText, ' '),
-          )
-          .join(' | '),
-    );
-  return true;
-}
-
 async function analyze(root, meta) {
   await fresh(meta);
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
   if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the pinned PR');
   if (tracked.has(meta.identity.folder + '/index.ts')) throw Error('Lesson Stage 6 already materialized; no overwrite');
-  const { parseTypedLesson, typecheckTypedLesson } = await import('./lesson-typed-source.mjs');
-  const input = parseTypedLesson(root, meta.identity.source, original.toString('utf8'));
-  typecheckTypedLesson(root, meta.identity.source);
-  const requireTrusted = createRequire(import.meta.url);
-  const { materializeLessonStage6 } = requireTrusted(
-    path.join(ROOT, 'shared/engine/dist/generators/materializers/lesson/materializeStage6.js'),
-  );
-  const text = original.toString('utf8');
-  const plan = materializeLessonStage6(input, {
-    sourceText: text,
+  const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
+  const plan = runIsolatedMaterialization({
+    trustedRoot: ROOT,
+    candidateRoot: root,
+    textbook: meta.identity.pkg,
+    operation: 'lesson-stage6',
     source: {
       sourcePath: meta.identity.source,
       sourceBlobSha: meta.sourceBlob,
       sourceCommitSha: meta.head,
     },
-    verifySourceInput: (evaluated, pinned, bytes) =>
-      pinned.sourceBlobSha === meta.sourceBlob &&
-      pinned.sourceCommitSha === meta.head &&
-      bytes === text &&
-      JSON.stringify(evaluated) === JSON.stringify(input),
   });
-  syntaxGenerated(plan.files);
-  if (
-    !plan.diagnostics.length &&
-    !plan.files.some(file => /TODO\s*\(BLOCKER\)|TODO\(asset\)|feedc0de-/i.test(file.content))
-  )
-    semanticGenerated(plan.files, root);
   const manifest = typedManifest(plan, meta, original, tracked, root);
   const filename = process.env.LESSON_TYPED_REPORT;
   if (!filename) throw Error('LESSON_TYPED_REPORT is required');
