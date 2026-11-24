@@ -6,6 +6,7 @@
 import { isDeepStrictEqual } from 'node:util';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import {
   markdown_Config_Schema,
   type ContentBlock_Markdown_Config,
@@ -185,7 +186,7 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
   const expressions: Record<string, string> = {};
   const imports = ['defineMarkdown'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for markdown ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for markdown ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -226,7 +227,7 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

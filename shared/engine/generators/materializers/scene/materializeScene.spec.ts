@@ -39,9 +39,9 @@ test('Scene emits canonical Config source without duplicating its specification 
   assert.match(code, /"uk": "Обери форму"/);
   assert.doesNotMatch(code, /Choose shape/);
   assert.doesNotMatch(code, /sceneImplementationRequired|SceneStub\s*\(/, 'React stub must remain external');
-  assert.match(code, /\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
-  assert.match(code, /\);\n\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
-  assert.match(code, /\/\*\*[\s\S]*# specification[\s\S]*Use the approved interaction\./);
+  assert.match(code, /\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\);\n\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\* # specification[\s\S]*Use the approved interaction\./);
   assert.equal(result.diagnostics[0]?.code, 'pending-scene');
   assert(result.diagnostics.some(d => d.code === 'pending-temporary-specification'));
 });
@@ -150,8 +150,8 @@ test('one shared Scene draft template emits six parseable files with inert compl
   }
   const jsx = files.get('ChooseShape.tsx')!;
   assert.match(jsx, /ContentBlock_Scene_Props\['locale'\]\['value'\]/);
-  assert.match(jsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
-  assert.match(jsx, /\/\/ \/\* keep this text/);
+  assert.match(jsx, / \* \* \/\n \* export const injected = true;/);
+  assert.match(jsx, / \* \/\* keep this text/);
   assert.doesNotMatch(jsx, /^export const injected = true;/m);
   assert.match(jsx, /aria-hidden="true"/);
   assert.match(files.get('ChooseShape.constants.ts')!, /testIds = \{\} as const/);

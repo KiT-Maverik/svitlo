@@ -1,4 +1,5 @@
 import type { QuizSection_Config } from '../../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * defineQuizSection source materializer (not a Props/JSON publisher).
@@ -208,9 +209,7 @@ export function materializeQuizSection(config: Source, options: Options): Result
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed quiz Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo('Transfer reviewed quiz Section notes (' + sectionNotes.join(', ') + ') into Lesson methodology; remove after verifying the transfer.'),
     );
   const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
@@ -220,21 +219,21 @@ export function materializeQuizSection(config: Source, options: Options): Result
       field => !Object.hasOwn(params, field) || params[field] === undefined,
     )
   )
-    blocker.push('// TODO (BLOCKER): Design and complete reviewed Quiz parameters.');
+    blocker.push(renderBlockerTodo('Define and validate reviewed Quiz selection, layout, feedback, interaction and results; remove after validation.'));
   if (!Array.isArray(ids) || ids.length === 0) {
-    blocker.push('// TODO (BLOCKER): Select verified Question Bank IDs.');
+    blocker.push(renderBlockerTodo('Select verified Question Bank IDs and check UUID ownership before removing this marker.'));
   } else {
     if (ids.some(id => typeof id !== 'string' || !uuid.test(id)))
       throw new Error('quiz.params.selection.questionIds: invalid Question UUID');
     if (new Set(ids).size !== ids.length) throw new Error('quiz.params.selection.questionIds: duplicate UUID');
     if (ids.some(id => String(id).startsWith('feedc0de-'))) {
-      blocker.push('// TODO (BLOCKER): Replace provisional Question IDs with reviewed bank selections.');
+      blocker.push(renderBlockerTodo('Replace provisional Question IDs with reviewed bank selections and verify UUID ownership.'));
     }
     // The Stage 6 owner validates reviewed imported Question.id expressions
     // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
   if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Independent assessment review and bank integration remain pending.');
+    blocker.push(renderBlockerTodo('Complete independent assessment review and verified bank integration before removing this marker.'));
 
   if (blocker.length)
     diagnostics.push({

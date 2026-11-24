@@ -1,4 +1,5 @@
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
 /**
@@ -234,8 +235,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     stages: imported('stages'),
     tasks: imported('tasks'),
   };
-  const blocker =
-    '// TODO (BLOCKER): Quest is Build-only; Lesson/Episode Section runtime and playback are not implemented.';
+  const blocker = renderBlockerTodo('Implement and test Quest Section runtime/playback in Lesson and Episode or remove it from publication after review; current support is Build-only.');
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
