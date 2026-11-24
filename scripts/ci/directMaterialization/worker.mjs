@@ -142,7 +142,7 @@ const plan = await executeMaterializerEntrypoint(
         }
       : undefined,
 );
-const formatted = await formatGeneratedPlan(plan);
+const formatted = await formatGeneratedPlan(plan, { operation });
 process.stdout.write(
   JSON.stringify(
     selectedBank || operation === 'episode-stage5' ? { plan: formatted, input: capturedInput } : formatted,
