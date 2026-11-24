@@ -416,7 +416,7 @@ export function materializeCourseStage5(input, options = {}) {
       recordPlacement(directory, {
         type: 'assessment',
         id: result.id,
-        slug: node.config.slug,
+        slug: directory.split('/').at(-1),
         kind: 'new',
         status: 'pending-assessment-design',
         sourcePath: root + '/' + directory + '/draft.ts',
