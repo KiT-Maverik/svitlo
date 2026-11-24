@@ -1,4 +1,7 @@
-import type { CourseWorkflowStage3NewLesson, CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
+import type {
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage1Languages,
+} from '../../../types/workflow/courseWorkflow.types';
 export type LessonDraftContext = {
   lessonId: string;
   reviewedSourceSha: string;

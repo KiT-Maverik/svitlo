@@ -1,14 +1,16 @@
 'use client';
 
 import { useMemo, type ComponentType } from 'react';
-import type { LanguageCode, AssessmentResourceLoader, Disability } from '@svitlo/engine/runtime';
-import type { Lesson_Props } from '@svitlo/engine/runtime';
+
+import type { AssessmentResourceLoader, Disability, LanguageCode, Lesson_Props } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
+
+import type { Topic } from '../layout/LearningLayout/CourseTopicList';
+import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
+import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { LessonController, type EditableSectionParam } from './LessonController';
 import type { LessonEventSceneMap } from './LessonEvents';
-import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
-import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
-import type { Topic } from '../layout/LearningLayout/CourseTopicList';
 
 /** UI Kit accepts only complete, assembled, one-language Engine Props. */
 export type LessonProps = {

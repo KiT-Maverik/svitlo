@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it, mock } from 'node:test';
+
 import { ZodError } from 'zod';
+
 import type { QuizState } from '../../../schemas';
-import { updateQuizState } from './updateQuizState.controller';
 import { quizInProgress, stubUpdateState } from '../../testUtils/controllerTestDoubles';
+import { updateQuizState } from './updateQuizState.controller';
 
 describe('DB', () => {
   describe('Controllers', () => {

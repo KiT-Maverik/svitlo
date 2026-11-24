@@ -1,8 +1,14 @@
 import type { z } from 'zod';
-import type { flashcardBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
-import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
-import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
-import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+
+import type { ContentBlock_Audio_Config } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Scene_Config } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { ContentBlock_Subtitles_Config } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Video_Config } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import type { ContentBlock_Youtube_Config } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type {
   Flashcard_Config,
   Flashcard_Flag_Config,
@@ -10,18 +16,13 @@ import type {
   Flashcard_Relationship_Type,
 } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { FlashcardSide_Config } from '../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { FlashcardsSection_Config } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Video_Config } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import type { ContentBlock_Audio_Config } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import type { ContentBlock_Subtitles_Config } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import type { ContentBlock_Youtube_Config } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
-import type { ContentBlock_Scene_Config } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { flashcardBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
+import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /**
  * Flashcard Bank authoring is Lesson-owned. It has no second bank UUID.

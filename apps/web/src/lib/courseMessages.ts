@@ -1,5 +1,6 @@
 /** Host-owned course UI messages; educational content comes from published packages only. */
 import type { CourseMessages } from '@svitlo/ui-kit';
+
 const ukMessages: CourseMessages = {
   catalogEyebrow: 'Навчання зі Svitlo',
   catalogTitle: 'Обирай свою наступну пригоду',

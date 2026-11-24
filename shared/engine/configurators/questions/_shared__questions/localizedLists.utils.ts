@@ -1,5 +1,5 @@
-import type { LanguageCode } from '#schemas';
-import { camelCase_Schema, languageCode_Schema } from '#schemas';
+import { camelCase_Schema, languageCode_Schema, type LanguageCode } from '#schemas';
+
 import { mergeForValidation } from '../../_shared__configurators';
 import { cloneJson, isRecord } from './collections.utils';
 

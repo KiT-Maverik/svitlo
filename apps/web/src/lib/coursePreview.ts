@@ -1,5 +1,6 @@
-import type { CoursePreview } from '@svitlo/ui-kit';
 import type { LanguageCode } from '@svitlo/engine/runtime';
+import type { CoursePreview } from '@svitlo/ui-kit';
+
 import type { LocalizedCourse, LocalizedCourseContent } from './courseResources';
 
 function counts(content: LocalizedCourseContent): { lessons: number; modules: number } {
@@ -7,7 +8,7 @@ function counts(content: LocalizedCourseContent): { lessons: number; modules: nu
     (total, slug) => {
       const item = content.items[slug];
       if (item.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
-      if (item.type === 'episode') return total;
+      if (item.type === 'episode' || item.type === 'assessment') return total;
       const nested = counts(item.content);
       return {
         lessons: total.lessons + nested.lessons,

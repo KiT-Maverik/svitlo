@@ -1,18 +1,18 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
+
 import { defineText } from '../contentBlocks/defineText';
 import {
-  defineSelectOneAnswer,
-  defineSelectMultipleAnswers,
-  defineMatchBlocks,
-  defineAnswerWithText,
+  answerWithNumber_Config_Schema,
   defineAnswerWithNumber,
-  defineOrderSequence,
+  defineAnswerWithText,
   defineBuildAnswerWithBlocks,
   defineFillBlanksWithBlocks,
   defineFillBlanksWithText,
-  answerWithNumber_Config_Schema,
+  defineMatchBlocks,
+  defineOrderSequence,
+  defineSelectMultipleAnswers,
+  defineSelectOneAnswer,
   selectOneAnswer_Props_Schema,
 } from './index';
 

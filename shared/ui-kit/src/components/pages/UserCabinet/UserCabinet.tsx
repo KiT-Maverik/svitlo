@@ -1,13 +1,12 @@
 'use client';
 
-import { useId, useState, type FormEvent } from 'react';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import Avatar from '@mui/material/Avatar';
 import Alert from '@mui/material/Alert';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -21,6 +20,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { useId, useState, type FormEvent } from 'react';
 
 /**
  * UI-only account cabinet prototype.

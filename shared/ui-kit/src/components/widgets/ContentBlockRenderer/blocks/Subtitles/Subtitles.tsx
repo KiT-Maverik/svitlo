@@ -1,6 +1,7 @@
 'use client';
 
 import type { ContentBlock_Subtitles_Props } from '@svitlo/engine/runtime';
+
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { localizedAttributes, subtitlesResourceLabel } from '../../utils';
 

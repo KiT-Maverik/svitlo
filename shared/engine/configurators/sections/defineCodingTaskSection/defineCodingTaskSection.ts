@@ -1,17 +1,18 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
   ChildrenSupporting,
+  ConfigWithLanguages,
+  DeepPartial,
+  LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
@@ -19,13 +20,13 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   codingTaskSection_Config_Schema,
-  codingTaskSection_Props_Schema,
   codingTaskSection_Override_Config_Schema,
+  codingTaskSection_Props_Schema,
   type CodingTaskSection_Config,
   type CodingTaskSection_Locale,
+  type CodingTaskSection_MetadataOverrides,
   type CodingTaskSection_Overrides,
   type CodingTaskSection_PropsBase,
-  type CodingTaskSection_MetadataOverrides,
 } from './defineCodingTaskSection.schemas';
 
 type Block = ContentBlock_Configurator;

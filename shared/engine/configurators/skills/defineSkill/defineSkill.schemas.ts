@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { localeText_Schema } from '#schemas';
+
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
 function createSkillSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {

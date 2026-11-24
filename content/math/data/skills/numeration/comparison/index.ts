@@ -2,9 +2,9 @@ import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { comparisonSymbols } from './comparisonSymbols';
 import { moreLessEqual } from './moreLessEqual';
+import { order20 } from './order20';
 import { order100 } from './order100';
 import { order1000 } from './order1000';
-import { order20 } from './order20';
 
 export const comparison = defineSkillGroup({
   slug: 'comparison',

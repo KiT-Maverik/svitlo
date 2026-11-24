@@ -1,12 +1,11 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
+import { mergeForValidation } from '../../_shared__configurators';
+import { defineLesson } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
-import { defineLesson } from '../../lessons/defineLesson';
 import { defineCourse } from './defineCourse';
-import { mergeForValidation } from '../../_shared__configurators';
 import { course_Config_Schema, course_Props_Schema } from './defineCourse.schemas';
 
 describe('Configurators', () => {

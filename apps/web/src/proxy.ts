@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+
 import type { NextRequest } from 'next/server';
 
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';

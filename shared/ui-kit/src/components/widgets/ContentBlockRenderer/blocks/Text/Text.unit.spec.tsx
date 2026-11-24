@@ -1,9 +1,12 @@
-import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { describe, expect, it } from 'vitest';
+
 import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
-import { Text } from './Text';
+
 import styles from '#utils/styledText/StyledText.module.css';
+
+import { Text } from './Text';
 
 const textResponse = (
   value: string,

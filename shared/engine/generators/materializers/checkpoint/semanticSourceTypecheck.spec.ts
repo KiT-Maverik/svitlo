@@ -2,14 +2,15 @@ import assert from 'node:assert/strict';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import { materializeCarousel } from '../carousel/materializeCarousel';
-import { materializeCheckpoint } from './materializeCheckpoint';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeScene } from '../scene/materializeScene';
+import { materializeCheckpoint } from './materializeCheckpoint';
 
 /**
  * Full semantic compilation fixture, not just a TypeScript syntax parse.

@@ -1,7 +1,8 @@
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { DATABASE_NAME, DATABASE_VERSION } from '../databaseConfig/databaseConfig.utils';
+import { describe, it } from 'node:test';
+
 import { installIndexedDbFixture } from '../__tests__/indexedDbFixture';
+import { DATABASE_NAME, DATABASE_VERSION } from '../databaseConfig/databaseConfig.utils';
 import { openDatabase } from './openDatabase.utils';
 
 describe('DB', () => {

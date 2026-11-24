@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
+
 import { fixture } from '../quest.fixture';
 
 const languages = { languages: ['uk'] as const };

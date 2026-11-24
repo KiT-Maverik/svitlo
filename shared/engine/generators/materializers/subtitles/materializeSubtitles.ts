@@ -4,9 +4,12 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import {
+  subtitles_Config_Schema,
+  type ContentBlock_Subtitles_Config,
+} from '../../../configurators/contentBlocks/defineSubtitles';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles';
-import { subtitles_Config_Schema } from '../../../configurators/contentBlocks/defineSubtitles';
 
 export type SubtitlesDraftConfig = Pick<ContentBlock_Subtitles_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Subtitles_Config['params']>;
@@ -218,13 +221,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO(asset): Replace reserved Nil UUID with a verified asset.\n' +
-        '// TODO (BLOCKER): ' +
-        instruction +
-        ' for subtitles ' +
-        config.id +
-        '.\n' +
-        JSON.stringify(reference);
+        '// TODO (BLOCKER): ' + instruction + ' for subtitles ' + config.id + '.\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',

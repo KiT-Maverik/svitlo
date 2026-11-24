@@ -1,8 +1,9 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 

@@ -1,14 +1,14 @@
 import { defineText } from '../contentBlocks/defineText';
 import {
-  defineSelectOneAnswer,
-  defineSelectMultipleAnswers,
-  defineMatchBlocks,
-  defineAnswerWithText,
   defineAnswerWithNumber,
-  defineOrderSequence,
+  defineAnswerWithText,
   defineBuildAnswerWithBlocks,
   defineFillBlanksWithBlocks,
   defineFillBlanksWithText,
+  defineMatchBlocks,
+  defineOrderSequence,
+  defineSelectMultipleAnswers,
+  defineSelectOneAnswer,
 } from './index';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;

@@ -1,12 +1,13 @@
 'use client';
 
-import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
-
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
-import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
+
+import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
+import styles from './Youtube.module.css';
 import {
   createYoutubeIframe,
   getConnectionSnapshot,
@@ -17,7 +18,6 @@ import {
   youtubeVideoId,
   type YoutubePlayer,
 } from './Youtube.utils';
-import styles from './Youtube.module.css';
 
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 

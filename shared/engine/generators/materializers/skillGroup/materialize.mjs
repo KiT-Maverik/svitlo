@@ -101,6 +101,7 @@ export function materializeSkillGroup(input, context = {}) {
   const skills = {};
   for (const key of Object.keys(config.skills ?? {}).sort()) {
     ensure(key, dir + '.skills.' + key);
+    if (key === 'index') throw Error(dir + '.skills.' + key + ': reserved source filename');
     if (keys.has(key)) throw Error(dir + ': reused Skill slug ' + key);
     keys.add(key);
     const raw = unwrap(config.skills[key]);
@@ -110,18 +111,28 @@ export function materializeSkillGroup(input, context = {}) {
     const nested = record(config.skills[key]?.config)
       ? { ...config.skills[key], config: { ...raw, slug: key } }
       : { ...raw, slug: key };
+    // Canonical taxonomy: Skill source is a sibling <slug>.ts of its Group index.ts.
     const child = context.materializeSkill(nested, {
       ...context,
-      directory: [dir, 'skills', key].filter(Boolean).join('/'),
+      directory: dir,
+      entryFilename: key + '.ts',
+      identityDirectory: [dir, key].filter(Boolean).join('/'),
+      sidecarDirectory: [dir, key].filter(Boolean).join('/'),
     });
     if (!Array.isArray(child?.files) || !child.exportName) throw Error('Invalid Skill materializer result');
+    const expected = [dir, key + '.ts'].filter(Boolean).join('/');
+    if (!child.files.some(file => file.path === expected && file.kind === 'typescript'))
+      throw Error(dir + '.skills.' + key + ': missing canonical Skill module');
+    const evidencePrefix = [dir, key].filter(Boolean).join('/') + '/';
+    if (child.files.some(file => file.path !== expected && !file.path.startsWith(evidencePrefix)))
+      throw Error(dir + '.skills.' + key + ': delegated Skill escaped its source owner');
     const actualId = child.id ?? raw.id;
     if (typeof actualId !== 'string' || !uuid.test(actualId))
       throw Error(dir + '.skills.' + key + ': immutable child UUID required');
     if (identities.has(actualId)) throw Error(dir + '.skills.' + key + ': duplicate UUID');
     identities.add(actualId);
     const alias = 'child_skill_' + key;
-    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./skills/' + key + '";');
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
     skills[key] = alias;
     files.push(...child.files);
     diagnostics.push(...(child.diagnostics ?? []));

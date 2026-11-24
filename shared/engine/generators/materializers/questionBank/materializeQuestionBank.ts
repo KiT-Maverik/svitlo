@@ -2,22 +2,17 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
-import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
+import { questionTypes } from '../../../configurators/questions/question.constants';
+import {
+  questionBankWorkflowStage1_Schema,
+  questionBankWorkflowStage3_Schema,
+} from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
-import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
-import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
-import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
-import { materializeAnswerWithText } from '../answerWithText/materializeAnswerWithText';
 import { materializeAnswerWithNumber } from '../answerWithNumber/materializeAnswerWithNumber';
-import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
-import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
-import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
-import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
+import { materializeAnswerWithText } from '../answerWithText/materializeAnswerWithText';
 import {
   assertBankLanguages,
   assertBankOrder,
@@ -25,30 +20,33 @@ import {
   assertBankSha,
   assertBankStatement,
   assertBankUuid,
-  assertUniqueBankEntityIds,
-  assertNoPendingBankSources,
   assertPinnedBankInput,
+  assertUniqueBankEntityIds,
   authoredBankLiteral,
   preflightBankSource,
   type BankPinnedSource,
-  type BankSourceSnapshot,
-  type BankSourceResult,
-  type BankSourceFile,
   type BankSourceDiagnostic,
+  type BankSourceFile,
+  type BankSourceResult,
+  type BankSourceSnapshot,
 } from '../bankSource/bankSourceSafety';
+import {
+  assertBankLessonLanguages,
+  lessonConstantsImport,
+  type LessonLanguageOwnership,
+} from '../bankSource/lessonLanguageOwnership';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
+import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
+import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
+import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
+import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
+import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
+import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
+import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 
-const kinds = [
-  'selectOneAnswer',
-  'selectMultipleAnswers',
-  'matchBlocks',
-  'answerWithText',
-  'answerWithNumber',
-  'orderSequence',
-  'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks',
-  'fillBlanksWithText',
-] as const;
+const kinds = questionTypes;
 type Kind = (typeof kinds)[number];
 const kindSet: ReadonlySet<string> = new Set(kinds);
 
@@ -57,7 +55,6 @@ export type QuestionBankDraftAuthorization = {
   authorized: true;
   ownerLessonId: string;
   lessonSourceSha: string;
-  referenceSha: string;
   snapshot: BankSourceSnapshot;
 };
 
@@ -68,6 +65,7 @@ export type QuestionBankFinalAuthorization = {
   snapshot: BankSourceSnapshot;
   /** Concrete Scene registry and media evidence are checked before delegation. */
   blocks: AssessmentBlockEvidence;
+  ownerLanguages: LessonLanguageOwnership;
 };
 
 function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): void {
@@ -75,52 +73,13 @@ function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): vo
   if (!input || input.config?.ownerLessonId !== lessonId) {
     throw new Error('Question Bank must use the actual owning Lesson UUID');
   }
-  const p = input.production;
-  if (!p) throw new Error('Question Bank Lesson Stage 7 handoff required');
-  assertBankLanguages(p.languages);
-  assertBankSha(p.lesson.sourceSha, 'Lesson source');
-  assertBankSha(p.lesson.referenceSha, 'Lesson reference');
-  for (const [label, value] of [
-    ['Lesson source path', p.lesson.sourcePath],
-    ['Lesson reference path', p.lesson.referencePath],
-    ['Lesson methodology path', p.lesson.methodologyPath],
-  ] as const)
-    assertBankPath(value);
-  for (const [label, value] of [
-    ['Lesson title', p.lesson.title],
-    ['Question ownership rationale', p.ownershipRationale],
-    ['audience', p.audience],
-    ['scope', p.scope],
-    ['prerequisites', p.prerequisites],
-    ['misconceptions', p.misconceptions],
-    ['media needs', p.mediaNeeds],
-    ['sources and dependencies', p.sourcesAndDependencies],
-  ] as const)
-    assertBankStatement(value, label);
-  if (
-    !lessonProductionAssessmentRequirements_Schema.safeParse(p.assessment).success ||
-    typeof p.assessment.quizRequiredForCompletion !== 'boolean'
-  ) {
-    throw new Error('Preserve all independent Lesson assessment decisions');
-  }
-  if (!Array.isArray(p.evidenceIntent) || !p.evidenceIntent.length) {
-    throw new Error('Methodologist assessment evidence is required');
-  }
-  for (const item of p.evidenceIntent) {
-    assertBankUuid(item.skillId, 'assessed Skill');
-    for (const key of [
-      'outcome',
-      'assessmentMethod',
-      'cognitiveOperation',
-      'knowledgeAspect',
-      'cognitiveDemand',
-      'misconception',
-      'context',
-      'expectedEvidence',
-    ] as const) {
-      assertBankStatement(item[key], 'evidenceIntent.' + key);
-    }
-  }
+  // Parse *only* Stage 1 fields: Stages 2/3 legally add Questions and Quiz.
+  const parsed = questionBankWorkflowStage1_Schema.safeParse({
+    config: { ownerLessonId: input.config.ownerLessonId },
+    production: { languages: input.production?.languages },
+  });
+  if (!parsed.success) throw new Error('Invalid Question Bank Stage 1 handoff: ' + parsed.error.message);
+  assertBankLanguages(parsed.data.production.languages);
 }
 
 /** Produce exactly one editable, nonpublishable Stage 1 TS module. */
@@ -130,12 +89,9 @@ export function materializeQuestionBankDraft(
 ): BankSourceResult {
   if (authorization.authorized !== true) throw new Error('Lesson Stage 7 authorization missing');
   validateStage1(input, authorization.ownerLessonId);
-  if (
-    input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
-    input.production.lesson.referenceSha !== authorization.referenceSha
-  ) {
-    throw new Error('Stale Lesson/assessment handoff');
-  }
+  // The trusted caller, not the mutable editorial source, pins the owning
+  // Lesson revision. The transaction separately pins the Bank source bytes.
+  assertBankSha(authorization.lessonSourceSha, 'owning Lesson revision');
   const files: BankSourceFile[] = [
     {
       path: 'questions/draft.ts',
@@ -157,17 +113,19 @@ function renderQuestion(
   node: Record<string, unknown>,
   sourceLanguage: QuestionBankWorkflowStage3['production']['languages'],
   blocks: AssessmentBlockEvidence,
+  ownerImport: string,
 ): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
     directory: 'questions/' + kind,
     languages: sourceLanguage,
+    ownerLanguagesImport: ownerImport,
     materializeBlock: (
       block: {
         config: { id: string; slug: string; type: string } & Record<string, unknown>;
         production?: Record<string, unknown>;
       },
       location: { directory: string; documentLanguage: string },
-    ) => materializeAssessmentBlock(block, location, sourceLanguage.planned, 'questionsLanguages', blocks),
+    ) => materializeAssessmentBlock(block, location, sourceLanguage.planned, 'questions', ownerImport, blocks),
   };
   // The nine concrete renderers still use their own index-signature source
   // adapter types. Validate the reviewed typed bank first, then bridge each
@@ -242,7 +200,6 @@ function planQuestionBank(
   if (!quiz || !['none', 'local'].includes(quiz.kind)) {
     throw new Error('Explicit Quiz editorial intent required');
   }
-  assertBankStatement(quiz.rationale, 'Quiz intent rationale');
   if (quiz.kind === 'local') {
     assertBankOrder(quiz.sections.items, quiz.sections.order, 'Quiz Section intent', true);
     const sections = new Set<string>();
@@ -251,14 +208,12 @@ function planQuestionBank(
       assertBankPath(value.sectionPath);
       if (sections.has(value.sectionId)) throw new Error('Duplicate Quiz Section identity');
       sections.add(value.sectionId);
-      assertBankStatement(value.selectionRationale, 'Quiz selection rationale');
-      assertBankStatement(value.coverage, 'Quiz coverage');
-      assertBankStatement(value.upstreamDependencies, 'Quiz upstream dependencies');
     }
   }
   assertUniqueBankEntityIds(questions);
-  assertNoPendingBankSources(questions);
   const source = input.production.languages;
+  assertBankLessonLanguages(authorization.ownerLanguages, source);
+  const ownerImport = lessonConstantsImport(authorization.ownerLessonId);
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
   const rootImports: string[] = [];
@@ -285,10 +240,7 @@ function planQuestionBank(
       assertBankUuid(config.id, 'Question ' + kind + '/' + slug);
       if (seenIds.has(config.id.toLowerCase())) throw new Error('Duplicate Question UUID: ' + config.id);
       seenIds.add(config.id.toLowerCase());
-      if (!production || production.pending) throw new Error('Unreviewed or pending Question ' + slug);
-      assertBankStatement(production.rationale, 'Question rationale');
-      assertBankStatement(production.distinction, 'Question distinction');
-      const output = renderQuestion(kind, { config, production }, source, authorization.blocks);
+      const output = renderQuestion(kind, { config, production }, source, authorization.blocks, ownerImport);
       files.push(...output.files);
       diagnostics.push(...(output.diagnostics ?? []));
       kindImports.push(
@@ -307,7 +259,7 @@ function planQuestionBank(
     files.push({
       path: 'questions/' + kind + '/index.ts',
       kind: 'typescript',
-      content: kindImports.join('\n') + '\n',
+      content: 'export type { Languages } from ' + JSON.stringify(ownerImport) + ';\n' + kindImports.join('\n') + '\n',
     });
     rootEntries.push('  ' + JSON.stringify(kind) + ': {\n' + entries.join('\n') + '\n  },');
   }
@@ -315,22 +267,22 @@ function planQuestionBank(
   files.push({
     path: 'questions/index.ts',
     kind: 'typescript',
-    content: rootImports.join('\n') + '\n\nexport const questions = {\n' + rootEntries.join('\n') + '\n};\n',
-  });
-  files.push({
-    path: 'questionsLanguages.ts',
-    kind: 'typescript',
     content:
-      '// Original reviewed source locale only; translations require independent review.\n' +
-      'export const languages = ' +
-      JSON.stringify([source.document]) +
-      ' as const;\n',
+      'export type { Languages } from ' +
+      JSON.stringify(ownerImport) +
+      ';\n' +
+      rootImports.join('\n') +
+      '\n\nexport const questions = {\n' +
+      rootEntries.join('\n') +
+      '\n};\n',
   });
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',
     draftPath: 'questions/draft.ts',
     source: authorization.source,
   });
-  // Only an external authenticated Git writer may commit this atomic transition.
-  return { ...result, diagnostics };
+  // Scene draft paths are separately scoped/attested; the publisher atomically
+  // commits them alongside the bank, never under the Lesson's source subtree.
+  const sceneDrafts = materializeBankSceneDrafts(input.config, source.document, authorization.blocks);
+  return { ...result, diagnostics, sceneDrafts };
 }

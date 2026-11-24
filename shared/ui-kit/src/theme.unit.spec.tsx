@@ -1,7 +1,8 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { useColorScheme, useTheme } from '@mui/material/styles';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useColorScheme, useTheme } from '@mui/material/styles';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import { SvitloThemeProvider } from './theme';
 
 function ThemeProbe() {

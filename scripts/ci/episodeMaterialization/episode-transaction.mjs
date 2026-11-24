@@ -10,6 +10,7 @@ import { github, gitBlob, requireActor, safeBranch, report } from '../courseMate
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
+import { pinnedGitReader as gitReader } from '../directMaterialization/pinned-git.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
@@ -58,29 +59,23 @@ export function parseEpisodeMetadata(encoded) {
   return meta;
 }
 
-function gitReader(root) {
-  const git = (...args) => execFileSync('git', args, { cwd: root, maxBuffer: maxBytes, encoding: 'utf8' });
-  const tree = (sha, scope) => {
-    const result = new Map();
-    for (const row of git('ls-tree', '-r', '-z', sha, '--', scope).split('\0').filter(Boolean)) {
-      const match = row.match(/^(\d{6}) (blob|tree|commit) ([a-f0-9]{40})\t(.+)$/s);
-      if (!match || result.has(match[4])) throw Error('Invalid pinned Git tree entry');
-      result.set(match[4], { mode: match[1], type: match[2], sha: match[3] });
-    }
-    return result;
-  };
-  const blob = (entry, name) => {
-    if (!ordinary(entry) || !SHA.test(entry.sha)) throw Error('Expected ordinary non-symlink source: ' + name);
-    const bytes = execFileSync('git', ['cat-file', 'blob', entry.sha], { cwd: root, maxBuffer: maxBytes });
-    const value = bytes.toString('utf8');
-    if (!Buffer.from(value, 'utf8').equals(bytes) || gitBlob(bytes) !== entry.sha)
-      throw Error('Pinned source is not exact UTF-8: ' + name);
-    return value;
-  };
-  return { git, tree, blob };
+const sceneUuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+function episodeSceneTarget(filename, meta) {
+  const prefix = meta.textbookRoot + '/scenes/';
+  if (typeof filename !== 'string' || !filename.startsWith(prefix)) return null;
+  const match = filename.slice(prefix.length).match(/^([0-9a-f])\/([0-9a-f-]{36})\/([^/]+)$/);
+  if (!match || !sceneUuid.test(match[2]) || match[2].at(-1) !== match[1]) return null;
+  const leaf = match[3];
+  if (
+    leaf !== 'index.ts' &&
+    !/^[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx)$/.test(leaf)
+  )
+    return null;
+  return { id: match[2], leaf };
 }
-
 function safeOutput(file, meta) {
+  if (typeof file === 'string' && file.startsWith(meta.textbookRoot + '/scenes/'))
+    return episodeSceneTarget(file, meta) !== null;
   const prefix = meta.courseRoot + '/' + meta.placement + '/';
   if (file === meta.parentPath) return true;
   if (typeof file !== 'string' || !file.startsWith(prefix) || file.length > 500) return false;
@@ -93,12 +88,13 @@ function safeOutput(file, meta) {
     return false;
   const leaf = parts.at(-1);
   return (
-    ['index.ts', 'languages.ts', 'specification.md', 'methodology.md', 'markdown.md'].includes(leaf) ||
+    ['index.ts', 'constants.ts', 'specification.md', 'methodology.md', 'markdown.md'].includes(leaf) ||
     /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
     /^code\.[a-z0-9]{1,10}$/.test(leaf)
   );
 }
 export function checkEpisodeTargets(meta, files, tree) {
+  const sceneGroups = new Map();
   if (
     !ordinary(tree.get(meta.sourcePath)) ||
     tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
@@ -118,6 +114,12 @@ export function checkEpisodeTargets(meta, files, tree) {
     )
       throw Error('Invalid or duplicate Episode materializer target: ' + file.path);
     seen.add(file.path);
+    const scene = episodeSceneTarget(file.path, meta);
+    if (scene) {
+      const group = sceneGroups.get(scene.id) ?? [];
+      group.push({ leaf: scene.leaf, kind: file.kind });
+      sceneGroups.set(scene.id, group);
+    }
     if (file.path !== meta.parentPath && tree.has(file.path))
       throw Error('Episode target would overwrite existing authored source: ' + file.path);
     const segments = file.path.split('/');
@@ -130,6 +132,28 @@ export function checkEpisodeTargets(meta, files, tree) {
   }
   if (!seen.has(meta.parentPath) || !seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
     throw Error('Episode transaction must restore exact parent and create final index');
+  for (const [id, entries] of sceneGroups) {
+    const components = entries.map(entry => entry.leaf).filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
+    if (components.length !== 1) throw Error('Episode Scene must have exactly one component: ' + id);
+    const name = components[0].slice(0, -'.tsx'.length);
+    const expected = [
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
+    ];
+    if (
+      entries.length !== expected.length ||
+      expected.some(
+        leaf =>
+          entries.filter(entry => entry.leaf === leaf && entry.kind === (leaf.endsWith('.css') ? 'code' : 'typescript'))
+            .length !== 1,
+      )
+    )
+      throw Error('Episode Scene has missing or invalid six-file scaffold: ' + id);
+  }
   return true;
 }
 export function buildEpisodeManifest(meta, plan) {
@@ -185,7 +209,10 @@ export async function prepareEpisode(meta, root, execute = runIsolatedMaterializ
   const changes = reader.git('diff', '--name-status', '-z', meta.parentHead, meta.head).split('\0').filter(Boolean);
   if (changes.length !== 2 || changes[0] !== 'M' || changes[1] !== meta.sourcePath)
     throw Error('Reviewed Episode changes must contain exactly the allocated draft');
-  const tree = reader.tree(meta.head, meta.courseRoot);
+  const tree = new Map([
+    ...reader.tree(meta.head, meta.courseRoot),
+    ...reader.tree(meta.head, meta.textbookRoot + '/scenes'),
+  ]);
   const base = reader.tree(meta.parentHead, meta.courseRoot);
   if (
     base.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
@@ -238,7 +265,10 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
     reader.git('merge-base', meta.parentHead, meta.head).trim() !== meta.parentHead
   )
     throw Error('Episode publisher source checkout is not clean and pinned');
-  const tree = reader.tree(meta.head, meta.courseRoot);
+  const tree = new Map([
+    ...reader.tree(meta.head, meta.courseRoot),
+    ...reader.tree(meta.head, meta.textbookRoot + '/scenes'),
+  ]);
   const baseline = reader.tree(meta.parentHead, meta.courseRoot);
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
@@ -251,7 +281,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
   // reading it does not require TypeScript, user code or npm packages.
   const match = sourceHandoff.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
   );
   if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
   const handoff = JSON.parse(match[1]);

@@ -2,7 +2,7 @@ import type { QuestSection_Config } from '../../../configurators/sections/define
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
 /**
- * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * Keep the exact Lesson/Episode constants.ts reference when child files live
  * deeper than their parent. Package aliases remain rooted independently.
  */
 function childLanguagesImport(parentImport: string, nestedDepth: number): string {
@@ -111,19 +111,6 @@ function filterLocale(value: unknown, source: string): unknown {
   if (keys.length && keys.every(key => localeKey.test(key)))
     return Object.hasOwn(value, source) ? { [source]: filterLocale(value[source], source) } : {};
   return Object.fromEntries(keys.map(key => [key, filterLocale(value[key], source)]));
-}
-function specification(production: Record<string, unknown> | undefined, omit: string[] = []): string | undefined {
-  const entries = Object.entries(production ?? {}).filter(
-    ([key]) => !['pending', 'documentLanguage', ...omit].includes(key),
-  );
-  return entries.length
-    ? entries
-        .map(
-          ([key, value]) =>
-            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-        )
-        .join('\n\n') + '\n'
-    : undefined;
 }
 function verifyChild(
   node: SourceChild,
@@ -249,6 +236,19 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   };
   const blocker =
     '// TODO (BLOCKER): Quest is Build-only; Lesson/Episode Section runtime and playback are not implemented.';
+  const sectionNotes = Object.keys(options.production ?? {}).filter(
+    key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
+  );
+  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+    diagnostics.push({
+      path: destination(dir),
+      code: 'pending-quest-methodology',
+      message:
+        'TODO (BLOCKER): Transfer reviewed Quest Section notes (' +
+        sectionNotes.join(', ') +
+        ') into Lesson methodology.',
+      severity: 'warning',
+    });
   diagnostics.push({ path: destination(dir), code: 'quest-build-only', message: blocker, severity: 'warning' });
   const source = [
     "import { defineQuestSection } from '@svitlo/engine/build';",
@@ -266,8 +266,6 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     render(own) + ');',
     '',
   ].join('\n');
-  const spec = specification(options.production);
-  if (spec) addOwn(files, seen, { path: destination(dir, 'specification.md'), kind: 'specification', content: spec });
   addOwn(files, seen, { path: destination(dir), kind: 'typescript', content: source });
   return { exportName: exported(config.slug), files, diagnostics };
 }

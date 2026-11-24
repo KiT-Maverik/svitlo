@@ -1,11 +1,12 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { test } from 'node:test';
+
 import ts from 'typescript';
 
-import { materializeSelectOneAnswer } from './materializeSelectOneAnswer';
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
+import { materializeSelectOneAnswer } from './materializeSelectOneAnswer';
 
 const uuid = (number: number): string => 'b775647f-203d-481a-a1c7-4d331c' + String(number).padStart(6, '0');
 

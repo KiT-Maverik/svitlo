@@ -1,3 +1,4 @@
+import { Box, Button, CircularProgress, Container, List, ListItemButton, Typography } from '@mui/material';
 import {
   createContext,
   forwardRef,
@@ -9,20 +10,20 @@ import {
   type MouseEvent,
   type ReactNode,
 } from 'react';
-import { Button, Container, Typography, CircularProgress, Box, List, ListItemButton } from '@mui/material';
+
+import { exitNativeApp, registerNativeBackButton } from '@svitlo/adapter-capacitor';
+import { getLocaleDirection, type Lesson_Props, type Locale } from '@svitlo/engine/runtime';
 import {
-  SvitloThemeProvider,
-  Lesson,
-  useLessonNavigation,
-  SceneLocaleProvider,
   createLessonLearningLayout,
+  Lesson,
+  SceneLocaleProvider,
+  SvitloThemeProvider,
+  useLessonNavigation,
   type LessonLearningLayoutProps,
   type UiKitMessages,
 } from '@svitlo/ui-kit';
-import { type Locale } from '@svitlo/engine/runtime';
-import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine/runtime';
-import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
-import { textbook, resolveScene } from './generated/textbook';
+
+import { resolveScene, textbook } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';
 import { defaultLanguage, languageForLocale, lessonHref, localeForLanguage, parseRoute } from './routes';
 

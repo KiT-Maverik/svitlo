@@ -1,14 +1,15 @@
 'use client';
 
+import { Box, Button, Paper, Stack, Typography } from '@mui/material';
+import { useContext, useId, useState, type ReactNode } from 'react';
+
+import type { QuestionResponse } from '#types/questions';
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import { useContext, useId, useState, type ReactNode } from 'react';
-import { Box, Button, Paper, Stack, Typography } from '@mui/material';
-import type { QuestionResponse } from '#types/questions';
-import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { QuestionContent } from './QuestionContent';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
+import { QuestionContent } from './QuestionContent';
 
 export type { QuestionResponse } from '#types/questions';
 

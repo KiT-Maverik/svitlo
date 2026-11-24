@@ -32,6 +32,8 @@ export type BuildAnswerWithBlocksContext = {
   directory: string;
   /** Same production-only language plan structure as CourseWorkflowStage1Languages. */
   languages: { document: LanguageCode; planned: SupportedLanguages };
+  /** Bank-only: bind the owning Lesson's Languages type rather than a copied tuple. */
+  ownerLanguagesImport?: string;
   /** The parent binds the matching concrete ContentBlock renderer. */
   materializeBlock: (
     node: { config: PlainBlock; production?: Record<string, unknown> },
@@ -214,7 +216,8 @@ export function materializeBuildAnswerWithBlocks(
   if (node.production?.pending === true)
     blockers.push('Independent Question Bank review and content completion required.');
   const remaining = planned.filter(code => code !== context.languages.document);
-  if (remaining.length) blockers.push('Restore independently reviewed translations for ' + remaining.join(', ') + '.');
+  if (remaining.length && !context.ownerLanguagesImport)
+    blockers.push('Restore independently reviewed translations for ' + remaining.join(', ') + '.');
   const matches = (pattern: string, parts: string[]) => {
     const tokens = pattern.split('.');
     return tokens.length === parts.length && tokens.every((token, index) => token === '*' || token === parts[index]);
@@ -231,7 +234,9 @@ export function materializeBuildAnswerWithBlocks(
       safeSlug(child.slug, location + '.slug');
       if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
-      const childDir = context.directory + '/' + name + '/' + location.replaceAll('.', '/');
+      // Keep semantic Question roles, but discard source-only content/items wrappers.
+      const childPath = [...parts.slice(1, -2), parts[parts.length - 1]].join('/');
+      const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(
         { config: child as PlainBlock, ...(isRecord(value.production) ? { production: value.production } : {}) },
@@ -239,6 +244,12 @@ export function materializeBuildAnswerWithBlocks(
       );
       if (!out || !validIdentifier.test(out.exportName) || !Array.isArray(out.files))
         fail(location, 'invalid child materializer result');
+      for (const file of out.files) {
+        if (!file.path.startsWith(childDir + '/'))
+          fail(location, 'delegated ContentBlock escaped its assigned directory');
+      }
+      if (!out.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
+        fail(location, 'missing delegated ContentBlock index.ts');
       const alias = 'child_' + parts.join('_');
       if (!validIdentifier.test(alias)) fail(location, 'invalid import name');
       imports.push(
@@ -247,7 +258,7 @@ export function materializeBuildAnswerWithBlocks(
           ' as ' +
           alias +
           ' } from ' +
-          JSON.stringify('./' + name + '/' + location.replaceAll('.', '/')) +
+          JSON.stringify('./' + name + '/' + childPath) +
           ';',
       );
       files.push(...out.files);
@@ -281,6 +292,9 @@ export function materializeBuildAnswerWithBlocks(
     kind: 'typescript',
     content: [
       "import { defineBuildAnswerWithBlocks } from '@svitlo/engine/build';",
+      ...(context.ownerLanguagesImport
+        ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+        : []),
       ...imports.sort(),
       '',
       ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
@@ -289,9 +303,9 @@ export function materializeBuildAnswerWithBlocks(
         exportedName +
         ' = defineBuildAnswerWithBlocks<' +
         JSON.stringify(name) +
-        ', typeof content, [' +
-        JSON.stringify(context.languages.document) +
-        ']>({\n' +
+        ', typeof content, ' +
+        (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(context.languages.document) + ']') +
+        '>({\n' +
         metadata +
         '\n  content,\n});\n',
     ].join('\n'),

@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import { localeText_Schema } from '#schemas';
-import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
-import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
+import { localeText_Schema } from '#schemas';
+
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Skill_Configurator } from '../defineSkill/defineSkill';
-import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
+import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
 import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
+import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
 
 const frontendByMode = {
   config: localizationSwitch.config.optional(),

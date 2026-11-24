@@ -1,14 +1,14 @@
 import {
-  defineText,
   defineAudio,
   defineCarousel,
   defineCode,
   defineImage,
   defineMarkdown,
-  readMarkdown,
   defineScene,
+  defineText,
   defineVideo,
   defineYoutube,
+  readMarkdown,
 } from './index';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';

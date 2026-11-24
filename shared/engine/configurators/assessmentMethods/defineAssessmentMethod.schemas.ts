@@ -1,13 +1,14 @@
 import { z } from 'zod';
 
 import { localizationSwitch } from '../contentBlocks/contentBlock.schemas';
+import { assessmentMethodSlug_Schema } from '../questions/assessmentMethod.schemas';
 
 function createAssessmentMethodSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
   const localized = localizationSwitch[mode];
 
   return z.object({
     id: z.uuid(),
-    slug: z.string().min(1),
+    slug: assessmentMethodSlug_Schema,
     description: localized,
     title: localized,
   });

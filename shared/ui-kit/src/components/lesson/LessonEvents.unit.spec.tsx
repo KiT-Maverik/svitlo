@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { useEffect } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Lesson_Props, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
+
+import type { ContentBlock_Scene_Props, Lesson_Props } from '@svitlo/engine/runtime';
+
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
-import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
-import { Lesson } from './Lesson';
+import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import { useLessonActions, useLessonEventBus, useLessonEventScene } from './index';
+import { Lesson } from './Lesson';
 import { createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;

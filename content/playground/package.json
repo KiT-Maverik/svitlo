@@ -61,6 +61,7 @@
     "react-dom": "^19.3.1"
   },
   "imports": {
+    "#skillsData/*": "./data/skills/*.ts",
     "#lessonsData/*": "./data/lessons/*.ts",
     "#coursesData/*": "./data/courses/*.ts"
   }

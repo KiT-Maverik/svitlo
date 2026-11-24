@@ -1,4 +1,5 @@
 import { posix } from 'node:path';
+
 import ts from 'typescript';
 
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
@@ -253,4 +254,50 @@ export function preserveAssessmentReferences(
   if (visited.size !== selections.length)
     throw new Error('Stage 6: missing rendered Quiz/Flashcards Section for reviewed Configurator imports');
   return updated;
+}
+
+/**
+ * Project only imported Skill Configurator identifiers from the exact reviewed
+ * Lesson Stage 2 expression. No textbook UUID/slug table belongs in Engine.
+ *
+ * #skillsData is resolved by the owning textbook package; cross-textbook
+ * relative/absolute imports cannot be silently reinterpreted as local Skills.
+ * Plain authored UUID strings remain non-publishable TODOs until the author
+ * imports the actual Configurator in the reviewed source.
+ */
+export type AuthoredSkillReference = Readonly<{ id: string; path: string; exported: string }> | null;
+export function reviewedSkillReferences(
+  sourceText: string,
+  sourcePath: string,
+  input: LessonWorkflowStage2,
+): readonly AuthoredSkillReference[] {
+  const file = ts.createSourceFile(sourcePath, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length)
+    throw new Error('Stage 6: reviewed Lesson source has syntax errors');
+  const root = findReviewedLesson(file);
+  const skills = root && at(root, ['config', 'skills']);
+  if (!skills || !ts.isArrayLiteralExpression(unwrap(skills))) return input.config.skills.map(() => null);
+  const elements = (unwrap(skills) as ts.ArrayLiteralExpression).elements;
+  if (elements.length !== input.config.skills.length)
+    throw new Error('Stage 6: evaluated Skills differ from the reviewed Skill inventory');
+  const bindings = importedBindings(file);
+  return elements.map((element, index) => {
+    const value = unwrap(element as ts.Expression);
+    const id = input.config.skills[index];
+    if (ts.isStringLiteral(value)) {
+      if (value.text !== id) throw new Error('Stage 6: reviewed Skill UUID differs from evaluated input');
+      return null;
+    }
+    if (!ts.isPropertyAccessExpression(value) || value.name.text !== 'id' || !ts.isIdentifier(value.expression))
+      throw new Error('Stage 6: Skill must be an explicit imported Configurator.id or unresolved UUID');
+    const binding = bindings.get(value.expression.text);
+    if (
+      !binding ||
+      binding.form !== 'named' ||
+      !identifier.test(binding.exported) ||
+      !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(binding.module)
+    )
+      throw new Error('Stage 6: Skill must be imported from the owning textbook #skillsData taxonomy');
+    return { id, path: binding.module, exported: binding.exported };
+  });
 }

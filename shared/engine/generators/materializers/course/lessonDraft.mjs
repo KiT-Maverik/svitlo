@@ -74,7 +74,21 @@ export function materializeLessonDraft(node, context) {
   const textbookRoot = context.textbookRoot;
   if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
     throw new Error('Lesson Draft requires a canonical textbook root');
-  if (Object.keys(node.production).some(key => !['kind', 'methodology', 'objective', 'depth', 'sequenceReason', 'assessmentEvidence', 'assessment', 'sourceEvidence'].includes(key)))
+  if (
+    Object.keys(node.production).some(
+      key =>
+        ![
+          'kind',
+          'methodology',
+          'objective',
+          'depth',
+          'sequenceReason',
+          'assessmentEvidence',
+          'assessment',
+          'sourceEvidence',
+        ].includes(key),
+    )
+  )
     throw new Error('Lesson seed contains unsupported Course proposal fields');
   const { kind: _placementKind, ...proposal } = node.production;
   const source = {
@@ -98,7 +112,7 @@ export function materializeLessonDraft(node, context) {
         content:
           '// TODO (BLOCKER): Course Lesson seed; complete authorized Lesson Stage 1 before continuing.\n' +
           "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
-          'export const lessonSeed = ' +
+          '// prettier-ignore\nexport const lessonSeed = ' +
           JSON.stringify(source, null, 2) +
           ' as const satisfies CourseWorkflowLessonSeed;\n',
       },

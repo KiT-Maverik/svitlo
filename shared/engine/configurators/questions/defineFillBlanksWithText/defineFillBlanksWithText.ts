@@ -1,9 +1,8 @@
-import type { ConfigWithLanguages, DeepPartial, LanguageScope, RequireLanguages } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { deepStrict_Schema, camelCase_Schema } from '#schemas';
 import { z } from 'zod';
 
-import { mergeForValidation, onlyLocales, onlyStrings, validateOrderedKeys } from '../../_shared__configurators';
+import { camelCase_Schema, deepStrict_Schema, type AllLanguageCodes, type LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, RequireLanguages } from '#types';
+
 import {
   cloneJson,
   ensureQuestionPatchShape,
@@ -13,25 +12,26 @@ import {
   projectQuestionLocale,
   projectSlotList,
   resolveCommonContent,
+  resolvePublicationLanguages,
   snapshotCommonContent,
   validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type QuestionCommonPatch,
-  type QuestionResourcePublication,
-  type QuestionOverridePublication,
-  resolvePublicationLanguages,
   validateQuestionPublication,
   type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
 } from '../_shared__questions';
+import { mergeForValidation, onlyLocales, onlyStrings, validateOrderedKeys } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
   fillBlanksWithText_Override_Config_Schema,
-  type Question_FillBlanksWithText_Config,
   fillBlanksWithText_Props_Schema,
-  type Question_FillBlanksWithText_Props,
+  type Question_FillBlanksWithText_Config,
   type Question_FillBlanksWithText_MetadataOverrides,
+  type Question_FillBlanksWithText_Props,
 } from './defineFillBlanksWithText.schemas';
 
 type ContentShape = Question_FillBlanksWithText_Config['content'];

@@ -1,10 +1,11 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
-import { Audio } from './Audio';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
+import { Audio } from './Audio';
 import { formatAudioTime } from './Audio.utils';
 
 const response: ContentBlock_Audio_Props = {

@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
 import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
 import { defineSelectOneAnswer } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer';
-import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 
 function textValue(block: ContentBlock_Props | undefined): string {

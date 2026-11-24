@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeCodingTaskSection, type ChildConfig } from './codingTaskSection';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -38,11 +40,11 @@ test('codingTask: delegates exact subtree and preserves explicit collection/orde
     materializeCodingTaskSection(config as Parameters<typeof materializeCodingTaskSection>[0], options),
     first,
   );
-  assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/content/items/prompt/index.ts')?.content,
-    '// child\n',
-  );
+  assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
+  assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
+  assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
+  assert.match(root, /\.\/prompt/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -83,4 +85,18 @@ test('codingTask: fails closed for invalid ordering, identifiers and path escape
       }),
     /identity/,
   );
+});
+
+test('codingTaskSection: Section notes are guarded without specification sidecars', () => {
+  const result = materializeCodingTaskSection(input() as Parameters<typeof materializeCodingTaskSection>[0], {
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
+    languagesImport: '../../languages',
+    production: { sequenceReason: 'Reviewed sequence.' },
+    renderContentBlock,
+  });
+  assert.ok(result.files.every(file => !file.path.endsWith('/specification.md')));
+  const root = result.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
+  assert.match(root, /Transfer reviewed .* Section notes/);
+  assert.ok(result.diagnostics.some(item => item.message.includes('sequenceReason')));
 });

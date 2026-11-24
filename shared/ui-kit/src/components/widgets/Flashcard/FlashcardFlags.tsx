@@ -1,16 +1,18 @@
-import type { ReactElement, ReactNode } from 'react';
-import type { ChipProps } from '@mui/material/Chip';
-import type { Flashcard_Flag_Props, Flashcard_Flag_Icon } from '@svitlo/engine/runtime';
-import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
+import BookmarkBorderOutlined from '@mui/icons-material/BookmarkBorderOutlined';
+import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import CheckOutlined from '@mui/icons-material/CheckOutlined';
+import CodeOutlined from '@mui/icons-material/CodeOutlined';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
 import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
-import ChatBubbleOutlineOutlined from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import StarOutlined from '@mui/icons-material/StarOutlined';
-import BookmarkBorderOutlined from '@mui/icons-material/BookmarkBorderOutlined';
-import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined';
-import CodeOutlined from '@mui/icons-material/CodeOutlined';
-import CheckOutlined from '@mui/icons-material/CheckOutlined';
+import type { ChipProps } from '@mui/material/Chip';
+import type { ReactElement, ReactNode } from 'react';
+
+import type { Flashcard_Flag_Icon, Flashcard_Flag_Props } from '@svitlo/engine/runtime';
+
+import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 
 export interface FlashcardLabel {
   label: ReactNode;

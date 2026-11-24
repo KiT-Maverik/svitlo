@@ -11,7 +11,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { inspectTyped, lessonSourceIdentity, typedPath } from './lesson-typed-gate.mjs';
+import { inspectTyped, lessonSourceIdentity, typedPath, assertSceneScaffoldPaths } from './lesson-typed-gate.mjs';
 import { gitBlob, github, requireActor, report } from '../courseMaterialization/course-gate.mjs';
 
 const sha = /^[0-9a-f]{40}$/;
@@ -174,6 +174,7 @@ export function typedManifest(plan, meta, original, tracked, root) {
     const contents = Buffer.from(file.content, 'utf8');
     entries.push(asEntry(filename, 'create', contents));
   }
+  assertSceneScaffoldPaths(seen, meta.identity);
   if (!seen.has(plan.materializedPath) || !tracked.has(meta.identity.source) || gitBlob(original) !== meta.sourceBlob)
     throw Error('Expected pinned Lesson draft deletion and canonical index.ts creation');
   entries.push(asEntry(meta.identity.source, 'delete', original));
@@ -243,6 +244,7 @@ export function verifyTypedManifest(manifest, meta, root, tracked, original) {
       if (entry.path === meta.identity.folder + '/index.ts') index = true;
     }
   }
+  assertSceneScaffoldPaths(seen, meta.identity);
   if (!source || !index) throw Error('Incomplete typed Lesson draft deletion/index creation pair');
   return manifest.entries.length;
 }

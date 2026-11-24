@@ -1,9 +1,9 @@
 import type { ContentBlock_Code_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes, resolveOptionalLocalizedText, resolveLocalizedRecord } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
-import { highlightCode, resolveCodeVariables } from './Code.utils';
+import { localizedAttributes, resolveLocalizedRecord, resolveOptionalLocalizedText } from '../../utils';
 import styles from './Code.module.css';
+import { highlightCode, resolveCodeVariables } from './Code.utils';
 
 export const Code = ({ params: { codeAsText, language }, locale }: ContentBlock_Code_Props) => {
   const contentLanguage = useContentLanguage();

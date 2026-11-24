@@ -1,4 +1,5 @@
 import { definePracticeSection, defineText } from '@svitlo/engine/build';
+
 import { showcase } from './scenes/showcase';
 
 const title = {

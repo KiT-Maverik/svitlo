@@ -3,8 +3,8 @@ import test from 'node:test';
 
 import {
   assembleLessonProps,
-  type PublishedLessonPropsResource,
   type PublishedLessonPropsOverride,
+  type PublishedLessonPropsResource,
 } from './assembleLessonProps';
 
 const lessonId = '663572e7-bd85-4516-86e2-3de07d209e03';

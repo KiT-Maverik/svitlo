@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+
 import type { ContentBlock_Carousel_Props } from '@svitlo/engine/runtime';
+
 import { questionBlockLabel } from './QuestionContent';
 
 const image: ContentBlock_Carousel_Props['locale']['slides'][number] = {

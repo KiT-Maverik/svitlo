@@ -1,7 +1,8 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
+import { useLayoutEffect, useRef } from 'react';
+
 import styles from './Lesson.module.css';
 
 export interface LessonStepItem {

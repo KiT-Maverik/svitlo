@@ -1,5 +1,6 @@
-import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
+import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import type { ContentBlockRendererProps } from './types';
 

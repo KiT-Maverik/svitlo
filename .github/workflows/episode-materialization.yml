@@ -7,6 +7,7 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/episodeMaterialization/**'
+      - 'scripts/ci/directMaterialization/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'shared/engine/generators/materializers/episode/**'
       - 'shared/engine/types/workflow/episodeWorkflow.types.ts'

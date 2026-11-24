@@ -1,21 +1,22 @@
 import {
+  completeQuiz,
+  createLessonState,
+  createQuizState,
+  deleteLessonState,
+  deleteQuizState,
+  getLessonState,
+  getQuizState,
+  listLessonStates,
+  listQuizStates,
+  openDatabase,
+  saveLessonState,
+  saveQuizState,
+  updateLessonState,
+  updateQuizState,
   type LessonState,
   type QuizState,
-  createLessonState,
-  deleteLessonState,
-  getLessonState,
-  listLessonStates,
-  saveLessonState,
-  updateLessonState,
-  completeQuiz,
-  createQuizState,
-  deleteQuizState,
-  getQuizState,
-  listQuizStates,
-  saveQuizState,
-  updateQuizState,
-  openDatabase,
 } from '@svitlo/indexdb';
+
 import type { ControllerCommand, DatabaseInspection } from './db-browser-commands';
 
 declare global {

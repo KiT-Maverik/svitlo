@@ -1,9 +1,10 @@
-import type { ReactNode } from 'react';
 import { render, screen } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import LearningLayout from './LearningLayout';
-import { LessonSteps } from '../../lesson/LessonSteps';
+
 import { learningLayout } from '../../../../data/locale/learningLayout';
+import { LessonSteps } from '../../lesson/LessonSteps';
+import LearningLayout from './LearningLayout';
 
 // Intercept the physical anchor and Slide direction passed to MUI.
 // MUI flips the Slide direction automatically in RTL, even though Drawer

@@ -1,4 +1,5 @@
 import { lstatSync, readFileSync } from 'node:fs';
+
 import { languageCode_Schema, type LanguageCode } from '#schemas';
 
 /**

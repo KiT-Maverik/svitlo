@@ -1,8 +1,9 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
+import { learningLayout } from '../../../../data/locale/learningLayout';
 import LearningLayout, { LearningLayoutTopBar } from './LearningLayout';
 import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
-import { learningLayout } from '../../../../data/locale/learningLayout';
 
 const uk = learningLayout.uk;
 

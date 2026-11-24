@@ -1,9 +1,9 @@
 'use client';
 
-import Box from '@mui/material/Box';
-import Switch from '@mui/material/Switch';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
 
 export type ThemeSwitchProps = {
   /** Visual labels and tooltips are deliberately omitted; the control remains accessible. */

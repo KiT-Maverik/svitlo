@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
 import { getLearningApps } from '@/catalog/learningApps';
 import { PageIntro } from '@/components/PageIntro';
 

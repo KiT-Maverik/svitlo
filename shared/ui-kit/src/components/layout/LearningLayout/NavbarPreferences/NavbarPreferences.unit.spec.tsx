@@ -1,10 +1,12 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import NavbarPreferences from './NavbarPreferences';
-import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
+
 import { navbarPreferences } from '../../../../../data/locale/navbarPreferences';
+import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
+import NavbarPreferences from './NavbarPreferences';
 
 const { lt, ar, en } = navbarPreferences;
 const uk = ukUiKitMessages.navbarPreferences;

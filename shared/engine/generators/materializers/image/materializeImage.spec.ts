@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeImage } from './materializeImage';
+
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow';
+import { materializeImage } from './materializeImage';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 // The reviewed Course Stage 1 source is typed with production.languages.
@@ -98,4 +100,6 @@ test('image: pending asset is a typed Nil UUID placeholder, not a fabricated fil
   assert(result.diagnostics.some(item => item.code === 'pending-media'));
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
   assert(!result.files.some(file => file.kind !== 'typescript'));
+  assert.equal((result.files[0].content.match(/TODO \(BLOCKER\): Supply verified fileName asset/g) ?? []).length, 1);
+  assert.doesNotMatch(result.files[0].content, /TODO\(asset\): Replace reserved Nil/);
 });

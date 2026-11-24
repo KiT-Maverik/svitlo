@@ -1,6 +1,5 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { code_Config_Schema, code_Props_Schema, defineCode, defineText } from './contentBlocks';
 import type { ContentBlock_Code_Config } from './contentBlocks/defineCode/defineCode.schemas';

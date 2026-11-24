@@ -1,6 +1,6 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
+
 import { z } from 'zod';
 
 import { defineText, text_Props_Schema, type ContentBlock_Text_Config } from './index';

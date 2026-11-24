@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+
 import { createSceneRegistry, type SceneModule } from './createSceneRegistry';
 
 const scene: SceneModule = { default: () => null };

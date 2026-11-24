@@ -4,9 +4,12 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import {
+  youtube_Config_Schema,
+  type ContentBlock_Youtube_Config,
+} from '../../../configurators/contentBlocks/defineYoutube';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
-import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube';
-import { youtube_Config_Schema } from '../../../configurators/contentBlocks/defineYoutube';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Youtube_Config['params']>;
@@ -213,6 +216,9 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     hrefLocale.href = isRecord(config.locale?.href) ? { [language]: UNRESOLVED_YOUTUBE_HREF } : UNRESOLVED_YOUTUBE_HREF;
   }
   const resolvedHref = hrefLocale.href;
+  const unresolvedHref =
+    resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
+    (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF);
   if (
     resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
     (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF)
@@ -258,20 +264,34 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     throw new Error('Cannot materialize type-valid Youtube Config: unsupported authored fields');
   }
 
+  // Even a syntactically valid link needs human media review; the authoring
+  // URL/label are not proof of availability, rights or accessible alternatives.
+  const verificationInstruction =
+    'Verify external video (availability, appropriateness, access, captions, language/offline alternative, link) during Lesson Stage 6 media work';
+  // The missing-URL TODO already blocks publication. Add the separate
+  // verification instruction only after there is a real URL to review.
+  if (!unresolvedHref) {
+    blockers.push('// TODO (BLOCKER): ' + verificationInstruction + ' for youtube ' + config.id + '.');
+    diagnostics.push({
+      path: '$.config.locale.href',
+      code: 'pending-youtube-verification',
+      message: verificationInstruction,
+      severity: 'warning',
+    });
+  }
+
   if (options.production !== undefined) {
     if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
     const details = Object.entries(options.production).filter(
       ([key]) => key !== 'pending' && key !== 'documentLanguage',
     );
     if (details.length) {
-      const body =
-        details
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n';
-      files.push({ path: 'specification.md', content: body, kind: 'specification' });
+      // Retain reviewed external-video target notes beside the removable TODO,
+      // rather than leaving a permanent specification.md next to a URL.
+      const context = JSON.stringify(Object.fromEntries(details)).replace(/[\u2028\u2029]/g, character =>
+        character === '\u2028' ? '\\u2028' : '\\u2029',
+      );
+      blockers.push('// Reviewed external-video context (remove with verification TODO): ' + context);
     }
   }
 

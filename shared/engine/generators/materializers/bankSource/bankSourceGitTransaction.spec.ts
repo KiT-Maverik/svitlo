@@ -1,14 +1,15 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync, realpathSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { test } from 'node:test';
+
 import {
-  readBankGitSnapshot,
   checkBankGitPlan,
   commitBankGitPlan,
+  readBankGitSnapshot,
   type BankGitContext,
   type BankGitKind,
 } from './bankSourceGitTransaction';
@@ -88,7 +89,6 @@ function final(kind: BankGitKind, original: string, context: BankGitContext): Ba
       file(kind + '/index.ts', 'export const ' + kind + ' = { first: true };\n'),
       file(member, 'export const answer = { id: "' + entityId + '" };\n'),
       ...barrel,
-      file(kind + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
     ],
     diagnostics: [],
     publishable: false,

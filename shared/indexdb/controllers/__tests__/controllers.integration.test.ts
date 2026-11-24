@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto';
 
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import type { LessonState, QuizState } from '../../schemas';
+
 import {
   completeQuiz,
   createLessonState,
@@ -18,8 +18,9 @@ import {
   updateLessonState,
   updateQuizState,
 } from '..';
-import { DATABASE_NAME, DATABASE_VERSION, type StateStore } from '../../utils/databaseConfig/databaseConfig.utils';
+import type { LessonState, QuizState } from '../../schemas';
 import { openDatabase } from '../../utils';
+import { DATABASE_NAME, DATABASE_VERSION, type StateStore } from '../../utils/databaseConfig/databaseConfig.utils';
 
 type LessonProgress = Extract<LessonState, { status: 'in-progress' }>;
 type QuizProgress = Extract<QuizState, { status: 'in-progress' }>;

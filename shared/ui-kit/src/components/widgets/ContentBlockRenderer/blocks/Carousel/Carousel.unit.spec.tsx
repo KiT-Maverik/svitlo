@@ -1,9 +1,10 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import type { ContentBlock_Carousel_Props } from '@svitlo/engine/runtime';
-import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { ResponseOf, SceneRegistry } from '../../ContentBlockRenderer';
+
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
+import { ContentBlockRenderer, type ResponseOf, type SceneRegistry } from '../../ContentBlockRenderer';
 
 const gallery: ContentBlock_Carousel_Props = {
   id: 'gallery',

@@ -1,15 +1,18 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import type {
   ContentBlock_Text_Props,
   Question_SelectOneAnswer_Props,
   QuizSection_Props,
 } from '@svitlo/engine/runtime';
+
 import type { QuestionResponse } from '#types/questions';
-import { QuestionRenderer } from './questions/response/QuestionRenderer';
+
+import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
 import { questionBlockLabel } from './questions/response/QuestionContent';
-import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
+import { QuestionRenderer } from './questions/response/QuestionRenderer';
 
 const uuid = (index: number) => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const text = (slug: string, value: string): ContentBlock_Text_Props => ({

@@ -1,21 +1,26 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from 'react';
-import { Alert, Box, Button, Chip, CircularProgress, Stack, Typography } from '@mui/material';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import AccountTreeRoundedIcon from '@mui/icons-material/AccountTreeRounded';
 import CenterFocusStrongRoundedIcon from '@mui/icons-material/CenterFocusStrongRounded';
 import ViewListRoundedIcon from '@mui/icons-material/ViewListRounded';
 import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
 import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
-import { expandableSkillIds, fitVisibleSkillNodes, flattenSkillNodes, layoutSkillMindMap } from './skillsMindMap.utils';
-import type { SkillNode, MapEdge } from './skillsMindMap.utils';
-import { resolveSkillLanguage } from './skillsData.client';
-import styles from './SkillsMindMap.module.css';
+import { Alert, Box, Button, Chip, CircularProgress, Stack, Typography } from '@mui/material';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+} from 'react';
+
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import { SkillAction, SkillLeafCard, SkillMastery } from './SkillLeafCard';
-import { useSkillsPageSettings } from './SkillsPageSettingsContext';
+import { resolveSkillLanguage } from './skillsData.client';
 import {
   clampSkillZoom,
   gesturePair,
@@ -23,6 +28,16 @@ import {
   panSkillMap,
   type SkillMapView,
 } from './skillsMindMap.gestures';
+import styles from './SkillsMindMap.module.css';
+import {
+  expandableSkillIds,
+  fitVisibleSkillNodes,
+  flattenSkillNodes,
+  layoutSkillMindMap,
+  type MapEdge,
+  type SkillNode,
+} from './skillsMindMap.utils';
+import { useSkillsPageSettings } from './SkillsPageSettingsContext';
 
 type LoadingStatus = 'loading' | 'ready' | 'error';
 const KIND_LABELS = { skillDomain: 'Домен', skillGroup: 'Група', skill: 'Скіл' } as const;

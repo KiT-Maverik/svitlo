@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Fragment } from 'react';
+
 import { CountryFlag, type FlagCode } from '@/components/CountryFlag';
 import { PageIntro } from '@/components/PageIntro';
 

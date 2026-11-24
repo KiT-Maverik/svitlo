@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestStage, type ChildConfig } from './questStage';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const media = (type: string, slug: string, n: string): ChildConfig => ({
   id: id(n),
@@ -32,8 +35,8 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
       assert.equal(
         ctx.languagesImport,
         ctx.directory.includes('/video/') || ctx.directory.includes('/audio/')
-          ? '../../../../../languages'
-          : '../../../../languages',
+          ? '../../../../languages'
+          : '../../../languages',
       );
       return {
         exportName: config.slug,
@@ -46,11 +49,11 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
   assert.deepEqual(
     calls.sort(),
     [
-      'stages/start/content/video/medium',
-      'stages/start/content/video/small',
-      'stages/start/content/audio/dialogue',
-      'stages/start/content/image',
-      'stages/start/content/subtitles',
+      'stages/start/video/medium',
+      'stages/start/video/small',
+      'stages/start/audio/dialogue',
+      'stages/start/image',
+      'stages/start/subtitles',
     ].sort(),
   );
   const src = out.files.at(-1)?.content ?? '';
@@ -83,4 +86,24 @@ test('Quest Stage: missing mandatory subtitles does not generate fake media', ()
       }),
     /mandatory media is missing/,
   );
+});
+
+test('Quest Stage preserves reviewed child notes in safe source comments without sidecar', () => {
+  const out = materializeQuestStage(stage() as Parameters<typeof materializeQuestStage>[0], {
+    documentLanguage: 'en',
+    directory: 'stages/start',
+    languagesImport: '#lessonsData/c/example/constants',
+    production: { specification: 'Narration must describe the changes\n*/ no code injection', pending: false },
+    renderMedia: (child, ctx) => ({
+      exportName: child.slug,
+      files: [{ path: ctx.directory + '/index.ts', kind: 'typescript', content: '//media' }],
+      diagnostics: [],
+    }),
+  });
+  assert(!out.files.some(file => file.path.endsWith('specification.md')));
+  const src = out.files.find(file => file.path === 'stages/start/index.ts')?.content ?? '';
+  assert.match(src, /Reviewed specification:/);
+  assert.match(src, /TODO \(BLOCKER\): Integrate these reviewed Quest child notes/);
+  assert.doesNotMatch(src, /^\*\//m);
+  assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
 });

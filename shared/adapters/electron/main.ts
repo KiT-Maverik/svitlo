@@ -1,7 +1,9 @@
-import { app, BrowserWindow, net, protocol, session } from 'electron';
 import { existsSync, realpathSync, statSync } from 'node:fs';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
+
+import { app, BrowserWindow, net, protocol, session } from 'electron';
+
 import { resolvePackagedResource } from './resourcePath.js';
 
 // Must be registered before Electron app.ready. Storage/IndexedDB work on a standard, secure origin.

@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+
+import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { Episode, ImageRendererProvider, SceneLocaleProvider, type EpisodeProps } from '@svitlo/ui-kit';
-import { NextImageRenderer } from '@svitlo/adapter-nextjs';
+
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
 
 function sceneIds(value: unknown): string[] {

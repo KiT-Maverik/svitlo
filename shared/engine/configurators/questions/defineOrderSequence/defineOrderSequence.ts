@@ -1,40 +1,41 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import type { ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+
 import {
   assertEnabledBlock,
   cloneJson,
+  ensureQuestionPatchShape,
   finishFiles,
   isRecord,
-  ensureQuestionPatchShape,
   mergeQuestionContent,
   projectQuestionLocale,
-  resolveCommonContent,
   resolveBlockCollection,
   resolveBlockMap,
-  snapshotCommonContent,
+  resolveCommonContent,
+  resolvePublicationLanguages,
   snapshotBlockCollection,
+  snapshotCommonContent,
   validateBlockCollection,
   validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch,
-  type ResolvableBlockPatch,
-  type QuestionCommonPatch,
-  type QuestionResourcePublication,
-  type QuestionOverridePublication,
-  resolvePublicationLanguages,
   validateQuestionPublication,
+  type OrderedBlockPatch,
   type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
+  type ResolvableBlockPatch,
 } from '../_shared__questions';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   orderSequence_Config_Schema,
   orderSequence_Override_Config_Schema,
-  type Question_OrderSequence_Config,
   orderSequence_Props_Schema,
-  type Question_OrderSequence_Props,
+  type Question_OrderSequence_Config,
   type Question_OrderSequence_MetadataOverrides,
+  type Question_OrderSequence_Props,
 } from './defineOrderSequence.schemas';
 
 const metadataSchema = orderSequence_Config_Schema.omit({ content: true });

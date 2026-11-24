@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
 import { materializeCheckpointItem } from './materializeCheckpointItem';
@@ -22,7 +23,7 @@ const item = () => ({
   },
 });
 const context = () => ({
-  directory: 'content/items/first',
+  directory: 'first',
   documentLanguage: 'uk',
   languagesImport: '../../../languages',
   renderQuestion: (_config: unknown, directory: string) => ({
@@ -42,7 +43,7 @@ test('CheckpointItem delegates its enabled Text question and identified Answer i
   assert.equal(result.files.length, 3);
   assert.deepEqual(
     result.files.map(f => f.path),
-    ['content/items/first/question/index.ts', 'content/items/first/answer/index.ts', 'content/items/first/index.ts'],
+    ['first/question/index.ts', 'first/answer/index.ts', 'first/index.ts'],
   );
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpointItem<"first", typeof answer, typeof question, typeof languages>/);
@@ -84,7 +85,7 @@ test('CheckpointItem refuses an answer delegate that claims the question file', 
         ...context(),
         renderAnswer: (_config: unknown, _directory: string) => ({
           exportName: 'answer',
-          files: [{ path: 'content/items/first/question/index.ts', content: '', kind: 'typescript' as const }],
+          files: [{ path: 'first/question/index.ts', content: '', kind: 'typescript' as const }],
           diagnostics: [],
         }),
       }),
@@ -99,7 +100,7 @@ test('CheckpointItem rejects an unowned sibling path returned by its question ma
         ...context(),
         renderQuestion: () => ({
           exportName: 'prompt',
-          files: [{ path: 'content/items/first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
+          files: [{ path: 'first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
           diagnostics: [],
         }),
       }),

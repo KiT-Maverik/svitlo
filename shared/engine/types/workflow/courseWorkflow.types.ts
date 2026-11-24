@@ -1,13 +1,15 @@
 import type { z } from 'zod';
-import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
-import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
+
+import type { Assessment_Config } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
-import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
-import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
+import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {
@@ -132,13 +134,29 @@ export type CourseWorkflowStage2EpisodeSlot = {
   production: CourseWorkflowStage2EpisodeProduction;
 };
 
-/** Chapter can contain only provisional Lessons and Episodes. */
+/** An Assessment is planned by its ordered Stage 2 slot, never an owner-level flag.
+ * Upstream Lesson dependencies identify actual Course placement paths or
+ * already known Lesson UUIDs, including Lessons outside the immediate owner.
+ * Questions and the finished Quiz belong to later independent workflows.
+ */
+export type CourseWorkflowStage2AssessmentSlot = {
+  config: Pick<Assessment_Config, 'type' | 'locale'>;
+  production: {
+    purpose: string;
+    lessonDependencies: readonly [string, ...string[]];
+  };
+};
+
+/** Chapter can contain provisional Lessons, Episodes and Assessments. */
 export type CourseWorkflowStage2Chapter = {
   config: Pick<Chapter_Config, 'type' | 'slug' | 'locale'> & {
     id?: never;
     params?: Partial<Chapter_Config['params']>;
     content: Omit<Chapter_Config['content'], 'items'> & {
-      items: Record<string, CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot>;
+      items: Record<
+        string,
+        CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+      >;
     };
   };
   production: CourseWorkflowStage2UnitProduction;
@@ -152,7 +170,10 @@ export type CourseWorkflowStage2Module = {
     content: Omit<Module_Config['content'], 'items'> & {
       items: Record<
         string,
-        CourseWorkflowStage2Chapter | CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage2Chapter
+        | CourseWorkflowStage2LessonSlot
+        | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage2AssessmentSlot
       >;
     };
   };
@@ -169,6 +190,7 @@ export type CourseWorkflowStage2Content = Omit<Course_Config['content'], 'items'
     | CourseWorkflowStage2Chapter
     | CourseWorkflowStage2LessonSlot
     | CourseWorkflowStage2EpisodeSlot
+    | CourseWorkflowStage2AssessmentSlot
   >;
 };
 
@@ -295,7 +317,10 @@ export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | Cou
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {
   config: Omit<CourseWorkflowStage2Chapter['config'], 'content'> & {
     content: Omit<CourseWorkflowStage2Chapter['config']['content'], 'items'> & {
-      items: Record<string, CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot>;
+      items: Record<
+        string,
+        CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
+      >;
     };
   };
 };
@@ -305,7 +330,10 @@ export type CourseWorkflowStage3Module = Omit<CourseWorkflowStage2Module, 'confi
     content: Omit<CourseWorkflowStage2Module['config']['content'], 'items'> & {
       items: Record<
         string,
-        CourseWorkflowStage3Chapter | CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage3Chapter
+        | CourseWorkflowStage3LessonSlot
+        | CourseWorkflowStage2EpisodeSlot
+        | CourseWorkflowStage2AssessmentSlot
       >;
     };
   };
@@ -318,6 +346,7 @@ export type CourseWorkflowStage3Content = Omit<CourseWorkflowStage2Content, 'ite
     | CourseWorkflowStage3Chapter
     | CourseWorkflowStage3LessonSlot
     | CourseWorkflowStage2EpisodeSlot
+    | CourseWorkflowStage2AssessmentSlot
   >;
 };
 

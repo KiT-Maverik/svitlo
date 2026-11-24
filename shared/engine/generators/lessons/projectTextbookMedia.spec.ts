@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+
 import { defineImage } from '../../configurators/contentBlocks/defineImage/defineImage';
-import { defineContentSection } from '../../configurators/sections/defineContentSection';
+import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
 import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
+import { defineContentSection } from '../../configurators/sections/defineContentSection';
 import { assertMediaPublicationReady, projectTextbookMedia, type MediaDiagnostic } from './projectTextbookMedia.utils';
 
 const image = '550e8400-e29b-41d4-a716-446655440000.webp';

@@ -2,8 +2,8 @@ import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { beforeAfterBetween } from './beforeAfterBetween';
 import { distanceOnLine } from './distanceOnLine';
-import { numberLine1000 } from './numberLine1000';
 import { numberLine20 } from './numberLine20';
+import { numberLine1000 } from './numberLine1000';
 
 export const numberLine = defineSkillGroup({
   slug: 'numberLine',

@@ -31,6 +31,21 @@ test('skill refuses fake identity and path traversal', () => {
   assert.throws(() => materializeSkill({ ...example(), slug: '../bad' }, { sourceLanguage: 'uk' }), /unsafe slug/);
 });
 
+test('Skill can emit a canonical sibling module while keeping its own identity and sidecars', () => {
+  const source = materializeSkill(
+    { config: example(), production: { methodology: 'Reviewed skill rationale' } },
+    {
+      sourceLanguage: 'uk',
+      directory: 'domain/group',
+      entryFilename: 'example.ts',
+      identityDirectory: 'domain/group/example',
+      sidecarDirectory: 'domain/group/example',
+    },
+  );
+  assert(source.files.some(file => file.path === 'domain/group/example.ts'));
+  assert(source.files.some(file => file.path === 'domain/group/example/methodology.md'));
+  assert(!source.files.some(file => file.path === 'domain/group/example/index.ts'));
+});
 test('skill rejects escaped destination directories', () => {
   assert.throws(
     () => materializeSkill(example(), { sourceLanguage: 'uk', directory: '../unsafe' }),

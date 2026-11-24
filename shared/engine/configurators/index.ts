@@ -3,6 +3,7 @@ export * from './questions';
 export * from './sections';
 export * from './lessons';
 export * from './episodes';
+export * from './assessments';
 export * from './courses';
 export * from './skills';
 export * from './assessmentMethods';

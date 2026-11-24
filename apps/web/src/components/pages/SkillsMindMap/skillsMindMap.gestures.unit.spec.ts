@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
+
 import {
   clampSkillZoom,
   gesturePair,
+  MAX_SKILL_ZOOM,
+  MIN_SKILL_ZOOM,
   moveAndScaleSkillMap,
   panSkillMap,
-  MIN_SKILL_ZOOM,
-  MAX_SKILL_ZOOM,
 } from './skillsMindMap.gestures';
 
 describe('Skills map touch gesture math', () => {

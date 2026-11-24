@@ -1,8 +1,10 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
 import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
-import { ContentLanguageContext } from '../../ContentLanguageContext';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
   id,

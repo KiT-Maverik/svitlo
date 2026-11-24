@@ -1,10 +1,12 @@
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES, courseActivities } from '@svitlo/engine/runtime';
+import { Suspense } from 'react';
+
 import { loadPublishedCourseLessonProps, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { courseHasLesson, loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
-import { coursePropsToTopics } from '@/lib/courseNavigation';
+import { courseActivities, DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import WebLesson from '@/components/pages/Lesson/Lesson';
+import { coursePropsToTopics } from '@/lib/courseNavigation';
+import { courseHasLesson, loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }>;

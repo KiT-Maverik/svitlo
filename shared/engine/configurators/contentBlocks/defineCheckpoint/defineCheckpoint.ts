@@ -1,37 +1,37 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
   ChildrenSupporting,
+  ConfigWithLanguages,
+  DeepPartial,
+  LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
-  validateRequestedPublication,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import type {
-  ContentBlock_CheckpointItem_Configurator,
-  ContentBlock_CheckpointItem_Props,
-} from './defineCheckpointItem';
 import {
   checkpoint_Config_Schema,
-  checkpoint_Props_Schema,
   checkpoint_Override_Config_Schema,
+  checkpoint_Props_Schema,
   type Checkpoint_Metadata_Overrides,
   type Checkpoint_Overrides,
   type ContentBlock_Checkpoint_Config,
   type ContentBlock_Checkpoint_Locale,
   type ContentBlock_Checkpoint_PropsBase,
 } from './defineCheckpoint.schemas';
+import type {
+  ContentBlock_CheckpointItem_Configurator,
+  ContentBlock_CheckpointItem_Props,
+} from './defineCheckpointItem';
 
 type CheckpointItem = ContentBlock_CheckpointItem_Configurator;
 type ItemResource = ReturnType<CheckpointItem['build']['props']>;

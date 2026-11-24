@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import AppDocument from '../AppDocument';
 
 export function generateStaticParams() {

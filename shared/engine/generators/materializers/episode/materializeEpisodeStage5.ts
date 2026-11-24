@@ -1,10 +1,61 @@
+import {
+  episodeWorkflowStage2_Schema,
+  type EpisodeWorkflowStage2,
+} from '../../../types/workflow/episodeWorkflow.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
-import type { EpisodeWorkflowStage2 } from '../../../types/workflow/episodeWorkflow.types';
+import { renderSceneFiles } from '../scene/materializeScene';
 import { materializeEpisode } from './materialize.mjs';
 import { materializeEpisodeSection } from './materializeEpisodeSection';
 
 export type EpisodeStage5Options = { source: { sourcePath: string; sourceBlobSha: string; sourceCommitSha: string } };
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+
+/** Traverse only actual Episode Section/Block ownership, not arbitrary metadata.
+ * The Scene registry is independent; never auto-register unfinished drafts.
+ */
+function episodeSceneDrafts(input: EpisodeWorkflowStage2, documentLanguage: string, textbook: string) {
+  const seen = new Set<string>();
+  const files: EpisodeStage5Plan['files'] = [];
+  const visit = (value: unknown): void => {
+    if (!isRecord(value)) return;
+    const config = isRecord(value.config) ? value.config : value;
+    if (!isRecord(config) || typeof config.type !== 'string') return;
+    if (config.type === 'scene') {
+      const id = config.id;
+      if (typeof id !== 'string' || seen.has(id)) throw Error('Episode has duplicate or unsafe Scene identity');
+      seen.add(id);
+      const production = isRecord(value.production) ? value.production : undefined;
+      const dir = textbook + '/scenes/' + id.at(-1) + '/' + id + '/';
+      for (const [name, content] of renderSceneFiles({
+        id,
+        slug: config.slug as string,
+        documentLanguage,
+        specification: typeof production?.specification === 'string' ? production.specification : undefined,
+      })) {
+        files.push({ path: dir + name, content, kind: name.endsWith('.css') ? 'code' : 'typescript' });
+      }
+      return;
+    }
+    const collection = config.type === 'carousel' ? config.slides : config.content;
+    if (
+      ['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(
+        config.type,
+      ) &&
+      isRecord(collection) &&
+      isRecord(collection.items) &&
+      Array.isArray(collection.order)
+    ) {
+      for (const key of collection.order) visit(collection.items[key]);
+    } else if (config.type === 'checkpointItem') {
+      visit(config.question);
+      visit(config.answer);
+    }
+  };
+  for (const key of input.config.section.order) visit(input.config.section.items[key]);
+  return files;
+}
 export type EpisodeStage5Plan = {
   episodeId: string;
   exportName: string;
@@ -30,6 +81,9 @@ export function materializeEpisodeStage5(
       const document = input.production.languages.document;
       const planned = [...input.production.languages.planned];
       const courseId = input.production.placement.courseId;
+      const textbook = source.source.sourcePath.match(/^(content\/[a-z][a-z0-9-]*)\/data\/courses\//)?.[1];
+      if (!textbook) throw Error('Episode Stage 5 requires an owned Course draft in its textbook');
+      const sceneDrafts = episodeSceneDrafts(input, document, textbook);
       const result = materializeEpisode(
         {
           config: { ...input.config, params: { ...input.config.params, languages: planned } },
@@ -43,7 +97,7 @@ export function materializeEpisodeStage5(
             materializeEpisodeSection(node, {
               ...context,
               documentLanguage: document,
-              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/languages',
+              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/constants',
             }),
         },
       );
@@ -61,9 +115,10 @@ export function materializeEpisodeStage5(
       index.content = index.content
         .replace(
           "import type { SupportedLanguages } from '@svitlo/engine/build';",
-          "import { languages } from './languages';",
+          "import { languages } from './constants';",
         )
-        .replace(originalLanguages, '');
+        .replace(originalLanguages, '')
+        .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
       index.content =
         '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
         '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
@@ -79,14 +134,26 @@ export function materializeEpisodeStage5(
         exportName: result.exportName,
         files: [
           ...result.files,
+          ...sceneDrafts,
           {
-            path: root + '/languages.ts',
+            path: root + '/constants.ts',
             kind: 'typescript',
-            content:
-              "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
-              'export const languages = ' +
-              JSON.stringify([document]) +
-              ' as const satisfies SupportedLanguages;\n',
+            content: [
+              "import type { SupportedLanguages } from '@svitlo/engine/build';",
+              '',
+              ...(planned.length > 1
+                ? [
+                    '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
+                    '// export const languages = [',
+                    ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
+                    '// ] as const satisfies SupportedLanguages;',
+                    '',
+                  ]
+                : []),
+              'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;',
+              'export type Languages = typeof languages;',
+              '',
+            ].join('\n'),
           },
         ],
         diagnostics: result.diagnostics ?? [],

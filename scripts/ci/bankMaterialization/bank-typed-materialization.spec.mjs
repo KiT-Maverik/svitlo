@@ -26,6 +26,7 @@ const canonical = bank => ({
     base: 'agent/lesson',
     baseHead: 'b'.repeat(40),
     lessonBlob: 'c'.repeat(40),
+    lessonConstantsBlob: 'd'.repeat(40),
     actor: 'owner',
     number: 888,
     repo: 'KiT-Maverik/svitlo',
@@ -45,7 +46,7 @@ function sample(bank) {
     deletedSource: { path: data.meta.sourcePath, blobSha: data.meta.sourceBlob },
     files: [
       file(root + bank + '/index.ts', 'export const finished = {};\n'),
-      file(root + bank + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
+      file(root + bank + '/first/description.md', '# Owner-reviewed description\n'),
       file(root + bank + '/first.ts', 'export const first = true;\n'),
       file(root + bank + '/first/specification.md', '# reviewed\n'),
     ],
@@ -79,9 +80,9 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
   const paths = [
     'alpha.ts',
     'alpha/content/front/index.ts',
-    'alpha/content/front/items/prompt/index.ts',
+    'alpha/content/front/prompt/index.ts',
     'alpha/content/back/index.ts',
-    'alpha/content/back/items/answer/index.ts',
+    'alpha/content/back/answer/index.ts',
     'alpha/content/hint/index.ts',
   ];
   const files = paths.map(name => ({ path: root + name }));
@@ -214,6 +215,57 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
   }
 });
 
+test('publisher cannot reintroduce separate Bank language modules', () => {
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const hostile = {
+      ...valid,
+      files: [...valid.files, file(folder + '/' + bank + 'Languages.ts', 'export const languages = ["uk"] as const;')],
+    };
+    assert.throws(() => verifyTypedManifest(hostile, hostile.meta), /Unallowlisted|duplicated/);
+  }
+});
+
+test('both Bank publishers require an exact six-file textbook-scoped Scene scaffold', () => {
+  const id = '11111111-1111-4111-8111-11111111111a';
+  const root = 'content/math/scenes/a/' + id + '/';
+  const files = {
+    'index.ts': '// TODO (BLOCKER): Register Scene after review.\nexport { Visual as default } from "./Visual";\n',
+    'Visual.tsx': '// TODO (BLOCKER): Implement Scene.\nexport function Visual() { return null; }\n',
+    'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
+    'Visual.constants.ts': '// TODO (BLOCKER): Add test IDs.\nexport const testIds = {};\n',
+    'Visual.stories.tsx': '// TODO (BLOCKER): Author Storybook fixtures.\nexport const Default = {};\n',
+    'Visual.unit.spec.tsx': '// TODO (BLOCKER): Implement tests.\nexport const testId = "pending";\n',
+  };
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const proposed = [...valid.files, ...Object.entries(files).map(([name, source]) => file(root + name, source))];
+    assert.doesNotThrow(() => verifyTypedManifest({ ...valid, files: proposed }, valid.meta));
+    for (const missing of Object.keys(files)) {
+      assert.throws(
+        () =>
+          verifyTypedManifest({ ...valid, files: proposed.filter(item => item.path !== root + missing) }, valid.meta),
+        /Incomplete.*Scene/,
+      );
+    }
+    const incomplete = proposed.map(entry =>
+      entry.path === root + 'Visual.module.css' ? file(entry.path, '.root {}\n') : entry,
+    );
+    assert.throws(() => verifyTypedManifest({ ...valid, files: incomplete }, valid.meta), /lacks release blocker/);
+    for (const hostile of [
+      file('content/other/scenes/a/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/b/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/a/' + id + '/evil.ts', files['index.ts']),
+      file(folder + '/scenes/a/' + id + '/index.ts', files['index.ts']),
+    ]) {
+      assert.throws(
+        () => verifyTypedManifest({ ...valid, files: [...proposed, hostile] }, valid.meta),
+        /Unallowlisted/,
+      );
+    }
+  }
+});
+
 test('typed publisher imports in a zero-dependency read-only environment', () => {
   const root = fileURLToPath(new URL('../../..', import.meta.url));
   const isolated = mkdtempSync(path.join(tmpdir(), 'svitlo-typed-bank-publisher-'));
@@ -269,6 +321,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
   const baseHead = 'b'.repeat(40);
   const source = 'c'.repeat(40);
   const lessonBlob = 'd'.repeat(40);
+  const constantsBlob = 'e'.repeat(40);
   const child = {
     state: 'open',
     draft: true,
@@ -300,6 +353,12 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       sha: lessonBlob,
       size: 100,
     },
+    ['contents/' + folder + '/constants.ts?ref=' + baseHead]: {
+      type: 'file',
+      path: folder + '/constants.ts',
+      sha: constantsBlob,
+      size: 100,
+    },
     ...overrides,
   });
   globalThis.fetch = async url => {
@@ -317,6 +376,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       const ok = await inspectTyped(888, bank);
       assert.equal(ok.sourceBlob, source);
       assert.equal(ok.lessonBlob, lessonBlob);
+      assert.equal(ok.lessonConstantsBlob, constantsBlob);
       assert.equal(ok.baseHead, baseHead);
       assert.equal(ok.head, head);
       assert.equal(ok.sourcePath, folder + '/' + bank + '/draft.ts');
@@ -338,7 +398,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       assert.deepEqual(await inspectTyped(888, bank, ok), ok);
       changeDuringDiscovery = null;
 
-      for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob']) {
+      for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob', 'lessonConstantsBlob']) {
         await assert.rejects(inspectTyped(888, bank, { ...ok, [key]: 'e'.repeat(40) }), /changed/);
       }
       const comparisonPath = 'compare/' + baseHead + '...' + head;
@@ -366,6 +426,9 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
         overrides = { [sourcePath]: bad };
         await assert.rejects(inspectTyped(888, bank), /Pinned typed Bank source/);
       }
+      const constantsPath = 'contents/' + folder + '/constants.ts?ref=' + baseHead;
+      overrides = { [constantsPath]: { type: 'symlink', path: folder + '/constants.ts', sha: constantsBlob } };
+      await assert.rejects(inspectTyped(888, bank), /Owning Lesson constants.ts/);
       const lessonPath = 'contents/' + folder + '/index.ts?ref=' + baseHead;
       overrides = { [lessonPath]: { type: 'symlink', path: folder + '/index.ts', sha: lessonBlob } };
       await assert.rejects(inspectTyped(888, bank), /Owning Lesson source/);
@@ -471,7 +534,7 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
     for (const [side, data] of Object.entries(sides)) {
       const prefix = folder + '/flashcards/' + slug + '/content/' + side + '/';
       files.push({ path: prefix + 'index.ts' });
-      for (const blockSlug of data.order) files.push({ path: prefix + 'items/' + blockSlug + '/index.ts' });
+      for (const blockSlug of data.order) files.push({ path: prefix + ' ' + blockSlug + '/index.ts' });
     }
   }
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
@@ -504,7 +567,7 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
     { path: folder + '/flashcards/card.ts' },
     ...['front', 'back'].flatMap(side => [
       { path: folder + '/flashcards/card/content/' + side + '/index.ts' },
-      { path: folder + '/flashcards/card/content/' + side + '/items/' + side + 'Block/index.ts' },
+      { path: folder + '/flashcards/card/content/' + side + '/' + side + 'Block/index.ts' },
     ]),
   ];
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));

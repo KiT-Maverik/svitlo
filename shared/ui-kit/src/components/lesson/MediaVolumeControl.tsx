@@ -1,12 +1,13 @@
 'use client';
 
+import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
+import VolumeUpRoundedIcon from '@mui/icons-material/VolumeUpRounded';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Slider from '@mui/material/Slider';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
-import VolumeUpRoundedIcon from '@mui/icons-material/VolumeUpRounded';
+
 import type { NavbarPreferences_Locale } from '../../../data/locale/navbarPreferences';
 import { useMediaSettings } from './MediaSettings';
 

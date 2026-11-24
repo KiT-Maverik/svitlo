@@ -1,11 +1,12 @@
 import { z } from 'zod';
-import type { DeepPartial } from '#types';
 
 import { deepStrict_Schema } from '#schemas';
-import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+import type { DeepPartial } from '#types';
+
 import { textVariables_Schema } from '../_shared__contentBlocks/text.schemas';
-import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 const contentBlockBase = createContentBlockBaseSchema('text');
 

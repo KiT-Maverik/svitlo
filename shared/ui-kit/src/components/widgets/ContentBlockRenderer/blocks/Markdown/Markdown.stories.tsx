@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import { Markdown } from './Markdown';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
+import { Markdown } from './Markdown';
 
 const meta = {
   title: 'Content blocks/Markdown',

@@ -23,7 +23,7 @@ export type CourseListItem = { course: CoursePreview; href: string };
 
 export type CourseOutlineItem = {
   id: string;
-  type: 'module' | 'chapter' | 'lesson' | 'episode';
+  type: 'module' | 'chapter' | 'lesson' | 'episode' | 'assessment';
   title: string;
   href?: string;
   children?: readonly CourseOutlineItem[];
@@ -50,4 +50,6 @@ export type CourseMessages = {
   chapter: string;
   lesson: string;
   episode: string;
+  /** Optional while hosts roll out localized Assessment navigation copy. */
+  assessment?: string;
 };
