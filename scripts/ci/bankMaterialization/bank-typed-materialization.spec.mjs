@@ -399,7 +399,7 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       changeDuringDiscovery = null;
 
       for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob', 'lessonConstantsBlob']) {
-        await assert.rejects(inspectTyped(888, bank, { ...ok, [key]: 'e'.repeat(40) }), /changed/);
+        await assert.rejects(inspectTyped(888, bank, { ...ok, [key]: 'f'.repeat(40) }), /changed/);
       }
       const comparisonPath = 'compare/' + baseHead + '...' + head;
       for (const invalid of [
@@ -534,7 +534,7 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
     for (const [side, data] of Object.entries(sides)) {
       const prefix = folder + '/flashcards/' + slug + '/content/' + side + '/';
       files.push({ path: prefix + 'index.ts' });
-      for (const blockSlug of data.order) files.push({ path: prefix + ' ' + blockSlug + '/index.ts' });
+      for (const blockSlug of data.order) files.push({ path: prefix + blockSlug + '/index.ts' });
     }
   }
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));

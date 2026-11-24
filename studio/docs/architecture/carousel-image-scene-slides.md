@@ -13,25 +13,30 @@ records a historical layout prototype, not a current source template.
 - `slides.items` maps authored camelCase slugs to full Image or Scene
   configurators; `slides.order` fixes the sequence. Build Props preserve each
   child's identity, type and runtime data.
-- The typed Stage 6.1 Lesson materializer places each child module directly beneath the Carousel
-  slug, with no intermediate `slides/`, `images/` or `scenes/` grouping:
+- The typed Stage 6.1 Lesson materializer places each slide under the Carousel's
+  `slides/<slug>/` child path; there are no per-kind `images/` or `scenes/` wrappers:
 
 ```text
 sections/<sectionSlug>/<carouselSlug>/
   index.ts                         # defineCarousel
-  <imageSlideSlug>/
-    index.ts                       # defineImage with fileName
-    specification.md               # media handoff, if supplied
-  <sceneSlideSlug>/
-    index.ts                       # defineScene
-    specification.md               # Scene handoff, if supplied
+  slides/<imageSlideSlug>/
+    index.ts                       # defineImage and removable media brief comment
+  slides/<sceneSlideSlug>/
+    index.ts                       # defineScene; executable Scene draft is textbook-scoped
 ```
+
+The Image slide's reviewed `production` brief appears **after** its
+`defineImage` declaration as a `TODO (BLOCKER)` plus removable multiline
+TypeScript comment; it does not create `specification.md`. For a Lesson Scene
+slide, the full reviewed brief belongs in the separately generated
+`scenes/<uuid-last-hex>/<uuid>/<SceneName>.tsx` draft. No duplicate Scene
+specification sidecar is emitted by Lesson Stage 6.1.
 
 - Physical images are **textbook-wide**, under
   `content/<book>/assets/images/<UUID>.<extension>`, not beside their
   Configurator module. A single resource may be reused across slides,
   Sections, Lessons and locales; no per-locale binary directory is required.
-- Typed Stage 2 Image-slide configuration and `production` specifications retain media requirements. The concrete Image materializer may emit a visibly blocked Nil UUID / `TODO(asset)` reference when an approved physical file has not been supplied; it is never a real asset or publication-ready value. A media specialist later supplies and verifies the real UUID-named binary.
+- Typed Stage 2 Image-slide configuration and `production` specifications retain media requirements. The concrete Image materializer may emit a visibly blocked Nil UUID / `TODO (BLOCKER)` reference when an approved physical file has not been supplied; it is never a real asset or publication-ready value. A media specialist later supplies and verifies the real UUID-named binary.
 - The Lesson Props publisher projects local UUID filenames to
   `/textbooks/<book>/assets/images/<UUID>.<extension>` URLs. Draft permits
   missing/Nil media with warnings; Production rejects unresolved references.

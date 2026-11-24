@@ -94,7 +94,18 @@ test('subtitles: composed nested source paths and Course language handoff', () =
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
-  assert(nested.files.some(file => file.path === directory + '/specification.md'));
+  assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
+  const inline = nested.files.find(file => file.path === directory + '/index.ts')?.content ?? '';
+  assert.match(inline, /TODO \(BLOCKER\): Remove the temporary Subtitles specification/);
+  assert.match(inline, /\* # specification[\s\S]*\* Reviewed source brief/);
+  assert(inline.indexOf(');') < inline.indexOf('Remove the temporary Subtitles specification'));
+  assert(nested.diagnostics.some(item => item.code === 'pending-temporary-specification'));
+  const parsed = ts.transpileModule(inline, {
+    fileName: 'index.ts',
+    reportDiagnostics: true,
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+  });
+  assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );

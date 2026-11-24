@@ -424,9 +424,12 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const sourceFor = (value: LessonWorkflowStage2) => {
     // These are executable Configurator imports, not handwritten bank UUIDs.
     const reviewedObject = JSON.stringify(value, null, 2)
+      // Retain the real imported Skill.id: literal Skill UUIDs correctly block release.
+      .replace(reviewedSkillLiteral, '"skills": [identify2dShapes.id]')
       .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
       .replace(/"flashcardIds": \[\s*"[^"]+"\s*\]/, '"flashcardIds": [memoryCard.id]');
     const sourceText = [
+      "import { identify2dShapes } from '#skillsData/geometry/figures/identify2dShapes';",
       "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
       "import { reviewQuestion } from './questions/multipleChoice/example';",
       "import { reviewCard as memoryCard } from './flashcards/example';",
@@ -452,9 +455,10 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(cardsSource.includes('"flashcardIds": [stage6_ref_0.id]'));
   assert(!quizSource.includes(id('07')), 'bank UUID must not replace Configurator reference');
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
-  assert.equal(
-    plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
-    false,
+  assert.deepEqual(
+    plan.diagnostics.filter(diagnostic => diagnostic.code.startsWith('pending-')),
+    [],
+    'complete imported assessment Sections should not have pending diagnostics',
   );
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
@@ -759,6 +763,24 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);
+  // Production briefs are removable comments in their owning media modules,
+  // including Carousel Image slides; they are never durable media sidecars.
+  for (const [suffix, kind] of [
+    ['sections/introduction/image', 'Image'],
+    ['sections/introduction/video', 'Video'],
+    ['sections/introduction/audio', 'Audio'],
+    ['sections/introduction/subtitles', 'Subtitles'],
+    ['sections/introduction/carousel/slides/slide', 'Image'],
+  ]) {
+    const path = folder + suffix;
+    const module = plan.files.find(file => file.path === path + '/index.ts')?.content ?? '';
+    assert(module.includes('// TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
+    assert(module.includes('/**\n * # purpose'));
+    assert(module.includes(' * # specification'));
+    assert(module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'));
+    assert(!plan.files.some(file => file.path === path + '/specification.md'));
+  }
+
   const resolved = structuredClone(fixture);
   const blocks = resolved.config.section.items.introduction;
   if (blocks.config.type !== 'content') throw new Error('Expected content Section');
@@ -897,6 +919,11 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert(paths.includes(root + 'ChooseShape.tsx'));
   assert(paths.includes(root + 'ChooseShape.unit.spec.tsx'));
   assert(!paths.some(path => path === root + 'specification.md'));
+  const sceneConfigPath = folder + 'sections/introduction/chooseShape/';
+  assert(!paths.includes(sceneConfigPath + 'specification.md'));
+  const sceneConfig = result.files.find(file => file.path === sceneConfigPath + 'index.ts')!.content;
+  assert.match(sceneConfig, /defineScene<[\s\S]*TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(sceneConfig, /\* \/\n \* export const injected = true;/);
   const tsx = result.files.find(file => file.path === root + 'ChooseShape.tsx')!.content;
   assert.match(tsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
   assert.match(tsx, /TODO \(BLOCKER\)/);

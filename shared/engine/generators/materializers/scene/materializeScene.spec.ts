@@ -18,7 +18,6 @@ const context = () => ({
   documentLanguage: 'uk',
   languagesImport: '../../../languages',
   registered: false,
-  specificationSidecar: false,
   production: { specification: '# Verified scene\n\nUse the approved interaction.\n', pending: true },
 });
 function parse(source: string) {
@@ -40,17 +39,25 @@ test('Scene emits canonical Config source without duplicating its specification 
   assert.match(code, /"uk": "Обери форму"/);
   assert.doesNotMatch(code, /Choose shape/);
   assert.doesNotMatch(code, /sceneImplementationRequired|SceneStub\s*\(/, 'React stub must remain external');
+  assert.match(code, /\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\);\n\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\/\*\*[\s\S]*# specification[\s\S]*Use the approved interaction\./);
   assert.equal(result.diagnostics[0]?.code, 'pending-scene');
+  assert(result.diagnostics.some(d => d.code === 'pending-temporary-specification'));
 });
 
-test('Scene registered and specified is not falsely marked pending', () => {
+test('registered Scene is not marked unimplemented but keeps its temporary specification cleanup blocker', () => {
   const result = materializeScene(scene(), {
     ...context(),
     registered: true,
     production: { specification: '# Reviewed' },
   });
-  assert.equal(result.diagnostics.length, 0);
-  assert.doesNotMatch(result.files.at(-1)!.content, /TODO \(BLOCKER\)/);
+  assert.deepEqual(
+    result.diagnostics.map(d => d.code),
+    ['pending-temporary-specification'],
+  );
+  assert.doesNotMatch(result.files[0]!.content, /TODO \(BLOCKER\): Implement and register Scene/);
+  assert.match(result.files[0]!.content, /TODO \(BLOCKER\): Remove the temporary Scene specification/);
 });
 
 test('Scene lacking production evidence keeps a visible publication blocker', () => {
@@ -153,16 +160,29 @@ test('one shared Scene draft template emits six parseable files with inert compl
   assert.throws(() => renderSceneFiles({ ...info, id: '../injected' }), /canonical lowercase UUID/);
 });
 
-test('non-Lesson Scene consumers retain the original reviewed specification sidecar by default', () => {
+test('standalone Scene without TSX stores complete reviewed specification in index.ts, never a sidecar', () => {
   const reviewed = context().production.specification;
-  const result = materializeScene(scene(), { ...context(), specificationSidecar: undefined });
-  const sidecar = result.files.find(file => file.path === 'content/items/activity/specification.md');
-  assert.equal(sidecar?.content, reviewed);
-  assert.equal(sidecar?.kind, 'specification');
-  assert(result.files.some(file => file.path === 'content/items/activity/index.ts'));
-  assert.equal(
-    materializeScene(scene(), context()).files.some(file => file.kind === 'specification'),
-    false,
-    'Lesson Stage 6.1 opts out of the sidecar when its TSX stores the complete specification',
+  const result = materializeScene(scene(), context());
+  assert.deepEqual(
+    result.files.map(file => file.path),
+    ['content/items/activity/index.ts'],
   );
+  assert.match(result.files[0]!.content, /# specification/);
+  assert(result.files[0]!.content.includes('# Verified scene'));
+  assert(result.files[0]!.content.includes('Use the approved interaction.'));
+  assert.equal(reviewed.trimEnd(), '# Verified scene\n\nUse the approved interaction.');
+  assert(result.files.every(file => file.kind === 'typescript'));
+});
+
+test('Scene specification cannot escape its generated TypeScript comment', () => {
+  const reviewed = 'Reviewed scene\n*/\nexport const injected = true;\n/* do not execute';
+  const result = materializeScene(scene(), {
+    ...context(),
+    production: { specification: reviewed },
+  });
+  const source = result.files[0]!.content;
+  parse(source);
+  assert.match(source, /\* \/\n \* export const injected = true;/);
+  assert.doesNotMatch(source, /^export const injected = true;/m);
+  assert(!result.files.some(file => file.path.endsWith('specification.md')));
 });
