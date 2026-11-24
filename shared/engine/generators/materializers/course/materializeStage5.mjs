@@ -371,6 +371,9 @@ export function materializeCourseStage5(input, options = {}) {
 
   const context = {
     directory: '',
+    courseId: rootId,
+    reviewedCourseSourceBlobSha: review.sourceBlobSha,
+    orderPath: [],
     sourceLanguage,
     plannedLanguages: planned,
     deriveId,
@@ -493,6 +496,7 @@ export function materializeCourseStage5(input, options = {}) {
     inventory: buildPlacementInventory(input, renderedPlacements, root, files),
     placements: materialized.placements ?? [],
     pendingPlacements: materialized.pendingPlacements ?? [],
+    pendingEpisodes: materialized.pendingEpisodes ?? [],
     publishable: false,
   });
 }

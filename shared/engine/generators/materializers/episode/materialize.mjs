@@ -1,3 +1,5 @@
+import { materializeEpisodeDraft } from './materializeDraft.mjs';
+
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -95,21 +97,8 @@ export function materializeEpisode(input, context = {}) {
   if (authored?.type !== 'episode') throw Error(dir + ': expected episode Config');
   const provisional =
     !record(authored.section) && record(meta) && meta.focus !== undefined && meta.purpose !== undefined;
-  if (provisional) {
-    if (!String(meta.focus).trim() || !String(meta.purpose).trim())
-      throw Error(dir + '.production: provisional Episode needs nonempty reviewed focus and purpose');
-    if (Object.keys(authored).some(key => !['type', 'slug'].includes(key)))
-      throw Error(dir + '.config: provisional Episode cannot contain invented full Config fields');
-  }
-  const config = provisional
-    ? {
-        ...authored,
-        params: { languages: [lang] },
-        // This is a marked non-publishable source placeholder, NOT a reviewed Episode script.
-        locale: { title: { [lang]: 'Not implemented' } },
-        section: { items: {}, order: [] },
-      }
-    : authored;
+  if (provisional) return materializeEpisodeDraft(input, context);
+  const config = authored;
   if (!record(config.section) || !record(config.section.items) || !Array.isArray(config.section.order))
     throw Error(dir + '.section: missing complete Episode Sections');
   const { id, slug } = identity(config, context, dir, 'episode');
@@ -135,6 +124,8 @@ export function materializeEpisode(input, context = {}) {
   for (const key of order) {
     ensure(key, dir + '.section.items.' + key);
     const raw = unwrap(collection.items[key]);
+    if (!['content', 'practice', 'codingTask', 'learningFlow'].includes(raw?.type))
+      throw Error(dir + ': unsupported Episode production Section: ' + raw?.type);
     if (raw?.slug !== undefined && raw.slug !== key)
       throw Error(dir + '.section.items.' + key + ': Section slug mismatch');
     if (typeof context.materializeSection !== 'function')
@@ -173,24 +164,13 @@ export function materializeEpisode(input, context = {}) {
     .join(' ');
   const warning = todo({ plannedLanguages: planned }, context, lang);
   if (warning) diagnostics.push({ path: dir, code: 'pending-locales', severity: 'warning' });
-  if (provisional)
-    diagnostics.push({
-      path: dir,
-      code: 'pending-episode-scenario',
-      severity: 'blocker',
-      message: 'Stage 3 Episode focus/purpose is only editorial intent; scenario and Sections require separate review',
-    });
   const sectionMap =
     '{ ' +
     Object.entries(items)
       .map(([key, alias]) => JSON.stringify(key) + ': ' + alias)
       .join(', ') +
     ' }';
-  const pending = provisional
-    ? '// TODO (BLOCKER): Not implemented — Episode scenario and Sections require separate authorization; do not publish.\n'
-    : '';
   const result =
-    pending +
     "import { defineEpisode } from '@svitlo/engine/build';\n" +
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     imports.join('\n') +

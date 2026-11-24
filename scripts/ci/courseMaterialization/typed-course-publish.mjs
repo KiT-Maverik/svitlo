@@ -52,6 +52,7 @@ function allowedOutput(filename, meta) {
     return (
       [
         'index.ts',
+        'draft.ts',
         'languages.ts',
         'authoredCourseOverrides.ts',
         'methodology.md',
@@ -310,6 +311,8 @@ async function publish() {
   const placements = manifest.pendingPlacements ?? [];
   for (const placement of placements)
     report('Lesson Stage 1 pending (no automatic PR): ' + placement.lessonId + ' — ' + placement.handoffPath);
+  for (const placement of manifest.pendingEpisodes ?? [])
+    report('Episode Stage 1 pending (no automatic PR): ' + placement.episodeId + ' — ' + placement.handoffPath);
   report(
     'TODO (BLOCKER): Course is not approved for Props publication; verify all independent child/review/locale/asset gates.',
   );

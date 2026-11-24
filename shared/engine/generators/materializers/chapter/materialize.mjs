@@ -162,6 +162,7 @@ export function materializeChapter(input, context = {}) {
     diagnostics = [],
     placements = [],
     pendingPlacements = [],
+    pendingEpisodes = [],
     seenIds = new Set();
   for (const key of order) {
     ensure(key, dir + '.content.items.' + key);
@@ -179,6 +180,7 @@ export function materializeChapter(input, context = {}) {
       sourceLanguage: lang,
       directory: childFolder,
       placement: key,
+      orderPath: [...(context.orderPath ?? []), order.indexOf(key)],
       plannedLanguages: planned,
     };
     let child;
@@ -308,7 +310,14 @@ export function materializeChapter(input, context = {}) {
     }
     if (!Array.isArray(child?.files)) throw Error(childFolder + ': invalid child materializer result');
     const stage1Lesson = raw.type === 'lesson' && production(node)?.kind === 'new';
-    if (!stage1Lesson && !child.exportName) throw Error(childFolder + ': completed child must export a Configurator');
+    const stage1Episode = raw.type === 'episode' && child.pendingEpisode === true;
+    if (stage1Episode) {
+      const handoffPath = childFolder + '/draft.ts';
+      if (child.files.length !== 1 || child.files[0].path !== handoffPath || child.files[0].kind !== 'typescript')
+        throw Error(childFolder + ': pending Episode requires exactly one typed draft');
+      pendingEpisodes.push({ path: childFolder, slug: key, episodeId: child.id, handoffPath, orderIndex: order.indexOf(key) });
+    }
+    if (!stage1Lesson && !stage1Episode && !child.exportName) throw Error(childFolder + ': completed child must export a Configurator');
     if (raw.type !== 'lesson') {
       const resolvedId = raw.id ?? child.id;
       if (typeof resolvedId !== 'string' || !uuid.test(resolvedId))
@@ -316,7 +325,7 @@ export function materializeChapter(input, context = {}) {
       if (seenIds.has(resolvedId)) throw Error(childFolder + ': duplicate child UUID');
       seenIds.add(resolvedId);
     }
-    if (!stage1Lesson) {
+    if (!stage1Lesson && !stage1Episode) {
       const alias = 'child_' + key;
       imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
       items[key] = alias;
@@ -325,6 +334,7 @@ export function materializeChapter(input, context = {}) {
     diagnostics.push(...(child.diagnostics ?? []));
     placements.push(...(child.placements ?? []));
     pendingPlacements.push(...(child.pendingPlacements ?? []));
+    pendingEpisodes.push(...(child.pendingEpisodes ?? []));
   }
   const fields = { ...config, id, slug };
   delete fields.content;
@@ -345,6 +355,10 @@ export function materializeChapter(input, context = {}) {
       '\n// Pending handoffs: ' +
       JSON.stringify(pendingPlacements.map(x => ({ slug: x.slug, lessonId: x.lessonId, handoffPath: x.handoffPath }))) +
       '\n'
+    : '';
+  const episodeBlocker = pendingEpisodes.length
+    ? '// TODO (BLOCKER): Episode Stage 1 handoffs are not completed Episode Configurators. Do not publish.\n// Reviewed original content order: ' +
+      JSON.stringify(order) + '\n// Pending Episode handoffs: ' + JSON.stringify(pendingEpisodes) + '\n'
     : '';
   const itemsSource =
     '{ ' +
@@ -377,6 +391,7 @@ export function materializeChapter(input, context = {}) {
     ' };\n\n' +
     languageTodo +
     blocker +
+    episodeBlocker +
     'export const ' +
     exportName(slug) +
     ' = defineChapter<' +
@@ -396,5 +411,5 @@ export function materializeChapter(input, context = {}) {
     if (paths.has(file.path)) throw Error('duplicate generated file: ' + file.path);
     paths.add(file.path);
   }
-  return { id, exportName: exportName(slug), files: produced, diagnostics, placements, pendingPlacements };
+  return { id, exportName: exportName(slug), files: produced, diagnostics, placements, pendingPlacements, pendingEpisodes };
 }

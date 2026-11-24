@@ -26,9 +26,9 @@ See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
 ## Production boundary
 
-A provisional Course Episode placement is narrative intent, not a completed Episode. The current Course materializer emits a blocked scaffold; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
+A provisional Course Episode placement is narrative intent, not a completed Episode. The Course Stage 5 materializer emits a blocked typed draft at the reserved placement, not a Configurator; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
 
-The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the trusted materializer and Course inventory must support that boundary before it can be used. An existing blocked scaffold is not a completed handoff.
+The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the trusted Episode Stage 5 materializer must support that boundary before Episode content may be materialized. A draft handoff is not a completed scenario.
 
 ## Quest Section in Episodes (planned runtime)
 
