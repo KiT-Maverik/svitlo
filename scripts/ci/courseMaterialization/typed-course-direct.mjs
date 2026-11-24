@@ -64,10 +64,15 @@ function checkedExistingLesson(meta, root, trustedRoot, row) {
   if (gitBlob(current) !== git(root, 'rev-parse', 'HEAD:' + file))
     throw Error('Existing Lesson source differs from pinned PR Git tree');
   if (gitBlob(current) !== row.sourceSha) {
-    if (
-      !git(root, 'cat-file', '-t', row.sourceSha).includes('commit') ||
-      git(root, 'show', row.sourceSha + ':' + file) !== current.toString('utf8')
-    )
+    if (git(root, 'cat-file', '-t', row.sourceSha) !== 'commit')
+      throw Error('Existing Lesson is not identical to its reviewed source revision');
+    // git() trims command output; source content must be compared byte-exactly,
+    // including the trailing newline from a normal authored TypeScript file.
+    const reviewedSource = execFileSync('git', ['-C', root, 'show', row.sourceSha + ':' + file], {
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+    });
+    if (reviewedSource !== current.toString('utf8'))
       throw Error('Existing Lesson is not identical to its reviewed source revision');
     execFileSync('git', ['-C', root, 'merge-base', '--is-ancestor', row.sourceSha, 'HEAD']);
   }
