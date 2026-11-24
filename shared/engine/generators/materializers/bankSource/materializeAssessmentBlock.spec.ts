@@ -16,7 +16,7 @@ const scene = (pending = false) => ({
     ...(pending ? { pending: true } : {}),
   },
 });
-const context = { directory: 'questions/selectOneAnswer/first/content/question/items/nested', documentLanguage: 'uk' };
+const context = { directory: 'questions/selectOneAnswer/first/question/nested', documentLanguage: 'uk' };
 const evidence = { registeredSceneIds: new Set([id(1)]), approvedMediaBlockIds: new Set<string>() };
 const render = (config: Record<string, unknown>) =>
   materializeAssessmentBlock({ config: config as never }, context, ['uk'], 'questionsLanguages', evidence);
@@ -100,4 +100,57 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
     }
   ).pending = true;
   assert.throws(() => render(pending), /Pending ContentBlock/);
+});
+
+test('Question media missing an asset uses a typed TODO without claiming approval', () => {
+  const source = {
+    config: {
+      id: id(20),
+      slug: 'pendingDiagram',
+      type: 'image',
+      params: { width: 640, height: 480 },
+      locale: { alt: { uk: 'Опис схеми українською' } },
+    },
+  };
+  const proof = {
+    registeredSceneIds: new Set<string>(),
+    approvedMediaBlockIds: new Set<string>(),
+    unresolvedMediaBlockIds: new Set([id(20)]),
+  };
+  assert.throws(
+    () => materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', evidence),
+    /Missing verified media evidence/,
+  );
+  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', proof);
+  const module = result.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '';
+  assert.match(module, /TODO \(BLOCKER\)/);
+  assert.match(module, /00000000-0000-0000-0000-000000000000.webp/);
+  assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-media'));
+  assert(!result.files.some(file => file.path.includes('/assets/')));
+});
+
+test('Question unregistered Scene emits TODO while Flashcard remains strictly verified', () => {
+  const source = {
+    config: {
+      id: id(21),
+      slug: 'unregisteredScene',
+      type: 'scene',
+      params: {},
+      locale: { value: { title: { uk: 'Пояснення' } } },
+    },
+    production: { specification: '# Reviewed future interaction\n' },
+  };
+  const proof = {
+    registeredSceneIds: new Set<string>(),
+    approvedMediaBlockIds: new Set<string>(),
+    unregisteredSceneIds: new Set([id(21)]),
+  };
+  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', proof);
+  const module = result.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '';
+  assert.match(module, /TODO \(BLOCKER\): Implement and register Scene/);
+  assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-scene'));
+  assert.throws(
+    () => materializeAssessmentBlock(source as never, { directory: 'flashcards/test', documentLanguage: 'uk' }, ['uk'], 'flashcardsLanguages', proof),
+    /Scene has no verified executable registry/,
+  );
 });

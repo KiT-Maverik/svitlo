@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import type { QuestionBankWorkflowGroups } from './questionBankWorkflow.types';
+import { UNRESOLVED_RESOURCE_UUID } from '../../schemas/media.schemas';
+import type { Question_Type } from '../../configurators/questions/question.constants';
 import { workflowOrdered_Schema } from './lessonWorkflow.types';
 import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -35,61 +36,82 @@ import { fillBlanksWithText_Config_Schema } from '../../configurators/questions/
  */
 const sha = z.string().regex(/^[a-f0-9]{40}$/i);
 const nonempty = z.string().min(1);
-const evidence_Schema = z.strictObject({
-  skillId: z.uuid(),
-  outcome: nonempty,
-  assessmentMethod: selectOneAnswer_Config_Schema.shape.params.shape.assessmentMethod,
-  cognitiveOperation: nonempty,
-  knowledgeAspect: nonempty,
-  cognitiveDemand: nonempty,
-  misconception: nonempty,
-  context: nonempty,
-  expectedEvidence: nonempty,
-});
-const assessment_Schema = lessonProductionAssessmentRequirements_Schema.extend({
-  quizRequiredForCompletion: z.boolean(),
-});
-const lessonReference_Schema = z.strictObject({
-  sourcePath: nonempty,
-  sourceSha: sha,
-  referencePath: nonempty,
-  referenceSha: sha,
-  methodologyPath: nonempty,
-  title: nonempty,
-});
-const questionProduction_Schema = z.strictObject({
-  evidence: evidence_Schema,
-  distinction: nonempty,
-  intendedUse: z.enum(['core', 'extension']),
-  rationale: nonempty,
-  mediaSpecification: z.string().optional(),
-  pending: z.boolean().optional(),
+/** Question-only production records contain real source-authoring notes, not a
+ * second lesson analysis, assessment method, evidence ledger or status flag.
+ */
+export const questionBankWorkflowQuestionProduction_Schema = z.strictObject({
   specification: z.string().optional(),
 });
+
 /** Question children are authored source Configs, never built Configurators.
  * Compose the same leaf schemas used by Lesson and the nine Question Configs.
  */
-const blockProduction_Schema = z.strictObject({
+export const questionBankWorkflowBlockProduction_Schema = z.strictObject({
   specification: z.string().optional(),
   mediaSourcePath: z.string().optional(),
-  pending: z.boolean().optional(),
 });
 function blockNode<Config extends z.ZodType>(config: Config) {
-  return z.strictObject({ config, production: blockProduction_Schema.optional() });
+  return z.strictObject({ config, production: questionBankWorkflowBlockProduction_Schema.optional() });
 }
+/** A Question source can omit a *resource reference* which the existing
+ * concrete materializer replaces with its reserved type-valid placeholder.
+ * Every other actual Block Config requirement remains in force.
+ */
+const imageSource_Schema = z
+  .object({
+    ...image_Config_Schema.shape,
+    locale: image_Config_Schema.shape.locale.extend({
+      fileName: image_Config_Schema.shape.locale.shape.fileName.optional(),
+    }),
+  })
+  // Apply the canonical refined Config to a provisional, typed media filename.
+  // Only the file reference may be absent; dimensions/accessibility stay checked.
+  .refine(
+    value =>
+      image_Config_Schema.safeParse({
+        ...value,
+        locale: { ...value.locale, fileName: value.locale.fileName ?? UNRESOLVED_RESOURCE_UUID + '.webp' },
+      }).success,
+    'Invalid Question Image source Config',
+  );
+const audioSource_Schema = audio_Config_Schema.extend({
+  locale: audio_Config_Schema.shape.locale.extend({
+    fileName: audio_Config_Schema.shape.locale.shape.fileName.optional(),
+  }),
+});
+const videoSource_Schema = video_Config_Schema.extend({
+  locale: video_Config_Schema.shape.locale.extend({
+    fileName: video_Config_Schema.shape.locale.shape.fileName.optional(),
+    posterFileName: video_Config_Schema.shape.locale.shape.posterFileName.optional(),
+  }),
+});
+const subtitlesSource_Schema = subtitles_Config_Schema.extend({
+  locale: subtitles_Config_Schema.shape.locale.extend({
+    fileName: subtitles_Config_Schema.shape.locale.shape.fileName.optional(),
+  }),
+});
+const youtubeSource_Schema = youtube_Config_Schema.extend({
+  locale: youtube_Config_Schema.shape.locale.extend({
+    href: youtube_Config_Schema.shape.locale.shape.href.optional(),
+  }),
+});
+const questionSceneSource_Schema = scene_Config_Schema.omit({ params: true, locale: true }).extend({
+  params: scene_Config_Schema.shape.params.optional(),
+  locale: scene_Config_Schema.shape.locale.partial().optional(),
+});
 const simpleBlock_Schema = z.union([
   text_Config_Schema,
   markdown_Config_Schema,
   code_Config_Schema,
-  image_Config_Schema,
-  video_Config_Schema,
-  youtube_Config_Schema,
-  audio_Config_Schema,
-  subtitles_Config_Schema,
-  scene_Config_Schema,
+  imageSource_Schema,
+  videoSource_Schema,
+  youtubeSource_Schema,
+  audioSource_Schema,
+  subtitlesSource_Schema,
+  questionSceneSource_Schema,
 ]);
 const carouselSource_Schema = carousel_Config_Schema.extend({
-  slides: workflowOrdered_Schema(z.union([blockNode(image_Config_Schema), blockNode(scene_Config_Schema)])),
+  slides: workflowOrdered_Schema(z.union([blockNode(imageSource_Schema), blockNode(questionSceneSource_Schema)])),
 });
 const simpleBlockNode_Schema = blockNode(simpleBlock_Schema);
 const carouselNode_Schema = blockNode(carouselSource_Schema);
@@ -103,8 +125,26 @@ const checkpointItemSource_Schema = checkpointItem_Config_Schema.extend({
 const checkpointSource_Schema = checkpoint_Config_Schema.extend({
   content: workflowOrdered_Schema(blockNode(checkpointItemSource_Schema)),
 });
-const block_Schema = z.union([simpleBlockNode_Schema, carouselNode_Schema, blockNode(checkpointSource_Schema)]);
-const blocks_Schema = workflowOrdered_Schema(block_Schema);
+export const questionBankWorkflowBlockConfig_Schema = z.union([
+  simpleBlock_Schema,
+  carouselSource_Schema,
+  checkpointSource_Schema,
+]);
+export const questionBankWorkflowBlockNode_Schema = blockNode(questionBankWorkflowBlockConfig_Schema);
+export const questionBankWorkflowCarouselConfig_Schema = carouselSource_Schema;
+export const questionBankWorkflowCheckpointAnswerConfig_Schema = checkpointAnswerSource_Schema;
+export const questionBankWorkflowCheckpointItemConfig_Schema = checkpointItemSource_Schema;
+export const questionBankWorkflowCheckpointConfig_Schema = checkpointSource_Schema;
+// Avoid serializing the entire recursive Block schema at every Question kind.
+const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = z.union([
+  simpleBlockNode_Schema,
+  carouselNode_Schema,
+  blockNode(checkpointSource_Schema),
+]);
+const blocks_Schema: z.ZodType<{
+  items: Record<string, z.infer<typeof questionBankWorkflowBlockNode_Schema>>;
+  order: string[];
+}> = workflowOrdered_Schema(block_Schema);
 const commonContent_Schema = z.strictObject({
   question: blocks_Schema,
   hint: blocks_Schema.optional(),
@@ -141,96 +181,86 @@ const questionContent = {
     slots: fillBlanksWithText_Config_Schema.shape.content.shape.slots,
   }),
 };
-const questionKinds_Schema: z.ZodType<QuestionBankWorkflowGroups> = z
-  .strictObject({
-    selectOneAnswer: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: selectOneAnswer_Config_Schema.extend({ content: questionContent.selectOneAnswer }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    selectMultipleAnswers: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: selectMultipleAnswers_Config_Schema.extend({ content: questionContent.selectMultipleAnswers }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    matchBlocks: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: matchBlocks_Config_Schema.extend({ content: questionContent.matchBlocks }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    answerWithText: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: answerWithText_Config_Schema.extend({ content: questionContent.answerWithText }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    answerWithNumber: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: answerWithNumber_Config_Schema.extend({ content: questionContent.answerWithNumber }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    orderSequence: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: orderSequence_Config_Schema.extend({ content: questionContent.orderSequence }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    buildAnswerWithBlocks: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: buildAnswerWithBlocks_Config_Schema.extend({ content: questionContent.buildAnswerWithBlocks }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    fillBlanksWithBlocks: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: fillBlanksWithBlocks_Config_Schema.extend({ content: questionContent.fillBlanksWithBlocks }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-    fillBlanksWithText: z
-      .record(
-        z.string(),
-        z.strictObject({
-          config: fillBlanksWithText_Config_Schema.extend({ content: questionContent.fillBlanksWithText }),
-          production: questionProduction_Schema,
-        }),
-      )
-      .optional(),
-  })
+
+/** Runtime schemas and TypeScript output types both derive from canonical
+ * Question Config schemas. Compact z.ZodType annotations avoid recursively
+ * serializing a giant nested Zod AST into Engine's public .d.ts files.
+ */
+const questionBaseSchemas = {
+  selectOneAnswer: selectOneAnswer_Config_Schema,
+  selectMultipleAnswers: selectMultipleAnswers_Config_Schema,
+  matchBlocks: matchBlocks_Config_Schema,
+  answerWithText: answerWithText_Config_Schema,
+  answerWithNumber: answerWithNumber_Config_Schema,
+  orderSequence: orderSequence_Config_Schema,
+  buildAnswerWithBlocks: buildAnswerWithBlocks_Config_Schema,
+  fillBlanksWithBlocks: fillBlanksWithBlocks_Config_Schema,
+  fillBlanksWithText: fillBlanksWithText_Config_Schema,
+} as const satisfies Record<Question_Type, z.ZodType>;
+type QuestionSourceConfig<Kind extends Question_Type> = Omit<
+  z.infer<(typeof questionBaseSchemas)[Kind]>,
+  'content'
+> & { content: z.infer<(typeof questionContent)[Kind]> };
+export const questionBankWorkflowQuestionConfig_Schemas: {
+  [Kind in Question_Type]: z.ZodType<QuestionSourceConfig<Kind>>;
+} = {
+  selectOneAnswer: selectOneAnswer_Config_Schema.extend({ content: questionContent.selectOneAnswer }),
+  selectMultipleAnswers: selectMultipleAnswers_Config_Schema.extend({ content: questionContent.selectMultipleAnswers }),
+  matchBlocks: matchBlocks_Config_Schema.extend({ content: questionContent.matchBlocks }),
+  answerWithText: answerWithText_Config_Schema.extend({ content: questionContent.answerWithText }),
+  answerWithNumber: answerWithNumber_Config_Schema.extend({ content: questionContent.answerWithNumber }),
+  orderSequence: orderSequence_Config_Schema.extend({ content: questionContent.orderSequence }),
+  buildAnswerWithBlocks: buildAnswerWithBlocks_Config_Schema.extend({ content: questionContent.buildAnswerWithBlocks }),
+  fillBlanksWithBlocks: fillBlanksWithBlocks_Config_Schema.extend({ content: questionContent.fillBlanksWithBlocks }),
+  fillBlanksWithText: fillBlanksWithText_Config_Schema.extend({ content: questionContent.fillBlanksWithText }),
+};
+type QuestionSourceConfigUnion = {
+  [Kind in Question_Type]: QuestionSourceConfig<Kind>;
+}[Question_Type];
+type QuestionSourceNode<Kind extends Question_Type = Question_Type> = {
+  config: QuestionSourceConfig<Kind>;
+  production?: z.infer<typeof questionBankWorkflowQuestionProduction_Schema>;
+};
+const questionNode = <Config extends z.ZodType>(config: Config) =>
+  z.strictObject({ config, production: questionBankWorkflowQuestionProduction_Schema.optional() });
+export const questionBankWorkflowQuestionNode_Schema: z.ZodType<{
+  config: QuestionSourceConfigUnion;
+  production?: z.infer<typeof questionBankWorkflowQuestionProduction_Schema>;
+}> = questionNode(
+  z.union([
+    questionBankWorkflowQuestionConfig_Schemas.selectOneAnswer,
+    questionBankWorkflowQuestionConfig_Schemas.selectMultipleAnswers,
+    questionBankWorkflowQuestionConfig_Schemas.matchBlocks,
+    questionBankWorkflowQuestionConfig_Schemas.answerWithText,
+    questionBankWorkflowQuestionConfig_Schemas.answerWithNumber,
+    questionBankWorkflowQuestionConfig_Schemas.orderSequence,
+    questionBankWorkflowQuestionConfig_Schemas.buildAnswerWithBlocks,
+    questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithBlocks,
+    questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText,
+  ]),
+);
+type QuestionSourceGroups = {
+  [Kind in Question_Type]?: Record<string, QuestionSourceNode<Kind>>;
+};
+const questionBankWorkflowKindsShape = {
+  selectOneAnswer: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectOneAnswer)).optional(),
+  selectMultipleAnswers: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectMultipleAnswers)).optional(),
+  matchBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.matchBlocks)).optional(),
+  answerWithText: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithText)).optional(),
+  answerWithNumber: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithNumber)).optional(),
+  orderSequence: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.orderSequence)).optional(),
+  buildAnswerWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.buildAnswerWithBlocks)).optional(),
+  fillBlanksWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithBlocks)).optional(),
+  fillBlanksWithText: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText)).optional(),
+} satisfies Record<Question_Type, z.ZodType>;
+export const questionBankWorkflowQuestionKinds_Schema: z.ZodType<QuestionSourceGroups> = z
+  .strictObject(questionBankWorkflowKindsShape)
   .refine(
     groups => Object.values(groups).some(group => group && Object.keys(group).length),
     'Question Bank must contain a Question',
   );
 
-const quizIntent_Schema = z.discriminatedUnion('kind', [
+export const questionBankWorkflowQuizIntent_Schema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('none'), rationale: nonempty }),
   z.strictObject({
     kind: z.literal('local'),
@@ -251,38 +281,30 @@ const quizIntent_Schema = z.discriminatedUnion('kind', [
   }),
 ]);
 
-const questionOwnerId_Schema = z.uuid();
-const questionBankConfig_Schema: z.ZodObject<{
-  ownerLessonId: typeof questionOwnerId_Schema;
-  questions: typeof questionKinds_Schema;
-}> = z.strictObject({
-  ownerLessonId: questionOwnerId_Schema,
-  questions: questionKinds_Schema,
+/** Lesson SHA pinning remains in trusted Git authorization, not authored data. */
+export const questionBankWorkflowStage1_Schema = z.strictObject({
+  config: z.strictObject({ ownerLessonId: z.uuid() }),
+  production: z.strictObject({ languages: workflowLanguages_Schema }),
 });
-const questionBankProduction_Schema = z.strictObject({
-  languages: workflowLanguages_Schema,
-  lesson: lessonReference_Schema,
-  course: z.strictObject({ id: z.uuid(), sourceSha: sha, placementPath: nonempty }).optional(),
-  assessment: assessment_Schema,
-  ownershipRationale: nonempty,
-  audience: nonempty,
-  scope: nonempty,
-  prerequisites: nonempty,
-  evidenceIntent: z.array(evidence_Schema).readonly(),
-  misconceptions: nonempty,
-  mediaNeeds: nonempty,
-  sourcesAndDependencies: nonempty,
-  quiz: quizIntent_Schema,
+const questionBankStage2Config_Schema = questionBankWorkflowStage1_Schema.shape.config.extend({
+  questions: questionBankWorkflowQuestionKinds_Schema,
 });
-/** Named schema fragments keep TypeScript declaration output bounded without
- * duplicating the final authored type or weakening runtime validation.
- */
-export const questionBankWorkflowStage3_Schema: z.ZodObject<{
-  config: typeof questionBankConfig_Schema;
-  production: typeof questionBankProduction_Schema;
+const questionBankStage3Production_Schema = questionBankWorkflowStage1_Schema.shape.production.extend({
+  quiz: questionBankWorkflowQuizIntent_Schema,
+});
+export const questionBankWorkflowStage2_Schema: z.ZodType<{
+  config: z.infer<typeof questionBankStage2Config_Schema>;
+  production: z.infer<typeof questionBankWorkflowStage1_Schema.shape.production>;
 }> = z.strictObject({
-  config: questionBankConfig_Schema,
-  production: questionBankProduction_Schema,
+  config: questionBankStage2Config_Schema,
+  production: questionBankWorkflowStage1_Schema.shape.production,
+});
+export const questionBankWorkflowStage3_Schema: z.ZodType<{
+  config: z.infer<typeof questionBankStage2Config_Schema>;
+  production: z.infer<typeof questionBankStage3Production_Schema>;
+}> = z.strictObject({
+  config: questionBankStage2Config_Schema,
+  production: questionBankStage3Production_Schema,
 });
 
 const lesson_Schema = z.strictObject({

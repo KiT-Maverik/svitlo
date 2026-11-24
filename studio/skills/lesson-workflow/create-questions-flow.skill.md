@@ -87,56 +87,67 @@ defers expensive checks. See the relevant [architecture](../../docs/architecture
 
 ## Stage 1 — Lesson Analysis
 
-The Assessment Architect compares the approved Lesson methodology, stable UUID,
-Skill/outcome/method decisions, current source and derived reference Markdown at
-a **verified exact Lesson SHA**. Analyze audience, misconceptions, prerequisite
-knowledge, task representations, media needs and genuine upstream dependencies.
-A substantial instructional Lesson normally requires its own full bank even
-without a Quiz; an external-bank-only assessment Lesson does not create an
-empty Questions PR. Preserve the four independent
-`LessonProductionAssessmentRequirements` booleans and the distinct
-`quizRequiredForCompletion` decision. If the Lesson's assessment methodology
-approves N/A, record the Methodologist decision in its Lesson PR and do not
-manufacture a bank or handoff.
+The Assessment Architect checks the real owning Lesson, approved methodology, Skill
+definitions, course placement, local Quiz decisions, genuine source locale and
+dependencies **at a verified Lesson source SHA**. Determine whether this Lesson
+owns a bank at all; a Lesson using only approved external Questions must not
+create an empty own bank. Keep decisions, Lesson/reference SHAs, coverage
+reasoning, audience and pedagogical analyses **in the existing parent/Questions
+PRs and upstream Lesson documents**, not in a second Stage 1 metadata object.
+Do not duplicate Lesson's four assessment flags or the separate
+`quizRequiredForCompletion` decision in bank authoring.
 
-For an authorized own bank, initialize only the Lesson-owned
+For an authorized own bank, create only
 `content/<book>/data/lessons/<last-hex>/<lesson-uuid>/questions/draft.ts`
-as `{ config, production } satisfies QuestionBankWorkflowStage1`. Its
-`config.ownerLessonId` is the **existing Lesson UUID**, not a second bank UUID;
-`production.languages.document` identifies the genuinely authored source
-language and `planned` includes intended target languages. Record verified
-Lesson path/SHA, reference and methodology sources, assessment decisions, Skill
-evidence intent, misconceptions and dependencies in production-only metadata.
-No `defineQuestion`, Quiz Section, invented Question IDs, fake candidates,
-publication or new YAML is permitted here. A Course/Lesson-originated handoff
-may create this initial file **only** after explicit Lesson Stage 7
-authorization; verify no existing bank or conflicting staged source exists.
-A Stage 1 index is purposely incomplete/unpublishable.
+as `{ config, production } satisfies QuestionBankWorkflowStage1`.
+It contains exactly `config.ownerLessonId` (the verified existing Lesson UUID)
+and `production.languages: {document, planned}`; no extra Lesson copy,
+assessment flags, evidence ledger, source paths or status flags.
+The trusted source materializer receives immutable Lesson SHA/authorization
+**outside** this authored contract. Verify the Lesson Stage 7 handoff and no
+existing bank or conflicting draft before creating. Never invent Questions,
+Sections or assets at Stage 1; the draft is not publishable.
 
 ## Stage 2 — Question Design
 
 Refine the **same** `questions/draft.ts` to
-`satisfies QuestionBankWorkflowStage2`, keeping all Stage 1 analysis.
-Build an evidence matrix first: target Skill and observable outcome,
-`assessmentMethod`, cognitive operation, misconception, transfer/context,
-expected diagnostic evidence, nonredundancy, scoring limitations and core vs
-extension rationale. Keep only substantively distinct items; no fixed quota
-and no obligation to exercise all nine response widgets or all methods.
+`satisfies QuestionBankWorkflowStage2`. The Learning Assessment Architect
+uses the current Lesson's actual Skill/learning outcomes and the canonical
+Assessment Methods to select meaningful coverage. Explain nonredundancy,
+scoring risks and accessibility in the Questions PR and independent review;
+do not require a second per-Question cognitive-operation/evidence matrix in
+the authored TypeScript.
 
-Author the **complete bank** in `config.questions`, grouped by the actual
-nine Engine Question `type` discriminants, then camelCase slug. Each node
-contains `config` (the real kind-specific Question Config fields) and
-`production` (evidence, distinction, rationale and media/specification needs).
-Preserve real immutable Question and nested Block UUIDs, source-locale prompts,
-answer variants, restrictions, scored keys, hint/explanation and ordered
-`{items,order}` collections. Nested ContentBlock, Carousel slide and
-Checkpoint child nodes hold **plain typed Config objects**, never constructed
-Configurators; final `define*` instances belong to Stage 5. Do not substitute
-a generic Question Config or invent correct answers. Type derivations live in
-`shared/engine/types/workflow/questionBankWorkflow.types.ts`; the individual
-nine Config/Zod schemas remain the scoring source of truth. A missing
-physical asset is an explicit production blocker, not a fake file reference.
-No second YAML/JSON Schema editor source is needed.
+Author the full `config.questions` bank, grouped by one of the nine actual
+Engine Question `type` discriminants and camelCase Question slugs. A Question
+node requires `config` (the real type-specific Question Config including
+`params.assessmentMethod`, restrictions, grading answers, locales and ordered
+ContentBlock collections). Its optional `production.specification` is only
+an authoring aid for unresolved resources or production context.
+No `skillId`, `outcome`, `evidence`, `cognitiveOperation`, `knowledgeAspect`,
+`cognitiveDemand`, `misconception`, `context`, `expectedEvidence`,
+`distinction`, `intendedUse`, `rationale` or `pending` field belongs
+to this Question source. The owning Lesson supplies Skill context;
+**each Question's assessment method remains mandatory**.
+
+Use real immutable Question/Block UUIDs, source-locale prompts, correct
+answer keys, meaningful distractors and `{items,order}` collections.
+Nested ContentBlocks/Carousel slides/Checkpoint children have plain typed
+Config nodes rather than constructed Configurators. The Stage 2 and Stage 3
+types derive from `shared/engine/types/workflow/bankWorkflowFinal.schemas.ts`
+and the real nine Config/Zod contracts, with no parallel workflow type map.
+
+A resource genuinely not produced yet may omit the resource reference,
+or use the existing reserved Nil UUID media placeholder. The *concrete*
+media/Scene source materializer then emits a type-valid module with
+`TODO (BLOCKER)`, not a fake physical file or executable implementation.
+Specify substantive authoring information in optional
+`production.specification`; keep required accessible labels and other
+mandatory Config inputs valid. At Stage 5 the pinned evidence checker
+verifies existing real assets/Scene registry; malformed references, spoofed
+assets, broken Scene registration, unsafe paths and invalid Question
+scoring remain hard failures. Strict publication must still reject all
+unresolved resources and incomplete translations.
 
 ## Stage 3 — Quiz Section Design
 
