@@ -13,6 +13,9 @@ import {
   defineText,
   defineScene,
   defineImage,
+  defineLessonStub,
+  defineEpisodeStub,
+  defineAssessmentStub,
 } from '@svitlo/engine/build';
 import { assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode } from '@svitlo/engine/runtime';
 import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
@@ -537,4 +540,22 @@ test('real Episode Configurators publish at all four levels with localized order
     content: { items: { unsupported }, order: ['unsupported'] },
   });
   assert.throws(() => renderCourseFiles(bad), /unsupported Episode events/i);
+});
+
+
+test('strict Course publication rejects every reserved draft stub even when Build preview succeeds', () => {
+  const makers = [defineLessonStub, defineEpisodeStub, defineAssessmentStub];
+  for (const [index, maker] of makers.entries()) {
+    const slot = maker({ id: 'b275647f-203d-481a-a1c7-4d331c779d' + String(index + 1).padStart(2, '0'), slug: 'slot' });
+    const course = defineCourse({
+      id: 'b275647f-203d-481a-a1c7-4d331c779d40',
+      slug: 'courseStub',
+      type: 'course',
+      params: { languages: ['en'] },
+      locale: { title: 'Preview', description: 'Draft only' },
+      content: { items: { slot }, order: ['slot'] },
+    });
+    assert.equal(course.build.props({ languages: ['en'] }).base.content[0].draft, true);
+    assert.throws(() => renderCourseFiles(course, { languages: ['en'] }), /draft stub cannot be published/i);
+  }
 });
