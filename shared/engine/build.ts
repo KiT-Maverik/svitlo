@@ -67,5 +67,6 @@ export { materializeLessonStage6 } from './generators/materializers/lesson/mater
 
 export { courseWorkflowStage3_Schema } from './types/workflow/courseWorkflowFinal.schemas';
 export { materializeCourse } from './generators/materializers/course/materializeCourseDirect';
+export type { AssessmentWorkflowSeed } from './types/workflow/assessmentWorkflow.types';
 
 export { materializeEpisodeStage5 } from './generators/materializers/episode/materializeEpisodeStage5';
