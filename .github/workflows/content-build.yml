@@ -56,6 +56,9 @@ jobs:
       - name: Test final resource readiness gate
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Build Engine runtime for assessment reference tests
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Test published assessment resource references
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
