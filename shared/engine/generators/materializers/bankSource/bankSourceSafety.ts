@@ -183,10 +183,7 @@ export function preflightBankSource(
     assertBankPath(file.path);
     if (unique.has(file.path)) throw new Error('Duplicate generated source path: ' + file.path);
     unique.add(file.path);
-    if (
-      !['typescript', 'markdown', 'code', 'specification'].includes(file.kind) ||
-      typeof file.content !== 'string'
-    ) {
+    if (!['typescript', 'markdown', 'code', 'specification'].includes(file.kind) || typeof file.content !== 'string') {
       throw new Error('Invalid source file at ' + file.path);
     }
     const parts = file.path.split('/');
@@ -215,10 +212,13 @@ export function preflightBankSource(
     const { indexPath, draftPath, reviewed } = transition;
     assertBankPath(indexPath);
     assertBankPath(draftPath);
-    if (!/^(questions|flashcards)\/index\.ts$/.test(indexPath) ||
-        draftPath !== indexPath.replace(/index\.ts$/, 'draft.ts') ||
-        !unique.has(indexPath) || unique.has(draftPath) ||
-        files.some(file => /(?:^|\/)draft\.ts$|\.reviewed-stage3\.ts\.txt$/.test(file.path))) {
+    if (
+      !/^(questions|flashcards)\/index\.ts$/.test(indexPath) ||
+      draftPath !== indexPath.replace(/index\.ts$/, 'draft.ts') ||
+      !unique.has(indexPath) ||
+      unique.has(draftPath) ||
+      files.some(file => /(?:^|\/)draft\.ts$|\.reviewed-stage3\.ts\.txt$/.test(file.path))
+    ) {
       throw new Error('Canonical draft deletion and index creation are required in one transition plan');
     }
     assertBankSha(reviewed.blobSha, 'Stage 3 source');
@@ -245,8 +245,10 @@ export function preflightBankSource(
     };
   } else {
     for (const file of files) {
-      if (/^(questions|flashcards)\/draft\.ts$/.test(file.path) &&
-          snapshot.entries[file.path.replace(/draft\.ts$/, 'index.ts')]) {
+      if (
+        /^(questions|flashcards)\/draft\.ts$/.test(file.path) &&
+        snapshot.entries[file.path.replace(/draft\.ts$/, 'index.ts')]
+      ) {
         throw new Error('Materialized bank already exists');
       }
       const prior = snapshot.entries[file.path];

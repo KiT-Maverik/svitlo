@@ -325,8 +325,10 @@ function lessonValues(sf, file, config, catalogue, visited = new Set()) {
 function draftData(file, catalogue) {
   if (fs.statSync(file).size > 2_000_000) throw Error('Draft exceeds size limit');
   const sf = fileSource(file);
-  const matches = [...declarations(sf).values()].filter(d => d.exported)
-    .map(d => object(d.node)).filter(o => object(field(o, 'config')) && object(field(o, 'production')));
+  const matches = [...declarations(sf).values()]
+    .filter(d => d.exported)
+    .map(d => object(d.node))
+    .filter(o => object(field(o, 'config')) && object(field(o, 'production')));
   if (matches.length !== 1) throw Error('Expected one exported static Lesson workflow object');
   const draft = matches[0];
   const config = object(field(draft, 'config'));

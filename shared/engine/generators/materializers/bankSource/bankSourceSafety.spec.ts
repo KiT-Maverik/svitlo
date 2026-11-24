@@ -1,19 +1,32 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { assertBankOrder, authoredBankLiteral, gitBlobSha, preflightBankSource, type BankSourceSnapshot } from './bankSourceSafety';
+import {
+  assertBankOrder,
+  authoredBankLiteral,
+  gitBlobSha,
+  preflightBankSource,
+  type BankSourceSnapshot,
+} from './bankSourceSafety';
 
 const editor = 'export const bank = { reviewed: true };\n';
 const stage = { path: 'questions/index.ts', content: 'export const questions = {};\n', kind: 'typescript' as const };
 const draft = { ...stage, path: 'questions/draft.ts', content: editor };
 const head = 'b'.repeat(40);
 const snapshot = (entries: BankSourceSnapshot['entries']): BankSourceSnapshot => ({
-  complete: true, expectedHeadSha: head, observedHeadSha: head, entries,
+  complete: true,
+  expectedHeadSha: head,
+  observedHeadSha: head,
+  entries,
 });
 const source = snapshot({ questions: { kind: 'directory' }, [draft.path]: { kind: 'file', content: editor } });
 const reviewed = {
-  approved: true as const, reviewer: 'independent', blobSha: gitBlobSha(editor),
-  reviewedSourceBlobSha: gitBlobSha(editor), reviewedInputSha256: 'a'.repeat(64),
-  content: editor, reviewCommitSha: head,
+  approved: true as const,
+  reviewer: 'independent',
+  blobSha: gitBlobSha(editor),
+  reviewedSourceBlobSha: gitBlobSha(editor),
+  reviewedInputSha256: 'a'.repeat(64),
+  content: editor,
+  reviewCommitSha: head,
 };
 const transition = { indexPath: stage.path, draftPath: draft.path, reviewed };
 
@@ -26,22 +39,59 @@ test('Approved draft deletion and index creation are deterministic', () => {
   assert.equal(result.publishable, false);
 });
 test('Reject stale reviews, missing or edited drafts, collisions and partial transitions', () => {
-  assert.throws(() => preflightBankSource([stage], {...source, observedHeadSha: 'c'.repeat(40)}, transition), /Stale PR HEAD/);
-  assert.throws(() => preflightBankSource([stage], source, {...transition, reviewed: {...reviewed, reviewCommitSha: 'c'.repeat(40)}}), /independently approved/);
-  assert.throws(() => preflightBankSource([stage], source, {...transition, reviewed: {...reviewed, reviewedSourceBlobSha: 'c'.repeat(40)}}), /independently approved/);
+  assert.throws(
+    () => preflightBankSource([stage], { ...source, observedHeadSha: 'c'.repeat(40) }, transition),
+    /Stale PR HEAD/,
+  );
+  assert.throws(
+    () =>
+      preflightBankSource([stage], source, {
+        ...transition,
+        reviewed: { ...reviewed, reviewCommitSha: 'c'.repeat(40) },
+      }),
+    /independently approved/,
+  );
+  assert.throws(
+    () =>
+      preflightBankSource([stage], source, {
+        ...transition,
+        reviewed: { ...reviewed, reviewedSourceBlobSha: 'c'.repeat(40) },
+      }),
+    /independently approved/,
+  );
   assert.throws(() => preflightBankSource([stage], snapshot({}), transition), /missing/);
-  assert.throws(() => preflightBankSource([stage], snapshot({[draft.path]: {kind: 'file', content: 'edited'}}), transition), /hand-edited/);
-  assert.throws(() => preflightBankSource([stage], snapshot({...source.entries, [stage.path]: {kind: 'file', content: stage.content}}), transition), /already exists/);
+  assert.throws(
+    () => preflightBankSource([stage], snapshot({ [draft.path]: { kind: 'file', content: 'edited' } }), transition),
+    /hand-edited/,
+  );
+  assert.throws(
+    () =>
+      preflightBankSource(
+        [stage],
+        snapshot({ ...source.entries, [stage.path]: { kind: 'file', content: stage.content } }),
+        transition,
+      ),
+    /already exists/,
+  );
   assert.throws(() => preflightBankSource([draft], source, transition), /already exists|Canonical/);
   assert.throws(() => preflightBankSource([stage, stage], source, transition), /Duplicate/);
-  assert.throws(() => preflightBankSource([{...stage, path: '../escape.ts'}], source, transition), /Unsafe/);
-  assert.throws(() => preflightBankSource([stage], snapshot({questions: {kind: 'symlink'}}), transition), /symlink/);
-  assert.throws(() => preflightBankSource([stage], {...source, complete: false as true}, transition), /complete Git tree/);
+  assert.throws(() => preflightBankSource([{ ...stage, path: '../escape.ts' }], source, transition), /Unsafe/);
+  assert.throws(
+    () => preflightBankSource([stage], snapshot({ questions: { kind: 'symlink' } }), transition),
+    /symlink/,
+  );
+  assert.throws(
+    () => preflightBankSource([stage], { ...source, complete: false as true }, transition),
+    /complete Git tree/,
+  );
 });
 test('Stage 1 draft handoff is idempotent but cannot overwrite editorial or materialized source', () => {
   assert.doesNotThrow(() => preflightBankSource([draft], source));
-  assert.throws(() => preflightBankSource([{...draft, content: 'edited'}], source), /Divergent/);
-  assert.throws(() => preflightBankSource([draft], snapshot({[stage.path]: {kind: 'file', content: stage.content}})), /Materialized bank/);
+  assert.throws(() => preflightBankSource([{ ...draft, content: 'edited' }], source), /Divergent/);
+  assert.throws(
+    () => preflightBankSource([draft], snapshot({ [stage.path]: { kind: 'file', content: stage.content } })),
+    /Materialized bank/,
+  );
 });
 
 test('Editor literals and keyed order reject opaque values and collisions', () => {

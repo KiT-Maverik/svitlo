@@ -22,5 +22,4 @@ The 109 `content/math/data/lessons/**/lesson.yaml` files are **historical user-a
 
 Review the current [Course Flow](../../skills/course-workflow/create-course-flow.skill.md), [Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md), [Questions Flow](../../skills/lesson-workflow/create-questions-flow.skill.md) and [Flashcards Flow](../../skills/lesson-workflow/create-flashcards-flow.skill.md) for stage-specific approval and authoring rules.
 
-
 All editorial roots use exactly one `draft.ts` and completed roots use `index.ts` (supported standalone Lesson `.data.ts` remains valid). Publishers never load editorial sources; draft-mode validation may omit unfinished roots, whereas strict release rejects unfinished or ambiguous roots. Materialization consumes the approved draft in the same Git commit that creates the final source. Provenance is the immutable reviewed parent commit and blob, not an extra live archive.

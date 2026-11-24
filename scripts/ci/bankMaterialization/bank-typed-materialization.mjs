@@ -170,10 +170,14 @@ function authorizations(meta, input, root, blocks) {
     assertAncestor(root, questions.reviewSha, 'Completed Questions independent review');
     assertTracked(root, expected, meta, 'Completed Questions index');
     const reviewedBlob = git(root, 'rev-parse', questions.reviewSha + ':' + draft);
-    const transitions = git(root, 'log', '--format=%H', '--diff-filter=D', questions.reviewSha + '..HEAD', '--', draft).split('\n').filter(Boolean);
+    const transitions = git(root, 'log', '--format=%H', '--diff-filter=D', questions.reviewSha + '..HEAD', '--', draft)
+      .split('\n')
+      .filter(Boolean);
     const materialized = transitions.filter(commit => {
       if (git(root, 'rev-list', '--parents', '-n', '1', commit) !== commit + ' ' + questions.reviewSha) return false;
-      const changes = git(root, 'diff-tree', '--no-commit-id', '--name-status', '--no-renames', '-r', commit).split('\n');
+      const changes = git(root, 'diff-tree', '--no-commit-id', '--name-status', '--no-renames', '-r', commit).split(
+        '\n',
+      );
       return changes.includes('D\t' + draft) && changes.includes('A\t' + expected);
     });
     if (materialized.length !== 1 || !SHA.test(reviewedBlob)) {
@@ -188,7 +192,11 @@ function authorizations(meta, input, root, blocks) {
         ? questions.sourceSha
         : sourceKind === 'commit'
           ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
-            git(root, 'rev-parse', questions.sourceSha + ':' + (questions.sourceSha === questions.reviewSha ? draft : expected)))
+            git(
+              root,
+              'rev-parse',
+              questions.sourceSha + ':' + (questions.sourceSha === questions.reviewSha ? draft : expected),
+            ))
           : '';
     if (![reviewedBlob, finalizedBlob].includes(actualSource)) {
       throw Error('Questions-first source SHA does not identify reviewed or finalized Question Bank');
@@ -291,10 +299,7 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
-  for (const filename of [
-    root + meta.bank + '/index.ts',
-    root + meta.bank + 'Languages.ts',
-  ]) {
+  for (const filename of [root + meta.bank + '/index.ts', root + meta.bank + 'Languages.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
   return result.files;
@@ -421,8 +426,10 @@ async function analyze(meta) {
   if (!committed.worktreeRefreshRequired || committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
     throw Error('Trusted Bank writer disagrees with checked atomic source plan');
   }
-  if (committed.changedPaths.filter(filename => filename === meta.sourcePath).length !== 1 ||
-      git(root, 'ls-tree', committed.commitSha, '--', meta.sourcePath)) {
+  if (
+    committed.changedPaths.filter(filename => filename === meta.sourcePath).length !== 1 ||
+    git(root, 'ls-tree', committed.commitSha, '--', meta.sourcePath)
+  ) {
     throw Error('Trusted Bank writer must consume the exact reviewed draft');
   }
   const files = committed.changedPaths
@@ -508,12 +515,15 @@ async function publish(meta) {
   // Rebuild it via the Git Data API, verify exact Git tree SHA before commit.
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
-    tree: [...files.map(file => ({
-      path: file.path,
-      mode: '100644',
-      type: 'blob',
-      content: Buffer.from(file.base64, 'base64').toString('utf8'),
-    })), { path: meta.sourcePath, mode: '100644', type: 'blob', sha: null }],
+    tree: [
+      ...files.map(file => ({
+        path: file.path,
+        mode: '100644',
+        type: 'blob',
+        content: Buffer.from(file.base64, 'base64').toString('utf8'),
+      })),
+      { path: meta.sourcePath, mode: '100644', type: 'blob', sha: null },
+    ],
   });
   if (tree.sha !== reportData.treeSha) {
     throw Error('Git Data API result differs from trusted Bank transaction tree');

@@ -188,10 +188,7 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
     const lower = file.path.toLowerCase();
     if (names.has(lower)) throw new Error('Case-insensitive generated bank source collision');
     names.add(lower);
-    if (
-      !file.path.startsWith(kind + '/') &&
-      file.path !== kind + 'Languages.ts'
-    ) {
+    if (!file.path.startsWith(kind + '/') && file.path !== kind + 'Languages.ts') {
       throw new Error('Plan attempts to modify non-bank-owned source: ' + file.path);
     }
   }
@@ -238,8 +235,7 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   }
   for (const line of output.split('\n')) {
     const found = /^[a-fA-F0-9]{40}:([^:]+):\d+:(.*)$/.exec(line);
-    if (!found || found[1] === context.lessonDirectory + '/' + plan.transition?.reviewedDraftPath)
-      continue;
+    if (!found || found[1] === context.lessonDirectory + '/' + plan.transition?.reviewedDraftPath) continue;
     // Reviewed draft contains the same authored identities by design.
     const relative = found[1].startsWith(context.lessonDirectory + '/')
       ? found[1].slice(context.lessonDirectory.length + 1)
@@ -295,10 +291,10 @@ export function checkBankGitPlan(
 ): BankGitCheck {
   const snapshot = readBankGitSnapshot(context);
   checkOwnedPaths(kind, plan);
-  checkPhysicalPaths(
-    context,
-    [...plan.files.map(file => file.path), ...(plan.transition ? [plan.transition.reviewedDraftPath] : [])],
-  );
+  checkPhysicalPaths(context, [
+    ...plan.files.map(file => file.path),
+    ...(plan.transition ? [plan.transition.reviewedDraftPath] : []),
+  ]);
   validateReview(context, kind, plan, evidence);
   const reviewed = evidence?.reviewed;
   preflightBankSource(
@@ -362,7 +358,11 @@ export function commitBankGitPlan(
       );
     }
     if (plan.transition) {
-      git(context, ['update-index', '--force-remove', '--', context.lessonDirectory + '/' + plan.transition.reviewedDraftPath], { index });
+      git(
+        context,
+        ['update-index', '--force-remove', '--', context.lessonDirectory + '/' + plan.transition.reviewedDraftPath],
+        { index },
+      );
     }
     const tree = git(context, ['write-tree'], { index }).trim();
     assertBankSha(tree, 'planned atomic tree');
@@ -376,7 +376,15 @@ export function commitBankGitPlan(
       '-p',
       context.expectedHeadSha,
       '-m',
-      'Commit reviewed ' + kind + ' bank source as one transaction' + (plan.transition ? '\n\nReviewed Stage 3 blob: ' + plan.transition.reviewedDraftBlobSha + '\nReviewed HEAD: ' + context.expectedHeadSha : ''),
+      'Commit reviewed ' +
+        kind +
+        ' bank source as one transaction' +
+        (plan.transition
+          ? '\n\nReviewed Stage 3 blob: ' +
+            plan.transition.reviewedDraftBlobSha +
+            '\nReviewed HEAD: ' +
+            context.expectedHeadSha
+          : ''),
     ]).trim();
     assertBankSha(commit, 'bank source commit');
     // Revalidate checkout and HEAD before the only ref mutation.

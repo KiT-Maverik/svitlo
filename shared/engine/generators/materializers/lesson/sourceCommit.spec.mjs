@@ -148,10 +148,7 @@ test('refuses ancestor symlinks and already consumed draft', t => {
     ...plan,
     files: plan.files.map(f => (f.path === materializedPath ? { ...f, content: 'export const changed = 1;\n' } : f)),
   };
-  assert.throws(
-    () => preflightLessonStage6Commit(corrupted, { repoRoot: root }),
-    /draft is missing/,
-  );
+  assert.throws(() => preflightLessonStage6Commit(corrupted, { repoRoot: root }), /draft is missing/);
 });
 test('refuses invalid generated TypeScript and any attempt to publish from this writer', t => {
   const { root, plan } = setup(t);
@@ -162,7 +159,10 @@ test('refuses invalid generated TypeScript and any attempt to publish from this 
   assert.throws(
     () =>
       preflightLessonStage6Commit(
-        { ...plan, files: plan.files.map(f => (f.path === materializedPath ? { ...f, content: 'export const = ;' } : f)) },
+        {
+          ...plan,
+          files: plan.files.map(f => (f.path === materializedPath ? { ...f, content: 'export const = ;' } : f)),
+        },
         { repoRoot: root },
       ),
     /Invalid generated TypeScript/,

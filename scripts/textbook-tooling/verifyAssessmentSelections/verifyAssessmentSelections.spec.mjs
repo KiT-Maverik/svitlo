@@ -217,7 +217,9 @@ test('Course publication rejects missing standalone Lessons and unresolved overr
     const filename = 'data/courses/' + courseId + '/base.json';
     const node = { type: 'lesson', id: lessonId };
     const course = {
-      id: courseId, type: 'course', params: { languages: ['en', 'uk'] },
+      id: courseId,
+      type: 'course',
+      params: { languages: ['en', 'uk'] },
       content: { items: { lesson: node }, order: ['lesson'] },
     };
     put(root, filename, course);

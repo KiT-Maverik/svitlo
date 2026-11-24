@@ -167,8 +167,7 @@ export function checkTypedCourseTargets(meta, root, manifest) {
     } catch (error) {
       if (error.code !== 'ENOENT') throw error;
     }
-    if (mode || localExists)
-      throw Error('Existing authored Course/Lesson target would be overwritten: ' + filename);
+    if (mode || localExists) throw Error('Existing authored Course/Lesson target would be overwritten: ' + filename);
   }
   return true;
 }

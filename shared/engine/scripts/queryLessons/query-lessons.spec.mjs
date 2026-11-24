@@ -44,10 +44,18 @@ function fixture(run) {
     put('content/math/data/lessons/c/' + A + '/methodology.md', '# Methodology');
     put(
       'content/math/data/lessons/1/' + B + '/draft.ts',
-      'export const lessonStage1 = ' + JSON.stringify({
-        config: { id: B, type: 'lesson', slug: 'editorial', skills: [S1], locale: { title: { en: 'Editorial draft' } } },
-        production: { languages: { document: 'en', planned: ['en'] } },
-      }) + ' as const;',
+      'export const lessonStage1 = ' +
+        JSON.stringify({
+          config: {
+            id: B,
+            type: 'lesson',
+            slug: 'editorial',
+            skills: [S1],
+            locale: { title: { en: 'Editorial draft' } },
+          },
+          production: { languages: { document: 'en', planned: ['en'] } },
+        }) +
+        ' as const;',
     );
     return run({ root, put });
   } finally {

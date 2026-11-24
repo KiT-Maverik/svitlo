@@ -146,7 +146,8 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     assertTypescript(file);
     all.set(file.path, file.content);
   }
-  if (!all.has(plan.materializedPath)) throw new Error('Course must create the canonical root index.ts in the atomic commit');
+  if (!all.has(plan.materializedPath))
+    throw new Error('Course must create the canonical root index.ts in the atomic commit');
   assertSafeTarget(root, plan.sourcePath);
   const source = blobAt(root, head, plan.sourcePath);
   if (source === undefined || trackedMode(root, head, plan.sourcePath) !== '100644')
@@ -155,8 +156,7 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     throw new Error('Course source blob SHA differs from the reviewed source');
   if (head !== plan.reviewCommitSha)
     throw new Error('Course review commit is stale; re-review current HEAD before Stage 5');
-  if (git(root, ['status', '--porcelain', '--', plan.sourcePath]))
-    throw new Error('Locally modified Course draft');
+  if (git(root, ['status', '--porcelain', '--', plan.sourcePath])) throw new Error('Locally modified Course draft');
   const files = all;
   const pending = [];
   for (const [file] of files) {
@@ -174,8 +174,7 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     const status = git(root, ['status', '--porcelain', '--', file]);
     if (status) throw new Error('Locally modified or untracked Course file: ' + file);
     const before = blobAt(root, head, file);
-    if (before !== undefined)
-      throw new Error('Refusing divergent authored target: ' + file);
+    if (before !== undefined) throw new Error('Refusing divergent authored target: ' + file);
     pending.push(file);
   }
   pending.push(plan.sourcePath);
@@ -231,7 +230,13 @@ export function commitCourseSourcePlan(plan, options = {}) {
     }
     const tree = git(root, ['write-tree'], { index });
     if (!sha.test(tree)) throw new Error('Invalid staged Course source Git tree');
-    const message = 'Materialize reviewed Course source ' + plan.courseId + '\n\nSource-Blob: ' + plan.sourceBlobSha + '\nReview-Commit: ' + plan.reviewCommitSha;
+    const message =
+      'Materialize reviewed Course source ' +
+      plan.courseId +
+      '\n\nSource-Blob: ' +
+      plan.sourceBlobSha +
+      '\nReview-Commit: ' +
+      plan.reviewCommitSha;
     const commitSha = git(root, ['commit-tree', tree, '-p', preview.head, '-m', message]);
     git(root, ['update-ref', target, commitSha, preview.head]);
     return {

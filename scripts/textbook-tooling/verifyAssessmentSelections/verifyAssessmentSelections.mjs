@@ -150,10 +150,8 @@ function verifySelectedSections(staticRoot, manifest, lesson, languages) {
     const kind = section.type === 'quiz' ? 'question' : 'flashcard';
     const key = kind === 'question' ? 'questionIds' : 'flashcardIds';
     const ids = section.params?.selection?.[key];
-    if (!Array.isArray(ids) || !ids.length)
-      throw new Error('Missing selected ' + key + ' in Section ' + section.id);
-    if (new Set(ids).size !== ids.length)
-      throw new Error('Duplicate selected ' + key + ' in Section ' + section.id);
+    if (!Array.isArray(ids) || !ids.length) throw new Error('Missing selected ' + key + ' in Section ' + section.id);
+    if (new Set(ids).size !== ids.length) throw new Error('Duplicate selected ' + key + ' in Section ' + section.id);
     for (const selectedId of ids) {
       if (pendingId(selectedId)) {
         throw new Error('Unresolved placeholder ' + kind + ' UUID ' + selectedId + ' in Section ' + section.id);
@@ -184,8 +182,13 @@ function verifyCourseDependencies(staticRoot, manifest) {
     const folder = path.join(courses, id);
     const base = json(path.join(folder, 'base.json'));
     const languages = base.params?.languages;
-    if (base.id !== id || base.type !== 'course' || !Array.isArray(languages) || !languages.length ||
-        languages.some(language => !/^[a-z]{2,8}$/.test(language))) {
+    if (
+      base.id !== id ||
+      base.type !== 'course' ||
+      !Array.isArray(languages) ||
+      !languages.length ||
+      languages.some(language => !/^[a-z]{2,8}$/.test(language))
+    ) {
       throw new Error('Invalid generated Course identity/languages: ' + id);
     }
     for (const language of languages) {
@@ -207,17 +210,25 @@ function verifyCourseDependencies(staticRoot, manifest) {
             mergeCourseProps(lesson, fs.existsSync(localized) ? json(localized) : undefined),
             node.overrides,
           );
-          if (!Array.isArray(effective.section) || effective.section.some(section => pendingId(section.id)) ||
-              containsPendingAssessmentLabel(effective)) {
+          if (
+            !Array.isArray(effective.section) ||
+            effective.section.some(section => pendingId(section.id)) ||
+            containsPendingAssessmentLabel(effective)
+          ) {
             throw new Error('Unresolved Course Lesson assessment: ' + node.id);
           }
           checked += verifySelectedSections(staticRoot, manifest, effective, [language]);
           return;
         }
         const { items, order } = node.content ?? {};
-        if (!['course', 'module', 'chapter'].includes(node.type) || !isRecord(items) ||
-            !Array.isArray(order) || order.length !== Object.keys(items).length ||
-            new Set(order).size !== order.length || order.some(key => !Object.hasOwn(items, key))) {
+        if (
+          !['course', 'module', 'chapter'].includes(node.type) ||
+          !isRecord(items) ||
+          !Array.isArray(order) ||
+          order.length !== Object.keys(items).length ||
+          new Set(order).size !== order.length ||
+          order.some(key => !Object.hasOwn(items, key))
+        ) {
           throw new Error('Invalid generated Course hierarchy: ' + node.id);
         }
         for (const key of order) visit(items[key]);

@@ -181,8 +181,7 @@ export function typedManifest(plan, meta, original, tracked, root) {
     const contents = Buffer.from(file.content, 'utf8');
     entries.push(asEntry(filename, 'create', contents));
   }
-  if (!seen.has(plan.materializedPath) || !tracked.has(meta.identity.source) ||
-      gitBlob(original) !== meta.sourceBlob)
+  if (!seen.has(plan.materializedPath) || !tracked.has(meta.identity.source) || gitBlob(original) !== meta.sourceBlob)
     throw Error('Expected pinned Lesson draft deletion and canonical index.ts creation');
   entries.push(asEntry(meta.identity.source, 'delete', original));
   entries.sort((a, b) => a.path.localeCompare(b.path));
@@ -335,8 +334,7 @@ async function analyze(root, meta) {
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
   if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the reviewed PR');
-  if (tracked.has(meta.identity.folder + '/index.ts'))
-    throw Error('Lesson Stage 6 already materialized; no overwrite');
+  if (tracked.has(meta.identity.folder + '/index.ts')) throw Error('Lesson Stage 6 already materialized; no overwrite');
   const { parseTypedLesson, typecheckTypedLesson } = await import('./lesson-typed-source.mjs');
   const input = parseTypedLesson(root, meta.identity.source, original.toString('utf8'));
   typecheckTypedLesson(root, meta.identity.source);

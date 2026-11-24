@@ -321,10 +321,7 @@ test('draft deletion/index creation are atomic, immutable, hashed and confined t
     assert.equal(verifyTypedManifest(manifest, info, root, tracked, original), 3);
     assert.equal(manifest.entries.find(item => item.path === source).action, 'delete');
     assert.equal(manifest.entries.find(item => item.path === folder + '/index.ts').action, 'create');
-    assert.equal(
-      manifest.entries.find(item => item.path === source).data,
-      original.toString('base64'),
-    );
+    assert.equal(manifest.entries.find(item => item.path === source).data, original.toString('base64'));
     assert.throws(
       () =>
         verifyTypedManifest(

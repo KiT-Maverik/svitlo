@@ -416,7 +416,7 @@ export function materializeCourseStage5(input, options = {}) {
     if (!indexFile) throw new Error('Course root module not generated');
     indexFile.content += "\nexport { authoredCourseOverrides } from './authoredCourseOverrides';\n";
   }
-  
+
   const paths = new Set([expectedSource]);
   for (const file of files) {
     if (

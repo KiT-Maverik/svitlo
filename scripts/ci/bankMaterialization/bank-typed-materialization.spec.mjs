@@ -181,10 +181,7 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
       ),
     );
     assert.throws(() =>
-      verifyTypedManifest(
-        { ...valid, deletedSource: { ...valid.deletedSource, blobSha: 'c'.repeat(40) } },
-        valid.meta,
-      ),
+      verifyTypedManifest({ ...valid, deletedSource: { ...valid.deletedSource, blobSha: 'c'.repeat(40) } }, valid.meta),
     );
     assert.throws(() =>
       verifyTypedManifest(

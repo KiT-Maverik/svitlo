@@ -129,7 +129,10 @@ for (const kind of ['questions', 'flashcards'] as const) {
       assert.equal(checked.changedPaths.length, plan.files.length + 1);
       assert.equal(git(initial.root, 'rev-list', '--count', 'HEAD'), '3');
       const tree = git(initial.root, 'diff-tree', '--no-commit-id', '--name-only', '-r', 'HEAD').split('\n').sort();
-      assert.deepEqual(tree, [...plan.files.map(f => lessonDirectory + '/' + f.path), lessonDirectory + '/' + kind + '/draft.ts'].sort());
+      assert.deepEqual(
+        tree,
+        [...plan.files.map(f => lessonDirectory + '/' + f.path), lessonDirectory + '/' + kind + '/draft.ts'].sort(),
+      );
       assert.equal(
         git(initial.root, 'show', draftWrite.commitSha + ':' + lessonDirectory + '/' + kind + '/draft.ts'),
         first.files[0].content.trim(),

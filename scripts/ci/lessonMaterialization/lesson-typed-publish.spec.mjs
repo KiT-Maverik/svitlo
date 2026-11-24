@@ -171,7 +171,10 @@ test('typed publisher makes one atomic no-force draft deletion + index creation 
     tree.data.tree.map(file => file.path).sort(),
     [source, folder + '/languages.ts', folder + '/index.ts'].sort(),
   );
-  assert.deepEqual(tree.data.tree.find(file => file.path === source), { path: source, mode: '100644', type: 'blob', sha: null });
+  assert.deepEqual(
+    tree.data.tree.find(file => file.path === source),
+    { path: source, mode: '100644', type: 'blob', sha: null },
+  );
   assert.equal(lease.data.force, false);
   assert.equal(lease.data.sha, 'd'.repeat(40));
 });

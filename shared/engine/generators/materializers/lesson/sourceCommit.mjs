@@ -127,7 +127,8 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
       typeof file.content !== 'string' ||
       !validPath(file.path) ||
       !file.path.startsWith(ownPrefix) ||
-      file.path === plan.sourcePath || /(?:^|\/)workflow\.stage\d+\.ts$/.test(file.path) ||
+      file.path === plan.sourcePath ||
+      /(?:^|\/)workflow\.stage\d+\.ts$/.test(file.path) ||
       output.has(file.path)
     )
       throw new Error('Invalid, duplicate or out-of-scope Lesson source: ' + file?.path);
@@ -162,8 +163,7 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     if (git(root, ['status', '--porcelain', '--', filename]))
       throw new Error('Locally dirty Lesson source: ' + filename);
     const prior = fileAt(root, head, filename);
-    if (prior !== undefined)
-      throw new Error('Refusing to clobber existing authored Lesson source: ' + filename);
+    if (prior !== undefined) throw new Error('Refusing to clobber existing authored Lesson source: ' + filename);
     pending.push(filename);
   }
   pending.push(plan.sourcePath);
@@ -235,7 +235,14 @@ export function commitLessonStage6Plan(plan, options = {}) {
       '-p',
       preflight.head,
       '-m',
-      'Materialize reviewed Lesson source ' + plan.lessonId + '\n\nSource-Blob: ' + plan.sourceBlobSha + '\nReview-Commit: ' + plan.reviewCommitSha + '\nReview-Evidence: ' + plan.reviewEvidenceSha,
+      'Materialize reviewed Lesson source ' +
+        plan.lessonId +
+        '\n\nSource-Blob: ' +
+        plan.sourceBlobSha +
+        '\nReview-Commit: ' +
+        plan.reviewCommitSha +
+        '\nReview-Evidence: ' +
+        plan.reviewEvidenceSha,
     ]);
     git(root, ['update-ref', target, commitSha, preflight.head]);
     return {

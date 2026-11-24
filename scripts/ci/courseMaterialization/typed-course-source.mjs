@@ -412,7 +412,8 @@ export function buildTypedCourseManifest(meta, plan) {
     entries.push({ path: file.path, kind: file.kind, sha256: sha256(bytes), data: bytes.toString('base64') });
   }
   if (
-    seen.has(meta.sourcePath) || !seen.has(plan.materializedPath) ||
+    seen.has(meta.sourcePath) ||
+    !seen.has(plan.materializedPath) ||
     plan.materializedPath !== path.posix.dirname(meta.sourcePath) + '/index.ts'
   )
     throw Error('Course draft/output transition is missing');
