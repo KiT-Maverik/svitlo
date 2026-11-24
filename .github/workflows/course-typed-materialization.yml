@@ -43,7 +43,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
       - name: Install pinned dependencies without lifecycle scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
@@ -92,7 +92,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Verify exact source and authorized actor
         id: gate
         env:
@@ -123,7 +123,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Install only trusted dependencies without lifecycle scripts
@@ -133,7 +133,7 @@ jobs:
         working-directory: trusted
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Pull the pinned, credential-free worker image
-        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - name: Execute direct Course entrypoint in an isolated worker and seal manifest
         env:
           COURSE_TYPED_META_B64: ${{ needs.resolve.outputs.meta }}
@@ -175,7 +175,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Download exact read-only job manifest
@@ -210,7 +210,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - uses: actions/download-artifact@v7
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}

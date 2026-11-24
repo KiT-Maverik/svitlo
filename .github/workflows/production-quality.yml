@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -78,7 +78,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -101,7 +101,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -122,7 +122,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -145,7 +145,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -161,7 +161,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
@@ -190,7 +190,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
         with:
-          node-version: 24
+          node-version: 26
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund

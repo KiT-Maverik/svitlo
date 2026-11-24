@@ -42,7 +42,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Authorize actor and locate pinned Lesson source
         id: gate
         env:
@@ -74,7 +74,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Install and build only trusted Engine code
@@ -83,7 +83,7 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Pull pinned isolated worker image
-        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - name: Execute pinned Lesson entrypoint in isolated worker
         id: analysis
         env:
@@ -124,7 +124,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Download the exact read-only analyzer artifact
         uses: actions/download-artifact@v7
         with:

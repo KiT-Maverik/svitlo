@@ -31,7 +31,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
       # Drafts keep a stable required verify status but defer content matrix builds.
       # Ready transition and manual dispatch select full or affected content.
@@ -91,7 +91,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
       - name: Install dependencies once per content shard
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund

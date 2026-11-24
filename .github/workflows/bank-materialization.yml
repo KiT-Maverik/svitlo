@@ -50,7 +50,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Require exact pinned Bank source and owning Lesson revision
         id: authorize
         env:
@@ -86,7 +86,7 @@ jobs:
         run: git -C candidate checkout -B "$BANK_BRANCH" "$BANK_HEAD"
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Install and build trusted Engine
@@ -95,7 +95,7 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Pull pinned isolated worker image
-        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - name: Execute one reviewed Bank entrypoint in isolated worker
         env:
           BANK_META_B64: ${{ needs.typed_resolve.outputs.meta }}
@@ -128,7 +128,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Download isolated checksummed typed source manifest
         uses: actions/download-artifact@v7
         with:

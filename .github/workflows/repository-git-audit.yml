@@ -33,7 +33,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
 
       - name: Verify the read-only audit collector
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/gitAudit/git-audit.spec.mjs

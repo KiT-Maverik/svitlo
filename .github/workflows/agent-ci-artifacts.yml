@@ -245,7 +245,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Install dependencies for the requested generator
         run: npm ci --silent --ignore-scripts --no-audit --no-fund
       - name: Detect complete EducationStandard authoring matrix
