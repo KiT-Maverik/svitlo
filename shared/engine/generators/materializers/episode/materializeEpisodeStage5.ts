@@ -62,5 +62,5 @@ export function materializeEpisodeStage5(input: EpisodeWorkflowStage2, options?:
       diagnostics: result.diagnostics ?? [],
       publishable: false,
     };
-  });
+  }, input);
 }
