@@ -774,8 +774,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   ]) {
     const path = folder + suffix;
     const module = plan.files.find(file => file.path === path + '/index.ts')?.content ?? '';
-    assert(module.includes('// TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
-    assert(module.includes('/**\n * # purpose'));
+    assert(module.includes('/*\n * TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
+    assert(module.includes(' * # purpose'));
     assert(module.includes(' * # specification'));
     assert(module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'));
     assert(!plan.files.some(file => file.path === path + '/specification.md'));
