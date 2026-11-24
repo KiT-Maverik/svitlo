@@ -130,7 +130,18 @@ test('complete Course -> Module -> Chapter -> Episode emitted sources typecheck 
     false,
   );
   assert.equal(result.files.filter(file => file.kind === 'typescript').length, 4);
-  const errors = compilerDiagnostics(result.files);
+  // The full Stage 5 orchestration owns the single Course-root constants.ts.
+  // This lower-level composition fixture must supply that real Stage 5 contract
+  // while validating the separately generated parent/child Configurators.
+  const files = [
+    ...result.files,
+    {
+      path: 'constants.ts',
+      kind: 'typescript',
+      content: "export const languages = ['uk'] as const;\\nexport type Languages = typeof languages;\\n".replaceAll('\\n', '\n'),
+    },
+  ];
+  const errors = compilerDiagnostics(files);
   assert.deepEqual(
     errors.map(error => {
       const place = error.file?.getLineAndCharacterOfPosition(error.start ?? 0);
