@@ -82,15 +82,15 @@ test('Assessment table includes nested placement, dependencies, status and prese
   });
   assert.match(initial, /### Assessments/);
   assert.match(initial, /Lesson dependencies/);
-  assert.match(initial, /content\\/module\\/lesson, content\\/otherLesson/);
+  assert.match(initial, /content\/module\/lesson, content\/otherLesson/);
   assert.match(initial, /Authorize Assessment Stage 1/);
-  assert.match(initial, /- \\[ \\] 7\\. Design Assessments/);
+  assert.match(initial, /- \[ \] 7\. Design Assessments/);
   const edited = initial.replace(
     'pending-assessment-design | — | Authorize Assessment Stage 1 | —',
     'Stage 2 reviewed | #901 | Materialize | SHA verified',
   );
   const again = reconcileCourseHandoffTables(edited, { ...inventory, assessments: [assessment] });
-  assert.match(again, /Stage 2 reviewed \\| #901 \\| Materialize \\| SHA verified/);
+  assert.match(again, /Stage 2 reviewed \| #901 \| Materialize \| SHA verified/);
   assert.equal(reconcileCourseHandoffTables(again, { ...inventory, assessments: [assessment] }), again);
   assert.throws(() => reconcileCourseHandoffTables(again, { ...inventory, assessments: [] }), /missing/);
   assert.throws(() => reconcileCourseHandoffTables('', {
