@@ -155,7 +155,9 @@ test('missing Scene registry entry yields a Question-only TODO scaffold, not app
   assert.deepEqual([...proof.registeredSceneIds], []);
   assert.deepEqual([...proof.unregisteredSceneIds], [sceneId]);
   f.meta.bank = 'flashcards';
-  assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /UUID entry missing/);
+  const flashcardSource = f.input({ visual: f.scene() });
+  flashcardSource.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  assert.throws(() => f.resolve(flashcardSource), /UUID entry missing/);
 });
 
 test('Youtube URL is reviewed statically and never triggers a network call', t => {
