@@ -170,8 +170,8 @@ function checkPhysicalPaths(context: BankGitContext, paths: readonly string[]): 
     let current = root;
     for (const part of (context.lessonDirectory + '/' + relative).split('/')) {
       current = path.join(current, part);
-      if (!existsSync(current)) continue;
-      if (lstatSync(current).isSymbolicLink()) {
+      const stat = lstatSync(current, { throwIfNoEntry: false });
+      if (stat?.isSymbolicLink()) {
         throw new Error('Symlink in bank source path: ' + relative);
       }
     }
@@ -188,28 +188,25 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
     const lower = file.path.toLowerCase();
     if (names.has(lower)) throw new Error('Case-insensitive generated bank source collision');
     names.add(lower);
-    if (
-      !file.path.startsWith(kind + '/') &&
-      file.path !== kind + 'Languages.ts' &&
-      file.path !== kind + '.reviewed-stage3.ts.txt'
-    ) {
+    if (!file.path.startsWith(kind + '/') && file.path !== kind + 'Languages.ts') {
       throw new Error('Plan attempts to modify non-bank-owned source: ' + file.path);
     }
   }
   const index = kind + '/index.ts';
-  if (!names.has(index)) throw new Error('Missing bank index in source plan');
+  const draft = kind + '/draft.ts';
   if (plan.transition) {
     if (
-      plan.transition.reviewedIndexPath !== index ||
-      plan.transition.archivePath !== kind + '.reviewed-stage3.ts.txt' ||
-      !names.has(kind + '.reviewed-stage3.ts.txt') ||
+      plan.transition.reviewedDraftPath !== draft ||
+      plan.transition.materializedPath !== index ||
+      !names.has(index) ||
+      names.has(draft) ||
       !names.has((kind + 'Languages.ts').toLowerCase()) ||
       plan.files.filter(file => file.path.startsWith(kind + '/') && file.path !== index).length === 0
     ) {
       throw new Error('Partial reviewed bank source transition');
     }
-  } else if (plan.files.length !== 1 || plan.files[0].path !== index) {
-    throw new Error('Draft Bank handoff must create only its index.ts');
+  } else if (plan.files.length !== 1 || plan.files[0].path !== draft) {
+    throw new Error('Draft Bank handoff must create only its draft.ts');
   }
 }
 
@@ -238,9 +235,8 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   }
   for (const line of output.split('\n')) {
     const found = /^[a-fA-F0-9]{40}:([^:]+):\d+:(.*)$/.exec(line);
-    if (!found || found[1].startsWith(context.lessonDirectory + '/' + (plan.transition?.reviewedIndexPath ?? '')))
-      continue;
-    // Reviewed temporary index contains the same authored identities by design.
+    if (!found || found[1] === context.lessonDirectory + '/' + plan.transition?.reviewedDraftPath) continue;
+    // Reviewed draft contains the same authored identities by design.
     const relative = found[1].startsWith(context.lessonDirectory + '/')
       ? found[1].slice(context.lessonDirectory.length + 1)
       : '';
@@ -265,22 +261,22 @@ function validateReview(
   }
   if (!evidence) throw new Error('Independently reviewed source evidence is required');
   const { reviewed, evaluatedInput } = evidence;
-  if (!reviewed || reviewed.approved !== true || !reviewed.reviewer?.trim()) {
-    throw new Error('Independent Bank reviewer approval is required');
+  if (!reviewed || reviewed.approved !== true) {
+    throw new Error('Accepted Bank review evidence is required');
   }
   assertBankSha(reviewed.reviewCommitSha, 'bank review commit');
   assertBankSha(reviewed.reviewedSourceBlobSha, 'reviewed source blob');
   assertReviewedBankInput(evaluatedInput, reviewed);
   if (
     reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
-    reviewed.blobSha !== plan.transition.reviewedIndexBlobSha ||
+    reviewed.blobSha !== plan.transition.reviewedDraftBlobSha ||
     gitBlobSha(reviewed.content) !== reviewed.blobSha ||
-    plan.transition.expectedHeadSha !== context.expectedHeadSha
+    plan.transition.expectedHeadSha !== context.expectedHeadSha ||
+    reviewed.reviewCommitSha !== context.expectedHeadSha
   ) {
     throw new Error('Bank source transition does not match approved revision');
   }
-  git(context, ['merge-base', '--is-ancestor', reviewed.reviewCommitSha, context.expectedHeadSha]);
-  const sourcePath = context.lessonDirectory + '/' + kind + '/index.ts';
+  const sourcePath = context.lessonDirectory + '/' + kind + '/draft.ts';
   const original = git(context, ['show', reviewed.reviewCommitSha + ':' + sourcePath]);
   if (original !== reviewed.content || gitBlobSha(original) !== reviewed.blobSha) {
     throw new Error('Review commit does not contain approved original Stage 3 bytes');
@@ -295,10 +291,10 @@ export function checkBankGitPlan(
 ): BankGitCheck {
   const snapshot = readBankGitSnapshot(context);
   checkOwnedPaths(kind, plan);
-  checkPhysicalPaths(
-    context,
-    plan.files.map(file => file.path),
-  );
+  checkPhysicalPaths(context, [
+    ...plan.files.map(file => file.path),
+    ...(plan.transition ? [plan.transition.reviewedDraftPath] : []),
+  ]);
   validateReview(context, kind, plan, evidence);
   const reviewed = evidence?.reviewed;
   preflightBankSource(
@@ -306,14 +302,15 @@ export function checkBankGitPlan(
     snapshot,
     reviewed && plan.transition
       ? {
-          indexPath: plan.transition.reviewedIndexPath,
-          archivePath: plan.transition.archivePath,
+          indexPath: plan.transition.materializedPath,
+          draftPath: plan.transition.reviewedDraftPath,
           reviewed,
         }
       : undefined,
   );
   const current = snapshot.entries;
   const plannedNames = new Set(plan.files.map(file => file.path));
+  if (plan.transition) plannedNames.add(plan.transition.reviewedDraftPath);
   const presentNames = new Map<string, string>();
   for (const name of Object.keys(current)) {
     presentNames.set(name.toLowerCase(), name);
@@ -331,25 +328,7 @@ export function checkBankGitPlan(
   const changedPaths = plan.files
     .filter(file => current[file.path]?.content !== file.content)
     .map(file => context.lessonDirectory + '/' + file.path);
-  if (plan.transition) {
-    const indexPath = plan.transition.reviewedIndexPath;
-    const finalIndex = plan.files.find(file => file.path === indexPath)!;
-    const finalIndexAlreadyPresent = current[indexPath]?.content === finalIndex.content;
-    if (finalIndexAlreadyPresent) {
-      // Identical reruns are safe only after every member, archive and language
-      // module has landed. A lone replaced index is never a completed bank.
-      if (changedPaths.length) throw new Error('Partially applied final bank transition');
-    } else {
-      // A reviewed transition can replace only the original staged index.
-      // Pre-existing fragments cannot be silently adopted even if their bytes
-      // happen to match a member generated by the reviewed plan.
-      for (const file of plan.files) {
-        if (file.path !== indexPath && current[file.path]) {
-          throw new Error('Partial reviewed bank source already exists: ' + file.path);
-        }
-      }
-    }
-  }
+  if (plan.transition) changedPaths.push(context.lessonDirectory + '/' + plan.transition.reviewedDraftPath);
   return { noop: changedPaths.length === 0, headSha: context.expectedHeadSha, changedPaths };
 }
 
@@ -378,6 +357,13 @@ export function commitBankGitPlan(
         { index },
       );
     }
+    if (plan.transition) {
+      git(
+        context,
+        ['update-index', '--force-remove', '--', context.lessonDirectory + '/' + plan.transition.reviewedDraftPath],
+        { index },
+      );
+    }
     const tree = git(context, ['write-tree'], { index }).trim();
     assertBankSha(tree, 'planned atomic tree');
     const commit = git(context, [
@@ -390,7 +376,15 @@ export function commitBankGitPlan(
       '-p',
       context.expectedHeadSha,
       '-m',
-      'Commit reviewed ' + kind + ' bank source as one transaction',
+      'Commit reviewed ' +
+        kind +
+        ' bank source as one transaction' +
+        (plan.transition
+          ? '\n\nReviewed Stage 3 blob: ' +
+            plan.transition.reviewedDraftBlobSha +
+            '\nReviewed HEAD: ' +
+            context.expectedHeadSha
+          : ''),
     ]).trim();
     assertBankSha(commit, 'bank source commit');
     // Revalidate checkout and HEAD before the only ref mutation.

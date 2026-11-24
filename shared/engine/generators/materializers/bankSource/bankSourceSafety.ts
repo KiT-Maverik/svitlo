@@ -1,5 +1,5 @@
 /**
- * Source-only bank preflight. The enclosing #775 trusted Git writer must resolve
+ * Source-only bank preflight. The trusted Git writer must resolve
  * the snapshot at the pinned PR HEAD and atomically commit this entire plan.
  * This module does not read a worktree, write files, approve reviews or publish.
  */
@@ -9,7 +9,7 @@ import { allLanguageCodes } from '../../../schemas/languages.schemas';
 export type BankSourceFile = {
   path: string;
   content: string;
-  kind: 'typescript' | 'markdown' | 'code' | 'specification' | 'archive';
+  kind: 'typescript' | 'markdown' | 'code' | 'specification';
 };
 export type BankSourceDiagnostic = {
   path: string;
@@ -20,11 +20,11 @@ export type BankSourceDiagnostic = {
 export type BankSourceResult = {
   files: BankSourceFile[];
   diagnostics: BankSourceDiagnostic[];
-  /** The existing reviewed Stage 3 index must be replaced only in an atomic commit. */
+  /** Consume the reviewed Stage 3 draft and create the index in one atomic commit. */
   transition?: {
-    reviewedIndexPath: string;
-    reviewedIndexBlobSha: string;
-    archivePath: string;
+    reviewedDraftPath: string;
+    reviewedDraftBlobSha: string;
+    materializedPath: string;
     expectedHeadSha: string;
   };
   /** Always source-only; the independent publisher decides readiness. */
@@ -40,12 +40,11 @@ export type BankSourceSnapshot = {
 };
 
 export type BankReviewedSource = {
-  /** Exact Stage 3 index.ts bytes, loaded from the approved PR revision. */
+  /** Exact Stage 3 draft.ts bytes, loaded from the approved PR revision. */
   content: string;
   blobSha: string;
   /** Authenticated independent-review evidence; never derived from input Config. */
   approved: true;
-  reviewer: string;
   reviewedSourceBlobSha: string;
   /** Trusted evaluation of exact reviewed Stage 3 TS, hashed after validation. */
   reviewedInputSha256: string;
@@ -173,7 +172,7 @@ export function gitBlobSha(contents: string): string {
 export function preflightBankSource(
   files: BankSourceFile[],
   snapshot: BankSourceSnapshot,
-  transition?: { indexPath: string; archivePath: string; reviewed: BankReviewedSource },
+  transition?: { indexPath: string; draftPath: string; reviewed: BankReviewedSource },
 ): BankSourceResult {
   if (snapshot.complete !== true) throw new Error('Trusted complete Git tree snapshot required');
   assertBankSha(snapshot.expectedHeadSha, 'expected HEAD');
@@ -183,10 +182,7 @@ export function preflightBankSource(
     assertBankPath(file.path);
     if (unique.has(file.path)) throw new Error('Duplicate generated source path: ' + file.path);
     unique.add(file.path);
-    if (
-      !['typescript', 'markdown', 'code', 'specification', 'archive'].includes(file.kind) ||
-      typeof file.content !== 'string'
-    ) {
+    if (!['typescript', 'markdown', 'code', 'specification'].includes(file.kind) || typeof file.content !== 'string') {
       throw new Error('Invalid source file at ' + file.path);
     }
     const parts = file.path.split('/');
@@ -203,53 +199,56 @@ export function preflightBankSource(
     if (prior && prior.content === undefined) {
       throw new Error('Missing complete existing source bytes at ' + file.path);
     }
-    if (prior && prior.content !== file.content && file.path !== transition?.indexPath) {
+    if (transition && prior) {
+      throw new Error('Partial reviewed bank source already exists: ' + file.path);
+    }
+    if (prior && prior.content !== file.content) {
       throw new Error('Divergent authored source at ' + file.path);
     }
   }
   let verifiedTransition: BankSourceResult['transition'];
   if (transition) {
-    const { indexPath, archivePath, reviewed } = transition;
+    const { indexPath, draftPath, reviewed } = transition;
     assertBankPath(indexPath);
-    assertBankPath(archivePath);
-    if (indexPath === archivePath || !unique.has(indexPath) || !unique.has(archivePath)) {
-      throw new Error('Reviewed source archive/index are required in one transition plan');
+    assertBankPath(draftPath);
+    if (
+      !/^(questions|flashcards)\/index\.ts$/.test(indexPath) ||
+      draftPath !== indexPath.replace(/index\.ts$/, 'draft.ts') ||
+      !unique.has(indexPath) ||
+      unique.has(draftPath) ||
+      files.some(file => /(?:^|\/)draft\.ts$|\.reviewed-stage3\.ts\.txt$/.test(file.path))
+    ) {
+      throw new Error('Canonical draft deletion and index creation are required in one transition plan');
     }
     assertBankSha(reviewed.blobSha, 'Stage 3 source');
     assertBankSha(reviewed.reviewedSourceBlobSha, 'approved reviewed source');
     assertBankSha(reviewed.reviewCommitSha, 'review revision');
-    assertBankStatement(reviewed.reviewer, 'independent reviewer');
     if (
       reviewed.approved !== true ||
+      reviewed.reviewCommitSha !== snapshot.expectedHeadSha ||
       reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
       gitBlobSha(reviewed.content) !== reviewed.blobSha
     ) {
       throw new Error('Stage 3 source differs from independently approved bytes');
     }
-    const existingIndex = snapshot.entries[indexPath];
-    const finalIndex = files.find(file => file.path === indexPath)!;
-    const archived = files.find(file => file.path === archivePath)!;
-    if (archived.content !== reviewed.content || archived.kind !== 'archive') {
-      throw new Error('Reviewed Stage 3 source must be archived byte-for-byte');
-    }
-    if (
-      !existingIndex ||
-      existingIndex.kind !== 'file' ||
-      (existingIndex.content !== reviewed.content && existingIndex.content !== finalIndex.content)
-    ) {
-      throw new Error('Stale, missing or hand-edited Stage 3 index');
-    }
-    if (existingIndex.content === finalIndex.content && snapshot.entries[archivePath]?.content !== reviewed.content) {
-      throw new Error('Partial transition: final index exists without reviewed source archive');
+    const draft = snapshot.entries[draftPath];
+    if (draft?.kind !== 'file' || draft.content !== reviewed.content) {
+      throw new Error('Stale, missing or hand-edited Stage 3 draft');
     }
     verifiedTransition = {
-      reviewedIndexPath: indexPath,
-      reviewedIndexBlobSha: reviewed.blobSha,
-      archivePath,
+      reviewedDraftPath: draftPath,
+      reviewedDraftBlobSha: reviewed.blobSha,
+      materializedPath: indexPath,
       expectedHeadSha: snapshot.expectedHeadSha,
     };
   } else {
     for (const file of files) {
+      if (
+        /^(questions|flashcards)\/draft\.ts$/.test(file.path) &&
+        snapshot.entries[file.path.replace(/draft\.ts$/, 'index.ts')]
+      ) {
+        throw new Error('Materialized bank already exists');
+      }
       const prior = snapshot.entries[file.path];
       if (prior && prior.content !== file.content) {
         throw new Error('Draft source already exists and must never be overwritten');

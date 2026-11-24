@@ -4,7 +4,7 @@ Engine-owned workflows have named directories, adjacent tests and immutable sour
 
 ## Typed source materialization
 
-The canonical Course/Lesson/Question Bank/Flashcard Bank editorial source is a progressively typed TypeScript object. The concrete source emitters live in `../generators/materializers/`; the trusted PR-command gates and transactions are in `../../../scripts/ci/{courseMaterialization,lessonMaterialization,bankMaterialization}/`. They produce authored TS/Markdown source trees, **not** runtime Props. Real default-branch deployment and source/review checks are required before live use. The YAML-only Course/Lesson/Bank builders and editor-schema generator were retired by #775. Historical YAML lesson files are unconverted editorial provenance, not an alternate supported new workflow.
+The canonical Course/Lesson/Question Bank/Flashcard Bank editorial source is a progressively typed `draft.ts` object; materialization atomically creates `index.ts` and consumes the reviewed draft. The concrete source emitters live in `../generators/materializers/`; the trusted PR-command gates and transactions are in `../../../scripts/ci/{courseMaterialization,lessonMaterialization,bankMaterialization}/`. They produce authored TS/Markdown source trees, **not** runtime Props. Real default-branch deployment and source/review checks are required before live use. Historical YAML lesson files are unconverted editorial provenance, not an alternate supported new workflow.
 
 ## Separate completed-resource publishers
 

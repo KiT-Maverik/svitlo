@@ -40,7 +40,7 @@ export type LessonStage6Review = {
   stage6Authorized: true;
 };
 export type LessonStage6Options = {
-  /** Exact reviewed index.ts blob, not a regenerated TS serialization. */
+  /** Exact reviewed draft.ts blob, not a regenerated TS serialization. */
   sourceText: string;
   review: LessonStage6Review;
   /**
@@ -57,7 +57,7 @@ export type LessonStage6Options = {
 export type LessonStage6Plan = {
   lessonId: string;
   sourcePath: string;
-  archivePath: string;
+  materializedPath: string;
   sourceBlobSha: string;
   reviewCommitSha: string;
   reviewEvidenceSha: string;
@@ -220,7 +220,7 @@ export function materializeLessonStage6(
   const config = input.config;
   const review = options?.review;
   const match = review?.sourcePath?.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
+    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
   );
   if (
     !review ||
@@ -407,11 +407,11 @@ export function materializeLessonStage6(
       renderSection: section,
     },
   );
-  const root = review.sourcePath.slice(0, -'index.ts'.length);
+  const root = review.sourcePath.slice(0, -'draft.ts'.length);
   return {
     lessonId: config.id,
     sourcePath: review.sourcePath,
-    archivePath: root + 'workflow.stage2.ts',
+    materializedPath: root + 'index.ts',
     sourceBlobSha: review.sourceBlobSha,
     reviewCommitSha: review.reviewCommitSha,
     reviewEvidenceSha: review.reviewEvidenceSha,

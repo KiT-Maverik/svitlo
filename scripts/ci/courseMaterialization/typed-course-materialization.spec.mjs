@@ -5,9 +5,11 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import Module from 'node:module';
+import { buildSync } from 'esbuild';
 import YAML from 'yaml';
 import { fileURLToPath } from 'node:url';
-import { discoverTypedCourseSource, selectStage4Review, parseTypedMetadata } from './typed-course-gate.mjs';
+import { discoverTypedCourseSource, inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import {
   parseCanonicalCourseSource,
   buildTypedCourseManifest,
@@ -21,8 +23,8 @@ import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
 import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
 
 const id = '663572e7-bd85-4516-86e2-3de07d209e03';
-const sourcePath = 'content/playground/data/courses/3/' + id + '/index.ts';
-const archive = sourcePath.replace('index.ts', 'workflow.stage3.ts');
+const sourcePath = 'content/playground/data/courses/3/' + id + '/draft.ts';
+const materializedPath = sourcePath.replace('draft.ts', 'index.ts');
 const head = 'a'.repeat(40);
 const sourceBlobSha = gitBlob('reviewed source');
 const meta = {
@@ -31,7 +33,7 @@ const meta = {
   number: 456,
   repo: 'KiT-Maverik/svitlo',
   actor: 'trusted',
-  reviewer: 'reviewer',
+  reviewVerdict: 'accepted',
   head,
   branch: 'course/sky',
   textbookRoot: 'content/playground',
@@ -39,16 +41,14 @@ const meta = {
   sourcePath,
   sourceBlobSha,
   reviewCommitSha: head,
-  evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/456#pullrequestreview-42',
 };
 
 const literal =
   "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
-  'const courseStage3 = { config: { id: "' +
+  'export const courseStage3 = { config: { id: "' +
   id +
   '", type: "course", slug: "sky" }, ' +
-  'production: { languages: { document: "uk", planned: ["uk"] } } } as const;\n' +
-  'export const reviewedInput = courseStage3 satisfies CourseWorkflowMaterializerInput;\n';
+  'production: { languages: { document: "uk", planned: ["uk"] } } } satisfies CourseWorkflowMaterializerInput;\n';
 
 test('exactly one changed canonical typed Course root is required', () => {
   const file = { filename: sourcePath, status: 'modified' };
@@ -62,39 +62,68 @@ test('exactly one changed canonical typed Course root is required', () => {
     [file, file],
     [{ ...file, status: 'removed' }],
     [{ ...file, filename: sourcePath.replace('/courses/3/', '/courses/a/') }],
-    [{ ...file, filename: sourcePath.replace('/index.ts', '/workflow.stage3.ts') }],
+    [{ ...file, filename: sourcePath.replace('/draft.ts', '/index.ts') }],
     [file, { filename: 'content/math/data/courses/3/' + id + '/index.ts', status: 'added' }],
     [file, { filename: '.github/workflows/unsafe.yml', status: 'modified' }],
   ])
     assert.throws(() => discoverTypedCourseSource(bad));
 });
 
-test('Stage 4 requires independent actual APPROVED review, exact SHA and write access', () => {
-  const review = {
-    id: 42,
-    user: { login: 'reviewer' },
-    state: 'APPROVED',
-    commit_id: head,
-    html_url: meta.evidenceUrl,
+test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity PR description', async () => {
+  const previous = globalThis.fetch;
+  const oldRepo = process.env.GITHUB_REPOSITORY;
+  const oldToken = process.env.GH_TOKEN;
+  const oldBranch = process.env.COURSE_DEFAULT_BRANCH;
+  process.env.GITHUB_REPOSITORY = meta.repo;
+  process.env.GH_TOKEN = 'fixture-token';
+  process.env.COURSE_DEFAULT_BRANCH = 'develop';
+  const row = '- Review evidence (v1): 4 | accepted | ' + head + ' | ' + sourceBlobSha;
+  const pr = {
+    state: 'open',
+    draft: true,
+    body: row,
+    user: { login: 'trusted' },
+    base: { ref: 'develop' },
+    head: { sha: head, ref: meta.branch, repo: { full_name: meta.repo } },
   };
-  const pr = { head: { sha: head }, user: { login: 'author' } };
-  assert.deepEqual(selectStage4Review([review], pr, { reviewer: 'write' }), review);
-  assert.throws(() => selectStage4Review([review], pr, { reviewer: 'read' }), /APPROVED/);
-  assert.throws(
-    () => selectStage4Review([{ ...review, commit_id: 'b'.repeat(40) }], pr, { reviewer: 'write' }),
-    /APPROVED/,
-  );
-  assert.throws(
-    () => selectStage4Review([review], { ...pr, user: { login: 'reviewer' } }, { reviewer: 'write' }),
-    /APPROVED/,
-  );
-  assert.throws(
-    () => selectStage4Review([review, { ...review, id: 43, state: 'CHANGES_REQUESTED' }], pr, { reviewer: 'write' }),
-    /change request/,
-  );
+  globalThis.fetch = async url => {
+    const route = url.split('/repos/' + meta.repo + '/')[1];
+    let payload;
+    if (route === 'pulls/456') payload = pr;
+    else if (route.startsWith('pulls/456/files?')) payload = [{ filename: sourcePath, status: 'modified' }];
+    else if (route === 'contents/' + sourcePath + '?ref=' + head)
+      payload = { type: 'file', path: sourcePath, sha: sourceBlobSha, size: 100 };
+    else throw Error('Unexpected GitHub API: ' + route);
+    return { ok: true, status: 200, json: async () => payload };
+  };
+  try {
+    const verified = await inspectTypedCourse(456);
+    assert.equal(verified.reviewVerdict, 'accepted');
+    assert.equal(verified.reviewCommitSha, head);
+    for (const body of [
+      '',
+      row.replace(head, 'b'.repeat(40)),
+      row.replace(sourceBlobSha, 'c'.repeat(40)),
+      row + '\n' + row,
+      row.replace('accepted', 'rejected'),
+    ]) {
+      pr.body = body;
+      await assert.rejects(inspectTypedCourse(456), /review evidence/i);
+    }
+  } finally {
+    globalThis.fetch = previous;
+    for (const [key, value] of Object.entries({
+      GITHUB_REPOSITORY: oldRepo,
+      GH_TOKEN: oldToken,
+      COURSE_DEFAULT_BRANCH: oldBranch,
+    })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
 });
 
-test('typed meta binds PR, branch, reviewer, original SHA and canonical source path', () => {
+test('typed meta binds PR, branch, review verdict, original SHA and canonical source path', () => {
   const original = process.env.GITHUB_REPOSITORY;
   const base = process.env.COURSE_DEFAULT_BRANCH;
   process.env.GITHUB_REPOSITORY = meta.repo;
@@ -108,7 +137,7 @@ test('typed meta binds PR, branch, reviewer, original SHA and canonical source p
       { ...meta, sourcePath: '../etc/passwd' },
       { ...meta, actor: 'bad actor' },
       { ...meta, branch: 'develop' },
-      { ...meta, evidenceUrl: 'https://invalid.test/approval' },
+      { ...meta, reviewVerdict: 'rejected' },
     ])
       assert.throws(() => parseTypedMetadata(encode(bad)));
   } finally {
@@ -134,6 +163,12 @@ test('inert TypeScript parser accepts canonical literal, never evaluates importe
     literal.replace('slug: "sky"', 'slug: "sky", slug: "duplicate"'),
     literal.replace('slug: "sky"', '__proto__: "polluted"'),
     literal.replace('satisfies CourseWorkflowMaterializerInput', 'satisfies CourseWorkflowStage3'),
+    literal.replace('export const courseStage3', 'const courseStage3'),
+    literal +
+      literal
+        .replace("import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n", '')
+        .replace('courseStage3', 'anotherCourse'),
+    literal.replace('type: "course"', 'type: "lesson"'),
   ])
     assert.throws(() => parseCanonicalCourseSource(injected));
 });
@@ -141,14 +176,14 @@ test('inert TypeScript parser accepts canonical literal, never evaluates importe
 function testManifest() {
   const plan = {
     sourcePath,
-    sourceArchivePath: archive,
+    materializedPath,
     sourceBlobSha,
     reviewCommitSha: head,
     courseId: id,
     publishable: false,
     files: [
-      { path: sourcePath, kind: 'typescript', content: 'export const course = true;\n' },
-      { path: sourcePath.replace('index.ts', 'methodology.md'), kind: 'markdown', content: '# Reviewed methodology\n' },
+      { path: materializedPath, kind: 'typescript', content: 'export const course = true;\n' },
+      { path: sourcePath.replace('draft.ts', 'methodology.md'), kind: 'markdown', content: '# Reviewed methodology\n' },
     ],
     diagnostics: [{ code: 'requires-publication-gates', severity: 'blocker' }],
     pendingPlacements: [],
@@ -156,16 +191,16 @@ function testManifest() {
   return buildTypedCourseManifest(meta, plan);
 }
 
-test('manifest hashes all output bytes and never includes source archive overwrite', () => {
+test('manifest hashes all output bytes and includes only the canonical draft deletion', () => {
   const manifest = testManifest();
   assert.equal(verifyTypedCourseManifest(manifest, meta), 2);
   assert(manifest.entries.every(entry => /^[a-f0-9]{64}$/.test(entry.sha256)));
-  assert.equal(oneCommitTree(manifest, literal).length, 3);
-  assert.equal(oneCommitTree(manifest, literal).at(-1).content, literal);
+  assert.equal(oneCommitTree(manifest).length, 3);
+  assert.deepEqual(oneCommitTree(manifest).at(-1), { path: sourcePath, mode: '100644', type: 'blob', sha: null });
   for (const bad of [
     { ...manifest, sourceBlobSha: 'c'.repeat(40) },
     { ...manifest, publishable: true },
-    { ...manifest, sourceArchivePath: sourcePath },
+    { ...manifest, materializedPath: sourcePath },
     { ...manifest, entries: manifest.entries.slice(1) },
     { ...manifest, entries: [...manifest.entries, manifest.entries[0]] },
     { ...manifest, entries: [{ ...manifest.entries[0], path: '.github/workflows/evil.yml' }, manifest.entries[1]] },
@@ -192,7 +227,7 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
   const scoped = { ...meta, head: commit, reviewCommitSha: commit, sourceBlobSha: blob };
   const manifest = buildTypedCourseManifest(scoped, {
     sourcePath,
-    sourceArchivePath: archive,
+    materializedPath,
     sourceBlobSha: blob,
     reviewCommitSha: commit,
     courseId: id,
@@ -200,13 +235,13 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
     diagnostics: [],
     pendingPlacements: [],
     files: [
-      { path: sourcePath, kind: 'typescript', content: 'export const course = 1;\n' },
-      { path: sourcePath.replace('index.ts', 'methodology.md'), kind: 'markdown', content: '# Reviewed methodology\n' },
+      { path: materializedPath, kind: 'typescript', content: 'export const course = 1;\n' },
+      { path: sourcePath.replace('draft.ts', 'methodology.md'), kind: 'markdown', content: '# Reviewed methodology\n' },
     ],
   });
   assert.equal(checkedSource(scoped, root).source, literal);
   assert.equal(checkTypedCourseTargets(scoped, root, manifest), true);
-  const external = path.join(root, sourcePath.replace('index.ts', 'methodology.md'));
+  const external = path.join(root, sourcePath.replace('draft.ts', 'methodology.md'));
   fs.writeFileSync(external, 'an authored collision');
   assert.throws(() => checkTypedCourseTargets(scoped, root, manifest), /overwritten/);
   fs.unlinkSync(external);
@@ -217,9 +252,9 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
   fs.symlinkSync(path.join(dir, 'missing-target'), path.join(dir, 'methodology.md'));
   assert.throws(() => checkTypedCourseTargets(scoped, root, manifest), /overwritten/);
   fs.unlinkSync(path.join(dir, 'methodology.md'));
-  fs.writeFileSync(path.join(dir, 'workflow.stage3.ts'), literal);
-  assert.throws(() => checkTypedCourseTargets(scoped, root, manifest), /archive/);
-  fs.unlinkSync(path.join(dir, 'workflow.stage3.ts'));
+  fs.writeFileSync(path.join(dir, 'index.ts'), literal);
+  assert.throws(() => checkTypedCourseTargets(scoped, root, manifest), /overwritten/);
+  fs.unlinkSync(path.join(dir, 'index.ts'));
   assert.throws(() => checkedSource({ ...scoped, head: 'b'.repeat(40) }, root), /HEAD/);
   assert.throws(() => checkedSource({ ...scoped, sourceBlobSha: 'b'.repeat(40) }, root), /Git blob/);
 });
@@ -301,7 +336,7 @@ test('real reviewed Stage 3 TS typechecks and produces a complete deterministic 
   git('config', 'user.name', 'Course typed integration');
   const body =
     "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
-    'export const reviewedInput = ' +
+    'export const courseStage3 = ' +
     JSON.stringify(reviewedStage3, null, 2) +
     ' satisfies CourseWorkflowMaterializerInput;\n';
   fs.mkdirSync(path.dirname(path.join(root, sourcePath)), { recursive: true });
@@ -310,6 +345,7 @@ test('real reviewed Stage 3 TS typechecks and produces a complete deterministic 
   git('commit', '-qm', 'Reviewed and corrected Stage 3');
   const commit = git('rev-parse', 'HEAD');
   const sourceBlob = git('rev-parse', 'HEAD:' + sourcePath);
+  assert.equal(parseCanonicalCourseSource(body).config.id, id);
   checkCourseStage3Types(path.join(root, sourcePath));
   const pinned = { ...meta, head: commit, reviewCommitSha: commit, sourceBlobSha: sourceBlob };
   const reportFile = path.join(base, 'manifest.json');
@@ -334,9 +370,9 @@ test('real reviewed Stage 3 TS typechecks and produces a complete deterministic 
   const manifest = JSON.parse(fs.readFileSync(reportFile, 'utf8'));
   assert.equal(verifyTypedCourseManifest(manifest, pinned), manifest.entries.length);
   assert.equal(checkTypedCourseTargets(pinned, root, manifest), true);
-  assert(manifest.entries.some(entry => entry.path === sourcePath));
+  assert(manifest.entries.some(entry => entry.path === materializedPath));
   assert(manifest.entries.some(entry => entry.path.endsWith('/methodology.md')));
-  assert(manifest.entries.some(entry => entry.path.includes('/data/lessons/') && entry.path.endsWith('/index.ts')));
+  assert(manifest.entries.some(entry => entry.path.includes('/data/lessons/') && entry.path.endsWith('/draft.ts')));
   assert(manifest.pendingPlacements.length === 1);
   assert.equal(manifest.publishable, false);
   assert.equal(git('status', '--porcelain'), '');
@@ -574,4 +610,162 @@ test('literal Stage 3 safely captures the exact raw trusted Lesson Build patch',
         patches: [],
       }),
     );
+});
+
+test('trusted real Markdown Lesson preserves transitive module URLs and sparse Course reuse', t => {
+  // Keep the trusted fixture under the installed workspace so the real Engine
+  // Build package resolves. The candidate is a separate committed Git tree.
+  const temp = fileURLToPath(new URL('../../../shared/engine/temp/', import.meta.url));
+  fs.mkdirSync(temp, { recursive: true });
+  const work = fs.mkdtempSync(path.join(temp, 'trusted-markdown-lesson-'));
+  t.after(() => fs.rmSync(work, { recursive: true, force: true }));
+  const trustedRoot = path.join(work, 'trusted');
+  const candidateRoot = path.join(work, 'candidate');
+  const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const lessonRoot = 'content/playground/data/lessons/c/' + lessonId;
+  const source = lessonRoot + '/index.ts';
+  const methodology = lessonRoot + '/methodology.md';
+  const intro = lessonRoot + '/sections/intro';
+  const first = intro + '/content/first';
+  const second = intro + '/content/second';
+  const values = {
+    first: { en: '# Light travels in a straight line.', uk: '# Світло поширюється прямолінійно.' },
+    second: { en: '# A shadow forms behind an obstacle.', uk: '# За перешкодою утворюється тінь.' },
+  };
+  const fixture = {
+    [source]: `
+import { defineLesson } from '@svitlo/engine/build';
+import { intro } from './sections/intro';
+export const howLightMoves = defineLesson({
+  id: '${lessonId}', slug: 'howLightMoves', type: 'lesson', skills: [],
+  params: { languages: ['en', 'uk'], quizRequiredForCompletion: false,
+    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+  locale: { title: { en: 'How light moves', uk: 'Як поширюється світло' } },
+  section: { items: { intro }, order: ['intro'] },
+});
+`,
+    [methodology]: '# Independently reviewed Lesson fixture\n',
+    [intro + '/index.ts']: `
+import { defineContentSection } from '@svitlo/engine/build';
+import { first } from './content/first';
+import { second } from './content/second';
+export const intro = defineContentSection({
+  id: '00000000-0000-4000-8000-000000000020', slug: 'intro', type: 'content', params: {},
+  locale: { title: { en: 'Observation', uk: 'Спостереження' },
+    navigationLabel: { en: 'Observation', uk: 'Спостереження' } },
+  content: { items: { first, second }, order: ['first', 'second'] },
+});
+`,
+  };
+  for (const [key, directory, number] of [
+    ['first', first, 31],
+    ['second', second, 32],
+  ]) {
+    fixture[directory + '/index.ts'] = `
+import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';
+export const ${key} = defineMarkdown({
+  id: '00000000-0000-4000-8000-0000000000${number}', slug: '${key}', type: 'markdown',
+  params: {}, locale: { value: readMarkdown(import.meta.url, ['en', 'uk']) },
+});
+`;
+    for (const language of ['en', 'uk']) fixture[directory + '/' + language + '.md'] = values[key][language];
+  }
+  const git = (root, ...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  for (const root of [trustedRoot, candidateRoot]) {
+    for (const [filename, bytes] of Object.entries(fixture)) {
+      const target = path.join(root, filename);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, bytes);
+    }
+    git(root, 'init', '-q');
+    git(root, 'config', 'user.name', 'Trusted Markdown fixture');
+    git(root, 'config', 'user.email', 'fixture@example.test');
+    git(root, 'add', '.');
+    git(root, 'commit', '-qm', 'Independently reviewed source');
+  }
+  const filename = path.join(trustedRoot, source);
+  const previous = buildSync({
+    entryPoints: [filename],
+    absWorkingDir: path.dirname(filename),
+    bundle: true,
+    write: false,
+    platform: 'node',
+    format: 'cjs',
+    target: 'node24',
+    logLevel: 'silent',
+  });
+  const legacy = new Module(filename);
+  legacy.filename = filename;
+  legacy.paths = Module._nodeModulePaths(path.dirname(filename));
+  assert.throws(
+    () => legacy._compile(previous.outputFiles[0].text, filename),
+    /Invalid URL|Missing or invalid Markdown/,
+  );
+
+  const args = {
+    id: lessonId,
+    matching: { sourceSha: git(candidateRoot, 'rev-parse', 'HEAD'), methodologySourcePath: methodology },
+    languages: ['en', 'uk'],
+    placement: 'content/observation',
+  };
+  const options = { trustedRoot, candidateRoot, textbookRoot: 'content/playground' };
+  const resolve = createTrustedCourseLessonResolver(options);
+  const verified = resolve(args);
+  assert.equal(verified.exportName, 'howLightMoves');
+  const before = verified.configurator.build.props({ languages: args.languages });
+  for (const language of args.languages) {
+    const locale = JSON.stringify(before.locale[language]);
+    for (const key of ['first', 'second']) assert(locale.includes(values[key][language]));
+  }
+  assert.equal(before.base.params.sections.allowSkipping, true);
+  const specifier = '#lessonsData/c/' + lessonId + '/index';
+  const raw = '{ params: { sections: { allowSkipping: false } } }';
+  for (const expression of [
+    '{ id: howLightMoves.id }',
+    '{ ...howLightMoves.build.overrides(' + raw + ', { languages: ["en", "uk"] }) }',
+  ]) {
+    const stage = structuredClone(reviewedStage3);
+    stage.config.content.items.observation.production = {
+      kind: 'existing',
+      existing: '__REUSE__',
+      matching: args.matching,
+    };
+    const body =
+      "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
+      'import { howLightMoves } from ' +
+      JSON.stringify(specifier) +
+      ';\n' +
+      'export const reviewedInput = ' +
+      JSON.stringify(stage).replace('"__REUSE__"', expression) +
+      ' satisfies CourseWorkflowMaterializerInput;';
+    const patches = [];
+    const input = parseCanonicalCourseSource(body, { resolveImport: resolve.loadImport, patches });
+    const existing = input.config.content.items.observation.production.existing;
+    assert.equal(existing.id, lessonId);
+    const result = reviewedLessonPatchResolver(input, resolve, patches, 'b'.repeat(40))(args);
+    assert.equal(result.configurator, verified.configurator);
+    if (expression.includes('overrides')) {
+      assert.equal(existing.base.params.sections.allowSkipping, false);
+      assert.equal(result.rawPatchSource, raw);
+      assert.equal(patches.length, 1);
+    } else {
+      assert.deepEqual(Object.keys(existing), ['id']);
+      assert.equal(result.rawPatchSource, undefined);
+      assert.equal(patches.length, 0);
+    }
+    assert.deepEqual(verified.configurator.build.props({ languages: args.languages }), before);
+  }
+  assert.equal(git(trustedRoot, 'status', '--porcelain'), '');
+  assert.equal(git(candidateRoot, 'status', '--porcelain'), '');
+  fs.writeFileSync(path.join(candidateRoot, second + '/en.md'), 'Unreviewed Markdown');
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /dependency differs|trusted/);
+  git(candidateRoot, 'checkout', '--', second + '/en.md');
+  fs.writeFileSync(path.join(candidateRoot, first + '/index.ts'), 'throw Error("candidate must never execute");');
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /dependency differs|trusted/);
+  git(candidateRoot, 'checkout', '--', first + '/index.ts');
+  for (const root of [trustedRoot, candidateRoot]) {
+    fs.writeFileSync(path.join(root, lessonRoot, 'draft.ts'), 'throw Error("draft must never execute");');
+    git(root, 'add', lessonRoot + '/draft.ts');
+  }
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /Unmaterialized editorial draft/);
 });

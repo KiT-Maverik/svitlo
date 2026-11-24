@@ -4,9 +4,8 @@
  *
  * Stage B (--kind question) and Stage C (--kind flashcard) are independently
  * checked/generated. --kind all combines their manifests for static hosting.
- * Does not edit Lesson Config/Props or authored TypeScript/YAML.
- * Source inputs here are existing typed bank modules; editorial YAML draft
- * scaffolding is a separate subsequent production stage.
+ * Does not edit Lesson Config/Props or authored TypeScript.
+ * Source inputs are materialized bank entrypoints, not editorial drafts.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,6 +27,8 @@ import {
   assertSafeDirectoryPath,
 } from '../generateLessonProps/publishLessonProps.mjs';
 
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
+
 const require = createRequire(import.meta.url);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage = 'Usage: --package content/<textbook> --kind question|flashcard|all [--draft] --write|--check|--preflight';
@@ -35,14 +36,6 @@ const usage = 'Usage: --package content/<textbook> --kind question|flashcard|all
 function directories(folder) {
   if (!fs.existsSync(folder)) return [];
   return fs.readdirSync(folder, { withFileTypes: true }).filter(item => item.isDirectory());
-}
-
-function authoredLessonSource(dir) {
-  const sources = fs.readdirSync(dir).filter(file => file.endsWith('.data.ts'));
-  const index = path.join(dir, 'index.ts');
-  if (sources.length > 1 || (sources.length && fs.existsSync(index)))
-    throw new Error('Ambiguous Lesson source: ' + dir);
-  return sources.length ? path.join(dir, sources[0]) : fs.existsSync(index) ? index : null;
 }
 
 /** Preserve nested bank groups, but require every leaf to be the intended Build configurator. */
@@ -132,11 +125,9 @@ export async function render(packageDirectory, kind, mediaMode = 'production') {
       for (const selectedKind of ['question', 'flashcard']) {
         if (kind !== 'all' && kind !== selectedKind) continue;
         const folderName = selectedKind === 'question' ? 'questions' : 'flashcards';
-        const source = path.join(dir, folderName, 'index.ts');
-        if (!fs.existsSync(source)) continue;
-        if (!fs.statSync(source).isFile() || fs.lstatSync(source).isSymbolicLink())
-          throw new Error('Invalid bank entrypoint: ' + source);
-        const lessonSource = authoredLessonSource(dir);
+        const { source } = resolveMaterializedEntrypoint(path.join(dir, folderName), { mode: mediaMode });
+        if (!source) continue;
+        const { source: lessonSource } = resolveMaterializedEntrypoint(dir, { mode: mediaMode, legacyLesson: true });
         if (!lessonSource) throw new Error('Cannot publish bank without authored Lesson owner: ' + source);
         const lesson = await loadLessonData(lessonSource);
         if (lesson.id !== lessonId) throw new Error('Assessment bank Lesson identity mismatch: ' + source);

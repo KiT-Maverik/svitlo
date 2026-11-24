@@ -3,7 +3,7 @@
  * @fileoverview Privileged typed Course Stage 5 publisher. NEVER imports or
  * executes PR-authored TypeScript. Recomputes the complete deterministic plan
  * from a literal AST using trusted Engine code, checks the artifact byte for
- * byte, and commits the reviewed source archive + outputs in ONE Git tree.
+ * byte, and consumes the reviewed draft and commits outputs in ONE Git tree.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -21,6 +21,7 @@ import { materializeCourseStage5 } from '../../../shared/engine/generators/mater
 import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
 import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
 import { checkGeneratedCourseTypes } from './typed-course-semantics.mjs';
+import { manifestDigest } from './course-handoff-publish.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -52,6 +53,7 @@ function allowedOutput(filename, meta) {
     return (
       [
         'index.ts',
+        'draft.ts',
         'languages.ts',
         'authoredCourseOverrides.ts',
         'methodology.md',
@@ -63,7 +65,7 @@ function allowedOutput(filename, meta) {
     );
   }
   const lesson = filename.match(
-    new RegExp('^' + meta.textbookRoot + '/data/lessons/([a-f0-9])/(' + UUID_PATTERN + ')/index\\.ts$'),
+    new RegExp('^' + meta.textbookRoot + '/data/lessons/([a-f0-9])/(' + UUID_PATTERN + ')/draft\\.ts$'),
   );
   return !!lesson && lesson[1] === lesson[2].at(-1);
 }
@@ -84,10 +86,9 @@ export function verifyTypedCourseManifest(manifest, meta) {
     manifest.sourcePath !== meta.sourcePath ||
     manifest.sourceBlobSha !== meta.sourceBlobSha ||
     manifest.reviewCommitSha !== meta.reviewCommitSha ||
-    manifest.reviewer !== meta.reviewer ||
-    manifest.evidenceUrl !== meta.evidenceUrl ||
+    manifest.reviewVerdict !== meta.reviewVerdict ||
     manifest.publishable !== false ||
-    manifest.sourceArchivePath !== path.posix.dirname(meta.sourcePath) + '/workflow.stage3.ts' ||
+    manifest.materializedPath !== path.posix.dirname(meta.sourcePath) + '/index.ts' ||
     !Array.isArray(manifest.entries) ||
     !manifest.entries.length ||
     manifest.entries.length > 1500
@@ -119,7 +120,8 @@ export function verifyTypedCourseManifest(manifest, meta) {
     bytes += content.length;
     if (bytes > 32 * 1024 * 1024) throw Error('Oversized typed Course source plan');
   }
-  if (!seen.has(meta.sourcePath)) throw Error('Typed Course plan must replace reviewed index.ts');
+  if (seen.has(meta.sourcePath) || !seen.has(manifest.materializedPath))
+    throw Error('Typed Course plan must consume draft.ts and create index.ts');
   return manifest.entries.length;
 }
 
@@ -139,9 +141,10 @@ export function checkTypedCourseTargets(meta, root, manifest) {
     indexed.set(match[2], match[1]);
   }
   if (indexed.get(meta.sourcePath) !== '100644') throw Error('Expected an ordinary reviewed Course source');
-  if (indexed.has(manifest.sourceArchivePath) || fs.existsSync(path.join(root, manifest.sourceArchivePath)))
-    throw Error('Course source archive already exists: rerun must not overwrite');
-  const targets = [...manifest.entries.map(entry => entry.path), manifest.sourceArchivePath];
+  const targets = manifest.entries.map(entry => entry.path);
+  for (const filename of [...targets]) {
+    if (filename.endsWith('/draft.ts')) targets.push(path.posix.join(path.posix.dirname(filename), 'index.ts'));
+  }
   for (const filename of targets) {
     if (!safePath(filename)) throw Error('Path traversal in Course target');
     const parts = filename.split('/');
@@ -165,13 +168,12 @@ export function checkTypedCourseTargets(meta, root, manifest) {
     } catch (error) {
       if (error.code !== 'ENOENT') throw error;
     }
-    if (filename !== meta.sourcePath && (mode || localExists))
-      throw Error('Existing authored Course/Lesson target would be overwritten: ' + filename);
+    if (mode || localExists) throw Error('Existing authored Course/Lesson target would be overwritten: ' + filename);
   }
   return true;
 }
 
-export function oneCommitTree(manifest, originalSource) {
+export function oneCommitTree(manifest) {
   return [
     ...manifest.entries.map(file => ({
       path: file.path,
@@ -180,10 +182,10 @@ export function oneCommitTree(manifest, originalSource) {
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     {
-      path: manifest.sourceArchivePath,
+      path: manifest.sourcePath,
       mode: '100644',
       type: 'blob',
-      content: originalSource,
+      sha: null,
     },
   ];
 }
@@ -209,8 +211,7 @@ function replan(meta, source) {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
       reviewCommitSha: meta.reviewCommitSha,
-      reviewer: meta.reviewer,
-      evidenceUrl: meta.evidenceUrl,
+      reviewVerdict: meta.reviewVerdict,
     },
     verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
       candidate === input &&
@@ -246,8 +247,7 @@ function equalMetadata(a, b) {
     'sourceBlobSha',
     'textbookRoot',
     'reviewCommitSha',
-    'reviewer',
-    'evidenceUrl',
+    'reviewVerdict',
   ].every(key => a[key] === b[key]);
 }
 
@@ -268,9 +268,10 @@ async function publish() {
   if (!SHA.test(original?.tree?.sha ?? '')) throw Error('Missing approved parent Git tree');
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
-    tree: oneCommitTree(manifest, source),
+    tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
+  const digest = manifestDigest(manifest);
   const commit = await github('git/commits', 'POST', {
     message:
       'Materialize reviewed typed Course ' +
@@ -280,7 +281,11 @@ async function publish() {
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.evidenceUrl,
+      meta.reviewVerdict +
+      ' at ' +
+      meta.reviewCommitSha +
+      '\nCourse-Inventory-Manifest: ' +
+      digest,
     tree: tree.sha,
     parents: [meta.head],
   });
@@ -301,15 +306,29 @@ async function publish() {
       meta.head +
       ', reviewed blob ' +
       meta.sourceBlobSha +
-      ', reviewer ' +
-      meta.reviewer +
+      ', verdict ' +
+      meta.reviewVerdict +
       ', ' +
       manifest.entries.length +
-      ' generated sources + exact reviewed source archive.',
+      ' generated sources; reviewed draft consumed, exact bytes retained in Git history.',
   );
+  if (process.env.GITHUB_OUTPUT) {
+    const proof = {
+      repo: meta.repo,
+      number: meta.number,
+      branch: meta.branch,
+      courseId: meta.courseId,
+      reviewedHead: meta.head,
+      commit: commit.sha,
+      digest,
+    };
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
+  }
   const placements = manifest.pendingPlacements ?? [];
   for (const placement of placements)
     report('Lesson Stage 1 pending (no automatic PR): ' + placement.lessonId + ' — ' + placement.handoffPath);
+  for (const placement of manifest.pendingEpisodes ?? [])
+    report('Episode Stage 1 pending (no automatic PR): ' + placement.episodeId + ' — ' + placement.handoffPath);
   report(
     'TODO (BLOCKER): Course is not approved for Props publication; verify all independent child/review/locale/asset gates.',
   );

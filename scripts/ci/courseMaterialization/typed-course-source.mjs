@@ -163,7 +163,7 @@ const materializerType = node => {
 export function parseCanonicalCourseSource(source, options = {}) {
   if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
     throw Error('Typed Course source is missing or oversized');
-  const ast = ts.createSourceFile('index.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const ast = ts.createSourceFile('draft.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if (ast.parseDiagnostics.length) throw Error('Typed Course source contains TypeScript parse errors');
   const declarations = new Map();
   const context = {
@@ -313,7 +313,7 @@ export function checkCourseStage3Types(sourcePath) {
   const trustedRepoRoot = path.resolve(engineRoot, '../..');
   const scoped = sourcePath
     .replaceAll('\\', '/')
-    .match(/\/content\/([a-z][a-z0-9-]*)\/data\/courses\/[0-9a-f]\/[0-9a-f-]{36}\/index\.ts$/);
+    .match(/\/content\/([a-z][a-z0-9-]*)\/data\/courses\/[0-9a-f]\/[0-9a-f-]{36}\/draft\.ts$/);
   if (!scoped) throw Error('Noncanonical Course source path for trusted TypeScript analysis');
   const tsconfig = ts.readConfigFile(path.join(engineRoot, 'tsconfig.json'), ts.sys.readFile);
   if (tsconfig.error) throw Error('Cannot load trusted Engine TS contract');
@@ -412,10 +412,11 @@ export function buildTypedCourseManifest(meta, plan) {
     entries.push({ path: file.path, kind: file.kind, sha256: sha256(bytes), data: bytes.toString('base64') });
   }
   if (
-    !seen.has(meta.sourcePath) ||
-    plan.sourceArchivePath !== path.posix.dirname(meta.sourcePath) + '/workflow.stage3.ts'
+    seen.has(meta.sourcePath) ||
+    !seen.has(plan.materializedPath) ||
+    plan.materializedPath !== path.posix.dirname(meta.sourcePath) + '/index.ts'
   )
-    throw Error('Course source/archive transition is missing');
+    throw Error('Course draft/output transition is missing');
   return {
     version: 2,
     operation: 'typed-course-stage5',
@@ -428,12 +429,13 @@ export function buildTypedCourseManifest(meta, plan) {
     textbookRoot: meta.textbookRoot,
     sourcePath: meta.sourcePath,
     sourceBlobSha: meta.sourceBlobSha,
-    sourceArchivePath: plan.sourceArchivePath,
+    materializedPath: plan.materializedPath,
     reviewCommitSha: meta.reviewCommitSha,
-    reviewer: meta.reviewer,
-    evidenceUrl: meta.evidenceUrl,
+    reviewVerdict: meta.reviewVerdict,
     publishable: false,
     diagnostics: plan.diagnostics,
+    inventory: plan.inventory,
+    pendingEpisodes: plan.pendingEpisodes,
     pendingPlacements: plan.pendingPlacements,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };
@@ -462,8 +464,7 @@ async function main() {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
       reviewCommitSha: meta.reviewCommitSha,
-      reviewer: meta.reviewer,
-      evidenceUrl: meta.evidenceUrl,
+      reviewVerdict: meta.reviewVerdict,
     },
     verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
       candidate === input &&

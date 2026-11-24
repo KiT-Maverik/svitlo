@@ -9,6 +9,7 @@ on:
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
+      - 'scripts/ci/reviewEvidence/**'
       - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
       - '.github/workflows/bank-materialization.yml'
@@ -49,7 +50,7 @@ jobs:
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
@@ -78,11 +79,22 @@ jobs:
             shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
             shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
             shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
+            shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js \
+            shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs \
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
+            shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
+            shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
+            shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \
+            shared/engine/generators/materializers/course/*.spec.mjs \
+            shared/engine/generators/materializers/module/*.spec.mjs \
+            shared/engine/generators/materializers/chapter/*.spec.mjs \
+            shared/engine/generators/materializers/lesson/*.spec.mjs \
+            shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
+            scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
       - name: Test typed Bank source and PR-command security

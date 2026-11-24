@@ -5,10 +5,8 @@ default-branch GitHub Actions workflow has three jobs:
 `typed-resolve`, `typed-analyze`, and `typed-publish`.
 
 The input is the exact reviewed, source-commit/source-blob-pinned Lesson
-`index.ts satisfies LessonWorkflowMaterializerInput` under the canonical
-UUID bucket. The operation archives its original bytes in
-`workflow.stage2.ts` and atomically commits the deterministic Lesson-owned
-`define*` module tree. It does not generate translations, Question/Flashcard
+`draft.ts satisfies LessonWorkflowMaterializerInput` under the canonical
+UUID bucket. The operation deletes the reviewed draft and atomically creates `index.ts` and the deterministic Lesson-owned `define*` module tree. Exact original bytes remain in the pinned Git commit/blob. It does not generate translations, Question/Flashcard
 Banks, assets, Scene implementations or publishable runtime Props.
 
 ## Trigger
@@ -25,7 +23,7 @@ An authorized maintainer may dispatch the default-branch workflow with that
 PR number and `operation=materialize-typed`. No YAML or finalize command is
 accepted. The old `/lesson materialize` and `/lesson finalize` jobs, their
 standalone trusted scripts, and the Lesson `lesson.yaml` Builder/Finalizer
-were intentionally removed in PR #797. Historical Lesson YAML must be
+are not supported. Historical Lesson YAML must be
 reconciled in its owning PR, preserving source and author/review provenance,
 rather than using a hidden legacy fallback.
 
@@ -40,7 +38,7 @@ imported owned bank Configurator `.id` values without executing candidate
 code. It uses the trusted Engine source materializer.
 
 The SHA256-attested manifest contains an allowlisted create-only source
-inventory, the replacement root `index.ts`, and original source bytes archive.
+inventory, the new root `index.ts`, and the pinned draft deletion with exact source bytes.
 The dependency-free publisher rechecks actor/source/review SHA, branch HEAD,
 parent ancestry, file hashes, no-clobber destinations and Git tree lease
 before the one non-force commit. Stale or partial writes fail closed.
@@ -64,7 +62,4 @@ npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine
 ```
 
-A successful local/simulated test does not prove operational GitHub Actions
-permissions or deployment. An authorized synthetic Draft PR can validate
-the command after the trusted workflow lands on `develop`; that is a
-**test**, not a precondition for removing obsolete YAML code in this branch.
+A successful local/simulated test does not prove operational GitHub Actions permissions or deployment. Verify the workflow on default `develop` and an actual authorized run before claiming operational materialization.

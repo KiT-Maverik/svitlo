@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
  * Trusted authorization for the opt-in typed Bank Stage 5 command.
- * GitHub PR metadata and an independent, current-SHA APPROVED review are the
- * authority. A checked stage box or author-supplied flag is never an approval.
+ * GitHub PR metadata and accepted, source-pinned review evidence are required.
+ * A checked stage box or flag in authored source does not authorize this command.
  */
 import fs from 'node:fs';
+import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { github, parseIdentity, requireActor, requireReviewedStages, safeBranch, report } from './bank-gate.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -96,61 +97,66 @@ export async function inspectTyped(number, bank, expected) {
   }
   let parentQuestions = null;
   let parentHeadSha = null;
+  let parentQuestionsReview = null;
   if (bank === 'flashcards') {
-    const decision = /^.*Questions(?: \(own bank\))?:\s*(Completed|Not Applicable)\b/im.exec(parent.body);
-    if (!decision || !SHA.test(parent.head?.sha || '')) {
+    const decisions = [
+      ...parent.body.matchAll(/^- Questions(?: \(own bank\))?:[ \t]*(Completed|Not Applicable)\b[^\r\n]*$/gim),
+    ];
+    const decision = decisions[0];
+    if (decisions.length !== 1 || !SHA.test(parent.head?.sha || '')) {
       throw Error('Flashcards need a pinned parent Questions-first completion or N/A');
     }
     parentQuestions = decision[1] === 'Completed' ? 'completed' : 'notApplicable';
     parentHeadSha = parent.head.sha;
     if (parentQuestions === 'notApplicable') {
-      // N/A needs a real independently reviewed Lesson/Methodologist decision:
-      // a mutable PR-description assertion is not authorization.
-      const reviews = await github('pulls/' + identity.parent + '/reviews?per_page=100');
-      if (!Array.isArray(reviews) || reviews.length === 100) {
-        throw Error('Incomplete Questions N/A parent review inventory');
-      }
-      const latestParent = new Map();
-      for (const review of reviews) {
-        if (review.user?.login && review.submitted_at) latestParent.set(review.user.login, review);
-      }
-      const approvedParent = [...latestParent.values()].filter(
-        review =>
-          review.state === 'APPROVED' &&
-          review.commit_id === parent.head.sha &&
-          review.user.login !== parent.user?.login,
+      const lessonPath = identity.folder + '/index.ts';
+      const lessonSource = await github(
+        'contents/' + lessonPath.split('/').map(encodeURIComponent).join('/') + '?ref=' + parentHeadSha,
       );
-      if (approvedParent.length !== 1) {
-        throw Error('Questions N/A requires one independent approval on parent Lesson HEAD');
-      }
-      await requireActor(approvedParent[0].user.login);
+      if (lessonSource?.type !== 'file' || !SHA.test(lessonSource.sha || ''))
+        throw Error('Questions N/A requires the pinned materialized parent Lesson source');
+      [parentQuestionsReview] = await verifyReviewEvidence(parent.body, {
+        stages: ['questions-na'],
+        allowedStages: [3, 4, 5, 'questions-na'],
+        head: parentHeadSha,
+        blob: lessonSource.sha,
+      });
     }
   }
-  const sourcePath = identity.folder + '/' + bank + '/index.ts';
+  const sourcePath = identity.folder + '/' + bank + '/draft.ts';
   const sourceFile = await github(
     'contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
   );
   if (sourceFile?.type !== 'file' || !SHA.test(sourceFile.sha || '')) {
-    throw Error('Exact reviewed Stage 3 bank index.ts is missing');
+    throw Error('Exact reviewed Stage 3 bank draft.ts is missing');
   }
-  // Require an actual independent GitHub approval on this exact revision.
-  // This cannot be created by editing a checklist or bank production fields.
-  const reviews = await github('pulls/' + number + '/reviews?per_page=100');
-  if (!Array.isArray(reviews) || reviews.length === 100) {
-    throw Error('Bank review inventory must be complete (100-review pagination requires audit)');
-  }
-  const latest = new Map();
-  for (const review of reviews) {
-    if (review.user?.login && review.submitted_at) latest.set(review.user.login, review);
-  }
-  const approved = [...latest.values()].filter(
-    r => r.state === 'APPROVED' && r.commit_id === pr.head.sha && r.user.login !== pr.user?.login,
-  );
-  if (approved.length !== 1) {
-    throw Error('One unambiguous independent approval on exact Bank PR HEAD required');
-  }
-  const reviewer = approved[0].user.login;
-  await requireActor(reviewer);
+  const [review] = await verifyReviewEvidence(pr.body, {
+    stages: [4],
+    head: pr.head.sha,
+    blob: sourceFile.sha,
+  });
+  const again = await github('pulls/' + number);
+  if (
+    again?.head?.sha !== pr.head.sha ||
+    again.head.ref !== pr.head.ref ||
+    again.head.repo?.full_name !== repo ||
+    again.base?.ref !== pr.base?.ref ||
+    again.base?.sha !== pr.base?.sha ||
+    again.state !== 'open' ||
+    !again.draft ||
+    again.body !== pr.body
+  )
+    throw Error('Bank PR changed during review evidence verification');
+  const parentAgain = await github('pulls/' + identity.parent);
+  if (
+    parentAgain?.state !== parent.state ||
+    parentAgain.merged !== parent.merged ||
+    parentAgain.head?.ref !== parent.head?.ref ||
+    parentAgain.head?.sha !== parent.head?.sha ||
+    parentAgain.body !== parent.body ||
+    parentAgain.merge_commit_sha !== parent.merge_commit_sha
+  )
+    throw Error('Owning Lesson PR changed during Bank review evidence verification');
   const result = {
     repo,
     number,
@@ -161,10 +167,11 @@ export async function inspectTyped(number, bank, expected) {
     head: pr.head.sha,
     sourceBlob: sourceFile.sha,
     sourcePath,
-    reviewer,
-    reviewCommitSha: approved[0].commit_id,
+    reviewVerdict: review.verdict,
+    reviewCommitSha: review.commit,
     parentQuestions,
     parentHeadSha,
+    parentQuestionsReview,
     identity: {
       id: identity.id,
       pkg: identity.pkg,
@@ -174,7 +181,7 @@ export async function inspectTyped(number, bank, expected) {
     },
   };
   if (expected && JSON.stringify(expected) !== JSON.stringify(result)) {
-    throw Error('Reviewed Bank SHA/approval/branch/identity changed: rerun command');
+    throw Error('Reviewed Bank SHA/evidence/branch/identity changed: rerun command');
   }
   return result;
 }

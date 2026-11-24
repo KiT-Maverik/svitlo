@@ -1,4 +1,4 @@
-import type { CourseWorkflowStage3 } from '@svitlo/engine/build';
+import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';
 import { howLightMoves } from '#lessonsData/c/d3048d21-8690-5255-b62c-984c69ac272c/index';
 
 export const courseStage3 = {
@@ -38,7 +38,7 @@ export const courseStage3 = {
             matching: {
               methodologySourcePath:
                 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
-              sourceSha: 'ed22809482b1960449b5b83043a7a8c827f0d2ec',
+              sourceSha: 'a25a0a5f9c3f02c6a592800217452b072badae0c',
               matchingRationale:
                 'Reuse the real light-propagation fixture with theory, practice and its existing Quiz. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is explicitly authorized by the owner; educational quality and age-fit certification are outside this fixture test. The canonical retrospective methodology.md integrated via PR #809 documents the unchanged Lesson, Skill, Sections, assessment ownership and locale scope. Trusted materialization remains subject to the actual technical and source verification gates.',
               languageEvidence:
@@ -144,7 +144,7 @@ export const courseStage3 = {
                     matching: {
                       methodologySourcePath:
                         'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
-                      sourceSha: 'ed22809482b1960449b5b83043a7a8c827f0d2ec',
+                      sourceSha: 'a25a0a5f9c3f02c6a592800217452b072badae0c',
                       matchingRationale:
                         'Revisit the same light Skill through the existing theory, practice and Quiz while requiring the ordered experience rather than skipping. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is explicitly authorized by the owner; educational quality and age-fit certification are outside this fixture test. The canonical retrospective methodology.md integrated via PR #809 documents the unchanged Lesson, Skill, Sections, assessment ownership and locale scope. Trusted materialization remains subject to the actual technical and source verification gates.',
                       languageEvidence:
@@ -283,4 +283,4 @@ export const courseStage3 = {
     standardsAlignment: [],
     openDecisions: {},
   },
-} satisfies CourseWorkflowStage3;
+} satisfies CourseWorkflowMaterializerInput;

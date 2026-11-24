@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { check } from './generateLessonProps.mjs';
+import { check, render } from './generateLessonProps.mjs';
 import { publishLessonProps } from './publishLessonProps.mjs';
 
 test('Lesson CLI check is read-only and detects missing, modified, and stale files', () => {
@@ -43,6 +43,21 @@ test('Lesson CLI check rejects symlinks in the generated tree', () => {
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const baseFile = 'c/' + lessonId + '/base.json';
 const ukFile = 'c/' + lessonId + '/uk.json';
+
+test('draft-only Lesson scope renders no resources and strict publication refuses it', async () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-draft-'));
+  try {
+    const directory = path.join(home, 'data/lessons/c', lessonId);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.writeFileSync(path.join(directory, 'draft.ts'), 'throw new Error("draft must not execute");');
+    assert.deepEqual(await render(home, 'draft'), new Map());
+    await assert.rejects(render(home, 'production'), /Unmaterialized editorial draft/);
+    fs.unlinkSync(path.join(directory, 'draft.ts'));
+    await assert.rejects(render(home, 'draft'), /No authored Lesson configurators/);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
 
 test('Lesson publication swaps the complete tree, removes stale files, and preserves siblings', () => {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lessons-publish-'));

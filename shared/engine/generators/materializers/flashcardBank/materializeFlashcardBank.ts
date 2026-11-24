@@ -132,7 +132,7 @@ function validateStage1(
   }
 }
 
-/** Produce exactly one bank-owned Stage 1 index; no Card, Side or Section. */
+/** Produce exactly one bank-owned Stage 1 draft; no Card, Side or Section. */
 export function materializeFlashcardBankDraft(
   input: FlashcardBankWorkflowStage1,
   authorization: FlashcardBankDraftAuthorization,
@@ -141,7 +141,7 @@ export function materializeFlashcardBankDraft(
   validateStage1(input, authorization);
   const files: BankSourceFile[] = [
     {
-      path: 'flashcards/index.ts',
+      path: 'flashcards/draft.ts',
       kind: 'typescript',
       content:
         "import type { FlashcardBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
@@ -324,14 +324,9 @@ export function materializeFlashcardBank(
       JSON.stringify([languages.document]) +
       ' as const;\n',
   });
-  files.push({
-    path: 'flashcards.reviewed-stage3.ts.txt',
-    kind: 'archive',
-    content: authorization.reviewed.content,
-  });
   const plan = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'flashcards/index.ts',
-    archivePath: 'flashcards.reviewed-stage3.ts.txt',
+    draftPath: 'flashcards/draft.ts',
     reviewed: authorization.reviewed,
   });
   return { ...plan, diagnostics };

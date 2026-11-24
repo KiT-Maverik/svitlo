@@ -52,3 +52,7 @@ unrelated public files, and supports read-only `check` mode.
 Tests: `npm test --workspace @svitlo/engine` (Course publication, CLI, and Lesson generator suites).
 
 The CLI lives at `shared/engine/scripts/generateCourseProps/generateCourseProps.mjs`, with its CLI tests beside it. It discovers authored Course configurations and invokes the renderer; there is no duplicate root `scripts/generators/` wrapper.
+
+### Course-owned Episodes
+
+A materialized Episode publishes full invariant Props plus atomic localized Sections at its reviewed placement. The runtime validates supported Section/Block schemas, immutable identities and locale. Nonempty opaque Episode events and assessment/Quest Sections are unsupported and fail closed. Lesson references remain sparse and may occur at distinct placements with independent override patches. The Course CLI's strict source gate rejects pending Course-owned drafts and unresolved blockers; explicit draft-mode previews are not production approval. See [Episode entity](../../../../studio/docs/entities/episode.md).

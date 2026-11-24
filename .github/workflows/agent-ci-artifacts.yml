@@ -21,12 +21,13 @@ on:
           - lessons
           - questions
           - courses
+          - episodes
           - assessment-methods
           - ui-kit
           - geography-home-copy
           - education-standards
       textbook:
-        description: 'For Skills/Lessons/Questions/Courses: content/<book>'
+        description: 'For Skills/Lessons/Questions/Courses/Episodes: content/<book>'
         required: false
         type: string
       locale:
@@ -42,7 +43,11 @@ on:
         required: false
         type: string
       course:
-        description: 'Optional Course UUID (requires kind=courses)'
+        description: 'Course UUID (required for episodes; optional for courses)'
+        required: false
+        type: string
+      episode:
+        description: 'Exact Episode UUID (requires kind=episodes and locale)'
         required: false
         type: string
 permissions:
@@ -74,6 +79,7 @@ jobs:
       component: ${{ steps.request.outputs.component }}
       lesson: ${{ steps.request.outputs.lesson }}
       course: ${{ steps.request.outputs.course }}
+      episode: ${{ steps.request.outputs.episode }}
     steps:
       - name: Resolve trusted PR context without checking out code
         id: request
@@ -89,7 +95,7 @@ jobs:
           if (!Number.isSafeInteger(pr) || pr < 1) throw Error('Valid PR number required');
           const parts = isComment ? event.comment.body.trim().split(/\s+/) : [];
           const operation = 'generate';
-          let kind = '', textbook = '', locale = '', component = '', lesson = '', course = '';
+          let kind = '', textbook = '', locale = '', component = '', lesson = '', course = '', episode = '';
           if (isComment) {
             if (parts[0] !== '/agent-artifacts' || parts[1] !== 'generate') throw Error('Unknown command');
               kind = parts[2] || '';
@@ -110,6 +116,9 @@ jobs:
                   course = extra[0].toLowerCase();
                   locale = extra[1];
                 }
+              } else if (kind === 'episodes') {
+                if (parts.length !== 7) throw Error('Usage: /agent-artifacts generate episodes content/<book> <course-uuid> <episode-uuid> <locale>');
+                textbook=parts[3]; course=parts[4].toLowerCase(); episode=parts[5].toLowerCase(); locale=parts[6];
               } else if (kind === 'ui-kit') {
                 if (![4, 5].includes(parts.length)) {
                   throw Error('Usage: /agent-artifacts generate ui-kit <component|all> [locale]');
@@ -122,16 +131,16 @@ jobs:
                 }
                 locale = parts[3] || '';
               } else {
-                throw Error('Explicit kind required: skills, lessons, questions, courses, ui-kit, assessment-methods, geography-home-copy, education-standards');
+                throw Error('Explicit kind required: skills, lessons, questions, courses, episodes, ui-kit, assessment-methods, geography-home-copy, education-standards');
               }
           } else {
-            ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '' } = event.inputs);
+            ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '', episode = '' } = event.inputs);
           }
-          const allowed = ['skills', 'lessons', 'questions', 'courses', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
+          const allowed = ['skills', 'lessons', 'questions', 'courses', 'episodes', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
           if (!allowed.includes(kind)) throw Error('Unsupported reference family');
-            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses') !== Boolean(textbook) ||
+            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses' || kind === 'episodes') !== Boolean(textbook) ||
                 (textbook && !/^content\/[a-z][a-z0-9-]*$/.test(textbook))) {
-              throw Error('Only Skills, Lessons, Questions and Courses require content/<book>');
+              throw Error('Only Skills, Lessons, Questions, Courses and Episodes require content/<book>');
             }
             if (locale && !/^[a-z]{2,4}$/.test(locale)) throw Error('Invalid locale');
             if (component && (kind !== 'ui-kit' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component))) {
@@ -141,10 +150,12 @@ jobs:
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(lesson))) {
               throw Error('Invalid Lesson UUID');
             }
-            if (course && (kind !== 'courses' ||
+            if (course && (!['courses','episodes'].includes(kind) ||
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(course))) {
               throw Error('Invalid Course UUID');
             }
+            if (kind === 'episodes' && (!course || !episode || !locale || !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(episode))) throw Error('Exact Course, Episode and locale required');
+            if (episode && kind !== 'episodes') throw Error('Episode UUID only supported for episodes');
           const headers = {
             authorization: 'Bearer ' + process.env.GH_TOKEN,
             accept: 'application/vnd.github+json',
@@ -186,7 +197,7 @@ jobs:
               pull.head.ref.startsWith('-')) throw Error('Unsafe branch ref');
           const entries = {
             pr: String(pr), head_sha: pull.head.sha,
-            branch: pull.head.ref, kind, textbook, locale, component, lesson, course,
+            branch: pull.head.ref, kind, textbook, locale, component, lesson, course, episode,
           };
           fs.appendFileSync(process.env.GITHUB_OUTPUT,
             Object.entries(entries).map(([k,v]) => k + '=' + v).join('\n') + '\n');
@@ -231,7 +242,7 @@ jobs:
           fs.appendFileSync(process.env.GITHUB_OUTPUT, 'complete=' + complete + '\n');
           NODE
       - name: Build Engine for typed Lesson/Course or complete EducationStandard generation
-        if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'courses' || (needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true')
+        if: needs.resolve.outputs.kind == 'lessons' || needs.resolve.outputs.kind == 'courses' || needs.resolve.outputs.kind == 'episodes' || (needs.resolve.outputs.kind == 'education-standards' && steps.catalog_check.outputs.complete == 'true')
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Generate only the selected reference scope
         env:
@@ -242,6 +253,7 @@ jobs:
           REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
           REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
           REQUEST_COURSE: ${{ needs.resolve.outputs.course }}
+          REQUEST_EPISODE: ${{ needs.resolve.outputs.episode }}
         shell: bash
         run: |
           set -euo pipefail
@@ -251,6 +263,7 @@ jobs:
           if [[ -n "$REQUEST_COMPONENT" ]]; then args+=(--component "$REQUEST_COMPONENT"); fi
           if [[ -n "$REQUEST_LESSON" ]]; then args+=(--lesson "$REQUEST_LESSON"); fi
           if [[ -n "$REQUEST_COURSE" ]]; then args+=(--course "$REQUEST_COURSE"); fi
+          if [[ -n "$REQUEST_EPISODE" ]]; then args+=(--episode "$REQUEST_EPISODE"); fi
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs "${args[@]}"
       - name: Validate pinned manifest, scope, checksums and archive inventory
         env:
@@ -262,6 +275,7 @@ jobs:
           REQUEST_COMPONENT: ${{ needs.resolve.outputs.component }}
           REQUEST_LESSON: ${{ needs.resolve.outputs.lesson }}
           REQUEST_COURSE: ${{ needs.resolve.outputs.course }}
+          REQUEST_EPISODE: ${{ needs.resolve.outputs.episode }}
         run: |
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
@@ -271,7 +285,8 @@ jobs:
           const manifest = JSON.parse(fs.readFileSync(path.join(output, 'manifest.json'), 'utf8'));
           const request = {kind:process.env.REQUEST_KIND,package:process.env.REQUEST_BOOK || null,
             locale:process.env.REQUEST_LOCALE || null,component:process.env.REQUEST_COMPONENT || null,
-            lesson:process.env.REQUEST_LESSON || null,course:process.env.REQUEST_COURSE || null};
+            lesson:process.env.REQUEST_LESSON || null,course:process.env.REQUEST_COURSE || null,
+            ...(process.env.REQUEST_KIND==='episodes'?{episode:process.env.REQUEST_EPISODE}: {})};
           if (manifest.schemaVersion !== 3 || manifest.kind !== 'pr-scoped-agent-ci-artifacts' ||
               manifest.sourceCommit !== process.env.SOURCE_HEAD_SHA ||
               manifest.pr !== Number(process.env.SVITLO_AGENT_REPORT_PR) ||
@@ -284,6 +299,13 @@ jobs:
           }
           for (const [key, value] of Object.entries(request)) {
             if (manifest.scope[key] !== value) throw Error('Report scope does not match authorized request: ' + key);
+          }
+          if (request.kind === 'episodes') {
+            const expectedPath = 'episodes/' + request.package.slice(8) + '/' + request.course.at(-1) + '/' + request.course + '/' + request.episode + '/' + request.locale + '.md';
+            const row = manifest.generated[0];
+            if (manifest.generated.length !== 1 || row.kind !== 'episode' || row.textbook !== request.package ||
+                row.course !== request.course || row.episode !== request.episode || row.locale !== request.locale || row.path !== expectedPath)
+              throw Error('Episode artifact does not match exact authorized scope');
           }
           const expected = new Set(['manifest.json']);
           let total = 0;

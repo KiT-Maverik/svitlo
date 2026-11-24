@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import test from 'node:test';
 import { collectAssessmentConfigurators, render } from './generateAssessmentResources.mjs';
 import {
@@ -8,6 +11,23 @@ import {
   validateAssessmentReferences,
 } from '@svitlo/engine/build';
 import { textbook, lessonEntry, lessonId, questionId, flashcardId } from '../../testing/fixtures.mjs';
+
+test('draft-only banks are inert and rejected by strict publication', async () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-bank-draft-'));
+  try {
+    const owner = path.join(home, 'data/lessons', lessonId.at(-1), lessonId);
+    for (const kind of ['questions', 'flashcards']) {
+      const directory = path.join(owner, kind);
+      fs.mkdirSync(directory, { recursive: true });
+      fs.writeFileSync(path.join(directory, 'draft.ts'), 'throw new Error("draft must not execute");');
+    }
+    const files = await render(home, 'all', 'draft');
+    assert.deepEqual(JSON.parse(files.get('assessments/manifest.json')).entries, {});
+    await assert.rejects(render(home, 'all'), /Unmaterialized editorial draft/);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
 
 const id = index => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
 const question = (key, number, type = 'selectOneAnswer') => ({

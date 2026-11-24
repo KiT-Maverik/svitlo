@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import {
   assembleCourseLesson,
+  assembleCourseTree,
+  type LocalizedCourse,
   resolveEntityPath,
   languageCode_Schema,
   type LanguageCode,
@@ -14,6 +16,7 @@ import {
 export type CourseLessonPublicationRoots = {
   lessonsRoot?: string;
   coursesRoot?: string;
+  placement?: string;
 };
 
 async function readPublishedJson(filename: string, optional: boolean): Promise<unknown | undefined> {
@@ -66,8 +69,21 @@ export async function loadPublishedCourseLessonProps(
   return assembleCourseLesson({
     courseId,
     lessonId,
+    placement: roots.placement,
     language: selectedLanguage,
     lesson: lesson as unknown as PublishedLessonPropsResource,
     course: course as unknown as PublishedCoursePropsFiles,
   });
+}
+
+/** Load the actual localized Course resource, including Course-owned Episodes. */
+export async function loadPublishedCourseTree(
+  courseId: string,
+  language: LanguageCode,
+  coursesRoot = path.join(process.cwd(), 'public/data/courses'),
+): Promise<LocalizedCourse> {
+  const id = resolveEntityPath(courseId).split('/')[1];
+  const code = languageCode_Schema.parse(language);
+  const resource = await readPublication(path.join(coursesRoot, id), code);
+  return assembleCourseTree(resource.base, resource.locale?.[code], id, code);
 }

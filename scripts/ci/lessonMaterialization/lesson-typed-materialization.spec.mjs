@@ -7,13 +7,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
-import {
-  parseTypedIdentity,
-  parseTypedTrigger,
-  parseReviewEvidence,
-  typedPath,
-  inspectTyped,
-} from './lesson-typed-gate.mjs';
+import { parseTypedIdentity, parseTypedTrigger, typedPath, inspectTyped } from './lesson-typed-gate.mjs';
 import {
   typedMeta,
   checkedTypedRoot,
@@ -27,7 +21,7 @@ import {
 const id = '12345678-1234-4234-8234-123456789001';
 const courseId = '22345678-1234-4234-8234-123456789002';
 const folder = 'content/math/data/lessons/1/' + id;
-const source = folder + '/index.ts';
+const source = folder + '/draft.ts';
 const pkg = 'content/math';
 const original = Buffer.from('export const stage2 = { config: {}, production: {} };\n');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -77,19 +71,16 @@ function tracker({ course = false, approved = true } = {}) {
   ].join('\n');
 }
 const commit = sha('a');
-const comments = [3, 4, 5].map((stage, i) => ({
-  user: { login: 'reviewer' },
-  id: 100 + stage,
-  body: [
-    '<!-- svitlo-lesson-review:v1 -->',
-    'Stage: ' + stage,
-    'Source commit: ' + (stage === 5 ? commit : sha(stage === 3 ? 'b' : 'c')),
-    'Source blob: ' + (stage === 5 ? gitBlob(original) : sha(stage === 3 ? 'd' : 'e')),
-    'Verdict: accepted',
-    'Reviewer context: review-' + stage,
-    ...(stage === 3 ? ['Author context: author-2'] : []),
-  ].join('\n'),
-}));
+const reviewRows = [3, 4, 5].map(
+  stage =>
+    '- Review evidence (v1): ' +
+    stage +
+    ' | accepted | ' +
+    (stage === 5 ? commit : sha(stage === 3 ? 'b' : 'c')) +
+    ' | ' +
+    (stage === 5 ? gitBlob(original) : sha(stage === 3 ? 'd' : 'e')),
+);
+const reviewedTracker = options => tracker(options) + '\n' + reviewRows.join('\n');
 
 test('canonical typed Lesson identity, Course linkage and exact command are enforced', () => {
   const expected = { id, pkg, slug: 'intro', folder, source, parent: null };
@@ -126,36 +117,11 @@ test('canonical typed Lesson identity, Course linkage and exact command are enfo
   );
 });
 
-test('independent review attestations require distinct context, SHA and uniqueness', () => {
-  const result = parseReviewEvidence(comments);
-  assert.deepEqual(
-    result.map(item => item.stage),
-    [3, 4, 5],
-  );
-  assert.equal(result[2].commit, commit);
-  assert.throws(() => parseReviewEvidence(comments.slice(1)), /Three unique/);
-  assert.throws(() => parseReviewEvidence([...comments, comments[0]]), /Three unique/);
-  assert.throws(
-    () =>
-      parseReviewEvidence(
-        comments.map(item => (item.id === 103 ? { ...item, body: item.body.replace('author-2', 'review-3') } : item)),
-      ),
-    /independence/,
-  );
-  assert.throws(
-    () =>
-      parseReviewEvidence(
-        comments.map(item => (item.id === 105 ? { ...item, body: item.body.replace('accepted', 'pending') } : item)),
-      ),
-    /review verdict/,
-  );
-});
-
 test('only the canonical Lesson-owned Stage 6 output tree is writable', () => {
   const identity = parseTypedIdentity(tracker());
   for (const relative of [
     'index.ts',
-    'workflow.stage2.ts',
+    'draft.ts',
     'languages.ts',
     'methodology.md',
     'specification.md',
@@ -191,14 +157,12 @@ test('typed gate re-checks review blobs, genealogy, parent and source SHA', asyn
     process.env.GITHUB_REPOSITORY = 'KiT-Maverik/svitlo';
     process.env.LESSON_DEFAULT_BRANCH = 'develop';
     process.env.GH_TOKEN = 'fixture-token';
-    let stale = false,
-      badParent = false,
-      unauthorized = false;
+    let stale = false;
     const remote = {
       number: 710,
       state: 'open',
       draft: true,
-      body: tracker({ course: true }),
+      body: reviewedTracker({ course: true }),
       head: { sha: commit, ref: 'agent/lesson', repo: { full_name: 'KiT-Maverik/svitlo' } },
       base: { ref: 'course/integration', repo: { full_name: 'KiT-Maverik/svitlo' } },
     };
@@ -213,8 +177,6 @@ test('typed gate re-checks review blobs, genealogy, parent and source SHA', asyn
       let payload;
       if (route === 'pulls/710') payload = remote;
       else if (route === 'pulls/770') payload = parent;
-      else if (route === 'issues/710/comments?per_page=100&page=1') payload = comments;
-      else if (route === 'collaborators/reviewer/permission') payload = { permission: unauthorized ? 'read' : 'write' };
       else if (route === 'compare/' + sha('b') + '...' + sha('c') || route === 'compare/' + sha('c') + '...' + commit)
         payload = { status: 'ahead' };
       else if (route.includes('contents/') && route.endsWith('?ref=' + sha('f'))) {
@@ -241,17 +203,16 @@ test('typed gate re-checks review blobs, genealogy, parent and source SHA', asyn
     stale = true;
     await assert.rejects(() => inspectTyped(710), /source|review/i);
     stale = false;
-    badParent = true;
     parent.head.ref = 'course/other';
     await assert.rejects(() => inspectTyped(710), /parent branch/);
     parent.head.ref = 'course/integration';
-    badParent = false;
-    unauthorized = true;
-    await assert.rejects(() => inspectTyped(710), /permission/i);
-    unauthorized = false;
+    remote.body = tracker({ course: true });
+    await assert.rejects(() => inspectTyped(710), /Missing accepted review evidence/);
+    remote.body = reviewedTracker({ course: true }) + '\n' + reviewRows[0];
+    await assert.rejects(() => inspectTyped(710), /duplicate review evidence/);
     remote.body = tracker({ approved: false });
     await assert.rejects(() => inspectTyped(710), /Stage 1 is not completed/);
-    remote.body = tracker();
+    remote.body = reviewedTracker();
     remote.base.ref = 'develop';
     const standalone = await inspectTyped(710);
     assert.equal(standalone.parent, null);
@@ -290,22 +251,22 @@ function fixture(callback) {
       actor: 'maintainer',
       operation: 'materialize-typed',
       reviews: [
-        { stage: 3, commit: head, blob: gitBlob(original) },
-        { stage: 4, commit: head, blob: gitBlob(original) },
-        { stage: 5, commit: head, blob: gitBlob(original) },
+        { stage: 3, verdict: 'accepted', commit: head, blob: gitBlob(original) },
+        { stage: 4, verdict: 'accepted', commit: head, blob: gitBlob(original) },
+        { stage: 5, verdict: 'accepted', commit: head, blob: gitBlob(original) },
       ],
     };
     const plan = {
       lessonId: id,
       sourcePath: source,
-      archivePath: folder + '/workflow.stage2.ts',
+      materializedPath: folder + '/index.ts',
       sourceBlobSha: info.sourceBlob,
       reviewCommitSha: head,
       reviewEvidenceSha: gitBlob(Buffer.from(JSON.stringify(info.reviews))),
       publishable: false,
       diagnostics: [{ code: 'pending-scene', severity: 'warning' }],
       files: [
-        { path: source, kind: 'typescript', content: 'export const lesson = 1;\n' },
+        { path: folder + '/index.ts', kind: 'typescript', content: 'export const lesson = 1;\n' },
         { path: folder + '/languages.ts', kind: 'typescript', content: 'export const languages = ["en"];\n' },
       ],
     };
@@ -315,16 +276,13 @@ function fixture(callback) {
   }
 }
 
-test('source/archive are atomic, immutable, hashed and confined to one Lesson', () =>
+test('draft deletion/index creation are atomic, immutable, hashed and confined to one Lesson', () =>
   fixture(({ root, info, plan, tracked }) => {
     const manifest = typedManifest(plan, info, original, tracked, root);
     assert.equal(verifyTypedManifest(manifest, info, root, tracked, original), 3);
-    assert.equal(manifest.entries.find(item => item.path === source).action, 'replace');
-    assert.equal(manifest.entries.find(item => item.path.endsWith('workflow.stage2.ts')).action, 'create');
-    assert.equal(
-      manifest.entries.find(item => item.path.endsWith('workflow.stage2.ts')).data,
-      original.toString('base64'),
-    );
+    assert.equal(manifest.entries.find(item => item.path === source).action, 'delete');
+    assert.equal(manifest.entries.find(item => item.path === folder + '/index.ts').action, 'create');
+    assert.equal(manifest.entries.find(item => item.path === source).data, original.toString('base64'));
     assert.throws(
       () =>
         verifyTypedManifest(
@@ -382,8 +340,8 @@ test('source/archive are atomic, immutable, hashed and confined to one Lesson', 
       /out-of-scope/,
     );
     assert.equal(matchingSnapshot(info, { ...info, head: sha('a') }), false);
-    fs.writeFileSync(path.join(root, folder, 'workflow.stage2.ts'), 'already created');
-    assert.throws(() => typedManifest(plan, info, original, tracked, root), /already exists/);
+    fs.writeFileSync(path.join(root, folder, 'index.ts'), 'already created');
+    assert.throws(() => typedManifest(plan, info, original, tracked, root), /collision/);
   }));
 
 test('SHA256 attestation rejects missing or tampered analysis report', () => {
@@ -416,6 +374,7 @@ test('typed publisher is importable without node_modules or any Engine source', 
       'scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs',
       'scripts/ci/courseMaterialization/course-gate.mjs',
+      'scripts/ci/reviewEvidence/review-evidence.mjs',
     ];
     for (const filename of files) {
       const target = path.join(isolated, filename);

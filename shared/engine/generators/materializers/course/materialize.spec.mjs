@@ -151,7 +151,7 @@ const lessonBridge = (node, ctx) => {
       lessonId,
       files: [
         {
-          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/index.ts',
+          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
             '// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n',
@@ -243,7 +243,7 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.equal(result.pendingPlacements.length, 1);
   const handoff = result.files.find(f => f.path === result.pendingPlacements[0].handoffPath);
   assert.ok(handoff);
-  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/index\.ts$/);
+  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.ok(!result.files.find(f => f.path === 'index.ts').content.includes('import { newLesson '));
   assert.match(result.files.find(f => f.path === 'index.ts').content, /TODO \(BLOCKER\): New Lesson Stage 1/);
@@ -258,16 +258,19 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
     config: { type: 'episode' },
     production: { focus: 'Situation', purpose: 'Transition' },
   };
-  const result = materializeCourse(draft, ctx());
+  const context = { ...ctx(), courseId: IDs.course, reviewedCourseSourceBlobSha: '1'.repeat(40) };
+  const result = materializeCourse(draft, context);
   assert.ok(result.diagnostics.some(d => d.code === 'pending-episode-scenario' && d.severity === 'blocker'));
-  const placeholder = result.files.find(f => f.path === 'content/directEpisode/index.ts').content;
-  assert.match(placeholder, /TODO \(BLOCKER\): Not implemented/);
-  assert.match(placeholder, /section = \{ items: \{  \}, order: \[\] \}/);
-  const sidecar = result.files.find(f => f.path === 'content/directEpisode/specification.md').content;
-  assert.match(sidecar, /Situation/);
-  assert.match(sidecar, /Transition/);
+  const handoff = result.files.find(f => f.path === 'content/directEpisode/draft.ts').content;
+  assert.match(handoff, /TODO \(BLOCKER\)/);
+  assert.match(handoff, /Situation/);
+  assert.match(handoff, /Transition/);
+  assert.doesNotMatch(handoff, /defineEpisode/);
+  assert.ok(!result.files.some(f => f.path === 'content/directEpisode/index.ts'));
+  assert.equal(result.pendingEpisodes.length, 1);
+  assert.doesNotMatch(result.files.find(f => f.path === 'index.ts').content, /import.*directEpisode/);
   syntax(result.files);
-  assert.deepEqual(result.files, materializeCourse(draft, ctx()).files);
+  assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();
   old.config.content.items.directLesson.config.lessonId = IDs.lesson;
   assert.throws(() => materializeCourse(old, ctx()), /belong to production/);
@@ -347,7 +350,7 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
             },
           ],
         };
-  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 index.ts/);
+  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 draft.ts/);
   const noAssessment = course();
   delete noAssessment.config.content.items.directLesson.production.assessment;
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);

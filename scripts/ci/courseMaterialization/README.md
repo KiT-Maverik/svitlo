@@ -1,18 +1,17 @@
 # Typed Course Stage 5 — trusted manual materialization
 
-The Course-owned TypeScript Stage 3 source is the only supported editorial input. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`; it is present in integration #775 but not deployed on default `develop` until the integration is merged. The obsolete Course YAML command and workflow have been removed from the integration tree. Until deployment, Stage 5 is unavailable through default-branch Actions; do not dispatch a removed command or bypass authorization.
+The Course-owned TypeScript Stage 3 source is the only supported editorial input. Follow the [canonical Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md): during Stage 4, replace the type-only import and `satisfies` clause on the existing exported Course object with `CourseWorkflowMaterializerInput`, then commit, reinspect and pin the final revision. Stage 5 consumes those exact reviewed bytes without editing the source. The single-export form is exercised by the full typed fixture in `typed-course-materialization.spec.mjs`. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before dispatch; never bypass authorization.
 
 ## Authorization and source fidelity
 
 To exercise the staged path on an open same-repository **Draft Course PR**:
 choose **Actions → Stage typed Course materialization (manual rollout)** and
 supply pr_number. The gate requires a single changed canonical
-content/<book>/data/courses/<UUID-last-hex>/<UUID>/index.ts,
-the current source blob SHA, an independent contributor with
-write/maintain/admin access who submitted a formal **APPROVED GitHub review
-at that exact PR HEAD**, and a write-authorized invoking actor. The source
-review and authorization are separate; TypeScript satisfies alone never
-grants approval. If approval is stale or withdrawn, refuse.
+content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
+the current source blob SHA, accepted Stage 4 evidence in the Course PR
+description using the [canonical independent review rule](../../../studio/rules/independent-review.md),
+and a write-authorized invoking actor. Review and command authorization are
+separate. Missing, rejected, duplicate or stale evidence fails closed.
 
 The **read-only analyze job** parses the Course PR TypeScript through trusted
 TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
@@ -24,7 +23,10 @@ fails closed. Imported Lesson code must already be present byte-for-byte
 in the trusted default branch AND in the candidate Git checkout with an
 independently pinned source revision and methodology. The trusted
 `Lesson_Configurator` and its real Build API are loaded solely from that
-default-branch implementation, never the Course PR. A Course-local sparse
+default-branch implementation, never the Course PR. Bundling preserves each
+original authored TypeScript module's file URL (including transitive Markdown
+and other file-relative resources) using the shared Configurator loader plugin.
+Editorial drafts cannot be reused or imported. A Course-local sparse
 patch retains its _original raw expression_ and is replayed against the
 reviewed built result; it is never reverse-engineered from Props. Changes to
 independently authored Lessons that exist only on a nested integration branch
@@ -42,16 +44,16 @@ contracts as virtual in-memory files before manifest creation and again
 before a privileged write.
 
 The read-only job writes a bounded artifact containing the complete generated
-file set, exact UTF-8 bytes and SHA-256 hashes, source blob, reviewer and
+file set, exact UTF-8 bytes and SHA-256 hashes, source blob, review verdict and
 review commit. **Only trusted default-branch scripts** execute in both jobs.
 Candidate TS is not imported, compiled to executable JS, or evaluated —
 including in the privileged publisher. The publisher rechecks the actor and
 independent Stage 4 review at the pinned HEAD, rereads original source/blob,
 recreates the identical plan from inert AST, checks every target for symlinks
-and clobbers, and builds **one Git Data API tree commit** that both replaces
-index.ts and archives exact original bytes at workflow.stage3.ts. It checks
-the branch/PR before a non-force ref update. There is no PR-description edit,
-Course Props publication, child Lesson Production or automatic bank work.
+and clobbers, and builds **one Git Data API tree commit** that deletes the reviewed
+draft.ts and creates index.ts plus all approved outputs. Exact original bytes
+remain available at the pinned parent commit and blob. It checks
+the branch/PR before a non-force ref update. A separate metadata-only job verifies the committed manifest and reconciles Lessons and Episodes tables in the current PR description. No Course Props publication, child Lesson/Episode production or automatic bank work occurs.
 
 ### Validation and activation
 
@@ -69,15 +71,15 @@ Before these focused tests, run:
 
     node scripts/ci/courseMaterialization/build-course-renderers.mjs
 
-This transient trusted-only esbuild compilation supports isolated regressions
-while the parent #775 full Engine TypeScript build currently fails in
-Lesson Stage 6 sources. It is not a substitute for those real Engine gates.
+This transient trusted-only esbuild compilation supports isolated regressions. It is not a substitute for those real Engine gates.
 The typed PR-targeted test job also requires the actual
 `npm run code:check:types --workspace @svitlo/engine`; failure must be
 reported and repaired in its owning workstream, not silently skipped.
 
 The Engine tests check real source renderers, generated TS compilation and
 Git-source writer. A complete successful Actions run on the default branch
-against a pinned Course PR SHA is still required. This staged route has
-**no claimed successful live run** while it exists only in this child Draft.
-A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational. No live run has been verified here.
+against a pinned Course PR SHA is still required. A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational.
+
+## Course PR inventory reconciliation
+
+Only after the exact source commit succeeds, the publisher emits the commit/manifest digest proof. The separate `reconcile-pr-tables` job has contents read and pull-requests write permissions, verifies the manifest digest, commit parent, commit provenance and actual generated Git blobs, then updates the two managed blocks. It re-reads the current PR and body before editing, uses an ETag precondition and verifies the resulting body. GitHub's PR REST endpoint does not document a transactional body compare-and-swap; human edits during the final request cannot be absolutely locked. Avoid concurrent description edits while this job runs. On an observed race, stale HEAD or malformed markers it refuses to write. If source publication succeeds but metadata fails, **rerun only the failed metadata job of the same workflow run** while the artifact is available and the materialization commit remains HEAD. Do not dispatch materialization again. The source commit remains valid; if HEAD has advanced, explicitly reconcile from the verified historical run/commit instead of overwriting current metadata. No child PR is created by either job.
