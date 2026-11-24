@@ -4,7 +4,9 @@ import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
-import { courseStage3, independentLessonConfig, courseId } from '../directMaterialization/fixtures/worker-inputs.mjs';
+import {
+  courseStage3, independentLessonConfig, courseId, overriddenLessonId,
+} from '../directMaterialization/fixtures/worker-inputs.mjs';
 
 import { buildTypedCourseManifest, verifyCourseDependencies } from './typed-course-direct.mjs';
 import { verifyTypedCourseManifest } from './typed-course-publish.mjs';
@@ -59,7 +61,10 @@ test('direct Course manifest binds reviewed source to deterministic authored out
 test('actual Course source plan binds every generated Lesson seed and Episode handoff to the trusted manifest', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
-  const actual = courseStage3(defineLesson(independentLessonConfig()));
+  const actual = courseStage3(
+    defineLesson(independentLessonConfig()),
+    defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+  );
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
     version: 2,
