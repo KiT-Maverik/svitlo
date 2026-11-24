@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
-import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
 import { materializeContentSection } from '../contentSection/contentSection';
 import { materializePracticeSection } from '../practiceSection/practiceSection';
@@ -39,7 +39,7 @@ export type LessonStage6Options = {
   source: LessonStage6Source;
   /** Verify that the inert parsed object and exact bytes came from the pinned source. */
   verifySourceInput: (
-    input: Readonly<LessonWorkflowMaterializerInput>,
+    input: Readonly<LessonWorkflowStage2>,
     source: Readonly<LessonStage6Source>,
     sourceText: string,
   ) => boolean;
@@ -97,7 +97,7 @@ function node(value: unknown, at: string): Node {
  * Every original node's production remains attached to its stable UUID.
  * Never create a Section, Block, media value, Question or Flashcard ID.
  */
-function normalizeStage2(input: LessonWorkflowMaterializerInput) {
+function normalizeStage2(input: LessonWorkflowStage2) {
   const metadata = new Map<string, Record<string, unknown>>();
   const seen = new Set<string>([input.config.id]);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
@@ -201,7 +201,7 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
 export function materializeLessonStage6(
-  input: LessonWorkflowMaterializerInput,
+  input: LessonWorkflowStage2,
   options: LessonStage6Options,
 ): LessonStage6Plan {
   if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
