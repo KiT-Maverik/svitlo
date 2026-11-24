@@ -76,7 +76,9 @@ const bankOptions = input => {
     content: sourceText,
     blobSha: source.sourceBlobSha,
     commitSha: source.sourceCommitSha,
-    inputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
+    inputSha256: createHash('sha256')
+      .update(JSON.stringify(input, null, 2))
+      .digest('hex'),
   };
   const snapshot = {
     complete: true,
