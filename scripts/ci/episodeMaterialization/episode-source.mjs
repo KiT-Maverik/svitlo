@@ -1,6 +1,7 @@
 /** Inert Episode draft parsing and deterministic restoration of one reserved parent slot. */
 import ts from 'typescript';
 import { isDeepStrictEqual } from 'node:util';
+import { createRequire } from 'node:module';
 import { decodeLiteral } from '../courseMaterialization/typed-course-source.mjs';
 import { materializeEpisode } from '../../../shared/engine/generators/materializers/episode/materialize.mjs';
 
@@ -225,6 +226,11 @@ export function restoreEpisodePlacement(parent, placement, exportName, { rootPar
 
 export function planEpisode(handoff, reviewed, meta, parentSource, materializeSection) {
   verifyEpisodeHandoff(handoff, reviewed, meta);
+  // Reuse Engine's runtime contract for the actual final editorial input.
+  const requireTrusted = createRequire(import.meta.url);
+  const { episodeWorkflowStage1Handoff_Schema, episodeWorkflowStage2_Schema } = requireTrusted('@svitlo/engine/build');
+  episodeWorkflowStage1Handoff_Schema.parse(handoff);
+  episodeWorkflowStage2_Schema.parse(reviewed);
   const production = reviewed.production;
   const { document, planned } = production.languages;
   const placement = meta.placement;

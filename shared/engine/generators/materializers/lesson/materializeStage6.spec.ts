@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import ts from 'typescript';
 import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
+import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
@@ -722,4 +723,49 @@ test('final Lesson schema rejects invalid nested input before rendering', () => 
   Object.assign(config, broken);
   assert.equal(lessonWorkflowStage2_Schema.safeParse(invalid).success, false);
   assert.throws(() => produce(invalid), /Invalid Lesson Stage 2 input/);
+});
+
+test('Episode shares ordinary Section contracts without importing Lesson assessment ownership', () => {
+  const lesson = valid();
+  const episode = {
+    config: {
+      type: 'episode',
+      id: id('33'),
+      slug: 'transition',
+      locale: lesson.config.locale,
+      section: lesson.config.section,
+    },
+    production: {
+      focus: 'Reviewed transition',
+      purpose: 'Continue the narrative',
+      placement: { courseId: id('34'), path: 'content/transition', orderPath: [0], reviewedCourseSourceBlobSha: 'a'.repeat(40) },
+      languages: lesson.production.languages,
+      scenario: {
+        audience: 'Beginners',
+        entrySituation: 'Arrival',
+        exitSituation: 'Observation',
+        continuity: 'Next scene',
+        sceneIntent: 'Show the setting',
+        interactionIntent: 'Read and reflect',
+        accessibility: 'Equivalent text',
+        narrativeConstraints: 'No new assessment',
+      },
+      specification: 'Reviewed narrative',
+    },
+  };
+  assert.equal(episodeWorkflowStage2_Schema.safeParse(episode).success, true);
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, skills: lesson.config.skills },
+    }).success,
+    false,
+  );
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, events: { unsupported: {} } },
+    }).success,
+    false,
+  );
 });
