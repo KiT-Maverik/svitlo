@@ -375,6 +375,7 @@ test('typed publisher is importable without node_modules or any Engine source', 
       'scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs',
       'scripts/ci/courseMaterialization/course-gate.mjs',
+      'scripts/ci/reviewEvidence/review-evidence.mjs',
     ];
     for (const filename of files) {
       const target = path.join(isolated, filename);

@@ -9,6 +9,7 @@ on:
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
+      - 'scripts/ci/reviewEvidence/**'
       - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
       - '.github/workflows/bank-materialization.yml'
@@ -49,7 +50,7 @@ jobs:
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.

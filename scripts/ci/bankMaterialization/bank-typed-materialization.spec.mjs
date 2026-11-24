@@ -222,6 +222,12 @@ test('typed publisher imports in a zero-dependency read-only environment', () =>
     for (const name of names) {
       copyFileSync(path.join(root, 'scripts/ci/bankMaterialization', name), path.join(dir, name));
     }
+    const evidenceDir = path.join(isolated, 'scripts/ci/reviewEvidence');
+    mkdirSync(evidenceDir, { recursive: true });
+    copyFileSync(
+      path.join(root, 'scripts/ci/reviewEvidence/review-evidence.mjs'),
+      path.join(evidenceDir, 'review-evidence.mjs'),
+    );
     assert.equal(existsSync(path.join(isolated, 'node_modules')), false);
     assert.equal(existsSync(path.join(isolated, 'shared/engine')), false);
     const result = spawnSync(
