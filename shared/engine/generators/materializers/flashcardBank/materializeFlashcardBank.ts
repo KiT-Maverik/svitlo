@@ -292,11 +292,26 @@ function planFlashcardBank(
   files.push({
     path: 'flashcardsLanguages.ts',
     kind: 'typescript',
-    content:
-      '// Approved document language only; independent translations are not generated.\n' +
-      'export const languages = ' +
-      JSON.stringify([languages.document]) +
-      ' as const;\n',
+    content: [
+      "import type { SupportedLanguages } from '@svitlo/engine/build';",
+      '',
+      ...( languages.planned.length > 1 ? [
+        '// TODO (BLOCKER): Restore reviewed flashcards languages only after independent translation review.',
+        '// export const languages = [',
+        ...languages.planned.map(language => '//   ' + JSON.stringify(language) + ','),
+        '// ] as const satisfies SupportedLanguages;',
+        '',
+      ] : []),
+      'export const languages = ' + JSON.stringify([languages.document]) + ' as const satisfies SupportedLanguages;',
+      'export type Languages = typeof languages;',
+      '',
+    ].join('\n'),
+  });
+  if (languages.planned.length > 1) diagnostics.push({
+    path: 'flashcardsLanguages.ts',
+    code: 'pending-locales',
+    severity: 'warning',
+    message: 'Restore reviewed flashcards languages after translation approval',
   });
   const plan = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'flashcards/index.ts',
