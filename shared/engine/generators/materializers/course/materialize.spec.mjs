@@ -246,7 +246,8 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.match(result.files.find(f => f.path === 'index.ts').content,
     /"newLesson": defineLessonStub\(\{ id:/);
-  assert.match(result.files.find(f => f.path === 'index.ts').content,
+  // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
+  assert.doesNotMatch(result.files.find(f => f.path === 'index.ts').content,
     /TODO \(BLOCKER\): Finish and independently materialize pending Lesson/);
   assert.equal(reused[2].assessment.quizSectionRequired, true);
   assert.equal(reused[2].reviewedMethodology, 'Reviewed comprehensive independent methodology');
