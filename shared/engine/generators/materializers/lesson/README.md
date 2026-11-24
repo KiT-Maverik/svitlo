@@ -14,6 +14,8 @@
 
 The Lesson family owns ten separate implementations and adjacent tests: `lesson`, `contentSection`, `practiceSection`, `codingTaskSection`, `learningFlowSection`, `flashcardsSection`, `quizSection`, `questSection`, `questStage`, `questTask`. Each kind handles its real `define*` Config boundary; nested ContentBlocks are delegated to the distinct concrete Block materializers. Quest is a **Build-only** authoring Section without Lesson/Episode runtime registration. Do not make it publishable by disguising it as another Section.
 
+Quest modules are emitted in their authored `sections/<slug>/` directory, but are excluded from the generated `defineLesson` Section map and order. The root retains a `TODO (BLOCKER)` and diagnostic until a separately authorized runtime contract exists. This keeps generated TypeScript valid against current Engine exports while preserving the reviewed Quest source.
+
 An authored required Quiz/Flashcards Section must be **enabled and present** before complete Lesson emission. Missing/disabled required Sections fail closed; an existing but unfinished enabled Section may emit a visibly blocked non-publishable draft. `params.quizRequiredForCompletion` independently requires a real enabled Quiz. The full bank, Quiz selection and Flashcards selection are separate editorial decisions. A Course handoff must never manufacture a fake complete Lesson, Section, Card or Question to satisfy these requirements.
 
 ## Typed source and imported assessment references

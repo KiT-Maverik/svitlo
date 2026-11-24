@@ -1,7 +1,7 @@
 import { posix } from 'node:path';
 import ts from 'typescript';
 
-import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import type { Result } from './lesson';
 
 /**
@@ -101,7 +101,7 @@ function rebaseImport(module: string, sourcePath: string, generatedPath: string)
   const relative = posix.relative(posix.dirname(generatedPath), resolved);
   return relative.startsWith('.') ? relative : './' + relative;
 }
-function pickSelections(source: string, sourcePath: string, input: LessonWorkflowMaterializerInput): Selection[] {
+function pickSelections(source: string, sourcePath: string, input: LessonWorkflowStage2): Selection[] {
   const file = ts.createSourceFile(sourcePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length)
     throw new Error('Stage 6: reviewed Stage 2 TypeScript has syntax errors');
@@ -219,7 +219,7 @@ function applySelection(source: string, filePath: string, selection: Selection):
 export function preserveAssessmentReferences(
   sourceText: string,
   sourcePath: string,
-  input: LessonWorkflowMaterializerInput,
+  input: LessonWorkflowStage2,
   files: Result['files'],
 ): Result['files'] {
   const selections = pickSelections(sourceText, sourcePath, input);

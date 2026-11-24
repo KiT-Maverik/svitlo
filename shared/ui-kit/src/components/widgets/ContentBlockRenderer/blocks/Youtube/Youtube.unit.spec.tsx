@@ -38,14 +38,22 @@ afterEach(() => {
 describe('YouTube content block', () => {
   it.each(['link', 'embed'] as const)('renders a pending %s without navigation or retry', mode => {
     setOnline(true);
+    const scriptsBefore = [...document.querySelectorAll('script[src]')].map(script => script.getAttribute('src'));
     const { container } = render(
-      <Youtube messages={enUiKitMessages.youtube} {...response}
-        params={{ mode }} locale={{ ...response.locale, href: UNRESOLVED_YOUTUBE_HREF }} />,
+      <Youtube
+        messages={enUiKitMessages.youtube}
+        {...response}
+        params={{ mode }}
+        locale={{ ...response.locale, href: UNRESOLVED_YOUTUBE_HREF }}
+      />,
     );
     expect(screen.getByRole('status')).toHaveTextContent('Відео не відтворюється');
     expect(screen.queryByRole('link')).toBeNull();
     expect(screen.queryByRole('button')).toBeNull();
     expect(container.querySelector('iframe')).toBeNull();
+    expect([...document.querySelectorAll('script[src]')].map(script => script.getAttribute('src'))).toEqual(
+      scriptsBefore,
+    );
   });
 
   it('shows the offline placeholder without creating an iframe', () => {

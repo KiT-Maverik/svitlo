@@ -142,8 +142,7 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   }
 });
 
-test('generated Lesson source passes the real TypeScript semantic checker', () => {
-  const plan = produce();
+function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>): void {
   // Resolve the checkout containing the compiled test, never the caller's cwd.
   let workspace = __dirname;
   while (!existsSync(join(workspace, 'shared/engine/package.json'))) {
@@ -180,8 +179,10 @@ test('generated Lesson source passes the real TypeScript semantic checker', () =
     [],
     'emitted modules must be assignable to actual @svitlo/engine/build contracts',
   );
+}
+test('generated Lesson source passes the real TypeScript semantic checker', () => {
+  assertSemanticModules(produce());
 });
-
 test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
   const plan = produce();
   const sources = new Map(
@@ -267,13 +268,17 @@ test('incomplete Lesson params and source-language plan fail closed without fabr
   delete (input.config.params as { sections?: unknown }).sections;
   const root = produce(input).files.find(file => file.path.endsWith('/index.ts') || file.path === 'index.ts');
   assert.ok(root);
-  const output = produce(input).files.map(file => file.content).join('\n');
+  const output = produce(input)
+    .files.map(file => file.content)
+    .join('\n');
   for (const key of ['allowNavigation', 'allowSkipping', 'showIndexes'])
     assert.match(output, new RegExp('"' + key + '": true'));
   const partial = valid();
   partial.config.params.sections.allowNavigation = false;
   delete (partial.config.params.sections as { showIndexes?: boolean }).showIndexes;
-  const partialOutput = produce(partial).files.map(file => file.content).join('\n');
+  const partialOutput = produce(partial)
+    .files.map(file => file.content)
+    .join('\n');
   assert.match(partialOutput, /"allowNavigation": false/);
   assert.match(partialOutput, /"showIndexes": true/);
   const missingPolicy = valid();
@@ -461,4 +466,250 @@ test('planned translations and missing Scene remain explicit nonpublishable bloc
   const plan = produce(translated);
   assert(plan.diagnostics.some(item => item.code === 'pending-lesson'));
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+});
+
+test('typed Stage 2 media placeholders survive nested materialization and fail publication', () => {
+  const resource = (purpose: string) => ({
+    purpose,
+    specification: 'Produce the reviewed learning resource',
+    accessibility: 'Provide equivalent accessible content',
+    offline: 'Provide an offline learning path',
+  });
+  const image = (slug: string, number: string, fileName?: string) => ({
+    config: {
+      id: id(number),
+      slug,
+      type: 'image' as const,
+      params: { width: 640, height: 480 },
+      locale: { alt: { en: 'An accessible diagram', uk: 'Український опис' }, ...(fileName ? { fileName } : {}) },
+    },
+    production: resource('Explain the diagram'),
+  });
+  const video = (slug: string, number: string, fileName?: string) => ({
+    config: {
+      id: id(number),
+      slug,
+      type: 'video' as const,
+      params: {},
+      locale: { label: { en: 'Watch the explanation' }, ...(fileName ? { fileName } : {}) },
+    },
+    production: resource('Show the process'),
+  });
+  const audio = (slug: string, number: string) => ({
+    config: { id: id(number), slug, type: 'audio' as const, params: {}, locale: { title: { en: 'Narration' } } },
+    production: resource('Narrate the process'),
+  });
+  const subtitles = (slug: string, number: string) => ({
+    config: { id: id(number), slug, type: 'subtitles' as const, params: {}, locale: {} },
+    production: resource('Caption the process'),
+  });
+  const scene = {
+    config: {
+      id: id('28'),
+      slug: 'interaction',
+      type: 'scene' as const,
+      params: {},
+      locale: { value: { title: { en: 'Try it' } } },
+    },
+    production: resource('Practice the concept'),
+  };
+  const base = valid();
+  const fixture: LessonWorkflowStage2 = {
+    config: {
+      ...base.config,
+      skills: [id('04')],
+      section: {
+        items: {
+          introduction: {
+            ...base.config.section.items.introduction,
+            config: {
+              ...base.config.section.items.introduction.config,
+              content: {
+                items: {
+                  prompt: base.config.section.items.introduction.config.content.items.prompt,
+                  image: image('image', '09'),
+                  video: video('video', '10'),
+                  audio: audio('audio', '11'),
+                  subtitles: subtitles('subtitles', '12'),
+                  link: {
+                    config: {
+                      id: id('13'),
+                      slug: 'link',
+                      type: 'youtube',
+                      params: { mode: 'link' },
+                      locale: { label: 'Open video' },
+                    },
+                    production: resource('Offer the source video'),
+                  },
+                  embed: {
+                    config: {
+                      id: id('14'),
+                      slug: 'embed',
+                      type: 'youtube',
+                      params: { mode: 'embed' },
+                      locale: { label: 'Watch video', href: { uk: 'https://www.youtube.com/watch?v=real' } },
+                    },
+                    production: resource('Show the source video'),
+                  },
+                  carousel: {
+                    config: {
+                      id: id('15'),
+                      slug: 'carousel',
+                      type: 'carousel',
+                      params: {},
+                      locale: {},
+                      slides: { items: { slide: image('slide', '16', id('29') + '.png') }, order: ['slide'] },
+                    },
+                  },
+                  checkpoint: {
+                    config: {
+                      id: id('17'),
+                      slug: 'checkpoint',
+                      type: 'checkpoint',
+                      params: { requireCompletion: true },
+                      locale: { title: 'Check' },
+                      content: {
+                        items: {
+                          first: {
+                            config: {
+                              id: id('18'),
+                              slug: 'first',
+                              type: 'checkpointItem',
+                              check: true,
+                              question: {
+                                config: {
+                                  id: id('19'),
+                                  slug: 'question',
+                                  type: 'text',
+                                  params: {},
+                                  locale: { value: 'What happened?' },
+                                },
+                                production: { purpose: 'Ask the learner' },
+                              },
+                              answer: {
+                                config: {
+                                  id: id('20'),
+                                  slug: 'answer',
+                                  type: 'checkpointAnswer',
+                                  content: {
+                                    items: { answerImage: image('answerImage', '21') },
+                                    order: ['answerImage'],
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                        order: ['first'],
+                      },
+                    },
+                  },
+                },
+                order: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
+              },
+            },
+          },
+          quest: {
+            config: {
+              id: id('22'),
+              slug: 'quest',
+              type: 'quest',
+              params: {},
+              locale: { title: 'Quest', navigationLabel: 'Q' },
+              stages: {
+                start: {
+                  config: {
+                    id: id('23'),
+                    slug: 'start',
+                    type: 'questStage',
+                    content: {
+                      video: { medium: video('medium', '24'), small: video('small', '25', id('30') + '.mp4') },
+                      audio: { dialogue: audio('dialogue', '26'), narration: null, background: null },
+                      image: image('questImage', '27'),
+                      subtitles: subtitles('questSubtitles', '31'),
+                    },
+                  },
+                },
+              },
+              tasks: { start: { config: { id: id('32'), slug: 'start', type: 'questTask', scene } } },
+            },
+            production: { ...resource('Guide practice'), runtimeStatus: 'unimplemented' },
+          },
+        },
+        order: ['introduction', 'quest'],
+      },
+    },
+    production: { ...base.production, languages: { document: 'en', planned: ['en'] } },
+  };
+  const plan = materializeLessonStage6(fixture, options);
+  assert.deepEqual(plan, materializeLessonStage6(fixture, options));
+  const lessonRoot = plan.files.find(file => file.path === folder + 'index.ts')?.content ?? '';
+  assert.match(lessonRoot, /TODO \(BLOCKER\): Quest is Build-only/);
+  assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
+  assert.match(lessonRoot, /"order": \["introduction"\]/);
+  assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
+  assert(plan.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Quest is Build-only')));
+  const pending = plan.diagnostics.filter(item => item.code === 'pending-media');
+  assert.equal(pending.length, 14);
+  assert.deepEqual(
+    pending.reduce<Record<string, number>>((counts, item) => {
+      counts[item.path] = (counts[item.path] ?? 0) + 1;
+      return counts;
+    }, {}),
+    {
+      '$.config.locale.fileName': 9,
+      '$.config.locale.posterFileName': 3,
+      '$.config.locale.href': 1,
+      '$.config.locale.href.en': 1,
+    },
+  );
+  assert(pending.every(item => item.severity === 'warning' && item.message.includes('verified')));
+  for (const [path, extension] of [
+    ['sections/introduction/content/items/image/index.ts', 'webp'],
+    ['sections/introduction/content/items/video/index.ts', 'mp4'],
+    ['sections/introduction/content/items/video/index.ts', 'webp'],
+    ['sections/introduction/content/items/audio/index.ts', 'mp3'],
+    ['sections/introduction/content/items/subtitles/index.ts', 'vtt'],
+  ]) {
+    const source = plan.files.find(file => file.path === folder + path)?.content ?? '';
+    assert.match(
+      source,
+      new RegExp('TODO \\(BLOCKER\\):[^\\n]+\\n"00000000-0000-0000-0000-000000000000\\.' + extension + '"'),
+    );
+  }
+  for (const path of ['link', 'embed']) {
+    const source =
+      plan.files.find(file => file.path === folder + 'sections/introduction/content/items/' + path + '/index.ts')
+        ?.content ?? '';
+    assert.match(
+      source,
+      /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
+    );
+  }
+  const carouselSlide =
+    plan.files.find(file => file.path.endsWith('/carousel/slides/items/slide/index.ts'))?.content ?? '';
+  assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
+  assert.match(carouselSlide, /An accessible diagram/);
+  assert.doesNotMatch(carouselSlide, /Український опис/);
+  const resolved = structuredClone(fixture);
+  const blocks = resolved.config.section.items.introduction;
+  if (blocks.config.type !== 'content') throw new Error('Expected content Section');
+  for (const slug of ['link', 'embed']) {
+    const block = blocks.config.content.items[slug];
+    if (block.config.type !== 'youtube') throw new Error('Expected YouTube block');
+    block.config.locale.href =
+      slug === 'link'
+        ? 'https://www.youtube.com/watch?v=real'
+        : { en: 'https://www.youtube.com/watch?v=real', uk: 'https://www.youtube.com/watch?v=other' };
+  }
+  const resolvedPlan = materializeLessonStage6(resolved, options);
+  assert.equal(resolvedPlan.diagnostics.filter(item => item.code === 'pending-media').length, 12);
+  for (const slug of ['link', 'embed']) {
+    const source = resolvedPlan.files.find(file => file.path.endsWith('/' + slug + '/index.ts'))?.content ?? '';
+    assert.match(source, /https:\/\/www\.youtube\.com\/watch\?v=real/);
+    assert.doesNotMatch(source, /UNRESOLVED|00000000-0000-0000-0000-000000000000/);
+    assert.doesNotMatch(source, /Український|other/);
+  }
+  assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+  assertSemanticModules(plan);
 });
