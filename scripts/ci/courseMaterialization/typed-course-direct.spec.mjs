@@ -3,6 +3,10 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
 import {
   courseStage3,
@@ -12,7 +16,8 @@ import {
 } from '../directMaterialization/fixtures/worker-inputs.mjs';
 
 import { buildTypedCourseManifest, verifyCourseDependencies } from './typed-course-direct.mjs';
-import { verifyTypedCourseManifest } from './typed-course-publish.mjs';
+import { buildCourseCommitMetadata, verifyTypedCourseManifest } from './typed-course-publish.mjs';
+import { manifestDigest } from './course-handoff-publish.mjs';
 const id = '663572e7-bd85-4516-86e2-3de07d209e03';
 const sourcePath = 'content/playground/data/courses/3/' + id + '/draft.ts';
 const meta = {
@@ -62,6 +67,78 @@ test('direct Course manifest binds reviewed source to deterministic authored out
         assessments: [],
       },
     }),
+  );
+});
+
+test('Course publisher writes the canonical manifest digest into its commit proof', () => {
+  const manifest = buildTypedCourseManifest(meta, plan);
+  const { digest, message } = buildCourseCommitMetadata(meta, manifest);
+  assert.equal(digest, manifestDigest(manifest));
+  assert.equal(
+    message,
+    'Materialize reviewed typed Course ' +
+      meta.courseId +
+      '\n\nCourse-PR: #' +
+      meta.number +
+      '\nSource-Blob: ' +
+      meta.sourceBlobSha +
+      '\nCourse-Inventory-Manifest: ' +
+      digest,
+  );
+});
+
+test('existing Lesson commit revision preserves trailing source newline and rejects drift', t => {
+  const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-lesson-revision-'));
+  t.after(() => fs.rmSync(temporary, { recursive: true, force: true }));
+  const candidate = path.join(temporary, 'candidate');
+  const trusted = path.join(temporary, 'trusted');
+  fs.mkdirSync(candidate);
+  const git = (...args) =>
+    execFileSync('git', ['-C', candidate, ...args], { encoding: 'utf8' }).trim();
+  git('init', '-q');
+  git('config', 'user.email', 'course-fixture@example.test');
+  git('config', 'user.name', 'Course Fixture');
+  const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const filename = 'content/playground/data/lessons/c/' + lessonId + '/index.ts';
+  const localFile = path.join(candidate, filename);
+  fs.mkdirSync(path.dirname(localFile), { recursive: true });
+  fs.writeFileSync(localFile, 'export const fixtureLesson = true;\n');
+  git('add', filename);
+  git('commit', '-qm', 'Reviewed existing Lesson');
+  const lessonCommit = git('rev-parse', 'HEAD');
+  const lessonBlob = git('rev-parse', 'HEAD:' + filename);
+  execFileSync('git', ['clone', '-q', candidate, trusted], { encoding: 'utf8' });
+
+  const row = {
+    type: 'lesson',
+    kind: 'reused',
+    id: lessonId,
+    sourcePath: filename,
+    sourceSha: lessonCommit,
+    placementPath: 'content/playground/data/courses/3/' + id + '/content/reused',
+  };
+  const revisionPlan = {
+    courseId: id,
+    publishable: false,
+    inventory: { lessons: [row], episodes: [], assessments: [] },
+  };
+  assert.doesNotThrow(() => verifyCourseDependencies(meta, candidate, trusted, revisionPlan));
+  assert.doesNotThrow(() =>
+    verifyCourseDependencies(meta, candidate, trusted, {
+      ...revisionPlan,
+      inventory: {
+        ...revisionPlan.inventory,
+        lessons: [{ ...row, sourceSha: lessonBlob }],
+      },
+    }),
+  );
+
+  fs.writeFileSync(localFile, 'export const fixtureLesson = false;\n');
+  git('add', filename);
+  git('commit', '-qm', 'Change imported Lesson');
+  assert.throws(
+    () => verifyCourseDependencies(meta, candidate, trusted, revisionPlan),
+    /Existing Lesson is not identical to its reviewed source revision/,
   );
 });
 
