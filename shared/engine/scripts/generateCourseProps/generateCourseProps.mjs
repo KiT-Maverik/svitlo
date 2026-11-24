@@ -138,6 +138,7 @@ export async function render(pkg, mode) {
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
+      mode,
       projectMedia: (entry, language) =>
         projectTextbookMedia(entry, {
           textbookRoot: pkg,
