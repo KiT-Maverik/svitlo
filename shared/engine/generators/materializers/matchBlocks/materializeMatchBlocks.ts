@@ -25,6 +25,8 @@ export type MatchBlocksContext = {
   directory: string;
   /** Same production-only language plan structure as CourseWorkflowStage1Languages. */
   languages: { document: LanguageCode; planned: SupportedLanguages };
+  /** Bank-only: bind the owning Lesson's Languages type rather than a copied tuple. */
+  ownerLanguagesImport?: string;
   /** The parent binds the matching concrete ContentBlock renderer. */
   materializeBlock: (
     node: { config: PlainBlock; production?: Record<string, unknown> },
@@ -276,6 +278,9 @@ export function materializeMatchBlocks(node: MatchBlocksNode, context: MatchBloc
     kind: 'typescript',
     content: [
       "import { defineMatchBlocks } from '@svitlo/engine/build';",
+      ...(context.ownerLanguagesImport
+        ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+        : []),
       ...imports.sort(),
       '',
       ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
@@ -284,9 +289,9 @@ export function materializeMatchBlocks(node: MatchBlocksNode, context: MatchBloc
         exportedName +
         ' = defineMatchBlocks<' +
         JSON.stringify(name) +
-        ', typeof content, [' +
-        JSON.stringify(context.languages.document) +
-        ']>({\n' +
+        ', typeof content, ' +
+        (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(context.languages.document) + ']') +
+        '>({\n' +
         metadata +
         '\n  content,\n});\n',
     ].join('\n'),
