@@ -250,6 +250,11 @@
     "description": "Create or edit authored Courses, Course plans, or Course-specific educational content"
   },
   {
+    "name": "work: episode",
+    "color": "7C3AED",
+    "description": "Create or edit authored Course-owned Episodes, narrative scenarios, or Episode content"
+  },
+  {
     "name": "work: lesson",
     "color": "7C3AED",
     "description": "Create or edit authored Lessons, methodology, or Lesson-specific educational content"

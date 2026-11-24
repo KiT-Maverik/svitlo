@@ -28,6 +28,8 @@ See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
 A provisional Course Episode placement is narrative intent, not a completed Episode. The current Course materializer emits a blocked scaffold; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
 
+The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the trusted materializer and Course inventory must support that boundary before it can be used. An existing blocked scaffold is not a completed handoff.
+
 ## Quest Section in Episodes (planned runtime)
 
 An Episode may eventually host a [Quest Section](./quest.md) for Course-owned interactive story beats, media reactions, missions and branching decisions. The Quest is the autonomous **Section**; the Episode remains the Course-level narrative container. The Build-only Quest Config exists separately, but current Episode composition/publication and UI rendering do **not** yet accept or run Quest. Do not embed an unregistered Quest as a content block or claim a runnable story.
