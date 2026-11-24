@@ -31,6 +31,10 @@ npm test
 
 Start the Web host with an explicitly installed content package, for example `SVITLO_TEXTBOOK=math npm run app:start:dev --workspace @svitlo/web`, or the Platform with `npm run app:start:dev --workspace @svitlo/platform`. Other checks and build commands are listed in the root `package.json`.
 
+## Course-owned Assessment (in development)
+
+The proposed independent [Assessment](studio/docs/entities/assessment.md) is an ordered Course-owned evaluation activity that may be placed directly under a Course, Module or Chapter and reuse externally published Lesson Question Banks through Quiz Sections. Its [authoring workflow](studio/skills/assessment-workflow/create-assessment-flow.skill.md), full materialization and TOC integration are being developed in [PR #826](https://github.com/KiT-Maverik/svitlo/pull/826), with direct-materializer work in #823. It must not be treated as an already supported runtime capability.
+
 ## Typed educational production
 
 Course, Episode, Lesson, Question Bank and Flashcard Bank production each use one progressively typed UUID-addressed `draft.ts` editorial source. Authorized materialization consumes the exact reviewed draft and creates the canonical modular `index.ts` in one Git commit. Course and Episode Stage 5, Lesson Stage 6.1 and independent Bank Stage 5 emit authored TypeScript, not release approval. Verify the deployed trusted workflow and exact pinned-source Actions run before claiming operational materialization. None of the five trusted materialization commands parses editorial workflow state or review verdicts as technical eligibility; reviews remain editorial responsibilities. Lesson Stage 6.1 also does not require Course provenance. See [typed production architecture](studio/docs/architecture/typed-production-materialization.md), [Course workflow](studio/skills/course-workflow/create-course-flow.skill.md), [Episode workflow](studio/skills/episode-workflow/create-episode-flow.skill.md), [Lesson workflow](studio/skills/lesson-workflow/create-lesson-flow.skill.md) and [Engine source runbook](shared/engine/scripts/README.md). Historical YAML is provenance, not a parallel authoring input.
