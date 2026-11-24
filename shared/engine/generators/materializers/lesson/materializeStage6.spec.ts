@@ -476,7 +476,7 @@ test('planned translations and missing Scene remain explicit nonpublishable bloc
   const translated = valid();
   translated.production.languages.planned.push('uk');
   const plan = produce(translated);
-  assert(plan.diagnostics.some(item => item.code === 'pending-lesson'));
+  assert(plan.diagnostics.some(item => item.code === 'pending-localizations'));
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
 });
 
