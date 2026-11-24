@@ -115,7 +115,8 @@ test('stale/tampered Scene implementation, specifications, registry and media ne
 test('unresolved media scaffolds remain distinct from verified assets', t => {
   const f = fixture(t);
   const noAsset = f.image();
-  noAsset.config.locale.fileName = '00000000-0000-0000-0000-000000000000.svg';
+  noAsset.config.locale.fileName = '00000000-0000-0000-0000-000000000000.webp';
+  delete noAsset.production.mediaSourcePath;
   const placeholder = f.resolve(f.input({ diagram: noAsset }));
   assert.deepEqual([...placeholder.unresolvedMediaBlockIds], [imageId]);
   assert.deepEqual([...placeholder.approvedMediaBlockIds], []);
@@ -146,7 +147,7 @@ test('missing media field is an unresolved source scaffold, never an approved as
 test('missing Scene registry entry yields a Question-only TODO scaffold, not approval', t => {
   const f = fixture(t);
   const registry = repoPath + '/scenes/sceneLoader.ts';
-  file(f.root, registry, 'const sceneImports = {};\\n');
+  file(f.root, registry, 'const sceneImports = {};\n');
   git(f.root, 'add', registry);
   git(f.root, 'commit', '-m', 'Not implemented yet', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
