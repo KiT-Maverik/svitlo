@@ -190,7 +190,6 @@ test('omitting locale enumerates only the languages declared by a scoped Lesson'
     );
   }));
 
-
 test('exact Lesson UUID bypasses unrelated malformed lessons and fails for a missing entity', () =>
   setup(root => {
     const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -211,7 +210,10 @@ test('exact Lesson UUID bypasses unrelated malformed lessons and fails for a mis
       saveManifest() {},
     });
     assert.deepEqual(selected, { discoveredLessons: 1, generated: 1, failures: 0 });
-    assert.deepEqual(manifest.generated.map(row => row.path), ['lessons/playground/c/' + id + '/en.md']);
+    assert.deepEqual(
+      manifest.generated.map(row => row.path),
+      ['lessons/playground/c/' + id + '/en.md'],
+    );
     assert.throws(
       () => discoverLessons(root, 'content/playground', '00000000-0000-4000-8000-00000000000f'),
       /No canonical Lesson source/,

@@ -182,7 +182,6 @@ test('missing target language shows MISSING and rejects review readiness, not so
     assert.match(fs.readFileSync(path.join(output, 'questions/astronomy/e', lessonId, 'qm.md'), 'utf8'), /%%MISSING%%/);
   }));
 
-
 test('exact Question Bank UUID bypasses unrelated unsafe buckets and rejects missing bank', () =>
   fixture(({ root, run, manifest }) => {
     // Broad discovery would reject this symlinked bucket, but selected
@@ -196,15 +195,16 @@ test('exact Question Bank UUID bypasses unrelated unsafe buckets and rejects mis
       ['questions/astronomy/e/' + lessonId + '/en.md'],
     );
     assert.throws(
-      () => generateQuestionReviewArtifacts({
-        root,
-        output: path.join(root, 'temp/other-reference'),
-        manifest: { generated: [], failures: [] },
-        saveManifest() {},
-        packageName: 'content/astronomy',
-        lessonId: '00000000-0000-4000-8000-00000000000f',
-        languages: ['en'],
-      }),
+      () =>
+        generateQuestionReviewArtifacts({
+          root,
+          output: path.join(root, 'temp/other-reference'),
+          manifest: { generated: [], failures: [] },
+          saveManifest() {},
+          packageName: 'content/astronomy',
+          lessonId: '00000000-0000-4000-8000-00000000000f',
+          languages: ['en'],
+        }),
       /Missing or unsafe Question directory/,
     );
   }));

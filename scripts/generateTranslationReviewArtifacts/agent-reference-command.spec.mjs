@@ -18,7 +18,10 @@ function inlineJob(stepName) {
   assert.ok(section, 'Missing trusted step ' + stepName);
   const match = section.match(/node --input-type=module <<'NODE'\n([\s\S]*?)\n\s+NODE/);
   assert.ok(match, 'Missing inline Node runner for ' + stepName);
-  return match[1].split('\n').map(line => line.replace(/^ {10}/, '')).join('\n');
+  return match[1]
+    .split('\n')
+    .map(line => line.replace(/^ {10}/, ''))
+    .join('\n');
 }
 
 const resolver = inlineJob('Resolve trusted PR context without checking out code');
@@ -58,7 +61,13 @@ function resolve({ command, inputs, access = 'write' }) {
     return {
       ...result,
       values: fs.existsSync(outputFile)
-        ? Object.fromEntries(fs.readFileSync(outputFile, 'utf8').trim().split('\n').map(row => row.split('=')))
+        ? Object.fromEntries(
+            fs
+              .readFileSync(outputFile, 'utf8')
+              .trim()
+              .split('\n')
+              .map(row => row.split('=')),
+          )
         : {},
     };
   } finally {
@@ -135,7 +144,10 @@ test('trusted resolver rejects malformed UUID, surplus args, families and invali
   ]) {
     assert.notEqual(resolve({ inputs }).status, 0, JSON.stringify(inputs));
   }
-  assert.notEqual(resolve({ command: '/agent-artifacts generate questions content/playground ' + lesson, access: 'read' }).status, 0);
+  assert.notEqual(
+    resolve({ command: '/agent-artifacts generate questions content/playground ' + lesson, access: 'read' }).status,
+    0,
+  );
 });
 
 function checkArchive(kind, mutate, additionalFile = false) {
@@ -197,15 +209,60 @@ test('trusted ZIP validation pins Lesson/Question scope, HEAD, run, hashes and i
     const good = checkArchive(kind);
     assert.equal(good.status, 0, kind + ': ' + good.stderr);
     for (const [label, mutate, unlisted] of [
-      ['other lesson', m => { m.generated[0].lesson = 'c/00000000-0000-4000-8000-00000000000c'; }],
-      ['different textbook', m => { m.generated[0].textbook = 'content/math'; }],
-      ['other locale', m => { m.generated[0].locale = 'uk'; }],
-      ['wrong family', m => { m.generated[0].kind = kind === 'lessons' ? 'question' : 'lesson'; }],
-      ['wrong path', m => { m.generated[0].path = 'lessons/other/en.md'; }],
-      ['scope mismatch', m => { m.scope.lesson = '00000000-0000-4000-8000-00000000000c'; }],
-      ['stale HEAD', m => { m.sourceCommit = '0'.repeat(40); }],
-      ['wrong run', m => { m.runId = 999; }],
-      ['changed hash', m => { m.generated[0].sha256 = '0'.repeat(64); }],
+      [
+        'other lesson',
+        m => {
+          m.generated[0].lesson = 'c/00000000-0000-4000-8000-00000000000c';
+        },
+      ],
+      [
+        'different textbook',
+        m => {
+          m.generated[0].textbook = 'content/math';
+        },
+      ],
+      [
+        'other locale',
+        m => {
+          m.generated[0].locale = 'uk';
+        },
+      ],
+      [
+        'wrong family',
+        m => {
+          m.generated[0].kind = kind === 'lessons' ? 'question' : 'lesson';
+        },
+      ],
+      [
+        'wrong path',
+        m => {
+          m.generated[0].path = 'lessons/other/en.md';
+        },
+      ],
+      [
+        'scope mismatch',
+        m => {
+          m.scope.lesson = '00000000-0000-4000-8000-00000000000c';
+        },
+      ],
+      [
+        'stale HEAD',
+        m => {
+          m.sourceCommit = '0'.repeat(40);
+        },
+      ],
+      [
+        'wrong run',
+        m => {
+          m.runId = 999;
+        },
+      ],
+      [
+        'changed hash',
+        m => {
+          m.generated[0].sha256 = '0'.repeat(64);
+        },
+      ],
       ['unlisted file', null, true],
     ]) {
       const result = checkArchive(kind, mutate, unlisted);
