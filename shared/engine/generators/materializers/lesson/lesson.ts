@@ -332,7 +332,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     if (
       skill.id !== id ||
       !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(skill.exported) ||
-      !/^#skillsData\\/(?:[A-Za-z][A-Za-z0-9]*\\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path)
+      !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path)
     ) throw new Error('lesson.skills: unverified or cross-textbook Skill import');
     const alias = 'skill_ref_' + index;
     skillImports.push('import { ' + skill.exported + ' as ' + alias + ' } from ' + JSON.stringify(skill.path) + ';');
