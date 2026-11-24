@@ -170,7 +170,10 @@ test('clean trusted Course analyze and privileged replay with the actual Playgro
   assert.equal(checkTypedCourseTargets(meta, candidate, manifest), true);
   const tree = oneCommitTree(manifest);
   assert.equal(tree.length, manifest.entries.length + 1);
-  assert.deepEqual(tree.filter(entry => entry.sha === null).map(entry => entry.path), [sourcePath]);
+  assert.deepEqual(
+    tree.filter(entry => entry.sha === null).map(entry => entry.path),
+    [sourcePath],
+  );
   const collision = path.join(candidate, manifest.materializedPath);
   fs.writeFileSync(collision, 'preserve existing authored target');
   assert.throws(() => checkTypedCourseTargets(meta, candidate, manifest), /would be overwritten/);
