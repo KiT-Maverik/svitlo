@@ -186,6 +186,9 @@ test('canonical Course-generated Episode handoff is JSON in an exact TypeScript 
     JSON.stringify(handoff, null, 2) +
     ' as const satisfies EpisodeWorkflowStage1Handoff;\n';
   assert.deepEqual(parseEpisodeHandoff(original), handoff);
+  const guarded = original.replace('export const episodeStage1 = ', '// prettier-ignore\\nexport const episodeStage1 = '.replace('\\n', '\n'));
+  assert.deepEqual(parseEpisodeHandoff(guarded), handoff);
+  assert.throws(() => parseEpisodeHandoff(guarded.replace('// prettier-ignore', '// unreviewed-comment')));
   assert.throws(() => parseEpisodeHandoff(original.replace('as const satisfies', 'as never satisfies')));
   assert.throws(() => parseEpisodeHandoff(original + 'process.exit(1);'));
 });
