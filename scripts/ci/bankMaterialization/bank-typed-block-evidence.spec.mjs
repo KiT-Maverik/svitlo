@@ -52,7 +52,6 @@ function fixture(t) {
   const meta = {
     bank: 'questions',
     head,
-    reviewCommitSha: head,
     identity: { pkg: repoPath, folder: repoPath + '/data/lessons/1/11111111-1111-4111-8111-111111111111' },
   };
   const scene = () => ({
@@ -79,11 +78,17 @@ function fixture(t) {
   return { root, base, meta, scene, image, input, resolve };
 }
 
-test('real pinned reviewed Scene and local media become independently verified block evidence', t => {
+test('pinned Scene and local media are verified without editorial metadata', t => {
   const f = fixture(t);
   const actual = f.resolve(f.input({ visual: f.scene(), diagram: f.image() }));
   assert.deepEqual([...actual.registeredSceneIds], [sceneId]);
   assert.deepEqual([...actual.approvedMediaBlockIds], [imageId]);
+});
+
+test('changed checkout HEAD fails even without editorial review metadata', t => {
+  const f = fixture(t);
+  git(f.root, 'commit', '--allow-empty', '-m', 'Changed checkout', '-q');
+  assert.throws(() => f.resolve(f.input({ diagram: f.image() })), /exact pinned checkout/);
 });
 
 test('stale/tampered Scene implementation, specifications, registry and media never approve', t => {

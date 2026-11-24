@@ -10,6 +10,9 @@ permissions:
 
 jobs:
   apply:
+    # Path labels depend on the diff/base; integration role depends on title.
+    # Description-only edits cannot change either.
+    if: github.event.action != 'edited' || github.event.changes.base != null || github.event.changes.title != null
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

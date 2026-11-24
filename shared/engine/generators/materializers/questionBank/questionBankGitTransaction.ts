@@ -55,7 +55,7 @@ export function checkReviewedQuestionBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('questions', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }
@@ -70,7 +70,7 @@ export function writeReviewedQuestionBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('questions', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }

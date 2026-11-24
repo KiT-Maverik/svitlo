@@ -36,30 +36,8 @@ export type FlashcardBankWorkflowLessonSource = {
   assessment: LessonProductionAssessmentRequirements;
 };
 
-/** Own Questions must be approved before Stage 1, unless explicitly N/A.
- * An absent local Quiz is never evidence that Questions are N/A.
- */
-export type FlashcardBankWorkflowQuestionPrerequisite =
-  | {
-      kind: 'completed';
-      sourceSha: string;
-      reviewSha: string;
-      /** A reviewed and integrated Question Bank, not a selected Quiz subset. */
-      bankPath: string;
-      integrated: true;
-    }
-  | {
-      kind: 'notApplicable';
-      /** Methodologist-backed decision recorded in the parent Lesson PR. */
-      rationale: string;
-      methodologySourceSha: string;
-      parentLessonPr: number;
-      questionSourceSha?: never;
-    };
-
 export type FlashcardBankWorkflowStage1Production = {
   lesson: FlashcardBankWorkflowLessonSource;
-  questions: FlashcardBankWorkflowQuestionPrerequisite;
   /** The memory objective inventory, not pre-authored fabricated cards. */
   analysis: {
     recallObjectives: readonly [string, ...string[]];

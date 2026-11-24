@@ -1,18 +1,14 @@
 #!/usr/bin/env node
-/**
- * Trusted authorization for the opt-in typed Bank Stage 5 command.
- * GitHub PR metadata and accepted, source-pinned review evidence are required.
- * A checked stage box or flag in authored source does not authorize this command.
- */
+/** Trusted bank command gate. Identity comes from pinned Git paths, not PR prose. */
 import fs from 'node:fs';
-import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
-import { github, parseIdentity, requireActor, requireReviewedStages, safeBranch, report } from './bank-gate.mjs';
+import { github, requireActor, safeBranch, report } from './bank-gate.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
-const COMMANDS = {
-  '/questions materialize': 'questions',
-  '/flashcards materialize': 'flashcards',
-};
+const UUID = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
+const PATH = new RegExp(
+  '^(content/[a-z][a-z0-9-]*)/data/lessons/([a-f0-9])/(' + UUID + ')/(questions|flashcards)/draft\\.ts$',
+);
+const COMMANDS = { '/questions materialize': 'questions', '/flashcards materialize': 'flashcards' };
 
 export function typedCommand(event, name, actor) {
   if (!/^[A-Za-z0-9-]+$/.test(actor || '')) throw Error('Invalid invocation actor');
@@ -23,170 +19,101 @@ export function typedCommand(event, name, actor) {
       !event.issue?.pull_request ||
       event.comment?.user?.login !== actor ||
       !Object.hasOwn(COMMANDS, event.comment.body)
-    ) {
+    )
       throw Error('Requires exact top-level typed Bank PR command');
-    }
     number = event.issue.number;
     bank = COMMANDS[event.comment.body];
   } else if (name === 'workflow_dispatch') {
     if (
       !['questions', 'flashcards'].includes(event.inputs?.bank) ||
       Object.keys(event.inputs ?? {}).some(key => !['pr_number', 'bank'].includes(key))
-    ) {
+    )
       throw Error('Invalid Bank dispatch inputs');
-    }
     number = Number(event.inputs.pr_number);
     bank = event.inputs.bank;
   } else throw Error('Unsupported Bank event');
-  if (!Number.isSafeInteger(number) || number <= 0 || number > 999999999) {
-    throw Error('Invalid Bank PR number');
-  }
+  if (!Number.isSafeInteger(number) || number < 1 || number > 999999999) throw Error('Invalid Bank PR number');
   return { number, bank, actor };
 }
 
-function parentIdentity(body) {
-  if (typeof body !== 'string' || !body.includes('<!-- svitlo-create-lesson-flow:v1 -->')) return null;
-  const match =
-    /^- Lesson UUID \/ textbook \/ slug:\s*`?([a-f0-9-]{36})`?\s*\/\s*`?(content\/(?:languages\/)?[a-z][a-z0-9-]*)/m.exec(
-      body,
-    );
-  return match && { id: match[1], pkg: match[2] };
+export function bankSourceIdentity(filename, bank) {
+  const match = typeof filename === 'string' && filename.match(PATH);
+  if (!match || match[2] !== match[3].at(-1) || match[4] !== bank) throw Error('Invalid canonical Bank draft path');
+  return { id: match[3], pkg: match[1], folder: match[1] + '/data/lessons/' + match[2] + '/' + match[3], bank };
 }
 
 export async function inspectTyped(number, bank, expected) {
   const repo = process.env.GITHUB_REPOSITORY;
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repo ?? '') || !['questions', 'flashcards'].includes(bank))
+    throw Error('Invalid Bank repository or kind');
   const pr = await github('pulls/' + number);
   if (
-    !pr ||
-    pr.state !== 'open' ||
+    pr?.state !== 'open' ||
     !pr.draft ||
     pr.head?.repo?.full_name !== repo ||
-    !SHA.test(pr.head?.sha || '') ||
-    !safeBranch(pr.head.ref, pr.base?.ref)
-  ) {
+    pr.base?.repo?.full_name !== repo ||
+    !SHA.test(pr.head?.sha ?? '') ||
+    !SHA.test(pr.base?.sha ?? '') ||
+    !safeBranch(pr.head?.ref, pr.base?.ref)
+  )
     throw Error('Expected open same-repository Draft bank PR');
-  }
-  const identity = parseIdentity(pr.body, bank);
-  // The current trusted Engine Git writer supports a single textbook package.
-  if (!/^content\/[a-z][a-z0-9-]*$/.test(identity.pkg)) {
-    throw Error('Current typed Bank writer cannot handle nested language textbook paths');
-  }
-  requireReviewedStages(pr.body, bank);
-  if (identity.parent === number) throw Error('Bank PR cannot parent itself');
-  const parent = await github('pulls/' + identity.parent);
-  const source = parentIdentity(parent?.body);
+  const comparison = await github('compare/' + pr.base.sha + '...' + pr.head.sha);
   if (
-    !parent ||
-    (parent.state !== 'open' && !parent.merged) ||
-    !source ||
-    source.id !== identity.id ||
-    source.pkg !== identity.pkg
-  ) {
-    throw Error('No verified owning Lesson PR/UUID correspondence');
-  }
-  if (parent.state === 'open' && pr.base?.ref !== parent.head?.ref) {
-    throw Error('Typed Bank child must target its actual Lesson parent branch');
-  }
-  if (parent.merged) {
-    if (
-      !SHA.test(parent.merge_commit_sha || '') ||
-      (pr.base?.ref !== parent.base?.ref && pr.base?.ref !== process.env.BANK_DEFAULT_BRANCH)
-    ) {
-      throw Error('Merged Lesson ancestry is not authorized');
-    }
-    const comparison = await github('compare/' + parent.merge_commit_sha + '...' + pr.base.sha);
-    if (!['ahead', 'identical'].includes(comparison?.status)) {
-      throw Error('Typed Bank target excludes merged Lesson');
-    }
-  }
-  let parentQuestions = null;
-  let parentHeadSha = null;
-  let parentQuestionsReview = null;
-  if (bank === 'flashcards') {
-    const decisions = [
-      ...parent.body.matchAll(/^- Questions(?: \(own bank\))?:[ \t]*(Completed|Not Applicable)\b[^\r\n]*$/gim),
-    ];
-    const decision = decisions[0];
-    if (decisions.length !== 1 || !SHA.test(parent.head?.sha || '')) {
-      throw Error('Flashcards need a pinned parent Questions-first completion or N/A');
-    }
-    parentQuestions = decision[1] === 'Completed' ? 'completed' : 'notApplicable';
-    parentHeadSha = parent.head.sha;
-    if (parentQuestions === 'notApplicable') {
-      const lessonPath = identity.folder + '/index.ts';
-      const lessonSource = await github(
-        'contents/' + lessonPath.split('/').map(encodeURIComponent).join('/') + '?ref=' + parentHeadSha,
-      );
-      if (lessonSource?.type !== 'file' || !SHA.test(lessonSource.sha || ''))
-        throw Error('Questions N/A requires the pinned materialized parent Lesson source');
-      [parentQuestionsReview] = await verifyReviewEvidence(parent.body, {
-        stages: ['questions-na'],
-        allowedStages: [3, 4, 5, 'questions-na'],
-        head: parentHeadSha,
-        blob: lessonSource.sha,
-      });
-    }
-  }
-  const sourcePath = identity.folder + '/' + bank + '/draft.ts';
+    comparison?.merge_base_commit?.sha !== pr.base.sha ||
+    comparison.status !== 'ahead' ||
+    !Array.isArray(comparison.files) ||
+    comparison.files.length !== 1 ||
+    comparison.files[0].status === 'removed'
+  )
+    throw Error('Bank PR must change exactly one draft.ts on the current Lesson base');
+  const sourcePath = comparison.files[0].filename;
+  const identity = bankSourceIdentity(sourcePath, bank);
   const sourceFile = await github(
     'contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
   );
-  if (sourceFile?.type !== 'file' || !SHA.test(sourceFile.sha || '')) {
-    throw Error('Exact reviewed Stage 3 bank draft.ts is missing');
-  }
-  const [review] = await verifyReviewEvidence(pr.body, {
-    stages: [4],
-    head: pr.head.sha,
-    blob: sourceFile.sha,
-  });
+  if (
+    sourceFile?.type !== 'file' ||
+    sourceFile.path !== sourcePath ||
+    sourceFile.sha !== comparison.files[0].sha ||
+    !SHA.test(sourceFile.sha ?? '') ||
+    !Number.isSafeInteger(sourceFile.size) ||
+    sourceFile.size < 1 ||
+    sourceFile.size > 1024 * 1024
+  )
+    throw Error('Pinned typed Bank source is missing, changed or oversized');
+  const lessonPath = identity.folder + '/index.ts';
+  const lesson = await github(
+    'contents/' + lessonPath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.base.sha,
+  );
+  if (lesson?.type !== 'file' || lesson.path !== lessonPath || !SHA.test(lesson.sha ?? ''))
+    throw Error('Owning Lesson source is absent at the Bank target revision');
   const again = await github('pulls/' + number);
   if (
-    again?.head?.sha !== pr.head.sha ||
-    again.head.ref !== pr.head.ref ||
-    again.head.repo?.full_name !== repo ||
-    again.base?.ref !== pr.base?.ref ||
-    again.base?.sha !== pr.base?.sha ||
-    again.state !== 'open' ||
+    again?.state !== 'open' ||
     !again.draft ||
-    again.body !== pr.body
+    again.head?.sha !== pr.head.sha ||
+    again.head?.ref !== pr.head.ref ||
+    again.base?.sha !== pr.base.sha ||
+    again.base?.ref !== pr.base.ref ||
+    again.head?.repo?.full_name !== repo ||
+    again.base?.repo?.full_name !== repo
   )
-    throw Error('Bank PR changed during review evidence verification');
-  const parentAgain = await github('pulls/' + identity.parent);
-  if (
-    parentAgain?.state !== parent.state ||
-    parentAgain.merged !== parent.merged ||
-    parentAgain.head?.ref !== parent.head?.ref ||
-    parentAgain.head?.sha !== parent.head?.sha ||
-    parentAgain.body !== parent.body ||
-    parentAgain.merge_commit_sha !== parent.merge_commit_sha
-  )
-    throw Error('Owning Lesson PR changed during Bank review evidence verification');
+    throw Error('Bank PR changed during source discovery');
   const result = {
     repo,
     number,
     bank,
-    actor: undefined,
     branch: pr.head.ref,
     base: pr.base.ref,
+    baseHead: pr.base.sha,
     head: pr.head.sha,
     sourceBlob: sourceFile.sha,
     sourcePath,
-    reviewVerdict: review.verdict,
-    reviewCommitSha: review.commit,
-    parentQuestions,
-    parentHeadSha,
-    parentQuestionsReview,
-    identity: {
-      id: identity.id,
-      pkg: identity.pkg,
-      parent: identity.parent,
-      folder: identity.folder,
-      bank,
-    },
+    lessonBlob: lesson.sha,
+    identity,
   };
-  if (expected && JSON.stringify(expected) !== JSON.stringify(result)) {
-    throw Error('Reviewed Bank SHA/evidence/branch/identity changed: rerun command');
-  }
+  if (expected && JSON.stringify(expected) !== JSON.stringify(result))
+    throw Error('Bank SHA/branch/identity changed: rerun command');
   return result;
 }
 
@@ -210,14 +137,10 @@ async function resolve() {
       info.branch +
       '\n',
   );
-  report(
-    'Authorized typed ' + info.bank + ' source ' + info.sourceBlob + ' at independently approved PR HEAD ' + info.head,
-  );
+  report('Authorized typed ' + info.bank + ' source ' + info.sourceBlob + ' at PR HEAD ' + info.head);
 }
-if (process.argv[1] && process.argv[1].endsWith('/bank-typed-gate.mjs')) {
-  if (process.argv[2] !== 'resolve' || process.argv.length !== 3) {
-    throw Error('Usage: bank-typed-gate.mjs resolve');
-  }
+if (process.argv[1]?.endsWith('/bank-typed-gate.mjs')) {
+  if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: bank-typed-gate.mjs resolve');
   resolve().catch(error => {
     report('Typed Bank authorization denied: ' + error.message);
     process.exitCode = 1;

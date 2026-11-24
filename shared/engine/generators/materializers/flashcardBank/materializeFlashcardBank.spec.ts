@@ -23,13 +23,6 @@ const handoff = () => ({
       languages: { document: 'uk' as const, planned: ['uk'] as ['uk'] },
       assessment: { ...assessment },
     },
-    questions: {
-      kind: 'completed' as const,
-      bankPath: 'content/math/data/questions',
-      sourceSha: sha('c'),
-      reviewSha: sha('d'),
-      integrated: true as const,
-    },
     analysis: {
       recallObjectives: ['Name the mathematical concept'] as [string, ...string[]],
       sourceFactsAndConcepts: ['Addition'],
@@ -59,24 +52,18 @@ const draftAuthorization = {
   ownerLessonId,
   lessonSourceSha: sha('a'),
   referenceSourceSha: sha('b'),
-  questionSourceSha: sha('c'),
-  questionReviewSha: sha('d'),
   snapshot: snapshot(),
 };
 const finalAuthorization = (input: unknown = completed()) => ({
   ownerLessonId,
   lessonSourceSha: sha('a'),
   referenceSourceSha: sha('b'),
-  questionSourceSha: sha('c'),
-  questionReviewSha: sha('d'),
   snapshot: snapshot(editor),
-  reviewed: {
-    approved: true as const,
+  source: {
     content: editor,
     blobSha: gitBlobSha(editor),
-    reviewedSourceBlobSha: gitBlobSha(editor),
-    reviewCommitSha: sha('e'),
-    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
+    commitSha: sha('e'),
+    inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
 });
@@ -155,30 +142,7 @@ test('Flashcard Stage 1 produces one editorial source, no fake Card or Section',
   assert.match(result.files[0].content, /satisfies FlashcardBankWorkflowStage1/);
   assert.doesNotMatch(result.files[0].content, /defineFlashcard|defineFlashcardsSection/);
 });
-test('Flashcard Stage 1 rejects unreviewed Questions and unsupported N/A', () => {
-  assert.throws(
-    () =>
-      materializeFlashcardBankDraft(handoff() as never, {
-        ...draftAuthorization,
-        questionReviewSha: sha('0'),
-      }),
-    /unintegrated or stale/,
-  );
-  const notApplicable = handoff();
-  Object.assign(notApplicable.production.questions, {
-    kind: 'notApplicable',
-    rationale: 'No owned questions',
-    methodologySourceSha: sha('a'),
-    parentLessonPr: 99,
-  });
-  assert.throws(
-    () =>
-      materializeFlashcardBankDraft(notApplicable as never, {
-        ...draftAuthorization,
-        methodologySourceSha: sha('a'),
-      }),
-    /contradictory Questions N\/A/,
-  );
+test('Flashcard Stage 1 rejects a stale Lesson reference', () => {
   assert.throws(
     () =>
       materializeFlashcardBankDraft(handoff() as never, {
@@ -198,7 +162,7 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert(names.includes('flashcards/index.ts'));
   assert(names.includes('flashcards/alpha/content/front/index.ts'));
   assert(names.includes('flashcards/alpha/content/back/index.ts'));
-  assert.equal(result.transition.reviewedDraftPath, 'flashcards/draft.ts');
+  assert.equal(result.transition.sourceDraftPath, 'flashcards/draft.ts');
   assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const main = result.files.find(file => file.path === 'flashcards/index.ts')?.content ?? '';
@@ -250,19 +214,10 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
   );
 });
 
-test('Flashcard Bank N/A requires explicit independent owner approval', () => {
+test('Flashcard source materialization does not gate on editorial bank-required status', () => {
   const notRequired = handoff();
   notRequired.production.lesson.assessment.flashcardBankRequired = false;
-  assert.throws(() => materializeFlashcardBankDraft(notRequired as never, draftAuthorization), /Flashcards N\/A/);
-  assert.doesNotThrow(() =>
-    materializeFlashcardBankDraft(notRequired as never, {
-      ...draftAuthorization,
-      independentBankAuthorization: {
-        sourceSha: sha('a'),
-        rationale: 'Explicitly approved independent memory reinforcement',
-      },
-    }),
-  );
+  assert.doesNotThrow(() => materializeFlashcardBankDraft(notRequired as never, draftAuthorization));
 });
 test('Flashcard Bank rejects pending nested Side Blocks and stale reviewed structured input', () => {
   const input = completed();
@@ -274,7 +229,7 @@ test('Flashcard Bank rejects pending nested Side Blocks and stale reviewed struc
     /pending bank authoring source/,
   );
   const auth = finalAuthorization();
-  auth.reviewed.reviewedInputSha256 = sha('0') + '0'.repeat(24);
+  auth.source.inputSha256 = sha('0') + '0'.repeat(24);
   assert.throws(
     () => materializeFlashcardBank(completed() as never, auth),
     /structured review input SHA-256|Structured bank input differs/,
