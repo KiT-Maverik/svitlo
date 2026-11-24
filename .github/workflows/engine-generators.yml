@@ -12,6 +12,7 @@ on:
       - 'scripts/ci/requiredCheckReuse/**'
       - 'scripts/ci/draftCiPolicy/**'
       - 'scripts/ci/productionQuality/**'
+      - 'scripts/ci/releaseSource/**'
       - '.github/workflows/fast-gate.yml'
       - '.github/workflows/production-quality.yml'
       - '.github/workflows/lesson-materialization.yml'
@@ -67,7 +68,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs
+      - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
