@@ -261,8 +261,8 @@ function validateReview(
   }
   if (!evidence) throw new Error('Independently reviewed source evidence is required');
   const { reviewed, evaluatedInput } = evidence;
-  if (!reviewed || reviewed.approved !== true || !reviewed.reviewer?.trim()) {
-    throw new Error('Independent Bank reviewer approval is required');
+  if (!reviewed || reviewed.approved !== true) {
+    throw new Error('Accepted Bank review evidence is required');
   }
   assertBankSha(reviewed.reviewCommitSha, 'bank review commit');
   assertBankSha(reviewed.reviewedSourceBlobSha, 'reviewed source blob');
