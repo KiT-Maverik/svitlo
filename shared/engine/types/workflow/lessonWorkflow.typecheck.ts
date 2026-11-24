@@ -109,6 +109,25 @@ const scene = {
   },
 } satisfies LessonWorkflowStage2SimpleBlock;
 
+// Editorial media may omit only the unresolved asset, not required teaching copy.
+const pendingImage = {
+  config: {
+    id: '663572e7-bd85-4516-86e2-3de07d209e08',
+    slug: 'lightDiagram',
+    type: 'image',
+    params: { width: 640, height: 360 },
+    locale: { alt: { uk: 'Схема поширення світла від джерела.' } },
+  },
+  production: {
+    purpose: 'Illustrate the path of light.',
+    specification: 'An annotated diagram with two rays leaving the lamp.',
+    accessibility: 'Equivalent source-language text description.',
+    offline: 'Bundled local illustration or equivalent text.',
+  },
+} satisfies LessonWorkflowStage2SimpleBlock;
+
+void pendingImage;
+
 // Section authoring uses plain config/production nodes, not defineContentSection.
 // Built configurators are not editorial Stage 2 child configs.
 declare const materializedText: ContentBlock_Text_Configurator;
