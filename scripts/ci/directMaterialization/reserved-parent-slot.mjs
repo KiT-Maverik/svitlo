@@ -214,7 +214,13 @@ export function readGeneratedCourseHandoff(source, { variable, contract }) {
   if (!initializer || !ts.isSatisfiesExpression(initializer) ||
       !ts.isTypeReferenceNode(initializer.type) || name(initializer.type.typeName) !== contract)
     throw Error('Course handoff must satisfy the exact typed seed contract');
-  const literal = unwrap(initializer.expression);
+  const assertion = initializer.expression;
+  if (
+    !ts.isAsExpression(assertion) ||
+    !ts.isTypeReferenceNode(assertion.type) ||
+    name(assertion.type.typeName) !== 'const'
+  ) throw Error('Course handoff must use an immutable as const data assertion');
+  const literal = unwrap(assertion.expression);
   if (!ts.isObjectLiteralExpression(literal))
     throw Error('Course handoff must be a literal data object');
   const decode = node => {
