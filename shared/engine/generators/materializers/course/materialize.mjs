@@ -396,7 +396,7 @@ export function materializeCourse(input, context = {}) {
   if (!record(config.locale) || config.locale.title === undefined || config.locale.description === undefined)
     throw Error(dir + '.config.locale: reviewed title and description required before materialization');
   const assessmentBlocker = order.some(key => unwrap(collection.items[key])?.type === 'assessment')
-    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\\n'
+    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n'
     : '';
   const fields = { ...config, id, slug };
   delete fields.content;
