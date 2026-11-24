@@ -103,7 +103,7 @@ jobs:
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs \
-            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
+            scripts/ci/directMaterialization/run-isolated.spec.mjs \
             scripts/ci/bankMaterialization/bank-typed-block-evidence.spec.mjs
 
       - name: Test typed Lesson Stage 6 source and PR-command security
