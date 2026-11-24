@@ -1,4 +1,3 @@
-import ts from 'typescript';
 import { materializeCourse } from './materialize.mjs';
 import { materializeModule } from '../module/materialize.mjs';
 import { materializeChapter } from '../chapter/materialize.mjs';
@@ -63,7 +62,7 @@ const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonica
  * verify independent review/authorization, and resolve each imported Lesson
  * from its verified source revision. This planner never reads YAML or writes.
  *
- * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowMaterializerInput} input
+ * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage3} input
  * @param {object} options
  */
 export function materializeCourseStage5(input, options = {}) {
@@ -74,7 +73,7 @@ export function materializeCourseStage5(input, options = {}) {
     !uuid.test(input.config.id ?? '') ||
     !slug.test(input.config.slug ?? '')
   )
-    throw new Error('Expected canonical reviewed CourseWorkflowMaterializerInput');
+    throw new Error('Expected canonical reviewed CourseWorkflowStage3');
   const rootId = input.config.id.toLowerCase();
   const sourceLanguage = input.production.languages?.document;
   const planned = input.production.languages?.planned;
@@ -121,28 +120,15 @@ export function materializeCourseStage5(input, options = {}) {
   const root = textbookRoot + '/data/courses/' + rootId.at(-1) + '/' + rootId;
   const expectedSource = root + '/draft.ts';
   const materializedPath = root + '/index.ts';
-  const review = options.review;
-  if (
-    !record(review) ||
-    review.sourcePath !== expectedSource ||
-    !sha.test(review.sourceBlobSha ?? '') ||
-    !sha.test(review.reviewCommitSha ?? '') ||
-    typeof review.reviewer !== 'string' ||
-    !review.reviewer.trim() ||
-    typeof review.evidenceUrl !== 'string' ||
-    !/^https:\/\//.test(review.evidenceUrl)
-  )
-    throw new Error('Stage 5 requires verified source path, blob SHA, reviewer and review commit evidence');
+  const source = options.source;
+  if (!record(source) || source.sourcePath !== expectedSource || !sha.test(source.sourceBlobSha ?? ''))
+    throw new Error('Stage 5 requires verified source path and blob SHA');
   // Do not trust a TypeScript "satisfies" assertion as an authorization signal.
-  if (
-    typeof options.verifyReviewedSource !== 'function' ||
-    options.verifyReviewedSource({ input, review, textbookRoot }) !== true
-  )
-    throw new Error('Stage 5 reviewed source/provenance was not independently authorized');
+  if (typeof options.verifySource !== 'function' || options.verifySource({ input, source, textbookRoot }) !== true)
+    throw new Error('Stage 5 source was not independently verified');
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();
   const overrides = new Map();
-  const patchImports = new Set();
   const diagnostics = [];
   const deriveId = (kind, directory) => {
     const relative = directory.replace(/^content\//, '');
@@ -161,26 +147,6 @@ export function materializeCourseStage5(input, options = {}) {
       throw new Error('Unsafe Course patch placement');
     if (overrides.has(relative)) throw new Error('Duplicate Course patch placement: ' + relative);
     overrides.set(relative, { parts, patchSource });
-  };
-  const singleExpression = expression => {
-    if (typeof expression !== 'string' || !expression.trim())
-      throw new Error('Reviewed Course patch expression must be nonempty TypeScript');
-    const ast = ts.createSourceFile(
-      'reviewedPatch.ts',
-      'const reviewedPatch = (' + expression + ');',
-      ts.ScriptTarget.Latest,
-      true,
-      ts.ScriptKind.TS,
-    );
-    if (
-      ast.parseDiagnostics.length ||
-      ast.statements.length !== 1 ||
-      !ts.isVariableStatement(ast.statements[0]) ||
-      ast.statements[0].declarationList.declarations.length !== 1 ||
-      !ast.statements[0].declarationList.declarations[0].initializer
-    )
-      throw new Error('Reviewed Course patch is not a single valid TypeScript expression');
-    return expression;
   };
   const renderPatchTree = () => {
     const tree = { children: new Map() };
@@ -214,10 +180,9 @@ export function materializeCourseStage5(input, options = {}) {
       const lessonId = deriveId('lesson', context.directory);
       const result = materializeLessonDraft(node, {
         lessonId,
-        sourceLanguage,
-        plannedLanguages: planned,
+        languageContext: input.production.languages,
         textbookRoot,
-        reviewedSourceSha: review.sourceBlobSha,
+        reviewedSourceSha: source.sourceBlobSha,
       });
       recordPlacement(context.directory, {
         type: 'lesson',
@@ -243,15 +208,22 @@ export function materializeCourseStage5(input, options = {}) {
       !match.matchingRationale.trim() ||
       typeof match.languageEvidence !== 'string' ||
       !match.languageEvidence.trim() ||
-      typeof options.resolveExistingLesson !== 'function'
+      !record(production.source) ||
+      typeof production.sourceExportName !== 'string'
     )
-      throw new Error(context.directory + ': verified existing Lesson matching and resolver required');
-    const lesson = options.resolveExistingLesson({
+      throw new Error(context.directory + ': verified existing Lesson matching and direct source import required');
+    // The final reviewed invocation supplies its imported Lesson directly.
+    // No AST import decoder, special bundler or Props-to-Config reconstruction.
+    const imported = production.source;
+    const lesson = {
       id: existing.id,
-      matching: match,
-      placement: context.directory,
-      languages: [sourceLanguage],
-    });
+      sourceSha: match.sourceSha,
+      importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
+      exportName: production.sourceExportName,
+      languages: imported.config?.base?.params?.languages,
+      configurator: imported,
+      rawPatch: production.sourcePatch,
+    };
     if (
       !record(lesson) ||
       lesson.id !== existing.id ||
@@ -297,39 +269,8 @@ export function materializeCourseStage5(input, options = {}) {
       const patchLanguages = [...new Set([sourceLanguage, ...Object.keys(existing.locale ?? {})])];
       if (patchLanguages.some(code => !planned.includes(code) || !lesson.languages.includes(code)))
         throw new Error(context.directory + ': override languages require reviewed Course/Lesson support');
-      let patchSource;
-      if (lesson.rawPatchSource === undefined) {
-        serialize(lesson.rawPatch);
-        patchSource = JSON.stringify(lesson.rawPatch, null, 2);
-      } else {
-        if (lesson.rawPatchSourceSha !== review.sourceBlobSha)
-          throw new Error(
-            context.directory + ': raw patch TypeScript expression is not pinned to reviewed Course source',
-          );
-        patchSource = singleExpression(lesson.rawPatchSource);
-        if (!Array.isArray(lesson.rawPatchImports))
-          throw new Error(context.directory + ': explicit reviewed TypeScript imports required for patch expression');
-        for (const item of lesson.rawPatchImports) {
-          const parsed = ts.createSourceFile('reviewedImport.ts', item, ts.ScriptTarget.Latest, true);
-          if (
-            parsed.parseDiagnostics.length ||
-            parsed.statements.length !== 1 ||
-            !ts.isImportDeclaration(parsed.statements[0]) ||
-            !parsed.statements[0].importClause ||
-            !ts.isStringLiteral(parsed.statements[0].moduleSpecifier) ||
-            !item.trim().endsWith(';')
-          )
-            throw new Error(context.directory + ': invalid or side-effect-only patch import declaration');
-          const specifier = parsed.statements[0].moduleSpecifier.text;
-          if (!(
-            specifier.startsWith('#') ||
-            specifier.startsWith('@svitlo/') ||
-            (/^\.\/[A-Za-z][\w/.-]*$/.test(specifier) && !specifier.includes('..'))
-          ))
-            throw new Error(context.directory + ': raw patch import must use reviewed package aliases');
-          patchImports.add(item.trim());
-        }
-      }
+      serialize(lesson.rawPatch);
+      const patchSource = JSON.stringify(lesson.rawPatch, null, 2);
       let built;
       try {
         built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: patchLanguages });
@@ -389,7 +330,7 @@ export function materializeCourseStage5(input, options = {}) {
   const context = {
     directory: '',
     courseId: rootId,
-    reviewedCourseSourceBlobSha: review.sourceBlobSha,
+    reviewedCourseSourceBlobSha: source.sourceBlobSha,
     orderPath: [],
     sourceLanguage,
     plannedLanguages: planned,
@@ -443,10 +384,7 @@ export function materializeCourseStage5(input, options = {}) {
     '// TODO (BLOCKER): Course Stage 5 source is not publication approval. ' +
     'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\n' +
     '// Reviewed Course source blob: ' +
-    review.sourceBlobSha +
-    '\n' +
-    '// Independent Stage 4 review commit: ' +
-    review.reviewCommitSha +
+    source.sourceBlobSha +
     '\n' +
     rootIndex.content;
   const languageSource =
@@ -460,9 +398,7 @@ export function materializeCourseStage5(input, options = {}) {
       path: root + '/authoredCourseOverrides.ts',
       kind: 'typescript',
       content:
-        '// Reviewed raw Config expressions; independently replayed through the real Lesson Build API.\n' +
-        [...patchImports].sort().join('\n') +
-        '\n' +
+        '// Reviewed raw Config values, validated through the actual Lesson Build API.\n' +
         'export const authoredCourseOverrides = ' +
         renderPatchTree() +
         ';\n',
@@ -509,8 +445,7 @@ export function materializeCourseStage5(input, options = {}) {
   return Object.freeze({
     sourcePath: expectedSource,
     materializedPath,
-    sourceBlobSha: review.sourceBlobSha,
-    reviewCommitSha: review.reviewCommitSha,
+    sourceBlobSha: source.sourceBlobSha,
     courseId: rootId,
     root,
     files: Object.freeze(files),

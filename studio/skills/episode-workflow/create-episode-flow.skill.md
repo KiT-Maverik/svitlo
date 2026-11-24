@@ -1,5 +1,7 @@
 # Create Episode Flow
 
+**Final technical invocation (Stages 4→5):** The single approved `draft.ts` invokes `materializeEpisodeStage5(reviewedEpisode)` from `@svitlo/engine/build` once, using the final `EpisodeWorkflowStage2` typed editorial object. The trusted gate verifies Course handoff, parent slot/order and final review SHAs; the no-token worker executes author code, while the publisher only verifies output bytes and restores the reserved parent placement. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
 **Scope:** one Course-owned Episode and one entity-owned Draft PR. Follow root AGENTS.md, [GitHub labels](../../rules/github-labels-and-naming.md), [CI policy](../../rules/ci-workflow.md), [Episode](../../docs/entities/episode.md), [Course](../../docs/entities/course.md), [Section](../../docs/entities/section.md), [typed production](../../docs/architecture/typed-production-materialization.md), and [inclusive access](../../docs/architecture/internationalization-and-accessibility.md). Inspect the actual Engine Episode, Section, Block and event contracts, publication and host support before authoring. Quest runtime is not implied by its Build-only contract.
 
 ## Identity and authorization
@@ -25,15 +27,15 @@ Reuse an existing Episode PR for that identity and parent; otherwise open one Dr
 
 ### Stages 1–2: authoring
 
-Use the approved Course slot rather than re-deciding the Course curriculum. Stage 1 replaces the handoff type with `EpisodeWorkflowStage1`, preserving immutable identity and production context. Stage 2 advances the same object to `EpisodeWorkflowStage2` and the final reviewed source must explicitly satisfy `EpisodeWorkflowMaterializerInput` from Engine Build. Specify dialogue and interaction in a coherent narrative arc with concrete learner-facing language, prior and next narrative state, intended choices and supported event effects. Validate keys, order, identity, actual supported Section/Block discriminants and source locale. Document unsupported runtime dependencies; do not emulate unsupported Quest or branching state by hiding it in a ContentBlock. Explicitly specify media purpose, required asset kind, locale dependence, transcripts/captions, alternative text and offline/low-device equivalents.
+Use the approved Course slot rather than re-deciding the Course curriculum. Stage 1 replaces the handoff type with `EpisodeWorkflowStage1`, preserving immutable identity and production context. Stage 2 advances the same object to `EpisodeWorkflowStage2` and the final reviewed source must explicitly satisfy `EpisodeWorkflowStage2` from Engine Build. Specify dialogue and interaction in a coherent narrative arc with concrete learner-facing language, prior and next narrative state, intended choices and supported event effects. Validate keys, order, identity, actual supported Section/Block discriminants and source locale. Document unsupported runtime dependencies; do not emulate unsupported Quest or branching state by hiding it in a ContentBlock. Explicitly specify media purpose, required asset kind, locale dependence, transcripts/captions, alternative text and offline/low-device equivalents.
 
 ### Stages 3–4: review
 
-Stage 3 starts in a distinct context. Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Neither stage authorizes materialization or merge.
+Stage 3 follows the [independent review rule](../../rules/independent-review.md). Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Record each final verdict using the [independent review rule](../../rules/independent-review.md) in the existing PR description. Neither stage authorizes materialization or merge.
 
 ### Stages 5–6: implementation
 
-Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Follow the [trusted Episode Stage 5 runbook](../../../scripts/ci/episodeMaterialization/README.md). Verify the Episode-specific trusted workflow is deployed before invoking it; if not, report the deployment dependency. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
+Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Follow the [trusted Episode Stage 5 runbook](../../../scripts/ci/episodeMaterialization/README.md). Verify the Episode-specific trusted workflow is deployed before invoking the exact top-level `/episode materialize` PR comment; if not, report the deployment dependency. The trusted gate requires an authorized invocation and valid pinned typed source/ownership, not parsed editorial approval. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
 
 At Stage 6 implement typed resources and Scenes using [Implement Scene](../lesson-workflow/implement-scene.skill.md). Register and test Scenes in the actual owning package, verify interactions and alternatives, and prepare precise media handoff. Keep unresolved resource `TODO (BLOCKER):` markers until genuine completion. Never invent assets, reserve fabricated passing review values, or treat a path alone as a real file.
 
@@ -74,6 +76,7 @@ Initialize once in the existing Episode PR description and reconcile before each
 
 ## Evidence and handoffs
 
+- <Stage 3 and 4 findings, corrections, actual reviewed revisions and verdicts; editorial only>
 - <stage, owner, commit/blob, findings, actual checks, verdict, unresolved requirements>
 ```
 

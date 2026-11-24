@@ -1,15 +1,15 @@
 /** Trusted Episode Stage 5: read-only analysis, manifest replay and one Git commit.
- * Candidate source is read as Git blobs and parsed/typechecked, never executed.
+ * Candidate code executes only in the isolated, credential-free worker. The trusted
+ * transaction handles source provenance, reserved parent restoration and Git writes.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
-import { checkGeneratedCourseTypes } from '../courseMaterialization/typed-course-semantics.mjs';
-import { materializeCourseEpisodeSection } from '../courseMaterialization/typed-course-section.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
-import { parseEpisodeDraft, planEpisode } from './episode-source.mjs';
+import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
+import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
@@ -32,11 +32,8 @@ const metadataKeys = [
   'sourceBlobSha',
   'handoffBlobSha',
   'parentBlobSha',
-  'reviewer',
-  'reviewCommitSha',
-  'evidenceUrl',
 ];
-const sameMeta = (a, b) => metadataKeys.every(key => a[key] === b[key]);
+export const sameMeta = (a, b) => metadataKeys.every(key => a[key] === b[key]);
 export function parseEpisodeMetadata(encoded) {
   if (typeof encoded !== 'string' || !/^[A-Za-z0-9+/=]{1,16384}$/.test(encoded))
     throw Error('Missing Episode metadata');
@@ -52,14 +49,10 @@ export function parseEpisodeMetadata(encoded) {
     meta.number === meta.parentNumber ||
     !safeBranch(meta.branch, meta.parentBranch) ||
     !safeBranch(meta.parentBranch, process.env.COURSE_DEFAULT_BRANCH) ||
-    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha', 'reviewCommitSha'].every(key =>
+    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha'].every(key =>
       SHA.test(meta[key] ?? ''),
     ) ||
-    meta.reviewCommitSha !== meta.head ||
-    !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '') ||
-    !/^[A-Za-z0-9-]+$/.test(meta.reviewer ?? '') ||
-    typeof meta.evidenceUrl !== 'string' ||
-    !meta.evidenceUrl.startsWith('https://github.com/' + meta.repo + '/pull/' + meta.number + '#')
+    !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '')
   )
     throw Error('Invalid pinned Episode transaction metadata');
   return meta;
@@ -165,6 +158,7 @@ export function buildEpisodeManifest(meta, plan) {
     publishable: false,
     entries,
     diagnostics: plan.diagnostics,
+    sourceExportName: plan.sourceExportName,
   };
 }
 export function episodeCommitTree(manifest) {
@@ -179,12 +173,8 @@ export function episodeCommitTree(manifest) {
   ];
 }
 
-export function prepareEpisode(
-  meta,
-  root,
-  renderSection = materializeCourseEpisodeSection,
-  checkTypes = checkGeneratedCourseTypes,
-) {
+export async function prepareEpisode(meta, root, execute = runIsolatedMaterialization) {
+  const { parseEpisodeHandoff, composeEpisodeDirectPlan } = await import('./episode-source.mjs');
   const reader = gitReader(root);
   if (
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
@@ -207,48 +197,100 @@ export function prepareEpisode(
   const original = reader.blob(base.get(meta.sourcePath), meta.sourcePath);
   const source = reader.blob(tree.get(meta.sourcePath), meta.sourcePath);
   const parent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const handoff = parseEpisodeDraft(original, 'EpisodeWorkflowStage1Handoff');
-  const reviewed = parseEpisodeDraft(source, 'EpisodeWorkflowMaterializerInput');
-  checkTypes({ files: [{ path: meta.sourcePath, kind: 'typescript', content: source }] }, meta.textbookRoot);
-  const plan = planEpisode(handoff, reviewed, meta, parent, renderSection);
+  const handoff = parseEpisodeHandoff(original);
+  const worker = execute({
+    trustedRoot: path.resolve(import.meta.dirname, '../../..'),
+    candidateRoot: root,
+    textbook: meta.textbookRoot,
+    operation: 'episode-stage5',
+    source: {
+      sourcePath: meta.sourcePath,
+      sourceBlobSha: meta.sourceBlobSha,
+      sourceCommitSha: meta.head,
+    },
+  });
+  const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, worker?.plan);
   checkEpisodeTargets(meta, plan.files, tree);
-  // Supply pinned authored dependency modules as virtual TS files, never import/execute them.
-  const replace = new Set(plan.files.map(file => file.path));
-  const context = [];
-  let total = 0;
-  function addContext(filename, entry) {
-    if (
-      !filename.endsWith('.ts') ||
-      filename.endsWith('/draft.ts') ||
-      /\/workflow\.stage\d+\.ts$/.test(filename) ||
-      replace.has(filename)
-    )
-      return;
-    if (
-      !filename.startsWith(meta.textbookRoot + '/') ||
-      filename.split('/').some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')
-    )
-      throw Error('Unsafe virtual authored dependency path');
-    const content = reader.blob(entry, filename);
-    total += Buffer.byteLength(content);
-    if (total > maxBytes || context.length >= 5000)
-      throw Error('Episode dependency scope exceeds trusted analysis bound');
-    context.push({ path: filename, kind: 'typescript', content });
-  }
-  for (const [filename, entry] of tree) addContext(filename, entry);
-  const lessonRefs = new Set();
-  for (const file of [...context, ...plan.files]) {
-    for (const match of file.content.matchAll(
-      /#lessonsData\/([a-f0-9]\/([a-f0-9-]{36}))\/(?:index|[A-Za-z0-9_/-]+)(?=['"])/g,
-    )) {
-      if (match[1][0] !== match[2].at(-1)) throw Error('Invalid Lesson dependency bucket');
-      lessonRefs.add(meta.textbookRoot + '/data/lessons/' + match[1]);
-    }
-  }
-  for (const lesson of lessonRefs)
-    for (const [filename, entry] of reader.tree(meta.head, lesson)) addContext(filename, entry);
-  checkTypes({ files: [...context, ...plan.files] }, meta.textbookRoot);
   return buildEpisodeManifest(meta, plan);
+}
+
+/** Verify the sealed artifact and EXACT reserved parent restoration, without
+ * executing or importing the reviewed candidate entrypoint in a tokened job.
+ */
+export function verifyDirectEpisodeManifest(meta, manifest, root) {
+  if (
+    !manifest ||
+    manifest.version !== 1 ||
+    !sameMeta(manifest.meta ?? {}, meta) ||
+    manifest.operation !== 'typed-episode-stage5' ||
+    manifest.publishable !== false ||
+    !/^[a-f0-9-]{36}$/.test(manifest.episodeId ?? '') ||
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(manifest.sourceExportName ?? '') ||
+    !Array.isArray(manifest.entries) ||
+    !manifest.entries.length ||
+    manifest.entries.length > 1500
+  )
+    throw Error('Invalid pinned direct Episode manifest');
+  const reader = gitReader(root);
+  if (
+    reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
+    reader.git('status', '--porcelain=v1', '--untracked-files=all').trim() ||
+    reader.git('merge-base', meta.parentHead, meta.head).trim() !== meta.parentHead
+  )
+    throw Error('Episode publisher source checkout is not clean and pinned');
+  const tree = reader.tree(meta.head, meta.courseRoot);
+  const baseline = reader.tree(meta.parentHead, meta.courseRoot);
+  if (
+    baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
+    baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+  )
+    throw Error('Episode parent/handoff source is not the authorized Git version');
+  const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
+  // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
+  // reading it does not require TypeScript, user code or npm packages.
+  const match = sourceHandoff.match(
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+  );
+  if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
+  const handoff = JSON.parse(match[1]);
+  if (
+    handoff.config.id !== manifest.episodeId ||
+    handoff.production.placement.courseId !== meta.courseId ||
+    handoff.production.placement.path !== meta.placement
+  )
+    throw Error('Episode worker output identity differs from approved Course handoff');
+  let total = 0;
+  const files = manifest.entries.map(entry => {
+    const bytes = Buffer.from(entry.data || '', 'base64');
+    total += bytes.length;
+    if (
+      !entry ||
+      !entry.path ||
+      typeof entry.kind !== 'string' ||
+      !/^[A-Za-z0-9+/]*={0,2}$/.test(entry.data ?? '') ||
+      bytes.toString('base64') !== entry.data ||
+      !bytes.length ||
+      total > maxBytes ||
+      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
+      hash(bytes) !== entry.sha256
+    )
+      throw Error('Invalid sealed Episode file or SHA256');
+    return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
+  });
+  checkEpisodeTargets(meta, files, tree);
+  const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
+  const edited = files.find(file => file.path === meta.parentPath);
+  if (!edited) throw Error('Missing generated parent Course source');
+  verifyReservedEpisodeParent(parentSource, edited.content, {
+    placement: meta.placement,
+    slug: handoff.config.slug,
+    episodeId: handoff.config.id,
+    orderIndex: handoff.production.placement.orderPath.at(-1),
+    exportName: manifest.sourceExportName,
+  });
+  return manifest;
 }
 
 function readManifest(filename) {
@@ -270,7 +312,7 @@ async function main() {
   if (mode === 'analyze') {
     if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
       throw Error('Read-only Episode analysis must not receive write token');
-    const manifest = prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
+    const manifest = await prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
     report('Read-only Episode plan: ' + manifest.entries.length + ' generated/parent files; no publication approval.');
@@ -280,9 +322,7 @@ async function main() {
   if (!sameMeta(await inspectEpisode(meta.number, meta.parentNumber, meta), meta))
     throw Error('Episode authorization changed before source publication');
   const manifest = readManifest(filename);
-  const expected = prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
-  if (JSON.stringify(manifest) !== JSON.stringify(expected))
-    throw Error('Episode manifest differs from trusted deterministic plan');
+  verifyDirectEpisodeManifest(meta, manifest, process.env.EPISODE_HEAD_ROOT);
   const original = await github('git/commits/' + meta.head);
   if (original?.sha !== meta.head || !SHA.test(original.tree?.sha ?? ''))
     throw Error('Missing reviewed parent Git tree');
@@ -296,10 +336,8 @@ async function main() {
       meta.number +
       '\nCourse-PR: #' +
       meta.parentNumber +
-      '\nReviewed-Draft-Blob: ' +
-      meta.sourceBlobSha +
-      '\nStage4-Review: ' +
-      meta.evidenceUrl,
+      '\nSource-Blob: ' +
+      meta.sourceBlobSha,
     tree: tree.sha,
     parents: [meta.head],
   });

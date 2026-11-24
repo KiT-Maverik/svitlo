@@ -13,10 +13,10 @@ import {
   assertBankPath,
   assertBankSha,
   assertBankUuid,
-  assertReviewedBankInput,
+  assertPinnedBankInput,
   gitBlobSha,
   preflightBankSource,
-  type BankReviewedSource,
+  type BankPinnedSource,
   type BankSourceResult,
   type BankSourceSnapshot,
 } from './bankSourceSafety';
@@ -31,9 +31,9 @@ export type BankGitContext = {
   /** Repo-relative, canonical UUID Lesson directory; never supplied by a generated plan. */
   lessonDirectory: string;
 };
-export type BankGitReviewedEvidence = {
-  reviewed: BankReviewedSource;
-  /** Exact Stage 3 value evaluated by the trusted caller from the reviewed source revision. */
+export type BankGitPinnedInput = {
+  source: BankPinnedSource;
+  /** Exact Stage 3 value evaluated by the trusted caller from the pinned source revision. */
   evaluatedInput: unknown;
 };
 export type BankGitCheck = {
@@ -196,7 +196,7 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
   const draft = kind + '/draft.ts';
   if (plan.transition) {
     if (
-      plan.transition.reviewedDraftPath !== draft ||
+      plan.transition.sourceDraftPath !== draft ||
       plan.transition.materializedPath !== index ||
       !names.has(index) ||
       names.has(draft) ||
@@ -235,7 +235,7 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   }
   for (const line of output.split('\n')) {
     const found = /^[a-fA-F0-9]{40}:([^:]+):\d+:(.*)$/.exec(line);
-    if (!found || found[1] === context.lessonDirectory + '/' + plan.transition?.reviewedDraftPath) continue;
+    if (!found || found[1] === context.lessonDirectory + '/' + plan.transition?.sourceDraftPath) continue;
     // Reviewed draft contains the same authored identities by design.
     const relative = found[1].startsWith(context.lessonDirectory + '/')
       ? found[1].slice(context.lessonDirectory.length + 1)
@@ -249,37 +249,34 @@ function assertNoExternalEntityCollisions(context: BankGitContext, plan: BankSou
   }
 }
 
-function validateReview(
+function validatePinnedSource(
   context: BankGitContext,
   kind: BankGitKind,
   plan: BankSourceResult,
-  evidence?: BankGitReviewedEvidence,
+  evidence?: BankGitPinnedInput,
 ): void {
   if (!plan.transition) {
-    if (evidence) throw new Error('Draft plan cannot consume reviewed final evidence');
+    if (evidence) throw new Error('Draft plan cannot consume final source');
     return;
   }
-  if (!evidence) throw new Error('Independently reviewed source evidence is required');
-  const { reviewed, evaluatedInput } = evidence;
-  if (!reviewed || reviewed.approved !== true || !reviewed.reviewer?.trim()) {
-    throw new Error('Independent Bank reviewer approval is required');
-  }
-  assertBankSha(reviewed.reviewCommitSha, 'bank review commit');
-  assertBankSha(reviewed.reviewedSourceBlobSha, 'reviewed source blob');
-  assertReviewedBankInput(evaluatedInput, reviewed);
+  if (!evidence) throw new Error('Pinned bank source is required');
+  const { source, evaluatedInput } = evidence;
+  if (!source) throw new Error('Pinned bank source is required');
+  assertBankSha(source.commitSha, 'bank source commit');
+  assertBankSha(source.blobSha, 'source blob');
+  assertPinnedBankInput(evaluatedInput, source);
   if (
-    reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
-    reviewed.blobSha !== plan.transition.reviewedDraftBlobSha ||
-    gitBlobSha(reviewed.content) !== reviewed.blobSha ||
+    source.blobSha !== plan.transition.sourceDraftBlobSha ||
+    gitBlobSha(source.content) !== source.blobSha ||
     plan.transition.expectedHeadSha !== context.expectedHeadSha ||
-    reviewed.reviewCommitSha !== context.expectedHeadSha
+    source.commitSha !== context.expectedHeadSha
   ) {
-    throw new Error('Bank source transition does not match approved revision');
+    throw new Error('Bank source transition does not match pinned revision');
   }
   const sourcePath = context.lessonDirectory + '/' + kind + '/draft.ts';
-  const original = git(context, ['show', reviewed.reviewCommitSha + ':' + sourcePath]);
-  if (original !== reviewed.content || gitBlobSha(original) !== reviewed.blobSha) {
-    throw new Error('Review commit does not contain approved original Stage 3 bytes');
+  const original = git(context, ['show', source.commitSha + ':' + sourcePath]);
+  if (original !== source.content || gitBlobSha(original) !== source.blobSha) {
+    throw new Error('Source commit does not contain pinned original Stage 3 bytes');
   }
 }
 
@@ -287,30 +284,30 @@ export function checkBankGitPlan(
   kind: BankGitKind,
   context: BankGitContext,
   plan: BankSourceResult,
-  evidence?: BankGitReviewedEvidence,
+  evidence?: BankGitPinnedInput,
 ): BankGitCheck {
   const snapshot = readBankGitSnapshot(context);
   checkOwnedPaths(kind, plan);
   checkPhysicalPaths(context, [
     ...plan.files.map(file => file.path),
-    ...(plan.transition ? [plan.transition.reviewedDraftPath] : []),
+    ...(plan.transition ? [plan.transition.sourceDraftPath] : []),
   ]);
-  validateReview(context, kind, plan, evidence);
-  const reviewed = evidence?.reviewed;
+  validatePinnedSource(context, kind, plan, evidence);
+  const source = evidence?.source;
   preflightBankSource(
     plan.files,
     snapshot,
-    reviewed && plan.transition
+    source && plan.transition
       ? {
           indexPath: plan.transition.materializedPath,
-          draftPath: plan.transition.reviewedDraftPath,
-          reviewed,
+          draftPath: plan.transition.sourceDraftPath,
+          source,
         }
       : undefined,
   );
   const current = snapshot.entries;
   const plannedNames = new Set(plan.files.map(file => file.path));
-  if (plan.transition) plannedNames.add(plan.transition.reviewedDraftPath);
+  if (plan.transition) plannedNames.add(plan.transition.sourceDraftPath);
   const presentNames = new Map<string, string>();
   for (const name of Object.keys(current)) {
     presentNames.set(name.toLowerCase(), name);
@@ -328,7 +325,7 @@ export function checkBankGitPlan(
   const changedPaths = plan.files
     .filter(file => current[file.path]?.content !== file.content)
     .map(file => context.lessonDirectory + '/' + file.path);
-  if (plan.transition) changedPaths.push(context.lessonDirectory + '/' + plan.transition.reviewedDraftPath);
+  if (plan.transition) changedPaths.push(context.lessonDirectory + '/' + plan.transition.sourceDraftPath);
   return { noop: changedPaths.length === 0, headSha: context.expectedHeadSha, changedPaths };
 }
 
@@ -340,7 +337,7 @@ export function commitBankGitPlan(
   kind: BankGitKind,
   context: BankGitContext,
   plan: BankSourceResult,
-  evidence?: BankGitReviewedEvidence,
+  evidence?: BankGitPinnedInput,
 ): BankGitCommit {
   const check = checkBankGitPlan(kind, context, plan, evidence);
   if (check.noop) return { ...check, commitSha: check.headSha, worktreeRefreshRequired: false };
@@ -360,7 +357,7 @@ export function commitBankGitPlan(
     if (plan.transition) {
       git(
         context,
-        ['update-index', '--force-remove', '--', context.lessonDirectory + '/' + plan.transition.reviewedDraftPath],
+        ['update-index', '--force-remove', '--', context.lessonDirectory + '/' + plan.transition.sourceDraftPath],
         { index },
       );
     }
@@ -381,7 +378,7 @@ export function commitBankGitPlan(
         ' bank source as one transaction' +
         (plan.transition
           ? '\n\nReviewed Stage 3 blob: ' +
-            plan.transition.reviewedDraftBlobSha +
+            plan.transition.sourceDraftBlobSha +
             '\nReviewed HEAD: ' +
             context.expectedHeadSha
           : ''),

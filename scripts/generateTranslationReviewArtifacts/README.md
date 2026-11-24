@@ -7,7 +7,11 @@ The reference corpus is a **disposable read-only ZIP**, not authored data or a G
 ```text
 /agent-artifacts generate skills content/astronomy it
 /agent-artifacts generate lessons content/math it
+/agent-artifacts generate lessons content/playground <lesson-uuid> en
+/agent-artifacts generate lessons content/playground <lesson-uuid>
 /agent-artifacts generate questions content/astronomy qm
+/agent-artifacts generate questions content/playground <lesson-uuid> en
+/agent-artifacts generate questions content/playground <lesson-uuid>
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
 /agent-artifacts generate episodes content/astronomy <course-uuid> <episode-uuid> uk
 /agent-artifacts generate assessment-methods it
@@ -17,7 +21,7 @@ The reference corpus is a **disposable read-only ZIP**, not authored data or a G
 /agent-artifacts generate education-standards uk
 ```
 
-The person issuing the command needs current repository `write`, `maintain` or `admin` access. There is no unscoped generate request. Locale is optional and then selects only languages declared/supported for the family. Course UUID is optional; omitted UUID requests Courses from the named textbook. The manual-dispatch inputs allow an optional specific Lesson UUID and the same scope. New workflows activate only after the YAML reaches the repository's default branch (`develop`).
+The person issuing the command needs current repository `write`, `maintain` or `admin` access. There is no unscoped generate request. Locale is optional and then selects only languages declared/supported for the family. For `lessons` and `questions`, supply an exact canonical Lesson UUID **before** the optional locale to restrict Markdown to that Lesson or its Question Bank. A single trailing two-to-four-letter code is a locale, whereas a trailing UUID is the Lesson selector; malformed UUIDs, unknown families and additional arguments are rejected. Without a UUID, the existing textbook-wide behavior is preserved. Course UUID is likewise optional; omitted UUID requests Courses from the named textbook. Manual dispatch offers separate `lesson` and `locale` inputs and resolves to the same normalized UUID scope. New comment commands activate only after this workflow reaches the repository's default branch (`develop`) and is exercised there.
 
 ## Archive format and validation
 

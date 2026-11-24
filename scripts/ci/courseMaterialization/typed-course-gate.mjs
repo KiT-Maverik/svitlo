@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Trusted typed Course Stage 5 gate.
- * Authorizes a pinned Stage 3 source + independent Stage 4 GitHub review.
+ * Authorizes a pinned TypeScript source without reading editorial PR prose.
  * No PR-head code is loaded or executed by this gate.
  */
 import fs from 'node:fs';
-import { github, requireActor, safeBranch, report } from './course-gate.mjs';
+import { github, requireActor, safeBranch, report, materializationInvocation } from './course-gate.mjs';
 
 const UUID = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
 const COURSE_TS = new RegExp('^(content/[a-z][a-z0-9-]*)/data/courses/([0-9a-f])/(' + UUID + ')/draft\\.ts$');
@@ -38,32 +38,6 @@ export function discoverTypedCourseSource(files) {
   if (files.length !== 1 || files[0].filename !== found[0].sourcePath)
     throw Error('Typed Course Stage 3 PR must change only its canonical reviewed draft.ts');
   return found[0];
-}
-
-export function selectStage4Review(reviews, pr, permissions) {
-  if (!Array.isArray(reviews) || !SHA.test(pr?.head?.sha ?? ''))
-    throw Error('Cannot verify independent Stage 4 review');
-  const latest = new Map();
-  for (const review of reviews) {
-    const reviewer = review?.user?.login;
-    if (typeof reviewer !== 'string') continue;
-    if (review.state === 'APPROVED' || review.state === 'CHANGES_REQUESTED' || review.state === 'DISMISSED')
-      latest.set(reviewer.toLowerCase(), review);
-  }
-  if ([...latest.values()].some(review => review.state === 'CHANGES_REQUESTED' && review.commit_id === pr.head.sha))
-    throw Error('Outstanding Stage 4 change request at pinned HEAD');
-  const authorized = [...latest.values()].filter(
-    review =>
-      review.state === 'APPROVED' &&
-      review.commit_id === pr.head.sha &&
-      review.user.login.toLowerCase() !== pr.user?.login?.toLowerCase() &&
-      ['write', 'maintain', 'admin'].includes(permissions[review.user.login.toLowerCase()]) &&
-      Number.isSafeInteger(review.id) &&
-      review.id > 0,
-  );
-  if (!authorized.length) throw Error('Independent write-authorized Stage 4 APPROVED review at exact PR HEAD required');
-  authorized.sort((a, b) => a.id - b.id);
-  return authorized.at(-1);
 }
 
 async function changedPrFiles(number) {
@@ -106,25 +80,15 @@ export async function inspectTypedCourse(number, expectedHead) {
     resource.size > 2 * 1024 * 1024
   )
     throw Error('Pinned typed Course source is missing, invalid or oversized');
-  const reviews = await github('pulls/' + number + '/reviews?per_page=100');
-  if (!Array.isArray(reviews) || reviews.length === 100)
-    throw Error('Review listing is incomplete; refuse ambiguous Stage 4 approval');
-  const permissions = Object.create(null);
-  for (const review of reviews) {
-    const reviewer = review?.user?.login;
-    if (
-      typeof reviewer === 'string' &&
-      /^[A-Za-z0-9-]+$/.test(reviewer) &&
-      !Object.hasOwn(permissions, reviewer.toLowerCase())
-    ) {
-      const access = await github('collaborators/' + reviewer + '/permission');
-      permissions[reviewer.toLowerCase()] = access?.permission ?? 'none';
-    }
-  }
-  const approved = selectStage4Review(reviews, pr, permissions);
   const again = await github('pulls/' + number);
-  if (again?.head?.sha !== pr.head.sha || again?.head?.ref !== pr.head.ref || again?.state !== 'open' || !again.draft)
-    throw Error('Course PR changed during independent Stage 4 evidence verification');
+  if (
+    again?.head?.sha !== pr.head.sha ||
+    again?.head?.ref !== pr.head.ref ||
+    again?.state !== 'open' ||
+    !again.draft ||
+    again.base?.ref !== base
+  )
+    throw Error('Course PR changed during source discovery');
   return {
     version: 2,
     operation: 'typed-course-stage5',
@@ -134,10 +98,6 @@ export async function inspectTypedCourse(number, expectedHead) {
     head: pr.head.sha,
     ...identity,
     sourceBlobSha: resource.sha,
-    reviewCommitSha: approved.commit_id,
-    reviewer: approved.user.login,
-    evidenceUrl:
-      approved.html_url || 'https://github.com/' + repo + '/pull/' + number + '#pullrequestreview-' + approved.id,
   };
 }
 
@@ -152,12 +112,8 @@ export function parseTypedMetadata(encoded) {
     data.number < 1 ||
     !SHA.test(data.head ?? '') ||
     !SHA.test(data.sourceBlobSha ?? '') ||
-    data.reviewCommitSha !== data.head ||
     data.repo !== process.env.GITHUB_REPOSITORY ||
     !/^[A-Za-z0-9-]+$/.test(data.actor ?? '') ||
-    !/^[A-Za-z0-9-]+$/.test(data.reviewer ?? '') ||
-    typeof data.evidenceUrl !== 'string' ||
-    !data.evidenceUrl.startsWith('https://github.com/' + data.repo + '/pull/' + data.number) ||
     !safeBranch(data.branch, process.env.COURSE_DEFAULT_BRANCH || 'develop') ||
     !COURSE_TS.test(data.sourcePath ?? '') ||
     !data.sourcePath.startsWith(data.textbookRoot + '/data/courses/') ||
@@ -169,25 +125,19 @@ export function parseTypedMetadata(encoded) {
 
 async function main() {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: typed-course-gate.mjs resolve');
-  if (process.env.GITHUB_EVENT_NAME !== 'workflow_dispatch')
-    throw Error('Typed Course rollout is manual-only until owner activates canonical command');
+  if (
+    !process.env.COURSE_DEFAULT_BRANCH ||
+    process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH
+  )
+    throw Error('Course materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
-  const number = Number(event.inputs?.pr_number);
-  if (!Number.isSafeInteger(number) || number < 1) throw Error('Invalid Course PR number');
   const actor = process.env.GITHUB_ACTOR;
+  const number = materializationInvocation(event, process.env.GITHUB_EVENT_NAME, actor, '/course materialize');
   await requireActor(actor);
   const metadata = { ...(await inspectTypedCourse(number)), actor };
   const encoded = Buffer.from(JSON.stringify(metadata)).toString('base64');
   fs.appendFileSync(process.env.GITHUB_OUTPUT, 'meta=' + encoded + '\npr=' + number + '\nhead=' + metadata.head + '\n');
-  report(
-    'Verified typed Course Stage 4 review at ' +
-      metadata.head +
-      ' (source blob ' +
-      metadata.sourceBlobSha +
-      ', reviewer ' +
-      metadata.reviewer +
-      ')',
-  );
+  report('Verified typed Course source at ' + metadata.head + ' (source blob ' + metadata.sourceBlobSha + ')');
 }
 
 if (process.argv[1]?.endsWith('/typed-course-gate.mjs')) {

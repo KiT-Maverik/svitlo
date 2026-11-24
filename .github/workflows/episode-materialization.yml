@@ -1,6 +1,8 @@
 name: Typed Episode materialization
 
 on:
+  issue_comment:
+    types: [created]
   pull_request:
     types: [opened, synchronize, ready_for_review]
     paths:
@@ -23,7 +25,7 @@ on:
 permissions: {}
 
 concurrency:
-  group: episode-materialization-${{ github.event.pull_request.number || inputs.pr_number }}
+  group: episode-materialization-${{ github.event.issue.number || github.event.pull_request.number || inputs.pr_number }}
   cancel-in-progress: false
 
 jobs:
@@ -42,12 +44,16 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - run: node --test scripts/ci/episodeMaterialization/*.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
+      - run: npm run package:build --workspace @svitlo/engine
+      - run: node --test scripts/ci/episodeMaterialization/episode-direct.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
       - run: npm run code:check:types --workspace @svitlo/engine
 
   resolve:
-    if: github.event_name == 'workflow_dispatch' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    if: >-
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+        github.event.comment.body == '/episode materialize'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -96,7 +102,9 @@ jobs:
       - working-directory: trusted
         run: npm ci --ignore-scripts --no-audit --no-fund
       - working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Pull pinned isolated Episode worker
+        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
       - env:
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
@@ -132,12 +140,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
-          cache-dependency-path: trusted/package-lock.json
-      - working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
-      - working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
       - uses: actions/download-artifact@v4
         with:
           name: episode-stage5-${{ github.run_id }}

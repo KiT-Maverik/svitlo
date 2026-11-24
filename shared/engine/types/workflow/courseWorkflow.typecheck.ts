@@ -1,3 +1,4 @@
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
@@ -19,13 +20,11 @@ import type {
   CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
-  CourseWorkflowStage3LessonIntent,
-  CourseWorkflowStage3AssessmentRequirements,
-  CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3NewLesson,
-  CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3NewLessonConfig,
+  CourseWorkflowLessonSeed,
+  CourseWorkflowStage3LessonMatch,
+  CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
@@ -310,7 +309,7 @@ const assessment = {
   flashcardBankRequired: false,
   quizSectionRequired: true,
   flashcardsSectionRequired: false,
-} satisfies CourseWorkflowStage3AssessmentRequirements;
+} satisfies LessonProductionAssessmentRequirements;
 
 /** Stage 3 resolves every provisional Lesson using only two public variants. */
 declare const importedLesson: Lesson_Configurator;
@@ -320,7 +319,7 @@ const newIntent = {
   sequenceReason: 'After foundational observations',
   assessmentEvidence: 'Apply the model to a new example',
   assessment,
-} satisfies CourseWorkflowStage3LessonIntent;
+} as const;
 
 const match = {
   methodologySourcePath: 'content/example/data/lessons/a/lesson-uuid/methodology.md',
@@ -345,6 +344,14 @@ const newLesson = {
     methodology: 'Complete pedagogical specification belongs here; this test is not reviewed content.',
   },
 } satisfies CourseWorkflowStage3NewLesson;
+
+const { kind: _newKind, ...proposal } = newLesson.production;
+const allocatedSeed = {
+  config: { ...newLesson.config, id: '663572e7-bd85-4516-86e2-3de07d209e05' },
+  proposal,
+  languageContext: complete.production.languages,
+} satisfies CourseWorkflowLessonSeed;
+void allocatedSeed;
 
 const existingConfig = {
   type: 'lesson',
@@ -414,9 +421,9 @@ const resolvedCourse = {
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
-const materializerInput: CourseWorkflowMaterializerInput = resolvedCourse;
+const materializerInput: CourseWorkflowStage3 = resolvedCourse;
 // @ts-expect-error Stage 2 cannot directly enter a Stage 3-complete materializer.
-const prematureMaterializerInput: CourseWorkflowMaterializerInput = planned;
+const prematureMaterializerInput: CourseWorkflowStage3 = planned;
 
 // @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
@@ -442,7 +449,7 @@ const newWithId: CourseWorkflowStage3NewLesson = {
 const newWithLanguages: CourseWorkflowStage3NewLessonConfig = {
   ...newConfig,
   params: {
-    // @ts-expect-error Stage 3 planned languages belong to Course production.
+    // @ts-expect-error Course language context belongs to the Course root.
     languages: ['uk'],
   },
 };
@@ -603,7 +610,7 @@ void obsoleteThirdVariant;
 void malformedReference;
 void missingReferenceId;
 
-const missingAssessmentChoice: CourseWorkflowStage3AssessmentRequirements = {
+const missingAssessmentChoice: LessonProductionAssessmentRequirements = {
   questionBankRequired: true,
   quizSectionRequired: true,
   // @ts-expect-error The Flashcard Bank decision must be explicit.

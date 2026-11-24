@@ -3,11 +3,13 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import ts from 'typescript';
 import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
-import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
+import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix, resolve, sep } from 'node:path';
+import { posix, resolve, sep, dirname, join } from 'node:path';
+import { existsSync } from 'node:fs';
 import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -86,17 +88,15 @@ const blobSha = (source: string) =>
 const reviewed = {
   sourcePath: folder + 'draft.ts',
   sourceBlobSha: blobSha(stage2Source),
-  reviewCommitSha: '1'.repeat(40),
-  reviewEvidenceSha: '2'.repeat(40),
-  stage6Authorized: true as const,
+  sourceCommitSha: '1'.repeat(40),
 };
 const options = {
   sourceText: stage2Source,
-  review: reviewed,
-  verifyReviewedInput: () => true,
+  source: reviewed,
+  verifySourceInput: () => true,
 };
 function produce(value = valid(), config = options) {
-  return materializeLessonStage6(value as unknown as LessonWorkflowMaterializerInput, config);
+  return materializeLessonStage6(value as unknown as LessonWorkflowStage2, config);
 }
 test('reviewed source yields deterministic ordinary Lesson and nested Section/ContentBlock manifests', () => {
   const input = valid();
@@ -143,9 +143,14 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   }
 });
 
-test('generated Lesson source passes the real TypeScript semantic checker', () => {
-  const plan = produce();
-  const workspace = resolve(process.cwd(), '../..');
+function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>): void {
+  // Resolve the checkout containing the compiled test, never the caller's cwd.
+  let workspace = __dirname;
+  while (!existsSync(join(workspace, 'shared/engine/package.json'))) {
+    const parent = dirname(workspace);
+    assert.notEqual(parent, workspace, 'repository root not found');
+    workspace = parent;
+  }
   const files = new Map(
     plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
   );
@@ -175,8 +180,10 @@ test('generated Lesson source passes the real TypeScript semantic checker', () =
     [],
     'emitted modules must be assignable to actual @svitlo/engine/build contracts',
   );
+}
+test('generated Lesson source passes the real TypeScript semantic checker', () => {
+  assertSemanticModules(produce());
 });
-
 test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
   const plan = produce();
   const sources = new Map(
@@ -219,20 +226,26 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   assert.equal(props.base.section[0].type, 'content');
   assert.deepEqual(props.base.skills, [id('04')]);
 });
-test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff can materialize', () => {
+test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
   delete (stage1.config as unknown as { section?: unknown }).section;
   assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
   assert.equal(produce().lessonId, id('01'));
 });
-test('trust rejects source SHA drift, missing Stage 6 authorization and unverified independent review', () => {
+test('standalone and Course-originated Stage 2 inputs use identical source materialization', () => {
+  const standalone = valid();
+  const courseOrigin = structuredClone(standalone);
+  const first = produce(standalone);
+  assert.deepEqual(produce(courseOrigin), first);
+});
+test('trust rejects source SHA drift, invalid path and unverified pinned source', () => {
   assert.throws(() => produce(valid(), { ...options, sourceText: 'tampered' }), /untrusted source/);
-  assert.throws(() => produce(valid(), { ...options, verifyReviewedInput: () => false }), /untrusted source/);
+  assert.throws(() => produce(valid(), { ...options, verifySourceInput: () => false }), /untrusted source/);
   assert.throws(
     () =>
       produce(valid(), {
         ...options,
-        review: {
+        source: {
           ...reviewed,
           sourceBlobSha: '0'.repeat(40),
         },
@@ -243,18 +256,7 @@ test('trust rejects source SHA drift, missing Stage 6 authorization and unverifi
     () =>
       produce(valid(), {
         ...options,
-        review: {
-          ...reviewed,
-          stage6Authorized: false as never,
-        },
-      }),
-    /untrusted source/,
-  );
-  assert.throws(
-    () =>
-      produce(valid(), {
-        ...options,
-        review: {
+        source: {
           ...reviewed,
           sourcePath: 'content/math/data/lessons/1/../../../other/index.ts',
         },
@@ -265,7 +267,24 @@ test('trust rejects source SHA drift, missing Stage 6 authorization and unverifi
 test('incomplete Lesson params and source-language plan fail closed without fabrication', () => {
   const input = valid();
   delete (input.config.params as { sections?: unknown }).sections;
-  assert.throws(() => produce(input), /incomplete or invalid Lesson Config params/);
+  const root = produce(input).files.find(file => file.path.endsWith('/index.ts') || file.path === 'index.ts');
+  assert.ok(root);
+  const output = produce(input)
+    .files.map(file => file.content)
+    .join('\n');
+  for (const key of ['allowNavigation', 'allowSkipping', 'showIndexes'])
+    assert.match(output, new RegExp('"' + key + '": true'));
+  const partial = valid();
+  partial.config.params.sections.allowNavigation = false;
+  delete (partial.config.params.sections as { showIndexes?: boolean }).showIndexes;
+  const partialOutput = produce(partial)
+    .files.map(file => file.content)
+    .join('\n');
+  assert.match(partialOutput, /"allowNavigation": false/);
+  assert.match(partialOutput, /"showIndexes": true/);
+  const missingPolicy = valid();
+  delete (missingPolicy.config.params as { quizRequiredForCompletion?: boolean }).quizRequiredForCompletion;
+  assert.throws(() => produce(missingPolicy), /incomplete or invalid Lesson Config params/);
   const lang = valid();
   lang.production.languages.planned = ['uk'];
   assert.throws(() => produce(lang), /invalid reviewed document\/planned languages/);
@@ -289,7 +308,7 @@ test('four independent assessment decisions, enabled required Sections and compl
   assert.throws(() => produce(noPolicy), /four independent assessment decisions/);
 });
 test('authored enabled Quiz and Flashcards Sections pass separate source materializers', () => {
-  const input = structuredClone(valid()) as unknown as LessonWorkflowMaterializerInput;
+  const input = structuredClone(valid()) as unknown as LessonWorkflowStage2;
   input.config.section.items.reviewQuiz = {
     config: {
       type: 'quiz',
@@ -314,7 +333,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       content: { items: {}, order: [] },
     },
     production: { purpose: 'Reviewed assessment' },
-  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.items.reviewCards = {
     config: {
       type: 'flashcards',
@@ -325,7 +344,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       content: { items: {}, order: [] },
     },
     production: { purpose: 'Reviewed recall practice' },
-  } as LessonWorkflowMaterializerInput['config']['section']['items'][string];
+  } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.order.push('reviewQuiz', 'reviewCards');
   input.config.params = {
     ...input.config.params,
@@ -333,7 +352,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   };
   input.production.assessment.quizSectionRequired = true;
   input.production.assessment.flashcardsSectionRequired = true;
-  const sourceFor = (value: LessonWorkflowMaterializerInput) => {
+  const sourceFor = (value: LessonWorkflowStage2) => {
     // These are executable Configurator imports, not handwritten bank UUIDs.
     const reviewedObject = JSON.stringify(value, null, 2)
       .replace(/"questionIds": \[\s*"[^"]+"\s*\]/, '"questionIds": [reviewQuestion.id]')
@@ -348,7 +367,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
     return {
       ...options,
       sourceText,
-      review: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+      source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     };
   };
   const plan = materializeLessonStage6(input, sourceFor(input));
@@ -389,7 +408,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: literal,
-        review: { ...reviewed, sourceBlobSha: blobSha(literal) },
+        source: { ...reviewed, sourceBlobSha: blobSha(literal) },
       }),
     /requires imported Question/,
   );
@@ -399,7 +418,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: unbound,
-        review: { ...reviewed, sourceBlobSha: blobSha(unbound) },
+        source: { ...reviewed, sourceBlobSha: blobSha(unbound) },
       }),
     /without an executable Configurator import/,
   );
@@ -409,7 +428,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       materializeLessonStage6(input, {
         ...options,
         sourceText: expression,
-        review: { ...reviewed, sourceBlobSha: blobSha(expression) },
+        source: { ...reviewed, sourceBlobSha: blobSha(expression) },
       }),
     /must reference a static member/,
   );
@@ -424,7 +443,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const bankPlan = materializeLessonStage6(input, {
     ...options,
     sourceText: throughBank,
-    review: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
+    source: { ...reviewed, sourceBlobSha: blobSha(throughBank) },
   });
   const bankQuiz = bankPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
   assert(bankQuiz.includes('import { questions as stage6_ref_0 } from "../../questions";'));
@@ -448,4 +467,331 @@ test('planned translations and missing Scene remain explicit nonpublishable bloc
   const plan = produce(translated);
   assert(plan.diagnostics.some(item => item.code === 'pending-lesson'));
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+});
+
+test('typed Stage 2 media placeholders survive nested materialization and fail publication', () => {
+  const resource = (purpose: string) => ({
+    purpose,
+    specification: 'Produce the reviewed learning resource',
+    accessibility: 'Provide equivalent accessible content',
+    offline: 'Provide an offline learning path',
+  });
+  const image = (slug: string, number: string, fileName?: string) => ({
+    config: {
+      id: id(number),
+      slug,
+      type: 'image' as const,
+      params: { width: 640, height: 480 },
+      locale: { alt: { en: 'An accessible diagram', uk: 'Український опис' }, ...(fileName ? { fileName } : {}) },
+    },
+    production: resource('Explain the diagram'),
+  });
+  const video = (slug: string, number: string, fileName?: string) => ({
+    config: {
+      id: id(number),
+      slug,
+      type: 'video' as const,
+      params: {},
+      locale: { label: { en: 'Watch the explanation' }, ...(fileName ? { fileName } : {}) },
+    },
+    production: resource('Show the process'),
+  });
+  const audio = (slug: string, number: string) => ({
+    config: { id: id(number), slug, type: 'audio' as const, params: {}, locale: { title: { en: 'Narration' } } },
+    production: resource('Narrate the process'),
+  });
+  const subtitles = (slug: string, number: string) => ({
+    config: { id: id(number), slug, type: 'subtitles' as const, params: {}, locale: {} },
+    production: resource('Caption the process'),
+  });
+  const scene = {
+    config: {
+      id: id('28'),
+      slug: 'interaction',
+      type: 'scene' as const,
+      params: {},
+      locale: { value: { title: { en: 'Try it' } } },
+    },
+    production: resource('Practice the concept'),
+  };
+  const base = valid();
+  const fixture: LessonWorkflowStage2 = {
+    config: {
+      ...base.config,
+      skills: [id('04')],
+      section: {
+        items: {
+          introduction: {
+            ...base.config.section.items.introduction,
+            config: {
+              ...base.config.section.items.introduction.config,
+              content: {
+                items: {
+                  prompt: base.config.section.items.introduction.config.content.items.prompt,
+                  image: image('image', '09'),
+                  video: video('video', '10'),
+                  audio: audio('audio', '11'),
+                  subtitles: subtitles('subtitles', '12'),
+                  link: {
+                    config: {
+                      id: id('13'),
+                      slug: 'link',
+                      type: 'youtube',
+                      params: { mode: 'link' },
+                      locale: { label: 'Open video' },
+                    },
+                    production: resource('Offer the source video'),
+                  },
+                  embed: {
+                    config: {
+                      id: id('14'),
+                      slug: 'embed',
+                      type: 'youtube',
+                      params: { mode: 'embed' },
+                      locale: { label: 'Watch video', href: { uk: 'https://www.youtube.com/watch?v=real' } },
+                    },
+                    production: resource('Show the source video'),
+                  },
+                  carousel: {
+                    config: {
+                      id: id('15'),
+                      slug: 'carousel',
+                      type: 'carousel',
+                      params: {},
+                      locale: {},
+                      slides: { items: { slide: image('slide', '16', id('29') + '.png') }, order: ['slide'] },
+                    },
+                  },
+                  checkpoint: {
+                    config: {
+                      id: id('17'),
+                      slug: 'checkpoint',
+                      type: 'checkpoint',
+                      params: { requireCompletion: true },
+                      locale: { title: 'Check' },
+                      content: {
+                        items: {
+                          first: {
+                            config: {
+                              id: id('18'),
+                              slug: 'first',
+                              type: 'checkpointItem',
+                              check: true,
+                              question: {
+                                config: {
+                                  id: id('19'),
+                                  slug: 'question',
+                                  type: 'text',
+                                  params: {},
+                                  locale: { value: 'What happened?' },
+                                },
+                                production: { purpose: 'Ask the learner' },
+                              },
+                              answer: {
+                                config: {
+                                  id: id('20'),
+                                  slug: 'answer',
+                                  type: 'checkpointAnswer',
+                                  content: {
+                                    items: { answerImage: image('answerImage', '21') },
+                                    order: ['answerImage'],
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                        order: ['first'],
+                      },
+                    },
+                  },
+                },
+                order: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
+              },
+            },
+          },
+          quest: {
+            config: {
+              id: id('22'),
+              slug: 'quest',
+              type: 'quest',
+              params: {},
+              locale: { title: 'Quest', navigationLabel: 'Q' },
+              stages: {
+                start: {
+                  config: {
+                    id: id('23'),
+                    slug: 'start',
+                    type: 'questStage',
+                    content: {
+                      video: { medium: video('medium', '24'), small: video('small', '25', id('30') + '.mp4') },
+                      audio: { dialogue: audio('dialogue', '26'), narration: null, background: null },
+                      image: image('questImage', '27'),
+                      subtitles: subtitles('questSubtitles', '31'),
+                    },
+                  },
+                },
+              },
+              tasks: { start: { config: { id: id('32'), slug: 'start', type: 'questTask', scene } } },
+            },
+            production: { ...resource('Guide practice'), runtimeStatus: 'unimplemented' },
+          },
+        },
+        order: ['introduction', 'quest'],
+      },
+    },
+    production: { ...base.production, languages: { document: 'en', planned: ['en'] } },
+  };
+  const plan = materializeLessonStage6(fixture, options);
+  assert.deepEqual(plan, materializeLessonStage6(fixture, options));
+  const lessonRoot = plan.files.find(file => file.path === folder + 'index.ts')?.content ?? '';
+  assert.match(lessonRoot, /TODO \(BLOCKER\): Quest is Build-only/);
+  assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
+  assert.match(lessonRoot, /"order": \["introduction"\]/);
+  assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
+  assert(plan.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Quest is Build-only')));
+  const pending = plan.diagnostics.filter(item => item.code === 'pending-media');
+  assert.equal(pending.length, 14);
+  assert.deepEqual(
+    pending.reduce<Record<string, number>>((counts, item) => {
+      counts[item.path] = (counts[item.path] ?? 0) + 1;
+      return counts;
+    }, {}),
+    {
+      '$.config.locale.fileName': 9,
+      '$.config.locale.posterFileName': 3,
+      '$.config.locale.href': 1,
+      '$.config.locale.href.en': 1,
+    },
+  );
+  assert(pending.every(item => item.severity === 'warning' && item.message.includes('verified')));
+  for (const [path, extension] of [
+    ['sections/introduction/content/items/image/index.ts', 'webp'],
+    ['sections/introduction/content/items/video/index.ts', 'mp4'],
+    ['sections/introduction/content/items/video/index.ts', 'webp'],
+    ['sections/introduction/content/items/audio/index.ts', 'mp3'],
+    ['sections/introduction/content/items/subtitles/index.ts', 'vtt'],
+  ]) {
+    const source = plan.files.find(file => file.path === folder + path)?.content ?? '';
+    assert.match(
+      source,
+      new RegExp('TODO \\(BLOCKER\\):[^\\n]+\\n"00000000-0000-0000-0000-000000000000\\.' + extension + '"'),
+    );
+  }
+  for (const path of ['link', 'embed']) {
+    const source =
+      plan.files.find(file => file.path === folder + 'sections/introduction/content/items/' + path + '/index.ts')
+        ?.content ?? '';
+    assert.match(
+      source,
+      /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
+    );
+  }
+  const carouselSlide =
+    plan.files.find(file => file.path.endsWith('/carousel/slides/items/slide/index.ts'))?.content ?? '';
+  assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
+  assert.match(carouselSlide, /An accessible diagram/);
+  assert.doesNotMatch(carouselSlide, /Український опис/);
+  const resolved = structuredClone(fixture);
+  const blocks = resolved.config.section.items.introduction;
+  if (blocks.config.type !== 'content') throw new Error('Expected content Section');
+  for (const slug of ['link', 'embed']) {
+    const block = blocks.config.content.items[slug];
+    if (block.config.type !== 'youtube') throw new Error('Expected YouTube block');
+    block.config.locale.href =
+      slug === 'link'
+        ? 'https://www.youtube.com/watch?v=real'
+        : { en: 'https://www.youtube.com/watch?v=real', uk: 'https://www.youtube.com/watch?v=other' };
+  }
+  const resolvedPlan = materializeLessonStage6(resolved, options);
+  assert.equal(resolvedPlan.diagnostics.filter(item => item.code === 'pending-media').length, 12);
+  for (const slug of ['link', 'embed']) {
+    const source = resolvedPlan.files.find(file => file.path.endsWith('/' + slug + '/index.ts'))?.content ?? '';
+    assert.match(source, /https:\/\/www\.youtube\.com\/watch\?v=real/);
+    assert.doesNotMatch(source, /UNRESOLVED|00000000-0000-0000-0000-000000000000/);
+    assert.doesNotMatch(source, /Український|other/);
+  }
+  assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
+  assertSemanticModules(plan);
+});
+
+test('final Lesson schema rejects invalid nested input before rendering', () => {
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(valid()).success, true);
+  const invalid = valid();
+  const { config } = invalid.config.section.items.introduction.config.content.items.prompt;
+  const broken = { ...config, locale: { value: 123 } };
+  Object.assign(config, broken);
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(invalid).success, false);
+  assert.throws(() => produce(invalid), /Invalid Lesson Stage 2 input/);
+});
+
+test('Episode shares ordinary Section contracts without importing Lesson assessment ownership', () => {
+  const lesson = valid();
+  const episode = {
+    config: {
+      type: 'episode',
+      id: id('33'),
+      slug: 'transition',
+      locale: lesson.config.locale,
+      section: lesson.config.section,
+    },
+    production: {
+      focus: 'Reviewed transition',
+      purpose: 'Continue the narrative',
+      placement: {
+        courseId: id('34'),
+        path: 'content/transition',
+        orderPath: [0],
+        reviewedCourseSourceBlobSha: 'a'.repeat(40),
+      },
+      languages: lesson.production.languages,
+      scenario: {
+        audience: 'Beginners',
+        entrySituation: 'Arrival',
+        exitSituation: 'Observation',
+        continuity: 'Next scene',
+        sceneIntent: 'Show the setting',
+        interactionIntent: 'Read and reflect',
+        accessibility: 'Equivalent text',
+        narrativeConstraints: 'No new assessment',
+      },
+      specification: 'Reviewed narrative',
+    },
+  };
+  assert.equal(episodeWorkflowStage2_Schema.safeParse(episode).success, true);
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, skills: lesson.config.skills },
+    }).success,
+    false,
+  );
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, events: { unsupported: {} } },
+    }).success,
+    false,
+  );
+});
+
+test('direct Lesson invocation returns the same source plan using runner-owned metadata', async () => {
+  const { executeMaterializerEntrypoint } = await import('../directMaterialization/directMaterialization');
+  const input = valid() as unknown as LessonWorkflowStage2;
+  const sourceText =
+    "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
+    'materializeLessonStage6(' +
+    JSON.stringify(input) +
+    ');\n';
+  const directOptions = {
+    ...options,
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+  };
+  const expected = materializeLessonStage6(input, directOptions);
+  const actual = await executeMaterializerEntrypoint('lesson-stage6', directOptions, async () => {
+    materializeLessonStage6(input);
+  });
+  assert.deepEqual(actual, expected);
+  assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
 });

@@ -2,9 +2,12 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
 import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
@@ -24,10 +27,10 @@ import {
   assertBankUuid,
   assertUniqueBankEntityIds,
   assertNoPendingBankSources,
-  assertReviewedBankInput,
+  assertPinnedBankInput,
   authoredBankLiteral,
   preflightBankSource,
-  type BankReviewedSource,
+  type BankPinnedSource,
   type BankSourceSnapshot,
   type BankSourceResult,
   type BankSourceFile,
@@ -55,27 +58,19 @@ export type QuestionBankDraftAuthorization = {
   ownerLessonId: string;
   lessonSourceSha: string;
   referenceSha: string;
-  methodologistReviewSha: string;
-  /** Explicit additional authorization when the Lesson decided no own bank is required. */
-  independentBankAuthorization?: { sourceSha: string; rationale: string };
   snapshot: BankSourceSnapshot;
 };
 
 /** The trusted writer verifies source/review/HEAD against the hosting Git API. */
 export type QuestionBankFinalAuthorization = {
   ownerLessonId: string;
-  independentBankAuthorization?: { sourceSha: string; rationale: string };
-  reviewed: BankReviewedSource;
+  source: BankPinnedSource;
   snapshot: BankSourceSnapshot;
   /** Concrete Scene registry and media evidence are checked before delegation. */
   blocks: AssessmentBlockEvidence;
 };
 
-function validateStage1(
-  input: QuestionBankWorkflowStage1,
-  lessonId: string,
-  independent?: { sourceSha: string; rationale: string },
-): void {
+function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): void {
   assertBankUuid(lessonId, 'Question Bank owning Lesson');
   if (!input || input.config?.ownerLessonId !== lessonId) {
     throw new Error('Question Bank must use the actual owning Lesson UUID');
@@ -103,20 +98,10 @@ function validateStage1(
   ] as const)
     assertBankStatement(value, label);
   if (
-    !p.assessment ||
-    typeof p.assessment.questionBankRequired !== 'boolean' ||
-    typeof p.assessment.flashcardBankRequired !== 'boolean' ||
-    typeof p.assessment.quizSectionRequired !== 'boolean' ||
-    typeof p.assessment.flashcardsSectionRequired !== 'boolean' ||
+    !lessonProductionAssessmentRequirements_Schema.safeParse(p.assessment).success ||
     typeof p.assessment.quizRequiredForCompletion !== 'boolean'
   ) {
     throw new Error('Preserve all independent Lesson assessment decisions');
-  }
-  if (p.assessment.questionBankRequired !== true) {
-    if (!independent) throw new Error('Questions N/A: independent bank authorization required');
-    assertBankSha(independent.sourceSha, 'Independent Question Bank authorization');
-    assertBankStatement(independent.rationale, 'Independent Question Bank rationale');
-    if (independent.sourceSha !== p.lesson.sourceSha) throw new Error('Stale independent Question Bank authorization');
   }
   if (!Array.isArray(p.evidenceIntent) || !p.evidenceIntent.length) {
     throw new Error('Methodologist assessment evidence is required');
@@ -144,8 +129,7 @@ export function materializeQuestionBankDraft(
   authorization: QuestionBankDraftAuthorization,
 ): BankSourceResult {
   if (authorization.authorized !== true) throw new Error('Lesson Stage 7 authorization missing');
-  validateStage1(input, authorization.ownerLessonId, authorization.independentBankAuthorization);
-  assertBankSha(authorization.methodologistReviewSha, 'Methodologist review');
+  validateStage1(input, authorization.ownerLessonId);
   if (
     input.production.lesson.sourceSha !== authorization.lessonSourceSha ||
     input.production.lesson.referenceSha !== authorization.referenceSha
@@ -171,7 +155,7 @@ export function materializeQuestionBankDraft(
 function renderQuestion(
   kind: Kind,
   node: Record<string, unknown>,
-  sourceLanguage: QuestionBankWorkflowMaterializerInput['production']['languages'],
+  sourceLanguage: QuestionBankWorkflowStage3['production']['languages'],
   blocks: AssessmentBlockEvidence,
 ): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
@@ -228,11 +212,27 @@ function renderQuestion(
  * #775's trusted writer must apply the complete returned plan atomically.
  */
 export function materializeQuestionBank(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
+  authorization?: QuestionBankFinalAuthorization,
+): BankSourceResult {
+  return invokeMaterializer(
+    'questions-stage5',
+    authorization,
+    approved => {
+      const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+      if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+      return planQuestionBank(input, approved);
+    },
+    input,
+  );
+}
+
+function planQuestionBank(
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
-  validateStage1(input, authorization.ownerLessonId, authorization.independentBankAuthorization);
-  assertReviewedBankInput(input, authorization.reviewed);
+  validateStage1(input, authorization.ownerLessonId);
+  assertPinnedBankInput(input, authorization.source);
   const questions = input.config.questions;
   if (!questions || typeof questions !== 'object') throw new Error('Missing complete Question inventory');
   for (const key of Object.keys(questions)) {
@@ -329,7 +329,7 @@ export function materializeQuestionBank(
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',
     draftPath: 'questions/draft.ts',
-    reviewed: authorization.reviewed,
+    source: authorization.source,
   });
   // Only an external authenticated Git writer may commit this atomic transition.
   return { ...result, diagnostics };

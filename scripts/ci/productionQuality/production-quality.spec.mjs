@@ -12,6 +12,26 @@ const commandWorkflow = readFileSync(
   'utf8',
 );
 
+const labelerWorkflow = readFileSync(new URL('../../../.github/workflows/pr-labeler.yml', import.meta.url), 'utf8');
+const fastGateWorkflow = readFileSync(new URL('../../../.github/workflows/fast-gate.yml', import.meta.url), 'utf8');
+
+test('editorial-only PR edits do not relabel while required checks keep retarget coverage', () => {
+  // Label scope depends on changed paths and target base; integration role
+  // depends on the title. Neither can change on a description-only edit.
+  assert.match(labelerWorkflow, /types: \[opened, reopened, synchronize, edited, ready_for_review\]/);
+  assert.match(labelerWorkflow, /github\.event\.action != 'edited'/);
+  assert.match(labelerWorkflow, /github\.event\.changes\.base != null/);
+  assert.match(labelerWorkflow, /github\.event\.changes\.title != null/);
+
+  // Do not skip a required job on an edited event: a new skipped conclusion
+  // at the same SHA could mask an earlier failing required check.
+  assert.match(fastGateWorkflow, /types: \[opened, reopened, synchronize, ready_for_review, edited\]/);
+  assert.match(fastGateWorkflow, /name: FastGate \/ verify\s*\n\s*runs-on:/);
+  assert.match(workflow, /types: \[opened, reopened, synchronize, edited, ready_for_review\]/);
+  assert.match(workflow, /name: Production \/ source policy\s*\n\s*needs: reuse\s*\n\s*if:/);
+  assert.match(workflow, /name: Production Quality \/ verify/);
+});
+
 test('every manifest-defined app and E2E suite is retained in the production matrix', () => {
   const packages = discoverWorkspaces();
   const expectedApps = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, 'app:build'));
@@ -72,7 +92,7 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.match(workflow, /if: matrix.e2e/);
   assert.match(workflow, /if: matrix.integration/);
   const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
-  assert.ok(workflow.includes('needs: [' + required.join(', ') + ']'));
+  assert.ok(workflow.includes('needs: [reuse, ' + required.join(', ') + ']'));
   for (const name of required) {
     assert.ok(workflow.includes("'" + name + "'"), 'aggregate must validate ' + name);
   }

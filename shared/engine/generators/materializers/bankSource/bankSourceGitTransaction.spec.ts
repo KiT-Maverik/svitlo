@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync, realpathSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import {
@@ -23,7 +23,7 @@ function git(root: string, ...args: string[]): string {
   return execFileSync('git', ['-C', root, ...args], { encoding: 'utf8' }).trim();
 }
 function setup(kind: BankGitKind): { root: string; context: BankGitContext } {
-  const root = mkdtempSync(path.join(tmpdir(), 'svitlo-bank-transaction-spec-'));
+  const root = realpathSync(mkdtempSync(path.join(tmpdir(), 'svitlo-bank-transaction-spec-')));
   git(root, 'init', '-q', '-b', 'bank-test');
   git(root, 'config', 'user.name', 'Svitlo Test');
   git(root, 'config', 'user.email', 'test@example.invalid');
@@ -70,14 +70,11 @@ function stage3(kind: BankGitKind, original: string) {
 function reviewed(kind: BankGitKind, original: string, context: BankGitContext) {
   const input = { config: { bank: kind }, production: { source: 'independently reviewed' } };
   return {
-    reviewed: {
-      approved: true as const,
-      reviewer: 'Independent expert',
+    source: {
       content: original,
       blobSha: gitBlobSha(original),
-      reviewedSourceBlobSha: gitBlobSha(original),
-      reviewCommitSha: context.expectedHeadSha,
-      reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
+      commitSha: context.expectedHeadSha,
+      inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
     },
     evaluatedInput: input,
   };
@@ -97,8 +94,8 @@ function final(kind: BankGitKind, original: string, context: BankGitContext): Ba
     publishable: false,
     transition: {
       expectedHeadSha: context.expectedHeadSha,
-      reviewedDraftPath: kind + '/draft.ts',
-      reviewedDraftBlobSha: gitBlobSha(original),
+      sourceDraftPath: kind + '/draft.ts',
+      sourceDraftBlobSha: gitBlobSha(original),
       materializedPath: kind + '/index.ts',
     },
   };
@@ -144,7 +141,7 @@ for (const kind of ['questions', 'flashcards'] as const) {
         plan.files.find(f => f.path === kind + '/index.ts')?.content,
       );
       assert.equal(readBankGitSnapshot(latest).entries[kind + '/draft.ts'], undefined);
-      assert.throws(() => commitBankGitPlan(kind, latest, plan, stage), /approved revision/);
+      assert.throws(() => commitBankGitPlan(kind, latest, plan, stage), /pinned revision/);
     } finally {
       rmSync(initial.root, { recursive: true, force: true });
     }
@@ -168,9 +165,9 @@ for (const kind of ['questions', 'flashcards'] as const) {
         () =>
           checkBankGitPlan(kind, context, plan, {
             ...evidence,
-            reviewed: { ...evidence.reviewed, reviewedSourceBlobSha: '0'.repeat(40) },
+            source: { ...evidence.source, blobSha: '0'.repeat(40) },
           }),
-        /approved revision|independently approved/,
+        /pinned revision|pinned bytes/,
       );
       assert.throws(
         () =>

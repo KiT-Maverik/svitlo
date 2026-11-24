@@ -1,5 +1,7 @@
 # Create Questions Flow — resumable Lesson Question Bank production
 
+**Final technical invocation (Stage 5):** The SHA-reviewed bank `draft.ts` invokes `materializeQuestionBank(reviewedQuestionBank)` once from `@svitlo/engine/build` with a complete `QuestionBankWorkflowStage3` object. Independent review and Lesson ownership are checked outside the no-token worker; the write-token publisher never replays or compiles authored source. No AST literal decoder, local temporary Git writer or second materialization input is supported. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
 **Purpose:** produce an independent full Question Bank for an existing **bank-owning Lesson**, plus deliberate Quiz Section selections **only when that Lesson has approved Quizzes**. A full bank can exist with no Quiz Sections.
 Input is the Lesson UUID or its current parent Lesson PR number.
 The bank and each Quiz Section are separate deliverables; neither
@@ -72,9 +74,8 @@ The file is an **incomplete bank-owned authoring object**, not the final publish
 Question Configurator index. It must NOT be imported by the assessment publisher
 or mistaken for a bank. Stage 4 reviews and directly corrects the Stage 3
 source in the same Questions PR, retaining baseline/final SHA evidence in the
-PR only. Stage 5 uses `QuestionBankWorkflowMaterializerInput`, an alias to
-the final Stage 3 type, and an explicit verified source-preserving transition to
-the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, immutable source SHA and independent review.
+PR only. Stage 5 uses the final `QuestionBankWorkflowStage3` type inferred from the canonical Zod schema, and an explicit verified source-preserving transition to
+the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, explicit authorized invocation and immutable source SHA. Independent review remains editorial; no PR prose or verdict is parsed.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
 does not prove unique order keys/UUIDs, source SHA, completed review, scoring,
@@ -181,8 +182,8 @@ rather than inventing assessment semantics.
 ## Stage 5 — Resource Production
 
 **Prerequisite:** verify the current bank-level bridge, safe writer and actual composition of the nine Question-kind materializers. The final input is exactly
-`QuestionBankWorkflowMaterializerInput = QuestionBankWorkflowStage3`;
-review evidence remains on the PR, not in a second MaterializeProps object.
+`QuestionBankWorkflowStage3 = QuestionBankWorkflowStage3`;
+review evidence remains human-readable on the PR, not in a second MaterializeProps object or machine-parsed eligibility gate.
 A Stage 1 or Stage 2 source cannot call the final materializer.
 
 Once integrated and separately authorized, preflight exact Lesson UUID/path,
@@ -210,7 +211,7 @@ manifest, locales, accessible media and textbook build. Missing artifacts,
 unreviewed locales or provisional `feedc0de-` IDs remain blockers. A draft
 source scaffold or green Draft check is not production completion.
 
-**Typed materialization:** use the trusted `/questions materialize typed` command on the existing reviewed child PR after its deployment to default branch. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). No YAML builder is available as a parallel workflow.
+**Typed materialization:** use the trusted `/questions materialize` command on the existing reviewed child PR after its deployment to default branch. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). No YAML builder is available as a parallel workflow.
 
 ## Stage 6 — Translation
 
@@ -240,8 +241,7 @@ seven stages in the PR body, with:
 
 - Lesson UUID, parent Lesson PR, source language, supported languages,
   exact Lesson/Questions source SHA and branch relationships.
-- Current stage, precise next action, blocker, independent review SHA
-  and approval, with links to real work.
+- Current stage, precise next action, blockers and Stage 4 review evidence using the [canonical independent review rule](../../rules/independent-review.md), with links to real work.
 - Full bank path/UUID inventory and evidence matrix, per-Quiz Section
   UUID/path/placement and selected Question UUIDs, and confirmation
   that unselected Questions remain in the published full bank.

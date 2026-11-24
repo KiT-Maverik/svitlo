@@ -330,6 +330,61 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
     assert.doesNotMatch(markdown, /\[object Object\]|undefined/);
   });
 
+  it('real Lesson Markdown generator isolates scoped locale inventory and Markdown from malformed siblings', async () => {
+    // Keep the disposable fixture under the repository so the real loader can
+    // resolve the built Engine package, without modifying shared test fixtures.
+    const temp = path.resolve(testingRoot, '../../../temp');
+    fs.mkdirSync(temp, { recursive: true });
+    const root = fs.mkdtempSync(path.join(temp, 'scoped-lesson-markdown-'));
+    try {
+      const fixtureTextbook = path.join(root, packagePath);
+      const directory = path.join(fixtureTextbook, 'data/lessons', relative);
+      fs.mkdirSync(path.dirname(directory), { recursive: true });
+      fs.cpSync(path.dirname(lessonEntry), directory, { recursive: true });
+      const registry = 'shared/engine/schemas/languages.schemas.ts';
+      fs.mkdirSync(path.dirname(path.join(root, registry)), { recursive: true });
+      fs.copyFileSync(path.join(testingRoot, registry), path.join(root, registry));
+
+      const scoped = ['--package', packagePath, '--lesson', lessonId];
+      const list = parseArguments([...scoped, '--list-locales']);
+      const markdown = parseArguments([...scoped, '--locale', 'uk', '--stdout']);
+      const broad = parseArguments(['--package', packagePath, '--locale', 'uk', '--output', 'broad']);
+      // Exercise the unmodified default loader and actual Configurator/renderer.
+      const baseline = await generate(markdown, { root });
+      assert.match(baseline, /Тестовий урок Engine/);
+      assert.deepEqual(JSON.parse(await generate(list, { root })), ['en', 'uk']);
+      assert.equal(await generate(broad, { root }), 1);
+
+      const malformed = path.join(fixtureTextbook, 'data/lessons', relative.split('/')[0], 'not-a-uuid');
+      fs.mkdirSync(malformed, { recursive: true });
+      fs.writeFileSync(path.join(malformed, 'index.ts'), 'this is not valid TypeScript!');
+      // Prove this sibling really breaks broad discovery, not just rendering.
+      assert.throws(() => discoverLessons(fixtureTextbook), /canonical UUID/);
+      await assert.rejects(generate(broad, { root }), /canonical UUID/);
+
+      assert.deepEqual(JSON.parse(await generate(list, { root })), ['en', 'uk']);
+      assert.equal(await generate(markdown, { root }), baseline);
+      const upper = parseArguments(['--package', packagePath, '--lesson', lessonId.toUpperCase(), '--list-locales']);
+      assert.deepEqual(JSON.parse(await generate(upper, { root })), ['en', 'uk']);
+      const output = parseArguments([...scoped, '--locale', 'uk', '--output', 'scoped']);
+      assert.equal(await generate(output, { root }), 1);
+      assert.equal(fs.readFileSync(path.join(root, 'scoped/engine-fixture', relative, 'uk.md'), 'utf8'), baseline);
+
+      await assert.rejects(
+        generate({ ...list, lesson: '00000000-0000-4000-8000-00000000000f' }, { root }),
+        /No matching canonical lessons/,
+      );
+      await assert.rejects(generate({ ...markdown, locale: 'invalid' }, { root }), /Unsupported locale/);
+      const mismatchedId = '00000000-0000-4000-8000-00000000001c';
+      const mismatched = path.join(fixtureTextbook, 'data/lessons/c', mismatchedId);
+      fs.cpSync(directory, mismatched, { recursive: true });
+      await assert.rejects(generate({ ...list, lesson: mismatchedId }, { root }), /Lesson identity mismatch/);
+      await assert.rejects(generate({ ...markdown, lesson: mismatchedId }, { root }), /Lesson identity mismatch/);
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   it('rejects symlinked canonical source directories', () => {
     const tmp = temporaryRepo();
     try {

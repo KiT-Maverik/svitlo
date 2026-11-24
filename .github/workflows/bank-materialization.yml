@@ -16,12 +16,6 @@ on:
         type: choice
         options: [questions, flashcards]
         required: true
-      mode:
-        description: Reviewed typed Stage 3 only
-        type: choice
-        options: [typed]
-        default: typed
-        required: true
 
 permissions: {}
 
@@ -32,11 +26,12 @@ concurrency:
 jobs:
   typed_resolve:
     if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.mode == 'typed') ||
-      (github.event_name == 'issue_comment' &&
-       github.event.issue.pull_request &&
-       (github.event.comment.body == '/questions materialize typed' ||
-        github.event.comment.body == '/flashcards materialize typed'))
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event_name == 'issue_comment' &&
+        github.event.issue.pull_request &&
+        (github.event.comment.body == '/questions materialize' ||
+         github.event.comment.body == '/flashcards materialize')))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -51,12 +46,12 @@ jobs:
       - name: Checkout trusted Bank Stage 3 authorization
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Require exact source SHA and independent current-HEAD approval
+      - name: Require exact pinned Bank source and owning Lesson revision
         id: authorize
         env:
           GH_TOKEN: ${{ github.token }}
@@ -74,10 +69,10 @@ jobs:
       - name: Checkout trusted Engine and CLI
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - name: Checkout pinned Bank PR as untrusted DATA, without credentials
+      - name: Checkout pinned Bank PR for isolated execution, without credentials
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.typed_resolve.outputs.head }}
@@ -94,17 +89,14 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
-      - name: Build and validate trusted Engine and all concrete materializers
+      - name: Install and build trusted Engine
         working-directory: trusted
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-          node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
-          node scripts/ci/quietRun/quiet-run.mjs -- npm test --workspace @svitlo/engine
-          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
-            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
-            scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
-      - name: Static Stage 3 evaluation and local trusted Git transaction
+      - name: Pull pinned isolated worker image
+        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+      - name: Execute one reviewed Bank entrypoint in isolated worker
         env:
           BANK_META_B64: ${{ needs.typed_resolve.outputs.meta }}
           BANK_CANDIDATE_ROOT: candidate
@@ -131,7 +123,7 @@ jobs:
       - name: Checkout default-branch trusted publisher only
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.repository.default_branch }}
+          ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -142,7 +134,7 @@ jobs:
         with:
           name: typed-bank-stage5-${{ needs.typed_resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Reauthorize, verify byte-identical Git tree and CAS publish
+      - name: Reauthorize, verify bounded files and CAS publish
         env:
           GH_TOKEN: ${{ github.token }}
           BANK_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}

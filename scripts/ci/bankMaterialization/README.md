@@ -1,32 +1,11 @@
-# Typed Question/Flashcard Stage 5 trusted PR command
+# Direct Question/Flashcard Bank Stage 5
 
-The only supported Bank materialization source is the owning Lesson's progressively authored `questions/draft.ts` or `flashcards/draft.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively.
+Question and Flashcard Banks are independent Lesson-owned educational resources. Their Stage 1–3 authored objects remain in `questions/draft.ts` or `flashcards/draft.ts`; reviewed Stage 3 TypeScript directly calls `materializeQuestionBank(input)` or `materializeFlashcardBank(input)` from `@svitlo/engine/build`. No second YAML/JSON input, static literal parser, source expression decoder, intermediate local Git writer or hand-replayed generated TypeScript is part of the active path.
 
-## Invocation and deployment
+Post exactly `/questions materialize` or `/flashcards materialize` as a top-level comment on the existing Draft Bank PR, or use default-branch `workflow_dispatch` with exact bank and PR number. Trusted resolve independently checks actor write access, owning Lesson identity, real Lesson parent ancestry, pinned source blobs and no unauthorized source changes. Independent Stage 4 review and Questions-first editorial decisions remain responsibilities of the owning agents and PR; the materialization gate does not parse verdicts, checklists or PR prose.
 
-After these workflow/scripts are deployed to the repository's default `develop` branch, a collaborator with write permission can post exactly `/questions materialize typed` or `/flashcards materialize typed` as a top-level comment on the corresponding existing Draft bank PR. Manual `workflow_dispatch` accepts the PR number, matching bank and `mode: typed`. Verify the actual trusted workflow exists on the default branch; neither PR comments nor successful tests prove live availability.
+The read-only analyzer builds the ordinary **trusted Engine**, then runs the approved direct call once inside the shared credential-free worker (network disabled, non-root, read-only mounts). Real Zod/Configurator contracts and entity materializers check bank source and generate modular files. A separate trusted read-only step verifies Lesson reference provenance and all authored Question/Card/Side inventory and registered Scene/media assets against real pinned files, not assertions made by the reviewed entrypoint. It seals `publishable:false` outputs and their SHA-256 hashes.
 
-The bank PR must carry its existing `svitlo-create-questions-flow:v1` or `svitlo-create-flashcards-flow:v1` marker, owning Lesson UUID, textbook path, parent Lesson PR, true seven-stage checklist with Stages 1–4 complete and Stage 5 pending, and a **formal independent GitHub APPROVED review on the current HEAD SHA**. The gate verifies actor permission, source blob, actual Lesson parent ancestry and Question-first prerequisite. A self-attested checkbox or approval on an earlier SHA is insufficient.
+The write-token publisher **does not import candidate code or call the generator again**. It reauthorizes the current PR/source/head/branch, validates bounded file paths and bytes and makes exactly one non-force Git tree commit that consumes `draft.ts` and creates the bank's `index.ts` and resources. It never creates or changes Lesson Quiz/Flashcards Sections, nor approves translation, media, Props publication or Stage 7 completion.
 
-## Trusted operations
-
-- `typed_resolve`: reads immutable metadata from the real GitHub PR, current review and exact Stage 3 `draft.ts`. Static stage-source parsing accepts bounded literals and refuses candidate side effects, dynamic imports and unrecognized spreads.
-- `typed_analyze`: checks out reviewed PR SHA as **untrusted data only**, compiles and executes only default-branch trusted Engine and source materializers, verifies complete Bank inventory, deterministic UUIDs/order/relationships and exact allowlisted outputs. Saves bounded UTF-8 bytes and hashes, including the pinned draft deletion and original blob SHA, in a short-lived run artifact.
-- `typed_publish`: has the write permission but no Engine/npm or candidate execution. Revalidates exact actor/independent review/HEAD/branch lease, hashes and permitted paths and atomically updates the Git tree in one non-force commit. Existing edited or partial source trees, changed reviewed bytes, path collisions and symlinks fail closed.
-
-Question Bank and Flashcard Bank are separate complete resources; neither materializes or edits Lesson Quiz/Flashcards Sections. Source code generation does not imply publication of assessment resources or resolve missing assets, bank references, locales or independent translations. `generateAssessmentResources` and completed Lesson Config publication remain distinct downstream gates.
-
-## Verification
-
-Run focused checks from the monorepo root:
-
-```sh
-node --test scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs
-npm run package:build --workspace @svitlo/engine
-npm run code:check:types --workspace @svitlo/engine
-npm test --workspace @svitlo/engine
-```
-
-Then verify an authorized **real** default-branch workflow_dispatch or comment on safe reviewed input. Preserve the resulting immutable Actions run, source/review SHAs, artifact and exact generated commit before declaring deployment operational.
-
-See [Questions Flow](../../../studio/skills/lesson-workflow/create-questions-flow.skill.md), [Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md), and [Bank source materializers](../../../shared/engine/generators/materializers/).
+**Validation:** `node --test scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs`, `npm run package:build --workspace @svitlo/engine`, `npm run code:check:types --workspace @svitlo/engine` and independent bank materializer tests. Verify an actual authorized Actions run and output commit after deployment to default `develop`.
