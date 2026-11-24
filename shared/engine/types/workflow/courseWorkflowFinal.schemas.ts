@@ -70,15 +70,12 @@ const episodeSlot = z.strictObject({
   config: z.strictObject({ type: z.literal('episode') }),
   production: z.strictObject({ focus: rationale, purpose: rationale }),
 });
-type HierarchyNode = z.infer<typeof newLesson> | z.infer<typeof existingLesson> | z.infer<typeof episodeSlot> |
-  { config: { type: 'chapter' | 'module'; slug: string; content: { items: Record<string, HierarchyNode>; order: string[] } }; production: z.infer<typeof unitProduction> };
-
-const chapter: z.ZodType<HierarchyNode> = z.lazy(() => z.strictObject({
+const chapter = z.strictObject({
   config: chapter_Config_Schema.pick({ type: true, slug: true, locale: true })
     .extend({ params: chapter_Config_Schema.shape.params.partial().optional(), content: ordered(z.union([newLesson, existingLesson, episodeSlot])) }),
   production: unitProduction,
-}));
-const module: z.ZodType<HierarchyNode> = z.lazy(() => z.strictObject({
+});
+const module = z.strictObject({
   config: module_Config_Schema.pick({ type: true, slug: true, locale: true })
     .extend({ params: unitParams.optional(), content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])) }),
   production: unitProduction,
