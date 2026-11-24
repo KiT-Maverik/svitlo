@@ -135,8 +135,16 @@ export const questionBankWorkflowCarouselConfig_Schema = carouselSource_Schema;
 export const questionBankWorkflowCheckpointAnswerConfig_Schema = checkpointAnswerSource_Schema;
 export const questionBankWorkflowCheckpointItemConfig_Schema = checkpointItemSource_Schema;
 export const questionBankWorkflowCheckpointConfig_Schema = checkpointSource_Schema;
-const block_Schema = z.union([simpleBlockNode_Schema, carouselNode_Schema, blockNode(checkpointSource_Schema)]);
-const blocks_Schema = workflowOrdered_Schema(block_Schema);
+// Avoid serializing the entire recursive Block schema at every Question kind.
+const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = z.union([
+  simpleBlockNode_Schema,
+  carouselNode_Schema,
+  blockNode(checkpointSource_Schema),
+]);
+const blocks_Schema: z.ZodType<{
+  items: Record<string, z.infer<typeof questionBankWorkflowBlockNode_Schema>>;
+  order: string[];
+}> = workflowOrdered_Schema(block_Schema);
 const commonContent_Schema = z.strictObject({
   question: blocks_Schema,
   hint: blocks_Schema.optional(),
