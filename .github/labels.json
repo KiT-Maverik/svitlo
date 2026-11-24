@@ -255,6 +255,11 @@
     "description": "Create or edit authored Course-owned Episodes, narrative scenarios, or Episode content"
   },
   {
+    "name": "work: assessment",
+    "color": "7C3AED",
+    "description": "Create or edit Course-owned Assessment authoring and evaluation content"
+  },
+  {
     "name": "work: lesson",
     "color": "7C3AED",
     "description": "Create or edit authored Lessons, methodology, or Lesson-specific educational content"
