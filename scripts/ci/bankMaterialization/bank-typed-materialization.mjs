@@ -172,16 +172,67 @@ function authorizations(meta, input, root, blocks) {
     referenceSourceSha: lesson.reference.sourceSha,
   };
 }
+const sceneUuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+function scenePath(filename, meta) {
+  if (!meta.identity.pkg || !/^content\/[a-z][a-z0-9-]*$/.test(meta.identity.pkg)) return null;
+  const prefix = meta.identity.pkg + '/scenes/';
+  if (!filename.startsWith(prefix)) return null;
+  const parts = filename.slice(prefix.length).split('/');
+  if (
+    parts.length !== 3 ||
+    !/^[0-9a-f]$/.test(parts[0]) ||
+    !sceneUuid.test(parts[1]) ||
+    parts[1].at(-1) !== parts[0] ||
+    !/^[A-Za-z][A-Za-z0-9]*(?:\.(?:tsx|ts|css))?$/.test(parts[2])
+  ) return null;
+  return { id: parts[1], name: parts[2], directory: prefix + parts[0] + '/' + parts[1] };
+}
+function assertSceneInventory(files, meta) {
+  const scenes = new Map();
+  for (const file of files) {
+    const parsed = scenePath(file.path, meta);
+    if (!parsed) continue;
+    const group = scenes.get(parsed.id) ?? new Map();
+    if (group.has(parsed.name)) throw Error('Duplicate Bank Scene file ' + file.path);
+    group.set(parsed.name, file);
+    scenes.set(parsed.id, group);
+  }
+  for (const [id, group] of scenes) {
+    const index = group.get('index.ts');
+    if (!index) throw Error('Incomplete Bank Scene six-file scaffold: ' + id);
+    const source = Buffer.from(index.base64, 'base64').toString('utf8');
+    const match = source.match(/export \{ ([A-Za-z][A-Za-z0-9]*) as default \} from ['"]\.\/\1['"];?/);
+    if (!match || !source.includes('TODO (BLOCKER)'))
+      throw Error('Bank Scene scaffold lacks its canonical entrypoint/blocker: ' + id);
+    const name = match[1];
+    const required = [
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
+    ];
+    if (group.size !== required.length || required.some(filename => !group.has(filename)))
+      throw Error('Incomplete or unexpected Bank Scene scaffold files: ' + id);
+    for (const filename of required.slice(1)) {
+      const text = Buffer.from(group.get(filename).base64, 'base64').toString('utf8');
+      if (!text.includes('TODO (BLOCKER)'))
+        throw Error('Unreviewed Bank Scene draft lacks release blocker: ' + id + '/' + filename);
+    }
+  }
+  return scenes;
+}
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
   if (
-    !filename.startsWith(folder) ||
     filename.length > 520 ||
     filename.includes('..') ||
     filename.includes('//') ||
     filename.includes('\\')
-  )
-    return false;
+  ) return false;
+  if (scenePath(filename, meta)) return true;
+  if (!filename.startsWith(folder)) return false;
   const relative = filename.slice(folder.length);
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
@@ -233,6 +284,7 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
+  assertSceneInventory(result.files, meta);
   for (const filename of [root + meta.bank + '/index.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
@@ -365,18 +417,34 @@ async function analyze(meta) {
     git,
     ts: require('typescript'),
   });
+  const { materializeBankSceneDrafts } = require(
+    path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/materializeBankSceneDrafts.js'),
+  );
+  const sceneLanguage = meta.bank === 'questions'
+    ? input.production?.languages?.document
+    : input.production?.lesson?.languages?.document;
+  const expectedSceneDrafts = materializeBankSceneDrafts(input.config, sceneLanguage, blocks);
+  if (JSON.stringify(plan.sceneDrafts ?? []) !== JSON.stringify(expectedSceneDrafts))
+    throw Error('Worker Bank Scene draft bytes, identities or complete six-file plan differ from reviewed source');
+  if (expectedSceneDrafts.length !== blocks.newSceneIds.size * 6)
+    throw Error('Every new reviewed Bank Scene must have exactly one complete six-file draft');
   const approval = authorizations(meta, input, root, blocks);
   if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
     throw Error('Bank input differs from pinned reviewed source');
-  const files = plan.files
+  const files = [
+    ...plan.files.map(file => ({
+      ...file,
+      path: meta.identity.folder + '/' + file.path,
+    })),
+    ...expectedSceneDrafts.map(file => ({
+      ...file,
+      path: meta.identity.pkg + '/' + file.path,
+    })),
+  ]
     .map(file => {
       const content = Buffer.from(file.content ?? '', 'utf8');
       if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content)) throw Error('Invalid worker source bytes');
-      return {
-        path: meta.identity.folder + '/' + file.path,
-        sha256: sha256(content),
-        base64: content.toString('base64'),
-      };
+      return { path: file.path, sha256: sha256(content), base64: content.toString('base64') };
     })
     .sort((a, b) => a.path.localeCompare(b.path));
   const reportData = {
@@ -397,7 +465,7 @@ async function analyze(meta) {
       meta.bank +
       ' Stage 5 planned ' +
       files.length +
-      ' bank-owned sources from ' +
+      ' bank and reviewed Scene draft sources from ' +
       meta.sourceBlob +
       '; zero Git writes',
   );
