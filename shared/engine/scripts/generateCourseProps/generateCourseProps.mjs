@@ -123,14 +123,14 @@ export async function render(pkg, mode) {
     if (path.basename(source) === 'index.ts' && path.basename(path.dirname(source)) !== course.id) {
       throw new Error('UUID-bucketed Course ID does not match exported configurator: ' + source);
     }
-    const overrides = moduleExports.authoredCourseOverrides;
-    if (overrides !== undefined && (overrides === null || typeof overrides !== 'object' || Array.isArray(overrides))) {
-      throw new Error('authoredCourseOverrides must be a stateless Course Build patch: ' + source);
+    // Every reviewed Lesson adaptation belongs to its immediate placement.
+    // Refuse legacy root patches rather than silently discarding adaptations.
+    if (Object.hasOwn(moduleExports, 'authoredCourseOverrides')) {
+      throw new Error('Legacy authoredCourseOverrides export is not supported; migrate each Lesson patch to placeLesson at its placement: ' + source);
     }
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
-      overrides,
       projectMedia: (entry, language) =>
         projectTextbookMedia(entry, {
           textbookRoot: pkg,
