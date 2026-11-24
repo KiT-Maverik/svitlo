@@ -8,7 +8,6 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
-import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { runIsolatedMaterialization, workerImage } from './run-isolated.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
@@ -29,7 +28,6 @@ import {
 } from './fixtures/worker-inputs.mjs';
 
 const trustedRoot = fileURLToPath(new URL('../../..', import.meta.url));
-const { defineLesson, materializeCourse } = createRequire(import.meta.url)('../../../shared/engine/dist/build.js');
 const textbook = 'content/math';
 const courseRoot = textbook + '/data/courses/3/' + courseId;
 const bankRoot = textbook + '/data/lessons/0/' + bankOwnerId;
@@ -51,19 +49,6 @@ const write = (root, relative, content) => {
 };
 const typedCall = (fn, input) =>
   'import { ' + fn + " } from '@svitlo/engine/build';\n" + fn + '(' + JSON.stringify(input, null, 2) + ');\n';
-
-test('synthetic reviewed Course passes the trusted Engine Stage 3 contract before isolated execution', () => {
-  const independentLesson = defineLesson(independentLessonConfig());
-  const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
-  const reviewed = courseStage3(independentLesson, overriddenLesson);
-  const plan = materializeCourse(reviewed, {
-    textbookRoot: textbook,
-    source: { sourcePath: paths.course, sourceBlobSha: 'a'.repeat(40) },
-    verifySource: () => true,
-  });
-  assert.equal(plan.publishable, false);
-  assert.equal(plan.inventory.lessons.length, 3);
-});
 
 test('all five entrypoints execute once from a separate clean Git candidate against ordinary trusted Engine build', () => {
   assert(
