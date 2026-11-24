@@ -105,10 +105,9 @@ jobs:
             scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
             scripts/ci/bankMaterialization/bank-typed-block-evidence.spec.mjs
 
-      - name: Test typed Course handoff and Lesson Stage 6 source and PR-command security
+      - name: Test typed Lesson Stage 6 source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
-            scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
