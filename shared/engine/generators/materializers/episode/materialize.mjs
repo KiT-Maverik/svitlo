@@ -59,9 +59,10 @@ const exportName = slug =>
   ].includes(slug)
     ? 'config_' + slug
     : slug;
-const sidecars = (meta, dir) => {
-  if (meta === undefined) return [];
-  if (!record(meta)) throw Error(dir + '.production: object expected');
+const sidecars = (meta, dir, sectionNotes = []) => {
+  if (meta === undefined && !sectionNotes.length) return [];
+  if (meta !== undefined && !record(meta)) throw Error(dir + '.production: object expected');
+  meta ??= {};
   const outputs = [];
   if (typeof meta.methodology === 'string' && meta.methodology.trim())
     outputs.push({
@@ -72,7 +73,7 @@ const sidecars = (meta, dir) => {
   const rest = Object.entries(meta).filter(
     ([key]) => !['documentLanguage', 'methodology', 'plannedLanguages', 'pending'].includes(key),
   );
-  if (rest.length)
+  if (rest.length || sectionNotes.length)
     outputs.push({
       path: [dir, 'specification.md'].filter(Boolean).join('/'),
       kind: 'specification',
@@ -82,6 +83,7 @@ const sidecars = (meta, dir) => {
             ([key, value]) =>
               '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
           )
+          .concat(sectionNotes)
           .join('\n\n') + '\n',
     });
   return outputs;
@@ -120,7 +122,8 @@ export function materializeEpisode(input, context = {}) {
     items = {},
     files = [],
     diagnostics = [],
-    seenIds = new Set();
+    seenIds = new Set(),
+    sectionNotes = [];
   for (const key of order) {
     ensure(key, dir + '.section.items.' + key);
     const raw = unwrap(collection.items[key]);
@@ -130,8 +133,33 @@ export function materializeEpisode(input, context = {}) {
       throw Error(dir + '.section.items.' + key + ': Section slug mismatch');
     if (typeof context.materializeSection !== 'function')
       throw Error(dir + '.sections.' + key + ': concrete Section renderer required (Agent B)');
+    const reviewed = production(collection.items[key]);
+    // Section sidecars were retired: preserve reviewed Section intent in the
+    // Episode-owned narrative specification before enabling the handoff.
+    const notes = [];
+    let integrated = false;
+    if (reviewed) {
+      const entries = Object.entries(reviewed).filter(([field]) =>
+        !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(field),
+      );
+      integrated = entries.length > 0 && entries.every(([field, value]) =>
+        field !== 'sourceEvidence' && typeof value === 'string' && !!value.trim(),
+      );
+      if (integrated) {
+        for (const [field, value] of entries) {
+          const text = value.trim();
+          if (typeof meta?.specification === 'string' && meta.specification.includes(text)) continue;
+          notes.push('**' + field + ':** ' + text);
+        }
+        if (notes.length) sectionNotes.push('## Section: ' + key + ' (' + raw.type + ')\n\n' + notes.join('\n\n'));
+      }
+    }
     const node = record(collection.items[key]?.config)
-      ? { ...collection.items[key], config: { ...raw, slug: key } }
+      ? {
+          ...collection.items[key],
+          config: { ...raw, slug: key },
+          ...(integrated ? { production: { ...reviewed, methodologyIntegrated: true } } : {}),
+        }
       : { ...raw, slug: key };
     const location = [dir, 'sections', key].filter(Boolean).join('/');
     const child = context.materializeSection(node, { ...context, directory: location, plannedLanguages: planned });
@@ -195,7 +223,7 @@ export function materializeEpisode(input, context = {}) {
     ' languages },\n  section,\n});\n';
   const produced = [
     ...files,
-    ...sidecars(meta, dir),
+    ...sidecars(meta, dir, sectionNotes),
     { path: [dir, 'index.ts'].filter(Boolean).join('/'), kind: 'typescript', content: result },
   ];
   const paths = new Set();
