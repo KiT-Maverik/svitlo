@@ -490,7 +490,7 @@ export function generateFlashcardReviewArtifacts({
           textbook: packageName,
           lesson: bucket + '/' + id,
           locale,
-          path: '.agent-ci-artifacts/' + relative,
+          path: relative,
           flashcards: cards.length,
           strings: result.strings,
           missing: result.missing,

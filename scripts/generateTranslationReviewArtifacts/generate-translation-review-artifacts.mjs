@@ -25,6 +25,7 @@ const families = new Set([
   'skills',
   'lessons',
   'questions',
+  'flashcards',
   'courses',
   'episodes',
   'assessment-methods',
@@ -45,24 +46,32 @@ export function parseArguments(args) {
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|questions|courses|episodes|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
+        'Usage: --kind <skills|lessons|questions|flashcards|courses|episodes|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
           '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>] [--episode <uuid>]',
       );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
-  const hasPackage = ['skills', 'lessons', 'questions', 'courses', 'episodes'].includes(options.kind);
+  const hasPackage = ['skills', 'lessons', 'questions', 'flashcards', 'courses', 'episodes'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills, Lessons, Questions, Courses and Episodes require --package content/<textbook>');
+    throw new Error(
+      'Only Skills, Lessons, Questions, Flashcards, Courses and Episodes require --package content/<textbook>',
+    );
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
   if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
     throw new Error('--component is only available for UI Kit dictionaries');
   }
-  if (options.lesson && (!['lessons', 'questions'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
-    throw new Error('--lesson requires Lessons/Questions and a canonical UUID');
+  if (
+    options.lesson &&
+    (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))
+  ) {
+    throw new Error('--lesson requires Lessons/Questions/Flashcards and a canonical UUID');
+  }
+  if (options.kind === 'flashcards' && (!options.lesson || !options.locale)) {
+    throw new Error('Flashcards require an exact --lesson UUID and --locale');
   }
   if (options.course && (!['courses', 'episodes'].includes(options.kind) || !uuidPattern.test(options.course))) {
     throw new Error('--course requires Courses and a canonical UUID');
@@ -222,6 +231,18 @@ export async function generate(options) {
       lessonId: options.lesson,
       languages,
     });
+  } else if (options.kind === 'flashcards') {
+    const { generateFlashcardReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.mjs');
+    generateFlashcardReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      lessonId: options.lesson,
+      languages,
+    });
   } else if (options.kind === 'courses') {
     const { generateCourseReviewArtifacts } =
       await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
@@ -300,6 +321,7 @@ export async function generate(options) {
     taxonomyDocuments: manifest.generated.filter(item => item.kind === 'taxonomy').length,
     lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
     questionDocuments: manifest.generated.filter(item => item.kind === 'question').length,
+    flashcardDocuments: manifest.generated.filter(item => item.kind === 'flashcard').length,
     courseDocuments: manifest.generated.filter(item => item.kind === 'course').length,
     episodeDocuments: manifest.generated.filter(item => item.kind === 'episode').length,
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
@@ -362,8 +384,8 @@ export async function generate(options) {
   manifest.status = manifest.failures.length || manifest.summary.incompleteDocuments ? 'incomplete' : 'complete';
   manifest.filesBytes = totalBytes;
   saveManifest();
-  if (options.kind === 'questions' && manifest.failures.length) {
-    throw new Error('Incomplete Question/Quiz references: ' + manifest.failures.length + ' failed documents.');
+  if ((options.kind === 'questions' || options.kind === 'flashcards') && manifest.failures.length) {
+    throw new Error('Incomplete ' + options.kind + ' references: ' + manifest.failures.length + ' failed documents.');
   }
   if (manifest.generated.length === 0) {
     throw new Error('No requested Markdown was generated. Inspect the run artifact manifest.json failures.');
