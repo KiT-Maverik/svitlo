@@ -52,7 +52,7 @@ export function materializeEpisodeDraft(input, context) {
         content:
           '// TODO (BLOCKER): Episode Stage 1 handoff; scenario is not yet authored or reviewed.\n' +
           "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
-          '// prettier-ignore\nexport const episodeStage1 = ' +
+          'export const episodeStage1 = ' +
           JSON.stringify(handoff, null, 2) +
           ' as const satisfies EpisodeWorkflowStage1Handoff;\n',
       },
