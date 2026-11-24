@@ -1,9 +1,11 @@
+import {
+  episodeWorkflowStage2_Schema,
+  type EpisodeWorkflowStage2,
+} from '../../../types/workflow/episodeWorkflow.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
-import type { EpisodeWorkflowStage2 } from '../../../types/workflow/episodeWorkflow.types';
+import { renderSceneFiles } from '../scene/materializeScene';
 import { materializeEpisode } from './materialize.mjs';
 import { materializeEpisodeSection } from './materializeEpisodeSection';
-import { renderSceneFiles } from '../scene/materializeScene';
 
 export type EpisodeStage5Options = { source: { sourcePath: string; sourceBlobSha: string; sourceCommitSha: string } };
 
@@ -38,18 +40,20 @@ function episodeSceneDrafts(input: EpisodeWorkflowStage2, documentLanguage: stri
     }
     const collection = config.type === 'carousel' ? config.slides : config.content;
     if (
-      ['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(config.type) &&
-      isRecord(collection) && isRecord(collection.items) && Array.isArray(collection.order)
+      ['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(
+        config.type,
+      ) &&
+      isRecord(collection) &&
+      isRecord(collection.items) &&
+      Array.isArray(collection.order)
     ) {
-      for (const key of collection.order)
-        visit(collection.items[key]);
+      for (const key of collection.order) visit(collection.items[key]);
     } else if (config.type === 'checkpointItem') {
       visit(config.question);
       visit(config.answer);
     }
   };
-  for (const key of input.config.section.order)
-    visit(input.config.section.items[key]);
+  for (const key of input.config.section.order) visit(input.config.section.items[key]);
   return files;
 }
 export type EpisodeStage5Plan = {
@@ -137,13 +141,15 @@ export function materializeEpisodeStage5(
             content: [
               "import type { SupportedLanguages } from '@svitlo/engine/build';",
               '',
-              ...(planned.length > 1 ? [
-                '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
-                '// export const languages = [',
-                ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
-                '// ] as const satisfies SupportedLanguages;',
-                '',
-              ] : []),
+              ...(planned.length > 1
+                ? [
+                    '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
+                    '// export const languages = [',
+                    ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
+                    '// ] as const satisfies SupportedLanguages;',
+                    '',
+                  ]
+                : []),
               'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;',
               'export type Languages = typeof languages;',
               '',

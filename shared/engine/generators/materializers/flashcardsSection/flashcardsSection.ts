@@ -243,7 +243,12 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     if (!blocker.some(line => line.includes('TODO (BLOCKER): Implement reviewed Flashcards Section')))
       blocker.push('// TODO (BLOCKER): Implement reviewed Flashcards specification before releasing this Section.');
     blocker.push('// BEGIN REVIEWED FLASHCARDS SPECIFICATION (remove after implementation)');
-    blocker.push(...specification.replace(/\r\n?|\u2028|\u2029/g, '\n').split('\n').map(line => '// ' + line));
+    blocker.push(
+      ...specification
+        .replace(/\r\n?|\u2028|\u2029/g, '\n')
+        .split('\n')
+        .map(line => '// ' + line),
+    );
     blocker.push('// END REVIEWED FLASHCARDS SPECIFICATION');
   }
 

@@ -2,7 +2,6 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { questionTypes } from '../../../configurators/questions/question.constants';
 import {
   questionBankWorkflowStage1_Schema,
@@ -12,15 +11,8 @@ import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
-import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
-import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
-import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
-import { materializeAnswerWithText } from '../answerWithText/materializeAnswerWithText';
 import { materializeAnswerWithNumber } from '../answerWithNumber/materializeAnswerWithNumber';
-import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
-import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
-import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
-import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
+import { materializeAnswerWithText } from '../answerWithText/materializeAnswerWithText';
 import {
   assertBankLanguages,
   assertBankOrder,
@@ -28,19 +20,31 @@ import {
   assertBankSha,
   assertBankStatement,
   assertBankUuid,
-  assertUniqueBankEntityIds,
   assertPinnedBankInput,
+  assertUniqueBankEntityIds,
   authoredBankLiteral,
   preflightBankSource,
   type BankPinnedSource,
-  type BankSourceSnapshot,
-  type BankSourceResult,
-  type BankSourceFile,
   type BankSourceDiagnostic,
+  type BankSourceFile,
+  type BankSourceResult,
+  type BankSourceSnapshot,
 } from '../bankSource/bankSourceSafety';
+import {
+  assertBankLessonLanguages,
+  lessonConstantsImport,
+  type LessonLanguageOwnership,
+} from '../bankSource/lessonLanguageOwnership';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
-import { assertBankLessonLanguages, lessonConstantsImport, type LessonLanguageOwnership } from '../bankSource/lessonLanguageOwnership';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
+import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
+import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
+import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
+import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
+import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
+import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 
 const kinds = questionTypes;
 type Kind = (typeof kinds)[number];
@@ -263,7 +267,14 @@ function planQuestionBank(
   files.push({
     path: 'questions/index.ts',
     kind: 'typescript',
-    content: 'export type { Languages } from ' + JSON.stringify(ownerImport) + ';\n' + rootImports.join('\n') + '\n\nexport const questions = {\n' + rootEntries.join('\n') + '\n};\n',
+    content:
+      'export type { Languages } from ' +
+      JSON.stringify(ownerImport) +
+      ';\n' +
+      rootImports.join('\n') +
+      '\n\nexport const questions = {\n' +
+      rootEntries.join('\n') +
+      '\n};\n',
   });
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',

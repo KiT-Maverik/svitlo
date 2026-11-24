@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import {
   assertBankLessonLanguages,
   lessonConstantsImport,
@@ -27,10 +28,7 @@ test('static Lesson constants proof matches the reviewed bank language scope wit
     () => assertBankLessonLanguages(actual, { document: 'uk', planned: ['uk'] }),
     /conflicts with owning Lesson/,
   );
-  assert.throws(
-    () => assertBankLessonLanguages(actual, { document: 'en', planned: ['uk', 'en'] }),
-    /active language/,
-  );
+  assert.throws(() => assertBankLessonLanguages(actual, { document: 'en', planned: ['uk', 'en'] }), /active language/);
 });
 
 test('fully restored Lesson constants are detected rather than silently pruned to source-only', () => {
@@ -47,13 +45,14 @@ test('fully restored Lesson constants are detected rather than silently pruned t
 test('missing, dynamic, malformed and ambiguous Lesson language sources fail closed', () => {
   for (const source of [
     'export const other = ["uk"] as const;',
-    "export const languages = DEFAULT_SUPPORTED_LANGUAGES;",
+    'export const languages = DEFAULT_SUPPORTED_LANGUAGES;',
     'export const languages = ["uk", "uk"] as const;',
     'export const languages = ["uk", call()] as const;',
     reviewed.replace('//   "en",', '//   "en",\n//   "en",'),
     reviewed.replace('// ] as const satisfies SupportedLanguages;', '// invalid'),
     reviewed + '\n// export const languages = [\n//   "uk",\n// ] as const satisfies SupportedLanguages;\n',
     'export const languages = ["invalid"] as const;',
-  ]) assert.throws(() => parseLessonLanguageConstants(source));
+  ])
+    assert.throws(() => parseLessonLanguageConstants(source));
   assert.throws(() => lessonConstantsImport('not-a-uuid'), /UUID/);
 });

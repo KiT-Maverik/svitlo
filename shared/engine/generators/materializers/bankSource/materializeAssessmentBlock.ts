@@ -3,22 +3,22 @@
  * to the existing source materializer, not reconstructed by the bank.
  * Composite editorial nodes are plain Configs (not built child Configurators).
  */
-import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
-import { materializeVideo } from '../video/materializeVideo';
 import { materializeAudio } from '../audio/materializeAudio';
-import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene } from '../scene/materializeScene';
 import { materializeCarousel, type CarouselSource } from '../carousel/materializeCarousel';
 import { materializeCheckpoint, type CheckpointSource } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem, type CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
 import {
   materializeCheckpointAnswer,
   type CheckpointAnswerSource,
 } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem, type CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
+import { materializeImage } from '../image/materializeImage';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeScene } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeText } from '../text/materializeText';
+import { materializeVideo } from '../video/materializeVideo';
+import { materializeYoutube } from '../youtube/materializeYoutube';
 import { assertBankPath, assertBankUuid } from './bankSourceSafety';
 
 export type AssessmentBlockEvidence = {
@@ -150,7 +150,12 @@ export function materializeAssessmentBlock(
       const registered = evidence.registeredSceneIds.has(source.id);
       const newDraft = evidence.newSceneIds?.has(source.id) ?? false;
       const existingDraft = evidence.existingDraftSceneIds?.has(source.id) ?? false;
-      if (!registered && !newDraft && !existingDraft && !(bankKind === 'questions' && evidence.unregisteredSceneIds?.has(source.id))) {
+      if (
+        !registered &&
+        !newDraft &&
+        !existingDraft &&
+        !(bankKind === 'questions' && evidence.unregisteredSceneIds?.has(source.id))
+      ) {
         throw new Error('Scene has no verified executable registry: ' + source.id);
       }
       return asChildResult(

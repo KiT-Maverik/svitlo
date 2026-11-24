@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { resolveAssessmentMethod } from './assessmentMethods';
 
 const base = { id: '91734986-923d-4072-9f82-72bc3c099538', slug: 'analogicalReasoning' } as const;

@@ -1,16 +1,18 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
+import { dirname, join, posix, resolve, sep } from 'node:path';
 import test from 'node:test';
+import vm from 'node:vm';
+
 import ts from 'typescript';
-import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
-import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
-import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+
+import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
-import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix, resolve, sep, dirname, join } from 'node:path';
-import { existsSync } from 'node:fs';
-import vm from 'node:vm';
+import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { assertLessonStage6ReleaseReady, materializeLessonStage6 } from './materializeStage6';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
@@ -81,7 +83,11 @@ const reviewedStage2 = JSON.stringify(valid(), null, 2).replace(
   reviewedSkillLiteral,
   '"skills": [identify2dShapes.id]',
 );
-assert.notEqual(reviewedStage2, JSON.stringify(valid(), null, 2), 'verified Stage 2 fixture uses a real imported Skill.id');
+assert.notEqual(
+  reviewedStage2,
+  JSON.stringify(valid(), null, 2),
+  'verified Stage 2 fixture uses a real imported Skill.id',
+);
 const stage2Source = [
   "import { identify2dShapes } from '#skillsData/geometry/figures/identify2dShapes';",
   "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
@@ -223,10 +229,16 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
 test('Stage 6 imports only Skills from the owning textbook #skillsData alias', () => {
   const result = produce();
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
-  assert.match(root, /import \{ identify2dShapes as skill_ref_0 \} from "#skillsData\/geometry\/figures\/identify2dShapes"/);
+  assert.match(
+    root,
+    /import \{ identify2dShapes as skill_ref_0 \} from "#skillsData\/geometry\/figures\/identify2dShapes"/,
+  );
   assert.match(root, /"skills": \[skill_ref_0\.id\]/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Import the actual Skill/);
-  const bad = stage2Source.replace('#skillsData/geometry/figures/identify2dShapes', '../../content/playground/data/skills/foo');
+  const bad = stage2Source.replace(
+    '#skillsData/geometry/figures/identify2dShapes',
+    '../../content/playground/data/skills/foo',
+  );
   const altered = {
     ...options,
     sourceText: bad,
@@ -264,8 +276,7 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
       if (specifier === '@svitlo/engine/build') return { defineLesson, defineContentSection, defineText };
       if (specifier === '#skillsData/geometry/figures/identify2dShapes')
         return { identify2dShapes: { id: verifiedMathSkillId } };
-      if (specifier.startsWith('#lessonsData/') && specifier.endsWith('/constants'))
-        return load('constants.ts');
+      if (specifier.startsWith('#lessonsData/') && specifier.endsWith('/constants')) return load('constants.ts');
       assert(specifier.startsWith('.'), 'only exact imported generated modules allowed');
       const next = posix.join(posix.dirname(normalized), specifier);
       return load(sources.has(next + '.ts') ? next + '.ts' : next + '/index.ts');
@@ -738,15 +749,13 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   for (const path of ['link', 'embed']) {
     const source =
-      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')
-        ?.content ?? '';
+      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')?.content ?? '';
     assert.match(
       source,
       /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
     );
   }
-  const carouselSlide =
-    plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
+  const carouselSlide = plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);

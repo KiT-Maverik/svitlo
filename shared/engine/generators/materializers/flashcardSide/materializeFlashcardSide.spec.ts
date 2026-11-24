@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
+
 import { materializeFlashcardSide } from './materializeFlashcardSide';
+
 const block = (slug: string, n: number) => ({
   config: { id: 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0'), slug, type: 'text' },
 });
@@ -96,11 +99,13 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
           ...context,
           materializeBlock: () => ({
             exportName: 'first',
-            files: [{
-              path: 'flashcards/cardOne/content/back/index.ts',
-              kind: 'typescript' as const,
-              content: 'export const first = 1;\n',
-            }],
+            files: [
+              {
+                path: 'flashcards/cardOne/content/back/index.ts',
+                kind: 'typescript' as const,
+                content: 'export const first = 1;\n',
+              },
+            ],
           }),
         },
       ),
@@ -111,13 +116,16 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
 test('FlashcardSide: refuses delegated child without an importable index', () => {
   assert.throws(
     () =>
-      materializeFlashcardSide({ items: { first: block('first', 1) }, order: ['first'] }, {
-        ...context,
-        materializeBlock: (_node, ctx) => ({
-          exportName: 'first',
-          files: [{ path: ctx.directory + '/specification.md', kind: 'markdown' as const, content: '# draft\\n' }],
-        }),
-      }),
+      materializeFlashcardSide(
+        { items: { first: block('first', 1) }, order: ['first'] },
+        {
+          ...context,
+          materializeBlock: (_node, ctx) => ({
+            exportName: 'first',
+            files: [{ path: ctx.directory + '/specification.md', kind: 'markdown' as const, content: '# draft\\n' }],
+          }),
+        },
+      ),
     /missing delegated ContentBlock index\.ts/,
   );
 });

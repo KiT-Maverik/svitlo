@@ -139,12 +139,12 @@ export function materializeEpisode(input, context = {}) {
     const notes = [];
     let integrated = false;
     if (reviewed) {
-      const entries = Object.entries(reviewed).filter(([field]) =>
-        !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(field),
+      const entries = Object.entries(reviewed).filter(
+        ([field]) => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(field),
       );
-      integrated = entries.length > 0 && entries.every(([field, value]) =>
-        field !== 'sourceEvidence' && typeof value === 'string' && !!value.trim(),
-      );
+      integrated =
+        entries.length > 0 &&
+        entries.every(([field, value]) => field !== 'sourceEvidence' && typeof value === 'string' && !!value.trim());
       if (integrated) {
         for (const [field, value] of entries) {
           const text = value.trim();

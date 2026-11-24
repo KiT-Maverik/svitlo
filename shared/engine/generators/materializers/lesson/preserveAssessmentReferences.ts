@@ -1,4 +1,5 @@
 import { posix } from 'node:path';
+
 import ts from 'typescript';
 
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
@@ -275,8 +276,7 @@ export function reviewedSkillReferences(
     throw new Error('Stage 6: reviewed Lesson source has syntax errors');
   const root = findReviewedLesson(file);
   const skills = root && at(root, ['config', 'skills']);
-  if (!skills || !ts.isArrayLiteralExpression(unwrap(skills)))
-    return input.config.skills.map(() => null);
+  if (!skills || !ts.isArrayLiteralExpression(unwrap(skills))) return input.config.skills.map(() => null);
   const elements = (unwrap(skills) as ts.ArrayLiteralExpression).elements;
   if (elements.length !== input.config.skills.length)
     throw new Error('Stage 6: evaluated Skills differ from the reviewed Skill inventory');
@@ -288,11 +288,7 @@ export function reviewedSkillReferences(
       if (value.text !== id) throw new Error('Stage 6: reviewed Skill UUID differs from evaluated input');
       return null;
     }
-    if (
-      !ts.isPropertyAccessExpression(value) ||
-      value.name.text !== 'id' ||
-      !ts.isIdentifier(value.expression)
-    )
+    if (!ts.isPropertyAccessExpression(value) || value.name.text !== 'id' || !ts.isIdentifier(value.expression))
       throw new Error('Stage 6: Skill must be an explicit imported Configurator.id or unresolved UUID');
     const binding = bindings.get(value.expression.text);
     if (

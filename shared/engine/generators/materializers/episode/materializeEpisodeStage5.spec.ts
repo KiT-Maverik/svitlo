@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import ts from 'typescript';
+
 import type { EpisodeWorkflowStage2 } from '../../../types/workflow/episodeWorkflow.types';
 import { materializeEpisodeStage5 } from './materializeEpisodeStage5';
 
@@ -10,64 +12,65 @@ const source = {
   sourceBlobSha: 'a'.repeat(40),
   sourceCommitSha: 'b'.repeat(40),
 };
-const reviewed = (): EpisodeWorkflowStage2 => ({
-  config: {
-    type: 'episode',
-    id: id('02'),
-    slug: 'transition',
-    locale: { title: { uk: 'Перехід' } },
-    section: {
-      items: {
-        introduction: {
-          config: {
-            id: id('03'),
-            type: 'content',
-            slug: 'introduction',
-            params: {},
-            locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
-            content: {
-              items: {
-                greeting: {
-                  config: {
-                    id: id('04'),
-                    type: 'text',
-                    slug: 'greeting',
-                    params: {},
-                    locale: { value: { uk: 'Привіт' } },
+const reviewed = (): EpisodeWorkflowStage2 =>
+  ({
+    config: {
+      type: 'episode',
+      id: id('02'),
+      slug: 'transition',
+      locale: { title: { uk: 'Перехід' } },
+      section: {
+        items: {
+          introduction: {
+            config: {
+              id: id('03'),
+              type: 'content',
+              slug: 'introduction',
+              params: {},
+              locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
+              content: {
+                items: {
+                  greeting: {
+                    config: {
+                      id: id('04'),
+                      type: 'text',
+                      slug: 'greeting',
+                      params: {},
+                      locale: { value: { uk: 'Привіт' } },
+                    },
                   },
                 },
+                order: ['greeting'],
               },
-              order: ['greeting'],
             },
           },
         },
+        order: ['introduction'],
       },
-      order: ['introduction'],
     },
-  },
-  production: {
-    focus: 'Introduce the story',
-    purpose: 'Narrative transition',
-    placement: {
-      courseId: id('01'),
-      path: 'content/transition',
-      orderPath: [0],
-      reviewedCourseSourceBlobSha: 'c'.repeat(40),
+    production: {
+      focus: 'Introduce the story',
+      purpose: 'Narrative transition',
+      placement: {
+        courseId: id('01'),
+        path: 'content/transition',
+        orderPath: [0],
+        reviewedCourseSourceBlobSha: 'c'.repeat(40),
+      },
+      languages: { document: 'uk', planned: ['uk', 'en'] },
+      scenario: {
+        audience: 'Novices',
+        entrySituation: 'Beginning',
+        exitSituation: 'Understanding',
+        continuity: 'Next episode',
+        sceneIntent: 'Present context',
+        interactionIntent: 'Read and reflect',
+        accessibility: 'Equivalent text',
+        narrativeConstraints: 'No assessment',
+      },
+      specification: 'Reviewed narrative',
     },
-    languages: { document: 'uk', planned: ['uk', 'en'] },
-    scenario: {
-      audience: 'Novices',
-      entrySituation: 'Beginning',
-      exitSituation: 'Understanding',
-      continuity: 'Next episode',
-      sceneIntent: 'Present context',
-      interactionIntent: 'Read and reflect',
-      accessibility: 'Equivalent text',
-      narrativeConstraints: 'No assessment',
-    },
-    specification: 'Reviewed narrative',
-  },
-} as EpisodeWorkflowStage2);
+  }) as EpisodeWorkflowStage2;
 
 test('Episode Stage 5 owns one typed constants module and nested descendants use its alias', () => {
   const plan = materializeEpisodeStage5(reviewed(), { source });
@@ -91,7 +94,8 @@ test('Episode Stage 5 owns one typed constants module and nested descendants use
   assert.deepEqual(plan, materializeEpisodeStage5(reviewed(), { source }));
   for (const entry of plan.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(entry.path, entry.content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-    const syntaxDiagnostics = (parsed as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics;
+    const syntaxDiagnostics = (parsed as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] })
+      .parseDiagnostics;
     assert.equal(syntaxDiagnostics?.length ?? 0, 0, 'Invalid generated TS: ' + entry.path);
   }
 });

@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
-import { materializeLesson, assertLessonSourceReleaseReady } from './lesson';
+
+import ts from 'typescript';
+
 import { materializeContentSection, type Source as ContentSource } from '../contentSection/contentSection';
+import { assertLessonSourceReleaseReady, materializeLesson } from './lesson';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const section = () => ({
   id: id('02'),
@@ -411,33 +414,51 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
 test('Lesson emits package-scoped imported Skill Configurators without textbook tables', () => {
   const input = {
     ...lesson(),
-    skills: [
-      '00000000-0000-4000-8000-000000000001',
-      '00000000-0000-4000-8000-000000000004',
-    ],
+    skills: ['00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000004'],
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
     skillReferences: [
-      { id: '00000000-0000-4000-8000-000000000001', path: '#skillsData/testColors/testWarmColors/testRecognizeRed', exported: 'testRecognizeRed' },
-      { id: '00000000-0000-4000-8000-000000000004', path: '#skillsData/testColors/testCoolColors/testRecognizeBlue', exported: 'testRecognizeBlue' },
+      {
+        id: '00000000-0000-4000-8000-000000000001',
+        path: '#skillsData/testColors/testWarmColors/testRecognizeRed',
+        exported: 'testRecognizeRed',
+      },
+      {
+        id: '00000000-0000-4000-8000-000000000004',
+        path: '#skillsData/testColors/testCoolColors/testRecognizeBlue',
+        exported: 'testRecognizeBlue',
+      },
     ],
     renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   });
   const root = result.files.find(file => file.path === 'index.ts')?.content ?? '';
-  assert.match(root, /import \{ testRecognizeRed as skill_ref_0 \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/);
-  assert.match(root, /import \{ testRecognizeBlue as skill_ref_1 \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/);
+  assert.match(
+    root,
+    /import \{ testRecognizeRed as skill_ref_0 \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/,
+  );
+  assert.match(
+    root,
+    /import \{ testRecognizeBlue as skill_ref_1 \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/,
+  );
   assert.match(root, /"skills": \[skill_ref_0\.id, skill_ref_1\.id\]/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
-  const unknown = materializeLesson({
-    ...lesson(),
-    skills: [id('66')],
-  } as Parameters<typeof materializeLesson>[0], {
-    documentLanguage: 'en',
-    renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
-  });
-  assert(unknown.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Import the actual Skill')));
+  const unknown = materializeLesson(
+    {
+      ...lesson(),
+      skills: [id('66')],
+    } as Parameters<typeof materializeLesson>[0],
+    {
+      documentLanguage: 'en',
+      renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
+    },
+  );
+  assert(
+    unknown.diagnostics.some(
+      item => item.code === 'pending-lesson' && item.message.includes('Import the actual Skill'),
+    ),
+  );
   assert.throws(() => assertLessonSourceReleaseReady(unknown), /unresolved materializer diagnostics/);
 });
 
@@ -447,14 +468,22 @@ test('Lesson refuses cross-textbook Skill alias or mismatched UUID', () => {
     documentLanguage: 'en',
     renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   };
-  assert.throws(() => materializeLesson(input as Parameters<typeof materializeLesson>[0], {
-    ...options,
-    skillReferences: [{ id: id('66'), path: '../../content/math/data/skills/foreign', exported: 'foreign' }],
-  }), /cross-textbook Skill import/);
-  assert.throws(() => materializeLesson(input as Parameters<typeof materializeLesson>[0], {
-    ...options,
-    skillReferences: [{ id: id('67'), path: '#skillsData/geometry/figures/known', exported: 'known' }],
-  }), /cross-textbook Skill import/);
+  assert.throws(
+    () =>
+      materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+        ...options,
+        skillReferences: [{ id: id('66'), path: '../../content/math/data/skills/foreign', exported: 'foreign' }],
+      }),
+    /cross-textbook Skill import/,
+  );
+  assert.throws(
+    () =>
+      materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+        ...options,
+        skillReferences: [{ id: id('67'), path: '#skillsData/geometry/figures/known', exported: 'known' }],
+      }),
+    /cross-textbook Skill import/,
+  );
 });
 
 test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and checkColors notes', () => {
@@ -481,8 +510,10 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
         checkColors: {
           config: { ...section(), id: id('56'), slug: 'checkColors' },
           production: {
-            purpose: 'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
-            pedagogicalIntent: 'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
+            purpose:
+              'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
+            pedagogicalIntent:
+              'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
           },
         },
       },
@@ -512,14 +543,24 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
   });
   const methodology = result.files.find(f => f.path === 'methodology.md')?.content ?? '';
   for (const phrase of [
-    'Pedagogical plan.', 'Distinguish two colors.', 'Introductory classification.',
-    'Learn, retrieve, then assess.', 'Identify unlabeled examples.',
-    'Section: exploreColors', 'Section: recallColors', 'Section: checkColors',
-    'Guided exploration and formative reflection', 'Compare without positional cues.',
-    'Required independent Flashcard Bank selection', 'Required independent Question Bank selection',
-    'Retrieval (canonical slug retrieval)', 'Classification (canonical slug classification)',
-    'Question Bank (Stage 7): required', 'Flashcard Bank (Stage 8): required',
-  ]) assert(methodology.includes(phrase), phrase);
+    'Pedagogical plan.',
+    'Distinguish two colors.',
+    'Introductory classification.',
+    'Learn, retrieve, then assess.',
+    'Identify unlabeled examples.',
+    'Section: exploreColors',
+    'Section: recallColors',
+    'Section: checkColors',
+    'Guided exploration and formative reflection',
+    'Compare without positional cues.',
+    'Required independent Flashcard Bank selection',
+    'Required independent Question Bank selection',
+    'Retrieval (canonical slug retrieval)',
+    'Classification (canonical slug classification)',
+    'Question Bank (Stage 7): required',
+    'Flashcard Bank (Stage 8): required',
+  ])
+    assert(methodology.includes(phrase), phrase);
   assert.doesNotMatch(methodology, /PRIVATE SOURCE EVIDENCE/);
   assert(!result.files.some(file => file.path === 'specification.md'));
   const root = result.files.find(f => f.path === 'index.ts')?.content ?? '';
@@ -572,7 +613,10 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
     },
   });
   assert.equal(acknowledged, undefined);
-  assert.equal((input.section.items.introduction.production as Record<string, unknown>).methodologyIntegrated, undefined);
+  assert.equal(
+    (input.section.items.introduction.production as Record<string, unknown>).methodologyIntegrated,
+    undefined,
+  );
   const markdown = output.files.find(f => f.path === 'methodology.md')?.content ?? '';
   assert.match(markdown, /Source purpose/);
   assert.doesNotMatch(markdown, /Excluded provenance/);

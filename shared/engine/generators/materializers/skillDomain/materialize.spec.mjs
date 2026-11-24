@@ -70,11 +70,15 @@ test('invalid child slug and unresolved dependency fail explicitly', () => {
 test('SkillDomain refuses direct Skill name conflicting with the owner entrypoint', () => {
   const input = config();
   input.skills = { index: skill('index') };
-  assert.throws(() => materializeSkillDomain(input, {
-    sourceLanguage: 'uk',
-    materializeSkill,
-    materializeSkillGroup,
-  }), /reserved source filename/);
+  assert.throws(
+    () =>
+      materializeSkillDomain(input, {
+        sourceLanguage: 'uk',
+        materializeSkill,
+        materializeSkillGroup,
+      }),
+    /reserved source filename/,
+  );
 });
 test('skillDomain rejects escaped destination directories', () => {
   assert.throws(
@@ -105,9 +109,13 @@ test('SkillDomain rejects escaped files from delegated Group materializer', () =
       { path: 'escaped.txt', kind: 'markdown', content: 'bad\n' },
     ],
   });
-  assert.throws(() => materializeSkillDomain(config(), {
-    sourceLanguage: 'uk',
-    materializeSkill,
-    materializeSkillGroup: maliciousGroup,
-  }), /escaped its source owner/);
+  assert.throws(
+    () =>
+      materializeSkillDomain(config(), {
+        sourceLanguage: 'uk',
+        materializeSkill,
+        materializeSkillGroup: maliciousGroup,
+      }),
+    /escaped its source owner/,
+  );
 });

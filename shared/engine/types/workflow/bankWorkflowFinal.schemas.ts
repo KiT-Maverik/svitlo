@@ -1,34 +1,37 @@
 import { z } from 'zod';
-import { UNRESOLVED_RESOURCE_UUID } from '../../schemas/media.schemas';
-import type { Question_Type } from '../../configurators/questions/question.constants';
-import { workflowOrdered_Schema } from './lessonWorkflow.types';
-import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import { video_Config_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import { youtube_Config_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+
 import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { subtitles_Config_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { scene_Config_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
 import { carousel_Config_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
 import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
-import { flashcardRelationshipTypes } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
-import { workflowLanguages_Schema } from './workflowLanguages.schemas';
-import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
-import { flashcard_Config_Schema } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
-import { selectOneAnswer_Config_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
-import { selectMultipleAnswers_Config_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
-import { matchBlocks_Config_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
-import { answerWithText_Config_Schema } from '../../configurators/questions/defineAnswerWithText/defineAnswerWithText.schemas';
+import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import { scene_Config_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { subtitles_Config_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import { video_Config_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import { youtube_Config_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+import {
+  flashcard_Config_Schema,
+  flashcardRelationshipTypes,
+} from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { answerWithNumber_Config_Schema } from '../../configurators/questions/defineAnswerWithNumber/defineAnswerWithNumber.schemas';
-import { orderSequence_Config_Schema } from '../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
+import { answerWithText_Config_Schema } from '../../configurators/questions/defineAnswerWithText/defineAnswerWithText.schemas';
 import { buildAnswerWithBlocks_Config_Schema } from '../../configurators/questions/defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
 import { fillBlanksWithBlocks_Config_Schema } from '../../configurators/questions/defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
 import { fillBlanksWithText_Config_Schema } from '../../configurators/questions/defineFillBlanksWithText/defineFillBlanksWithText.schemas';
+import { matchBlocks_Config_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
+import { orderSequence_Config_Schema } from '../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
+import { selectMultipleAnswers_Config_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
+import { selectOneAnswer_Config_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
+import type { Question_Type } from '../../configurators/questions/question.constants';
+import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import { UNRESOLVED_RESOURCE_UUID } from '../../schemas/media.schemas';
+import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
+import { workflowOrdered_Schema } from './lessonWorkflow.types';
+import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Final editorial schemas compose real Configurator metadata, leaving composite
  * authored child collections to their owning materializers' order/identity checks.
@@ -197,10 +200,9 @@ const questionBaseSchemas = {
   fillBlanksWithBlocks: fillBlanksWithBlocks_Config_Schema,
   fillBlanksWithText: fillBlanksWithText_Config_Schema,
 } as const satisfies Record<Question_Type, z.ZodType>;
-type QuestionSourceConfig<Kind extends Question_Type> = Omit<
-  z.infer<(typeof questionBaseSchemas)[Kind]>,
-  'content'
-> & { content: z.infer<(typeof questionContent)[Kind]> };
+type QuestionSourceConfig<Kind extends Question_Type> = Omit<z.infer<(typeof questionBaseSchemas)[Kind]>, 'content'> & {
+  content: z.infer<(typeof questionContent)[Kind]>;
+};
 export const questionBankWorkflowQuestionConfig_Schemas: {
   [Kind in Question_Type]: z.ZodType<QuestionSourceConfig<Kind>>;
 } = {
@@ -243,15 +245,31 @@ type QuestionSourceGroups = {
   [Kind in Question_Type]?: Record<string, QuestionSourceNode<Kind>>;
 };
 const questionBankWorkflowKindsShape = {
-  selectOneAnswer: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectOneAnswer)).optional(),
-  selectMultipleAnswers: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectMultipleAnswers)).optional(),
+  selectOneAnswer: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectOneAnswer))
+    .optional(),
+  selectMultipleAnswers: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectMultipleAnswers))
+    .optional(),
   matchBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.matchBlocks)).optional(),
-  answerWithText: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithText)).optional(),
-  answerWithNumber: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithNumber)).optional(),
-  orderSequence: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.orderSequence)).optional(),
-  buildAnswerWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.buildAnswerWithBlocks)).optional(),
-  fillBlanksWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithBlocks)).optional(),
-  fillBlanksWithText: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText)).optional(),
+  answerWithText: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithText))
+    .optional(),
+  answerWithNumber: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.answerWithNumber))
+    .optional(),
+  orderSequence: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.orderSequence))
+    .optional(),
+  buildAnswerWithBlocks: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.buildAnswerWithBlocks))
+    .optional(),
+  fillBlanksWithBlocks: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithBlocks))
+    .optional(),
+  fillBlanksWithText: z
+    .record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText))
+    .optional(),
 } satisfies Record<Question_Type, z.ZodType>;
 export const questionBankWorkflowQuestionKinds_Schema: z.ZodType<QuestionSourceGroups> = z
   .strictObject(questionBankWorkflowKindsShape)

@@ -86,8 +86,7 @@ const approvedBlockIdentifiers = input => {
           if (stat.isSymbolicLink()) throw Error('Symlink in Bank Scene implementation path: ' + index);
         }
         if (absent) newSceneIds.add(config.id);
-        else if (fs.readFileSync(current, 'utf8').includes('TODO (BLOCKER)'))
-          existingDraftSceneIds.add(config.id);
+        else if (fs.readFileSync(current, 'utf8').includes('TODO (BLOCKER)')) existingDraftSceneIds.add(config.id);
         else registeredSceneIds.add(config.id);
       } else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
         approvedMediaBlockIds.add(config.id);
@@ -97,9 +96,10 @@ const approvedBlockIdentifiers = input => {
   walk(input?.config);
   return { registeredSceneIds, newSceneIds, existingDraftSceneIds, approvedMediaBlockIds };
 };
-const { parseLessonLanguageConstants, assertBankLessonLanguages } = require(
-  './shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js',
-);
+const {
+  parseLessonLanguageConstants,
+  assertBankLessonLanguages,
+} = require('./shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js');
 const bankOptions = input => {
   capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
@@ -115,8 +115,7 @@ const bankOptions = input => {
     .update('blob ' + ownerBytes.length + '\0')
     .update(ownerBytes)
     .digest('hex');
-  if (ownerBlob !== source.lessonConstantsBlobSha)
-    throw Error('Owning Lesson constants.ts differs from reviewed base');
+  if (ownerBlob !== source.lessonConstantsBlobSha) throw Error('Owning Lesson constants.ts differs from reviewed base');
   const ownerLanguages = parseLessonLanguageConstants(ownerBytes.toString('utf8'));
   const requestedLanguages =
     selectedBank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
@@ -203,8 +202,6 @@ const plan = await executeMaterializerEntrypoint(
 );
 process.stdout.write(
   JSON.stringify(
-    selectedBank || ['episode-stage5', 'assessment-stage4'].includes(operation)
-      ? { plan, input: capturedInput }
-      : plan,
+    selectedBank || ['episode-stage5', 'assessment-stage4'].includes(operation) ? { plan, input: capturedInput } : plan,
   ),
 );

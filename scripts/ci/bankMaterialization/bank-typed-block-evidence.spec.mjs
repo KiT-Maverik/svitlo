@@ -207,8 +207,11 @@ test('existing six-file Scene drafts remain blocked and cannot be overwritten', 
 
   // A complete implementation removes its registration and component blockers.
   file(f.root, f.base + '/index.ts', 'export { Visual as default } from "./Visual";\n');
-  file(f.root, f.base + '/Visual.tsx',
-    'export function Visual() { return <div aria-label="Reviewed interaction" />; }\n');
+  file(
+    f.root,
+    f.base + '/Visual.tsx',
+    'export function Visual() { return <div aria-label="Reviewed interaction" />; }\n',
+  );
   git(f.root, 'add', '-A');
   git(f.root, 'commit', '-m', 'Implement reviewed Scene', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');

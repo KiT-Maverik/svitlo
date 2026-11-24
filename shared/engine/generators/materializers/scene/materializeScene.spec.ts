@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
 import { materializeScene, renderSceneFiles, sceneFileNames } from './materializeScene';

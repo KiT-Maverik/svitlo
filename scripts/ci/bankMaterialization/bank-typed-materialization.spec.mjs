@@ -243,7 +243,8 @@ test('both Bank publishers require an exact six-file textbook-scoped Scene scaff
     assert.doesNotThrow(() => verifyTypedManifest({ ...valid, files: proposed }, valid.meta));
     for (const missing of Object.keys(files)) {
       assert.throws(
-        () => verifyTypedManifest({ ...valid, files: proposed.filter(item => item.path !== root + missing) }, valid.meta),
+        () =>
+          verifyTypedManifest({ ...valid, files: proposed.filter(item => item.path !== root + missing) }, valid.meta),
         /Incomplete.*Scene/,
       );
     }

@@ -1,34 +1,34 @@
 import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
-import { materializeContentSection } from '../contentSection/contentSection';
-import { materializePracticeSection } from '../practiceSection/practiceSection';
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
+import { materializeAudio } from '../audio/materializeAudio';
+import { materializeCarousel } from '../carousel/materializeCarousel';
+import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
+import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
-import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
-import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeContentSection } from '../contentSection/contentSection';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
+import { materializeImage } from '../image/materializeImage';
+import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializePracticeSection } from '../practiceSection/practiceSection';
 import { materializeQuestSection } from '../questSection/questSection';
 import { materializeQuestStage } from '../questStage/questStage';
 import { materializeQuestTask } from '../questTask/questTask';
+import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeScene, renderSceneFiles } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeAudio } from '../audio/materializeAudio';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene, renderSceneFiles } from '../scene/materializeScene';
-import { materializeCarousel } from '../carousel/materializeCarousel';
-import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
-import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { assertLessonSourceReleaseReady, materializeLesson, type ChildConfig, type Result } from './lesson';
 import { preserveAssessmentReferences, reviewedSkillReferences } from './preserveAssessmentReferences';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
 export type LessonStage6Source = {

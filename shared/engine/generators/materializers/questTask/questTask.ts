@@ -117,9 +117,7 @@ function filterLocale(value: unknown, source: string): unknown {
  * before specialists clear the blocker. JSON-escaping prevents comment injection.
  */
 function reviewedNotes(production: Record<string, unknown> | undefined): string[] {
-  const entries = Object.entries(production ?? {}).filter(
-    ([key]) => !['pending', 'documentLanguage'].includes(key),
-  );
+  const entries = Object.entries(production ?? {}).filter(([key]) => !['pending', 'documentLanguage'].includes(key));
   if (!entries.length) return [];
   return [
     '// TODO (BLOCKER): Integrate these reviewed Quest child notes into the owning methodology/narrative before removing them.',

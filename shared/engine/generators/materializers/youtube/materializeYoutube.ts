@@ -4,9 +4,12 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import {
+  youtube_Config_Schema,
+  type ContentBlock_Youtube_Config,
+} from '../../../configurators/contentBlocks/defineYoutube';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
-import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube';
-import { youtube_Config_Schema } from '../../../configurators/contentBlocks/defineYoutube';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Youtube_Config['params']>;

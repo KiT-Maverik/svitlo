@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import ts from 'typescript';
 import { createHash } from 'node:crypto';
-import { materializeFlashcardBankDraft, materializeFlashcardBank } from './materializeFlashcardBank';
-import { gitBlobSha, authoredBankLiteral, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { test } from 'node:test';
+
+import ts from 'typescript';
+
+import { authoredBankLiteral, gitBlobSha, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { materializeFlashcardBank, materializeFlashcardBankDraft } from './materializeFlashcardBank';
 
 const sha = (c: string) => c.repeat(40);
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
@@ -66,7 +68,10 @@ const finalAuthorization = (input: unknown = completed()) => ({
     inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
-  ownerLanguages: { active: ['uk'], planned: (input as ReturnType<typeof completed>).production.lesson.languages.planned },
+  ownerLanguages: {
+    active: ['uk'],
+    planned: (input as ReturnType<typeof completed>).production.lesson.languages.planned,
+  },
 });
 const textBlock = (slug: string, n: number) => ({
   config: {

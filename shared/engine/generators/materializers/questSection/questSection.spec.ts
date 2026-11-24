@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestSection } from './questSection';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const q = () => ({
   id: id('01'),

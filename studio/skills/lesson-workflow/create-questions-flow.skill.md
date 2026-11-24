@@ -138,7 +138,7 @@ types derive from `shared/engine/types/workflow/bankWorkflowFinal.schemas.ts`
 and the real nine Config/Zod contracts, with no parallel workflow type map.
 
 A resource genuinely not produced yet may omit the resource reference,
-or use the existing reserved Nil UUID media placeholder. The *concrete*
+or use the existing reserved Nil UUID media placeholder. The _concrete_
 media/Scene source materializer then emits a type-valid module with
 `TODO (BLOCKER)`, not a fake physical file or executable implementation.
 Specify substantive authoring information in optional

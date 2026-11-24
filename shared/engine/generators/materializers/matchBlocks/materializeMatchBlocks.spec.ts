@@ -1,7 +1,10 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
+
 import ts from 'typescript';
+
 import { materializeMatchBlocks } from './materializeMatchBlocks';
+
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
 const block = (slug: string, n: number) => ({
   config: { id: id(n), slug, type: 'text', params: {}, locale: { value: { uk: 'Текст' } } },
@@ -68,11 +71,13 @@ test('matchBlocks: rejects delegated ContentBlock writing outside its semantic r
         ...context,
         materializeBlock: () => ({
           exportName: 'prompt',
-          files: [{
-            path: 'questions/matchBlocks/otherQuestion/index.ts',
-            content: 'export const prompt = {};\n',
-            kind: 'typescript' as const,
-          }],
+          files: [
+            {
+              path: 'questions/matchBlocks/otherQuestion/index.ts',
+              content: 'export const prompt = {};\n',
+              kind: 'typescript' as const,
+            },
+          ],
         }),
       }),
     /escaped its assigned directory/,

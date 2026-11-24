@@ -1,7 +1,10 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
+
 import ts from 'typescript';
+
 import { materializeFillBlanksWithText } from './materializeFillBlanksWithText';
+
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
 const block = (slug: string, n: number) => ({
   config: { id: id(n), slug, type: 'text', params: {}, locale: { value: { uk: 'Текст' } } },
@@ -68,11 +71,13 @@ test('fillBlanksWithText: rejects delegated ContentBlock writing outside its sem
         ...context,
         materializeBlock: () => ({
           exportName: 'prompt',
-          files: [{
-            path: 'questions/fillBlanksWithText/otherQuestion/index.ts',
-            content: 'export const prompt = {};\n',
-            kind: 'typescript' as const,
-          }],
+          files: [
+            {
+              path: 'questions/fillBlanksWithText/otherQuestion/index.ts',
+              content: 'export const prompt = {};\n',
+              kind: 'typescript' as const,
+            },
+          ],
         }),
       }),
     /escaped its assigned directory/,

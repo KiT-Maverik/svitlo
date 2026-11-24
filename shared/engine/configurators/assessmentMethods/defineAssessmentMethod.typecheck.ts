@@ -1,6 +1,7 @@
-import { defineAssessmentMethod } from './defineAssessmentMethod';
 import type { AllLanguageCodes } from '#schemas';
 import type { LanguageScope } from '#types';
+
+import { defineAssessmentMethod } from './defineAssessmentMethod';
 
 const method = defineAssessmentMethod<'retrieval', ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d06',

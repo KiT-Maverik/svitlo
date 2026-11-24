@@ -126,16 +126,17 @@ function verifyOwnerLanguages(meta, input, root) {
   let current = root;
   for (const segment of filename.split('/')) {
     current = path.join(current, segment);
-    if (fs.lstatSync(current).isSymbolicLink())
-      throw Error('Symlink in owning Lesson constants.ts path');
+    if (fs.lstatSync(current).isSymbolicLink()) throw Error('Symlink in owning Lesson constants.ts path');
   }
   const bytes = fs.readFileSync(current);
-  if (gitBlob(bytes) !== meta.lessonConstantsBlob || git(root, 'rev-parse', 'HEAD:' + filename) !== meta.lessonConstantsBlob)
+  if (
+    gitBlob(bytes) !== meta.lessonConstantsBlob ||
+    git(root, 'rev-parse', 'HEAD:' + filename) !== meta.lessonConstantsBlob
+  )
     throw Error('Owning Lesson constants.ts differs from pinned Git blob');
-  const {
-    parseLessonLanguageConstants,
-    assertBankLessonLanguages,
-  } = require(path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js'));
+  const { parseLessonLanguageConstants, assertBankLessonLanguages } = require(
+    path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js'),
+  );
   const reviewed = parseLessonLanguageConstants(bytes.toString('utf8'));
   const languages = meta.bank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
   assertBankLessonLanguages(reviewed, languages);
@@ -183,8 +184,11 @@ function scenePath(filename, meta) {
     !/^[0-9a-f]$/.test(parts[0]) ||
     !sceneUuid.test(parts[1]) ||
     parts[1].at(-1) !== parts[0] ||
-    !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.module\.css|\.constants\.ts|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(parts[2])
-  ) return null;
+    !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.module\.css|\.constants\.ts|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(
+      parts[2],
+    )
+  )
+    return null;
   return { id: parts[1], name: parts[2], directory: prefix + parts[0] + '/' + parts[1] };
 }
 function assertSceneInventory(files, meta) {
@@ -225,12 +229,8 @@ function assertSceneInventory(files, meta) {
 }
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
-  if (
-    filename.length > 520 ||
-    filename.includes('..') ||
-    filename.includes('//') ||
-    filename.includes('\\')
-  ) return false;
+  if (filename.length > 520 || filename.includes('..') || filename.includes('//') || filename.includes('\\'))
+    return false;
   if (scenePath(filename, meta)) return true;
   if (!filename.startsWith(folder)) return false;
   const relative = filename.slice(folder.length);
@@ -420,9 +420,8 @@ async function analyze(meta) {
   const { materializeBankSceneDrafts } = require(
     path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/materializeBankSceneDrafts.js'),
   );
-  const sceneLanguage = meta.bank === 'questions'
-    ? input.production?.languages?.document
-    : input.production?.lesson?.languages?.document;
+  const sceneLanguage =
+    meta.bank === 'questions' ? input.production?.languages?.document : input.production?.lesson?.languages?.document;
   const expectedSceneDrafts = materializeBankSceneDrafts(input.config, sceneLanguage, blocks);
   if (JSON.stringify(plan.sceneDrafts ?? []) !== JSON.stringify(expectedSceneDrafts))
     throw Error('Worker Bank Scene draft bytes, identities or complete six-file plan differ from reviewed source');

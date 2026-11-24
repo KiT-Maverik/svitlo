@@ -131,7 +131,9 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
   }
   const sourceText = [
     "import { defineFlashcardSide } from '@svitlo/engine/build';",
-    ...(context.ownerLanguagesImport ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';'] : []),
+    ...(context.ownerLanguagesImport
+      ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+      : []),
     ...imports,
     '',
     'const items = {',

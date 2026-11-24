@@ -59,8 +59,8 @@ test('invalid child slug and unresolved dependency fail explicitly', () => {
 test('SkillGroup forbids child Skill name colliding with its index.ts', () => {
   const input = config();
   input.skills = { index: skill('index') };
-  assert.throws(() =>
-    materializeSkillGroup(input, { sourceLanguage: 'uk', materializeSkill }),
+  assert.throws(
+    () => materializeSkillGroup(input, { sourceLanguage: 'uk', materializeSkill }),
     /reserved source filename/,
   );
 });
@@ -92,8 +92,12 @@ test('SkillGroup confines delegated Sidecar files to its specific Skill owner', 
       { path: 'outside.md', kind: 'markdown', content: 'bad\n' },
     ],
   });
-  assert.throws(() => materializeSkillGroup(config(), {
-    sourceLanguage: 'uk',
-    materializeSkill: malicious,
-  }), /escaped its source owner/);
+  assert.throws(
+    () =>
+      materializeSkillGroup(config(), {
+        sourceLanguage: 'uk',
+        materializeSkill: malicious,
+      }),
+    /escaped its source owner/,
+  );
 });

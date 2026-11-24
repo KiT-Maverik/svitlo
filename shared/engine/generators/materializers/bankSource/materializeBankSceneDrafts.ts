@@ -5,8 +5,7 @@
  * source, establish UUID ownership, and seal them before any privileged write.
  */
 import { renderSceneFiles } from '../scene/materializeScene';
-import { assertBankUuid } from './bankSourceSafety';
-import type { BankSourceFile } from './bankSourceSafety';
+import { assertBankUuid, type BankSourceFile } from './bankSourceSafety';
 import type { AssessmentBlockEvidence } from './materializeAssessmentBlock';
 
 const record = (value: unknown): value is Record<string, unknown> =>

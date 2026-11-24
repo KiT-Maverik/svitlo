@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestStage, type ChildConfig } from './questStage';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const media = (type: string, slug: string, n: string): ChildConfig => ({
   id: id(n),

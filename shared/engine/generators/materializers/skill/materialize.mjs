@@ -96,8 +96,7 @@ export function materializeSkill(input, context = {}) {
   const { id, slug } = identity(config, context, scope, 'skill'),
     language = source(context);
   const entryFilename = context.entryFilename ?? 'index.ts';
-  if (!/^[A-Za-z][A-Za-z0-9]*\.ts$/.test(entryFilename))
-    throw Error(dir + ': unsafe Skill source filename');
+  if (!/^[A-Za-z][A-Za-z0-9]*\.ts$/.test(entryFilename)) throw Error(dir + ': unsafe Skill source filename');
   safeDirectory(context.sidecarDirectory ?? dir);
   const data = {
     id,

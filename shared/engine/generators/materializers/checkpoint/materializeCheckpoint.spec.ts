@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
-import { materializeCheckpoint } from './materializeCheckpoint';
-import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
-import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { materializeCarousel } from '../carousel/materializeCarousel';
+import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeScene } from '../scene/materializeScene';
+import { materializeCheckpoint } from './materializeCheckpoint';
 
 const id = (n: number) => '40000000-0000-4000-8000-' + String(n).padStart(12, '0');
 const text = (slug: string, n: number) => ({

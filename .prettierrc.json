@@ -11,30 +11,11 @@
   "quoteProps": "as-needed",
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
+      "files": ["*.ts", "*.tsx"],
       "options": {
-        "plugins": [
-          "@ianvs/prettier-plugin-sort-imports"
-        ],
-        "importOrder": [
-          "<BUILTIN_MODULES>",
-          "",
-          "<THIRD_PARTY_MODULES>",
-          "",
-          "^@svitlo/",
-          "",
-          "^(#|@/)",
-          "",
-          "^[.]"
-        ],
-        "importOrderParserPlugins": [
-          "typescript",
-          "jsx",
-          "decorators-legacy"
-        ],
+        "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+        "importOrder": ["<BUILTIN_MODULES>", "", "<THIRD_PARTY_MODULES>", "", "^@svitlo/", "", "^(#|@/)", "", "^[.]"],
+        "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
         "importOrderTypeScriptVersion": "5.9.3"
       }
     }

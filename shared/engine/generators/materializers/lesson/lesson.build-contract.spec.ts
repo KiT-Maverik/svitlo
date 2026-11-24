@@ -2,12 +2,13 @@ import assert from 'node:assert/strict';
 import { posix } from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
+
 import ts from 'typescript';
 
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineQuizSection } from '../../../configurators/sections/defineQuizSection/defineQuizSection';
 import { materializeQuizSection } from '../quizSection/quizSection';
-import { materializeLesson, assertLessonSourceReleaseReady, type Result } from './lesson';
+import { assertLessonSourceReleaseReady, materializeLesson, type Result } from './lesson';
 
 const id = (suffix: string) => '12345678-1234-4234-8234-1234567890' + suffix;
 const reserved = 'feedc0de-1234-4234-8234-123456789022';

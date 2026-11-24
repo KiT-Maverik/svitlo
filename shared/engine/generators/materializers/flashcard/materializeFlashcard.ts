@@ -6,11 +6,11 @@ import type { Flashcard_Config } from '../../../configurators/flashcards/defineF
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
   materializeFlashcardSide,
-  type FlashcardSideSource,
-  type FlashcardSideContext,
-  type SourceFile,
-  type SourceDiagnostic,
   type ChildResult,
+  type FlashcardSideContext,
+  type FlashcardSideSource,
+  type SourceDiagnostic,
+  type SourceFile,
 } from '../flashcardSide/materializeFlashcardSide';
 
 export type FlashcardSource = Omit<Flashcard_Config, 'content'> & {
@@ -244,7 +244,9 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
     kind: 'typescript',
     content: [
       "import { defineFlashcard, type Flashcard_Config } from '@svitlo/engine/build';",
-      ...(context.ownerLanguagesImport ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';'] : []),
+      ...(context.ownerLanguagesImport
+        ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+        : []),
       ...imports,
       '',
       ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),

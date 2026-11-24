@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestTask } from './questTask';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 test('Quest Task: one Scene delegation, typed import and a visible pending blocker', () => {
   const out = materializeQuestTask(
@@ -81,6 +84,9 @@ test('Quest Task retains reviewed narrative notes without specification sidecar'
     },
   );
   assert(!out.files.some(file => file.path.endsWith('specification.md')));
-  assert.match(out.files.find(file => file.path === 'tasks/start/index.ts')?.content ?? '', /Do not discard the learner choice/);
+  assert.match(
+    out.files.find(file => file.path === 'tasks/start/index.ts')?.content ?? '',
+    /Do not discard the learner choice/,
+  );
   assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
 });

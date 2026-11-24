@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { collectBankSceneDrafts, materializeBankSceneDrafts } from './materializeBankSceneDrafts';
+
 import type { AssessmentBlockEvidence } from './materializeAssessmentBlock';
+import { collectBankSceneDrafts, materializeBankSceneDrafts } from './materializeBankSceneDrafts';
 
 const uuid = '11111111-1111-4111-8111-11111111111a';
 const scene = () => ({
@@ -31,14 +32,17 @@ const evidence = (changes: Partial<AssessmentBlockEvidence>) => ({
 test('Question Bank reuses the canonical six-file source-only Scene scaffold', () => {
   const output = materializeBankSceneDrafts(bank(scene()), 'uk', evidence({}));
   assert.equal(output.length, 6);
-  assert.deepEqual(output.map(entry => entry.path), [
-    'scenes/a/' + uuid + '/index.ts',
-    'scenes/a/' + uuid + '/Visual.tsx',
-    'scenes/a/' + uuid + '/Visual.module.css',
-    'scenes/a/' + uuid + '/Visual.constants.ts',
-    'scenes/a/' + uuid + '/Visual.stories.tsx',
-    'scenes/a/' + uuid + '/Visual.unit.spec.tsx',
-  ]);
+  assert.deepEqual(
+    output.map(entry => entry.path),
+    [
+      'scenes/a/' + uuid + '/index.ts',
+      'scenes/a/' + uuid + '/Visual.tsx',
+      'scenes/a/' + uuid + '/Visual.module.css',
+      'scenes/a/' + uuid + '/Visual.constants.ts',
+      'scenes/a/' + uuid + '/Visual.stories.tsx',
+      'scenes/a/' + uuid + '/Visual.unit.spec.tsx',
+    ],
+  );
   assert(output.every(file => file.content.includes('TODO (BLOCKER)')));
   const implementation = output[1].content;
   assert.match(implementation, /\/\/ \*\//);
@@ -50,11 +54,20 @@ test('existing, registered or missing proof never overwrites an owned Scene', ()
   const input = bank(scene());
   assert.deepEqual(materializeBankSceneDrafts(input, 'uk', evidence({ newSceneIds: new Set() })), []);
   assert.deepEqual(
-    materializeBankSceneDrafts(input, 'uk', evidence({ newSceneIds: new Set(), existingDraftSceneIds: new Set([uuid]) })),
+    materializeBankSceneDrafts(
+      input,
+      'uk',
+      evidence({ newSceneIds: new Set(), existingDraftSceneIds: new Set([uuid]) }),
+    ),
     [],
   );
   assert.throws(
-    () => materializeBankSceneDrafts(input, 'uk', evidence({ newSceneIds: new Set(['33333333-3333-4333-8333-33333333333a']) })),
+    () =>
+      materializeBankSceneDrafts(
+        input,
+        'uk',
+        evidence({ newSceneIds: new Set(['33333333-3333-4333-8333-33333333333a']) }),
+      ),
     /Unowned Bank Scene scaffold/,
   );
 });
@@ -69,11 +82,16 @@ test('Flashcard nested Side Scene obeys the same reviewed handoff', () => {
     },
   };
   const output = collectBankSceneDrafts(input, 'uk', evidence({}));
-  assert.deepEqual(output.map(item => item.id), [uuid]);
+  assert.deepEqual(
+    output.map(item => item.id),
+    [uuid],
+  );
   assert.equal(materializeBankSceneDrafts(input, 'uk', evidence({})).length, 6);
   const withoutSpec = bank({ ...scene(), production: {} });
   assert.throws(() => materializeBankSceneDrafts(withoutSpec, 'uk', evidence({})), /reviewed production.specification/);
   const repeated = bank(scene());
-  (repeated.questions.selectOneAnswer.choose.config.content.question.items as Record<string, ReturnType<typeof scene>>).other = scene();
+  (
+    repeated.questions.selectOneAnswer.choose.config.content.question.items as Record<string, ReturnType<typeof scene>>
+  ).other = scene();
   assert.throws(() => materializeBankSceneDrafts(repeated, 'uk', evidence({})), /occurs more than once/);
 });

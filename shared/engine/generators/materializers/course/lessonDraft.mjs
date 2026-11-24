@@ -74,7 +74,21 @@ export function materializeLessonDraft(node, context) {
   const textbookRoot = context.textbookRoot;
   if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
     throw new Error('Lesson Draft requires a canonical textbook root');
-  if (Object.keys(node.production).some(key => !['kind', 'methodology', 'objective', 'depth', 'sequenceReason', 'assessmentEvidence', 'assessment', 'sourceEvidence'].includes(key)))
+  if (
+    Object.keys(node.production).some(
+      key =>
+        ![
+          'kind',
+          'methodology',
+          'objective',
+          'depth',
+          'sequenceReason',
+          'assessmentEvidence',
+          'assessment',
+          'sourceEvidence',
+        ].includes(key),
+    )
+  )
     throw new Error('Lesson seed contains unsupported Course proposal fields');
   const { kind: _placementKind, ...proposal } = node.production;
   const source = {

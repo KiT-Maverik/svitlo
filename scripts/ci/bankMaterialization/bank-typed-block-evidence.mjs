@@ -70,7 +70,8 @@ function pinnedOptional(root, head, filename, git, readText = true) {
     filename.startsWith('/') ||
     filename.includes('\\') ||
     filename.split('/').some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')
-  ) throw Error('Unsafe reviewed asset/Scene path: ' + filename);
+  )
+    throw Error('Unsafe reviewed asset/Scene path: ' + filename);
   let current = root;
   for (const part of filename.split('/')) {
     current = path.join(current, part);
@@ -132,9 +133,16 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
       continue;
     }
     const reference = sourceValue(authored, documentLanguage, config.id + '.' + field);
-    if (reference === '00000000-0000-0000-0000-000000000000.' + {
-      images: 'webp', audio: 'mp3', video: 'mp4', subtitles: 'vtt',
-    }[folder]) {
+    if (
+      reference ===
+      '00000000-0000-0000-0000-000000000000.' +
+        {
+          images: 'webp',
+          audio: 'mp3',
+          video: 'mp4',
+          subtitles: 'vtt',
+        }[folder]
+    ) {
       unresolved = true;
       continue;
     }
@@ -236,7 +244,9 @@ function checkScene(root, meta, config, production, git, ts) {
   const componentText = pinnedRegular(root, meta.head, componentPath, git);
   staticFile(ts, componentPath, componentText, ts.ScriptKind.TSX);
   if (
-    /\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(componentText) ||
+    /\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(
+      componentText,
+    ) ||
     /TODO\s*\(BLOCKER\)/.test(indexText)
   )
     return false; // Pinned draft implementation: valid scaffold, not approved evidence.

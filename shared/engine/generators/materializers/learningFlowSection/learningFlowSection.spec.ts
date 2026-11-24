@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeLearningFlowSection, type ChildConfig } from './learningFlowSection';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;

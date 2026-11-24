@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import { materializeAssessmentBlock } from './materializeAssessmentBlock';
 
 const id = (n: number) => 'ad5778df-c923-42de-b063-14d319' + String(n).padStart(6, '0');
@@ -151,7 +152,15 @@ test('Question unregistered Scene emits TODO while Flashcard remains strictly ve
   assert.match(module, /TODO \(BLOCKER\): Implement and register Scene/);
   assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-scene'));
   assert.throws(
-    () => materializeAssessmentBlock(source as never, { directory: 'flashcards/test', documentLanguage: 'uk' }, ['uk'], 'flashcards', ownerImport, proof),
+    () =>
+      materializeAssessmentBlock(
+        source as never,
+        { directory: 'flashcards/test', documentLanguage: 'uk' },
+        ['uk'],
+        'flashcards',
+        ownerImport,
+        proof,
+      ),
     /Scene has no verified executable registry/,
   );
 });

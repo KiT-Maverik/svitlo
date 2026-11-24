@@ -1,8 +1,11 @@
-import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeSelectOneAnswer } from './materializeSelectOneAnswer';
+
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
+import { materializeSelectOneAnswer } from './materializeSelectOneAnswer';
+
 const stageLanguages = { document: 'uk', planned: ['uk', 'en'] } as const satisfies CourseWorkflowStage1Languages;
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
 const block = (slug: string, n: number) => ({
@@ -74,11 +77,13 @@ test('selectOneAnswer: rejects delegated ContentBlock writing outside its semant
         ...context,
         materializeBlock: () => ({
           exportName: 'prompt',
-          files: [{
-            path: 'questions/selectOneAnswer/otherQuestion/index.ts',
-            content: 'export const prompt = {};\n',
-            kind: 'typescript' as const,
-          }],
+          files: [
+            {
+              path: 'questions/selectOneAnswer/otherQuestion/index.ts',
+              content: 'export const prompt = {};\n',
+              kind: 'typescript' as const,
+            },
+          ],
         }),
       }),
     /escaped its assigned directory/,

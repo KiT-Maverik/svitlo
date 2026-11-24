@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { assessmentMethodSlug_Schema } from '../questions/assessmentMethod.schemas';
 
 import { localizationSwitch } from '../contentBlocks/contentBlock.schemas';
+import { assessmentMethodSlug_Schema } from '../questions/assessmentMethod.schemas';
 
 function createAssessmentMethodSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
   const localized = localizationSwitch[mode];

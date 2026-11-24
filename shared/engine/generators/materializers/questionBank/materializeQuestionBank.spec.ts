@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import ts from 'typescript';
 import { createHash } from 'node:crypto';
-import { materializeQuestionBankDraft, materializeQuestionBank } from './materializeQuestionBank';
-import { gitBlobSha, authoredBankLiteral, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { test } from 'node:test';
+
+import ts from 'typescript';
+
+import { authoredBankLiteral, gitBlobSha, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { materializeQuestionBank, materializeQuestionBankDraft } from './materializeQuestionBank';
 
 const sha = (char: string) => char.repeat(40);
 const id = (num: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(num).padStart(6, '0');
@@ -190,7 +192,11 @@ test('Question Bank validates the source language and drops duplicated assessmen
   const input = handoff();
   assert.doesNotThrow(() => materializeQuestionBankDraft(input as never, draftAuth));
   assert.throws(
-    () => materializeQuestionBankDraft({ ...input, production: { languages: { document: 'uk', planned: ['en'] } } } as never, draftAuth),
+    () =>
+      materializeQuestionBankDraft(
+        { ...input, production: { languages: { document: 'uk', planned: ['en'] } } } as never,
+        draftAuth,
+      ),
     /Invalid Question Bank Stage 1/,
   );
 });
@@ -199,7 +205,10 @@ test('Question Bank ignores authored resource state flags by rejecting them at t
   Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
     production: { pending: true },
   });
-  assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /Invalid reviewed questionBank Stage 3 input/);
+  assert.throws(
+    () => materializeQuestionBank(input as never, finalAuth(input)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
 });
 
 test('Stage 5 emits missing image assets as blocked, typed Question source', () => {
@@ -214,21 +223,18 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
     },
     production: { specification: 'Create a diagram for this question' },
   };
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, { pendingDiagram: image });
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+    pendingDiagram: image,
+  });
   input.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('pendingDiagram');
-  assert.throws(
-    () => materializeQuestionBank(input as never, finalAuth(input)),
-    /Missing verified media evidence/,
-  );
+  assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /Missing verified media evidence/);
   const authorized = finalAuth(input);
   const planned = materializeQuestionBank(input as never, {
     ...authorized,
     blocks: { ...authorized.blocks, unresolvedMediaBlockIds: new Set([id(25)]) },
   });
   assert.equal(planned.publishable, false);
-  const source = planned.files.find(file =>
-    file.path.endsWith('question/pendingDiagram/index.ts'),
-  )?.content ?? '';
+  const source = planned.files.find(file => file.path.endsWith('question/pendingDiagram/index.ts'))?.content ?? '';
   assert.match(source, /TODO \(BLOCKER\)/);
   assert.match(source, /00000000-0000-0000-0000-000000000000.webp/);
   assert(planned.diagnostics.some(diagnostic => diagnostic.code === 'pending-media'));

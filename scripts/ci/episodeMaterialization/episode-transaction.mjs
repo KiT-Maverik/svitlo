@@ -64,13 +64,13 @@ function episodeSceneTarget(filename, meta) {
   const prefix = meta.textbookRoot + '/scenes/';
   if (typeof filename !== 'string' || !filename.startsWith(prefix)) return null;
   const match = filename.slice(prefix.length).match(/^([0-9a-f])\/([0-9a-f-]{36})\/([^/]+)$/);
-  if (!match || !sceneUuid.test(match[2]) || match[2].at(-1) !== match[1])
-    return null;
+  if (!match || !sceneUuid.test(match[2]) || match[2].at(-1) !== match[1]) return null;
   const leaf = match[3];
   if (
     leaf !== 'index.ts' &&
     !/^[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx)$/.test(leaf)
-  ) return null;
+  )
+    return null;
   return { id: match[2], leaf };
 }
 function safeOutput(file, meta) {
@@ -133,22 +133,26 @@ export function checkEpisodeTargets(meta, files, tree) {
   if (!seen.has(meta.parentPath) || !seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
     throw Error('Episode transaction must restore exact parent and create final index');
   for (const [id, entries] of sceneGroups) {
-    const components = entries.map(entry => entry.leaf).filter(name =>
-      /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name),
-    );
+    const components = entries.map(entry => entry.leaf).filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
     if (components.length !== 1) throw Error('Episode Scene must have exactly one component: ' + id);
     const name = components[0].slice(0, -'.tsx'.length);
     const expected = [
-      'index.ts', name + '.tsx', name + '.module.css',
-      name + '.constants.ts', name + '.stories.tsx', name + '.unit.spec.tsx',
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
     ];
     if (
       entries.length !== expected.length ||
-      expected.some(leaf => entries.filter(entry =>
-        entry.leaf === leaf &&
-        entry.kind === (leaf.endsWith('.css') ? 'code' : 'typescript'),
-      ).length !== 1)
-    ) throw Error('Episode Scene has missing or invalid six-file scaffold: ' + id);
+      expected.some(
+        leaf =>
+          entries.filter(entry => entry.leaf === leaf && entry.kind === (leaf.endsWith('.css') ? 'code' : 'typescript'))
+            .length !== 1,
+      )
+    )
+      throw Error('Episode Scene has missing or invalid six-file scaffold: ' + id);
   }
   return true;
 }

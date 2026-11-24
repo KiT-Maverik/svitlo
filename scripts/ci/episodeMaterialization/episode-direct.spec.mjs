@@ -145,8 +145,12 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
   const scenePath = 'content/playground/scenes/a/' + sceneId + '/';
   const component = 'IntroScene';
   const leaves = [
-    'index.ts', component + '.tsx', component + '.module.css',
-    component + '.constants.ts', component + '.stories.tsx', component + '.unit.spec.tsx',
+    'index.ts',
+    component + '.tsx',
+    component + '.module.css',
+    component + '.constants.ts',
+    component + '.stories.tsx',
+    component + '.unit.spec.tsx',
   ];
   const scoped = { ...meta, textbookRoot: 'content/playground', parentBlobSha: 'd'.repeat(40) };
   const worker = {
@@ -170,12 +174,24 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
   ]);
   assert(plan.files.some(f => f.path === scenePath + component + '.tsx'));
   assert.doesNotThrow(() => checkEpisodeTargets(scoped, plan.files, tree));
-  assert.throws(() => checkEpisodeTargets(scoped, plan.files.filter(f =>
-    f.path !== scenePath + component + '.module.css'), tree), /six-file scaffold/);
-  assert.throws(() => checkEpisodeTargets(scoped, plan.files, new Map([
-    ...tree,
-    [scenePath + 'index.ts', { type: 'blob', mode: '100644', sha: 'f'.repeat(40) }],
-  ])), /overwrite existing/);
+  assert.throws(
+    () =>
+      checkEpisodeTargets(
+        scoped,
+        plan.files.filter(f => f.path !== scenePath + component + '.module.css'),
+        tree,
+      ),
+    /six-file scaffold/,
+  );
+  assert.throws(
+    () =>
+      checkEpisodeTargets(
+        scoped,
+        plan.files,
+        new Map([...tree, [scenePath + 'index.ts', { type: 'blob', mode: '100644', sha: 'f'.repeat(40) }]]),
+      ),
+    /overwrite existing/,
+  );
 });
 
 test('canonical Course-generated Episode handoff is JSON in an exact TypeScript wrapper, never executable code', () => {
@@ -186,7 +202,10 @@ test('canonical Course-generated Episode handoff is JSON in an exact TypeScript 
     JSON.stringify(handoff, null, 2) +
     ' as const satisfies EpisodeWorkflowStage1Handoff;\n';
   assert.deepEqual(parseEpisodeHandoff(original), handoff);
-  const guarded = original.replace('export const episodeStage1 = ', '// prettier-ignore\nexport const episodeStage1 = ');
+  const guarded = original.replace(
+    'export const episodeStage1 = ',
+    '// prettier-ignore\nexport const episodeStage1 = ',
+  );
   assert.deepEqual(parseEpisodeHandoff(guarded), handoff);
   assert.throws(() => parseEpisodeHandoff(guarded.replace('// prettier-ignore', '// unreviewed-comment')));
   assert.throws(() => parseEpisodeHandoff(original.replace('as const satisfies', 'as never satisfies')));

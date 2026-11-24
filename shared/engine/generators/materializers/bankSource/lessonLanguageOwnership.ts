@@ -4,6 +4,7 @@
  * authored constants.ts or infer unapproved languages.
  */
 import ts from 'typescript';
+
 import { assertBankLanguages, assertBankUuid } from './bankSourceSafety';
 
 export type LessonLanguageOwnership = Readonly<{
@@ -33,9 +34,12 @@ export function parseLessonLanguageConstants(content: string): LessonLanguageOwn
     value = value.expression;
   if (!value || !ts.isArrayLiteralExpression(value) || !value.elements.every(ts.isStringLiteral))
     throw new Error('Owning Lesson constants.ts must use a static literal languages tuple');
-  const active = safeTuple(value.elements.map(element => (element as ts.StringLiteral).text), 'active');
+  const active = safeTuple(
+    value.elements.map(element => (element as ts.StringLiteral).text),
+    'active',
+  );
   const lines = content.split(/\r?\n/);
-  const starts = lines.flatMap((line, index) => line.trim() === '// export const languages = [' ? [index] : []);
+  const starts = lines.flatMap((line, index) => (line.trim() === '// export const languages = [' ? [index] : []));
   if (starts.length > 1) throw new Error('Owning Lesson constants.ts has ambiguous restoration comments');
   let planned = active;
   if (starts.length === 1) {
@@ -74,5 +78,7 @@ export function assertBankLessonLanguages(
   if (JSON.stringify(owner.planned) !== JSON.stringify(bank.planned))
     throw new Error('Bank locale plan conflicts with owning Lesson constants.ts');
   if (owner.active.length !== 1 || owner.active[0] !== bank.document)
-    throw new Error('Bank source-only generation requires owning Lesson constants.ts active language to match the Bank document language');
+    throw new Error(
+      'Bank source-only generation requires owning Lesson constants.ts active language to match the Bank document language',
+    );
 }

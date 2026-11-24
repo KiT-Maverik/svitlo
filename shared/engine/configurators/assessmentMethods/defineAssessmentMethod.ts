@@ -1,5 +1,4 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -8,6 +7,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../_shared__configurators';
+import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import {
   assessmentMethod_Config_Schema,
   assessmentMethod_Props_Schema,

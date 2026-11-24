@@ -117,13 +117,16 @@ test('Episode preserves reviewed Section notes in its narrative specification be
   const production = { purpose: 'Introduce the scene', specification: 'Keep a nonvisual narrative path.' };
   input.section.items.opening = { config: section('opening', input.section.items.opening.id), production };
   const seen = [];
-  const result = materializeEpisode({ config: input, production: { specification: 'Narrative script' } }, {
-    ...ctx(),
-    materializeSection: (node, context) => {
-      seen.push(node.production);
-      return sectionRenderer(node.config, context);
+  const result = materializeEpisode(
+    { config: input, production: { specification: 'Narrative script' } },
+    {
+      ...ctx(),
+      materializeSection: (node, context) => {
+        seen.push(node.production);
+        return sectionRenderer(node.config, context);
+      },
     },
-  });
+  );
   const doc = result.files.find(file => file.path === 'specification.md')?.content ?? '';
   assert.match(doc, /Narrative script/);
   assert.match(doc, /Section: opening/);

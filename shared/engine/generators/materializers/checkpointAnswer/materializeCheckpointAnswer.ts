@@ -1,14 +1,14 @@
-import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
 import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { SceneSource } from '../scene/materializeScene';
 import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type { CarouselSource } from '../carousel/materializeCarousel';
+import type { SceneSource } from '../scene/materializeScene';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config

@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, it } from 'node:test';
-import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import { assessmentMethod_Props_Schema, assessmentMethodSlugs, type AssessmentMethodSlug } from '@svitlo/engine/build';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import * as methods from './index';
 
 const directory = fileURLToPath(new URL('./', import.meta.url));

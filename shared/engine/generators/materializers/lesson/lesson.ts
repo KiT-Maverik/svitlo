@@ -205,13 +205,10 @@ export function materializeLesson(config: Source, options: Options): Result {
       'TODO (BLOCKER): Cannot emit complete Lesson source: an enabled Flashcards Section is required before standalone materialization; author it in the Lesson workflow.',
     );
 
-
   // Derive the complete human-readable methodology *before* delegating
   // Sections. A Section may be told that its reviewed metadata was integrated
   // only when every substantive source note is present in this document.
-  const methodology = typeof options.production?.methodology === 'string'
-    ? options.production.methodology.trim()
-    : '';
+  const methodology = typeof options.production?.methodology === 'string' ? options.production.methodology.trim() : '';
   const additions: string[] = [];
   const append = (heading: string, value: unknown): void => {
     if (typeof value !== 'string' || !value.trim()) return;
@@ -293,9 +290,11 @@ export function materializeLesson(config: Source, options: Options): Result {
       documentLanguage: options.documentLanguage,
       languagesImport,
       ...(node.production
-        ? { production: integratedSections.has(key)
-            ? { ...node.production, methodologyIntegrated: true }
-            : node.production }
+        ? {
+            production: integratedSections.has(key)
+              ? { ...node.production, methodologyIntegrated: true }
+              : node.production,
+          }
         : {}),
     });
     if (child.exportName !== exported(key)) throw new Error('lesson.section.items.' + key + ': incorrect child export');
@@ -324,7 +323,8 @@ export function materializeLesson(config: Source, options: Options): Result {
     const skill = options.skillReferences?.[index];
     if (!skill) {
       blockers.push(
-        '// TODO (BLOCKER): Import the actual Skill Configurator for ' + id +
+        '// TODO (BLOCKER): Import the actual Skill Configurator for ' +
+          id +
           ' from this textbook taxonomy in the reviewed Lesson draft before publication.',
       );
       return id;
@@ -333,7 +333,8 @@ export function materializeLesson(config: Source, options: Options): Result {
       skill.id !== id ||
       !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(skill.exported) ||
       !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path)
-    ) throw new Error('lesson.skills: unverified or cross-textbook Skill import');
+    )
+      throw new Error('lesson.skills: unverified or cross-textbook Skill import');
     const alias = 'skill_ref_' + index;
     skillImports.push('import { ' + skill.exported + ' as ' + alias + ' } from ' + JSON.stringify(skill.path) + ';');
     return imported(alias + '.id');
@@ -370,7 +371,8 @@ export function materializeLesson(config: Source, options: Options): Result {
     options.production?.assessment?.questionBankRequired === true ||
     diagnostics.some(item => item.code === 'pending-quiz')
   ) {
-    const message = '// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.';
+    const message =
+      '// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.';
     assessmentBlockers.push(message);
     diagnostics.push({ path: destination(dir, 'index.ts'), code: 'pending-questions', message, severity: 'warning' });
   }
@@ -378,9 +380,15 @@ export function materializeLesson(config: Source, options: Options): Result {
     options.production?.assessment?.flashcardBankRequired === true ||
     diagnostics.some(item => item.code === 'pending-flashcards')
   ) {
-    const message = '// TODO (BLOCKER): Stage 8 — author, review and integrate the required Flashcard Bank and Flashcards selections.';
+    const message =
+      '// TODO (BLOCKER): Stage 8 — author, review and integrate the required Flashcard Bank and Flashcards selections.';
     assessmentBlockers.push(message);
-    diagnostics.push({ path: destination(dir, 'index.ts'), code: 'pending-flashcard-bank', message, severity: 'warning' });
+    diagnostics.push({
+      path: destination(dir, 'index.ts'),
+      code: 'pending-flashcard-bank',
+      message,
+      severity: 'warning',
+    });
   }
   if (hasQuest)
     blockers.push(
