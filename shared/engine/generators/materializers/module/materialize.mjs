@@ -158,7 +158,8 @@ export function materializeModule(input, context = {}) {
     placements = [],
     pendingPlacements = [],
     pendingEpisodes = [],
-    seenIds = new Set();
+    seenIds = new Set(),
+    reusedLessonIds = new Set();
   for (const key of order) {
     ensure(key, dir + '.content.items.' + key);
     const node = collection.items[key],
@@ -270,8 +271,10 @@ export function materializeModule(input, context = {}) {
           throw Error(childFolder + ': parent must return the permanent new-Lesson UUID');
         if (child?.lessonId !== undefined && child.lessonId !== refId)
           throw Error(childFolder + ': Lesson handoff ID conflicts with verified reuse');
-        if (seenIds.has(refId)) throw Error(childFolder + ': duplicate child UUID');
+        if (seenIds.has(refId) && (lessonProduction.kind !== 'existing' || !reusedLessonIds.has(refId)))
+          throw Error(childFolder + ': duplicate child UUID across independent entities');
         seenIds.add(refId);
+        if (lessonProduction.kind === 'existing') reusedLessonIds.add(refId);
         placements.push({
           path: childFolder,
           slug: key,
