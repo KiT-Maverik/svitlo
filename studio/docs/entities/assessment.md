@@ -1,6 +1,6 @@
 # Assessment
 
-**Status:** approved design for implementation in this PR; not a claim of existing runtime support.
+**Status:** partial implementation in PR #826. The independent Configurator, Zod schemas, Course/Module/Chapter Build composition, completed-Assessment runtime assembly and navigation types are present on this branch. Course-owned draft placeholders, materialization, PR-description inventory integration, hosted Assessment routes and complete resource/locale publication are **not yet implemented**; do not treat a schema-valid Assessment as release-ready.
 
 An Assessment is a Course-owned ordered learning activity whose purpose is to elicit evidence of previously taught Skills. It is neither an instructional Lesson nor a narrative Episode. Course, Module and Chapter may each directly contain Assessments, Lessons and Episodes; Course may also contain Modules and Chapters, Module may contain Chapters. The entire Course may end with an Assessment without an artificial Module or Chapter. Instructional Lessons remain independently useful; replace the assessment-only Lesson exception for new authoring without silently deleting or migrating existing content.
 
