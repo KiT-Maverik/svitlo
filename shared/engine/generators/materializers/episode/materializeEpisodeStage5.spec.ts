@@ -70,16 +70,14 @@ test('Episode Stage 5 owns one typed constants module and nested descendants use
   const plan = materializeEpisodeStage5(reviewed(), { source });
   const target = 'content/transition/';
   const file = (path: string) => plan.files.find(item => item.path === target + path)?.content;
-  const constants = file('constants.ts') ?? '';
-  assert.match(constants, /export const languages = \["uk"\] as const satisfies SupportedLanguages/);
-  assert.match(constants, /export type Languages = typeof languages/);
-  assert.match(constants, /\/\/   "uk",/);
-  assert.match(constants, /\/\/   "en",/);
-  assert.doesNotMatch(constants, /"zh"/);
-  assert(!plan.files.some(item => item.path === target + 'languages.ts'));
+  // The owning Course root supplies the *only* language tuple; an Episode must
+  // not emit its own constants.ts or languages.ts once restored into that Course.
+  assert(!plan.files.some(item => item.path === target + 'constants.ts' || item.path === target + 'languages.ts'));
+  const courseLanguageImport = '#coursesData/1/' + id('01') + '/constants';
   const root = file('index.ts') ?? '';
-  assert.match(root, /import \{ languages \} from '\.\/constants'/);
+  assert(root.includes('import { languages } from ' + JSON.stringify(courseLanguageImport)));
   assert.doesNotMatch(root, /const languages =/);
+  assert.doesNotMatch(root, /SupportedLanguages/);
   assert.match(root, /Human Media Generation Stage 9/);
   assert.match(root, /Human QA Stage 10/);
   const section = file('sections/introduction/index.ts') ?? '';
