@@ -90,8 +90,15 @@ export function materializeSkill(input, context = {}) {
   const config = unwrap(input),
     meta = production(input),
     dir = context.directory ?? '';
-  const { id, slug } = identity(config, context, dir, 'skill'),
+  // Identity remains scoped to the logical Skill, while the file may live beside
+  // its owning Group/Domain index.ts in the canonical taxonomy.
+  const scope = context.identityDirectory ?? dir;
+  const { id, slug } = identity(config, context, scope, 'skill'),
     language = source(context);
+  const entryFilename = context.entryFilename ?? 'index.ts';
+  if (!/^[A-Za-z][A-Za-z0-9]*\.ts$/.test(entryFilename))
+    throw Error(dir + ': unsafe Skill source filename');
+  safeDirectory(context.sidecarDirectory ?? dir);
   const data = {
     id,
     slug,
@@ -126,8 +133,8 @@ export function materializeSkill(input, context = {}) {
     id,
     exportName: name,
     files: [
-      ...sidecars(meta, dir),
-      { path: [dir, 'index.ts'].filter(Boolean).join('/'), kind: 'typescript', content: text },
+      ...sidecars(meta, context.sidecarDirectory ?? dir),
+      { path: [dir, entryFilename].filter(Boolean).join('/'), kind: 'typescript', content: text },
     ],
     diagnostics: pending ? [{ path: dir, code: 'pending-locales', severity: 'warning' }] : [],
   };
