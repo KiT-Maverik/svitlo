@@ -80,7 +80,18 @@ test('Flashcard references require one Lesson UUID and one explicit target local
     ['--kind', 'flashcards', '--package', 'content/playground', '--locale', 'uk'],
     ['--kind', 'flashcards', '--package', 'content/playground'],
     ['--kind', 'flashcards', '--package', 'content/playground', '--lesson', '../fake', '--locale', 'uk'],
-    ['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson, '--locale', 'uk', '--course', lesson],
+    [
+      '--kind',
+      'flashcards',
+      '--package',
+      'content/playground',
+      '--lesson',
+      lesson,
+      '--locale',
+      'uk',
+      '--course',
+      lesson,
+    ],
   ]) {
     assert.throws(() => parseArguments(args), 'Unsafe Flashcard scope: ' + args.join(' '));
   }

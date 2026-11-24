@@ -55,14 +55,19 @@ export function parseArguments(args) {
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
   const hasPackage = ['skills', 'lessons', 'questions', 'flashcards', 'courses', 'episodes'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills, Lessons, Questions, Flashcards, Courses and Episodes require --package content/<textbook>');
+    throw new Error(
+      'Only Skills, Lessons, Questions, Flashcards, Courses and Episodes require --package content/<textbook>',
+    );
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
   if (options.component && (options.kind !== 'ui-kit' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(options.component))) {
     throw new Error('--component is only available for UI Kit dictionaries');
   }
-  if (options.lesson && (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
+  if (
+    options.lesson &&
+    (!['lessons', 'questions', 'flashcards'].includes(options.kind) || !uuidPattern.test(options.lesson))
+  ) {
     throw new Error('--lesson requires Lessons/Questions/Flashcards and a canonical UUID');
   }
   if (options.kind === 'flashcards' && (!options.lesson || !options.locale)) {
