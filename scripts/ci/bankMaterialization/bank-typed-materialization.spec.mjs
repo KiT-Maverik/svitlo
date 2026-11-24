@@ -215,6 +215,17 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
   }
 });
 
+test('publisher cannot reintroduce separate Bank language modules', () => {
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const hostile = {
+      ...valid,
+      files: [...valid.files, file(folder + '/' + bank + 'Languages.ts', 'export const languages = ["uk"] as const;')],
+    };
+    assert.throws(() => verifyTypedManifest(hostile, hostile.meta), /Unallowlisted|duplicated/);
+  }
+});
+
 test('typed publisher imports in a zero-dependency read-only environment', () => {
   const root = fileURLToPath(new URL('../../..', import.meta.url));
   const isolated = mkdtempSync(path.join(tmpdir(), 'svitlo-typed-bank-publisher-'));
