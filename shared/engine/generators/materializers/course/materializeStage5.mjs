@@ -208,31 +208,22 @@ export function materializeCourseStage5(input, options = {}) {
       !match.matchingRationale.trim() ||
       typeof match.languageEvidence !== 'string' ||
       !match.languageEvidence.trim() ||
-      (typeof options.resolveExistingLesson !== 'function' && !record(production.source))
+      !record(production.source) ||
+      typeof production.sourceExportName !== 'string'
     )
-      throw new Error(context.directory + ': verified existing Lesson matching and resolver required');
+      throw new Error(context.directory + ': verified existing Lesson matching and direct source import required');
     // The final reviewed invocation supplies its imported Lesson directly.
     // No AST import decoder, special bundler or Props-to-Config reconstruction.
     const imported = production.source;
-    if (imported && typeof production.sourceExportName !== 'string')
-      throw new Error(context.directory + ': direct imported Lesson must declare its actual export name');
-    const lesson =
-      imported && typeof production.sourceExportName === 'string'
-        ? {
-            id: existing.id,
-            sourceSha: match.sourceSha,
-            importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
-            exportName: production.sourceExportName,
-            languages: imported.config?.base?.params?.languages,
-            configurator: imported,
-            rawPatch: production.sourcePatch,
-          }
-        : options.resolveExistingLesson?.({
-            id: existing.id,
-            matching: match,
-            placement: context.directory,
-            languages: [sourceLanguage],
-          });
+    const lesson = {
+      id: existing.id,
+      sourceSha: match.sourceSha,
+      importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
+      exportName: production.sourceExportName,
+      languages: imported.config?.base?.params?.languages,
+      configurator: imported,
+      rawPatch: production.sourcePatch,
+    };
     if (
       !record(lesson) ||
       lesson.id !== existing.id ||

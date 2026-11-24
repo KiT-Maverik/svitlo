@@ -192,6 +192,25 @@ const matching = {
   matchingRationale: 'Verified complete Skill and learner match',
   languageEvidence: 'Verified uk Lesson source',
 };
+function fakeLesson() {
+  return {
+    id: reusedLessonId,
+    type: 'lesson',
+    config: { base: { id: reusedLessonId, type: 'lesson', skills: [skill], params: { languages: ['uk'] } } },
+    build: {
+      props: () => ({ base: {}, locale: undefined }),
+      overrides: (raw, selection) => {
+        assert.deepEqual(selection.languages, ['uk']);
+        assert.deepEqual(raw.params.sections, { allowSkipping: false });
+        return {
+          id: reusedLessonId,
+          base: { locale: { title: 'Adapted' } },
+          locale: { uk: { locale: { title: 'Adapted' } } },
+        };
+      },
+    },
+  };
+}
 function patchedSource() {
   const course = source();
   course.config.content.items.directLesson = {
@@ -205,39 +224,16 @@ function patchedSource() {
       },
       matching,
       assessment,
+      source: fakeLesson(),
+      sourceExportName: 'actualLesson',
+      sourcePatch: { params: { sections: { allowSkipping: false } } },
       overrideRationale: 'Reviewed course-local title and exercise',
     },
   };
   return course;
 }
 function reuseOptions() {
-  const params = options();
-  params.resolveExistingLesson = () => ({
-    id: reusedLessonId,
-    sourceSha: matching.sourceSha,
-    languages: ['uk'],
-    exportName: 'actualLesson',
-    importPath: '#lessonsData/1/' + reusedLessonId + '/index',
-    configurator: {
-      id: reusedLessonId,
-      type: 'lesson',
-      config: { base: { id: reusedLessonId, type: 'lesson', skills: [skill], params: { languages: ['uk'] } } },
-      build: {
-        props: () => ({ base: {}, locale: undefined }),
-        overrides: (raw, selection) => {
-          assert.deepEqual(selection.languages, ['uk']);
-          assert.deepEqual(raw.params.sections, { allowSkipping: false });
-          return {
-            id: reusedLessonId,
-            base: { locale: { title: 'Adapted' } },
-            locale: { uk: { locale: { title: 'Adapted' } } },
-          };
-        },
-      },
-    },
-    rawPatch: { params: { sections: { allowSkipping: false } } },
-  });
-  return params;
+  return options();
 }
 test('existing Lesson preserves source-authored plain Config patch and placement', () => {
   const result = materializeCourseStage5(patchedSource(), reuseOptions());
@@ -254,14 +250,9 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
 test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
-  const stale = reuseOptions();
-  const resolver = stale.resolveExistingLesson;
-  stale.resolveExistingLesson = (...args) => {
-    const verified = resolver(...args);
-    delete verified.rawPatch;
-    return verified;
-  };
-  assert.throws(() => materializeCourseStage5(patchedSource(), stale), /raw|not provided|patch/i);
+  const stale = patchedSource();
+  delete stale.config.content.items.directLesson.production.sourcePatch;
+  assert.throws(() => materializeCourseStage5(stale, reuseOptions()), /raw|patch/i);
   const incompatible = patchedSource();
   incompatible.config.content.items.directLesson.production.existing.base.locale.title = 'Different';
   assert.throws(() => materializeCourseStage5(incompatible, reuseOptions()), /does not reproduce/);
@@ -300,16 +291,10 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     },
   };
   reviewed.config.content.order = ['reused'];
+  reviewed.config.content.items.reused.production.source = realLesson;
+  reviewed.config.content.items.reused.production.sourceExportName = 'independentLesson';
+  reviewed.config.content.items.reused.production.sourcePatch = raw;
   const opts = options();
-  opts.resolveExistingLesson = () => ({
-    id: reusedLessonId,
-    sourceSha: matching.sourceSha,
-    languages: ['uk'],
-    exportName: 'independentLesson',
-    importPath: '#lessonsData/1/' + reusedLessonId + '/index',
-    configurator: realLesson,
-    rawPatch: raw,
-  });
   const plan = materializeCourseStage5(reviewed, opts);
   const authoredPatchFile = plan.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
   assert.match(authoredPatchFile.content, /allowSkipping/);
@@ -327,7 +312,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   assert.equal(realLesson.build.props({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
 
-test('existing Lesson fails closed for a mismatched Course Skill even if resolver claims same SHA', () => {
+test('existing Lesson fails closed for a mismatched Course Skill even if author supplied matching SHA', () => {
   const input = patchedSource();
   input.config.content.items.directLesson.config.skills = ['663572e7-bd85-4516-86e2-3de07d209e05'];
   assert.throws(
@@ -337,12 +322,10 @@ test('existing Lesson fails closed for a mismatched Course Skill even if resolve
 });
 test('non-plain Course patch Configurator cannot be serialized into TypeScript', () => {
   const input = patchedSource();
+  input.config.content.items.directLesson.production.sourcePatch = {
+    content: { items: { unsafe: { build: { props() {} } } } },
+  };
   const opts = reuseOptions();
-  const resolver = opts.resolveExistingLesson;
-  opts.resolveExistingLesson = (...args) => ({
-    ...resolver(...args),
-    rawPatch: { content: { items: { unsafe: { build: { props() {} } } } } },
-  });
   assert.throws(() => materializeCourseStage5(input, opts), /JSON-safe/);
 });
 

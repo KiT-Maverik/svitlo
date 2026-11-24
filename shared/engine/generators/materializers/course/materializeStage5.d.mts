@@ -1,7 +1,4 @@
-import type {
-  CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3LessonMatch,
-} from '../../../types/workflow/courseWorkflow.types';
+import type { CourseWorkflowMaterializerInput } from '../../../types/workflow/courseWorkflow.types';
 import type { Lesson_Configurator } from '../../../configurators/lessons/defineLesson/defineLesson';
 
 export type SourceDiagnostic = {
@@ -44,12 +41,6 @@ export type CourseStage5Options = {
     source: CourseStage5Source;
     textbookRoot: string;
   }) => boolean;
-  resolveExistingLesson?: (arg: {
-    id: string;
-    matching: CourseWorkflowStage3LessonMatch;
-    placement: string;
-    languages: readonly string[];
-  }) => ExistingLesson;
   materializeSection?: (
     node: unknown,
     context: {
