@@ -103,6 +103,29 @@ test('trusted comment parser and manual dispatch agree on scoped Lessons and Que
   }
 });
 
+test('Flashcard PR commands and manual dispatch require exact bank and locale scope', () => {
+  const command = '/agent-artifacts generate flashcards content/playground ' + lesson + ' uk';
+  const fromComment = resolve({ command });
+  const fromManual = resolve({
+    inputs: { kind: 'flashcards', textbook: 'content/playground', lesson, locale: 'uk' },
+  });
+  assert.equal(fromComment.status, 0, fromComment.stderr);
+  assert.equal(fromManual.status, 0, fromManual.stderr);
+  assert.deepEqual(fromComment.values, fromManual.values);
+  assert.equal(fromComment.values.lesson, lesson);
+  assert.equal(fromComment.values.locale, 'uk');
+  for (const input of [
+    { command: '/agent-artifacts generate flashcards content/playground uk' },
+    { command: '/agent-artifacts generate flashcards content/playground ' + lesson },
+    { command: '/agent-artifacts generate flashcards content/playground ' + lesson + ' uk extra' },
+    { inputs: { kind: 'flashcards', textbook: 'content/playground', locale: 'uk' } },
+    { inputs: { kind: 'flashcards', textbook: 'content/playground', lesson } },
+    { inputs: { kind: 'flashcards', textbook: 'content/playground', lesson, locale: 'uk', course: lesson } },
+  ]) {
+    assert.notEqual(resolve(input).status, 0, 'Accepted invalid Flashcard scope: ' + JSON.stringify(input));
+  }
+});
+
 test('UUID is canonicalized for comments and manual dispatch, not misinterpreted as locale', () => {
   const upper = lesson.toUpperCase();
   for (const input of [
@@ -155,7 +178,7 @@ function checkArchive(kind, mutate, additionalFile = false) {
   const relative = kind + '/playground/c/' + lesson + '/en.md';
   const markdown = '# Scoped lesson reference\n';
   const generated = {
-    kind: kind === 'lessons' ? 'lesson' : 'question',
+    kind: kind === 'lessons' ? 'lesson' : kind === 'flashcards' ? 'flashcard' : 'question',
     textbook: 'content/playground',
     lesson: 'c/' + lesson,
     locale: 'en',
@@ -205,7 +228,7 @@ function checkArchive(kind, mutate, additionalFile = false) {
 }
 
 test('trusted ZIP validation pins Lesson/Question scope, HEAD, run, hashes and inventory', () => {
-  for (const kind of ['lessons', 'questions']) {
+  for (const kind of ['lessons', 'questions', 'flashcards']) {
     const good = checkArchive(kind);
     assert.equal(good.status, 0, kind + ': ' + good.stderr);
     for (const [label, mutate, unlisted] of [
