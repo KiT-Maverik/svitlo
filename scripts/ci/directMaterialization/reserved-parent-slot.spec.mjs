@@ -135,9 +135,9 @@ test('partially and fully restoring multiple reserved slots removes unused stub 
     for (const restored of slots.slice(0, index + 1))
       assert.match(current, new RegExp('child_' + restored.slug));
     for (const pending of slots.slice(index + 1))
-      assert.match(current, new RegExp('define' + (pending.kind === 'episode' ? 'Episode' : 'Assessment') + 'Stub\\\\(\\\\{ id:'));
+      assert.match(current, new RegExp('define' + (pending.kind === 'episode' ? 'Episode' : 'Assessment') + 'Stub\\(\\{ id:'));
   }
-  assert.doesNotMatch(current, /defineEpisodeStub|defineAssessmentStub|TODO \\(BLOCKER\\)/);
+  assert.doesNotMatch(current, /defineEpisodeStub|defineAssessmentStub|TODO \(BLOCKER\)/);
   assert.deepEqual(slots.map(slot => current.includes('child_' + slot.slug)), [true, true, true, true]);
   assert.throws(() => replaceReservedParentSlot(current, { ...slots[0], exportName: 'config_firstStory' }), /missing|imported draft-only|reserved/i);
 });
