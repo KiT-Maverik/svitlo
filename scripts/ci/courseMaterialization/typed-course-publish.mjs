@@ -218,7 +218,7 @@ async function publish() {
     tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
-  const digest = sha256(Buffer.from(JSON.stringify(manifest)));
+  const digest = manifestDigest(manifest);
   const commit = await github('git/commits', 'POST', {
     message:
       'Materialize reviewed typed Course ' +
@@ -242,6 +242,20 @@ async function publish() {
   });
   if (updated?.object?.sha !== commit.sha)
     throw Error('Typed Course Git reference did not advance to exact approved commit');
+  // Post-commit inventory reconciliation is a separate, independently retryable job.
+  // Its failure cannot roll back or invalidate an already authorized source commit.
+  if (process.env.GITHUB_OUTPUT) {
+    const proof = {
+      repo: meta.repo,
+      number: meta.number,
+      branch: meta.branch,
+      courseId: meta.courseId,
+      reviewedHead: meta.head,
+      commit: commit.sha,
+      digest,
+    };
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
+  }
   report(
     'Typed Course Stage 5: one atomic commit ' +
       commit.sha +

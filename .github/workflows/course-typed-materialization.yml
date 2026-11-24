@@ -152,6 +152,8 @@ jobs:
   publish:
     needs: [resolve, analyze]
     if: needs.analyze.result == 'success'
+    outputs:
+      proof: ${{ steps.commit.outputs.proof }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -191,3 +193,32 @@ jobs:
           COURSE_HEAD_ROOT: candidate
           COURSE_TYPED_REPORT: report/manifest.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-publish.mjs publish
+
+  reconcile-pr-tables:
+    needs: [resolve, analyze, publish]
+    if: needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check out trusted metadata reconciliation (never candidate code)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
+          path: report
+      - name: Verify committed file bytes and reconcile Lessons/Episodes tables only
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          COURSE_COMMIT_PROOF: ${{ needs.publish.outputs.proof }}
+          COURSE_TYPED_REPORT: report/manifest.json
+        run: node scripts/ci/courseMaterialization/course-handoff-publish.mjs
