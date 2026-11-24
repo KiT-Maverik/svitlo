@@ -32,8 +32,8 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
       assert.equal(
         ctx.languagesImport,
         ctx.directory.includes('/video/') || ctx.directory.includes('/audio/')
-          ? '../../../../../languages'
-          : '../../../../languages',
+          ? '../../../../languages'
+          : '../../../languages',
       );
       return {
         exportName: config.slug,
@@ -46,11 +46,11 @@ test('Quest Stage: seven mandatory slots, explicit null tracks and delegated med
   assert.deepEqual(
     calls.sort(),
     [
-      'stages/start/content/video/medium',
-      'stages/start/content/video/small',
-      'stages/start/content/audio/dialogue',
-      'stages/start/content/image',
-      'stages/start/content/subtitles',
+      'stages/start/video/medium',
+      'stages/start/video/small',
+      'stages/start/audio/dialogue',
+      'stages/start/image',
+      'stages/start/subtitles',
     ].sort(),
   );
   const src = out.files.at(-1)?.content ?? '';
