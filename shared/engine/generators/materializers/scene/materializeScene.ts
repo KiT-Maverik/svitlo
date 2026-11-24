@@ -1,7 +1,8 @@
 import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 /** Stage-5 source handoff. This is not a Props/JSON publisher or a Scene renderer. */
-export type SceneSourceFile = { path: string; content: string; kind: 'typescript' | 'specification' };
+export type SceneSourceFile = { path: string; content: string; kind: 'typescript' };
 export type SceneDiagnostic = { path: string; code: string; message: string; severity: 'warning' };
 export type SceneProduction = { specification?: string; pending?: boolean };
 /** Draft Scene may be awaiting source copy; strict final defineScene schema is unchanged. */
@@ -18,9 +19,6 @@ export type SceneSourceContext = {
   languagesImport: string;
   /** True only if the caller has verified an executable Scene registry entry. */
   registered?: boolean;
-  /** Lesson Stage 6.1 embeds the reviewed Scene specification in executable draft TSX;
-   * other Scene consumers still require the canonical reviewed sidecar. */
-  specificationSidecar?: boolean;
   production?: SceneProduction;
 };
 export type SceneMaterialization = {
@@ -86,10 +84,10 @@ function literal(value: unknown, path: string, depth = 0): string {
   );
 }
 /**
- * Emit the Engine defineScene Config module and, by default, its reviewed
- * specification sidecar for non-Lesson consumers. Lesson Stage 6.1 explicitly
- * suppresses the sidecar because renderSceneFiles embeds the full approved
- * specification in its executable TSX draft. No Scene is registered here.
+ * Emit the Scene Config index.ts with its reviewed temporary specification
+ * after the defineScene declaration. This file exists even for consumers that
+ * do not generate an executable TSX draft. No specification.md is emitted.
+ * No Scene is registered here.
  */
 export function materializeScene(config: SceneSource, context: SceneSourceContext): SceneMaterialization {
   if (
@@ -156,28 +154,33 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
       severity: 'warning',
     });
   }
-  const code = [
-    "import { defineScene } from '@svitlo/engine/build';",
-    'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
-    '',
-    ...todos,
-    'export const ' + exportName + ' = defineScene<' + JSON.stringify(config.slug) + ', typeof languages>(',
-    '  ' + literal(source, 'scene') + ',',
-    ');',
-    '',
-  ].join('\n');
-  const files: SceneSourceFile[] = [];
-  // Preserve the reviewed sidecar for assessment and other standalone Scene
-  // consumers. Only the Lesson Stage 6.1 coordinator opts out because its
-  // executable TSX skeleton includes the full specification as safe comments.
-  if (context.specificationSidecar !== false && typeof specification === 'string' && specification.trim())
-    files.push({
-      path: (directory ? directory + '/' : '') + 'specification.md',
-      content: specification,
-      kind: 'specification',
+  const inlineSpecification =
+    typeof specification === 'string' && specification.trim()
+      ? renderTemporaryMediaSpecification({ specification }, 'Scene')
+      : '';
+  if (inlineSpecification)
+    diagnostics.push({
+      path: (directory ? directory + '/' : '') + 'index.ts',
+      code: 'pending-temporary-specification',
+      message: 'Remove temporary Scene specification after implementation and verification',
+      severity: 'warning',
     });
-  files.push({ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
-  return { exportName, files, diagnostics };
+  const code =
+    [
+      "import { defineScene } from '@svitlo/engine/build';",
+      'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
+      '',
+      ...todos,
+      'export const ' + exportName + ' = defineScene<' + JSON.stringify(config.slug) + ', typeof languages>(',
+      '  ' + literal(source, 'scene') + ',',
+      ');',
+      '',
+    ].join('\n') + inlineSpecification;
+  return {
+    exportName,
+    files: [{ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' }],
+    diagnostics,
+  };
 }
 
 /** Shared deterministic templates for the trusted Lesson Stage 6.1 plan and
