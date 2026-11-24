@@ -123,15 +123,13 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   for (const key of config.content.order) {
     const child = config.content.items[key];
     if (child === false) continue;
-    const target = (directory ? directory + '/' : '') + 'content/items/' + key;
+    const target = (directory ? directory + '/' : '') + key;
     const result = context.renderItem(child, target);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('Checkpoint.content.items.' + key + ': child materializer returned invalid export');
     }
     const alias = 'item_' + key;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
-    );
+    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
     entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(target + '/')) {

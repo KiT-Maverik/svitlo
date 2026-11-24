@@ -79,6 +79,7 @@ function executeGeneratedLesson(result: Result) {
     const run = vm.compileFunction(compiled, ['require', 'exports']);
     run((specifier: string): Record<string, unknown> => {
       if (specifier === '@svitlo/engine/build') return { defineLesson, defineQuizSection };
+      if (specifier.startsWith('#lessonsData/') && specifier.endsWith('/constants')) return load('constants.ts');
       if (!specifier.startsWith('.')) throw new Error('Unexpected emitted import: ' + specifier);
       const target = posix.join(posix.dirname(key), specifier);
       return load(sources.has(target + '.ts') ? target + '.ts' : target + '/index.ts');

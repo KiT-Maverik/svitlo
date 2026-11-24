@@ -25,6 +25,16 @@ A sandbox execution result is **not** a publication certificate. Outside the wor
 - **Lesson:** Stage 6.1 materializes the reviewed instructional Sections/Blocks. It never creates missing assessment banks or scenes; Stages 6.2/6.3 and 7–10 retain their independent ownership and reviews.
 - **Questions/Flashcards:** Stage 5 creates complete standalone bank source, preserving separate Lesson ownership, the authored assessment decisions and actual resource/selection validation. Question-first evidence and independent bank review remain editorial requirements rather than machine-parsed preconditions. Neither bank edits Lesson Sections.
 
+## Generated source quality and layout
+
+The following conventions apply to newly materialized authored source across Course, Module, Chapter, Episode, Lesson, Quest, Question and Flashcard entities, as well as taxonomy and other concrete source renderers where applicable. They define the target output, not a claim that every renderer currently complies.
+
+- Emit valid, deterministic TypeScript using the repository formatter: separate external/Node, workspace, package-alias and relative imports with one blank line; leave identifier-safe object keys unquoted and quote keys only when required. Preserve authored values, executable references and comments. Share the formatting mechanism across renderers rather than adding independent serializers or formatting jobs.
+- Keep physical source directories shallow. Place owned children directly under their semantic parent unless a distinct collection role or ownership boundary requires a directory. Omit redundant `items` and repeated `content/items` path segments; retain the actual typed Config collection shapes, ordering, identities, ownership boundaries and required UUID buckets. Reject collisions rather than silently overwrite files.
+- Where a source-only language tuple is required, centralize it in the entity-owned constants module, retain the full reviewed language tuple as restoration guidance and use the inferred language type. Reuse supported package aliases for deeply nested imports, and verified Configurator references instead of hard-coded identity strings where the actual contract permits them.
+- Avoid permanent per-node specification sidecars and duplicate blockers. Preserve unique durable educational or narrative intent in the appropriate owner methodology; retain temporary implementation and resource instructions only until their owning production step is complete. Do not discard reviewed information, weaken readiness guards, or treat unsupported runtime capabilities as implemented.
+- Apply formatting before the trusted manifest is sealed; the publisher must still consume exactly the sealed bytes. Keep source materialization separate from runtime Props/JSON publication. Verify output imports, paths, deterministic bytes, type validity and relevant no-clobber regressions for each affected entity family.
+
 ## Publication and historical data
 
 Source materialization always remains `publishable:false`. Missing resources, unfinished locale work, unimplemented Scenes, independently owned banks, `TODO (BLOCKER)`, invalid IDs and required human evidence continue to block downstream publication. Completed Configurators alone are inputs for `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources`.

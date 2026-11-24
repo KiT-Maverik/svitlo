@@ -52,7 +52,9 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
   assert.match(main.content, /TODO \(BLOCKER\)/);
   assert.match(main.content, /child_content_question_items_prompt/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
-  assert(a.files.some(file => file.path.endsWith('content/question/items/prompt/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
+  assert(!a.files.some(file => file.path.includes('/items/')));
+  assert.match(main.content, /from "\.\/sampleQuestion\/question\/prompt"/);
   for (const file of a.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
       fileName: file.path,
@@ -64,6 +66,42 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
       [],
     );
   }
+});
+test('selectOneAnswer: rejects delegated ContentBlock writing outside its semantic role', () => {
+  assert.throws(
+    () =>
+      materializeSelectOneAnswer(fixture() as never, {
+        ...context,
+        materializeBlock: () => ({
+          exportName: 'prompt',
+          files: [{
+            path: 'questions/selectOneAnswer/otherQuestion/index.ts',
+            content: 'export const prompt = {};\n',
+            kind: 'typescript' as const,
+          }],
+        }),
+      }),
+    /escaped its assigned directory/,
+  );
+});
+test('selectOneAnswer: preserves a real block slug named items', () => {
+  const question = fixture();
+  Object.assign(question.config.content.question, collection({ items: block('items', 9) }));
+  const result = materializeSelectOneAnswer(question as never, context);
+  assert(result.files.some(file => file.path.endsWith('/question/items/index.ts')));
+});
+test('selectOneAnswer: refuses imported child without a generated entrypoint', () => {
+  assert.throws(
+    () =>
+      materializeSelectOneAnswer(fixture() as never, {
+        ...context,
+        materializeBlock: (_node, props) => ({
+          exportName: 'prompt',
+          files: [{ path: props.directory + '/specification.md', content: '# draft\\n', kind: 'markdown' as const }],
+        }),
+      }),
+    /missing delegated ContentBlock index\.ts/,
+  );
 });
 test('selectOneAnswer: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();

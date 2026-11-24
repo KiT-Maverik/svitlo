@@ -173,7 +173,8 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
   assert(paths.includes('questions/index.ts'));
   assert(paths.includes('questions/selectOneAnswer/index.ts'));
   assert(paths.includes('questions/selectOneAnswer/promptOne.ts'));
-  assert(paths.includes('questions/selectOneAnswer/promptOne/content/question/items/prompt/index.ts'));
+  assert(paths.includes('questions/selectOneAnswer/promptOne/question/prompt/index.ts'));
+  assert(!paths.some(path => path.includes('/content/question/items/')));
   const registry = result.files.find(file => file.path === 'questions/index.ts')?.content ?? '';
   assert.match(registry, /export const questions =/);
   assert.match(registry, /from "\.\/selectOneAnswer"/);

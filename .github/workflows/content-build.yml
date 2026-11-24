@@ -50,17 +50,15 @@ jobs:
       - name: Install dependencies only for selected builds
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      # Assessment reference tests load built Engine runtime exports. An npm
-      # install alone does not create shared/engine/dist/runtime.js.
-      - name: Build Engine for published assessment reference tests
-        if: steps.plan.outputs.has_builds == 'true'
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Test skills structure invariants
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs
       - name: Test final resource readiness gate
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
+      - name: Build Engine runtime for assessment reference tests
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Test published assessment resource references
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
@@ -97,8 +95,7 @@ jobs:
           cache: npm
       - name: Install dependencies once per content shard
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      # Each shard runs in a fresh checkout, independent of prepare. Content
-      # publishers require shared/engine/dist/runtime.js before package builds.
+      # Each content shard has its own checkout and needs the built Engine runtime.
       - name: Build Engine for content shard
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Verify each selected textbook or agent scope

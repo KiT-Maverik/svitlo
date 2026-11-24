@@ -137,17 +137,6 @@ const outputPath = (value: string): string => {
   return value;
 };
 const exportName = (value: string) => (reserved.has(value) ? 'config_' + value : value);
-const spec = (production: Record<string, unknown> | undefined): string | undefined => {
-  const entries = Object.entries(production ?? {}).filter(([key]) => key !== 'pending' && key !== 'documentLanguage');
-  return entries.length
-    ? entries
-        .map(
-          ([key, value]) =>
-            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-        )
-        .join('\n\n') + '\n'
-    : undefined;
-};
 function validateCollection(content: Source['content'], location: string): void {
   if (!isObject(content) || !isObject(content.items) || !Array.isArray(content.order))
     throw new Error(location + ': expected { items, order }');
@@ -191,11 +180,11 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   };
   for (const key of Object.keys(config.content.items).sort()) {
     const node = childConfig(config.content.items[key]);
-    const childDirectory = [directory, 'content', 'items', key].filter(Boolean).join('/');
+    const childDirectory = [directory, key].filter(Boolean).join('/');
     const child = options.renderContentBlock(node.config, {
       directory: childDirectory,
       documentLanguage: options.documentLanguage,
-      languagesImport: childLanguagesImport(options.languagesImport, 3),
+      languagesImport: childLanguagesImport(options.languagesImport, 1),
       ...(node.production ? { production: node.production } : {}),
     });
     if (child.exportName !== exportName(key))
@@ -208,29 +197,43 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     diagnostics.push(...child.diagnostics);
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
-    );
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
   const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
+  const sectionNotes = Object.keys(options.production ?? {}).filter(
+    key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
+  );
+  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+    blocker.push(
+      '// TODO (BLOCKER): Transfer reviewed flashcards Section notes (' +
+        sectionNotes.join(', ') +
+        ') into Lesson methodology; do not discard reviewed source metadata.',
+    );
   const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.flashcardIds;
-  if (!Array.isArray(ids) || !ids.length) {
-    blocker.push('// TODO (BLOCKER): Select verified Flashcard Bank UUIDs; no Flashcards have been fabricated.');
+  if (!Array.isArray(ids) || ids.length === 0) {
+    blocker.push(
+      '// TODO (BLOCKER): Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.',
+    );
   } else {
     if (ids.some(id => typeof id !== 'string' || !uuid.test(id)))
       throw new Error('flashcards.params.selection.flashcardIds: invalid Flashcard UUID');
     if (new Set(ids).size !== ids.length) throw new Error('flashcards.params.selection.flashcardIds: duplicate UUID');
-    if (ids.some(id => String(id).startsWith('feedc0de-')))
-      blocker.push('// TODO (BLOCKER): Replace reserved provisional Flashcard UUIDs with reviewed bank selections.');
+    if (ids.some(id => String(id).startsWith('feedc0de-'))) {
+      blocker.push('// TODO (BLOCKER): Replace provisional Flashcard IDs with reviewed bank selections.');
+    }
+    // The Stage 6 owner validates reviewed imported Flashcard.id expressions
+    // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
-  if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Independent Flashcard review and bank integration remain pending.');
+  if (options.production?.pending === true && !blocker.length)
+    blocker.push(
+      '// TODO (BLOCKER): Complete independent Flashcard review and verified bank selection; remove this TODO after integration.',
+    );
 
   if (blocker.length)
     diagnostics.push({
@@ -245,9 +248,9 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     'import { languages } from ' + JSON.stringify(options.languagesImport) + ';',
     ...imports,
     '',
-    ...blocker,
     'const content = ' + render(contentValue) + ';',
     '',
+    ...blocker,
     'export const ' +
       name +
       ' = defineFlashcardsSection<' +
@@ -256,13 +259,6 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     render(own) + ');',
     '',
   ].join('\n');
-  const specification = spec(options.production);
-  if (specification)
-    add({
-      path: [directory, 'specification.md'].filter(Boolean).join('/'),
-      content: specification,
-      kind: 'specification',
-    });
   add({ path: [directory, 'index.ts'].filter(Boolean).join('/'), content: source, kind: 'typescript' });
   return { exportName: name, files, diagnostics };
 }
