@@ -91,6 +91,20 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   assert.equal(plan.inventory.episodes.length, 1);
   const complete = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(complete, pinned), plan.files.length);
+  // The existing Ready-PR Prettier may use single quotes in ordinary
+  // static re-exports. This does not change the verified Lesson identity.
+  const formattedReference = structuredClone(complete);
+  const reused = formattedReference.inventory.lessons.find(row => row.kind === 'reused');
+  const importedFile = formattedReference.entries.find(entry => entry.path === reused.placementSourcePath);
+  const originalReference = Buffer.from(importedFile.data, 'base64').toString('utf8');
+  const singleQuoted = originalReference.replace(
+    /from "([^"\\n]+)";/,
+    "from '$1';",
+  );
+  assert.notEqual(singleQuoted, originalReference);
+  importedFile.data = Buffer.from(singleQuoted).toString('base64');
+  importedFile.sha256 = createHash('sha256').update(singleQuoted).digest('hex');
+  assert.equal(verifyTypedCourseManifest(formattedReference, pinned), plan.files.length);
   const mutate = edit => {
     const manifest = structuredClone(complete);
     edit(manifest);
