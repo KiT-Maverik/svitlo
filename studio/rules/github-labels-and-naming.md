@@ -44,6 +44,7 @@ Use the following `work: *` labels to classify the **educational artifact being 
 | ------------------ | ------------------------------------------------------------------------------------ |
 | `work: course`     | An authored Course definition, editorial plan or Course-specific educational content |
 | `work: episode`    | An authored Course-owned Episode definition, narrative scenario or Episode content   |
+| `work: assessment` | An authored Course-owned Assessment and its evaluation content                            |
 | `work: lesson`     | An authored Lesson definition, methodology or canonical Lesson content               |
 | `work: questions`  | Authored Question Banks and assessment questions for Lessons                         |
 | `work: flashcards` | Authored Flashcard Banks and learning flashcards for Lessons                         |
@@ -53,7 +54,7 @@ Apply the applicable work label to new production Issues/PRs and to existing one
 
 All `work: *` labels, including the seven educational production types, share purple (`#7C3AED`). All `pr: *` labels continue to share green (`#16A34A`) and describe PR role or change characteristics only. The canonical `.github/labels.json` owns exact names, colors and descriptions.
 
-Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` group includes activity labels (`feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, `tooling`) and the seven educational deliverable labels (`course`, `episode`, `lesson`, `questions`, `flashcards`, `media`).
+Consult the catalog for exact label names and colors. Content scopes use parchment yellow (`#D9C48B`), applications teal, backend rust, shared packages blue, Studio classic amber (`#B7791F`), and repository tooling/fallback slate. The `work` group includes activity labels (`feature`, `architecture`, `fix`, `refactor`, `content`, `translation`, `review`, `tests`, `ci`, `docs`, `tooling`) and the seven educational deliverable labels (`course`, `episode`, `assessment`, `lesson`, `questions`, `flashcards`, `media`).
 
 **Distinguish architecture from feature and refactor:** Use `work: architecture` for system design or architectural changes to module boundaries, contracts, data models, composition, dependency direction, or runtime data flows. Use `work: feature` for new user-facing or technical capabilities, and `work: refactor` for reorganizing implementation without intentionally changing its architecture or behavior. Architecture-only work must not be labeled `work: feature` solely because it adds technical infrastructure. Apply both labels only when the change genuinely includes both architecture work and a new capability.
 
