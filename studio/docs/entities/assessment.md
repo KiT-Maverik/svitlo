@@ -18,3 +18,13 @@ At Course Stage 1 require an explicit `production.assessment.required` boolean f
 2. Separately authorized Assessment materialization consumes its own reviewed typed editorial source, generates modular Assessment source with concrete Sections and ContentBlocks using existing renderers, replaces exactly the inline placeholder with the completed Configurator import/reference at the same UUID and order, and removes the consumed draft atomically. Resource specs, media and locale requirements remain real blockers until completed. Strict production rejects unresolved placeholders and resources; explicit draft preview supports incomplete Courses.
 
 See the proposed [Assessment workflow](../../skills/assessment-workflow/create-assessment-flow.skill.md). Implement against the direct typed Zod-validated materialization architecture in PR #823; do not add another AST parser, custom resolver, redundant input alias or parallel YAML format.
+
+## Canonical source layout
+
+Assessment source is owned by its Course and follows exactly the existing Course child directory convention: every parent appends `content/<childSlug>/`. The Assessment directory is named by its camelCase placement slug, not its UUID. For example, relative to the Course root:
+
+- Course-level: `content/finalAssessment/index.ts`.
+- Module-level: `content/light/content/moduleAssessment/index.ts`.
+- Chapter-level: `content/light/content/reflection/content/chapterAssessment/index.ts`.
+
+The completed Assessment exports its Configurator from `index.ts`; the immediate parent imports it from `./content/<assessmentSlug>`. Use the canonical existing Section and ContentBlock materializer directory layout, including slug-named Section folders under `sections/` and slug-named ContentBlock folders within each owning Section, with their normal `index.ts` and resource/specification files where applicable. Do not flatten the hierarchy, create a global Assessment directory, or move a Chapter/Module Assessment to the Course root. The separately authorized editorial `draft.ts` lives in that same future Assessment directory; initial Course materialization emits only the inline placeholder in the immediate parent's `index.ts`, not an empty completed Assessment directory or an import to a nonexistent file. Full materialization atomically creates the modular files, consumes the draft and replaces the parent's inline placeholder with the import, preserving identity and order. Test all three levels and exact paths, including nested blocks and collision/no-clobber behavior.
