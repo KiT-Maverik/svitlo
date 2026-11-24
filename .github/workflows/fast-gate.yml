@@ -65,6 +65,17 @@ jobs:
         if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
 
+      - name: Verify symbol-aware Course stub guard
+        if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+        run: node --test scripts/ci/checkStubImports/check-stub-imports.spec.mjs
+
+      - name: Reject newly introduced Course stub imports and uses
+        if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci/checkStubImports/check-stub-imports.mjs "$BASE_SHA" "$HEAD_SHA"
+
       - name: Typecheck changed workspaces and public API consumers
         if: steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'
         env:
