@@ -54,3 +54,46 @@ Every active Engine configurator, including flat ContentBlocks, `CarouselSlide`,
 Nested Course/Module/Chapter and SkillGroup/SkillDomain overrides validate both the sparse authored patch and the final Props for **each** requested language. Final validation uses `resource.base → resource.locale[language] → override.base → override.locale[language]`; localized arrays are replaced atomically, and no fully resolved values are inserted into the sparse patch. The same rule applies to other nested Build lifecycles. Cross-level regression tests cover localization boundaries, additions/removals, and independent Build calls.
 
 Question configurators reuse the shared publication language options and helpers; ContentBlocks use first-class typed options, not the earlier Question-specific compatibility adapter. Generators serialize the completed data without inferring languages from authored locale dictionaries.
+
+## Placement-local reuse of an existing Lesson
+
+Use `placeLesson` from `@svitlo/engine/build` directly inside the owning
+Course, Module or Chapter `content.items` map. The first argument is the
+**original imported `defineLesson` Configurator**, not its `build.props()`
+result. The second argument is a **plain authored Config override** suitable
+for the original Lesson's `build.overrides(rawPatch, { languages })`:
+
+```ts
+import { defineChapter, placeLesson } from '@svitlo/engine/build';
+import { howLightMoves } from '../../lessons/howLightMoves';
+
+const chapter = defineChapter({
+  id: chapterId,
+  type: 'chapter',
+  slug: 'lightPractice',
+  params: {},
+  locale: { title: 'Light practice' },
+  content: {
+    items: {
+      original: howLightMoves,
+      shadowPractice: placeLesson(howLightMoves, {
+        params: { sections: { allowSkipping: false } },
+        locale: { title: { uk: 'Вправи з тінями' } },
+      }),
+    },
+    order: ['original', 'shadowPractice'],
+  },
+});
+```
+
+The two placements preserve the **same source Lesson UUID** but have distinct
+contextual keys; `howLightMoves` remains unchanged. `placeLesson` delegates
+the plain patch to the real Lesson Build API at each stateless Build call, so
+invalid identity/unknown fields and unsupported publication languages fail
+closed. The Course Build still resolves complete Props hierarchies; the compact
+Course publisher instead stores only the Lesson ID and sparse validated
+override Props at each placement (per-language changes stay in locale JSON).
+Do not pass built `{ id, base, locale }` override results as authored Config,
+or author a separate Course-root patch tree. Section additions requiring
+Configurator instances are not plain JSON patches and do not belong in this
+placement-local helper.

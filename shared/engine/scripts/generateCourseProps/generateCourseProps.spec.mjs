@@ -8,6 +8,7 @@ import {
   readCurrent,
   discoverCourseSources,
   checkCourseSourceReadiness,
+  assertNoLegacyCourseOverrides,
   render,
 } from './generateCourseProps.mjs';
 
@@ -145,6 +146,18 @@ test('draft Episode preview is inspectable but editorial or human gates block st
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
+});
+
+test('legacy authoredCourseOverrides exports fail closed to prevent silent loss of Lesson changes', () => {
+  assert.doesNotThrow(() => assertNoLegacyCourseOverrides({ course: {} }, 'course/index.ts'));
+  assert.throws(
+    () => assertNoLegacyCourseOverrides({ authoredCourseOverrides: undefined }, 'course/index.ts'),
+    /Legacy authoredCourseOverrides.*placeLesson/,
+  );
+  assert.throws(
+    () => assertNoLegacyCourseOverrides({ authoredCourseOverrides: { content: { items: {} } } }, 'course/index.ts'),
+    /Legacy authoredCourseOverrides.*placeLesson/,
+  );
 });
 
 test('strict Course readiness catches canonical one-line and multiline blockers but ignores quoted markers', () => {

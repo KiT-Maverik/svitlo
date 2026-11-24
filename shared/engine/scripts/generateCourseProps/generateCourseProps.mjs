@@ -8,8 +8,8 @@ import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/reso
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
 import { projectTextbookMedia, assertMediaPublicationReady } from '@svitlo/engine/build';
 import { renderCourseFiles } from '../../generators/courses/publishCourseData.mjs';
-import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] [--draft] --write|--check|--preflight';
@@ -107,6 +107,16 @@ export function checkCourseSourceReadiness(source, mode) {
   return pending;
 }
 
+/** Refuse old root patches; ignoring them would silently lose Course adaptations. */
+export function assertNoLegacyCourseOverrides(exports, source) {
+  if (Object.hasOwn(exports, 'authoredCourseOverrides')) {
+    throw new Error(
+      'Legacy authoredCourseOverrides export is not supported; migrate each Lesson patch to placeLesson at its placement: ' +
+      source,
+    );
+  }
+}
+
 export async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
@@ -124,14 +134,10 @@ export async function render(pkg, mode) {
     if (path.basename(source) === 'index.ts' && path.basename(path.dirname(source)) !== course.id) {
       throw new Error('UUID-bucketed Course ID does not match exported configurator: ' + source);
     }
-    const overrides = moduleExports.authoredCourseOverrides;
-    if (overrides !== undefined && (overrides === null || typeof overrides !== 'object' || Array.isArray(overrides))) {
-      throw new Error('authoredCourseOverrides must be a stateless Course Build patch: ' + source);
-    }
+    assertNoLegacyCourseOverrides(moduleExports, source);
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
-      overrides,
       projectMedia: (entry, language) =>
         projectTextbookMedia(entry, {
           textbookRoot: pkg,
