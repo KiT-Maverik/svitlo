@@ -129,10 +129,17 @@ test('Checkpoint recursively materializes Item → Text + Answer → Carousel �
     'first/answer/index.ts',
     'first/answer/slides/index.ts',
     'first/answer/slides/slides/practiceScene/index.ts',
-    'first/answer/slides/slides/practiceScene/specification.md',
     'index.ts',
   ])
     assert.ok(paths.includes('sections/review/' + suffix), 'missing ' + suffix);
+  const sceneSource = result.files.find(
+    file => file.path === 'sections/review/first/answer/slides/slides/practiceScene/index.ts',
+  );
+  assert.ok(sceneSource, 'nested Scene Config source must be emitted');
+  assert.match(sceneSource.content, /# Scene specification/);
+  assert.match(sceneSource.content, /Approved prompt\./);
+  assert.match(sceneSource.content, /TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.ok(!paths.some(path => path.endsWith('/specification.md')), 'Scene brief must stay inline');
   assert.equal(paths.filter(path => path.includes('/content/items/')).length, 0);
   assert.equal(paths.filter(path => path.includes('/slides/items/')).length, 0);
   const code = result.files.at(-1)!.content;
