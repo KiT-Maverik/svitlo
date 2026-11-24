@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRuntime } from '@svitlo/engine/runtime';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
@@ -51,7 +51,7 @@ async function Content({ params }: Props) {
   const next = flat[position + 1];
   return (
     <WebAssessment
-      response={assessment}
+      response={validateAssessmentRuntime(assessment, content.language)}
       language={content.language}
       href={href}
       courseHref={courseHref}
