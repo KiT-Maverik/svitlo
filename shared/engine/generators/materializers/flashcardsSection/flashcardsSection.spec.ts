@@ -39,10 +39,13 @@ test('flashcards: delegates exact subtree and preserves explicit collection/orde
     first,
   );
   assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/content/items/prompt/index.ts')?.content,
+    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
     '// child\n',
   );
+  assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
+  assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
+  assert.match(root, /\.\/prompt/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -96,4 +99,38 @@ test('flashcards: unfinished assessment carries explicit blocker without fabrica
   assert.match(out.files.at(-1)?.content ?? '', /TODO \(BLOCKER\)/);
   assert.equal(out.diagnostics[0]?.severity, 'warning');
   assert.doesNotMatch(out.files.at(-1)?.content ?? '', /feedc0de-/);
+});
+
+test('flashcardsSection: Section notes are guarded without specification sidecars', () => {
+  const result = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
+    documentLanguage: 'en', directory: 'sections/introduction',
+    languagesImport: '../../languages',
+    production: { sequenceReason: 'Reviewed sequence.' },
+    renderContentBlock,
+  });
+  assert.ok(result.files.every(file => !file.path.endsWith('/specification.md')));
+  const root = result.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
+  assert.match(root, /Transfer reviewed .* Section notes/);
+  assert.ok(result.diagnostics.some(item => item.message.includes('sequenceReason')));
+});
+
+test('flashcards: unfinished selection blocker lives adjacent to source definition', () => {
+  const config = input();
+  config.params.selection.flashcardIds = [];
+  const pending = materializeFlashcardsSection(config as Parameters<typeof materializeFlashcardsSection>[0], {
+    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+  }).files.find(file => file.path === 'index.ts')!.content;
+  assert.match(pending, /TODO \(BLOCKER\): Implement reviewed Flashcards Section[^\n]*\nexport const/);
+  assert.equal((pending.match(/TODO \(BLOCKER\)/g) ?? []).length, 1);
+  assert.doesNotMatch(pending, /no Flashcards have been fabricated/);
+});
+test('flashcards: verified bank Configurator import produces flashcard.id', () => {
+  const code = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
+    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    flashcardImports: { [id('03')]: { module: '#lessonsData/a/flashcards/selected', exportName: 'selectedCard' } },
+  }).files.find(file => file.path === 'index.ts')!.content;
+  assert.match(code, /selectedFlashcard_0\.id/);
+  assert.match(code, /import \{ selectedCard as selectedFlashcard_0 \}/);
+  assert.doesNotMatch(code, /TODO \(BLOCKER\)/);
+  assert.doesNotMatch(code, new RegExp(id('03')));
 });

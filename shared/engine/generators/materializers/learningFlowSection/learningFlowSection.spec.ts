@@ -39,10 +39,13 @@ test('learningFlow: delegates exact subtree and preserves explicit collection/or
     first,
   );
   assert.equal(
-    first.files.find(file => file.path === 'sections/introduction/content/items/prompt/index.ts')?.content,
+    first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
     '// child\n',
   );
+  assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
+  assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
+  assert.match(root, /\.\/prompt/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -83,4 +86,17 @@ test('learningFlow: fails closed for invalid ordering, identifiers and path esca
       }),
     /identity/,
   );
+});
+
+test('learningFlowSection: Section notes are guarded without specification sidecars', () => {
+  const result = materializeLearningFlowSection(input() as Parameters<typeof materializeLearningFlowSection>[0], {
+    documentLanguage: 'en', directory: 'sections/introduction',
+    languagesImport: '../../languages',
+    production: { sequenceReason: 'Reviewed sequence.' },
+    renderContentBlock,
+  });
+  assert.ok(result.files.every(file => !file.path.endsWith('/specification.md')));
+  const root = result.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
+  assert.match(root, /Transfer reviewed .* Section notes/);
+  assert.ok(result.diagnostics.some(item => item.message.includes('sequenceReason')));
 });

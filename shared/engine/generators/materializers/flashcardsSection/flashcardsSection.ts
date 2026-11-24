@@ -232,7 +232,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
       const selection = ids.map((id, index) => {
         const ref = options.flashcardImports![id]!;
         if (
-          !/^(?:#[-\\w/]+|@svitlo\\/[-\\w/]+|\\.{1,2}\\/[-\\w./]+)$/.test(ref.module) ||
+          !/^(?:#[A-Za-z0-9_/-]+|@svitlo\/[A-Za-z0-9_/-]+|\.{1,2}\/[A-Za-z0-9_./-]+)$/.test(ref.module) ||
           ref.module.includes('/../') ||
           !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(ref.exportName)
         )
