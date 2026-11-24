@@ -47,7 +47,7 @@ The canonical [Lesson Flow](./create-lesson-flow.skill.md) orders each Lesson's 
 
 ## Mandatory user-facing stage report and next-action handoff
 
-After each completed or paused stage, at a blocker, and on a status/resume request (including a message containing only the Questions child PR number), **inspect and reconcile first**. Read the current child PR body, head/base, actual Lesson UUID and parent Lesson PR, the latest Lesson content/reference Markdown, verified bank/Quiz Section files, reviewers, SHA-scoped evidence and applicable CI. A bare PR number requests a report and recommendation, **not** execution, PR creation, review approval or merge. The child PR description is the only bank workflow tracker. Do not add stage/status fields to `questions.yaml`, Lesson Config/Props or another ledger. **If invoked from a parent Lesson PR and no Questions child PR yet exists**, report `Questions PR: Not started` and all seven bank stages as not started (no invented child PR ID). After verifying that an own bank is required, recommend the separately authorized starting instruction `do questions for lesson <lesson-uuid> related to PR #<lesson-pr-number>`; do not create the PR until the user actually requests that action.
+For a **status/resume request** (including a message containing only the Questions child PR number), read the existing Questions PR description, current head/base and immediately relevant GitHub checks. Inspect Lesson content/reference Markdown, reviewer reports and SHA-scoped artifacts **only if the reported next action or a suspected inconsistency requires that evidence**; do not regenerate or re-review it for a routine status answer. For an actual stage transition or a claimed completion, verify the required source, reviews and checks for that stage. A bare PR number requests a report and recommendation, **not** execution, PR creation, review approval or merge. The child PR description is the sole bank workflow tracker; never add workflow status to generated Config/Props or historical YAML. **If invoked from a parent Lesson PR and no Questions child PR yet exists**, report `Questions PR: Not started` and all seven bank stages as not started (no invented child PR ID). After verifying that an own bank is required, recommend the separately authorized starting instruction `do questions for lesson <lesson-uuid> related to PR #<lesson-pr-number>`; do not create the PR until the user actually requests that action.
 
 Always end the user-facing response with:
 
@@ -154,10 +154,10 @@ unresolved resources and incomplete translations.
 Inspect current Lesson and ordered Sections, actual Quiz modules, approved
 `quizSectionRequired` and `quizRequiredForCompletion` decisions. Refine
 the **same bank source** to `satisfies QuestionBankWorkflowStage3`; add
-only `production.quiz`: `{kind:'none',rationale}` for no approved local
-Quiz or `{kind:'local',rationale,sections:{items,order}}` with each existing
-or authorized new Section UUID/path, placement rationale, outcome coverage
-and upstream dependencies. No Quiz is automatically created by the bank.
+only `production.quiz`: `{kind:'none'}` for no approved local
+Quiz or `{kind:'local',sections:{items,order}}` with each existing
+or authorized new Section UUID/path. Optional prose may be retained in the
+reviewed source or PR discussion, but is not a mandatory materialization input. No Quiz is automatically created by the bank.
 
 Preserve existing approved Section IDs, order, screen ContentBlocks and
 learner-facing copy, including an explicitly blocked `feedc0de-` provisional
@@ -167,7 +167,7 @@ all seven bank stages. A downstream assessment-only Lesson owns its **own**
 Quiz Section and may select from reviewed upstream banks.
 
 Choose a small, pedagogically sufficient subset per actual local Quiz, but
-record its rationale in the Questions PR and Stage 3 design metadata **without
+record its rationale in the Questions PR when substantively useful **without
 storing a second canonical UUID selection list in the bank**. Only after
 Stage 5 produced typed Question modules may the **Lesson Section owner**
 edit the real `defineQuizSection`, importing the chosen Question
@@ -265,7 +265,7 @@ Ready/merge, run the existing `generateAssessmentResources --kind question`
 production publisher without `--draft`; verify that **every bank Question**
 (including unselected items) is included in the generated publication and
 staged textbook manifest. Inspect the entire changed Lesson UUID root for any
-`TODO(asset)`, reserved Nil media filename, obsolete/parallel `questions.yaml` or
+`TODO(asset)`, reserved Nil media filename, obsolete/parallel historical YAML or
 missing referenced media, captions and accessible alternative. The strict
 textbook `package:build` must succeed for the full required language scope,
 including the post-generation check that every explicitly selected **local** Quiz candidate resolves to the correct published Question, body and locale file. For an external downstream assessment Lesson, separately verify that the completed bank is integrated into its actual branch ancestry and published with the correct owning Lesson/UUID/locale; verify the merged global UUID resolver, manifest, and downstream branch ancestry actually provide the requested upstream resources.
