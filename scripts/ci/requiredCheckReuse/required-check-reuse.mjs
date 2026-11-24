@@ -52,7 +52,7 @@ function jobLink(run, repository) {
 }
 
 export async function mayReuse(event, runs, options, read) {
-  const { name, sha, repository, runId, runAttempt } = options;
+  const { name, repository, runId, runAttempt } = options;
   const scope = validationScope(event, options);
   if (
     !scope ||
@@ -68,7 +68,7 @@ export async function mayReuse(event, runs, options, read) {
   for (const run of runs) {
     if (run.name !== name) continue;
     const link = jobLink(run, repository);
-    if (!link || run.head_sha !== sha || run.app?.slug !== 'github-actions') return false;
+    if (!link || run.head_sha !== event.pull_request.head.sha || run.app?.slug !== 'github-actions') return false;
     if (link.runId === runId) continue;
     if (
       !run.pull_requests?.some(pr => pr.number === event.pull_request.number) ||
@@ -121,7 +121,11 @@ async function main() {
         if (!response.ok) throw Error('GitHub API lookup failed');
         return response.json();
       };
-      const data = await read('commits/' + process.env.GITHUB_SHA + '/check-runs?filter=all&per_page=100');
+      // GitHub attaches PR check runs to the PR head, not the synthetic merge commit.
+      // The successful scope step separately binds the exact merge SHA and base revision.
+      const head = event.pull_request?.head?.sha;
+      if (!SHA.test(head ?? '')) throw Error('Missing PR head SHA');
+      const data = await read('commits/' + head + '/check-runs?filter=all&per_page=100');
       // Missing or truncated history is not evidence of successful validation.
       if (Array.isArray(data.check_runs) && data.total_count < 100 && data.total_count === data.check_runs.length) {
         reuse = await mayReuse(event, data.check_runs, {

@@ -23,7 +23,7 @@ for (const [name, path, target, source] of [
   const scope = validationScope(event, options);
   assert.ok(scope);
   const check = (id, conclusion = 'success', extra = {}) => ({
-    name, head_sha: sha, app: { slug: 'github-actions' }, status: 'completed', conclusion,
+    name, head_sha: head, app: { slug: 'github-actions' }, status: 'completed', conclusion,
     started_at: '2026-11-24T10:00:' + id + 'Z',
     completed_at: '2026-11-24T10:01:00Z',
     details_url: 'https://github.com/owner/repo/actions/runs/' + id + '/job/' + id,
@@ -66,6 +66,7 @@ for (const [name, path, target, source] of [
       { ...event, pull_request: { ...event.pull_request, head: { ...event.pull_request.head, ref: 'other' } } },
     ]) assert.equal(await reuse([check(12)], changed), false);
     assert.equal(await reuse([check(12)], event, { ...options, runAttempt: '2' }), false);
+    assert.equal(await reuse([check(12)], event, { ...options, sha: 'e'.repeat(40) }), false);
     assert.equal(await reuse([check(12)], event, options, async () => { throw Error('API unavailable'); }), false);
     for (const alteration of [
       { steps: [] },
