@@ -130,7 +130,7 @@ describe('Course-owned Assessment Configurator', () => {
     const finalAssessment = makeAssessment('finalAssessment', '30', '31');
     const moduleAssessment = makeAssessment('moduleAssessment', '32', '33');
     const chapterAssessment = makeAssessment('chapterAssessment', '34', '35');
-    const chapter = defineChapter({
+    const chapter = defineChapter<'chapter', { chapterAssessment: typeof chapterAssessment }, typeof languages>({
       id: id('40'),
       slug: 'chapter',
       type: 'chapter',
@@ -138,7 +138,7 @@ describe('Course-owned Assessment Configurator', () => {
       locale: { title: 'Chapter' },
       content: { items: { chapterAssessment }, order: ['chapterAssessment'] },
     });
-    const module = defineModule({
+    const module = defineModule<'module', { chapter: typeof chapter; moduleAssessment: typeof moduleAssessment }, typeof languages>({
       id: id('41'),
       slug: 'module',
       type: 'module',
