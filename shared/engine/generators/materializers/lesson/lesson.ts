@@ -378,12 +378,23 @@ export function materializeLesson(config: Source, options: Options): Result {
       message: 'TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.',
       severity: 'warning',
     });
-  if (options.production?.assessment?.questionBankRequired === true ||
-      diagnostics.some(item => item.code === 'pending-quiz'))
-    blockers.push('// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.');
-  if (options.production?.assessment?.flashcardBankRequired === true ||
-      diagnostics.some(item => item.code === 'pending-flashcards'))
-    blockers.push('// TODO (BLOCKER): Stage 8 — author, review and integrate the required Flashcard Bank and Flashcards selections.');
+  const assessmentBlockers: string[] = [];
+  if (
+    options.production?.assessment?.questionBankRequired === true ||
+    diagnostics.some(item => item.code === 'pending-quiz')
+  ) {
+    const message = '// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.';
+    assessmentBlockers.push(message);
+    diagnostics.push({ path: destination(dir, 'index.ts'), code: 'pending-questions', message, severity: 'warning' });
+  }
+  if (
+    options.production?.assessment?.flashcardBankRequired === true ||
+    diagnostics.some(item => item.code === 'pending-flashcards')
+  ) {
+    const message = '// TODO (BLOCKER): Stage 8 — author, review and integrate the required Flashcard Bank and Flashcards selections.';
+    assessmentBlockers.push(message);
+    diagnostics.push({ path: destination(dir, 'index.ts'), code: 'pending-flashcard-bank', message, severity: 'warning' });
+  }
   if (hasQuest)
     blockers.push(
       '// TODO (BLOCKER): Quest is Build-only and cannot be published by defineLesson or Lesson runtime yet.',
@@ -415,6 +426,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     ...imports,
     '',
     ...blockers,
+    ...assessmentBlockers,
     'const section = ' + render({ items, order: config.section.order.filter(key => Object.hasOwn(items, key)) }) + ';',
     'export const ' +
       exported(config.slug) +
