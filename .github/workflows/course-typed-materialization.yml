@@ -48,8 +48,15 @@ jobs:
           cache: npm
       - name: Install pinned dependencies without lifecycle scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Assert clean trusted Engine preparation
+        run: |
+          test ! -e shared/engine/dist
+          test ! -e shared/engine/temp
+          git rev-parse HEAD
       - name: Compile trusted concrete Course renderers for focused CI
         run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - name: Regress real Course reuse through analyze and publish replay
+        run: node --test scripts/ci/courseMaterialization/trusted-course-full-path.spec.mjs
       - name: Test trusted typed Course Stage 5 boundary
         run: node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs
       - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
@@ -58,6 +65,12 @@ jobs:
         run: npx prettier --check scripts/ci/courseMaterialization/*.mjs scripts/ci/courseMaterialization/README.md .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
         run: npm run code:check:types --workspace @svitlo/engine
+      - name: Verify canonical Engine package build and public declarations
+        run: |
+          rm -rf shared/engine/dist
+          npm run package:build --workspace @svitlo/engine
+          test -s shared/engine/dist/build.d.ts
+          test -s shared/engine/dist/runtime.d.ts
 
   resolve:
     if: >-

@@ -328,6 +328,7 @@ export function checkCourseStage3Types(sourcePath) {
     paths: {
       ...parsed.options.paths,
       '@svitlo/engine/build': ['build.ts'],
+      '@svitlo/engine/runtime': ['runtime.ts'],
       '#lessonsData/*': [path.join(trustedRepoRoot, 'content', scoped[1], 'data/lessons/*')],
     },
   };
