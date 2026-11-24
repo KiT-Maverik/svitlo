@@ -79,8 +79,15 @@ export const Youtube = ({
     };
   }, [href, mode, label, online, unavailable]);
 
-  const fallbackKind: FallbackKind | null =
-    pending ? 'unavailable' : online === null ? 'loading' : !online ? 'offline' : unavailable ? 'unavailable' : null;
+  const fallbackKind: FallbackKind | null = pending
+    ? 'unavailable'
+    : online === null
+      ? 'loading'
+      : !online
+        ? 'offline'
+        : unavailable
+          ? 'unavailable'
+          : null;
   const fallbackText =
     fallbackKind === 'loading'
       ? messages['loading']

@@ -200,10 +200,7 @@ function normalizeStage2(input: LessonWorkflowStage2) {
  * Concrete materializers own rendering/diagnostics for their real Config
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
-export function materializeLessonStage6(
-  input: LessonWorkflowStage2,
-  options: LessonStage6Options,
-): LessonStage6Plan {
+export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
   if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
     throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
   const config = input.config;

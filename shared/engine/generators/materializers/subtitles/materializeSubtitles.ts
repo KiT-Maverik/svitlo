@@ -219,7 +219,11 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
         '// TODO(asset): Replace reserved Nil UUID with a verified asset.\n' +
-        '// TODO (BLOCKER): ' + instruction + ' for subtitles ' + config.id + '.\n' +
+        '// TODO (BLOCKER): ' +
+        instruction +
+        ' for subtitles ' +
+        config.id +
+        '.\n' +
         JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,

@@ -210,13 +210,13 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   const hrefLocale = isRecord(fields.locale) ? fields.locale : {};
   const href = hrefLocale.href;
   if (href === undefined || (isRecord(href) && !Object.hasOwn(href, language))) {
-    hrefLocale.href = isRecord(config.locale?.href)
-      ? { [language]: UNRESOLVED_YOUTUBE_HREF }
-      : UNRESOLVED_YOUTUBE_HREF;
+    hrefLocale.href = isRecord(config.locale?.href) ? { [language]: UNRESOLVED_YOUTUBE_HREF } : UNRESOLVED_YOUTUBE_HREF;
   }
   const resolvedHref = hrefLocale.href;
-  if (resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
-      (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF)) {
+  if (
+    resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
+    (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF)
+  ) {
     const fieldPath = 'locale.href' + (isRecord(resolvedHref) ? '.' + language : '');
     expressions[fieldPath] =
       '// TODO (BLOCKER): Supply a verified YouTube URL before publication.\n' +

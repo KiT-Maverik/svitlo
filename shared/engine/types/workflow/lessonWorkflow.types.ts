@@ -102,10 +102,10 @@ export type LessonWorkflowResourceProduction = LessonWorkflowNodeProduction & {
  * asset reference. The Stage 6.1 resource materializer supplies the canonical
  * reserved filename and a publication blocker; runtime Config stays strict.
  */
-type LessonWorkflowPendingMedia<
-  Config extends { locale: object },
-  Field extends keyof Config['locale'],
-> = Omit<Config, 'locale'> & {
+type LessonWorkflowPendingMedia<Config extends { locale: object }, Field extends keyof Config['locale']> = Omit<
+  Config,
+  'locale'
+> & {
   locale: Omit<Config['locale'], Field> & Partial<Pick<Config['locale'], Field>>;
 };
 
@@ -121,7 +121,10 @@ export type LessonWorkflowStage2SimpleBlock =
   | { config: ContentBlock_Code_Config; production?: LessonWorkflowNodeProduction }
   | { config: LessonWorkflowImage; production: LessonWorkflowResourceProduction }
   | { config: LessonWorkflowVideo; production: LessonWorkflowResourceProduction }
-  | { config: LessonWorkflowPendingMedia<ContentBlock_Youtube_Config, 'href'>; production: LessonWorkflowResourceProduction }
+  | {
+      config: LessonWorkflowPendingMedia<ContentBlock_Youtube_Config, 'href'>;
+      production: LessonWorkflowResourceProduction;
+    }
   | { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction }
   | { config: LessonWorkflowSubtitles; production: LessonWorkflowResourceProduction }
   | { config: ContentBlock_Scene_Config; production: LessonWorkflowResourceProduction };
@@ -249,4 +252,3 @@ export type LessonWorkflowStage2Config = Omit<LessonWorkflowStage1Config, 'secti
 export type LessonWorkflowStage2 = Omit<LessonWorkflowStage1, 'config'> & {
   config: LessonWorkflowStage2Config;
 };
-

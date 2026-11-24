@@ -219,7 +219,11 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
         '// TODO(asset): Replace reserved Nil UUID with a verified asset.\n' +
-        '// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.\n' +
+        '// TODO (BLOCKER): ' +
+        instruction +
+        ' for audio ' +
+        config.id +
+        '.\n' +
         JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,

@@ -97,6 +97,9 @@ test('youtube: pending href is deterministic, blocked and not a fabricated URL',
   assert.match(source, /"href": \/\/ TODO \(BLOCKER\):[^\n]*\n"00000000-0000-0000-0000-000000000000"/);
   assert(pending.diagnostics.some(item => item.path === '$.config.locale.href' && item.code === 'pending-media'));
   assert(!source.includes('https://'));
-  const localized = materializeYoutube({ ...input, locale: { ...locale, href: { en: 'https://youtu.be/M7lc1UVf-VE' } } }, { documentLanguage: 'uk' });
+  const localized = materializeYoutube(
+    { ...input, locale: { ...locale, href: { en: 'https://youtu.be/M7lc1UVf-VE' } } },
+    { documentLanguage: 'uk' },
+  );
   assert(localized.diagnostics.some(item => item.path === '$.config.locale.href.uk'));
 });
