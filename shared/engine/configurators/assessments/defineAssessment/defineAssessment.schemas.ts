@@ -63,6 +63,7 @@ export const assessment_Draft_Props_Schema = identity
   .strict()
   .refine(
     value => value.section.some(section =>
+      section.params.disabled !== true &&
       section.content.some(block => block.type === 'text' && block.locale.value === 'Not implemented'),
     ),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',

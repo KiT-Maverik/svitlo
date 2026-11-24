@@ -228,3 +228,77 @@ test('Assessment rejects a duplicated Section identity even when the first Secti
     /Duplicate Assessment Section ID/,
   );
 });
+
+test('Course preview accepts a real draft Assessment Text block but rejects fake completion', () => {
+  const draft = {
+    id: id(120),
+    slug: 'draftReview',
+    type: 'assessment',
+    draft: true,
+    params: { languages: ['en', 'uk'] },
+    locale: { title: 'Not implemented' },
+    section: [
+      {
+        id: id(121),
+        slug: 'preview',
+        type: 'content',
+        params: {},
+        locale: { title: 'Preview', navigationLabel: 'Preview' },
+        content: [
+          {
+            id: id(122),
+            slug: 'message',
+            type: 'text',
+            params: {},
+            locale: { value: 'Not implemented' },
+          },
+        ],
+      },
+    ],
+  };
+  assert.equal(validateAssessmentRuntime(draft, 'en').draft, true);
+  assert.equal(
+    findCourseAssessment(
+      assembleCourseTree(
+        {
+          id: id(1),
+          type: 'course',
+          params: { languages: ['en', 'uk'] },
+          locale: { title: 'Course' },
+          content: collection({ draft }, ['draft']),
+        },
+        undefined,
+        id(1),
+        'en',
+      ),
+      id(120),
+    )?.draft,
+    true,
+  );
+  assert.throws(() => validateAssessmentRuntime({ ...draft, draft: undefined }, 'en'));
+  assert.throws(() =>
+    validateAssessmentRuntime({
+      ...draft,
+      section: [{ ...draft.section[0], content: [] }],
+    }, 'en'),
+  );
+  assert.throws(() =>
+    validateAssessmentRuntime({
+      ...draft,
+      section: [{ ...draft.section[0], params: { disabled: true } }],
+    }, 'en'),
+  );
+});
+
+test('a completed Assessment cannot have a second Quiz', () => {
+  const valid = assessment(130, 'oneQuiz');
+  const second = {
+    ...valid.section[0],
+    id: id(240),
+    slug: 'anotherQuiz',
+  };
+  assert.throws(
+    () => validateAssessmentRuntime({ ...valid, section: [...valid.section, second] }, 'en'),
+    /Assessment|quiz/i,
+  );
+});
