@@ -66,6 +66,7 @@ test('dynamic expressions, code imports, duplicate keys and spreads fail closed'
       plain.replace('slug: "intro"', 'slug: ""'),
       plain.replace('slug: "intro"', 'slug: "intro", slug: "duplicate"'),
       plain.replace('config: {', 'config: { ...malicious,'),
+      plain.replaceAll('LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'),
       plain.replace('as const satisfies LessonWorkflowStage2', 'as const'),
       plain.replace('export const reviewedLesson', 'const reviewedLesson'),
       plain.replace('import type { LessonWorkflowStage2 }', 'import { LessonWorkflowStage2 }'),
