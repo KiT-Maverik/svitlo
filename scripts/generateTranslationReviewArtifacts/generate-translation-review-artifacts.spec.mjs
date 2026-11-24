@@ -7,6 +7,9 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { fixTaxonomyLinks, parseArguments } from './generate-translation-review-artifacts.mjs';
+// Keep command/manifest and Lesson discovery checks in the existing Ready generator CI suite.
+import './agent-reference-command.spec.mjs';
+import '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs';
 
 test('requires an explicit reference family and never defaults to whole-repository generation', () => {
   assert.throws(() => parseArguments([]), /explicit supported --kind/);
