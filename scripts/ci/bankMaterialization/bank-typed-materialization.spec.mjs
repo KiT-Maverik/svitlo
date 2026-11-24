@@ -226,6 +226,45 @@ test('publisher cannot reintroduce separate Bank language modules', () => {
   }
 });
 
+test('both Bank publishers require an exact six-file textbook-scoped Scene scaffold', () => {
+  const id = '11111111-1111-4111-8111-11111111111a';
+  const root = 'content/math/scenes/a/' + id + '/';
+  const files = {
+    'index.ts': '// TODO (BLOCKER): Register Scene after review.\nexport { Visual as default } from "./Visual";\n',
+    'Visual.tsx': '// TODO (BLOCKER): Implement Scene.\nexport function Visual() { return null; }\n',
+    'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
+    'Visual.constants.ts': '// TODO (BLOCKER): Add test IDs.\nexport const testIds = {};\n',
+    'Visual.stories.tsx': '// TODO (BLOCKER): Author Storybook fixtures.\nexport const Default = {};\n',
+    'Visual.unit.spec.tsx': '// TODO (BLOCKER): Implement tests.\nexport const testId = "pending";\n',
+  };
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const proposed = [...valid.files, ...Object.entries(files).map(([name, source]) => file(root + name, source))];
+    assert.doesNotThrow(() => verifyTypedManifest({ ...valid, files: proposed }, valid.meta));
+    for (const missing of Object.keys(files)) {
+      assert.throws(
+        () => verifyTypedManifest({ ...valid, files: proposed.filter(item => item.path !== root + missing) }, valid.meta),
+        /Incomplete.*Scene/,
+      );
+    }
+    const incomplete = proposed.map(entry =>
+      entry.path === root + 'Visual.module.css' ? file(entry.path, '.root {}\n') : entry,
+    );
+    assert.throws(() => verifyTypedManifest({ ...valid, files: incomplete }, valid.meta), /lacks release blocker/);
+    for (const hostile of [
+      file('content/other/scenes/a/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/b/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/a/' + id + '/evil.ts', files['index.ts']),
+      file(folder + '/scenes/a/' + id + '/index.ts', files['index.ts']),
+    ]) {
+      assert.throws(
+        () => verifyTypedManifest({ ...valid, files: [...proposed, hostile] }, valid.meta),
+        /Unallowlisted/,
+      );
+    }
+  }
+});
+
 test('typed publisher imports in a zero-dependency read-only environment', () => {
   const root = fileURLToPath(new URL('../../..', import.meta.url));
   const isolated = mkdtempSync(path.join(tmpdir(), 'svitlo-typed-bank-publisher-'));
@@ -494,7 +533,7 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
     for (const [side, data] of Object.entries(sides)) {
       const prefix = folder + '/flashcards/' + slug + '/content/' + side + '/';
       files.push({ path: prefix + 'index.ts' });
-      for (const blockSlug of data.order) files.push({ path: prefix + 'items/' + blockSlug + '/index.ts' });
+      for (const blockSlug of data.order) files.push({ path: prefix + ' ' + blockSlug + '/index.ts' });
     }
   }
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
@@ -527,7 +566,7 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
     { path: folder + '/flashcards/card.ts' },
     ...['front', 'back'].flatMap(side => [
       { path: folder + '/flashcards/card/content/' + side + '/index.ts' },
-      { path: folder + '/flashcards/card/content/' + side + '/items/' + side + 'Block/index.ts' },
+      { path: folder + '/flashcards/card/content/' + side + '/' + side + 'Block/index.ts' },
     ]),
   ];
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
