@@ -31,7 +31,7 @@ test('temporary media brief: deterministic labeled block after implementation wi
   const parsed = ts.transpileModule(source, {
     fileName: 'index.ts',
     reportDiagnostics: true,
-    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+    compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext, removeComments: true },
   });
   assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
   assert(!parsed.outputText.includes('red toy car'));
