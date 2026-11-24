@@ -71,8 +71,10 @@ function assertCourseInventory(manifest, meta, entries) {
     !inventory ||
     !Array.isArray(inventory.lessons) ||
     !Array.isArray(inventory.episodes) ||
+    !Array.isArray(inventory.assessments) ||
     inventory.lessons.some(row => row?.type !== 'lesson') ||
     inventory.episodes.some(row => row?.type !== 'episode') ||
+    inventory.assessments.some(row => row?.type !== 'assessment') ||
     !Array.isArray(manifest.pendingPlacements) ||
     !Array.isArray(manifest.pendingEpisodes)
   )
@@ -103,10 +105,10 @@ function assertCourseInventory(manifest, meta, entries) {
       throw Error('Invalid JSON seed handoff: ' + filename);
     }
   }
-  for (const row of [...inventory.lessons, ...inventory.episodes]) {
+  for (const row of [...inventory.lessons, ...inventory.episodes, ...inventory.assessments]) {
     if (
       !row ||
-      !['lesson', 'episode'].includes(row.type) ||
+      !['lesson', 'episode', 'assessment'].includes(row.type) ||
       !UUID.test(row.id) ||
       typeof row.placementPath !== 'string' ||
       !row.placementPath.startsWith(root + '/content/') ||
@@ -171,7 +173,7 @@ function assertCourseInventory(manifest, meta, entries) {
         if (!parsed || parsed[2] !== expectedExport || parsed[3] !== expectedImport)
           throw Error('Course reused Lesson reference differs from inventory identity or canonical import');
       } else throw Error('Invalid Course Lesson kind');
-    } else {
+    } else if (row.type === 'episode') {
       if (
         row.kind !== 'new' ||
         !['pending-episode-scenario', 'materialized-source'].includes(row.status) ||
@@ -197,6 +199,44 @@ function assertCourseInventory(manifest, meta, entries) {
           throw Error('Episode handoff differs from Course inventory identity');
         pendingEpisodes.set(rel, row);
       }
+    } else {
+      // Assessment Stage 5 is intentionally only a typed seed plus an inline
+      // Not implemented Configurator. No fake bank IDs or completed Quiz.
+      const draft = row.placementPath + '/draft.ts';
+      const marker = row.placementPath.includes('/content/', root.length + '/content/'.length)
+        ? row.placementPath.slice(0, row.placementPath.lastIndexOf('/content/')) + '/index.ts'
+        : root + '/index.ts';
+      if (
+        row.kind !== 'new' ||
+        row.status !== 'pending-assessment-design' ||
+        row.id !== deriveCourseEntityId(meta.courseId, 'assessment', allocationPath) ||
+        row.sourcePath !== draft ||
+        row.placementSourcePath !== marker ||
+        entries.get(marker)?.kind !== 'typescript' ||
+        !episodes.delete(draft) ||
+        !Array.isArray(row.lessonDependencies) ||
+        !row.lessonDependencies.length ||
+        row.lessonDependencies.some(value => typeof value !== 'string' || !value.startsWith('content/'))
+      )
+        throw Error('Invalid Course Assessment pending seed or inline parent placement');
+      const seed = outputLiteral(draft, 'assessmentSeed', ' as const satisfies AssessmentWorkflowSeed;');
+      if (
+        seed?.config?.id !== row.id ||
+        seed.config.slug !== row.slug ||
+        seed.config.type !== 'assessment' ||
+        seed.production?.placement?.courseId !== meta.courseId ||
+        seed.production.placement.path !== rel ||
+        JSON.stringify(seed.production.lessonDependencies) !== JSON.stringify(row.lessonDependencies)
+      )
+        throw Error('Assessment seed differs from pinned Course inventory');
+      const parentSource = Buffer.from(entries.get(marker).data, 'base64').toString('utf8');
+      if (
+        !parentSource.includes('defineAssessment({ id: ' + JSON.stringify(row.id)) ||
+        !parentSource.includes('slug: ' + JSON.stringify(row.slug)) ||
+        !parentSource.includes('title: "Not implemented"') ||
+        !parentSource.includes('TODO (BLOCKER): Not implemented')
+      )
+        throw Error('Assessment inline blocker is missing or differs from pending seed');
     }
   }
   function checkPending(list, expected, idField, filename) {
@@ -218,7 +258,7 @@ function assertCourseInventory(manifest, meta, entries) {
   }
   checkPending(manifest.pendingPlacements, pendingLessons, 'lessonId', row => row.sourcePath);
   checkPending(manifest.pendingEpisodes, pendingEpisodes, 'episodeId', row => row.sourcePath.slice(root.length + 1));
-  if (seeds.size || episodes.size) throw Error('Unregistered Course Lesson seed or Episode handoff');
+  if (seeds.size || episodes.size) throw Error('Unregistered Course Lesson, Episode or Assessment draft');
 }
 
 export function verifyTypedCourseManifest(manifest, meta) {
