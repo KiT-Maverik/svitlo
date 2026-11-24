@@ -1,6 +1,6 @@
 # Course Workflow
 
-**Canonical production procedure:** [Create Course Flow](./create-course-flow.skill.md). Course production has **eight stages, one entity-owned Course PR and one evolving TypeScript Course planning object**. This replaces the old temporary `course.yaml` editorial source; it does not create a second plan, `toc.yaml`, `config.yaml`, review PR, production Issue, stage-status file or artifact ledger. The [Course entity](../../docs/entities/course.md) supplies entity semantics. Select Personas by stage in the table below; load additional specialists only when their expertise is needed.
+**Canonical production procedure:** [Create Course Flow](./create-course-flow.skill.md). Course production has **eight stages, one entity-owned Course PR and one evolving TypeScript Course planning object**. Use the canonical `draft.ts` until materialization; do not create a second plan, `toc.yaml`, `config.yaml`, review PR, production Issue, stage-status file or artifact ledger. The [Course entity](../../docs/entities/course.md) supplies entity semantics. Select Personas by stage in the table below; load additional specialists only when their expertise is needed.
 
 ## One typed source and one production record
 

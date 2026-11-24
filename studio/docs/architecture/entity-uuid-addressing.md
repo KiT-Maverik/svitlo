@@ -34,7 +34,7 @@ content/<book>/data/lessons/<last-hex-digit>/<uuid>/
   index.ts                       # materialized Lesson Configurator (not alongside draft.ts)
   <slug>.data.ts                 # existing implemented Lesson convention
   <slug>.definition.ts           # when implemented
-  lesson.identity.json           # editorial-only drafts without typed Lesson data
+  lesson.identity.json           # historical identity-only record, not new typed authoring
   methodology.md                # derived from reviewed typed Stage 1/2 methodology at Stage 6.1
   methodologist-brief.md         # existing legacy Briefs; do not duplicate
   content.md                     # when applicable
@@ -43,7 +43,7 @@ content/<book>/data/lessons/<last-hex-digit>/<uuid>/
 
 **Implemented legacy-layout Lesson:** `<slug>.data.ts` owns `id` and `slug`. The authored Lesson stores no `group`: `resolveEntityPath(id)` derives the bucket, and the source directory must match it. The build-time generator emits localized JSON at `public/data/pages/lessons/<bucket>/<uuid>/<collection>/<language>.json`; the runtime reads **published JSON only**.
 
-**Editorial draft (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is _not_ runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
+**Historical identity-only record (e.g. Math):** until a typed `<slug>.data.ts` exists, a `lesson.identity.json` file stores the permanent UUID and human-readable slug in each Lesson directory. It is _not_ runtime data. On implementation, transfer that UUID into the typed Lesson data and remove the editorial identity file only when the canonical typed identity exists. Never regenerate an ID from a renamed slug.
 
 The UUID is minted once upon creation (UUIDv4/v5/v7 supported); scripts may use deterministic UUIDv5 for a **one-time migration** only, then persist the result. The generator/validator must check that the path matches the declared ID, UUIDs are unique within the collection, slugs have expected shape, and files are well formed. Path uniqueness alone does **not** prove global UUID uniqueness.
 

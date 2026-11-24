@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Opt-in typed Course Stage 5 gate. This is deliberately separate
- * from the deployed YAML command until the owner authorizes its replacement.
+ * @fileoverview Trusted typed Course Stage 5 gate.
  * Authorizes a pinned Stage 3 source + independent Stage 4 GitHub review.
  * No PR-head code is loaded or executed by this gate.
  */
