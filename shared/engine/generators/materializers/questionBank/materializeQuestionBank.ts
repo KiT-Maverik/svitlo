@@ -261,11 +261,26 @@ function planQuestionBank(
   files.push({
     path: 'questionsLanguages.ts',
     kind: 'typescript',
-    content:
-      '// Original reviewed source locale only; translations require independent review.\n' +
-      'export const languages = ' +
-      JSON.stringify([source.document]) +
-      ' as const;\n',
+    content: [
+      "import type { SupportedLanguages } from '@svitlo/engine/build';",
+      '',
+      ...( source.planned.length > 1 ? [
+        '// TODO (BLOCKER): Restore reviewed questions languages only after independent translation review.',
+        '// export const languages = [',
+        ...source.planned.map(language => '//   ' + JSON.stringify(language) + ','),
+        '// ] as const satisfies SupportedLanguages;',
+        '',
+      ] : []),
+      'export const languages = ' + JSON.stringify([source.document]) + ' as const satisfies SupportedLanguages;',
+      'export type Languages = typeof languages;',
+      '',
+    ].join('\n'),
+  });
+  if (source.planned.length > 1) diagnostics.push({
+    path: 'questionsLanguages.ts',
+    code: 'pending-locales',
+    severity: 'warning',
+    message: 'Restore reviewed questions languages after translation approval',
   });
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',
