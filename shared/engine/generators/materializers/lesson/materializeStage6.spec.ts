@@ -158,14 +158,21 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
   const sceneDrafts = plan.files.filter(file => file.kind === 'typescript' && file.path.includes('/scenes/'));
   for (const file of sceneDrafts) {
     const parsed = ts.createSourceFile(
-      file.path, file.content, ts.ScriptTarget.ES2022, true,
+      file.path,
+      file.content,
+      ts.ScriptTarget.ES2022,
+      true,
       file.path.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
     );
-    assert.deepEqual((parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics,
-      [], 'invalid Scene TypeScript syntax: ' + file.path);
+    assert.deepEqual(
+      (parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics,
+      [],
+      'invalid Scene TypeScript syntax: ' + file.path,
+    );
   }
   const files = new Map(
-    plan.files.filter(file => file.kind === 'typescript' && file.path.startsWith(folder))
+    plan.files
+      .filter(file => file.kind === 'typescript' && file.path.startsWith(folder))
       .map(file => [resolve(workspace, file.path), file.content]),
   );
   const options: ts.CompilerOptions = {
