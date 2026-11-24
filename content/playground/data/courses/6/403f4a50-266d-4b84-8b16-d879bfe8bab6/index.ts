@@ -50,11 +50,13 @@ export const courseStage2 = {
             },
           },
           production: {
-            methodology: 'Compare familiar circles with ovals and polygons; use equivalent verbal descriptions and feedback about shape rather than size or orientation.',
+            methodology:
+              'Compare familiar circles with ovals and polygons; use equivalent verbal descriptions and feedback about shape rather than size or orientation.',
             outcomes: { skills: ['00000000-0000-4000-8000-000000000008'] },
             prerequisites: { skills: [] },
             depth: 'Recognize circles in simple examples without measurement or geometric proof.',
-            sequenceReason: 'Introduce the second target Skill after the basic light activity so both are available for later application.',
+            sequenceReason:
+              'Introduce the second target Skill after the basic light activity so both are available for later application.',
           },
         },
         exhibitionPractice: {
@@ -67,8 +69,10 @@ export const courseStage2 = {
                 practiceMission: {
                   config: { type: 'episode' },
                   production: {
-                    focus: 'The visitor returns to the exhibition and encounters a different arrangement of light and objects.',
-                    purpose: 'Introduce the Module as a new narrative situation for applying previously introduced Skills.',
+                    focus:
+                      'The visitor returns to the exhibition and encounters a different arrangement of light and objects.',
+                    purpose:
+                      'Introduce the Module as a new narrative situation for applying previously introduced Skills.',
                   },
                 },
                 shadowPractice: {
@@ -84,8 +88,10 @@ export const courseStage2 = {
                         finalMission: {
                           config: { type: 'episode' },
                           production: {
-                            focus: 'The visitor has one remaining exhibition task involving an opaque object and circular signs.',
-                            purpose: 'Create a Course-specific transition into the final independent practice without embedding instruction in the story.',
+                            focus:
+                              'The visitor has one remaining exhibition task involving an opaque object and circular signs.',
+                            purpose:
+                              'Create a Course-specific transition into the final independent practice without embedding instruction in the story.',
                           },
                         },
                         combinedPractice: {
@@ -99,15 +105,18 @@ export const courseStage2 = {
                     },
                   },
                   production: {
-                    methodology: 'Use a new example to predict a shadow and distinguish a circle; explain each observation separately and provide equivalent nonvisual descriptions.',
+                    methodology:
+                      'Use a new example to predict a shadow and distinguish a circle; explain each observation separately and provide equivalent nonvisual descriptions.',
                     outcomes: {
                       skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
                     },
                     prerequisites: {
                       skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
                     },
-                    depth: 'Introductory transfer of two independently learned concepts, without quantitative optics or formal geometry.',
-                    sequenceReason: 'Conclude practice by combining previously introduced Skills in one unfamiliar situation.',
+                    depth:
+                      'Introductory transfer of two independently learned concepts, without quantitative optics or formal geometry.',
+                    sequenceReason:
+                      'Conclude practice by combining previously introduced Skills in one unfamiliar situation.',
                   },
                 },
               },
@@ -115,7 +124,8 @@ export const courseStage2 = {
             },
           },
           production: {
-            methodology: 'Revisit the straight-line light model with a new arrangement, then apply light and circle recognition in a combined observation. Use prediction, explanation and corrective feedback.',
+            methodology:
+              'Revisit the straight-line light model with a new arrangement, then apply light and circle recognition in a combined observation. Use prediction, explanation and corrective feedback.',
             outcomes: {
               skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
             },
@@ -123,7 +133,8 @@ export const courseStage2 = {
               skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
             },
             depth: 'Qualitative application and reinforcement of the two introductory Skills.',
-            sequenceReason: 'Follow the initial light and circle activities with practice at greater contextual variety, without adding new prerequisite Skills.',
+            sequenceReason:
+              'Follow the initial light and circle activities with practice at greater contextual variety, without adding new prerequisite Skills.',
           },
         },
       },
