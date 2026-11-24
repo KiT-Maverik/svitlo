@@ -73,6 +73,6 @@ test('Flashcard nested Side Scene obeys the same reviewed handoff', () => {
   const withoutSpec = bank({ ...scene(), production: {} });
   assert.throws(() => materializeBankSceneDrafts(withoutSpec, 'uk', evidence({})), /reviewed production.specification/);
   const repeated = bank(scene());
-  repeated.questions.selectOneAnswer.choose.config.content.question.items.other = scene();
+  (repeated.questions.selectOneAnswer.choose.config.content.question.items as Record<string, ReturnType<typeof scene>>).other = scene();
   assert.throws(() => materializeBankSceneDrafts(repeated, 'uk', evidence({})), /occurs more than once/);
 });
