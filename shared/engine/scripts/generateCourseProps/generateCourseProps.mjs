@@ -77,7 +77,7 @@ export function discoverCourseSources(directory, mode = 'production') {
   return sources.sort();
 }
 
-async function render(pkg, mode) {
+export async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
   const directory = path.join(pkg, 'data/courses');

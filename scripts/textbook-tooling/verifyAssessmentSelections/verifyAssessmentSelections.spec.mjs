@@ -210,3 +210,23 @@ test('sparse source-language Section labels cannot bypass production checks with
     });
     assert.throws(() => verifyAssessmentSelections(root), /Unresolved assessment Section draft label/);
   }));
+
+test('Course publication rejects missing standalone Lessons and unresolved override banks', () =>
+  withFixture((root, { lesson }) => {
+    const courseId = '00000000-0000-4000-8000-000000000007';
+    const filename = 'data/courses/' + courseId + '/base.json';
+    const node = { type: 'lesson', id: lessonId };
+    const course = {
+      id: courseId, type: 'course', params: { languages: ['en', 'uk'] },
+      content: { items: { lesson: node }, order: ['lesson'] },
+    };
+    put(root, filename, course);
+    assert.equal(verifyAssessmentSelections(root), 6);
+    node.id = otherLessonId;
+    put(root, filename, course);
+    assert.throws(() => verifyAssessmentSelections(root), /unpublished Lesson/);
+    node.id = lessonId;
+    node.overrides = { section: [{ ...lesson.section[0], params: { selection: { questionIds: [otherLessonId] } } }] };
+    put(root, filename, course);
+    assert.throws(() => verifyAssessmentSelections(root), /Missing or wrong-kind question/);
+  }));

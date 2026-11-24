@@ -170,8 +170,8 @@ function checkPhysicalPaths(context: BankGitContext, paths: readonly string[]): 
     let current = root;
     for (const part of (context.lessonDirectory + '/' + relative).split('/')) {
       current = path.join(current, part);
-      if (!existsSync(current)) continue;
-      if (lstatSync(current).isSymbolicLink()) {
+      const stat = lstatSync(current, { throwIfNoEntry: false });
+      if (stat?.isSymbolicLink()) {
         throw new Error('Symlink in bank source path: ' + relative);
       }
     }
