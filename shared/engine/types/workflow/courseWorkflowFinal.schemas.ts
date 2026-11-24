@@ -3,6 +3,7 @@ import type { Lesson_Configurator } from '../../configurators/lessons/defineLess
 import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
 import { chapter_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
+import { assessment_Config_Schema } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
 import {
   lesson_Config_Schema,
   lessonConfigurator_Schema,
@@ -114,17 +115,33 @@ const episodeSlot = z.strictObject({
   config: z.strictObject({ type: z.literal('episode') }),
   production: z.strictObject({ focus: rationale, purpose: rationale }),
 });
+/** Stage 2 reserves only the Assessment's placement, source-language title,
+ * educational purpose and upstream Lesson placements/UUIDs. Its own Quiz
+ * and Questions are not fabricated by Course materialization.
+ */
+const lessonPlacementPath = z.string().regex(/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/);
+const assessmentSlot = z.strictObject({
+  config: assessment_Config_Schema.pick({ type: true, locale: true }),
+  production: z.strictObject({
+    purpose: rationale,
+    lessonDependencies: z.array(z.union([lessonPlacementPath, uid])).nonempty().refine(
+      values => new Set(values).size === values.length,
+      'Assessment Lesson dependencies must be unique',
+    ),
+  }),
+});
+
 const chapter = z.strictObject({
   config: chapter_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
     params: chapter_Config_Schema.shape.params.partial().optional(),
-    content: ordered(z.union([newLesson, existingLesson, episodeSlot])),
+    content: ordered(z.union([newLesson, existingLesson, episodeSlot, assessmentSlot])),
   }),
   production: unitProduction,
 });
 const module_Schema = z.strictObject({
   config: module_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
     params: unitParams.optional(),
-    content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])),
+    content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
   }),
   production: unitProduction,
 });
@@ -138,7 +155,7 @@ export const courseWorkflowStage3_Schema = z.strictObject({
       .extend({ languages: z.never().optional(), scenarioMode: z.never().optional() })
       .optional(),
     locale: course_Config_Schema.shape.locale.partial().optional(),
-    content: ordered(z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot])),
+    content: ordered(z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
   }),
   production: z.strictObject({
     languages: workflowLanguages_Schema,
