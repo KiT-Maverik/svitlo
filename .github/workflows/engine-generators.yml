@@ -112,6 +112,8 @@ jobs:
             shared/engine/generators/materializers/chapter/*.spec.mjs \
             shared/engine/generators/materializers/lesson/*.spec.mjs \
             shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
+            shared/engine/.test-build/generators/materializers/scene/*.spec.js \
+            scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs \
             shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
