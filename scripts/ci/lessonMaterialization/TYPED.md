@@ -1,16 +1,13 @@
-# Trusted typed Lesson Stage 6.1 (PR #794)
+# Trusted typed Lesson Stage 6.1
 
-This is the **only** Lesson Stage 6.1 PR-command materializer. Legacy
-YAML-only Lesson Stage 6 jobs and their converters were removed in #797.
-The trusted workflow/scripts must land on the default branch before GitHub
-issue comments can invoke them. A Draft integration PR with passing lightweight
+This is the **only** Lesson Stage 6.1 PR-command materializer. Verify the trusted workflow/scripts on the default branch before invoking them. A Draft integration PR with passing lightweight
 CI is not deployment or operational validation.
 
 ## Before authorization
 
 The existing Lesson-owned Draft PR must declare the canonical Lesson identity,
 UUID bucket, textbook and source path under
-content/<book>/data/lessons/<bucket>/<uuid>/index.ts. The Lesson's actual
+content/<book>/data/lessons/<bucket>/<uuid>/draft.ts. The Lesson's actual
 source must be the one progressively reviewed Stage 2 object satisfying
 LessonWorkflowMaterializerInput, an alias of LessonWorkflowStage2. Its ten-stage
 PR checklist must have Stages 1–5 completed and Stage 6 pending with all
@@ -29,7 +26,7 @@ attestation as a comment on the **same Lesson PR**:
 <!-- svitlo-lesson-review:v1 -->
 Stage: 3
 Source commit: <full 40-character Git commit SHA>
-Source blob: <full 40-character Stage 2 index.ts Git blob SHA>
+Source blob: <full 40-character Stage 2 draft.ts Git blob SHA>
 Verdict: accepted
 Reviewer context: content-independent-review
 Author context: original-authoring-chat
@@ -69,7 +66,7 @@ The typed-analyze job checks out a pinned Lesson commit as **data only**.
 It installs dependencies and builds only the trusted default-branch Engine.
 No scripts, build hooks, imports, eval or Code execution from the candidate
 Lesson tree are permitted. A real TypeScript semantic check and a
-conservative AST parser process the exact reviewed index.ts before calling
+conservative AST parser process the exact reviewed draft.ts before calling
 the trusted Engine materializeLessonStage6 emitter.
 
 The static parser accepts an exported Stage 2 object using a satisfies
@@ -95,17 +92,17 @@ specifications, with visible resource/Scene/locale/assessment blockers.
 It never manufactures new Section or bank IDs. The analyzer checks a bounded
 and deterministic output inventory, ordinary TS syntax and source path/
 no-clobber invariants. The SHA256-attested manifest contains the complete
-new file bytes plus one intentional root index.ts replacement. In one Git
-tree transaction the exact original Stage 2 index.ts is archived as
-workflow.stage2.ts and the newly materialized index.ts replaces it.
+new file bytes plus the exact reviewed draft deletion. In one Git tree
+transaction the Stage 2 draft.ts is consumed and the newly materialized
+index.ts and children are created. The immutable reviewed Git commit and
+blob retain the exact original bytes.
 
-Only the matching Lesson UUID tree is writable. An existing archive, any
-other existing output destination, a symlink, stale source, changed reviewer
+Only the matching Lesson UUID tree is writable. Any existing output destination, a symlink, stale source, changed reviewer
 attestation, advanced PR branch or modified artifact blocks the transaction;
 there is no destructive re-generation. The typed-publish job has no npm
 installation, TypeScript loader or Engine import. With a write-scoped token it
 rechecks actor authorization, immutable HEAD, source/review SHA, unchanged
-parent ancestry, archived bytes, path allowlist and every file hash. It then
+parent ancestry, exact reviewed draft bytes, path allowlist and every file hash. It then
 uses the Git Data API to create one commit based on the approved HEAD,
 updating the source branch with force=false.
 

@@ -140,7 +140,7 @@ export function readTypedBankStage3(content, bank) {
 export function typecheckTypedBankStage3(content, trustedRoot) {
   const directory = mkdtempSync(path.join(trustedRoot, '.bank-typed-stage3-'));
   try {
-    const source = path.join(directory, 'index.ts');
+    const source = path.join(directory, 'draft.ts');
     writeFileSync(source, content, 'utf8');
     const program = ts.createProgram([source], {
       target: ts.ScriptTarget.ES2022,

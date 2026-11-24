@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
 import { projectTextbookMedia, assertMediaPublicationReady } from '@svitlo/engine/build';
 import { renderCourseFiles } from '../../generators/courses/publishCourseData.mjs';
@@ -54,10 +55,8 @@ export function readCurrent(root, prefix = '', files = new Map()) {
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 
-/** Discover both legacy one-file Courses and canonical Stage 5 UUID-bucketed Course roots.
- * Unmaterialized editorial course.yaml files are never loaded as executable content.
- */
-export function discoverCourseSources(directory) {
+/** Discover one-file Courses and materialized UUID-bucketed Course roots. */
+export function discoverCourseSources(directory, mode = 'production') {
   if (!fs.existsSync(directory)) return [];
   assertSafeDirectoryPath(directory);
   const sources = [];
@@ -71,26 +70,21 @@ export function discoverCourseSources(directory) {
     assertSafeDirectoryPath(bucket);
     for (const candidate of fs.readdirSync(bucket, { withFileTypes: true })) {
       if (!candidate.isDirectory() || !UUID.test(candidate.name) || candidate.name.at(-1) !== entry.name) continue;
-      const source = path.join(bucket, candidate.name, 'index.ts');
-      if (fs.existsSync(source)) {
-        assertSafeDirectoryPath(path.dirname(source));
-        if (fs.lstatSync(source).isSymbolicLink()) throw new Error('Symlinked Course entrypoint: ' + source);
-        if (!fs.statSync(source).isFile()) throw new Error('Course entrypoint is not a file: ' + source);
-        sources.push(source);
-      }
+      const { source } = resolveMaterializedEntrypoint(path.join(bucket, candidate.name), { mode });
+      if (source) sources.push(source);
     }
   }
   return sources.sort();
 }
 
-async function render(pkg, mode) {
+export async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
   const directory = path.join(pkg, 'data/courses');
   const files = new Map();
   if (!fs.existsSync(directory)) return files;
   const ids = new Set();
-  for (const source of discoverCourseSources(directory)) {
+  for (const source of discoverCourseSources(directory, mode)) {
     const { configurators, moduleExports } = await loadAuthoredConfigurators(source, 'course', {
       includeExports: true,
     });

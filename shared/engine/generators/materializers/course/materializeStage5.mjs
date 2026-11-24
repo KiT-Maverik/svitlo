@@ -52,10 +52,9 @@ const canonical = value => {
 const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
 
 /**
- * Plan reviewed Course Stage 5 authored sources. The Course source index.ts is
- * replaced only by the authorized atomic Git writer, which copies its exact
- * reviewed bytes to workflow.stage3.ts in the same commit before installing
- * the new index.ts. Planning never overwrites a file.
+ * Plan reviewed Course Stage 5 authored sources. The atomic writer consumes
+ * draft.ts and creates index.ts; exact reviewed bytes remain in Git history.
+ * Planning never overwrites a file.
  *
  * The trusted caller must pin the evaluated TS input to the exact Git blob,
  * verify independent review/authorization, and resolve each imported Lesson
@@ -117,7 +116,8 @@ export function materializeCourseStage5(input, options = {}) {
   if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
     throw new Error('Stage 5 requires canonical content/<book> textbook root');
   const root = textbookRoot + '/data/courses/' + rootId.at(-1) + '/' + rootId;
-  const expectedSource = root + '/index.ts';
+  const expectedSource = root + '/draft.ts';
+  const materializedPath = root + '/index.ts';
   const review = options.review;
   if (
     !record(review) ||
@@ -378,10 +378,10 @@ export function materializeCourseStage5(input, options = {}) {
       file.path.startsWith(textbookRoot + '/data/lessons/') ? file : { ...file, path: root + '/' + file.path },
     ),
   ];
-  const rootIndex = files.find(file => file.path === expectedSource);
+  const rootIndex = files.find(file => file.path === materializedPath);
   if (!rootIndex || rootIndex.kind !== 'typescript')
     throw new Error('Course Stage 5 failed to emit the canonical root source');
-  // The legacy Course publisher discovers UUID-root index.ts automatically.
+  // The Course publisher discovers UUID-root index.ts automatically.
   // Persist a fail-closed marker IN the generated source; returning a transient
   // {publishable:false} flag alone cannot stop an unrelated publication job.
   rootIndex.content =
@@ -412,12 +412,12 @@ export function materializeCourseStage5(input, options = {}) {
         renderPatchTree() +
         ';\n',
     });
-    const indexFile = files.find(file => file.path === expectedSource);
+    const indexFile = files.find(file => file.path === materializedPath);
     if (!indexFile) throw new Error('Course root module not generated');
     indexFile.content += "\nexport { authoredCourseOverrides } from './authoredCourseOverrides';\n";
   }
-  const sourceArchivePath = root + '/workflow.stage3.ts';
-  const paths = new Set([sourceArchivePath]);
+
+  const paths = new Set([expectedSource]);
   for (const file of files) {
     if (
       !record(file) ||
@@ -453,7 +453,7 @@ export function materializeCourseStage5(input, options = {}) {
   });
   return Object.freeze({
     sourcePath: expectedSource,
-    sourceArchivePath,
+    materializedPath,
     sourceBlobSha: review.sourceBlobSha,
     reviewCommitSha: review.reviewCommitSha,
     courseId: rootId,

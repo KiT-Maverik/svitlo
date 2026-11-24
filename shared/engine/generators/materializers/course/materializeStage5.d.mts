@@ -71,7 +71,7 @@ export type CourseStage5Options = {
 };
 export type CourseStage5Plan = {
   sourcePath: string;
-  sourceArchivePath: string;
+  materializedPath: string;
   sourceBlobSha: string;
   reviewCommitSha: string;
   courseId: string;

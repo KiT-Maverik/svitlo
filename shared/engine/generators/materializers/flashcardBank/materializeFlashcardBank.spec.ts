@@ -50,7 +50,7 @@ const snapshot = (source?: string): BankSourceSnapshot => ({
     ...(source === undefined
       ? {}
       : {
-          'flashcards/index.ts': { kind: 'file' as const, content: source },
+          'flashcards/draft.ts': { kind: 'file' as const, content: source },
         }),
   },
 });
@@ -76,7 +76,7 @@ const finalAuthorization = (input: unknown = completed()) => ({
     content: editor,
     blobSha: gitBlobSha(editor),
     reviewedSourceBlobSha: gitBlobSha(editor),
-    reviewCommitSha: sha('f'),
+    reviewCommitSha: sha('e'),
     reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
@@ -151,7 +151,7 @@ test('Flashcard Stage 1 produces one editorial source, no fake Card or Section',
   assert.equal(result.publishable, false);
   assert.deepEqual(
     result.files.map(file => file.path),
-    ['flashcards/index.ts'],
+    ['flashcards/draft.ts'],
   );
   assert.match(result.files[0].content, /satisfies FlashcardBankWorkflowStage1/);
   assert.doesNotMatch(result.files[0].content, /defineFlashcard|defineFlashcardsSection/);
@@ -199,7 +199,9 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert(names.includes('flashcards/index.ts'));
   assert(names.includes('flashcards/alpha/content/front/index.ts'));
   assert(names.includes('flashcards/alpha/content/back/index.ts'));
-  assert.equal(result.files.find(file => file.path === 'flashcards.reviewed-stage3.ts.txt')?.content, editor);
+  assert.equal(result.transition.reviewedDraftPath, 'flashcards/draft.ts');
+  assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
+  assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const main = result.files.find(file => file.path === 'flashcards/index.ts')?.content ?? '';
   assert(main.indexOf('"beta"') < main.indexOf('"alpha"'), 'preserve the complete reviewed order');
   const alpha = result.files.find(file => file.path === 'flashcards/alpha.ts')?.content ?? '';

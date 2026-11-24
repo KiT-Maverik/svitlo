@@ -43,13 +43,19 @@ function fixture(run) {
     );
     put('content/math/data/lessons/c/' + A + '/methodology.md', '# Methodology');
     put(
-      'content/math/data/lessons/1/' + B + '/lesson.yaml',
-      'config:\n  id: ' +
-        B +
-        '\n  slug: editorial\n  skills: [' +
-        S1 +
-        ']\n' +
-        '  locale:\n    title:\n      en: Editorial draft\n  params:\n    languages: [en]\n',
+      'content/math/data/lessons/1/' + B + '/draft.ts',
+      'export const lessonStage1 = ' +
+        JSON.stringify({
+          config: {
+            id: B,
+            type: 'lesson',
+            slug: 'editorial',
+            skills: [S1],
+            locale: { title: { en: 'Editorial draft' } },
+          },
+          production: { languages: { document: 'en', planned: ['en'] } },
+        }) +
+        ' as const;',
     );
     return run({ root, put });
   } finally {
@@ -59,7 +65,7 @@ function fixture(run) {
 const q = comment => parseComment(comment);
 const one = { by: 'skill', skills: [S1], match: 'any', package: null };
 
-test('finds modern Skill modules, implemented Lessons and editorial YAML drafts without executing source', () =>
+test('finds modern Skill modules, implemented Lessons and editorial TypeScript drafts without executing source', () =>
   fixture(({ root }) => {
     const index = buildLessonIndex(root);
     assert.equal(index.complete, true, JSON.stringify(index.diagnostics));
@@ -72,7 +78,7 @@ test('finds modern Skill modules, implemented Lessons and editorial YAML drafts 
     assert.deepEqual(index.candidates[0].languages, ['en', 'uk']);
     assert.equal(index.candidates[0].methodology?.endsWith('methodology.md'), true);
     assert.deepEqual(index.candidates[1].skills, [S1]);
-    assert.equal(index.candidates[1].draftSource?.endsWith('lesson.yaml'), true);
+    assert.equal(index.candidates[1].draftSource?.endsWith('draft.ts'), true);
   }));
 
 test('multi-Skill any/all exact coverage, deduplication and stable sorting', () =>
@@ -98,9 +104,9 @@ test('multi-Skill any/all exact coverage, deduplication and stable sorting', () 
     );
   }));
 
-test('unknown languages remain unknown; overlapping typed and draft files emit one candidate with divergence diagnostics', () =>
+test('unknown languages remain unknown; overlapping typed and draft files fail closed', () =>
   fixture(({ root, put }) => {
-    put('content/math/data/lessons/c/' + A + '/lesson.yaml', 'config:\n  id: ' + A + '\n  skills: [' + S1 + ']\n');
+    put('content/math/data/lessons/c/' + A + '/draft.ts', 'export const draft = {};');
     put(
       'content/math/data/lessons/c/' + A + '/index.ts',
       "import { one } from '../../../skills/one';\n" +
@@ -111,11 +117,11 @@ test('unknown languages remain unknown; overlapping typed and draft files emit o
         "'], params: { languages: externalLanguages } });",
     );
     const result = searchLessons(root, one);
-    assert.equal(result.matches.length, 2);
+    assert.equal(result.matches.length, 1);
     assert.equal(result.matches[0].languageStatus, 'unknown');
-    assert.ok(result.matches[0].draftSource);
+    assert.equal(result.matches[0].lessonId, B);
     assert.equal(result.complete, false);
-    assert.match(result.diagnostics[0].reason, /disagree/);
+    assert.match(result.diagnostics[0].reason, /Ambiguous materialized\/editorial/);
   }));
 
 test('does not assert exhaustive no-match when unsupported source makes index incomplete', () =>

@@ -35,31 +35,31 @@ test('deduplicates touched UUID roots and ignores assets/unrelated drafts', () =
 test('final readiness refuses incomplete Lesson media, bank sidecars and missing sources', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-production-assets-'));
   try {
-    file(root, lesson + '/lesson.yaml', 'config:\n  type: lesson\n');
-    let findings = verifyChangedEntities(root, [lesson + '/lesson.yaml']);
+    file(root, lesson + '/draft.ts', 'config:\n  type: lesson\n');
+    let findings = verifyChangedEntities(root, [lesson + '/draft.ts']);
     assert(findings.some(item => item.includes('missing authored Lesson TypeScript entrypoint')));
-    assert(findings.some(item => item.includes('unfinished temporary authoring YAML')));
+    assert(findings.some(item => item.includes('unfinished editorial draft')));
     file(root, lesson + '/index.ts', 'export const authored = true;\n');
     file(
       root,
       lesson + '/flashcards/index.ts',
       '// TODO(asset): incomplete flashcard\n' + 'const src = "00000000-0000-0000-0000-000000000000.webp";\n',
     );
-    file(root, lesson + '/questions.yaml', 'items: {}\n');
+    file(root, lesson + '/questions/draft.ts', 'items: {}\n');
     findings = verifyChangedEntities(root, [lesson + '/flashcards/index.ts']);
     assert(findings.some(item => item.includes('flashcards/index.ts:1')));
     assert(findings.some(item => item.includes('flashcards/index.ts:2')));
-    assert(!findings.some(item => item.includes('questions.yaml')), 'sibling bank may still be a Draft');
-    assert(!findings.some(item => item.includes('lesson.yaml')), 'parent Lesson may still be a Draft');
+    assert(!findings.some(item => item.includes('questions/draft.ts')), 'sibling bank may still be a Draft');
+    assert(!findings.some(item => item.includes('draft.ts')), 'parent Lesson may still be a Draft');
     findings = verifyChangedEntities(root, [lesson + '/index.ts']);
     assert(
-      findings.some(item => item.includes('questions.yaml')),
+      findings.some(item => item.includes('questions/draft.ts')),
       'full Lesson release requires all bank sidecars resolved',
     );
-    assert(findings.some(item => item.includes('lesson.yaml')));
+    assert(findings.some(item => item.includes('draft.ts')));
     fs.rmSync(path.join(root, lesson, 'flashcards'), { recursive: true });
-    fs.rmSync(path.join(root, lesson, 'lesson.yaml'));
-    fs.rmSync(path.join(root, lesson, 'questions.yaml'));
+    fs.rmSync(path.join(root, lesson, 'draft.ts'));
+    fs.rmSync(path.join(root, lesson, 'questions/draft.ts'));
     assert.deepEqual(verifyChangedEntities(root, [lesson + '/index.ts']), []);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -69,7 +69,7 @@ test('final readiness refuses incomplete Lesson media, bank sidecars and missing
 test('bank child PR checks its own generated resources and changed Section modules', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-bank-readiness-'));
   try {
-    file(root, lesson + '/lesson.yaml', 'config: pending\\n');
+    file(root, lesson + '/draft.ts', 'config: pending\\n');
     file(root, lesson + '/sections/quiz/index.ts', '// TODO(asset): unresolved quiz figure\\n');
     file(root, lesson + '/questions/index.ts', 'export const questions = {};\\n');
     file(root, lesson + '/flashcards/index.ts', '// TODO(asset): sibling bank draft\\n');
@@ -84,7 +84,7 @@ test('bank child PR checks its own generated resources and changed Section modul
     assert(
       verifyChangedEntities(root, changed).some(item => item.includes('missing authored questions bank entrypoint')),
     );
-    assert.equal(affectedProductionScopes([lesson + '/lesson.yaml', ...changed])[0].mode, 'whole');
+    assert.equal(affectedProductionScopes([lesson + '/draft.ts', ...changed])[0].mode, 'whole');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

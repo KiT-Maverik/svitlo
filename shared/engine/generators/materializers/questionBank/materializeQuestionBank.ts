@@ -154,7 +154,7 @@ export function materializeQuestionBankDraft(
   }
   const files: BankSourceFile[] = [
     {
-      path: 'questions/index.ts',
+      path: 'questions/draft.ts',
       kind: 'typescript',
       content:
         "import type { QuestionBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
@@ -224,7 +224,7 @@ function renderQuestion(
 
 /**
  * Stage 5: every approved Question, including ones not selected for any Quiz.
- * The original Stage 3 index remains byte-for-byte in a sibling audit archive.
+ * The exact Stage 3 draft remains recoverable from the reviewed Git commit and blob.
  * #775's trusted writer must apply the complete returned plan atomically.
  */
 export function materializeQuestionBank(
@@ -326,14 +326,9 @@ export function materializeQuestionBank(
       JSON.stringify([source.document]) +
       ' as const;\n',
   });
-  files.push({
-    path: 'questions.reviewed-stage3.ts.txt',
-    kind: 'archive',
-    content: authorization.reviewed.content,
-  });
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',
-    archivePath: 'questions.reviewed-stage3.ts.txt',
+    draftPath: 'questions/draft.ts',
     reviewed: authorization.reviewed,
   });
   // Only an external authenticated Git writer may commit this atomic transition.
