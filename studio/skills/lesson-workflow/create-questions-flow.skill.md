@@ -74,8 +74,7 @@ The file is an **incomplete bank-owned authoring object**, not the final publish
 Question Configurator index. It must NOT be imported by the assessment publisher
 or mistaken for a bank. Stage 4 reviews and directly corrects the Stage 3
 source in the same Questions PR, retaining baseline/final SHA evidence in the
-PR only. Stage 5 uses `QuestionBankWorkflowStage3`, an alias to
-the final Stage 3 type, and an explicit verified source-preserving transition to
+PR only. Stage 5 uses the final `QuestionBankWorkflowStage3` type inferred from the canonical Zod schema, and an explicit verified source-preserving transition to
 the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, explicit authorized invocation and immutable source SHA. Independent review remains editorial; no PR prose or verdict is parsed.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
