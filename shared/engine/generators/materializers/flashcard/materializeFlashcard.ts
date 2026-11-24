@@ -237,7 +237,7 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
   const blockers: string[] = [];
   if (node.production?.pending) blockers.push('Review Flashcard Bank content and relationships before publication.');
   const remaining = planned.filter(code => code !== languages);
-  if (remaining.length)
+  if (remaining.length && !context.ownerLanguagesImport)
     blockers.push('Restore independently reviewed Flashcard languages: ' + remaining.join(', ') + '.');
   files.push({
     path: context.directory + '/' + config.slug + '.ts',

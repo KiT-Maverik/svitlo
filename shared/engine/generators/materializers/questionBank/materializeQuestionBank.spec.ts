@@ -93,7 +93,7 @@ test('Question source imports its Lesson-owned language type and creates no bank
   assert.match(source, /typeof content, Languages>/);
   const root = output.files.find(file => file.path === 'questions/index.ts')?.content ?? '';
   assert.match(root, /export type \{ Languages \} from/);
-  assert(output.files.some(file => file.content.includes('Restore independently reviewed translations')));
+  assert(!output.files.some(file => file.content.includes('Restore independently reviewed translations')));
 });
 
 test('Question Bank Stage 1 creates exactly one type-annotated editable source', () => {

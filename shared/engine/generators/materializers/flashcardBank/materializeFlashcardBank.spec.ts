@@ -144,7 +144,7 @@ test('Flashcard Bank emits no copied language module; cards and Sides bind to Le
   assert.match(card, /typeof parameters.flags/);
   assert.match(card, /, Languages>/);
   assert.match(side, /defineFlashcardSide<typeof items, Languages>/);
-  assert(output.files.some(file => file.content.includes('Restore independently reviewed Flashcard languages')));
+  assert(!output.files.some(file => file.content.includes('Restore independently reviewed Flashcard languages')));
 });
 
 test('Flashcard Stage 1 produces one editorial source, no fake Card or Section', () => {
