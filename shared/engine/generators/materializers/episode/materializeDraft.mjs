@@ -38,12 +38,6 @@ export function materializeEpisodeDraft(input, context) {
     production: {
       focus: production.focus,
       purpose: production.purpose,
-      placement: {
-        courseId: context.courseId,
-        path: directory,
-        orderPath,
-        reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
-      },
       languages: { document, planned },
     },
   };
