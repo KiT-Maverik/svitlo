@@ -1,3 +1,5 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const safe = key =>
@@ -50,7 +52,7 @@ export function materializeEpisodeDraft(input, context) {
         path: handoffPath,
         kind: 'typescript',
         content:
-          '// TODO (BLOCKER): Episode Stage 1 handoff; scenario is not yet authored or reviewed.\n' +
+          renderBlockerTodo('Author and independently review the Episode Stage 1 scenario before materializing the completed Episode; remove this draft blocker only after the approved handoff is consumed.') + '\n' +
           "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
           'export const episodeStage1 = ' +
           JSON.stringify(handoff, null, 2) +
