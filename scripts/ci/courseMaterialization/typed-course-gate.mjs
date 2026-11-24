@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * @fileoverview Opt-in typed Course Stage 5 gate. This is deliberately separate
- * from the deployed YAML command until the owner authorizes its replacement.
+ * @fileoverview Trusted typed Course Stage 5 gate.
  * Authorizes a pinned Stage 3 source + independent Stage 4 GitHub review.
  * No PR-head code is loaded or executed by this gate.
  */
@@ -9,7 +8,7 @@ import fs from 'node:fs';
 import { github, requireActor, safeBranch, report } from './course-gate.mjs';
 
 const UUID = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
-const COURSE_TS = new RegExp('^(content/[a-z][a-z0-9-]*)/data/courses/([0-9a-f])/(' + UUID + ')/index\\.ts$');
+const COURSE_TS = new RegExp('^(content/[a-z][a-z0-9-]*)/data/courses/([0-9a-f])/(' + UUID + ')/draft\\.ts$');
 const SHA = /^[a-f0-9]{40}$/;
 
 export function discoverTypedCourseSource(files) {
@@ -18,7 +17,7 @@ export function discoverTypedCourseSource(files) {
   const seen = new Set();
   for (const file of files) {
     if (typeof file?.filename !== 'string' || typeof file?.status !== 'string') throw Error('Malformed Course PR file');
-    if (!file.filename.includes('/data/courses/') || !file.filename.endsWith('/index.ts')) continue;
+    if (!file.filename.includes('/data/courses/') || !file.filename.endsWith('/draft.ts')) continue;
     const match = file.filename.match(COURSE_TS);
     if (!match || match[2] !== match[3].at(-1)) throw Error('Invalid Course Stage 3 TS path: ' + file.filename);
     if (seen.has(file.filename)) throw Error('Duplicate typed Course source');
@@ -32,12 +31,12 @@ export function discoverTypedCourseSource(files) {
     });
   }
   if (found.length !== 1)
-    throw Error('Exactly one changed canonical Course Stage 3 index.ts required; found ' + found.length);
+    throw Error('Exactly one changed canonical Course Stage 3 draft.ts required; found ' + found.length);
   // A Stage 3 authoring PR is exactly one progressively edited source. Reject
   // unrelated modifications to Lesson dependencies, Engine, or workflow files;
   // those require their independently reviewed source PRs.
   if (files.length !== 1 || files[0].filename !== found[0].sourcePath)
-    throw Error('Typed Course Stage 3 PR must change only its canonical reviewed index.ts');
+    throw Error('Typed Course Stage 3 PR must change only its canonical reviewed draft.ts');
   return found[0];
 }
 
@@ -162,7 +161,7 @@ export function parseTypedMetadata(encoded) {
     !safeBranch(data.branch, process.env.COURSE_DEFAULT_BRANCH || 'develop') ||
     !COURSE_TS.test(data.sourcePath ?? '') ||
     !data.sourcePath.startsWith(data.textbookRoot + '/data/courses/') ||
-    !data.sourcePath.endsWith('/' + data.courseId + '/index.ts')
+    !data.sourcePath.endsWith('/' + data.courseId + '/draft.ts')
   )
     throw Error('Invalid or untrusted typed Course metadata');
   return data;

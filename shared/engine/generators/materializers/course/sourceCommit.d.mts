@@ -18,7 +18,6 @@ export function preflightCourseSourceCommit(
   files: Map<string, string>;
   pending: string[];
   already: boolean;
-  archivePath: string;
 };
 export function commitCourseSourcePlan(
   plan: CourseStage5Plan,
@@ -30,5 +29,4 @@ export function commitCourseSourcePlan(
   changed?: number;
   pending?: string[];
   already: boolean;
-  archivePath?: string;
 };

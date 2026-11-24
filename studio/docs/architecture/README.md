@@ -9,12 +9,12 @@
 - **Planned / proposed:** target behavior; no assumption of a completed runtime contract.
 - **Open:** an architectural decision or implementation mechanism still to be designed.
 
-## Typed-production integration boundary (23 November 2026)
+## Typed-production boundary
 
-- **Course:** One `CourseWorkflowStage1/2/3` TypeScript source, SHA-pinned independent Stage 4 review and trusted Stage 5 source materialization. New Lessons receive minimal UUID-addressed Stage 1 TS handoffs; existing Lessons are imported and contextually patched without rewriting standalone source.
+- **Course:** One `CourseWorkflowStage1/2/3` TypeScript `draft.ts` source, SHA-pinned independent Stage 4 review and trusted Stage 5 source materialization. New Lessons receive minimal UUID-addressed Stage 1 `draft.ts` handoffs; mandatory Stage 8 human QA follows translation review and verifies the integrated Course; existing Lessons are imported and contextually patched without rewriting standalone source.
 - **Lesson:** Typed Stage 1/2 source followed by independent Stages 3–5 review and trusted Stage 6.1 Section/Block/Scene source handoff. Resource completion (6.2), executable Scenes (6.3), independent banks and locales are separate gates.
 - **Questions/Flashcards:** Separate seven-stage typed bank sources and reviewed Stage 5 Git transactions. The full bank is independent of optional selected Quiz/Flashcards Sections; only genuine reviewed Configurator IDs may be published.
-- **Source vs publication:** 43 concrete type-specific source renderers and root orchestrators are integrated in #775. The legacy YAML-only builders/editor-schema infrastructure was retired from the integration branch. Existing historical `lesson.yaml` files remain source provenance, not deployed authoring inputs.
+- **Source vs publication:** Concrete type-specific source renderers and root orchestrators consume reviewed typed editorial sources, distinct from Props publication. Existing historical `lesson.yaml` files remain source provenance, not deployed authoring inputs.
 - **Deployment boundary:** Typed trusted GitHub workflows must be present on default `develop` and exercised on safe reviewed PRs before claiming live availability. A successful integration PR test does not establish deployed command functionality. Preserve SHA/reviewer proof, branch-lease, no-clobber, path safety and fail-closed production guards.
 
 ## Required reading by responsibility

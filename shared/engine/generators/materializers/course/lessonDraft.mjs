@@ -11,7 +11,7 @@ const assessmentKeys = [
 /**
  * Course Stage 5 → independent Lesson Stage 1 source, not a Lesson Configurator.
  * The reviewed Course→Lesson handoff contract and Lesson Stage 1 source type
- * are imported from the canonical Engine build-only exports now present in #786.
+ * are imported from the canonical Engine build-only exports.
  * No duplicate editorial stage type is introduced.
  *
  * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage3NewLesson} node
@@ -101,7 +101,7 @@ export function materializeLessonDraft(node, context) {
     context.lessonId.at(-1).toLowerCase() +
     '/' +
     context.lessonId.toLowerCase() +
-    '/index.ts';
+    '/draft.ts';
   return {
     lessonId: context.lessonId,
     files: [

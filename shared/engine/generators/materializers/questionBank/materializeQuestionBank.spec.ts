@@ -58,7 +58,7 @@ const snapshot = (contents?: string): BankSourceSnapshot => ({
     questions: { kind: 'directory' },
     ...(contents !== undefined
       ? {
-          'questions/index.ts': { kind: 'file' as const, content: contents },
+          'questions/draft.ts': { kind: 'file' as const, content: contents },
         }
       : {}),
   },
@@ -113,7 +113,7 @@ const finalAuth = (input: unknown = completeBank()) => ({
     content: editorial,
     blobSha: gitBlobSha(editorial),
     reviewedSourceBlobSha: gitBlobSha(editorial),
-    reviewCommitSha: sha('e'),
+    reviewCommitSha: sha('c'),
     reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   snapshot: snapshot(editorial),
@@ -133,7 +133,7 @@ test('Question Bank Stage 1 creates exactly one type-annotated editable source',
   assert.equal(result.publishable, false);
   assert.deepEqual(
     result.files.map(file => file.path),
-    ['questions/index.ts'],
+    ['questions/draft.ts'],
   );
   assert.match(result.files[0].content, /satisfies QuestionBankWorkflowStage1/);
   assert.match(result.files[0].content, /ownerLessonId/);
@@ -170,7 +170,9 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
   const result = materializeQuestionBank(completeBank() as never, finalAuth());
   assert.equal(result.publishable, false);
   assert(result.transition);
-  assert.equal(result.files.find(file => file.path === 'questions.reviewed-stage3.ts.txt')?.content, editorial);
+  assert.equal(result.transition.reviewedDraftPath, 'questions/draft.ts');
+  assert.equal(result.transition.materializedPath, 'questions/index.ts');
+  assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const paths = result.files.map(file => file.path);
   assert(paths.includes('questions/index.ts'));
   assert(paths.includes('questions/selectOneAnswer/index.ts'));

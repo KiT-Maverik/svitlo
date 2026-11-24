@@ -5,13 +5,13 @@
  * Independent review attestations belong to this existing Lesson PR.
  */
 import fs from 'node:fs';
+import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { github, requireActor, report, safeBranch } from '../courseMaterialization/course-gate.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const sha = /^[0-9a-f]{40}$/;
 const marker = '<!-- svitlo-create-lesson-flow:v1 -->';
 const courseMarker = '<!-- svitlo-course-lesson:v1 -->';
-const reviewMarker = '<!-- svitlo-lesson-review:v1 -->';
 
 function single(body, regex, name) {
   const matches = [...body.matchAll(regex)];
@@ -97,12 +97,12 @@ export function parseTypedIdentity(body) {
   if (!uuid.test(id || '') || !/^content\/[a-z][a-z0-9-]*$/.test(pkg || '') || !/^[a-z][A-Za-z0-9]*$/.test(slug || ''))
     throw Error('Invalid Lesson UUID / textbook / slug');
   const folder = pkg + '/data/lessons/' + id.at(-1) + '/' + id;
-  const source = folder + '/index.ts';
+  const source = folder + '/draft.ts';
   const recorded = single(body, /^- (?:Source path|Canonical source):\s*(.+)$/gm, 'canonical typed source')
     .replaceAll(String.fromCharCode(96), '')
     .split(/\s+\(/)[0]
     .trim();
-  if (recorded !== source) throw Error('Lesson source path is not the canonical Stage 2 index.ts');
+  if (recorded !== source) throw Error('Lesson source path is not the canonical Stage 2 draft.ts');
   const count = body.split(courseMarker).length - 1;
   if (count > 1) throw Error('Duplicate Course Lesson marker');
   let parent = null;
@@ -137,64 +137,22 @@ export function parseTypedTrigger(event, type, actor) {
   return { number, actor };
 }
 
-/** Accepted review attestations must be written by authorized collaborators.
- * GitHub cannot verify that two external AI chat contexts were independent:
- * that assertion must be audited by the owner before authorizing the command.
- */
-export function parseReviewEvidence(comments) {
-  const entries = [];
-  for (const comment of comments) {
-    if (typeof comment?.body !== 'string' || !comment.body.includes(reviewMarker)) continue;
-    const body = comment.body;
-    if (body.split(reviewMarker).length !== 2) throw Error('Duplicated review marker');
-    const stage = Number(single(body, /^Stage:\s*([345])\s*$/gm, 'review stage'));
-    const commit = single(body, /^Source commit:\s*([a-f0-9]{40})\s*$/gm, 'review commit');
-    const blob = single(body, /^Source blob:\s*([a-f0-9]{40})\s*$/gm, 'review blob');
-    const verdict = single(body, /^Verdict:\s*(accepted)\s*$/gm, 'review verdict');
-    const reviewerContext = single(body, /^Reviewer context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'reviewer context');
-    const authorContext =
-      stage === 3 ? single(body, /^Author context:\s*([A-Za-z0-9._/-]+)\s*$/gm, 'author context') : null;
-    if (
-      !sha.test(commit) ||
-      !sha.test(blob) ||
-      verdict !== 'accepted' ||
-      !/^[A-Za-z0-9-]+$/.test(comment.user?.login || '') ||
-      (stage === 3 && reviewerContext === authorContext)
-    )
-      throw Error('Invalid source-pinned review evidence or independence declaration');
-    entries.push({ stage, commit, blob, reviewerContext, actor: comment.user.login, commentId: comment.id });
-  }
-  if (entries.length !== 3 || [3, 4, 5].some(stage => entries.filter(item => item.stage === stage).length !== 1))
-    throw Error('Three unique accepted Stage 3/4/5 reviews are required');
-  return [3, 4, 5].map(stage => entries.find(item => item.stage === stage));
-}
-
-async function reviewsFor(number, source, head, sourceBlob) {
-  const comments = [];
-  for (let page = 1; page <= 10; page++) {
-    const batch = await github('issues/' + number + '/comments?per_page=100&page=' + page);
-    if (!Array.isArray(batch)) throw Error('Unable to read review comments');
-    comments.push(...batch);
-    if (batch.length < 100) break;
-    if (page === 10) throw Error('Review comment count exceeds safe bound');
-  }
-  const evidence = parseReviewEvidence(comments);
-  for (let i = 0; i < evidence.length; i++) {
-    const item = evidence[i];
-    await requireActor(item.actor);
-    const entry = await github(
-      'contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + item.commit,
-    );
-    if (entry?.type !== 'file' || entry.sha !== item.blob)
-      throw Error('Stage ' + item.stage + ' evidence does not match reviewed source');
-    if (i) {
-      const comparison = await github('compare/' + evidence[i - 1].commit + '...' + item.commit);
-      if (!['ahead', 'identical'].includes(comparison?.status)) throw Error('Review commits are not in ancestry order');
-    }
-  }
-  if (evidence[2].commit !== head || evidence[2].blob !== sourceBlob)
-    throw Error('Latest Stage 5 review is stale relative to the PR head');
-  return evidence;
+async function reviewsFor(body, source, head, sourceBlob) {
+  return verifyReviewEvidence(body, {
+    stages: [3, 4, 5],
+    head,
+    blob: sourceBlob,
+    readBlob: async commit => {
+      const entry = await github(
+        'contents/' + source.split('/').map(encodeURIComponent).join('/') + '?ref=' + commit,
+      );
+      return entry?.type === 'file' ? entry.sha : null;
+    },
+    isAncestor: async (from, to) => {
+      const comparison = await github('compare/' + from + '...' + to);
+      return ['ahead', 'identical'].includes(comparison?.status);
+    },
+  });
 }
 
 async function courseProvenance(pr, identity, repo) {
@@ -263,15 +221,16 @@ export async function inspectTyped(number, expectedHead) {
     source.size < 1 ||
     source.size > 4 * 1024 * 1024
   )
-    throw Error('Reviewed Stage 2 Lesson index.ts missing or oversized');
-  const reviews = await reviewsFor(number, identity.source, pr.head.sha, source.sha);
+    throw Error('Reviewed Stage 2 Lesson draft.ts missing or oversized');
+  const reviews = await reviewsFor(pr.body, identity.source, pr.head.sha, source.sha);
   const again = await github('pulls/' + number);
   if (
     again?.head?.sha !== pr.head.sha ||
     again.head.ref !== pr.head.ref ||
     again.base?.ref !== pr.base?.ref ||
     !again.draft ||
-    again.state !== 'open'
+    again.state !== 'open' ||
+    again.body !== pr.body
   )
     throw Error('Lesson PR changed during source/review discovery');
   return {
@@ -299,8 +258,7 @@ export function typedPath(filename, identity) {
   )
     return false;
   const relative = filename.slice(identity.folder.length + 1);
-  if (['index.ts', 'workflow.stage2.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative))
-    return true;
+  if (['index.ts', 'draft.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative)) return true;
   return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(
     relative,
   );

@@ -138,7 +138,7 @@ test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck
   const source = materializeCourseStage5(input, {
     textbookRoot: 'content/playground',
     review: {
-      sourcePath: root + '/index.ts',
+      sourcePath: root + '/draft.ts',
       sourceBlobSha: '1'.repeat(40),
       reviewCommitSha: '2'.repeat(40),
       reviewer: 'Course Methodologist',

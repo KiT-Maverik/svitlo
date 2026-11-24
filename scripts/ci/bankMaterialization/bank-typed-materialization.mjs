@@ -41,7 +41,7 @@ function metadata() {
     meta.reviewCommitSha !== meta.head ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor || '') ||
     !/^[A-Za-z0-9-]+$/.test(meta.reviewer || '') ||
-    meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/index.ts' ||
+    meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/draft.ts' ||
     meta.identity?.bank !== meta.bank ||
     typeof meta.branch !== 'string'
   ) {
@@ -157,22 +157,31 @@ function authorizations(meta, input, root, blocks) {
   }
   if (questions.kind === 'completed') {
     const expected = lessonDirectory + '/questions/index.ts';
-    const archive = lessonDirectory + '/questions.reviewed-stage3.ts.txt';
+    const draft = lessonDirectory + '/questions/draft.ts';
     if (
       questions.integrated !== true ||
       questions.bankPath !== expected ||
       !fs.existsSync(path.join(root, expected)) ||
-      !fs.existsSync(path.join(root, archive)) ||
+      fs.existsSync(path.join(root, draft)) ||
       !fs.existsSync(path.join(root, lessonDirectory, 'questionsLanguages.ts'))
     ) {
       throw Error('Questions must have completed reviewed typed source and be integrated');
     }
     assertAncestor(root, questions.reviewSha, 'Completed Questions independent review');
     assertTracked(root, expected, meta, 'Completed Questions index');
-    assertTracked(root, archive, meta, 'Completed Questions review archive');
-    const reviewedBlob = gitBlob(fs.readFileSync(path.join(root, archive)));
-    if (git(root, 'rev-parse', questions.reviewSha + ':' + expected) !== reviewedBlob) {
-      throw Error('Completed Questions review revision does not match immutable Stage 3 archive');
+    const reviewedBlob = git(root, 'rev-parse', questions.reviewSha + ':' + draft);
+    const transitions = git(root, 'log', '--format=%H', '--diff-filter=D', questions.reviewSha + '..HEAD', '--', draft)
+      .split('\n')
+      .filter(Boolean);
+    const materialized = transitions.filter(commit => {
+      if (git(root, 'rev-list', '--parents', '-n', '1', commit) !== commit + ' ' + questions.reviewSha) return false;
+      const changes = git(root, 'diff-tree', '--no-commit-id', '--name-status', '--no-renames', '-r', commit).split(
+        '\n',
+      );
+      return changes.includes('D\t' + draft) && changes.includes('A\t' + expected);
+    });
+    if (materialized.length !== 1 || !SHA.test(reviewedBlob)) {
+      throw Error('Completed Questions require the atomic reviewed draft-to-index Git transition');
     }
     // Source provenance can refer to either the original reviewed editor or
     // the completed index; never accept an unrelated ancestor commit or blob.
@@ -183,7 +192,11 @@ function authorizations(meta, input, root, blocks) {
         ? questions.sourceSha
         : sourceKind === 'commit'
           ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
-            git(root, 'rev-parse', questions.sourceSha + ':' + expected))
+            git(
+              root,
+              'rev-parse',
+              questions.sourceSha + ':' + (questions.sourceSha === questions.reviewSha ? draft : expected),
+            ))
           : '';
     if (![reviewedBlob, finalizedBlob].includes(actualSource)) {
       throw Error('Questions-first source SHA does not identify reviewed or finalized Question Bank');
@@ -234,11 +247,12 @@ function validTypedPath(filename, meta) {
   )
     return false;
   const relative = filename.slice(folder.length);
-  if (relative === meta.bank + 'Languages.ts' || relative === meta.bank + '.reviewed-stage3.ts.txt') return true;
+  if (relative === meta.bank + 'Languages.ts') return true;
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
   return (
     nested.length > 0 &&
+    !/(?:^|\/)draft\.ts$|\.reviewed-stage3\.ts\.txt$/.test(nested) &&
     nested.length < 420 &&
     nested.split('/').length <= 22 &&
     nested.split('/').every(piece => /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$/.test(piece)) &&
@@ -251,8 +265,10 @@ export function verifyTypedManifest(result, meta) {
     result.version !== 2 ||
     JSON.stringify(result.meta) !== JSON.stringify(meta) ||
     !SHA.test(result.treeSha || '') ||
+    result.deletedSource?.path !== meta.sourcePath ||
+    result.deletedSource?.blobSha !== meta.sourceBlob ||
     !Array.isArray(result.files) ||
-    result.files.length < 5 ||
+    result.files.length < 4 ||
     result.files.length > MAX_COUNT ||
     !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')
   ) {
@@ -283,16 +299,8 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
-  for (const filename of [
-    meta.sourcePath,
-    root + meta.bank + 'Languages.ts',
-    root + meta.bank + '.reviewed-stage3.ts.txt',
-  ]) {
+  for (const filename of [root + meta.bank + '/index.ts', root + meta.bank + 'Languages.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
-  }
-  const archived = result.files.find(f => f.path === root + meta.bank + '.reviewed-stage3.ts.txt');
-  if (gitBlob(Buffer.from(archived.base64, 'base64')) !== meta.sourceBlob) {
-    throw Error('Typed Bank source archive is not the byte-identical reviewed Stage 3 editor');
   }
   return result.files;
 }
@@ -418,7 +426,14 @@ async function analyze(meta) {
   if (!committed.worktreeRefreshRequired || committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
     throw Error('Trusted Bank writer disagrees with checked atomic source plan');
   }
+  if (
+    committed.changedPaths.filter(filename => filename === meta.sourcePath).length !== 1 ||
+    git(root, 'ls-tree', committed.commitSha, '--', meta.sourcePath)
+  ) {
+    throw Error('Trusted Bank writer must consume the exact reviewed draft');
+  }
   const files = committed.changedPaths
+    .filter(filename => filename !== meta.sourcePath)
     .map(filename => {
       // Preserve exact Git blob bytes, including trailing newlines.
       const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
@@ -433,6 +448,7 @@ async function analyze(meta) {
     version: 2,
     meta,
     treeSha,
+    deletedSource: { path: meta.sourcePath, blobSha: meta.sourceBlob },
     inputSha256: authorization.reviewed.reviewedInputSha256,
     files,
   };
@@ -476,11 +492,11 @@ async function publish(meta) {
   const lower = new Map(listing.tree.map(entry => [entry.path.toLowerCase(), entry.path]));
   const index = known.get(meta.sourcePath);
   if (index?.type !== 'blob' || index.mode !== '100644' || index.sha !== meta.sourceBlob) {
-    throw Error('Approved Stage 3 bank index is not the exact original regular Git blob');
+    throw Error('Approved Stage 3 bank draft is not the exact original regular Git blob');
   }
   for (const file of files) {
     const current = known.get(file.path);
-    if (current && file.path !== meta.sourcePath) {
+    if (current) {
       throw Error('Refusing to overwrite existing reviewed Bank source ' + file.path);
     }
     if (lower.has(file.path.toLowerCase()) && lower.get(file.path.toLowerCase()) !== file.path) {
@@ -499,12 +515,15 @@ async function publish(meta) {
   // Rebuild it via the Git Data API, verify exact Git tree SHA before commit.
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
-    tree: files.map(file => ({
-      path: file.path,
-      mode: '100644',
-      type: 'blob',
-      content: Buffer.from(file.base64, 'base64').toString('utf8'),
-    })),
+    tree: [
+      ...files.map(file => ({
+        path: file.path,
+        mode: '100644',
+        type: 'blob',
+        content: Buffer.from(file.base64, 'base64').toString('utf8'),
+      })),
+      { path: meta.sourcePath, mode: '100644', type: 'blob', sha: null },
+    ],
   });
   if (tree.sha !== reportData.treeSha) {
     throw Error('Git Data API result differs from trusted Bank transaction tree');
@@ -524,10 +543,11 @@ async function publish(meta) {
     parents: [meta.head],
   });
   await inspectTyped(meta.number, meta.bank, withoutActor(meta));
-  await github('git/refs/heads/' + meta.branch, 'PATCH', {
+  const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', {
     sha: commit.sha,
     force: false,
   });
+  if (updated?.object?.sha !== commit.sha) throw Error('Bank ref did not advance to the expected commit');
   report(
     'Committed ' +
       files.length +
@@ -537,7 +557,7 @@ async function publish(meta) {
       meta.number +
       ': ' +
       commit.sha +
-      '. Lesson root/Sections and legacy YAML were unchanged',
+      '. Lesson root and Sections were unchanged',
   );
 }
 async function main() {

@@ -8,7 +8,7 @@ import { parseTypedLesson } from './lesson-typed-source.mjs';
 const id = '12345678-1234-4234-8234-123456789001';
 const questionId = '12345678-1234-4234-8234-123456789002';
 const folder = 'content/math/data/lessons/1/' + id;
-const sourcePath = folder + '/index.ts';
+const sourcePath = folder + '/draft.ts';
 const plain = [
   "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
   'export const reviewedLesson = {',

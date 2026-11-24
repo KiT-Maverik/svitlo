@@ -1,8 +1,8 @@
 /**
- * Lesson-only, SHA-pinned Stage 6 source transition. The reviewed editable
- * workflow.stage2.ts is archived byte-for-byte in the same UUID directory in
- * the same Git tree commit that replaces index.ts. No working-tree files are
- * rewritten. This is not a generic source-materializer framework.
+ * Lesson-only, SHA-pinned Stage 6 source transition. The reviewed draft.ts is
+ * consumed in the same Git tree commit that creates index.ts. Exact source
+ * bytes remain recoverable at the reviewed parent commit and blob.
+ * No working-tree files are rewritten.
  */
 import fs from 'node:fs';
 import os from 'node:os';
@@ -92,19 +92,18 @@ function validTypescript(file) {
 
 /**
  * Checks every output and its ancestors before creating any Git object.
- * Existing files may only be byte-identical, except for the reviewed index.ts
- * replaced in the first authorized source transition.
+ * All generated files must be new; the reviewed draft is the only deletion.
  */
 export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
   const match = plan?.sourcePath?.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
+    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
   );
   if (
     !match ||
     !uuidPattern.test(match[3]) ||
     match[2] !== match[3].at(-1).toLowerCase() ||
     match[3] !== plan.lessonId ||
-    plan.archivePath !== path.posix.dirname(plan.sourcePath) + '/workflow.stage2.ts' ||
+    plan.materializedPath !== path.posix.dirname(plan.sourcePath) + '/index.ts' ||
     !shaPattern.test(plan.sourceBlobSha ?? '') ||
     !shaPattern.test(plan.reviewCommitSha ?? '') ||
     !shaPattern.test(plan.reviewEvidenceSha ?? '') ||
@@ -128,7 +127,8 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
       typeof file.content !== 'string' ||
       !validPath(file.path) ||
       !file.path.startsWith(ownPrefix) ||
-      file.path === plan.archivePath ||
+      file.path === plan.sourcePath ||
+      /(?:^|\/)workflow\.stage\d+\.ts$/.test(file.path) ||
       output.has(file.path)
     )
       throw new Error('Invalid, duplicate or out-of-scope Lesson source: ' + file?.path);
@@ -136,20 +136,19 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     validTypescript(file);
     output.set(file.path, file.content);
   }
-  if (!output.has(plan.sourcePath)) throw new Error('Stage 6 must replace the reviewed Lesson root index.ts');
-  safeTarget(root, plan.archivePath);
-  const archived = fileAt(root, head, plan.archivePath);
-  const before = archived ?? fileAt(root, head, plan.sourcePath);
-  if (before === undefined) throw new Error('Reviewed Lesson Stage 2 source is missing');
+  if (!output.has(plan.materializedPath)) throw new Error('Stage 6 must create the canonical Lesson root index.ts');
+  safeTarget(root, plan.sourcePath);
+  const before = fileAt(root, head, plan.sourcePath);
+  if (before === undefined || treeMode(root, head, plan.sourcePath) !== '100644')
+    throw new Error('Reviewed Lesson Stage 2 draft is missing or not an ordinary file');
   if (git(root, ['hash-object', '--stdin'], { input: before }) !== plan.sourceBlobSha)
     throw new Error('Lesson Stage 2 source blob differs from independently reviewed SHA');
-  if (archived === undefined && head !== plan.reviewCommitSha)
+  if (head !== plan.reviewCommitSha)
     throw new Error('Lesson review commit is stale; verify current Stage 2 source and reviews again');
-  if (archived !== undefined && fileAt(root, head, plan.sourcePath) !== output.get(plan.sourcePath))
-    throw new Error('Materialized Lesson index.ts changed since the reviewed transition');
-  output.set(plan.archivePath, before);
+  if (git(root, ['status', '--porcelain', '--', plan.sourcePath]))
+    throw new Error('Locally dirty Lesson source: ' + plan.sourcePath);
   const pending = [];
-  for (const [filename, contents] of output) {
+  for (const [filename] of output) {
     const parts = filename.split('/');
     for (let i = 1; i < parts.length; i++) {
       const ancestor = parts.slice(0, i).join('/');
@@ -164,15 +163,11 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     if (git(root, ['status', '--porcelain', '--', filename]))
       throw new Error('Locally dirty Lesson source: ' + filename);
     const prior = fileAt(root, head, filename);
-    if (prior !== undefined && prior !== contents && (filename !== plan.sourcePath || archived !== undefined))
-      throw new Error('Refusing to clobber existing authored Lesson source: ' + filename);
-    if (prior !== contents) pending.push(filename);
+    if (prior !== undefined) throw new Error('Refusing to clobber existing authored Lesson source: ' + filename);
+    pending.push(filename);
   }
-  if (archived !== undefined && pending.length)
-    throw new Error('Previously materialized Lesson tree is incomplete or divergent');
-  if (archived === undefined && !pending.includes(plan.sourcePath))
-    throw new Error('Missing Stage 2 to final index transition');
-  return { head, output, pending, already: archived !== undefined, archivePath: plan.archivePath };
+  pending.push(plan.sourcePath);
+  return { head, output, pending, already: false };
 }
 
 /**
@@ -189,7 +184,6 @@ export function commitLessonStage6Plan(plan, options = {}) {
       head: preflight.head,
       pending: preflight.pending,
       already: preflight.already,
-      archivePath: preflight.archivePath,
     };
   if (options.mode !== 'write') throw new Error('Explicit mode check or write is required');
   if (preflight.already)
@@ -224,6 +218,10 @@ export function commitLessonStage6Plan(plan, options = {}) {
     const index = path.join(temporary, 'index');
     git(root, ['read-tree', preflight.head], { index });
     for (const filename of preflight.pending.slice().sort()) {
+      if (filename === plan.sourcePath) {
+        git(root, ['update-index', '--force-remove', '--', filename], { index });
+        continue;
+      }
       const blob = git(root, ['hash-object', '-w', '--stdin'], {
         input: preflight.output.get(filename),
       });
@@ -237,7 +235,14 @@ export function commitLessonStage6Plan(plan, options = {}) {
       '-p',
       preflight.head,
       '-m',
-      'Materialize reviewed Lesson source ' + plan.lessonId,
+      'Materialize reviewed Lesson source ' +
+        plan.lessonId +
+        '\n\nSource-Blob: ' +
+        plan.sourceBlobSha +
+        '\nReview-Commit: ' +
+        plan.reviewCommitSha +
+        '\nReview-Evidence: ' +
+        plan.reviewEvidenceSha,
     ]);
     git(root, ['update-ref', target, commitSha, preflight.head]);
     return {
@@ -246,7 +251,6 @@ export function commitLessonStage6Plan(plan, options = {}) {
       commitSha,
       changed: preflight.pending.length,
       already: false,
-      archivePath: preflight.archivePath,
     };
   } finally {
     fs.rmSync(temporary, { recursive: true, force: true });

@@ -1,11 +1,11 @@
 /**
  * Shared read-only static Lesson discovery for PR lookups and the legacy Skill index.
- * Authored TypeScript/YAML is parsed, never imported, compiled or executed.
+ * Authored TypeScript is parsed, never imported, compiled or executed.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
-import yaml from 'yaml';
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
 
 export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
@@ -322,31 +322,21 @@ function lessonValues(sf, file, config, catalogue, visited = new Set()) {
     visited.delete(identity);
   }
 }
-function draftData(file) {
-  if (fs.statSync(file).size > 2_000_000) throw Error('YAML exceeds size limit');
-  const doc = yaml.parseDocument(fs.readFileSync(file, 'utf8'), { strict: true, uniqueKeys: true, version: '1.2' });
-  if (doc.errors.length) throw Error('Invalid YAML: ' + doc.errors.map(x => x.message).join('; '));
-  const parsed = doc.toJS({ maxAliasCount: 0 });
-  const config = parsed?.config;
-  if (
-    !isRecord(config) ||
-    !uuid(config.id) ||
-    !Array.isArray(config.skills) ||
-    !config.skills.length ||
-    !config.skills.every(uuid)
-  )
-    throw Error('Draft requires config.id and literal config.skills UUIDs');
-  if (new Set(config.skills.map(normalized)).size !== config.skills.length) throw Error('Duplicate draft Skill IDs');
-  return {
-    id: normalized(config.id),
-    slug: typeof config.slug === 'string' ? config.slug : null,
-    title: typeof config.locale?.title?.en === 'string' ? config.locale.title.en : null,
-    skills: config.skills.map(normalized),
-    languages:
-      Array.isArray(config.params?.languages) && config.params.languages.every(x => typeof x === 'string')
-        ? config.params.languages
-        : null,
-  };
+function draftData(file, catalogue) {
+  if (fs.statSync(file).size > 2_000_000) throw Error('Draft exceeds size limit');
+  const sf = fileSource(file);
+  const matches = [...declarations(sf).values()]
+    .filter(d => d.exported)
+    .map(d => object(d.node))
+    .filter(o => object(field(o, 'config')) && object(field(o, 'production')));
+  if (matches.length !== 1) throw Error('Expected one exported static Lesson workflow object');
+  const draft = matches[0];
+  const config = object(field(draft, 'config'));
+  const id = string(field(config, 'id'));
+  if (!uuid(id) || string(field(config, 'type')) !== 'lesson') throw Error('Invalid draft Lesson identity');
+  const values = lessonValues(sf, file, config, catalogue);
+  // Planned languages are editorial intent, not verified publication languages.
+  return { ...values, id: normalized(id), languages: null };
 }
 export function buildLessonIndex(root, selectedPackage) {
   if (selectedPackage && !PACKAGE.test(selectedPackage)) throw Error('Invalid textbook package');
@@ -406,25 +396,17 @@ export function buildLessonIndex(root, selectedPackage) {
           diagnostic(folder, 'Invalid UUID bucket or Lesson directory name');
           continue;
         }
-        const indexFile = path.join(folder, 'index.ts');
-        const legacy = fs
-          .readdirSync(folder)
-          .filter(n => n.endsWith('.data.ts'))
-          .sort();
-        const typed = exists(indexFile) ? indexFile : legacy.length === 1 ? path.join(folder, legacy[0]) : null;
-        const draft = path.join(folder, 'lesson.yaml');
-        if (
-          (fs.existsSync(indexFile) && fs.lstatSync(indexFile).isSymbolicLink()) ||
-          (fs.existsSync(draft) && fs.lstatSync(draft).isSymbolicLink())
-        ) {
-          diagnostic(folder, 'Lesson source symlink refused');
+        const draft = path.join(folder, 'draft.ts');
+        let typed, hasDraft;
+        try {
+          const entry = resolveMaterializedEntrypoint(folder, { mode: 'draft', legacyLesson: true });
+          typed = entry.source;
+          hasDraft = entry.draft;
+        } catch (error) {
+          diagnostic(folder, error.message);
           continue;
         }
-        if (!typed && !exists(draft)) continue;
-        if (legacy.length > 1 && !exists(indexFile)) {
-          diagnostic(folder, 'Ambiguous Lesson *.data.ts');
-          continue;
-        }
+        if (!typed && !hasDraft) continue;
         let compiled = null,
           editorial = null;
         if (typed) {
@@ -437,10 +419,10 @@ export function buildLessonIndex(root, selectedPackage) {
             diagnostic(typed, error.message);
           }
         }
-        if (exists(draft)) {
+        if (hasDraft) {
           drafts++;
           try {
-            editorial = draftData(draft);
+            editorial = draftData(draft, catalogue);
             if (editorial.id !== normalized(name)) throw Error('Draft ID differs from UUID directory');
             for (const skill of editorial.skills) {
               if (!catalogue.byId.has(skill)) throw Error('Unknown draft Skill UUID: ' + skill);
@@ -449,14 +431,6 @@ export function buildLessonIndex(root, selectedPackage) {
             diagnostic(draft, error.message);
             editorial = null;
           }
-        }
-        if (
-          compiled &&
-          editorial &&
-          (compiled.skills.length !== editorial.skills.length ||
-            compiled.skills.some(id => !editorial.skills.includes(id)))
-        ) {
-          diagnostic(draft, 'Typed Lesson and YAML draft disagree on Skill IDs');
         }
         const values = compiled ?? (typed ? null : editorial);
         if (!values) continue;
@@ -472,7 +446,7 @@ export function buildLessonIndex(root, selectedPackage) {
           languages: values.languages,
           languageStatus: values.languages ? 'verified' : 'unknown',
           source: relative(root, typed ?? draft),
-          draftSource: exists(draft) ? relative(root, draft) : null,
+          draftSource: hasDraft ? relative(root, draft) : null,
           methodology: brief ? relative(root, brief) : null,
         });
       }

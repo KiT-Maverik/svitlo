@@ -4,6 +4,7 @@
  * This module handles only discovery, CLI invocation, output and error accounting.
  */
 import fs from 'node:fs';
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 // Keep reference-library generation dependency-free: the workflow installs only
@@ -42,16 +43,8 @@ export function discoverLessons(root, packageName = null) {
         const relative = resolveEntityPath(id);
         if (relative !== `${bucket}/${id}`) throw new Error('Lesson path mismatch: ' + relative);
         const directory = path.join(rootDirectory, bucket, id);
-        const candidates = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-        if (candidates.length > 1) throw new Error('Ambiguous Lesson data in ' + directory);
-        const index = path.join(directory, 'index.ts');
-        const source = fs.existsSync(index)
-          ? index
-          : candidates.length === 1
-            ? path.join(directory, candidates[0])
-            : null;
+        const { source } = resolveMaterializedEntrypoint(directory, { mode: 'draft', legacyLesson: true });
         if (!source) continue;
-        if (fs.lstatSync(source).isSymbolicLink() || !fs.lstatSync(source).isFile()) continue;
         lessons.push({ textbook: app, package: `content/${app}`, id, relative, source });
       }
     }

@@ -61,7 +61,7 @@ export type LessonWorkflowStage1 = {
 };
 
 /**
- * Course Stage 5 provides exactly one new Lesson Stage 1 index.ts at the
+ * Course Stage 5 provides exactly one new Lesson Stage 1 draft.ts at the
  * persisted UUID-addressed path. The Course source and this handoff share
  * every substantive planning field; Lesson identity is newly allocated.
  * Neither Course nor Lesson Stage 1 builds Sections or Configurators.
