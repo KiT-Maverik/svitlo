@@ -191,8 +191,12 @@ const quizIntent_Schema = z.discriminatedUnion('kind', [
   }),
 ]);
 
-const questionBankConfig_Schema = z.strictObject({
-  ownerLessonId: z.uuid(),
+const questionOwnerId_Schema = z.uuid();
+const questionBankConfig_Schema: z.ZodObject<{
+  ownerLessonId: typeof questionOwnerId_Schema;
+  questions: typeof questionKinds_Schema;
+}> = z.strictObject({
+  ownerLessonId: questionOwnerId_Schema,
   questions: questionKinds_Schema,
 });
 const questionBankProduction_Schema = z.strictObject({
