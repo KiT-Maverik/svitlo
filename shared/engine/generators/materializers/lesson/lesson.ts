@@ -227,6 +227,71 @@ export function materializeLesson(config: Source, options: Options): Result {
       'TODO (BLOCKER): Cannot emit complete Lesson source: an enabled Flashcards Section is required before standalone materialization; author it in the Lesson workflow.',
     );
 
+
+  // Derive the complete human-readable methodology *before* delegating
+  // Sections. A Section may be told that its reviewed metadata was integrated
+  // only when every substantive source note is present in this document.
+  const methodology = typeof options.production?.methodology === 'string'
+    ? options.production.methodology.trim()
+    : '';
+  const additions: string[] = [];
+  const append = (heading: string, value: unknown): void => {
+    if (typeof value !== 'string' || !value.trim()) return;
+    const normalized = value.trim();
+    if (methodology.includes(normalized) || additions.some(item => item.includes(normalized))) return;
+    additions.push('## ' + heading + '\n\n' + normalized);
+  };
+  append('Learning objective', options.production?.objective);
+  append('Depth and scope', options.production?.depth);
+  append('Learning sequence rationale', options.production?.sequenceReason);
+  append('Assessment evidence', options.production?.assessmentEvidence);
+  const assessment = options.production?.assessment;
+  if (assessment) {
+    const decisions = [
+      ['Question Bank (Stage 7)', assessment.questionBankRequired],
+      ['Flashcard Bank (Stage 8)', assessment.flashcardBankRequired],
+      ['Quiz Section', assessment.quizSectionRequired],
+      ['Flashcards Section', assessment.flashcardsSectionRequired],
+    ].map(([name, required]) => '- ' + name + ': ' + (required ? 'required' : 'not required'));
+    const decisionText = decisions.join('\n');
+    if (!methodology.includes(decisionText)) additions.push('## Assessment decisions\n\n' + decisionText);
+  }
+  const integratedSections = new Set<string>();
+  const names: Record<string, string> = {
+    purpose: 'Purpose',
+    pedagogicalIntent: 'Pedagogical intent',
+    specification: 'Specification',
+    prompt: 'Prompt',
+    script: 'Script',
+    storyboard: 'Storyboard',
+    accessibility: 'Accessibility',
+    offline: 'Offline use',
+    weakDeviceAlternative: 'Weak-device alternative',
+    readiness: 'Production readiness',
+  };
+  for (const sectionKey of config.section.order) {
+    const section = sourceNode(config.section.items[sectionKey]);
+    if (!section.production) continue;
+    const notes: string[] = [];
+    let allTransferred = true;
+    for (const [key, value] of Object.entries(section.production)) {
+      if (['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key)) continue;
+      // Source provenance is intentionally not materialized as editorial copy.
+      // Leave a guard instead of falsely acknowledging its transfer.
+      if (key === 'sourceEvidence' || typeof value !== 'string' || !value.trim()) {
+        allTransferred = false;
+        continue;
+      }
+      const normalized = value.trim();
+      if (methodology.includes(normalized) || additions.some(item => item.includes(normalized))) continue;
+      notes.push('**' + (names[key] ?? key) + ':** ' + normalized);
+    }
+    if (notes.length)
+      additions.push('### Section: ' + sectionKey + ' (' + section.config.type + ')\n\n' + notes.join('\n\n'));
+    if (allTransferred) integratedSections.add(sectionKey);
+  }
+  const combinedMethodology = [methodology, ...additions].filter(Boolean).join('\n\n').trim();
+
   const files: GeneratedFile[] = [],
     diagnostics: Diagnostic[] = [];
   const seen = new Set<string>(),
@@ -247,7 +312,11 @@ export function materializeLesson(config: Source, options: Options): Result {
       directory: childDir,
       documentLanguage: options.documentLanguage,
       languagesImport,
-      ...(node.production ? { production: node.production } : {}),
+      ...(node.production
+        ? { production: integratedSections.has(key)
+            ? { ...node.production, methodologyIntegrated: true }
+            : node.production }
+        : {}),
     });
     if (child.exportName !== exported(key)) throw new Error('lesson.section.items.' + key + ': incorrect child export');
     for (const file of child.files) {
@@ -353,58 +422,6 @@ export function materializeLesson(config: Source, options: Options): Result {
     render(own) + ');',
     '',
   ].join('\n');
-  // The archived Stage 2 source is canonical. This is a derived, read-only
-  // editorial view, including unique reviewed Section metadata.
-  const methodology = typeof options.production?.methodology === 'string'
-    ? options.production.methodology.trim()
-    : '';
-  const additions: string[] = [];
-  const append = (heading: string, value: unknown): void => {
-    if (typeof value !== 'string' || !value.trim()) return;
-    const normalized = value.trim();
-    if (methodology.includes(normalized) || additions.some(item => item.includes(normalized))) return;
-    additions.push('## ' + heading + '\n\n' + normalized);
-  };
-  append('Learning objective', options.production?.objective);
-  append('Depth and scope', options.production?.depth);
-  append('Learning sequence rationale', options.production?.sequenceReason);
-  append('Assessment evidence', options.production?.assessmentEvidence);
-  const assessment = options.production?.assessment;
-  if (assessment) {
-    const decisions = [
-      ['Question Bank (Stage 7)', assessment.questionBankRequired],
-      ['Flashcard Bank (Stage 8)', assessment.flashcardBankRequired],
-      ['Quiz Section', assessment.quizSectionRequired],
-      ['Flashcards Section', assessment.flashcardsSectionRequired],
-    ].map(([name, required]) => '- ' + name + ': ' + (required ? 'required' : 'not required'));
-    const decisionText = decisions.join('\n');
-    if (!methodology.includes(decisionText)) additions.push('## Assessment decisions\n\n' + decisionText);
-  }
-  for (const sectionKey of config.section.order) {
-    const section = sourceNode(config.section.items[sectionKey]);
-    const notes = Object.entries(section.production ?? {}).filter(
-      ([key, value]) =>
-        !['sourceEvidence', 'documentLanguage', 'readiness', 'pending'].includes(key) &&
-        typeof value === 'string' &&
-        value.trim().length > 0 &&
-        !methodology.includes(value.trim()),
-    );
-    if (!notes.length) continue;
-    const names: Record<string, string> = {
-      purpose: 'Purpose',
-      pedagogicalIntent: 'Pedagogical intent',
-      specification: 'Specification',
-      prompt: 'Prompt',
-      script: 'Script',
-      storyboard: 'Storyboard',
-      accessibility: 'Accessibility',
-      offline: 'Offline use',
-      weakDeviceAlternative: 'Weak-device alternative',
-    };
-    const sectionNotes = notes.map(([key, value]) => '**' + (names[key] ?? key) + ':** ' + String(value).trim());
-    additions.push('### Section: ' + sectionKey + ' (' + section.config.type + ')\n\n' + sectionNotes.join('\n\n'));
-  }
-  const combinedMethodology = [methodology, ...additions].filter(Boolean).join('\n\n').trim();
   if (combinedMethodology)
     add({
       path: destination(dir, 'methodology.md'),
