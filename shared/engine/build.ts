@@ -59,7 +59,7 @@ export type {
   BankSourceResult,
   BankSourceFile,
   BankSourceSnapshot,
-  BankReviewedSource,
+  BankPinnedSource,
 } from './generators/materializers/bankSource/bankSourceSafety';
 
 // Direct authored Lesson materialization (source planning only).
