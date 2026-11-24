@@ -121,7 +121,9 @@ test('unresolved media scaffolds remain distinct from verified assets', t => {
   assert.deepEqual([...placeholder.unresolvedMediaBlockIds], [imageId]);
   assert.deepEqual([...placeholder.approvedMediaBlockIds], []);
   noAsset.config.locale.fileName = '99999999-9999-4999-8999-999999999999.svg';
-  assert.throws(() => f.resolve(f.input({ diagram: noAsset })));
+  const planned = f.resolve(f.input({ diagram: noAsset }));
+  assert.deepEqual([...planned.unresolvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...planned.approvedMediaBlockIds], []);
   const remote = f.image();
   remote.config.locale.fileName = 'https://cdn.example.org/image.svg';
   remote.production.mediaSourcePath = undefined;
@@ -158,6 +160,65 @@ test('missing Scene registry entry yields a Question-only TODO scaffold, not app
   const flashcardSource = f.input({ visual: f.scene() });
   flashcardSource.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
   assert.throws(() => f.resolve(flashcardSource), /UUID entry missing/);
+});
+
+test('Lesson Scene scaffolds are pending until registered and implemented, without a specification sidecar', t => {
+  const f = fixture(t);
+  const specPath = f.base + '/specification.md';
+  const tsx = f.base + '/' + sceneName + '.tsx';
+  fs.rmSync(path.join(f.root, specPath));
+  file(f.root, tsx, [
+    '// TODO (BLOCKER): Implement reviewed Scene.',
+    '// BEGIN REVIEWED SCENE SPECIFICATION',
+    '// # Reviewed interaction',
+    '// END REVIEWED SCENE SPECIFICATION',
+    'export function ' + sceneName + '() { return <div />; }',
+  ].join('\n') + '\n');
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Lesson Stage 6 Scene draft without sidecar', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  const draft = f.resolve(f.input({ visual: f.scene() }));
+  assert.deepEqual([...draft.unregisteredSceneIds], [sceneId]);
+  assert.deepEqual([...draft.registeredSceneIds], []);
+
+  file(f.root, tsx, 'export function ' + sceneName + '() { return <div aria-label="Reviewed interaction" />; }\n');
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Implement Scene after Lesson Stage 6', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  const released = f.resolve(f.input({ visual: f.scene() }));
+  assert.deepEqual([...released.registeredSceneIds], [sceneId]);
+  assert.deepEqual([...released.unregisteredSceneIds], []);
+
+  const altered = f.scene();
+  altered.production.specification = 'Unreviewed bank request';
+  // With no sidecar, the SHA-pinned Question Bank source is the proof of
+  // reviewed specification; the Scene implementation is independently pinned.
+  assert.deepEqual([...f.resolve(f.input({ visual: altered })).registeredSceneIds], [sceneId]);
+});
+
+test('Scene registry can be absent for a Question draft, but tracked or symlinked evidence cannot be spoofed', t => {
+  const f = fixture(t);
+  const registry = repoPath + '/scenes/sceneLoader.ts';
+  fs.rmSync(path.join(f.root, registry));
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'No Scene registry authored', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  assert.deepEqual([...f.resolve(f.input({ visual: f.scene() })).unregisteredSceneIds], [sceneId]);
+  fs.symlinkSync(path.join(f.root, f.base, 'index.ts'), path.join(f.root, registry));
+  assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /Symlink/);
+});
+
+test('valid but absent media remains unresolved; missing tracked media and unsafe links are rejected', t => {
+  const f = fixture(t);
+  const planned = f.image();
+  planned.config.locale.fileName = '99999999-9999-4999-8999-999999999999.svg';
+  delete planned.production.mediaSourcePath;
+  const proof = f.resolve(f.input({ diagram: planned }));
+  assert.deepEqual([...proof.unresolvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...proof.approvedMediaBlockIds], []);
+  const original = repoPath + '/assets/images/' + assetName;
+  fs.rmSync(path.join(f.root, original)); // tracked but missing
+  assert.throws(() => f.resolve(f.input({ diagram: f.image() })), /Tracked reviewed resource missing/);
 });
 
 test('Youtube URL is reviewed statically and never triggers a network call', t => {
