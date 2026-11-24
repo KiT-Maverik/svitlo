@@ -53,7 +53,7 @@ test('import sorting applies only to TypeScript, leaving existing JavaScript too
     "import { local } from './local';",
     "import { external } from 'node:fs';",
     'export const answer = [local, external];',
-  ].join('\\n');
+  ].join('\n');
   const formatted = await format(source, { ...config, filepath: jsFilename });
   assert(formatted.indexOf("from './local'") < formatted.indexOf("from 'node:fs'"));
 });
