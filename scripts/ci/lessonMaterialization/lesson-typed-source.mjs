@@ -331,7 +331,7 @@ function reviewedExport(file) {
   if (
     !ts.isTypeReferenceNode(type) ||
     !ts.isIdentifier(type.typeName) ||
-    !['LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'].includes(type.typeName.text)
+    type.typeName.text !== 'LessonWorkflowStage2'
   )
     throw Error('Lesson source does not satisfy the Engine Stage 2 materializer input');
   return typed.expression;
