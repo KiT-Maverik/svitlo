@@ -9,6 +9,7 @@ import { defineModule } from '../../courses/defineModule';
 import { defineChapter } from '../../courses/defineChapter';
 import { mergeForValidation } from '../../_shared__configurators';
 import { defineAssessment } from './defineAssessment';
+import { defineAssessmentDraft } from './defineAssessmentDraft';
 import { assessment_Props_Schema, assessmentConfigurator_Schema } from './defineAssessment.schemas';
 
 describe('Course-owned Assessment Configurator', () => {
@@ -60,7 +61,9 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'assessment',
       params: { languages },
       locale: { title: { en: 'Review', uk: 'Перевірка' } },
-      section: { items: { intro, quiz }, order: ['intro', 'quiz'] },
+      before: { items: { intro }, order: ['intro'] },
+      quiz,
+      after: { items: {}, order: [] },
     });
   };
 
@@ -94,22 +97,81 @@ describe('Course-owned Assessment Configurator', () => {
           type: 'assessment',
           params: { languages },
           locale: { title: 'Incomplete' },
-          section: { items: { intro }, order: ['intro'] },
+          before: { items: { intro }, order: ['intro'] },
+          quiz: undefined as never,
         }).build.props({ languages: ['en'] }),
-      /enabled Quiz Section/,
+      /Quiz/,
     );
     assert.throws(
       () =>
-        assessment.build.overrides({ section: { items: { quiz: false }, order: ['intro'] } }, { languages: ['en'] }),
-      /enabled Quiz Section/,
+        assessment.build.overrides({ quiz: false as never }, { languages: ['en'] }),
+      /Quiz/,
     );
     assert.throws(
       () =>
         assessment.build.overrides(
-          { section: { items: { quiz: { params: { disabled: true } } } } },
+          { quiz: { params: { disabled: true } } },
           { languages: ['en'] },
         ),
-      /enabled Quiz Section/,
+      /Quiz/,
+    );
+  });
+
+  test('permits supporting Sections to be removed without disabling the one Quiz', () => {
+    const assessment = makeAssessment('withOptionalIntro', '15', '16');
+    const patch = assessment.build.overrides(
+      { before: { items: { intro: false }, order: [] } },
+      { languages: ['en'] },
+    );
+    assert.deepEqual(patch.base.section?.map(item => item.type), ['quiz']);
+    assert.throws(
+      () => defineAssessment({
+        id: id('17'),
+        slug: 'duplicatePhases',
+        type: 'assessment',
+        params: { languages },
+        locale: { title: 'Review' },
+        before: { items: { intro }, order: ['intro'] },
+        quiz: makeQuiz('18'),
+        after: { items: { intro }, order: ['intro'] },
+      }).build.props({ languages: ['en'] }),
+      /unique/,
+    );
+  });
+
+  test('a draft publishes a real Not implemented Text block, not a Quiz', () => {
+    const message = defineText({
+      id: id('51'),
+      slug: 'message',
+      type: 'text',
+      params: {},
+      locale: { value: 'Not implemented' },
+    });
+    const preview = defineContentSection({
+      id: id('52'),
+      slug: 'preview',
+      type: 'content',
+      params: {},
+      locale: { title: 'Preview', navigationLabel: 'Preview' },
+      content: { items: { message }, order: ['message'] },
+    });
+    const draft = defineAssessmentDraft({
+      id: id('53'),
+      slug: 'draftReview',
+      type: 'assessment',
+      params: { languages },
+      locale: { title: 'Not implemented' },
+      preview,
+    });
+    const result = draft.build.props({ languages: ['en'] });
+    assert.equal(result.base.draft, true);
+    assert.equal(result.base.section.length, 1);
+    assert.equal(result.base.section[0]?.type, 'content');
+    assert.deepEqual(result.base.section[0]?.content.map(block => block.type), ['text']);
+    assert.equal(assessment_Props_Schema.safeParse(result.base).success, true);
+    assert.throws(
+      () => draft.build.overrides({} as never, { languages: ['en'] }),
+      /cannot be overridden/,
     );
   });
 
