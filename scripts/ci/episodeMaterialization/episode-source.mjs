@@ -18,7 +18,7 @@ export function parseEpisodeHandoff(source) {
   if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
     throw Error('Invalid or oversized Course Episode handoff');
   const match = source.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
   );
   if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
   const result = JSON.parse(match[1]);
