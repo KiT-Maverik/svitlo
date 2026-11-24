@@ -18,7 +18,6 @@ export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
-const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const require = createRequire(import.meta.url);
 /** Reuse the compiled trusted Engine's exact Stage 6.1 Scene templates. */
 function sharedTemplates() {
@@ -55,11 +54,10 @@ function resolveSource(source, repo) {
   if (!match || !uuid.test(match[3]) || match[2] !== match[3].at(-1))
     throw new Error('Lesson source must be in its canonical content/<book>/data/lessons/<bucket>/<UUID> directory');
   const bookRoot = path.join(repo, 'content', match[1]);
-  for (const name of ['index.ts', 'languages.ts']) {
-    const filename = path.join(root, name);
-    noSymlinks(filename);
-    if (!fs.statSync(filename).isFile()) throw new Error('Missing materialized Lesson ' + name);
-  }
+  const index = path.join(root, 'index.ts');
+  noSymlinks(index);
+  if (!fs.statSync(index).isFile()) throw new Error('Missing materialized Lesson index.ts');
+  lessonLanguageSource(root);
   return { lessonRoot: root, bookRoot };
 }
 
@@ -100,8 +98,20 @@ function literal(expression) {
     ? expression.text
     : undefined;
 }
+/** Current Lessons use constants.ts; old materializations used languages.ts. */
+function lessonLanguageSource(lessonRoot) {
+  const candidates = ['constants.ts', 'languages.ts'].map(name => path.join(lessonRoot, name));
+  const found = candidates.filter(filename => {
+    noSymlinks(filename);
+    return fs.existsSync(filename);
+  });
+  if (found.length !== 1 || !fs.statSync(found[0]).isFile())
+    throw new Error('Expected exactly one Lesson language source: constants.ts or legacy languages.ts');
+  return found[0];
+}
 function sourceLanguage(lessonRoot) {
-  const source = parseSource(path.join(lessonRoot, 'languages.ts'));
+  const filename = lessonLanguageSource(lessonRoot);
+  const source = parseSource(filename);
   const declarations = source.statements
     .filter(ts.isVariableStatement)
     .flatMap(entry => [...entry.declarationList.declarations])
@@ -111,7 +121,7 @@ function sourceLanguage(lessonRoot) {
     throw new Error('Scene scaffolding requires a single reviewed source language');
   const code = literal(values.elements[0]);
   if (!code || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(code))
-    throw new Error('Invalid reviewed source language in Lesson languages.ts');
+    throw new Error('Invalid reviewed source language in ' + path.basename(filename));
   return code;
 }
 /**
@@ -151,17 +161,12 @@ function assertSceneWorkspace(bookRoot) {
   }
 }
 
-/** PascalCase executable name; existing lowerCamelCase Config slugs remain usable. */
+/** The script uses the exact Engine-owned Scene name/slug contract. */
 export function sceneComponentName(authoredSlug) {
-  if (typeof authoredSlug !== 'string' || !slug.test(authoredSlug))
-    throw new Error('Unsafe Scene slug (expected PascalCase or legacy lowerCamelCase): ' + String(authoredSlug));
-  return authoredSlug[0].toUpperCase() + authoredSlug.slice(1);
+  return sharedTemplates().sceneComponentName(authoredSlug);
 }
-
-/** Keep Configurator and executable component symbols distinct at the handoff. */
 export function sceneSymbols(authoredSlug) {
-  const component = sceneComponentName(authoredSlug);
-  return { component, configurator: component + 'Config' };
+  return sharedTemplates().sceneSymbols(authoredSlug);
 }
 
 /**

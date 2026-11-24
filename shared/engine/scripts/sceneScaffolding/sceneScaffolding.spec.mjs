@@ -317,3 +317,16 @@ test('rendered files are deterministic and no Scene scaffolding edits Lesson dat
     ['index.ts', 'languages.ts', 'sections', 'workflow.stage2.ts'].sort(),
   );
 });
+
+
+test('reads new Lesson constants.ts without a legacy languages.ts shim', t => {
+  const f = fixture(t);
+  const folder = path.dirname(f.source);
+  fs.renameSync(path.join(folder, 'languages.ts'), path.join(folder, 'constants.ts'));
+  const result = runOne(f.source, 'generate', f.repo);
+  assert.equal(result[0].changed, 6);
+  assert(fs.existsSync(path.join(f.folder(sceneId), 'CompareGroupsScene.tsx')));
+  assert.equal(runOne(f.source, 'check', f.repo)[0].changed, 0);
+  fs.writeFileSync(path.join(folder, 'languages.ts'), 'export const languages = ["en"] as const;\n');
+  assert.throws(() => runOne(f.source, 'check', f.repo), /exactly one Lesson language source/);
+});

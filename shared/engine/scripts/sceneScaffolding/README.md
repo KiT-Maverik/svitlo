@@ -4,7 +4,7 @@ The **trusted Lesson Stage 6.1 materializer now creates the executable Scene dra
 
 Every file has an actionable `TODO (BLOCKER)` until Stage 6.3 specialists implement the behavior, responsive styling, real test IDs, meaningful Storybook fixtures and substantive unit tests. The stub is valid TypeScript/TSX with inert `aria-hidden` output, **not an implemented or registered Scene**. No fabricated translations, media, placeholders with unresolved symbols or registry edits are allowed. Completion and source-language/accessibility/RTL/offline testing remain Stage 6.3 obligations.
 
-This legacy create-only helper reuses the **same compiled Engine renderSceneFiles template**; it exists for historic materialized Lessons and for checking Stage 6.1 file presence without overwriting edits. A new Lesson does not need an additional CLI generate command. It statically reads `index.ts`, `languages.ts` and the nested `defineScene` sources (never executes authored code). Historic inputs can still provide a colocated Scene `specification.md` for manual generation. New inputs already contain the Scene draft directories and need only `check`.
+This legacy create-only helper reuses the **same compiled Engine renderSceneFiles template**; it exists for historic materialized Lessons and for checking Stage 6.1 file presence without overwriting edits. A new Lesson does not need an additional CLI generate command. It statically reads `index.ts`, `constants.ts` (or exclusively legacy `languages.ts`) and the nested `defineScene` sources (never executes authored code). Historic inputs can still provide a colocated Scene `specification.md` for manual generation. New inputs already contain the Scene draft directories and need only `check`.
 
 ## Invocation
 
