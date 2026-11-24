@@ -124,15 +124,12 @@ test('flashcards: unfinished selection blocker lives adjacent to source definiti
   assert.equal((pending.match(/TODO \(BLOCKER\)/g) ?? []).length, 1);
   assert.doesNotMatch(pending, /no Flashcards have been fabricated/);
 });
-test('flashcards: verified bank Configurator import produces flashcard.id', () => {
-  const code = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
-    documentLanguage: 'en',
-    languagesImport: './languages',
-    renderContentBlock,
-    flashcardImports: { [id('03')]: { module: '#lessonsData/a/flashcards/selected', exportName: 'selectedCard' } },
-  }).files.find(file => file.path === 'index.ts')!.content;
-  assert.match(code, /selectedFlashcard_0\.id/);
-  assert.match(code, /import \{ selectedCard as selectedFlashcard_0 \}/);
-  assert.doesNotMatch(code, /TODO \(BLOCKER\)/);
-  assert.doesNotMatch(code, new RegExp(id('03')));
+test('flashcards: non-provisional bank IDs leave verified Configurator rewrite to Stage 6', () => {
+  const result = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
+    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+  });
+  const source = result.files.find(file => file.path === 'index.ts')!.content;
+  assert.match(source, new RegExp(id('03')));
+  assert.doesNotMatch(source, /TODO \(BLOCKER\)/);
+  assert.deepEqual(result.diagnostics, []);
 });

@@ -113,13 +113,13 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     [
       folder + 'index.ts',
       folder + 'sections/introduction/index.ts',
-      folder + 'sections/introduction/content/items/prompt/index.ts',
+      folder + 'sections/introduction/prompt/index.ts',
     ].sort(),
   );
   assert(paths.includes(folder + 'methodology.md'));
   assert(paths.includes(folder + 'specification.md'));
-  assert(paths.includes(folder + 'sections/introduction/specification.md'));
-  assert(paths.includes(folder + 'sections/introduction/content/items/prompt/specification.md'));
+  assert(!paths.includes(folder + 'sections/introduction/specification.md'));
+  assert(paths.includes(folder + 'sections/introduction/prompt/specification.md'));
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
   assert.match(root, /defineLesson<"basics"/);
   assert.match(root, /"order": \["introduction"\]/);
@@ -129,9 +129,14 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     result.files.find(file => file.path === folder + 'methodology.md')!.content,
     /Source lesson methodology/,
   );
-  assert.doesNotThrow(
+  assert(
+    result.diagnostics.some(d => d.code === 'pending-content' && d.message.includes('purpose')),
+    'the Section notes cannot be dropped before #831 methodology integration',
+  );
+  assert.throws(
     () => assertLessonStage6ReleaseReady(result),
-    'no unresolved resources in a complete one-locale Lesson',
+    /publication blocked/,
+    'reviewed Section notes still require methodology transfer',
   );
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(file.path, file.content, ts.ScriptTarget.ES2022, true);
@@ -332,7 +337,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       locale: { title: 'Quiz', navigationLabel: 'Q' },
       content: { items: {}, order: [] },
     },
-    production: { purpose: 'Reviewed assessment' },
+    production: {},
   } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.items.reviewCards = {
     config: {
@@ -343,7 +348,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       locale: { title: 'Cards', navigationLabel: 'C' },
       content: { items: {}, order: [] },
     },
-    production: { purpose: 'Reviewed recall practice' },
+    production: {},
   } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.order.push('reviewQuiz', 'reviewCards');
   input.config.params = {
@@ -666,11 +671,11 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   );
   assert(pending.every(item => item.severity === 'warning' && item.message.includes('verified')));
   for (const [path, extension] of [
-    ['sections/introduction/content/items/image/index.ts', 'webp'],
-    ['sections/introduction/content/items/video/index.ts', 'mp4'],
-    ['sections/introduction/content/items/video/index.ts', 'webp'],
-    ['sections/introduction/content/items/audio/index.ts', 'mp3'],
-    ['sections/introduction/content/items/subtitles/index.ts', 'vtt'],
+    ['sections/introduction/image/index.ts', 'webp'],
+    ['sections/introduction/video/index.ts', 'mp4'],
+    ['sections/introduction/video/index.ts', 'webp'],
+    ['sections/introduction/audio/index.ts', 'mp3'],
+    ['sections/introduction/subtitles/index.ts', 'vtt'],
   ]) {
     const source = plan.files.find(file => file.path === folder + path)?.content ?? '';
     assert.match(
@@ -680,7 +685,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   for (const path of ['link', 'embed']) {
     const source =
-      plan.files.find(file => file.path === folder + 'sections/introduction/content/items/' + path + '/index.ts')
+      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')
         ?.content ?? '';
     assert.match(
       source,
@@ -688,7 +693,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
     );
   }
   const carouselSlide =
-    plan.files.find(file => file.path.endsWith('/carousel/slides/items/slide/index.ts'))?.content ?? '';
+    plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);

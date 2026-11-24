@@ -31,8 +31,6 @@ export type Options = {
   directory?: string;
   languagesImport: string;
   production?: Record<string, unknown>;
-  /** Reviewed bank Configurators indexed by immutable ID. */
-  questionImports?: Record<string, { module: string; exportName: string }>;
   renderContentBlock: (
     config: ChildConfig,
     options: {
@@ -202,7 +200,7 @@ export function materializeQuizSection(config: Source, options: Options): Result
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
-  const own: Record<string, unknown> = { ...metadata, content: imported('content') };
+  const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
   const sectionNotes = Object.keys(options.production ?? {}).filter(
@@ -231,23 +229,9 @@ export function materializeQuizSection(config: Source, options: Options): Result
     if (new Set(ids).size !== ids.length) throw new Error('quiz.params.selection.questionIds: duplicate UUID');
     if (ids.some(id => String(id).startsWith('feedc0de-'))) {
       blocker.push('// TODO (BLOCKER): Replace provisional Question IDs with reviewed bank selections.');
-    } else if (ids.every(id => options.questionImports?.[id])) {
-      const selection = ids.map((id, index) => {
-        const ref = options.questionImports![id]!;
-        if (
-          !/^(?:#[A-Za-z0-9_/-]+|@svitlo\/[A-Za-z0-9_/-]+|\.{1,2}\/[A-Za-z0-9_./-]+)$/.test(ref.module) ||
-          ref.module.includes('/../') ||
-          !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(ref.exportName)
-        )
-          throw new Error('Question: unsafe verified Configurator import for ' + id);
-        const alias = 'selectedQuestion_' + index;
-        imports.push('import { ' + ref.exportName + ' as ' + alias + ' } from ' + JSON.stringify(ref.module) + ';');
-        return imported(alias + '.id');
-      });
-      own.params = { ...params, selection: { ...select, questionIds: selection } };
-    } else {
-      blocker.push('// TODO (BLOCKER): Import reviewed Question Configurators and select question.id references.');
     }
+    // The Stage 6 owner validates reviewed imported Question.id expressions
+    // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
   if (options.production?.pending === true)
     blocker.push('// TODO (BLOCKER): Independent assessment review and bank integration remain pending.');

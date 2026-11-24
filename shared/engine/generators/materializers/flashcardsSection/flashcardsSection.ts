@@ -31,8 +31,6 @@ export type Options = {
   directory?: string;
   languagesImport: string;
   production?: Record<string, unknown>;
-  /** Reviewed bank Configurators indexed by immutable ID. */
-  flashcardImports?: Record<string, { module: string; exportName: string }>;
   renderContentBlock: (
     config: ChildConfig,
     options: {
@@ -203,7 +201,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
-  const own: Record<string, unknown> = { ...metadata, content: imported('content') };
+  const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
   const sectionNotes = Object.keys(options.production ?? {}).filter(
@@ -228,25 +226,9 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     if (new Set(ids).size !== ids.length) throw new Error('flashcards.params.selection.flashcardIds: duplicate UUID');
     if (ids.some(id => String(id).startsWith('feedc0de-'))) {
       blocker.push('// TODO (BLOCKER): Replace provisional Flashcard IDs with reviewed bank selections.');
-    } else if (ids.every(id => options.flashcardImports?.[id])) {
-      const selection = ids.map((id, index) => {
-        const ref = options.flashcardImports![id]!;
-        if (
-          !/^(?:#[A-Za-z0-9_/-]+|@svitlo\/[A-Za-z0-9_/-]+|\.{1,2}\/[A-Za-z0-9_./-]+)$/.test(ref.module) ||
-          ref.module.includes('/../') ||
-          !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(ref.exportName)
-        )
-          throw new Error('Flashcard: unsafe verified Configurator import for ' + id);
-        const alias = 'selectedFlashcard_' + index;
-        imports.push('import { ' + ref.exportName + ' as ' + alias + ' } from ' + JSON.stringify(ref.module) + ';');
-        return imported(alias + '.id');
-      });
-      own.params = { ...params, selection: { ...select, flashcardIds: selection } };
-    } else {
-      blocker.push(
-        '// TODO (BLOCKER): Import reviewed Flashcard Configurators using flashcard.id; delete this TODO after integration.',
-      );
     }
+    // The Stage 6 owner validates reviewed imported Flashcard.id expressions
+    // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
   if (options.production?.pending === true && !blocker.length)
     blocker.push(

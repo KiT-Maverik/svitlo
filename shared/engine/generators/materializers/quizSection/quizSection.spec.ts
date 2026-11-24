@@ -141,14 +141,12 @@ test('quiz: missing params yield one TODO and Question selection a separate TODO
   assert.match(code, /Select verified Question Bank IDs/);
   assert.doesNotMatch(code, /no Questions have been fabricated/);
 });
-test('quiz: reviewed import mapping emits real Question Configurator id', () => {
-  const code = materializeQuizSection(input() as Parameters<typeof materializeQuizSection>[0], {
-    documentLanguage: 'en',
-    languagesImport: './languages',
-    renderContentBlock,
-    questionImports: { [id('03')]: { module: '#lessonsData/a/questions/selected', exportName: 'selectedQuestion' } },
-  }).files.find(file => file.path === 'index.ts')!.content;
-  assert.match(code, /selectedQuestion_0\.id/);
-  assert.match(code, /import \{ selectedQuestion as selectedQuestion_0 \} from "#lessonsData\/a\/questions\/selected"/);
-  assert.doesNotMatch(code, new RegExp(id('03')));
+test('quiz: complete params and non-provisional bank IDs leave source rewriting to Stage 6', () => {
+  const result = materializeQuizSection(input() as Parameters<typeof materializeQuizSection>[0], {
+    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+  });
+  const root = result.files.find(file => file.path === 'index.ts')!.content;
+  assert.match(root, new RegExp(id('03')));
+  assert.doesNotMatch(root, /TODO \(BLOCKER\)/);
+  assert.deepEqual(result.diagnostics, []);
 });
