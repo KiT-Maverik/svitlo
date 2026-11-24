@@ -5,6 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import Module from 'node:module';
+import { buildSync } from 'esbuild';
 import YAML from 'yaml';
 import { fileURLToPath } from 'node:url';
 import { discoverTypedCourseSource, selectStage4Review, parseTypedMetadata } from './typed-course-gate.mjs';
@@ -574,4 +576,143 @@ test('literal Stage 3 safely captures the exact raw trusted Lesson Build patch',
         patches: [],
       }),
     );
+});
+
+test('trusted real Markdown Lesson preserves transitive module URLs and sparse Course reuse', t => {
+  // Keep the trusted fixture under the installed workspace so the real Engine
+  // Build package resolves. The candidate is a separate committed Git tree.
+  const temp = fileURLToPath(new URL('../../../shared/engine/temp/', import.meta.url));
+  fs.mkdirSync(temp, { recursive: true });
+  const work = fs.mkdtempSync(path.join(temp, 'trusted-markdown-lesson-'));
+  t.after(() => fs.rmSync(work, { recursive: true, force: true }));
+  const trustedRoot = path.join(work, 'trusted');
+  const candidateRoot = path.join(work, 'candidate');
+  const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  const lessonRoot = 'content/playground/data/lessons/c/' + lessonId;
+  const source = lessonRoot + '/index.ts';
+  const methodology = lessonRoot + '/methodology.md';
+  const intro = lessonRoot + '/sections/intro';
+  const first = intro + '/content/first';
+  const second = intro + '/content/second';
+  const values = {
+    first: { en: '# Light travels in a straight line.', uk: '# Світло поширюється прямолінійно.' },
+    second: { en: '# A shadow forms behind an obstacle.', uk: '# За перешкодою утворюється тінь.' },
+  };
+  const fixture = {
+    [source]: `
+import { defineLesson } from '@svitlo/engine/build';
+import { intro } from './sections/intro';
+export const howLightMoves = defineLesson({
+  id: '${lessonId}', slug: 'howLightMoves', type: 'lesson', skills: [],
+  params: { languages: ['en', 'uk'], quizRequiredForCompletion: false,
+    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+  locale: { title: { en: 'How light moves', uk: 'Як поширюється світло' } },
+  section: { items: { intro }, order: ['intro'] },
+});
+`,
+    [methodology]: '# Independently reviewed Lesson fixture\n',
+    [intro + '/index.ts']: `
+import { defineContentSection } from '@svitlo/engine/build';
+import { first } from './content/first';
+import { second } from './content/second';
+export const intro = defineContentSection({
+  id: '00000000-0000-4000-8000-000000000020', slug: 'intro', type: 'content', params: {},
+  locale: { title: { en: 'Observation', uk: 'Спостереження' },
+    navigationLabel: { en: 'Observation', uk: 'Спостереження' } },
+  content: { items: { first, second }, order: ['first', 'second'] },
+});
+`,
+  };
+  for (const [key, directory, number] of [['first', first, 31], ['second', second, 32]]) {
+    fixture[directory + '/index.ts'] = `
+import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';
+export const ${key} = defineMarkdown({
+  id: '00000000-0000-4000-8000-0000000000${number}', slug: '${key}', type: 'markdown',
+  params: {}, locale: { value: readMarkdown(import.meta.url, ['en', 'uk']) },
+});
+`;
+    for (const language of ['en', 'uk']) fixture[directory + '/' + language + '.md'] = values[key][language];
+  }
+  const git = (root, ...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  for (const root of [trustedRoot, candidateRoot]) {
+    for (const [filename, bytes] of Object.entries(fixture)) {
+      const target = path.join(root, filename);
+      fs.mkdirSync(path.dirname(target), { recursive: true });
+      fs.writeFileSync(target, bytes);
+    }
+    git(root, 'init', '-q');
+    git(root, 'config', 'user.name', 'Trusted Markdown fixture');
+    git(root, 'config', 'user.email', 'fixture@example.test');
+    git(root, 'add', '.');
+    git(root, 'commit', '-qm', 'Independently reviewed source');
+  }
+  const filename = path.join(trustedRoot, source);
+  const previous = buildSync({
+    entryPoints: [filename], absWorkingDir: path.dirname(filename),
+    bundle: true, write: false, platform: 'node', format: 'cjs', target: 'node24', logLevel: 'silent',
+  });
+  const legacy = new Module(filename);
+  legacy.filename = filename;
+  legacy.paths = Module._nodeModulePaths(path.dirname(filename));
+  assert.throws(() => legacy._compile(previous.outputFiles[0].text, filename), /Invalid URL|Missing or invalid Markdown/);
+
+  const args = {
+    id: lessonId,
+    matching: { sourceSha: git(candidateRoot, 'rev-parse', 'HEAD'), methodologySourcePath: methodology },
+    languages: ['en', 'uk'], placement: 'content/observation',
+  };
+  const options = { trustedRoot, candidateRoot, textbookRoot: 'content/playground' };
+  const resolve = createTrustedCourseLessonResolver(options);
+  const verified = resolve(args);
+  assert.equal(verified.exportName, 'howLightMoves');
+  const before = verified.configurator.build.props({ languages: args.languages });
+  for (const language of args.languages) {
+    const locale = JSON.stringify(before.locale[language]);
+    for (const key of ['first', 'second']) assert(locale.includes(values[key][language]));
+  }
+  assert.equal(before.base.params.sections.allowSkipping, true);
+  const specifier = '#lessonsData/c/' + lessonId + '/index';
+  const raw = '{ params: { sections: { allowSkipping: false } } }';
+  for (const expression of [
+    '{ id: howLightMoves.id }',
+    '{ ...howLightMoves.build.overrides(' + raw + ', { languages: ["en", "uk"] }) }',
+  ]) {
+    const stage = structuredClone(reviewedStage3);
+    stage.config.content.items.observation.production = {
+      kind: 'existing', existing: '__REUSE__', matching: args.matching,
+    };
+    const body = "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
+      'import { howLightMoves } from ' + JSON.stringify(specifier) + ';\n' +
+      'export const reviewedInput = ' + JSON.stringify(stage).replace('"__REUSE__"', expression) +
+      ' satisfies CourseWorkflowMaterializerInput;';
+    const patches = [];
+    const input = parseCanonicalCourseSource(body, { resolveImport: resolve.loadImport, patches });
+    const existing = input.config.content.items.observation.production.existing;
+    assert.equal(existing.id, lessonId);
+    const result = reviewedLessonPatchResolver(input, resolve, patches, 'b'.repeat(40))(args);
+    assert.equal(result.configurator, verified.configurator);
+    if (expression.includes('overrides')) {
+      assert.equal(existing.base.params.sections.allowSkipping, false);
+      assert.equal(result.rawPatchSource, raw);
+      assert.equal(patches.length, 1);
+    } else {
+      assert.deepEqual(Object.keys(existing), ['id']);
+      assert.equal(result.rawPatchSource, undefined);
+      assert.equal(patches.length, 0);
+    }
+    assert.deepEqual(verified.configurator.build.props({ languages: args.languages }), before);
+  }
+  assert.equal(git(trustedRoot, 'status', '--porcelain'), '');
+  assert.equal(git(candidateRoot, 'status', '--porcelain'), '');
+  fs.writeFileSync(path.join(candidateRoot, second + '/en.md'), 'Unreviewed Markdown');
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /dependency differs|trusted/);
+  git(candidateRoot, 'checkout', '--', second + '/en.md');
+  fs.writeFileSync(path.join(candidateRoot, first + '/index.ts'), 'throw Error("candidate must never execute");');
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /dependency differs|trusted/);
+  git(candidateRoot, 'checkout', '--', first + '/index.ts');
+  for (const root of [trustedRoot, candidateRoot]) {
+    fs.writeFileSync(path.join(root, lessonRoot, 'draft.ts'), 'throw Error("draft must never execute");');
+    git(root, 'add', lessonRoot + '/draft.ts');
+  }
+  assert.throws(() => createTrustedCourseLessonResolver(options)(args), /Unmaterialized editorial draft/);
 });
