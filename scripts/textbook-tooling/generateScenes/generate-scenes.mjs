@@ -14,7 +14,7 @@ const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 /** Run with an explicit textbook root to support isolated generator tests. */
 export async function syncSceneRegistry(root, mode, packageName = 'the selected textbook') {
   const scenes = join(root, 'scenes');
-  const entries = readdirSync(scenes, { withFileTypes: true })
+  const authored = readdirSync(scenes, { withFileTypes: true })
     .filter(entry => entry.isDirectory())
     .flatMap(bucket => {
       if (!/^[0-9a-f]$/.test(bucket.name)) throw new Error('Invalid Scene bucket: ' + bucket.name);
@@ -27,10 +27,19 @@ export async function syncSceneRegistry(root, mode, packageName = 'the selected 
         });
     })
     .sort((a, b) => a.id.localeCompare(b.id));
-  if (!entries.length || new Set(entries.map(entry => entry.id)).size !== entries.length) {
+  if (!authored.length || new Set(authored.map(entry => entry.id)).size !== authored.length) {
     throw new Error('Scene registry needs unique authored Scene directories');
   }
-  for (const entry of entries) readFileSync(join(scenes, entry.path, 'index.ts'), 'utf8');
+  // Stage 6.1 creates a valid but explicitly nonpublishable module inside each
+  // Scene UUID directory. The runtime registry MUST NOT pick it up until the
+  // implementer removes the registration blocker at completed Stage 6.3.
+  // Keep canonical-path/duplicate/missing-entry validation for all directories,
+  // including pending Scenes. A textbook with only pending Scenes has an empty
+  // registry, not an invented implementation.
+  const pendingRegistration = /^\s*\/\/ TODO \(BLOCKER\): Register this Scene UUID only after /m;
+  const entries = authored.filter(entry =>
+    !pendingRegistration.test(readFileSync(join(scenes, entry.path, 'index.ts'), 'utf8')),
+  );
   const imports = entries
     .map(
       entry =>

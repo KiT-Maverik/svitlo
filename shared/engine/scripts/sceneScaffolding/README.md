@@ -18,6 +18,6 @@ node shared/engine/scripts/sceneScaffolding/sceneScaffolding.mjs generate --sour
 node --test shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs
 ```
 
-The textbook must already expose `./scenes`, a Scene registry and TS/TSX/React/Engine/UI Kit/Vitest support. Existing UUID directories are never overwritten, even when incomplete. Validation rejects symlinks, unsafe paths, wrong UUID buckets, duplicate IDs and missing reviewed specs on legacy generation. The trusted Stage 6.1 publisher rejects partial six-file scaffolds and unrelated textbook paths. The runtime Scene registry must never be generated or updated to include unfinished Scenes.
+The textbook must already expose `./scenes`, a Scene registry and TS/TSX/React/Engine/UI Kit/Vitest support. Existing UUID directories are never overwritten, even when incomplete. Validation rejects symlinks, unsafe paths, wrong UUID buckets, duplicate IDs and missing reviewed specs on legacy generation. The trusted Stage 6.1 publisher rejects partial six-file scaffolds and unrelated textbook paths. The runtime Scene registry generator explicitly excludes Scene UUID directories whose `index.ts` still contains the Stage 6.1 registration `TODO (BLOCKER)` marker. Only after Stage 6.3 implementation, review, and marker removal may `content:generate:scenes` register the component.
 
 See [Create Lesson Flow](../../../../studio/skills/lesson-workflow/create-lesson-flow.skill.md) and [Implement Scene](../../../../studio/skills/lesson-workflow/implement-scene.skill.md).

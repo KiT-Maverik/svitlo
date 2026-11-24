@@ -26,7 +26,7 @@
    exists in the textbook-owned `scenes/<bucket>/<scene-uuid>/` directory.
    Resolve the Scene UUID from its Config, cross-check the approved Screenwriter
    specification embedded in the TSX, and complete the existing scaffold in
-   place. Do not create another Scene tree or register an unfinished component.
+   place. Do not create another Scene tree or register an unfinished component. Keep the generated `index.ts` registration `TODO (BLOCKER)` marker intact until the implementation and review truly pass: the textbook Scene registry generator excludes these pending UUIDs and begins registering them only after the blocker is removed.
 5. Confirm the target renderer supports the intended type, media, input modality and offline behavior. For a textbook without a Scene registry, TSX compilation, `./scenes` export or required renderer tests/dependencies, **Stage 6.3 must arrange the textbook-owned infrastructure first** (or consume a separately reviewed infrastructure PR); do not mark the Scene as implemented or the Stage as complete while that dependency is missing. Never invent an unrelated framework or change shared contracts solely to silence errors. If a prerequisite is outside the authorized Lesson scope, record the blocking integration PR and continue other independently ready Scenes.
 
 ## Current Scene contract and implementation
