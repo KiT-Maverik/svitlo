@@ -271,9 +271,9 @@ test('SHA256 attestation rejects missing or tampered analysis report', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-typed-artifact-'));
   try {
     process.env.LESSON_TYPED_REPORT = path.join(dir, 'report.json');
-    fs.writeFileSync(process.env.LESSON_TYPED_REPORT, '{"version":2}');
-    process.env.LESSON_TYPED_REPORT_SHA256 = digest(Buffer.from('{"version":2}'));
-    assert.deepEqual(readTypedReport(), { version: 2 });
+    fs.writeFileSync(process.env.LESSON_TYPED_REPORT, '{"version":3}');
+    process.env.LESSON_TYPED_REPORT_SHA256 = digest(Buffer.from('{"version":3}'));
+    assert.deepEqual(readTypedReport(), { version: 3 });
     fs.appendFileSync(process.env.LESSON_TYPED_REPORT, ' ');
     assert.throws(() => readTypedReport(), /SHA256 attestation/);
   } finally {

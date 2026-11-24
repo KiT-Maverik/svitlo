@@ -1,15 +1,14 @@
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
-  CourseWorkflowStage3NewLessonConfig,
-  CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from '../../../types/workflow/courseWorkflow.types';
+import type { LessonWorkflowStage1, LessonWorkflowStage1Config } from '../../../types/workflow/lessonWorkflow.types';
 import type { Source } from './lesson';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 
 /** Stage 3 placements do not yet have the complete standalone Lesson shape. */
-declare const newPlacement: CourseWorkflowStage3NewLessonConfig;
+declare const newPlacement: LessonWorkflowStage1Config<false>;
 declare const existingPlacement: CourseWorkflowStage3ExistingLessonConfig;
 declare const builtReuse: CourseWorkflowStage3ExistingLessonReference;
 // @ts-expect-error No immutable Lesson UUID, publication languages or section tree in Stage 3.
@@ -28,7 +27,7 @@ void invalidPatch;
 void validAudience;
 
 /** Parent-owned Stage 5 Course handoff is editorial, not a completed Lesson Config. */
-declare const courseStage3New: CourseWorkflowStage3NewLesson;
+declare const courseStage3New: LessonWorkflowStage1<false>;
 // @ts-expect-error Stage 3 {config, production} envelope cannot be a completed Lesson source.
 const invalidStage3Envelope: Source = courseStage3New;
 const requirements: LessonProductionAssessmentRequirements = {
