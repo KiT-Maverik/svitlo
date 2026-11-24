@@ -10,6 +10,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { validateEpisodeRuntime } from '@svitlo/engine/runtime';
 import { assertSafeDirectoryPath } from '../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -92,6 +93,7 @@ function findLessonPatches(course, overrides, languages) {
       throw new Error('Duplicate Course entity ID ' + entity.id + ' at ' + location);
     }
     visited.add(entity.id);
+    if (entity.type === 'episode') return;
     if (!['course', 'module', 'chapter'].includes(entity.type)) {
       throw new Error('Unsupported Course entity type at ' + location + ': ' + String(entity.type));
     }
@@ -139,6 +141,14 @@ function compactEntity(value, lessonPatches, language, location) {
       id: value.id,
       ...(Object.keys(effective).length ? { overrides: effective } : {}),
     };
+  }
+  if (value.type === 'episode') {
+    if (!Array.isArray(value.section) || !value.section.length || Object.keys(value.events ?? {}).length)
+      throw new Error('Incomplete Episode or unsupported Episode events: ' + value.id);
+    if (value.section.some(section => !['content', 'practice', 'codingTask', 'learningFlow'].includes(section.type)))
+      throw new Error('Unsupported Episode Section: ' + value.id);
+    if (language) validateEpisodeRuntime(value, language);
+    return clone(value);
   }
   if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content)) {
     throw new Error('Invalid Course/Module/Chapter Props for ' + value.id);

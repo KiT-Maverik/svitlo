@@ -1,14 +1,14 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, courseActivities } from '@svitlo/engine/runtime';
 import { loadPublishedCourseLessonProps, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { courseHasLesson, loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
 import { coursePropsToTopics } from '@/lib/courseNavigation';
 import WebLesson from '@/components/pages/Lesson/Lesson';
 
-type Props = { params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }> };
+type Props = { params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }>; searchParams: Promise<{ placement?: string | string[] }> };
 
-async function Content({ params }: Props) {
+async function Content({ params, searchParams }: Props) {
   const { language, courseId, lessonLanguage, lessonId } = await params;
   const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   const lessonDescriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === lessonLanguage);
@@ -21,14 +21,18 @@ async function Content({ params }: Props) {
     notFound();
   }
   if (!courseHasLesson(course, lessonId)) notFound();
+  const candidates = courseActivities(course).filter(({node}) => node.type === 'lesson' && node.id === lessonId);
+  const placement = (await searchParams).placement;
+  if (Array.isArray(placement) || (placement !== undefined && !candidates.some(item=>item.placement===placement)) ||
+      (placement === undefined && candidates.length !== 1)) notFound();
 
   const [response, messages, titles] = await Promise.all([
-    loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language),
+    loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language, { placement }),
     loadPublishedUiKitMessages(descriptor.locale),
     loadCourseLessonTitles(course, lessonDescriptor.language),
   ]);
 
-  const href = '/' + language + '/course/' + courseId + '/lesson/' + lessonLanguage + '/' + lessonId;
+  const href = '/' + language + '/course/' + courseId + '/lesson/' + lessonLanguage + '/' + lessonId + (placement ? '?placement=' + encodeURIComponent(placement) : '');
   return (
     <WebLesson
       response={response}
