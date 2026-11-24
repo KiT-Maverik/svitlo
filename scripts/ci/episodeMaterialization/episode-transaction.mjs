@@ -228,6 +228,64 @@ export function prepareEpisode(meta, root, execute = runIsolatedMaterialization)
   return buildEpisodeManifest(meta, plan);
 }
 
+/** Verify the sealed artifact and EXACT reserved parent restoration, without
+ * executing or importing the reviewed candidate entrypoint in a tokened job.
+ */
+export function verifyDirectEpisodeManifest(meta, manifest, root) {
+  if (!manifest || manifest.version !== 1 ||
+      !sameMeta(manifest.meta ?? {}, meta) ||
+      manifest.operation !== 'typed-episode-stage5' ||
+      manifest.publishable !== false ||
+      !/^[a-f0-9-]{36}$/.test(manifest.episodeId ?? '') ||
+      !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(manifest.sourceExportName ?? '') ||
+      !Array.isArray(manifest.entries) || !manifest.entries.length || manifest.entries.length > 1500)
+    throw Error('Invalid pinned direct Episode manifest');
+  const reader = gitReader(root);
+  if (
+    reader.git('rev-parse','HEAD').trim() !== meta.head ||
+    reader.git('status','--porcelain=v1','--untracked-files=all').trim() ||
+    reader.git('merge-base',meta.parentHead,meta.head).trim() !== meta.parentHead
+  ) throw Error('Episode publisher source checkout is not clean and pinned');
+  const tree = reader.tree(meta.head, meta.courseRoot);
+  const baseline = reader.tree(meta.parentHead, meta.courseRoot);
+  if (baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
+      baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+      tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
+      tree.get(meta.parentPath)?.sha !== meta.parentBlobSha)
+    throw Error('Episode parent/handoff source is not the authorized Git version');
+  const handoff = parseEpisodeDraft(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath),
+    'EpisodeWorkflowStage1Handoff');
+  if (handoff.config.id !== manifest.episodeId ||
+      handoff.production.placement.courseId !== meta.courseId ||
+      handoff.production.placement.path !== meta.placement)
+    throw Error('Episode worker output identity differs from approved Course handoff');
+  let total = 0;
+  const files = manifest.entries.map(entry => {
+    const bytes = Buffer.from(entry.data || '', 'base64');
+    total += bytes.length;
+    if (!entry || !entry.path || typeof entry.kind !== 'string' ||
+        !/^[A-Za-z0-9+/]*={0,2}$/.test(entry.data ?? '') ||
+        bytes.toString('base64') !== entry.data ||
+        !bytes.length || total > maxBytes ||
+        !Buffer.from(bytes.toString('utf8'),'utf8').equals(bytes) ||
+        hash(bytes) !== entry.sha256)
+      throw Error('Invalid sealed Episode file or SHA256');
+    return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
+  });
+  checkEpisodeTargets(meta, files, tree);
+  const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
+  const expected = restoreEpisodePlacement(parentSource, {
+    path: meta.placement,
+    slug: handoff.config.slug,
+    episodeId: handoff.config.id,
+    orderIndex: handoff.production.placement.orderPath.at(-1),
+  }, manifest.sourceExportName, { rootParent: meta.placement.split('/').length === 2 });
+  const edited = files.find(file => file.path === meta.parentPath);
+  if (!edited || edited.content !== expected)
+    throw Error('Episode artifact altered the reserved Course parent outside the approved slot');
+  return manifest;
+}
+
 function readManifest(filename) {
   if (
     !filename ||
@@ -257,9 +315,7 @@ async function main() {
   if (!sameMeta(await inspectEpisode(meta.number, meta.parentNumber, meta), meta))
     throw Error('Episode authorization changed before source publication');
   const manifest = readManifest(filename);
-  const expected = prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
-  if (JSON.stringify(manifest) !== JSON.stringify(expected))
-    throw Error('Episode manifest differs from trusted deterministic plan');
+  verifyDirectEpisodeManifest(meta, manifest, process.env.EPISODE_HEAD_ROOT);
   const original = await github('git/commits/' + meta.head);
   if (original?.sha !== meta.head || !SHA.test(original.tree?.sha ?? ''))
     throw Error('Missing reviewed parent Git tree');
