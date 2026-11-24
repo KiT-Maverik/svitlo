@@ -24,6 +24,7 @@ const messages: CourseMessages = {
   chapter: 'Chapter',
   lesson: 'Lesson',
   episode: 'Episode',
+  assessment: 'Assessment',
 };
 
 const course: CoursePreview = {
@@ -51,6 +52,7 @@ const outline: readonly CourseOutlineItem[] = [
         children: [
           { id: 'lesson-a', type: 'lesson', title: 'What is light?', href: '/en/course/light/lesson/lesson-a' },
           { id: 'episode-a', type: 'episode', title: 'A short story', href: '/en/course/light/episode/episode-a' },
+          { id: 'assessment-a', type: 'assessment', title: 'Review skills' },
         ],
       },
     ],
@@ -103,6 +105,8 @@ describe('course pages', () => {
       'href',
       '/en/course/light/lesson/lesson-a',
     );
+    expect(screen.getByText('Review skills')).toBeVisible();
+    expect(screen.queryByRole('link', { name: /Review skills/ })).toBeNull();
     expect(screen.getByRole('link', { name: /A short story/ })).toHaveAttribute(
       'href',
       '/en/course/light/episode/episode-a',

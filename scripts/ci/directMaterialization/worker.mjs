@@ -25,6 +25,10 @@ const patterns = {
     '^' + root + 'courses/[a-f0-9]/' + uuid + '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts$',
     'i',
   ),
+  'assessment-stage4': new RegExp(
+    '^' + root + 'courses/[a-f0-9]/' + uuid + '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts$',
+    'i',
+  ),
 };
 if (
   !Object.hasOwn(patterns, operation) ||
@@ -173,14 +177,24 @@ const options =
         }
       : operation === 'episode-stage5'
         ? { source }
-        : undefined;
+        : operation === 'assessment-stage4'
+          ? {
+              source,
+              sourceText,
+              verifySourceInput: (_input, pinned, text) =>
+                pinned.sourcePath === source.sourcePath &&
+                pinned.sourceBlobSha === source.sourceBlobSha &&
+                pinned.sourceCommitSha === source.sourceCommitSha &&
+                text === sourceText,
+            }
+          : undefined;
 const plan = await executeMaterializerEntrypoint(
   operation,
   options,
   () => jiti.import(entrypoint),
   selectedBank
     ? bankOptions
-    : operation === 'episode-stage5'
+    : ['episode-stage5', 'assessment-stage4'].includes(operation)
       ? input => {
           capturedInput = input;
           return options;
@@ -189,6 +203,8 @@ const plan = await executeMaterializerEntrypoint(
 );
 process.stdout.write(
   JSON.stringify(
-    selectedBank || operation === 'episode-stage5' ? { plan, input: capturedInput } : plan,
+    selectedBank || ['episode-stage5', 'assessment-stage4'].includes(operation)
+      ? { plan, input: capturedInput }
+      : plan,
   ),
 );

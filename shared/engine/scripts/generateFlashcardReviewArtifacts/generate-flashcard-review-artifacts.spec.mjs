@@ -61,7 +61,7 @@ test('one bounded Flashcard bank reference includes both sides, flags and pinned
     assert.equal(entry.reviewReady, true);
     assert.equal(entry.missing, 0);
     assert.equal(entry.strings, 3);
-    const source = fs.readFileSync(path.join(state.output, entry.path.slice('.agent-ci-artifacts/'.length)), 'utf8');
+    const source = fs.readFileSync(path.join(state.output, entry.path), 'utf8');
     assert.match(source, /Привіт/);
     assert.match(source, /Вітання/);
     assert.match(source, /АБВ/);
@@ -80,10 +80,7 @@ test('missing translated text marks only the requested bank locale as not review
     assert.equal(state.manifest.generated.length, 1);
     assert.equal(state.manifest.generated[0].missing, 1);
     assert.equal(state.manifest.generated[0].reviewReady, false);
-    const md = fs.readFileSync(
-      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
-      'utf8',
-    );
+    const md = fs.readFileSync(path.join(state.output, state.manifest.generated[0].path), 'utf8');
     assert.match(md, /%%MISSING%%/);
   } finally {
     fs.rmSync(state.root, { recursive: true, force: true });
@@ -117,10 +114,7 @@ test('invariant Flashcard flag and learner text remain visible for linguistic re
     state.run();
     assert.equal(state.manifest.failures.length, 0);
     assert.equal(state.manifest.generated[0].strings, 3);
-    const markdown = fs.readFileSync(
-      path.join(state.output, state.manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
-      'utf8',
-    );
+    const markdown = fs.readFileSync(path.join(state.output, state.manifest.generated[0].path), 'utf8');
     assert.match(markdown, /Invariant authored copy.*ABC/);
     assert.match(markdown, /Invariant authored copy.*Greeting/);
     assert.match(markdown, /content\/back\/answer\/locale\/value/);
@@ -170,7 +164,7 @@ test('actual authored Playground bank resolves all reused Question fronts and ba
     assert.equal(entry.flashcards, 3);
     assert.equal(entry.strings, 6, 'three cards with localized fronts and backs');
     assert.equal(entry.missing, 0);
-    const markdown = fs.readFileSync(path.join(output, entry.path.slice('.agent-ci-artifacts/'.length)), 'utf8');
+    const markdown = fs.readFileSync(path.join(output, entry.path), 'utf8');
     assert.equal((markdown.match(/^## .*?\([0-9a-f-]{36}\)$/gm) ?? []).length, 3);
     assert.equal((markdown.match(/^### front \(/gm) ?? []).length, 3);
     assert.equal((markdown.match(/^### back \(/gm) ?? []).length, 3);
@@ -230,10 +224,7 @@ test('copied real bank marks missing imported Question locale as not review-read
     assert.equal(manifest.generated[0].flashcards, 3);
     assert.equal(manifest.generated[0].missing, 1);
     assert.equal(manifest.generated[0].reviewReady, false);
-    const markdown = fs.readFileSync(
-      path.join(output, manifest.generated[0].path.slice('.agent-ci-artifacts/'.length)),
-      'utf8',
-    );
+    const markdown = fs.readFileSync(path.join(output, manifest.generated[0].path), 'utf8');
     assert.match(markdown, /%%MISSING%%/);
     assert.match(markdown, /Source SHA: a{40}/);
   } finally {

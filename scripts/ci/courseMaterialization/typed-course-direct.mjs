@@ -83,11 +83,12 @@ export function verifyCourseDependencies(meta, root, trustedRoot, plan) {
     plan?.courseId !== meta.courseId ||
     plan?.publishable !== false ||
     !Array.isArray(plan.inventory?.lessons) ||
-    !Array.isArray(plan.inventory?.episodes)
+    !Array.isArray(plan.inventory?.episodes) ||
+    !Array.isArray(plan.inventory?.assessments)
   )
     throw Error('Incomplete Course source or placement inventory');
   const keys = new Set();
-  for (const row of [...plan.inventory.lessons, ...plan.inventory.episodes]) {
+  for (const row of [...plan.inventory.lessons, ...plan.inventory.episodes, ...plan.inventory.assessments]) {
     if (!row || !safePath(row.placementPath) || keys.has(row.placementPath))
       throw Error('Invalid/duplicate Course placement inventory');
     keys.add(row.placementPath);

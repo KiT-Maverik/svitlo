@@ -12,13 +12,14 @@ import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
+import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 
 export type Topic = {
   id: string;
   title: string;
   href?: string;
   /** Course nodes preserve their published TOC structure; standalone lessons may omit these fields. */
-  type?: 'module' | 'chapter' | 'lesson' | 'episode';
+  type?: 'module' | 'chapter' | 'lesson' | 'episode' | 'assessment';
   children?: readonly Topic[];
   /** Backwards-compatible indentation for callers still supplying flat topics. */
   depth?: number;
@@ -150,6 +151,8 @@ function TopicItem({ topic, depth, pathname, linkComponent, onNavigate }: TopicI
         >
           {topic.type === 'episode' ? (
             <PlayCircleOutlineRoundedIcon fontSize="small" color="action" aria-hidden="true" />
+          ) : topic.type === 'assessment' ? (
+            <FactCheckOutlinedIcon fontSize="small" color="action" aria-hidden="true" />
           ) : topic.type === 'lesson' ? (
             <MenuBookOutlinedIcon fontSize="small" color="action" aria-hidden="true" />
           ) : null}

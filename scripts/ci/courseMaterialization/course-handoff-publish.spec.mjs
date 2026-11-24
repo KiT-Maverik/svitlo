@@ -27,6 +27,7 @@ const manifest = {
   ],
   inventory: {
     lessons: [],
+    assessments: [],
     episodes: [
       {
         type: 'episode',

@@ -5,6 +5,7 @@ import { materializeEpisode } from '../episode/materialize.mjs';
 import { materializeLessonDraft } from './lessonDraft.mjs';
 import { buildPlacementInventory } from './placementInventory.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
+import { materializeAssessmentPlaceholder } from './materializeAssessmentPlaceholder.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
@@ -169,6 +170,48 @@ export function materializeCourseStage5(input, options = {}) {
           ' } } }';
     return emit(tree);
   };
+  /** Validate real upstream Lesson slots in reviewed Course traversal order.
+   * Cross-Module/Chapter references work by actual placement path; a reused
+   * Lesson UUID must be unique so a repeated placement is unambiguous.
+   * This is production-only readiness, never runtime learner progression.
+   */
+  const resolvedAssessments = new Map();
+  {
+    const previousLessons = new Map();
+    const priorById = new Map();
+    function inspect(owner, parent) {
+      for (const key of owner.config.content.order) {
+        const child = owner.config.content.items[key];
+        const kind = child?.config?.type;
+        const path = parent ? parent + (kind === 'assessment' ? '/content/' : '/') + key : 'content/' + key;
+        if (kind === 'module' || kind === 'chapter') {
+          inspect(child, path);
+        } else if (kind === 'lesson') {
+          previousLessons.set(path, { path, id: child.production?.existing?.id });
+          const id = child.production?.existing?.id;
+          if (id) priorById.set(id, [...(priorById.get(id) ?? []), path]);
+        } else if (kind === 'assessment') {
+          const deps = child.production?.lessonDependencies;
+          if (!Array.isArray(deps) || !deps.length)
+            throw Error(path + ': Assessment requires upstream Lesson dependencies');
+          const resolved = deps.map(value => {
+            const found = previousLessons.get(value);
+            if (found) return found.path;
+            const matches = priorById.get(value) ?? [];
+            if (matches.length !== 1)
+              throw Error(path + ': unresolved, forward or ambiguous upstream Lesson dependency ' + value);
+            return matches[0];
+          });
+          if (new Set(resolved).size !== resolved.length) throw Error(path + ': duplicated upstream Lesson dependency');
+          resolvedAssessments.set(path, resolved);
+        } else if (kind !== 'episode') {
+          throw Error(path + ': unexpected Course placement type ' + kind);
+        }
+      }
+    }
+    inspect(input, '');
+  }
+
   const renderedPlacements = new Map();
   const recordPlacement = (directory, row) => {
     if (renderedPlacements.has(directory)) throw Error('Duplicate Course inventory placement: ' + directory);
@@ -353,6 +396,32 @@ export function materializeCourseStage5(input, options = {}) {
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
         sourcePath: root + '/' + source.path,
         placementSourcePath: root + '/' + source.path,
+      });
+      return result;
+    },
+    materializeAssessment(node, assessmentContext) {
+      const directory = assessmentContext.directory;
+      const dependencies = resolvedAssessments.get(directory);
+      if (!dependencies) throw Error(directory + ': unreviewed Assessment placement');
+      const result = materializeAssessmentPlaceholder(
+        {
+          ...node,
+          production: { ...node.production, lessonDependencies: dependencies },
+        },
+        assessmentContext,
+      );
+      const parent = directory.includes('/content/')
+        ? directory.slice(0, directory.lastIndexOf('/content/')) + '/'
+        : '';
+      recordPlacement(directory, {
+        type: 'assessment',
+        id: result.id,
+        slug: directory.split('/').at(-1),
+        kind: 'new',
+        status: 'pending-assessment-design',
+        sourcePath: root + '/' + directory + '/draft.ts',
+        placementSourcePath: root + '/' + parent + 'index.ts',
+        lessonDependencies: dependencies,
       });
       return result;
     },

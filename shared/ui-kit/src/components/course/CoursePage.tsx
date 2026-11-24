@@ -14,6 +14,7 @@ import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRou
 import LayersOutlined from '@mui/icons-material/LayersOutlined';
 import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
 import PlayCircleOutlineRounded from '@mui/icons-material/PlayCircleOutlineRounded';
+import FactCheckOutlined from '@mui/icons-material/FactCheckOutlined';
 import type { LanguageCode } from '@svitlo/engine/runtime';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';
 import { CourseLanguages } from './CourseLanguages';
@@ -21,7 +22,8 @@ import { CourseArtwork } from './CourseArtwork';
 
 function firstPlayable(items: readonly CourseOutlineItem[]): string | undefined {
   for (const item of items) {
-    if (item.href && (item.type === 'lesson' || item.type === 'episode')) return item.href;
+    if (item.href && (item.type === 'lesson' || item.type === 'episode' || item.type === 'assessment'))
+      return item.href;
     const child = firstPlayable(item.children ?? []);
     if (child) return child;
   }
@@ -38,6 +40,8 @@ function OutlineItem({ item, depth, messages }: { item: CourseOutlineItem; depth
       <MenuBookOutlined fontSize="small" />
     ) : item.type === 'episode' ? (
       <PlayCircleOutlineRounded fontSize="small" />
+    ) : item.type === 'assessment' ? (
+      <FactCheckOutlined fontSize="small" />
     ) : (
       <AutoStoriesOutlined fontSize="small" />
     );

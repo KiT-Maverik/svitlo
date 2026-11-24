@@ -192,22 +192,25 @@ export type LessonWorkflowStage2Block = z.infer<typeof block_Schema>;
 const sectionContent_Schema = workflowOrdered_Schema(block_Schema);
 
 /** Shared ordinary Section nodes are also used by Episode authoring. */
+export const lessonWorkflowContentSection_Schema = node(
+  contentSection_Config_Schema.extend({ content: sectionContent_Schema }),
+);
 export const lessonWorkflowOrdinarySection_Schema = z.union([
-  node(contentSection_Config_Schema.extend({ content: sectionContent_Schema })),
+  lessonWorkflowContentSection_Schema,
   node(practiceSection_Config_Schema.extend({ content: sectionContent_Schema })),
   node(codingTaskSection_Config_Schema.extend({ content: sectionContent_Schema })),
   node(learningFlowSection_Config_Schema.extend({ content: sectionContent_Schema })),
 ]);
 
 /** Banks are independent. Editorial selection/scoring may remain unfinished. */
-const quizSectionNode_Schema = z.strictObject({
+export const lessonWorkflowQuizSection_Schema = z.strictObject({
   config: quizSection_Config_Schema.extend({
     params: quizSection_Config_Schema.shape.params.partial(),
     content: sectionContent_Schema,
   }),
   production: nodeProduction_Schema,
 });
-export type LessonWorkflowStage2QuizSection = z.infer<typeof quizSectionNode_Schema>;
+export type LessonWorkflowStage2QuizSection = z.infer<typeof lessonWorkflowQuizSection_Schema>;
 
 const flashcardsSectionNode_Schema = z.strictObject({
   config: flashcardsSection_Config_Schema.extend({
@@ -249,7 +252,7 @@ export type LessonWorkflowStage2QuestSection = z.infer<typeof questSectionNode_S
 
 const section_Schema = z.union([
   lessonWorkflowOrdinarySection_Schema,
-  quizSectionNode_Schema,
+  lessonWorkflowQuizSection_Schema,
   flashcardsSectionNode_Schema,
   questSectionNode_Schema,
 ]);

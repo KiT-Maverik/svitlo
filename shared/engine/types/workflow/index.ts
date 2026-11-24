@@ -11,6 +11,7 @@ export type {
   CourseWorkflowStage2Module,
   CourseWorkflowStage2Chapter,
   CourseWorkflowStage2LessonSlot,
+  CourseWorkflowStage2AssessmentSlot,
   CourseWorkflowStage2EpisodeSlot,
   CourseWorkflowStage2EpisodeProduction,
   CourseWorkflowStage2UnitProduction,
@@ -30,3 +31,5 @@ export type {
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
 export type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
+
+export type { AssessmentWorkflowSeed } from './assessmentWorkflow.types';

@@ -17,6 +17,9 @@ import { lesson_Props_Schema } from '../../lessons/defineLesson/defineLesson.sch
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
 import type { Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
 import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import { assessment_Props_Schema } from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
+import type { Assessment_Props } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
@@ -66,9 +69,9 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
 });
 export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 export type Course_Child = ConfiguratorChild<
-  Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator
+  Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator | Assessment_Configurator
 >;
-export type Course_Child_Props = Module_Props | Chapter_Props | Lesson_Props | Episode_Props;
+export type Course_Child_Props = Module_Props | Chapter_Props | Lesson_Props | Episode_Props | Assessment_Props;
 
 export const course_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
@@ -114,6 +117,14 @@ export type Course_Overrides<
 
 export const course_Props_Schema = identity.extend({
   ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([module_Props_Schema, chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema])),
+  content: z.array(
+    z.union([
+      module_Props_Schema,
+      chapter_Props_Schema,
+      lesson_Props_Schema,
+      episode_Props_Schema,
+      assessment_Props_Schema,
+    ]),
+  ),
 });
 export type Course_Props = z.infer<typeof course_Props_Schema>;
