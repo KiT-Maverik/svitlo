@@ -162,6 +162,11 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert(names.includes('flashcards/index.ts'));
   assert(names.includes('flashcards/alpha/content/front/index.ts'));
   assert(names.includes('flashcards/alpha/content/back/index.ts'));
+  assert(names.includes('flashcards/alpha/content/front/frontText/index.ts'));
+  assert(names.includes('flashcards/beta/content/back/backText/index.ts'));
+  assert(!names.some(path => path.includes('/items/')));
+  const front = result.files.find(file => file.path === 'flashcards/alpha/content/front/index.ts')?.content ?? '';
+  assert.match(front, /from "\.\/frontText"/);
   assert.equal(result.transition.sourceDraftPath, 'flashcards/draft.ts');
   assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
