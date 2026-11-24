@@ -11,7 +11,7 @@ const plainRecord = (value: unknown): value is Record<string, unknown> =>
 
 export function renderTemporaryMediaSpecification(
   production: Readonly<Record<string, unknown>> | undefined,
-  kind: 'Image' | 'Video' | 'Audio' | 'Subtitles',
+  kind: 'Image' | 'Video' | 'Audio' | 'Subtitles' | 'Scene',
 ): string {
   if (production === undefined) return '';
   if (!plainRecord(production)) throw new Error('$.production: expected plain authoring notes');
