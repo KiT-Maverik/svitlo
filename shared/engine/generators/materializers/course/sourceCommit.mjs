@@ -137,6 +137,12 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     if (!permittedPath(file.path))
       throw new Error('Generated source is outside Course or UUID-owned Lesson root: ' + file.path);
     assertSafeTarget(root, file.path);
+    if (file.path.endsWith('/draft.ts')) {
+      const sibling = path.posix.join(path.posix.dirname(file.path), 'index.ts');
+      const absolute = assertSafeTarget(root, sibling);
+      if (trackedMode(root, head, sibling) || fs.existsSync(absolute))
+        throw new Error('New Lesson draft conflicts with an existing materialized Lesson: ' + sibling);
+    }
     assertTypescript(file);
     all.set(file.path, file.content);
   }
