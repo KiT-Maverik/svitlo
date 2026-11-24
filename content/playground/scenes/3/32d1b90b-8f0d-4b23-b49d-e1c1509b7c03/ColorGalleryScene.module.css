@@ -1,5 +1,0 @@
-/* TODO (BLOCKER): Implement accessible, responsive, reduced-motion Scene styling before release. */
-.root {
-  inline-size: 100%;
-  min-inline-size: 0;
-}
