@@ -76,9 +76,16 @@ const valid = () => ({
 // The archived bytes represent the SAME authoring object as the evaluated
 // fixture. The trusted adapter is responsible for independently checking
 // this relationship when invoking the orchestrator.
+const reviewedSkillLiteral = '"skills": [\\n      "' + verifiedMathSkillId + '"\\n    ]';
+const reviewedStage2 = JSON.stringify(valid(), null, 2).replace(
+  reviewedSkillLiteral,
+  '"skills": [identify2dShapes.id]',
+);
+assert.notEqual(reviewedStage2, JSON.stringify(valid(), null, 2), 'verified Stage 2 fixture uses a real imported Skill.id');
 const stage2Source = [
+  "import { identify2dShapes } from '#skillsData/geometry/figures/identify2dShapes';",
   "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
-  'export const lessonStage2 = ' + JSON.stringify(valid(), null, 2) + ' satisfies LessonWorkflowStage2;',
+  'export const lessonStage2 = ' + reviewedStage2 + ' satisfies LessonWorkflowStage2;',
   '',
 ].join('\n');
 const blobSha = (source: string) =>
@@ -213,6 +220,21 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
     'emitted modules must be assignable to actual @svitlo/engine/build contracts',
   );
 }
+test('Stage 6 imports only Skills from the owning textbook #skillsData alias', () => {
+  const result = produce();
+  const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
+  assert.match(root, /import \{ identify2dShapes as skill_ref_0 \} from "#skillsData\/geometry\/figures\/identify2dShapes"/);
+  assert.match(root, /"skills": \[skill_ref_0\.id\]/);
+  assert.doesNotMatch(root, /TODO \(BLOCKER\): Import the actual Skill/);
+  const bad = stage2Source.replace('#skillsData/geometry/figures/identify2dShapes', '../../content/playground/data/skills/foo');
+  const altered = {
+    ...options,
+    sourceText: bad,
+    source: { ...options.source, sourceBlobSha: blobSha(bad) },
+  };
+  assert.throws(() => produce(valid(), altered), /owning textbook #skillsData taxonomy/);
+});
+
 test('generated Lesson source passes the real TypeScript semantic checker', () => {
   assertSemanticModules(produce());
 });
