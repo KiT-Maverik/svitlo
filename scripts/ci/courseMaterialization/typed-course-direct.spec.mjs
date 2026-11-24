@@ -93,8 +93,7 @@ test('existing Lesson commit revision preserves trailing source newline and reje
   const candidate = path.join(temporary, 'candidate');
   const trusted = path.join(temporary, 'trusted');
   fs.mkdirSync(candidate);
-  const git = (...args) =>
-    execFileSync('git', ['-C', candidate, ...args], { encoding: 'utf8' }).trim();
+  const git = (...args) => execFileSync('git', ['-C', candidate, ...args], { encoding: 'utf8' }).trim();
   git('init', '-q');
   git('config', 'user.email', 'course-fixture@example.test');
   git('config', 'user.name', 'Course Fixture');
