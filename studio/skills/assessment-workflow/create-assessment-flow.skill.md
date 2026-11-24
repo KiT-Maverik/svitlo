@@ -6,7 +6,7 @@ One Assessment belongs to one Course and one reserved ordered placement. Reuse i
 
 ## Source ownership and paths
 
-Follow the [canonical Assessment source layout](../../docs/entities/assessment.md#canonical-source-layout). Use the exact reserved placement under the Course tree, appending `content/<slug>/` at each level. The entity-owned `draft.ts` and final `index.ts` share this directory. Course Stage 5 initially emits only the inline placeholder in the immediate parent's configurator. Full materialization replaces that exact placeholder with the relative child import and emits slug-named Section/Block folders using the existing materializers. Never relocate a nested Assessment to a global directory.
+Follow the [canonical Assessment source layout](../../docs/entities/assessment.md#canonical-source-layout). Use the exact reserved placement under the Course tree, using `content/<assessmentSlug>/` at the immediate Course/Module/Chapter owner, without inventing intermediate `content/` folders for Chapters. The entity-owned `draft.ts` and final `index.ts` share this directory. Course Stage 5 initially emits only the inline placeholder in the immediate parent's configurator. Full materialization replaces that exact placeholder with the relative child import and emits slug-named Section/Block folders using the existing materializers. Never relocate a nested Assessment to a global directory.
 
 ## Relationship to the ten-stage Course Workflow
 

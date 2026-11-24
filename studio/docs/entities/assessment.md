@@ -29,11 +29,11 @@ See [Assessment workflow](../../skills/assessment-workflow/create-assessment-flo
 
 ## Canonical source layout
 
-Assessment source is owned by its Course and follows exactly the existing Course child directory convention: every parent appends `content/<childSlug>/`. The Assessment directory is named by its camelCase placement slug, not its UUID. For example, relative to the Course root:
+Assessment source is owned by its Course and follows exactly the existing Course child directory convention: Assessment directories append `content/<assessmentSlug>/` at the immediate owner; existing Module/Chapter directories are flattened beneath the owning Module without extra `content/` segments. The Assessment directory is named by its camelCase placement slug, not its UUID. For example, relative to the Course root:
 
 - Course-level: `content/finalAssessment/index.ts`.
 - Module-level: `content/light/content/moduleAssessment/index.ts`.
-- Chapter-level: `content/light/content/reflection/content/chapterAssessment/index.ts`.
+- Chapter-level: `content/light/reflection/content/chapterAssessment/index.ts`.
 
 The completed Assessment exports its Configurator from `index.ts`; the immediate parent imports it from `./content/<assessmentSlug>`. Use the canonical existing Section and ContentBlock materializer directory layout, including slug-named Section folders under `sections/` and slug-named ContentBlock folders within each owning Section, with their normal `index.ts` and resource/specification files where applicable. Do not flatten the hierarchy, create a global Assessment directory, or move a Chapter/Module Assessment to the Course root. The separately authorized editorial `draft.ts` lives in that same future Assessment directory; initial Course materialization emits an inline blocked placeholder in the immediate parent's `index.ts` **and a separate typed `AssessmentWorkflowSeed` at the reserved `draft.ts` path**, never an empty completed Configurator or an import to a nonexistent completed file. Full materialization atomically creates the modular files, consumes the draft and replaces the parent's inline placeholder with the import, preserving identity and order. Test all three levels and exact paths, including nested blocks and collision/no-clobber behavior.
 

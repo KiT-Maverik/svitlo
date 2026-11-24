@@ -215,3 +215,16 @@ test('Assessment runtime fails closed for missing/disabled quizzes and unknown s
     ),
   );
 });
+
+
+test('Assessment rejects a duplicated Section identity even when the first Section is disabled', () => {
+  const valid = assessment(95, 'duplicates');
+  const disabled = {
+    ...valid.section[0],
+    params: { ...valid.section[0].params, disabled: true },
+  };
+  assert.throws(
+    () => validateAssessmentRuntime({ ...valid, section: [disabled, valid.section[0]] }, 'en'),
+    /Duplicate Assessment Section ID/,
+  );
+});

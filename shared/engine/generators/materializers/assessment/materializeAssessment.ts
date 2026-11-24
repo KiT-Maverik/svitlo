@@ -68,23 +68,16 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[a-f0-9]{40}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
-const exportName = (value: string) =>
-  [
-    'class',
-    'default',
-    'export',
-    'import',
-    'const',
-    'new',
-    'return',
-    'let',
-    'var',
-    'content',
-    'languages',
-    'section',
-  ].includes(value)
-    ? 'config_' + value
-    : value;
+const reservedNames = new Set([
+  'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
+  'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false',
+  'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new',
+  'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try',
+  'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
+  'implements', 'interface', 'private', 'protected', 'public', 'package',
+  'content', 'languages', 'section', 'quiz',
+]);
+const exportName = (value: string) => (reservedNames.has(value) ? 'config_' + value : value);
 const plain = (value: unknown, path: string): { config: Config; production?: Record<string, unknown> } => {
   if (
     !record(value) ||
@@ -207,7 +200,7 @@ function plan(
   );
   const questionIds: string[] = [];
   for (const value of Object.values(config.section.items)) {
-    if (value.config.type !== 'quiz') continue;
+    if (value.config.type !== 'quiz' || value.config.params.disabled === true) continue;
     const ids = value.config.params.selection?.questionIds ?? [];
     for (const id of ids) {
       if (!uuid.test(id) || /^feedc0de-|^00000000-/.test(id))

@@ -134,11 +134,9 @@ export function validateAssessmentRuntime(value: unknown, language: LanguageCode
   }
   const ids = new Set<string>();
   for (const section of assessment.section) {
-    if (ids.has(section.id) || section.params.disabled === true) {
-      if (ids.has(section.id)) throw Error('Duplicate Assessment Section ID: ' + section.id);
-      continue;
-    }
+    if (ids.has(section.id)) throw Error('Duplicate Assessment Section ID: ' + section.id);
     ids.add(section.id);
+    if (section.params.disabled === true) continue;
     const resolved = assessmentSectionSchemas[section.type].parse(section);
     const blockIds = new Set<string>();
     for (const block of resolved.content) {
