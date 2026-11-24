@@ -174,7 +174,7 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
   if (base.id !== selected.id || base.type !== selected.type || base.draft !== selected.draft)
     throw Error('Localized Course identity changed at ' + at);
   if (base.type === 'lesson' && base.draft !== true) return;
-  if (base.type === 'episode' || base.type === 'assessment') {
+  if (base.type === 'episode' || base.type === 'assessment' || (base.type === 'lesson' && base.draft === true)) {
     if (
       base.slug !== selected.slug ||
       !Array.isArray(base.section) ||
