@@ -1,0 +1,52 @@
+config:
+  id: d83d31d6-5c27-5174-93aa-c933419f37b7
+  slug: colorTransfer
+  type: lesson
+  skills:
+    - 00000000-0000-4000-8000-000000000001
+    - 00000000-0000-4000-8000-000000000002
+    - 00000000-0000-4000-8000-000000000004
+    - 00000000-0000-4000-8000-000000000005
+  params:
+    languages:
+      - en
+      - uk
+    quizRequiredForCompletion: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: Compare warm and cool colors
+  section:
+    items: {}
+    order: []
+production:
+  documentLanguage: en
+  methodology: |-
+    Instructional purpose: Classify red/orange and blue/green examples in familiar and novel contexts.
+
+    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
+
+    Target Skills: 00000000-0000-4000-8000-000000000001 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000002 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000004 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000005 (verified Playground taxonomy).
+
+    Sequence and prerequisites: Second Chapter Lesson deliberately has a Quiz Section that is NOT required for Lesson completion, exercising independent completion semantics.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
+
+    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
+    1. content — explicit categories and examples
+    2. learningFlow — classification practice with interactive feedback
+    3. quiz — nonblocking self-check selected from own Question Bank
+    4. flashcards — recall vocabulary and comparisons
+
+    Planned ContentBlock coverage: carousel, image, text, code, scene. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
+
+    Assessment decisions: requiresQuestionBank=true; requiresFlashcardBank=true; requiresQuizSection=true; requiresFlashcardsSection=true; quizRequiredForCompletion=false. Bank presence, section presence and completion gate are independent decisions.
+
+    Assessment evidence: Bank tests warm/cool classification and a transfer example; separate Flashcard Bank rehearses definitions and contrast without copying Question wording.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
+
+    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
+
+    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
+
+    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.

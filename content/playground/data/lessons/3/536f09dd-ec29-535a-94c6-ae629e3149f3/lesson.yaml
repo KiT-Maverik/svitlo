@@ -1,0 +1,48 @@
+config:
+  id: 536f09dd-ec29-535a-94c6-ae629e3149f3
+  slug: colorReflection
+  type: lesson
+  skills:
+    - 00000000-0000-4000-8000-000000000001
+    - 00000000-0000-4000-8000-000000000004
+  params:
+    languages:
+      - en
+      - uk
+    quizRequiredForCompletion: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: Color observation
+  section:
+    items: {}
+    order: []
+production:
+  documentLanguage: en
+  methodology: |-
+    Instructional purpose: Recognize red and blue in illuminated examples and state why color alone cannot identify a shape.
+
+    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
+
+    Target Skills: 00000000-0000-4000-8000-000000000001 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000004 (verified Playground taxonomy).
+
+    Sequence and prerequisites: Direct Module Lesson before the light-and-color Chapter. Assumes simple shape recognition taught in the prior Module.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
+
+    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
+    1. content — contextual observation and media
+    2. flashcards — source-Lesson vocabulary review
+
+    Planned ContentBlock coverage: audio, image, markdown, text. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
+
+    Assessment decisions: requiresQuestionBank=false; requiresFlashcardBank=true; requiresQuizSection=false; requiresFlashcardsSection=true; quizRequiredForCompletion=false. Bank presence, section presence and completion gate are independent decisions.
+
+    Assessment evidence: No Question Bank and no Quiz. Flashcards are required to test the Flashcards Section with no Quiz in the same Lesson.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
+
+    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
+
+    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
+
+    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.

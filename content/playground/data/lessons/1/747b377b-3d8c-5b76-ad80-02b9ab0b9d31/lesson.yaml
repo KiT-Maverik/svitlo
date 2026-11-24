@@ -1,0 +1,52 @@
+config:
+  id: 747b377b-3d8c-5b76-ad80-02b9ab0b9d31
+  slug: shapesAssessment
+  type: lesson
+  skills:
+    - 00000000-0000-4000-8000-000000000011
+    - 00000000-0000-4000-8000-000000000012
+    - 00000000-0000-4000-8000-000000000008
+    - 00000000-0000-4000-8000-000000000009
+  params:
+    languages:
+      - en
+      - uk
+    quizRequiredForCompletion: true
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: Shapes chapter assessment
+  section:
+    items: {}
+    order: []
+production:
+  documentLanguage: en
+  methodology: |-
+    Instructional purpose: Assess recognition of polygon and round shape properties using earlier Lessons' independently reviewed questions.
+
+    Audience/depth: ages 8–11, guided exploration to independent recognition or explanation as appropriate; synthetic Playground demonstration, not a production curriculum.
+
+    Target Skills: 00000000-0000-4000-8000-000000000011 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000012 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000008 (verified Playground taxonomy); 00000000-0000-4000-8000-000000000009 (verified Playground taxonomy).
+
+    Sequence and prerequisites: Third Lesson in the same Chapter, after polygonIntro and circleAndOval. It must not create or duplicate its own Question Bank.. Distinguish the broader Course entry conditions from the knowledge taught in this Lesson.
+
+    Planned Sections (ordered authoring requirements; the separate Lesson Flow later materializes their actual Configs):
+    1. content — short accessible assessment orientation
+    2. quiz — blocking multi-owner selection from polygonIntro and circleAndOval Question Banks
+
+    Planned ContentBlock coverage: text, markdown. These are implementation requirements, not already-authored blocks. Reuse shared UI Kit components; no fabricated files.
+
+    Assessment decisions: requiresQuestionBank=false; requiresFlashcardBank=false; requiresQuizSection=true; requiresFlashcardsSection=false; quizRequiredForCompletion=true. Bank presence, section presence and completion gate are independent decisions.
+
+    Assessment evidence: Curate a fixed explicit UUID subset assessing polygon and round shapes; include clear score/grading threshold and accessible non-timed default.. Questions need meaningful core and extension evidence; each Quiz must select explicit real Question IDs from independently reviewed banks. Flashcards should have one idea each and no filler.
+
+    Media and Scenes: any planned physical media or Scene receives an explicit handoff/specification; missing assets remain visible TODO (BLOCKER) obligations, not invented final media.
+
+    Accessibility and localization: English is the source; Ukrainian is a required later genuine translation. Every interaction needs keyboard, nonvisual equivalent, captions/transcripts for media, reduced motion and mobile layouts.
+
+    Verification: separate Lesson/Question/Flashcard workflows own construction and approval. Structural validity or TODO placeholders are not approval.
+
+    External assessment dependency: Question Bank owners: shapeStudio/recognition/polygonIntro and shapeStudio/recognition/circleAndOval. Stage 3/4 specifies slot paths only, not premature Question UUIDs. After both bank PRs are reviewed and integrated, import actual Question Configurators, obtain their .id values and use them in Quiz selection. Missing banks block the assessment Lesson selection/publication, not creation of its upstream Lessons.
