@@ -12,6 +12,7 @@ The reference corpus is a **disposable read-only ZIP**, not authored data or a G
 /agent-artifacts generate questions content/astronomy qm
 /agent-artifacts generate questions content/playground <lesson-uuid> en
 /agent-artifacts generate questions content/playground <lesson-uuid>
+/agent-artifacts generate flashcards content/playground <lesson-uuid> uk
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
 /agent-artifacts generate episodes content/astronomy <course-uuid> <episode-uuid> uk
 /agent-artifacts generate assessment-methods it
@@ -21,7 +22,7 @@ The reference corpus is a **disposable read-only ZIP**, not authored data or a G
 /agent-artifacts generate education-standards uk
 ```
 
-The person issuing the command needs current repository `write`, `maintain` or `admin` access. There is no unscoped generate request. Locale is optional and then selects only languages declared/supported for the family. For `lessons` and `questions`, supply an exact canonical Lesson UUID **before** the optional locale to restrict Markdown to that Lesson or its Question Bank. A single trailing two-to-four-letter code is a locale, whereas a trailing UUID is the Lesson selector; malformed UUIDs, unknown families and additional arguments are rejected. Without a UUID, the existing textbook-wide behavior is preserved. Course UUID is likewise optional; omitted UUID requests Courses from the named textbook. Manual dispatch offers separate `lesson` and `locale` inputs and resolves to the same normalized UUID scope. New comment commands activate only after this workflow reaches the repository's default branch (`develop`) and is exercised there.
+The person issuing the command needs current repository `write`, `maintain` or `admin` access. There is no unscoped generate request. Locale is optional and then selects only languages declared/supported for the family. For `lessons` and `questions`, supply an exact canonical Lesson UUID **before** the optional locale to restrict Markdown to that Lesson or its Question Bank. For `flashcards`, the exact Lesson UUID **and** target locale are both mandatory: one request produces one Bank reference for one language. A single trailing two-to-four-letter code is a locale, whereas a trailing UUID is the Lesson selector; malformed UUIDs, unknown families and additional arguments are rejected. Without a UUID, the existing textbook-wide behavior is preserved. Course UUID is likewise optional; omitted UUID requests Courses from the named textbook. Manual dispatch offers separate `lesson` and `locale` inputs and resolves to the same normalized UUID scope. New comment commands activate only after this workflow reaches the repository's default branch (`develop`) and is exercised there.
 
 ## Archive format and validation
 
@@ -31,6 +32,7 @@ The artifact `agent-reference-pr-<PR>-<run>` contains `manifest.json` (schemaVer
 taxonomies/<book>/<locale>.md
 lessons/<book>/<bucket>/<lesson-uuid>/<locale>.md
 questions/<book>/<bucket>/<lesson-uuid>/<locale>.md
+flashcards/<book>/<bucket>/<lesson-uuid>/<locale>.md
 courses/<book>/<bucket>/<course-uuid>/<locale>.md
 ui-kit/<component>/<locale>.md
 assessment-methods/<locale>.md
@@ -50,6 +52,8 @@ questions/<questionType>/<questionSlug>.ts
 
 Root and type indexes must agree with the actual Question files. Child ContentBlocks may live in sibling directories, but the Question module itself is the direct `<questionSlug>.ts`. Reviews include prompts, answer correctness, distractors, hints, explanation, source Ukrainian and requested locale, and related Quiz fields. The generator rejects unsupported/mismatched bank layouts rather than silently skipping Questions.
 
+Flashcard references cover the entire Lesson-owned bank (not merely a selected Flashcards Section): front, back, hint, nested ContentBlocks, flags and verified Question imports, comparing source text with exactly one requested locale. Unavailable translations are marked as incomplete, not fabricated. Independent Stage 7 linguistic review reads the pinned ZIP from the existing Flashcards PR; it is not implied by artifact generation.
+
 Course references contain Course/Module/Chapter-owned text. Lessons and Episodes appear by UUID reference. Episode references require exact Course UUID, Episode UUID and locale, use actual localized Episode Build Props (including ordered Sections/Blocks and events), and never follow unrelated Lessons or other Episodes. Physical media bytes are not required for linguistic review; media verification belongs to the later human stage. Skills, UI Kit, Assessment Methods and EducationStandard have distinct family generators. The archive is not a new publication format. Preserve the existing source/materialization, editorial and independent review gates.
 
 ## Local generation
@@ -57,6 +61,7 @@ Course references contain Course/Module/Chapter-owned text. Lessons and Episodes
 ```sh
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind skills --package content/astronomy --locale it
 node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind questions --package content/astronomy --lesson <uuid> --locale qm
+node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs --kind flashcards --package content/playground --lesson <uuid> --locale uk
 ```
 
 Local output defaults to ignored `temp/agent-reference-library/`. The workflow uses `SVITLO_AGENT_REPORT_OUTPUT` set to `$RUNNER_TEMP/agent-reference-library` and adds `SVITLO_AGENT_REPORT_PR` and the Actions run ID to the manifest. It never commits these reports, and there is no cleanup command. Only Code edits to canonical source can change a translation.
