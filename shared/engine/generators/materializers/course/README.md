@@ -31,3 +31,7 @@ npm test --workspace @svitlo/engine
 ```
 
 Use the current HEAD and report actual results and outstanding blockers. These checks were **not executed as part of this documentation change**. Historical implementation and review evidence remains in PRs #776, #787 and #775 rather than being mistaken for current mandatory agent instructions.
+
+## Ordered placement inventory
+
+The Stage 5 plan and trusted manifest include `inventory.lessons` and `inventory.episodes`, derived from actual renderer results and the complete reviewed Course order. Each row identifies its immutable UUID, slug, full placement and zero-based order path, source path, kind and factual handoff status. Repeated Lesson references have separate rows keyed by placement rather than UUID alone. This is source-planning evidence, not child PR creation, editorial approval or publication status.
