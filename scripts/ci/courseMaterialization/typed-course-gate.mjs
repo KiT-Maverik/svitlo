@@ -6,7 +6,7 @@
  */
 import fs from 'node:fs';
 import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
-import { github, requireActor, safeBranch, report } from './course-gate.mjs';
+import { github, requireActor, safeBranch, report, materializationInvocation } from './course-gate.mjs';
 
 const UUID = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
 const COURSE_TS = new RegExp('^(content/[a-z][a-z0-9-]*)/data/courses/([0-9a-f])/(' + UUID + ')/draft\\.ts$');
@@ -136,12 +136,11 @@ export function parseTypedMetadata(encoded) {
 
 async function main() {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: typed-course-gate.mjs resolve');
-  if (process.env.GITHUB_EVENT_NAME !== 'workflow_dispatch')
-    throw Error('Typed Course rollout is manual-only until owner activates canonical command');
+  if (!process.env.COURSE_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH)
+    throw Error('Course materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
-  const number = Number(event.inputs?.pr_number);
-  if (!Number.isSafeInteger(number) || number < 1) throw Error('Invalid Course PR number');
   const actor = process.env.GITHUB_ACTOR;
+  const number = materializationInvocation(event, process.env.GITHUB_EVENT_NAME, actor, '/course materialize');
   await requireActor(actor);
   const metadata = { ...(await inspectTypedCourse(number)), actor };
   const encoded = Buffer.from(JSON.stringify(metadata)).toString('base64');

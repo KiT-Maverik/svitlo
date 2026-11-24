@@ -1,6 +1,6 @@
 /** Authorization and identity gate. Only the pinned default-branch implementation runs. */
 import fs from 'node:fs';
-import { github, requireActor, safeBranch } from '../courseMaterialization/course-gate.mjs';
+import { github, requireActor, safeBranch, materializationInvocation } from '../courseMaterialization/course-gate.mjs';
 import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -130,16 +130,59 @@ export async function inspectEpisode(number, parentNumber, expected) {
     reviews,
   };
 }
-async function main() {
+/** Discover the one open same-repository parent by the actual Episode target ref. */
+export async function discoverOwningCourse(number) {
+  const repo = process.env.GITHUB_REPOSITORY;
+  const base = process.env.COURSE_DEFAULT_BRANCH;
+  const pr = await github('pulls/' + number);
   if (
-    process.env.GITHUB_EVENT_NAME !== 'workflow_dispatch' ||
-    process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH
+    !repo ||
+    !base ||
+    pr?.state !== 'open' ||
+    !pr.draft ||
+    pr.head?.repo?.full_name !== repo ||
+    pr.base?.repo?.full_name !== repo ||
+    !safeBranch(pr.base?.ref, base) ||
+    !SHA.test(pr.base?.sha ?? '')
   )
-    throw Error('Episode materialization requires trusted default-branch manual dispatch');
+    throw Error('Expected open same-repository Draft Episode PR with an owning Course target');
+  const candidates = [];
+  const query = 'pulls?state=open&head=' + encodeURIComponent(repo.split('/')[0] + ':' + pr.base.ref) +
+    '&base=' + encodeURIComponent(base) + '&per_page=100&page=';
+  for (let page = 1; page <= 30; page++) {
+    const batch = await github(query + page);
+    if (!Array.isArray(batch)) throw Error('Cannot inspect owning Course PR candidates');
+    candidates.push(
+      ...batch.filter(parent =>
+        parent.state === 'open' &&
+        parent.head?.repo?.full_name === repo &&
+        parent.head?.ref === pr.base.ref &&
+        parent.base?.ref === base &&
+        parent.base?.repo?.full_name === repo,
+      ),
+    );
+    if (batch.length < 100) {
+      if (candidates.length !== 1 || candidates[0].head.sha !== pr.base.sha ||
+          !Number.isSafeInteger(candidates[0].number) || candidates[0].number < 1 || candidates[0].number === number)
+        throw Error('Exactly one open owning Course PR at the current Episode target revision required');
+      return candidates[0].number;
+    }
+  }
+  throw Error('Owning Course PR inventory exceeds 3000 entries');
+}
+
+async function main() {
+  if (!process.env.COURSE_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH)
+    throw Error('Episode materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const actor = process.env.GITHUB_ACTOR;
+  const name = process.env.GITHUB_EVENT_NAME;
+  const number = materializationInvocation(event, name, actor, '/episode materialize', ['parent_pr']);
   await requireActor(actor);
-  const meta = { ...(await inspectEpisode(Number(event.inputs.pr_number), Number(event.inputs.parent_pr))), actor };
+  const parentNumber = await discoverOwningCourse(number);
+  if (name === 'workflow_dispatch' && Number(event.inputs?.parent_pr) !== parentNumber)
+    throw Error('Manual parent PR must match the actual owning Course PR');
+  const meta = { ...(await inspectEpisode(number, parentNumber)), actor };
   fs.appendFileSync(
     process.env.GITHUB_OUTPUT,
     'meta=' + Buffer.from(JSON.stringify(meta)).toString('base64') + '\nhead=' + meta.head + '\n',
