@@ -6,6 +6,7 @@ import {
   groupGeneratedImports,
   unquoteGeneratedObjectKeys,
 } from './format-generated-plan.mjs';
+import { parseGeneratedHandoff, parseGeneratedReference } from './parse-generated-handoff.mjs';
 
 const fixture = [
   '// TODO (BLOCKER): The reviewed source still needs real media.',
@@ -137,7 +138,7 @@ test('fails closed for invalid generated TypeScript and malformed plans', async 
   await assert.rejects(formatGeneratedPlan(null), /file plan/);
 });
 
-test('keeps strict Course-generated JSON seeds and quoted reference exports verifiable', async () => {
+test('formats all Course handoffs before sealing while retaining strict static verification', async () => {
   const json = JSON.stringify({ config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' } }, null, 2);
   const source =
     '// TODO (BLOCKER): Complete this seed.\n' +
@@ -158,16 +159,34 @@ test('keeps strict Course-generated JSON seeds and quoted reference exports veri
     ],
   };
   const formatted = await formatGeneratedPlan(plan, { operation: 'course-stage5' });
-  assert.equal(formatted.files[0].content, source);
-  assert.equal(formatted.files[1].content, reference);
+  assert.notEqual(formatted.files[0].content, source);
+  assert.notEqual(formatted.files[1].content, reference);
+  assert.match(formatted.files[0].content, /id: '00000000-/);
+  assert.match(formatted.files[1].content, /from '#lessonsData\/1\/uuid\/index'/);
   assert.deepEqual(
-    JSON.parse(formatted.files[0].content.split('export const lessonSeed = ')[1].split(' as const satisfies ')[0]),
-    {
-      config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' },
-    },
+    parseGeneratedHandoff(formatted.files[0].content, {
+      symbol: 'lessonSeed', contract: 'CourseWorkflowLessonSeed',
+    }),
+    { config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' } },
   );
+  assert.deepEqual(parseGeneratedReference(formatted.files[1].content), {
+    original: 'primary', alias: 'example', module: '#lessonsData/1/uuid/index',
+  });
   assert.match(formatted.files[2].content, /name: 'yes'/);
-  const ordinary = await formatGeneratedPlan(plan, { operation: 'lesson-stage6' });
-  assert.notEqual(ordinary.files[0].content, source);
-  assert.notEqual(ordinary.files[1].content, reference);
+  assert.deepEqual(formatted, await formatGeneratedPlan(formatted, { operation: 'course-stage5' }));
+});
+
+test('inert Course handoff parser rejects executable source, imports and forged references', () => {
+  const source =
+    "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n" +
+    "export const lessonSeed = {config: {id: 'valid'}} as const satisfies CourseWorkflowLessonSeed;\n";
+  const parse = value => parseGeneratedHandoff(value, {
+    symbol: 'lessonSeed', contract: 'CourseWorkflowLessonSeed',
+  });
+  assert.deepEqual(parse(source), { config: { id: 'valid' } });
+  assert.throws(() => parse(source.replace("'valid'", 'process.env.SECRET')), /nonliteral|Executable/);
+  assert.throws(() => parse(source + 'process.exit(1);\n'), /Unexpected statements/);
+  assert.throws(() => parse(source.replace('import type', 'import')), /type import/);
+  assert.throws(() => parse(source.replace("'valid'", "'x', id: 'y'")), /Duplicate/);
+  assert.throws(() => parseGeneratedReference("export { a as b } from '../unsafe';\nextra();\n"));
 });
