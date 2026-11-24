@@ -191,9 +191,11 @@ const quizIntent_Schema = z.discriminatedUnion('kind', [
   }),
 ]);
 
-export const questionBankWorkflowStage3_Schema = z.strictObject({
-  config: z.strictObject({ ownerLessonId: z.uuid(), questions: questionKinds_Schema }),
-  production: z.strictObject({
+const questionBankConfig_Schema = z.strictObject({
+  ownerLessonId: z.uuid(),
+  questions: questionKinds_Schema,
+});
+const questionBankProduction_Schema = z.strictObject({
     languages: workflowLanguages_Schema,
     lesson: lessonReference_Schema,
     course: z.strictObject({ id: z.uuid(), sourceSha: sha, placementPath: nonempty }).optional(),
@@ -207,7 +209,16 @@ export const questionBankWorkflowStage3_Schema = z.strictObject({
     mediaNeeds: nonempty,
     sourcesAndDependencies: nonempty,
     quiz: quizIntent_Schema,
-  }),
+});
+/** Named schema fragments keep TypeScript declaration output bounded without
+ * duplicating the final authored type or weakening runtime validation.
+ */
+export const questionBankWorkflowStage3_Schema: z.ZodObject<{
+  config: typeof questionBankConfig_Schema;
+  production: typeof questionBankProduction_Schema;
+}> = z.strictObject({
+  config: questionBankConfig_Schema,
+  production: questionBankProduction_Schema,
 });
 
 const lesson_Schema = z.strictObject({
@@ -290,7 +301,7 @@ const card_Schema = z.strictObject({
 
 export const flashcardBankWorkflowStage3_Schema = z.strictObject({
   config: z.strictObject({
-    flashcards: z.strictObject({ items: z.record(z.string(), card_Schema), order: z.array(z.string()).nonempty() }),
+    flashcards: z.strictObject({ items: z.record(z.string(), card_Schema), order: z.tuple([z.string()], z.string()) }),
     relationships: z.strictObject({
       items: z.record(
         z.string(),
@@ -307,7 +318,7 @@ export const flashcardBankWorkflowStage3_Schema = z.strictObject({
   production: z.strictObject({
     lesson: lesson_Schema,
     analysis: z.strictObject({
-      recallObjectives: z.array(nonempty).nonempty().readonly(),
+      recallObjectives: z.tuple([nonempty], nonempty).readonly(),
       sourceFactsAndConcepts: z.array(z.string()).readonly(),
       misconceptionsAndContrasts: z.array(z.string()).readonly(),
       exclusions: z.array(z.strictObject({ target: nonempty, reason: nonempty })).readonly(),
@@ -328,7 +339,7 @@ export const flashcardBankWorkflowStage3_Schema = z.strictObject({
         section: flashcardsSection_Config_Schema.pick({ id: true, slug: true }),
         existingSection: z.boolean(),
         placement: nonempty,
-        selectedCardSlugs: z.array(nonempty).nonempty().readonly(),
+        selectedCardSlugs: z.tuple([nonempty], nonempty).readonly(),
         rationale: nonempty,
         lessonSourceSha: sha,
       }),
