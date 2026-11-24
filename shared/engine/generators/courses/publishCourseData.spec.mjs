@@ -588,3 +588,81 @@ test('strict Course publication rejects every reserved draft stub even when Buil
     assert.throws(() => renderCourseFiles(course, { languages: ['en'] }), /draft stub cannot be published/i);
   }
 });
+
+test('Draft Course publisher and runtime preserve nested stub previews, order and reused Lesson patches', () => {
+  const languages = ['en', 'uk'];
+  const id = n => 'b275647f-203d-481a-a1c7-4d331c779d' + String(n).padStart(2, '0');
+  const existing = defineLesson({
+    id: id(50), slug: 'standalone', type: 'lesson', skills: [],
+    params: {
+      languages, quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Existing Lesson' },
+    section: { items: {}, order: [] },
+  });
+  const plannedLesson = defineLessonStub({ id: id(51), slug: 'plannedLesson' });
+  const plannedEpisode = defineEpisodeStub({ id: id(52), slug: 'plannedEpisode' });
+  const plannedAssessment = defineAssessmentStub({ id: id(53), slug: 'plannedAssessment' });
+  const chapter = defineChapter({
+    id: id(54), type: 'chapter', slug: 'chapter', params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { plannedAssessment }, order: ['plannedAssessment'] },
+  });
+  const module = defineModule({
+    id: id(55), type: 'module', slug: 'module', params: {},
+    locale: { title: 'Module' },
+    content: {
+      items: {
+        plannedEpisode,
+        chapter,
+        adapted: placeLesson(existing, { params: { sections: { allowSkipping: false } } }),
+      },
+      order: ['plannedEpisode', 'adapted', 'chapter'],
+    },
+  });
+  const course = defineCourse({
+    id: id(56), type: 'course', slug: 'draftCourse', params: { languages },
+    locale: { title: 'Draft Course', description: 'Preview only' },
+    content: {
+      items: { existing, module, plannedLesson },
+      order: ['existing', 'module', 'plannedLesson'],
+    },
+  });
+  assert.throws(() => renderCourseFiles(course), /draft stub cannot be published/i);
+  assert.throws(() => renderCourseFiles(course, { mode: 'invalid' }), /mode/i);
+  const files = renderCourseFiles(course, { languages, mode: 'draft' });
+  const base = JSON.parse(files.get('base.json'));
+  const uk = files.has('uk.json') ? JSON.parse(files.get('uk.json')) : undefined;
+  assert.deepEqual(base.content.order, ['existing', 'module', 'plannedLesson']);
+  assert.deepEqual(base.content.items.module.content.order, ['plannedEpisode', 'adapted', 'chapter']);
+  assert.deepEqual(base.content.items.module.content.items.chapter.content.order, ['plannedAssessment']);
+  assert.deepEqual(base.content.items.existing, { type: 'lesson', id: existing.id });
+  assert.deepEqual(base.content.items.module.content.items.adapted, {
+    type: 'lesson', id: existing.id, overrides: { params: { sections: { allowSkipping: false } } },
+  });
+  for (const [node, original] of [
+    [base.content.items.plannedLesson, plannedLesson],
+    [base.content.items.module.content.items.plannedEpisode, plannedEpisode],
+    [base.content.items.module.content.items.chapter.content.items.plannedAssessment, plannedAssessment],
+  ]) {
+    assert.equal(node.id, original.id);
+    assert.equal(node.slug, original.slug);
+    assert.equal(node.draft, true);
+    assert.equal(node.locale.title, 'Not implemented');
+    assert.equal(node.section[0].content[0].locale.value, 'Not implemented');
+    assert.equal(Object.hasOwn(node, 'questions'), false);
+    assert.equal(Object.hasOwn(node, 'events'), false);
+  }
+  assert.throws(() => assembleCourseTree(base, uk, course.id, 'uk'), /draft stub cannot be assembled/i);
+  const assembled = assembleCourseTree(base, uk, course.id, 'uk', 'draft');
+  assert.deepEqual(
+    courseActivities(assembled).map(item => item.placement),
+    ['existing', 'module/plannedEpisode', 'module/adapted', 'module/chapter/plannedAssessment', 'plannedLesson'],
+  );
+  assert.equal(findCourseEpisode(assembled, plannedEpisode.id)?.draft, true);
+  assert.deepEqual(assembleCourseTree(base, uk, course.id, 'uk', 'draft'), assembled);
+  const tampered = structuredClone(base);
+  tampered.content.items.plannedLesson.section = [];
+  assert.throws(() => assembleCourseTree(tampered, uk, course.id, 'uk', 'draft'), /draft|preview|section/i);
+});
