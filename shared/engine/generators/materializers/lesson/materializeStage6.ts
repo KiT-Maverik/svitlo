@@ -28,6 +28,7 @@ import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { preserveAssessmentReferences } from './preserveAssessmentReferences';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
 export type LessonStage6Source = {
@@ -201,7 +202,11 @@ function normalizeStage2(input: LessonWorkflowStage2) {
  * Concrete materializers own rendering/diagnostics for their real Config
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
-export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
+export function materializeLessonStage6(input: LessonWorkflowStage2, options?: LessonStage6Options): LessonStage6Plan {
+  return invokeMaterializer('lesson-stage6', options, execution => planLessonStage6(input, execution));
+}
+
+function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
   if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
     throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
   const config = input.config;

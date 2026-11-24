@@ -769,3 +769,21 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     false,
   );
 });
+
+test('direct Lesson invocation returns the same source plan using runner-owned metadata', async () => {
+  const { executeMaterializerEntrypoint } = await import('../directMaterialization/directMaterialization');
+  const input = valid() as unknown as LessonWorkflowStage2;
+  const sourceText = "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
+    'materializeLessonStage6(' + JSON.stringify(input) + ');\n';
+  const directOptions = {
+    ...options,
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+  };
+  const expected = materializeLessonStage6(input, directOptions);
+  const actual = await executeMaterializerEntrypoint('lesson-stage6', directOptions, async () => {
+    materializeLessonStage6(input);
+  });
+  assert.deepEqual(actual, expected);
+  assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
+});

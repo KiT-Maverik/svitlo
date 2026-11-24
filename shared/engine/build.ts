@@ -53,3 +53,6 @@ export type {
   BankSourceSnapshot,
   BankReviewedSource,
 } from './generators/materializers/bankSource/bankSourceSafety';
+
+// Direct authored Lesson materialization (source planning only).
+export { materializeLessonStage6 } from './generators/materializers/lesson/materializeStage6';

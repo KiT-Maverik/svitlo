@@ -50,6 +50,17 @@ function at(object: ts.Expression, keys: string[]): ts.Expression | undefined {
 function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
   const candidates: ts.Expression[] = [];
   for (const statement of file.statements) {
+    if (ts.isExpressionStatement(statement) && ts.isCallExpression(statement.expression)) {
+      const call = statement.expression;
+      if (
+        ts.isIdentifier(call.expression) &&
+        call.expression.text === 'materializeLessonStage6' &&
+        call.arguments.length === 1 &&
+        at(call.arguments[0], ['config', 'section', 'items']) &&
+        at(call.arguments[0], ['production'])
+      )
+        candidates.push(call.arguments[0]);
+    }
     if (!ts.isVariableStatement(statement)) continue;
     for (const declaration of statement.declarationList.declarations) {
       if (
