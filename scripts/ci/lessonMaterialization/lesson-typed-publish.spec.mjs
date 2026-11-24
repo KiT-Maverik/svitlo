@@ -52,7 +52,7 @@ async function exercise({
       identity: lessonSourceIdentity(source),
       baseHead,
       actor: 'maintainer',
-      operation: 'materialize-typed',
+      operation: 'lesson-stage6',
     };
     const plan = {
       lessonId: id,

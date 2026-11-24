@@ -56,7 +56,7 @@ Emit durable `flashcards/<card>.ts`, Card-owned `flashcards/<card>/content/<fron
 
 After source completion, run the independent `generateAssessmentResources --kind flashcard` production publisher and strict owning textbook build. Confirm full `base.json`, required locale JSON and textbook-scoped manifest, including **unselected** Cards. Verify Section UUID refs against published resources and accessible candidate filtering. Missing physical assets, reserved Nil UUID/media placeholders, `TODO(asset)`, unresolved references, uncovered required locales, failed validation and incomplete bank must **block publication**. Materialization alone is never a successful Stage 5.
 
-**Typed materialization:** the trusted `/flashcards materialize typed` command operates only on a fully reviewed Stage 3 bank source and is available for live use only after default-branch deployment. The old YAML Builder and `/flashcards materialize` route were retired. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). Preserve historic authoring bytes and review provenance when migrating legacy work.
+**Typed materialization:** the trusted `/flashcards materialize` command operates only on a fully reviewed Stage 3 bank source and is available for live use only after default-branch deployment. The old YAML Builder was retired; the command has no YAML fallback. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). Preserve historic authoring bytes and review provenance when migrating legacy work.
 
 ### 6. Translation — Technical Translator
 

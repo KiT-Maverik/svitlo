@@ -15,7 +15,7 @@ Engine's concrete source materializers live under `shared/engine/generators/mate
 
 The separate `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources` scripts consume **completed** typed Configurators. All emitted TypeScript must be syntactically and semantically valid against current contracts. Use valid typed placeholders and explicit `TODO (BLOCKER)` markers for legitimately unfinished production resources where applicable; editorial handoffs remain typed drafts, not runtime Configurators. A source scaffold or reviewed Stage 3 plan is not publishable. `TODO (BLOCKER):`, `TODO(asset)`, Nil UUIDs, missing real selections, physical assets, implemented Scenes or languages fail publication as appropriate. A known Course/Question/Flashcard bank does not imply the associated Section is complete.
 
-Before invoking a typed command, verify the corresponding trusted workflow exists on the default branch. Verify an authorized Actions run on safe reviewed inputs, its pinned source SHAs (and review SHAs for workflows that require them) and resulting commit before declaring the pipeline operational.
+The exact top-level PR commands are `/course materialize`, `/episode materialize`, `/lesson materialize`, `/questions materialize` and `/flashcards materialize`. No format selector is supported. Before invoking a materialization command, verify the corresponding trusted workflow exists on the default branch. Verify an authorized Actions run on safe reviewed inputs, its pinned source SHAs (and review SHAs for workflows that require them) and resulting commit before declaring the pipeline operational.
 
 ## Historical source preservation
 
