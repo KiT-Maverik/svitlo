@@ -33,6 +33,8 @@ export type Options = {
   production?: Record<string, unknown> & {
     assessment?: LessonProductionAssessmentRequirements;
   };
+  /** Only references verified against the owning textbook Stage 2 source. */
+  skillReferences?: readonly (Readonly<{ id: string; path: string; exported: string }> | null)[];
   renderSection: (
     config: ChildConfig,
     options: {
@@ -46,24 +48,6 @@ export type Options = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const localeKey = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-/**
- * Verified Playground leaf Skill modules. Other Skill IDs require an explicit,
- * taxonomy-verified mapping; an unverified ID never silently gets an import.
- */
-const verifiedSkillModules: Readonly<Record<string, { name: string; path: string }>> = {
-  '00000000-0000-4000-8000-000000000001': {
-    name: 'testRecognizeRed',
-    path: '#skillsData/testColors/testWarmColors/testRecognizeRed',
-  },
-  '00000000-0000-4000-8000-000000000004': {
-    name: 'testRecognizeBlue',
-    path: '#skillsData/testColors/testCoolColors/testRecognizeBlue',
-  },
-  '54f96aba-7db2-48bb-97ae-5ba2f3436095': {
-    name: 'identify2dShapes',
-    path: '#skillsData/geometry/figures/identify2dShapes',
-  },
-};
 const sectionTypes = new Set(['content', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'quiz', 'quest']);
 const reserved = new Set([
   'await',
@@ -331,19 +315,28 @@ export function materializeLesson(config: Source, options: Options): Result {
     );
   }
   const blockers: string[] = [];
-  const skillImports = new Map<string, string>();
+  const skillImports: string[] = [];
   if (!Array.isArray(config.skills) || config.skills.some(id => typeof id !== 'string' || !uuid.test(id)))
-    throw new Error('lesson.skills: expected verified Skill UUIDs');
-  const resolvedSkills = config.skills.map(id => {
-    const skill = verifiedSkillModules[id];
+    throw new Error('lesson.skills: expected valid Skill UUIDs');
+  if (options.skillReferences && options.skillReferences.length !== config.skills.length)
+    throw new Error('lesson.skills: reviewed Skill reference count mismatch');
+  const resolvedSkills = config.skills.map((id, index) => {
+    const skill = options.skillReferences?.[index];
     if (!skill) {
       blockers.push(
-        '// TODO (BLOCKER): Verify Skill ' + id + ' in this textbook taxonomy and import its actual Configurator before publication.',
+        '// TODO (BLOCKER): Import the actual Skill Configurator for ' + id +
+          ' from this textbook taxonomy in the reviewed Lesson draft before publication.',
       );
       return id;
     }
-    skillImports.set(skill.path, skill.name);
-    return imported(skill.name + '.id');
+    if (
+      skill.id !== id ||
+      !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(skill.exported) ||
+      !/^#skillsData\\/(?:[A-Za-z][A-Za-z0-9]*\\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path)
+    ) throw new Error('lesson.skills: unverified or cross-textbook Skill import');
+    const alias = 'skill_ref_' + index;
+    skillImports.push('import { ' + skill.exported + ' as ' + alias + ' } from ' + JSON.stringify(skill.path) + ';');
+    return imported(alias + '.id');
   });
 
   const sourceLanguages = [
@@ -414,9 +407,7 @@ export function materializeLesson(config: Source, options: Options): Result {
   const source = [
     "import { defineLesson } from '@svitlo/engine/build';",
     'import { languages, type Languages } from "./constants";',
-    ...[...skillImports.entries()].sort(([pathA], [pathB]) => pathA.localeCompare(pathB)).map(
-      ([path, name]) => 'import { ' + name + ' } from ' + JSON.stringify(path) + ';',
-    ),
+    ...skillImports,
     ...imports,
     '',
     ...blockers,
