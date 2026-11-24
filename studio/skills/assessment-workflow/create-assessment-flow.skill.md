@@ -1,6 +1,6 @@
 # Create Assessment Flow
 
-**Generated-source blocker semantics:** Follow the [Coding Agent's actionable TODO contract](../../personas/coding-agent.persona.md#actionable-generated-source-blockers): a \`TODO (BLOCKER):\` must explain the real implementation and removal criterion; keep a reviewed temporary brief in **one** safe multiline comment rather than a detached specification. Preserve all unfinished publication blockers, independent approvals and the entity-owned source of truth. This is guidance for materialized technical scaffolds, not permission to complete a workflow stage.
+**Generated-source blocker semantics:** Follow the [Coding Agent's actionable TODO contract](../../personas/coding-agent.persona.md#actionable-generated-source-blockers): a `TODO (BLOCKER):` must explain the real implementation and removal criterion; keep a reviewed temporary brief in **one** safe multiline comment rather than a detached specification. Preserve all unfinished publication blockers, independent approvals and the entity-owned source of truth. This is guidance for materialized technical scaffolds, not permission to complete a workflow stage.
 
 **Status:** Zod Stage 1/2 schema, Assessment Configurator, direct materializer, Stage 5 Course seed and trust-gated command exist in PR #826; child Draft PR #842 revises the required single Quiz and draft preview. Verify actual Ready typechecks, tests, trusted default-branch deployment, authorized materialization and human QA before claiming operational completion.
 
