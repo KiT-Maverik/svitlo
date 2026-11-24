@@ -86,7 +86,7 @@ test('selectOneAnswer: rejects delegated ContentBlock writing outside its semant
 });
 test('selectOneAnswer: preserves a real block slug named items', () => {
   const question = fixture();
-  question.config.content.question = collection({ items: block('items', 9) });
+  Object.assign(question.config.content.question, collection({ items: block('items', 9) }));
   const result = materializeSelectOneAnswer(question as never, context);
   assert(result.files.some(file => file.path.endsWith('/question/items/index.ts')));
 });
