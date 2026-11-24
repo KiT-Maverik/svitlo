@@ -173,7 +173,7 @@ export function gitBlobSha(contents: string): string {
 export function preflightBankSource(
   files: BankSourceFile[],
   snapshot: BankSourceSnapshot,
-  transition?: { indexPath: string; archivePath: string; reviewed: BankReviewedSource },
+  transition?: { indexPath: string; draftPath: string; reviewed: BankReviewedSource },
 ): BankSourceResult {
   if (snapshot.complete !== true) throw new Error('Trusted complete Git tree snapshot required');
   assertBankSha(snapshot.expectedHeadSha, 'expected HEAD');

@@ -126,12 +126,12 @@ export async function inspectTyped(number, bank, expected) {
       await requireActor(approvedParent[0].user.login);
     }
   }
-  const sourcePath = identity.folder + '/' + bank + '/index.ts';
+  const sourcePath = identity.folder + '/' + bank + '/draft.ts';
   const sourceFile = await github(
     'contents/' + sourcePath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.head.sha,
   );
   if (sourceFile?.type !== 'file' || !SHA.test(sourceFile.sha || '')) {
-    throw Error('Exact reviewed Stage 3 bank index.ts is missing');
+    throw Error('Exact reviewed Stage 3 bank draft.ts is missing');
   }
   // Require an actual independent GitHub approval on this exact revision.
   // This cannot be created by editing a checklist or bank production fields.
