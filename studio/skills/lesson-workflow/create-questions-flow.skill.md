@@ -66,7 +66,7 @@ Before integration, the next action is the required final QA/owner-authorized re
 **Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
 **Typed authoring boundary:** a bank
-is authored in the same Lesson-owned `questions/index.ts` from Stage 1 through
+is authored in the same Lesson-owned `questions/draft.ts` from Stage 1 through
 Stage 4, with `satisfies QuestionBankWorkflowStage1`, then Stage 2 and Stage 3.
 The file is an **incomplete bank-owned authoring object**, not the final published
 Question Configurator index. It must NOT be imported by the assessment publisher
@@ -99,7 +99,7 @@ approves N/A, record the Methodologist decision in its Lesson PR and do not
 manufacture a bank or handoff.
 
 For an authorized own bank, initialize only the Lesson-owned
-`content/<book>/data/lessons/<last-hex>/<lesson-uuid>/questions/index.ts`
+`content/<book>/data/lessons/<last-hex>/<lesson-uuid>/questions/draft.ts`
 as `{ config, production } satisfies QuestionBankWorkflowStage1`. Its
 `config.ownerLessonId` is the **existing Lesson UUID**, not a second bank UUID;
 `production.languages.document` identifies the genuinely authored source
@@ -114,7 +114,7 @@ A Stage 1 index is purposely incomplete/unpublishable.
 
 ## Stage 2 — Question Design
 
-Refine the **same** `questions/index.ts` to
+Refine the **same** `questions/draft.ts` to
 `satisfies QuestionBankWorkflowStage2`, keeping all Stage 1 analysis.
 Build an evidence matrix first: target Skill and observable outcome,
 `assessmentMethod`, cognitive operation, misconception, transfer/context,
@@ -193,10 +193,7 @@ Generate canonical separate
 `questions/<type>/<slug>.ts`,
 `questions/<type>/index.ts` and final `questions/index.ts`
 exports; preserve nested ContentBlock modules and all authored members.
-**The staged `questions/index.ts` occupies the final entrypoint path:**
-the parent must implement an explicit SHA-pinned, verified transition of
-that file, never a naive create-only write that silently skips, overwrites or
-deletes reviewed authored content. No Question UUID is regenerated on rename.
+**Editorial and materialized entrypoints are distinct:** consume the reviewed `questions/draft.ts` and create the complete `questions/index.ts` and its members in a single SHA-pinned Git commit. No existing output may be clobbered. Retain reviewed bytes through their immutable Git commit/blob; no additional archive is needed. No Question UUID is regenerated during materialization.
 
 The nine concrete materializers remain the only owners of their
 kind-specific source renderers. The bank root orders, dispatches and verifies

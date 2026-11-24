@@ -1,6 +1,6 @@
 # Typed Question/Flashcard Stage 5 trusted PR command
 
-The only supported Bank materialization source is the owning Lesson's progressively authored `questions/index.ts` or `flashcards/index.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively.
+The only supported Bank materialization source is the owning Lesson's progressively authored `questions/draft.ts` or `flashcards/draft.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively.
 
 ## Invocation and deployment
 
@@ -10,8 +10,8 @@ The bank PR must carry its existing `svitlo-create-questions-flow:v1` or `svitlo
 
 ## Trusted operations
 
-- `typed_resolve`: reads immutable metadata from the real GitHub PR, current review and exact Stage 3 `index.ts`. Static stage-source parsing accepts bounded literals and refuses candidate side effects, dynamic imports and unrecognized spreads.
-- `typed_analyze`: checks out reviewed PR SHA as **untrusted data only**, compiles and executes only default-branch trusted Engine and source materializers, verifies complete Bank inventory, deterministic UUIDs/order/relationships and exact allowlisted outputs. Saves bounded UTF-8 bytes and hashes, including the archive of the reviewed original source, in a short-lived run artifact.
+- `typed_resolve`: reads immutable metadata from the real GitHub PR, current review and exact Stage 3 `draft.ts`. Static stage-source parsing accepts bounded literals and refuses candidate side effects, dynamic imports and unrecognized spreads.
+- `typed_analyze`: checks out reviewed PR SHA as **untrusted data only**, compiles and executes only default-branch trusted Engine and source materializers, verifies complete Bank inventory, deterministic UUIDs/order/relationships and exact allowlisted outputs. Saves bounded UTF-8 bytes and hashes, including the pinned draft deletion and original blob SHA, in a short-lived run artifact.
 - `typed_publish`: has the write permission but no Engine/npm or candidate execution. Revalidates exact actor/independent review/HEAD/branch lease, hashes and permitted paths and atomically updates the Git tree in one non-force commit. Existing edited or partial source trees, changed reviewed bytes, path collisions and symlinks fail closed.
 
 Question Bank and Flashcard Bank are separate complete resources; neither materializes or edits Lesson Quiz/Flashcards Sections. Source code generation does not imply publication of assessment resources or resolve missing assets, bank references, locales or independent translations. `generateAssessmentResources` and completed Lesson Config publication remain distinct downstream gates.

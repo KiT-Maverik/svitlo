@@ -7,7 +7,7 @@ The Course-owned TypeScript Stage 3 source is the only supported editorial input
 To exercise the staged path on an open same-repository **Draft Course PR**:
 choose **Actions → Stage typed Course materialization (manual rollout)** and
 supply pr_number. The gate requires a single changed canonical
-content/<book>/data/courses/<UUID-last-hex>/<UUID>/index.ts,
+content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
 the current source blob SHA, an independent contributor with
 write/maintain/admin access who submitted a formal **APPROVED GitHub review
 at that exact PR HEAD**, and a write-authorized invoking actor. The source
@@ -48,8 +48,9 @@ Candidate TS is not imported, compiled to executable JS, or evaluated —
 including in the privileged publisher. The publisher rechecks the actor and
 independent Stage 4 review at the pinned HEAD, rereads original source/blob,
 recreates the identical plan from inert AST, checks every target for symlinks
-and clobbers, and builds **one Git Data API tree commit** that both replaces
-index.ts and archives exact original bytes at workflow.stage3.ts. It checks
+and clobbers, and builds **one Git Data API tree commit** that deletes the reviewed
+draft.ts and creates index.ts plus all approved outputs. Exact original bytes
+remain available at the pinned parent commit and blob. It checks
 the branch/PR before a non-force ref update. There is no PR-description edit,
 Course Props publication, child Lesson Production or automatic bank work.
 
