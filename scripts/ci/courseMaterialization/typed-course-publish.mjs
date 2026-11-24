@@ -126,12 +126,14 @@ function assertCourseInventory(manifest, meta, entries) {
     seen.add(row.placementPath);
     seenOrder.add(order);
     const rel = row.placementPath.slice(root.length + 1);
+    // Course's deterministic UUID namespace excludes the top-level content/ segment.
+    const allocationPath = rel.slice('content/'.length);
     if (row.type === 'lesson') {
       const lessonRoot = meta.textbookRoot + '/data/lessons/' + row.id.at(-1) + '/' + row.id;
       if (row.kind === 'new') {
         const draft = lessonRoot + '/draft.ts';
         if (
-          row.id !== deriveCourseEntityId(meta.courseId, 'lesson', rel) ||
+          row.id !== deriveCourseEntityId(meta.courseId, 'lesson', allocationPath) ||
           row.status !== 'pending-lesson-stage1' ||
           row.sourcePath !== draft ||
           row.placementSourcePath !== draft ||
@@ -162,7 +164,7 @@ function assertCourseInventory(manifest, meta, entries) {
       if (
         row.kind !== 'new' ||
         !['pending-episode-scenario', 'materialized-source'].includes(row.status) ||
-        row.id !== deriveCourseEntityId(meta.courseId, 'episode', rel)
+        row.id !== deriveCourseEntityId(meta.courseId, 'episode', allocationPath)
       )
         throw Error('Invalid Course Episode inventory');
       const filename = row.placementPath + (row.status === 'pending-episode-scenario' ? '/draft.ts' : '/index.ts');
