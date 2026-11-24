@@ -85,7 +85,23 @@ function findLessonPatches(course, overrides, languages) {
     }
     if (entity.type === 'lesson') {
       if (change === false) throw new Error('Disabled Lesson reached at ' + location);
-      const patch = change === undefined ? undefined : entity.build.overrides(change, { languages });
+      // A placed Lesson carries its own original authored Config patch. Build
+      // must produce sparse Props here, independently of the full Course tree.
+      // Keep the legacy explicit Build override path for callers that use it.
+      if (entity.placement && (
+        !isObject(entity.placement) ||
+        entity.placement.source?.id !== entity.id ||
+        entity.placement.source?.slug !== entity.slug ||
+        entity.placement.source?.type !== 'lesson'
+      )) {
+        throw new Error('Mismatched immutable Lesson placement identity at ' + location);
+      }
+      const patch = entity.placement
+        ? entity.build.overrides(change === undefined ? {} : change, { languages })
+        : change === undefined ? undefined : entity.build.overrides(change, { languages });
+      if (patch?.id !== undefined && patch.id !== entity.id) {
+        throw new Error('Mismatched sparse Lesson override identity at ' + location);
+      }
       lessons.set(location, patch);
       return;
     }
