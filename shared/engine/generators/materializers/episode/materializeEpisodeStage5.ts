@@ -4,6 +4,7 @@ import {
 } from '../../../types/workflow/episodeWorkflow.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { renderSceneFiles } from '../scene/materializeScene';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeEpisode } from './materialize.mjs';
 import { materializeEpisodeSection } from './materializeEpisodeSection';
 
@@ -129,8 +130,8 @@ export function materializeEpisodeStage5(
         .replace(originalLanguages, '')
         .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
       index.content =
-        '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
-        '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
+        renderBlockerTodo('Complete and human-verify Episode media generation at Stage 9 before removing this blocker.') + '\n' +
+        renderBlockerTodo('Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.') + '\n' +
         '// Reviewed Episode source blob: ' +
         source.source.sourceBlobSha +
         '\n' +
