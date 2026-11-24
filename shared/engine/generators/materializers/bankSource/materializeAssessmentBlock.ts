@@ -164,7 +164,6 @@ export function materializeAssessmentBlock(
           documentLanguage,
           languagesImport,
           registered,
-          specificationSidecar: registered,
           production:
             node.production === undefined
               ? undefined
