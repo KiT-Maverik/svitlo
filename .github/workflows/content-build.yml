@@ -50,6 +50,11 @@ jobs:
       - name: Install dependencies only for selected builds
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      # Assessment reference tests load built Engine runtime exports. An npm
+      # install alone does not create shared/engine/dist/runtime.js.
+      - name: Build Engine for published assessment reference tests
+        if: steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Test skills structure invariants
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs

@@ -151,8 +151,22 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
     assert.notEqual(parent, workspace, 'repository root not found');
     workspace = parent;
   }
+  // Validate the Engine-owned Lesson Config source tree against the real
+  // Configurator contracts. Executable Scene TSX drafts have separate React
+  // and CSS-module compilation boundaries in the textbook's scene workspace.
+  // They still must parse as valid TSX here, even while blocked for release.
+  const sceneDrafts = plan.files.filter(file => file.kind === 'typescript' && file.path.includes('/scenes/'));
+  for (const file of sceneDrafts) {
+    const parsed = ts.createSourceFile(
+      file.path, file.content, ts.ScriptTarget.ES2022, true,
+      file.path.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+    );
+    assert.deepEqual((parsed as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics,
+      [], 'invalid Scene TypeScript syntax: ' + file.path);
+  }
   const files = new Map(
-    plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
+    plan.files.filter(file => file.kind === 'typescript' && file.path.startsWith(folder))
+      .map(file => [resolve(workspace, file.path), file.content]),
   );
   const options: ts.CompilerOptions = {
     target: ts.ScriptTarget.ES2022,

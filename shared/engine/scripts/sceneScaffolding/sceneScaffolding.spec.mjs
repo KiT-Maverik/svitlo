@@ -246,7 +246,7 @@ test('rejects unsafe/duplicate identities and missing production specs before wr
   const second = f.scene(anotherId, 'demoScene', '');
   f.config.config.section.items.intro.config.content.items.demoScene = second;
   f.save();
-  assert.throws(() => runOne(f.source, 'generate', f.repo), /needs production.specification/);
+  assert.throws(() => runOne(f.source, 'generate', f.repo), /needs its reviewed production.specification/);
   assert.equal(fs.existsSync(f.folder(sceneId)), false);
   second.production.specification = 'Scene spec';
   second.config.slug = 'CompareGroupsScene';
@@ -307,7 +307,7 @@ test('CLI only acts on an explicit source and select option', t => {
 test('rendered files are deterministic and no Scene scaffolding edits Lesson data', t => {
   const f = fixture(t);
   const configBefore = fs.readFileSync(f.authoredSceneModule(), 'utf8');
-  const scene = { id: sceneId, component: 'DemoScene', specification: 'Spec', documentLanguage: 'qm' };
+  const scene = { id: sceneId, slug: 'DemoScene', specification: 'Spec', documentLanguage: 'qm' };
   const rendered = renderSceneFiles(scene);
   assert.deepEqual([...rendered], [...renderSceneFiles(scene)]);
   assert.deepEqual(runOne(f.source, 'generate', f.repo)[0].changed, 6);
@@ -320,7 +320,7 @@ test('rendered files are deterministic and no Scene scaffolding edits Lesson dat
 
 test('reads new Lesson constants.ts without a legacy languages.ts shim', t => {
   const f = fixture(t);
-  const folder = path.dirname(f.source);
+  const folder = f.source;
   fs.renameSync(path.join(folder, 'languages.ts'), path.join(folder, 'constants.ts'));
   const result = runOne(f.source, 'generate', f.repo);
   assert.equal(result[0].changed, 6);
