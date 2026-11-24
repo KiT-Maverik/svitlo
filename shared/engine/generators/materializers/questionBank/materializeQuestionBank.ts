@@ -3,6 +3,7 @@
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { questionTypes } from '../../../configurators/questions/question.constants';
 import {
   questionBankWorkflowStage1_Schema,
   questionBankWorkflowStage3_Schema,
@@ -39,17 +40,7 @@ import {
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 
-const kinds = [
-  'selectOneAnswer',
-  'selectMultipleAnswers',
-  'matchBlocks',
-  'answerWithText',
-  'answerWithNumber',
-  'orderSequence',
-  'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks',
-  'fillBlanksWithText',
-] as const;
+const kinds = questionTypes;
 type Kind = (typeof kinds)[number];
 const kindSet: ReadonlySet<string> = new Set(kinds);
 

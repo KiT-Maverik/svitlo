@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { Question_Type } from '../../configurators/questions/question.constants';
 import { workflowOrdered_Schema } from './lessonWorkflow.types';
 import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
 import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -173,7 +174,7 @@ export const questionBankWorkflowQuestionConfig_Schemas = {
   buildAnswerWithBlocks: buildAnswerWithBlocks_Config_Schema.extend({ content: questionContent.buildAnswerWithBlocks }),
   fillBlanksWithBlocks: fillBlanksWithBlocks_Config_Schema.extend({ content: questionContent.fillBlanksWithBlocks }),
   fillBlanksWithText: fillBlanksWithText_Config_Schema.extend({ content: questionContent.fillBlanksWithText }),
-} as const;
+} as const satisfies Record<Question_Type, z.ZodType>;
 const questionNode = <Config extends z.ZodType>(config: Config) =>
   z.strictObject({ config, production: questionBankWorkflowQuestionProduction_Schema.optional() });
 export const questionBankWorkflowQuestionNode_Schema = questionNode(
@@ -189,8 +190,7 @@ export const questionBankWorkflowQuestionNode_Schema = questionNode(
     questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText,
   ]),
 );
-export const questionBankWorkflowQuestionKinds_Schema = z
-  .strictObject({
+const questionBankWorkflowKindsShape = {
     selectOneAnswer: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectOneAnswer)).optional(),
     selectMultipleAnswers: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.selectMultipleAnswers)).optional(),
     matchBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.matchBlocks)).optional(),
@@ -200,7 +200,9 @@ export const questionBankWorkflowQuestionKinds_Schema = z
     buildAnswerWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.buildAnswerWithBlocks)).optional(),
     fillBlanksWithBlocks: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithBlocks)).optional(),
     fillBlanksWithText: z.record(z.string(), questionNode(questionBankWorkflowQuestionConfig_Schemas.fillBlanksWithText)).optional(),
-  })
+} satisfies Record<Question_Type, z.ZodType>;
+export const questionBankWorkflowQuestionKinds_Schema = z
+  .strictObject(questionBankWorkflowKindsShape)
   .refine(
     groups => Object.values(groups).some(group => group && Object.keys(group).length),
     'Question Bank must contain a Question',
