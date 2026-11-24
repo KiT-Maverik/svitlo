@@ -9,6 +9,7 @@ import {
   youtube_Config_Schema,
   type ContentBlock_Youtube_Config,
 } from '../../../configurators/contentBlocks/defineYoutube';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
@@ -185,7 +186,7 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   const expressions: Record<string, string> = {};
   const imports = ['defineYoutube'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for youtube ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for youtube ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -201,7 +202,7 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     }
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',
@@ -225,7 +226,7 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   ) {
     const fieldPath = 'locale.href' + (isRecord(resolvedHref) ? '.' + language : '');
     expressions[fieldPath] =
-      '// TODO (BLOCKER): Supply a verified YouTube URL before publication.\n' +
+      renderBlockerTodo('Supply and verify the YouTube URL, access and captions before publication.') + '\n' +
       JSON.stringify(UNRESOLVED_YOUTUBE_HREF);
     diagnostics.push({
       path: '$.config.' + fieldPath,
@@ -271,7 +272,7 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   // The missing-URL TODO already blocks publication. Add the separate
   // verification instruction only after there is a real URL to review.
   if (!unresolvedHref) {
-    blockers.push('// TODO (BLOCKER): ' + verificationInstruction + ' for youtube ' + config.id + '.');
+    blockers.push(renderBlockerTodo(verificationInstruction + ' for youtube ' + config.id + '; remove after recorded media verification.'));
     diagnostics.push({
       path: '$.config.locale.href',
       code: 'pending-youtube-verification',
