@@ -80,7 +80,7 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
 /** Modify only the trusted generated content map/order and the exact pending Episode marker. */
 export function restoreEpisodePlacement(parent, placement, exportName, { rootParent = false } = {}) {
   const { slug: key, path, episodeId, orderIndex } = placement;
-  if (!safe(key) || !safe(exportName)) throw Error('Unsafe Episode import identity');
+  if (!safe(key) || typeof exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName)) throw Error('Unsafe Episode import identity');
   const blockPattern = /^\/\/ TODO \(BLOCKER\): Episode Stage 1 handoffs are not completed Episode Configurators\. Do not publish\.\r?\n\/\/ Reviewed original content order: (.+)\r?\n\/\/ Pending Episode handoffs: (.+)\r?\n/gm;
   const blocks = [...parent.matchAll(blockPattern)];
   if (blocks.length !== 1) throw Error('Exactly one direct-parent Episode handoff marker required');

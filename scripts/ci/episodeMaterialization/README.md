@@ -1,0 +1,17 @@
+# Trusted Episode Stage 5 materialization
+
+Use **Actions → Typed Episode materialization → Run workflow** on the default branch only. Supply the existing Draft Episode PR number and its exact owning Course PR number. Verify actual deployment, Stage 3 independent content evidence, Stage 4 accepted reviewed source and separate owner authorization before dispatch. The invoking collaborator needs write/maintain/admin access; a formal independent write-authorized APPROVED review must pin the current Episode HEAD (not the PR author). Do not post fake review evidence. The parent Course branch must be the real same-repository target and its current HEAD must be an ancestor of the Episode HEAD. The Episode PR must modify exactly its previously allocated `draft.ts`. Reconcile sibling child merges before dispatch; the parent composition is shared and integration is serialized by the actual branch ancestry, not automatically merged.
+
+The read-only analyzer reads ordinary Git blobs at exact candidate/parent revisions, verifies the immutable handoff and source-language/locale plan, parses only inert typed literals, calls shared concrete Section/Block renderers, and typechecks both the reviewed input and generated sources plus pinned authored context against trusted Engine Build contracts without emitting JS. The candidate's files, dependencies, scripts and workflows are never executed. Unsupported Sections fail closed. Missing external dependency sources fail compilation; do not fake a parent or substitute a runtime stub.
+
+The privileged publisher independently rechecks actor, reviews, Episode and parent branch heads, and recomputes the manifest byte for byte using default-branch code. A single Git tree creates the final Episode index and owned modular files, replaces only the exact parent content map/order/pending marker, and deletes only the consumed Episode draft. All other targets are create-only and may not be symlinks, unsafe paths or existing files/directories. The original reviewed bytes remain reachable through the pinned commit/blob SHA. The ref is updated non-force after the last review/HEAD check. No child or parent merge, translation, actual media production or publication is performed. A stale HEAD, invalid source, conflicting parent composition or failed semantic validation leaves the source ref unchanged.
+
+Stage 5 emits unresolved Human Media Generation and QA blockers even if an Episode contains no media. Human Stage 9 uses the real reviewed localized scripts, UUID asset paths and per-resource specifications; it verifies actual file existence, accessibility variants and provenance, or records explicit human N/A. Human Stage 10 records actual Course-context QA at the tested revision. Only verified completion permits removing those blockers. Runtime support, strict textbook publication and human acceptance are separate gates.
+
+Focused validation (CI runs these on Ready):
+
+    node scripts/ci/courseMaterialization/build-course-renderers.mjs
+    node --test scripts/ci/episodeMaterialization/*.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
+    npm run code:check:types --workspace @svitlo/engine
+
+Verify the actual successful Actions run and exact generated Git commit on the Episode branch before recording Stage 5 completion. Do not repeat a successful materialization.

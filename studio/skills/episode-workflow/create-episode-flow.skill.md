@@ -33,7 +33,7 @@ Stage 3 starts in a distinct context. Record baseline commit and source blob SHA
 
 ### Stages 5–6: implementation
 
-Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Verify the Episode-specific trusted workflow is deployed before invoking it; if not, report the deployment dependency. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
+Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Follow the [trusted Episode Stage 5 runbook](../../../scripts/ci/episodeMaterialization/README.md). Verify the Episode-specific trusted workflow is deployed before invoking it; if not, report the deployment dependency. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
 
 At Stage 6 implement typed resources and Scenes using [Implement Scene](../lesson-workflow/implement-scene.skill.md). Register and test Scenes in the actual owning package, verify interactions and alternatives, and prepare precise media handoff. Keep unresolved resource `TODO (BLOCKER):` markers until genuine completion. Never invent assets, reserve fabricated passing review values, or treat a path alone as a real file.
 
