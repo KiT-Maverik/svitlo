@@ -1,0 +1,35 @@
+# PR event and editorial-gate audit — 2026-11-24
+
+Scope: 25 workflows under `.github/workflows/` inspected against `develop`, with #812 integrated and #815 merged into `develop`. This is an implementation inventory, **not** authorization to remove review/security checks.
+
+## Event inventory
+
+| Event routing | Workflows | Decision |
+| --- | --- | --- |
+| `pull_request: edited` | `fast-gate.yml`, `pr-labeler.yml`, `production-quality.yml` | Keep `edited` for base retargeting; skip the **nonrequired** labeler job when neither base nor title changed. Required FastGate and production contexts continue executing until safe result reuse is implemented. |
+| Other `pull_request` events | `blocker-todos.yml`, `content-build.yml`, `contentblock-build-api.yml`, `course-typed-materialization.yml`, `db-controllers-e2e.yml`, `desktop-ci.yml`, `engine-generators.yml`, `episode-materialization.yml`, `mobile.yml`, `pr-auto-format.yml` | No description-only `edited` trigger. Retain changed-head, Ready and specified scope handling. |
+| `pull_request_target: closed` | `pr-clear-blocked-on-merge.yml` | Required for successful-merge cleanup; not a description consumer. |
+| `issue_comment: created` | `agent-ci-artifacts.yml`, `bank-materialization.yml`, `course-typed-materialization.yml`, `engine-coverage.yml`, `episode-materialization.yml`, `get-lesson.yml`, `lesson-materialization.yml`, `production-quality-command.yml`, `repository-git-audit.yml` | Preserve the explicit, authorized PR command routes. Comment body is a command input, **not** free-form editorial approval. |
+| Other/manual | `backfill-labels.yml`, `frontend-components.yml`, `sync-labels.yml`, `ui-kit-storybook.yml` | Preserve label synchronization, explicit diagnostics and manual-only Storybook. |
+
+Some workflows occur in two rows because they intentionally have both PR and comment routes.
+
+## Evidence consumers and decisions
+
+- **Needed approval/security boundary:** `scripts/ci/reviewEvidence/review-evidence.mjs` parses `Review evidence (v1)` from the PR description, rejects duplicates, rejected entries and stale source SHAs, and verifies commit/blob ancestry. Course, Episode and Bank materialization read it. The canonical policy explicitly requires this evidence; **do not delete or replace it with checklist status** without owner approval.
+- **Needed technical metadata:** Bank Stage 5 currently reads its entity marker, owning Lesson and parent PR, source stage/checklist and accepted independent review (`scripts/ci/bankMaterialization/`). Its stage/checklist dependency may be editorially redundant, but removing it requires an explicit contract/authorization decision and separate coverage. **Unresolved policy; preserved.**
+- **Needed post-commit reconciliation:** Course materialization's `reconcile-pr-tables` job reads/writes managed Lessons/Episodes blocks in the Course description only after verifying the committed manifest and digest. This is a metadata publisher, not a pre-materialization editorial authorization gate; preserve atomic-source and race protections.
+- **Removed by #812:** Lesson source materialization no longer relies on PR prose/stage-review/parent provenance parsing. Do not reintroduce it.
+- **Needed input:** `pr-labeler.yml` reads the PR title to apply `pr: integration`. It does not need body edits. The remaining comment routers read exact command strings and validate actor/PR/source metadata.
+- **Not observed in workflow triggers:** Other workflows do not declare `edited`. Avoid broadening their triggers or enabling Draft heavyweight validation to fix this issue.
+
+## Required status checks — live read-only inspection, 2026-11-24
+
+- Active `Protect develop` ruleset `27661111` targets `refs/heads/develop` and requires `Affected content / build, taxonomy and packaging`, `Blocker TODOs / clean`, and `FastGate / verify`.
+- Active `Protect main` ruleset `26323040` targets `refs/heads/main` and requires `Affected content / build, taxonomy and packaging`, `Blocker TODOs / clean`, and `Production Quality / verify`.
+- Both require PRs and strict required statuses. **No ruleset change required or performed** for the nonrequired labeler optimization. Direct branch-protection REST reads returned 403 under the current installation; ruleset details were readable.
+- Do **not** turn off `edited` or skip either required job without a proven retarget path and assurance that a new skipped check cannot mask a failed prior check at the same SHA.
+
+## Remaining work for full #816 acceptance
+
+A fail-closed required-check reuse design is needed to suppress redundant FastGate and Production Quality compute after description-only changes. It must preserve the latest evaluated head/base SHA, prior verdict (including failure/pending/cancelled), merge-ref semantics, Draft/Ready, base retargets, and protected contexts. No optimization has been claimed for these required jobs. Separately obtain owner disposition on whether Bank checklist/marker gating should be removed while retaining independent SHA-pinned review evidence. End-to-end GitHub event replay and latest-head Ready results are required before full closure.
