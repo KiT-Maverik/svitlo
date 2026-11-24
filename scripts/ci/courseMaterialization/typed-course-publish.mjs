@@ -10,6 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
+import { manifestDigest } from './course-handoff-publish.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { assessmentDraftExpression } from '../../../shared/engine/generators/materializers/course/materializeAssessmentPlaceholder.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
@@ -408,6 +409,23 @@ function equalMetadata(a, b) {
   );
 }
 
+/** Format the source transaction's commit proof from the same digest used by reconciliation. */
+export function buildCourseCommitMetadata(meta, manifest) {
+  const digest = manifestDigest(manifest);
+  return {
+    digest,
+    message:
+      'Materialize reviewed typed Course ' +
+      meta.courseId +
+      '\n\nCourse-PR: #' +
+      meta.number +
+      '\nSource-Blob: ' +
+      meta.sourceBlobSha +
+      '\nCourse-Inventory-Manifest: ' +
+      digest,
+  };
+}
+
 async function publish() {
   const meta = parseTypedMetadata(process.env.COURSE_TYPED_META_B64);
   await requireActor(meta.actor);
@@ -432,17 +450,9 @@ async function publish() {
     tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
-  const digest = manifestDigest(manifest);
+  const { digest, message } = buildCourseCommitMetadata(meta, manifest);
   const commit = await github('git/commits', 'POST', {
-    message:
-      'Materialize reviewed typed Course ' +
-      meta.courseId +
-      '\n\nCourse-PR: #' +
-      meta.number +
-      '\nSource-Blob: ' +
-      meta.sourceBlobSha +
-      '\nCourse-Inventory-Manifest: ' +
-      digest,
+    message,
     tree: tree.sha,
     parents: [meta.head],
   });
