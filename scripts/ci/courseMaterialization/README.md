@@ -55,6 +55,23 @@ draft.ts and creates index.ts plus all approved outputs. Exact original bytes
 remain available at the pinned parent commit and blob. It checks
 the branch/PR before a non-force ref update. A separate metadata-only job verifies the committed manifest and reconciles Lessons and Episodes tables in the current PR description. No Course Props publication, child Lesson/Episode production or automatic bank work occurs.
 
+### Clean trusted dependency preparation
+
+Both read-only `analyze` and privileged `publish` install dependencies in their
+trusted default-branch checkout with `npm ci --ignore-scripts` and invoke
+`node scripts/ci/courseMaterialization/build-course-renderers.mjs` **before**
+loading an existing Lesson. That preparation bundles the concrete Section/Block
+renderers and **both** public Engine entries (`dist/build.js` and
+`dist/runtime.js`) from trusted source, since transitive authored Lesson
+modules can import `@svitlo/engine/runtime`. Neither prebuilt dist output nor
+an npm lifecycle script is a prerequisite. The bundles remain untracked,
+trusted temporary build artifacts; this preparation does not substitute for
+Engine package typechecking or permit candidate source execution. The Ready
+Course Stage 5 regression exercises a transitive runtime import plus en/uk
+file-relative Markdown in the genuine Configurator resolver, with plain reuse
+and sparse overrides. A passing regression is not evidence that a live Course
+PR has materialized: verify the subsequent authorized Actions run and commit.
+
 ### Validation and activation
 
 Run on a checkout containing this PR with dependencies installed:
