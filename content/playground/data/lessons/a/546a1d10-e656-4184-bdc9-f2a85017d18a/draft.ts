@@ -1,4 +1,4 @@
-import type { LessonWorkflowStage2 } from '@svitlo/engine/build';
+import { materializeLessonStage6, type LessonWorkflowStage2 } from '@svitlo/engine/build';
 
 export const lessonStage1 = {
   config: {
@@ -1345,3 +1345,5 @@ Keep the standalone Lesson independent of Course storylines and external service
       'Verified Playground Skill definitions: content/playground/data/skills/testColors/testWarmColors/testRecognizeRed.ts and content/playground/data/skills/testColors/testCoolColors/testRecognizeBlue.ts; canonical assessment methods: shared/ui-kit/data/definitions/assessmentMethods/classification.ts and retrieval.ts. Baseline develop 1f6bbba5461bd092894d54804368aaeaa0e10060. No external scientific claims or standards alignment.',
   },
 } satisfies LessonWorkflowStage2;
+
+materializeLessonStage6(lessonStage1);
