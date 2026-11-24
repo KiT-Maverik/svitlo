@@ -52,7 +52,7 @@ export const lessonStage1 = {
                     },
                     "locale": {
                       "value": {
-                        "en": "Look at the two circles in the picture. One is %_%id: redWord; value: red%_%. The other is %_%id: blueWord; value: blue%_%. Both are circles. Their colors are different."
+                        "en": "Look at the two circles in the picture, or read their description. One is %_%id: redWord; value: red%_%. The other is %_%id: blueWord; value: blue%_%. Both are circles, but their colors are different."
                       }
                     }
                   }
@@ -132,7 +132,7 @@ export const lessonStage1 = {
                   "production": {
                     "purpose": "Hear the color names.",
                     "specification": "Produce a clear spoken English recording of the script; no music or sound effects; short pause between examples. Keep the descriptions consistent with the actual image in each locale.",
-                    "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
+                    "accessibility": "Audio is optional and starts only on learner action. The complete spoken script is visible in the Audio description (figcaption); no listening or speaking is required. Keep player controls and text readable at narrow widths.",
                     "offline": "Bundle source-language MP3; text remains available.",
                     "readiness": "production-pending",
                     "script": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
@@ -222,7 +222,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Watch a red circle become a red square, then a blue square become a blue circle. In each example, the shape changes but the color stays the same."
+                        "en": "Predict what will stay the same when a red circle becomes a red square. The silent video shows this change, then a blue square becoming a blue circle. In both examples the shape changes, but the color stays the same. You can use this description instead of playing the video. The separate timed-text link describes the changes; it is not a caption switch in the player."
                       }
                     }
                   }
@@ -260,11 +260,11 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Observe color while shapes change.",
-                    "specification": "Create a silent 6-second 640×400 local MP4 and matching WebP poster. First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
-                    "accessibility": "No flashing or baked text; adjacent text describes all changes. Pause/play remains learner controlled.",
+                    "specification": "Create a silent, learner-controlled 6-second 640×400 local MP4 and matching WebP poster showing the starting red circle. 0–3 seconds: hold the red circle, make a single non-flashing cut to the red square, and hold the result. 3–6 seconds: hold the blue square, make a single non-flashing cut to the blue circle, and hold the result. Use neutral background, no zoom, blinking, fast camera movement or automatic repeat. Both starting and ending shapes must be clearly visible.",
+                    "accessibility": "No speech, flashing or baked text. Adjacent learner-facing prose describes both changes completely; the standalone WebVTT resource provides the same descriptions. Playback is optional, with native pause/play controls. Learners who avoid motion use the still examples and text.",
                     "offline": "Bundle video and poster; retain the textual description.",
                     "readiness": "production-pending",
-                    "storyboard": "First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
+                    "storyboard": "0–3 seconds: hold the red circle, make a single non-flashing cut to the red square, and hold the result. 3–6 seconds: hold the blue square, make a single non-flashing cut to the blue circle, and hold the result. Use neutral background, no zoom, blinking, fast camera movement or automatic repeat. Both starting and ending shapes must be clearly visible.",
                     "script": "A red circle becomes a red square. A blue square becomes a blue circle."
                   }
                 },
@@ -283,7 +283,7 @@ export const lessonStage1 = {
                   "production": {
                     "purpose": "Access the color comparison as timed text.",
                     "specification": "Produce UTF-8 WebVTT: 00:00:00.000 --> 00:00:03.000 first sentence; 00:00:03.000 --> 00:00:06.000 second sentence. A red circle becomes a red square. A blue square becomes a blue circle.",
-                    "accessibility": "Standalone keyboard-accessible WebVTT link, not a synchronized track; adjacent text repeats the cues.",
+                    "accessibility": "Standalone keyboard-accessible WebVTT resource link, not a synchronized video track. The same two descriptions appear in preceding learner-facing prose; reading or downloading the VTT is optional.",
                     "offline": "Bundle local VTT and equivalent text.",
                     "readiness": "production-pending",
                     "script": "A red circle becomes a red square. A blue square becomes a blue circle."
@@ -301,7 +301,8 @@ export const lessonStage1 = {
                       "autoplay": false,
                       "showArrows": true,
                       "showIndicators": true,
-                      "allowSwipe": true
+                      "allowSwipe": true,
+                      "allowFullscreen": false
                     },
                     "locale": {
                       "title": {
@@ -398,11 +399,11 @@ export const lessonStage1 = {
                           },
                           "production": {
                             "purpose": "Explore how color and shape vary independently.",
-                            "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
-                            "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
-                            "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                            "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer. Ask learners to predict each change before choosing it; controls must allow any order without a required sequence or score. Use a single swatch and ordinary CSS or lightweight SVG, not a canvas animation. Each color button exposes whether it is selected (aria-pressed); the shape button toggles the shape, and Reset is always available. On entry, including after a Carousel slide remount, restore the declared initial state; do not depend on saved state. Keep feedback visible without moving focus.",
+                            "accessibility": "Use localized native buttons with visible focus, keyboard activation and comfortably sized touch targets (aim for 44 CSS px). Let controls wrap in logical DOM order at narrow widths, with no horizontal scrolling or overlap. Keep selected color identifiable through text and aria-pressed; expose current color and shape in visible localized status and polite accessible announcements, without color-only feedback or automatic focus moves. No speech, drag gesture, rapid reaction, motion or audio is required. Respect semantic RTL; do not mirror the swatch's scientific meaning. Nonvisual vocabulary practice does not establish visual color discrimination.",
+                            "offline": "Bundle and register the Scene locally; use lightweight CSS/SVG with no network or expensive graphics. Adjacent examples describe the same color/shape relations for learners who cannot use visual controls. The textual path teaches vocabulary and does not substitute for visual-recognition evidence.",
                             "readiness": "production-pending",
-                            "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                            "weakDeviceAlternative": "Static swatch, text status and native controls; no animation, canvas, 3D, external dependency or timer."
                           }
                         }
                       },
@@ -413,7 +414,9 @@ export const lessonStage1 = {
                     }
                   },
                   "production": {
-                    "purpose": "Compare two representations; navigate at the learner's own pace."
+                    "purpose": "Compare a still example with a simple learner-controlled Scene; arrows/indicators and keyboard navigation provide alternatives to swiping. No autoplay, no looping, no fullscreen requirement. Image-to-Scene and Scene-to-Image transitions use the current renderer's nonanimated path. Scene may reset when revisited; do not rely on state persistence.",
+                    "accessibility": "Use the localized Next/Previous and slide controls, keyboard focus and readable labels; swipe is optional and is not available within the interactive Scene. Preserve RTL navigation semantics and make the static description meaningful without the Scene.",
+                    "offline": "Local image and registered lightweight Scene; the adjacent explanation is sufficient for nonvisual vocabulary practice."
                   }
                 },
                 "extraVideoIntro": {
@@ -424,7 +427,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Optional: look for examples of red and blue in the following video. You may see yellow, too; this lesson focuses only on red and blue. You can skip the video and continue with the examples here."
+                        "en": "In the gallery, use Next and Previous to move between the blue shapes and the activity. Explore at your own pace; you can reset the activity. The following online video is optional. You may see yellow, too, but our focus is red and blue. If it is unavailable, continue with the local examples."
                       }
                     }
                   }
@@ -505,7 +508,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Choose Red or Blue. Say the color name. Then change the shape: does the color stay the same? Change the color next: does the shape stay the same?"
+                        "en": "Choose Red or Blue and think of the color name. Predict what will happen before you change the shape. Does the color stay the same? Then predict what will happen before you change the color. Does the shape stay the same? Try Reset if you want to start again. You can also follow the written descriptions. For the two reflections below, think of an answer, reveal the explanation, then use the check button below each answer when you are ready. You do not need to play every video or activity."
                       }
                     }
                   }
@@ -558,11 +561,11 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Explore how color and shape vary independently.",
-                    "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
-                    "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
-                    "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                    "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer. Ask learners to predict each change before choosing it; controls must allow any order without a required sequence or score. Use a single swatch and ordinary CSS or lightweight SVG, not a canvas animation. Each color button exposes whether it is selected (aria-pressed); the shape button toggles the shape, and Reset is always available. On entry, including after a Carousel slide remount, restore the declared initial state; do not depend on saved state. Keep feedback visible without moving focus.",
+                    "accessibility": "Use localized native buttons with visible focus, keyboard activation and comfortably sized touch targets (aim for 44 CSS px). Let controls wrap in logical DOM order at narrow widths, with no horizontal scrolling or overlap. Keep selected color identifiable through text and aria-pressed; expose current color and shape in visible localized status and polite accessible announcements, without color-only feedback or automatic focus moves. No speech, drag gesture, rapid reaction, motion or audio is required. Respect semantic RTL; do not mirror the swatch's scientific meaning. Nonvisual vocabulary practice does not establish visual color discrimination.",
+                    "offline": "Bundle and register the Scene locally; use lightweight CSS/SVG with no network or expensive graphics. Adjacent examples describe the same color/shape relations for learners who cannot use visual controls. The textual path teaches vocabulary and does not substitute for visual-recognition evidence.",
                     "readiness": "production-pending",
-                    "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                    "weakDeviceAlternative": "Static swatch, text status and native controls; no animation, canvas, 3D, external dependency or timer."
                   }
                 },
                 "reflectOnColors": {
@@ -619,7 +622,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "Yes. A red circle and a red square have the same color, even though their outlines differ. A blue circle and a blue square can also have the same color. Look at color, not just shape. The following examples let you explore this idea in pictures, words, sounds and a simple activity. Take them at your own pace. The local video changes a red circle into a red square and a blue square into a blue circle; in each case the color stays the same."
+                                            "en": "Yes. A red circle and a red square have the same color, even though their outlines differ. A blue circle and a blue square can also have the same color. Look at color, not just shape. The pictures, audio and gallery below are different ways to explore this idea. You can use the descriptions instead of the media. In the gallery, use Next or Previous to move between the picture and the activity; Reset lets you try again. Use the check button at the end when you have considered the explanation."
                                           }
                                         }
                                       }
@@ -641,22 +644,6 @@ export const lessonStage1 = {
                                             "SECOND_COLOR": {
                                               "en": "blue"
                                             }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "answerCode": {
-                                      "config": {
-                                        "id": "e6566d06-1284-4cbe-a87f-ca178b05fe26",
-                                        "slug": "answerCode",
-                                        "type": "code",
-                                        "params": {
-                                          "language": "javascript",
-                                          "codeAsText": "const samples = [\"red\", \"blue\", \"red\"];"
-                                        },
-                                        "locale": {
-                                          "title": {
-                                            "en": "Three examples, two distinct color names"
                                           }
                                         }
                                       }
@@ -742,160 +729,6 @@ export const lessonStage1 = {
                                         "script": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                       }
                                     },
-                                    "answerVideo": {
-                                      "config": {
-                                        "id": "7446f1f1-6766-4f69-890a-94983db5a537",
-                                        "slug": "answerVideo",
-                                        "type": "video",
-                                        "params": {},
-                                        "locale": {
-                                          "fileName": "00000000-0000-0000-0000-000000000000.mp4",
-                                          "posterFileName": "00000000-0000-0000-0000-000000000000.webp",
-                                          "title": {
-                                            "en": "Compare red and blue"
-                                          },
-                                          "label": {
-                                            "en": "Short silent color comparison"
-                                          },
-                                          "fallback": {
-                                            "offline": {
-                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
-                                            },
-                                            "unavailable": {
-                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
-                                            },
-                                            "playbackError": {
-                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
-                                            },
-                                            "retry": {
-                                              "en": "Try again"
-                                            }
-                                          }
-                                        }
-                                      },
-                                      "production": {
-                                        "purpose": "Observe color while shapes change.",
-                                        "specification": "Create a silent 6-second 640×400 local MP4 and matching WebP poster. First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
-                                        "accessibility": "No flashing or baked text; adjacent text describes all changes. Pause/play remains learner controlled.",
-                                        "offline": "Bundle video and poster; retain the textual description.",
-                                        "readiness": "production-pending",
-                                        "storyboard": "First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
-                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
-                                      }
-                                    },
-                                    "answerExternal": {
-                                      "config": {
-                                        "id": "f97d713e-65eb-4a3f-b6a4-eb35259e200e",
-                                        "slug": "answerExternal",
-                                        "type": "youtube",
-                                        "params": {
-                                          "mode": "link"
-                                        },
-                                        "locale": {
-                                          "href": "https://www.youtube.com/watch?v=1qtPcVpkaKU",
-                                          "title": {
-                                            "en": "More color examples"
-                                          },
-                                          "label": {
-                                            "en": "Red, Blue, and Yellow — Khan Academy Kids"
-                                          },
-                                          "fallback": {
-                                            "offline": {
-                                              "en": "Use the local examples: a red circle and a blue square. Objects may have the same color even when their shapes differ."
-                                            },
-                                            "unavailable": {
-                                              "en": "The optional video is unavailable. Continue with the local examples."
-                                            },
-                                            "retry": {
-                                              "en": "Try again"
-                                            }
-                                          }
-                                        }
-                                      },
-                                      "production": {
-                                        "purpose": "Optional extension: recognize red and blue on familiar objects.",
-                                        "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (July 10, 2023). Public listing and description identify red, blue and yellow, including a cherry example. Full playback, captions, embedding permission and regional availability remain to be verified during resource production. Yellow is incidental to this Lesson and is not an assessed target. Do not copy the video into assets.",
-                                        "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
-                                        "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
-                                        "readiness": "production-pending"
-                                      }
-                                    },
-                                    "answerCaptions": {
-                                      "config": {
-                                        "id": "63a311a2-de5d-4cf1-bdda-37c3fcd992c3",
-                                        "slug": "answerCaptions",
-                                        "type": "subtitles",
-                                        "params": {},
-                                        "locale": {
-                                          "fileName": {
-                                            "en": "00000000-0000-0000-0000-000000000000.vtt"
-                                          }
-                                        }
-                                      },
-                                      "production": {
-                                        "purpose": "Access the color comparison as timed text.",
-                                        "specification": "Produce UTF-8 WebVTT: 00:00:00.000 --> 00:00:03.000 first sentence; 00:00:03.000 --> 00:00:06.000 second sentence. A red circle becomes a red square. A blue square becomes a blue circle.",
-                                        "accessibility": "Standalone keyboard-accessible WebVTT link, not a synchronized track; adjacent text repeats the cues.",
-                                        "offline": "Bundle local VTT and equivalent text.",
-                                        "readiness": "production-pending",
-                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
-                                      }
-                                    },
-                                    "answerExplore": {
-                                      "config": {
-                                        "id": "4a773a25-f569-4429-9fd7-0e2ac6441db4",
-                                        "slug": "answerExplore",
-                                        "type": "scene",
-                                        "params": {},
-                                        "locale": {
-                                          "value": {
-                                            "heading": {
-                                              "en": "Explore two colors"
-                                            },
-                                            "red": {
-                                              "en": "Red"
-                                            },
-                                            "blue": {
-                                              "en": "Blue"
-                                            },
-                                            "choose": {
-                                              "en": "Choose a color"
-                                            },
-                                            "reset": {
-                                              "en": "Reset"
-                                            },
-                                            "shape": {
-                                              "en": "Change shape"
-                                            },
-                                            "status": {
-                                              "redCircle": {
-                                                "en": "The sample is a red circle."
-                                              },
-                                              "redSquare": {
-                                                "en": "The sample is a red square."
-                                              },
-                                              "blueCircle": {
-                                                "en": "The sample is a blue circle."
-                                              },
-                                              "blueSquare": {
-                                                "en": "The sample is a blue square."
-                                              }
-                                            },
-                                            "sampleLabel": {
-                                              "en": "Color sample"
-                                            }
-                                          }
-                                        }
-                                      },
-                                      "production": {
-                                        "purpose": "Explore how color and shape vary independently.",
-                                        "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
-                                        "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
-                                        "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
-                                        "readiness": "production-pending",
-                                        "weakDeviceAlternative": "Static swatch plus text labels and native controls."
-                                      }
-                                    },
                                     "answerGallery": {
                                       "config": {
                                         "id": "9bbb3def-8ca2-4860-a2cd-2961f32e991c",
@@ -908,7 +741,8 @@ export const lessonStage1 = {
                                           "autoplay": false,
                                           "showArrows": true,
                                           "showIndicators": true,
-                                          "allowSwipe": true
+                                          "allowSwipe": true,
+                                          "allowFullscreen": false
                                         },
                                         "locale": {
                                           "title": {
@@ -1005,11 +839,11 @@ export const lessonStage1 = {
                                               },
                                               "production": {
                                                 "purpose": "Explore how color and shape vary independently.",
-                                                "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
-                                                "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
-                                                "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                                                "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer. Ask learners to predict each change before choosing it; controls must allow any order without a required sequence or score. Use a single swatch and ordinary CSS or lightweight SVG, not a canvas animation. Each color button exposes whether it is selected (aria-pressed); the shape button toggles the shape, and Reset is always available. On entry, including after a Carousel slide remount, restore the declared initial state; do not depend on saved state. Keep feedback visible without moving focus.",
+                                                "accessibility": "Use localized native buttons with visible focus, keyboard activation and comfortably sized touch targets (aim for 44 CSS px). Let controls wrap in logical DOM order at narrow widths, with no horizontal scrolling or overlap. Keep selected color identifiable through text and aria-pressed; expose current color and shape in visible localized status and polite accessible announcements, without color-only feedback or automatic focus moves. No speech, drag gesture, rapid reaction, motion or audio is required. Respect semantic RTL; do not mirror the swatch's scientific meaning. Nonvisual vocabulary practice does not establish visual color discrimination.",
+                                                "offline": "Bundle and register the Scene locally; use lightweight CSS/SVG with no network or expensive graphics. Adjacent examples describe the same color/shape relations for learners who cannot use visual controls. The textual path teaches vocabulary and does not substitute for visual-recognition evidence.",
                                                 "readiness": "production-pending",
-                                                "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                                                "weakDeviceAlternative": "Static swatch, text status and native controls; no animation, canvas, 3D, external dependency or timer."
                                               }
                                             }
                                           },
@@ -1020,26 +854,23 @@ export const lessonStage1 = {
                                         }
                                       },
                                       "production": {
-                                        "purpose": "Compare two representations; navigate at the learner's own pace."
+                                        "purpose": "Compare a still example with a simple learner-controlled Scene; arrows/indicators and keyboard navigation provide alternatives to swiping. No autoplay, no looping, no fullscreen requirement. Image-to-Scene and Scene-to-Image transitions use the current renderer's nonanimated path. Scene may reset when revisited; do not rely on state persistence.",
+                                        "accessibility": "Use the localized Next/Previous and slide controls, keyboard focus and readable labels; swipe is optional and is not available within the interactive Scene. Preserve RTL navigation semantics and make the static description meaningful without the Scene.",
+                                        "offline": "Local image and registered lightweight Scene; the adjacent explanation is sufficient for nonvisual vocabulary practice."
                                       }
                                     }
                                   },
                                   "order": [
                                     "answerWords",
                                     "answerSummary",
-                                    "answerCode",
                                     "answerPicture",
                                     "answerAudio",
-                                    "answerVideo",
-                                    "answerExternal",
-                                    "answerCaptions",
-                                    "answerExplore",
                                     "answerGallery"
                                   ]
                                 }
                               },
                               "production": {
-                                "purpose": "Reveal a compact collection of alternative explanations; each child exercises a legal recursive generator path."
+                                "purpose": "Compare examples of same-color different shapes; direct explanation first, then optional alternative representations. No media playback is needed to acknowledge reflection."
                               }
                             }
                           },
@@ -1081,16 +912,194 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "The color changed from red to blue. The shape did not change: it is still a circle. Now imagine changing the circle into a square without changing the blue color."
+                                            "en": "The color changed from red to blue. The shape did not change: it is still a circle. Now consider a different action: the silent video shows a red circle becoming a red square and a blue square becoming a blue circle. In those examples, the shape changes but the color stays the same. The separate timed-text link repeats those descriptions. In the activity, try both kinds of change. The code example names two colors; you do not need to run it. The online video is optional. Use the check button at the end when you have considered the explanation."
                                           }
                                         }
+                                      }
+                                    },
+                                    "answerExplore": {
+                                      "config": {
+                                        "id": "4a773a25-f569-4429-9fd7-0e2ac6441db4",
+                                        "slug": "answerExplore",
+                                        "type": "scene",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "heading": {
+                                              "en": "Explore two colors"
+                                            },
+                                            "red": {
+                                              "en": "Red"
+                                            },
+                                            "blue": {
+                                              "en": "Blue"
+                                            },
+                                            "choose": {
+                                              "en": "Choose a color"
+                                            },
+                                            "reset": {
+                                              "en": "Reset"
+                                            },
+                                            "shape": {
+                                              "en": "Change shape"
+                                            },
+                                            "status": {
+                                              "redCircle": {
+                                                "en": "The sample is a red circle."
+                                              },
+                                              "redSquare": {
+                                                "en": "The sample is a red square."
+                                              },
+                                              "blueCircle": {
+                                                "en": "The sample is a blue circle."
+                                              },
+                                              "blueSquare": {
+                                                "en": "The sample is a blue square."
+                                              }
+                                            },
+                                            "sampleLabel": {
+                                              "en": "Color sample"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Explore how color and shape vary independently.",
+                                        "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer. Ask learners to predict each change before choosing it; controls must allow any order without a required sequence or score. Use a single swatch and ordinary CSS or lightweight SVG, not a canvas animation. Each color button exposes whether it is selected (aria-pressed); the shape button toggles the shape, and Reset is always available. On entry, including after a Carousel slide remount, restore the declared initial state; do not depend on saved state. Keep feedback visible without moving focus.",
+                                        "accessibility": "Use localized native buttons with visible focus, keyboard activation and comfortably sized touch targets (aim for 44 CSS px). Let controls wrap in logical DOM order at narrow widths, with no horizontal scrolling or overlap. Keep selected color identifiable through text and aria-pressed; expose current color and shape in visible localized status and polite accessible announcements, without color-only feedback or automatic focus moves. No speech, drag gesture, rapid reaction, motion or audio is required. Respect semantic RTL; do not mirror the swatch's scientific meaning. Nonvisual vocabulary practice does not establish visual color discrimination.",
+                                        "offline": "Bundle and register the Scene locally; use lightweight CSS/SVG with no network or expensive graphics. Adjacent examples describe the same color/shape relations for learners who cannot use visual controls. The textual path teaches vocabulary and does not substitute for visual-recognition evidence.",
+                                        "readiness": "production-pending",
+                                        "weakDeviceAlternative": "Static swatch, text status and native controls; no animation, canvas, 3D, external dependency or timer."
+                                      }
+                                    },
+                                    "answerVideo": {
+                                      "config": {
+                                        "id": "7446f1f1-6766-4f69-890a-94983db5a537",
+                                        "slug": "answerVideo",
+                                        "type": "video",
+                                        "params": {},
+                                        "locale": {
+                                          "fileName": "00000000-0000-0000-0000-000000000000.mp4",
+                                          "posterFileName": "00000000-0000-0000-0000-000000000000.webp",
+                                          "title": {
+                                            "en": "Compare red and blue"
+                                          },
+                                          "label": {
+                                            "en": "Short silent color comparison"
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "unavailable": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "playbackError": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Observe color while shapes change.",
+                                        "specification": "Create a silent, learner-controlled 6-second 640×400 local MP4 and matching WebP poster showing the starting red circle. 0–3 seconds: hold the red circle, make a single non-flashing cut to the red square, and hold the result. 3–6 seconds: hold the blue square, make a single non-flashing cut to the blue circle, and hold the result. Use neutral background, no zoom, blinking, fast camera movement or automatic repeat. Both starting and ending shapes must be clearly visible.",
+                                        "accessibility": "No speech, flashing or baked text. Adjacent learner-facing prose describes both changes completely; the standalone WebVTT resource provides the same descriptions. Playback is optional, with native pause/play controls. Learners who avoid motion use the still examples and text.",
+                                        "offline": "Bundle video and poster; retain the textual description.",
+                                        "readiness": "production-pending",
+                                        "storyboard": "0–3 seconds: hold the red circle, make a single non-flashing cut to the red square, and hold the result. 3–6 seconds: hold the blue square, make a single non-flashing cut to the blue circle, and hold the result. Use neutral background, no zoom, blinking, fast camera movement or automatic repeat. Both starting and ending shapes must be clearly visible.",
+                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                      }
+                                    },
+                                    "answerCaptions": {
+                                      "config": {
+                                        "id": "63a311a2-de5d-4cf1-bdda-37c3fcd992c3",
+                                        "slug": "answerCaptions",
+                                        "type": "subtitles",
+                                        "params": {},
+                                        "locale": {
+                                          "fileName": {
+                                            "en": "00000000-0000-0000-0000-000000000000.vtt"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Access the color comparison as timed text.",
+                                        "specification": "Produce UTF-8 WebVTT: 00:00:00.000 --> 00:00:03.000 first sentence; 00:00:03.000 --> 00:00:06.000 second sentence. A red circle becomes a red square. A blue square becomes a blue circle.",
+                                        "accessibility": "Standalone keyboard-accessible WebVTT resource link, not a synchronized video track. The same two descriptions appear in preceding learner-facing prose; reading or downloading the VTT is optional.",
+                                        "offline": "Bundle local VTT and equivalent text.",
+                                        "readiness": "production-pending",
+                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                      }
+                                    },
+                                    "answerCode": {
+                                      "config": {
+                                        "id": "e6566d06-1284-4cbe-a87f-ca178b05fe26",
+                                        "slug": "answerCode",
+                                        "type": "code",
+                                        "params": {
+                                          "language": "javascript",
+                                          "codeAsText": "const before = \"red\";\nconst after = \"blue\";"
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "Two color names before and after a change"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "answerExternal": {
+                                      "config": {
+                                        "id": "f97d713e-65eb-4a3f-b6a4-eb35259e200e",
+                                        "slug": "answerExternal",
+                                        "type": "youtube",
+                                        "params": {
+                                          "mode": "link"
+                                        },
+                                        "locale": {
+                                          "href": "https://www.youtube.com/watch?v=1qtPcVpkaKU",
+                                          "title": {
+                                            "en": "More color examples"
+                                          },
+                                          "label": {
+                                            "en": "Red, Blue, and Yellow — Khan Academy Kids"
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "Use the local examples: a red circle and a blue square. Objects may have the same color even when their shapes differ."
+                                            },
+                                            "unavailable": {
+                                              "en": "The optional video is unavailable. Continue with the local examples."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Optional extension: recognize red and blue on familiar objects.",
+                                        "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (July 10, 2023). Public listing and description identify red, blue and yellow, including a cherry example. Full playback, captions, embedding permission and regional availability remain to be verified during resource production. Yellow is incidental to this Lesson and is not an assessed target. Do not copy the video into assets.",
+                                        "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
+                                        "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
+                                        "readiness": "production-pending"
                                       }
                                     }
                                   },
                                   "order": [
-                                    "changeExplanation"
+                                    "changeExplanation",
+                                    "answerExplore",
+                                    "answerVideo",
+                                    "answerCaptions",
+                                    "answerCode",
+                                    "answerExternal"
                                   ]
                                 }
+                              },
+                              "production": {
+                                "purpose": "Contrast changing color with changing shape; direct explanation first, then optional practice and representations. No scored assessment or mandatory media playback."
                               }
                             }
                           }
@@ -1103,7 +1112,8 @@ export const lessonStage1 = {
                     }
                   },
                   "production": {
-                    "purpose": "Learner-controlled reflection and check completion, not a mastery score."
+                    "purpose": "Two self-paced formative reflections. Require acknowledgement of both items to exercise the existing Checkpoint completion path; do not require interaction with each nested resource or interpret acknowledgement as mastery.",
+                    "pedagogicalIntent": "Learner predicts, reveals explanation and checks their understanding; the actual Next blocker and recovery are Stage 6 runtime tests."
                   }
                 }
               },
@@ -1144,7 +1154,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "A computer can store a color name as a word. The following is a static example, not a programming task. Read the two color words in quotation marks."
+                        "en": "A computer can store a color name as a word. This is a static example: notice the two names in quotation marks. You can think of the names without reading or running the code."
                       }
                     }
                   }
@@ -1178,7 +1188,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "The words in quotation marks are different. They name two colors; the code does not define exactly how either color looks."
+                        "en": "The words name two different colors: red and blue. You do not need to write or run code to understand that difference."
                       }
                     }
                   }
@@ -1219,7 +1229,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Try to remember each color name before revealing the answer on its card. Check your recall and practice again when you need to."
+                        "en": "Look at the front of each card and try to remember the color name before revealing the answer. Check your recall and practice at your own pace. You do not have to say the answer aloud."
                       }
                     }
                   }
@@ -1258,7 +1268,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Look at each example carefully. Decide on its color rather than relying on its shape or position. Take your time and try to answer independently."
+                        "en": "For each example, focus on its color rather than relying on shape or position. Take your time and try to answer independently. If you cannot distinguish the colors, the written descriptions in the lesson can still help you learn the words."
                       }
                     }
                   }
@@ -1270,7 +1280,8 @@ export const lessonStage1 = {
             }
           },
           "production": {
-            "purpose": "Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading."
+            "purpose": "Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.",
+            "pedagogicalIntent": "Independent classification evidence for each target Skill and supplementary retrieval, with no assumed time pressure. The Assessment Architect owns actual question forms, access restrictions, selection and grading in Stage 7; do not score the vocabulary-only route as equivalent visual recognition."
           }
         }
       },
