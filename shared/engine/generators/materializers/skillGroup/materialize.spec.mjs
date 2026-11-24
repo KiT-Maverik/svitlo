@@ -33,10 +33,12 @@ const render = () =>
 test('delegates nested source and emits parseable TypeScript with concrete child imports', () => {
   const result = render();
   const paths = result.files.map(file => file.path);
-  assert.ok(paths.includes('skills/firstSkill/index.ts'));
+  assert.ok(paths.includes('firstSkill.ts'));
+  assert(!paths.some(path => path.startsWith('skills/')));
 
   const code = result.files.find(file => file.path === 'index.ts').content;
   assert.match(code, /defineSkillGroup</);
+  assert.match(code, /from "\.\/firstSkill"/);
   assert.match(code, /TODO \(BLOCKER\)/);
   assert.equal(
     ts.createSourceFile('index.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics.length,
@@ -54,6 +56,14 @@ test('invalid child slug and unresolved dependency fail explicitly', () => {
   assert.throws(() => materializeSkillGroup(config(), { sourceLanguage: 'uk' }), /missing .* renderer/);
 });
 
+test('SkillGroup forbids child Skill name colliding with its index.ts', () => {
+  const input = config();
+  input.skills = { index: skill('index') };
+  assert.throws(() =>
+    materializeSkillGroup(input, { sourceLanguage: 'uk', materializeSkill }),
+    /reserved source filename/,
+  );
+});
 test('skillGroup rejects escaped destination directories', () => {
   assert.throws(
     () => materializeSkillGroup(config(), { sourceLanguage: 'uk', directory: '../unsafe' }),
@@ -70,5 +80,5 @@ test('missing Skill ID and slug are filled by parent-scoped deterministic materi
     materializeSkill,
     deriveId: (kind, placement) => SID,
   });
-  assert.ok(result.files.some(file => file.path === 'skills/firstSkill/index.ts'));
+  assert.ok(result.files.some(file => file.path === 'firstSkill.ts'));
 });
