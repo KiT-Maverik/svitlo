@@ -36,7 +36,8 @@ export const courseStage3 = {
             kind: 'existing',
             existing: { id: howLightMoves.id },
             matching: {
-              methodologySourcePath: 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
+              methodologySourcePath:
+                'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
               sourceSha: 'ed22809482b1960449b5b83043a7a8c827f0d2ec',
               matchingRationale:
                 'Reuse the real light-propagation fixture with theory, practice and its existing Quiz. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is explicitly authorized by the owner; educational quality and age-fit certification are outside this fixture test. The canonical retrospective methodology.md integrated via PR #809 documents the unchanged Lesson, Skill, Sections, assessment ownership and locale scope. Trusted materialization remains subject to the actual technical and source verification gates.',
