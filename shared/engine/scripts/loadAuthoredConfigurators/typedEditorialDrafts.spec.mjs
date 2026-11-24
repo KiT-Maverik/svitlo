@@ -20,7 +20,10 @@ const assessment = {
 const sha = 'a'.repeat(40);
 const lesson = {
   config: {
-    type: 'lesson', id, slug: 'editorialOnly', skills: [skillId],
+    type: 'lesson',
+    id,
+    slug: 'editorialOnly',
+    skills: [skillId],
     locale: { title: { uk: 'Спостереження' } },
   },
   production: { methodology: 'Approved learning design.', assessment, languages },
@@ -31,52 +34,85 @@ const questions = {
     languages,
     lesson: {
       sourcePath: 'content/example/data/lessons/5/' + id + '/index.ts',
-      sourceSha: sha, referencePath: 'reference.md', referenceSha: sha,
-      methodologyPath: 'methodology.md', title: 'Observation',
+      sourceSha: sha,
+      referencePath: 'reference.md',
+      referenceSha: sha,
+      methodologyPath: 'methodology.md',
+      title: 'Observation',
     },
     assessment: { ...assessment, quizRequiredForCompletion: false },
-    ownershipRationale: 'Independent coverage', audience: 'Learners', scope: 'Observation',
-    prerequisites: 'None', misconceptions: 'Distinguish observation from inference',
-    mediaNeeds: 'None', sourcesAndDependencies: 'Pinned reference',
-    evidenceIntent: [{
-      skillId, outcome: 'Explain a verified observation', assessmentMethod: 'application',
-      cognitiveOperation: 'Apply the concept', knowledgeAspect: 'Observation',
-      cognitiveDemand: 'Apply in context', misconception: 'Confuses observation and inference',
-      context: 'Source-language task', expectedEvidence: 'Explains the distinction',
-    }],
+    ownershipRationale: 'Independent coverage',
+    audience: 'Learners',
+    scope: 'Observation',
+    prerequisites: 'None',
+    misconceptions: 'Distinguish observation from inference',
+    mediaNeeds: 'None',
+    sourcesAndDependencies: 'Pinned reference',
+    evidenceIntent: [
+      {
+        skillId,
+        outcome: 'Explain a verified observation',
+        assessmentMethod: 'application',
+        cognitiveOperation: 'Apply the concept',
+        knowledgeAspect: 'Observation',
+        cognitiveDemand: 'Apply in context',
+        misconception: 'Confuses observation and inference',
+        context: 'Source-language task',
+        expectedEvidence: 'Explains the distinction',
+      },
+    ],
   },
 };
 const flashcards = {
   production: {
     lesson: {
-      id, sourceSha: sha, reference: { path: 'flashcards.md', sourceSha: sha },
-      languages, assessment,
+      id,
+      sourceSha: sha,
+      reference: { path: 'flashcards.md', sourceSha: sha },
+      languages,
+      assessment,
     },
     questions: {
-      kind: 'completed', sourceSha: sha, reviewSha: sha,
+      kind: 'completed',
+      sourceSha: sha,
+      reviewSha: sha,
       bankPath: 'content/example/data/lessons/5/' + id + '/questions/index.ts',
       integrated: true,
     },
     analysis: {
-      recallObjectives: ['Recall definition'], sourceFactsAndConcepts: ['Observation'],
-      misconceptionsAndContrasts: [], exclusions: [{ target: 'Long explanation', reason: 'Lesson content' }],
-      cardCountRationale: 'One distinct recall target', sourceGrounding: 'Pinned source',
+      recallObjectives: ['Recall definition'],
+      sourceFactsAndConcepts: ['Observation'],
+      misconceptionsAndContrasts: [],
+      exclusions: [{ target: 'Long explanation', reason: 'Lesson content' }],
+      cardCountRationale: 'One distinct recall target',
+      sourceGrounding: 'Pinned source',
     },
   },
 };
 
 function writeDraft(filename, type, value) {
   fs.mkdirSync(path.dirname(filename), { recursive: true });
-  fs.writeFileSync(filename,
-    'import type { ' + type + ' } from "@svitlo/engine/build";\n' +
-    'export const draft = ' + JSON.stringify(value) + ' satisfies ' + type + ';\n',
+  fs.writeFileSync(
+    filename,
+    'import type { ' +
+      type +
+      ' } from "@svitlo/engine/build";\n' +
+      'export const draft = ' +
+      JSON.stringify(value) +
+      ' satisfies ' +
+      type +
+      ';\n',
   );
 }
 function diagnostics(files) {
   const program = ts.createProgram(files, {
-    target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext,
-    moduleResolution: ts.ModuleResolutionKind.Bundler, strict: true,
-    skipLibCheck: true, noEmit: true, types: [],
+    target: ts.ScriptTarget.ES2022,
+    module: ts.ModuleKind.ESNext,
+    moduleResolution: ts.ModuleResolutionKind.Bundler,
+    strict: true,
+    skipLibCheck: true,
+    noEmit: true,
+    types: [],
   });
   return ts.getPreEmitDiagnostics(program).filter(d => d.category === ts.DiagnosticCategory.Error);
 }
@@ -95,7 +131,10 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   ];
   for (const entry of entries) writeDraft(...entry);
   const files = entries.map(entry => entry[0]);
-  assert.deepEqual(diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')), []);
+  assert.deepEqual(
+    diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')),
+    [],
+  );
   assert.deepEqual(await renderLessons(home, 'draft'), new Map());
   assert.deepEqual(JSON.parse((await renderBanks(home, 'all', 'draft')).get('assessments/manifest.json')).entries, {});
   await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
@@ -110,6 +149,9 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   for (const [filename, type] of entries) writeDraft(filename, type, {});
   const errors = diagnostics(files);
   for (const filename of files) {
-    assert(errors.some(error => error.file?.fileName === filename), 'Missing diagnostic for ' + filename);
+    assert(
+      errors.some(error => error.file?.fileName === filename),
+      'Missing diagnostic for ' + filename,
+    );
   }
 });

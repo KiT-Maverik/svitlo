@@ -36,7 +36,6 @@ A Lesson may require an **independent Question Bank**, an **independent Flashcar
 | `flashcard`             | Real front/back and optional hint Side delegation; ordered relationship UUID refs, typed `flags: []`, built-in flag uniqueness, custom/abbreviation localized values |
 | `flashcardSide`         | Source-only side with no identity; exact `items/order`, role constraints and delegated child blocks                                                                  |
 
-
 **Delegated:** concrete ContentBlock/Scene renderers own media and nested source. The bank orchestrator owns UUID allocation, reviewed source preservation and atomic filesystem/Git safety.
 
 ## Verification

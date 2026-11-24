@@ -21,7 +21,7 @@
 | 5. Materialize Course         | Coding Agent                                     | Reviewed final typed input → derived methodology Markdown and new Lesson Stage 1 TS handoff only; no runnable Lesson or Lesson PR                                |
 | 6. Translate Course           | Technical Translator                             | Authored Course-local target locale fields, checked against actual language support                                                                              |
 | 7. Review Course Translations | Independent Technical Translator                 | Source-SHA-pinned semantic/linguistic approval for each required Course locale                                                                                   |
-| 8. QA — Human | Human reviewer | Explicit human pass at the tested integrated revision; all required dependencies complete; defects corrected and affected scope reverified |
+| 8. QA — Human                 | Human reviewer                                   | Explicit human pass at the tested integrated revision; all required dependencies complete; defects corrected and affected scope reverified                       |
 
 Stage 8 is mandatory human-owned integrated Course QA, after Stage 7. Agents and CI provide evidence, not approval. See the canonical Skill for the human handoff, checklist and revision-specific verdict. Episode Stage 10 QA is separate.
 
