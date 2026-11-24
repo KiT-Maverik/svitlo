@@ -318,7 +318,6 @@ test('rendered files are deterministic and no Scene scaffolding edits Lesson dat
   );
 });
 
-
 test('reads new Lesson constants.ts without a legacy languages.ts shim', t => {
   const f = fixture(t);
   const folder = path.dirname(f.source);

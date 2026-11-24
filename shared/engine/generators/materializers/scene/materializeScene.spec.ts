@@ -131,7 +131,11 @@ test('one shared Scene draft template emits six parseable files with inert compl
         true,
         filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
       );
-      assert.deepEqual((source as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics, [], filename);
+      assert.deepEqual(
+        (source as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics,
+        [],
+        filename,
+      );
     }
     assert.doesNotMatch(content, /sceneImplementationRequired|sceneSourceLocaleRequired|as any|@ts-ignore/);
   }

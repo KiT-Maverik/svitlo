@@ -204,8 +204,7 @@ export function sceneFileNames(scene: { slug: string }): string[] {
  * enabling injected code or allowing block-comment delimiters to escape. */
 export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, string> {
   const { id, slug: authoredSlug, documentLanguage, specification } = scene;
-  if (!uuid.test(id) || id !== id.toLowerCase())
-    throw new Error('Scene scaffold requires a canonical lowercase UUID');
+  if (!uuid.test(id) || id !== id.toLowerCase()) throw new Error('Scene scaffold requires a canonical lowercase UUID');
   if (!locale.test(documentLanguage)) throw new Error('Invalid reviewed Scene document language');
   if (typeof specification !== 'string' || !specification.trim())
     throw new Error('Scene ' + id + ' needs its reviewed production.specification');
