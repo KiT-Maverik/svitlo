@@ -39,7 +39,7 @@ const plan = {
   publishable: false,
   materializedPath: index,
   files: [{ path: index, kind: 'typescript', content: 'export const course = 1;\n' }],
-  inventory: { lessons: [], episodes: [] },
+  inventory: { lessons: [], episodes: [], assessments: [] },
   diagnostics: [],
   pendingEpisodes: [],
   pendingPlacements: [],
@@ -56,7 +56,7 @@ test('direct Course manifest binds reviewed source to deterministic authored out
   assert.throws(() =>
     verifyCourseDependencies(meta, '', '', {
       ...plan,
-      inventory: { lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }], episodes: [] },
+      inventory: { lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }], episodes: [], assessments: [] },
     }),
   );
 });
