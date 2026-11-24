@@ -24,11 +24,12 @@ export function materializeAssessmentPlaceholder(node, context) {
     typeof directory !== 'string' ||
     !directory ||
     directory.split('/').some(part => !slugPattern.test(part)) ||
-    !slugPattern.test(config.slug ?? '') ||
     !Array.isArray(context.plannedLanguages) ||
     !context.plannedLanguages.includes(context.sourceLanguage)
   )
     throw Error('Invalid reviewed Assessment Stage 2 placement');
+  const reservedSlug = directory.split('/').at(-1);
+  if (!slugPattern.test(reservedSlug ?? '')) throw Error(directory + ': invalid Assessment slot key');
   const title = config.locale.title;
   if (
     (typeof title !== 'string' || !title.trim()) &&
@@ -45,7 +46,7 @@ export function materializeAssessmentPlaceholder(node, context) {
     reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
   };
   const seed = {
-    config: { id, type: 'assessment', slug: config.slug, locale: config.locale },
+    config: { id, type: 'assessment', slug: reservedSlug, locale: config.locale },
     production: {
       purpose: production.purpose,
       lessonDependencies: [...production.lessonDependencies],
@@ -61,7 +62,7 @@ export function materializeAssessmentPlaceholder(node, context) {
     ' as const satisfies AssessmentWorkflowSeed;\n';
   const placeholderSource =
     'defineAssessment({ id: ' + JSON.stringify(id) +
-    ', type: "assessment", slug: ' + JSON.stringify(config.slug) +
+    ', type: "assessment", slug: ' + JSON.stringify(reservedSlug) +
     ', params: { languages }, locale: { title: "Not implemented" },' +
     ' section: { items: {}, order: [] } })';
   return {
