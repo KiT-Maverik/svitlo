@@ -178,3 +178,29 @@ test('rejects dangerous JSON keys and invalid Course JSON trees', () => {
   } as never; // Intentionally malformed JSON: exercise runtime rejection, not the TS contract.
   assert.throws(() => assembleCourseLesson(invalid), /Invalid Course content/);
 });
+
+test('production Lesson assembly rejects draft stubs even when another completed Lesson is selected', () => {
+  const unfinishedCourse = createInput();
+  const module = unfinishedCourse.course.base.content.items.laboratory as unknown as {
+    content: { items: Record<string, unknown>; order: string[] };
+  };
+  module.content.items.episodePreview = {
+    id: '123e4567-e89b-42d3-a456-426614174070',
+    slug: 'episodePreview',
+    type: 'episode',
+    draft: true,
+    section: [],
+  };
+  module.content.order.push('episodePreview');
+  assert.throws(() => assembleCourseLesson(unfinishedCourse), /Course draft stub cannot be assembled/);
+
+  const localizedCourse = createInput();
+  localizedCourse.course.locale = {
+    uk: { content: { items: { laboratory: { content: { items: { demo: { draft: true } } } } } } },
+  } as never;
+  assert.throws(() => assembleCourseLesson(localizedCourse), /Localized Course draft stub/);
+
+  const standaloneDraft = createInput();
+  (standaloneDraft.lesson.base as unknown as Record<string, unknown>).draft = true;
+  assert.throws(() => assembleCourseLesson(standaloneDraft), /Standalone Lesson draft/);
+});
