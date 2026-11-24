@@ -32,7 +32,11 @@ export type LessonWorkflowStage1Config = Pick<Lesson_Config, 'id' | 'type' | 'sl
   /** Cite real Skill definitions; do not copy another Lesson's skills array. */
   skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
   /** Completion policy is separate from the four editorial bank/Section decisions. */
-  params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+  params: Pick<Lesson_Config['params'], 'quizRequiredForCompletion'> &
+    Partial<Omit<Lesson_Config['params'], 'languages' | 'quizRequiredForCompletion' | 'sections'>> & {
+      languages?: never;
+      sections?: Partial<Lesson_Config['params']['sections']>;
+    };
   section?: never;
   events?: never;
 };
@@ -93,22 +97,42 @@ export type LessonWorkflowResourceProduction = LessonWorkflowNodeProduction & {
   offline: string;
 };
 
+/**
+ * Editorial media may retain approved copy/specifications without a fabricated
+ * asset reference. The Stage 6.1 resource materializer supplies the canonical
+ * reserved filename and a publication blocker; runtime Config stays strict.
+ */
+type LessonWorkflowPendingMedia<Config extends { locale: object }, Field extends keyof Config['locale']> = Omit<
+  Config,
+  'locale'
+> & {
+  locale: Omit<Config['locale'], Field> & Partial<Pick<Config['locale'], Field>>;
+};
+
+type LessonWorkflowImage = LessonWorkflowPendingMedia<ContentBlock_Image_Config, 'fileName'>;
+type LessonWorkflowVideo = LessonWorkflowPendingMedia<ContentBlock_Video_Config, 'fileName' | 'posterFileName'>;
+type LessonWorkflowAudio = LessonWorkflowPendingMedia<ContentBlock_Audio_Config, 'fileName'>;
+type LessonWorkflowSubtitles = LessonWorkflowPendingMedia<ContentBlock_Subtitles_Config, 'fileName'>;
+
 /** Simple blocks use their real Config fields, not a nested Configurator instance. */
 export type LessonWorkflowStage2SimpleBlock =
   | { config: ContentBlock_Text_Config; production?: LessonWorkflowNodeProduction }
   | { config: ContentBlock_Markdown_Config; production?: LessonWorkflowNodeProduction }
   | { config: ContentBlock_Code_Config; production?: LessonWorkflowNodeProduction }
-  | { config: ContentBlock_Image_Config; production: LessonWorkflowResourceProduction }
-  | { config: ContentBlock_Video_Config; production: LessonWorkflowResourceProduction }
-  | { config: ContentBlock_Youtube_Config; production: LessonWorkflowResourceProduction }
-  | { config: ContentBlock_Audio_Config; production: LessonWorkflowResourceProduction }
-  | { config: ContentBlock_Subtitles_Config; production: LessonWorkflowResourceProduction }
+  | { config: LessonWorkflowImage; production: LessonWorkflowResourceProduction }
+  | { config: LessonWorkflowVideo; production: LessonWorkflowResourceProduction }
+  | {
+      config: LessonWorkflowPendingMedia<ContentBlock_Youtube_Config, 'href'>;
+      production: LessonWorkflowResourceProduction;
+    }
+  | { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction }
+  | { config: LessonWorkflowSubtitles; production: LessonWorkflowResourceProduction }
   | { config: ContentBlock_Scene_Config; production: LessonWorkflowResourceProduction };
 
 export type LessonWorkflowStage2Carousel = {
   config: Omit<ContentBlock_Carousel_Config, 'slides'> & {
     slides: LessonWorkflowOrdered<
-      | { config: ContentBlock_Image_Config; production: LessonWorkflowResourceProduction }
+      | { config: LessonWorkflowImage; production: LessonWorkflowResourceProduction }
       | { config: ContentBlock_Scene_Config; production: LessonWorkflowResourceProduction }
     >;
   };
@@ -172,16 +196,16 @@ export type LessonWorkflowStage2QuestStage = {
   config: Omit<Stage_Config, 'content'> & {
     content: {
       video: {
-        medium: { config: ContentBlock_Video_Config; production: LessonWorkflowResourceProduction };
-        small: { config: ContentBlock_Video_Config; production: LessonWorkflowResourceProduction };
+        medium: { config: LessonWorkflowVideo; production: LessonWorkflowResourceProduction };
+        small: { config: LessonWorkflowVideo; production: LessonWorkflowResourceProduction };
       };
       audio: {
-        dialogue: { config: ContentBlock_Audio_Config; production: LessonWorkflowResourceProduction } | null;
-        narration: { config: ContentBlock_Audio_Config; production: LessonWorkflowResourceProduction } | null;
-        background: { config: ContentBlock_Audio_Config; production: LessonWorkflowResourceProduction } | null;
+        dialogue: { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction } | null;
+        narration: { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction } | null;
+        background: { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction } | null;
       };
-      image: { config: ContentBlock_Image_Config; production: LessonWorkflowResourceProduction };
-      subtitles: { config: ContentBlock_Subtitles_Config; production: LessonWorkflowResourceProduction };
+      image: { config: LessonWorkflowImage; production: LessonWorkflowResourceProduction };
+      subtitles: { config: LessonWorkflowSubtitles; production: LessonWorkflowResourceProduction };
     };
   };
   production?: LessonWorkflowNodeProduction;
@@ -228,13 +252,3 @@ export type LessonWorkflowStage2Config = Omit<LessonWorkflowStage1Config, 'secti
 export type LessonWorkflowStage2 = Omit<LessonWorkflowStage1, 'config'> & {
   config: LessonWorkflowStage2Config;
 };
-
-/**
- * The reviewed Stage 2 object is the final editorial INPUT to the trusted
- * Stage 6 orchestrator, not directly to materializeLesson(Source). That concrete
- * renderer requires a complete Lesson_Config, including params.languages and
- * independently completed Section Configs; the orchestrator must derive/verify
- * them and fail closed on incomplete bank selections. The original Lesson
- * root index.ts must never be silently overwritten by emitted root index.ts.
- */
-export type LessonWorkflowMaterializerInput = LessonWorkflowStage2;

@@ -6,7 +6,7 @@ import type {
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from '../../../types/workflow/courseWorkflow.types';
-import type { LessonWorkflowMaterializerInput, LessonWorkflowStage1 } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowStage2, LessonWorkflowStage1 } from '../../../types/workflow/lessonWorkflow.types';
 import type { Source } from './lesson';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 
@@ -37,7 +37,7 @@ declare const seed: CourseWorkflowLessonSeed;
 // @ts-expect-error Course seed is editorial input, not Lesson Stage 1 output.
 const incompleteMethodology: LessonWorkflowStage1 = seed;
 // @ts-expect-error Course seed cannot be materialized as Lesson Stage 2.
-const incompleteContent: LessonWorkflowMaterializerInput = seed;
+const incompleteContent: LessonWorkflowStage2 = seed;
 void incompleteMethodology;
 void incompleteContent;
 const requirements: LessonProductionAssessmentRequirements = {

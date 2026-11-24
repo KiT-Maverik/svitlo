@@ -234,6 +234,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     }
     diagnostics.push(...child.diagnostics);
     if (child.diagnostics.some(d => d.code.startsWith('pending-'))) pendingAssessment = true;
+    // Quest has a Build source contract but is not a Lesson runtime Section.
+    // Keep its own modules and diagnostic without importing it into defineLesson.
+    if (node.config.type === 'quest') continue;
     const alias = 'child_section_items_' + key;
     items[key] = imported(alias);
     imports.push(
@@ -284,7 +287,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     ...imports,
     '',
     ...blockers,
-    'const section = ' + render({ items, order: [...config.section.order] }) + ';',
+    'const section = ' + render({ items, order: config.section.order.filter(key => Object.hasOwn(items, key)) }) + ';',
     'export const ' +
       exported(config.slug) +
       ' = defineLesson<' +
