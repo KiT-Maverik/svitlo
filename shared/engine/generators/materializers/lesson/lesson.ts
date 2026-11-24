@@ -46,6 +46,26 @@ export type Options = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const localeKey = /^[a-z]{2}(?:-[A-Z]{2})?$/;
+/** The complete canonical Svitlo language roster; inactive until editorial translation review. */
+const supportedLanguagePlan = [
+  'ar', 'be', 'bn', 'de', 'en', 'es', 'et', 'fr', 'he', 'hi',
+  'id', 'it', 'ja', 'ka', 'kk', 'ko', 'lt', 'lv', 'mr', 'ms',
+  'pl', 'pt', 'qm', 'ta', 'te', 'tr', 'uk', 'ur', 'vi', 'zh',
+] as const;
+/**
+ * Verified Playground leaf Skill modules. Other Skill IDs require an explicit,
+ * taxonomy-verified mapping; an unverified ID never silently gets an import.
+ */
+const verifiedSkillModules: Readonly<Record<string, { name: string; path: string }>> = {
+  '00000000-0000-4000-8000-000000000001': {
+    name: 'testRecognizeRed',
+    path: '#skillsData/testColors/testWarmColors/testRecognizeRed',
+  },
+  '00000000-0000-4000-8000-000000000004': {
+    name: 'testRecognizeBlue',
+    path: '#skillsData/testColors/testCoolColors/testRecognizeBlue',
+  },
+};
 const sectionTypes = new Set(['content', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'quiz', 'quest']);
 const reserved = new Set([
   'await',
@@ -213,13 +233,12 @@ export function materializeLesson(config: Source, options: Options): Result {
     files.push(file);
   };
   const items: Record<string, Reference> = {};
-  let pendingAssessment = false,
-    hasQuest = false;
+  let hasQuest = false;
   for (const key of Object.keys(config.section.items).sort()) {
     const node = sourceNode(config.section.items[key]);
     if (node.config.type === 'quest') hasQuest = true;
     const childDir = destination(dir, 'sections/' + key);
-    const languagesImport = '../../languages';
+    const languagesImport = '#lessonsData/' + config.id.slice(-1).toLowerCase() + '/' + config.id + '/constants';
     const child = options.renderSection(node.config, {
       directory: childDir,
       documentLanguage: options.documentLanguage,
@@ -233,7 +252,6 @@ export function materializeLesson(config: Source, options: Options): Result {
       add(file);
     }
     diagnostics.push(...child.diagnostics);
-    if (child.diagnostics.some(d => d.code.startsWith('pending-'))) pendingAssessment = true;
     // Quest has a Build source contract but is not a Lesson runtime Section.
     // Keep its own modules and diagnostic without importing it into defineLesson.
     if (node.config.type === 'quest') continue;
@@ -244,22 +262,47 @@ export function materializeLesson(config: Source, options: Options): Result {
     );
   }
   const blockers: string[] = [];
+  const skillImports = new Map<string, string>();
+  if (!Array.isArray(config.skills) || config.skills.some(id => typeof id !== 'string' || !uuid.test(id)))
+    throw new Error('lesson.skills: expected verified Skill UUIDs');
+  const resolvedSkills = config.skills.map(id => {
+    const skill = verifiedSkillModules[id];
+    if (!skill) {
+      blockers.push(
+        '// TODO (BLOCKER): Verify Skill ' + id + ' in this textbook taxonomy and import its actual Configurator before publication.',
+      );
+      return id;
+    }
+    skillImports.set(skill.path, skill.name);
+    return imported(skill.name + '.id');
+  });
   if (planned.length > 1)
-    blockers.push('// TODO (BLOCKER): Restore reviewed Lesson languages: ' + JSON.stringify(planned) + '.');
+    blockers.push('// TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.');
   const sourceLanguages = [
     "import type { SupportedLanguages } from '@svitlo/engine/build';",
     '',
-    ...(planned.length > 1 ? [blockers[0]] : []),
+    ...(planned.length > 1
+      ? [
+          '// TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.',
+          '// export const languages = [',
+          ...supportedLanguagePlan.map(language => '//   ' + JSON.stringify(language) + ','),
+          '// ] as const satisfies SupportedLanguages;',
+          '',
+        ]
+      : []),
     'export const languages = ' +
       JSON.stringify([options.documentLanguage]) +
       ' as const satisfies SupportedLanguages;',
+    'export type Languages = typeof languages;',
     '',
   ].join('\n');
-  add({ path: destination(dir, 'languages.ts'), kind: 'typescript', content: sourceLanguages });
-  if (pendingAssessment)
-    blockers.push(
-      '// TODO (BLOCKER): Resolve pending Quiz/Flashcards selections in the owned Section modules before publication.',
-    );
+  add({ path: destination(dir, 'constants.ts'), kind: 'typescript', content: sourceLanguages });
+  if (options.production?.assessment?.questionBankRequired === true ||
+      diagnostics.some(item => item.code === 'pending-quiz'))
+    blockers.push('// TODO (BLOCKER): Stage 7 — author, review and integrate the required Question Bank and Quiz selections.');
+  if (options.production?.assessment?.flashcardBankRequired === true ||
+      diagnostics.some(item => item.code === 'pending-flashcards'))
+    blockers.push('// TODO (BLOCKER): Stage 8 — author, review and integrate the required Flashcard Bank and Flashcards selections.');
   if (hasQuest)
     blockers.push(
       '// TODO (BLOCKER): Quest is Build-only and cannot be published by defineLesson or Lesson runtime yet.',
@@ -277,13 +320,17 @@ export function materializeLesson(config: Source, options: Options): Result {
   const params = { ...metadata.params, languages: imported('languages') };
   const own = {
     ...metadata,
+    skills: resolvedSkills,
     params,
     locale: filterLocale(metadata.locale, options.documentLanguage),
     section: imported('section'),
   };
   const source = [
     "import { defineLesson } from '@svitlo/engine/build';",
-    'import { languages } from "./languages";',
+    'import { languages, type Languages } from "./constants";',
+    ...[...skillImports.entries()].sort(([pathA], [pathB]) => pathA.localeCompare(pathB)).map(
+      ([path, name]) => 'import { ' + name + ' } from ' + JSON.stringify(path) + ';',
+    ),
     ...imports,
     '',
     ...blockers,
@@ -292,30 +339,67 @@ export function materializeLesson(config: Source, options: Options): Result {
       exported(config.slug) +
       ' = defineLesson<' +
       JSON.stringify(config.slug) +
-      ', typeof languages, typeof section.items>(',
+      ', Languages, typeof section.items>(',
     render(own) + ');',
     '',
   ].join('\n');
-  if (typeof options.production?.methodology === 'string' && options.production.methodology.trim())
+  // The archived Stage 2 source is canonical. This is a derived, read-only
+  // editorial view, including unique reviewed Section metadata.
+  const methodology = typeof options.production?.methodology === 'string'
+    ? options.production.methodology.trim()
+    : '';
+  const additions: string[] = [];
+  const append = (heading: string, value: unknown): void => {
+    if (typeof value !== 'string' || !value.trim()) return;
+    const normalized = value.trim();
+    if (methodology.includes(normalized) || additions.some(item => item.includes(normalized))) return;
+    additions.push('## ' + heading + '\n\n' + normalized);
+  };
+  append('Learning objective', options.production?.objective);
+  append('Depth and scope', options.production?.depth);
+  append('Learning sequence rationale', options.production?.sequenceReason);
+  append('Assessment evidence', options.production?.assessmentEvidence);
+  const assessment = options.production?.assessment;
+  if (assessment) {
+    const decisions = [
+      ['Question Bank (Stage 7)', assessment.questionBankRequired],
+      ['Flashcard Bank (Stage 8)', assessment.flashcardBankRequired],
+      ['Quiz Section', assessment.quizSectionRequired],
+      ['Flashcards Section', assessment.flashcardsSectionRequired],
+    ].map(([name, required]) => '- ' + name + ': ' + (required ? 'required' : 'not required'));
+    const decisionText = decisions.join('\n');
+    if (!methodology.includes(decisionText)) additions.push('## Assessment decisions\n\n' + decisionText);
+  }
+  for (const sectionKey of config.section.order) {
+    const section = sourceNode(config.section.items[sectionKey]);
+    const notes = Object.entries(section.production ?? {}).filter(
+      ([key, value]) =>
+        !['sourceEvidence', 'documentLanguage', 'readiness', 'pending'].includes(key) &&
+        typeof value === 'string' &&
+        value.trim().length > 0 &&
+        !methodology.includes(value.trim()),
+    );
+    if (!notes.length) continue;
+    const names: Record<string, string> = {
+      purpose: 'Purpose',
+      pedagogicalIntent: 'Pedagogical intent',
+      specification: 'Specification',
+      prompt: 'Prompt',
+      script: 'Script',
+      storyboard: 'Storyboard',
+      accessibility: 'Accessibility',
+      offline: 'Offline use',
+      weakDeviceAlternative: 'Weak-device alternative',
+    };
+    const sectionNotes = notes.map(([key, value]) => '**' + (names[key] ?? key) + ':** ' + String(value).trim());
+    additions.push('### Section: ' + sectionKey + ' (' + section.config.type + ')\n\n' + sectionNotes.join('\n\n'));
+  }
+  const combinedMethodology = [methodology, ...additions].filter(Boolean).join('\n\n').trim();
+  if (combinedMethodology)
     add({
       path: destination(dir, 'methodology.md'),
       kind: 'markdown',
-      content: options.production.methodology.trimEnd() + '\n',
-    });
-  const extra = Object.entries(options.production ?? {}).filter(
-    ([key]) => !['documentLanguage', 'pending', 'methodology'].includes(key),
-  );
-  if (extra.length)
-    add({
-      path: destination(dir, 'specification.md'),
-      kind: 'specification',
-      content:
-        extra
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n',
+      content: combinedMethodology + '\n',
     });
   add({ path: destination(dir, 'index.ts'), kind: 'typescript', content: source });
   return { exportName: exported(config.slug), files, diagnostics };
