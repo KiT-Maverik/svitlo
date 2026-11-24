@@ -46,12 +46,6 @@ export type Options = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const localeKey = /^[a-z]{2}(?:-[A-Z]{2})?$/;
-/** The complete canonical Svitlo language roster; inactive until editorial translation review. */
-const supportedLanguagePlan = [
-  'ar', 'be', 'bn', 'de', 'en', 'es', 'et', 'fr', 'he', 'hi',
-  'id', 'it', 'ja', 'ka', 'kk', 'ko', 'lt', 'lv', 'mr', 'ms',
-  'pl', 'pt', 'qm', 'ta', 'te', 'tr', 'uk', 'ur', 'vi', 'zh',
-] as const;
 /**
  * Verified Playground leaf Skill modules. Other Skill IDs require an explicit,
  * taxonomy-verified mapping; an unverified ID never silently gets an import.
@@ -359,7 +353,7 @@ export function materializeLesson(config: Source, options: Options): Result {
       ? [
           '// TODO (BLOCKER): Restore reviewed Lesson languages after translation approval.',
           '// export const languages = [',
-          ...supportedLanguagePlan.map(language => '//   ' + JSON.stringify(language) + ','),
+          ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
           '// ] as const satisfies SupportedLanguages;',
           '',
         ]
