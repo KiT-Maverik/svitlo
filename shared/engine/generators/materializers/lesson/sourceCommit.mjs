@@ -1,7 +1,7 @@
 /**
- * Lesson-only, SHA-pinned Stage 6 source transition. The reviewed draft.ts is
+ * Lesson-only, SHA-pinned Stage 6 source transition. The pinned draft.ts is
  * consumed in the same Git tree commit that creates index.ts. Exact source
- * bytes remain recoverable at the reviewed parent commit and blob.
+ * bytes remain recoverable at the pinned parent commit and blob.
  * No working-tree files are rewritten.
  */
 import fs from 'node:fs';
@@ -92,7 +92,7 @@ function validTypescript(file) {
 
 /**
  * Checks every output and its ancestors before creating any Git object.
- * All generated files must be new; the reviewed draft is the only deletion.
+ * All generated files must be new; the pinned draft is the only deletion.
  */
 export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
   const match = plan?.sourcePath?.match(
@@ -105,13 +105,12 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     match[3] !== plan.lessonId ||
     plan.materializedPath !== path.posix.dirname(plan.sourcePath) + '/index.ts' ||
     !shaPattern.test(plan.sourceBlobSha ?? '') ||
-    !shaPattern.test(plan.reviewCommitSha ?? '') ||
-    !shaPattern.test(plan.reviewEvidenceSha ?? '') ||
+    !shaPattern.test(plan.sourceCommitSha ?? '') ||
     !Array.isArray(plan.files) ||
     !plan.files.length ||
     plan.publishable !== false
   ) {
-    throw new Error('Invalid reviewed Lesson Stage 6 manifest or canonical UUID path');
+    throw new Error('Invalid pinned Lesson Stage 6 manifest or canonical UUID path');
   }
   const root = path.resolve(repoRoot ?? '');
   assertSafeDirectoryPath(root);
@@ -142,9 +141,9 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
   if (before === undefined || treeMode(root, head, plan.sourcePath) !== '100644')
     throw new Error('Reviewed Lesson Stage 2 draft is missing or not an ordinary file');
   if (git(root, ['hash-object', '--stdin'], { input: before }) !== plan.sourceBlobSha)
-    throw new Error('Lesson Stage 2 source blob differs from independently reviewed SHA');
-  if (head !== plan.reviewCommitSha)
-    throw new Error('Lesson review commit is stale; verify current Stage 2 source and reviews again');
+    throw new Error('Lesson Stage 2 source blob differs from pinned Git blob SHA');
+  if (head !== plan.sourceCommitSha)
+    throw new Error('Lesson source commit is stale; resolve current Stage 2 source again');
   if (git(root, ['status', '--porcelain', '--', plan.sourcePath]))
     throw new Error('Locally dirty Lesson source: ' + plan.sourcePath);
   const pending = [];
@@ -172,8 +171,8 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
 
 /**
  * Write one Git tree commit only after caller authorization and HEAD lease.
- * The caller must verify reviewer identity, review SHA, PR ownership, Stage 6
- * approval and branch permissions independently at its trusted boundary.
+ * The caller verifies authorized invocation, source identity and branch permissions
+ * independently at its trusted boundary.
  * This function never publishes Props, pushes or changes the worktree.
  */
 export function commitLessonStage6Plan(plan, options = {}) {
@@ -194,8 +193,7 @@ export function commitLessonStage6Plan(plan, options = {}) {
       lessonId: plan.lessonId,
       sourcePath: plan.sourcePath,
       sourceBlobSha: plan.sourceBlobSha,
-      reviewCommitSha: plan.reviewCommitSha,
-      reviewEvidenceSha: plan.reviewEvidenceSha,
+      sourceCommitSha: plan.sourceCommitSha,
       head: preflight.head,
     }) !== true
   )
@@ -235,14 +233,12 @@ export function commitLessonStage6Plan(plan, options = {}) {
       '-p',
       preflight.head,
       '-m',
-      'Materialize reviewed Lesson source ' +
+      'Materialize pinned Lesson source ' +
         plan.lessonId +
         '\n\nSource-Blob: ' +
         plan.sourceBlobSha +
-        '\nReview-Commit: ' +
-        plan.reviewCommitSha +
-        '\nReview-Evidence: ' +
-        plan.reviewEvidenceSha,
+        '\nSource-Commit: ' +
+        plan.sourceCommitSha,
     ]);
     git(root, ['update-ref', target, commitSha, preflight.head]);
     return {

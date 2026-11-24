@@ -5,8 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { parseTypedIdentity } from './lesson-typed-gate.mjs';
-import { parseReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
+import { lessonSourceIdentity } from './lesson-typed-gate.mjs';
 import { typedManifest, indexed, publish } from './lesson-typed-materialization.mjs';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
 
@@ -16,39 +15,12 @@ const folder = 'content/math/data/lessons/1/' + id;
 const source = folder + '/draft.ts';
 const raw = Buffer.from('export const authored = { config: {}, production: {} };\n');
 const sha256 = value => createHash('sha256').update(value).digest('hex');
-const identityBody = [
-  '<!-- svitlo-create-lesson-flow:v1 -->',
-  '- Lesson UUID / textbook / slug: ' + id + ' / content/math / intro',
-  '- Source path: ' + source,
-  '## Lesson stages',
-  ...[
-    'Methodology',
-    'Content Creation',
-    'Content Review',
-    'Experience Review',
-    'Methodology Compliance',
-    'Resource Production',
-    'Questions',
-    'Flashcards',
-    'Translation',
-    'Translation Review',
-  ].flatMap((name, i) => [
-    '- [' + (i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name,
-    ...(i === 5
-      ? [
-          '  - [ ] 6.1 Materialize Lesson sources',
-          '  - [ ] 6.2 Complete generated Lesson resources',
-          '  - [ ] 6.3 Implement and integrate Scenes',
-        ]
-      : []),
-  ]),
-  '## Evidence',
-].join('\n');
+const baseHead = 'a'.repeat(40);
 
 async function exercise({
   permission = 'write',
   advance = false,
-  mutateEvidence = false,
+  mutateProse = false,
   rejectLease = false,
   corruptArtifact = false,
 } = {}) {
@@ -70,10 +42,6 @@ async function exercise({
     git('-c', 'user.name=Fixture', '-c', 'user.email=f@example.invalid', 'commit', '-qm', 'reviewed Lesson');
     const head = git('rev-parse', 'HEAD');
     const blob = gitBlob(raw);
-    const reviewBody =
-      identityBody +
-      '\n' +
-      [3, 4, 5].map(stage => '- Review evidence (v1): ' + stage + ' | accepted | ' + head + ' | ' + blob).join('\n');
     const meta = {
       number: 710,
       repo,
@@ -81,20 +49,18 @@ async function exercise({
       branch: 'agent/lesson',
       base: 'develop',
       sourceBlob: blob,
-      identity: parseTypedIdentity(identityBody),
-      parent: null,
+      identity: lessonSourceIdentity(source),
+      baseHead,
       actor: 'maintainer',
       operation: 'materialize-typed',
-      reviews: parseReviewEvidence(reviewBody, [3, 4, 5]),
     };
     const plan = {
       lessonId: id,
       sourcePath: source,
       materializedPath: folder + '/index.ts',
       sourceBlobSha: blob,
-      reviewCommitSha: head,
+      sourceCommitSha: head,
       publishable: false,
-      reviewEvidenceSha: gitBlob(Buffer.from(JSON.stringify(meta.reviews))),
       diagnostics: [{ code: 'pending-scene', severity: 'warning' }],
       files: [
         { path: folder + '/index.ts', kind: 'typescript', content: 'export const lesson = 1;\n' },
@@ -116,9 +82,9 @@ async function exercise({
       number: 710,
       state: 'open',
       draft: true,
-      body: reviewBody,
+      body: '',
       head: { sha: head, ref: 'agent/lesson', repo: { full_name: repo } },
-      base: { ref: 'develop', repo: { full_name: repo } },
+      base: { sha: baseHead, ref: 'develop', repo: { full_name: repo } },
     };
     let readPr = 0;
     globalThis.fetch = async (url, options = {}) => {
@@ -131,10 +97,11 @@ async function exercise({
         readPr++;
         // Each fresh() inspects twice; advance on the second fresh().
         if (advance && readPr >= 3) remote.head.sha = '0'.repeat(40);
-        if (mutateEvidence && readPr >= 3) remote.body = reviewBody.replace('accepted', 'rejected');
+        if (mutateProse && readPr >= 3) remote.body = 'Changed arbitrary PR prose';
         payload = remote;
       } else if (route === 'collaborators/maintainer/permission') payload = { permission };
-      else if (route === 'compare/' + head + '...' + head) payload = { status: 'identical' };
+      else if (route === 'compare/' + baseHead + '...' + head)
+        payload = { files: [{ filename: source, status: 'modified', sha: blob }] };
       else if (route.includes('contents/') && route.endsWith('?ref=' + head))
         payload = { type: 'file', sha: blob, size: raw.length };
       else if (route === 'git/commits/' + head && method === 'GET') payload = { tree: { sha: 'b'.repeat(40) } };
@@ -157,7 +124,7 @@ async function exercise({
   }
 }
 
-test('typed publisher makes one atomic no-force draft deletion + index creation commit at exact reviewed parent', async () => {
+test('typed publisher makes one atomic no-force draft deletion + index creation commit at exact pinned parent', async () => {
   const { calls } = await exercise();
   const commit = calls.find(call => call.route === 'git/commits' && call.method === 'POST');
   const tree = calls.find(call => call.route === 'git/trees' && call.method === 'POST');
@@ -176,7 +143,7 @@ test('typed publisher makes one atomic no-force draft deletion + index creation 
   assert.equal(lease.data.sha, 'd'.repeat(40));
 });
 
-test('stale review/HEAD refuses branch write after constructing candidate commit', async () => {
+test('stale HEAD refuses branch write after constructing candidate commit', async () => {
   let calls;
   await assert.rejects(async () => {
     try {
@@ -190,8 +157,9 @@ test('stale review/HEAD refuses branch write after constructing candidate commit
   // still fails before PATCH. The throw is the observable safety assertion.
 });
 
-test('changed PR review verdict is rejected before publish', async () => {
-  await assert.rejects(() => exercise({ mutateEvidence: true }), /Rejected review evidence/);
+test('PR prose edits do not affect publishing or its atomic branch lease', async () => {
+  const { calls } = await exercise({ mutateProse: true });
+  assert.equal(calls.filter(call => call.method === 'PATCH').length, 1);
 });
 
 test('tampered manifest and unauthorized actor are rejected before any write', async () => {
