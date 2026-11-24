@@ -327,4 +327,3 @@ export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'conte
 
 /** Final authoring contract: the executable Zod schema owns this shape. */
 export type CourseWorkflowStage3 = z.infer<typeof courseWorkflowStage3_Schema>;
-

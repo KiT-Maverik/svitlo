@@ -78,9 +78,15 @@ function blockNode<Config extends z.ZodType>(config: Config) {
   return z.strictObject({ config, production: blockProduction_Schema.optional() });
 }
 const simpleBlock_Schema = z.union([
-  text_Config_Schema, markdown_Config_Schema, code_Config_Schema,
-  image_Config_Schema, video_Config_Schema, youtube_Config_Schema,
-  audio_Config_Schema, subtitles_Config_Schema, scene_Config_Schema,
+  text_Config_Schema,
+  markdown_Config_Schema,
+  code_Config_Schema,
+  image_Config_Schema,
+  video_Config_Schema,
+  youtube_Config_Schema,
+  audio_Config_Schema,
+  subtitles_Config_Schema,
+  scene_Config_Schema,
 ]);
 const carouselSource_Schema = carousel_Config_Schema.extend({
   slides: workflowOrdered_Schema(z.union([blockNode(image_Config_Schema), blockNode(scene_Config_Schema)])),
@@ -97,29 +103,35 @@ const checkpointItemSource_Schema = checkpointItem_Config_Schema.extend({
 const checkpointSource_Schema = checkpoint_Config_Schema.extend({
   content: workflowOrdered_Schema(blockNode(checkpointItemSource_Schema)),
 });
-const block_Schema = z.union([
-  simpleBlockNode_Schema, carouselNode_Schema, blockNode(checkpointSource_Schema),
-]);
+const block_Schema = z.union([simpleBlockNode_Schema, carouselNode_Schema, blockNode(checkpointSource_Schema)]);
 const blocks_Schema = workflowOrdered_Schema(block_Schema);
 const commonContent_Schema = z.strictObject({
-  question: blocks_Schema, hint: blocks_Schema.optional(), explanation: blocks_Schema.optional(),
+  question: blocks_Schema,
+  hint: blocks_Schema.optional(),
+  explanation: blocks_Schema.optional(),
 });
 const answerSets_Schema = z.strictObject({
-  correct: blocks_Schema, incorrect: blocks_Schema, distractors: blocks_Schema,
+  correct: blocks_Schema,
+  incorrect: blocks_Schema,
+  distractors: blocks_Schema,
 });
 const questionContent = {
   selectOneAnswer: commonContent_Schema.extend({ answers: answerSets_Schema }),
   selectMultipleAnswers: commonContent_Schema.extend({ answers: answerSets_Schema }),
   matchBlocks: commonContent_Schema.extend({
-    pairs: workflowOrdered_Schema(z.strictObject({
-      left: block_Schema, right: block_Schema,
-    })),
+    pairs: workflowOrdered_Schema(
+      z.strictObject({
+        left: block_Schema,
+        right: block_Schema,
+      }),
+    ),
   }),
   answerWithText: commonContent_Schema,
   answerWithNumber: commonContent_Schema,
   orderSequence: commonContent_Schema.extend({ sequence: blocks_Schema }),
   buildAnswerWithBlocks: commonContent_Schema.extend({
-    correctSequence: blocks_Schema, distractors: blocks_Schema,
+    correctSequence: blocks_Schema,
+    distractors: blocks_Schema,
   }),
   fillBlanksWithBlocks: commonContent_Schema.extend({
     slots: workflowOrdered_Schema(z.strictObject({ correctAnswer: block_Schema })),
@@ -129,47 +141,94 @@ const questionContent = {
     slots: fillBlanksWithText_Config_Schema.shape.content.shape.slots,
   }),
 };
-const questionKinds_Schema: z.ZodType<QuestionBankWorkflowGroups> = z.strictObject({
-  selectOneAnswer: z.record(z.string(), z.strictObject({
-    config: selectOneAnswer_Config_Schema.extend({ content: questionContent.selectOneAnswer }),
-    production: questionProduction_Schema,
-  })).optional(),
-  selectMultipleAnswers: z.record(z.string(), z.strictObject({
-    config: selectMultipleAnswers_Config_Schema.extend({ content: questionContent.selectMultipleAnswers }),
-    production: questionProduction_Schema,
-  })).optional(),
-  matchBlocks: z.record(z.string(), z.strictObject({
-    config: matchBlocks_Config_Schema.extend({ content: questionContent.matchBlocks }),
-    production: questionProduction_Schema,
-  })).optional(),
-  answerWithText: z.record(z.string(), z.strictObject({
-    config: answerWithText_Config_Schema.extend({ content: questionContent.answerWithText }),
-    production: questionProduction_Schema,
-  })).optional(),
-  answerWithNumber: z.record(z.string(), z.strictObject({
-    config: answerWithNumber_Config_Schema.extend({ content: questionContent.answerWithNumber }),
-    production: questionProduction_Schema,
-  })).optional(),
-  orderSequence: z.record(z.string(), z.strictObject({
-    config: orderSequence_Config_Schema.extend({ content: questionContent.orderSequence }),
-    production: questionProduction_Schema,
-  })).optional(),
-  buildAnswerWithBlocks: z.record(z.string(), z.strictObject({
-    config: buildAnswerWithBlocks_Config_Schema.extend({ content: questionContent.buildAnswerWithBlocks }),
-    production: questionProduction_Schema,
-  })).optional(),
-  fillBlanksWithBlocks: z.record(z.string(), z.strictObject({
-    config: fillBlanksWithBlocks_Config_Schema.extend({ content: questionContent.fillBlanksWithBlocks }),
-    production: questionProduction_Schema,
-  })).optional(),
-  fillBlanksWithText: z.record(z.string(), z.strictObject({
-    config: fillBlanksWithText_Config_Schema.extend({ content: questionContent.fillBlanksWithText }),
-    production: questionProduction_Schema,
-  })).optional(),
-}).refine(
-  groups => Object.values(groups).some(group => group && Object.keys(group).length),
-  'Question Bank must contain a Question',
-);
+const questionKinds_Schema: z.ZodType<QuestionBankWorkflowGroups> = z
+  .strictObject({
+    selectOneAnswer: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: selectOneAnswer_Config_Schema.extend({ content: questionContent.selectOneAnswer }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    selectMultipleAnswers: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: selectMultipleAnswers_Config_Schema.extend({ content: questionContent.selectMultipleAnswers }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    matchBlocks: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: matchBlocks_Config_Schema.extend({ content: questionContent.matchBlocks }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    answerWithText: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: answerWithText_Config_Schema.extend({ content: questionContent.answerWithText }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    answerWithNumber: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: answerWithNumber_Config_Schema.extend({ content: questionContent.answerWithNumber }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    orderSequence: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: orderSequence_Config_Schema.extend({ content: questionContent.orderSequence }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    buildAnswerWithBlocks: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: buildAnswerWithBlocks_Config_Schema.extend({ content: questionContent.buildAnswerWithBlocks }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    fillBlanksWithBlocks: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: fillBlanksWithBlocks_Config_Schema.extend({ content: questionContent.fillBlanksWithBlocks }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+    fillBlanksWithText: z
+      .record(
+        z.string(),
+        z.strictObject({
+          config: fillBlanksWithText_Config_Schema.extend({ content: questionContent.fillBlanksWithText }),
+          production: questionProduction_Schema,
+        }),
+      )
+      .optional(),
+  })
+  .refine(
+    groups => Object.values(groups).some(group => group && Object.keys(group).length),
+    'Question Bank must contain a Question',
+  );
 
 const quizIntent_Schema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('none'), rationale: nonempty }),
@@ -201,19 +260,19 @@ const questionBankConfig_Schema: z.ZodObject<{
   questions: questionKinds_Schema,
 });
 const questionBankProduction_Schema = z.strictObject({
-    languages: workflowLanguages_Schema,
-    lesson: lessonReference_Schema,
-    course: z.strictObject({ id: z.uuid(), sourceSha: sha, placementPath: nonempty }).optional(),
-    assessment: assessment_Schema,
-    ownershipRationale: nonempty,
-    audience: nonempty,
-    scope: nonempty,
-    prerequisites: nonempty,
-    evidenceIntent: z.array(evidence_Schema).readonly(),
-    misconceptions: nonempty,
-    mediaNeeds: nonempty,
-    sourcesAndDependencies: nonempty,
-    quiz: quizIntent_Schema,
+  languages: workflowLanguages_Schema,
+  lesson: lessonReference_Schema,
+  course: z.strictObject({ id: z.uuid(), sourceSha: sha, placementPath: nonempty }).optional(),
+  assessment: assessment_Schema,
+  ownershipRationale: nonempty,
+  audience: nonempty,
+  scope: nonempty,
+  prerequisites: nonempty,
+  evidenceIntent: z.array(evidence_Schema).readonly(),
+  misconceptions: nonempty,
+  mediaNeeds: nonempty,
+  sourcesAndDependencies: nonempty,
+  quiz: quizIntent_Schema,
 });
 /** Named schema fragments keep TypeScript declaration output bounded without
  * duplicating the final authored type or weakening runtime validation.
@@ -241,40 +300,59 @@ const sceneSource_Schema = scene_Config_Schema.omit({ params: true, locale: true
   locale: scene_Config_Schema.shape.locale.partial().optional(),
 });
 const flashcardCarousel_Schema = carousel_Config_Schema.extend({
-  slides: workflowOrdered_Schema(z.union([
-    image_Config_Schema, sceneSource_Schema, z.literal(false),
-  ])),
+  slides: workflowOrdered_Schema(z.union([image_Config_Schema, sceneSource_Schema, z.literal(false)])),
 });
 const flashcardAnswer_Schema = checkpointAnswer_Config_Schema.extend({
-  content: workflowOrdered_Schema(z.union([
-    text_Config_Schema, markdown_Config_Schema, code_Config_Schema,
-    image_Config_Schema, video_Config_Schema, youtube_Config_Schema,
-    audio_Config_Schema, subtitles_Config_Schema, sceneSource_Schema,
-    flashcardCarousel_Schema, z.literal(false),
-  ])),
+  content: workflowOrdered_Schema(
+    z.union([
+      text_Config_Schema,
+      markdown_Config_Schema,
+      code_Config_Schema,
+      image_Config_Schema,
+      video_Config_Schema,
+      youtube_Config_Schema,
+      audio_Config_Schema,
+      subtitles_Config_Schema,
+      sceneSource_Schema,
+      flashcardCarousel_Schema,
+      z.literal(false),
+    ]),
+  ),
 });
 const flashcardCheckpoint_Schema = checkpoint_Config_Schema.extend({
-  content: workflowOrdered_Schema(z.union([
-    checkpointItem_Config_Schema.extend({
-      question: text_Config_Schema, answer: flashcardAnswer_Schema,
-    }),
-    z.literal(false),
-  ])),
+  content: workflowOrdered_Schema(
+    z.union([
+      checkpointItem_Config_Schema.extend({
+        question: text_Config_Schema,
+        answer: flashcardAnswer_Schema,
+      }),
+      z.literal(false),
+    ]),
+  ),
 });
 const flashcardBlock_Schema = z.union([
-  text_Config_Schema, markdown_Config_Schema, code_Config_Schema,
-  image_Config_Schema, video_Config_Schema, audio_Config_Schema,
-  subtitles_Config_Schema, youtube_Config_Schema, scene_Config_Schema,
-  flashcardCarousel_Schema, flashcardCheckpoint_Schema,
+  text_Config_Schema,
+  markdown_Config_Schema,
+  code_Config_Schema,
+  image_Config_Schema,
+  video_Config_Schema,
+  audio_Config_Schema,
+  subtitles_Config_Schema,
+  youtube_Config_Schema,
+  scene_Config_Schema,
+  flashcardCarousel_Schema,
+  flashcardCheckpoint_Schema,
 ]);
 const flashcardBlockNode_Schema = z.union([
   flashcardBlock_Schema,
   z.strictObject({
     config: flashcardBlock_Schema,
-    production: z.strictObject({
-      specification: z.string().optional(),
-      pending: z.boolean().optional(),
-    }).optional(),
+    production: z
+      .strictObject({
+        specification: z.string().optional(),
+        pending: z.boolean().optional(),
+      })
+      .optional(),
   }),
 ]);
 const flashcardSideSource_Schema = workflowOrdered_Schema(flashcardBlockNode_Schema);
@@ -294,13 +372,15 @@ const card_Schema = z.strictObject({
     accessibilityRationale: nonempty,
     pending: z.boolean().optional(),
     specification: z.string().optional(),
-    questionReuse: z.strictObject({
-      questionSourceSha: sha,
-      exportPath: nonempty,
-      exportName: nonempty,
-      fieldPath: nonempty,
-      expectedLocales: workflowLanguages_Schema.shape.planned,
-    }).optional(),
+    questionReuse: z
+      .strictObject({
+        questionSourceSha: sha,
+        exportPath: nonempty,
+        exportName: nonempty,
+        fieldPath: nonempty,
+        expectedLocales: workflowLanguages_Schema.shape.planned,
+      })
+      .optional(),
   }),
 });
 

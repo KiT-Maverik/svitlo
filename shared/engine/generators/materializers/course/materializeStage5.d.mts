@@ -36,11 +36,7 @@ export type ExistingLesson = {
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
   source: CourseStage5Source;
-  verifySource: (arg: {
-    input: CourseWorkflowStage3;
-    source: CourseStage5Source;
-    textbookRoot: string;
-  }) => boolean;
+  verifySource: (arg: { input: CourseWorkflowStage3; source: CourseStage5Source; textbookRoot: string }) => boolean;
   materializeSection?: (
     node: unknown,
     context: {
@@ -85,7 +81,4 @@ export type CourseStage5Plan = {
 };
 
 /** Typed build-only root entrypoint; Stage 3/4 is NOT a complete Course_Config. */
-export function materializeCourseStage5(
-  input: CourseWorkflowStage3,
-  options: CourseStage5Options,
-): CourseStage5Plan;
+export function materializeCourseStage5(input: CourseWorkflowStage3, options: CourseStage5Options): CourseStage5Plan;

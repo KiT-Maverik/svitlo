@@ -67,15 +67,24 @@ function allowedOutput(filename, meta) {
 function assertCourseInventory(manifest, meta, entries) {
   const root = meta.textbookRoot + '/data/courses/' + meta.courseId.at(-1) + '/' + meta.courseId;
   const inventory = manifest.inventory;
-  if (!inventory || !Array.isArray(inventory.lessons) || !Array.isArray(inventory.episodes) ||
-      !Array.isArray(manifest.pendingPlacements) || !Array.isArray(manifest.pendingEpisodes))
+  if (
+    !inventory ||
+    !Array.isArray(inventory.lessons) ||
+    !Array.isArray(inventory.episodes) ||
+    !Array.isArray(manifest.pendingPlacements) ||
+    !Array.isArray(manifest.pendingEpisodes)
+  )
     throw Error('Missing complete Course inventory');
-  const seen = new Set(), seenOrder = new Set();
-  const seeds = new Set([...entries.keys()].filter(p =>
-    p.startsWith(meta.textbookRoot + '/data/lessons/') && p.endsWith('/draft.ts')));
-  const episodes = new Set([...entries.keys()].filter(p =>
-    p.startsWith(root + '/content/') && p.endsWith('/draft.ts')));
-  const pendingLessons = new Map(), pendingEpisodes = new Map();
+  const seen = new Set(),
+    seenOrder = new Set();
+  const seeds = new Set(
+    [...entries.keys()].filter(p => p.startsWith(meta.textbookRoot + '/data/lessons/') && p.endsWith('/draft.ts')),
+  );
+  const episodes = new Set(
+    [...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/draft.ts')),
+  );
+  const pendingLessons = new Map(),
+    pendingEpisodes = new Map();
   const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
   function outputLiteral(filename, symbol, marker) {
     const entry = entries.get(filename);
@@ -93,12 +102,23 @@ function assertCourseInventory(manifest, meta, entries) {
     }
   }
   for (const row of [...inventory.lessons, ...inventory.episodes]) {
-    if (!row || !['lesson', 'episode'].includes(row.type) || !UUID.test(row.id) ||
-        typeof row.placementPath !== 'string' || !row.placementPath.startsWith(root + '/content/') ||
-        !isSlug(row.slug) || row.placementPath.split('/').at(-1) !== row.slug ||
-        !row.placementPath.slice(root.length + 1).split('/').every(isSlug) ||
-        !Array.isArray(row.orderPath) || !row.orderPath.length || row.orderPath.length > 4 ||
-        row.orderPath.some(n => !Number.isSafeInteger(n) || n < 0))
+    if (
+      !row ||
+      !['lesson', 'episode'].includes(row.type) ||
+      !UUID.test(row.id) ||
+      typeof row.placementPath !== 'string' ||
+      !row.placementPath.startsWith(root + '/content/') ||
+      !isSlug(row.slug) ||
+      row.placementPath.split('/').at(-1) !== row.slug ||
+      !row.placementPath
+        .slice(root.length + 1)
+        .split('/')
+        .every(isSlug) ||
+      !Array.isArray(row.orderPath) ||
+      !row.orderPath.length ||
+      row.orderPath.length > 4 ||
+      row.orderPath.some(n => !Number.isSafeInteger(n) || n < 0)
+    )
       throw Error('Invalid Course inventory identity, placement or order');
     const order = JSON.stringify(row.orderPath);
     if (seen.has(row.placementPath) || seenOrder.has(order))
@@ -110,37 +130,57 @@ function assertCourseInventory(manifest, meta, entries) {
       const lessonRoot = meta.textbookRoot + '/data/lessons/' + row.id.at(-1) + '/' + row.id;
       if (row.kind === 'new') {
         const draft = lessonRoot + '/draft.ts';
-        if (row.id !== deriveCourseEntityId(meta.courseId, 'lesson', rel) ||
-            row.status !== 'pending-lesson-stage1' || row.sourcePath !== draft ||
-            row.placementSourcePath !== draft || !seeds.delete(draft))
+        if (
+          row.id !== deriveCourseEntityId(meta.courseId, 'lesson', rel) ||
+          row.status !== 'pending-lesson-stage1' ||
+          row.sourcePath !== draft ||
+          row.placementSourcePath !== draft ||
+          !seeds.delete(draft)
+        )
           throw Error('Course Lesson inventory does not match a unique generated seed');
         const source = outputLiteral(draft, 'lessonSeed', ' as const satisfies CourseWorkflowLessonSeed;');
-        if (source?.config?.id !== row.id || source.config.slug !== row.slug ||
-            source.config.type !== 'lesson' || !source.proposal || !source.languageContext)
+        if (
+          source?.config?.id !== row.id ||
+          source.config.slug !== row.slug ||
+          source.config.type !== 'lesson' ||
+          !source.proposal ||
+          !source.languageContext
+        )
           throw Error('Generated Lesson seed differs from Course inventory identity');
         pendingLessons.set(rel, row);
       } else if (['reused', 'overridden'].includes(row.kind)) {
-        if (row.status !== 'verified-reference' || row.sourcePath !== lessonRoot + '/index.ts' ||
-            row.placementSourcePath !== row.placementPath + '/index.ts' ||
-            !SHA.test(row.sourceSha || '') || !entries.has(row.placementSourcePath))
+        if (
+          row.status !== 'verified-reference' ||
+          row.sourcePath !== lessonRoot + '/index.ts' ||
+          row.placementSourcePath !== row.placementPath + '/index.ts' ||
+          !SHA.test(row.sourceSha || '') ||
+          !entries.has(row.placementSourcePath)
+        )
           throw Error('Course reused Lesson inventory does not match generated reference');
       } else throw Error('Invalid Course Lesson kind');
     } else {
-      if (row.kind !== 'new' ||
-          !['pending-episode-scenario', 'materialized-source'].includes(row.status) ||
-          row.id !== deriveCourseEntityId(meta.courseId, 'episode', rel))
+      if (
+        row.kind !== 'new' ||
+        !['pending-episode-scenario', 'materialized-source'].includes(row.status) ||
+        row.id !== deriveCourseEntityId(meta.courseId, 'episode', rel)
+      )
         throw Error('Invalid Course Episode inventory');
       const filename = row.placementPath + (row.status === 'pending-episode-scenario' ? '/draft.ts' : '/index.ts');
-      if (row.sourcePath !== filename || row.placementSourcePath !== filename ||
-          !entries.has(filename)) throw Error('Episode inventory source missing or displaced');
+      if (row.sourcePath !== filename || row.placementSourcePath !== filename || !entries.has(filename))
+        throw Error('Episode inventory source missing or displaced');
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
         const source = outputLiteral(filename, 'episodeStage1', ' as const satisfies EpisodeWorkflowStage1Handoff;');
         const placement = source?.production?.placement;
-        if (source?.config?.id !== row.id || source.config.slug !== row.slug ||
-            source.config.type !== 'episode' || placement?.courseId !== meta.courseId ||
-            placement.path !== rel || JSON.stringify(placement.orderPath) !== order ||
-            placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha)
+        if (
+          source?.config?.id !== row.id ||
+          source.config.slug !== row.slug ||
+          source.config.type !== 'episode' ||
+          placement?.courseId !== meta.courseId ||
+          placement.path !== rel ||
+          JSON.stringify(placement.orderPath) !== order ||
+          placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha
+        )
           throw Error('Episode handoff differs from Course inventory identity');
         pendingEpisodes.set(rel, row);
       }
@@ -150,17 +190,21 @@ function assertCourseInventory(manifest, meta, entries) {
     const seen = new Set();
     for (const item of list) {
       const row = expected.get(item?.path);
-      if (!row || seen.has(item.path) || item.slug !== row.slug ||
-          item[idField] !== row.id || item.orderIndex !== row.orderPath.at(-1) ||
-          item.handoffPath !== filename(row))
+      if (
+        !row ||
+        seen.has(item.path) ||
+        item.slug !== row.slug ||
+        item[idField] !== row.id ||
+        item.orderIndex !== row.orderPath.at(-1) ||
+        item.handoffPath !== filename(row)
+      )
         throw Error('Invalid or duplicated pending Course handoff record');
       seen.add(item.path);
     }
     if (seen.size !== expected.size) throw Error('Unregistered pending Course handoff');
   }
   checkPending(manifest.pendingPlacements, pendingLessons, 'lessonId', row => row.sourcePath);
-  checkPending(manifest.pendingEpisodes, pendingEpisodes, 'episodeId', row =>
-    row.sourcePath.slice(root.length + 1));
+  checkPending(manifest.pendingEpisodes, pendingEpisodes, 'episodeId', row => row.sourcePath.slice(root.length + 1));
   if (seeds.size || episodes.size) throw Error('Unregistered Course Lesson seed or Episode handoff');
 }
 

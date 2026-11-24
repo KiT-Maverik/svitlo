@@ -62,10 +62,17 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   const actual = courseStage3(defineLesson(independentLessonConfig()));
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
-    version: 2, operation: 'typed-course-stage5',
-    repo: 'fixture/repo', number: 823, head: 'b'.repeat(40),
-    branch: 'test', actor: 'tester', courseId,
-    textbookRoot: 'content/math', sourcePath, sourceBlobSha: 'a'.repeat(40),
+    version: 2,
+    operation: 'typed-course-stage5',
+    repo: 'fixture/repo',
+    number: 823,
+    head: 'b'.repeat(40),
+    branch: 'test',
+    actor: 'tester',
+    courseId,
+    textbookRoot: 'content/math',
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
   };
   const plan = materializeCourseStage5(actual, {
     textbookRoot: 'content/math',
@@ -79,23 +86,39 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   const mutate = edit => {
     const manifest = structuredClone(complete);
     edit(manifest);
-    assert.throws(() => verifyTypedCourseManifest(manifest, pinned),
-      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode/i);
+    assert.throws(
+      () => verifyTypedCourseManifest(manifest, pinned),
+      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode/i,
+    );
   };
   const seed = complete.inventory.lessons.find(x => x.kind === 'new').sourcePath;
   const episode = complete.inventory.episodes[0].sourcePath;
-  mutate(m => { m.entries = m.entries.filter(f => f.path !== seed); });
-  mutate(m => { m.entries = m.entries.filter(f => f.path !== episode); });
-  mutate(m => { m.inventory.lessons[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'; });
-  mutate(m => { m.inventory.episodes[0].orderPath = [0]; });
-  mutate(m => { m.inventory.episodes.push(structuredClone(m.inventory.episodes[0])); });
-  mutate(m => { m.pendingPlacements = []; });
-  mutate(m => { m.pendingEpisodes = [m.pendingEpisodes[0], m.pendingEpisodes[0]]; });
+  mutate(m => {
+    m.entries = m.entries.filter(f => f.path !== seed);
+  });
+  mutate(m => {
+    m.entries = m.entries.filter(f => f.path !== episode);
+  });
+  mutate(m => {
+    m.inventory.lessons[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  });
+  mutate(m => {
+    m.inventory.episodes[0].orderPath = [0];
+  });
+  mutate(m => {
+    m.inventory.episodes.push(structuredClone(m.inventory.episodes[0]));
+  });
+  mutate(m => {
+    m.pendingPlacements = [];
+  });
+  mutate(m => {
+    m.pendingEpisodes = [m.pendingEpisodes[0], m.pendingEpisodes[0]];
+  });
   mutate(m => {
     const file = m.entries.find(f => f.path === seed);
-    const text = Buffer.from(file.data, 'base64').toString('utf8').replace(
-      m.inventory.lessons[0].id, 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
-    );
+    const text = Buffer.from(file.data, 'base64')
+      .toString('utf8')
+      .replace(m.inventory.lessons[0].id, 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
     file.data = Buffer.from(text).toString('base64');
     file.sha256 = createHash('sha256').update(text).digest('hex');
   });
@@ -109,6 +132,9 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     file.path = m.sourcePath.replace('/draft.ts', '/content/unlisted/draft.ts');
     m.entries.push(file);
   });
-  assert.equal(verifyTypedCourseManifest(complete, pinned), plan.files.length,
-    'negative cases must not modify original trusted plan');
+  assert.equal(
+    verifyTypedCourseManifest(complete, pinned),
+    plan.files.length,
+    'negative cases must not modify original trusted plan',
+  );
 });

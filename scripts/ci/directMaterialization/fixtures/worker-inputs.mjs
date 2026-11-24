@@ -10,14 +10,20 @@ export const skillId = '663572e7-bd85-4516-86e2-3de07d209e04';
 const id = n => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
 const sha = c => c.repeat(40);
 export const assessment = {
-  questionBankRequired: false, flashcardBankRequired: false,
-  quizSectionRequired: false, flashcardsSectionRequired: false,
+  questionBankRequired: false,
+  flashcardBankRequired: false,
+  quizSectionRequired: false,
+  flashcardsSectionRequired: false,
 };
 export function independentLessonConfig() {
   return {
-    id: reusedLessonId, type: 'lesson', slug: 'independentLesson', skills: [skillId],
+    id: reusedLessonId,
+    type: 'lesson',
+    slug: 'independentLesson',
+    skills: [skillId],
     params: {
-      languages: ['uk'], quizRequiredForCompletion: false,
+      languages: ['uk'],
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Незалежний урок' } },
@@ -27,7 +33,10 @@ export function independentLessonConfig() {
 export function lessonStage2() {
   return {
     config: {
-      id: lessonId, type: 'lesson', slug: 'basics', skills: [skillId],
+      id: lessonId,
+      type: 'lesson',
+      slug: 'basics',
+      skills: [skillId],
       params: {
         quizRequiredForCompletion: false,
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
@@ -37,15 +46,19 @@ export function lessonStage2() {
         items: {
           intro: {
             config: {
-              id: '12345678-1234-4234-8234-123456789002', slug: 'intro',
-              type: 'content', params: {},
+              id: '12345678-1234-4234-8234-123456789002',
+              slug: 'intro',
+              type: 'content',
+              params: {},
               locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
               content: {
                 items: {
                   prompt: {
                     config: {
                       id: '12345678-1234-4234-8234-123456789003',
-                      slug: 'prompt', type: 'text', params: {},
+                      slug: 'prompt',
+                      type: 'text',
+                      params: {},
                       locale: { value: { uk: 'Прочитай цей текст' } },
                     },
                   },
@@ -61,9 +74,12 @@ export function lessonStage2() {
     },
     production: {
       languages: { document: 'uk', planned: ['uk'] },
-      methodology: 'Introduce the first idea', objective: 'Recall the idea',
-      depth: 'Introductory', sequenceReason: 'Start from a concrete observation',
-      assessmentEvidence: 'Explain the idea', assessment: { ...assessment },
+      methodology: 'Introduce the first idea',
+      objective: 'Recall the idea',
+      depth: 'Introductory',
+      sequenceReason: 'Start from a concrete observation',
+      assessmentEvidence: 'Explain the idea',
+      assessment: { ...assessment },
     },
   };
 }
@@ -75,26 +91,36 @@ export function courseStage3(lesson) {
     languageEvidence: 'Ukrainian source available',
   };
   const baseExisting = {
-    kind: 'existing', matching, assessment: { ...assessment },
-    source: lesson, sourceExportName: 'independentLesson',
+    kind: 'existing',
+    matching,
+    assessment: { ...assessment },
+    source: lesson,
+    sourceExportName: 'independentLesson',
   };
   const patch = { params: { sections: { allowSkipping: false } } };
   const newLesson = {
     config: {
-      type: 'lesson', slug: 'newLesson', skills: [skillId],
+      type: 'lesson',
+      slug: 'newLesson',
+      skills: [skillId],
       params: { quizRequiredForCompletion: false },
       locale: { title: { uk: 'Новий урок' } },
     },
     production: {
-      kind: 'new', methodology: 'Prepare a later standalone Lesson',
-      objective: 'Identify an observable pattern', depth: 'Introductory',
-      sequenceReason: 'First learn to observe', assessmentEvidence: 'Describe the pattern',
+      kind: 'new',
+      methodology: 'Prepare a later standalone Lesson',
+      objective: 'Identify an observable pattern',
+      depth: 'Introductory',
+      sequenceReason: 'First learn to observe',
+      assessmentEvidence: 'Describe the pattern',
       assessment: { ...assessment },
     },
   };
   return {
     config: {
-      id: courseId, type: 'course', slug: 'skyBasics',
+      id: courseId,
+      type: 'course',
+      slug: 'skyBasics',
       params: { age: { min: 6, max: 10 } },
       locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
       content: {
@@ -124,35 +150,46 @@ export function courseStage3(lesson) {
     production: {
       languages: { document: 'uk', planned: ['uk'] },
       methodology: {
-        purpose: 'Observe the sky', audience: 'Primary learners', approach: 'Observe and explain',
-        depth: 'Introductory', accessibility: 'Keyboard and spoken alternatives',
-        scope: 'Daytime observation', entryConditions: 'No astronomy experience required',
+        purpose: 'Observe the sky',
+        audience: 'Primary learners',
+        approach: 'Observe and explain',
+        depth: 'Introductory',
+        accessibility: 'Keyboard and spoken alternatives',
+        scope: 'Daytime observation',
+        entryConditions: 'No astronomy experience required',
         sourceNotes: 'Reviewed classroom evidence',
       },
       outcomes: { explanation: 'Recognize patterns' },
       prerequisites: { explanation: 'None' },
-      standardsAlignment: [], openDecisions: {},
+      standardsAlignment: [],
+      openDecisions: {},
     },
   };
 }
 export function episodeStage2(episodeId) {
   return {
     config: {
-      id: episodeId, type: 'episode', slug: 'episodeOne',
+      id: episodeId,
+      type: 'episode',
+      slug: 'episodeOne',
       locale: { title: { uk: 'Зміна сцени' } },
       section: {
         items: {
           intro: {
             config: {
               id: '663572e7-bd85-4516-86e2-3de07d209e05',
-              type: 'content', slug: 'intro', params: {},
+              type: 'content',
+              slug: 'intro',
+              params: {},
               locale: { title: { uk: 'Початок' }, navigationLabel: '1' },
               content: {
                 items: {
                   prompt: {
                     config: {
                       id: '663572e7-bd85-4516-86e2-3de07d209e06',
-                      type: 'text', slug: 'prompt', params: {},
+                      type: 'text',
+                      slug: 'prompt',
+                      params: {},
                       locale: { value: { uk: 'Подивіться навколо' } },
                     },
                   },
@@ -166,16 +203,23 @@ export function episodeStage2(episodeId) {
       },
     },
     production: {
-      focus: 'Narrative change', purpose: 'Review the sequence',
+      focus: 'Narrative change',
+      purpose: 'Review the sequence',
       placement: {
-        courseId, path: 'content/episodeOne', orderPath: [3],
+        courseId,
+        path: 'content/episodeOne',
+        orderPath: [3],
         reviewedCourseSourceBlobSha: sha('a'),
       },
       languages: { document: 'uk', planned: ['uk'] },
       scenario: {
-        audience: 'Learners', entrySituation: 'Before', exitSituation: 'After',
-        continuity: 'Next', sceneIntent: 'Illustrate',
-        interactionIntent: 'Explore', accessibility: 'Text',
+        audience: 'Learners',
+        entrySituation: 'Before',
+        exitSituation: 'After',
+        continuity: 'Next',
+        sceneIntent: 'Illustrate',
+        interactionIntent: 'Explore',
+        accessibility: 'Text',
         narrativeConstraints: 'No Quiz',
       },
       specification: 'Completed narrative episode',
@@ -183,15 +227,23 @@ export function episodeStage2(episodeId) {
   };
 }
 const evidence = {
-  skillId, outcome: 'Recall the principle', assessmentMethod: 'retrieval',
-  cognitiveOperation: 'retrieve', knowledgeAspect: 'principle',
-  cognitiveDemand: 'transfer', misconception: 'Common misconception',
-  context: 'Independent assessment', expectedEvidence: 'Correct explanation',
+  skillId,
+  outcome: 'Recall the principle',
+  assessmentMethod: 'retrieval',
+  cognitiveOperation: 'retrieve',
+  knowledgeAspect: 'principle',
+  cognitiveDemand: 'transfer',
+  misconception: 'Common misconception',
+  context: 'Independent assessment',
+  expectedEvidence: 'Correct explanation',
 };
 function questionBlock(slug, n) {
   return {
     config: {
-      id: id(n), type: 'text', slug, params: {},
+      id: id(n),
+      type: 'text',
+      slug,
+      params: {},
       locale: { value: { uk: 'Перевірене формулювання' } },
     },
   };
@@ -200,8 +252,11 @@ const collection = items => ({ items, order: Object.keys(items) });
 export function questionStage3() {
   const question = {
     config: {
-      id: id(10), slug: 'promptOne', type: 'selectOneAnswer',
-      params: { assessmentMethod: 'retrieval', restrictions: [] }, locale: {},
+      id: id(10),
+      slug: 'promptOne',
+      type: 'selectOneAnswer',
+      params: { assessmentMethod: 'retrieval', restrictions: [] },
+      locale: {},
       content: {
         question: collection({ prompt: questionBlock('prompt', 11) }),
         answers: {
@@ -212,43 +267,59 @@ export function questionStage3() {
       },
     },
     production: {
-      evidence, distinction: 'Tests a distinct context',
-      intendedUse: 'core', rationale: 'Targets the approved outcome',
+      evidence,
+      distinction: 'Tests a distinct context',
+      intendedUse: 'core',
+      rationale: 'Targets the approved outcome',
     },
   };
   return {
     config: {
-      ownerLessonId: bankOwnerId, questions: { selectOneAnswer: { promptOne: question } },
+      ownerLessonId: bankOwnerId,
+      questions: { selectOneAnswer: { promptOne: question } },
     },
     production: {
       languages: { document: 'uk', planned: ['uk'] },
       lesson: {
         sourcePath: 'content/math/data/lessons/0/' + bankOwnerId + '/index.ts',
-        sourceSha: sha('a'), referencePath: 'references/lesson.md',
-        referenceSha: sha('b'), methodologyPath: 'references/methodology.md',
+        sourceSha: sha('a'),
+        referencePath: 'references/lesson.md',
+        referenceSha: sha('b'),
+        methodologyPath: 'references/methodology.md',
         title: 'Mathematics lesson',
       },
       assessment: { ...assessment, quizRequiredForCompletion: false },
-      ownershipRationale: 'Independent source bank', audience: 'Grade 3',
-      scope: 'Arithmetic', prerequisites: 'Counting', evidenceIntent: [evidence],
-      misconceptions: 'Confuses order', mediaNeeds: 'No media needed',
-      sourcesAndDependencies: 'Verified Lesson', quiz: { kind: 'none', rationale: 'No local Quiz' },
+      ownershipRationale: 'Independent source bank',
+      audience: 'Grade 3',
+      scope: 'Arithmetic',
+      prerequisites: 'Counting',
+      evidenceIntent: [evidence],
+      misconceptions: 'Confuses order',
+      mediaNeeds: 'No media needed',
+      sourcesAndDependencies: 'Verified Lesson',
+      quiz: { kind: 'none', rationale: 'No local Quiz' },
     },
   };
 }
 export function flashcardStage3() {
   const text = (slug, n) => ({
-    id: id(n), type: 'text', slug, params: {},
+    id: id(n),
+    type: 'text',
+    slug,
+    params: {},
     locale: { value: { uk: 'Коротке формулювання' } },
   });
   const side = (slug, n) => ({ items: { [slug]: text(slug, n) }, order: [slug] });
   const card = (slug, n) => ({
     config: {
-      id: id(n), slug, parameters: { tags: ['math'], flags: [] },
+      id: id(n),
+      slug,
+      parameters: { tags: ['math'], flags: [] },
       content: { front: side('frontText', n * 10 + 1), back: side('backText', n * 10 + 2) },
     },
     production: {
-      recallObjective: 'Recall meaning', grounding: 'Verified Lesson',
+      recallObjective: 'Recall meaning',
+      grounding: 'Verified Lesson',
       directionRationale: 'An independent direction',
       accessibilityRationale: 'Text only',
     },
@@ -260,19 +331,25 @@ export function flashcardStage3() {
     },
     production: {
       lesson: {
-        id: bankOwnerId, sourceSha: sha('a'),
+        id: bankOwnerId,
+        sourceSha: sha('a'),
         reference: { path: 'references/flashcards.md', sourceSha: sha('b') },
         languages: { document: 'uk', planned: ['uk'] },
         assessment: { ...assessment },
       },
       analysis: {
-        recallObjectives: ['Recall a concept'], sourceFactsAndConcepts: ['Addition'],
-        misconceptionsAndContrasts: [], exclusions: [],
-        cardCountRationale: 'Two directions', sourceGrounding: 'Reviewed source',
+        recallObjectives: ['Recall a concept'],
+        sourceFactsAndConcepts: ['Addition'],
+        misconceptionsAndContrasts: [],
+        exclusions: [],
+        cardCountRationale: 'Two directions',
+        sourceGrounding: 'Reviewed source',
       },
       design: {
-        atomicityAudit: 'One objective', directionAndDuplicationAudit: 'Distinct retrieval',
-        acronymAndListAudit: 'None', mediaAndAccessibilityAudit: 'Text alternatives',
+        atomicityAudit: 'One objective',
+        directionAndDuplicationAudit: 'Distinct retrieval',
+        acronymAndListAudit: 'None',
+        mediaAndAccessibilityAudit: 'Text alternatives',
         relationshipAudit: 'No relationships required',
       },
       section: { kind: 'notApplicable', rationale: 'Independent bank' },

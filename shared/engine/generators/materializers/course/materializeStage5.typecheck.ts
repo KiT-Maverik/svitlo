@@ -5,10 +5,8 @@ import type { CourseWorkflowStage3, CourseWorkflowStage3NewLesson } from '../../
 
 // The root planner accepts EXACTLY the canonical Stage3 Course type, not a
 // duplicate stage schema or a final Course_Config Configurator instance.
-const acceptsReviewedStage3: (
-  value: CourseWorkflowStage3,
-  options: CourseStage5Options,
-) => CourseStage5Plan = materializeCourseStage5;
+const acceptsReviewedStage3: (value: CourseWorkflowStage3, options: CourseStage5Options) => CourseStage5Plan =
+  materializeCourseStage5;
 
 const acceptsApprovedNewLesson: (
   value: CourseWorkflowStage3NewLesson,
