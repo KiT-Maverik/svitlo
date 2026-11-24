@@ -24,7 +24,7 @@ export function courseLessonIds(course: LocalizedCourse): string[] {
 export async function loadCourseLessonTitles(course: LocalizedCourse, language: LanguageCode) {
   const pairs = await Promise.all(
     courseActivities(course)
-      .filter(({ node }) => node.type === 'lesson')
+      .filter(({ node }) => node.type === 'lesson' && !('draft' in node && node.draft === true))
       .map(async ({ node, placement }) => {
         const lesson = await loadPublishedCourseLessonProps(course.id, node.id, language, { placement });
         return { id: node.id, placement, title: lesson.locale.title };
