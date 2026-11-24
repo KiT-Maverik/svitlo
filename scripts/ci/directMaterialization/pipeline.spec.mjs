@@ -17,6 +17,7 @@ import {
   courseId,
   lessonId,
   reusedLessonId,
+  overriddenLessonId,
   bankOwnerId,
   independentLessonConfig,
   lessonStage2,
@@ -32,6 +33,7 @@ const courseRoot = textbook + '/data/courses/3/' + courseId;
 const bankRoot = textbook + '/data/lessons/0/' + bankOwnerId;
 const lessonRoot = textbook + '/data/lessons/1/' + lessonId;
 const independentRoot = textbook + '/data/lessons/1/' + reusedLessonId;
+const overriddenRoot = textbook + '/data/lessons/2/' + overriddenLessonId;
 const paths = {
   course: courseRoot + '/draft.ts',
   episode: courseRoot + '/content/episodeOne/draft.ts',
@@ -81,12 +83,24 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
         JSON.stringify(independentLessonConfig(), null, 2) +
         ');\n',
     );
+    write(
+      candidateRoot,
+      overriddenRoot + '/index.ts',
+      "import { defineLesson } from '@svitlo/engine/build';\n" +
+        'export const overriddenLesson = defineLesson(' +
+        JSON.stringify(independentLessonConfig(overriddenLessonId, 'overriddenLesson'), null, 2) +
+        ');\n',
+    );
     write(candidateRoot, paths.lesson, typedCall('materializeLessonStage6', lessonStage2()));
     const placeholder = {
       id: reusedLessonId,
       build: { overrides: () => ({ id: reusedLessonId }) },
     };
-    const course = courseStage3(placeholder);
+    const overriddenPlaceholder = {
+      id: overriddenLessonId,
+      build: { overrides: () => ({ id: overriddenLessonId }) },
+    };
+    const course = courseStage3(placeholder, overriddenPlaceholder);
     for (const slug of ['reused', 'overridden']) delete course.config.content.items[slug].production.source;
     delete course.config.content.items.overridden.production.existing;
     write(
@@ -96,13 +110,16 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
         "import { independentLesson } from '#lessonsData/1/" +
         reusedLessonId +
         "/index';\n" +
+        "import { overriddenLesson } from '#lessonsData/2/" +
+        overriddenLessonId +
+        "/index';\n" +
         'const reviewed = ' +
         JSON.stringify(course, null, 2) +
         ';\n' +
         'reviewed.config.content.items.reused.production.source = independentLesson;\n' +
-        'reviewed.config.content.items.overridden.production.source = independentLesson;\n' +
+        'reviewed.config.content.items.overridden.production.source = overriddenLesson;\n' +
         'reviewed.config.content.items.overridden.production.existing = ' +
-        'independentLesson.build.overrides(reviewed.config.content.items.overridden.production.sourcePatch, ' +
+        'overriddenLesson.build.overrides(reviewed.config.content.items.overridden.production.sourcePatch, ' +
         "{ languages: ['uk'] });\n" +
         'materializeCourse(reviewed);\n',
     );
