@@ -126,9 +126,7 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
   const localized = title => (typeof title === 'string' ? title : title?.[document]);
   if (localized(sourceTitle) !== localized(reviewedTitle))
     throw Error('Assessment changed the Course-approved source title');
-  const selected = Object.values(input.config.section?.items ?? {})
-    .filter(node => node?.config?.type === 'quiz' && node.config.params?.disabled !== true)
-    .flatMap(node => node.config.params?.selection?.questionIds ?? []);
+  const selected = input.config.quiz?.config?.params?.selection?.questionIds ?? [];
   if (JSON.stringify(selected) !== JSON.stringify(plan.selectedQuestionIds))
     throw Error('Assessment selected Question UUIDs differ from pinned authored Quiz Sections');
   return true;
@@ -154,16 +152,38 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
     const bankRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/questions/';
     if (!ordinary(tree.get(bankRoot + 'index.ts')))
       throw Error('Upstream Lesson lacks a materialized Question Bank: ' + dep);
+    // The source materializer writes a real Question definition to
+    // questions/<kind>/<slug>.ts, exported by the kind index and bank root.
+    // UUIDs appearing in comments, content blocks, or unrelated files are not proof.
+    const rootSource = reader.blob(tree.get(bankRoot + 'index.ts'), bankRoot + 'index.ts');
+    const kinds = new Set([
+      'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks', 'answerWithText',
+      'answerWithNumber', 'orderSequence', 'buildAnswerWithBlocks',
+      'fillBlanksWithBlocks', 'fillBlanksWithText',
+    ]);
     let items = 0;
     for (const [filename, entry] of tree) {
-      if (!filename.startsWith(bankRoot) || !filename.endsWith('/index.ts') || filename === bankRoot + 'index.ts')
-        continue;
+      if (!filename.startsWith(bankRoot) || !filename.endsWith('.ts')) continue;
+      const path = filename.slice(bankRoot.length);
+      const match = path.match(/^([A-Za-z][A-Za-z0-9]*)\/([a-z][A-Za-z0-9]*)\.ts$/);
+      if (!match || !kinds.has(match[1])) continue;
       if (!ordinary(entry)) throw Error('Unsafe upstream Question Bank source');
+      const kindIndex = bankRoot + match[1] + '/index.ts';
+      if (!ordinary(tree.get(kindIndex))) throw Error('Missing Question kind index: ' + kindIndex);
+      const kindSource = reader.blob(tree.get(kindIndex), kindIndex);
+      if (
+        !rootSource.includes(JSON.stringify('./' + match[1])) ||
+        !kindSource.includes(JSON.stringify('./' + match[2]))
+      ) continue;
       const source = reader.blob(entry, filename);
-      for (const id of selectedQuestionIds) if (source.includes(id)) found.add(id);
+      const definition = source.match(/export const [A-Za-z_$][A-Za-z0-9_$]*\s*=\s*define[A-Za-z]+(?:<[^;]*?>)?\s*\(\s*\{([\s\S]*?)\n\s*\}\s*\);/);
+      if (!definition) continue;
+      const identity = definition[1].match(/^\s*id:\s*["']([0-9a-f-]{36})["'],?\s*$/m);
+      if (!identity || !UUID.test(identity[1])) continue;
+      if (selectedQuestionIds.includes(identity[1])) found.add(identity[1]);
       items++;
     }
-    if (!items) throw Error('Upstream Question Bank has no materialized Question sources: ' + dep);
+    if (!items) throw Error('Upstream Question Bank has no materialized Question definitions: ' + dep);
   }
   if (selectedQuestionIds.some(id => !found.has(id)))
     throw Error('Assessment Quiz references Question UUIDs absent from approved upstream Lesson banks');

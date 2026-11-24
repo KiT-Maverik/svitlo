@@ -30,9 +30,7 @@ const reviewed = () => ({
     slug: 'moduleReview',
     type: 'assessment',
     locale: { title: { uk: 'Підсумкове оцінювання' } },
-    section: {
-      items: {
-        intro: {
+    before: { items: { intro: {
           config: {
             id: sectionId,
             slug: 'intro',
@@ -42,8 +40,8 @@ const reviewed = () => ({
             content: { items: {}, order: [] },
           },
           production: { purpose: 'Clarify the rules' },
-        },
-        quiz: {
+        } }, order: ['intro'] },
+    quiz: {
           config: {
             id: 'b775647f-203d-481a-a1c7-4d331c000202',
             slug: 'quiz',
@@ -68,9 +66,7 @@ const reviewed = () => ({
           },
           production: { purpose: 'Verify the approved evidence' },
         },
-      },
-      order: ['intro', 'quiz'],
-    },
+    after: { items: {}, order: [] },
   },
   production: {
     purpose: 'Collect evidence after upstream lessons',
@@ -102,6 +98,8 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   assert(paths.includes(placement + '/specification.md'));
   const root = plan.files.find(f => f.path === placement + '/index.ts').content;
   assert.match(root, /defineAssessment/);
+  assert.match(root, /const quiz = child_section_quiz;/);
+  assert.match(root, /before, quiz, after,/);
   assert.match(root, /from "\.\/languages"/);
   assert.match(root, /TODO \(BLOCKER\)/);
   assert.doesNotMatch(root, /#coursesData/);
@@ -117,11 +115,10 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
 
 test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions or stale draft', () => {
   const withoutQuiz = reviewed();
-  delete withoutQuiz.config.section.items.quiz;
-  withoutQuiz.config.section.order = ['intro'];
-  assert.throws(() => materializeAssessment(withoutQuiz, options), /enabled Quiz|Invalid reviewed/);
+  delete withoutQuiz.config.quiz;
+  assert.throws(() => materializeAssessment(withoutQuiz, options), /Quiz|Invalid reviewed/);
   const fakeQuestion = reviewed();
-  fakeQuestion.config.section.items.quiz.config.params.selection.questionIds[0] =
+  fakeQuestion.config.quiz.config.params.selection.questionIds[0] =
     'feedc0de-1234-4234-8234-123456789010';
   assert.throws(() => materializeAssessment(fakeQuestion, options), /reviewed upstream|Invalid reviewed/);
   assert.throws(
@@ -132,4 +129,34 @@ test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions 
       }),
     /untrusted|stale/,
   );
+});
+
+test('Assessment Stage 2 requires exactly one non-disabled Quiz and Content-only supporting phases', () => {
+  const disabled = reviewed();
+  disabled.config.quiz.config.params.disabled = true;
+  assert.equal(assessmentWorkflowStage2_Schema.safeParse(disabled).success, false);
+
+  const secondQuiz = reviewed();
+  secondQuiz.config.after.items.extra = {
+    ...secondQuiz.config.quiz,
+    config: { ...secondQuiz.config.quiz.config, slug: 'extra' },
+  };
+  secondQuiz.config.after.order.push('extra');
+  assert.equal(assessmentWorkflowStage2_Schema.safeParse(secondQuiz).success, false);
+});
+
+test('Assessment materializer escapes reserved TypeScript slug exports', () => {
+  const input = reviewed();
+  input.config.slug = 'for';
+  input.production.placement.path = 'content/moduleOne/content/for';
+  const plan = materializeAssessment(input, {
+    ...options,
+    source: {
+      ...options.source,
+      sourcePath: 'content/math/data/courses/3/' + courseId + '/content/moduleOne/content/for/draft.ts',
+    },
+  });
+  const generated = plan.files.find(file => file.path.endsWith('/index.ts') &&
+    file.path === 'content/moduleOne/content/for/index.ts');
+  assert.match(generated.content, /export const config_for = defineAssessment/);
 });

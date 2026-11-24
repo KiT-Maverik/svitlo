@@ -200,7 +200,7 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
   assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
-  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content, /defineAssessment\(\{/);
+  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content, /defineAssessmentDraft\(\{/);
   const sealed = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
   const mutate = patch => {

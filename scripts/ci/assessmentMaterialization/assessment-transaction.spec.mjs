@@ -48,12 +48,8 @@ const source =
 const input = {
   config: {
     ...seed.config,
-    section: {
-      items: {
-        quiz: {
-          config: { type: 'quiz', params: { selection: { questionIds: [questionId] } } },
-        },
-      },
+    quiz: {
+      config: { type: 'quiz', params: { selection: { questionIds: [questionId] } } },
     },
   },
   production: { ...seed.production, design: 'Design', specification: 'Reviewed content' },
@@ -99,8 +95,9 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const bank = 'content/math/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/questions/';
   const contents = new Map([
     [courseRoot + '/content/newLesson/index.ts', 'export const newLesson = defineLesson({});'],
-    [bank + 'index.ts', 'export const questions = {};'],
-    [bank + 'selectOneAnswer/prompt/index.ts', 'export const question = { id: "' + questionId + '" };'],
+    [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\nexport const questions = {};'],
+    [bank + 'selectOneAnswer/index.ts', 'export { prompt } from "./prompt";'],
+    [bank + 'selectOneAnswer/prompt.ts', 'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});'],
   ]);
   const tree = new Map([...contents].map(([name]) => [name, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) }]));
   const reader = { blob: (_entry, filename) => contents.get(filename) };
@@ -109,6 +106,12 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
     () => checkAssessmentBanks(meta, seed, ['99999999-9999-4999-8999-999999999999'], reader, tree),
     /absent/,
   );
+  contents.set(bank + 'selectOneAnswer/prompt.ts', '// id: "' + questionId + '"\nexport const notAQuestion = true;');
+  assert.throws(
+    () => checkAssessmentBanks(meta, seed, [questionId], reader, tree),
+    /absent|no materialized Question definitions/,
+  );
+  contents.set(bank + 'selectOneAnswer/prompt.ts', 'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});');
   tree.delete(bank + 'index.ts');
   assert.throws(
     () => checkAssessmentBanks(meta, seed, [questionId], reader, tree),

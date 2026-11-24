@@ -18,8 +18,14 @@ import {
   assessment_Props_Schema,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { quizSection_Props_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
-import { contentSection_Props_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
+import {
+  quizSection_Props_Schema,
+  type QuizSection_Props,
+} from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+import {
+  contentSection_Props_Schema,
+  type Content_Section_Props,
+} from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import { learningFlowSection_Props_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
@@ -28,7 +34,11 @@ import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLes
 
 export type EpisodeSection = Exclude<Section_Props, { type: 'quiz' | 'flashcards' }>;
 export type LocalizedEpisode = Omit<Episode_Props, 'section'> & { section: EpisodeSection[] };
-export type LocalizedAssessment = Assessment_Props;
+/** Zod's resolved block schema retains opaque fields, but runtime validation below
+ * resolves every Section/ContentBlock against the concrete kind schemas. */
+export type LocalizedAssessment = Omit<Assessment_Props, 'section'> & {
+  section: (Content_Section_Props | QuizSection_Props)[];
+};
 export type LocalizedCourseContent = { items: Record<string, LocalizedCourseNode>; order: string[] };
 export type LocalizedCourseNode =
   | CourseLessonEntry
@@ -134,11 +144,9 @@ export function validateAssessmentRuntime(value: unknown, language: LanguageCode
   }
   const ids = new Set<string>();
   for (const section of assessment.section) {
-    if (ids.has(section.id) || section.params.disabled === true) {
-      if (ids.has(section.id)) throw Error('Duplicate Assessment Section ID: ' + section.id);
-      continue;
-    }
+    if (ids.has(section.id)) throw Error('Duplicate Assessment Section ID: ' + section.id);
     ids.add(section.id);
+    if (section.params.disabled === true) continue;
     const resolved = assessmentSectionSchemas[section.type].parse(section);
     const blockIds = new Set<string>();
     for (const block of resolved.content) {
@@ -149,7 +157,7 @@ export function validateAssessmentRuntime(value: unknown, language: LanguageCode
       blockSchemas[block.type as keyof typeof blockSchemas].parse(block);
     }
   }
-  return assessment;
+  return assessment as LocalizedAssessment;
 }
 
 function verifyIdentity(base: unknown, selected: unknown, at: string): void {

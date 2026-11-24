@@ -1,13 +1,31 @@
+import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
+
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 
-/** Course Stage 5 reserves an Assessment without fabricating Questions or
- * inventing a publishable Quiz. The pending inline defineAssessment expression
- * is valid TypeScript and retains its ordered identity; its Build deliberately
- * rejects strict publication because it has no enabled Quiz. The draft seed
- * is authored at the exact nested placement and completed by Assessment Flow.
+/**
+ * The single source expression used by Course materialization and the pinned
+ * trusted parent replacement. Draft owns a genuine preview ContentSection and
+ * a Text ContentBlock, never a fake Quiz or Question UUID.
  */
+export function assessmentDraftExpression(id, slug) {
+  if (!uuid.test(id) || !slugPattern.test(slug))
+    throw Error('Invalid Course-owned Assessment preview identity');
+  const previewId = deriveCourseEntityId(id, 'assessmentPreview', 'preview');
+  const textId = deriveCourseEntityId(id, 'assessmentText', 'preview/message');
+  return 'defineAssessmentDraft({ id: ' + JSON.stringify(id) +
+    ', type: "assessment", slug: ' + JSON.stringify(slug) +
+    ', params: { languages }, locale: { title: "Not implemented" },' +
+    ' preview: defineContentSection({ id: ' + JSON.stringify(previewId) +
+    ', slug: "preview", type: "content", params: {},' +
+    ' locale: { title: "Preview", navigationLabel: "Preview" },' +
+    ' content: { items: { message: defineText({ id: ' + JSON.stringify(textId) +
+    ', slug: "message", type: "text", params: {}, locale: { value: "Not implemented" } }) },' +
+    ' order: ["message"] } }) })';
+}
+
+/** Course Stage 5 reserves a previewable, blocked Assessment without Questions. */
 export function materializeAssessmentPlaceholder(node, context) {
   const { config, production } = node ?? {};
   const directory = context?.directory;
@@ -60,13 +78,7 @@ export function materializeAssessmentPlaceholder(node, context) {
     'export const assessmentSeed = ' +
     JSON.stringify(seed, null, 2) +
     ' as const satisfies AssessmentWorkflowSeed;\n';
-  const placeholderSource =
-    'defineAssessment({ id: ' +
-    JSON.stringify(id) +
-    ', type: "assessment", slug: ' +
-    JSON.stringify(reservedSlug) +
-    ', params: { languages }, locale: { title: "Not implemented" },' +
-    ' section: { items: {}, order: [] } })';
+  const placeholderSource = assessmentDraftExpression(id, reservedSlug);
   return {
     id,
     pendingAssessment: true,

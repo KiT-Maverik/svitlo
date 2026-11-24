@@ -102,7 +102,7 @@ it('preserves mixed Episode and repeated Lesson navigation in reviewed order', (
   expect(flat.at(-1)?.title).toBe('Second placement');
 });
 
-it('shows a nested Assessment in the Course outline without inventing an unsupported route', () => {
+it('links a nested Assessment from the Course outline and activity navigation', () => {
   const withAssessment = structuredClone(course);
   const chapter = withAssessment.content.items.laboratory;
   if (chapter.type !== 'module' && chapter.type !== 'chapter') throw Error('Expected Course module fixture');
@@ -124,6 +124,7 @@ it('shows a nested Assessment in the Course outline without inventing an unsuppo
     id: '11111111-1111-4111-8111-111111111119',
     type: 'assessment',
     title: 'Підсумкова перевірка',
+    href: '/uk/course/course-id/assessment/uk/11111111-1111-4111-8111-111111111119',
   });
-  expect(flattenCourseTopics(outline).map(item => item.type)).toEqual(['lesson', 'lesson']);
+  expect(flattenCourseTopics(outline).map(item => item.type)).toEqual(['lesson', 'assessment', 'lesson']);
 });

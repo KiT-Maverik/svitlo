@@ -215,3 +215,87 @@ test('Assessment runtime fails closed for missing/disabled quizzes and unknown s
     ),
   );
 });
+
+
+test('Assessment rejects a duplicated Section identity even when the first Section is disabled', () => {
+  const valid = assessment(95, 'duplicates');
+  const disabled = {
+    ...valid.section[0],
+    params: { ...valid.section[0].params, disabled: true },
+  };
+  assert.throws(
+    () => validateAssessmentRuntime({ ...valid, section: [disabled, valid.section[0]] }, 'en'),
+    /Duplicate Assessment Section ID/,
+  );
+});
+
+test('Course preview accepts a real draft Assessment Text block but rejects fake completion', () => {
+  const draft = {
+    id: id(120),
+    slug: 'draftReview',
+    type: 'assessment',
+    draft: true,
+    params: { languages: ['en', 'uk'] },
+    locale: { title: 'Not implemented' },
+    section: [
+      {
+        id: id(121),
+        slug: 'preview',
+        type: 'content',
+        params: {},
+        locale: { title: 'Preview', navigationLabel: 'Preview' },
+        content: [
+          {
+            id: id(122),
+            slug: 'message',
+            type: 'text',
+            params: {},
+            locale: { value: 'Not implemented' },
+          },
+        ],
+      },
+    ],
+  };
+  const validated = validateAssessmentRuntime(draft, 'en');
+  assert.equal('draft' in validated && validated.draft, true);
+  const course = assembleCourseTree(
+    {
+      id: id(1),
+      type: 'course',
+      params: { languages: ['en', 'uk'] },
+      locale: { title: 'Course' },
+      content: collection({ draft }, ['draft']),
+    },
+    undefined,
+    id(1),
+    'en',
+  );
+  const found = findCourseAssessment(course, id(120));
+  assert.equal(found !== undefined && 'draft' in found && found.draft, true);
+  assert.throws(() => validateAssessmentRuntime({ ...draft, draft: undefined }, 'en'));
+  assert.throws(() =>
+    validateAssessmentRuntime({
+      ...draft,
+      section: [{ ...draft.section[0], content: [] }],
+    }, 'en'),
+  );
+  assert.throws(() =>
+    validateAssessmentRuntime({
+      ...draft,
+      section: [{ ...draft.section[0], params: { disabled: true } }],
+    }, 'en'),
+  );
+});
+
+test('a completed Assessment cannot have a second Quiz', () => {
+  const valid = assessment(130, 'oneQuiz');
+  const second = {
+    ...valid.section[0],
+    id: id(240),
+    slug: 'anotherQuiz',
+  };
+  assert.throws(
+    () => validateAssessmentRuntime({ ...valid, section: [...valid.section, second] }, 'en'),
+    /Assessment|quiz/i,
+  );
+});

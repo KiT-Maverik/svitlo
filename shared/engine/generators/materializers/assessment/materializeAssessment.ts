@@ -68,23 +68,16 @@ const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[a-f0-9]{40}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
-const exportName = (value: string) =>
-  [
-    'class',
-    'default',
-    'export',
-    'import',
-    'const',
-    'new',
-    'return',
-    'let',
-    'var',
-    'content',
-    'languages',
-    'section',
-  ].includes(value)
-    ? 'config_' + value
-    : value;
+const reservedNames = new Set([
+  'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
+  'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false',
+  'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new',
+  'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try',
+  'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
+  'implements', 'interface', 'private', 'protected', 'public', 'package',
+  'content', 'languages', 'section', 'quiz',
+]);
+const exportName = (value: string) => (reservedNames.has(value) ? 'config_' + value : value);
 const plain = (value: unknown, path: string): { config: Config; production?: Record<string, unknown> } => {
   if (
     !record(value) ||
@@ -192,8 +185,15 @@ function plan(
       current.content = ordered(current.content, path + '.content', false);
     return current;
   };
+  const before = config.before ?? { items: {}, order: [] };
+  const after = config.after ?? { items: {}, order: [] };
+  const quizKey = config.quiz.config.slug;
+  const sectionOrder = [...before.order, quizKey, ...after.order];
+  if (new Set(sectionOrder).size !== sectionOrder.length)
+    throw Error('Assessment: supporting Section slug collides with the sole Quiz');
+  const sectionNodes = { ...before.items, [quizKey]: config.quiz, ...after.items };
   const sections = Object.fromEntries(
-    Object.entries(config.section.items).map(([key, value]) => {
+    Object.entries(sectionNodes).map(([key, value]) => {
       const node = plain(value, 'assessment.section.' + key);
       if (node.config.slug !== key) throw Error('Assessment Section key/slug mismatch: ' + key);
       return [
@@ -206,14 +206,11 @@ function plan(
     }),
   );
   const questionIds: string[] = [];
-  for (const value of Object.values(config.section.items)) {
-    if (value.config.type !== 'quiz') continue;
-    const ids = value.config.params.selection?.questionIds ?? [];
-    for (const id of ids) {
-      if (!uuid.test(id) || /^feedc0de-|^00000000-/.test(id))
-        throw Error('Assessment: no fabricated or unresolved Quiz Question UUIDs');
-      questionIds.push(id);
-    }
+  const ids = config.quiz.config.params.selection?.questionIds ?? [];
+  for (const id of ids) {
+    if (!uuid.test(id) || /^feedc0de-|^00000000-/.test(id))
+      throw Error('Assessment: no fabricated or unresolved Quiz Question UUIDs');
+    questionIds.push(id);
   }
   if (!questionIds.length) throw Error('Assessment requires real upstream Question selection');
 
@@ -304,8 +301,7 @@ function plan(
     }
   };
   const imports: string[] = [];
-  const renderedSectionItems: string[] = [];
-  for (const key of config.section.order) {
+  for (const key of sectionOrder) {
     const wrapped = sections[key];
     if (!wrapped) throw Error('Assessment: missing ordered Section ' + key);
     const section = wrapped.config as Config;
@@ -328,7 +324,6 @@ function plan(
     imports.push(
       'import { ' + childResult.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./sections/' + key) + ';',
     );
-    renderedSectionItems.push(JSON.stringify(key) + ': ' + alias);
   }
   const rendered = [
     "import { defineAssessment } from '@svitlo/engine/build';",
@@ -337,20 +332,22 @@ function plan(
     '',
     '// TODO (BLOCKER): Validate selected Questions against reviewed upstream Lesson banks before release.',
     planned.length > 1 ? '// TODO (BLOCKER): Complete reviewed Assessment localizations before release.' : '',
-    'const section = { items: { ' +
-      renderedSectionItems.join(', ') +
-      ' }, order: ' +
-      JSON.stringify(config.section.order) +
-      ' };',
+    'const before = { items: { ' +
+      before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
+      ' }, order: ' + JSON.stringify(before.order) + ' };',
+    'const after = { items: { ' +
+      after.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
+      ' }, order: ' + JSON.stringify(after.order) + ' };',
+    'const quiz = child_section_' + quizKey + ';',
     'export const ' +
       exportName(config.slug) +
       ' = defineAssessment<' +
       JSON.stringify(config.slug) +
-      ', typeof languages, typeof section.items>({',
+      ', typeof languages, typeof before.items, typeof quiz, typeof after.items>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
     '  locale: ' + JSON.stringify(config.locale) + ',',
-    '  section,',
+    '  before, quiz, after,',
     '});',
     '',
   ]

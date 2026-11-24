@@ -11,6 +11,7 @@ import { createHash } from 'node:crypto';
 import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
+import { assessmentDraftExpression } from '../../../shared/engine/generators/materializers/course/materializeAssessmentPlaceholder.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -236,7 +237,8 @@ function assertCourseInventory(manifest, meta, entries) {
         throw Error('Assessment seed differs from pinned Course inventory');
       const parentSource = Buffer.from(entries.get(marker).data, 'base64').toString('utf8');
       if (
-        !parentSource.includes('defineAssessment({ id: ' + JSON.stringify(row.id)) ||
+        !parentSource.includes(assessmentDraftExpression(row.id, row.slug)) ||
+        !parentSource.includes("import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';") ||
         !parentSource.includes('slug: ' + JSON.stringify(row.slug)) ||
         !parentSource.includes('title: "Not implemented"') ||
         !parentSource.includes('TODO (BLOCKER): Not implemented')
