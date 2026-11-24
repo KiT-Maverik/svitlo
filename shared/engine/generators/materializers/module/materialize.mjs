@@ -361,7 +361,7 @@ export function materializeModule(input, context = {}) {
     pendingEpisodes.push(...(child.pendingEpisodes ?? []));
   }
   const assessmentBlocker = order.some(key => unwrap(collection.items[key])?.type === 'assessment')
-    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\\n'
+    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n'
     : '';
   const fields = { ...config, id, slug };
   delete fields.content;
