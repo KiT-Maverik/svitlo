@@ -118,7 +118,7 @@ test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions 
   delete withoutQuiz.config.quiz;
   assert.throws(() => materializeAssessment(withoutQuiz, options), /Quiz|Invalid reviewed/);
   const fakeQuestion = reviewed();
-  fakeQuestion.config.section.items.quiz.config.params.selection.questionIds[0] =
+  fakeQuestion.config.quiz.config.params.selection.questionIds[0] =
     'feedc0de-1234-4234-8234-123456789010';
   assert.throws(() => materializeAssessment(fakeQuestion, options), /reviewed upstream|Invalid reviewed/);
   assert.throws(
