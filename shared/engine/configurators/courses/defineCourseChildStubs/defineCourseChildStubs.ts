@@ -1,5 +1,3 @@
-import { createHash } from 'node:crypto';
-
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
@@ -11,10 +9,22 @@ import { lesson_Draft_Props_Schema } from '../../lessons/defineLesson';
 import { defineText } from '../../contentBlocks/defineText';
 import { defineContentSection } from '../../sections/defineContentSection';
 
-/** Stable authoring-only identifiers for the two real preview children. */
+/**
+ * Deterministic UUIDs for draft-only preview UI elements. This portable,
+ * synchronous 128-bit non-cryptographic hash has no Node dependency: Engine
+ * Configurators must also work in browsers and mobile hosts.
+ * These are never authored or published as completed content identities.
+ */
 const previewId = (parentId: string, role: string): string => {
-  const hash = createHash('sha1').update(parentId + '/' + role).digest('hex');
-  return [hash.slice(0, 8), hash.slice(8, 12), '5' + hash.slice(13, 16), '8' + hash.slice(17, 20), hash.slice(20, 32)].join('-');
+  const input = parentId + '/' + role;
+  const hashWord = (seed: number): string => {
+    let hash = seed >>> 0;
+    for (let index = 0; index < input.length; index++)
+      hash = Math.imul(hash ^ input.charCodeAt(index), 0x01000193) >>> 0;
+    return hash.toString(16).padStart(8, '0');
+  };
+  const hex = [0x811c9dc5, 0x17a50f23, 0xc2b2ae35, 0x9e3779b9].map(hashWord).join('');
+  return [hex.slice(0, 8), hex.slice(8, 12), '5' + hex.slice(13, 16), '8' + hex.slice(17, 20), hex.slice(20, 32)].join('-');
 };
 
 const preview = (id: string) => {
