@@ -45,7 +45,7 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
   assert.match(module, /Переглянути/);
   assert(!one.diagnostics.some(item => item.code === 'pending-copy'));
   assert(!one.files.some(file => file.kind !== 'typescript'));
-  assert.match(module, /TODO \\(BLOCKER\\): Verify external video \\(availability, appropriateness, access, captions, language\\/offline alternative, link\\)/);
+  assert.match(module, /TODO \(BLOCKER\): Verify external video \(availability, appropriateness, access, captions, language\/offline alternative, link\)/);
   assert(one.diagnostics.some(item => item.code === 'pending-youtube-verification'));
 });
 
@@ -84,7 +84,7 @@ test('youtube: composed nested source paths and Course language handoff', () => 
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
   assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /Reviewed source brief/);
-  assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /TODO \\(BLOCKER\\): Verify external video/);
+  assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /TODO \(BLOCKER\): Verify external video/);
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );
@@ -101,7 +101,7 @@ test('youtube: pending href is deterministic, blocked and not a fabricated URL',
   assert.match(source, /"href": \/\/ TODO \(BLOCKER\):[^\n]*\n"00000000-0000-0000-0000-000000000000"/);
   assert(pending.diagnostics.some(item => item.path === '$.config.locale.href' && item.code === 'pending-media'));
   assert(!source.includes('https://'));
-  assert.match(source, /TODO \\(BLOCKER\\): Verify external video/);
+  assert.match(source, /TODO \(BLOCKER\): Verify external video/);
   assert.equal(pending.diagnostics.filter(item => item.code === 'pending-youtube-verification').length, 1);
   const localized = materializeYoutube(
     { ...input, locale: { ...locale, href: { en: 'https://youtu.be/M7lc1UVf-VE' } } },

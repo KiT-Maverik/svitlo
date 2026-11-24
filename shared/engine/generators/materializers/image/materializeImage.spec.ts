@@ -98,6 +98,6 @@ test('image: pending asset is a typed Nil UUID placeholder, not a fabricated fil
   assert(result.diagnostics.some(item => item.code === 'pending-media'));
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
   assert(!result.files.some(file => file.kind !== 'typescript'));
-  assert.equal((result.files[0].content.match(/TODO \\(BLOCKER\\): Supply verified fileName asset/g) ?? []).length, 1);
-  assert.doesNotMatch(result.files[0].content, /TODO\\(asset\\): Replace reserved Nil/);
+  assert.equal((result.files[0].content.match(/TODO \(BLOCKER\): Supply verified fileName asset/g) ?? []).length, 1);
+  assert.doesNotMatch(result.files[0].content, /TODO\(asset\): Replace reserved Nil/);
 });
