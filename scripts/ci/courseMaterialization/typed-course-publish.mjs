@@ -162,13 +162,13 @@ function assertCourseInventory(manifest, meta, entries) {
         )
           throw Error('Course reused Lesson inventory does not match generated reference');
         const reference = Buffer.from(entries.get(row.placementSourcePath).data, 'base64').toString('utf8');
-        const parsed = /^export \{ ([A-Za-z][A-Za-z0-9]*) as ([A-Za-z][A-Za-z0-9]*) \} from ("[^"\n]+");\n$/.exec(
+        const parsed = /^export \{ ([A-Za-z][A-Za-z0-9]*) as ([A-Za-z][A-Za-z0-9]*) \} from (["'])([^"'\\\n]+)\3;\n$/.exec(
           reference,
         );
         const reserved = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'];
         const expectedExport = reserved.includes(row.slug) ? 'config_' + row.slug : row.slug;
-        const expectedImport = JSON.stringify('#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index');
-        if (!parsed || parsed[2] !== expectedExport || parsed[3] !== expectedImport)
+        const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
+        if (!parsed || parsed[2] !== expectedExport || parsed[4] !== expectedImport)
           throw Error('Course reused Lesson reference differs from inventory identity or canonical import');
       } else throw Error('Invalid Course Lesson kind');
     } else {
