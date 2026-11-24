@@ -7,7 +7,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { gitBlob } from './course-gate.mjs';
 import { buildTypedCourseManifest, checkedSource } from './typed-course-source.mjs';
-import { checkTypedCourseTargets, oneCommitTree, replan, verifyTypedCourseManifest } from './typed-course-publish.mjs';
+import { checkTypedCourseTargets, oneCommitTree, verifyTypedCourseManifest } from './typed-course-publish.mjs';
 
 const trusted = path.resolve(import.meta.dirname, '../../..');
 const courseId = '403f4a50-266d-4b84-8b16-d879bfe8bab6';
@@ -16,7 +16,7 @@ const textbookRoot = 'content/playground';
 const lessonRoot = textbookRoot + '/data/lessons/c/' + lessonId;
 const sourcePath = textbookRoot + '/data/courses/6/' + courseId + '/draft.ts';
 
-test('clean trusted Course analyze and privileged replay with the actual Playground Lesson graph', t => {
+test('clean trusted Course analyze and privileged replay with the actual Playground Lesson graph', async t => {
   // The Ready job invokes the exact live preparation before this test, with
   // neither a pre-existing Engine distribution nor npm lifecycle scripts.
   const engine = path.join(trusted, 'shared/engine');
@@ -71,25 +71,54 @@ test('clean trusted Course analyze and privileged replay with the actual Playgro
     reviewCommitSha: head,
   };
   const report = path.join(work, 'manifest.json');
-  const result = spawnSync(
-    process.execPath,
-    [fileURLToPath(new URL('./typed-course-source.mjs', import.meta.url)), 'analyze'],
-    {
-      encoding: 'utf8',
-      timeout: 180_000,
-      env: {
-        ...process.env,
-        GH_TOKEN: undefined,
-        GITHUB_TOKEN: undefined,
-        GITHUB_REPOSITORY: meta.repo,
-        COURSE_DEFAULT_BRANCH: 'develop',
-        COURSE_TYPED_META_B64: Buffer.from(JSON.stringify(meta)).toString('base64'),
-        COURSE_HEAD_ROOT: candidate,
-        COURSE_TYPED_REPORT: report,
-      },
+  const analyzerUrl = new URL('./typed-course-source.mjs', import.meta.url);
+  const analyzer = fileURLToPath(analyzerUrl);
+  const launch = {
+    encoding: 'utf8',
+    timeout: 180_000,
+    env: {
+      ...process.env,
+      GH_TOKEN: undefined,
+      GITHUB_TOKEN: undefined,
+      GITHUB_REPOSITORY: meta.repo,
+      COURSE_DEFAULT_BRANCH: 'develop',
+      COURSE_TYPED_META_B64: Buffer.from(JSON.stringify(meta)).toString('base64'),
+      COURSE_HEAD_ROOT: candidate,
+      COURSE_TYPED_REPORT: report,
     },
+  };
+
+  // Negative control: the #820 analyzer differed by precisely this missing
+  // runtime source mapping. Use a child-only Node loader to restore its old
+  // compiler resolution, without editing trusted files or executing candidate
+  // modules. Everything else (CLI, input, dependencies and preparation) is
+  // identical to the positive run below.
+  const oldMapping = "      '@svitlo/engine/runtime': ['runtime.ts'],\n";
+  const loader = [
+    "import { registerHooks } from 'node:module';",
+    "import { readFileSync } from 'node:fs';",
+    'registerHooks({ load(url, context, nextLoad) {',
+    '  const loaded = nextLoad(url, context);',
+    '  if (url !== ' + JSON.stringify(analyzerUrl.href) + ') return loaded;',
+    '  const source = readFileSync(new URL(url), "utf8");',
+    '  const oldMapping = ' + JSON.stringify(oldMapping) + ';',
+    '  if (!source.includes(oldMapping)) throw Error("Missing expected runtime resolution control");',
+    '  return { ...loaded, source: source.replace(oldMapping, "") };',
+    '} });',
+  ].join('\n');
+  const baseline = spawnSync(
+    process.execPath,
+    ['--import', 'data:text/javascript;base64,' + Buffer.from(loader).toString('base64'), analyzer, 'analyze'],
+    launch,
   );
+  assert.equal(baseline.status, 1, baseline.error?.message ?? baseline.stderr);
+  assert.match(baseline.stderr, /TS7016.*@svitlo\/engine\/runtime/);
+  assert(!fs.existsSync(report));
+  console.log('Baseline missing runtime mapping reproduces TS7016 through the actual Course analyze CLI.');
+
+  const result = spawnSync(process.execPath, [analyzer, 'analyze'], launch);
   assert.equal(result.status, 0, result.error?.message ?? result.stderr);
+  const { replan } = await import('./typed-course-publish.mjs');
   const manifest = JSON.parse(fs.readFileSync(report, 'utf8'));
   assert.equal(verifyTypedCourseManifest(manifest, meta), manifest.entries.length);
   const { source } = checkedSource(meta, candidate);
@@ -126,6 +155,9 @@ test('clean trusted Course analyze and privileged replay with the actual Playgro
   const generated = new Map(manifest.entries.map(entry => [entry.path, Buffer.from(entry.data, 'base64').toString()]));
   const overrides = generated.get(path.posix.dirname(sourcePath) + '/authoredCourseOverrides.ts');
   assert(overrides?.includes('{ params: { sections: { allowSkipping: false } } }'));
+  assert.match(overrides, /"exhibitionPractice"/);
+  assert.match(overrides, /"shadowPractice"/);
+  assert.doesNotMatch(overrides, /lightBasics|circleRecognition|combinedPractice/);
   assert(!generated.has(lessonRoot + '/index.ts'));
   assert(![...generated.keys()].some(file => file.startsWith(lessonRoot + '/')));
   for (const row of lessons.filter(row => row.kind === 'new')) {

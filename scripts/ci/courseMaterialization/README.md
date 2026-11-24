@@ -78,7 +78,9 @@ Lesson and the reviewed #806 Course fixture (only the two Lesson source
 revision pins are adapted to the separate candidate Git checkout). It checks
 clean preparation, both reuse variants, two new Lesson seeds, four Episode
 handoffs, real semantic compilation, exact deterministic privileged replay and
-no-clobber enforcement. A passing regression is not evidence that a live
+no-clobber enforcement. A child-only negative control restores the missing
+runtime source mapping from the old analyzer and must reproduce TS7016
+through the same CLI before the corrected analysis succeeds. A passing regression is not evidence that a live
 Course PR has materialized: verify the subsequent authorized Actions run and
 commit.
 
