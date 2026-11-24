@@ -4,6 +4,7 @@ import {
 } from '../../../types/workflow/episodeWorkflow.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { renderSceneFiles } from '../scene/materializeScene';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeEpisode } from './materialize.mjs';
 import { materializeEpisodeSection } from './materializeEpisodeSection';
 
@@ -77,12 +78,21 @@ export function materializeEpisodeStage5(
     source => {
       const checked = episodeWorkflowStage2_Schema.safeParse(input);
       if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
-      const root = input.production.placement.path;
+      // Technical ownership comes from the sealed Git source path, never an
+      // editable repetition of courseId/path/orderPath in Episode narrative.
+      const owned = source.source.sourcePath.match(
+        /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
+      );
+      if (
+        !owned ||
+        owned[2] !== owned[3].at(-1) ||
+        owned[4].split('/').at(-1) !== input.config.slug
+      )
+        throw Error('Episode Stage 5 requires its exact allocated Course draft path');
+      const [, textbook, , courseId, root] = owned;
       const document = input.production.languages.document;
       const planned = [...input.production.languages.planned];
-      const courseId = input.production.placement.courseId;
-      const textbook = source.source.sourcePath.match(/^(content\/[a-z][a-z0-9-]*)\/data\/courses\//)?.[1];
-      if (!textbook) throw Error('Episode Stage 5 requires an owned Course draft in its textbook');
+      const courseLanguagesImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/constants';
       const sceneDrafts = episodeSceneDrafts(input, document, textbook);
       const result = materializeEpisode(
         {
@@ -97,7 +107,7 @@ export function materializeEpisodeStage5(
             materializeEpisodeSection(node, {
               ...context,
               documentLanguage: document,
-              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/constants',
+              languagesImport: courseLanguagesImport,
             }),
         },
       );
@@ -115,13 +125,13 @@ export function materializeEpisodeStage5(
       index.content = index.content
         .replace(
           "import type { SupportedLanguages } from '@svitlo/engine/build';",
-          "import { languages } from './constants';",
+          'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
         )
         .replace(originalLanguages, '')
         .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
       index.content =
-        '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
-        '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
+        renderBlockerTodo('Complete and human-verify Episode media generation at Stage 9 before removing this blocker.') + '\n' +
+        renderBlockerTodo('Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.') + '\n' +
         '// Reviewed Episode source blob: ' +
         source.source.sourceBlobSha +
         '\n' +
@@ -132,30 +142,8 @@ export function materializeEpisodeStage5(
       return {
         episodeId: result.id,
         exportName: result.exportName,
-        files: [
-          ...result.files,
-          ...sceneDrafts,
-          {
-            path: root + '/constants.ts',
-            kind: 'typescript',
-            content: [
-              "import type { SupportedLanguages } from '@svitlo/engine/build';",
-              '',
-              ...(planned.length > 1
-                ? [
-                    '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
-                    '// export const languages = [',
-                    ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
-                    '// ] as const satisfies SupportedLanguages;',
-                    '',
-                  ]
-                : []),
-              'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;',
-              'export type Languages = typeof languages;',
-              '',
-            ].join('\n'),
-          },
-        ],
+        // All Course-owned children import the single root language tuple.
+        files: [...result.files, ...sceneDrafts],
         diagnostics: result.diagnostics ?? [],
         publishable: false,
       };

@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 import {
   assessmentWorkflowStage2_Schema,
@@ -259,14 +260,14 @@ function plan(
   if (!questionIds.length) throw Error('Assessment requires real upstream Question selection');
 
   const ownDirectory = placement;
-  // The Course only declares a local `languages` constant; it has no
-  // guaranteed #coursesData/.../languages module. Own the Assessment source
-  // languages and import them relatively from every nested Section/Block.
+  // A Course owns one source-language constant; nested Assessment Sections
+  // and ContentBlocks resolve the same trusted root module, not local copies.
+  const courseLanguagesImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/constants';
   const languageImport = (directory: string) => {
     const relative = directory.slice(ownDirectory.length).replace(/^\//, '');
     if (relative && (!directory.startsWith(ownDirectory + '/') || relative.split('/').some(part => !slug.test(part))))
-      throw Error('Assessment Section escaped its own language scope: ' + directory);
-    return relative ? '../'.repeat(relative.split('/').length) + 'languages' : './languages';
+      throw Error('Assessment Section escaped its Course-owned locale scope: ' + directory);
+    return courseLanguagesImport;
   };
   const files: GeneratedFile[] = [];
   const diagnostics: PlanDiagnostic[] = [];
@@ -371,11 +372,11 @@ function plan(
   }
   const rendered = [
     "import { defineAssessment } from '@svitlo/engine/build';",
-    'import { languages } from "./languages";',
+    'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
     ...imports,
     '',
-    '// TODO (BLOCKER): Validate selected Questions against reviewed upstream Lesson banks before release.',
-    planned.length > 1 ? '// TODO (BLOCKER): Complete reviewed Assessment localizations before release.' : '',
+    renderBlockerTodo('Resolve each selected Question against a reviewed integrated upstream Lesson Question Bank before releasing this Assessment.'),
+    planned.length > 1 ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.') : '',
     'const before = { items: { ' +
       before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
       ' }, order: ' +
@@ -401,15 +402,6 @@ function plan(
   ]
     .filter(Boolean)
     .join('\n');
-  files.push({
-    path: ownDirectory + '/languages.ts',
-    content:
-      '// Authored source locale only; planned translations require independent review.\n' +
-      'export const languages = ' +
-      JSON.stringify([document]) +
-      ' as const;\n',
-    kind: 'typescript',
-  });
   files.push({ path: ownDirectory + '/index.ts', content: rendered, kind: 'typescript' });
   const specification =
     '# Assessment design\n\n' +

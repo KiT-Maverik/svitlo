@@ -46,7 +46,7 @@ percentage alone does not establish that the assertions detect realistic bugs.
 
 ## Staged educational production versus resource generation
 
-Course, Lesson, Question Bank and Flashcard Bank use canonical Stage-specific TypeScript editorial objects with independent review evidence in their owning PRs. The `generators/materializers/` source emitters produce deterministic Configurator modules and methodology/specification files, not runtime JSON or Props. Reviewed Course Stage 5, Lesson Stage 6.1 and assessment Bank Stage 5 source transitions are wired through separate SHA-pinned trusted GitHub commands; deployment to the default branch is a separate operation.
+Course, Episode, Assessment, Lesson, Question Bank and Flashcard Bank use canonical Stage-specific TypeScript editorial objects with independent review evidence in their owning PRs. The `generators/materializers/` source emitters produce deterministic Configurator modules and methodology/specification files, not runtime JSON or Props. Reviewed Course Stage 5, Episode Stage 5, Assessment Stage 4, Lesson Stage 6.1 and assessment Bank Stage 5 source transitions are wired through separate SHA-pinned trusted GitHub commands; deployment to the default branch is a separate operation.
 
 The YAML-only editors/builders and their derived JSON Schema tooling were retired in #775. Existing `content/math/**/lesson.yaml` remain historical, not an alternate current pipeline. Only completed `define*` authored resources enter `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources`. Production must reject unresolved asset/Scene/Question/Flashcard, locale or review blockers.
 
