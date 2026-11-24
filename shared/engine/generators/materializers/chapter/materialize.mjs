@@ -356,9 +356,10 @@ export function materializeChapter(input, context = {}) {
       JSON.stringify(pendingPlacements.map(x => ({ slug: x.slug, lessonId: x.lessonId, handoffPath: x.handoffPath }))) +
       '\n'
     : '';
-  const episodeBlocker = pendingEpisodes.length
+  const ownPendingEpisodes = pendingEpisodes.filter(entry => entry.path === [dir, entry.slug].filter(Boolean).join('/'));
+  const episodeBlocker = ownPendingEpisodes.length
     ? '// TODO (BLOCKER): Episode Stage 1 handoffs are not completed Episode Configurators. Do not publish.\n// Reviewed original content order: ' +
-      JSON.stringify(order) + '\n// Pending Episode handoffs: ' + JSON.stringify(pendingEpisodes) + '\n'
+      JSON.stringify(order) + '\n// Pending Episode handoffs: ' + JSON.stringify(ownPendingEpisodes) + '\n'
     : '';
   const itemsSource =
     '{ ' +
