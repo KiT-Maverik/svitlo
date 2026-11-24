@@ -189,7 +189,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     edit(manifest);
     assert.throws(
       () => verifyTypedCourseManifest(manifest, pinned),
-      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import/i,
+      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import|Unsafe|placement|parent/i,
     );
   };
   const seed = complete.inventory.lessons.find(x => x.kind === 'new').sourcePath;
