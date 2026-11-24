@@ -1,7 +1,9 @@
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { CoursesPage } from '@svitlo/ui-kit';
+
 import { getCourseMessages } from '@/lib/courseMessages';
 import { loadPublishedCourseCatalog } from '@/lib/publishedCourseCatalog';
 

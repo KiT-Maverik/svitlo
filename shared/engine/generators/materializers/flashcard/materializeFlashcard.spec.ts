@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeFlashcard } from './materializeFlashcard';
+
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
+import { materializeFlashcard } from './materializeFlashcard';
+
 const stageLanguages = { document: 'uk', planned: ['uk', 'en'] } as const satisfies CourseWorkflowStage1Languages;
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
 const block = (slug: string, n: number) => ({

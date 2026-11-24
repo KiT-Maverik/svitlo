@@ -1,43 +1,44 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, ChildSupporting, ConfigWithLanguages } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import type { ChildrenSupporting, ChildSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+
 import {
   cloneJson,
+  ensureQuestionPatchShape,
   finishFiles,
   isRecord,
-  ensureQuestionPatchShape,
   mergeQuestionContent,
   projectQuestionLocale,
-  resolveCommonContent,
   resolveBlockCollection,
   resolveBlockMap,
+  resolveCommonContent,
   resolvePairMap,
+  resolvePublicationLanguages,
   resolveSlotBlocks,
-  snapshotCommonContent,
   snapshotBlockCollection,
+  snapshotCommonContent,
   snapshotNestedCollection,
-  validateNestedBlockCollection,
   validateBlockCollection,
   validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch,
-  type ResolvableBlockPatch,
-  type QuestionCommonPatch,
-  type QuestionResourcePublication,
-  type QuestionOverridePublication,
-  resolvePublicationLanguages,
+  validateNestedBlockCollection,
   validateQuestionPublication,
+  type OrderedBlockPatch,
   type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
+  type ResolvableBlockPatch,
 } from '../_shared__questions';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithBlocks_Config_Schema,
   fillBlanksWithBlocks_Override_Config_Schema,
-  type Question_FillBlanksWithBlocks_Config,
   fillBlanksWithBlocks_Props_Schema,
-  type Question_FillBlanksWithBlocks_Props,
+  type Question_FillBlanksWithBlocks_Config,
   type Question_FillBlanksWithBlocks_MetadataOverrides,
+  type Question_FillBlanksWithBlocks_Props,
 } from './defineFillBlanksWithBlocks.schemas';
 
 const metadataSchema = fillBlanksWithBlocks_Config_Schema.omit({ content: true });

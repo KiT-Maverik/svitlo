@@ -1,13 +1,15 @@
 'use client';
 
+import { Box, ButtonBase, Stack, Typography } from '@mui/material';
+
+import type { Question_FillBlanksWithBlocks_Props } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import { Box, ButtonBase, Stack, Typography } from '@mui/material';
-import type { Question_FillBlanksWithBlocks_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
+import { QuestionContent, shuffleItems, type QuestionItem } from '../response/QuestionContent';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
-import { QuestionContent, type QuestionItem, shuffleItems } from '../response/QuestionContent';
 
 export function FillBlanksWithBlocks({
   response,

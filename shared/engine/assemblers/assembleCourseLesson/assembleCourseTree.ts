@@ -1,35 +1,35 @@
-import { scene_Props_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
-import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-import { carousel_Props_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
-import { subtitles_Props_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { audio_Props_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { video_Props_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import { image_Props_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import { code_Props_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import { markdown_Props_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import { languageCode_Schema, type LanguageCode } from '../../schemas';
-import {
-  episode_Props_Schema,
-  type Episode_Props,
-} from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import {
   assessment_Props_Schema,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import { audio_Props_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import { carousel_Props_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
+import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import { code_Props_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import { image_Props_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import { markdown_Props_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import { scene_Props_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { subtitles_Props_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import { video_Props_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import {
-  quizSection_Props_Schema,
-  type QuizSection_Props,
-} from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+  episode_Props_Schema,
+  type Episode_Props,
+} from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import {
   contentSection_Props_Schema,
   type Content_Section_Props,
 } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
-import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
-import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import { learningFlowSection_Props_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
+import {
+  quizSection_Props_Schema,
+  type QuizSection_Props,
+} from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type { Section_Props } from '../../configurators/sections/section.types';
+import { languageCode_Schema, type LanguageCode } from '../../schemas';
 import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLesson';
 
 export type EpisodeSection = Exclude<Section_Props, { type: 'quiz' | 'flashcards' }>;

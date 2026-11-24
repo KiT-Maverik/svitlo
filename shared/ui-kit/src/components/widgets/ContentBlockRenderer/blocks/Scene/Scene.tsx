@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+
 import type { ResponseOf, SceneRegistry } from '../../types';
 
 export const Scene = ({

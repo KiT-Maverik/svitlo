@@ -6,11 +6,11 @@ import type { Flashcard_Config } from '../../../configurators/flashcards/defineF
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
   materializeFlashcardSide,
-  type FlashcardSideSource,
-  type FlashcardSideContext,
-  type SourceFile,
-  type SourceDiagnostic,
   type ChildResult,
+  type FlashcardSideContext,
+  type FlashcardSideSource,
+  type SourceDiagnostic,
+  type SourceFile,
 } from '../flashcardSide/materializeFlashcardSide';
 
 export type FlashcardSource = Omit<Flashcard_Config, 'content'> & {
@@ -24,6 +24,7 @@ export type FlashcardContext = {
   directory: string;
   /** Production language plan matches Course Stage 1–3 without Course-specific imports. */
   languages: { document: LanguageCode; planned: SupportedLanguages };
+  ownerLanguagesImport?: string;
   existingPaths?: ReadonlySet<string>;
   materializeBlock: FlashcardSideContext['materializeBlock'];
 };
@@ -203,6 +204,7 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
       directory: dir,
       role,
       languages: context.languages,
+      ownerLanguagesImport: context.ownerLanguagesImport,
       materializeBlock: context.materializeBlock,
       existingPaths: context.existingPaths,
     });
@@ -229,19 +231,22 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
     (hint ? 'typeof content.hint.items' : '{}') +
     ', typeof parameters.flags, ' +
     (config.parameters.relationships ? 'typeof parameters.relationships.items' : '{}') +
-    ', [' +
-    JSON.stringify(languages) +
-    ']>';
+    ', ' +
+    (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(languages) + ']') +
+    '>';
   const blockers: string[] = [];
   if (node.production?.pending) blockers.push('Review Flashcard Bank content and relationships before publication.');
   const remaining = planned.filter(code => code !== languages);
-  if (remaining.length)
+  if (remaining.length && !context.ownerLanguagesImport)
     blockers.push('Restore independently reviewed Flashcard languages: ' + remaining.join(', ') + '.');
   files.push({
     path: context.directory + '/' + config.slug + '.ts',
     kind: 'typescript',
     content: [
       "import { defineFlashcard, type Flashcard_Config } from '@svitlo/engine/build';",
+      ...(context.ownerLanguagesImport
+        ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+        : []),
       ...imports,
       '',
       ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),

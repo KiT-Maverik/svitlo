@@ -87,6 +87,12 @@ export async function inspectTyped(number, bank, expected) {
   );
   if (lesson?.type !== 'file' || lesson.path !== lessonPath || !SHA.test(lesson.sha ?? ''))
     throw Error('Owning Lesson source is absent at the Bank target revision');
+  const constantsPath = identity.folder + '/constants.ts';
+  const constants = await github(
+    'contents/' + constantsPath.split('/').map(encodeURIComponent).join('/') + '?ref=' + pr.base.sha,
+  );
+  if (constants?.type !== 'file' || constants.path !== constantsPath || !SHA.test(constants.sha ?? ''))
+    throw Error('Owning Lesson constants.ts missing or not a pinned regular file');
   const again = await github('pulls/' + number);
   if (
     again?.state !== 'open' ||
@@ -110,6 +116,7 @@ export async function inspectTyped(number, bank, expected) {
     sourceBlob: sourceFile.sha,
     sourcePath,
     lessonBlob: lesson.sha,
+    lessonConstantsBlob: constants.sha,
     identity,
   };
   if (expected && JSON.stringify(expected) !== JSON.stringify(result))

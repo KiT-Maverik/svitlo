@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+
 import { PageIntro } from '@/components/PageIntro';
 import { ScholarshipArt, type ScholarshipArtKind } from '@/components/ScholarshipArt';
 

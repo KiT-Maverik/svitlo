@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '#schemas';
 
 const defaultLanguageCodes = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);

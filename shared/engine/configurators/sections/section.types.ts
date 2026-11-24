@@ -1,9 +1,9 @@
 import type { ConfiguratorChild } from '../../types/configuratorChild';
-import type { ContentSection_Configurator, Content_Section_Props } from './defineContentSection';
-import type { PracticeSection_Configurator, PracticeSection_Props } from './definePracticeSection';
 import type { CodingTaskSection_Configurator, CodingTaskSection_Props } from './defineCodingTaskSection';
-import type { LearningFlowSection_Configurator, LearningFlowSection_Props } from './defineLearningFlowSection';
+import type { Content_Section_Props, ContentSection_Configurator } from './defineContentSection';
 import type { FlashcardsSection_Configurator, FlashcardsSection_Props } from './defineFlashcardsSection';
+import type { LearningFlowSection_Configurator, LearningFlowSection_Props } from './defineLearningFlowSection';
+import type { PracticeSection_Configurator, PracticeSection_Props } from './definePracticeSection';
 import type { QuizSection_Configurator, QuizSection_Props } from './defineQuizSection';
 
 export type Section_Configurator = ConfiguratorChild<

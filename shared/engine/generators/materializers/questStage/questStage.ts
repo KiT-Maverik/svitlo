@@ -2,7 +2,7 @@ import type { Stage_Config } from '../../../configurators/sections/defineQuestSe
 
 /** Quest Stage source: media children own their own files, never fabricated URLs. */
 /**
- * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * Keep the exact Lesson/Episode constants.ts reference when child files live
  * deeper than their parent. Package aliases remain rooted independently.
  */
 function childLanguagesImport(parentImport: string, nestedDepth: number): string {
@@ -112,18 +112,17 @@ function filterLocale(value: unknown, source: string): unknown {
     return Object.hasOwn(value, source) ? { [source]: filterLocale(value[source], source) } : {};
   return Object.fromEntries(keys.map(key => [key, filterLocale(value[key], source)]));
 }
-function specification(production: Record<string, unknown> | undefined, omit: string[] = []): string | undefined {
-  const entries = Object.entries(production ?? {}).filter(
-    ([key]) => !['pending', 'documentLanguage', ...omit].includes(key),
-  );
-  return entries.length
-    ? entries
-        .map(
-          ([key, value]) =>
-            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-        )
-        .join('\n\n') + '\n'
-    : undefined;
+/** Preserve reviewed child intent as inert, removable TypeScript comments.
+ * The owning Lesson methodology or Episode narrative must absorb durable notes
+ * before specialists clear the blocker. JSON-escaping prevents comment injection.
+ */
+function reviewedNotes(production: Record<string, unknown> | undefined): string[] {
+  const entries = Object.entries(production ?? {}).filter(([key]) => !['pending', 'documentLanguage'].includes(key));
+  if (!entries.length) return [];
+  return [
+    '// TODO (BLOCKER): Integrate these reviewed Quest child notes into the owning methodology/narrative before removing them.',
+    ...entries.map(([key, value]) => '// Reviewed ' + key + ': ' + JSON.stringify(value)),
+  ];
 }
 function verifyChild(
   node: SourceChild,
@@ -228,23 +227,17 @@ export function materializeQuestStage(config: Source, options: Options): Result 
     part(raw.config.slug, 'questStage.content.' + slot + '.slug');
     if (mediaIds.has(raw.config.id)) throw new Error('questStage.content.' + slot + ': duplicate UUID');
     mediaIds.add(raw.config.id);
-    const childDir = [dir, 'content', ...entry.path].filter(Boolean).join('/');
+    const childDir = [dir, ...entry.path].filter(Boolean).join('/');
     const result = options.renderMedia(raw.config, {
       directory: childDir,
       documentLanguage: options.documentLanguage,
-      languagesImport: childLanguagesImport(options.languagesImport, 1 + entry.path.length),
+      languagesImport: childLanguagesImport(options.languagesImport, entry.path.length),
       ...(raw.production ? { production: raw.production } : {}),
     });
     includeChild(files, seen, diagnostics, result, childDir, raw.config.slug);
     const alias = 'child_content_' + slot;
     imports.push(
-      'import { ' +
-        result.exportName +
-        ' as ' +
-        alias +
-        ' } from ' +
-        JSON.stringify('./content/' + entry.path.join('/')) +
-        ';',
+      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + entry.path.join('/')) + ';',
     );
     if (head === 'video') video[leaf] = imported(alias);
     else if (head === 'audio') audio[leaf] = imported(alias);
@@ -274,13 +267,20 @@ export function materializeQuestStage(config: Source, options: Options): Result 
     ...imports,
     '',
     ...blockers,
+    ...reviewedNotes(options.production),
     'const content = ' + render(content) + ';',
     'export const ' + exported(config.slug) + ' = defineStage<' + JSON.stringify(config.slug) + ', typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
-  const spec = specification(options.production);
-  if (spec) addOwn(files, seen, { path: destination(dir, 'specification.md'), kind: 'specification', content: spec });
+  const notes = reviewedNotes(options.production);
+  if (notes.length)
+    diagnostics.push({
+      path: destination(dir),
+      code: 'pending-quest-child-notes',
+      severity: 'warning',
+      message: 'Reviewed Quest child notes must be integrated at the owning methodology/narrative',
+    });
   addOwn(files, seen, { path: destination(dir), kind: 'typescript', content: source });
   return { exportName: exported(config.slug), files, diagnostics };
 }

@@ -1,11 +1,12 @@
 import { existsSync, lstatSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+
 import {
-  imageFileName_Schema,
   audioFileName_Schema,
-  videoFileName_Schema,
+  imageFileName_Schema,
   subtitlesFileName_Schema,
   UNRESOLVED_RESOURCE_UUID,
+  videoFileName_Schema,
 } from '../../schemas/media.schemas';
 
 type Folder = 'images' | 'audio' | 'video' | 'subtitles';

@@ -1,10 +1,12 @@
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment } from '@svitlo/engine/runtime';
+import { Suspense } from 'react';
+
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { loadCourseTree, loadCourseLessonTitles } from '@/lib/courseResources';
-import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment } from '@svitlo/engine/runtime';
+
 import WebAssessment from '@/components/pages/Assessment/Assessment';
+import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{

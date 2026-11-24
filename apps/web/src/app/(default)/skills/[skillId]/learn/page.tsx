@@ -1,13 +1,15 @@
-import { Suspense } from 'react';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { Box, Container } from '@mui/material';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import { SkillLearningClient } from '@/components/pages/SkillsMindMap/SkillLearningClient';
 import { flattenSkillNodes } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
-import { loadPublishedSkills } from '@/lib/skillResources';
 import { textbook } from '@/generated/textbook';
+import { loadPublishedSkills } from '@/lib/skillResources';
 
 export const metadata: Metadata = { title: `Прокачати навичку — ${textbook.title}` };
 

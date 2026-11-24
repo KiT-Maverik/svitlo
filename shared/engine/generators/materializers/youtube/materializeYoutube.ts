@@ -4,9 +4,12 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import {
+  youtube_Config_Schema,
+  type ContentBlock_Youtube_Config,
+} from '../../../configurators/contentBlocks/defineYoutube';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
-import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube';
-import { youtube_Config_Schema } from '../../../configurators/contentBlocks/defineYoutube';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Youtube_Config['params']>;
@@ -213,6 +216,9 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     hrefLocale.href = isRecord(config.locale?.href) ? { [language]: UNRESOLVED_YOUTUBE_HREF } : UNRESOLVED_YOUTUBE_HREF;
   }
   const resolvedHref = hrefLocale.href;
+  const unresolvedHref =
+    resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
+    (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF);
   if (
     resolvedHref === UNRESOLVED_YOUTUBE_HREF ||
     (isRecord(resolvedHref) && resolvedHref[language] === UNRESOLVED_YOUTUBE_HREF)
@@ -262,13 +268,17 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   // URL/label are not proof of availability, rights or accessible alternatives.
   const verificationInstruction =
     'Verify external video (availability, appropriateness, access, captions, language/offline alternative, link) during Lesson Stage 6 media work';
-  blockers.push('// TODO (BLOCKER): ' + verificationInstruction + ' for youtube ' + config.id + '.');
-  diagnostics.push({
-    path: '$.config.locale.href',
-    code: 'pending-youtube-verification',
-    message: verificationInstruction,
-    severity: 'warning',
-  });
+  // The missing-URL TODO already blocks publication. Add the separate
+  // verification instruction only after there is a real URL to review.
+  if (!unresolvedHref) {
+    blockers.push('// TODO (BLOCKER): ' + verificationInstruction + ' for youtube ' + config.id + '.');
+    diagnostics.push({
+      path: '$.config.locale.href',
+      code: 'pending-youtube-verification',
+      message: verificationInstruction,
+      severity: 'warning',
+    });
+  }
 
   if (options.production !== undefined) {
     if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');

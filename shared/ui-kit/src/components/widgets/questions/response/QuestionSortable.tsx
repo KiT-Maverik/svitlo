@@ -1,11 +1,5 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
-
-import { useId } from 'react';
-import { Box, IconButton, Stack } from '@mui/material';
-import DragIndicator from '@mui/icons-material/DragIndicator';
-import Close from '@mui/icons-material/Close';
 import {
   closestCenter,
   DndContext,
@@ -23,6 +17,13 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import Close from '@mui/icons-material/Close';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+import { Box, IconButton, Stack } from '@mui/material';
+import { useId } from 'react';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent, type QuestionItem } from './QuestionContent';
 

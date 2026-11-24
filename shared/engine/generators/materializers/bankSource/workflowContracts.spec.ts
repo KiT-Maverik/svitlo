@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
+
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { assertBankLanguages } from './bankSourceSafety';
 
 test('editorial language plan retains real unique languages including the source', () => {

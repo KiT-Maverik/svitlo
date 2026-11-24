@@ -1,9 +1,9 @@
 import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { digits09 } from './digits09';
+import { readWrite20 } from './readWrite20';
 import { readWrite100 } from './readWrite100';
 import { readWrite1000 } from './readWrite1000';
-import { readWrite20 } from './readWrite20';
 
 export const notation = defineSkillGroup({
   slug: 'notation',

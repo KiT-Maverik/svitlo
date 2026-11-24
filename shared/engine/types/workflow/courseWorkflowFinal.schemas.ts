@@ -1,15 +1,16 @@
 import { z } from 'zod';
-import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+
+import { assessment_Config_Schema } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import { chapter_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
 import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
-import { chapter_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
-import { assessment_Config_Schema } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import {
   lesson_Config_Schema,
   lessonConfigurator_Schema,
 } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
+import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 const rationale = z.string().min(1);
 /** Sparse built Lesson values and their original Build patch must be JSON-safe

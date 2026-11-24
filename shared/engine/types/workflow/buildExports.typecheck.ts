@@ -1,23 +1,22 @@
 import type {
-  LessonWorkflowStage1,
   CourseWorkflowLessonSeed,
   CourseWorkflowStage3NewLesson,
+  FlashcardBankWorkflowStage1,
+  FlashcardBankWorkflowStage2,
+  FlashcardBankWorkflowStage3,
+  LessonWorkflowStage1,
   LessonWorkflowStage2,
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage2,
   QuestionBankWorkflowStage3,
-  FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowStage2,
-  FlashcardBankWorkflowStage3,
 } from '../../build';
-
 import type { CourseWorkflowLessonSeed as InternalSeed } from './courseWorkflow.types';
+import type { FlashcardBankWorkflowStage3 as InternalFlashcardsStage3 } from './flashcardBankWorkflow.types';
 import type {
   LessonWorkflowStage1 as InternalLessonStage1,
   LessonWorkflowStage2 as InternalLessonStage2,
 } from './lessonWorkflow.types';
 import type { QuestionBankWorkflowStage3 as InternalQuestionsStage3 } from './questionBankWorkflow.types';
-import type { FlashcardBankWorkflowStage3 as InternalFlashcardsStage3 } from './flashcardBankWorkflow.types';
 
 // Compile-time public API contract. This file participates in the Engine
 // code:check:types check, but never ships in the built package.

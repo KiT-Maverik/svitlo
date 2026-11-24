@@ -1,16 +1,16 @@
 'use client';
 
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+import type { LanguageCode, QuizSection_Props } from '@svitlo/engine/runtime';
+
+import type { QuestionResponse } from '#types/questions';
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Box, Button, Stack, Typography } from '@mui/material';
-import type { QuizSection_Props } from '@svitlo/engine/runtime';
-import type { QuestionResponse } from '#types/questions';
-import type { LanguageCode } from '@svitlo/engine/runtime';
-import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
-import { QuestionCompletionContext } from './QuestionCompletion';
 import { QuestionProgress } from '../../../lesson/QuestionProgress';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { AnswerWithNumber } from '../AnswerWithNumber/AnswerWithNumber';
 import { AnswerWithText } from '../AnswerWithText/AnswerWithText';
 import { BuildAnswerWithBlocks } from '../BuildAnswerWithBlocks/BuildAnswerWithBlocks';
@@ -20,6 +20,7 @@ import { MatchBlocks } from '../MatchBlocks/MatchBlocks';
 import { OrderSequence } from '../OrderSequence/OrderSequence';
 import { SelectMultipleAnswers } from '../SelectMultipleAnswers/SelectMultipleAnswers';
 import { SelectOneAnswer } from '../SelectOneAnswer/SelectOneAnswer';
+import { QuestionCompletionContext } from './QuestionCompletion';
 
 export type { QuestionResponse } from '#types/questions';
 export type QuizCompletion = { passed: boolean; correct: number; total: number; timedOut: boolean };

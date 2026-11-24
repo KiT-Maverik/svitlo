@@ -1,5 +1,6 @@
-import { Suspense } from 'react';
 import { notFound, redirect } from 'next/navigation';
+import { Suspense } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
 type Props = {

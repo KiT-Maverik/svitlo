@@ -1,7 +1,9 @@
 import { z } from 'zod';
-import { deepStrict_Schema, subtitlesMediaReference_Schema, localizedMediaReference_Schema } from '#schemas';
-import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+
+import { deepStrict_Schema, localizedMediaReference_Schema, subtitlesMediaReference_Schema } from '#schemas';
+
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 const kind = createContentBlockBaseSchema('subtitles');
 export const subtitles_Config_Schema = kind

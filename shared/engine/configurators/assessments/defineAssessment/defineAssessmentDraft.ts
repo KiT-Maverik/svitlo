@@ -6,6 +6,7 @@ import type {
   PublicationLanguageOptions,
   RequireLanguages,
 } from '#types';
+
 import {
   mergeForValidation,
   onlyLocales,
@@ -14,11 +15,11 @@ import {
   splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import type { Assessment_Content_Section_Configurator } from './defineAssessment.schemas';
 import {
   assessment_Config_Schema,
   assessment_Draft_Props_Schema,
   type Assessment_Config,
+  type Assessment_Content_Section_Configurator,
   type Assessment_PropsBase,
 } from './defineAssessment.schemas';
 

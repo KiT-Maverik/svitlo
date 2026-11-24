@@ -112,6 +112,31 @@ test('Episode imports shared concrete Section renderer; no Section implementatio
   syntax(r.files);
   assert.deepEqual(r, materializeEpisode({ config: value, production: { specification: 'Narrative script' } }, ctx()));
 });
+test('Episode preserves reviewed Section notes in its narrative specification before Section handoff', () => {
+  const input = ep();
+  const production = { purpose: 'Introduce the scene', specification: 'Keep a nonvisual narrative path.' };
+  input.section.items.opening = { config: section('opening', input.section.items.opening.id), production };
+  const seen = [];
+  const result = materializeEpisode(
+    { config: input, production: { specification: 'Narrative script' } },
+    {
+      ...ctx(),
+      materializeSection: (node, context) => {
+        seen.push(node.production);
+        return sectionRenderer(node.config, context);
+      },
+    },
+  );
+  const doc = result.files.find(file => file.path === 'specification.md')?.content ?? '';
+  assert.match(doc, /Narrative script/);
+  assert.match(doc, /Section: opening/);
+  assert.match(doc, /Introduce the scene/);
+  assert.match(doc, /Keep a nonvisual narrative path/);
+  assert.equal(seen[0].methodologyIntegrated, true);
+  assert.deepEqual(production, { purpose: 'Introduce the scene', specification: 'Keep a nonvisual narrative path.' });
+  assert(!result.files.some(file => file.path === 'sections/opening/specification.md'));
+});
+
 test('Episode refuses unsupported child order and missing Section renderer', () => {
   const v = ep();
   v.section.order = [];

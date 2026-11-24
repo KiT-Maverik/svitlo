@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import ts from 'typescript';
 import { createHash } from 'node:crypto';
-import { materializeFlashcardBankDraft, materializeFlashcardBank } from './materializeFlashcardBank';
-import { gitBlobSha, authoredBankLiteral, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { test } from 'node:test';
+
+import ts from 'typescript';
+
+import { authoredBankLiteral, gitBlobSha, type BankSourceSnapshot } from '../bankSource/bankSourceSafety';
+import { materializeFlashcardBank, materializeFlashcardBankDraft } from './materializeFlashcardBank';
 
 const sha = (c: string) => c.repeat(40);
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
@@ -66,6 +68,10 @@ const finalAuthorization = (input: unknown = completed()) => ({
     inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
+  ownerLanguages: {
+    active: ['uk'],
+    planned: (input as ReturnType<typeof completed>).production.lesson.languages.planned,
+  },
 });
 const textBlock = (slug: string, n: number) => ({
   config: {
@@ -132,6 +138,20 @@ const completed = () => ({
   },
 });
 
+test('Flashcard Bank emits no copied language module; cards and Sides bind to Lesson constants', () => {
+  const input = completed();
+  input.production.lesson.languages.planned = ['uk', 'en'] as never;
+  const output = materializeFlashcardBank(input as never, finalAuthorization(input));
+  assert(!output.files.some(file => file.path === 'flashcardsLanguages.ts'));
+  const card = output.files.find(file => file.path === 'flashcards/alpha.ts')?.content ?? '';
+  const side = output.files.find(file => file.path === 'flashcards/alpha/content/front/index.ts')?.content ?? '';
+  assert.match(card, /import type \{ Languages \} from "#lessonsData\/0\//);
+  assert.match(card, /typeof parameters.flags/);
+  assert.match(card, /, Languages>/);
+  assert.match(side, /defineFlashcardSide<typeof items, Languages>/);
+  assert(!output.files.some(file => file.content.includes('Restore independently reviewed Flashcard languages')));
+});
+
 test('Flashcard Stage 1 produces one editorial source, no fake Card or Section', () => {
   const result = materializeFlashcardBankDraft(handoff() as never, draftAuthorization);
   assert.equal(result.publishable, false);
@@ -162,6 +182,11 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert(names.includes('flashcards/index.ts'));
   assert(names.includes('flashcards/alpha/content/front/index.ts'));
   assert(names.includes('flashcards/alpha/content/back/index.ts'));
+  assert(names.includes('flashcards/alpha/content/front/frontText/index.ts'));
+  assert(names.includes('flashcards/beta/content/back/backText/index.ts'));
+  assert(!names.some(path => path.includes('/items/')));
+  const front = result.files.find(file => file.path === 'flashcards/alpha/content/front/index.ts')?.content ?? '';
+  assert.match(front, /from "\.\/frontText"/);
   assert.equal(result.transition.sourceDraftPath, 'flashcards/draft.ts');
   assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));

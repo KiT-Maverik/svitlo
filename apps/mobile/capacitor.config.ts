@@ -1,4 +1,5 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+
 const config: CapacitorConfig = {
   appId: 'org.svitlo.mobile',
   appName: 'Svitlo',

@@ -1,38 +1,39 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, Checkbox, FormControlLabel, MenuItem, Radio, Stack, TextField, Typography } from '@mui/material';
-import type {
-  ContentBlock_Props,
-  LanguageCode,
-  AssessmentResourceLoader,
-  QuizSection_Props,
-  Question_SelectOneAnswer_Props,
-  Question_SelectMultipleAnswers_Props,
-  Question_MatchBlocks_Props,
-  Question_AnswerWithText_Props,
-  Question_AnswerWithNumber_Props,
-  Question_OrderSequence_Props,
-  Question_BuildAnswerWithBlocks_Props,
-  Question_FillBlanksWithBlocks_Props,
-  Question_FillBlanksWithText_Props,
-} from '@svitlo/engine/runtime';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import {
-  selectQuizQuestionIds,
-  selectOneAnswer_Props_Schema,
-  selectMultipleAnswers_Props_Schema,
-  matchBlocks_Props_Schema,
-  answerWithText_Props_Schema,
   answerWithNumber_Props_Schema,
-  orderSequence_Props_Schema,
+  answerWithText_Props_Schema,
   buildAnswerWithBlocks_Props_Schema,
   fillBlanksWithBlocks_Props_Schema,
   fillBlanksWithText_Props_Schema,
+  matchBlocks_Props_Schema,
+  orderSequence_Props_Schema,
+  selectMultipleAnswers_Props_Schema,
+  selectOneAnswer_Props_Schema,
+  selectQuizQuestionIds,
+  type AssessmentResourceLoader,
+  type ContentBlock_Props,
+  type LanguageCode,
+  type Question_AnswerWithNumber_Props,
+  type Question_AnswerWithText_Props,
+  type Question_BuildAnswerWithBlocks_Props,
+  type Question_FillBlanksWithBlocks_Props,
+  type Question_FillBlanksWithText_Props,
+  type Question_MatchBlocks_Props,
+  type Question_OrderSequence_Props,
+  type Question_SelectMultipleAnswers_Props,
+  type Question_SelectOneAnswer_Props,
+  type QuizSection_Props,
 } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
-import { QuestionProgress } from './QuestionProgress';
-import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
+import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+import { QuestionProgress } from './QuestionProgress';
 
 type Question =
   | Question_SelectOneAnswer_Props

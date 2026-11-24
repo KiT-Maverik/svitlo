@@ -4,10 +4,10 @@ import type {
   LessonWorkflowStage1Config,
   LessonWorkflowStage1Production,
   LessonWorkflowStage2,
-  LessonWorkflowStage2Section,
-  LessonWorkflowStage2QuizSection,
-  LessonWorkflowStage2SimpleBlock,
   LessonWorkflowStage2Checkpoint,
+  LessonWorkflowStage2QuizSection,
+  LessonWorkflowStage2Section,
+  LessonWorkflowStage2SimpleBlock,
 } from './lessonWorkflow.types';
 
 // Real Skill IDs and source Sha must still be verified against the repository.

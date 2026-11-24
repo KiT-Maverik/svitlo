@@ -2,18 +2,16 @@
  * Explicit Lesson-owned Flashcard Bank Stage 1/Stage 5 source operations.
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
-import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import type {
+  Flashcard_Relationship,
+  Flashcard_Relationship_Type,
+} from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { flashcardBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   FlashcardBankWorkflowStage1,
   FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
-import type {
-  Flashcard_Relationship,
-  Flashcard_Relationship_Type,
-} from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
-import { materializeFlashcard } from '../flashcard/materializeFlashcard';
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import {
   assertBankLanguages,
   assertBankOrder,
@@ -21,18 +19,26 @@ import {
   assertBankSha,
   assertBankStatement,
   assertBankUuid,
-  assertUniqueBankEntityIds,
   assertNoPendingBankSources,
   assertPinnedBankInput,
+  assertUniqueBankEntityIds,
   authoredBankLiteral,
   preflightBankSource,
   type BankPinnedSource,
-  type BankSourceSnapshot,
-  type BankSourceResult,
-  type BankSourceFile,
   type BankSourceDiagnostic,
+  type BankSourceFile,
+  type BankSourceResult,
+  type BankSourceSnapshot,
 } from '../bankSource/bankSourceSafety';
+import {
+  assertBankLessonLanguages,
+  lessonConstantsImport,
+  type LessonLanguageOwnership,
+} from '../bankSource/lessonLanguageOwnership';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
+import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 
 export type FlashcardBankDraftAuthorization = {
   authorized: true;
@@ -44,6 +50,7 @@ export type FlashcardBankDraftAuthorization = {
 export type FlashcardBankFinalAuthorization = Omit<FlashcardBankDraftAuthorization, 'authorized'> & {
   source: BankPinnedSource;
   blocks: AssessmentBlockEvidence;
+  ownerLanguages: LessonLanguageOwnership;
 };
 
 const symmetric = new Set<Flashcard_Relationship_Type>(['reverse', 'equivalent', 'contrast', 'complementary']);
@@ -252,6 +259,8 @@ function planFlashcardBank(
   }
   const edges = projectRelationships(input);
   const languages = input.production.lesson.languages;
+  assertBankLessonLanguages(authorization.ownerLanguages, languages);
+  const ownerImport = lessonConstantsImport(authorization.ownerLessonId);
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
   const imports: string[] = [];
@@ -274,8 +283,16 @@ function planFlashcardBank(
       {
         directory: 'flashcards',
         languages,
+        ownerLanguagesImport: ownerImport,
         materializeBlock: (block, context) =>
-          materializeAssessmentBlock(block, context, languages.planned, 'flashcardsLanguages', authorization.blocks),
+          materializeAssessmentBlock(
+            block,
+            context,
+            languages.planned,
+            'flashcards',
+            ownerImport,
+            authorization.blocks,
+          ),
       },
     );
     files.push(...output.files);
@@ -287,21 +304,20 @@ function planFlashcardBank(
   files.push({
     path: 'flashcards/index.ts',
     kind: 'typescript',
-    content: imports.join('\n') + '\n\nexport const flashcards = {\n' + entries.join('\n') + '\n};\n',
-  });
-  files.push({
-    path: 'flashcardsLanguages.ts',
-    kind: 'typescript',
     content:
-      '// Approved document language only; independent translations are not generated.\n' +
-      'export const languages = ' +
-      JSON.stringify([languages.document]) +
-      ' as const;\n',
+      'export type { Languages } from ' +
+      JSON.stringify(ownerImport) +
+      ';\n' +
+      imports.join('\n') +
+      '\n\nexport const flashcards = {\n' +
+      entries.join('\n') +
+      '\n};\n',
   });
   const plan = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'flashcards/index.ts',
     draftPath: 'flashcards/draft.ts',
     source: authorization.source,
   });
-  return { ...plan, diagnostics };
+  const sceneDrafts = materializeBankSceneDrafts(input.config, languages.document, authorization.blocks);
+  return { ...plan, diagnostics, sceneDrafts };
 }

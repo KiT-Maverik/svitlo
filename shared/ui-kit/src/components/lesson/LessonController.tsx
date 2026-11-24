@@ -1,5 +1,6 @@
 'use client';
 
+import Container from '@mui/material/Container';
 import {
   createContext,
   memo,
@@ -12,27 +13,28 @@ import {
   useRef,
   useState,
 } from 'react';
-import Container from '@mui/material/Container';
-import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
-import { ContentLanguageContext } from '../widgets/ContentBlockRenderer/ContentLanguageContext';
-import { EngineQuestionRenderer } from './EngineQuestionRenderer';
-import { EngineFlashcardsRenderer } from './EngineFlashcardsRenderer';
-import type {
-  LearningLayoutTopBarProps,
-  LearningLayoutBottomBarProps,
-  LearningLayoutProgress,
+
+import { DEFAULT_SUPPORTED_LANGUAGES, type Lesson_Props, type Section_Props } from '@svitlo/engine/runtime';
+
+import {
+  LearningLayoutBottomBar,
+  LearningLayoutTopBar,
+  type LearningLayoutBottomBarProps,
+  type LearningLayoutProgress,
+  type LearningLayoutTopBarProps,
 } from '../layout/LearningLayout/LearningLayout';
-import { LearningLayoutTopBar, LearningLayoutBottomBar } from '../layout/LearningLayout/LearningLayout';
+import { ContentLanguageContext } from '../widgets/ContentBlockRenderer/ContentLanguageContext';
+import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+import { EngineFlashcardsRenderer } from './EngineFlashcardsRenderer';
+import { EngineQuestionRenderer } from './EngineQuestionRenderer';
+import type { LessonProps } from './Lesson';
+import styles from './Lesson.module.css';
+import { createLessonEventBus, EventSceneHost, LessonEventBusContext, resolveLessonEventScenes } from './LessonEvents';
 import { LessonNavigationContext, type LessonNavigationAction } from './LessonNavigation';
 import { LessonOperationsContext } from './LessonOperationsContext';
 import { LessonSteps } from './LessonSteps';
-import { MediaVolumeControl } from './MediaVolumeControl';
 import { MediaSettingsProvider } from './MediaSettings';
-import type { LessonProps } from './Lesson';
-import type { Lesson_Props, Section_Props } from '@svitlo/engine/runtime';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
-import styles from './Lesson.module.css';
+import { MediaVolumeControl } from './MediaVolumeControl';
 
 const DEFAULT_LESSON_EVENTS = ['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed'] as const;
 

@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import type { LanguageCode, LocalizedEpisode } from '@svitlo/engine/runtime';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import { useEffect, useRef, useState } from 'react';
+
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type LocalizedEpisode } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
+
+import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import { EngineContentBlockRenderer } from '../lesson/EngineContentBlockRenderer';
 import { MediaSettingsProvider } from '../lesson/MediaSettings';
 import { MediaVolumeControl } from '../lesson/MediaVolumeControl';
-import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type EpisodeProps = {

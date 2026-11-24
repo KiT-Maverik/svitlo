@@ -1,14 +1,16 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
-vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
-
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { SvitloThemeProvider } from '@svitlo/ui-kit';
+
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
 import LearningLayout from './LearningLayout';
 import { LearningLayout_fx } from './LearningLayout.unit.fx';
 import { LearningLayout_mx } from './LearningLayout.unit.mx';
-import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+
+vi.mock('@/i18n/useLessonLocale', () => ({ useLessonLocale: vi.fn() }));
+
 const aria = ukUiKitMessages.learningLayout;
 const locale = aria;
 

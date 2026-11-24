@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
 import { materializeCheckpointAnswer, type CheckpointAnswerBlockSource } from './materializeCheckpointAnswer';
@@ -23,7 +24,7 @@ function context() {
   return {
     requests,
     renderer: {
-      directory: 'content/items/first/answer',
+      directory: 'first/answer',
       documentLanguage: 'uk',
       languagesImport: '../../../../languages',
       renderChild: (child: CheckpointAnswerBlockSource, directory: string) => {
@@ -47,10 +48,7 @@ function context() {
 test('CheckpointAnswer delegates each ContentBlock and preserves order, imports and identity', () => {
   const { renderer, requests } = context();
   const result = materializeCheckpointAnswer(answer(), renderer);
-  assert.deepEqual(requests, [
-    'text:content/items/first/answer/content/items/second',
-    'text:content/items/first/answer/content/items/first',
-  ]);
+  assert.deepEqual(requests, ['text:first/answer/second', 'text:first/answer/first']);
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpointAnswer<"answer", typeof content.items, typeof languages>/);
   assert.match(code, /"second": answer_second/);
@@ -128,7 +126,7 @@ test('CheckpointAnswer forbids a child delegate from writing outside its assigne
         ...context().renderer,
         renderChild: child => ({
           exportName: child.slug,
-          files: [{ path: 'content/items/first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
+          files: [{ path: 'first/answer/index.ts', content: 'unowned', kind: 'typescript' as const }],
           diagnostics: [],
         }),
       }),

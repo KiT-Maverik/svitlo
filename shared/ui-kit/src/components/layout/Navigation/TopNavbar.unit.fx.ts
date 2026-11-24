@@ -1,8 +1,9 @@
-import { createElement } from 'react';
 import { render } from '@testing-library/react';
-import TopNavbar from './TopNavbar';
+import { createElement } from 'react';
+
 import type { NavbarProps } from './Navbar';
 import { Navbar_fx } from './Navbar.unit.fx';
+import TopNavbar from './TopNavbar';
 
 export const TopNavbar_fx = {
   render: (props: Partial<NavbarProps> = {}) =>

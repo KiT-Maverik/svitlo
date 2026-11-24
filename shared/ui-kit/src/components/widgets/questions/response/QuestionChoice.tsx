@@ -1,11 +1,12 @@
 'use client';
 
+import { Box, ButtonBase } from '@mui/material';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import { Box, ButtonBase } from '@mui/material';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { QuestionContent, questionBlockLabel, type QuestionBlock } from './QuestionContent';
 import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
+import { questionBlockLabel, QuestionContent, type QuestionBlock } from './QuestionContent';
 
 export type ChoiceFeedback = 'correct' | 'incorrect' | 'missed' | undefined;
 

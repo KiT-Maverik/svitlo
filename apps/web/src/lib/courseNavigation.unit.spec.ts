@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type { LocalizedCourse } from './courseResources';
+
 import { coursePropsToTopics, flattenCourseTopics } from './courseNavigation';
+import type { LocalizedCourse } from './courseResources';
 
 const course: LocalizedCourse = {
   id: 'course-id',

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { preloadScene, resolveScene } from './sceneLoader';
 
 const authoredSceneIds = [

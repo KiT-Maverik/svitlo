@@ -1,14 +1,16 @@
-import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { z } from 'zod';
-import type { DeepPartial } from '#types';
+
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import type { DeepPartial } from '#types';
+
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import type { ContentSection_Configurator } from '../../sections/defineContentSection/defineContentSection';
-import { quizSection_Props_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
+import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
+import { quizSection_Props_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 
 /** The one Quiz is structurally separate from optional supporting Content Sections. */
 export type Assessment_Content_Section_Configurator = ConfiguratorChild<ContentSection_Configurator>;

@@ -1,10 +1,12 @@
 'use client';
 
-import { createContext, Suspense, useContext, useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import { createContext, Suspense, useContext, useEffect, useState } from 'react';
+
 import { scene_Props_Schema, type ContentBlock_Scene_Props, type Lesson_Props } from '@svitlo/engine/runtime';
+
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type EventScene = ContentBlock_Scene_Props;

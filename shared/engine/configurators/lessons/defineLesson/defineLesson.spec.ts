@@ -1,11 +1,10 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
-import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
+import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from './defineLesson';
 import { lesson_Config_Schema, lesson_Props_Schema, lessonConfigurator_Schema } from './defineLesson.schemas';
 

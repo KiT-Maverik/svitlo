@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
 import ThreeSlotLayout from './ThreeSlotLayout';
 
 const panel = (label: string) => (

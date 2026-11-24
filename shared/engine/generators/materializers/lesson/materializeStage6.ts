@@ -1,34 +1,34 @@
 import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
-import { materializeContentSection } from '../contentSection/contentSection';
-import { materializePracticeSection } from '../practiceSection/practiceSection';
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
+import { materializeAudio } from '../audio/materializeAudio';
+import { materializeCarousel } from '../carousel/materializeCarousel';
+import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
+import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
-import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
-import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeContentSection } from '../contentSection/contentSection';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
+import { materializeImage } from '../image/materializeImage';
+import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializePracticeSection } from '../practiceSection/practiceSection';
 import { materializeQuestSection } from '../questSection/questSection';
 import { materializeQuestStage } from '../questStage/questStage';
 import { materializeQuestTask } from '../questTask/questTask';
+import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeScene, renderSceneFiles } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeAudio } from '../audio/materializeAudio';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene } from '../scene/materializeScene';
-import { materializeCarousel } from '../carousel/materializeCarousel';
-import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
-import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
-import { preserveAssessmentReferences } from './preserveAssessmentReferences';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { assertLessonSourceReleaseReady, materializeLesson, type ChildConfig, type Result } from './lesson';
+import { preserveAssessmentReferences, reviewedSkillReferences } from './preserveAssessmentReferences';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
 export type LessonStage6Source = {
@@ -77,8 +77,16 @@ function gitBlobSha(source: string): string {
     .update(source, 'utf8')
     .digest('hex');
 }
-function languagesFromRoot(directory: string): string {
-  return directory ? '../'.repeat(directory.split('/').length) + 'languages' : './languages';
+/** Preserve owner-rooted Lesson/Episode aliases through recursive children.
+ * For old relative imports, resolve only the additional directory depth;
+ * never assume a Lesson root when rendering an Episode subtree. */
+function childLanguagesImport(parent: RenderOptions, childDirectory: string): string {
+  const from = parent.languagesImport;
+  if (from.startsWith('#') || from.startsWith('@')) return from;
+  if (!/^(?:\.\.?\/)/.test(from)) throw new Error('Unsafe inherited languages import: ' + from);
+  const delta = childDirectory.split('/').length - parent.directory.split('/').length;
+  if (delta < 0) throw new Error('Child languages import escaped parent directory');
+  return '../'.repeat(delta) + from.replace(/^\.\//, '');
 }
 function node(value: unknown, at: string): Node {
   if (!isRecord(value) || !isRecord(value.config) || (!isRecord(value.production) && value.production !== undefined))
@@ -101,6 +109,7 @@ function node(value: unknown, at: string): Node {
  */
 function normalizeStage2(input: LessonWorkflowStage2) {
   const metadata = new Map<string, Record<string, unknown>>();
+  const scenes: { id: string; slug: string; specification?: string }[] = [];
   const seen = new Set<string>([input.config.id]);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
     if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
@@ -133,6 +142,13 @@ function normalizeStage2(input: LessonWorkflowStage2) {
     if (current.production) metadata.set(id, current.production);
     const normalized: Record<string, unknown> = { ...config };
     const typ = config.type;
+    if (typ === 'scene')
+      scenes.push({
+        id,
+        slug: config.slug as string,
+        specification:
+          typeof current.production?.specification === 'string' ? current.production.specification : undefined,
+      });
 
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
       normalized.content = ordered(config.content, at + '.content', true);
@@ -194,7 +210,7 @@ function normalizeStage2(input: LessonWorkflowStage2) {
     return normalized;
   }
   const sections = ordered(input.config.section, 'lesson.section', true);
-  return { sections, metadata };
+  return { sections, metadata, scenes };
 }
 
 /**
@@ -254,7 +270,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
   const assessment = input.production.assessment;
   if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
-  const { sections, metadata } = normalizeStage2(input);
+  const { sections, metadata, scenes } = normalizeStage2(input);
   // Validate the actual editorial input before calling any source renderer.
   // Keep the original object for source fidelity; parsing is not a new authored representation.
   const validated = lessonWorkflowStage2_Schema.safeParse(input);
@@ -285,6 +301,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
         return materializeScene(config as Parameters<typeof materializeScene>[0], {
           ...opts,
           registered: false,
+          specificationSidecar: false,
           production: {
             specification: typeof production?.specification === 'string' ? production.specification : undefined,
             pending: true,
@@ -297,7 +314,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
             block(child as ChildConfig, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               production: metadata.get(child.id),
             }),
         });
@@ -308,24 +325,24 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
             materializeCheckpointItem(item, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               renderQuestion: (text, childDir) =>
                 block(text as ChildConfig, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   production: metadata.get(text.id),
                 }),
               renderAnswer: (answer, childDir) =>
                 materializeCheckpointAnswer(answer, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   renderChild: (child, deeper) =>
                     block(child as ChildConfig, {
                       directory: deeper,
                       documentLanguage,
-                      languagesImport: languagesFromRoot(deeper),
+                      languagesImport: childLanguagesImport(context, deeper),
                       production: metadata.get(child.id),
                     }),
                 }),
@@ -394,10 +411,30 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     {
       documentLanguage,
       production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
+      skillReferences: reviewedSkillReferences(options.sourceText, source.sourcePath, input),
       renderSection: section,
     },
   );
   const root = source.sourcePath.slice(0, -'draft.ts'.length);
+  const files = preserveAssessmentReferences(
+    options.sourceText,
+    source.sourcePath,
+    input,
+    result.files.map(file => ({ ...file, path: root + file.path })),
+  );
+  // The nested defineScene sources stay within Lesson ownership. Executable
+  // Scene drafts belong to the textbook's independent UUID-scoped scene tree.
+  // Stage 6.1 includes both in ONE attested source plan and Git transaction.
+  for (const scene of scenes) {
+    const directory = 'content/' + match[1] + '/scenes/' + scene.id.at(-1) + '/' + scene.id + '/';
+    for (const [name, content] of renderSceneFiles({ ...scene, documentLanguage })) {
+      files.push({
+        path: directory + name,
+        kind: name.endsWith('.css') ? 'code' : 'typescript',
+        content,
+      });
+    }
+  }
   return {
     lessonId: config.id,
     sourcePath: source.sourcePath,
@@ -405,12 +442,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     sourceBlobSha: source.sourceBlobSha,
     sourceCommitSha: source.sourceCommitSha,
     publishable: false,
-    files: preserveAssessmentReferences(
-      options.sourceText,
-      source.sourcePath,
-      input,
-      result.files.map(file => ({ ...file, path: root + file.path })),
-    ),
+    files,
     diagnostics: result.diagnostics,
   };
 }

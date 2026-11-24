@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
 import UserCabinet from './UserCabinet';
 import { userCabinetDemo } from './UserCabinet.demo';
 

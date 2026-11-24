@@ -1,13 +1,12 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { defineText } from '../contentBlocks/defineText/defineText';
-import { defineContentSection } from './defineContentSection';
-import { definePracticeSection } from './definePracticeSection';
 import { defineCodingTaskSection } from './defineCodingTaskSection';
-import { defineLearningFlowSection } from './defineLearningFlowSection';
+import { defineContentSection } from './defineContentSection';
 import { defineFlashcardsSection } from './defineFlashcardsSection';
+import { defineLearningFlowSection } from './defineLearningFlowSection';
+import { definePracticeSection } from './definePracticeSection';
 
 describe('Configurators', () => {
   describe('Sections', () => {

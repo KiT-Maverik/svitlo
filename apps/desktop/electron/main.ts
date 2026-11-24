@@ -1,5 +1,7 @@
-import { app, BrowserWindow } from 'electron';
 import { join } from 'node:path';
+
+import { app, BrowserWindow } from 'electron';
+
 import { installPackagedResources, lockDownSession, openDesktopWindow } from '@svitlo/adapter-electron';
 
 // main.ts is bundled into dist-main/main.cjs, independent of Next.js or a repo checkout.

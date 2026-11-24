@@ -7,10 +7,11 @@ import type {
   ContentBlock_Subtitles_Props,
   ContentBlock_Text_Props,
 } from '@svitlo/engine/runtime';
-import type { ContentBlockResponse, SceneRegistry } from './types';
-import { ContentBlockRenderer } from './ContentBlockRenderer';
-import { questionBlockLabel } from '../questions/response/QuestionContent';
+
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
+import { questionBlockLabel } from '../questions/response/QuestionContent';
+import { ContentBlockRenderer } from './ContentBlockRenderer';
+import type { ContentBlockResponse, SceneRegistry } from './types';
 
 const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
   id,

@@ -1,4 +1,5 @@
 import { courseActivities } from '@svitlo/engine/runtime';
+
 import type { LocalizedCourse, LocalizedCourseNode } from './courseResources';
 
 export type CourseNavigationTopic = {

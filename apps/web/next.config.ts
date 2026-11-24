@@ -1,5 +1,6 @@
-import type { NextConfig } from 'next';
 import { readFileSync } from 'node:fs';
+
+import type { NextConfig } from 'next';
 
 if (!process.env.SVITLO_TEXTBOOK) {
   throw new Error('SVITLO_TEXTBOOK must explicitly select a content package for the Web build.');

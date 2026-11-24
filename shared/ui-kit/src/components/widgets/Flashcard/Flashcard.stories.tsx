@@ -1,9 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Flashcard, type FlashcardProps } from './Flashcard';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { useState } from 'react';
+
 import { ukUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
+import { Flashcard, type FlashcardProps } from './Flashcard';
 
 type StoryProps = Omit<FlashcardProps, 'revealed' | 'onReveal' | 'onRate'> & { initialRevealed?: boolean };
 

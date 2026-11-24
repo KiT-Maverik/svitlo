@@ -1,7 +1,8 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { Youtube } from './Youtube';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
+import { Youtube } from './Youtube';
 
 const meta = {
   title: 'Content blocks/YouTube',

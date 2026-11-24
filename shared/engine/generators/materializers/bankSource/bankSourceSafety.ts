@@ -4,6 +4,7 @@
  * This module does not read a worktree, write files, approve reviews or publish.
  */
 import { createHash } from 'node:crypto';
+
 import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 
 export type BankSourceFile = {
@@ -20,6 +21,8 @@ export type BankSourceDiagnostic = {
 export type BankSourceResult = {
   files: BankSourceFile[];
   diagnostics: BankSourceDiagnostic[];
+  /** Independently reviewable six-file Scene drafts outside the bank's Lesson directory. */
+  sceneDrafts?: BankSourceFile[];
   /** Consume the reviewed Stage 3 draft and create the index in one atomic commit. */
   transition?: {
     sourceDraftPath: string;

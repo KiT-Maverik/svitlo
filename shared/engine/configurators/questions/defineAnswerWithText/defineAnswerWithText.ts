@@ -1,39 +1,40 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import type { ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+
 import {
   cloneJson,
+  ensureQuestionPatchShape,
   finishFiles,
   isRecord,
-  ensureQuestionPatchShape,
   mergeQuestionContent,
-  projectQuestionLocale,
   projectAnswerList,
-  resolveCommonContent,
+  projectQuestionLocale,
   resolveBlockCollection,
   resolveBlockMap,
-  snapshotCommonContent,
+  resolveCommonContent,
+  resolvePublicationLanguages,
   snapshotBlockCollection,
+  snapshotCommonContent,
   validateBlockCollection,
   validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch,
-  type QuestionCommonPatch,
-  type QuestionResourcePublication,
-  type QuestionOverridePublication,
-  resolvePublicationLanguages,
   validateQuestionPublication,
+  type OrderedBlockPatch,
   type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
 } from '../_shared__questions';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   answerWithText_Config_Schema,
   answerWithText_Override_Config_Schema,
-  type Question_AnswerWithText_Config,
   answerWithText_Props_Schema,
-  type Question_AnswerWithText_Props,
+  type Question_AnswerWithText_Config,
   type Question_AnswerWithText_MetadataOverrides,
+  type Question_AnswerWithText_Props,
 } from './defineAnswerWithText.schemas';
 
 const metadataSchema = answerWithText_Config_Schema.omit({ content: true });

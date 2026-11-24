@@ -38,40 +38,11 @@ const lesson = {
     languages,
   },
 };
+// Stage 1 holds only the true owner and language handoff. Lesson metadata
+// remains in the Lesson, not copied into the inert bank draft.
 const questions = {
   config: { ownerLessonId: id },
-  production: {
-    languages,
-    lesson: {
-      sourcePath: 'content/example/data/lessons/5/' + id + '/index.ts',
-      sourceSha: sha,
-      referencePath: 'reference.md',
-      referenceSha: sha,
-      methodologyPath: 'methodology.md',
-      title: 'Observation',
-    },
-    assessment: { ...assessment, quizRequiredForCompletion: false },
-    ownershipRationale: 'Independent coverage',
-    audience: 'Learners',
-    scope: 'Observation',
-    prerequisites: 'None',
-    misconceptions: 'Distinguish observation from inference',
-    mediaNeeds: 'None',
-    sourcesAndDependencies: 'Pinned reference',
-    evidenceIntent: [
-      {
-        skillId,
-        outcome: 'Explain a verified observation',
-        assessmentMethod: 'application',
-        cognitiveOperation: 'Apply the concept',
-        knowledgeAspect: 'Observation',
-        cognitiveDemand: 'Apply in context',
-        misconception: 'Confuses observation and inference',
-        context: 'Source-language task',
-        expectedEvidence: 'Explains the distinction',
-      },
-    ],
-  },
+  production: { languages },
 };
 const flashcards = {
   production: {

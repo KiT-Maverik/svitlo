@@ -18,7 +18,7 @@ export function parseEpisodeHandoff(source) {
   if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
     throw Error('Invalid or oversized Course Episode handoff');
   const match = source.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
   );
   if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
   const result = JSON.parse(match[1]);
@@ -219,7 +219,16 @@ export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, 
   )
     throw Error('Direct Episode worker returned an invalid source plan');
   const prefix = meta.courseRoot + '/';
-  const files = output.files.map(file => ({ ...file, path: prefix + file.path }));
+  // Source materializers own Course-relative Episode modules and separately
+  // UUID-scoped textbook Scenes. Their two path domains remain disjoint and
+  // are independently allowlisted by the trusted Episode transaction.
+  const files = output.files.map(file => ({
+    ...file,
+    path:
+      typeof file.path === 'string' && file.path.startsWith(meta.textbookRoot + '/scenes/')
+        ? file.path
+        : prefix + file.path,
+  }));
   const rootIndex = prefix + meta.placement + '/index.ts';
   if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
   const parent = restoreEpisodePlacement(

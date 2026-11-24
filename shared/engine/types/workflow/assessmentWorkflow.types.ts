@@ -1,11 +1,12 @@
 import { z } from 'zod';
+
 import { assessment_Config_Schema } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 import {
   lessonWorkflowContentSection_Schema,
   lessonWorkflowQuizSection_Schema,
   workflowOrdered_Schema,
 } from './lessonWorkflow.types';
+import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 const reviewedText = z
   .string()

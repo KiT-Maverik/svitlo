@@ -40,6 +40,7 @@
     }
   },
   "imports": {
+    "#skillsData/*": "./data/skills/*.ts",
     "#lessonsData/*": "./data/lessons/*.ts",
     "#coursesData/*": "./data/courses/*.ts"
   }

@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
-import { materializeScene } from './materializeScene';
+import { materializeScene, renderSceneFiles, sceneFileNames } from './materializeScene';
 
 const sceneId = '1cd999af-66ad-4f01-ae77-faf6454b56c1';
 const scene = () => ({
@@ -17,18 +18,21 @@ const context = () => ({
   documentLanguage: 'uk',
   languagesImport: '../../../languages',
   registered: false,
+  specificationSidecar: false,
   production: { specification: '# Verified scene\n\nUse the approved interaction.\n', pending: true },
 });
 function parse(source: string) {
   assert.equal(syntaxErrorCount(source), 0);
 }
 
-test('Scene emits canonical source, source locale and the exact reviewed specification', () => {
+test('Scene emits canonical Config source without duplicating its specification as a file', () => {
   const result = materializeScene(scene(), context());
   assert.deepEqual(result, materializeScene(scene(), context()), 'same source must be deterministic');
   assert.equal(result.exportName, 'chooseShape');
-  assert.equal(result.files[0]?.path, 'content/items/activity/specification.md');
-  assert.equal(result.files[0]?.content, context().production.specification);
+  assert.deepEqual(
+    result.files.map(file => file.path),
+    ['content/items/activity/index.ts'],
+  );
   const code = result.files.at(-1)!.content;
   parse(code);
   assert.match(code, /defineScene<"chooseShape", typeof languages>/);
@@ -111,3 +115,54 @@ function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
   });
   return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
 }
+
+test('one shared Scene draft template emits six parseable files with inert complete reviewed specification', () => {
+  const reviewed = 'Original interaction\n*/\nexport const injected = true;\r\n/* keep this text';
+  const info = { id: sceneId, slug: 'chooseShape', documentLanguage: 'uk', specification: reviewed };
+  const files = renderSceneFiles(info);
+  assert.deepEqual([...files.keys()], sceneFileNames(info));
+  assert.deepEqual([...files], [...renderSceneFiles(info)], 'templates are deterministic');
+  assert.equal(files.has('specification.md'), false);
+  for (const [filename, content] of files) {
+    assert.equal((content.match(/TODO \(BLOCKER\)/g) ?? []).length, 1, filename);
+    if (filename.endsWith('.ts') || filename.endsWith('.tsx')) {
+      const source = ts.createSourceFile(
+        filename,
+        content,
+        ts.ScriptTarget.ES2022,
+        true,
+        filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+      );
+      assert.deepEqual(
+        (source as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics,
+        [],
+        filename,
+      );
+    }
+    assert.doesNotMatch(content, /sceneImplementationRequired|sceneSourceLocaleRequired|as any|@ts-ignore/);
+  }
+  const jsx = files.get('ChooseShape.tsx')!;
+  assert.match(jsx, /ContentBlock_Scene_Props\['locale'\]\['value'\]/);
+  assert.match(jsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
+  assert.match(jsx, /\/\/ \/\* keep this text/);
+  assert.doesNotMatch(jsx, /^export const injected = true;/m);
+  assert.match(jsx, /aria-hidden="true"/);
+  assert.match(files.get('ChooseShape.constants.ts')!, /testIds = \{\} as const/);
+  assert.throws(() => renderSceneFiles({ ...info, specification: '' }), /reviewed production\.specification/);
+  assert.throws(() => renderSceneFiles({ ...info, slug: '../injected' }), /Unsafe Scene slug/);
+  assert.throws(() => renderSceneFiles({ ...info, id: '../injected' }), /canonical lowercase UUID/);
+});
+
+test('non-Lesson Scene consumers retain the original reviewed specification sidecar by default', () => {
+  const reviewed = context().production.specification;
+  const result = materializeScene(scene(), { ...context(), specificationSidecar: undefined });
+  const sidecar = result.files.find(file => file.path === 'content/items/activity/specification.md');
+  assert.equal(sidecar?.content, reviewed);
+  assert.equal(sidecar?.kind, 'specification');
+  assert(result.files.some(file => file.path === 'content/items/activity/index.ts'));
+  assert.equal(
+    materializeScene(scene(), context()).files.some(file => file.kind === 'specification'),
+    false,
+    'Lesson Stage 6.1 opts out of the sidecar when its TSX stores the complete specification',
+  );
+});

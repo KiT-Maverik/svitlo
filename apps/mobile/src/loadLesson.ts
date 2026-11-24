@@ -1,13 +1,14 @@
 import {
   assembleLessonProps,
+  getLanguageCode,
   languageCode_Schema,
   resolveEntityPath,
-  getLanguageCode,
+  type LanguageCode,
   type Lesson_Props,
-  type PublishedLessonPropsResource,
   type LessonPropsFragment,
+  type Locale,
+  type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
-import type { LanguageCode, Locale } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
 /** Local build assets only; no server components, remote URLs or authored-data imports. */

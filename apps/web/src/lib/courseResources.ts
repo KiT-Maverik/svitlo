@@ -1,6 +1,8 @@
 import 'server-only';
+
 import { loadPublishedCourseLessonProps, loadPublishedCourseTree } from '@svitlo/adapter-nextjs';
 import { courseActivities, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
+
 export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } from '@svitlo/engine/runtime';
 export const loadCourseTree = loadPublishedCourseTree;
 

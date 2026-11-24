@@ -128,14 +128,14 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   for (const key of slides.order) {
     const child = slides.items[key];
     if (child === false) continue;
-    const childDirectory = (directory ? directory + '/' : '') + 'slides/items/' + key;
+    const childDirectory = (directory ? directory + '/' : '') + 'slides/' + key;
     const result = context.renderChild(child, childDirectory);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('Carousel.slides.items.' + key + ': child materializer returned no valid export');
     }
     const alias = 'slide_' + key;
     imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/items/' + key) + ';',
+      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/' + key) + ';',
     );
     entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const f of result.files) {

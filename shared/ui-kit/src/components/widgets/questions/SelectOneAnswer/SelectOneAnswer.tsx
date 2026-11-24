@@ -1,14 +1,17 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
 import { useContext } from 'react';
-import { QuestionCompletionContext } from '../response/QuestionCompletion';
+
 import type { Question_SelectOneAnswer_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
-import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
+import { QuestionCompletionContext } from '../response/QuestionCompletion';
 import { questionLabel } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function SelectOneAnswer({
   response,

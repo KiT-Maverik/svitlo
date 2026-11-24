@@ -1,19 +1,19 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import { UNRESOLVED_YOUTUBE_HREF, type AllLanguageCodes, type LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
   mergeForValidation,
   onlyLocales,
   onlyStrings,
-  splitLocalizedFields,
   resolvePublicationLanguages,
   selectPublicationLocales,
+  splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
 import {
   youtube_Config_Schema,
-  youtube_Props_Schema,
   youtube_Override_Config_Schema,
+  youtube_Props_Schema,
   type ContentBlock_Youtube_Config,
   type ContentBlock_Youtube_Locale,
   type ContentBlock_Youtube_Overrides,

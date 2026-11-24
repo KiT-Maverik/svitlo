@@ -1,5 +1,6 @@
-import type { DeepPartial } from '#types';
 import type { LanguageCode } from '#schemas';
+import type { DeepPartial } from '#types';
+
 import { mergeForValidation, splitLocalizedFields } from '../../_shared__configurators';
 import { cloneJson, isRecord } from './collections.utils';
 import { selectPublicationLocales } from './publicationLanguages.utils';

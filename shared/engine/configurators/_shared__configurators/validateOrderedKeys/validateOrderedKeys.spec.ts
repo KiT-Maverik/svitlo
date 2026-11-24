@@ -1,6 +1,6 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
+
 import { validateOrderedKeys } from './validateOrderedKeys.utils';
 
 describe('Configurators', () => {

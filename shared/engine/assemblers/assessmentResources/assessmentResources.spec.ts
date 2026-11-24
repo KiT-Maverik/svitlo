@@ -3,8 +3,8 @@ import test from 'node:test';
 
 import {
   assessmentResourcePath,
-  selectQuizQuestionIds,
   selectAccessibleFlashcardIds,
+  selectQuizQuestionIds,
   validateAssessmentReferences,
   type AssessmentResourceManifest,
 } from './assessmentResources';

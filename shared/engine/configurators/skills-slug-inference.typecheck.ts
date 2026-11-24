@@ -1,7 +1,7 @@
 import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
-import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 import { defineSkillDomain } from './skills/defineSkillDomain/defineSkillDomain';
+import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;

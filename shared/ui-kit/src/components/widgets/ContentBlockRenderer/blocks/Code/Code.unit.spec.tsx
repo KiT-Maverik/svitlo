@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import type { ContentBlock_Code_Props } from '@svitlo/engine/runtime';
 
-import { Code } from './Code';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
+import { Code } from './Code';
 import { resolveCodeVariables } from './Code.utils';
 
 const response: ContentBlock_Code_Props = {

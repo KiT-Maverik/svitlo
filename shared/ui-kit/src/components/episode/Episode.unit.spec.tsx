@@ -1,6 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import type { LocalizedEpisode } from '@svitlo/engine/runtime';
+
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { Episode } from './Episode';
 

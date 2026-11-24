@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
+
 import { defineAudio } from './index';
 
 const id = 'e5235ac2-2c44-4c10-8c48-3c7bad649011';

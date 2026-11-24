@@ -1,11 +1,10 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { mergeForValidation } from '../../_shared__configurators';
 import { defineSkill, skill_Props_Schema } from '../defineSkill';
-import { defineSkillGroup } from './defineSkillGroup';
 import { defineSkillDomain } from '../defineSkillDomain';
+import { defineSkillGroup } from './defineSkillGroup';
 
 describe('Configurators', () => {
   describe('Skills', () => {

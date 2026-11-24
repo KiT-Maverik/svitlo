@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { resolveSkillLanguage } from './skillsData.client';
 
 describe('Skill language normalization shared with Next.js server', () => {

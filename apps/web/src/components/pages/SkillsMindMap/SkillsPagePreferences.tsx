@@ -1,9 +1,10 @@
 'use client';
 
-import { Box, Button, Divider, FormControlLabel, Stack, Switch, Typography } from '@mui/material';
 import CenterFocusStrongRoundedIcon from '@mui/icons-material/CenterFocusStrongRounded';
-import OpenInFullRoundedIcon from '@mui/icons-material/OpenInFullRounded';
 import CloseFullscreenRoundedIcon from '@mui/icons-material/CloseFullscreenRounded';
+import OpenInFullRoundedIcon from '@mui/icons-material/OpenInFullRounded';
+import { Box, Button, Divider, FormControlLabel, Stack, Switch, Typography } from '@mui/material';
+
 import { useSkillsPageSettings, type SkillsPageSettings } from './SkillsPageSettingsContext';
 
 const OPTIONS: readonly {

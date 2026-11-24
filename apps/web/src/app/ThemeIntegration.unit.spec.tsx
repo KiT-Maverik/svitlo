@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { afterEach, describe, expect, it } from 'vitest';
+import { useTheme } from '@mui/material/styles';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import { SvitloThemeProvider, useSvitloColorScheme } from '@svitlo/ui-kit';
 
 function ThemeConsumer() {

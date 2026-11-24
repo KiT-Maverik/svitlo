@@ -1,14 +1,15 @@
 import type { z } from 'zod';
-import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
-import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
+
+import type { Assessment_Config } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
-import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
-import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import type { Assessment_Config } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
+import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {

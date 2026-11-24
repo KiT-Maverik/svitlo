@@ -9,18 +9,18 @@ import type {
 
 import {
   mergeForValidation,
-  validateRequestedPublication,
   onlyLocales,
+  onlyStrings,
   resolvePublicationLanguages,
   selectPublicationLocales,
-  onlyStrings,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { lesson_Props_Schema } from '../../lessons/defineLesson';
-import { episode_Props_Schema } from '../../episodes/defineEpisode';
 import { assessment_Props_Schema } from '../../assessments/defineAssessment';
+import { episode_Props_Schema } from '../../episodes/defineEpisode';
+import { lesson_Props_Schema } from '../../lessons/defineLesson';
 import {
   chapter_Config_Schema,
   chapter_Override_Config_Schema,

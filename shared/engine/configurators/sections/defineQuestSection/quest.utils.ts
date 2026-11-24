@@ -1,6 +1,6 @@
-import type { LanguageCode } from '#schemas';
+import { camelCase_Schema, type LanguageCode } from '#schemas';
 import type { DeepPartial } from '#types';
-import { camelCase_Schema } from '#schemas';
+
 import { mergeForValidation, validateRequestedPublication } from '../../_shared__configurators';
 
 export type QuestPublication = {

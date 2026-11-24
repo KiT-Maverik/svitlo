@@ -1,15 +1,16 @@
 import { z } from 'zod';
+
+import { camelCase_Schema, deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema } from '#schemas';
-import { camelCase_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import type { Configurator_Mode } from '../../configurator.schemas';
 import {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
-import type { Configurator_Mode } from '../../configurator.schemas';
 
 const sectionBase = identityBase_Schema.extend({
   type: z.literal('quiz'),

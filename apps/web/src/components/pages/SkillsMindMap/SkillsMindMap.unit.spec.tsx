@@ -1,9 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { fixtureJsonForSkillUrl, TEST_SKILL_NODES_UK, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
 import { SkillsMindMap } from './SkillsMindMap';
-import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
+import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
 
 const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 describe('SkillsMindMap', () => {

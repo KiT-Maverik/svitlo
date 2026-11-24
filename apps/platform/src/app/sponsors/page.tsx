@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import SponsorTabs from '@/components/SponsorTabs';
+
 import { PageIntro } from '@/components/PageIntro';
+import SponsorTabs from '@/components/SponsorTabs';
 
 export const metadata: Metadata = { title: 'Спонсори' };
 

@@ -1,9 +1,9 @@
 import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { backward20 } from './backward20';
+import { forward20 } from './forward20';
 import { forward100 } from './forward100';
 import { forward1000 } from './forward1000';
-import { forward20 } from './forward20';
 import { oneToOne } from './oneToOne';
 
 export const sequence = defineSkillGroup({

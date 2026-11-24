@@ -1,23 +1,22 @@
 'use client';
 
-import type { Audio_Locale } from '../../../../../../data/locale/audio';
-
-import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import VolumeOffRounded from '@mui/icons-material/VolumeOffRounded';
 import VolumeUpRounded from '@mui/icons-material/VolumeUpRounded';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 
-import { Flag } from '../../../Flag/Flag';
-import { localizedAttributes, resolveLocalizedText, resolveOptionalLocalizedText } from '../../utils';
-import { useContentLanguage } from '../../ContentLanguageContext';
+import { DEFAULT_SUPPORTED_LANGUAGES, type ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+
+import type { Audio_Locale } from '../../../../../../data/locale/audio';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
-import { classifyAudioError, formatAudioTime, type AudioFailureKind } from './Audio.utils';
+import { Flag } from '../../../Flag/Flag';
+import { useContentLanguage } from '../../ContentLanguageContext';
+import { localizedAttributes, resolveLocalizedText, resolveOptionalLocalizedText } from '../../utils';
 import styles from './Audio.module.css';
+import { classifyAudioError, formatAudioTime, type AudioFailureKind } from './Audio.utils';
 
 type AudioFailure = { source: string; kind: AudioFailureKind };
 

@@ -1,6 +1,8 @@
 import { z } from 'zod';
-import type { DeepPartial, ChildrenSupporting, LanguageScope, PublicationLanguageOptions } from '#types';
+
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
+
 import {
   mergeForValidation,
   resolvePublicationLanguages,

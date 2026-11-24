@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { QuestionProgress } from './QuestionProgress';
+
 import { lesson } from '../../../data/locale/lesson';
+import { QuestionProgress } from './QuestionProgress';
 
 const meta = {
   title: 'Lesson/Question Progress',

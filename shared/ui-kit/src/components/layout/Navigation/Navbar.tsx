@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import type { BoxProps } from '@mui/material/Box';
+import type { ReactNode } from 'react';
+
 import ThreeSlotLayout from '../ThreeSlotLayout';
 import { testId } from './Navbar.constants';
 

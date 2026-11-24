@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+
 import { useLessonLocale } from '@/i18n/useLessonLocale';
 
 /** The Lesson navigation state is now UI Kit-owned; never fake it in host tests. */

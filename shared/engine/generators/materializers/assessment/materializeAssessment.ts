@@ -1,24 +1,25 @@
 import { createHash } from 'node:crypto';
+
 import {
   assessmentWorkflowStage2_Schema,
   type AssessmentWorkflowStage2,
 } from '../../../types/workflow/assessmentWorkflow.types';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { materializeContentSection } from '../contentSection/contentSection';
-import { materializeQuizSection } from '../quizSection/quizSection';
-import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
-import { materializeVideo } from '../video/materializeVideo';
-import { materializeYoutube } from '../youtube/materializeYoutube';
 import { materializeAudio } from '../audio/materializeAudio';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene } from '../scene/materializeScene';
 import { materializeCarousel } from '../carousel/materializeCarousel';
 import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
+import { materializeContentSection } from '../contentSection/contentSection';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { materializeImage } from '../image/materializeImage';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeScene } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeText } from '../text/materializeText';
+import { materializeVideo } from '../video/materializeVideo';
+import { materializeYoutube } from '../youtube/materializeYoutube';
 
 export type AssessmentMaterializationSource = {
   sourcePath: string;

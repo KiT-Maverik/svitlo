@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeYoutube } from './materializeYoutube';
+
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow';
+import { materializeYoutube } from './materializeYoutube';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 // The reviewed Course Stage 1 source is typed with production.languages.
@@ -107,8 +109,9 @@ test('youtube: pending href is deterministic, blocked and not a fabricated URL',
   assert.match(source, /"href": \/\/ TODO \(BLOCKER\):[^\n]*\n"00000000-0000-0000-0000-000000000000"/);
   assert(pending.diagnostics.some(item => item.path === '$.config.locale.href' && item.code === 'pending-media'));
   assert(!source.includes('https://'));
-  assert.match(source, /TODO \(BLOCKER\): Verify external video/);
-  assert.equal(pending.diagnostics.filter(item => item.code === 'pending-youtube-verification').length, 1);
+  assert.doesNotMatch(source, /TODO \(BLOCKER\): Verify external video/);
+  assert.equal(pending.diagnostics.filter(item => item.code === 'pending-youtube-verification').length, 0);
+  assert.equal((source.match(/TODO \(BLOCKER\)/g) ?? []).length, 1);
   const localized = materializeYoutube(
     { ...input, locale: { ...locale, href: { en: 'https://youtu.be/M7lc1UVf-VE' } } },
     { documentLanguage: 'uk' },

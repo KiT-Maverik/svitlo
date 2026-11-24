@@ -4,9 +4,9 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import { image_Config_Schema, type ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
-import { image_Config_Schema } from '../../../configurators/contentBlocks/defineImage';
 
 export type ImageDraftConfig = Pick<ContentBlock_Image_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Image_Config['params']>;

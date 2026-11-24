@@ -1,21 +1,20 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { mergeForValidation } from './_shared__configurators';
 import { defineText } from './contentBlocks/defineText';
-import { defineContentSection } from './sections/defineContentSection';
-import { defineLesson } from './lessons/defineLesson';
-import { lesson_Props_Schema } from './lessons/defineLesson/defineLesson.schemas';
+import { defineChapter } from './courses/defineChapter';
+import { course_Props_Schema, defineCourse } from './courses/defineCourse';
+import { defineModule } from './courses/defineModule';
 import { defineFlashcard } from './flashcards/defineFlashcard';
 import { defineFlashcardSide } from './flashcards/defineFlashcardSide';
+import { defineLesson } from './lessons/defineLesson';
+import { lesson_Props_Schema } from './lessons/defineLesson/defineLesson.schemas';
 import { defineAnswerWithNumber } from './questions/defineAnswerWithNumber';
-import { defineChapter } from './courses/defineChapter';
-import { defineModule } from './courses/defineModule';
-import { defineCourse, course_Props_Schema } from './courses/defineCourse';
+import { defineContentSection } from './sections/defineContentSection';
 import { defineSkill } from './skills/defineSkill';
-import { defineSkillGroup } from './skills/defineSkillGroup';
 import { defineSkillDomain, skillDomain_Props_Schema } from './skills/defineSkillDomain';
+import { defineSkillGroup } from './skills/defineSkillGroup';
 
 describe('Configurators', () => {
   describe('Integration', () => {

@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestSection } from './questSection';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const q = () => ({
   id: id('01'),
@@ -28,6 +31,7 @@ test('Quest Section: independent start maps, no invented order, Build-only block
   };
   const first = materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0], ctx);
   assert.deepEqual(materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0], ctx), first);
+  assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const src = first.files.at(-1)?.content ?? '';
   const parsed = ts.transpileModule(src, {
     reportDiagnostics: true,
@@ -63,4 +67,17 @@ test('Quest Section: cannot omit start or introduce artificial order', () => {
       }),
     /mandatory start/,
   );
+});
+
+test('Quest Section: reviewed production notes require methodology handoff without sidecar files', () => {
+  const rendered = materializeQuestSection(q() as Parameters<typeof materializeQuestSection>[0], {
+    documentLanguage: 'en',
+    directory: 'sections/mission',
+    languagesImport: '../../languages',
+    renderStage: render,
+    renderTask: render,
+    production: { sequenceReason: 'Keep the reviewed order.' },
+  });
+  assert.ok(rendered.files.every(file => !file.path.endsWith('/specification.md')));
+  assert.ok(rendered.diagnostics.some(d => d.code === 'pending-quest-methodology'));
 });

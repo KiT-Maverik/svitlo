@@ -1,7 +1,8 @@
 import { z } from 'zod';
+
 import { episode_Config_Schema } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 import { lessonWorkflowOrdinarySection_Schema, workflowOrdered_Schema } from './lessonWorkflow.types';
+import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Immutable Course-owned placement allocated once during authorized Course Stage 5. */
 const episodePlacement_Schema = z.strictObject({

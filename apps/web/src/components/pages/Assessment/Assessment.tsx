@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, createAssessmentResourceLoader } from '@svitlo/engine/runtime';
-import { Assessment, ImageRendererProvider, SceneLocaleProvider, type AssessmentProps } from '@svitlo/ui-kit';
+
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
+import { createAssessmentResourceLoader, DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import { Assessment, ImageRendererProvider, SceneLocaleProvider, type AssessmentProps } from '@svitlo/ui-kit';
+
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
 
 function sceneIds(value: unknown): string[] {

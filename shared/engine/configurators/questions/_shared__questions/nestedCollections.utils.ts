@@ -1,6 +1,7 @@
 import type { LanguageCode } from '#schemas';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+
 import { validateOrderedKeys } from '../../_shared__configurators';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import { assertEnabledBlock, cloneJson, isRecord, resolveChild, validateBlock } from './collections.utils';
 
 type Block = ContentBlock_Configurator;

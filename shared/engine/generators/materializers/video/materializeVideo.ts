@@ -4,9 +4,9 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
+
+import { video_Config_Schema, type ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
-import { video_Config_Schema } from '../../../configurators/contentBlocks/defineVideo';
 
 export type VideoDraftConfig = Pick<ContentBlock_Video_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Video_Config['params']>;

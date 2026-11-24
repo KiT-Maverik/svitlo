@@ -1,11 +1,13 @@
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { CoursePage } from '@svitlo/ui-kit';
+
 import { getCourseMessages } from '@/lib/courseMessages';
-import { loadPublishedCourseCatalog } from '@/lib/publishedCourseCatalog';
-import { loadCourseTree, loadCourseLessonTitles } from '@/lib/courseResources';
 import { coursePropsToTopics } from '@/lib/courseNavigation';
+import { loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
+import { loadPublishedCourseCatalog } from '@/lib/publishedCourseCatalog';
 
 type Props = { params: Promise<{ language: string; courseId: string }> };
 

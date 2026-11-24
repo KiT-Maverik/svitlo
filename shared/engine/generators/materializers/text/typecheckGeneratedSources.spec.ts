@@ -7,18 +7,20 @@
  * accepted by Engine Config while the asset remains a release blocker.
  */
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { join, resolve, dirname } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeText } from './materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
+
+import { materializeAudio } from '../audio/materializeAudio';
 import { materializeCode } from '../code/materializeCode';
 import { materializeImage } from '../image/materializeImage';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeAudio } from '../audio/materializeAudio';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeText } from './materializeText';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const videoPoster = '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp';

@@ -1,18 +1,19 @@
 import { z } from 'zod';
+
 import { identityBase_Schema } from '../../../_shared__configurators/common.schemas';
-import { text_Props_Schema } from '../../defineText/defineText.schemas';
 import type {
   ContentBlock_Text_Configurator,
   ContentBlock_Text_Overrides,
   ContentBlock_Text_Props,
 } from '../../defineText';
+import { text_Props_Schema } from '../../defineText/defineText.schemas';
+import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
 import {
   checkpointAnswer_Child_Props_Schema,
-  type Checkpoint_Allowed_Props,
   type Checkpoint_Allowed_Configurator,
+  type Checkpoint_Allowed_Props,
   type CheckpointAnswer_Overrides,
 } from '../defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
 
 const checkpointItemBase = identityBase_Schema.extend({
   type: z.literal('checkpointItem'),
