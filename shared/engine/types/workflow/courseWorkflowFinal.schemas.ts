@@ -106,7 +106,7 @@ const chapter = z.strictObject({
   }),
   production: unitProduction,
 });
-const module = z.strictObject({
+const module_Schema = z.strictObject({
   config: module_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
     params: unitParams.optional(),
     content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])),
@@ -123,7 +123,7 @@ export const courseWorkflowStage3_Schema = z.strictObject({
       .extend({ languages: z.never().optional(), scenarioMode: z.never().optional() })
       .optional(),
     locale: course_Config_Schema.shape.locale.partial().optional(),
-    content: ordered(z.union([module, chapter, newLesson, existingLesson, episodeSlot])),
+    content: ordered(z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot])),
   }),
   production: z.strictObject({
     languages: workflowLanguages_Schema,
