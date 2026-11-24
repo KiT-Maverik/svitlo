@@ -1,6 +1,8 @@
-import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ComponentType, ReactNode } from 'react';
+
 import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
 
 /** Quiz is a Section; ContentBlock contains renderable resources only. */
 export type ContentBlockResponse = ContentBlock_Props;

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import {
   assertBankOrder,
   authoredBankLiteral,
@@ -19,20 +20,18 @@ const snapshot = (entries: BankSourceSnapshot['entries']): BankSourceSnapshot =>
   entries,
 });
 const source = snapshot({ questions: { kind: 'directory' }, [draft.path]: { kind: 'file', content: editor } });
-const reviewed = {
-  approved: true as const,
+const pinned = {
   blobSha: gitBlobSha(editor),
-  reviewedSourceBlobSha: gitBlobSha(editor),
-  reviewedInputSha256: 'a'.repeat(64),
+  inputSha256: 'a'.repeat(64),
   content: editor,
-  reviewCommitSha: head,
+  commitSha: head,
 };
-const transition = { indexPath: stage.path, draftPath: draft.path, reviewed };
+const transition = { indexPath: stage.path, draftPath: draft.path, source: pinned };
 
 test('Approved draft deletion and index creation are deterministic', () => {
   const result = preflightBankSource([stage], source, transition);
-  assert.equal(result.transition?.reviewedDraftPath, draft.path);
-  assert.equal(result.transition?.reviewedDraftBlobSha, gitBlobSha(editor));
+  assert.equal(result.transition?.sourceDraftPath, draft.path);
+  assert.equal(result.transition?.sourceDraftBlobSha, gitBlobSha(editor));
   assert.equal(result.transition?.materializedPath, stage.path);
   assert.deepEqual(result.files, [stage]);
   assert.equal(result.publishable, false);
@@ -46,17 +45,17 @@ test('Reject stale reviews, missing or edited drafts, collisions and partial tra
     () =>
       preflightBankSource([stage], source, {
         ...transition,
-        reviewed: { ...reviewed, reviewCommitSha: 'c'.repeat(40) },
+        source: { ...pinned, commitSha: 'c'.repeat(40) },
       }),
-    /independently approved/,
+    /pinned bytes/,
   );
   assert.throws(
     () =>
       preflightBankSource([stage], source, {
         ...transition,
-        reviewed: { ...reviewed, reviewedSourceBlobSha: 'c'.repeat(40) },
+        source: { ...pinned, blobSha: 'c'.repeat(40) },
       }),
-    /independently approved/,
+    /pinned bytes/,
   );
   assert.throws(() => preflightBankSource([stage], snapshot({}), transition), /missing/);
   assert.throws(

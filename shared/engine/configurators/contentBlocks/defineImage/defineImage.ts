@@ -1,20 +1,20 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   mergeForValidation,
   onlyLocales,
   onlyStrings,
-  splitLocalizedFields,
   resolvePublicationLanguages,
   selectPublicationLocales,
+  splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   image_Config_Schema,
-  image_Props_Schema,
   image_Override_Config_Schema,
+  image_Props_Schema,
   type ContentBlock_Image_Config,
   type ContentBlock_Image_Locale,
   type ContentBlock_Image_Overrides,

@@ -1,6 +1,11 @@
 'use client';
 
-import { useId, useState, type MouseEvent } from 'react';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -12,12 +17,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { useId, useState, type MouseEvent } from 'react';
+
 import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
 
 /** Identity and session actions are supplied by a host, never implemented inside the UI Kit. */

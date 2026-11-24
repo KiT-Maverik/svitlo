@@ -1,5 +1,6 @@
-import type { ElementType, ReactNode } from 'react';
 import Box, { type BoxProps } from '@mui/material/Box';
+import type { ElementType, ReactNode } from 'react';
+
 import { testId } from './ThreeSlotLayout.constants';
 
 export type ThreeSlotAxis = 'horizontal' | 'vertical';

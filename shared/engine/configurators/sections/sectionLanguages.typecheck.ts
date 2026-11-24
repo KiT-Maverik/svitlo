@@ -1,4 +1,4 @@
-import type { ChildSupporting, ChildrenSupporting } from '#types';
+import type { ChildrenSupporting, ChildSupporting } from '#types';
 
 import { defineText } from '../contentBlocks/defineText/defineText';
 import { defineLesson } from '../lessons/defineLesson/defineLesson';

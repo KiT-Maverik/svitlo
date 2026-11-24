@@ -1,8 +1,8 @@
 import type {
+  AssessmentMethodSlug,
+  ContentBlock_Text_Props,
   Lesson_Props,
   Question_SelectOneAnswer_Props,
-  ContentBlock_Text_Props,
-  AssessmentMethodSlug,
 } from '@svitlo/engine/runtime';
 
 // A textbook can extend published Engine Props without redefining their contracts.

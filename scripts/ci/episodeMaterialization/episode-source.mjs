@@ -1,8 +1,7 @@
 /** Inert Episode draft parsing and deterministic restoration of one reserved parent slot. */
 import ts from 'typescript';
 import { isDeepStrictEqual } from 'node:util';
-import { decodeLiteral } from '../courseMaterialization/typed-course-source.mjs';
-import { materializeEpisode } from '../../../shared/engine/generators/materializers/episode/materialize.mjs';
+import { createRequire } from 'node:module';
 
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -11,50 +10,28 @@ const same = (a, b) => isDeepStrictEqual(a, b);
 const nameOf = node => (ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined);
 const safe = x => typeof x === 'string' && slug.test(x) && !['constructor', 'prototype', '__proto__'].includes(x);
 
-export function parseEpisodeDraft(source, type) {
-  if (typeof source !== 'string' || source.length > 2 * 1024 * 1024) throw Error('Invalid or oversized Episode draft');
-  if (!['EpisodeWorkflowStage1Handoff', 'EpisodeWorkflowMaterializerInput'].includes(type))
-    throw Error('Unknown Episode draft contract');
-  const ast = ts.createSourceFile('draft.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  if (ast.parseDiagnostics.length) throw Error('Episode draft has syntax errors');
-  const declarations = new Map();
-  let selected;
-  for (const statement of ast.statements) {
-    if (
-      ts.isImportDeclaration(statement) &&
-      statement.importClause?.isTypeOnly &&
-      ts.isStringLiteral(statement.moduleSpecifier) &&
-      statement.moduleSpecifier.text === '@svitlo/engine/build'
-    )
-      continue;
-    if (!ts.isVariableStatement(statement) || !(statement.declarationList.flags & ts.NodeFlags.Const))
-      throw Error('Only inert const declarations and Engine type imports are allowed in Episode draft');
-    const exported = statement.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword);
-    for (const decl of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(decl.name) || !decl.initializer || declarations.has(decl.name.text))
-        throw Error('Invalid or duplicate Episode literal declaration');
-      declarations.set(decl.name.text, decl.initializer);
-      if (exported) {
-        const expr = decl.initializer;
-        if (
-          selected ||
-          !ts.isSatisfiesExpression(expr) ||
-          !ts.isTypeReferenceNode(expr.type) ||
-          expr.type.typeName.getText(ast) !== type
-        )
-          throw Error('Exactly one exported object satisfying ' + type + ' is required');
-        selected = expr;
-      }
-    }
-  }
-  if (!selected) throw Error('Missing exported reviewed Episode draft');
-  for (const expr of declarations.values()) decodeLiteral(expr, declarations);
-  // The inert decoder deliberately uses null-prototype records for safe key handling.
-  // Concrete Config schemas compare ordinary JSON-shaped records, so normalize
-  // only after decoding has rejected executable expressions and unsafe keys.
-  const result = structuredClone(decodeLiteral(selected, declarations));
-  if (!record(result?.config) || result.config.type !== 'episode' || !record(result.production))
-    throw Error('Not an Episode editorial object');
+/** Read the immutable Course-generated Episode Stage 1 handoff.
+ * The generated file is a canonical JSON object in a fixed TS wrapper; this
+ * reader does not interpret arbitrary TypeScript or execute authored code.
+ */
+export function parseEpisodeHandoff(source) {
+  if (typeof source !== 'string' || source.length > 2 * 1024 * 1024)
+    throw Error('Invalid or oversized Course Episode handoff');
+  const match = source.match(
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*(?:\/\/ prettier-ignore\s*)?export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+  );
+  if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
+  const result = JSON.parse(match[1]);
+  if (
+    !record(result) ||
+    !record(result.config) ||
+    !record(result.production) ||
+    result.config.type !== 'episode' ||
+    !safe(result.config.slug) ||
+    Object.keys(result.config).some(key => !['type', 'id', 'slug'].includes(key)) ||
+    Object.keys(result.production).some(key => !['focus', 'purpose', 'placement', 'languages'].includes(key))
+  )
+    throw Error('Not a canonical Course-owned Episode handoff');
   return result;
 }
 
@@ -223,71 +200,54 @@ export function restoreEpisodePlacement(parent, placement, exportName, { rootPar
   return 'import { ' + exportName + ' as ' + alias + ' } from ' + JSON.stringify(target) + ';\n' + result;
 }
 
-export function planEpisode(handoff, reviewed, meta, parentSource, materializeSection) {
+/** Assemble only the exact generated Episode-owned files and one reserved parent
+ * source change. The already-reviewed Episode entrypoint is executed ONLY by
+ * the credential-free worker, not by this trusted composition helper.
+ */
+export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, output) {
   verifyEpisodeHandoff(handoff, reviewed, meta);
-  const production = reviewed.production;
-  const { document, planned } = production.languages;
-  const placement = meta.placement;
-  const languagesImport = '#coursesData/' + meta.courseId.at(-1) + '/' + meta.courseId + '/' + placement + '/languages';
-  const result = materializeEpisode(
-    {
-      config: { ...reviewed.config, params: { ...reviewed.config.params, languages: planned } },
-      production: { ...production, plannedLanguages: planned },
-    },
-    {
-      directory: placement,
-      sourceLanguage: document,
-      plannedLanguages: planned,
-      materializeSection: (node, context) =>
-        materializeSection(node, { ...context, documentLanguage: document, languagesImport }),
-    },
-  );
+  if (
+    !output ||
+    output.publishable !== false ||
+    output.episodeId !== reviewed.config.id ||
+    output.episodeId !== handoff.config.id ||
+    typeof output.exportName !== 'string' ||
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(output.exportName) ||
+    !Array.isArray(output.files) ||
+    !output.files.length ||
+    !Array.isArray(output.diagnostics)
+  )
+    throw Error('Direct Episode worker returned an invalid source plan');
   const prefix = meta.courseRoot + '/';
-  const index = result.files.find(file => file.path === placement + '/index.ts');
-  if (!index || result.id !== reviewed.config.id || result.pendingEpisode)
-    throw Error('Episode materializer did not produce the reviewed Configurator');
-  // One active locale tuple is shared by Episode and its Sections.
-  const localLanguages = 'const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;';
-  if (!index.content.includes(localLanguages)) throw Error('Expected deterministic Episode language declaration');
-  index.content = index.content
-    .replace(
-      "import type { SupportedLanguages } from '@svitlo/engine/build';",
-      "import { languages } from './languages';",
-    )
-    .replace(localLanguages, '');
-  index.content =
-    '// TODO (BLOCKER): Human Media Generation Stage 9 requires explicit verified completion or human-confirmed N/A.\n' +
-    '// TODO (BLOCKER): Human QA Stage 10 requires actual inspection in Course context and explicit revision-pinned acceptance.\n' +
-    '// Reviewed Episode draft blob: ' +
-    meta.sourceBlobSha +
-    '\n' +
-    '// Reviewed Episode HEAD: ' +
-    meta.head +
-    '\n' +
-    index.content;
-  const files = [
-    ...result.files,
-    {
-      path: placement + '/languages.ts',
-      kind: 'typescript',
-      content:
-        "import type { SupportedLanguages } from '@svitlo/engine/build';\nexport const languages = " +
-        JSON.stringify([document]) +
-        ' as const satisfies SupportedLanguages;\n',
-    },
-  ];
+  // Source materializers own Course-relative Episode modules and separately
+  // UUID-scoped textbook Scenes. Their two path domains remain disjoint and
+  // are independently allowlisted by the trusted Episode transaction.
+  const files = output.files.map(file => ({
+    ...file,
+    path:
+      typeof file.path === 'string' && file.path.startsWith(meta.textbookRoot + '/scenes/')
+        ? file.path
+        : prefix + file.path,
+  }));
+  const rootIndex = prefix + meta.placement + '/index.ts';
+  if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
   const parent = restoreEpisodePlacement(
     parentSource,
     {
-      path: placement,
-      slug: reviewed.config.slug,
-      episodeId: result.id,
-      orderIndex: production.placement.orderPath.at(-1),
+      path: meta.placement,
+      slug: handoff.config.slug,
+      episodeId: handoff.config.id,
+      orderIndex: handoff.production.placement.orderPath.at(-1),
     },
-    result.exportName,
-    { rootParent: placement.split('/').length === 2 },
+    output.exportName,
+    { rootParent: meta.placement.split('/').length === 2 },
   );
-  const outputs = files.map(file => ({ ...file, path: prefix + file.path }));
-  outputs.push({ path: meta.parentPath, kind: 'typescript', content: parent });
-  return { files: outputs, diagnostics: result.diagnostics, episodeId: result.id, publishable: false };
+  files.push({ path: meta.parentPath, kind: 'typescript', content: parent });
+  return {
+    files,
+    diagnostics: output.diagnostics,
+    episodeId: output.episodeId,
+    sourceExportName: output.exportName,
+    publishable: false,
+  };
 }

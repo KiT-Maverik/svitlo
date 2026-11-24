@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { languageCode_Schema } from './languages.schemas';
 
 /** Canonical supported formats for authoring, generated schemas and publishing. */
@@ -11,8 +12,10 @@ export type AudioExtension = (typeof audioExtensions)[number];
 export type VideoExtension = (typeof videoExtensions)[number];
 export type SubtitlesExtension = (typeof subtitlesExtensions)[number];
 
-/** Reserved unresolved filename identity used by YAML -> TypeScript scaffolding only. */
+/** Reserved unresolved filename identity for typed source materialization; never a published asset. */
 export const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000' as const;
+/** Non-URL sentinel for a pending YouTube reference; never navigable or publishable. */
+export const UNRESOLVED_YOUTUBE_HREF = UNRESOLVED_RESOURCE_UUID;
 const mediaUuid_Schema = z.union([z.uuid(), z.literal(UNRESOLVED_RESOURCE_UUID)]);
 
 /** Filename schemas preserve UUID and extension constraints in generated JSON Schema. */

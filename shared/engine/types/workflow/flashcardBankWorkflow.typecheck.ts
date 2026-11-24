@@ -1,24 +1,23 @@
-import type { FlashcardNode, FlashcardContext } from '../../generators/materializers/flashcard/materializeFlashcard';
-import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
-import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
-import type { CheckpointItemSource } from '../../generators/materializers/checkpointItem/materializeCheckpointItem';
 import type { CheckpointAnswerSource } from '../../generators/materializers/checkpointAnswer/materializeCheckpointAnswer';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { CheckpointItemSource } from '../../generators/materializers/checkpointItem/materializeCheckpointItem';
+import type { FlashcardContext, FlashcardNode } from '../../generators/materializers/flashcard/materializeFlashcard';
+import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
 import type {
+  FlashcardBankWorkflowCardConfig,
+  FlashcardBankWorkflowFlags,
+  FlashcardBankWorkflowRelationshipEdge,
+  FlashcardBankWorkflowSectionDecision,
+  FlashcardBankWorkflowSideSource,
   FlashcardBankWorkflowStage1,
   FlashcardBankWorkflowStage2,
   FlashcardBankWorkflowStage3,
-  FlashcardBankWorkflowCardConfig,
-  FlashcardBankWorkflowSideSource,
-  FlashcardBankWorkflowFlags,
-  FlashcardBankWorkflowRelationshipEdge,
-  FlashcardBankWorkflowMaterializerInput,
-  FlashcardBankWorkflowSectionDecision,
 } from './flashcardBankWorkflow.types';
 
 const uuid = 'b775647f-203d-481a-a1c7-4d331c000001';
@@ -86,14 +85,6 @@ const card: FlashcardBankWorkflowCardConfig = {
   content: { front, back, hint: { items: { cue: hintBlock }, order: ['cue'] } },
 };
 
-const prerequisite = {
-  kind: 'completed',
-  sourceSha: 'verified-question-source-sha',
-  reviewSha: 'independent-question-review-sha',
-  bankPath: 'content/math/data/lessons/1/lesson-uuid/questions/index.ts',
-  integrated: true,
-} as const;
-
 const stage1 = {
   production: {
     lesson: {
@@ -108,7 +99,6 @@ const stage1 = {
         flashcardsSectionRequired: false,
       },
     },
-    questions: prerequisite,
     analysis: {
       recallObjectives: ['Recognize orbit', 'Recall definition'],
       sourceFactsAndConcepts: ['Orbital path'],
@@ -265,26 +255,18 @@ const emptyInventory: FlashcardBankWorkflowStage2['config']['flashcards'] = {
   order: [],
 };
 
-const materializerNoSection: FlashcardBankWorkflowMaterializerInput = stage3NoSection;
-const materializerWithSection: FlashcardBankWorkflowMaterializerInput = stage3WithSection;
+const materializerNoSection: FlashcardBankWorkflowStage3 = stage3NoSection;
+const materializerWithSection: FlashcardBankWorkflowStage3 = stage3WithSection;
 // @ts-expect-error Stage 1 has no Card collection and cannot be passed to a complete bank materializer.
-const tooEarly1: FlashcardBankWorkflowMaterializerInput = stage1;
+const tooEarly1: FlashcardBankWorkflowStage3 = stage1;
 // @ts-expect-error Stage 2 lacks the separately reviewed Section decision.
-const tooEarly2: FlashcardBankWorkflowMaterializerInput = stage2;
+const tooEarly2: FlashcardBankWorkflowStage3 = stage2;
 
 const invalidStage1: FlashcardBankWorkflowStage1 = {
   ...stage1,
   // @ts-expect-error Stage 1 handoff cannot contain fabricated Card Config.
   config: stage2.config,
 };
-
-const noQuestions: FlashcardBankWorkflowStage1 = {
-  // @ts-expect-error A completed Stage 1 must carry explicit verified Questions status.
-  production: { lesson: stage1.production.lesson, analysis: stage1.production.analysis },
-};
-
-// @ts-expect-error Missing Methodologist rationale and pinned SHA cannot bypass Questions first.
-const unapprovedNA: FlashcardBankWorkflowStage1['production']['questions'] = { kind: 'notApplicable' };
 
 const badFlag: FlashcardBankWorkflowFlags = [
   // @ts-expect-error Flags must use actual built-in discriminants.
@@ -359,8 +341,6 @@ void materializerWithSection;
 void tooEarly1;
 void tooEarly2;
 void invalidStage1;
-void noQuestions;
-void unapprovedNA;
 void badFlag;
 void keyedFlags;
 void forbiddenSideIdentity;

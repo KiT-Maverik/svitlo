@@ -1,6 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
 import { usePathname, useRouter } from 'next/navigation';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useLessonLanguage, useLessonLocale } from './useLessonLocale';
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn(), useRouter: vi.fn() }));

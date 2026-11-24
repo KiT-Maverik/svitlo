@@ -52,7 +52,6 @@ function fixture(t) {
   const meta = {
     bank: 'questions',
     head,
-    reviewCommitSha: head,
     identity: { pkg: repoPath, folder: repoPath + '/data/lessons/1/11111111-1111-4111-8111-111111111111' },
   };
   const scene = () => ({
@@ -79,11 +78,17 @@ function fixture(t) {
   return { root, base, meta, scene, image, input, resolve };
 }
 
-test('real pinned reviewed Scene and local media become independently verified block evidence', t => {
+test('pinned Scene and local media are verified without editorial metadata', t => {
   const f = fixture(t);
   const actual = f.resolve(f.input({ visual: f.scene(), diagram: f.image() }));
   assert.deepEqual([...actual.registeredSceneIds], [sceneId]);
   assert.deepEqual([...actual.approvedMediaBlockIds], [imageId]);
+});
+
+test('changed checkout HEAD fails even without editorial review metadata', t => {
+  const f = fixture(t);
+  git(f.root, 'commit', '--allow-empty', '-m', 'Changed checkout', '-q');
+  assert.throws(() => f.resolve(f.input({ diagram: f.image() })), /exact pinned checkout/);
 });
 
 test('stale/tampered Scene implementation, specifications, registry and media never approve', t => {
@@ -107,19 +112,152 @@ test('stale/tampered Scene implementation, specifications, registry and media ne
   assert.throws(() => f.resolve(good), /Symlink/);
 });
 
-test('missing, stale, placeholder and external media references fail closed', t => {
+test('unresolved media scaffolds remain distinct from verified assets', t => {
   const f = fixture(t);
   const noAsset = f.image();
-  noAsset.config.locale.fileName = '00000000-0000-0000-0000-000000000000.svg';
-  assert.throws(() => f.resolve(f.input({ diagram: noAsset })), /Invalid reviewed UUID/);
+  noAsset.config.locale.fileName = '00000000-0000-0000-0000-000000000000.webp';
+  delete noAsset.production.mediaSourcePath;
+  const placeholder = f.resolve(f.input({ diagram: noAsset }));
+  assert.deepEqual([...placeholder.unresolvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...placeholder.approvedMediaBlockIds], []);
   noAsset.config.locale.fileName = '99999999-9999-4999-8999-999999999999.svg';
-  assert.throws(() => f.resolve(f.input({ diagram: noAsset })));
+  const planned = f.resolve(f.input({ diagram: noAsset }));
+  assert.deepEqual([...planned.unresolvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...planned.approvedMediaBlockIds], []);
   const remote = f.image();
   remote.config.locale.fileName = 'https://cdn.example.org/image.svg';
   remote.production.mediaSourcePath = undefined;
   assert.deepEqual([...f.resolve(f.input({ diagram: remote })).approvedMediaBlockIds], [imageId]);
   remote.config.locale.fileName = 'http://cdn.example.org/image.svg';
   assert.throws(() => f.resolve(f.input({ diagram: remote })), /requires reviewed HTTPS/);
+});
+
+test('missing media field is an unresolved source scaffold, never an approved asset', t => {
+  const f = fixture(t);
+  const missing = f.image();
+  delete missing.config.locale.fileName;
+  delete missing.production.mediaSourcePath;
+  const proof = f.resolve(f.input({ diagram: missing }));
+  assert.deepEqual([...proof.approvedMediaBlockIds], []);
+  assert.deepEqual([...proof.unresolvedMediaBlockIds], [imageId]);
+  const spoofed = f.image();
+  spoofed.config.locale.fileName = '../escape.svg';
+  delete spoofed.production.mediaSourcePath;
+  assert.throws(() => f.resolve(f.input({ diagram: spoofed })), /Invalid reviewed UUID/);
+});
+
+test('missing Scene is a reviewed six-file handoff for both Banks, not executable approval', t => {
+  const f = fixture(t);
+  const registry = repoPath + '/scenes/sceneLoader.ts';
+  file(f.root, registry, 'const sceneImports = {};\n');
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'New reviewed Bank Scene not yet authored', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  const proof = f.resolve(f.input({ visual: f.scene() }));
+  assert.deepEqual([...proof.registeredSceneIds], []);
+  assert.deepEqual([...proof.newSceneIds], [sceneId]);
+  assert.deepEqual([...proof.unregisteredSceneIds], [sceneId]);
+  f.meta.bank = 'flashcards';
+  const flashcardSource = f.input({ visual: f.scene() });
+  flashcardSource.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  const flashcardProof = f.resolve(flashcardSource);
+  assert.deepEqual([...flashcardProof.registeredSceneIds], []);
+  assert.deepEqual([...flashcardProof.newSceneIds], [sceneId]);
+});
+
+test('existing six-file Scene drafts remain blocked and cannot be overwritten', t => {
+  const f = fixture(t);
+  const name = 'Visual';
+  const files = {
+    'index.ts': '// TODO (BLOCKER): Register after review.\nexport { Visual as default } from "./Visual";\n',
+    'Visual.tsx': [
+      '// TODO (BLOCKER): Implement reviewed Scene.',
+      '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)',
+      '// # Reviewed interaction',
+      '// END REVIEWED SCENE SPECIFICATION',
+      'export function Visual() { return <div />; }',
+      '',
+    ].join('\n'),
+    'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
+    'Visual.constants.ts': '// TODO (BLOCKER): Supply test IDs.\nexport const testIds = {};\n',
+    'Visual.stories.tsx': '// TODO (BLOCKER): Supply Stories.\nexport const Default = {};\n',
+    'Visual.unit.spec.tsx': '// TODO (BLOCKER): Implement tests.\nexport const Pending = true;\n',
+  };
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  for (const [name, content] of Object.entries(files)) file(f.root, f.base + '/' + name, content);
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Complete six-file but unfinished Scene draft', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  const draft = f.resolve(f.input({ visual: f.scene() }));
+  assert.deepEqual([...draft.existingDraftSceneIds], [sceneId]);
+  assert.deepEqual([...draft.newSceneIds], []);
+  assert.deepEqual([...draft.registeredSceneIds], []);
+  const changedSpec = f.input({ visual: f.scene() });
+  changedSpec.config.questions.selectOneAnswer.test.config.content.question.items.visual.production.specification =
+    '# Different reviewed interaction\n';
+  assert.throws(
+    () => f.resolve(changedSpec),
+    /Existing Bank Scene reviewed specification differs from pinned Bank source/,
+  );
+  f.meta.bank = 'flashcards';
+  const flashcardInput = f.input({ visual: f.scene() });
+  flashcardInput.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  assert.deepEqual([...f.resolve(flashcardInput).existingDraftSceneIds], [sceneId]);
+
+  // A complete implementation removes its registration and component blockers.
+  file(f.root, f.base + '/index.ts', 'export { Visual as default } from "./Visual";\n');
+  file(
+    f.root,
+    f.base + '/Visual.tsx',
+    'export function Visual() { return <div aria-label="Reviewed interaction" />; }\n',
+  );
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Implement reviewed Scene', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  const registeredInput = f.input({ visual: f.scene() });
+  registeredInput.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  const registered = f.resolve(registeredInput);
+  assert.deepEqual([...registered.registeredSceneIds], [sceneId]);
+  assert.deepEqual([...registered.existingDraftSceneIds], []);
+});
+
+test('partial existing Scene fails closed rather than claiming missing scaffolding', t => {
+  const f = fixture(t);
+  const registry = repoPath + '/scenes/sceneLoader.ts';
+  file(f.root, registry, 'const sceneImports = {};\n');
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  file(f.root, f.base + '/index.ts', '// TODO (BLOCKER): Incomplete draft\n');
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Incomplete reviewed Scene', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /Partial existing Bank Scene scaffold/);
+});
+
+test('absent Scene registry can be accepted for new source-only drafts; links cannot be spoofed', t => {
+  const f = fixture(t);
+  const registry = repoPath + '/scenes/sceneLoader.ts';
+  fs.rmSync(path.join(f.root, registry));
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'No Scene registry authored', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  assert.deepEqual([...f.resolve(f.input({ visual: f.scene() })).newSceneIds], [sceneId]);
+  fs.symlinkSync(path.join(f.root, 'README.md'), path.join(f.root, registry));
+  assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /Symlink/);
+});
+
+test('valid but absent media remains unresolved; missing tracked media and unsafe links are rejected', t => {
+  const f = fixture(t);
+  const planned = f.image();
+  planned.config.locale.fileName = '99999999-9999-4999-8999-999999999999.svg';
+  delete planned.production.mediaSourcePath;
+  const proof = f.resolve(f.input({ diagram: planned }));
+  assert.deepEqual([...proof.unresolvedMediaBlockIds], [imageId]);
+  assert.deepEqual([...proof.approvedMediaBlockIds], []);
+  const original = repoPath + '/assets/images/' + assetName;
+  fs.rmSync(path.join(f.root, original)); // tracked but missing
+  assert.throws(() => f.resolve(f.input({ diagram: f.image() })), /Tracked reviewed resource missing/);
 });
 
 test('Youtube URL is reviewed statically and never triggers a network call', t => {

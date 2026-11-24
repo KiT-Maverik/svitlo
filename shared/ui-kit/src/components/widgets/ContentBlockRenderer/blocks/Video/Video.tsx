@@ -1,16 +1,16 @@
 'use client';
 
-import type { Video_Locale } from '../../../../../../data/locale/video';
-
-import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
+
 import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
-import { useContentLanguage } from '../../ContentLanguageContext';
+import type { Video_Locale } from '../../../../../../data/locale/video';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
-import { classifyVideoError, type VideoFailureKind } from './Video.utils';
+import { useContentLanguage } from '../../ContentLanguageContext';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
 import styles from './Video.module.css';
+import { classifyVideoError, type VideoFailureKind } from './Video.utils';
 
 type VideoFailure = { source: string; kind: VideoFailureKind };
 

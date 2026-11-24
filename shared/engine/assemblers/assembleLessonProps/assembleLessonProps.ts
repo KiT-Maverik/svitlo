@@ -1,10 +1,10 @@
-import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
-import type { DeepPartial } from '../../types/transformer.types';
 import {
   lesson_Props_Schema,
   type Lesson_Props,
   type Lesson_PropsBase,
 } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
+import type { DeepPartial } from '../../types/transformer.types';
 
 /** Published locale files are sparse Props-shaped fragments, not authoring configs. */
 export type LessonPropsFragment = DeepPartial<Lesson_Props>;

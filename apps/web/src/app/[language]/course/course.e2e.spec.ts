@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 const courseId = '11111111-1111-4111-8111-000000000113';
 const lessonId = '11111111-1111-4111-8111-00000000011c';

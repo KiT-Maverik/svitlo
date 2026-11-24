@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+
 import { PageIntro } from '@/components/PageIntro';
 
 export const metadata: Metadata = { title: 'Команда' };

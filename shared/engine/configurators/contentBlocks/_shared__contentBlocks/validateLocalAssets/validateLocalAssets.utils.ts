@@ -1,4 +1,4 @@
-import { statSync, existsSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

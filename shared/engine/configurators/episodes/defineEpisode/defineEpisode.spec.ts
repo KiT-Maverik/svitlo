@@ -1,13 +1,12 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { mergeForValidation } from '../../_shared__configurators';
 import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
+import { defineChapter } from '../../courses/defineChapter';
 import { defineCourse } from '../../courses/defineCourse';
 import { defineModule } from '../../courses/defineModule';
-import { defineChapter } from '../../courses/defineChapter';
+import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineEpisode } from './defineEpisode';
 import { episode_Props_Schema, episodeConfigurator_Schema } from './defineEpisode.schemas';
 

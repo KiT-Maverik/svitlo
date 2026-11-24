@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 /** Web-owned fixture package metadata, not Playground content. */
 const skillId = '11111111-1111-4111-8111-00000000011a';

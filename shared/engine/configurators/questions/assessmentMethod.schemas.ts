@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-/** Known Assessment Method slugs mirrored from UI Kit's assessment method labels.
- * Keep this list synchronized until Assessment Method authorship has a shared source.
- * Do not depend on the retired contract ID registry.
+/** Canonical Engine-owned Assessment Method slug tuple.
+ * UI Kit definitions, the shared Configurator and every Question validator
+ * consume this tuple rather than independently maintaining accepted names.
  */
 export const assessmentMethodSlugs = [
   'retrieval',

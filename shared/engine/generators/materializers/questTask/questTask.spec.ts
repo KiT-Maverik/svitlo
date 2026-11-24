@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
-import ts from 'typescript';
 import test from 'node:test';
+
+import ts from 'typescript';
+
 import { materializeQuestTask } from './questTask';
+
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 test('Quest Task: one Scene delegation, typed import and a visible pending blocker', () => {
   const out = materializeQuestTask(
@@ -58,4 +61,32 @@ test('Quest Task: rejects a non-Scene child', () => {
       ),
     /exactly one Scene/,
   );
+});
+
+test('Quest Task retains reviewed narrative notes without specification sidecar', () => {
+  const out = materializeQuestTask(
+    {
+      id: id('01'),
+      slug: 'start',
+      type: 'questTask',
+      scene: { id: id('02'), slug: 'interactive', type: 'scene' },
+    } as Parameters<typeof materializeQuestTask>[0],
+    {
+      documentLanguage: 'en',
+      directory: 'tasks/start',
+      languagesImport: '#lessonsData/c/example/constants',
+      production: { specification: 'Do not discard the learner choice.' },
+      renderScene: (child, ctx) => ({
+        exportName: child.slug,
+        files: [{ path: ctx.directory + '/index.ts', kind: 'typescript', content: '//scene' }],
+        diagnostics: [],
+      }),
+    },
+  );
+  assert(!out.files.some(file => file.path.endsWith('specification.md')));
+  assert.match(
+    out.files.find(file => file.path === 'tasks/start/index.ts')?.content ?? '',
+    /Do not discard the learner choice/,
+  );
+  assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
 });

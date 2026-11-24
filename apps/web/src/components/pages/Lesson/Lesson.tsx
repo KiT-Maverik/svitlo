@@ -1,12 +1,18 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, createAssessmentResourceLoader, type Locale } from '@svitlo/engine/runtime';
-import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
+
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
-import { preloadScene, resolveScene } from '@/generated/textbookScenes';
-import type { Lesson_Props } from '@svitlo/engine/runtime';
+import {
+  createAssessmentResourceLoader,
+  DEFAULT_SUPPORTED_LANGUAGES,
+  type Lesson_Props,
+  type Locale,
+} from '@svitlo/engine/runtime';
+import { ImageRendererProvider, Lesson, SceneLocaleProvider, type Topic, type UiKitMessages } from '@svitlo/ui-kit';
+
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
+import { preloadScene, resolveScene } from '@/generated/textbookScenes';
 
 function sceneIds(value: unknown): string[] {
   const ids = new Set<string>();

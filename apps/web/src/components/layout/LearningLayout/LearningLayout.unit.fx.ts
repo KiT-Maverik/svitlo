@@ -1,8 +1,11 @@
-import { createElement, useState, type ComponentProps } from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import LearningLayout from './LearningLayout';
+import { createElement, useState, type ComponentProps } from 'react';
+
 import { navbarTestId, threeSlotLayoutTestId as spaceTestId } from '@svitlo/ui-kit';
+
+import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+import LearningLayout from './LearningLayout';
 
 const Navbar_fx = {
   selectors: {
@@ -20,7 +23,7 @@ const ThreeSlotLayout_fx = {
       (scope ? within(scope) : screen).queryByTestId(spaceTestId.slots[name]),
   },
 };
-import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
+
 const aria = ukUiKitMessages.learningLayout;
 
 type Props = ComponentProps<typeof LearningLayout>;

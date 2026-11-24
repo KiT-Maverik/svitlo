@@ -1,4 +1,5 @@
 import type { LanguageCode } from '@svitlo/engine/runtime';
+
 type HomeCopy = readonly [title: string, description: string];
 export const geographyHomeCopy = {
   en: ['Geography', 'Learning materials are being prepared.'],

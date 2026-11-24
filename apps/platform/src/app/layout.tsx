@@ -1,10 +1,13 @@
-import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import CssBaseline from '@mui/material/CssBaseline';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import PlatformThemeProvider from './ThemeProvider';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+
 import { SiteFooter, SiteHeader } from '@/components/SiteChrome';
+
+import PlatformThemeProvider from './ThemeProvider';
+
 import './globals.css';
 
 export const metadata: Metadata = {

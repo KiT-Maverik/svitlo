@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
 
 import { materializeCarousel, type CarouselSlideSource } from './materializeCarousel';
@@ -56,8 +57,9 @@ const context = () => {
 test('Carousel delegates Image/Scene children in authored order without manufacturing a slide type', () => {
   const { paths, renderer } = context();
   const actual = materializeCarousel(carousel(), renderer);
-  assert.deepEqual(paths, ['sections/intro/slides/items/interactive', 'sections/intro/slides/items/diagram']);
+  assert.deepEqual(paths, ['sections/intro/slides/interactive', 'sections/intro/slides/diagram']);
   assert.equal(actual.files.length, 3);
+  assert.ok(actual.files.every(file => !file.path.includes('/slides/items/')));
   assert.equal(actual.exportName, 'gallery');
   const code = actual.files.at(-1)!.content;
   assert.match(code, /defineCarousel<"gallery", typeof slides.items, typeof languages>/);

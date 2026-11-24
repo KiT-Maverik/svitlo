@@ -1,5 +1,5 @@
-import type { DeepPartial } from '#types';
 import type { LanguageCode } from '#schemas';
+import type { DeepPartial } from '#types';
 
 import { mergeForValidation } from './assemblyFields.utils';
 

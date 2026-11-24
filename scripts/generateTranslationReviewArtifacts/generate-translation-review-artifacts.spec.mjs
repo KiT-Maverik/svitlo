@@ -7,6 +7,10 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { fixTaxonomyLinks, parseArguments } from './generate-translation-review-artifacts.mjs';
+// Keep command/manifest and Lesson discovery checks in the existing Ready generator CI suite.
+import './agent-reference-command.spec.mjs';
+import '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs';
+import '../../shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs';
 
 test('requires an explicit reference family and never defaults to whole-repository generation', () => {
   assert.throws(() => parseArguments([]), /explicit supported --kind/);
@@ -63,6 +67,34 @@ test('requires explicitly scoped Question reference generation', () => {
   assert.throws(() => parseArguments(['--kind', 'questions']), /require --package/);
   assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--lesson', '../x']));
   assert.throws(() => parseArguments(['--kind', 'questions', '--package', 'content/playground', '--course', lesson]));
+});
+
+test('Flashcard references require one Lesson UUID and one explicit target locale', () => {
+  const lesson = 'd3048d21-8690-5255-b62c-984c69ac272c';
+  assert.deepEqual(
+    parseArguments(['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson, '--locale', 'uk']),
+    { kind: 'flashcards', package: 'content/playground', lesson, locale: 'uk' },
+  );
+  for (const args of [
+    ['--kind', 'flashcards', '--package', 'content/playground', '--lesson', lesson],
+    ['--kind', 'flashcards', '--package', 'content/playground', '--locale', 'uk'],
+    ['--kind', 'flashcards', '--package', 'content/playground'],
+    ['--kind', 'flashcards', '--package', 'content/playground', '--lesson', '../fake', '--locale', 'uk'],
+    [
+      '--kind',
+      'flashcards',
+      '--package',
+      'content/playground',
+      '--lesson',
+      lesson,
+      '--locale',
+      'uk',
+      '--course',
+      lesson,
+    ],
+  ]) {
+    assert.throws(() => parseArguments(args), 'Unsafe Flashcard scope: ' + args.join(' '));
+  }
 });
 
 test('rejects unsafe paths, invalid combinations and duplicate options before writing anything', () => {

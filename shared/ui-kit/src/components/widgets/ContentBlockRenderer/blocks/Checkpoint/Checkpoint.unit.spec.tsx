@@ -1,9 +1,10 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
-import { ContentLanguageContext } from '../../ContentLanguageContext';
 
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
+import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Checkpoint } from './Checkpoint';
 
 const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
-import { defineSubtitles } from './defineSubtitles';
+
 import { contentBlockTypes } from '../contentBlock.constants';
+import { defineSubtitles } from './defineSubtitles';
 
 const scope = { languages: ['uk'] as const };
 const id = 'e5235ac2-2c44-4c10-8c48-3c7bad649015';

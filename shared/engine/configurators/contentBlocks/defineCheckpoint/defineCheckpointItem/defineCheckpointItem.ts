@@ -1,16 +1,17 @@
-import type { ConfiguratorChild } from '../../../../types/configuratorChild';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
+  ChildrenSupporting,
+  ChildSupporting,
   DeepPartial,
   LanguageScope,
-  ChildSupporting,
-  ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+
 import { resolvePublicationLanguages, validateRequestedPublication } from '../../../_shared__configurators';
+import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import type {
-  ContentBlock_CheckpointAnswer_Configurator,
   Checkpoint_Allowed_Configurator,
+  ContentBlock_CheckpointAnswer_Configurator,
 } from '../defineCheckpointAnswer';
 import {
   checkpointItem_Config_Schema,

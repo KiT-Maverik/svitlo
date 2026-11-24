@@ -1,4 +1,5 @@
 import type { ChildrenSupporting, LanguageScope } from '#types';
+
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule, type Module_Child } from '../defineModule';

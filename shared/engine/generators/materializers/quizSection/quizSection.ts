@@ -137,17 +137,6 @@ const outputPath = (value: string): string => {
   return value;
 };
 const exportName = (value: string) => (reserved.has(value) ? 'config_' + value : value);
-const spec = (production: Record<string, unknown> | undefined): string | undefined => {
-  const entries = Object.entries(production ?? {}).filter(([key]) => key !== 'pending' && key !== 'documentLanguage');
-  return entries.length
-    ? entries
-        .map(
-          ([key, value]) =>
-            '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-        )
-        .join('\n\n') + '\n'
-    : undefined;
-};
 function validateCollection(content: Source['content'], location: string): void {
   if (!isObject(content) || !isObject(content.items) || !Array.isArray(content.order))
     throw new Error(location + ': expected { items, order }');
@@ -191,11 +180,11 @@ export function materializeQuizSection(config: Source, options: Options): Result
   };
   for (const key of Object.keys(config.content.items).sort()) {
     const node = childConfig(config.content.items[key]);
-    const childDirectory = [directory, 'content', 'items', key].filter(Boolean).join('/');
+    const childDirectory = [directory, key].filter(Boolean).join('/');
     const child = options.renderContentBlock(node.config, {
       directory: childDirectory,
       documentLanguage: options.documentLanguage,
-      languagesImport: childLanguagesImport(options.languagesImport, 3),
+      languagesImport: childLanguagesImport(options.languagesImport, 1),
       ...(node.production ? { production: node.production } : {}),
     });
     if (child.exportName !== exportName(key)) throw new Error('quiz.content.items.' + key + ': incorrect child export');
@@ -207,29 +196,42 @@ export function materializeQuizSection(config: Source, options: Options): Result
     diagnostics.push(...child.diagnostics);
     const alias = 'child_content_items_' + key;
     items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
-    );
+    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
   const own = { ...metadata, content: imported('content') };
   const name = exportName(config.slug);
   const blocker: string[] = [];
+  const sectionNotes = Object.keys(options.production ?? {}).filter(
+    key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
+  );
+  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+    blocker.push(
+      '// TODO (BLOCKER): Transfer reviewed quiz Section notes (' +
+        sectionNotes.join(', ') +
+        ') into Lesson methodology; do not discard reviewed source metadata.',
+    );
   const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.questionIds;
-  for (const field of ['selection', 'layout', 'feedbackMode', 'interaction', 'results']) {
-    if (!Object.hasOwn(params, field)) blocker.push('// TODO (BLOCKER): Complete reviewed Quiz params.' + field + '.');
-  }
+  if (
+    ['selection', 'layout', 'feedbackMode', 'interaction', 'results'].some(
+      field => !Object.hasOwn(params, field) || params[field] === undefined,
+    )
+  )
+    blocker.push('// TODO (BLOCKER): Design and complete reviewed Quiz parameters.');
   if (!Array.isArray(ids) || ids.length === 0) {
-    blocker.push('// TODO (BLOCKER): Select verified Question Bank UUIDs; no Questions have been fabricated.');
+    blocker.push('// TODO (BLOCKER): Select verified Question Bank IDs.');
   } else {
     if (ids.some(id => typeof id !== 'string' || !uuid.test(id)))
       throw new Error('quiz.params.selection.questionIds: invalid Question UUID');
     if (new Set(ids).size !== ids.length) throw new Error('quiz.params.selection.questionIds: duplicate UUID');
-    if (ids.some(id => String(id).startsWith('feedc0de-')))
-      blocker.push('// TODO (BLOCKER): Replace reserved provisional Question UUIDs with reviewed bank selections.');
+    if (ids.some(id => String(id).startsWith('feedc0de-'))) {
+      blocker.push('// TODO (BLOCKER): Replace provisional Question IDs with reviewed bank selections.');
+    }
+    // The Stage 6 owner validates reviewed imported Question.id expressions
+    // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
   if (options.production?.pending === true)
     blocker.push('// TODO (BLOCKER): Independent assessment review and bank integration remain pending.');
@@ -258,13 +260,6 @@ export function materializeQuizSection(config: Source, options: Options): Result
     render(own) + ');',
     '',
   ].join('\n');
-  const specification = spec(options.production);
-  if (specification)
-    add({
-      path: [directory, 'specification.md'].filter(Boolean).join('/'),
-      content: specification,
-      kind: 'specification',
-    });
   add({ path: [directory, 'index.ts'].filter(Boolean).join('/'), content: source, kind: 'typescript' });
   return { exportName: name, files, diagnostics };
 }

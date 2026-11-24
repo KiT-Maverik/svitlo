@@ -1,6 +1,7 @@
 'use client';
 
 import NextImage from 'next/image';
+
 import type { ImageRendererProps } from '@svitlo/ui-kit';
 
 /**

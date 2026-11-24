@@ -1,20 +1,22 @@
 'use client';
 
 import { Fragment, type ReactNode } from 'react';
+
+import type { ContentBlockRendererProps, ContentBlockResponse, SceneRegistry } from '#types/content-blocks';
+
 import { Audio } from './blocks/Audio/Audio';
+import { Carousel } from './blocks/Carousel/Carousel';
 import { Checkpoint } from './blocks/Checkpoint/Checkpoint';
 import { Code } from './blocks/Code/Code';
 import { Image } from './blocks/Image/Image';
-import { Carousel } from './blocks/Carousel/Carousel';
 import { Markdown } from './blocks/Markdown/Markdown';
 import { Scene } from './blocks/Scene/Scene';
+import { Subtitles } from './blocks/Subtitles/Subtitles';
 import { ContentBlock_Text } from './blocks/Text/Text';
 import { Video } from './blocks/Video/Video';
 import { Youtube } from './blocks/Youtube/Youtube';
-import { Subtitles } from './blocks/Subtitles/Subtitles';
-import type { ContentBlockRendererProps, ContentBlockResponse, SceneRegistry } from '#types/content-blocks';
-import { assertNever, requireTaggedResponse } from './utils';
 import { ContentLanguageContext, useContentLanguage } from './ContentLanguageContext';
+import { assertNever, requireTaggedResponse } from './utils';
 
 export type {
   ContentBlockRendererProps,

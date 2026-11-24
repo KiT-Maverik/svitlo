@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { languageCode_Schema } from '#schemas';
+
 import { defineText } from '#configurators';
+import { languageCode_Schema } from '#schemas';
 
 test('Engine directory aliases resolve through compiled package imports', () => {
   assert.equal(languageCode_Schema.safeParse('uk').success, true);

@@ -9,17 +9,18 @@ import type {
 
 import {
   mergeForValidation,
-  validateRequestedPublication,
   onlyLocales,
+  onlyStrings,
   resolvePublicationLanguages,
   selectPublicationLocales,
-  onlyStrings,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { lesson_Props_Schema } from '../../lessons/defineLesson';
+import { assessment_Props_Schema } from '../../assessments/defineAssessment';
 import { episode_Props_Schema } from '../../episodes/defineEpisode';
+import { lesson_Props_Schema } from '../../lessons/defineLesson';
 import {
   chapter_Config_Schema,
   chapter_Override_Config_Schema,
@@ -58,7 +59,7 @@ type ChapterConfigBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'>
   locale: DeepPartial<Chapter_Locale<'config'>>;
 };
 
-const allowedChildren = ['lesson', 'episode'] as const;
+const allowedChildren = ['lesson', 'episode', 'assessment'] as const;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -114,6 +115,11 @@ const parseChild = (value: unknown): Chapter_Child_Props => {
     }
     case 'episode': {
       const parsed = episode_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
+      return structuredClone(value) as Chapter_Child_Props;
+    }
+    case 'assessment': {
+      const parsed = assessment_Props_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
       return structuredClone(value) as Chapter_Child_Props;
     }

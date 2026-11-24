@@ -1,67 +1,11 @@
-# Typed Lesson Stage 6.1 materialization
+# Direct Lesson Stage 6.1
 
-The only supported PR command is **`/lesson materialize`**. The trusted
-default-branch GitHub Actions workflow has three jobs:
-`typed-resolve`, `typed-analyze`, and `typed-publish`.
+Lesson Stage 1–2 author a single `draft.ts`; Stages 3–5 review and correct the final `LessonWorkflowStage2` source. After approval, that same file calls `materializeLessonStage6(input)` exactly once from `@svitlo/engine/build`. Course-owned Lesson seeds are not complete inputs and must first be finished by the Lesson's authorized Stage 1.
 
-The input is the exact source-commit/source-blob-pinned Lesson
-`draft.ts satisfies LessonWorkflowMaterializerInput` under the canonical
-UUID bucket. An initial Course-owned seed or completed Lesson Stage 1 draft is not valid materializer input. The operation deletes the pinned draft and atomically creates `index.ts` and the deterministic Lesson-owned `define*` module tree. Exact original bytes remain in the pinned Git commit/blob. It does not generate translations, Question/Flashcard
-Banks, assets, Scene implementations or publishable runtime Props.
+The trusted default-branch `/lesson materialize` workflow accepts only an authorized collaborator, one canonical changed source draft in an open same-repository Draft Lesson PR and exact pinned HEAD/blob. It intentionally does **not** infer authoring completion from review prose or Course ancestry. The analyzer builds the ordinary trusted Engine and executes the final TypeScript invocation in a credential-free, no-network, non-root, read-only worker. Engine's Stage 2 Zod contract and concrete materializers validate the actual object. Imported Question/Flashcard Configurators remain actual TS/JS references; no separate literal AST decoder or secondary authoring format is used.
 
-## Trigger
+The worker returns a bounded, nonpublishable source plan. Trusted analysis seals exact files/SHA256 hashes, paths and source provenance. The write-token publisher never imports or reruns author code: it checks the source/head/actor, manifest, source tree and no-clobber paths before **one** non-force Git commit deleting `draft.ts` and creating `index.ts` plus Lesson-owned Sections, Blocks, methodology/specifications and UUID-addressed executable Scene drafts in the same textbook's `scenes/` tree. For each Scene, the publisher checks the complete six-file allowlist and refuses pre-existing files or symlink ancestors. The reviewed Scene specification is embedded inertly in its TSX rather than duplicated into another file. The reviewed original remains in Git history.
 
-On an existing, open, same-repository Draft Lesson PR with a valid Stage 2 source,
-an authorized collaborator adds this
-**exact** top-level comment:
+Source production is not approval of Stages 6.2/6.3 (resources/Scenes), Stages 7/8 (independent assessment banks) or Stages 9/10 (translation/review). Missing physical media, Quiz/Flashcards Sections, real resources, TODO blockers and unimplemented Scenes block downstream publication. Historical YAML is retained only as authored evidence, not a compatibility format.
 
-```text
-/lesson materialize
-```
-
-An authorized maintainer may dispatch the default-branch workflow with that
-PR number only. No format selector, YAML or finalize command is accepted.
-The retired YAML jobs and `/lesson finalize` command, their
-standalone trusted scripts, and the Lesson `lesson.yaml` Builder/Finalizer
-are not supported. Historical Lesson YAML must be
-reconciled in its owning PR, preserving source and author/review provenance,
-rather than using a hidden legacy fallback.
-
-## Security and stage boundaries
-
-The read-only resolver verifies actor privileges, Draft/same-repository PR
-ownership and an unambiguous changed canonical Lesson-root draft.ts in the pinned
-base/head Git comparison. A missing, ambiguous, oversized or changed source fails
-closed. The command never reads PR descriptions, editorial checklists, review
-records or Course ancestry. Stages 1–5 remain editorial responsibilities. Analyzer installs
-only trusted dependencies and treats candidate TypeScript as **data**; its AST
-parser permits a conservative source subset and statically resolves
-imported owned bank Configurator `.id` values without executing candidate
-code. It uses the trusted Engine source materializer.
-
-The SHA256-attested manifest contains an allowlisted create-only source
-inventory, the new root `index.ts`, and the pinned draft deletion with exact source bytes.
-The dependency-free publisher rechecks actor authorization, source blob, branch HEAD,
-file hashes, no-clobber destinations and Git tree lease
-before the one non-force commit. Stale or partial writes fail closed.
-
-Completion of Stage 6.1 does **not** satisfy Stage 6.2 (typed resources),
-Stage 6.3 (working Scenes), Stages 7/8 (independent assessment banks) or
-Stages 9/10 (translation and review). Missing required assessment Sections,
-unresolved scene/media assets, reserved IDs and translation drafts remain
-visible blockers and must not publish.
-
-See [full trusted typed command specification](./TYPED.md) and the
-[retirement record](./CUTOVER.md).
-
-## Scoped verification
-
-```sh
-node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs
-node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs
-node --test scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
-npm run package:build --workspace @svitlo/engine
-npm run code:check:types --workspace @svitlo/engine
-```
-
-A successful local/simulated test does not prove operational GitHub Actions permissions or deployment. Verify the workflow on default `develop` and an actual authorized run before claiming operational materialization.
+Validate with `npm run package:build --workspace @svitlo/engine`, `npm run code:check:types --workspace @svitlo/engine`, `node --test scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs` and the isolated worker tests. Deployment still needs an actual authorized default-branch run.

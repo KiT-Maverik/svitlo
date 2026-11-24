@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { resolveLocalizedRecord, resolveLocalizedText, resolveOptionalLocalizedText } from './utils';
 
 describe('ContentBlock locale resolution', () => {

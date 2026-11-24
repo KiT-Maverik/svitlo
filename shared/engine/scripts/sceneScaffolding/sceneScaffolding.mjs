@@ -2,26 +2,29 @@
 /**
  * @fileoverview Opt-in React Scene draft scaffolder.
  *
- * Reads only completed, materialized typed Lesson source modules and colocated
- * reviewed Scene specification.md files. It never imports candidate TypeScript,
+ * Legacy create-only helper and check for Scenes materialized at Lesson Stage 6.1.
+ * Reuses Engine's pure templates; it never imports candidate TypeScript,
  * mutates Lesson sources, validates/publishes Props or registers unfinished
- * React components. Lesson Stage 6.1 emits defineScene Config sources;
- * this Stage 6.3 helper emits optional executable Scene drafts.
- *
+ * React components. New Stage 6.1 outputs already include these drafts.
  * An existing Scene UUID directory is always SKIP (no merge/no overwrite).
- * Every newly created TS/TSX module parses, but unfinished components and
- * Storybook locale fixtures deliberately retain unresolved TypeScript names.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import ts from 'typescript';
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
-const slug = /^[A-Za-z][A-Za-z0-9]*$/;
+const require = createRequire(import.meta.url);
+/** Reuse the compiled trusted Engine's exact Stage 6.1 Scene templates. */
+function sharedTemplates() {
+  const built = path.join(repoRoot, 'shared/engine/dist/generators/materializers/scene/materializeScene.js');
+  if (!fs.existsSync(built)) throw new Error('Build @svitlo/engine before running Scene scaffold checks');
+  return require(built);
+}
 
 function noSymlinks(location) {
   let current = path.parse(path.resolve(location)).root;
@@ -51,11 +54,10 @@ function resolveSource(source, repo) {
   if (!match || !uuid.test(match[3]) || match[2] !== match[3].at(-1))
     throw new Error('Lesson source must be in its canonical content/<book>/data/lessons/<bucket>/<UUID> directory');
   const bookRoot = path.join(repo, 'content', match[1]);
-  for (const name of ['index.ts', 'workflow.stage2.ts', 'languages.ts']) {
-    const filename = path.join(root, name);
-    noSymlinks(filename);
-    if (!fs.statSync(filename).isFile()) throw new Error('Missing materialized Lesson ' + name);
-  }
+  const index = path.join(root, 'index.ts');
+  noSymlinks(index);
+  if (!fs.statSync(index).isFile()) throw new Error('Missing materialized Lesson index.ts');
+  lessonLanguageSource(root);
   return { lessonRoot: root, bookRoot };
 }
 
@@ -96,8 +98,20 @@ function literal(expression) {
     ? expression.text
     : undefined;
 }
+/** Current Lessons use constants.ts; old materializations used languages.ts. */
+function lessonLanguageSource(lessonRoot) {
+  const candidates = ['constants.ts', 'languages.ts'].map(name => path.join(lessonRoot, name));
+  const found = candidates.filter(filename => {
+    noSymlinks(filename);
+    return fs.existsSync(filename);
+  });
+  if (found.length !== 1 || !fs.statSync(found[0]).isFile())
+    throw new Error('Expected exactly one Lesson language source: constants.ts or legacy languages.ts');
+  return found[0];
+}
 function sourceLanguage(lessonRoot) {
-  const source = parseSource(path.join(lessonRoot, 'languages.ts'));
+  const filename = lessonLanguageSource(lessonRoot);
+  const source = parseSource(filename);
   const declarations = source.statements
     .filter(ts.isVariableStatement)
     .flatMap(entry => [...entry.declarationList.declarations])
@@ -107,7 +121,7 @@ function sourceLanguage(lessonRoot) {
     throw new Error('Scene scaffolding requires a single reviewed source language');
   const code = literal(values.elements[0]);
   if (!code || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(code))
-    throw new Error('Invalid reviewed source language in Lesson languages.ts');
+    throw new Error('Invalid reviewed source language in ' + path.basename(filename));
   return code;
 }
 /**
@@ -147,23 +161,19 @@ function assertSceneWorkspace(bookRoot) {
   }
 }
 
-/** PascalCase executable name; existing lowerCamelCase Config slugs remain usable. */
+/** The script uses the exact Engine-owned Scene name/slug contract. */
 export function sceneComponentName(authoredSlug) {
-  if (typeof authoredSlug !== 'string' || !slug.test(authoredSlug))
-    throw new Error('Unsafe Scene slug (expected PascalCase or legacy lowerCamelCase): ' + String(authoredSlug));
-  return authoredSlug[0].toUpperCase() + authoredSlug.slice(1);
+  return sharedTemplates().sceneComponentName(authoredSlug);
 }
-
-/** Keep Configurator and executable component symbols distinct at the handoff. */
 export function sceneSymbols(authoredSlug) {
-  const component = sceneComponentName(authoredSlug);
-  return { component, configurator: component + 'Config' };
+  return sharedTemplates().sceneSymbols(authoredSlug);
 }
 
 /**
  * Discover actual defineScene Config source in the materialized Lesson tree.
  * It is parsed as inert TypeScript, never evaluated or imported.
- * Scene specifications are the colocated Stage 6.1 reviewed handoff.
+ * Old materializations may have colocated specification.md; new Stage 6.1
+ * embeds the full specification in the generated executable TSX instead.
  */
 function readScenes(lessonRoot) {
   const documentLanguage = sourceLanguage(lessonRoot);
@@ -212,87 +222,16 @@ function readScenes(lessonRoot) {
   }
   walk(sections);
   const ids = new Set();
-  const names = new Set();
   for (const scene of scenes) {
     if (ids.has(scene.id)) throw new Error('Duplicate Scene UUID: ' + scene.id);
-    if (names.has(scene.component)) throw new Error('Colliding Scene component name: ' + scene.component);
     ids.add(scene.id);
-    names.add(scene.component);
   }
   return scenes.sort((left, right) => left.id.localeCompare(right.id));
 }
 
-/**
- * Pure template rendering: no fabricated learning content, translations,
- * accessible labels, or test outcomes. The source specification is verbatim
- * apart from a single normalized final newline, as in Lesson Builder.
- */
+/** Legacy CLI and trusted materialization use one Engine-owned pure renderer. */
 export function renderSceneFiles(scene) {
-  const { id, component: name, documentLanguage, specification } = scene;
-  if (typeof specification !== 'string' || !specification.trim())
-    throw new Error('Scene ' + id + ' needs production.specification; refusing to invent it');
-  const rootTestId = 'scene-' + id;
-  const files = new Map();
-  files.set('specification.md', specification.trimEnd() + '\n');
-  files.set('index.ts', 'export { ' + name + " as default } from './" + name + "';\n");
-  files.set(
-    name + '.constants.ts',
-    ['export const testIds = {', '  root: ' + JSON.stringify(rootTestId) + ',', '} as const;', ''].join('\n'),
-  );
-  files.set(name + '.module.css', ['.root {', '  inline-size: 100%;', '  min-inline-size: 0;', '}', ''].join('\n'));
-  files.set(
-    name + '.tsx',
-    [
-      "'use client';",
-      '',
-      "import type { ContentBlock_Scene_Props } from '@svitlo/engine/runtime';",
-      "import { testIds } from './" + name + ".constants';",
-      "import styles from './" + name + ".module.css';",
-      '',
-      'export type ' + name + 'Props = {',
-      "  locales: ContentBlock_Scene_Props['locale']['value'];",
-      '};',
-      '',
-      'export function ' + name + '({ locales }: ' + name + 'Props) {',
-      '  void locales;',
-      '  // TODO(scene): implement the approved Scene specification and its accessible,',
-      '  // source-language (' + documentLanguage + ') interactions before building this textbook.',
-      '  // The unresolved identifier deliberately prevents an incomplete Scene from typechecking.',
-      '  return <section className={styles.root} data-testid={testIds.root}>{sceneImplementationRequired}</section>;',
-      '}',
-      '',
-    ].join('\n'),
-  );
-  files.set(
-    name + '.stories.tsx',
-    [
-      "import type { ComponentProps } from 'react';",
-      'import { ' + name + " } from './" + name + "';",
-      '',
-      'export default { title: ' + JSON.stringify('Scenes/' + name) + ', component: ' + name + ' };',
-      '',
-      'export const SourceLanguage = {',
-      '  args: {',
-      '    // TODO(i18n): use a verified ' + documentLanguage + ' fixture from the Lesson source, not invented copy.',
-      '    locales: sceneSourceLocaleRequired,',
-      '  },',
-      '} satisfies { args: ComponentProps<typeof ' + name + '> };',
-      '',
-    ].join('\n'),
-  );
-  files.set(
-    name + '.spec.tsx',
-    [
-      "import { describe, it } from 'vitest';",
-      '',
-      "describe('" + name + "', () => {",
-      "  it.todo('implements the approved Scene interactions and state transitions');",
-      "  it.todo('provides source-locale accessibility and keyboard/touch parity');",
-      '});',
-      '',
-    ].join('\n'),
-  );
-  return files;
+  return sharedTemplates().renderSceneFiles(scene);
 }
 
 /**
@@ -319,7 +258,14 @@ export function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId)
       results.push({ id: scene.id, changed: 0, skipped: true });
       continue;
     }
-    const files = renderSceneFiles(scene);
+    const files =
+      mode === 'check'
+        ? new Map(
+            sharedTemplates()
+              .sceneFileNames(scene)
+              .map(filename => [filename, '']),
+          )
+        : renderSceneFiles(scene);
     for (const filename of files.keys()) noSymlinks(path.join(directory, filename));
     if (mode === 'check') {
       for (const filename of files.keys()) {

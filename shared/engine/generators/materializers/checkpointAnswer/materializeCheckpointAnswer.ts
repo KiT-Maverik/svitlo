@@ -1,14 +1,14 @@
-import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
 import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { SceneSource } from '../scene/materializeScene';
 import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type { CarouselSource } from '../carousel/materializeCarousel';
+import type { SceneSource } from '../scene/materializeScene';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config
@@ -144,15 +144,13 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   for (const key of config.content.order) {
     const child = config.content.items[key];
     if (child === false) continue;
-    const target = (at ? at + '/' : '') + 'content/items/' + key;
+    const target = (at ? at + '/' : '') + key;
     const result = context.renderChild(child, target);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid delegate export');
     }
     const alias = 'answer_' + key;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
-    );
+    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
     items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const file of result.files) {
       if (!file.path.startsWith(target + '/')) {

@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
-import { describe, test } from 'node:test';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { describe, test } from 'node:test';
 import { pathToFileURL } from 'node:url';
+
 import { defineCode, readCodeSource } from './index';
 
 const id = 'e5235ac2-2c44-4c10-8c48-3c7bad649011';

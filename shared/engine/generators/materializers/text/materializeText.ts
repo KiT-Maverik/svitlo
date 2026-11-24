@@ -4,9 +4,8 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
-import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText';
 
-import { text_Config_Schema } from '../../../configurators/contentBlocks/defineText';
+import { text_Config_Schema, type ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText';
 import { validateTextVariables } from '../../../configurators/contentBlocks/defineText/defineText.utils';
 
 export type TextDraftConfig = Pick<ContentBlock_Text_Config, 'id' | 'slug' | 'type'> & {

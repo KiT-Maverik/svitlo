@@ -1,37 +1,39 @@
+import { z } from 'zod';
+
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
   ChildrenSupporting,
+  ConfigWithLanguages,
+  DeepPartial,
+  LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { z } from 'zod';
 
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
-  validateRequestedPublication,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
 import {
   carousel_Config_Schema,
-  carousel_Props_Schema,
   carousel_Override_Config_Schema,
+  carousel_Props_Schema,
+  carousel_Slide_Props_Schema,
   type Carousel_Metadata_Overrides,
   type ContentBlock_Carousel_Config,
   type ContentBlock_Carousel_Locale,
   type ContentBlock_Carousel_Overrides,
   type ContentBlock_Carousel_PropsBase,
-  type ContentBlock_Carousel_SlideProps,
   type ContentBlock_Carousel_SlideConfigurator,
-  carousel_Slide_Props_Schema,
+  type ContentBlock_Carousel_SlideProps,
 } from './defineCarousel.schemas';
+
 type Slide = ContentBlock_Carousel_SlideConfigurator;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
 type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };

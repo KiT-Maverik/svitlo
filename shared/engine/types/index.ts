@@ -26,7 +26,6 @@ export type {
   CourseWorkflowLessonProposal,
   CourseWorkflowLessonSeed,
   LessonProductionAssessmentRequirements,
-  CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,

@@ -8,7 +8,6 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/courseMaterialization/**'
-      - 'scripts/ci/reviewEvidence/**'
       - 'shared/engine/generators/materializers/**'
       - 'shared/engine/types/workflow/**'
       - 'shared/engine/configurators/**'
@@ -20,7 +19,7 @@ on:
   workflow_dispatch:
     inputs:
       pr_number:
-        description: Open same-repository Draft typed Course PR with reviewed Stage 3
+        description: Open same-repository Draft typed Course PR
         type: number
         required: true
 
@@ -53,16 +52,14 @@ jobs:
           test ! -e shared/engine/dist
           test ! -e shared/engine/temp
           git rev-parse HEAD
-      - name: Compile trusted concrete Course renderers for focused CI
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - name: Regress real Course reuse through analyze and publish replay
-        run: node --test scripts/ci/courseMaterialization/trusted-course-full-path.spec.mjs
+      - name: Build ordinary Engine package
+        run: npm run package:build --workspace @svitlo/engine
       - name: Test trusted typed Course Stage 5 boundary
-        run: node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs
-      - name: Test canonical Course Stage 5 source, semantic fixture and atomic writer
+        run: node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs
+      - name: Test Course source generator and atomic writer
         run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
-        run: npx prettier --check scripts/ci/courseMaterialization/*.mjs scripts/ci/courseMaterialization/README.md .github/workflows/course-typed-materialization.yml
+        run: npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
         run: npm run code:check:types --workspace @svitlo/engine
       - name: Verify canonical Engine package build and public declarations
@@ -96,7 +93,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Verify exact source, independent Stage 4 review and authorized actor
+      - name: Verify exact source and authorized actor
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -132,16 +129,18 @@ jobs:
       - name: Install only trusted dependencies without lifecycle scripts
         working-directory: trusted
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Compile trusted concrete Course renderers before read-only analysis
+      - name: Build the ordinary Engine package
         working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - name: Parse untrusted Stage 3 as inert TypeScript and emit bounded source manifest
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Pull the pinned, credential-free worker image
+        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+      - name: Execute direct Course entrypoint in an isolated worker and seal manifest
         env:
           COURSE_TYPED_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_TYPED_REPORT: ${{ runner.temp }}/typed-course/manifest.json
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-source.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-direct.mjs analyze
       - name: Upload read-only job result
         uses: actions/upload-artifact@v4
         with:
@@ -179,18 +178,12 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
-      - name: Install trusted publisher dependencies without lifecycle scripts
-        working-directory: trusted
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Compile trusted concrete Course renderers for manifest replay
-        working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
       - name: Download exact read-only job manifest
         uses: actions/download-artifact@v4
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Recheck Stage 4, SHA, deterministic output and branch lease; write one commit
+      - name: Recheck source hashes and branch lease; commit attested files
         id: commit
         env:
           GH_TOKEN: ${{ github.token }}
@@ -210,7 +203,8 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out trusted metadata reconciliation (never candidate code)
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
@@ -221,7 +215,7 @@ jobs:
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Verify committed manifest and reconcile current Course PR tables only
+      - name: Verify committed file bytes and reconcile Lessons/Episodes tables only
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}

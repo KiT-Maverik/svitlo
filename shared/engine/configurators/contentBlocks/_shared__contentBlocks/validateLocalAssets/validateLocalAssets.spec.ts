@@ -1,10 +1,9 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, unlinkSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import test, { describe } from 'node:test';
 import { pathToFileURL } from 'node:url';
-import test from 'node:test';
 
 import { resolveEntityPath } from '../../../../utils/entityPath/resolveEntityPath.utils';
 import { validateLocalAssetPaths, validateSceneEntry } from './validateLocalAssets.utils';

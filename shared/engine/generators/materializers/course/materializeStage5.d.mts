@@ -1,7 +1,4 @@
-import type {
-  CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3LessonMatch,
-} from '../../../types/workflow/courseWorkflow.types';
+import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
 import type { Lesson_Configurator } from '../../../configurators/lessons/defineLesson/defineLesson';
 
 export type SourceDiagnostic = {
@@ -22,12 +19,9 @@ export type SourceRenderResult = {
   files: SourceFile[];
   diagnostics?: SourceDiagnostic[];
 };
-export type CourseStage5Review = {
+export type CourseStage5Source = {
   sourcePath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
-  reviewer: string;
-  evidenceUrl: string;
 };
 export type ExistingLesson = {
   id: string;
@@ -38,26 +32,11 @@ export type ExistingLesson = {
   configurator: Lesson_Configurator;
   /** Original raw Lesson Build expression corresponding to reviewed built sparse output. */
   rawPatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
-  /** Source-authored raw patch expression (for nested Configurator references). */
-  rawPatchSource?: string;
-  /** Must equal the exact reviewed Course source blob SHA. */
-  rawPatchSourceSha?: string;
-  rawPatchImports?: readonly string[];
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
-  review: CourseStage5Review;
-  verifyReviewedSource: (arg: {
-    input: CourseWorkflowMaterializerInput;
-    review: CourseStage5Review;
-    textbookRoot: string;
-  }) => boolean;
-  resolveExistingLesson?: (arg: {
-    id: string;
-    matching: CourseWorkflowStage3LessonMatch;
-    placement: string;
-    languages: readonly string[];
-  }) => ExistingLesson;
+  source: CourseStage5Source;
+  verifySource: (arg: { input: CourseWorkflowStage3; source: CourseStage5Source; textbookRoot: string }) => boolean;
   materializeSection?: (
     node: unknown,
     context: {
@@ -69,27 +48,36 @@ export type CourseStage5Options = {
   ) => SourceRenderResult;
 };
 export type CoursePlacementInventoryRow = {
-  type: 'lesson' | 'episode';
+  type: 'lesson' | 'episode' | 'assessment';
   id: string;
   slug: string;
   kind: 'new' | 'reused' | 'overridden';
-  status: 'pending-lesson-stage1' | 'pending-episode-scenario' | 'verified-reference' | 'materialized-source';
+  status:
+    | 'pending-lesson-stage1'
+    | 'pending-episode-scenario'
+    | 'pending-assessment-design'
+    | 'verified-reference'
+    | 'materialized-source';
   placementPath: string;
   orderPath: readonly number[];
   sourcePath: string;
   placementSourcePath: string;
   sourceSha?: string;
+  lessonDependencies?: readonly string[];
 };
 export type CourseStage5Plan = {
   sourcePath: string;
   materializedPath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
   courseId: string;
   root: string;
   files: readonly SourceFile[];
   diagnostics: readonly SourceDiagnostic[];
-  inventory: { lessons: readonly CoursePlacementInventoryRow[]; episodes: readonly CoursePlacementInventoryRow[] };
+  inventory: {
+    lessons: readonly CoursePlacementInventoryRow[];
+    episodes: readonly CoursePlacementInventoryRow[];
+    assessments: readonly CoursePlacementInventoryRow[];
+  };
   placements: readonly { path: string; slug: string; lessonId: string; kind: string }[];
   pendingPlacements: readonly { path: string; slug: string; lessonId: string; handoffPath: string }[];
   pendingEpisodes: readonly {
@@ -103,7 +91,4 @@ export type CourseStage5Plan = {
 };
 
 /** Typed build-only root entrypoint; Stage 3/4 is NOT a complete Course_Config. */
-export function materializeCourseStage5(
-  input: CourseWorkflowMaterializerInput,
-  options: CourseStage5Options,
-): CourseStage5Plan;
+export function materializeCourseStage5(input: CourseWorkflowStage3, options: CourseStage5Options): CourseStage5Plan;

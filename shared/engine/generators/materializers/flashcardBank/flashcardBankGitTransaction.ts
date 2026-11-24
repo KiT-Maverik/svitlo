@@ -1,22 +1,22 @@
 /** Trusted Git check/commit adapter for the existing Flashcard Bank source plans. */
 import type {
   FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowMaterializerInput,
+  FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import {
-  materializeFlashcardBankDraft,
+  checkBankGitPlan,
+  commitBankGitPlan,
+  readBankGitSnapshot,
+  type BankGitCheck,
+  type BankGitCommit,
+  type BankGitContext,
+} from '../bankSource/bankSourceGitTransaction';
+import {
   materializeFlashcardBank,
+  materializeFlashcardBankDraft,
   type FlashcardBankDraftAuthorization,
   type FlashcardBankFinalAuthorization,
 } from './materializeFlashcardBank';
-import {
-  readBankGitSnapshot,
-  checkBankGitPlan,
-  commitBankGitPlan,
-  type BankGitContext,
-  type BankGitCheck,
-  type BankGitCommit,
-} from '../bankSource/bankSourceGitTransaction';
 
 export type FlashcardBankDraftGitAuthorization = Omit<FlashcardBankDraftAuthorization, 'snapshot'>;
 export type FlashcardBankFinalGitAuthorization = Omit<FlashcardBankFinalAuthorization, 'snapshot'>;
@@ -46,7 +46,7 @@ export function writeFlashcardBankDraftSource(
 }
 
 export function checkReviewedFlashcardBankSource(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCheck {
@@ -55,13 +55,13 @@ export function checkReviewedFlashcardBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }
 
 export function writeReviewedFlashcardBankSource(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCommit {
@@ -70,7 +70,7 @@ export function writeReviewedFlashcardBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }

@@ -1,19 +1,21 @@
-import { useEffect } from 'react';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { useEffect } from 'react';
 import { describe, expect, it } from 'vitest';
+
 import type {
-  Lesson_Props,
-  ContentBlock_Text_Props,
-  ContentBlock_Checkpoint_Props,
-  QuizSection_Props,
   AssessmentResourceLoader,
+  ContentBlock_Checkpoint_Props,
+  ContentBlock_Text_Props,
+  Disability,
   Flashcard_Props,
   FlashcardsSection_Props,
-  Disability,
+  Lesson_Props,
+  QuizSection_Props,
 } from '@svitlo/engine/runtime';
+
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
-import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
+import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import { Lesson } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
 import { useLessonEventBus } from './LessonEvents';

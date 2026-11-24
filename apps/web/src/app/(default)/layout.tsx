@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+
 import AppDocument from '../AppDocument';
 
 export default function RootLayout({ children }: { children: ReactNode }) {

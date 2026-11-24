@@ -3,22 +3,22 @@
  * to the existing source materializer, not reconstructed by the bank.
  * Composite editorial nodes are plain Configs (not built child Configurators).
  */
-import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
-import { materializeVideo } from '../video/materializeVideo';
 import { materializeAudio } from '../audio/materializeAudio';
-import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene } from '../scene/materializeScene';
 import { materializeCarousel, type CarouselSource } from '../carousel/materializeCarousel';
 import { materializeCheckpoint, type CheckpointSource } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem, type CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
 import {
   materializeCheckpointAnswer,
   type CheckpointAnswerSource,
 } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem, type CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
+import { materializeImage } from '../image/materializeImage';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeScene } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeText } from '../text/materializeText';
+import { materializeVideo } from '../video/materializeVideo';
+import { materializeYoutube } from '../youtube/materializeYoutube';
 import { assertBankPath, assertBankUuid } from './bankSourceSafety';
 
 export type AssessmentBlockEvidence = {
@@ -26,6 +26,13 @@ export type AssessmentBlockEvidence = {
   registeredSceneIds: ReadonlySet<string>;
   /** Independently approved real assets or externally resolved media. */
   approvedMediaBlockIds: ReadonlySet<string>;
+  /** Unresolved *source* resources verified by the pinned trusted analyzer. */
+  unresolvedMediaBlockIds?: ReadonlySet<string>;
+  unregisteredSceneIds?: ReadonlySet<string>;
+  /** Verified, entirely absent Scene directories approved for new six-file scaffolds. */
+  newSceneIds?: ReadonlySet<string>;
+  /** Verified complete but unfinished six-file Scene sources: never overwrite them. */
+  existingDraftSceneIds?: ReadonlySet<string>;
 };
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = { config: PlainBlock; production?: Record<string, unknown> };
@@ -69,17 +76,6 @@ function ordered(value: unknown, at: string): { items: Record<string, unknown>; 
   }
   return { items, order: order as string[] };
 }
-function relativeLanguages(directory: string, moduleName: string): string {
-  assertBankPath(directory);
-  if (!['questionsLanguages', 'flashcardsLanguages'].includes(moduleName)) {
-    throw new Error('Unrecognized bank-owned language module');
-  }
-  const parts = directory.split('/');
-  if (parts[0] !== (moduleName === 'questionsLanguages' ? 'questions' : 'flashcards')) {
-    throw new Error('Bank child directory outside its bank');
-  }
-  return '../'.repeat(parts.length) + moduleName;
-}
 function asChildResult(out: {
   exportName: string;
   files: readonly { path: string; content: string; kind: string }[];
@@ -103,7 +99,8 @@ export function materializeAssessmentBlock(
   node: BlockNode,
   context: { directory: string; documentLanguage: string },
   planned: readonly string[],
-  moduleName: 'questionsLanguages' | 'flashcardsLanguages',
+  bankKind: 'questions' | 'flashcards',
+  ownerConstantsImport: string,
   evidence: AssessmentBlockEvidence,
 ): ChildResult {
   if (!node || !isRecord(node.config)) throw new Error('Missing bank ContentBlock');
@@ -111,17 +108,24 @@ export function materializeAssessmentBlock(
   assertBankUuid(source.id, 'bank ContentBlock');
   if (node.production?.pending === true) throw new Error('Pending ContentBlock ' + source.id);
   const documentLanguage = context.documentLanguage;
-  const languagesImport = relativeLanguages(context.directory, moduleName);
+  assertBankPath(context.directory);
+  if (!context.directory.startsWith(bankKind + '/')) throw new Error('Bank child outside bank folder');
+  if (!/^#lessonsData\/[0-9a-f]\/[0-9a-f-]{36}\/constants$/.test(ownerConstantsImport))
+    throw new Error('Bank child must import owning Lesson constants.ts');
+  const languagesImport = ownerConstantsImport;
   const options = {
     directory: context.directory,
     documentLanguage,
     languagesImport,
-    plannedLanguages: planned,
+    // The Lesson owns the complete restoration plan. Each nested Bank Block
+    // materializes source-language copy only, without duplicate locale TODOs.
+    plannedLanguages: [documentLanguage],
     production: node.production,
   };
   if (
     ['image', 'video', 'audio', 'subtitles', 'youtube'].includes(source.type) &&
-    !evidence.approvedMediaBlockIds.has(source.id)
+    !evidence.approvedMediaBlockIds.has(source.id) &&
+    !(bankKind === 'questions' && evidence.unresolvedMediaBlockIds?.has(source.id))
   ) {
     throw new Error('Missing verified media evidence for ' + source.type + ' ' + source.id);
   }
@@ -143,7 +147,15 @@ export function materializeAssessmentBlock(
     case 'subtitles':
       return asChildResult(materializeSubtitles(source as Parameters<typeof materializeSubtitles>[0], options));
     case 'scene': {
-      if (!evidence.registeredSceneIds.has(source.id)) {
+      const registered = evidence.registeredSceneIds.has(source.id);
+      const newDraft = evidence.newSceneIds?.has(source.id) ?? false;
+      const existingDraft = evidence.existingDraftSceneIds?.has(source.id) ?? false;
+      if (
+        !registered &&
+        !newDraft &&
+        !existingDraft &&
+        !(bankKind === 'questions' && evidence.unregisteredSceneIds?.has(source.id))
+      ) {
         throw new Error('Scene has no verified executable registry: ' + source.id);
       }
       return asChildResult(
@@ -151,7 +163,7 @@ export function materializeAssessmentBlock(
           directory: context.directory,
           documentLanguage,
           languagesImport,
-          registered: true,
+          registered,
           production:
             node.production === undefined
               ? undefined
@@ -159,7 +171,11 @@ export function materializeAssessmentBlock(
                   ...(typeof node.production.specification === 'string'
                     ? { specification: node.production.specification }
                     : {}),
-                  ...(typeof node.production.pending === 'boolean' ? { pending: node.production.pending } : {}),
+                  // Preserve Flashcard's separate authored pending contract,
+                  // never introduce this redundant status in Question source.
+                  ...(bankKind === 'flashcards' && typeof node.production.pending === 'boolean'
+                    ? { pending: node.production.pending }
+                    : {}),
                 },
         }),
       );
@@ -182,7 +198,8 @@ export function materializeAssessmentBlock(
               withProduction(child as PlainBlock, slides.items[child.slug]),
               { directory, documentLanguage },
               planned,
-              moduleName,
+              bankKind,
+              ownerConstantsImport,
               evidence,
             );
             return { ...result };
@@ -228,26 +245,28 @@ export function materializeAssessmentBlock(
             return materializeCheckpointItem(item as CheckpointItemSource, {
               directory,
               documentLanguage,
-              languagesImport: relativeLanguages(directory, moduleName),
+              languagesImport: ownerConstantsImport,
               renderQuestion: (question, questionDir) =>
                 materializeAssessmentBlock(
                   withProduction(question as PlainBlock, authoredItem.question),
                   { directory: questionDir, documentLanguage },
                   planned,
-                  moduleName,
+                  bankKind,
+                  ownerConstantsImport,
                   evidence,
                 ),
               renderAnswer: (answer, answerDir) =>
                 materializeCheckpointAnswer(answer as CheckpointAnswerSource, {
                   directory: answerDir,
                   documentLanguage,
-                  languagesImport: relativeLanguages(answerDir, moduleName),
+                  languagesImport: ownerConstantsImport,
                   renderChild: (block, blockDir) =>
                     materializeAssessmentBlock(
                       withProduction(block as PlainBlock, authoredBlocks[block.slug]),
                       { directory: blockDir, documentLanguage },
                       planned,
-                      moduleName,
+                      bankKind,
+                      ownerConstantsImport,
                       evidence,
                     ),
                 }),

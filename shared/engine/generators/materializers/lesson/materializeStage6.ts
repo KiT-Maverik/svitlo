@@ -1,31 +1,34 @@
 import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
-import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/lessonWorkflow.types';
-import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
-import { materializeContentSection } from '../contentSection/contentSection';
-import { materializePracticeSection } from '../practiceSection/practiceSection';
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
+import { materializeAudio } from '../audio/materializeAudio';
+import { materializeCarousel } from '../carousel/materializeCarousel';
+import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
+import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
+import { materializeCode } from '../code/materializeCode';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
-import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
-import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeContentSection } from '../contentSection/contentSection';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
+import { materializeImage } from '../image/materializeImage';
+import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializePracticeSection } from '../practiceSection/practiceSection';
 import { materializeQuestSection } from '../questSection/questSection';
 import { materializeQuestStage } from '../questStage/questStage';
 import { materializeQuestTask } from '../questTask/questTask';
+import { materializeQuizSection } from '../quizSection/quizSection';
+import { materializeScene, renderSceneFiles } from '../scene/materializeScene';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
-import { materializeImage } from '../image/materializeImage';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeAudio } from '../audio/materializeAudio';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
-import { materializeScene } from '../scene/materializeScene';
-import { materializeCarousel } from '../carousel/materializeCarousel';
-import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
-import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
-import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
-import { preserveAssessmentReferences } from './preserveAssessmentReferences';
+import { assertLessonSourceReleaseReady, materializeLesson, type ChildConfig, type Result } from './lesson';
+import { preserveAssessmentReferences, reviewedSkillReferences } from './preserveAssessmentReferences';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
 export type LessonStage6Source = {
@@ -39,7 +42,7 @@ export type LessonStage6Options = {
   source: LessonStage6Source;
   /** Verify that the inert parsed object and exact bytes came from the pinned source. */
   verifySourceInput: (
-    input: Readonly<LessonWorkflowMaterializerInput>,
+    input: Readonly<LessonWorkflowStage2>,
     source: Readonly<LessonStage6Source>,
     sourceText: string,
   ) => boolean;
@@ -58,7 +61,6 @@ export type LessonStage6Plan = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
 const safeSlug = /^[A-Za-z][A-Za-z0-9]*$/;
-const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 type Node = { config: Record<string, unknown>; production?: Record<string, unknown> };
@@ -75,8 +77,16 @@ function gitBlobSha(source: string): string {
     .update(source, 'utf8')
     .digest('hex');
 }
-function languagesFromRoot(directory: string): string {
-  return directory ? '../'.repeat(directory.split('/').length) + 'languages' : './languages';
+/** Preserve owner-rooted Lesson/Episode aliases through recursive children.
+ * For old relative imports, resolve only the additional directory depth;
+ * never assume a Lesson root when rendering an Episode subtree. */
+function childLanguagesImport(parent: RenderOptions, childDirectory: string): string {
+  const from = parent.languagesImport;
+  if (from.startsWith('#') || from.startsWith('@')) return from;
+  if (!/^(?:\.\.?\/)/.test(from)) throw new Error('Unsafe inherited languages import: ' + from);
+  const delta = childDirectory.split('/').length - parent.directory.split('/').length;
+  if (delta < 0) throw new Error('Child languages import escaped parent directory');
+  return '../'.repeat(delta) + from.replace(/^\.\//, '');
 }
 function node(value: unknown, at: string): Node {
   if (!isRecord(value) || !isRecord(value.config) || (!isRecord(value.production) && value.production !== undefined))
@@ -97,8 +107,9 @@ function node(value: unknown, at: string): Node {
  * Every original node's production remains attached to its stable UUID.
  * Never create a Section, Block, media value, Question or Flashcard ID.
  */
-function normalizeStage2(input: LessonWorkflowMaterializerInput) {
+function normalizeStage2(input: LessonWorkflowStage2) {
   const metadata = new Map<string, Record<string, unknown>>();
+  const scenes: { id: string; slug: string; specification?: string }[] = [];
   const seen = new Set<string>([input.config.id]);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
     if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
@@ -131,6 +142,13 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
     if (current.production) metadata.set(id, current.production);
     const normalized: Record<string, unknown> = { ...config };
     const typ = config.type;
+    if (typ === 'scene')
+      scenes.push({
+        id,
+        slug: config.slug as string,
+        specification:
+          typeof current.production?.specification === 'string' ? current.production.specification : undefined,
+      });
 
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
       normalized.content = ordered(config.content, at + '.content', true);
@@ -192,7 +210,7 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
     return normalized;
   }
   const sections = ordered(input.config.section, 'lesson.section', true);
-  return { sections, metadata };
+  return { sections, metadata, scenes };
 }
 
 /**
@@ -200,10 +218,11 @@ function normalizeStage2(input: LessonWorkflowMaterializerInput) {
  * Concrete materializers own rendering/diagnostics for their real Config
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
-export function materializeLessonStage6(
-  input: LessonWorkflowMaterializerInput,
-  options: LessonStage6Options,
-): LessonStage6Plan {
+export function materializeLessonStage6(input: LessonWorkflowStage2, options?: LessonStage6Options): LessonStage6Plan {
+  return invokeMaterializer('lesson-stage6', options, execution => planLessonStage6(input, execution));
+}
+
+function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
   if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
     throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
   const config = input.config;
@@ -229,35 +248,33 @@ export function materializeLessonStage6(
   )
     throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
 
-  const documentLanguage = input.production.languages?.document;
-  const planned = input.production.languages?.planned;
-  if (
-    typeof documentLanguage !== 'string' ||
-    !locale.test(documentLanguage) ||
-    !Array.isArray(planned) ||
-    !planned.length ||
-    planned.some(code => typeof code !== 'string' || !locale.test(code)) ||
-    new Set(planned).size !== planned.length ||
-    !planned.includes(documentLanguage)
-  )
-    throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  const languagePlan = workflowLanguages_Schema.safeParse(input.production.languages);
+  if (!languagePlan.success) throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  const { document: documentLanguage, planned } = languagePlan.data;
   if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
-  const params = { ...config.params, languages: [...planned] };
+  const params = {
+    ...config.params,
+    languages: [...planned],
+    sections: {
+      allowNavigation: true,
+      allowSkipping: true,
+      showIndexes: true,
+      ...config.params?.sections,
+    },
+  };
   const parsed = lesson_Config_Schema.shape.params.safeParse(params);
   if (!parsed.success)
     throw new Error('Lesson Stage 6: incomplete or invalid Lesson Config params: ' + parsed.error.message);
   if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
     throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
   const assessment = input.production.assessment;
-  const assessmentKeys = [
-    'questionBankRequired',
-    'flashcardBankRequired',
-    'quizSectionRequired',
-    'flashcardsSectionRequired',
-  ] as const;
-  if (!isRecord(assessment) || assessmentKeys.some(key => typeof assessment[key] !== 'boolean'))
+  if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
-  const { sections, metadata } = normalizeStage2(input);
+  const { sections, metadata, scenes } = normalizeStage2(input);
+  // Validate the actual editorial input before calling any source renderer.
+  // Keep the original object for source fidelity; parsing is not a new authored representation.
+  const validated = lessonWorkflowStage2_Schema.safeParse(input);
+  if (!validated.success) throw new Error('Invalid Lesson Stage 2 input: ' + validated.error.message);
 
   function block(config: ChildConfig, context: RenderOptions): Result {
     const production = context.production ?? metadata.get(config.id);
@@ -296,7 +313,7 @@ export function materializeLessonStage6(
             block(child as ChildConfig, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               production: metadata.get(child.id),
             }),
         });
@@ -307,24 +324,24 @@ export function materializeLessonStage6(
             materializeCheckpointItem(item, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               renderQuestion: (text, childDir) =>
                 block(text as ChildConfig, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   production: metadata.get(text.id),
                 }),
               renderAnswer: (answer, childDir) =>
                 materializeCheckpointAnswer(answer, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   renderChild: (child, deeper) =>
                     block(child as ChildConfig, {
                       directory: deeper,
                       documentLanguage,
-                      languagesImport: languagesFromRoot(deeper),
+                      languagesImport: childLanguagesImport(context, deeper),
                       production: metadata.get(child.id),
                     }),
                 }),
@@ -393,10 +410,30 @@ export function materializeLessonStage6(
     {
       documentLanguage,
       production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
+      skillReferences: reviewedSkillReferences(options.sourceText, source.sourcePath, input),
       renderSection: section,
     },
   );
   const root = source.sourcePath.slice(0, -'draft.ts'.length);
+  const files = preserveAssessmentReferences(
+    options.sourceText,
+    source.sourcePath,
+    input,
+    result.files.map(file => ({ ...file, path: root + file.path })),
+  );
+  // The nested defineScene sources stay within Lesson ownership. Executable
+  // Scene drafts belong to the textbook's independent UUID-scoped scene tree.
+  // Stage 6.1 includes both in ONE attested source plan and Git transaction.
+  for (const scene of scenes) {
+    const directory = 'content/' + match[1] + '/scenes/' + scene.id.at(-1) + '/' + scene.id + '/';
+    for (const [name, content] of renderSceneFiles({ ...scene, documentLanguage })) {
+      files.push({
+        path: directory + name,
+        kind: name.endsWith('.css') ? 'code' : 'typescript',
+        content,
+      });
+    }
+  }
   return {
     lessonId: config.id,
     sourcePath: source.sourcePath,
@@ -404,12 +441,7 @@ export function materializeLessonStage6(
     sourceBlobSha: source.sourceBlobSha,
     sourceCommitSha: source.sourceCommitSha,
     publishable: false,
-    files: preserveAssessmentReferences(
-      options.sourceText,
-      source.sourcePath,
-      input,
-      result.files.map(file => ({ ...file, path: root + file.path })),
-    ),
+    files,
     diagnostics: result.diagnostics,
   };
 }

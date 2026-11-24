@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, type ReactNode } from 'react';
+
 import type { Locale } from '@svitlo/engine/runtime';
 
 /** One host-provided locale shared by all textbook Scenes. */

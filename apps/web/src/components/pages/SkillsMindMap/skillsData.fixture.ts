@@ -1,3 +1,6 @@
+/** Representative already-localized props received by browser components. */
+import type { SkillNode } from './skillsMindMap.utils';
+
 /** Representative published textbook-wide base and sparse locale Skills fixtures. */
 const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, '0');
 
@@ -48,8 +51,6 @@ export function fixtureJsonForSkillUrl(url: string): unknown | null {
   };
 }
 
-/** Representative already-localized props received by browser components. */
-import type { SkillNode } from './skillsMindMap.utils';
 export const TEST_SKILL_NODES_UK: readonly SkillNode[] = [
   {
     id: uuid(1),

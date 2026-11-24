@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import { Flag, flagCountryByLocale } from './Flag';
 
 describe('Widgets/Flag', () => {

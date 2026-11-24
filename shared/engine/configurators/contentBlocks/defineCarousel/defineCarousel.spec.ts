@@ -1,10 +1,10 @@
-import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 
-import { defineCarousel, carousel_Props_Schema } from './index';
 import { defineImage } from '../defineImage';
 import { defineScene } from '../defineScene';
 import { defineText } from '../defineText';
+import { carousel_Props_Schema, defineCarousel } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {

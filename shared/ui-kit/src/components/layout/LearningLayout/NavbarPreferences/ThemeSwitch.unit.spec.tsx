@@ -1,9 +1,10 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createTheme, ThemeProvider, useColorScheme } from '@mui/material/styles';
-import ThemeSwitch from './ThemeSwitch';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { navbarPreferences } from '../../../../../data/locale/navbarPreferences';
+import ThemeSwitch from './ThemeSwitch';
 
 const { uk, ar } = navbarPreferences;
 const muiTheme = createTheme({

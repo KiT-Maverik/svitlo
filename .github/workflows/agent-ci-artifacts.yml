@@ -20,6 +20,7 @@ on:
           - skills
           - lessons
           - questions
+          - flashcards
           - courses
           - episodes
           - assessment-methods
@@ -27,7 +28,7 @@ on:
           - geography-home-copy
           - education-standards
       textbook:
-        description: 'For Skills/Lessons/Questions/Courses/Episodes: content/<book>'
+        description: 'For Skills/Lessons/Questions/Flashcards/Courses/Episodes: content/<book>'
         required: false
         type: string
       locale:
@@ -39,7 +40,7 @@ on:
         required: false
         type: string
       lesson:
-        description: 'Optional Lesson UUID (requires kind=lessons or questions)'
+        description: 'Lesson UUID (required for flashcards; optional for lessons/questions)'
         required: false
         type: string
       course:
@@ -99,12 +100,31 @@ jobs:
           if (isComment) {
             if (parts[0] !== '/agent-artifacts' || parts[1] !== 'generate') throw Error('Unknown command');
               kind = parts[2] || '';
-              if (kind === 'skills' || kind === 'lessons' || kind === 'questions') {
+              if (kind === 'skills') {
                 if (![4, 5].includes(parts.length)) {
-                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [locale]');
+                  throw Error('Usage: /agent-artifacts generate skills content/<book> [locale]');
                 }
                 textbook = parts[3];
                 locale = parts[4] || '';
+              } else if (kind === 'lessons' || kind === 'questions') {
+                if (![4, 5, 6].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [lesson-uuid] [locale]');
+                }
+                textbook = parts[3];
+                const extra = parts.slice(4);
+                const isUuid = value => /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value);
+                if (extra.length === 1) {
+                  if (isUuid(extra[0])) lesson = extra[0].toLowerCase();
+                  else locale = extra[0];
+                } else if (extra.length === 2) {
+                  lesson = extra[0].toLowerCase();
+                  locale = extra[1];
+                }
+              } else if (kind === 'flashcards') {
+                if (parts.length !== 6) throw Error('Usage: /agent-artifacts generate flashcards content/<book> <lesson-uuid> <locale>');
+                textbook = parts[3];
+                lesson = parts[4].toLowerCase();
+                locale = parts[5];
               } else if (kind === 'courses') {
                 if (![4, 5, 6].includes(parts.length)) throw Error('Usage: /agent-artifacts generate courses content/<book> [course-uuid] [locale]');
                 textbook = parts[3];
@@ -131,25 +151,29 @@ jobs:
                 }
                 locale = parts[3] || '';
               } else {
-                throw Error('Explicit kind required: skills, lessons, questions, courses, episodes, ui-kit, assessment-methods, geography-home-copy, education-standards');
+                throw Error('Explicit kind required: skills, lessons, questions, flashcards, courses, episodes, ui-kit, assessment-methods, geography-home-copy, education-standards');
               }
           } else {
             ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '', episode = '' } = event.inputs);
           }
-          const allowed = ['skills', 'lessons', 'questions', 'courses', 'episodes', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
+          // Manual dispatch accepts uppercase UUID text, but source paths and
+          // manifest scopes use the canonical lowercase UUID.
+          if (lesson) lesson = lesson.toLowerCase();
+          const allowed = ['skills', 'lessons', 'questions', 'flashcards', 'courses', 'episodes', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
           if (!allowed.includes(kind)) throw Error('Unsupported reference family');
-            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses' || kind === 'episodes') !== Boolean(textbook) ||
+            if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'flashcards' || kind === 'courses' || kind === 'episodes') !== Boolean(textbook) ||
                 (textbook && !/^content\/[a-z][a-z0-9-]*$/.test(textbook))) {
-              throw Error('Only Skills, Lessons, Questions, Courses and Episodes require content/<book>');
+              throw Error('Only Skills, Lessons, Questions, Flashcards, Courses and Episodes require content/<book>');
             }
             if (locale && !/^[a-z]{2,4}$/.test(locale)) throw Error('Invalid locale');
             if (component && (kind !== 'ui-kit' || !/^[A-Za-z][A-Za-z0-9]*$/.test(component))) {
               throw Error('Invalid UI Kit component');
             }
-            if (lesson && (!['lessons', 'questions'].includes(kind) ||
+            if (lesson && (!['lessons', 'questions', 'flashcards'].includes(kind) ||
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(lesson))) {
               throw Error('Invalid Lesson UUID');
             }
+            if (kind === 'flashcards' && (!lesson || !locale)) throw Error('Flashcards require an exact Lesson UUID and locale');
             if (course && (!['courses','episodes'].includes(kind) ||
                 !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(course))) {
               throw Error('Invalid Course UUID');
@@ -299,6 +323,26 @@ jobs:
           }
           for (const [key, value] of Object.entries(request)) {
             if (manifest.scope[key] !== value) throw Error('Report scope does not match authorized request: ' + key);
+          }
+          if (request.lesson) {
+            // A request for one Lesson may contain multiple locales, but may
+            // never include other Lessons or unrelated Question Banks.
+            const lessonPath = request.lesson.at(-1) + '/' + request.lesson;
+            const kind = request.kind === 'lessons' ? 'lesson' : request.kind === 'flashcards' ? 'flashcard' : 'question';
+            const prefix = request.kind + '/' + request.package.slice(8) + '/' + lessonPath + '/';
+            const observedLocales = new Set();
+            for (const row of manifest.generated) {
+              if (row.kind !== kind || row.textbook !== request.package || row.lesson !== lessonPath ||
+                  typeof row.locale !== 'string' || !/^[a-z]{2,4}$/.test(row.locale) ||
+                  (request.locale && row.locale !== request.locale) ||
+                  row.path !== prefix + row.locale + '.md' || observedLocales.has(row.locale))
+                throw Error('Generated document escaped exact Lesson UUID scope');
+              observedLocales.add(row.locale);
+            }
+            if (request.locale && (manifest.generated.length !== 1 || !observedLocales.has(request.locale)))
+              throw Error('Scoped Lesson request must produce exactly its selected locale');
+            if (manifest.failures.some(row => row.lesson && row.lesson !== lessonPath))
+              throw Error('Reference failures escaped exact Lesson UUID scope');
           }
           if (request.kind === 'episodes') {
             const expectedPath = 'episodes/' + request.package.slice(8) + '/' + request.course.at(-1) + '/' + request.course + '/' + request.episode + '/' + request.locale + '.md';

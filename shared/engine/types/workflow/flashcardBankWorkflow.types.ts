@@ -1,6 +1,14 @@
-import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
-import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
-import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { z } from 'zod';
+
+import type { ContentBlock_Audio_Config } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Scene_Config } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { ContentBlock_Subtitles_Config } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Video_Config } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import type { ContentBlock_Youtube_Config } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type {
   Flashcard_Config,
   Flashcard_Flag_Config,
@@ -8,18 +16,13 @@ import type {
   Flashcard_Relationship_Type,
 } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { FlashcardSide_Config } from '../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
+import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { FlashcardsSection_Config } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Video_Config } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import type { ContentBlock_Audio_Config } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import type { ContentBlock_Subtitles_Config } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import type { ContentBlock_Youtube_Config } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
-import type { ContentBlock_Scene_Config } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { flashcardBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
+import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /**
  * Flashcard Bank authoring is Lesson-owned. It has no second bank UUID.
@@ -36,30 +39,8 @@ export type FlashcardBankWorkflowLessonSource = {
   assessment: LessonProductionAssessmentRequirements;
 };
 
-/** Own Questions must be approved before Stage 1, unless explicitly N/A.
- * An absent local Quiz is never evidence that Questions are N/A.
- */
-export type FlashcardBankWorkflowQuestionPrerequisite =
-  | {
-      kind: 'completed';
-      sourceSha: string;
-      reviewSha: string;
-      /** A reviewed and integrated Question Bank, not a selected Quiz subset. */
-      bankPath: string;
-      integrated: true;
-    }
-  | {
-      kind: 'notApplicable';
-      /** Methodologist-backed decision recorded in the parent Lesson PR. */
-      rationale: string;
-      methodologySourceSha: string;
-      parentLessonPr: number;
-      questionSourceSha?: never;
-    };
-
 export type FlashcardBankWorkflowStage1Production = {
   lesson: FlashcardBankWorkflowLessonSource;
-  questions: FlashcardBankWorkflowQuestionPrerequisite;
   /** The memory objective inventory, not pre-authored fabricated cards. */
   analysis: {
     recallObjectives: readonly [string, ...string[]];
@@ -211,15 +192,5 @@ export type FlashcardBankWorkflowSectionDecision =
       lessonSourceSha: string;
     };
 
-export type FlashcardBankWorkflowStage3 = Omit<FlashcardBankWorkflowStage2, 'production'> & {
-  production: FlashcardBankWorkflowStage2['production'] & {
-    section: FlashcardBankWorkflowSectionDecision;
-  };
-};
-
-/** The reviewed FINAL Stage 3 source is the sole Stage 5 input.
- * Independent Stage 4 reviewer identity, verdict, final SHA, production
- * approval and translation evidence live in the existing Flashcards PR,
- * not in duplicate Stage 4 Configs/Props or a second editorial file.
- */
-export type FlashcardBankWorkflowMaterializerInput = FlashcardBankWorkflowStage3;
+/** Final Flashcard Bank contract is inferred from the owning runtime schema. */
+export type FlashcardBankWorkflowStage3 = z.infer<typeof flashcardBankWorkflowStage3_Schema>;

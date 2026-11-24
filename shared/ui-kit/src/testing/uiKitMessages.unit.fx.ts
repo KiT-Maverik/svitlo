@@ -1,15 +1,16 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
+
 import {
-  learningLayout as layout,
-  navbarPreferences as preferences,
-  lesson,
-  flashcard,
-  checkpoint,
   audio,
+  checkpoint,
+  flashcard,
   image,
+  learningLayout as layout,
+  lesson,
+  navbarPreferences as preferences,
+  questionFrame,
   video,
   youtube,
-  questionFrame,
 } from '../../data/locale';
 
 /** Test-only fixture. This module is not emitted in the UI Kit runtime build. */

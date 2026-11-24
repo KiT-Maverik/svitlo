@@ -1,6 +1,6 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
+
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineContentSection } from '../defineContentSection/defineContentSection';
 import { defineQuizSection } from './defineQuizSection';

@@ -1,9 +1,10 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import AutoStoriesRounded from '@mui/icons-material/AutoStoriesRounded';
 import LightModeRounded from '@mui/icons-material/LightModeRounded';
 import RocketLaunchRounded from '@mui/icons-material/RocketLaunchRounded';
+import Box from '@mui/material/Box';
+
 import type { CourseTone } from './types';
 
 const artwork = {

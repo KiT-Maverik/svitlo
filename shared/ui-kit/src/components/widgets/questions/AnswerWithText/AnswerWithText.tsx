@@ -1,11 +1,14 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
 import { TextField } from '@mui/material';
+
 import type { Question_AnswerWithText_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
-import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function AnswerWithText({
   response,

@@ -1,5 +1,6 @@
 import { createElement } from 'react';
 import { describe, expect, it, vi } from 'vitest';
+
 import { Navbar_fx } from './Navbar.unit.fx';
 
 describe('Layouts', () => {

@@ -1,17 +1,18 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
   ChildrenSupporting,
+  ConfigWithLanguages,
+  DeepPartial,
+  LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
@@ -19,13 +20,13 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   practiceSection_Config_Schema,
-  practiceSection_Props_Schema,
   practiceSection_Override_Config_Schema,
+  practiceSection_Props_Schema,
   type PracticeSection_Config,
   type PracticeSection_Locale,
+  type PracticeSection_MetadataOverrides,
   type PracticeSection_Overrides,
   type PracticeSection_PropsBase,
-  type PracticeSection_MetadataOverrides,
 } from './definePracticeSection.schemas';
 
 type Block = ContentBlock_Configurator;

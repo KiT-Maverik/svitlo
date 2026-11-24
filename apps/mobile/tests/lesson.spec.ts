@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('a real Playground lesson opens from the index on a phone-sized screen', async ({ page }) => {
   await page.goto('/');

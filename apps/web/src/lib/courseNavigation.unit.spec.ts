@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import type { LocalizedCourse } from './courseResources';
+
 import { coursePropsToTopics, flattenCourseTopics } from './courseNavigation';
+import type { LocalizedCourse } from './courseResources';
 
 const course: LocalizedCourse = {
   id: 'course-id',
@@ -100,4 +101,30 @@ it('preserves mixed Episode and repeated Lesson navigation in reviewed order', (
     '/uk/course/course-id/lesson/en/lesson-1?placement=repeat',
   ]);
   expect(flat.at(-1)?.title).toBe('Second placement');
+});
+
+it('links a nested Assessment from the Course outline and activity navigation', () => {
+  const withAssessment = structuredClone(course);
+  const chapter = withAssessment.content.items.laboratory;
+  if (chapter.type !== 'module' && chapter.type !== 'chapter') throw Error('Expected Course module fixture');
+  const fundamentals = chapter.content.items.fundamentals;
+  if (fundamentals.type !== 'module' && fundamentals.type !== 'chapter') throw Error('Expected Course chapter fixture');
+  fundamentals.content.items.finalReview = {
+    id: '11111111-1111-4111-8111-111111111119',
+    slug: 'finalReview',
+    type: 'assessment',
+    params: { languages: ['uk'] },
+    locale: { title: 'Підсумкова перевірка' },
+    section: [],
+  };
+  fundamentals.content.order.push('finalReview');
+  const outline = coursePropsToTopics(withAssessment, 'uk', 'uk', titles);
+  const nested = outline[0]?.children?.[0]?.children;
+  expect(nested?.[1]).toEqual({
+    id: '11111111-1111-4111-8111-111111111119',
+    type: 'assessment',
+    title: 'Підсумкова перевірка',
+    href: '/uk/course/course-id/assessment/uk/11111111-1111-4111-8111-111111111119',
+  });
+  expect(flattenCourseTopics(outline).map(item => item.type)).toEqual(['lesson', 'assessment', 'lesson']);
 });

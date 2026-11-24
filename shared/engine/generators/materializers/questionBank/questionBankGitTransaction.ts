@@ -1,22 +1,22 @@
 /** Trusted Git check/commit adapter for the existing Question Bank source plans. */
 import type {
   QuestionBankWorkflowStage1,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
 import {
-  materializeQuestionBankDraft,
+  checkBankGitPlan,
+  commitBankGitPlan,
+  readBankGitSnapshot,
+  type BankGitCheck,
+  type BankGitCommit,
+  type BankGitContext,
+} from '../bankSource/bankSourceGitTransaction';
+import {
   materializeQuestionBank,
+  materializeQuestionBankDraft,
   type QuestionBankDraftAuthorization,
   type QuestionBankFinalAuthorization,
 } from './materializeQuestionBank';
-import {
-  readBankGitSnapshot,
-  checkBankGitPlan,
-  commitBankGitPlan,
-  type BankGitContext,
-  type BankGitCheck,
-  type BankGitCommit,
-} from '../bankSource/bankSourceGitTransaction';
 
 export type QuestionBankDraftGitAuthorization = Omit<QuestionBankDraftAuthorization, 'snapshot'>;
 export type QuestionBankFinalGitAuthorization = Omit<QuestionBankFinalAuthorization, 'snapshot'>;
@@ -46,7 +46,7 @@ export function writeQuestionBankDraftSource(
 }
 
 export function checkReviewedQuestionBankSource(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCheck {
@@ -55,13 +55,13 @@ export function checkReviewedQuestionBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('questions', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }
 
 export function writeReviewedQuestionBankSource(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCommit {
@@ -70,7 +70,7 @@ export function writeReviewedQuestionBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('questions', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }

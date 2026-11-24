@@ -1,8 +1,9 @@
 import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
+
+import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
+import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
 import { howLightMoves, howLightMovesTitle } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 import { howLightMoves_languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
-import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
-import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
 
 const storyBridge = defineContentSection({
   id: '5234f750-02c0-54fc-a02f-c9b76b2d680b',

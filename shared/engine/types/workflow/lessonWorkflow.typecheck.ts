@@ -4,11 +4,10 @@ import type {
   LessonWorkflowStage1Config,
   LessonWorkflowStage1Production,
   LessonWorkflowStage2,
-  LessonWorkflowStage2Section,
-  LessonWorkflowMaterializerInput,
-  LessonWorkflowStage2QuizSection,
-  LessonWorkflowStage2SimpleBlock,
   LessonWorkflowStage2Checkpoint,
+  LessonWorkflowStage2QuizSection,
+  LessonWorkflowStage2Section,
+  LessonWorkflowStage2SimpleBlock,
 } from './lessonWorkflow.types';
 
 // Real Skill IDs and source Sha must still be verified against the repository.
@@ -72,10 +71,24 @@ const earlySection: LessonWorkflowStage1Config = {
 const earlyLanguageConfig: LessonWorkflowStage1Config = {
   ...standalone.config,
   params: {
+    quizRequiredForCompletion: true,
     // @ts-expect-error Source/target languages are editorial planning fields.
     languages: ['uk', 'en'],
   },
 };
+
+const missingCompletionPolicy: LessonWorkflowStage1Config = {
+  ...standalone.config,
+  // @ts-expect-error Methodologist must explicitly decide completion policy.
+  params: { sections: { allowNavigation: false } },
+};
+void missingCompletionPolicy;
+
+const partialSectionPolicy: LessonWorkflowStage1Config = {
+  ...standalone.config,
+  params: { quizRequiredForCompletion: false, sections: { allowSkipping: false } },
+};
+void partialSectionPolicy;
 
 const emptySkills: LessonWorkflowStage1Config = {
   ...standalone.config,
@@ -109,6 +122,25 @@ const scene = {
     offline: 'Bundled local Scene and equivalent text exercise.',
   },
 } satisfies LessonWorkflowStage2SimpleBlock;
+
+// Editorial media may omit only the unresolved asset, not required teaching copy.
+const pendingImage = {
+  config: {
+    id: '663572e7-bd85-4516-86e2-3de07d209e08',
+    slug: 'lightDiagram',
+    type: 'image',
+    params: { width: 640, height: 360 },
+    locale: { alt: { uk: 'Схема поширення світла від джерела.' } },
+  },
+  production: {
+    purpose: 'Illustrate the path of light.',
+    specification: 'An annotated diagram with two rays leaving the lamp.',
+    accessibility: 'Equivalent source-language text description.',
+    offline: 'Bundled local illustration or equivalent text.',
+  },
+} satisfies LessonWorkflowStage2SimpleBlock;
+
+void pendingImage;
 
 // Section authoring uses plain config/production nodes, not defineContentSection.
 // Built configurators are not editorial Stage 2 child configs.
@@ -172,7 +204,7 @@ const stage2 = {
   },
 } satisfies LessonWorkflowStage2;
 
-const reviewedStage5: LessonWorkflowMaterializerInput = stage2;
+const reviewedStage5: LessonWorkflowStage2 = stage2;
 
 // No Quiz Section does not imply that a separately authored Question Bank is unnecessary.
 const bankWithoutQuiz = {

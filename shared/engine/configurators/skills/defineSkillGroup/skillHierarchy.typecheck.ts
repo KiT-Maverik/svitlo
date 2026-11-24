@@ -1,7 +1,8 @@
 import type { LanguageScope } from '#types';
+
 import { defineSkill } from '../defineSkill';
-import { defineSkillGroup } from './defineSkillGroup';
 import { defineSkillDomain } from '../defineSkillDomain';
+import { defineSkillGroup } from './defineSkillGroup';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
 const both = defineSkill<'both', ['en', 'uk']>({

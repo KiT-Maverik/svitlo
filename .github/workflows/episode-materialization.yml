@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/episodeMaterialization/**'
-      - 'scripts/ci/reviewEvidence/**'
+      - 'scripts/ci/directMaterialization/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'shared/engine/generators/materializers/episode/**'
       - 'shared/engine/types/workflow/episodeWorkflow.types.ts'
@@ -45,8 +45,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - run: node --test scripts/ci/episodeMaterialization/*.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
+      - run: npm run package:build --workspace @svitlo/engine
+      - run: node --test scripts/ci/episodeMaterialization/episode-direct.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
       - run: npm run code:check:types --workspace @svitlo/engine
 
   resolve:
@@ -103,7 +103,9 @@ jobs:
       - working-directory: trusted
         run: npm ci --ignore-scripts --no-audit --no-fund
       - working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Pull pinned isolated Episode worker
+        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
       - env:
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
@@ -139,12 +141,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: npm
-          cache-dependency-path: trusted/package-lock.json
-      - working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
-      - working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
       - uses: actions/download-artifact@v4
         with:
           name: episode-stage5-${{ github.run_id }}

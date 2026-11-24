@@ -1,5 +1,6 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope } from '#types';
+
 import { defineEducationStandard } from './defineEducationStandard';
 import type { EducationStandard_Config } from './defineEducationStandard.schemas';
 

@@ -1,13 +1,16 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
-import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+
 import type { Question_MatchBlocks_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
-import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { shuffleItems } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function MatchBlocks({
   response,

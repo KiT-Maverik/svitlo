@@ -1,9 +1,9 @@
 import { defineSkillGroup } from '@svitlo/engine/build';
 
-import { countBy10 } from './countBy10';
-import { countBy100 } from './countBy100';
 import { countBy2 } from './countBy2';
 import { countBy5 } from './countBy5';
+import { countBy10 } from './countBy10';
+import { countBy100 } from './countBy100';
 
 export const steps = defineSkillGroup({
   slug: 'steps',

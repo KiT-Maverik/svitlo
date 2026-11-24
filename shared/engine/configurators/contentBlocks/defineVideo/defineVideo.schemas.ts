@@ -1,15 +1,16 @@
 import { z } from 'zod';
-import type { DeepPartial } from '#types';
+
 import {
   deepStrict_Schema,
   imageMediaReference_Schema,
-  videoMediaReference_Schema,
   localizedMediaReference_Schema,
+  videoMediaReference_Schema,
 } from '#schemas';
-import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+import type { DeepPartial } from '#types';
 
-import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 const contentBlockBase = createContentBlockBaseSchema('video');
 

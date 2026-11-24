@@ -1,31 +1,30 @@
+import type { LanguageCode } from '#schemas';
 import type {
+  ChildrenSupporting,
   DeepPartial,
   LanguageScope,
-  ChildrenSupporting,
-  RequireLanguages,
   PublicationLanguageOptions,
+  RequireLanguages,
 } from '#types';
-import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import type { Section_Configurator } from '../../sections';
-import { sectionTypes } from '../../sections';
+import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
   lesson_Config_Schema,
   lesson_Override_Metadata_Schema,
   lesson_Props_Schema,
   type Lesson_Config,
-  type Lesson_PropsBase,
   type Lesson_Overrides,
+  type Lesson_PropsBase,
 } from './defineLesson.schemas';
 
 type Child = {

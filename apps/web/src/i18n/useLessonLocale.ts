@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
 
 function languageForCode(code: string) {

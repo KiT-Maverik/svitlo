@@ -1,34 +1,33 @@
-import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
+  CourseWorkflowLessonSeed,
   CourseWorkflowStage1,
   CourseWorkflowStage1Config,
   CourseWorkflowStage1Languages,
   CourseWorkflowStage1Methodology,
   CourseWorkflowStage1Production,
   CourseWorkflowStage2,
+  CourseWorkflowStage2Chapter,
   CourseWorkflowStage2Config,
   CourseWorkflowStage2Content,
-  CourseWorkflowStage2Module,
-  CourseWorkflowStage2Chapter,
-  CourseWorkflowStage2LessonSlot,
-  CourseWorkflowStage2EpisodeSlot,
   CourseWorkflowStage2EpisodeProduction,
+  CourseWorkflowStage2EpisodeSlot,
+  CourseWorkflowStage2LessonSlot,
+  CourseWorkflowStage2Module,
   CourseWorkflowStage3,
-  CourseWorkflowStage3Config,
-  CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
-  CourseWorkflowStage3LessonSlot,
-  CourseWorkflowStage3NewLesson,
-  CourseWorkflowStage3NewLessonConfig,
-  CourseWorkflowLessonSeed,
-  CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3LessonMatch,
+  CourseWorkflowStage3Config,
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
+  CourseWorkflowStage3LessonMatch,
+  CourseWorkflowStage3LessonSlot,
+  CourseWorkflowStage3Module,
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage3NewLessonConfig,
 } from './courseWorkflow.types';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 const config = {
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -422,9 +421,9 @@ const resolvedCourse = {
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
-const materializerInput: CourseWorkflowMaterializerInput = resolvedCourse;
+const materializerInput: CourseWorkflowStage3 = resolvedCourse;
 // @ts-expect-error Stage 2 cannot directly enter a Stage 3-complete materializer.
-const prematureMaterializerInput: CourseWorkflowMaterializerInput = planned;
+const prematureMaterializerInput: CourseWorkflowStage3 = planned;
 
 // @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;

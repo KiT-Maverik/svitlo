@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { defineSkill } from '../../configurators/skills/defineSkill';
-import { defineSkillGroup } from '../../configurators/skills/defineSkillGroup';
 import { defineSkillDomain } from '../../configurators/skills/defineSkillDomain';
 import { skillDomain_Props_Schema } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+import { defineSkillGroup } from '../../configurators/skills/defineSkillGroup';
 import { skillGroup_Props_Schema } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 import { assembleSkills, type Skills_Publication } from './assembleSkills';
 

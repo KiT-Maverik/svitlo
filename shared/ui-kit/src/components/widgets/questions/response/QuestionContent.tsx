@@ -1,13 +1,14 @@
-import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
+import { ContentBlockRenderer, type SceneRegistry } from '../../ContentBlockRenderer';
 import {
   assertNever,
   resolveLocalizedText,
   subtitlesResourceLabel,
   type LocalizedText,
 } from '../../ContentBlockRenderer/utils';
-import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { SceneRegistry } from '../../ContentBlockRenderer';
 
 export type QuestionBlock = ContentBlock_Props;
 

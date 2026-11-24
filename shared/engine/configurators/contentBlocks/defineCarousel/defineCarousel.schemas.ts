@@ -1,14 +1,15 @@
 import { z } from 'zod';
-import type { DeepPartial } from '#types';
-import { deepStrict_Schema } from '#schemas';
-import type { ConfiguratorChild } from '../../../types/configuratorChild';
 
-import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
-import { image_Props_Schema } from '../defineImage/defineImage.schemas';
-import type { ContentBlock_Image_Configurator } from '../defineImage/defineImage';
-import { scene_Props_Schema } from '../defineScene/defineScene.schemas';
-import type { ContentBlock_Scene_Configurator } from '../defineScene/defineScene';
+import { deepStrict_Schema } from '#schemas';
+import type { DeepPartial } from '#types';
+
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+import type { ContentBlock_Image_Configurator } from '../defineImage/defineImage';
+import { image_Props_Schema } from '../defineImage/defineImage.schemas';
+import type { ContentBlock_Scene_Configurator } from '../defineScene/defineScene';
+import { scene_Props_Schema } from '../defineScene/defineScene.schemas';
 
 export type ContentBlock_Carousel_SlideConfigurator = ConfiguratorChild<
   ContentBlock_Image_Configurator | ContentBlock_Scene_Configurator

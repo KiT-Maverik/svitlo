@@ -1,5 +1,5 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
   onlyLocales,
@@ -9,8 +9,8 @@ import {
 } from '../../_shared__configurators';
 import {
   text_Config_Schema,
-  text_Props_Schema,
   text_Override_Config_Schema,
+  text_Props_Schema,
   type ContentBlock_Text_Config,
   type ContentBlock_Text_Locale,
   type ContentBlock_Text_Overrides,

@@ -58,6 +58,37 @@ function pinnedRegular(root, head, filename, git, readText = true) {
   return readText ? fs.readFileSync(current, 'utf8') : undefined;
 }
 
+/**
+ * A reviewed but not-yet-created resource is a scaffold, not a forged asset.
+ * Reject tracked files missing from checkout, symlinks (including dangling
+ * links and parent links), and existing untracked/modified files. Only a
+ * genuinely absent, untracked path is allowed to remain unresolved.
+ */
+function pinnedOptional(root, head, filename, git, readText = true) {
+  if (
+    typeof filename !== 'string' ||
+    filename.startsWith('/') ||
+    filename.includes('\\') ||
+    filename.split('/').some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')
+  )
+    throw Error('Unsafe reviewed asset/Scene path: ' + filename);
+  let current = root;
+  for (const part of filename.split('/')) {
+    current = path.join(current, part);
+    let stat;
+    try {
+      stat = fs.lstatSync(current);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') throw error;
+      if (git(root, 'ls-files', '--stage', '--', filename).trim())
+        throw Error('Tracked reviewed resource missing from checkout: ' + filename);
+      return null;
+    }
+    if (stat.isSymbolicLink()) throw Error('Symlink in reviewed Scene/media path: ' + filename);
+  }
+  return pinnedRegular(root, head, filename, git, readText);
+}
+
 function sourceValue(field, language, at) {
   const value =
     typeof field === 'string' ? field : isRecord(field) && Object.hasOwn(field, language) ? field[language] : undefined;
@@ -85,14 +116,36 @@ function approvedUrl(value, kind) {
 function checkMedia(root, meta, config, production, documentLanguage, git) {
   if (!isRecord(config.locale)) throw Error('Media locale missing for ' + config.id);
   const primary = [];
+  let unresolved = false;
   if (config.type === 'youtube') {
-    const href = sourceValue(config.locale.href, documentLanguage, config.id + '.href');
-    approvedUrl(href, 'youtube');
     if (production?.mediaSourcePath !== undefined) throw Error('Youtube cannot claim a local mediaSourcePath');
-    return;
+    const field = config.locale.href;
+    if (field === undefined) return false;
+    const href = sourceValue(field, documentLanguage, config.id + '.href');
+    if (href === '00000000-0000-0000-0000-000000000000') return false;
+    approvedUrl(href, 'youtube');
+    return true;
   }
   for (const [field, folder] of mediaFields[config.type]) {
-    const reference = sourceValue(config.locale[field], documentLanguage, config.id + '.' + field);
+    const authored = config.locale[field];
+    if (authored === undefined) {
+      unresolved = true;
+      continue;
+    }
+    const reference = sourceValue(authored, documentLanguage, config.id + '.' + field);
+    if (
+      reference ===
+      '00000000-0000-0000-0000-000000000000.' +
+        {
+          images: 'webp',
+          audio: 'mp3',
+          video: 'mp4',
+          subtitles: 'vtt',
+        }[folder]
+    ) {
+      unresolved = true;
+      continue;
+    }
     if (/^https?:\/\//i.test(reference)) {
       approvedUrl(reference, config.type);
       continue;
@@ -106,11 +159,12 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
     )
       throw Error('Invalid reviewed UUID media filename for ' + config.id);
     const filename = meta.identity.pkg + '/assets/' + folder + '/' + reference;
-    pinnedRegular(root, meta.head, filename, git, false);
+    if (pinnedOptional(root, meta.head, filename, git, false) === null) unresolved = true;
     if (field === 'fileName') primary.push(filename);
   }
   if (production?.mediaSourcePath !== undefined && (primary.length !== 1 || production.mediaSourcePath !== primary[0]))
     throw Error('Authored mediaSourcePath differs from the pinned canonical asset');
+  return !unresolved;
 }
 
 function property(ts, object, name) {
@@ -121,22 +175,29 @@ function property(ts, object, name) {
       (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) &&
       prop.name.text === name,
   );
-  if (matches.length !== 1) throw Error('Scene registry has no unique UUID entry: ' + name);
+  if (matches.length === 0) throw Error('Scene registry UUID entry missing: ' + name);
+  if (matches.length !== 1) throw Error('Scene registry has nonunique UUID entry: ' + name);
   return matches[0].initializer;
 }
 
 function checkScene(root, meta, config, production, git, ts) {
-  if (typeof production?.specification !== 'string' || !production.specification.trim())
-    throw Error('Scene lacks reviewed production specification: ' + config.id);
   const directory = meta.identity.pkg + '/scenes/' + config.id.at(-1) + '/' + config.id;
   const registryPath = meta.identity.pkg + '/scenes/sceneLoader.ts';
-  const registry = staticFile(ts, registryPath, pinnedRegular(root, meta.head, registryPath, git));
+  const registryText = pinnedOptional(root, meta.head, registryPath, git);
+  if (registryText === null) return false; // No Scene registry authored yet.
+  const registry = staticFile(ts, registryPath, registryText);
   const declarations = registry.statements
     .filter(ts.isVariableStatement)
     .flatMap(statement => [...statement.declarationList.declarations])
     .filter(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'sceneImports');
   if (declarations.length !== 1 || !declarations[0].initializer) throw Error('Canonical Scene loader map missing');
-  const initializer = property(ts, declarations[0].initializer, config.id);
+  let initializer;
+  try {
+    initializer = property(ts, declarations[0].initializer, config.id);
+  } catch (error) {
+    if (String(error?.message) === 'Scene registry UUID entry missing: ' + config.id) return false;
+    throw error;
+  }
   if (!ts.isArrowFunction(initializer) || initializer.parameters.length)
     throw Error('Scene registry entry is not a static lazy import');
   const then = initializer.body;
@@ -156,8 +217,11 @@ function checkScene(root, meta, config, production, git, ts) {
   )
     throw Error('Scene registry UUID points to a different implementation');
 
+  if (typeof production?.specification !== 'string' || !production.specification.trim())
+    throw Error('Scene lacks reviewed production specification: ' + config.id);
   const indexFile = directory + '/index.ts';
-  const index = staticFile(ts, indexFile, pinnedRegular(root, meta.head, indexFile, git));
+  const indexText = pinnedRegular(root, meta.head, indexFile, git);
+  const index = staticFile(ts, indexFile, indexText);
   if (
     index.statements.length !== 1 ||
     !ts.isExportDeclaration(index.statements[0]) ||
@@ -180,18 +244,77 @@ function checkScene(root, meta, config, production, git, ts) {
   const componentText = pinnedRegular(root, meta.head, componentPath, git);
   staticFile(ts, componentPath, componentText, ts.ScriptKind.TSX);
   if (
-    /\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(componentText)
+    /\bsceneImplementationRequired\b|\bsceneSourceLocaleRequired\b|TODO\(scene\)|TODO\s*\(BLOCKER\)/.test(
+      componentText,
+    ) ||
+    /TODO\s*\(BLOCKER\)/.test(indexText)
   )
-    throw Error('Scene still contains unimplemented scaffolding: ' + config.id);
-  const specification = pinnedRegular(root, meta.head, directory + '/specification.md', git);
-  if (specification !== production.specification.trimEnd() + '\n')
+    return false; // Pinned draft implementation: valid scaffold, not approved evidence.
+  // Legacy Scenes may retain a sidecar; Lesson Stage 6 Scenes intentionally
+  // store reviewed specifications in their source draft/TSX comment and emit no
+  // specification.md. The Bank's own SHA-pinned Stage 3 production.specification
+  // is the reviewed evidence, so a missing sidecar is not proof of an invalid
+  // implementation. If one exists, it must agree byte-for-byte.
+  const specification = pinnedOptional(root, meta.head, directory + '/specification.md', git);
+  if (specification !== null && specification !== production.specification.trimEnd() + '\n')
     throw Error('Scene specification is not the exact independently reviewed bank source');
+  return true;
+}
+
+/**
+ * A new Scene must be completely absent from the pinned textbook-scoped tree.
+ * An existing unregistered draft must have all six files and keep its blocker:
+ * neither form is an executable registry approval.
+ */
+function classifyUnregisteredScene(root, meta, config, production, git, ts) {
+  if (typeof production?.specification !== 'string' || !production.specification.trim())
+    throw Error('Bank Scene has no reviewed production.specification: ' + config.id);
+  if (typeof config.slug !== 'string' || !/^[a-z][A-Za-z0-9]*$/.test(config.slug))
+    throw Error('Bank Scene has unsafe reviewed slug: ' + config.id);
+  const name = config.slug[0].toUpperCase() + config.slug.slice(1);
+  const folder = meta.identity.pkg + '/scenes/' + config.id.at(-1) + '/' + config.id + '/';
+  const names = [
+    'index.ts',
+    name + '.tsx',
+    name + '.module.css',
+    name + '.constants.ts',
+    name + '.stories.tsx',
+    name + '.unit.spec.tsx',
+  ];
+  const contents = names.map(filename => pinnedOptional(root, meta.head, folder + filename, git));
+  const present = contents.filter(item => item !== null).length;
+  if (present === 0) return 'new';
+  if (present !== names.length)
+    throw Error('Partial existing Bank Scene scaffold must not be overwritten: ' + config.id);
+  if (!contents[0].includes('TODO (BLOCKER)') || !contents[1].includes('TODO (BLOCKER)'))
+    throw Error('Unregistered Bank Scene is not a verified unfinished draft: ' + config.id);
+  for (const i of [0, 3]) staticFile(ts, folder + names[i], contents[i]);
+  for (const i of [1, 4, 5]) staticFile(ts, folder + names[i], contents[i], ts.ScriptKind.TSX);
+  // Never reuse an unfinished Scene with a changed reviewed specification.
+  // Compare against the exact inert comments emitted by the shared Scene
+  // template; reject incompatible drafts instead of overwriting source.
+  const marker = '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)\n';
+  const endMarker = '\n// END REVIEWED SCENE SPECIFICATION';
+  const reviewedLines = production.specification
+    .trimEnd()
+    .replace(/\r\n?|\u2028|\u2029/g, '\n')
+    .split('\n')
+    .map(line => '// ' + line)
+    .join('\n');
+  const source = contents[1];
+  if (
+    !source.includes(marker + reviewedLines + endMarker) ||
+    source.indexOf(marker) !== source.lastIndexOf(marker) ||
+    source.indexOf(endMarker) !== source.lastIndexOf(endMarker)
+  )
+    throw Error('Existing Bank Scene reviewed specification differs from pinned Bank source: ' + config.id);
+  return 'existingDraft';
 }
 
 /**
  * Traverse only Config data, never follow an author-controlled source path or
- * interpret metadata as executable evidence. Exact-HEAD review was verified
- * by the Bank gate before this tokenless analysis.
+ * interpret metadata as executable evidence. The Bank gate pins the source
+ * revision before this tokenless analysis.
  */
 export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts }) {
   if (
@@ -202,16 +325,20 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     !/^content\/[a-z][a-z0-9-]*$/.test(meta?.identity?.pkg ?? '') ||
     typeof meta?.identity?.folder !== 'string' ||
     !meta.identity.folder.startsWith(meta.identity.pkg + '/data/lessons/') ||
-    git(root, 'rev-parse', 'HEAD') !== meta.head ||
-    meta.reviewCommitSha !== meta.head
+    git(root, 'rev-parse', 'HEAD') !== meta.head
   )
-    throw Error('Reviewed Bank block evidence requires a pinned, independently approved checkout');
+    throw Error('Bank block evidence requires the exact pinned checkout');
   const language =
     meta.bank === 'questions' ? input.production?.languages?.document : input.production?.lesson?.languages?.document;
   if (typeof language !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language))
     throw Error('Missing reviewed bank document language');
   const registeredSceneIds = new Set();
   const approvedMediaBlockIds = new Set();
+  const unregisteredSceneIds = new Set();
+  const newSceneIds = new Set();
+  const existingDraftSceneIds = new Set();
+  const seenSceneIds = new Set();
+  const unresolvedMediaBlockIds = new Set();
   const visited = new WeakSet();
   let count = 0;
   function visit(value) {
@@ -230,13 +357,31 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
           : null;
     if (node) {
       const { config, production } = node;
-      if (production?.pending === true) throw Error('Pending reviewed Block evidence: ' + config.id);
+      // An unfinished authored resource is a scaffold, not a release proof.
+      // Malformed identities and unsafe paths still fail at the evidence gate.
+      const pending = production?.pending === true;
       if (config.type === 'scene') {
-        checkScene(root, meta, config, production, git, ts);
-        registeredSceneIds.add(config.id);
+        if (seenSceneIds.has(config.id)) throw Error('Duplicate Bank Scene UUID: ' + config.id);
+        seenSceneIds.add(config.id);
+        const ready = checkScene(root, meta, config, production, git, ts) && !pending;
+        if (ready) registeredSceneIds.add(config.id);
+        else {
+          // Flashcard media remains strict. A *reviewed Scene draft* is a
+          // source-only implementation handoff, never Flashcard readiness.
+          if (pending && meta.bank === 'flashcards')
+            throw Error('Unresolved pending Flashcard Scene content: ' + config.id);
+          const stage = classifyUnregisteredScene(root, meta, config, production, git, ts);
+          if (stage === 'new') newSceneIds.add(config.id);
+          else existingDraftSceneIds.add(config.id);
+          unregisteredSceneIds.add(config.id);
+        }
       } else {
-        checkMedia(root, meta, config, production, language, git);
-        approvedMediaBlockIds.add(config.id);
+        const ready = checkMedia(root, meta, config, production, language, git);
+        if (ready && !pending) approvedMediaBlockIds.add(config.id);
+        else {
+          if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard media: ' + config.id);
+          unresolvedMediaBlockIds.add(config.id);
+        }
       }
       // Recurse into composite children, never into locale, schema fields or
       // production metadata (which could mimic a Config by accident).
@@ -250,5 +395,12 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     }
   }
   visit(input.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
+  return {
+    registeredSceneIds,
+    approvedMediaBlockIds,
+    unregisteredSceneIds,
+    newSceneIds,
+    existingDraftSceneIds,
+    unresolvedMediaBlockIds,
+  };
 }

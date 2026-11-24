@@ -1,14 +1,14 @@
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
-  CourseWorkflowStage3NewLesson,
-  CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowLessonSeed,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage3NewLessonConfig,
 } from '../../../types/workflow/courseWorkflow.types';
-import type { LessonWorkflowMaterializerInput, LessonWorkflowStage1 } from '../../../types/workflow/lessonWorkflow.types';
-import type { Source } from './lesson';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
+import type { LessonWorkflowStage1, LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import type { Source } from './lesson';
 
 /** Stage 3 placements do not yet have the complete standalone Lesson shape. */
 declare const newPlacement: CourseWorkflowStage3NewLessonConfig;
@@ -37,7 +37,7 @@ declare const seed: CourseWorkflowLessonSeed;
 // @ts-expect-error Course seed is editorial input, not Lesson Stage 1 output.
 const incompleteMethodology: LessonWorkflowStage1 = seed;
 // @ts-expect-error Course seed cannot be materialized as Lesson Stage 2.
-const incompleteContent: LessonWorkflowMaterializerInput = seed;
+const incompleteContent: LessonWorkflowStage2 = seed;
 void incompleteMethodology;
 void incompleteContent;
 const requirements: LessonProductionAssessmentRequirements = {

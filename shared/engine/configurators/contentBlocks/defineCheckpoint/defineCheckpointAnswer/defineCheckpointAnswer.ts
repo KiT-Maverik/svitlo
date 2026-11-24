@@ -1,13 +1,14 @@
-import type { ConfiguratorChild } from '../../../../types/configuratorChild';
-import type { DeepPartial, LanguageScope, ChildrenSupporting, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
+
 import {
   mergeForValidation,
   resolvePublicationLanguages,
-  validateRequestedPublication,
   validateOrderedKeys,
+  validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../../_shared__configurators';
+import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import { contentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointAnswer_Config_Schema,

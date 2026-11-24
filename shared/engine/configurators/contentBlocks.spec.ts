@@ -1,15 +1,14 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import {
-  defineText,
-  defineCode,
-  defineCheckpoint,
-  defineCheckpointItem,
-  defineCheckpointAnswer,
-  text_Config_Schema,
   code_Props_Schema,
+  defineCheckpoint,
+  defineCheckpointAnswer,
+  defineCheckpointItem,
+  defineCode,
+  defineText,
+  text_Config_Schema,
 } from './contentBlocks';
 
 describe('Configurators', () => {

@@ -1,8 +1,8 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import { applyStyledText } from './applyStyledText';
 import { parseText } from '../text/parseText';
+import { applyStyledText } from './applyStyledText';
 import styles from './StyledText.module.css';
 
 describe('styledText utilities', () => {

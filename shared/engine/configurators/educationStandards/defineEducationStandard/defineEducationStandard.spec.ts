@@ -1,6 +1,5 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { allLanguageCodes, DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '#schemas';
 

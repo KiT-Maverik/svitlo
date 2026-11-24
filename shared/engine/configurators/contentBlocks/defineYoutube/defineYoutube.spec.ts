@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
+
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import { defineYoutube } from './index';
 
 const id = 'e5235ac2-2c44-4c10-8c48-3c7bad649011';
@@ -25,6 +27,19 @@ describe('Configurators', () => {
         assert.equal(resource.base.params.mode, 'link');
         assert.equal(resource.base.locale?.href, 'https://www.youtube.com/watch?v=example');
         assert.deepEqual(resource.locale, { uk: { locale: { label: 'Переглянути урок' } } });
+      });
+
+      test('pending href is valid authored structure but cannot publish', () => {
+        const pending = defineYoutube<'watch', ['en', 'uk']>({
+          ...config(),
+          locale: { ...config().locale, href: UNRESOLVED_YOUTUBE_HREF },
+        });
+        assert.throws(() => pending.build.props(scope), /unresolved video reference/);
+        const ready = defineYoutube<'watch', ['en', 'uk']>(config());
+        assert.throws(
+          () => ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, scope),
+          /unresolved video reference/,
+        );
       });
 
       test('allows a valid mode override but rejects invalid values', () => {

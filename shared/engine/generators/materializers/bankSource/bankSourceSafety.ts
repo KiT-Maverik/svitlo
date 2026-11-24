@@ -4,7 +4,8 @@
  * This module does not read a worktree, write files, approve reviews or publish.
  */
 import { createHash } from 'node:crypto';
-import { allLanguageCodes } from '../../../schemas/languages.schemas';
+
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 
 export type BankSourceFile = {
   path: string;
@@ -20,10 +21,12 @@ export type BankSourceDiagnostic = {
 export type BankSourceResult = {
   files: BankSourceFile[];
   diagnostics: BankSourceDiagnostic[];
+  /** Independently reviewable six-file Scene drafts outside the bank's Lesson directory. */
+  sceneDrafts?: BankSourceFile[];
   /** Consume the reviewed Stage 3 draft and create the index in one atomic commit. */
   transition?: {
-    reviewedDraftPath: string;
-    reviewedDraftBlobSha: string;
+    sourceDraftPath: string;
+    sourceDraftBlobSha: string;
     materializedPath: string;
     expectedHeadSha: string;
   };
@@ -39,23 +42,19 @@ export type BankSourceSnapshot = {
   entries: Readonly<Record<string, { kind: 'file' | 'symlink' | 'directory'; content?: string }>>;
 };
 
-export type BankReviewedSource = {
-  /** Exact Stage 3 draft.ts bytes, loaded from the approved PR revision. */
+export type BankPinnedSource = {
+  /** Exact Stage 3 draft.ts bytes from the authorized PR HEAD. */
   content: string;
   blobSha: string;
-  /** Authenticated independent-review evidence; never derived from input Config. */
-  approved: true;
-  reviewedSourceBlobSha: string;
-  /** Trusted evaluation of exact reviewed Stage 3 TS, hashed after validation. */
-  reviewedInputSha256: string;
-  reviewCommitSha: string;
+  /** Trusted evaluation of the pinned TypeScript, hashed after validation. */
+  inputSha256: string;
+  commitSha: string;
 };
 
 const hexSha = /^[a-f0-9]{40}$/i;
 const uuid = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i;
 const safeSegment = /^[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*$/;
 const nilUuid = '00000000-0000-0000-0000-000000000000';
-const supportedCodes = new Set<string>(allLanguageCodes);
 
 export function assertBankUuid(id: string, at: string): void {
   if (!uuid.test(id) || id.toLowerCase() === nilUuid) throw new Error(at + ': real non-Nil UUID required');
@@ -111,15 +110,7 @@ export function assertBankOrder(
   }
 }
 export function assertBankLanguages(value: { document: string; planned: readonly string[] }): void {
-  if (
-    !value ||
-    !supportedCodes.has(value.document) ||
-    !Array.isArray(value.planned) ||
-    !value.planned.length ||
-    new Set(value.planned).size !== value.planned.length ||
-    !value.planned.includes(value.document) ||
-    value.planned.some(v => !supportedCodes.has(v))
-  ) {
+  if (!workflowLanguages_Schema.safeParse(value).success) {
     throw new Error('Bank must retain a real document locale and unique planned locales');
   }
 }
@@ -152,13 +143,13 @@ export function authoredBankLiteral(input: unknown): string {
 }
 
 /** Pin structured data to the independently reviewed source's trusted evaluation. */
-export function assertReviewedBankInput(input: unknown, reviewed: BankReviewedSource): void {
-  if (!/^[a-f0-9]{64}$/i.test(reviewed.reviewedInputSha256)) {
-    throw new Error('Verified structured review input SHA-256 is required');
+export function assertPinnedBankInput(input: unknown, source: BankPinnedSource): void {
+  if (!/^[a-f0-9]{64}$/i.test(source.inputSha256)) {
+    throw new Error('Verified structured input SHA-256 is required');
   }
   const current = createHash('sha256').update(authoredBankLiteral(input), 'utf8').digest('hex');
-  if (current !== reviewed.reviewedInputSha256) {
-    throw new Error('Structured bank input differs from the independently reviewed Stage 3 source');
+  if (current !== source.inputSha256) {
+    throw new Error('Structured bank input differs from the pinned Stage 3 source');
   }
 }
 
@@ -172,7 +163,7 @@ export function gitBlobSha(contents: string): string {
 export function preflightBankSource(
   files: BankSourceFile[],
   snapshot: BankSourceSnapshot,
-  transition?: { indexPath: string; draftPath: string; reviewed: BankReviewedSource },
+  transition?: { indexPath: string; draftPath: string; source: BankPinnedSource },
 ): BankSourceResult {
   if (snapshot.complete !== true) throw new Error('Trusted complete Git tree snapshot required');
   assertBankSha(snapshot.expectedHeadSha, 'expected HEAD');
@@ -208,7 +199,7 @@ export function preflightBankSource(
   }
   let verifiedTransition: BankSourceResult['transition'];
   if (transition) {
-    const { indexPath, draftPath, reviewed } = transition;
+    const { indexPath, draftPath, source } = transition;
     assertBankPath(indexPath);
     assertBankPath(draftPath);
     if (
@@ -220,24 +211,18 @@ export function preflightBankSource(
     ) {
       throw new Error('Canonical draft deletion and index creation are required in one transition plan');
     }
-    assertBankSha(reviewed.blobSha, 'Stage 3 source');
-    assertBankSha(reviewed.reviewedSourceBlobSha, 'approved reviewed source');
-    assertBankSha(reviewed.reviewCommitSha, 'review revision');
-    if (
-      reviewed.approved !== true ||
-      reviewed.reviewCommitSha !== snapshot.expectedHeadSha ||
-      reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
-      gitBlobSha(reviewed.content) !== reviewed.blobSha
-    ) {
-      throw new Error('Stage 3 source differs from independently approved bytes');
+    assertBankSha(source.blobSha, 'Stage 3 source');
+    assertBankSha(source.commitSha, 'source revision');
+    if (source.commitSha !== snapshot.expectedHeadSha || gitBlobSha(source.content) !== source.blobSha) {
+      throw new Error('Stage 3 source differs from pinned bytes');
     }
     const draft = snapshot.entries[draftPath];
-    if (draft?.kind !== 'file' || draft.content !== reviewed.content) {
+    if (draft?.kind !== 'file' || draft.content !== source.content) {
       throw new Error('Stale, missing or hand-edited Stage 3 draft');
     }
     verifiedTransition = {
-      reviewedDraftPath: draftPath,
-      reviewedDraftBlobSha: reviewed.blobSha,
+      sourceDraftPath: draftPath,
+      sourceDraftBlobSha: source.blobSha,
       materializedPath: indexPath,
       expectedHeadSha: snapshot.expectedHeadSha,
     };

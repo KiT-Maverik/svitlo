@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
 import CourseTopicList, { type Topic } from './CourseTopicList';
 
 const topics: Topic[] = [
@@ -15,6 +16,7 @@ const topics: Topic[] = [
         children: [
           { id: 'lesson-a', title: 'Lesson A', type: 'lesson', href: '/uk/course/demo/lesson/en/lesson-a' },
           { id: 'episode-a', title: 'Episode A', type: 'episode', href: '/uk/course/demo/episode/episode-a' },
+          { id: 'assessment-a', title: 'Assessment A', type: 'assessment' },
         ],
       },
       { id: 'lesson-b', title: 'Lesson B', type: 'lesson', href: '/uk/course/demo/lesson/en/lesson-b' },
@@ -32,6 +34,8 @@ describe('CourseTopicList', () => {
 
     expect(screen.getByRole('link', { name: 'Lesson A' })).toHaveAttribute('aria-current', 'page');
     expect(container.querySelector('ul')).toHaveStyle({ userSelect: 'none' });
+    expect(screen.getByText('Assessment A')).toBeVisible();
+    expect(screen.queryByRole('link', { name: 'Assessment A' })).toBeNull();
     expect(screen.getByRole('link', { name: 'Episode A' })).toHaveAttribute(
       'href',
       '/uk/course/demo/episode/episode-a',

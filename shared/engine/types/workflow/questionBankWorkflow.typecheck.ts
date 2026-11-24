@@ -1,93 +1,48 @@
-import type { SelectOneAnswerNode } from '../../generators/materializers/selectOneAnswer/materializeSelectOneAnswer';
-import type { SelectMultipleAnswersNode } from '../../generators/materializers/selectMultipleAnswers/materializeSelectMultipleAnswers';
-import type { MatchBlocksNode } from '../../generators/materializers/matchBlocks/materializeMatchBlocks';
-import type { AnswerWithTextNode } from '../../generators/materializers/answerWithText/materializeAnswerWithText';
+import type { Question_SelectOneAnswer_Configurator } from '../../configurators/questions/defineSelectOneAnswer';
+import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type { AnswerWithNumberNode } from '../../generators/materializers/answerWithNumber/materializeAnswerWithNumber';
-import type { OrderSequenceNode } from '../../generators/materializers/orderSequence/materializeOrderSequence';
+import type { AnswerWithTextNode } from '../../generators/materializers/answerWithText/materializeAnswerWithText';
 import type { BuildAnswerWithBlocksNode } from '../../generators/materializers/buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
 import type { FillBlanksWithBlocksNode } from '../../generators/materializers/fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
 import type { FillBlanksWithTextNode } from '../../generators/materializers/fillBlanksWithText/materializeFillBlanksWithText';
-import type { Question_SelectOneAnswer_Configurator } from '../../configurators/questions/defineSelectOneAnswer';
-import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+import type { MatchBlocksNode } from '../../generators/materializers/matchBlocks/materializeMatchBlocks';
+import type { OrderSequenceNode } from '../../generators/materializers/orderSequence/materializeOrderSequence';
+import type { SelectMultipleAnswersNode } from '../../generators/materializers/selectMultipleAnswers/materializeSelectMultipleAnswers';
+import type { SelectOneAnswerNode } from '../../generators/materializers/selectOneAnswer/materializeSelectOneAnswer';
 import type {
+  QuestionBankWorkflowAnswerWithNumberConfig,
+  QuestionBankWorkflowAnswerWithTextConfig,
+  QuestionBankWorkflowBlockConfig,
+  QuestionBankWorkflowBlockNode,
+  QuestionBankWorkflowBuildAnswerWithBlocksConfig,
+  QuestionBankWorkflowFillBlanksWithBlocksConfig,
+  QuestionBankWorkflowFillBlanksWithTextConfig,
+  QuestionBankWorkflowMatchBlocksConfig,
+  QuestionBankWorkflowOrderSequenceConfig,
+  QuestionBankWorkflowQuestionNode,
+  QuestionBankWorkflowQuizIntent,
+  QuestionBankWorkflowSelectMultipleAnswersConfig,
+  QuestionBankWorkflowSelectOneAnswerConfig,
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage1Config,
   QuestionBankWorkflowStage1Production,
   QuestionBankWorkflowStage2,
   QuestionBankWorkflowStage3,
-  QuestionBankWorkflowMaterializerInput,
-  QuestionBankWorkflowQuestionNode,
-  QuestionBankWorkflowSelectOneAnswerConfig,
-  QuestionBankWorkflowSelectMultipleAnswersConfig,
-  QuestionBankWorkflowMatchBlocksConfig,
-  QuestionBankWorkflowAnswerWithTextConfig,
-  QuestionBankWorkflowAnswerWithNumberConfig,
-  QuestionBankWorkflowOrderSequenceConfig,
-  QuestionBankWorkflowBuildAnswerWithBlocksConfig,
-  QuestionBankWorkflowFillBlanksWithBlocksConfig,
-  QuestionBankWorkflowFillBlanksWithTextConfig,
-  QuestionBankWorkflowBlockNode,
-  QuestionBankWorkflowBlockConfig,
-  QuestionBankWorkflowQuizIntent,
 } from './questionBankWorkflow.types';
 
 const ownerLessonId = '663572e7-bd85-4516-86e2-3de07d209e03';
-const skillId = '663572e7-bd85-4516-86e2-3de07d209e04';
-const evidence = {
-  skillId,
-  outcome: 'Explain a verified outcome',
-  assessmentMethod: 'application',
-  cognitiveOperation: 'Apply the concept to a new context',
-  knowledgeAspect: 'Meaning of addition',
-  cognitiveDemand: 'Apply in a novel representation',
-  misconception: 'Confuses two distinct operations',
-  context: 'Source-language task',
-  expectedEvidence: 'Chooses the correct model and rules out a misconception',
-} as const;
-
 const config = { ownerLessonId } satisfies QuestionBankWorkflowStage1Config;
 const production = {
   languages: { document: 'uk', planned: ['uk', 'en'] },
-  lesson: {
-    sourcePath: 'content/math/data/lessons/3/663572e7-bd85-4516-86e2-3de07d209e03/index.ts',
-    sourceSha: 'verified-lesson-sha',
-    referencePath: 'verified-lesson-reference.md',
-    referenceSha: 'verified-reference-sha',
-    methodologyPath: 'verified-methodology.md',
-    title: 'Verified Lesson',
-  },
-  course: {
-    id: '663572e7-bd85-4516-86e2-3de07d209e01',
-    sourceSha: 'pinned-course-sha',
-    placementPath: 'module/lesson',
-  },
-  assessment: {
-    questionBankRequired: true,
-    flashcardBankRequired: false,
-    quizSectionRequired: true,
-    flashcardsSectionRequired: false,
-    quizRequiredForCompletion: false,
-  },
-  ownershipRationale: 'Own questions provide reusable diagnostic coverage',
-  audience: 'Approved learner group',
-  scope: 'Only the approved Skill',
-  prerequisites: 'Verified prerequisite knowledge',
-  evidenceIntent: [evidence],
-  misconceptions: 'Common but distinguishable confusions',
-  mediaNeeds: 'No external media required for this fixture',
-  sourcesAndDependencies: 'Source and Skill verified at a fixed commit',
 } satisfies QuestionBankWorkflowStage1Production;
 
 const handoff = { config, production } satisfies QuestionBankWorkflowStage1;
 
 // @ts-expect-error A Stage 1 handoff is not yet a complete materializer input.
-const premature: QuestionBankWorkflowMaterializerInput = handoff;
+const premature: QuestionBankWorkflowStage3 = handoff;
 
 // @ts-expect-error Stage 1 must identify its real owning Lesson.
 const missingOwner: QuestionBankWorkflowStage1Config = {};
-
-// @ts-expect-error Stage 1 requires an assessment and evidence analysis.
-const missingAssessment: QuestionBankWorkflowStage1Production = { languages: production.languages };
 
 // @ts-expect-error Cannot leave planned languages empty.
 const missingPlanned: QuestionBankWorkflowStage1Production['languages'] = { document: 'uk', planned: [] };
@@ -114,12 +69,7 @@ const oneAnswer = {
     locale: { placeholder: { uk: 'Введіть число' } },
     content: { question: { items: { prompt }, order: ['prompt'] } },
   },
-  production: {
-    evidence,
-    distinction: 'Tests the application of the concept',
-    intendedUse: 'core',
-    rationale: 'Required source-language answer evidence',
-  },
+  production: { specification: 'Number response specification' },
 } satisfies QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithNumberConfig>;
 
 const correct = {
@@ -167,12 +117,7 @@ const choice = {
       },
     },
   },
-  production: {
-    evidence,
-    distinction: 'Distinct representation rather than a widget swap',
-    intendedUse: 'extension',
-    rationale: 'Additional diagnostic coverage requires specialist review',
-  },
+  production: { specification: 'Choice response specification' },
 } satisfies QuestionBankWorkflowQuestionNode<QuestionBankWorkflowSelectOneAnswerConfig>;
 
 // Type-specific grouping is checked by the Stage 2 map, not only by Config.type.
@@ -249,14 +194,14 @@ const stage3 = {
   production: { ...production, quiz: localQuiz },
 } satisfies QuestionBankWorkflowStage3;
 
-const finalInput: QuestionBankWorkflowMaterializerInput = stage3;
+const finalInput: QuestionBankWorkflowStage3 = stage3;
 const withoutQuiz = {
   ...stage2,
   production: { ...production, quiz: noQuiz },
-} satisfies QuestionBankWorkflowMaterializerInput;
+} satisfies QuestionBankWorkflowStage3;
 
 // @ts-expect-error Stage 2 does not yet include the Stage 3 Quiz design decision.
-const prematureStage2: QuestionBankWorkflowMaterializerInput = stage2;
+const prematureStage2: QuestionBankWorkflowStage3 = stage2;
 
 const duplicatedSelection: QuestionBankWorkflowQuizIntent = {
   kind: 'local',
@@ -275,7 +220,6 @@ const actualSectionSelection: QuizSection_Config['params']['selection'] = {
 void handoff;
 void premature;
 void missingOwner;
-void missingAssessment;
 void missingPlanned;
 void noSourceLanguage;
 void prompt;

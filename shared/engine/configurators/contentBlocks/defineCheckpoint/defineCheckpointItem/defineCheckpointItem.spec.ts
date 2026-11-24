@@ -1,11 +1,10 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { configuratorArrayToSlugMap } from '../../../_shared__configurators';
 import { defineText } from '../../defineText';
 import { defineCheckpointAnswer } from '../defineCheckpointAnswer';
-import { defineCheckpointItem, checkpointItem_Config_Schema, checkpointItem_Props_Schema } from './index';
+import { checkpointItem_Config_Schema, checkpointItem_Props_Schema, defineCheckpointItem } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {

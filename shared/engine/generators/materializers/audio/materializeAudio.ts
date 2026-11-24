@@ -4,8 +4,10 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
-import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio';
-import { audio_Config_Schema } from '../../../configurators/contentBlocks/defineAudio';
+
+import { audio_Config_Schema, type ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio';
+import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type AudioDraftConfig = Pick<ContentBlock_Audio_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Audio_Config['params']>;
@@ -33,7 +35,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const languagePattern = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-const nilUuid = '00000000-0000-0000-0000-000000000000';
+const nilUuid = UNRESOLVED_RESOURCE_UUID;
 const reserved = new Set([
   'await',
   'break',
@@ -211,13 +213,19 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
           : placeholder;
     }
     const current = locale[field];
-    if (missing || current === placeholder || (isRecord(current) && current[language] === placeholder)) {
-      blockers.push('// TODO(asset): Replace ' + field + ' reserved Nil UUID with a verified ' + ext + ' asset.');
-      block(
-        'locale.' + field,
-        'pending-media',
-        'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)',
-      );
+    const localized = isRecord(current);
+    const reference = localized ? current[language] : current;
+    if (typeof reference === 'string' && reference.startsWith(nilUuid + '.')) {
+      const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
+      const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
+      expressions[fieldPath] =
+        '// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.\n' + JSON.stringify(reference);
+      diagnostics.push({
+        path: '$.config.' + fieldPath,
+        code: 'pending-media',
+        message: instruction,
+        severity: 'warning',
+      });
     }
     fields.locale = locale;
   }
@@ -255,21 +263,14 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
     throw new Error('Cannot materialize type-valid Audio Config: unsupported authored fields');
   }
 
-  if (options.production !== undefined) {
-    if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
-    const details = Object.entries(options.production).filter(
-      ([key]) => key !== 'pending' && key !== 'documentLanguage',
-    );
-    if (details.length) {
-      const body =
-        details
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n';
-      files.push({ path: 'specification.md', content: body, kind: 'specification' });
-    }
+  const inlineSpecification = renderTemporaryMediaSpecification(options.production, 'Audio');
+  if (inlineSpecification) {
+    diagnostics.push({
+      path: '$.production.specification',
+      code: 'pending-temporary-specification',
+      message: 'Remove temporary Audio specification after implementation and verification',
+      severity: 'warning',
+    });
   }
 
   const name = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
@@ -287,7 +288,8 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
     JSON.stringify(config.slug) +
     ', typeof languages>(' +
     printValue(fields, expressions) +
-    ');\n';
+    ');\n' +
+    inlineSpecification;
   files.unshift({ path: 'index.ts', content: source, kind: 'typescript' });
   return {
     exportName: name,

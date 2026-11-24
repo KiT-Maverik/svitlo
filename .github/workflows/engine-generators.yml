@@ -9,7 +9,13 @@ on:
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
-      - 'scripts/ci/reviewEvidence/**'
+      - 'scripts/ci/directMaterialization/**'
+      - 'scripts/ci/requiredCheckReuse/**'
+      - 'scripts/ci/draftCiPolicy/**'
+      - 'scripts/ci/productionQuality/**'
+      - 'scripts/ci/releaseSource/**'
+      - '.github/workflows/fast-gate.yml'
+      - '.github/workflows/production-quality.yml'
       - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
       - '.github/workflows/bank-materialization.yml'
@@ -50,7 +56,20 @@ jobs:
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+
+  ci-policy:
+    name: Required check reuse and Draft policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
@@ -66,6 +85,8 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Verify pinned Prettier import ordering without rewriting sources
+        run: npm run test:import-format
       - name: Typecheck Engine and compile generator tests
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
@@ -94,19 +115,19 @@ jobs:
             shared/engine/generators/materializers/chapter/*.spec.mjs \
             shared/engine/generators/materializers/lesson/*.spec.mjs \
             shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
+            shared/engine/.test-build/generators/materializers/scene/*.spec.js \
+            shared/engine/.test-build/generators/materializers/episode/*.spec.js \
+            shared/engine/.test-build/generators/materializers/questStage/*.spec.js \
+            shared/engine/.test-build/generators/materializers/questTask/*.spec.js \
+            scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs \
             shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
-
-      - name: Verify Lesson semantic checker also works from the Engine workspace
-        working-directory: shared/engine
-        run: node ../../scripts/ci/quietRun/quiet-run.mjs -- node --test --test-name-pattern="generated Lesson source passes the real TypeScript semantic checker" .test-build/generators/materializers/lesson/materializeStage6.spec.js
 
       - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs \
-            scripts/ci/bankMaterialization/bank-typed-stage3.spec.mjs \
             scripts/ci/bankMaterialization/bank-typed-block-evidence.spec.mjs
 
       - name: Test typed Lesson Stage 6 source and PR-command security
@@ -114,7 +135,10 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
             scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs \
             scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs \
-            scripts/ci/lessonMaterialization/lesson-typed-source.spec.mjs
+            scripts/ci/directMaterialization/run-isolated.spec.mjs
+
+      - name: Exercise all five direct materializers through the pinned isolated worker
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/directMaterialization/pipeline.spec.mjs
 
       - name: Check formatting of typed Course Flow sources
         run: |

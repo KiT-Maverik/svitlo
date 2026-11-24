@@ -1,37 +1,38 @@
-import type { ConfiguratorChild } from '../../../types/configuratorChild';
+import { z } from 'zod';
+
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
+  ChildrenSupporting,
   DeepPartial,
   LanguageScope,
-  ChildrenSupporting,
-  RequireLanguages,
   PublicationLanguageOptions,
+  RequireLanguages,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
+  onlyLocales,
   resolvePublicationLanguages,
   selectPublicationLocales,
-  onlyLocales,
   splitLocalizedFields,
   validateOrderedKeys,
 } from '../../_shared__configurators';
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineFlashcardSide/defineFlashcardSide';
 import { flashcardSideConfigurator_Schema } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 import {
   flashcard_Config_Schema,
+  flashcard_Override_Metadata_Schema,
   flashcard_Props_Schema,
   flashcardFlag_Config_Schema,
   flashcardRelationship_Schema,
-  flashcard_Override_Metadata_Schema,
   type Flashcard_Config,
   type Flashcard_Flag_Config,
-  type Flashcard_Relationship,
-  type Flashcard_PropsBase,
   type Flashcard_Overrides,
+  type Flashcard_PropsBase,
+  type Flashcard_Relationship,
 } from './defineFlashcard.schemas';
-import { z } from 'zod';
 
 type Block = ContentBlock_Configurator;
 type Side = 'front' | 'back' | 'hint';

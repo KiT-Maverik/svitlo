@@ -2,9 +2,9 @@
 /**
  * Typed Question/Flashcard Stage 5 source materialization.
  *
- * analyze: no GitHub write credential; statically parse and typecheck reviewed
- * Stage 3 data, run the trusted concrete Engine Bank writer in a local Git
- * checkout, and seal its entire Git tree in a checksummed source manifest.
+ * analyze: verify a pinned checkout, execute exactly one direct authored
+ * materializer in the credential-free worker, independently check source
+ * ownership and media/Scene evidence, then attest the bounded file manifest.
  *
  * publish: no npm/Engine/candidate code execution; reauthorize and reconstruct
  * exactly that source tree through the Git Data API, with an immutable HEAD
@@ -38,16 +38,13 @@ function metadata() {
     meta.number < 1 ||
     !SHA.test(meta.head) ||
     !SHA.test(meta.sourceBlob) ||
-    meta.reviewCommitSha !== meta.head ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor || '') ||
-    meta.reviewVerdict !== 'accepted' ||
-    (meta.parentQuestions === 'notApplicable' &&
-      (meta.parentQuestionsReview?.stage !== 'questions-na' ||
-        meta.parentQuestionsReview?.verdict !== 'accepted' ||
-        meta.parentQuestionsReview?.commit !== meta.parentHeadSha ||
-        !SHA.test(meta.parentQuestionsReview?.blob || ''))) ||
     meta.sourcePath !== meta.identity?.folder + '/' + meta.bank + '/draft.ts' ||
     meta.identity?.bank !== meta.bank ||
+    meta.identity?.id !== meta.identity?.folder?.split('/').at(-1) ||
+    !SHA.test(meta.baseHead || '') ||
+    !SHA.test(meta.lessonBlob || '') ||
+    !SHA.test(meta.lessonConstantsBlob || '') ||
     typeof meta.branch !== 'string'
   ) {
     throw Error('Typed Bank metadata is incomplete or contradictory');
@@ -120,15 +117,39 @@ function assertSourceRevision(root, sha, pathname, meta, label) {
     }
   } else throw Error(label + ': SHA must identify source blob or ancestor commit');
 }
+function verifyOwnerLanguages(meta, input, root) {
+  const filename = meta.identity.folder + '/constants.ts';
+  assertTracked(root, filename, meta, 'Lesson languages constants');
+  const tracked = git(root, 'ls-files', '--stage', '--', filename);
+  if (!/^100644 [a-f0-9]{40} 0\t/.test(tracked) || !tracked.endsWith('\t' + filename))
+    throw Error('Owning Lesson constants.ts must be a regular Git blob');
+  let current = root;
+  for (const segment of filename.split('/')) {
+    current = path.join(current, segment);
+    if (fs.lstatSync(current).isSymbolicLink()) throw Error('Symlink in owning Lesson constants.ts path');
+  }
+  const bytes = fs.readFileSync(current);
+  if (
+    gitBlob(bytes) !== meta.lessonConstantsBlob ||
+    git(root, 'rev-parse', 'HEAD:' + filename) !== meta.lessonConstantsBlob
+  )
+    throw Error('Owning Lesson constants.ts differs from pinned Git blob');
+  const { parseLessonLanguageConstants, assertBankLessonLanguages } = require(
+    path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js'),
+  );
+  const reviewed = parseLessonLanguageConstants(bytes.toString('utf8'));
+  const languages = meta.bank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
+  assertBankLessonLanguages(reviewed, languages);
+  return reviewed;
+}
 function authorizations(meta, input, root, blocks) {
   const lessonDirectory = meta.identity.folder;
-  const evidence = {
-    approved: true,
+  verifyOwnerLanguages(meta, input, root);
+  const source = {
     content: fs.readFileSync(path.join(root, meta.sourcePath), 'utf8'),
     blobSha: meta.sourceBlob,
-    reviewedSourceBlobSha: meta.sourceBlob,
-    reviewCommitSha: meta.reviewCommitSha,
-    reviewedInputSha256: sha256(JSON.stringify(input, null, 2)),
+    commitSha: meta.head,
+    inputSha256: sha256(JSON.stringify(input, null, 2)),
   };
   if (meta.bank === 'questions') {
     const lesson = input?.production?.lesson;
@@ -138,128 +159,81 @@ function authorizations(meta, input, root, blocks) {
     assertSourceRevision(root, lesson.sourceSha, lesson.sourcePath, meta, 'Question Lesson source');
     assertSourceRevision(root, lesson.referenceSha, lesson.referencePath, meta, 'Question reference');
     assertTracked(root, lesson.methodologyPath, meta, 'Lesson methodology');
-    if (input.production.assessment?.questionBankRequired !== true) {
-      throw Error('Question Bank N/A needs a distinct Methodologist-reviewed exception; no blanket authorization');
-    }
-    return { reviewed: evidence, blocks, ownerLessonId: meta.identity.id };
+    return { source, blocks, ownerLessonId: meta.identity.id };
   }
   const lesson = input?.production?.lesson;
-  const questions = input?.production?.questions;
-  if (
-    !lesson ||
-    lesson.id !== meta.identity.id ||
-    !questions ||
-    questions.kind !== meta.parentQuestions ||
-    !SHA.test(meta.parentHeadSha || '')
-  ) {
-    throw Error('Flashcards require the pinned parent Lesson Questions-first decision and source');
-  }
+  if (!lesson || lesson.id !== meta.identity.id) throw Error('Flashcard Bank owner Lesson UUID mismatch');
   assertSourceRevision(root, lesson.sourceSha, lessonDirectory + '/index.ts', meta, 'Flashcards Lesson source');
   assertSourceRevision(root, lesson.reference.sourceSha, lesson.reference.path, meta, 'Flashcards reference');
-  if (lesson.assessment?.flashcardBankRequired !== true) {
-    throw Error('Flashcard Bank N/A requires separate independently approved exception');
-  }
-  if (questions.kind === 'completed') {
-    const expected = lessonDirectory + '/questions/index.ts';
-    const draft = lessonDirectory + '/questions/draft.ts';
-    if (
-      questions.integrated !== true ||
-      questions.bankPath !== expected ||
-      !fs.existsSync(path.join(root, expected)) ||
-      fs.existsSync(path.join(root, draft)) ||
-      !fs.existsSync(path.join(root, lessonDirectory, 'questionsLanguages.ts'))
-    ) {
-      throw Error('Questions must have completed reviewed typed source and be integrated');
-    }
-    assertAncestor(root, questions.reviewSha, 'Completed Questions independent review');
-    assertTracked(root, expected, meta, 'Completed Questions index');
-    const reviewedBlob = git(root, 'rev-parse', questions.reviewSha + ':' + draft);
-    const transitions = git(root, 'log', '--format=%H', '--diff-filter=D', questions.reviewSha + '..HEAD', '--', draft)
-      .split('\n')
-      .filter(Boolean);
-    const materialized = transitions.filter(commit => {
-      if (git(root, 'rev-list', '--parents', '-n', '1', commit) !== commit + ' ' + questions.reviewSha) return false;
-      const changes = git(root, 'diff-tree', '--no-commit-id', '--name-status', '--no-renames', '-r', commit).split(
-        '\n',
-      );
-      return changes.includes('D\t' + draft) && changes.includes('A\t' + expected);
-    });
-    if (materialized.length !== 1 || !SHA.test(reviewedBlob)) {
-      throw Error('Completed Questions require the atomic reviewed draft-to-index Git transition');
-    }
-    // Source provenance can refer to either the original reviewed editor or
-    // the completed index; never accept an unrelated ancestor commit or blob.
-    const sourceKind = git(root, 'cat-file', '-t', questions.sourceSha);
-    const finalizedBlob = git(root, 'rev-parse', 'HEAD:' + expected);
-    const actualSource =
-      sourceKind === 'blob'
-        ? questions.sourceSha
-        : sourceKind === 'commit'
-          ? (assertAncestor(root, questions.sourceSha, 'Questions source'),
-            git(
-              root,
-              'rev-parse',
-              questions.sourceSha + ':' + (questions.sourceSha === questions.reviewSha ? draft : expected),
-            ))
-          : '';
-    if (![reviewedBlob, finalizedBlob].includes(actualSource)) {
-      throw Error('Questions-first source SHA does not identify reviewed or finalized Question Bank');
-    }
-    return {
-      reviewed: evidence,
-      blocks,
-      ownerLessonId: meta.identity.id,
-      lessonSourceSha: lesson.sourceSha,
-      referenceSourceSha: lesson.reference.sourceSha,
-      questionSourceSha: questions.sourceSha,
-      questionReviewSha: questions.reviewSha,
-    };
-  }
-  if (questions.kind === 'notApplicable') {
-    assertAncestor(root, questions.methodologySourceSha, 'Methodologist Questions N/A revision');
-    assertAncestor(root, meta.parentHeadSha, 'Reviewed Questions N/A parent revision');
-    assertSourceRevision(
-      root,
-      meta.parentQuestionsReview.blob,
-      lessonDirectory + '/index.ts',
-      meta,
-      'Questions N/A reviewed Lesson source',
-    );
-    if (questions.parentLessonPr !== meta.identity.parent || lesson.assessment?.questionBankRequired !== false) {
-      throw Error('Questions N/A must match the owning Lesson decision and parent PR');
-    }
-    return {
-      reviewed: evidence,
-      blocks,
-      ownerLessonId: meta.identity.id,
-      lessonSourceSha: lesson.sourceSha,
-      referenceSourceSha: lesson.reference.sourceSha,
-      methodologySourceSha: questions.methodologySourceSha,
-    };
-  }
-  throw Error('Questions-first prerequisite is not independently completed or N/A');
-}
-function context(meta, root) {
   return {
-    repositoryRoot: root,
-    branch: meta.branch,
-    expectedHeadSha: meta.head,
+    source,
+    blocks,
     ownerLessonId: meta.identity.id,
-    lessonDirectory: meta.identity.folder,
+    lessonSourceSha: lesson.sourceSha,
+    referenceSourceSha: lesson.reference.sourceSha,
   };
+}
+const sceneUuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+function scenePath(filename, meta) {
+  if (!meta.identity.pkg || !/^content\/[a-z][a-z0-9-]*$/.test(meta.identity.pkg)) return null;
+  const prefix = meta.identity.pkg + '/scenes/';
+  if (!filename.startsWith(prefix)) return null;
+  const parts = filename.slice(prefix.length).split('/');
+  if (
+    parts.length !== 3 ||
+    !/^[0-9a-f]$/.test(parts[0]) ||
+    !sceneUuid.test(parts[1]) ||
+    parts[1].at(-1) !== parts[0] ||
+    !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.module\.css|\.constants\.ts|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(
+      parts[2],
+    )
+  )
+    return null;
+  return { id: parts[1], name: parts[2], directory: prefix + parts[0] + '/' + parts[1] };
+}
+function assertSceneInventory(files, meta) {
+  const scenes = new Map();
+  for (const file of files) {
+    const parsed = scenePath(file.path, meta);
+    if (!parsed) continue;
+    const group = scenes.get(parsed.id) ?? new Map();
+    if (group.has(parsed.name)) throw Error('Duplicate Bank Scene file ' + file.path);
+    group.set(parsed.name, file);
+    scenes.set(parsed.id, group);
+  }
+  for (const [id, group] of scenes) {
+    const index = group.get('index.ts');
+    if (!index) throw Error('Incomplete Bank Scene six-file scaffold: ' + id);
+    const source = Buffer.from(index.base64, 'base64').toString('utf8');
+    const match = source.match(/export \{ ([A-Za-z][A-Za-z0-9]*) as default \} from ['"]\.\/\1['"];?/);
+    if (!match || !source.includes('TODO (BLOCKER)'))
+      throw Error('Bank Scene scaffold lacks its canonical entrypoint/blocker: ' + id);
+    const name = match[1];
+    const required = [
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
+    ];
+    if (group.size !== required.length || required.some(filename => !group.has(filename)))
+      throw Error('Incomplete or unexpected Bank Scene scaffold files: ' + id);
+    for (const filename of required.slice(1)) {
+      const text = Buffer.from(group.get(filename).base64, 'base64').toString('utf8');
+      if (!text.includes('TODO (BLOCKER)'))
+        throw Error('Unreviewed Bank Scene draft lacks release blocker: ' + id + '/' + filename);
+    }
+  }
+  return scenes;
 }
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
-  if (
-    !filename.startsWith(folder) ||
-    filename.length > 520 ||
-    filename.includes('..') ||
-    filename.includes('//') ||
-    filename.includes('\\')
-  )
+  if (filename.length > 520 || filename.includes('..') || filename.includes('//') || filename.includes('\\'))
     return false;
+  if (scenePath(filename, meta)) return true;
+  if (!filename.startsWith(folder)) return false;
   const relative = filename.slice(folder.length);
-  if (relative === meta.bank + 'Languages.ts') return true;
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
   return (
@@ -274,13 +248,12 @@ function validTypedPath(filename, meta) {
 export function verifyTypedManifest(result, meta) {
   if (
     !result ||
-    result.version !== 2 ||
+    result.version !== 3 ||
     JSON.stringify(result.meta) !== JSON.stringify(meta) ||
-    !SHA.test(result.treeSha || '') ||
     result.deletedSource?.path !== meta.sourcePath ||
     result.deletedSource?.blobSha !== meta.sourceBlob ||
     !Array.isArray(result.files) ||
-    result.files.length < 4 ||
+    result.files.length < 3 ||
     result.files.length > MAX_COUNT ||
     !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')
   ) {
@@ -311,7 +284,8 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
-  for (const filename of [root + meta.bank + '/index.ts', root + meta.bank + 'Languages.ts']) {
+  assertSceneInventory(result.files, meta);
+  for (const filename of [root + meta.bank + '/index.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
   return result.files;
@@ -393,7 +367,7 @@ export function assertTypedBankInventory(meta, input, files) {
           throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' + slug + '/' + side);
         }
         for (const block of content.order) {
-          if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
+          if (!paths.has(prefix + block + '/index.ts')) {
             throw Error('Reviewed Side ContentBlock omitted: ' + slug + '/' + side + '/' + block);
           }
         }
@@ -403,12 +377,38 @@ export function assertTypedBankInventory(meta, input, files) {
 }
 
 async function analyze(meta) {
-  const { root, source } = verifyCandidate(meta);
-  const { readTypedBankStage3, typecheckTypedBankStage3 } = await import('./bank-typed-stage3.mjs');
-  const input = readTypedBankStage3(source, meta.bank);
-  typecheckTypedBankStage3(source, trustedRoot);
-  // Only reviewed, SHA-pinned Git bytes and the independently approved
-  // Stage 3 source may authorize concrete media/Scene blocks.
+  if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
+    throw Error('Candidate execution must not receive GitHub credentials');
+  const { root, source: pinnedSource } = verifyCandidate(meta);
+  const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
+  const result = runIsolatedMaterialization({
+    trustedRoot,
+    candidateRoot: root,
+    textbook: meta.identity.pkg,
+    operation: meta.bank === 'questions' ? 'questions-stage5' : 'flashcards-stage5',
+    source: {
+      sourcePath: meta.sourcePath,
+      sourceBlobSha: meta.sourceBlob,
+      sourceCommitSha: meta.head,
+      lessonConstantsBlobSha: meta.lessonConstantsBlob,
+    },
+  });
+  const { plan, input } = result ?? {};
+  if (
+    !plan ||
+    plan.publishable !== false ||
+    !Array.isArray(plan.files) ||
+    !plan.transition ||
+    plan.transition.sourceDraftPath !== meta.bank + '/draft.ts' ||
+    plan.transition.materializedPath !== meta.bank + '/index.ts' ||
+    plan.transition.sourceDraftBlobSha !== meta.sourceBlob ||
+    plan.transition.expectedHeadSha !== meta.head
+  )
+    throw Error('Isolated Bank did not return the approved source transition');
+
+  // A direct invocation can inspect arbitrary imported code; the manifest
+  // alone cannot prove it produced the bytes. Verify its declared ownership,
+  // reference commits, and every real media/Scene asset against the pinned Git tree.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
     root,
@@ -417,75 +417,56 @@ async function analyze(meta) {
     git,
     ts: require('typescript'),
   });
-  const authorization = authorizations(meta, input, root, blocks);
-  const engineDir = '../../../shared/engine/dist/generators/materializers/';
-  const adapter =
-    meta.bank === 'questions'
-      ? require(engineDir + 'questionBank/questionBankGitTransaction.js')
-      : require(engineDir + 'flashcardBank/flashcardBankGitTransaction.js');
-  const gitContext = context(meta, root);
-  const checked =
-    meta.bank === 'questions'
-      ? adapter.checkReviewedQuestionBankSource(input, authorization, gitContext)
-      : adapter.checkReviewedFlashcardBankSource(input, authorization, gitContext);
-  if (checked.noop || checked.changedPaths.length < 5) {
-    throw Error('Expected one complete, not previously applied Stage 3 bank transition');
-  }
-  const committed =
-    meta.bank === 'questions'
-      ? adapter.writeReviewedQuestionBankSource(input, authorization, gitContext)
-      : adapter.writeReviewedFlashcardBankSource(input, authorization, gitContext);
-  if (!committed.worktreeRefreshRequired || committed.changedPaths.join('\n') !== checked.changedPaths.join('\n')) {
-    throw Error('Trusted Bank writer disagrees with checked atomic source plan');
-  }
-  if (
-    committed.changedPaths.filter(filename => filename === meta.sourcePath).length !== 1 ||
-    git(root, 'ls-tree', committed.commitSha, '--', meta.sourcePath)
-  ) {
-    throw Error('Trusted Bank writer must consume the exact reviewed draft');
-  }
-  const files = committed.changedPaths
-    .filter(filename => filename !== meta.sourcePath)
-    .map(filename => {
-      // Preserve exact Git blob bytes, including trailing newlines.
-      const exact = execFileSync('git', ['-C', root, 'show', committed.commitSha + ':' + filename]);
-      if (!Buffer.from(exact.toString('utf8'), 'utf8').equals(exact)) {
-        throw Error('Generated Bank source is not valid UTF-8');
-      }
-      return { path: filename, sha256: sha256(exact), base64: exact.toString('base64') };
+  const { materializeBankSceneDrafts } = require(
+    path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/materializeBankSceneDrafts.js'),
+  );
+  const sceneLanguage =
+    meta.bank === 'questions' ? input.production?.languages?.document : input.production?.lesson?.languages?.document;
+  const expectedSceneDrafts = materializeBankSceneDrafts(input.config, sceneLanguage, blocks);
+  if (JSON.stringify(plan.sceneDrafts ?? []) !== JSON.stringify(expectedSceneDrafts))
+    throw Error('Worker Bank Scene draft bytes, identities or complete six-file plan differ from reviewed source');
+  if (expectedSceneDrafts.length !== blocks.newSceneIds.size * 6)
+    throw Error('Every new reviewed Bank Scene must have exactly one complete six-file draft');
+  const approval = authorizations(meta, input, root, blocks);
+  if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
+    throw Error('Bank input differs from pinned reviewed source');
+  const files = [
+    ...plan.files.map(file => ({
+      ...file,
+      path: meta.identity.folder + '/' + file.path,
+    })),
+    ...expectedSceneDrafts.map(file => ({
+      ...file,
+      path: meta.identity.pkg + '/' + file.path,
+    })),
+  ]
+    .map(file => {
+      const content = Buffer.from(file.content ?? '', 'utf8');
+      if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content)) throw Error('Invalid worker source bytes');
+      return { path: file.path, sha256: sha256(content), base64: content.toString('base64') };
     })
     .sort((a, b) => a.path.localeCompare(b.path));
-  const treeSha = git(root, 'rev-parse', committed.commitSha + '^{tree}');
   const reportData = {
-    version: 2,
+    version: 3,
     meta,
-    treeSha,
     deletedSource: { path: meta.sourcePath, blobSha: meta.sourceBlob },
-    inputSha256: authorization.reviewed.reviewedInputSha256,
+    inputSha256: approval.source.inputSha256,
     files,
   };
   verifyTypedManifest(reportData, meta);
   assertTypedBankInventory(meta, input, files);
-  // Semantic TypeScript analysis of ALL generated Question kinds/Card Sides,
-  // against the actual @svitlo/engine/build declarations. Read-only.
-  const { typecheckGeneratedBankModules } = await import('./bank-typed-stage3.mjs');
-  typecheckGeneratedBankModules(
-    root,
-    committed.commitSha,
-    files.map(f => f.path),
-    trustedRoot,
-  );
   const location = process.env.BANK_REPORT;
+  if (!location) throw Error('Missing trusted bank report path');
   fs.mkdirSync(path.dirname(location), { recursive: true });
-  fs.writeFileSync(location, JSON.stringify(reportData) + '\n', { flag: 'wx' });
+  fs.writeFileSync(location, JSON.stringify(reportData) + '\\n', { flag: 'wx' });
   report(
-    'Verified typed ' +
+    'Isolated reviewed ' +
       meta.bank +
-      ' Stage 3 source at ' +
-      meta.head +
-      '; planned ' +
+      ' Stage 5 planned ' +
       files.length +
-      ' bank-owned Git objects; zero remote writes',
+      ' bank and reviewed Scene draft sources from ' +
+      meta.sourceBlob +
+      '; zero Git writes',
   );
 }
 async function publish(meta) {
@@ -523,8 +504,8 @@ async function publish(meta) {
       }
     }
   }
-  // Engine's trusted local Git writer already computed this immutable tree.
-  // Rebuild it via the Git Data API, verify exact Git tree SHA before commit.
+  // Exactly one Git tree is constructed from the immutable worker artifact.
+  // Do not regenerate or execute reviewed TypeScript in this privileged job.
   const tree = await github('git/trees', 'POST', {
     base_tree: original.tree.sha,
     tree: [
@@ -537,19 +518,17 @@ async function publish(meta) {
       { path: meta.sourcePath, mode: '100644', type: 'blob', sha: null },
     ],
   });
-  if (tree.sha !== reportData.treeSha) {
-    throw Error('Git Data API result differs from trusted Bank transaction tree');
-  }
+  if (!SHA.test(tree.sha ?? '')) throw Error('Git Data API returned no valid Bank source tree');
   await inspectTyped(meta.number, meta.bank, withoutActor(meta));
   const commit = await github('git/commits', 'POST', {
     message:
-      'Materialize reviewed typed ' +
+      'Materialize typed ' +
       meta.bank +
       ' bank for PR #' +
       meta.number +
       '\n\nReviewed HEAD: ' +
       meta.head +
-      '\nReviewed Stage 3 blob: ' +
+      '\nSource blob: ' +
       meta.sourceBlob,
     tree: tree.sha,
     parents: [meta.head],

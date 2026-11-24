@@ -13,7 +13,8 @@
     "schemas/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts",
-    "generators/**/*.ts"
+    "generators/**/*.ts",
+    "generators/materializers/**/*.mjs"
   ],
   "exclude": ["node_modules", "dist", ".test-build", "**/*.typecheck.ts"]
 }

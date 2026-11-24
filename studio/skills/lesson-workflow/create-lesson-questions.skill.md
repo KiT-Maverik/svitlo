@@ -21,20 +21,22 @@ Use **one Lesson-owned, progressively typed source** at:
     content/<textbook>/data/lessons/<last-hex>/<lesson-uuid>/questions/draft.ts
 
 Stage 1 is `{ config, production } satisfies QuestionBankWorkflowStage1`,
-verified against the owning Lesson UUID and exact source SHA. It contains
-pedagogical/evidence intent but **no actual Questions yet**. Stage 2 refines
+with only the owning Lesson UUID and source/planned languages. Verify Lesson
+and reference SHAs and approved methodology from the real Lesson/PR; **do not
+duplicate that evidence in the Question draft**. Stage 1 has no Questions. Stage 2 refines
 the **same file** to `satisfies QuestionBankWorkflowStage2`, adding the
 full grouped bank in `config.questions`. Stage 3 refines that source to
 `satisfies QuestionBankWorkflowStage3` with local Quiz design intent.
 Stage 4 independent review corrects that same source and stores approval
 evidence only in the Questions PR. Stage 5 uses exactly
-`QuestionBankWorkflowMaterializerInput` and atomically consumes the reviewed draft,
+`QuestionBankWorkflowStage3` and atomically consumes the reviewed draft,
 creating canonical `define*` modules and the actual bank export. An incomplete Stage 1 file
 must not be imported/published as the final `questions/index.ts` bank.
 
 Use the nine actual Engine Config/Zod variants for scoring and their
-plain nested ContentBlock Config data; specialized Stage 2 nodes hold
-production-only assessment rationale, not fields on the final Config.
+plain nested ContentBlock Config data. Stage 2 Question nodes have the real
+Config and optional `production.specification` for authoring resources, not
+a parallel assessment/evidence record.
 Do not maintain a parallel editor schema, YAML authoring source, status flags, `questionSlugs` or bank-level selection UUID list.
 
 Use actual Engine code for the nine Question discriminators, all
@@ -45,15 +47,16 @@ The Question Bank is independent from Lesson Config and Props.
 
 ## 1. Evidence coverage before item writing
 
-For each intended assessment, record substantive source-language **production.evidenceIntent** and, per Stage 2 item, **production.evidence** and distinctness; keep review verdicts, approval SHAs and stage status only in the Questions PR:
+Assess substantive coverage using the current Lesson/Skill documents and record
+relevant review observations, coverage gaps, approval SHAs and stage status
+**only in the existing Questions PR**. This is a review rubric, **not**
+a mandatory TypeScript evidence matrix or per-Question `production` fields:
 
-- Approved target Skill and observable outcome/subcompetency.
-- Required cognitive Assessment Method and the actual mental operation.
-- Knowledge aspect, representation, context, difficulty and
-  misconception/boundary or prerequisite distinction.
-- Expected valid observable evidence and grading limitation.
-- core or extension coverage role, with an explicit distinctness reason.
-- Intended Quiz placement, if one is pedagogically approved.
+- Check the approved Lesson Skills and outcomes without copying them into each Question.
+- Check that each Question's **required** `params.assessmentMethod` is meaningful.
+- Verify response correctness, appropriate challenge, accessible presentation and
+  distinctions between nonredundant Questions.
+- When a local Quiz is approved, explain its Section placement in Stage 3.
 
 An individual Question may check several connected ideas but does not
 automatically demonstrate independent mastery of multiple Skills. A
@@ -97,8 +100,10 @@ tricks or literacy demands unrelated to the target competency.
 Retain source locale provenance. Author only genuine language values,
 no English copied into unsupported targets, and no speculative locale
 placeholders. Keep actual intended Lesson language scope unchanged.
-Only reuse verified Lesson media UUIDs; add ContentBlock UUIDs as real
-authored identities, never make up physical assets. Provide nonvisual
+For unproduced media, omit the asset reference or use the existing reserved
+resource placeholder and an optional source specification; concrete materializers
+emit `TODO (BLOCKER)`. Never invent physical assets or treat unresolved
+resources as publication-ready. Real ContentBlock identities remain UUIDs. Provide nonvisual
 equivalence, keyboard support and readable alternatives whenever
 possible. A restriction describes a potential limitation, not an
 automatic accommodation or evidence about a learner's health.

@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { afterEach, describe, it, mock } from 'node:test';
+
 import { ZodError } from 'zod';
+
+import { lessonInProgress, lessonNew, stubRunStateRequest } from '../../testUtils/controllerTestDoubles';
 import { getLessonState } from './getLessonState.controller';
-import { lessonNew, lessonInProgress, stubRunStateRequest } from '../../testUtils/controllerTestDoubles';
 
 describe('DB', () => {
   describe('Controllers', () => {

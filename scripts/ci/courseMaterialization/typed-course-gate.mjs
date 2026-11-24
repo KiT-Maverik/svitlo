@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Trusted typed Course Stage 5 gate.
- * Authorizes a pinned Stage 3 source + accepted Stage 4 review evidence.
+ * Authorizes a pinned TypeScript source without reading editorial PR prose.
  * No PR-head code is loaded or executed by this gate.
  */
 import fs from 'node:fs';
-import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { github, requireActor, safeBranch, report, materializationInvocation } from './course-gate.mjs';
 
 const UUID = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
@@ -81,21 +80,15 @@ export async function inspectTypedCourse(number, expectedHead) {
     resource.size > 2 * 1024 * 1024
   )
     throw Error('Pinned typed Course source is missing, invalid or oversized');
-  const [review] = await verifyReviewEvidence(pr.body, {
-    stages: [4],
-    head: pr.head.sha,
-    blob: resource.sha,
-  });
   const again = await github('pulls/' + number);
   if (
     again?.head?.sha !== pr.head.sha ||
     again?.head?.ref !== pr.head.ref ||
     again?.state !== 'open' ||
     !again.draft ||
-    again.base?.ref !== base ||
-    again.body !== pr.body
+    again.base?.ref !== base
   )
-    throw Error('Course PR changed during independent Stage 4 evidence verification');
+    throw Error('Course PR changed during source discovery');
   return {
     version: 2,
     operation: 'typed-course-stage5',
@@ -105,8 +98,6 @@ export async function inspectTypedCourse(number, expectedHead) {
     head: pr.head.sha,
     ...identity,
     sourceBlobSha: resource.sha,
-    reviewCommitSha: review.commit,
-    reviewVerdict: review.verdict,
   };
 }
 
@@ -121,10 +112,8 @@ export function parseTypedMetadata(encoded) {
     data.number < 1 ||
     !SHA.test(data.head ?? '') ||
     !SHA.test(data.sourceBlobSha ?? '') ||
-    data.reviewCommitSha !== data.head ||
     data.repo !== process.env.GITHUB_REPOSITORY ||
     !/^[A-Za-z0-9-]+$/.test(data.actor ?? '') ||
-    data.reviewVerdict !== 'accepted' ||
     !safeBranch(data.branch, process.env.COURSE_DEFAULT_BRANCH || 'develop') ||
     !COURSE_TS.test(data.sourcePath ?? '') ||
     !data.sourcePath.startsWith(data.textbookRoot + '/data/courses/') ||
@@ -148,15 +137,7 @@ async function main() {
   const metadata = { ...(await inspectTypedCourse(number)), actor };
   const encoded = Buffer.from(JSON.stringify(metadata)).toString('base64');
   fs.appendFileSync(process.env.GITHUB_OUTPUT, 'meta=' + encoded + '\npr=' + number + '\nhead=' + metadata.head + '\n');
-  report(
-    'Verified typed Course Stage 4 review at ' +
-      metadata.head +
-      ' (source blob ' +
-      metadata.sourceBlobSha +
-      ', verdict ' +
-      metadata.reviewVerdict +
-      ')',
-  );
+  report('Verified typed Course source at ' + metadata.head + ' (source blob ' + metadata.sourceBlobSha + ')');
 }
 
 if (process.argv[1]?.endsWith('/typed-course-gate.mjs')) {

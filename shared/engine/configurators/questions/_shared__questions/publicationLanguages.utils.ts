@@ -1,5 +1,7 @@
 import type { LanguageCode } from '#schemas';
+
 import { mergeForValidation } from '../../_shared__configurators';
+
 export { resolvePublicationLanguages, selectPublicationLocales } from '../../_shared__configurators';
 export type { PublicationLanguageOptions } from '#types';
 

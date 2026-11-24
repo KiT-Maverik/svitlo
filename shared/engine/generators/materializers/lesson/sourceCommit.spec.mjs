@@ -163,3 +163,65 @@ test('refuses invalid generated TypeScript and any attempt to publish from this 
     /Invalid generated TypeScript/,
   );
 });
+
+test('Scene drafts are one all-or-nothing UUID-scoped Git tree write; incomplete and unsafe destinations fail', t => {
+  const { root, plan, reviewed } = setup(t);
+  const scene = '11111111-1111-4111-8111-11111111111a';
+  const prefix = 'content/math/scenes/a/' + scene + '/';
+  const names = [
+    'index.ts',
+    'ChooseColor.tsx',
+    'ChooseColor.module.css',
+    'ChooseColor.constants.ts',
+    'ChooseColor.stories.tsx',
+    'ChooseColor.unit.spec.tsx',
+  ];
+  const sceneFiles = names.map(name => ({
+    path: prefix + name,
+    content: name.endsWith('.css') ? '.root {}' : 'export const sceneDraft = true;\n',
+    kind: name.endsWith('.css') ? 'code' : 'typescript',
+  }));
+  const complete = { ...plan, files: [...plan.files, ...sceneFiles] };
+  assert.equal(preflightLessonStage6Commit(complete, { repoRoot: root }).pending.length, 10);
+  assert.throws(
+    () => preflightLessonStage6Commit({ ...complete, files: complete.files.slice(0, -1) }, { repoRoot: root }),
+    /Incomplete Scene scaffold/,
+  );
+  for (const wrong of [
+    prefix.replace('/scenes/a/', '/scenes/b/') + 'ChooseColor.tsx',
+    prefix.replace('content/math/', 'content/history/') + 'ChooseColor.tsx',
+    prefix + '../ChooseColor.tsx',
+    prefix + 'specification.md',
+  ]) {
+    assert.throws(
+      () =>
+        preflightLessonStage6Commit(
+          {
+            ...complete,
+            files: [...plan.files, { ...sceneFiles[1], path: wrong }, ...sceneFiles.slice(2)],
+          },
+          { repoRoot: root },
+        ),
+      /Invalid|out-of-scope|Unsafe/i,
+    );
+  }
+  fs.mkdirSync(path.join(root, 'content/math/scenes/a'), { recursive: true });
+  const link = path.join(root, 'content/math/scenes/a', scene);
+  fs.symlinkSync(os.tmpdir(), link);
+  assert.throws(() => preflightLessonStage6Commit(complete, { repoRoot: root }), /symlink/i);
+  fs.unlinkSync(link);
+  git(root, 'checkout', '--detach');
+  const committed = commitLessonStage6Plan(complete, {
+    repoRoot: root,
+    mode: 'write',
+    branch: 'source',
+    authorizeWrite: () => true,
+  });
+  assert.equal(committed.changed, 10);
+  assert.equal(git(root, 'rev-parse', 'HEAD'), reviewed);
+  assert.equal(git(root, 'rev-list', '--count', 'source'), '2');
+  assert.equal(git(root, 'ls-tree', 'source', '--', sourcePath), '');
+  for (const file of sceneFiles) {
+    assert.equal(git(root, 'show', 'source:' + file.path), file.content.trim());
+  }
+});

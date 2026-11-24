@@ -1,12 +1,11 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
-import { defineText } from './contentBlocks/defineText';
-import { defineContentSection } from './sections/defineContentSection';
-import { defineLesson } from './lessons/defineLesson';
-import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
+import { defineText } from './contentBlocks/defineText';
+import { defineLesson } from './lessons/defineLesson';
+import { defineContentSection } from './sections/defineContentSection';
+import { defineSkill, defineSkillDomain, defineSkillGroup } from './skills';
 
 describe('Configurators', () => {
   describe('Composition', () => {

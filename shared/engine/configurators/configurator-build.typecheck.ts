@@ -1,7 +1,7 @@
-import { defineText } from './contentBlocks/defineText/defineText';
+import { defineCheckpoint } from './contentBlocks/defineCheckpoint/defineCheckpoint';
 import { defineCheckpointAnswer } from './contentBlocks/defineCheckpoint/defineCheckpointAnswer';
 import { defineCheckpointItem } from './contentBlocks/defineCheckpoint/defineCheckpointItem';
-import { defineCheckpoint } from './contentBlocks/defineCheckpoint/defineCheckpoint';
+import { defineText } from './contentBlocks/defineText/defineText';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;

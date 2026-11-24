@@ -1,20 +1,20 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
+import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   mergeForValidation,
   onlyLocales,
   onlyStrings,
-  splitLocalizedFields,
   resolvePublicationLanguages,
   selectPublicationLocales,
+  splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
-  scene_Props_Schema,
   scene_Override_Config_Schema,
+  scene_Props_Schema,
   type ContentBlock_Scene_Config,
   type ContentBlock_Scene_Locale,
   type ContentBlock_Scene_Overrides,

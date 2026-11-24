@@ -25,6 +25,7 @@ const lesson = {
     id,
     slug: 'editorialOnly',
     skills: [skillId],
+    params: { quizRequiredForCompletion: false },
     locale: { title: { uk: 'Спостереження' } },
   },
   production: {
@@ -37,40 +38,11 @@ const lesson = {
     languages,
   },
 };
+// Stage 1 holds only the true owner and language handoff. Lesson metadata
+// remains in the Lesson, not copied into the inert bank draft.
 const questions = {
   config: { ownerLessonId: id },
-  production: {
-    languages,
-    lesson: {
-      sourcePath: 'content/example/data/lessons/5/' + id + '/index.ts',
-      sourceSha: sha,
-      referencePath: 'reference.md',
-      referenceSha: sha,
-      methodologyPath: 'methodology.md',
-      title: 'Observation',
-    },
-    assessment: { ...assessment, quizRequiredForCompletion: false },
-    ownershipRationale: 'Independent coverage',
-    audience: 'Learners',
-    scope: 'Observation',
-    prerequisites: 'None',
-    misconceptions: 'Distinguish observation from inference',
-    mediaNeeds: 'None',
-    sourcesAndDependencies: 'Pinned reference',
-    evidenceIntent: [
-      {
-        skillId,
-        outcome: 'Explain a verified observation',
-        assessmentMethod: 'application',
-        cognitiveOperation: 'Apply the concept',
-        knowledgeAspect: 'Observation',
-        cognitiveDemand: 'Apply in context',
-        misconception: 'Confuses observation and inference',
-        context: 'Source-language task',
-        expectedEvidence: 'Explains the distinction',
-      },
-    ],
-  },
+  production: { languages },
 };
 const flashcards = {
   production: {
@@ -80,13 +52,6 @@ const flashcards = {
       reference: { path: 'flashcards.md', sourceSha: sha },
       languages,
       assessment,
-    },
-    questions: {
-      kind: 'completed',
-      sourceSha: sha,
-      reviewSha: sha,
-      bankPath: 'content/example/data/lessons/5/' + id + '/questions/index.ts',
-      integrated: true,
     },
     analysis: {
       recallObjectives: ['Recall definition'],
@@ -145,11 +110,19 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   const { languages: courseLanguages, ...proposal } = lesson.production;
   const emitted = materializeLessonDraft(
     { config: proposalConfig, production: { kind: 'new', ...proposal } },
-    { lessonId: allocatedId, textbookRoot: 'content/example', reviewedSourceSha: sha, languageContext: courseLanguages },
+    {
+      lessonId: allocatedId,
+      textbookRoot: 'content/example',
+      reviewedSourceSha: sha,
+      languageContext: courseLanguages,
+    },
   ).files[0];
   assert.ok(emitted.path.endsWith('/data/lessons/5/' + id + '/draft.ts'));
   fs.writeFileSync(files[0], emitted.content);
-  assert.deepEqual(diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')), []);
+  assert.deepEqual(
+    diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')),
+    [],
+  );
   assert.deepEqual(await renderLessons(home, 'draft'), new Map());
   await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
   // Authorized Lesson Stage 1 replaces the seed in place; no conversion API or second file.

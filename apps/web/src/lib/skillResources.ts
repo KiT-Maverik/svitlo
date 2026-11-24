@@ -2,14 +2,16 @@ import 'server-only';
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+
 import {
   assembleSkills,
   languageCode_Schema,
-  type SkillDomain_Props,
   type Skill_Props,
-  type Skills_Publication,
+  type SkillDomain_Props,
   type Skills_Props,
+  type Skills_Publication,
 } from '@svitlo/engine/runtime';
+
 import { resolveSkillLanguage } from '@/components/pages/SkillsMindMap/skillsData.client';
 import { slugPattern, type SkillNode } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
 

@@ -16,14 +16,17 @@ const events = {
   flashcards: '/flashcards materialize',
 };
 const canonical = bank => ({
-  version: 2,
+  version: 3,
   meta: {
     bank,
-    identity: { folder, bank, id: owner, pkg: 'content/math', parent: 777 },
+    identity: { folder, bank, id: owner, pkg: 'content/math' },
     sourcePath: folder + '/' + bank + '/draft.ts',
     head: 'a'.repeat(40),
     sourceBlob: gitBlob('export const source = {};\n'),
-    reviewVerdict: 'accepted',
+    base: 'agent/lesson',
+    baseHead: 'b'.repeat(40),
+    lessonBlob: 'c'.repeat(40),
+    lessonConstantsBlob: 'd'.repeat(40),
     actor: 'owner',
     number: 888,
     repo: 'KiT-Maverik/svitlo',
@@ -40,11 +43,10 @@ function sample(bank) {
   return {
     ...data,
     inputSha256: sha256('{}'),
-    treeSha: 'b'.repeat(40),
     deletedSource: { path: data.meta.sourcePath, blobSha: data.meta.sourceBlob },
     files: [
       file(root + bank + '/index.ts', 'export const finished = {};\n'),
-      file(root + bank + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
+      file(root + bank + '/first/description.md', '# Owner-reviewed description\n'),
       file(root + bank + '/first.ts', 'export const first = true;\n'),
       file(root + bank + '/first/specification.md', '# reviewed\n'),
     ],
@@ -78,9 +80,9 @@ test('optional empty Flashcard hint is valid, but front and back must remain pop
   const paths = [
     'alpha.ts',
     'alpha/content/front/index.ts',
-    'alpha/content/front/items/prompt/index.ts',
+    'alpha/content/front/prompt/index.ts',
     'alpha/content/back/index.ts',
-    'alpha/content/back/items/answer/index.ts',
+    'alpha/content/back/answer/index.ts',
     'alpha/content/hint/index.ts',
   ];
   const files = paths.map(name => ({ path: root + name }));
@@ -172,7 +174,7 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
   for (const bank of Object.keys(events)) {
     const valid = sample(bank);
     assert.doesNotThrow(() => verifyTypedManifest(valid, valid.meta));
-    assert.throws(() => verifyTypedManifest({ ...valid, treeSha: 'bad' }, valid.meta));
+    assert.throws(() => verifyTypedManifest({ ...valid, version: 2 }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: valid.files.slice(1) }, valid.meta));
     assert.throws(() => verifyTypedManifest({ ...valid, files: [...valid.files, valid.files[0]] }, valid.meta));
     assert.throws(() =>
@@ -213,6 +215,57 @@ test('typed Bank publisher rejects mutated checksums, deletion evidence and non-
   }
 });
 
+test('publisher cannot reintroduce separate Bank language modules', () => {
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const hostile = {
+      ...valid,
+      files: [...valid.files, file(folder + '/' + bank + 'Languages.ts', 'export const languages = ["uk"] as const;')],
+    };
+    assert.throws(() => verifyTypedManifest(hostile, hostile.meta), /Unallowlisted|duplicated/);
+  }
+});
+
+test('both Bank publishers require an exact six-file textbook-scoped Scene scaffold', () => {
+  const id = '11111111-1111-4111-8111-11111111111a';
+  const root = 'content/math/scenes/a/' + id + '/';
+  const files = {
+    'index.ts': '// TODO (BLOCKER): Register Scene after review.\nexport { Visual as default } from "./Visual";\n',
+    'Visual.tsx': '// TODO (BLOCKER): Implement Scene.\nexport function Visual() { return null; }\n',
+    'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
+    'Visual.constants.ts': '// TODO (BLOCKER): Add test IDs.\nexport const testIds = {};\n',
+    'Visual.stories.tsx': '// TODO (BLOCKER): Author Storybook fixtures.\nexport const Default = {};\n',
+    'Visual.unit.spec.tsx': '// TODO (BLOCKER): Implement tests.\nexport const testId = "pending";\n',
+  };
+  for (const bank of Object.keys(events)) {
+    const valid = sample(bank);
+    const proposed = [...valid.files, ...Object.entries(files).map(([name, source]) => file(root + name, source))];
+    assert.doesNotThrow(() => verifyTypedManifest({ ...valid, files: proposed }, valid.meta));
+    for (const missing of Object.keys(files)) {
+      assert.throws(
+        () =>
+          verifyTypedManifest({ ...valid, files: proposed.filter(item => item.path !== root + missing) }, valid.meta),
+        /Incomplete.*Scene/,
+      );
+    }
+    const incomplete = proposed.map(entry =>
+      entry.path === root + 'Visual.module.css' ? file(entry.path, '.root {}\n') : entry,
+    );
+    assert.throws(() => verifyTypedManifest({ ...valid, files: incomplete }, valid.meta), /lacks release blocker/);
+    for (const hostile of [
+      file('content/other/scenes/a/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/b/' + id + '/index.ts', files['index.ts']),
+      file('content/math/scenes/a/' + id + '/evil.ts', files['index.ts']),
+      file(folder + '/scenes/a/' + id + '/index.ts', files['index.ts']),
+    ]) {
+      assert.throws(
+        () => verifyTypedManifest({ ...valid, files: [...proposed, hostile] }, valid.meta),
+        /Unallowlisted/,
+      );
+    }
+  }
+});
+
 test('typed publisher imports in a zero-dependency read-only environment', () => {
   const root = fileURLToPath(new URL('../../..', import.meta.url));
   const isolated = mkdtempSync(path.join(tmpdir(), 'svitlo-typed-bank-publisher-'));
@@ -223,12 +276,6 @@ test('typed publisher imports in a zero-dependency read-only environment', () =>
     for (const name of names) {
       copyFileSync(path.join(root, 'scripts/ci/bankMaterialization', name), path.join(dir, name));
     }
-    const evidenceDir = path.join(isolated, 'scripts/ci/reviewEvidence');
-    mkdirSync(evidenceDir, { recursive: true });
-    copyFileSync(
-      path.join(root, 'scripts/ci/reviewEvidence/review-evidence.mjs'),
-      path.join(evidenceDir, 'review-evidence.mjs'),
-    );
     assert.equal(existsSync(path.join(isolated, 'node_modules')), false);
     assert.equal(existsSync(path.join(isolated, 'shared/engine')), false);
     const result = spawnSync(
@@ -263,124 +310,152 @@ function requireWorkflow(root) {
   return readFileSync(path.join(root, '.github/workflows/bank-materialization.yml'), 'utf8');
 }
 
-test('GitHub typed gate requires accepted exact-HEAD and blob evidence and Lesson branch', async () => {
+test('Bank gate ignores all editorial prose, but requires current same-repository Draft source and owning Lesson', async () => {
   const prevFetch = globalThis.fetch;
   const oldRepo = process.env.GITHUB_REPOSITORY;
   const oldToken = process.env.GH_TOKEN;
-  process.env.GITHUB_REPOSITORY = 'KiT-Maverik/svitlo';
+  const repo = 'KiT-Maverik/svitlo';
+  process.env.GITHUB_REPOSITORY = repo;
   process.env.GH_TOKEN = 'unit-test-token-not-used-on-network';
   const head = 'a'.repeat(40);
+  const baseHead = 'b'.repeat(40);
   const source = 'c'.repeat(40);
-  const identity = [
-    '<!-- svitlo-create-questions-flow:v1 -->',
-    '- Lesson UUID: ' + owner,
-    '- Textbook: content/math',
-    '- Parent Lesson PR: #777',
-    '## Workflow',
-    '- [x] 1. Lesson Analysis',
-    '- [x] 2. Question Design',
-    '- [x] 3. Quiz Section Design',
-    '- [x] 4. Independent Assessment Review',
-    '- [ ] 5. Resource Production',
-    '## Review',
-  ].join('\n');
-  const row = '- Review evidence (v1): 4 | accepted | ' + head + ' | ' + source;
-  const reviewed = identity + '\n' + row;
+  const lessonBlob = 'd'.repeat(40);
+  const constantsBlob = 'e'.repeat(40);
   const child = {
     state: 'open',
     draft: true,
     user: { login: 'author' },
-    body: reviewed,
-    head: { sha: head, ref: 'agent/assessment-bank', repo: { full_name: process.env.GITHUB_REPOSITORY } },
-    base: { ref: 'agent/lesson', sha: 'b'.repeat(40) },
-  };
-  const parent = {
-    state: 'open',
-    head: { ref: 'agent/lesson' },
-    body:
-      '<!-- svitlo-create-lesson-flow:v1 -->\n- Lesson UUID / textbook / slug: `' +
-      owner +
-      '` / `content/math` / `unitLesson`',
+    head: { sha: head, ref: 'agent/assessment-bank', repo: { full_name: repo } },
+    base: { ref: 'agent/lesson', sha: baseHead, repo: { full_name: repo } },
   };
   let overrides = {};
+  let bank = 'questions';
+  let changeDuringDiscovery = null;
+  let prReads = 0;
+  const compare = () => ({
+    status: 'ahead',
+    merge_base_commit: { sha: baseHead },
+    files: [{ filename: folder + '/' + bank + '/draft.ts', status: 'modified', sha: source }],
+  });
   const resources = () => ({
     'pulls/888': child,
-    'pulls/777': parent,
-    ['contents/' + folder + '/questions/draft.ts?ref=' + head]: { type: 'file', sha: source },
+    ['compare/' + baseHead + '...' + head]: compare(),
+    ['contents/' + folder + '/' + bank + '/draft.ts?ref=' + head]: {
+      type: 'file',
+      path: folder + '/' + bank + '/draft.ts',
+      sha: source,
+      size: 100,
+    },
+    ['contents/' + folder + '/index.ts?ref=' + baseHead]: {
+      type: 'file',
+      path: folder + '/index.ts',
+      sha: lessonBlob,
+      size: 100,
+    },
+    ['contents/' + folder + '/constants.ts?ref=' + baseHead]: {
+      type: 'file',
+      path: folder + '/constants.ts',
+      sha: constantsBlob,
+      size: 100,
+    },
     ...overrides,
   });
   globalThis.fetch = async url => {
-    const raw = String(url).split('/repos/KiT-Maverik/svitlo/')[1];
+    const raw = String(url).split('/repos/' + repo + '/')[1];
     const endpoint = decodeURI(raw).replace(/%2F/gi, '/');
-    const value = resources()[endpoint];
+    let value = resources()[endpoint];
+    if (endpoint === 'pulls/888' && ++prReads % 2 === 0 && changeDuringDiscovery)
+      value = { ...value, ...changeDuringDiscovery };
     if (value === undefined) return new Response('not found', { status: 404 });
     return new Response(JSON.stringify(value), { status: 200, headers: { 'Content-Type': 'application/json' } });
   };
   try {
-    const ok = await inspectTyped(888, 'questions');
-    assert.equal(ok.sourceBlob, source);
-    assert.equal(ok.reviewCommitSha, head);
-    assert.equal(ok.reviewVerdict, 'accepted');
-    assert.equal(ok.sourcePath, folder + '/questions/draft.ts');
-    const base = { ...ok, head: 'd'.repeat(40) };
-    await assert.rejects(inspectTyped(888, 'questions', base), /changed/);
+    for (bank of Object.keys(events)) {
+      delete child.body;
+      const ok = await inspectTyped(888, bank);
+      assert.equal(ok.sourceBlob, source);
+      assert.equal(ok.lessonBlob, lessonBlob);
+      assert.equal(ok.lessonConstantsBlob, constantsBlob);
+      assert.equal(ok.baseHead, baseHead);
+      assert.equal(ok.head, head);
+      assert.equal(ok.sourcePath, folder + '/' + bank + '/draft.ts');
+      assert.deepEqual(ok.identity, { id: owner, pkg: 'content/math', folder, bank });
 
-    for (const bad of [
-      identity,
-      reviewed.replace(head, 'e'.repeat(40)),
-      reviewed.replace(source, 'f'.repeat(40)),
-      reviewed + '\n' + row,
-      reviewed.replace('accepted', 'rejected'),
-    ]) {
-      overrides = { 'pulls/888': { ...child, body: bad } };
-      await assert.rejects(inspectTyped(888, 'questions'), /review evidence/i);
+      for (const body of [
+        '',
+        'arbitrary unrelated prose',
+        '- [ ] 4. Independent review',
+        '- Review evidence (v1): 4 | rejected | ' + head + ' | ' + source,
+        '- Review evidence (v1): 4 | accepted | ' + 'e'.repeat(40) + ' | ' + 'f'.repeat(40),
+        '- Questions: Not Applicable — no evidence',
+      ]) {
+        child.body = body;
+        assert.deepEqual(await inspectTyped(888, bank, ok), ok);
+      }
+      prReads = 0;
+      changeDuringDiscovery = { body: 'Changed during discovery' };
+      assert.deepEqual(await inspectTyped(888, bank, ok), ok);
+      changeDuringDiscovery = null;
+
+      for (const key of ['head', 'baseHead', 'sourceBlob', 'lessonBlob', 'lessonConstantsBlob']) {
+        await assert.rejects(inspectTyped(888, bank, { ...ok, [key]: 'f'.repeat(40) }), /changed/);
+      }
+      const comparisonPath = 'compare/' + baseHead + '...' + head;
+      for (const invalid of [
+        { ...compare(), status: 'diverged' },
+        { ...compare(), merge_base_commit: { sha: 'e'.repeat(40) } },
+        { ...compare(), files: [] },
+        { ...compare(), files: [...compare().files, { filename: 'README.md', status: 'modified' }] },
+        { ...compare(), files: [{ ...compare().files[0], status: 'removed' }] },
+      ]) {
+        overrides = { [comparisonPath]: invalid };
+        await assert.rejects(inspectTyped(888, bank), /exactly one draft/);
+      }
+      overrides = { [comparisonPath]: { ...compare(), files: [{ ...compare().files[0], filename: 'README.md' }] } };
+      await assert.rejects(inspectTyped(888, bank), /canonical Bank draft path/);
+      const sourcePath = 'contents/' + folder + '/' + bank + '/draft.ts?ref=' + head;
+      const sourceFile = resources()[sourcePath];
+      for (const bad of [
+        { ...sourceFile, sha: 'e'.repeat(40) },
+        { ...sourceFile, size: 0 },
+        { ...sourceFile, size: 1024 * 1024 + 1 },
+        { ...sourceFile, type: 'symlink' },
+        { ...sourceFile, path: 'README.md' },
+      ]) {
+        overrides = { [sourcePath]: bad };
+        await assert.rejects(inspectTyped(888, bank), /Pinned typed Bank source/);
+      }
+      const constantsPath = 'contents/' + folder + '/constants.ts?ref=' + baseHead;
+      overrides = { [constantsPath]: { type: 'symlink', path: folder + '/constants.ts', sha: constantsBlob } };
+      await assert.rejects(inspectTyped(888, bank), /Owning Lesson constants.ts/);
+      const lessonPath = 'contents/' + folder + '/index.ts?ref=' + baseHead;
+      overrides = { [lessonPath]: { type: 'symlink', path: folder + '/index.ts', sha: lessonBlob } };
+      await assert.rejects(inspectTyped(888, bank), /Owning Lesson source/);
+
+      for (const bad of [
+        { ...child, state: 'closed' },
+        { ...child, draft: false },
+        { ...child, head: { ...child.head, repo: { full_name: 'fork/svitlo' } } },
+        { ...child, base: { ...child.base, repo: { full_name: 'fork/svitlo' } } },
+        { ...child, head: { ...child.head, ref: child.base.ref } },
+        { ...child, head: { ...child.head, ref: 'agent/../unsafe' } },
+      ]) {
+        overrides = { 'pulls/888': bad };
+        await assert.rejects(inspectTyped(888, bank), /Draft bank PR/);
+      }
+      overrides = {};
+      for (const changed of [
+        { draft: false },
+        { head: { ...child.head, sha: 'e'.repeat(40) } },
+        { base: { ...child.base, sha: 'e'.repeat(40) } },
+      ]) {
+        prReads = 0;
+        changeDuringDiscovery = changed;
+        await assert.rejects(inspectTyped(888, bank), /changed during source discovery/);
+      }
+      changeDuringDiscovery = null;
     }
-
-    // Questions N/A is reviewed against the actual materialized parent Lesson.
-    const parentHead = 'b'.repeat(40);
-    const parentBlob = 'd'.repeat(40);
-    const flashBody = reviewed
-      .replace('create-questions-flow', 'create-flashcards-flow')
-      .replace('Question Design', 'Flashcard Design')
-      .replace('Quiz Section Design', 'Flashcards Section Design')
-      .replace('Independent Assessment Review', 'Memory Design Review');
-    const decisionRow = '- Review evidence (v1): questions-na | accepted | ' + parentHead + ' | ' + parentBlob;
-    const parentBody = parent.body + '\n- Questions (own bank): Not Applicable — verified Methodologist rationale';
-    const parentSnapshot = {
-      ...parent,
-      head: { ref: 'agent/lesson', sha: parentHead },
-      body: parentBody + '\n' + decisionRow,
-    };
-    const flashOverrides = {
-      'pulls/888': { ...child, body: flashBody },
-      'pulls/777': parentSnapshot,
-      ['contents/' + folder + '/index.ts?ref=' + parentHead]: { type: 'file', sha: parentBlob },
-      ['contents/' + folder + '/flashcards/draft.ts?ref=' + head]: { type: 'file', sha: source },
-    };
-    overrides = flashOverrides;
-    const flash = await inspectTyped(888, 'flashcards');
-    assert.equal(flash.parentQuestionsReview.blob, parentBlob);
-    for (const bad of [
-      parentBody,
-      parentSnapshot.body.replace(parentBlob, 'e'.repeat(40)),
-      parentSnapshot.body + '\n' + decisionRow,
-      parentSnapshot.body.replace('accepted', 'rejected'),
-    ]) {
-      overrides = { ...flashOverrides, 'pulls/777': { ...parentSnapshot, body: bad } };
-      await assert.rejects(inspectTyped(888, 'flashcards'), /review evidence/i);
-    }
-    overrides = {
-      ...flashOverrides,
-      'pulls/777': { ...parentSnapshot, body: parentSnapshot.body + '\n- Questions: Completed' },
-    };
-    await assert.rejects(inspectTyped(888, 'flashcards'), /Questions-first/);
-
-    overrides = { 'pulls/888': { ...child, base: { ref: 'develop', sha: 'b'.repeat(40) } } };
-    await assert.rejects(inspectTyped(888, 'questions'), /Lesson parent branch/);
-    overrides = { 'pulls/888': { ...child, draft: false } };
-    await assert.rejects(inspectTyped(888, 'questions'), /Draft bank PR/);
-    overrides = { 'pulls/888': { ...child, body: identity.replace('- [x] 4.', '- [ ] 4.') } };
-    await assert.rejects(inspectTyped(888, 'questions'), /Stage 4/);
   } finally {
     globalThis.fetch = prevFetch;
     if (oldRepo === undefined) delete process.env.GITHUB_REPOSITORY;
@@ -459,7 +534,7 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
     for (const [side, data] of Object.entries(sides)) {
       const prefix = folder + '/flashcards/' + slug + '/content/' + side + '/';
       files.push({ path: prefix + 'index.ts' });
-      for (const blockSlug of data.order) files.push({ path: prefix + 'items/' + blockSlug + '/index.ts' });
+      for (const blockSlug of data.order) files.push({ path: prefix + blockSlug + '/index.ts' });
     }
   }
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
@@ -492,7 +567,7 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
     { path: folder + '/flashcards/card.ts' },
     ...['front', 'back'].flatMap(side => [
       { path: folder + '/flashcards/card/content/' + side + '/index.ts' },
-      { path: folder + '/flashcards/card/content/' + side + '/items/' + side + 'Block/index.ts' },
+      { path: folder + '/flashcards/card/content/' + side + '/' + side + 'Block/index.ts' },
     ]),
   ];
   assert.doesNotThrow(() => assertTypedBankInventory(meta, input, files));
