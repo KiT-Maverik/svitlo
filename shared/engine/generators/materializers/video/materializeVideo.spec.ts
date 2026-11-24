@@ -95,4 +95,6 @@ test('video: pending media preserves required reviewed accessible label', () => 
   assert.equal(result.diagnostics.filter(item => item.code === 'pending-media').length, 2);
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp4/);
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.webp/);
+  assert.equal((result.files[0].content.match(/TODO \\(BLOCKER\\): Supply verified (?:fileName|posterFileName) asset/g) ?? []).length, 2);
+  assert.doesNotMatch(result.files[0].content, /TODO\\(asset\\): Replace reserved Nil/);
 });
