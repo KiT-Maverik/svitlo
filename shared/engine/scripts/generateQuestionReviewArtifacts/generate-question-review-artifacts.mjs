@@ -646,6 +646,19 @@ function readLessons(root, book, lessonId) {
   if (!BOOK.test(book)) throw Error('Invalid textbook name');
   const base = path.join(root, 'content', book, 'data/lessons');
   validDirectory(base);
+  if (lessonId) {
+    // UUID scoped mode must not enumerate or parse unrelated Lesson banks.
+    if (!UUID.test(lessonId)) throw Error('Invalid Lesson UUID for Question reference');
+    const id = lessonId.toLowerCase();
+    const bucket = id.slice(-1);
+    const bucketDirectory = path.join(base, bucket);
+    const lesson = path.join(bucketDirectory, id);
+    const questions = path.join(lesson, 'questions');
+    validDirectory(bucketDirectory);
+    validDirectory(lesson);
+    validDirectory(questions);
+    return [{ id, bucket, lesson, questions }];
+  }
   const results = [];
   for (const bucket of fs.readdirSync(base).sort()) {
     if (!/^[0-9a-f]$/.test(bucket)) continue;
