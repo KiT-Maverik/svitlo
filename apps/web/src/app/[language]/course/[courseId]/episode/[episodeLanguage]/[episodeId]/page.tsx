@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode, validateEpisodeRuntime } from '@svitlo/engine/runtime';
 
 import WebEpisode from '@/components/pages/Episode/Episode';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
@@ -44,7 +44,7 @@ async function Content({ params }: Props) {
   const next = flat[position + 1];
   return (
     <WebEpisode
-      response={episode}
+      response={validateEpisodeRuntime(episode, content.language)}
       language={content.language}
       href={href}
       courseHref={courseHref}
