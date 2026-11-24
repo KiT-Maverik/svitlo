@@ -1,4 +1,4 @@
-import type { LessonWorkflowStage1 } from '@svitlo/engine/build';
+import type { LessonWorkflowStage2 } from '@svitlo/engine/build';
 
 export const lessonStage1 = {
   config: {
@@ -10,7 +10,1255 @@ export const lessonStage1 = {
       '00000000-0000-4000-8000-000000000004',
     ],
     locale: { title: { en: 'Recognizing Red and Blue' } },
-    params: { quizRequiredForCompletion: true },
+    params: { quizRequiredForCompletion: true, sections: { allowNavigation: true, allowSkipping: false, showIndexes: true } },
+    section: {
+      "items": {
+        "meetColors": {
+          "config": {
+            "id": "6e7b8fc7-bb04-49bf-8a93-1718f5216672",
+            "slug": "meetColors",
+            "type": "content",
+            "params": {},
+            "locale": {
+              "title": {
+                "en": "Meet red and blue"
+              },
+              "navigationLabel": {
+                "en": "Meet colors"
+              }
+            },
+            "content": {
+              "items": {
+                "introduce": {
+                  "config": {
+                    "id": "11aec0cb-b6f8-480b-81d4-7c10ea88c857",
+                    "slug": "introduce",
+                    "type": "text",
+                    "params": {
+                      "variables": {
+                        "redWord": {
+                          "applyStyle": [
+                            "bold"
+                          ],
+                          "tone": "neutral"
+                        },
+                        "blueWord": {
+                          "applyStyle": [
+                            "bold"
+                          ],
+                          "tone": "neutral"
+                        }
+                      }
+                    },
+                    "locale": {
+                      "value": {
+                        "en": "Look at the two colors. This one is %_%id: redWord; value: red%_%. This one is %_%id: blueWord; value: blue%_%."
+                      }
+                    }
+                  }
+                },
+                "colorPair": {
+                  "config": {
+                    "id": "02def914-3c64-408c-ba0a-9d127ca9d51d",
+                    "slug": "colorPair",
+                    "type": "image",
+                    "params": {
+                      "width": 640,
+                      "height": 400,
+                      "objectFit": "contain"
+                    },
+                    "locale": {
+                      "fileName": "00000000-0000-0000-0000-000000000000.webp",
+                      "alt": {
+                        "en": "A red circle and a blue circle."
+                      },
+                      "caption": {
+                        "en": "A red circle and a blue circle."
+                      },
+                      "fallback": {
+                        "offline": {
+                          "en": "A red circle and a blue circle."
+                        },
+                        "unavailable": {
+                          "en": "The picture is unavailable. Read its description."
+                        },
+                        "retry": {
+                          "en": "Try again"
+                        }
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Compare color independently of shape.",
+                    "specification": "Two equally sized circles side by side: red and blue. Neutral light background; no labels in pixels.",
+                    "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
+                    "offline": "Bundle a local WebP and retain the written description.",
+                    "readiness": "production-pending",
+                    "prompt": "Two equally sized circles side by side: red and blue. Neutral light background; no labels in pixels."
+                  }
+                },
+                "colorNames": {
+                  "config": {
+                    "id": "e1fa6127-8ef0-465a-9ec7-fe3c8c371fa4",
+                    "slug": "colorNames",
+                    "type": "audio",
+                    "params": {},
+                    "locale": {
+                      "fileName": {
+                        "en": "00000000-0000-0000-0000-000000000000.mp3"
+                      },
+                      "title": {
+                        "en": "Listen to the color words"
+                      },
+                      "description": {
+                        "en": "This is red. This is blue. The two circles have different colors."
+                      },
+                      "fallback": {
+                        "offline": {
+                          "en": "This is red. This is blue. The two circles have different colors."
+                        },
+                        "unavailable": {
+                          "en": "This is red. This is blue. The two circles have different colors."
+                        },
+                        "playbackError": {
+                          "en": "This is red. This is blue. The two circles have different colors."
+                        },
+                        "retry": {
+                          "en": "Try again"
+                        }
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Hear the color names.",
+                    "specification": "Produce a clear spoken English recording of the script; no music, no sound effects; short pause between examples.",
+                    "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
+                    "offline": "Bundle source-language MP3; text remains available.",
+                    "readiness": "production-pending",
+                    "script": "This is red. This is blue. The two circles have different colors."
+                  }
+                },
+                "colorNamesSummary": {
+                  "config": {
+                    "id": "6dde817b-b8e7-465b-936a-9bb6439db130",
+                    "slug": "colorNamesSummary",
+                    "type": "markdown",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "**%_%RED_NAME%_%** and **%_%BLUE_NAME%_%** are color names.\n\n- Same shape, different colors.\n- Different shapes can have the same color.\n\nThere are two colors in this lesson: $1 + 1 = 2$. One color plus one different color makes two."
+                      },
+                      "variables": {
+                        "RED_NAME": {
+                          "en": "Red"
+                        },
+                        "BLUE_NAME": {
+                          "en": "blue"
+                        }
+                      }
+                    }
+                  }
+                },
+                "shapeSymbols": {
+                  "config": {
+                    "id": "f19a39f9-f1b3-438d-bd02-d2eb021e49e6",
+                    "slug": "shapeSymbols",
+                    "type": "markdown",
+                    "params": {},
+                    "locale": {
+                      "value": "●  ■  ●"
+                    }
+                  }
+                },
+                "symbolExplanation": {
+                  "config": {
+                    "id": "58d653e2-d0da-4b1d-8e2f-38cdff5a9d57",
+                    "slug": "symbolExplanation",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "The symbols above show circles and a square. Their outlines differ; the symbols alone do not tell you which color they represent."
+                      }
+                    }
+                  }
+                }
+              },
+              "order": [
+                "introduce",
+                "colorPair",
+                "colorNames",
+                "colorNamesSummary",
+                "shapeSymbols",
+                "symbolExplanation"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Introduce both color words and distinguish shape from color."
+          }
+        },
+        "watchCompare": {
+          "config": {
+            "id": "8a16a435-d6f2-4ed8-af43-aca56ca4b165",
+            "slug": "watchCompare",
+            "type": "learningFlow",
+            "params": {},
+            "locale": {
+              "title": {
+                "en": "Watch and compare"
+              },
+              "navigationLabel": {
+                "en": "Compare"
+              }
+            },
+            "content": {
+              "items": {
+                "videoIntro": {
+                  "config": {
+                    "id": "7c2ae19d-4f6e-4930-8015-02d017260277",
+                    "slug": "videoIntro",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "Watch how a red circle becomes a red square, then how a blue square becomes a blue circle. The color stays the same while the shape changes."
+                      }
+                    }
+                  }
+                },
+                "shapeChange": {
+                  "config": {
+                    "id": "3425043b-47e9-4961-a869-4152fcee84a3",
+                    "slug": "shapeChange",
+                    "type": "video",
+                    "params": {},
+                    "locale": {
+                      "fileName": "00000000-0000-0000-0000-000000000000.mp4",
+                      "posterFileName": "00000000-0000-0000-0000-000000000000.webp",
+                      "title": {
+                        "en": "Compare red and blue"
+                      },
+                      "label": {
+                        "en": "Short silent color comparison"
+                      },
+                      "fallback": {
+                        "offline": {
+                          "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                        },
+                        "unavailable": {
+                          "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                        },
+                        "playbackError": {
+                          "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                        },
+                        "retry": {
+                          "en": "Try again"
+                        }
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Observe color while shapes change.",
+                    "specification": "Create a silent 6-second 640×400 local MP4 and matching WebP poster. First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
+                    "accessibility": "No flashing or baked text; adjacent text describes all changes. Pause/play remains learner controlled.",
+                    "offline": "Bundle video and poster; retain the textual description.",
+                    "readiness": "production-pending",
+                    "storyboard": "First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
+                    "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                  }
+                },
+                "shapeCaptions": {
+                  "config": {
+                    "id": "3a0286f4-e1a6-45be-ad91-ff6e85e8590e",
+                    "slug": "shapeCaptions",
+                    "type": "subtitles",
+                    "params": {},
+                    "locale": {
+                      "fileName": {
+                        "en": "00000000-0000-0000-0000-000000000000.vtt"
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Access the color comparison as timed text.",
+                    "specification": "Produce UTF-8 WebVTT: 00:00:00.000 --> 00:00:03.000 first sentence; 00:00:03.000 --> 00:00:06.000 second sentence. A red circle becomes a red square. A blue square becomes a blue circle.",
+                    "accessibility": "Standalone keyboard-accessible WebVTT link, not a synchronized track; adjacent text repeats the cues.",
+                    "offline": "Bundle local VTT and equivalent text.",
+                    "readiness": "production-pending",
+                    "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                  }
+                },
+                "colorGallery": {
+                  "config": {
+                    "id": "788c38e2-efb0-43eb-8234-8250a5047636",
+                    "slug": "colorGallery",
+                    "type": "carousel",
+                    "params": {
+                      "aspectRatio": 1.6,
+                      "objectFit": "contain",
+                      "loop": false,
+                      "autoplay": false,
+                      "showArrows": true,
+                      "showIndicators": true,
+                      "allowSwipe": true
+                    },
+                    "locale": {
+                      "title": {
+                        "en": "Same color, different shapes"
+                      }
+                    },
+                    "slides": {
+                      "items": {
+                        "colorGalleryImage": {
+                          "config": {
+                            "id": "a5766cfd-6755-46aa-b316-6bb805932c6a",
+                            "slug": "colorGalleryImage",
+                            "type": "image",
+                            "params": {
+                              "fill": true,
+                              "aspectRatio": 1.6,
+                              "objectFit": "contain"
+                            },
+                            "locale": {
+                              "fileName": "00000000-0000-0000-0000-000000000000.webp",
+                              "alt": {
+                                "en": "A blue circle and a blue square."
+                              },
+                              "caption": {
+                                "en": "A blue circle and a blue square."
+                              },
+                              "fallback": {
+                                "offline": {
+                                  "en": "A blue circle and a blue square."
+                                },
+                                "unavailable": {
+                                  "en": "The picture is unavailable. Read its description."
+                                },
+                                "retry": {
+                                  "en": "Try again"
+                                }
+                              }
+                            }
+                          },
+                          "production": {
+                            "purpose": "Compare color independently of shape.",
+                            "specification": "Two clearly blue shapes, a circle and a square, side by side.",
+                            "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
+                            "offline": "Bundle a local WebP and retain the written description.",
+                            "readiness": "production-pending",
+                            "prompt": "Two clearly blue shapes, a circle and a square, side by side."
+                          }
+                        },
+                        "colorGalleryScene": {
+                          "config": {
+                            "id": "32d1b90b-8f0d-4b23-b49d-e1c1509b7c03",
+                            "slug": "colorGalleryScene",
+                            "type": "scene",
+                            "params": {},
+                            "locale": {
+                              "value": {
+                                "heading": {
+                                  "en": "Explore two colors"
+                                },
+                                "red": {
+                                  "en": "Red"
+                                },
+                                "blue": {
+                                  "en": "Blue"
+                                },
+                                "choose": {
+                                  "en": "Choose a color"
+                                },
+                                "reset": {
+                                  "en": "Reset"
+                                },
+                                "shape": {
+                                  "en": "Change shape"
+                                },
+                                "status": {
+                                  "red": {
+                                    "en": "The sample is red."
+                                  },
+                                  "blue": {
+                                    "en": "The sample is blue."
+                                  }
+                                },
+                                "sampleLabel": {
+                                  "en": "Color sample"
+                                }
+                              }
+                            }
+                          },
+                          "production": {
+                            "purpose": "Explore how color and shape vary independently.",
+                            "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
+                            "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                            "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                            "readiness": "production-pending",
+                            "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                          }
+                        }
+                      },
+                      "order": [
+                        "colorGalleryImage",
+                        "colorGalleryScene"
+                      ]
+                    }
+                  },
+                  "production": {
+                    "purpose": "Compare two representations; navigate at the learner's own pace."
+                  }
+                },
+                "extraVideoIntro": {
+                  "config": {
+                    "id": "8157504e-1d95-4e7b-915d-320b61e7d07a",
+                    "slug": "extraVideoIntro",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "Optional: look for red and blue objects in the following video. You may also see other colors; you do not need to learn them here."
+                      }
+                    }
+                  }
+                },
+                "externalEmbed": {
+                  "config": {
+                    "id": "90115025-1794-47da-b101-cde8d5e8e397",
+                    "slug": "externalEmbed",
+                    "type": "youtube",
+                    "params": {
+                      "mode": "embed"
+                    },
+                    "locale": {
+                      "href": "https://www.youtube.com/watch?v=1qtPcVpkaKU",
+                      "title": {
+                        "en": "More color examples"
+                      },
+                      "label": {
+                        "en": "Red, Blue, and Yellow — Khan Academy Kids"
+                      },
+                      "fallback": {
+                        "offline": {
+                          "en": "Use the local examples: a red circle and a blue square. Objects may have the same color even when their shapes differ."
+                        },
+                        "unavailable": {
+                          "en": "The optional video is unavailable. Continue with the local examples."
+                        },
+                        "retry": {
+                          "en": "Try again"
+                        }
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Optional extension: recognize red and blue on familiar objects.",
+                    "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (published 2023-07-10). Public video listing and description verified; full playback, embed permission, captions and regional availability must be reviewed before release. Yellow is incidental, not an assessed target. Do not copy the video into assets.",
+                    "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
+                    "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
+                    "readiness": "production-pending"
+                  }
+                }
+              },
+              "order": [
+                "videoIntro",
+                "shapeChange",
+                "shapeCaptions",
+                "colorGallery",
+                "extraVideoIntro",
+                "externalEmbed"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Compare varied examples; all essential content available without external video."
+          }
+        },
+        "exploreColors": {
+          "config": {
+            "id": "c50239cb-4f55-4661-b035-706c0fa0eef5",
+            "slug": "exploreColors",
+            "type": "practice",
+            "params": {},
+            "locale": {
+              "title": {
+                "en": "Try changing colors"
+              },
+              "navigationLabel": {
+                "en": "Practice"
+              }
+            },
+            "content": {
+              "items": {
+                "explorePrompt": {
+                  "config": {
+                    "id": "ac24a784-4036-4596-8bc3-f019bf40f754",
+                    "slug": "explorePrompt",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "Choose Red or Blue, then change the shape. Notice which property stays the same."
+                      }
+                    }
+                  }
+                },
+                "colorExplorer": {
+                  "config": {
+                    "id": "71b307a9-2ba4-48af-b5f9-32aa82bca58d",
+                    "slug": "colorExplorer",
+                    "type": "scene",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "heading": {
+                          "en": "Explore two colors"
+                        },
+                        "red": {
+                          "en": "Red"
+                        },
+                        "blue": {
+                          "en": "Blue"
+                        },
+                        "choose": {
+                          "en": "Choose a color"
+                        },
+                        "reset": {
+                          "en": "Reset"
+                        },
+                        "shape": {
+                          "en": "Change shape"
+                        },
+                        "status": {
+                          "red": {
+                            "en": "The sample is red."
+                          },
+                          "blue": {
+                            "en": "The sample is blue."
+                          }
+                        },
+                        "sampleLabel": {
+                          "en": "Color sample"
+                        }
+                      }
+                    }
+                  },
+                  "production": {
+                    "purpose": "Explore how color and shape vary independently.",
+                    "specification": "Render one large sample, initially blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
+                    "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                    "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                    "readiness": "production-pending",
+                    "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                  }
+                },
+                "reflectOnColors": {
+                  "config": {
+                    "id": "f6d544da-bc5e-43c6-b79f-40f1cc438750",
+                    "slug": "reflectOnColors",
+                    "type": "checkpoint",
+                    "params": {
+                      "headingLevel": 3,
+                      "showIndices": true,
+                      "showChevron": true,
+                      "enableChecks": true,
+                      "requireCompletion": true,
+                      "renderAsGroup": true
+                    },
+                    "locale": {
+                      "title": {
+                        "en": "Think and reveal"
+                      }
+                    },
+                    "content": {
+                      "items": {
+                        "compareShapes": {
+                          "config": {
+                            "id": "54d3b6e2-725f-4dcd-842e-b0b379ab4ace",
+                            "slug": "compareShapes",
+                            "type": "checkpointItem",
+                            "check": true,
+                            "question": {
+                              "config": {
+                                "id": "2135bf30-5586-4e4a-b4d8-508ba9697ecd",
+                                "slug": "comparePrompt",
+                                "type": "text",
+                                "params": {},
+                                "locale": {
+                                  "value": {
+                                    "en": "Can two shapes be the same color even if their outlines differ? Think first, then reveal the explanation."
+                                  }
+                                }
+                              }
+                            },
+                            "answer": {
+                              "config": {
+                                "id": "f8c679c3-7351-4954-aad6-1c445b6ef934",
+                                "slug": "compareAnswer",
+                                "type": "checkpointAnswer",
+                                "content": {
+                                  "items": {
+                                    "answerWords": {
+                                      "config": {
+                                        "id": "989a8c03-6ba9-4b5e-8784-1334aca6ffd7",
+                                        "slug": "answerWords",
+                                        "type": "text",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "en": "A circle or square can be red or blue. Look at the color, not the outline."
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "answerSummary": {
+                                      "config": {
+                                        "id": "fda1cca5-fab9-4216-b5a2-19a78806b09e",
+                                        "slug": "answerSummary",
+                                        "type": "markdown",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "en": "**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Shape alone cannot tell you the color."
+                                          },
+                                          "variables": {
+                                            "FIRST_COLOR": {
+                                              "en": "Red"
+                                            },
+                                            "SECOND_COLOR": {
+                                              "en": "blue"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "answerCode": {
+                                      "config": {
+                                        "id": "e6566d06-1284-4cbe-a87f-ca178b05fe26",
+                                        "slug": "answerCode",
+                                        "type": "code",
+                                        "params": {
+                                          "language": "javascript",
+                                          "codeAsText": "const samples = [\"red\", \"blue\", \"red\"];"
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "Two color names"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "answerPicture": {
+                                      "config": {
+                                        "id": "63c46493-0048-4e01-8040-1fe14eac4a0f",
+                                        "slug": "answerPicture",
+                                        "type": "image",
+                                        "params": {
+                                          "width": 640,
+                                          "height": 400,
+                                          "objectFit": "contain"
+                                        },
+                                        "locale": {
+                                          "fileName": "00000000-0000-0000-0000-000000000000.webp",
+                                          "alt": {
+                                            "en": "A red square and a blue square."
+                                          },
+                                          "caption": {
+                                            "en": "A red square and a blue square."
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "A red square and a blue square."
+                                            },
+                                            "unavailable": {
+                                              "en": "The picture is unavailable. Read its description."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Compare color independently of shape.",
+                                        "specification": "Two same-sized squares side by side, left red and right blue, on neutral background.",
+                                        "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
+                                        "offline": "Bundle a local WebP and retain the written description.",
+                                        "readiness": "production-pending",
+                                        "prompt": "Two same-sized squares side by side, left red and right blue, on neutral background."
+                                      }
+                                    },
+                                    "answerAudio": {
+                                      "config": {
+                                        "id": "36faebf6-d88a-4af9-acc0-fc02059e0747",
+                                        "slug": "answerAudio",
+                                        "type": "audio",
+                                        "params": {},
+                                        "locale": {
+                                          "fileName": {
+                                            "en": "00000000-0000-0000-0000-000000000000.mp3"
+                                          },
+                                          "title": {
+                                            "en": "Listen to the color words"
+                                          },
+                                          "description": {
+                                            "en": "Red and blue are color names. A square can be either color."
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "Red and blue are color names. A square can be either color."
+                                            },
+                                            "unavailable": {
+                                              "en": "Red and blue are color names. A square can be either color."
+                                            },
+                                            "playbackError": {
+                                              "en": "Red and blue are color names. A square can be either color."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Hear the color names.",
+                                        "specification": "Produce a clear spoken English recording of the script; no music, no sound effects; short pause between examples.",
+                                        "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
+                                        "offline": "Bundle source-language MP3; text remains available.",
+                                        "readiness": "production-pending",
+                                        "script": "Red and blue are color names. A square can be either color."
+                                      }
+                                    },
+                                    "answerVideo": {
+                                      "config": {
+                                        "id": "7446f1f1-6766-4f69-890a-94983db5a537",
+                                        "slug": "answerVideo",
+                                        "type": "video",
+                                        "params": {},
+                                        "locale": {
+                                          "fileName": "00000000-0000-0000-0000-000000000000.mp4",
+                                          "posterFileName": "00000000-0000-0000-0000-000000000000.webp",
+                                          "title": {
+                                            "en": "Compare red and blue"
+                                          },
+                                          "label": {
+                                            "en": "Short silent color comparison"
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "unavailable": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "playbackError": {
+                                              "en": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Observe color while shapes change.",
+                                        "specification": "Create a silent 6-second 640×400 local MP4 and matching WebP poster. First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
+                                        "accessibility": "No flashing or baked text; adjacent text describes all changes. Pause/play remains learner controlled.",
+                                        "offline": "Bundle video and poster; retain the textual description.",
+                                        "readiness": "production-pending",
+                                        "storyboard": "First three seconds: red circle changes to red square. Last three seconds: blue square changes to blue circle.",
+                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                      }
+                                    },
+                                    "answerExternal": {
+                                      "config": {
+                                        "id": "f97d713e-65eb-4a3f-b6a4-eb35259e200e",
+                                        "slug": "answerExternal",
+                                        "type": "youtube",
+                                        "params": {
+                                          "mode": "link"
+                                        },
+                                        "locale": {
+                                          "href": "https://www.youtube.com/watch?v=1qtPcVpkaKU",
+                                          "title": {
+                                            "en": "More color examples"
+                                          },
+                                          "label": {
+                                            "en": "Red, Blue, and Yellow — Khan Academy Kids"
+                                          },
+                                          "fallback": {
+                                            "offline": {
+                                              "en": "Use the local examples: a red circle and a blue square. Objects may have the same color even when their shapes differ."
+                                            },
+                                            "unavailable": {
+                                              "en": "The optional video is unavailable. Continue with the local examples."
+                                            },
+                                            "retry": {
+                                              "en": "Try again"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Optional extension: recognize red and blue on familiar objects.",
+                                        "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (published 2023-07-10). Public video listing and description verified; full playback, embed permission, captions and regional availability must be reviewed before release. Yellow is incidental, not an assessed target. Do not copy the video into assets.",
+                                        "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
+                                        "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    "answerCaptions": {
+                                      "config": {
+                                        "id": "63a311a2-de5d-4cf1-bdda-37c3fcd992c3",
+                                        "slug": "answerCaptions",
+                                        "type": "subtitles",
+                                        "params": {},
+                                        "locale": {
+                                          "fileName": {
+                                            "en": "00000000-0000-0000-0000-000000000000.vtt"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Access the color comparison as timed text.",
+                                        "specification": "Produce UTF-8 WebVTT: 00:00:00.000 --> 00:00:03.000 first sentence; 00:00:03.000 --> 00:00:06.000 second sentence. A red circle becomes a red square. A blue square becomes a blue circle.",
+                                        "accessibility": "Standalone keyboard-accessible WebVTT link, not a synchronized track; adjacent text repeats the cues.",
+                                        "offline": "Bundle local VTT and equivalent text.",
+                                        "readiness": "production-pending",
+                                        "script": "A red circle becomes a red square. A blue square becomes a blue circle."
+                                      }
+                                    },
+                                    "answerExplore": {
+                                      "config": {
+                                        "id": "4a773a25-f569-4429-9fd7-0e2ac6441db4",
+                                        "slug": "answerExplore",
+                                        "type": "scene",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "heading": {
+                                              "en": "Explore two colors"
+                                            },
+                                            "red": {
+                                              "en": "Red"
+                                            },
+                                            "blue": {
+                                              "en": "Blue"
+                                            },
+                                            "choose": {
+                                              "en": "Choose a color"
+                                            },
+                                            "reset": {
+                                              "en": "Reset"
+                                            },
+                                            "shape": {
+                                              "en": "Change shape"
+                                            },
+                                            "status": {
+                                              "red": {
+                                                "en": "The sample is red."
+                                              },
+                                              "blue": {
+                                                "en": "The sample is blue."
+                                              }
+                                            },
+                                            "sampleLabel": {
+                                              "en": "Color sample"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Explore how color and shape vary independently.",
+                                        "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
+                                        "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                                        "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                                        "readiness": "production-pending",
+                                        "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                                      }
+                                    },
+                                    "answerGallery": {
+                                      "config": {
+                                        "id": "9bbb3def-8ca2-4860-a2cd-2961f32e991c",
+                                        "slug": "answerGallery",
+                                        "type": "carousel",
+                                        "params": {
+                                          "aspectRatio": 1.6,
+                                          "objectFit": "contain",
+                                          "loop": false,
+                                          "autoplay": false,
+                                          "showArrows": true,
+                                          "showIndicators": true,
+                                          "allowSwipe": true
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "Same color, different shapes"
+                                          }
+                                        },
+                                        "slides": {
+                                          "items": {
+                                            "answerGalleryImage": {
+                                              "config": {
+                                                "id": "e3a10c4b-2325-41c0-b0b6-5dc4a4eb4e26",
+                                                "slug": "answerGalleryImage",
+                                                "type": "image",
+                                                "params": {
+                                                  "fill": true,
+                                                  "aspectRatio": 1.6,
+                                                  "objectFit": "contain"
+                                                },
+                                                "locale": {
+                                                  "fileName": "00000000-0000-0000-0000-000000000000.webp",
+                                                  "alt": {
+                                                    "en": "A red circle beside a red square."
+                                                  },
+                                                  "caption": {
+                                                    "en": "A red circle beside a red square."
+                                                  },
+                                                  "fallback": {
+                                                    "offline": {
+                                                      "en": "A red circle beside a red square."
+                                                    },
+                                                    "unavailable": {
+                                                      "en": "The picture is unavailable. Read its description."
+                                                    },
+                                                    "retry": {
+                                                      "en": "Try again"
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "production": {
+                                                "purpose": "Compare color independently of shape.",
+                                                "specification": "Show a red circle and a red square of equal visual weight on a neutral background.",
+                                                "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
+                                                "offline": "Bundle a local WebP and retain the written description.",
+                                                "readiness": "production-pending",
+                                                "prompt": "Show a red circle and a red square of equal visual weight on a neutral background."
+                                              }
+                                            },
+                                            "answerGalleryScene": {
+                                              "config": {
+                                                "id": "2e95db16-2461-4de2-b97d-feecbfac1166",
+                                                "slug": "answerGalleryScene",
+                                                "type": "scene",
+                                                "params": {},
+                                                "locale": {
+                                                  "value": {
+                                                    "heading": {
+                                                      "en": "Explore two colors"
+                                                    },
+                                                    "red": {
+                                                      "en": "Red"
+                                                    },
+                                                    "blue": {
+                                                      "en": "Blue"
+                                                    },
+                                                    "choose": {
+                                                      "en": "Choose a color"
+                                                    },
+                                                    "reset": {
+                                                      "en": "Reset"
+                                                    },
+                                                    "shape": {
+                                                      "en": "Change shape"
+                                                    },
+                                                    "status": {
+                                                      "red": {
+                                                        "en": "The sample is red."
+                                                      },
+                                                      "blue": {
+                                                        "en": "The sample is blue."
+                                                      }
+                                                    },
+                                                    "sampleLabel": {
+                                                      "en": "Color sample"
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "production": {
+                                                "purpose": "Explore how color and shape vary independently.",
+                                                "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
+                                                "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                                                "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
+                                                "readiness": "production-pending",
+                                                "weakDeviceAlternative": "Static swatch plus text labels and native controls."
+                                              }
+                                            }
+                                          },
+                                          "order": [
+                                            "answerGalleryImage",
+                                            "answerGalleryScene"
+                                          ]
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Compare two representations; navigate at the learner's own pace."
+                                      }
+                                    }
+                                  },
+                                  "order": [
+                                    "answerWords",
+                                    "answerSummary",
+                                    "answerCode",
+                                    "answerPicture",
+                                    "answerAudio",
+                                    "answerVideo",
+                                    "answerExternal",
+                                    "answerCaptions",
+                                    "answerExplore",
+                                    "answerGallery"
+                                  ]
+                                }
+                              },
+                              "production": {
+                                "purpose": "Reveal a compact collection of alternative explanations; each child exercises a legal recursive generator path."
+                              }
+                            }
+                          },
+                          "production": {
+                            "purpose": "Formative reflection with reveal, not scored assessment."
+                          }
+                        },
+                        "changeColor": {
+                          "config": {
+                            "id": "9c851290-3833-4a98-bff6-13f8f9f30c3c",
+                            "slug": "changeColor",
+                            "type": "checkpointItem",
+                            "check": true,
+                            "question": {
+                              "config": {
+                                "id": "d302ea57-8858-46e5-a286-170cf7495529",
+                                "slug": "changePrompt",
+                                "type": "text",
+                                "params": {},
+                                "locale": {
+                                  "value": {
+                                    "en": "If a red circle becomes blue but stays a circle, what changed?"
+                                  }
+                                }
+                              }
+                            },
+                            "answer": {
+                              "config": {
+                                "id": "bca3cae3-886b-4bb5-b01a-f976ec42ffd8",
+                                "slug": "changeAnswer",
+                                "type": "checkpointAnswer",
+                                "content": {
+                                  "items": {
+                                    "changeExplanation": {
+                                      "config": {
+                                        "id": "1a093072-bf2f-48ec-aee6-f671f1355ad9",
+                                        "slug": "changeExplanation",
+                                        "type": "text",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "en": "The color changed from red to blue. The shape is still a circle."
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "order": [
+                                    "changeExplanation"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "order": [
+                        "compareShapes",
+                        "changeColor"
+                      ]
+                    }
+                  },
+                  "production": {
+                    "purpose": "Learner-controlled reflection and check completion, not a mastery score."
+                  }
+                }
+              },
+              "order": [
+                "explorePrompt",
+                "colorExplorer",
+                "reflectOnColors"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Guided exploration and formative reflection without graded evidence."
+          }
+        },
+        "colorCode": {
+          "config": {
+            "id": "acd43a98-4bc2-415f-b4e5-9cd6011dff04",
+            "slug": "colorCode",
+            "type": "codingTask",
+            "params": {
+              "skippable": true
+            },
+            "locale": {
+              "title": {
+                "en": "Color words in code"
+              },
+              "navigationLabel": {
+                "en": "Code"
+              }
+            },
+            "content": {
+              "items": {
+                "codeIntro": {
+                  "config": {
+                    "id": "ef7235ac-59b0-4b57-9c24-64f5694859c1",
+                    "slug": "codeIntro",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "A computer can store a color name as a word. Read these two examples; you do not need to know programming."
+                      }
+                    }
+                  }
+                },
+                "colorNameCode": {
+                  "config": {
+                    "id": "fb339121-bc3b-43ea-8fb8-0ce01a7e2f82",
+                    "slug": "colorNameCode",
+                    "type": "code",
+                    "params": {
+                      "language": "javascript",
+                      "codeAsText": "// %_%COLOR_LABEL%_%\nconst color = \"red\";\nconst other = \"blue\";"
+                    },
+                    "locale": {
+                      "title": {
+                        "en": "Color names as words"
+                      },
+                      "variables": {
+                        "COLOR_LABEL": {
+                          "en": "A red example and a blue example"
+                        }
+                      }
+                    }
+                  }
+                },
+                "codeReflection": {
+                  "config": {
+                    "id": "939e00d3-7e6e-4bc4-ab60-dbfe323704d7",
+                    "slug": "codeReflection",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "The two words are different. The code represents names, not an exact definition of how a color looks."
+                      }
+                    }
+                  }
+                }
+              },
+              "order": [
+                "codeIntro",
+                "colorNameCode",
+                "codeReflection"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Optional technical representation of the two known color names; no coding prerequisite."
+          }
+        },
+        "recallColors": {
+          "config": {
+            "id": "fdbcf911-4b36-4f11-802e-1a00d6efa7bb",
+            "slug": "recallColors",
+            "type": "flashcards",
+            "params": {},
+            "locale": {
+              "title": {
+                "en": "Remember the color names"
+              },
+              "navigationLabel": {
+                "en": "Flashcards"
+              }
+            },
+            "content": {
+              "items": {
+                "recallPrompt": {
+                  "config": {
+                    "id": "d4bc8e45-68f0-4205-8481-670ba73a1304",
+                    "slug": "recallPrompt",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "Recall the color names, then turn the cards over to check. Practice is not a test of mastery."
+                      }
+                    }
+                  }
+                }
+              },
+              "order": [
+                "recallPrompt"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Required independent Flashcard Bank selection will be integrated in Stage 8."
+          }
+        },
+        "checkColors": {
+          "config": {
+            "id": "2a46ac8b-d81a-45fe-8042-771c7a61344c",
+            "slug": "checkColors",
+            "type": "quiz",
+            "params": {},
+            "locale": {
+              "title": {
+                "en": "Check your understanding"
+              },
+              "navigationLabel": {
+                "en": "Quiz"
+              }
+            },
+            "content": {
+              "items": {
+                "quizPrompt": {
+                  "config": {
+                    "id": "c0ff1ae7-54db-4ee1-bc8f-28076b313a9f",
+                    "slug": "quizPrompt",
+                    "type": "text",
+                    "params": {},
+                    "locale": {
+                      "value": {
+                        "en": "Look at the examples carefully. Focus on color rather than shape or position. Take your time."
+                      }
+                    }
+                  }
+                }
+              },
+              "order": [
+                "quizPrompt"
+              ]
+            }
+          },
+          "production": {
+            "purpose": "Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading."
+          }
+        }
+      },
+      "order": [
+        "meetColors",
+        "watchCompare",
+        "exploreColors",
+        "colorCode",
+        "recallColors",
+        "checkColors"
+      ]
+    },
   },
   production: {
     languages: {
@@ -60,4 +1308,4 @@ Keep the standalone Lesson independent of Course storylines and external service
     sourceEvidence:
       'Verified Playground Skill definitions: content/playground/data/skills/testColors/testWarmColors/testRecognizeRed.ts and content/playground/data/skills/testColors/testCoolColors/testRecognizeBlue.ts; canonical assessment methods: shared/ui-kit/data/definitions/assessmentMethods/classification.ts and retrieval.ts. Baseline develop 1f6bbba5461bd092894d54804368aaeaa0e10060. No external scientific claims or standards alignment.',
   },
-} satisfies LessonWorkflowStage1;
+} satisfies LessonWorkflowStage2;
