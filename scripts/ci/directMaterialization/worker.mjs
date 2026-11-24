@@ -1,6 +1,5 @@
-/** One reviewed authored entrypoint executes inside the credential-free container.
- * The worker cannot certify its own output. The trusted publisher independently
- * checks source identity, review provenance, file scope, Git trees and hashes.
+/** One reviewed authored TypeScript entrypoint runs in the credential-free sandbox.
+ * Git authorization, reference verification and all Git writes remain outside.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,8 +11,7 @@ const require = createRequire(import.meta.url);
 const { executeMaterializerEntrypoint } = require(
   './shared/engine/dist/generators/materializers/directMaterialization/directMaterialization.js',
 );
-const request = JSON.parse(fs.readFileSync(0, 'utf8'));
-const { operation, source } = request;
+const { operation, source } = JSON.parse(fs.readFileSync(0, 'utf8'));
 const sha = /^[a-f0-9]{40}$/i;
 const name = '[a-z][a-z0-9-]*';
 const uuid = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -21,34 +19,41 @@ const root = 'content/' + name + '/data/';
 const patterns = {
   'lesson-stage6': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/draft\\.ts$', 'i'),
   'questions-stage5': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/questions/draft\\.ts$', 'i'),
-  'flashcards-stage5': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/flashcards/draft\\.ts
+  'flashcards-stage5': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/flashcards/draft\\.ts$', 'i'),
+  'course-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid + '/draft\\.ts$', 'i'),
+  'episode-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid +
+    '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts$', 'i'),
 };
 if (
   !Object.hasOwn(patterns, operation) ||
   !patterns[operation].test(source?.sourcePath ?? '') ||
-  !sha.test(source.sourceBlobSha ?? '') ||
-  !sha.test(source.sourceCommitSha ?? '')
+  !sha.test(source?.sourceBlobSha ?? '') ||
+  !sha.test(source?.sourceCommitSha ?? '')
 ) throw Error('Unsupported materializer request');
-
 const entrypoint = path.resolve('/work', source.sourcePath);
 const bytes = fs.readFileSync(entrypoint);
-if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)) throw Error('Invalid UTF-8 source');
-const blob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-if (blob !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
+if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
+  throw Error('Invalid candidate UTF-8');
+const blobSha = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
+if (blobSha !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
 const sourceText = bytes.toString('utf8');
 const jiti = createJiti(import.meta.url, { fsCache: false });
-const selectedBank = operation === 'questions-stage5' ? 'questions' : operation === 'flashcards-stage5' ? 'flashcards' : null;
-let bankInput;
-let episodeInput;
-const collectBankBlocks = input => {
+
+const selectedBank = operation === 'questions-stage5'
+  ? 'questions'
+  : operation === 'flashcards-stage5'
+    ? 'flashcards'
+    : null;
+let capturedInput;
+const approvedBlockIdentifiers = input => {
   const registeredSceneIds = new Set();
   const approvedMediaBlockIds = new Set();
   const visited = new WeakSet();
-  function visit(value) {
+  function walk(value) {
     if (!value || typeof value !== 'object' || visited.has(value)) return;
     visited.add(value);
     if (Array.isArray(value)) {
-      for (const item of value) visit(item);
+      for (const entry of value) walk(entry);
       return;
     }
     const config = value.config && typeof value.config === 'object' ? value.config : value;
@@ -57,17 +62,17 @@ const collectBankBlocks = input => {
       else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
         approvedMediaBlockIds.add(config.id);
     }
-    for (const [key, child] of Object.entries(value)) if (key !== 'production') visit(child);
+    for (const [key, part] of Object.entries(value))
+      if (key !== 'production') walk(part);
   }
-  visit(input?.config);
+  walk(input?.config);
   return { registeredSceneIds, approvedMediaBlockIds };
 };
-const bankAuthorization = input => {
-  bankInput = input;
+const bankOptions = input => {
+  capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
   const reviewed = {
-    approved: true,
-    content: sourceText,
+    approved: true, content: sourceText,
     blobSha: source.sourceBlobSha,
     reviewedSourceBlobSha: source.sourceBlobSha,
     reviewCommitSha: source.sourceCommitSha,
@@ -79,7 +84,10 @@ const bankAuthorization = input => {
     observedHeadSha: source.sourceCommitSha,
     entries: { [selectedBank + '/draft.ts']: { kind: 'file', content: sourceText } },
   };
-  const base = { ownerLessonId, reviewed, snapshot, blocks: collectBankBlocks(input) };
+  const base = {
+    ownerLessonId, reviewed, snapshot,
+    blocks: approvedBlockIdentifiers(input),
+  };
   if (selectedBank === 'questions') return base;
   return {
     ...base,
@@ -99,7 +107,8 @@ const options = operation === 'lesson-stage6'
       verifySourceInput: (_input, pinned, text) =>
         pinned.sourcePath === source.sourcePath &&
         pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
+        pinned.sourceCommitSha === source.sourceCommitSha &&
+        text === sourceText,
     }
   : operation === 'course-stage5'
     ? {
@@ -123,261 +132,12 @@ const plan = await executeMaterializerEntrypoint(
   operation,
   options,
   () => jiti.import(entrypoint),
-  selectedBank ? bankAuthorization : operation === 'episode-stage5' ? input => { episodeInput = input; return options; } : undefined,
+  selectedBank
+    ? bankOptions
+    : operation === 'episode-stage5'
+      ? input => { capturedInput = input; return options; }
+      : undefined,
 );
-process.stdout.write(JSON.stringify(selectedBank ? { plan, input: bankInput } : operation === 'episode-stage5' ? { plan, input: episodeInput } : plan));
-, 'i'),
-  'course-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid + '/draft\\.ts
-};
-if (
-  !Object.hasOwn(patterns, operation) ||
-  !patterns[operation].test(source?.sourcePath ?? '') ||
-  !sha.test(source.sourceBlobSha ?? '') ||
-  !sha.test(source.sourceCommitSha ?? '')
-) throw Error('Unsupported materializer request');
-
-const entrypoint = path.resolve('/work', source.sourcePath);
-const bytes = fs.readFileSync(entrypoint);
-if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)) throw Error('Invalid UTF-8 source');
-const blob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-if (blob !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
-const sourceText = bytes.toString('utf8');
-const jiti = createJiti(import.meta.url, { fsCache: false });
-const selectedBank = operation === 'questions-stage5' ? 'questions' : operation === 'flashcards-stage5' ? 'flashcards' : null;
-let bankInput;
-const collectBankBlocks = input => {
-  const registeredSceneIds = new Set();
-  const approvedMediaBlockIds = new Set();
-  const visited = new WeakSet();
-  function visit(value) {
-    if (!value || typeof value !== 'object' || visited.has(value)) return;
-    visited.add(value);
-    if (Array.isArray(value)) {
-      for (const item of value) visit(item);
-      return;
-    }
-    const config = value.config && typeof value.config === 'object' ? value.config : value;
-    if (typeof config.id === 'string') {
-      if (config.type === 'scene') registeredSceneIds.add(config.id);
-      else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
-        approvedMediaBlockIds.add(config.id);
-    }
-    for (const [key, child] of Object.entries(value)) if (key !== 'production') visit(child);
-  }
-  visit(input?.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
-};
-const bankAuthorization = input => {
-  bankInput = input;
-  const ownerLessonId = source.sourcePath.split('/')[5];
-  const reviewed = {
-    approved: true,
-    content: sourceText,
-    blobSha: source.sourceBlobSha,
-    reviewedSourceBlobSha: source.sourceBlobSha,
-    reviewCommitSha: source.sourceCommitSha,
-    reviewedInputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
-  };
-  const snapshot = {
-    complete: true,
-    expectedHeadSha: source.sourceCommitSha,
-    observedHeadSha: source.sourceCommitSha,
-    entries: { [selectedBank + '/draft.ts']: { kind: 'file', content: sourceText } },
-  };
-  const base = { ownerLessonId, reviewed, snapshot, blocks: collectBankBlocks(input) };
-  if (selectedBank === 'questions') return base;
-  return {
-    ...base,
-    lessonSourceSha: input.production?.lesson?.sourceSha,
-    referenceSourceSha: input.production?.lesson?.reference?.sourceSha,
-    questionSourceSha: input.production?.questions?.sourceSha,
-    questionReviewSha: input.production?.questions?.reviewSha,
-    methodologySourceSha: input.production?.questions?.methodologySourceSha,
-  };
-};
-const options = operation === 'lesson-stage6'
-  ? {
-      source, sourceText,
-      verifySourceInput: (_input, pinned, text) =>
-        pinned.sourcePath === source.sourcePath &&
-        pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
-    }
-  : undefined;
-const plan = await executeMaterializerEntrypoint(
-  operation,
-  options,
-  () => jiti.import(entrypoint),
-  selectedBank ? bankAuthorization : undefined,
-);
-process.stdout.write(JSON.stringify(selectedBank ? { plan, input: bankInput } : plan));
-, 'i'),
-  'episode-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid +
-    '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts
-};
-if (
-  !Object.hasOwn(patterns, operation) ||
-  !patterns[operation].test(source?.sourcePath ?? '') ||
-  !sha.test(source.sourceBlobSha ?? '') ||
-  !sha.test(source.sourceCommitSha ?? '')
-) throw Error('Unsupported materializer request');
-
-const entrypoint = path.resolve('/work', source.sourcePath);
-const bytes = fs.readFileSync(entrypoint);
-if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)) throw Error('Invalid UTF-8 source');
-const blob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-if (blob !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
-const sourceText = bytes.toString('utf8');
-const jiti = createJiti(import.meta.url, { fsCache: false });
-const selectedBank = operation === 'questions-stage5' ? 'questions' : operation === 'flashcards-stage5' ? 'flashcards' : null;
-let bankInput;
-const collectBankBlocks = input => {
-  const registeredSceneIds = new Set();
-  const approvedMediaBlockIds = new Set();
-  const visited = new WeakSet();
-  function visit(value) {
-    if (!value || typeof value !== 'object' || visited.has(value)) return;
-    visited.add(value);
-    if (Array.isArray(value)) {
-      for (const item of value) visit(item);
-      return;
-    }
-    const config = value.config && typeof value.config === 'object' ? value.config : value;
-    if (typeof config.id === 'string') {
-      if (config.type === 'scene') registeredSceneIds.add(config.id);
-      else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
-        approvedMediaBlockIds.add(config.id);
-    }
-    for (const [key, child] of Object.entries(value)) if (key !== 'production') visit(child);
-  }
-  visit(input?.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
-};
-const bankAuthorization = input => {
-  bankInput = input;
-  const ownerLessonId = source.sourcePath.split('/')[5];
-  const reviewed = {
-    approved: true,
-    content: sourceText,
-    blobSha: source.sourceBlobSha,
-    reviewedSourceBlobSha: source.sourceBlobSha,
-    reviewCommitSha: source.sourceCommitSha,
-    reviewedInputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
-  };
-  const snapshot = {
-    complete: true,
-    expectedHeadSha: source.sourceCommitSha,
-    observedHeadSha: source.sourceCommitSha,
-    entries: { [selectedBank + '/draft.ts']: { kind: 'file', content: sourceText } },
-  };
-  const base = { ownerLessonId, reviewed, snapshot, blocks: collectBankBlocks(input) };
-  if (selectedBank === 'questions') return base;
-  return {
-    ...base,
-    lessonSourceSha: input.production?.lesson?.sourceSha,
-    referenceSourceSha: input.production?.lesson?.reference?.sourceSha,
-    questionSourceSha: input.production?.questions?.sourceSha,
-    questionReviewSha: input.production?.questions?.reviewSha,
-    methodologySourceSha: input.production?.questions?.methodologySourceSha,
-  };
-};
-const options = operation === 'lesson-stage6'
-  ? {
-      source, sourceText,
-      verifySourceInput: (_input, pinned, text) =>
-        pinned.sourcePath === source.sourcePath &&
-        pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
-    }
-  : undefined;
-const plan = await executeMaterializerEntrypoint(
-  operation,
-  options,
-  () => jiti.import(entrypoint),
-  selectedBank ? bankAuthorization : undefined,
-);
-process.stdout.write(JSON.stringify(selectedBank ? { plan, input: bankInput } : plan));
-, 'i'),
-};
-if (
-  !Object.hasOwn(patterns, operation) ||
-  !patterns[operation].test(source?.sourcePath ?? '') ||
-  !sha.test(source.sourceBlobSha ?? '') ||
-  !sha.test(source.sourceCommitSha ?? '')
-) throw Error('Unsupported materializer request');
-
-const entrypoint = path.resolve('/work', source.sourcePath);
-const bytes = fs.readFileSync(entrypoint);
-if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)) throw Error('Invalid UTF-8 source');
-const blob = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
-if (blob !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
-const sourceText = bytes.toString('utf8');
-const jiti = createJiti(import.meta.url, { fsCache: false });
-const selectedBank = operation === 'questions-stage5' ? 'questions' : operation === 'flashcards-stage5' ? 'flashcards' : null;
-let bankInput;
-const collectBankBlocks = input => {
-  const registeredSceneIds = new Set();
-  const approvedMediaBlockIds = new Set();
-  const visited = new WeakSet();
-  function visit(value) {
-    if (!value || typeof value !== 'object' || visited.has(value)) return;
-    visited.add(value);
-    if (Array.isArray(value)) {
-      for (const item of value) visit(item);
-      return;
-    }
-    const config = value.config && typeof value.config === 'object' ? value.config : value;
-    if (typeof config.id === 'string') {
-      if (config.type === 'scene') registeredSceneIds.add(config.id);
-      else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
-        approvedMediaBlockIds.add(config.id);
-    }
-    for (const [key, child] of Object.entries(value)) if (key !== 'production') visit(child);
-  }
-  visit(input?.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
-};
-const bankAuthorization = input => {
-  bankInput = input;
-  const ownerLessonId = source.sourcePath.split('/')[5];
-  const reviewed = {
-    approved: true,
-    content: sourceText,
-    blobSha: source.sourceBlobSha,
-    reviewedSourceBlobSha: source.sourceBlobSha,
-    reviewCommitSha: source.sourceCommitSha,
-    reviewedInputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
-  };
-  const snapshot = {
-    complete: true,
-    expectedHeadSha: source.sourceCommitSha,
-    observedHeadSha: source.sourceCommitSha,
-    entries: { [selectedBank + '/draft.ts']: { kind: 'file', content: sourceText } },
-  };
-  const base = { ownerLessonId, reviewed, snapshot, blocks: collectBankBlocks(input) };
-  if (selectedBank === 'questions') return base;
-  return {
-    ...base,
-    lessonSourceSha: input.production?.lesson?.sourceSha,
-    referenceSourceSha: input.production?.lesson?.reference?.sourceSha,
-    questionSourceSha: input.production?.questions?.sourceSha,
-    questionReviewSha: input.production?.questions?.reviewSha,
-    methodologySourceSha: input.production?.questions?.methodologySourceSha,
-  };
-};
-const options = operation === 'lesson-stage6'
-  ? {
-      source, sourceText,
-      verifySourceInput: (_input, pinned, text) =>
-        pinned.sourcePath === source.sourcePath &&
-        pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
-    }
-  : undefined;
-const plan = await executeMaterializerEntrypoint(
-  operation,
-  options,
-  () => jiti.import(entrypoint),
-  selectedBank ? bankAuthorization : undefined,
-);
-process.stdout.write(JSON.stringify(selectedBank ? { plan, input: bankInput } : plan));
+process.stdout.write(JSON.stringify(
+  selectedBank || operation === 'episode-stage5' ? { plan, input: capturedInput } : plan,
+));

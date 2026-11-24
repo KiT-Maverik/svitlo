@@ -46,18 +46,18 @@ export function materializeEpisodeStage5(input: EpisodeWorkflowStage2, options?:
       .replace("import type { SupportedLanguages } from '@svitlo/engine/build';", "import { languages } from './languages';")
       .replace(originalLanguages, '');
     index.content =
-      '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\\n' +
-      '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\\n' +
-      '// Reviewed Episode source blob: ' + source.sourceBlobSha + '\\n' +
-      '// Reviewed Episode HEAD: ' + source.sourceCommitSha + '\\n' + index.content;
+      '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
+      '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
+      '// Reviewed Episode source blob: ' + source.sourceBlobSha + '\n' +
+      '// Reviewed Episode HEAD: ' + source.sourceCommitSha + '\n' + index.content;
     return {
       episodeId: result.id,
       exportName: result.exportName,
       files: [...result.files, {
         path: root + '/languages.ts',
         kind: 'typescript',
-        content: "import type { SupportedLanguages } from '@svitlo/engine/build';\\n" +
-          'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;\\n',
+        content: "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
+          'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;\n',
       }],
       diagnostics: result.diagnostics ?? [],
       publishable: false,
