@@ -408,7 +408,7 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
   );
 });
 
-test('Lesson resolves verified Playground Skill modules as Configurator .id references', () => {
+test('Lesson emits package-scoped imported Skill Configurators without textbook tables', () => {
   const input = {
     ...lesson(),
     skills: [
@@ -418,12 +418,16 @@ test('Lesson resolves verified Playground Skill modules as Configurator .id refe
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
+    skillReferences: [
+      { id: '00000000-0000-4000-8000-000000000001', path: '#skillsData/testColors/testWarmColors/testRecognizeRed', exported: 'testRecognizeRed' },
+      { id: '00000000-0000-4000-8000-000000000004', path: '#skillsData/testColors/testCoolColors/testRecognizeBlue', exported: 'testRecognizeBlue' },
+    ],
     renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   });
   const root = result.files.find(file => file.path === 'index.ts')?.content ?? '';
-  assert.match(root, /import \{ testRecognizeRed \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/);
-  assert.match(root, /import \{ testRecognizeBlue \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/);
-  assert.match(root, /"skills": \[testRecognizeRed\.id, testRecognizeBlue\.id\]/);
+  assert.match(root, /import \{ testRecognizeRed as skill_ref_0 \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/);
+  assert.match(root, /import \{ testRecognizeBlue as skill_ref_1 \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/);
+  assert.match(root, /"skills": \[skill_ref_0\.id, skill_ref_1\.id\]/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
   const unknown = materializeLesson({
@@ -433,8 +437,25 @@ test('Lesson resolves verified Playground Skill modules as Configurator .id refe
     documentLanguage: 'en',
     renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   });
-  assert(unknown.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Verify Skill')));
+  assert(unknown.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Import the actual Skill')));
   assert.throws(() => assertLessonSourceReleaseReady(unknown), /unresolved materializer diagnostics/);
+});
+
+test('Lesson refuses cross-textbook Skill alias or mismatched UUID', () => {
+  const input = { ...lesson(), skills: [id('66')] };
+  const options = {
+    documentLanguage: 'en',
+    renderSection: (child: Parameters<typeof materializeLesson>[0]['section']['items'][string], opts: Parameters<typeof materializeLesson>[1]['renderSection'] extends (c: infer C, o: infer O) => unknown ? O : never) =>
+      renderSection(child as ContentSource, { ...opts, renderContentBlock }),
+  };
+  assert.throws(() => materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+    ...options,
+    skillReferences: [{ id: id('66'), path: '../../content/math/data/skills/foreign', exported: 'foreign' }],
+  }), /cross-textbook Skill import/);
+  assert.throws(() => materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+    ...options,
+    skillReferences: [{ id: id('67'), path: '#skillsData/geometry/figures/known', exported: 'known' }],
+  }), /cross-textbook Skill import/);
 });
 
 test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and checkColors notes', () => {
