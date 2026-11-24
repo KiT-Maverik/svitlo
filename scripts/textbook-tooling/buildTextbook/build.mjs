@@ -59,18 +59,29 @@ function filesUnder(folder, prefix = '') {
     .sort();
 }
 // Skills are authored through a root Domain index.ts, not *.data.ts.
-// Lessons retain their own UUID entrypoint detection; nested Section indexes
-// must not be mistaken for standalone Lessons.
+// Lessons and Courses use UUID entrypoints; nested Section indexes must not
+// be mistaken for standalone materialized entities.
 const authored = folder => {
   if (folder === 'data/skills') return existsSync(join(root, folder, 'index.ts'));
   return filesUnder(join(root, folder)).some(
     name =>
       name.endsWith('.data.ts') ||
-      (folder === 'data/lessons' &&
+      ((folder === 'data/lessons' || folder === 'data/courses') &&
         /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index\.ts$/.test(name) &&
         name.split('/')[1].at(-1) === name[0]),
   );
 };
+
+// Editorial-only scopes must run the owning generator too: production rejects
+// them; draft generation removes stale owned output without publishing drafts.
+const editorial = folder =>
+  filesUnder(join(root, folder)).some(
+    name =>
+      /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/draft\.ts$/.test(name) &&
+      name.split('/')[1].at(-1) === name[0],
+  );
+const needsGeneration = folder =>
+  authored(folder) || (['data/lessons', 'data/courses'].includes(folder) && editorial(folder));
 
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
@@ -89,7 +100,7 @@ if (hasScenes && pkg.scripts?.['content:check:scenes']) {
 }
 
 const assessmentBank = filesUnder(join(root, 'data/lessons')).some(name =>
-  /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/index\.ts$/.test(name),
+  /^[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/(?:questions|flashcards)\/(?:index|draft)\.ts$/.test(name),
 );
 // Before modifying generated content or the distribution, validate every
 // effective Lesson/Course media reference in the requested package.
@@ -99,7 +110,7 @@ try {
     ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs'],
     ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs'],
   ]) {
-    if (!authored(source)) continue;
+    if (!needsGeneration(source)) continue;
     run(process.execPath, [
       generator,
       '--package',
@@ -199,7 +210,7 @@ try {
     ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs', 'lessons', 'data/lessons'],
     ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs', 'courses', 'data/courses'],
   ]) {
-    if (!authored(source)) continue;
+    if (!needsGeneration(source)) continue;
     run(process.execPath, [
       generator,
       '--package',

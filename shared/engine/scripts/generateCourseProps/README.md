@@ -1,6 +1,6 @@
 # Course Props generation CLI
 
-`generateCourseProps.mjs` discovers authored Course configurators and writes compact publications to the textbook-owned `generated/courses/` directory. It supports `--write` and read-only `--check`.
+`generateCourseProps.mjs` discovers authored Course configurators and writes compact publications to the textbook-owned `generated/courses/` directory. It supports `--write`, read-only `--check` and `--preflight`. Canonical `draft.ts` files are never loaded by discovery. Draft mode (`--draft`) excludes those editorial-only roots; strict production rejects them. Conflicting draft and materialized entrypoints fail in both modes.
 
 ```sh
 npm run content:generate:course-props -- --package content/playground --write
