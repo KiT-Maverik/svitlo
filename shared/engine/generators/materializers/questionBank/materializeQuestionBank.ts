@@ -191,7 +191,6 @@ function planQuestionBank(
   if (!quiz || !['none', 'local'].includes(quiz.kind)) {
     throw new Error('Explicit Quiz editorial intent required');
   }
-  assertBankStatement(quiz.rationale, 'Quiz intent rationale');
   if (quiz.kind === 'local') {
     assertBankOrder(quiz.sections.items, quiz.sections.order, 'Quiz Section intent', true);
     const sections = new Set<string>();
@@ -200,9 +199,6 @@ function planQuestionBank(
       assertBankPath(value.sectionPath);
       if (sections.has(value.sectionId)) throw new Error('Duplicate Quiz Section identity');
       sections.add(value.sectionId);
-      assertBankStatement(value.selectionRationale, 'Quiz selection rationale');
-      assertBankStatement(value.coverage, 'Quiz coverage');
-      assertBankStatement(value.upstreamDependencies, 'Quiz upstream dependencies');
     }
   }
   assertUniqueBankEntityIds(questions);
