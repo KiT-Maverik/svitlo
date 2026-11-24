@@ -29,11 +29,11 @@ Use the approved Course slot rather than re-deciding the Course curriculum. Stag
 
 ### Stages 3–4: review
 
-Stage 3 follows the [independent review rule](../../rules/independent-review.md). Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Record each final verdict using the [canonical review evidence format](../../rules/independent-review.md) in the existing PR description. Neither stage authorizes materialization or merge.
+Stage 3 follows the [independent review rule](../../rules/independent-review.md). Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Record each final verdict using the [independent review rule](../../rules/independent-review.md) in the existing PR description. Neither stage authorizes materialization or merge.
 
 ### Stages 5–6: implementation
 
-Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Follow the [trusted Episode Stage 5 runbook](../../../scripts/ci/episodeMaterialization/README.md). Verify the Episode-specific trusted workflow is deployed before invoking the exact top-level `/episode materialize` PR comment; if not, report the deployment dependency. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
+Obtain distinct owner authorization for trusted Stage 5 after accepted reviews at the actual source revision. Follow the [trusted Episode Stage 5 runbook](../../../scripts/ci/episodeMaterialization/README.md). Verify the Episode-specific trusted workflow is deployed before invoking the exact top-level `/episode materialize` PR comment; if not, report the deployment dependency. The trusted gate requires an authorized invocation and valid pinned typed source/ownership, not parsed editorial approval. Never execute candidate source or bypass the trusted gate. Verify the exact generated commit, stable UUID, original order, approved owned files, deterministic output, consumed draft deletion and semantic Engine validation. Git history and PR evidence preserve the reviewed draft. Materialization is not publication.
 
 At Stage 6 implement typed resources and Scenes using [Implement Scene](../lesson-workflow/implement-scene.skill.md). Register and test Scenes in the actual owning package, verify interactions and alternatives, and prepare precise media handoff. Keep unresolved resource `TODO (BLOCKER):` markers until genuine completion. Never invent assets, reserve fabricated passing review values, or treat a path alone as a real file.
 
@@ -74,7 +74,7 @@ Initialize once in the existing Episode PR description and reconcile before each
 
 ## Evidence and handoffs
 
-- <Stage 3 and 4 review evidence lines; see independent-review.md>
+- <Stage 3 and 4 findings, corrections, actual reviewed revisions and verdicts; editorial only>
 - <stage, owner, commit/blob, findings, actual checks, verdict, unresolved requirements>
 ```
 

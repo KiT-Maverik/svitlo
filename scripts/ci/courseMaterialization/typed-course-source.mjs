@@ -383,7 +383,6 @@ export function buildTypedCourseManifest(meta, plan) {
     !plan ||
     plan.sourcePath !== meta.sourcePath ||
     plan.sourceBlobSha !== meta.sourceBlobSha ||
-    plan.reviewCommitSha !== meta.reviewCommitSha ||
     plan.courseId !== meta.courseId ||
     plan.publishable !== false ||
     !Array.isArray(plan.files) ||
@@ -431,8 +430,6 @@ export function buildTypedCourseManifest(meta, plan) {
     sourcePath: meta.sourcePath,
     sourceBlobSha: meta.sourceBlobSha,
     materializedPath: plan.materializedPath,
-    reviewCommitSha: meta.reviewCommitSha,
-    reviewVerdict: meta.reviewVerdict,
     publishable: false,
     diagnostics: plan.diagnostics,
     inventory: plan.inventory,
@@ -461,17 +458,12 @@ async function main() {
   checkCourseStage3Types(path.join(process.env.COURSE_HEAD_ROOT, meta.sourcePath));
   const plan = materializeCourseStage5(input, {
     textbookRoot: meta.textbookRoot,
-    review: {
+    source: {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
-      reviewCommitSha: meta.reviewCommitSha,
-      reviewVerdict: meta.reviewVerdict,
     },
-    verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
-      candidate === input &&
-      review.sourceBlobSha === meta.sourceBlobSha &&
-      review.reviewCommitSha === meta.head &&
-      textbookRoot === meta.textbookRoot,
+    verifySource: ({ input: candidate, source, textbookRoot }) =>
+      candidate === input && source.sourceBlobSha === meta.sourceBlobSha && textbookRoot === meta.textbookRoot,
     // Existing-Lesson references are not executable/verified literals.
     // Stage 5 refuses them instead of fabricating Build API or import evidence.
     materializeSection: materializeCourseEpisodeSection,

@@ -51,7 +51,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Require exact source SHA and accepted current-HEAD review evidence
+      - name: Require exact pinned Bank source and owning Lesson revision
         id: authorize
         env:
           GH_TOKEN: ${{ github.token }}

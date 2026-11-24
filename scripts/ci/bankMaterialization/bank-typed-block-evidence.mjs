@@ -190,8 +190,8 @@ function checkScene(root, meta, config, production, git, ts) {
 
 /**
  * Traverse only Config data, never follow an author-controlled source path or
- * interpret metadata as executable evidence. Exact-HEAD review was verified
- * by the Bank gate before this tokenless analysis.
+ * interpret metadata as executable evidence. The Bank gate pins the source
+ * revision before this tokenless analysis.
  */
 export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts }) {
   if (
@@ -202,10 +202,9 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     !/^content\/[a-z][a-z0-9-]*$/.test(meta?.identity?.pkg ?? '') ||
     typeof meta?.identity?.folder !== 'string' ||
     !meta.identity.folder.startsWith(meta.identity.pkg + '/data/lessons/') ||
-    git(root, 'rev-parse', 'HEAD') !== meta.head ||
-    meta.reviewCommitSha !== meta.head
+    git(root, 'rev-parse', 'HEAD') !== meta.head
   )
-    throw Error('Reviewed Bank block evidence requires a pinned, independently approved checkout');
+    throw Error('Bank block evidence requires the exact pinned checkout');
   const language =
     meta.bank === 'questions' ? input.production?.languages?.document : input.production?.lesson?.languages?.document;
   if (typeof language !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language))

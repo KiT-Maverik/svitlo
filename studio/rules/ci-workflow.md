@@ -124,7 +124,12 @@ For nested Ready PRs, a root-only manifest or root tsconfig change does not
 count as a directly edited workspace; use the existing full manual
 `workflow_dispatch` (`--all`) for such global configuration changes when needed.
 The GitHub PR trigger includes `edited` so retargeting a Ready PR also re-evaluates
-its correct branch-specific scope.
+its correct branch-specific scope. GitHub also emits `edited` for description-only
+changes, even at unchanged HEAD. **Do not skip a required check job solely on
+`edited` without verifying prior required-check conclusions:** GitHub can treat a
+new `skipped` context as acceptable even if an earlier check failed. The PR
+labeler may skip description-only edits because it is not a required check;
+it still processes title and base changes. FastGate and Production Quality may reuse only the newest successful check on a body-only edit of the same open Ready PR, exact merge SHA, head/base SHA and refs, and proven workflow/Ready validation scope. Missing, ambiguous, failed, pending, cancelled, stale or legacy results without proof run the normal validation. Base retargets, source changes, Ready transitions, reopens and manual dispatch never reuse. The required context still reports its own result; Draft keeps its ordinary lightweight tier.
 The separate `/engine-coverage` PR comment invokes optional, diagnostic-only
 Engine coverage; FastGate never invokes coverage automatically. Content Build plans scope before
 npm install: Draft defers distribution builds, Ready `develop` selects impacted

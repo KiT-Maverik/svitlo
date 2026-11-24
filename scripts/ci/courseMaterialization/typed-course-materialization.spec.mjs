@@ -33,14 +33,12 @@ const meta = {
   number: 456,
   repo: 'KiT-Maverik/svitlo',
   actor: 'trusted',
-  reviewVerdict: 'accepted',
   head,
   branch: 'course/sky',
   textbookRoot: 'content/playground',
   courseId: id,
   sourcePath,
   sourceBlobSha,
-  reviewCommitSha: head,
 };
 
 const literal =
@@ -69,7 +67,7 @@ test('exactly one changed canonical typed Course root is required', () => {
     assert.throws(() => discoverTypedCourseSource(bad));
 });
 
-test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity PR description', async () => {
+test('Course source discovery ignores mutable PR description and pins HEAD/blob', async () => {
   const previous = globalThis.fetch;
   const oldRepo = process.env.GITHUB_REPOSITORY;
   const oldToken = process.env.GH_TOKEN;
@@ -77,11 +75,10 @@ test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity 
   process.env.GITHUB_REPOSITORY = meta.repo;
   process.env.GH_TOKEN = 'fixture-token';
   process.env.COURSE_DEFAULT_BRANCH = 'develop';
-  const row = '- Review evidence (v1): 4 | accepted | ' + head + ' | ' + sourceBlobSha;
   const pr = {
     state: 'open',
     draft: true,
-    body: row,
+    body: 'arbitrary editorial text',
     user: { login: 'trusted' },
     base: { ref: 'develop' },
     head: { sha: head, ref: meta.branch, repo: { full_name: meta.repo } },
@@ -98,17 +95,11 @@ test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity 
   };
   try {
     const verified = await inspectTypedCourse(456);
-    assert.equal(verified.reviewVerdict, 'accepted');
-    assert.equal(verified.reviewCommitSha, head);
-    for (const body of [
-      '',
-      row.replace(head, 'b'.repeat(40)),
-      row.replace(sourceBlobSha, 'c'.repeat(40)),
-      row + '\n' + row,
-      row.replace('accepted', 'rejected'),
-    ]) {
+    assert.equal(verified.sourceBlobSha, sourceBlobSha);
+    assert.equal(verified.head, head);
+    for (const body of ['', 'unchecked', '- [ ] Stage 4', 'rejected']) {
       pr.body = body;
-      await assert.rejects(inspectTypedCourse(456), /review evidence/i);
+      assert.deepEqual(await inspectTypedCourse(456), verified);
     }
   } finally {
     globalThis.fetch = previous;
@@ -123,7 +114,7 @@ test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity 
   }
 });
 
-test('typed meta binds PR, branch, review verdict, original SHA and canonical source path', () => {
+test('typed meta binds PR, branch, original SHA and canonical source path', () => {
   const original = process.env.GITHUB_REPOSITORY;
   const base = process.env.COURSE_DEFAULT_BRANCH;
   process.env.GITHUB_REPOSITORY = meta.repo;
@@ -133,11 +124,9 @@ test('typed meta binds PR, branch, review verdict, original SHA and canonical so
     assert.deepEqual(parseTypedMetadata(encode(meta)), meta);
     for (const bad of [
       { ...meta, head: 'b'.repeat(40) },
-      { ...meta, reviewCommitSha: 'b'.repeat(40) },
       { ...meta, sourcePath: '../etc/passwd' },
       { ...meta, actor: 'bad actor' },
       { ...meta, branch: 'develop' },
-      { ...meta, reviewVerdict: 'rejected' },
     ])
       assert.throws(() => parseTypedMetadata(encode(bad)));
   } finally {
@@ -178,7 +167,6 @@ function testManifest() {
     sourcePath,
     materializedPath,
     sourceBlobSha,
-    reviewCommitSha: head,
     courseId: id,
     publishable: false,
     files: [
@@ -229,7 +217,6 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
     sourcePath,
     materializedPath,
     sourceBlobSha: blob,
-    reviewCommitSha: commit,
     courseId: id,
     publishable: false,
     diagnostics: [],

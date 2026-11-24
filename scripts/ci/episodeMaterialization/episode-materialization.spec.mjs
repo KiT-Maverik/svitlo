@@ -249,7 +249,7 @@ test('trusted Stage 5 uses real renderers and semantic Engine checks; tree delet
   assert.equal(git('status', '--porcelain'), '');
   assert.equal(fs.readFileSync(path.join(dir, sourcePath), 'utf8'), completed());
 });
-test('stale review, dirty checkout, extra paths, existing target and symlink fail before Git writes', t => {
+test('stale pinned source, dirty checkout, extra paths, existing target and symlink fail before Git writes', t => {
   const { dir, meta, git, write } = gitFixture(t);
   assert.throws(() => prepareEpisode({ ...meta, head: 'b'.repeat(40) }, dir), /pinned/);
   assert.throws(() => prepareEpisode({ ...meta, sourceBlobSha: 'c'.repeat(40) }, dir), /Git tree/);
@@ -282,22 +282,16 @@ test('stale review, dirty checkout, extra paths, existing target and symlink fai
   assert.equal(fs.readFileSync(path.join(dir, sourcePath), 'utf8'), completed());
 });
 
-test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and current ancestry', async () => {
+test('Episode Stage 5 ignores editorial prose and verifies pinned blobs and current ancestry', async () => {
   const repo = 'KiT-Maverik/svitlo';
   const head = 'a'.repeat(40);
   const parentHead = 'b'.repeat(40);
-  const earlier = 'c'.repeat(40);
   const blob = 'd'.repeat(40);
-  const earlierBlob = 'e'.repeat(40);
-  const row = (stage, commit, sourceBlob) =>
-    '- Review evidence (v1): ' + stage + ' | accepted | ' + commit + ' | ' + sourceBlob;
-  const stage3 = row(3, earlier, earlierBlob);
-  const stage4 = row(4, head, blob);
-  const body = stage3 + '\n' + stage4;
+  const handoffBlob = 'e'.repeat(40);
+  const parentBlob = 'f'.repeat(40);
   const pr = {
     state: 'open',
     draft: true,
-    body,
     user: { login: 'owner' },
     head: { sha: head, ref: 'episode/one', repo: { full_name: repo } },
     base: { sha: parentHead, ref: 'course/sky', repo: { full_name: repo } },
@@ -305,72 +299,127 @@ test('Episode Stage 5 requires accepted Stage 3 and 4 evidence, pinned blobs and
   const parent = {
     state: 'open',
     head: { sha: parentHead, ref: 'course/sky', repo: { full_name: repo } },
-    base: { ref: 'develop' },
+    base: { ref: 'develop', repo: { full_name: repo } },
   };
   const previous = globalThis.fetch;
   const env = Object.fromEntries(
     ['GITHUB_REPOSITORY', 'COURSE_DEFAULT_BRANCH', 'GH_TOKEN'].map(key => [key, process.env[key]]),
   );
   Object.assign(process.env, { GITHUB_REPOSITORY: repo, COURSE_DEFAULT_BRANCH: 'develop', GH_TOKEN: 'fixture' });
-  let historicalBlob = earlierBlob;
   let ancestor = true;
-  let changeDuringDiscovery = false;
+  let files = [{ filename: sourcePath, status: 'modified' }];
+  let resourcePatch = {};
+  let prPatch = {};
+  let parentPatch = {};
+  let changeDuringDiscovery = {};
+  let changeParentDuringDiscovery = {};
   let prReads = 0;
+  let parentReads = 0;
   globalThis.fetch = async url => {
     const route = String(url).split('/repos/' + repo + '/')[1];
     let payload;
     if (route === 'pulls/810') {
       prReads++;
-      payload = { ...pr, body: changeDuringDiscovery && prReads % 2 === 0 ? stage3 : pr.body };
-    } else if (route === 'pulls/808') payload = parent;
-    else if (route === 'pulls/810/files?per_page=100') payload = [{ filename: sourcePath, status: 'modified' }];
+      payload = { ...pr, ...prPatch, ...(prReads % 2 === 0 ? changeDuringDiscovery : {}) };
+    } else if (route === 'pulls/808') {
+      parentReads++;
+      payload = { ...parent, ...parentPatch, ...(parentReads % 2 === 0 ? changeParentDuringDiscovery : {}) };
+    } else if (route === 'pulls/810/files?per_page=100') payload = files;
     else if (route === 'compare/' + parentHead + '...' + head)
-      payload = { status: 'ahead', merge_base_commit: { sha: parentHead } };
-    else if (route === 'compare/' + earlier + '...' + head)
-      payload = { status: ancestor ? 'ahead' : 'diverged', merge_base_commit: { sha: earlier } };
+      payload = { status: ancestor ? 'ahead' : 'diverged', merge_base_commit: { sha: ancestor ? parentHead : head } };
     else if (route.startsWith('contents/')) {
       const [filename, commit] = route.slice('contents/'.length).split('?ref=');
       payload = {
         type: 'file',
         path: filename,
         size: 100,
-        sha: commit === head ? blob : commit === earlier ? historicalBlob : 'f'.repeat(40),
+        sha: commit === head ? blob : filename === sourcePath ? handoffBlob : parentBlob,
+        ...resourcePatch,
       };
     } else throw Error('Unexpected GitHub API: ' + route);
     return { ok: true, status: 200, json: async () => payload };
   };
   try {
     const verified = await inspectEpisode(810, 808);
+    assert.equal(verified.sourceBlobSha, blob);
+    assert.equal(verified.handoffBlobSha, handoffBlob);
+    assert.equal(verified.parentBlobSha, parentBlob);
+    assert.equal(verified.head, head);
+    assert.equal(verified.parentHead, parentHead);
     const meta = { ...verified, actor: 'owner' };
     const encode = value => Buffer.from(JSON.stringify(value)).toString('base64');
     assert.deepEqual(parseEpisodeMetadata(encode(meta)), meta);
     assert.equal(sameMeta(verified, meta), true);
-    assert.equal(
-      sameMeta({ ...verified, reviews: verified.reviews.map(r => ({ ...r, blob: earlierBlob })) }, meta),
-      false,
-    );
-    assert.throws(() => parseEpisodeMetadata(encode({ ...meta, reviews: meta.reviews.slice(1) })), /Invalid pinned/);
-    for (const invalid of [
-      stage3,
-      stage4,
-      body + '\n' + stage3,
-      body.replace('accepted', 'rejected'),
-      body.replace(blob, earlierBlob),
-      body.replace(head, earlier),
-    ]) {
-      pr.body = invalid;
-      await assert.rejects(inspectEpisode(810, 808), /review evidence/i);
+    for (const key of ['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha']) {
+      assert.equal(sameMeta({ ...verified, [key]: 'c'.repeat(40) }, meta), false);
+      assert.throws(() => parseEpisodeMetadata(encode({ ...meta, [key]: 'invalid' })), /Invalid pinned/);
     }
-    pr.body = body;
-    historicalBlob = blob;
-    await assert.rejects(inspectEpisode(810, 808), /historical source blob/);
-    historicalBlob = earlierBlob;
-    ancestor = false;
-    await assert.rejects(inspectEpisode(810, 808), /ancestry order/);
-    ancestor = true;
-    changeDuringDiscovery = true;
+    for (const body of [
+      '',
+      'Unrelated prose',
+      '- [ ] Independent review',
+      '- Review evidence (v1): 4 | rejected | ' + head + ' | ' + blob,
+      '- Review evidence (v1): 4 | accepted | ' + parentHead + ' | ' + handoffBlob,
+    ]) {
+      pr.body = body;
+      parent.body = body;
+      assert.deepEqual(await inspectEpisode(810, 808, verified), verified);
+    }
     prReads = 0;
-    await assert.rejects(inspectEpisode(810, 808), /changed during review evidence/);
+    parentReads = 0;
+    changeDuringDiscovery = { body: 'Changed prose' };
+    changeParentDuringDiscovery = { body: 'Changed parent prose' };
+    assert.deepEqual(await inspectEpisode(810, 808, verified), verified);
+    changeDuringDiscovery = {};
+    changeParentDuringDiscovery = {};
+
+    await assert.rejects(inspectEpisode(810, 808, { ...verified, head: parentHead }), /HEAD changed/);
+    await assert.rejects(inspectEpisode(810, 808, { ...verified, parentHead: head }), /HEAD changed/);
+    ancestor = false;
+    await assert.rejects(inspectEpisode(810, 808), /exact current owning Course HEAD/);
+    ancestor = true;
+    files = [...files, { filename: 'README.md', status: 'modified' }];
+    await assert.rejects(inspectEpisode(810, 808), /modify only/);
+    files = [{ filename: sourcePath, status: 'modified' }];
+    for (const invalid of [
+      { sha: 'invalid' },
+      { size: 0 },
+      { size: 2 * 1024 * 1024 + 1 },
+      { type: 'symlink' },
+      { path: 'README.md' },
+    ]) {
+      resourcePatch = invalid;
+      await assert.rejects(inspectEpisode(810, 808), /Missing or invalid pinned source/);
+    }
+    resourcePatch = {};
+    for (const invalid of [
+      { draft: false },
+      { state: 'closed' },
+      { head: { ...pr.head, repo: { full_name: 'fork/svitlo' } } },
+      { base: { ...pr.base, sha: head } },
+      { base: { ...pr.base, ref: 'wrong/course' } },
+      { base: { ...pr.base, repo: { full_name: 'fork/svitlo' } } },
+    ]) {
+      prPatch = invalid;
+      await assert.rejects(inspectEpisode(810, 808), /same-repository Draft Episode PR/);
+    }
+    prPatch = {};
+    parentPatch = { state: 'closed' };
+    await assert.rejects(inspectEpisode(810, 808), /same-repository Draft Episode PR/);
+    parentPatch = {};
+    for (const invalid of [
+      { draft: false },
+      { head: { ...pr.head, sha: 'c'.repeat(40) } },
+      { base: { ...pr.base, sha: 'c'.repeat(40) } },
+    ]) {
+      prReads = 0;
+      changeDuringDiscovery = invalid;
+      await assert.rejects(inspectEpisode(810, 808), /changed during source discovery/);
+    }
+    changeDuringDiscovery = {};
+    parentReads = 0;
+    changeParentDuringDiscovery = { head: { ...parent.head, sha: 'c'.repeat(40) } };
+    await assert.rejects(inspectEpisode(810, 808), /changed during source discovery/);
   } finally {
     globalThis.fetch = previous;
     for (const [key, value] of Object.entries(env)) {

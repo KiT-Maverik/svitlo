@@ -55,7 +55,7 @@ export function checkReviewedFlashcardBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return checkBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }
@@ -70,7 +70,7 @@ export function writeReviewedFlashcardBankSource(
     snapshot: readBankGitSnapshot(git),
   });
   return commitBankGitPlan('flashcards', git, plan, {
-    reviewed: authorization.reviewed,
+    source: authorization.source,
     evaluatedInput: input,
   });
 }

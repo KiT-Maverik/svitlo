@@ -51,7 +51,7 @@ When auditing `scripts/` at the repository root or within a package, inspect eac
 - Validate the **current full supported-language set**, imports, typed exports, shallow Data/ID dependencies and available tests. Keep ID dictionaries independent of full Data; treat Skill/Group/Domain as strictly typed _classification_ entities without assessment or tracking fields. Distinguish a completed code file from build-time/global reference validation and future `fileLocation` registration; do not claim those features exist until verified.
 - Report what was changed, verified, not yet implemented, and blocked. Do not claim unexecuted tests passed.
 
-For a reviewed Lesson entering Stage 6, first follow [Create Lesson Flow](../skills/lesson-workflow/create-lesson-flow.skill.md) and its [trusted PR-command materialization runbook](../../scripts/ci/lessonMaterialization/README.md). Do not execute untrusted PR-head scripts or treat generated Lesson Section modules as permission to author independent banks.
+For every entity source materialization, preserve the boundary between editorial review and technical authorization: the explicit authorized command and valid pinned typed source are the entry conditions, not PR description/checklist/review verdict parsing. For a reviewed Lesson entering Stage 6, first follow [Create Lesson Flow](../skills/lesson-workflow/create-lesson-flow.skill.md) and its [trusted PR-command materialization runbook](../../scripts/ci/lessonMaterialization/README.md). Do not execute untrusted PR-head scripts or treat generated Lesson Section modules as permission to author independent banks.
 
 ## ROLE BOUNDARIES
 

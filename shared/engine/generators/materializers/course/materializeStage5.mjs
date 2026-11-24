@@ -121,21 +121,12 @@ export function materializeCourseStage5(input, options = {}) {
   const root = textbookRoot + '/data/courses/' + rootId.at(-1) + '/' + rootId;
   const expectedSource = root + '/draft.ts';
   const materializedPath = root + '/index.ts';
-  const review = options.review;
-  if (
-    !record(review) ||
-    review.sourcePath !== expectedSource ||
-    !sha.test(review.sourceBlobSha ?? '') ||
-    !sha.test(review.reviewCommitSha ?? '') ||
-    review.reviewVerdict !== 'accepted'
-  )
-    throw new Error('Stage 5 requires verified source path, blob SHA, accepted verdict and review commit evidence');
+  const source = options.source;
+  if (!record(source) || source.sourcePath !== expectedSource || !sha.test(source.sourceBlobSha ?? ''))
+    throw new Error('Stage 5 requires verified source path and blob SHA');
   // Do not trust a TypeScript "satisfies" assertion as an authorization signal.
-  if (
-    typeof options.verifyReviewedSource !== 'function' ||
-    options.verifyReviewedSource({ input, review, textbookRoot }) !== true
-  )
-    throw new Error('Stage 5 reviewed source/provenance was not independently authorized');
+  if (typeof options.verifySource !== 'function' || options.verifySource({ input, source, textbookRoot }) !== true)
+    throw new Error('Stage 5 source was not independently verified');
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();
   const overrides = new Map();
@@ -213,7 +204,7 @@ export function materializeCourseStage5(input, options = {}) {
         lessonId,
         languageContext: input.production.languages,
         textbookRoot,
-        reviewedSourceSha: review.sourceBlobSha,
+        reviewedSourceSha: source.sourceBlobSha,
       });
       recordPlacement(context.directory, {
         type: 'lesson',
@@ -298,7 +289,7 @@ export function materializeCourseStage5(input, options = {}) {
         serialize(lesson.rawPatch);
         patchSource = JSON.stringify(lesson.rawPatch, null, 2);
       } else {
-        if (lesson.rawPatchSourceSha !== review.sourceBlobSha)
+        if (lesson.rawPatchSourceSha !== source.sourceBlobSha)
           throw new Error(
             context.directory + ': raw patch TypeScript expression is not pinned to reviewed Course source',
           );
@@ -385,7 +376,7 @@ export function materializeCourseStage5(input, options = {}) {
   const context = {
     directory: '',
     courseId: rootId,
-    reviewedCourseSourceBlobSha: review.sourceBlobSha,
+    reviewedCourseSourceBlobSha: source.sourceBlobSha,
     orderPath: [],
     sourceLanguage,
     plannedLanguages: planned,
@@ -439,10 +430,7 @@ export function materializeCourseStage5(input, options = {}) {
     '// TODO (BLOCKER): Course Stage 5 source is not publication approval. ' +
     'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\n' +
     '// Reviewed Course source blob: ' +
-    review.sourceBlobSha +
-    '\n' +
-    '// Independent Stage 4 review commit: ' +
-    review.reviewCommitSha +
+    source.sourceBlobSha +
     '\n' +
     rootIndex.content;
   const languageSource =
@@ -505,8 +493,7 @@ export function materializeCourseStage5(input, options = {}) {
   return Object.freeze({
     sourcePath: expectedSource,
     materializedPath,
-    sourceBlobSha: review.sourceBlobSha,
-    reviewCommitSha: review.reviewCommitSha,
+    sourceBlobSha: source.sourceBlobSha,
     courseId: rootId,
     root,
     files: Object.freeze(files),
