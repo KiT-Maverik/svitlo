@@ -52,7 +52,10 @@ test('registered Scene is not marked unimplemented but keeps its temporary speci
     registered: true,
     production: { specification: '# Reviewed' },
   });
-  assert.deepEqual(result.diagnostics.map(d => d.code), ['pending-temporary-specification']);
+  assert.deepEqual(
+    result.diagnostics.map(d => d.code),
+    ['pending-temporary-specification'],
+  );
   assert.doesNotMatch(result.files[0]!.content, /TODO \(BLOCKER\): Implement and register Scene/);
   assert.match(result.files[0]!.content, /TODO \(BLOCKER\): Remove the temporary Scene specification/);
 });
@@ -160,7 +163,10 @@ test('one shared Scene draft template emits six parseable files with inert compl
 test('standalone Scene without TSX stores complete reviewed specification in index.ts, never a sidecar', () => {
   const reviewed = context().production.specification;
   const result = materializeScene(scene(), context());
-  assert.deepEqual(result.files.map(file => file.path), ['content/items/activity/index.ts']);
+  assert.deepEqual(
+    result.files.map(file => file.path),
+    ['content/items/activity/index.ts'],
+  );
   assert.match(result.files[0]!.content, /# specification/);
   assert(result.files[0]!.content.includes('# Verified scene'));
   assert(result.files[0]!.content.includes('Use the approved interaction.'));
