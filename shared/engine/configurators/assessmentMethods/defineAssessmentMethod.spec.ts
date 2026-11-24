@@ -7,10 +7,10 @@ import { defineAssessmentMethod } from './defineAssessmentMethod';
 describe('Configurators', () => {
   describe('AssessmentMethods', () => {
     describe('defineAssessmentMethod', () => {
-      const method = defineAssessmentMethod<'oralExamination', ['en', 'uk']>({
+      const method = defineAssessmentMethod<'retrieval', ['en', 'uk']>({
         id: 'b775647f-203d-481a-a1c7-4d331c779d06',
-        slug: 'oralExamination',
-        title: { en: 'Oral examination', uk: 'Усне опитування' },
+        slug: 'retrieval',
+        title: { en: 'Retrieval', uk: 'Усне опитування' },
         description: { en: 'Discuss a concept aloud.', uk: 'Поясни поняття вголос.' },
       });
 
@@ -18,14 +18,14 @@ describe('Configurators', () => {
         const result = method.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(result.base, {
           id: 'b775647f-203d-481a-a1c7-4d331c779d06',
-          slug: 'oralExamination',
+          slug: 'retrieval',
         });
         assert.deepEqual(result.locale?.uk, {
           title: 'Усне опитування',
           description: 'Поясни поняття вголос.',
         });
         assert.deepEqual(result.locale?.en, {
-          title: 'Oral examination',
+          title: 'Retrieval',
           description: 'Discuss a concept aloud.',
         });
         assert.equal(JSON.stringify(result).includes('build'), false);

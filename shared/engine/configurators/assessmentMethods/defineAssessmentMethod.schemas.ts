@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { assessmentMethodSlug_Schema } from '../questions/assessmentMethod.schemas';
 
 import { localizationSwitch } from '../contentBlocks/contentBlock.schemas';
 
@@ -7,7 +8,7 @@ function createAssessmentMethodSchema<Mode extends keyof typeof localizationSwit
 
   return z.object({
     id: z.uuid(),
-    slug: z.string().min(1),
+    slug: assessmentMethodSlug_Schema,
     description: localized,
     title: localized,
   });

@@ -1,4 +1,5 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -30,7 +31,7 @@ const project = (source: DeepPartial<Pick<AssessmentMethod_Config, 'title' | 'de
 
 /** One canonical Props publication method; no contextual overrides. */
 export type AssessmentMethod_Configurator<
-  Slug extends string = string,
+  Slug extends AssessmentMethodSlug = AssessmentMethodSlug,
   Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
@@ -45,7 +46,7 @@ export type AssessmentMethod_Configurator<
 
 /** Assessment method descriptions and labels retain their authored semantics. */
 export function defineAssessmentMethod<
-  const Slug extends string,
+  const Slug extends AssessmentMethodSlug,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>,
