@@ -6,6 +6,7 @@
 import { isDeepStrictEqual } from 'node:util';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { code_Config_Schema, type ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode';
 
 export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> & {
@@ -182,7 +183,7 @@ export function materializeCode(config: CodeDraftConfig, options: CodeMaterializ
   const expressions: Record<string, string> = {};
   const imports = ['defineCode'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for code ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for code ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -223,7 +224,7 @@ export function materializeCode(config: CodeDraftConfig, options: CodeMaterializ
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

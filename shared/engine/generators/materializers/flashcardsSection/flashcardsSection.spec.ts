@@ -126,10 +126,10 @@ test('flashcards: reviewed specification is kept beside the temporary implementa
   });
   const source = result.files.find(file => file.path === 'index.ts')!.content;
   assert.match(source, /TODO \(BLOCKER\): Implement reviewed Flashcards Section/);
-  assert.match(source, /\/\/ BEGIN REVIEWED FLASHCARDS SPECIFICATION/);
-  assert.match(source, /\/\/ Design interaction with keyboard support\./);
-  assert.match(source, /\/\/ Provide a nonvisual alternative\./);
-  assert.match(source, /\/\/ END REVIEWED FLASHCARDS SPECIFICATION/);
+  assert.match(source, /\/\*\n \* TODO \(BLOCKER\): Implement reviewed Flashcards Section/);
+  assert.match(source, / \* Design interaction with keyboard support\./);
+  assert.match(source, / \* Provide a nonvisual alternative\./);
+  assert.match(source, / \*\/\nexport const/);
   assert.equal((source.match(/TODO \(BLOCKER\)/g) ?? []).length, 1);
   assert.ok(result.files.every(file => !file.path.endsWith('specification.md')));
   assert.deepEqual(config.params.selection.flashcardIds, []);
