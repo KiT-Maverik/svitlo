@@ -9,6 +9,7 @@ import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuth
 import { projectTextbookMedia, assertMediaPublicationReady } from '@svitlo/engine/build';
 import { renderCourseFiles } from '../../generators/courses/publishCourseData.mjs';
 import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
+import { scanSource } from '../../../../scripts/ci/checkBlockerTodos/check-blocker-todos.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] [--draft] --write|--check|--preflight';
@@ -94,7 +95,7 @@ export function checkCourseSourceReadiness(source, mode) {
         if (item.name === 'draft.ts') pending.push(path.relative(root, file) + ': editorial source not materialized');
         else {
           const text = fs.readFileSync(file, 'utf8');
-          if (/^\s*\/\/\s*TODO \(BLOCKER\):/m.test(text))
+          if (scanSource(file, text).some(hit => hit.text.includes('TODO (BLOCKER):')))
             pending.push(path.relative(root, file) + ': unresolved production blocker');
         }
       }
