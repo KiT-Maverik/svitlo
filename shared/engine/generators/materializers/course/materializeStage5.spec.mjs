@@ -259,6 +259,32 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.equal(result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath, root + '/index.ts');
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
+test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
+  const input = patchedSource();
+  const original = input.config.content.items.directLesson;
+  input.config.content.items.secondLesson = {
+    config: { ...original.config, slug: 'secondLesson' },
+    production: {
+      ...original.production,
+      existing: { id: reusedLessonId },
+      sourcePatch: undefined,
+      overrideRationale: undefined,
+    },
+  };
+  input.config.content.order.push('secondLesson');
+  const result = materializeCourseStage5(input, reuseOptions());
+  const references = result.inventory.lessons.filter(row => row.id === reusedLessonId);
+  assert.deepEqual(references.map(row => row.kind), ['overridden', 'reused']);
+  assert.deepEqual(references.map(row => row.placementSourcePath), [root + '/index.ts', root + '/index.ts']);
+  assert.equal(references[0].sourcePath, references[1].sourcePath);
+  assert.equal(result.files.some(file => file.path === root + '/content/secondLesson/index.ts'), false);
+  const index = result.files.find(file => file.path === root + '/index.ts').content;
+  assert.match(index, /"directLesson": placeLesson\(child_directLesson, \{/);
+  assert.match(index, /"secondLesson": child_secondLesson/);
+  assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
+  assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
+});
+
 test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
   const stale = patchedSource();
   delete stale.config.content.items.directLesson.production.sourcePatch;
