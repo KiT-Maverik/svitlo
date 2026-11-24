@@ -15,6 +15,9 @@ concurrency:
 jobs:
   verify:
     name: FastGate / verify
+    # An edited PR event also fires for description-only changes. Recheck only
+    # when the target branch changes; new commits and Ready use other events.
+    if: github.event_name != 'pull_request' || github.event.action != 'edited' || github.event.changes.base != null
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
