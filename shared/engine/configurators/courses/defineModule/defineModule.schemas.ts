@@ -13,6 +13,9 @@ import { lesson_Props_Schema } from '../../lessons/defineLesson/defineLesson.sch
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
 import type { Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
 import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import { assessment_Props_Schema } from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
+import type { Assessment_Props } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
@@ -27,8 +30,8 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
 });
 export type Module_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-export type Module_Child = ConfiguratorChild<Chapter_Configurator | Lesson_Configurator | Episode_Configurator>;
-export type Module_Child_Props = Chapter_Props | Lesson_Props | Episode_Props;
+export type Module_Child = ConfiguratorChild<Chapter_Configurator | Lesson_Configurator | Episode_Configurator | Assessment_Configurator>;
+export type Module_Child_Props = Chapter_Props | Lesson_Props | Episode_Props | Assessment_Props;
 
 export const module_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
@@ -64,6 +67,6 @@ export type Module_Overrides<
 
 export const module_Props_Schema = identity.extend({
   ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema])),
+  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema, assessment_Props_Schema])),
 });
 export type Module_Props = z.infer<typeof module_Props_Schema>;
