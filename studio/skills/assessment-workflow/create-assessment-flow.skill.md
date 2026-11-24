@@ -8,6 +8,10 @@ One Assessment belongs to one Course and one reserved ordered placement. Reuse i
 
 Follow the [canonical Assessment source layout](../../docs/entities/assessment.md#canonical-source-layout). Use the exact reserved placement under the Course tree, appending `content/<slug>/` at each level. The entity-owned `draft.ts` and final `index.ts` share this directory. Course Stage 5 initially emits only the inline placeholder in the immediate parent's configurator. Full materialization replaces that exact placeholder with the relative child import and emits slug-named Section/Block folders using the existing materializers. Never relocate a nested Assessment to a global directory.
 
+## Relationship to the ten-stage Course Workflow
+
+Course **Stage 6 Verify Questions Readiness** identifies real Lesson-owned Question Banks needed by Course-owned evaluations. Course **Stage 7 Design Assessments** applies only when at least one Course/Module/Chapter Assessment is required or placed. It coordinates approved independent Assessment design via this eight-stage flow, preserving the actual UUID, path, selected Questions and separately authorized child PR. If all parent owners explicitly opt out and there are no Assessment slots, record Course Stage 7 **Skipped** at a verified source SHA in the **Course PR**, and do **not** create an Assessment PR. This does not skip any stage of an existing Assessment. Course Stages 8–9 handle only Course-owned translations; Stage 10 requires independent Assessment completion and human integrated QA before the Course may pass.
+
 ## Stages
 
 1. **Design Assessment — Methodologist + Learning Assessment Architect.** Verify Course-approved purpose, placement, dependencies (including additional Lessons), actual completed upstream Lesson and reviewed bank sources, target Skills, scope, evidence and accessible assessment strategy. Author typed Stage 1 at the canonical Assessment-owned draft path. Do not duplicate upstream methodology or create banks.
