@@ -9,7 +9,7 @@ import Module from 'node:module';
 import { buildSync } from 'esbuild';
 import YAML from 'yaml';
 import { fileURLToPath } from 'node:url';
-import { discoverTypedCourseSource, selectStage4Review, parseTypedMetadata } from './typed-course-gate.mjs';
+import { discoverTypedCourseSource, inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import {
   parseCanonicalCourseSource,
   buildTypedCourseManifest,
@@ -33,7 +33,7 @@ const meta = {
   number: 456,
   repo: 'KiT-Maverik/svitlo',
   actor: 'trusted',
-  reviewer: 'reviewer',
+  reviewVerdict: 'accepted',
   head,
   branch: 'course/sky',
   textbookRoot: 'content/playground',
@@ -41,7 +41,6 @@ const meta = {
   sourcePath,
   sourceBlobSha,
   reviewCommitSha: head,
-  evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/456#pullrequestreview-42',
 };
 
 const literal =
@@ -70,32 +69,61 @@ test('exactly one changed canonical typed Course root is required', () => {
     assert.throws(() => discoverTypedCourseSource(bad));
 });
 
-test('Stage 4 requires independent actual APPROVED review, exact SHA and write access', () => {
-  const review = {
-    id: 42,
-    user: { login: 'reviewer' },
-    state: 'APPROVED',
-    commit_id: head,
-    html_url: meta.evidenceUrl,
+test('Course Stage 4 uses accepted exact HEAD and blob evidence from the entity PR description', async () => {
+  const previous = globalThis.fetch;
+  const oldRepo = process.env.GITHUB_REPOSITORY;
+  const oldToken = process.env.GH_TOKEN;
+  const oldBranch = process.env.COURSE_DEFAULT_BRANCH;
+  process.env.GITHUB_REPOSITORY = meta.repo;
+  process.env.GH_TOKEN = 'fixture-token';
+  process.env.COURSE_DEFAULT_BRANCH = 'develop';
+  const row = '- Review evidence (v1): 4 | accepted | ' + head + ' | ' + sourceBlobSha;
+  const pr = {
+    state: 'open',
+    draft: true,
+    body: row,
+    user: { login: 'trusted' },
+    base: { ref: 'develop' },
+    head: { sha: head, ref: meta.branch, repo: { full_name: meta.repo } },
   };
-  const pr = { head: { sha: head }, user: { login: 'author' } };
-  assert.deepEqual(selectStage4Review([review], pr, { reviewer: 'write' }), review);
-  assert.throws(() => selectStage4Review([review], pr, { reviewer: 'read' }), /APPROVED/);
-  assert.throws(
-    () => selectStage4Review([{ ...review, commit_id: 'b'.repeat(40) }], pr, { reviewer: 'write' }),
-    /APPROVED/,
-  );
-  assert.throws(
-    () => selectStage4Review([review], { ...pr, user: { login: 'reviewer' } }, { reviewer: 'write' }),
-    /APPROVED/,
-  );
-  assert.throws(
-    () => selectStage4Review([review, { ...review, id: 43, state: 'CHANGES_REQUESTED' }], pr, { reviewer: 'write' }),
-    /change request/,
-  );
+  globalThis.fetch = async url => {
+    const route = url.split('/repos/' + meta.repo + '/')[1];
+    let payload;
+    if (route === 'pulls/456') payload = pr;
+    else if (route.startsWith('pulls/456/files?')) payload = [{ filename: sourcePath, status: 'modified' }];
+    else if (route === 'contents/' + sourcePath + '?ref=' + head)
+      payload = { type: 'file', path: sourcePath, sha: sourceBlobSha, size: 100 };
+    else throw Error('Unexpected GitHub API: ' + route);
+    return { ok: true, status: 200, json: async () => payload };
+  };
+  try {
+    const verified = await inspectTypedCourse(456);
+    assert.equal(verified.reviewVerdict, 'accepted');
+    assert.equal(verified.reviewCommitSha, head);
+    for (const body of [
+      '',
+      row.replace(head, 'b'.repeat(40)),
+      row.replace(sourceBlobSha, 'c'.repeat(40)),
+      row + '\n' + row,
+      row.replace('accepted', 'rejected'),
+    ]) {
+      pr.body = body;
+      await assert.rejects(inspectTypedCourse(456), /review evidence/i);
+    }
+  } finally {
+    globalThis.fetch = previous;
+    for (const [key, value] of Object.entries({
+      GITHUB_REPOSITORY: oldRepo,
+      GH_TOKEN: oldToken,
+      COURSE_DEFAULT_BRANCH: oldBranch,
+    })) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
+  }
 });
 
-test('typed meta binds PR, branch, reviewer, original SHA and canonical source path', () => {
+test('typed meta binds PR, branch, review verdict, original SHA and canonical source path', () => {
   const original = process.env.GITHUB_REPOSITORY;
   const base = process.env.COURSE_DEFAULT_BRANCH;
   process.env.GITHUB_REPOSITORY = meta.repo;
@@ -109,7 +137,7 @@ test('typed meta binds PR, branch, reviewer, original SHA and canonical source p
       { ...meta, sourcePath: '../etc/passwd' },
       { ...meta, actor: 'bad actor' },
       { ...meta, branch: 'develop' },
-      { ...meta, evidenceUrl: 'https://invalid.test/approval' },
+      { ...meta, reviewVerdict: 'rejected' },
     ])
       assert.throws(() => parseTypedMetadata(encode(bad)));
   } finally {

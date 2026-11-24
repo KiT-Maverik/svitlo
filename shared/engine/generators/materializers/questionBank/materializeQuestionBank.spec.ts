@@ -109,7 +109,6 @@ const finalAuth = (input: unknown = completeBank()) => ({
   ownerLessonId: lessonId,
   reviewed: {
     approved: true as const,
-    reviewer: 'Qualified independent reviewer',
     content: editorial,
     blobSha: gitBlobSha(editorial),
     reviewedSourceBlobSha: gitBlobSha(editorial),

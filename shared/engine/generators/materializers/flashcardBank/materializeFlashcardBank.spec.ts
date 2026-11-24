@@ -72,7 +72,6 @@ const finalAuthorization = (input: unknown = completed()) => ({
   snapshot: snapshot(editor),
   reviewed: {
     approved: true as const,
-    reviewer: 'Independent memory-design reviewer',
     content: editor,
     blobSha: gitBlobSha(editor),
     reviewedSourceBlobSha: gitBlobSha(editor),

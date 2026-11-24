@@ -34,7 +34,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-      issues: read
     outputs:
       meta: ${{ steps.gate.outputs.meta }}
       pr: ${{ steps.gate.outputs.pr }}
@@ -62,7 +61,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-      issues: read
     outputs:
       report_sha256: ${{ steps.analysis.outputs.report_sha256 }}
     steps:
@@ -113,7 +111,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: read
-      issues: read
     steps:
       - name: Check out pinned trusted publisher with no dependencies
         uses: actions/checkout@v4

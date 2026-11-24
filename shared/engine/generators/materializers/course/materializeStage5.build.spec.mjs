@@ -141,8 +141,7 @@ test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck
       sourcePath: root + '/draft.ts',
       sourceBlobSha: '1'.repeat(40),
       reviewCommitSha: '2'.repeat(40),
-      reviewer: 'Course Methodologist',
-      evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/787',
+      reviewVerdict: 'accepted',
     },
     verifyReviewedSource: () => true,
   });

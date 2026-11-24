@@ -240,8 +240,7 @@ seven stages in the PR body, with:
 
 - Lesson UUID, parent Lesson PR, source language, supported languages,
   exact Lesson/Questions source SHA and branch relationships.
-- Current stage, precise next action, blocker, independent review SHA
-  and approval, with links to real work.
+- Current stage, precise next action, blockers and Stage 4 review evidence using the [canonical independent review rule](../../rules/independent-review.md), with links to real work.
 - Full bank path/UUID inventory and evidence matrix, per-Quiz Section
   UUID/path/placement and selected Question UUIDs, and confirmation
   that unselected Questions remain in the published full bank.

@@ -431,8 +431,7 @@ export function buildTypedCourseManifest(meta, plan) {
     sourceBlobSha: meta.sourceBlobSha,
     materializedPath: plan.materializedPath,
     reviewCommitSha: meta.reviewCommitSha,
-    reviewer: meta.reviewer,
-    evidenceUrl: meta.evidenceUrl,
+    reviewVerdict: meta.reviewVerdict,
     publishable: false,
     diagnostics: plan.diagnostics,
     inventory: plan.inventory,
@@ -465,8 +464,7 @@ async function main() {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
       reviewCommitSha: meta.reviewCommitSha,
-      reviewer: meta.reviewer,
-      evidenceUrl: meta.evidenceUrl,
+      reviewVerdict: meta.reviewVerdict,
     },
     verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
       candidate === input &&

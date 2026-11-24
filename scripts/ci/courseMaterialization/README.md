@@ -8,11 +8,10 @@ To exercise the staged path on an open same-repository **Draft Course PR**:
 choose **Actions → Stage typed Course materialization (manual rollout)** and
 supply pr_number. The gate requires a single changed canonical
 content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
-the current source blob SHA, an independent contributor with
-write/maintain/admin access who submitted a formal **APPROVED GitHub review
-at that exact PR HEAD**, and a write-authorized invoking actor. The source
-review and authorization are separate; TypeScript satisfies alone never
-grants approval. If approval is stale or withdrawn, refuse.
+the current source blob SHA, accepted Stage 4 evidence in the Course PR
+description using the [canonical independent review rule](../../../studio/rules/independent-review.md),
+and a write-authorized invoking actor. Review and command authorization are
+separate. Missing, rejected, duplicate or stale evidence fails closed.
 
 The **read-only analyze job** parses the Course PR TypeScript through trusted
 TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
@@ -45,7 +44,7 @@ contracts as virtual in-memory files before manifest creation and again
 before a privileged write.
 
 The read-only job writes a bounded artifact containing the complete generated
-file set, exact UTF-8 bytes and SHA-256 hashes, source blob, reviewer and
+file set, exact UTF-8 bytes and SHA-256 hashes, source blob, review verdict and
 review commit. **Only trusted default-branch scripts** execute in both jobs.
 Candidate TS is not imported, compiled to executable JS, or evaluated —
 including in the privileged publisher. The publisher rechecks the actor and

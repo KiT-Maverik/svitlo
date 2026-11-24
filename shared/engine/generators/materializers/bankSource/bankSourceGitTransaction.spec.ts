@@ -72,7 +72,6 @@ function reviewed(kind: BankGitKind, original: string, context: BankGitContext) 
   return {
     reviewed: {
       approved: true as const,
-      reviewer: 'Independent expert',
       content: original,
       blobSha: gitBlobSha(original),
       reviewedSourceBlobSha: gitBlobSha(original),

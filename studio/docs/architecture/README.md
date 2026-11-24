@@ -16,7 +16,7 @@
 - **Lesson:** Typed Stage 1/2 source followed by independent Stages 3–5 review and trusted Stage 6.1 Section/Block/Scene source handoff. Resource completion (6.2), executable Scenes (6.3), independent banks and locales are separate gates.
 - **Questions/Flashcards:** Separate seven-stage typed bank sources and reviewed Stage 5 Git transactions. The full bank is independent of optional selected Quiz/Flashcards Sections; only genuine reviewed Configurator IDs may be published.
 - **Source vs publication:** Concrete type-specific source renderers and root orchestrators consume the reviewed editorial draft, emit valid modular TypeScript and delete the consumed draft atomically. Git history preserves review evidence. Historical YAML is provenance, not an executable authoring input.
-- **Deployment boundary:** Typed trusted GitHub workflows must be present on default `develop` and exercised on safe reviewed PRs before claiming live availability. A successful integration PR test does not establish deployed command functionality. Preserve SHA/reviewer proof, branch-lease, no-clobber, path safety and fail-closed production guards.
+- **Deployment boundary:** Typed trusted GitHub workflows must be present on default `develop` and exercised on safe reviewed PRs before claiming live availability. A successful integration PR test does not establish deployed command functionality. Preserve [SHA-pinned review evidence](../../rules/independent-review.md), branch-lease, no-clobber, path safety and fail-closed production guards.
 
 ## Required reading by responsibility
 

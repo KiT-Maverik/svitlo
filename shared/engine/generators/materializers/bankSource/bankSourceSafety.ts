@@ -45,7 +45,6 @@ export type BankReviewedSource = {
   blobSha: string;
   /** Authenticated independent-review evidence; never derived from input Config. */
   approved: true;
-  reviewer: string;
   reviewedSourceBlobSha: string;
   /** Trusted evaluation of exact reviewed Stage 3 TS, hashed after validation. */
   reviewedInputSha256: string;
@@ -224,7 +223,6 @@ export function preflightBankSource(
     assertBankSha(reviewed.blobSha, 'Stage 3 source');
     assertBankSha(reviewed.reviewedSourceBlobSha, 'approved reviewed source');
     assertBankSha(reviewed.reviewCommitSha, 'review revision');
-    assertBankStatement(reviewed.reviewer, 'independent reviewer');
     if (
       reviewed.approved !== true ||
       reviewed.reviewCommitSha !== snapshot.expectedHeadSha ||

@@ -41,8 +41,14 @@ export function typedMeta(encoded = process.env.LESSON_TYPED_META_B64) {
     !Array.isArray(info.reviews) ||
     info.reviews.length !== 3 ||
     !info.reviews.every(
-      item => [3, 4, 5].includes(item.stage) && sha.test(item.commit || '') && sha.test(item.blob || ''),
-    )
+      (item, index) =>
+        item.stage === index + 3 &&
+        item.verdict === 'accepted' &&
+        sha.test(item.commit || '') &&
+        sha.test(item.blob || ''),
+    ) ||
+    info.reviews[2].commit !== info.head ||
+    info.reviews[2].blob !== info.sourceBlob
   )
     throw Error('Malformed typed Lesson authorization snapshot');
   return info;
