@@ -110,7 +110,8 @@ function assertCourseInventory(manifest, meta, entries) {
    * never to a shadow Lesson re-export or draft handoff. */
   function expectedParent(row) {
     const parts = row.placementPath.slice(root.length + 1).split('/');
-    const parent = (parts.at(-2) === 'content' ? parts.slice(0, -2) : parts.slice(0, -1)).join('/');
+    // The Assessment kind, not an ambiguous parent slug, selects the extra segment.
+    const parent = parts.slice(0, row.type === 'assessment' ? -2 : -1).join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   }
   function parentSource(row) {

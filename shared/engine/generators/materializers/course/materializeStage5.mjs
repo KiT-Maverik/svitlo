@@ -130,9 +130,11 @@ export function materializeCourseStage5(input, options = {}) {
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();
   const diagnostics = [];
-  const parentIndex = directory => {
+  const parentIndex = (directory, kind) => {
     const parts = directory.split('/');
-    const parent = (parts.at(-2) === 'content' ? parts.slice(0, -2) : parts.slice(0, -1)).join('/');
+    // Only Assessment inserts an extra /content/ segment before its slot.
+    // An ordinary Module or Chapter placement is allowed to be named "content".
+    const parent = parts.slice(0, kind === 'assessment' ? -2 : -1).join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   };
   const deriveId = (kind, directory) => {
@@ -208,7 +210,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: 'pending-lesson-stage1',
         sourcePath: result.files[0].path,
-        placementSourcePath: parentIndex(context.directory),
+        placementSourcePath: parentIndex(context.directory, 'lesson'),
       });
       return result;
     }
@@ -314,7 +316,7 @@ export function materializeCourseStage5(input, options = {}) {
         '/' +
         existing.id.toLowerCase() +
         '/index.ts',
-      placementSourcePath: parentIndex(context.directory),
+      placementSourcePath: parentIndex(context.directory, 'lesson'),
       sourceSha: lesson.sourceSha,
       sourceExportName: lesson.exportName,
     });
@@ -355,7 +357,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
         sourcePath: root + '/' + source.path,
-        placementSourcePath: parentIndex(directory),
+        placementSourcePath: parentIndex(directory, 'episode'),
       });
       return result;
     },
@@ -377,7 +379,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: 'pending-assessment-design',
         sourcePath: root + '/' + directory + '/draft.ts',
-        placementSourcePath: parentIndex(directory),
+        placementSourcePath: parentIndex(directory, 'assessment'),
         lessonDependencies: dependencies,
       });
       return result;
