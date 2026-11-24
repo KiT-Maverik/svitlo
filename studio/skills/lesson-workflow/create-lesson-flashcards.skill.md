@@ -98,6 +98,6 @@ An **independent linguistic reviewer** (different agent/context) uses actual sou
 - Stage 1 is **bank analysis**, never a fake complete `defineFlashcard`.
 - Stage 2 is reviewed source-language Card inventory, actual immutable Card/Block UUIDs, Source Config, flags **array** and one relationship edge graph.
 - Stage 3 separately chooses Section `selected` or `notApplicable`, with bank intact.
-- Stage 4 independent Memory Review pins source SHA; Stage 5 materialization must not precede it.
+- Stage 4 independent Memory Review records the reviewed source SHA in the editorial workflow. Stage 5 technical eligibility depends on authorized invocation and valid pinned source, not a machine-readable Stage 4 verdict.
 - Stages 6 and 7 cover **all** bank Cards/locales and independent linguistic review in the **same PR**.
 - No second YAML/Markdown editor, new Stage 4 Config, fabricated asset/Question reference, extra PR or publication shortcut is valid.
