@@ -314,8 +314,8 @@ async function analyze(meta) {
   const { readTypedBankStage3, typecheckTypedBankStage3 } = await import('./bank-typed-stage3.mjs');
   const input = readTypedBankStage3(source, meta.bank);
   typecheckTypedBankStage3(source, trustedRoot);
-  // Only reviewed, SHA-pinned Git bytes and the independently approved
-  // Stage 3 source may authorize concrete media/Scene blocks.
+  // Only SHA-pinned Git bytes and the validated Stage 3 source can
+  // establish technical media/Scene evidence.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
     root,
