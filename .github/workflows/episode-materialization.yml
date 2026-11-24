@@ -141,9 +141,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install trusted inert handoff parser dependencies (no lifecycle scripts)
-        working-directory: trusted
-        run: npm ci --ignore-scripts --no-audit --no-fund
       - uses: actions/download-artifact@v4
         with:
           name: episode-stage5-${{ github.run_id }}
