@@ -177,21 +177,6 @@ export const questionBankWorkflowStage3_Schema = z.strictObject({
   }),
 });
 
-const flashcardQuestionPrerequisite_Schema = z.discriminatedUnion('kind', [
-  z.strictObject({
-    kind: z.literal('completed'),
-    sourceSha: sha,
-    reviewSha: sha,
-    bankPath: nonempty,
-    integrated: z.literal(true),
-  }),
-  z.strictObject({
-    kind: z.literal('notApplicable'),
-    rationale: nonempty,
-    methodologySourceSha: sha,
-    parentLessonPr: z.number().int().positive(),
-  }),
-]);
 const lesson_Schema = z.strictObject({
   id: z.uuid(),
   sourceSha: sha,
@@ -250,7 +235,6 @@ export const flashcardBankWorkflowStage3_Schema = z.strictObject({
   }),
   production: z.strictObject({
     lesson: lesson_Schema,
-    questions: flashcardQuestionPrerequisite_Schema,
     analysis: z.strictObject({
       recallObjectives: z.array(nonempty).nonempty().readonly(),
       sourceFactsAndConcepts: z.array(z.string()).readonly(),

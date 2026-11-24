@@ -25,10 +25,6 @@ export type SourceRenderResult = {
 export type CourseStage5Source = {
   sourcePath: string;
   sourceBlobSha: string;
-  reviewCommitSha: string;
-  reviewVerdict: 'accepted';
-  reviewer?: string;
-  evidenceUrl?: string;
 };
 export type ExistingLesson = {
   id: string;
@@ -39,7 +35,6 @@ export type ExistingLesson = {
   configurator: Lesson_Configurator;
   /** Original raw Lesson Build expression corresponding to reviewed built sparse output. */
   rawPatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
-  /** Source-authored raw patch expression (for nested Configurator references). */
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;

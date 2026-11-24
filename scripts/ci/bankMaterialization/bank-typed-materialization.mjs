@@ -321,9 +321,9 @@ async function analyze(meta) {
     plan.publishable !== false ||
     !Array.isArray(plan.files) ||
     !plan.transition ||
-    plan.transition.reviewedDraftPath !== meta.bank + '/draft.ts' ||
+    plan.transition.sourceDraftPath !== meta.bank + '/draft.ts' ||
     plan.transition.materializedPath !== meta.bank + '/index.ts' ||
-    plan.transition.reviewedDraftBlobSha !== meta.sourceBlob ||
+    plan.transition.sourceDraftBlobSha !== meta.sourceBlob ||
     plan.transition.expectedHeadSha !== meta.head
   )
     throw Error('Isolated Bank did not return the approved source transition');
@@ -340,7 +340,7 @@ async function analyze(meta) {
     ts: require('typescript'),
   });
   const approval = authorizations(meta, input, root, blocks);
-  if (approval.reviewed.content !== pinnedSource || approval.reviewed.blobSha !== meta.sourceBlob)
+  if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
     throw Error('Bank input differs from pinned reviewed source');
   const files = plan.files
     .map(file => {
@@ -357,7 +357,7 @@ async function analyze(meta) {
     version: 3,
     meta,
     deletedSource: { path: meta.sourcePath, blobSha: meta.sourceBlob },
-    inputSha256: approval.reviewed.reviewedInputSha256,
+    inputSha256: approval.source.inputSha256,
     files,
   };
   verifyTypedManifest(reportData, meta);

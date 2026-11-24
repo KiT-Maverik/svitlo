@@ -100,7 +100,6 @@ export function buildTypedCourseManifest(meta, plan) {
     !plan ||
     plan.sourcePath !== meta.sourcePath ||
     plan.sourceBlobSha !== meta.sourceBlobSha ||
-    plan.reviewCommitSha !== meta.reviewCommitSha ||
     plan.courseId !== meta.courseId ||
     plan.publishable !== false ||
     !Array.isArray(plan.files) ||
@@ -140,8 +139,6 @@ export function buildTypedCourseManifest(meta, plan) {
     sourcePath: meta.sourcePath,
     sourceBlobSha: meta.sourceBlobSha,
     materializedPath,
-    reviewCommitSha: meta.reviewCommitSha,
-    reviewVerdict: meta.reviewVerdict,
     publishable: false,
     diagnostics: plan.diagnostics,
     inventory: plan.inventory,

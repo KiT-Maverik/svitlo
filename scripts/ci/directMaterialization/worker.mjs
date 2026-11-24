@@ -72,15 +72,11 @@ const approvedBlockIdentifiers = input => {
 const bankOptions = input => {
   capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
-  const reviewed = {
-    approved: true,
+  const sourceAuthorization = {
     content: sourceText,
     blobSha: source.sourceBlobSha,
-    reviewedSourceBlobSha: source.sourceBlobSha,
-    reviewCommitSha: source.sourceCommitSha,
-    reviewedInputSha256: createHash('sha256')
-      .update(JSON.stringify(input, null, 2))
-      .digest('hex'),
+    commitSha: source.sourceCommitSha,
+    inputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
   };
   const snapshot = {
     complete: true,
@@ -90,7 +86,7 @@ const bankOptions = input => {
   };
   const base = {
     ownerLessonId,
-    reviewed,
+    source: sourceAuthorization,
     snapshot,
     blocks: approvedBlockIdentifiers(input),
   };
@@ -99,9 +95,6 @@ const bankOptions = input => {
     ...base,
     lessonSourceSha: input.production?.lesson?.sourceSha,
     referenceSourceSha: input.production?.lesson?.reference?.sourceSha,
-    questionSourceSha: input.production?.questions?.sourceSha,
-    questionReviewSha: input.production?.questions?.reviewSha,
-    methodologySourceSha: input.production?.questions?.methodologySourceSha,
   };
 };
 const courseRoot = source.sourcePath.match(
@@ -121,16 +114,13 @@ const options =
     : operation === 'course-stage5'
       ? {
           textbookRoot: courseRoot?.[1],
-          review: {
+          source: {
             sourcePath: source.sourcePath,
             sourceBlobSha: source.sourceBlobSha,
-            reviewCommitSha: source.sourceCommitSha,
-            reviewVerdict: 'accepted',
           },
-          verifyReviewedSource: ({ review, textbookRoot }) =>
-            review.sourcePath === source.sourcePath &&
-            review.sourceBlobSha === source.sourceBlobSha &&
-            review.reviewCommitSha === source.sourceCommitSha &&
+          verifySource: ({ source: pinned, textbookRoot }) =>
+            pinned.sourcePath === source.sourcePath &&
+            pinned.sourceBlobSha === source.sourceBlobSha &&
             textbookRoot === courseRoot?.[1],
         }
       : operation === 'episode-stage5'
