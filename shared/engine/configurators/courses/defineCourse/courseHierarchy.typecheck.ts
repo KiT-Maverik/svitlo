@@ -3,6 +3,7 @@ import type { ChildrenSupporting, LanguageScope } from '#types';
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule, type Module_Child } from '../defineModule';
+import { placeLesson } from '../placeLesson';
 import { defineCourse } from './defineCourse';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
@@ -124,3 +125,44 @@ course.build.overrides({}, { languages: ['de'] });
 course.build.props();
 // @ts-expect-error Overrides require explicit language options.
 course.build.overrides({});
+
+/** Inline Config patches retain the imported Lesson's precise language scope. */
+const shadow = placeLesson(lesson, { params: { sections: { allowSkipping: false } } });
+const lessonAgain = placeLesson(lesson, { locale: { title: { uk: 'Практика' } } });
+const placedChapter = defineChapter<'placedChapter', { shadow: typeof shadow }, ['en', 'uk']>({
+  id,
+  type: 'chapter',
+  slug: 'placedChapter',
+  params: {},
+  locale: { title: 'Placed chapter' },
+  content: { items: { shadow }, order: ['shadow'] },
+});
+const placedModule = defineModule<'placedModule', { placedChapter: typeof placedChapter }, ['en', 'uk']>({
+  id,
+  type: 'module',
+  slug: 'placedModule',
+  params: {},
+  locale: { title: 'Placed module' },
+  content: { items: { placedChapter }, order: ['placedChapter'] },
+});
+const placedCourse = defineCourse<'placedCourse', {
+  placedModule: typeof placedModule; directLesson: typeof lesson; lessonAgain: typeof lessonAgain;
+}, ['en', 'uk']>({
+  id,
+  type: 'course',
+  slug: 'placedCourse',
+  params: { languages: ['en', 'uk'] as const },
+  locale: { title: 'Course', description: 'Placement type-check' },
+  content: {
+    items: { placedModule, directLesson: lesson, lessonAgain },
+    order: ['placedModule', 'directLesson', 'lessonAgain'],
+  },
+});
+placedCourse.build.props({ languages: ['uk'] });
+placedCourse.build.overrides({ content: { items: { lessonAgain: { params: { sections: { allowNavigation: false } } } } } }, { languages: ['uk'] });
+// @ts-expect-error Immutable Lesson ID is never a valid authored Config patch.
+placeLesson(lesson, { id });
+// @ts-expect-error A built Props fragment is not an authored Lesson Config patch.
+placeLesson(lesson, { base: { params: { sections: { allowSkipping: false } } } });
+// @ts-expect-error Placement preserves the original Lesson language scope.
+placeLesson(lessonEnglishOnly, { params: { sections: { allowSkipping: false } } }).build.props({ languages: ['uk'] });
