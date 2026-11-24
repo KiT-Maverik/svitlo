@@ -45,7 +45,10 @@ test('youtube: exact source, imports, locale pruning, deterministic non-writing 
   assert.match(module, /Переглянути/);
   assert(!one.diagnostics.some(item => item.code === 'pending-copy'));
   assert(!one.files.some(file => file.kind !== 'typescript'));
-  assert.match(module, /TODO \(BLOCKER\): Verify external video \(availability, appropriateness, access, captions, language\/offline alternative, link\)/);
+  assert.match(
+    module,
+    /TODO \(BLOCKER\): Verify external video \(availability, appropriateness, access, captions, language\/offline alternative, link\)/,
+  );
   assert(one.diagnostics.some(item => item.code === 'pending-youtube-verification'));
 });
 
@@ -84,7 +87,10 @@ test('youtube: composed nested source paths and Course language handoff', () => 
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
   assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /Reviewed source brief/);
-  assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /TODO \(BLOCKER\): Verify external video/);
+  assert.match(
+    nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '',
+    /TODO \(BLOCKER\): Verify external video/,
+  );
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );

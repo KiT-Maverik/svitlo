@@ -218,12 +218,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO (BLOCKER): ' +
-        instruction +
-        ' for audio ' +
-        config.id +
-        '.\n' +
-        JSON.stringify(reference);
+        '// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',

@@ -79,8 +79,14 @@ test('audio: composed nested source paths and Course language handoff', () => {
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(nested.files.some(file => file.path === directory + '/specification.md'));
-  assert.equal(nested.files.find(file => file.path.endsWith('/specification.md'))?.content, '# specification\n\nReviewed source brief\n');
-  assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /TODO \(BLOCKER\): Remove the temporary Audio specification after the asset is generated and verified/);
+  assert.equal(
+    nested.files.find(file => file.path.endsWith('/specification.md'))?.content,
+    '# specification\n\nReviewed source brief\n',
+  );
+  assert.match(
+    nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '',
+    /TODO \(BLOCKER\): Remove the temporary Audio specification after the asset is generated and verified/,
+  );
   assert(nested.diagnostics.some(item => item.code === 'pending-temporary-specification'));
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),

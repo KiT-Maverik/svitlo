@@ -218,12 +218,7 @@ export function materializeVideo(config: VideoDraftConfig, options: VideoMateria
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO (BLOCKER): ' +
-        instruction +
-        ' for video ' +
-        config.id +
-        '.\n' +
-        JSON.stringify(reference);
+        '// TODO (BLOCKER): ' + instruction + ' for video ' + config.id + '.\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',
