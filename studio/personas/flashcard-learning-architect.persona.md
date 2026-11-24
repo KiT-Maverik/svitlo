@@ -55,7 +55,7 @@ Use the **nine canonical** `flashcardRelationshipTypes` keys in [Engine schema](
 
 **Author each relation once** in Stage 2/3 bank `config.relationships: { items, order }` collection. Each named edge is `{ relationshipId, type, source, target }`, with source/target referring to real card **slugs**. The separate map key identifies the edge for ordering; `relationshipId` is a stable authored relationship identity, not an implicitly generated value. Do not add unsupported `rationale` fields to the Engine-shaped edge. For directed links preserve the semantic orientation: prerequisite → dependent, part → whole, example → category, cause → effect, earlier → later. Symmetric endpoint ordering is equivalent.
 
-**The Stage 5 typed bank orchestration (parent #775 with concrete Card/Side renderers from #780) must materialize relations on both cards.** The Stage 2 TypeScript `config.relationships` contains each edge only once; the orchestration expands that edge into typed entries in each endpoint's `parameters.relationships: { items, order }` using:
+**The Stage 5 typed bank orchestration must materialize relations on both cards.** The Stage 2 TypeScript `config.relationships` contains each edge only once; the orchestration expands that edge into typed entries in each endpoint's `parameters.relationships: { items, order }` using:
 
 - `relationshipId`: the same authored ID on each endpoint.
 - `type`: the canonical relation type on both sides.
@@ -64,7 +64,7 @@ Use the **nine canonical** `flashcardRelationshipTypes` keys in [Engine schema](
 
 **Many-to-many is allowed.** A card may have multiple relations of distinct types, including multiple types to the same partner. A relation is not automatically created for every pair of related facts. Do not duplicate the same type and endpoints (including reversed ordering for symmetric types), create self-links, or reference missing cards. The real Flashcard Builder validates these invariants. `reverse` does not merge the two cards' progress; distinct recall prompts retain independent learner evidence. Neither the relation `type` nor `position` automatically controls scheduling or mastered status.
 
-The **source of truth remains one canonical bank edge** in the Stage 2/3 TypeScript object: do not write mirrored links twice in Card Config or manually mutate both endpoints. Stage 5 graph expansion resolves Card slugs to the existing UUIDs and emits both typed endpoint entries, preserving `relationshipId` and directed/symmetric positions, before invoking the #780 Card/Side materializers. The older `flashcardBuilder` is a YAML-only path for in-flight legacy authoring and is not the new Stage 5 input.
+The **source of truth remains one canonical bank edge** in the Stage 2/3 TypeScript object: do not write mirrored links twice in Card Config or manually mutate both endpoints. Stage 5 graph expansion resolves Card slugs to the existing UUIDs and emits both typed endpoint entries, preserving `relationshipId` and directed/symmetric positions, before invoking the Card/Side materializers. Follow the Flashcards Flow for authorized bank materialization.
 
 ## SOURCE-OF-TRUTH QUESTION REFERENCES
 
@@ -78,7 +78,7 @@ If a Question is only partly relevant, reference only the suitable fields. If it
 
 Create one progressively enriched **typed TypeScript** authoring object per Lesson at
 
-`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards/index.ts`
+`content/<textbook>/data/lessons/<last-hex-digit>/<lesson-uuid>/flashcards/draft.ts`
 
 using `FlashcardBankWorkflowStage1` → `Stage2` → `Stage3`, following [Create Flashcards Flow](../skills/lesson-workflow/create-flashcards-flow.skill.md), [Create Lesson Flashcards](../skills/lesson-workflow/create-lesson-flashcards.skill.md) and the actual Engine Config/Build contracts. Stage 1 holds approved Lesson/Question evidence and recall inventory **without Cards**. Stage 2 adds real Card UUIDs, front/back/hint ContentBlock Configs, actual flags (including acronyms), tags, one canonical relationship graph and Question provenance. Stage 3 adds optional Section selection or reasoned N/A. Keep implementation/localization dependencies in production notes and the existing child PR; the independently reviewed Stage 3 object is the sole Stage 5 materializer input.
 
