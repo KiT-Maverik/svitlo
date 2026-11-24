@@ -1,4 +1,5 @@
-import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';
+import { materializeCourse } from '@svitlo/engine/build';
+import type { CourseWorkflowStage3 } from '@svitlo/engine/build';
 import { howLightMoves } from '#lessonsData/c/d3048d21-8690-5255-b62c-984c69ac272c/index';
 
 export const courseStage3 = {
@@ -34,6 +35,8 @@ export const courseStage3 = {
           },
           production: {
             kind: 'existing',
+            source: howLightMoves,
+            sourceExportName: 'howLightMoves',
             existing: { id: howLightMoves.id },
             matching: {
               methodologySourcePath:
@@ -137,10 +140,13 @@ export const courseStage3 = {
                   },
                   production: {
                     kind: 'existing',
+                    source: howLightMoves,
+                    sourceExportName: 'howLightMoves',
                     existing: howLightMoves.build.overrides(
                       { params: { sections: { allowSkipping: false } } },
                       { languages: ['en', 'uk'] },
                     ),
+                    sourcePatch: { params: { sections: { allowSkipping: false } } },
                     matching: {
                       methodologySourcePath:
                         'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/methodology.md',
@@ -283,4 +289,6 @@ export const courseStage3 = {
     standardsAlignment: [],
     openDecisions: {},
   },
-} satisfies CourseWorkflowMaterializerInput;
+} satisfies CourseWorkflowStage3;
+
+materializeCourse(courseStage3);
