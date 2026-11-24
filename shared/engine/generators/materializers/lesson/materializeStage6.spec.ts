@@ -759,6 +759,24 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);
+  // Production briefs are removable comments in their owning media modules,
+  // including Carousel Image slides; they are never durable media sidecars.
+  for (const [suffix, kind] of [
+    ['sections/introduction/image', 'Image'],
+    ['sections/introduction/video', 'Video'],
+    ['sections/introduction/audio', 'Audio'],
+    ['sections/introduction/subtitles', 'Subtitles'],
+    ['sections/introduction/carousel/slides/slide', 'Image'],
+  ]) {
+    const path = folder + suffix;
+    const module = plan.files.find(file => file.path === path + '/index.ts')?.content ?? '';
+    assert(module.includes('// TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
+    assert(module.includes('/**\\n * # purpose'));
+    assert(module.includes(' * # specification'));
+    assert(module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'));
+    assert(!plan.files.some(file => file.path === path + '/specification.md'));
+  }
+
   const resolved = structuredClone(fixture);
   const blocks = resolved.config.section.items.introduction;
   if (blocks.config.type !== 'content') throw new Error('Expected content Section');
