@@ -10,34 +10,41 @@ For Question children, retain the semantic role and scoring group: `questions/<k
 
 For Flashcards, retain `flashcards/<slug>.ts` and `flashcards/<slug>/content/{front,back,hint}/index.ts`; each Side's concrete child is now directly under `.../<role>/<block>/index.ts`, without `items/`. Role boundaries are meaningful and must not be flattened into an ambiguous card-wide namespace. All source imports must resolve from their actual owning file.
 
-## Concrete renderer matrix
+## Concrete renderer matrix — integration #837
 
-| Family / kinds | Layout in #835 | Remaining work or inherited change |
+The table distinguishes implemented behavior from role-preserving N/A decisions and
+independent work; a green Draft guard is not a substitute for Ready CI.
+
+| Family / kinds | Integrated implementation / decision | Scope boundary and validation |
 | --- | --- | --- |
-| Question: selectOneAnswer, selectMultipleAnswers, matchBlocks | **Changed**: child path, imports, path confinement, leaf tests | Consume shared formatter from #830; validate completed bank source with Engine build |
-| Question: answerWithText, answerWithNumber, orderSequence | **Changed**: same path and no-escape rules | Consume #830; validate all role and answer paths |
-| Question: buildAnswerWithBlocks, fillBlanksWithBlocks, fillBlanksWithText | **Changed**: same path and no-escape rules | Consume #830; preserve answer/slot semantics |
-| Question Bank | **Inherited** nine leaf changes; root integration assertion updated | Preserve kind group indexes, deterministic inventory, bank transaction and source-only locale |
-| FlashcardSide | **Changed**: `/<role>/<block>` instead of `/<role>/items/<block>`; path confinement and tests | Consume #830; preserve exact Side `items/order` |
-| Flashcard / Flashcard Bank | **Inherited** Side placement; card and root imports unchanged | Preserve verified relationships, per-card specifications until safely consolidated, and independent bank review |
-| Course / Module / Chapter | Existing semantic child-slug directories; **not changed yet** | Coordinate with active #826 (same source renderers); consume #830; retain new/existing Lesson and Assessment ownership |
-| Episode | Existing Course-owned slot and shared Section delegation | Inherit #830 and Section layout from #832; preserve Episode trusted transaction |
-| QuestSection / QuestStage / QuestTask | Distinct stages, tasks and media/Scene role boundaries are applicable; **not changed yet** | #832 owns overlapping nested paths; #833 Scene; #834 media. Preserve Build-only Quest restriction |
-| Skill / SkillGroup / SkillDomain | **Changed**: direct `<domain>/<group>/<skill>.ts` and `<domain>/<group>/index.ts`, no redundant `skills/` or `groups/`; preserve separate reviewed sidecars under the Skill owner; path confinement, ID derivation and tests | Source formatting from #830 applies; do not migrate existing authored taxonomy files |
-| EducationStandard / AssessmentMethod | Standalone leaf `index.ts`; child path flattening **not applicable** | Audit language tuple, formatter and unique sidecars after #830; retain validated short locale fields |
-| Text, Markdown, Code, Carousel, Checkpoint, nested Sections | **Not owned by #835** | Inherit shared changes from #830/#832 and applicable other scoped PRs |
-| Scene, Image, Video, YouTube, Audio, Subtitles | **Not owned by #835** | Inherit #833/#834; no competing scaffolder or asset policy |
+| Nine Question kinds | Direct child paths under semantic question/answer roles, stable IDs and ordered collections | Source and trust-boundary tests; no second generic serializer |
+| Question Bank | Inherits nine kinds, exact reviewed `questionsLanguages.ts` planned tuple as commented restoration, optional Quiz rationale | Independent Bank publication/Stage 5 evidence; unfinished Question media stays blocked |
+| FlashcardSide / Flashcard / Flashcard Bank | Direct Side children beneath front/back/hint roles; `flashcardsLanguages.ts` inherits reviewed locale plan | Keep card relationships and unique review specifications; non-implemented media is never approved |
+| Course / Module / Chapter | Direct semantic child-slug ownership already exists; no redundant `items` folders | **N/A to further path flattening**. #826 owns concurrent Course/Module/Chapter Assessment changes and must reconcile separately, not overwritten by this integration |
+| Episode | Shared ordinary Section renderers, Episode narrative Section-note handoff, textbook-scoped six-file Scene draft plan with atomic no-clobber checks | Course-owned Episode slot, fixed parent restoration and human Stage 9/10 QA retained |
+| QuestSection / QuestStage / QuestTask | Stages/tasks remain real role directories; Stage media directly under `video/`, `audio/`, `image/`, `subtitles/`; Task Scene stays in `scene/` | **N/A** to flattening meaningful stages/tasks/Scene roles; Quest remains Build-only, not a publishable Lesson runtime Section |
+| Skill / SkillGroup / SkillDomain | Direct group/skill path, no redundant `groups` or `skills`, UUID and path confinement checks | Source-only reviewed Skill methodology retained; Lesson imports are derived from its own vetted `#skillsData/*` reference |
+| EducationStandard | Standalone leaf; entire immutable original-language `description.frontend` dictionary retained | **N/A** to source-only language pruning: required original locale dictionary is the approved contract; preserve unique sidecars |
+| AssessmentMethod | Standalone typed leaf, source-localized descriptions, pending planned languages signaled by materializer | **N/A** to nested flattening; assessment method taxonomy remains Engine-owned |
+| Text, Markdown, Code, Carousel, Checkpoint, Sections | Direct nested source paths; optional semantic role boundaries preserved | Section educational notes must be integrated by owning Lesson/Episode, never discarded |
+| Scene / Image / Video / YouTube / Audio / Subtitles | Shared concrete emitters; Scene executable draft owned by Lesson/Episode, Bank Scene evidence pinned independently; YouTube avoids redundant empty-URL verification TODO | Incomplete content remains blocked; no fabricated asset, registered Scene or license approval |
+
+All emitted TypeScript/TSX goes through the **one trusted worker formatter before
+the sealed manifest**. Generated Course machine handoffs and static re-exports
+have an inert AST shape verifier so neither quote style nor key formatting is
+an authorization condition. Real output is still nonpublishable until each
+entity-specific check, independent editorial review and authorized workflow pass.
 
 ## Skill taxonomy source placement
 
 Skill modules generated within their parent Group/Domain are sibling `<slug>.ts` modules next to that owner's `index.ts`. Groups remain nested semantic owners `<group>/index.ts`, without a `groups` wrapper. A Skill's separate reviewed production documentation remains at `<slug>/methodology.md` or another preserved sidecar path; flattening never deletes unique reviewed intent. The direct Skill materializer also supports a legacy standalone `index.ts` output when no owning parent supplies the sibling filename. Parent dispatchers derive immutable identity from each full logical Skill placement, reject `index` as an ambiguous sibling Skill filename, and require importable canonical entrypoints plus contained child outputs.
 
-## Pending integration and evidence
+## Integration evidence and outstanding boundaries
 
-- **Formatter:** #830 owns the one deterministic formatting implementation (MJS and TS), import grouping, identifier-safe keys, Prettier output and pre-seal formatting. Do not duplicate it in this branch.
-- **Language constants and imports:** #831 owns the Lesson root constants, package alias maps and Skill reference pattern. Assess bank/Course-local language modules **after** that integration; no duplicate `constants.ts` at the Lesson owner.
-- **Sidecars:** durable reviewed methodology must be preserved at its semantic owner; do not delete a per-node `specification.md` if it is the only record of unique intent. Consolidation needs corresponding owner contract and regression tests. Temporary resource instructions and blockers remain until resolved.
-- **Validation still required:** focused and negative leaf tests, full Question/Flashcard Bank source flows, deterministic bytes, import/type resolution, Engine build/typecheck, affected trusted publisher tests and textbook build checks. Draft FastGate alone is not evidence of these checks.
-- **Dependency boundary:** #826 edits Course/Module/Chapter and its materialization paths. Resolve that diff and integrated #830–#834 changes before rewriting the overlapping files or marking this PR Ready.
+- **Source-of-truth languages:** Lesson, Question Bank and Flashcard Bank comment precisely their reviewed planned locales and enable only their verified document language; no global language roster is reproduced.
+- **Reviewed Skill links:** the Lesson Stage 6 bridge only preserves imported Configurator `.id` references from its exact pinned authoring source, rooted in the owning textbook `#skillsData/*` alias. Unknown UUID strings produce blocked scaffolds rather than guessed imports.
+- **Unique specifications:** retain per-node reviewed source notes at their semantic owner. Section notes consolidate into Lesson methodology or Episode narrative; temporary Flashcards/Scene specifications are inert, removable source comments.
+- **CI evidence:** pending latest-head Ready CI and focused Course/Episode/Lesson/Bank publisher checks must be explicitly verified before the parent PR can be considered merge-ready.
+- **Concurrent Course Assessment:** #826 owns Course/Module/Chapter architecture changes. This parent does not silently merge its unfinished work; verify compatibility with its eventual integration.
 
 Generated TypeScript remains **nonpublishable** by default. No source generator can bypass the isolated worker, SHA pinning, sealed manifest, create-only collision protection or authorized Git publisher.
