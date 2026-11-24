@@ -210,7 +210,7 @@ manifest, locales, accessible media and textbook build. Missing artifacts,
 unreviewed locales or provisional `feedc0de-` IDs remain blockers. A draft
 source scaffold or green Draft check is not production completion.
 
-**Typed materialization:** use the trusted `/questions materialize typed` command on the existing reviewed child PR after its deployment to default branch. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). No YAML builder is available as a parallel workflow.
+**Typed materialization:** use the trusted `/questions materialize` command on the existing reviewed child PR after its deployment to default branch. See [Bank materialization](../../../scripts/ci/bankMaterialization/README.md). No YAML builder is available as a parallel workflow.
 
 ## Stage 6 — Translation
 
