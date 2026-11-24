@@ -774,10 +774,16 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   ]) {
     const path = folder + suffix;
     const module = plan.files.find(file => file.path === path + '/index.ts')?.content ?? '';
-    assert(module.includes('/*\n * TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
-    assert(module.includes(' * # purpose'));
-    assert(module.includes(' * # specification'));
-    assert(module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'));
+    assert(
+      module.includes('/*\n * TODO (BLOCKER): Remove the temporary ' + kind + ' specification'),
+      path + ': expected a single actionable multiline specification TODO in ' + module.slice(-600),
+    );
+    assert(module.includes(' * # purpose'), path + ': missing reviewed purpose in ' + module.slice(-600));
+    assert(module.includes(' * # specification'), path + ': missing reviewed specification in ' + module.slice(-600));
+    assert(
+      module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'),
+      path + ': temporary brief must follow the generated Configurator',
+    );
     assert(!plan.files.some(file => file.path === path + '/specification.md'));
   }
 
@@ -925,7 +931,8 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert.match(sceneConfig, /defineScene<[\s\S]*TODO \(BLOCKER\): Remove the temporary Scene specification/);
   assert.match(sceneConfig, /\* \/\n \* export const injected = true;/);
   const tsx = result.files.find(file => file.path === root + 'ChooseShape.tsx')!.content;
-  assert.match(tsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
+  assert.match(tsx, /\* \* \/\n \* export const injected = true;\n \*\//);
+  assert.doesNotMatch(tsx, /^\s*export const injected = true;/m);
   assert.match(tsx, /TODO \(BLOCKER\)/);
   assert(result.diagnostics.some(diag => diag.code === 'pending-scene'));
   assert.throws(() => assertLessonStage6ReleaseReady(result), /publication blocked/);
