@@ -98,7 +98,6 @@ jobs:
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
-
       - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \

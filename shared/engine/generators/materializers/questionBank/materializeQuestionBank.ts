@@ -230,11 +230,16 @@ export function materializeQuestionBank(
   input: QuestionBankWorkflowMaterializerInput,
   authorization?: QuestionBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer('questions-stage5', authorization, approved => {
-    const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
-    if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
-    return planQuestionBank(input, approved);
-  }, input);
+  return invokeMaterializer(
+    'questions-stage5',
+    authorization,
+    approved => {
+      const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+      if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+      return planQuestionBank(input, approved);
+    },
+    input,
+  );
 }
 
 function planQuestionBank(

@@ -4,7 +4,10 @@ export * from './index';
 // Typed editorial production contracts are build-only; keep runtime entrypoint unchanged.
 export type * from './types/workflow/lessonWorkflow.types';
 export type * from './types/workflow/episodeWorkflow.types';
-export { episodeWorkflowStage1Handoff_Schema, episodeWorkflowStage2_Schema } from './types/workflow/episodeWorkflow.types';
+export {
+  episodeWorkflowStage1Handoff_Schema,
+  episodeWorkflowStage2_Schema,
+} from './types/workflow/episodeWorkflow.types';
 export type * from './types/workflow/questionBankWorkflow.types';
 export type * from './types/workflow/flashcardBankWorkflow.types';
 export {
@@ -29,7 +32,10 @@ export type {
   MediaPublicationOptions,
 } from './generators/lessons/projectTextbookMedia.utils';
 
-export { questionBankWorkflowStage3_Schema, flashcardBankWorkflowStage3_Schema } from './types/workflow/bankWorkflowFinal.schemas';
+export {
+  questionBankWorkflowStage3_Schema,
+  flashcardBankWorkflowStage3_Schema,
+} from './types/workflow/bankWorkflowFinal.schemas';
 
 // Explicit source-only assessment-bank Stage 1 and reviewed Stage 3 operations.
 // This API never authors a Quiz/Flashcards Section or publishes Props/JSON.

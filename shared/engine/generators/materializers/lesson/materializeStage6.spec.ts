@@ -738,7 +738,12 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     production: {
       focus: 'Reviewed transition',
       purpose: 'Continue the narrative',
-      placement: { courseId: id('34'), path: 'content/transition', orderPath: [0], reviewedCourseSourceBlobSha: 'a'.repeat(40) },
+      placement: {
+        courseId: id('34'),
+        path: 'content/transition',
+        orderPath: [0],
+        reviewedCourseSourceBlobSha: 'a'.repeat(40),
+      },
       languages: lesson.production.languages,
       scenario: {
         audience: 'Beginners',
@@ -773,8 +778,11 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
 test('direct Lesson invocation returns the same source plan using runner-owned metadata', async () => {
   const { executeMaterializerEntrypoint } = await import('../directMaterialization/directMaterialization');
   const input = valid() as unknown as LessonWorkflowStage2;
-  const sourceText = "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
-    'materializeLessonStage6(' + JSON.stringify(input) + ');\n';
+  const sourceText =
+    "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
+    'materializeLessonStage6(' +
+    JSON.stringify(input) +
+    ');\n';
   const directOptions = {
     ...options,
     sourceText,

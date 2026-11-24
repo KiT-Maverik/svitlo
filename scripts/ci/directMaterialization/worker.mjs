@@ -8,9 +8,9 @@ import { createHash } from 'node:crypto';
 import { createJiti } from 'jiti';
 
 const require = createRequire(import.meta.url);
-const { executeMaterializerEntrypoint } = require(
-  './shared/engine/dist/generators/materializers/directMaterialization/directMaterialization.js',
-);
+const {
+  executeMaterializerEntrypoint,
+} = require('./shared/engine/dist/generators/materializers/directMaterialization/directMaterialization.js');
 const { operation, source } = JSON.parse(fs.readFileSync(0, 'utf8'));
 const sha = /^[a-f0-9]{40}$/i;
 const name = '[a-z][a-z0-9-]*';
@@ -21,29 +21,31 @@ const patterns = {
   'questions-stage5': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/questions/draft\\.ts$', 'i'),
   'flashcards-stage5': new RegExp('^' + root + 'lessons/[a-f0-9]/' + uuid + '/flashcards/draft\\.ts$', 'i'),
   'course-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid + '/draft\\.ts$', 'i'),
-  'episode-stage5': new RegExp('^' + root + 'courses/[a-f0-9]/' + uuid +
-    '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts$', 'i'),
+  'episode-stage5': new RegExp(
+    '^' + root + 'courses/[a-f0-9]/' + uuid + '/content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*/draft\\.ts$',
+    'i',
+  ),
 };
 if (
   !Object.hasOwn(patterns, operation) ||
   !patterns[operation].test(source?.sourcePath ?? '') ||
   !sha.test(source?.sourceBlobSha ?? '') ||
   !sha.test(source?.sourceCommitSha ?? '')
-) throw Error('Unsupported materializer request');
+)
+  throw Error('Unsupported materializer request');
 const entrypoint = path.resolve('/work', source.sourcePath);
 const bytes = fs.readFileSync(entrypoint);
-if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
-  throw Error('Invalid candidate UTF-8');
-const blobSha = createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
+if (!Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes)) throw Error('Invalid candidate UTF-8');
+const blobSha = createHash('sha1')
+  .update('blob ' + bytes.length + '\0')
+  .update(bytes)
+  .digest('hex');
 if (blobSha !== source.sourceBlobSha) throw Error('Candidate source blob mismatch');
 const sourceText = bytes.toString('utf8');
 const jiti = createJiti(import.meta.url, { fsCache: false });
 
-const selectedBank = operation === 'questions-stage5'
-  ? 'questions'
-  : operation === 'flashcards-stage5'
-    ? 'flashcards'
-    : null;
+const selectedBank =
+  operation === 'questions-stage5' ? 'questions' : operation === 'flashcards-stage5' ? 'flashcards' : null;
 let capturedInput;
 const approvedBlockIdentifiers = input => {
   const registeredSceneIds = new Set();
@@ -62,8 +64,7 @@ const approvedBlockIdentifiers = input => {
       else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
         approvedMediaBlockIds.add(config.id);
     }
-    for (const [key, part] of Object.entries(value))
-      if (key !== 'production') walk(part);
+    for (const [key, part] of Object.entries(value)) if (key !== 'production') walk(part);
   }
   walk(input?.config);
   return { registeredSceneIds, approvedMediaBlockIds };
@@ -72,11 +73,14 @@ const bankOptions = input => {
   capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
   const reviewed = {
-    approved: true, content: sourceText,
+    approved: true,
+    content: sourceText,
     blobSha: source.sourceBlobSha,
     reviewedSourceBlobSha: source.sourceBlobSha,
     reviewCommitSha: source.sourceCommitSha,
-    reviewedInputSha256: createHash('sha256').update(JSON.stringify(input, null, 2)).digest('hex'),
+    reviewedInputSha256: createHash('sha256')
+      .update(JSON.stringify(input, null, 2))
+      .digest('hex'),
   };
   const snapshot = {
     complete: true,
@@ -85,7 +89,9 @@ const bankOptions = input => {
     entries: { [selectedBank + '/draft.ts']: { kind: 'file', content: sourceText } },
   };
   const base = {
-    ownerLessonId, reviewed, snapshot,
+    ownerLessonId,
+    reviewed,
+    snapshot,
     blocks: approvedBlockIdentifiers(input),
   };
   if (selectedBank === 'questions') return base;
@@ -101,33 +107,35 @@ const bankOptions = input => {
 const courseRoot = source.sourcePath.match(
   /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\//i,
 );
-const options = operation === 'lesson-stage6'
-  ? {
-      source, sourceText,
-      verifySourceInput: (_input, pinned, text) =>
-        pinned.sourcePath === source.sourcePath &&
-        pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha &&
-        text === sourceText,
-    }
-  : operation === 'course-stage5'
+const options =
+  operation === 'lesson-stage6'
     ? {
-        textbookRoot: courseRoot?.[1],
-        review: {
-          sourcePath: source.sourcePath,
-          sourceBlobSha: source.sourceBlobSha,
-          reviewCommitSha: source.sourceCommitSha,
-          reviewVerdict: 'accepted',
-        },
-        verifyReviewedSource: ({ review, textbookRoot }) =>
-          review.sourcePath === source.sourcePath &&
-          review.sourceBlobSha === source.sourceBlobSha &&
-          review.reviewCommitSha === source.sourceCommitSha &&
-          textbookRoot === courseRoot?.[1],
+        source,
+        sourceText,
+        verifySourceInput: (_input, pinned, text) =>
+          pinned.sourcePath === source.sourcePath &&
+          pinned.sourceBlobSha === source.sourceBlobSha &&
+          pinned.sourceCommitSha === source.sourceCommitSha &&
+          text === sourceText,
       }
-    : operation === 'episode-stage5'
-      ? { source }
-      : undefined;
+    : operation === 'course-stage5'
+      ? {
+          textbookRoot: courseRoot?.[1],
+          review: {
+            sourcePath: source.sourcePath,
+            sourceBlobSha: source.sourceBlobSha,
+            reviewCommitSha: source.sourceCommitSha,
+            reviewVerdict: 'accepted',
+          },
+          verifyReviewedSource: ({ review, textbookRoot }) =>
+            review.sourcePath === source.sourcePath &&
+            review.sourceBlobSha === source.sourceBlobSha &&
+            review.reviewCommitSha === source.sourceCommitSha &&
+            textbookRoot === courseRoot?.[1],
+        }
+      : operation === 'episode-stage5'
+        ? { source }
+        : undefined;
 const plan = await executeMaterializerEntrypoint(
   operation,
   options,
@@ -135,9 +143,12 @@ const plan = await executeMaterializerEntrypoint(
   selectedBank
     ? bankOptions
     : operation === 'episode-stage5'
-      ? input => { capturedInput = input; return options; }
+      ? input => {
+          capturedInput = input;
+          return options;
+        }
       : undefined,
 );
-process.stdout.write(JSON.stringify(
-  selectedBank || operation === 'episode-stage5' ? { plan, input: capturedInput } : plan,
-));
+process.stdout.write(
+  JSON.stringify(selectedBank || operation === 'episode-stage5' ? { plan, input: capturedInput } : plan),
+);

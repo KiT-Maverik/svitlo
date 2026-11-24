@@ -225,22 +225,23 @@ export function materializeCourseStage5(input, options = {}) {
     const imported = production.source;
     if (imported && typeof production.sourceExportName !== 'string')
       throw new Error(context.directory + ': direct imported Lesson must declare its actual export name');
-    const lesson = imported && typeof production.sourceExportName === 'string'
-      ? {
-          id: existing.id,
-          sourceSha: match.sourceSha,
-          importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
-          exportName: production.sourceExportName,
-          languages: imported.config?.base?.params?.languages,
-          configurator: imported,
-          rawPatch: production.sourcePatch,
-        }
-      : options.resolveExistingLesson?.({
-          id: existing.id,
-          matching: match,
-          placement: context.directory,
-          languages: [sourceLanguage],
-        });
+    const lesson =
+      imported && typeof production.sourceExportName === 'string'
+        ? {
+            id: existing.id,
+            sourceSha: match.sourceSha,
+            importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
+            exportName: production.sourceExportName,
+            languages: imported.config?.base?.params?.languages,
+            configurator: imported,
+            rawPatch: production.sourcePatch,
+          }
+        : options.resolveExistingLesson?.({
+            id: existing.id,
+            matching: match,
+            placement: context.directory,
+            languages: [sourceLanguage],
+          });
     if (
       !record(lesson) ||
       lesson.id !== existing.id ||

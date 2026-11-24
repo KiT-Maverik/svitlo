@@ -233,8 +233,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
 
   const languagePlan = workflowLanguages_Schema.safeParse(input.production.languages);
-  if (!languagePlan.success)
-    throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  if (!languagePlan.success) throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
   const { document: documentLanguage, planned } = languagePlan.data;
   if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
   const params = {

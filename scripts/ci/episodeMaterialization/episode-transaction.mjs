@@ -233,26 +233,34 @@ export async function prepareEpisode(meta, root, execute = runIsolatedMaterializ
  * executing or importing the reviewed candidate entrypoint in a tokened job.
  */
 export function verifyDirectEpisodeManifest(meta, manifest, root) {
-  if (!manifest || manifest.version !== 1 ||
-      !sameMeta(manifest.meta ?? {}, meta) ||
-      manifest.operation !== 'typed-episode-stage5' ||
-      manifest.publishable !== false ||
-      !/^[a-f0-9-]{36}$/.test(manifest.episodeId ?? '') ||
-      !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(manifest.sourceExportName ?? '') ||
-      !Array.isArray(manifest.entries) || !manifest.entries.length || manifest.entries.length > 1500)
+  if (
+    !manifest ||
+    manifest.version !== 1 ||
+    !sameMeta(manifest.meta ?? {}, meta) ||
+    manifest.operation !== 'typed-episode-stage5' ||
+    manifest.publishable !== false ||
+    !/^[a-f0-9-]{36}$/.test(manifest.episodeId ?? '') ||
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(manifest.sourceExportName ?? '') ||
+    !Array.isArray(manifest.entries) ||
+    !manifest.entries.length ||
+    manifest.entries.length > 1500
+  )
     throw Error('Invalid pinned direct Episode manifest');
   const reader = gitReader(root);
   if (
-    reader.git('rev-parse','HEAD').trim() !== meta.head ||
-    reader.git('status','--porcelain=v1','--untracked-files=all').trim() ||
-    reader.git('merge-base',meta.parentHead,meta.head).trim() !== meta.parentHead
-  ) throw Error('Episode publisher source checkout is not clean and pinned');
+    reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
+    reader.git('status', '--porcelain=v1', '--untracked-files=all').trim() ||
+    reader.git('merge-base', meta.parentHead, meta.head).trim() !== meta.parentHead
+  )
+    throw Error('Episode publisher source checkout is not clean and pinned');
   const tree = reader.tree(meta.head, meta.courseRoot);
   const baseline = reader.tree(meta.parentHead, meta.courseRoot);
-  if (baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
-      baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
-      tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-      tree.get(meta.parentPath)?.sha !== meta.parentBlobSha)
+  if (
+    baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
+    baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+  )
     throw Error('Episode parent/handoff source is not the authorized Git version');
   const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
   // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
@@ -262,20 +270,27 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   );
   if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
   const handoff = JSON.parse(match[1]);
-  if (handoff.config.id !== manifest.episodeId ||
-      handoff.production.placement.courseId !== meta.courseId ||
-      handoff.production.placement.path !== meta.placement)
+  if (
+    handoff.config.id !== manifest.episodeId ||
+    handoff.production.placement.courseId !== meta.courseId ||
+    handoff.production.placement.path !== meta.placement
+  )
     throw Error('Episode worker output identity differs from approved Course handoff');
   let total = 0;
   const files = manifest.entries.map(entry => {
     const bytes = Buffer.from(entry.data || '', 'base64');
     total += bytes.length;
-    if (!entry || !entry.path || typeof entry.kind !== 'string' ||
-        !/^[A-Za-z0-9+/]*={0,2}$/.test(entry.data ?? '') ||
-        bytes.toString('base64') !== entry.data ||
-        !bytes.length || total > maxBytes ||
-        !Buffer.from(bytes.toString('utf8'),'utf8').equals(bytes) ||
-        hash(bytes) !== entry.sha256)
+    if (
+      !entry ||
+      !entry.path ||
+      typeof entry.kind !== 'string' ||
+      !/^[A-Za-z0-9+/]*={0,2}$/.test(entry.data ?? '') ||
+      bytes.toString('base64') !== entry.data ||
+      !bytes.length ||
+      total > maxBytes ||
+      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
+      hash(bytes) !== entry.sha256
+    )
       throw Error('Invalid sealed Episode file or SHA256');
     return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
   });

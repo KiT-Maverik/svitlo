@@ -22,10 +22,15 @@ export function parseEpisodeHandoff(source) {
   );
   if (!match) throw Error('Episode handoff must be an exact Course-generated immutable JSON literal');
   const result = JSON.parse(match[1]);
-  if (!record(result) || !record(result.config) || !record(result.production) ||
-      result.config.type !== 'episode' || !safe(result.config.slug) ||
-      Object.keys(result.config).some(key => !['type','id','slug'].includes(key)) ||
-      Object.keys(result.production).some(key => !['focus','purpose','placement','languages'].includes(key)))
+  if (
+    !record(result) ||
+    !record(result.config) ||
+    !record(result.production) ||
+    result.config.type !== 'episode' ||
+    !safe(result.config.slug) ||
+    Object.keys(result.config).some(key => !['type', 'id', 'slug'].includes(key)) ||
+    Object.keys(result.production).some(key => !['focus', 'purpose', 'placement', 'languages'].includes(key))
+  )
     throw Error('Not a canonical Course-owned Episode handoff');
   return result;
 }
@@ -201,16 +206,22 @@ export function restoreEpisodePlacement(parent, placement, exportName, { rootPar
  */
 export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, output) {
   verifyEpisodeHandoff(handoff, reviewed, meta);
-  if (!output || output.publishable !== false ||
-      output.episodeId !== reviewed.config.id || output.episodeId !== handoff.config.id ||
-      typeof output.exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(output.exportName) ||
-      !Array.isArray(output.files) || !output.files.length || !Array.isArray(output.diagnostics))
+  if (
+    !output ||
+    output.publishable !== false ||
+    output.episodeId !== reviewed.config.id ||
+    output.episodeId !== handoff.config.id ||
+    typeof output.exportName !== 'string' ||
+    !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(output.exportName) ||
+    !Array.isArray(output.files) ||
+    !output.files.length ||
+    !Array.isArray(output.diagnostics)
+  )
     throw Error('Direct Episode worker returned an invalid source plan');
   const prefix = meta.courseRoot + '/';
   const files = output.files.map(file => ({ ...file, path: prefix + file.path }));
   const rootIndex = prefix + meta.placement + '/index.ts';
-  if (!files.some(file => file.path === rootIndex))
-    throw Error('Direct Episode did not emit its allocated root index');
+  if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
   const parent = restoreEpisodePlacement(
     parentSource,
     {
@@ -224,7 +235,10 @@ export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, 
   );
   files.push({ path: meta.parentPath, kind: 'typescript', content: parent });
   return {
-    files, diagnostics: output.diagnostics, episodeId: output.episodeId,
-    sourceExportName: output.exportName, publishable: false,
+    files,
+    diagnostics: output.diagnostics,
+    episodeId: output.episodeId,
+    sourceExportName: output.exportName,
+    publishable: false,
   };
 }

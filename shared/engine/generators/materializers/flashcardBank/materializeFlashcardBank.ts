@@ -227,11 +227,16 @@ export function materializeFlashcardBank(
   input: FlashcardBankWorkflowMaterializerInput,
   authorization?: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer('flashcards-stage5', authorization, approved => {
-    const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
-    if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
-    return planFlashcardBank(input, approved);
-  }, input);
+  return invokeMaterializer(
+    'flashcards-stage5',
+    authorization,
+    approved => {
+      const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
+      if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+      return planFlashcardBank(input, approved);
+    },
+    input,
+  );
 }
 
 function planFlashcardBank(

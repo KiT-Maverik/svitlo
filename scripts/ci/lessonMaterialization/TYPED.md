@@ -11,6 +11,7 @@ The worker returns a nonpublishable source plan. Trusted analysis checks canonic
 Materialization is not a publication certificate. Stage 6.2/6.3 resources, Scenes, Questions, Flashcards, translations, TODO blockers and runtime acceptance are separate. Old YAML-based builders are retired, but historical authored YAML files remain untouched pending explicit migration.
 
 Validation (do not claim results without executing):
+
 ```sh
 npm run package:build --workspace @svitlo/engine
 npm run code:check:types --workspace @svitlo/engine

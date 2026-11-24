@@ -29,7 +29,10 @@ test('the four assessment decisions are independent and required booleans', () =
   };
   assert.deepEqual(lessonProductionAssessmentRequirements_Schema.parse(valid), valid);
   for (const key of Object.keys(valid)) {
-    assert.equal(lessonProductionAssessmentRequirements_Schema.safeParse({ ...valid, [key]: undefined }).success, false);
+    assert.equal(
+      lessonProductionAssessmentRequirements_Schema.safeParse({ ...valid, [key]: undefined }).success,
+      false,
+    );
     assert.equal(lessonProductionAssessmentRequirements_Schema.safeParse({ ...valid, [key]: 'true' }).success, false);
   }
 });

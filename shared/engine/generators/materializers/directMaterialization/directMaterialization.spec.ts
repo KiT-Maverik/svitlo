@@ -10,7 +10,10 @@ test('one direct invocation receives runner-owned options and returns its result
 });
 
 test('zero, multiple, wrong-operation and explicit-option calls fail closed', async () => {
-  await assert.rejects(executeMaterializerEntrypoint('lesson', 1, async () => {}), /exactly one/);
+  await assert.rejects(
+    executeMaterializerEntrypoint('lesson', 1, async () => {}),
+    /exactly one/,
+  );
   await assert.rejects(
     executeMaterializerEntrypoint('lesson', 1, async () => {
       invokeMaterializer('lesson', undefined, () => 1);
@@ -30,5 +33,8 @@ test('zero, multiple, wrong-operation and explicit-option calls fail closed', as
     }),
     /execution options/,
   );
-  assert.equal(invokeMaterializer('lesson', 3, value => value), 3);
+  assert.equal(
+    invokeMaterializer('lesson', 3, value => value),
+    3,
+  );
 });

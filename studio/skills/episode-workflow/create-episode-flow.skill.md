@@ -2,7 +2,6 @@
 
 **Final technical invocation (Stages 4→5):** The single approved `draft.ts` invokes `materializeEpisodeStage5(reviewedEpisode)` from `@svitlo/engine/build` once, using its `EpisodeWorkflowStage2` / `EpisodeWorkflowMaterializerInput` typed editorial object. The trusted gate verifies Course handoff, parent slot/order and final review SHAs; the no-token worker executes author code, while the publisher only verifies output bytes and restores the reserved parent placement. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
 
-
 **Scope:** one Course-owned Episode and one entity-owned Draft PR. Follow root AGENTS.md, [GitHub labels](../../rules/github-labels-and-naming.md), [CI policy](../../rules/ci-workflow.md), [Episode](../../docs/entities/episode.md), [Course](../../docs/entities/course.md), [Section](../../docs/entities/section.md), [typed production](../../docs/architecture/typed-production-materialization.md), and [inclusive access](../../docs/architecture/internationalization-and-accessibility.md). Inspect the actual Engine Episode, Section, Block and event contracts, publication and host support before authoring. Quest runtime is not implied by its Build-only contract.
 
 ## Identity and authorization

@@ -398,7 +398,9 @@ async function analyze(meta) {
   const { root, source: pinnedSource } = verifyCandidate(meta);
   const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
   const result = runIsolatedMaterialization({
-    trustedRoot, candidateRoot: root, textbook: meta.identity.pkg,
+    trustedRoot,
+    candidateRoot: root,
+    textbook: meta.identity.pkg,
     operation: meta.bank === 'questions' ? 'questions-stage5' : 'flashcards-stage5',
     source: {
       sourcePath: meta.sourcePath,
@@ -407,11 +409,16 @@ async function analyze(meta) {
     },
   });
   const { plan, input } = result ?? {};
-  if (!plan || plan.publishable !== false || !Array.isArray(plan.files) ||
-      !plan.transition || plan.transition.reviewedDraftPath !== meta.bank + '/draft.ts' ||
-      plan.transition.materializedPath !== meta.bank + '/index.ts' ||
-      plan.transition.reviewedDraftBlobSha !== meta.sourceBlob ||
-      plan.transition.expectedHeadSha !== meta.head)
+  if (
+    !plan ||
+    plan.publishable !== false ||
+    !Array.isArray(plan.files) ||
+    !plan.transition ||
+    plan.transition.reviewedDraftPath !== meta.bank + '/draft.ts' ||
+    plan.transition.materializedPath !== meta.bank + '/index.ts' ||
+    plan.transition.reviewedDraftBlobSha !== meta.sourceBlob ||
+    plan.transition.expectedHeadSha !== meta.head
+  )
     throw Error('Isolated Bank did not return the approved source transition');
 
   // A direct invocation can inspect arbitrary imported code; the manifest
@@ -419,22 +426,26 @@ async function analyze(meta) {
   // reference commits, and every real media/Scene asset against the pinned Git tree.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
-    root, meta, input, git, ts: require('typescript'),
+    root,
+    meta,
+    input,
+    git,
+    ts: require('typescript'),
   });
   const approval = authorizations(meta, input, root, blocks);
-  if (approval.reviewed.content !== pinnedSource ||
-      approval.reviewed.blobSha !== meta.sourceBlob)
+  if (approval.reviewed.content !== pinnedSource || approval.reviewed.blobSha !== meta.sourceBlob)
     throw Error('Bank input differs from pinned reviewed source');
-  const files = plan.files.map(file => {
-    const content = Buffer.from(file.content ?? '', 'utf8');
-    if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content))
-      throw Error('Invalid worker source bytes');
-    return {
-      path: meta.identity.folder + '/' + file.path,
-      sha256: sha256(content),
-      base64: content.toString('base64'),
-    };
-  }).sort((a, b) => a.path.localeCompare(b.path));
+  const files = plan.files
+    .map(file => {
+      const content = Buffer.from(file.content ?? '', 'utf8');
+      if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content)) throw Error('Invalid worker source bytes');
+      return {
+        path: meta.identity.folder + '/' + file.path,
+        sha256: sha256(content),
+        base64: content.toString('base64'),
+      };
+    })
+    .sort((a, b) => a.path.localeCompare(b.path));
   const reportData = {
     version: 3,
     meta,
@@ -448,8 +459,15 @@ async function analyze(meta) {
   if (!location) throw Error('Missing trusted bank report path');
   fs.mkdirSync(path.dirname(location), { recursive: true });
   fs.writeFileSync(location, JSON.stringify(reportData) + '\\n', { flag: 'wx' });
-  report('Isolated reviewed ' + meta.bank + ' Stage 5 planned ' + files.length +
-    ' bank-owned sources from ' + meta.sourceBlob + '; zero Git writes');
+  report(
+    'Isolated reviewed ' +
+      meta.bank +
+      ' Stage 5 planned ' +
+      files.length +
+      ' bank-owned sources from ' +
+      meta.sourceBlob +
+      '; zero Git writes',
+  );
 }
 async function publish(meta) {
   await requireActor(meta.actor);
