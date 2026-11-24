@@ -18,6 +18,9 @@ export type SceneSourceContext = {
   languagesImport: string;
   /** True only if the caller has verified an executable Scene registry entry. */
   registered?: boolean;
+  /** Lesson Stage 6.1 embeds the reviewed Scene specification in executable draft TSX;
+   * other Scene consumers still require the canonical reviewed sidecar. */
+  specificationSidecar?: boolean;
   production?: SceneProduction;
 };
 export type SceneMaterialization = {
@@ -83,9 +86,10 @@ function literal(value: unknown, path: string, depth = 0): string {
   );
 }
 /**
- * Emit the Engine defineScene Config module; the same reviewed Scene node
- * is rendered into executable *draft* scaffolds by renderSceneFiles below.
- * No Scene is registered or released at this stage.
+ * Emit the Engine defineScene Config module and, by default, its reviewed
+ * specification sidecar for non-Lesson consumers. Lesson Stage 6.1 explicitly
+ * suppresses the sidecar because renderSceneFiles embeds the full approved
+ * specification in its executable TSX draft. No Scene is registered here.
  */
 export function materializeScene(config: SceneSource, context: SceneSourceContext): SceneMaterialization {
   if (
@@ -163,6 +167,15 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
     '',
   ].join('\n');
   const files: SceneSourceFile[] = [];
+  // Preserve the reviewed sidecar for assessment and other standalone Scene
+  // consumers. Only the Lesson Stage 6.1 coordinator opts out because its
+  // executable TSX skeleton includes the full specification as safe comments.
+  if (context.specificationSidecar !== false && typeof specification === 'string' && specification.trim())
+    files.push({
+      path: (directory ? directory + '/' : '') + 'specification.md',
+      content: specification,
+      kind: 'specification',
+    });
   files.push({ path: (directory ? directory + '/' : '') + 'index.ts', content: code, kind: 'typescript' });
   return { exportName, files, diagnostics };
 }
