@@ -87,3 +87,16 @@ test('youtube: composed nested source paths and Course language handoff', () => 
   assert.throws(() => materializeYoutube(valid(), { ...options, directory: '../escape' }), /unsafe output path/);
   assert.throws(() => materializeYoutube(valid(), { ...options, directory }), /explicit root languages module/);
 });
+
+test('youtube: pending href is deterministic, blocked and not a fabricated URL', () => {
+  const { href: _href, ...locale } = valid().locale;
+  const input = { ...valid(), locale };
+  const pending = materializeYoutube(input, { documentLanguage: 'uk' });
+  assert.deepEqual(pending, materializeYoutube(input, { documentLanguage: 'uk' }));
+  const source = pending.files[0].content;
+  assert.match(source, /"href": \/\/ TODO \(BLOCKER\):[^\n]*\n"00000000-0000-0000-0000-000000000000"/);
+  assert(pending.diagnostics.some(item => item.path === '$.config.locale.href' && item.code === 'pending-media'));
+  assert(!source.includes('https://'));
+  const localized = materializeYoutube({ ...input, locale: { ...locale, href: { en: 'https://youtu.be/M7lc1UVf-VE' } } }, { documentLanguage: 'uk' });
+  assert(localized.diagnostics.some(item => item.path === '$.config.locale.href.uk'));
+});
