@@ -9,7 +9,11 @@ on:
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
-      - 'scripts/ci/reviewEvidence/**'
+      - 'scripts/ci/requiredCheckReuse/**'
+      - 'scripts/ci/draftCiPolicy/**'
+      - 'scripts/ci/productionQuality/**'
+      - '.github/workflows/fast-gate.yml'
+      - '.github/workflows/production-quality.yml'
       - '.github/workflows/lesson-materialization.yml'
       - 'shared/engine/scripts/generateQuestionReviewArtifacts/**'
       - '.github/workflows/bank-materialization.yml'
@@ -50,7 +54,20 @@ jobs:
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+
+  ci-policy:
+    name: Required check reuse and Draft policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
