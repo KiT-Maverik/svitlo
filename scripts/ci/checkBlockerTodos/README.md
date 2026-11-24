@@ -2,7 +2,7 @@
 
 This read-only repository-wide check rejects unresolved `TODO (BLOCKER):` source comments **and numeric `0` evidence in canonical Lesson/Course `review.ts` files**. Ordinary `TODO:` and `TODO(asset):` markers are not part of this guard; existing content and asset checks remain separate.
 
-Generated TypeScript uses the pure Engine \`renderBlockerTodo\` or \`renderBlockerSpecification\` helper. A one-line \`// TODO (BLOCKER): ...\` or a single reviewed-brief block \`/*\n * TODO (BLOCKER): ...\n * ...\n */\` both fail the guard. Quoted marker text inside string/template values does not count. See [canonical blocker semantics](../../../studio/personas/coding-agent.persona.md#actionable-generated-source-blockers).
+Generated TypeScript uses the pure Engine `renderBlockerTodo` or `renderBlockerSpecification` helper. A one-line `// TODO (BLOCKER): ...` or a single reviewed-brief block `/*\n * TODO (BLOCKER): ...\n * ...\n */` both fail the guard. Quoted marker text inside string/template values does not count. See [canonical blocker semantics](../../../studio/personas/coding-agent.persona.md#actionable-generated-source-blockers).
 
 ## CLI
 
