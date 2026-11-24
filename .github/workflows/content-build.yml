@@ -97,6 +97,10 @@ jobs:
           cache: npm
       - name: Install dependencies once per content shard
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      # Each shard runs in a fresh checkout, independent of prepare. Content
+      # publishers require shared/engine/dist/runtime.js before package builds.
+      - name: Build Engine for content shard
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Verify each selected textbook or agent scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
