@@ -164,5 +164,10 @@ placedCourse.build.overrides({ content: { items: { lessonAgain: { params: { sect
 placeLesson(lesson, { id });
 // @ts-expect-error A built Props fragment is not an authored Lesson Config patch.
 placeLesson(lesson, { base: { params: { sections: { allowSkipping: false } } } });
-// @ts-expect-error Placement preserves the original Lesson language scope.
-placeLesson(lessonEnglishOnly, { params: { sections: { allowSkipping: false } } }).build.props({ languages: ['uk'] });
+// The placement retains the imported source's phantom language scope.
+const englishOnlyPlacement = placeLesson(lessonEnglishOnly, { params: { sections: { allowSkipping: false } } });
+const invalidPlacementChildren: ChildrenSupporting<['en', 'uk'], { shadow: typeof englishOnlyPlacement }> = {
+  // @ts-expect-error The imported Lesson placement cannot satisfy the parent's Ukrainian scope.
+  shadow: englishOnlyPlacement,
+};
+void invalidPlacementChildren;
