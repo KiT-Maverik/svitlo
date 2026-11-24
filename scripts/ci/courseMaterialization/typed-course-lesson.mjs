@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import Module from 'node:module';
-import { buildSync } from 'esbuild';
+import { fileURLToPath } from 'node:url';
 import { gitBlob } from './course-gate.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -52,6 +52,7 @@ function assertIdenticalLessonTree(trusted, candidate, lessonRoot) {
     const directory = path.join(base, relative);
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
       const child = path.posix.join(relative, entry.name);
+      if (entry.name === 'draft.ts') throw Error('Unmaterialized editorial draft in existing Lesson: ' + child);
       if (entry.isSymbolicLink() || (!entry.isFile() && !entry.isDirectory()))
         throw Error('Symlink or unsupported file in trusted Lesson dependency tree: ' + child);
       return entry.isDirectory() ? walk(base, child) : [child];
@@ -95,21 +96,25 @@ function assertPinnedRevision(root, filename, bytes, expected) {
 
 function trustedConfigurator(trustedFile, id) {
   // Trusted default-branch source ONLY: never point esbuild at candidate/.
-  const output = buildSync({
-    entryPoints: [trustedFile],
-    absWorkingDir: path.dirname(trustedFile),
-    platform: 'node',
-    format: 'cjs',
-    target: 'node24',
-    bundle: true,
-    write: false,
-    logLevel: 'silent',
-  });
-  if (output.outputFiles?.length !== 1) throw Error('Cannot load trusted existing Lesson Configurator');
+  // esbuild's synchronous API cannot use plugins. Keep the AST resolver synchronous
+  // and run only the trusted bundling helper in a bounded subprocess.
+  const output = spawnSync(
+    process.execPath,
+    [fileURLToPath(new URL('./bundle-trusted-lesson.mjs', import.meta.url)), trustedFile],
+    {
+      cwd: path.dirname(trustedFile),
+      encoding: 'utf8',
+      maxBuffer: 32 * 1024 * 1024,
+      timeout: 60_000,
+      env: { ...process.env, GH_TOKEN: undefined, GITHUB_TOKEN: undefined },
+    },
+  );
+  if (output.status !== 0 || output.error)
+    throw Error('Cannot load trusted existing Lesson Configurator: ' + (output.stderr || output.error?.message));
   const cjs = new Module(trustedFile);
   cjs.filename = trustedFile;
   cjs.paths = Module._nodeModulePaths(path.dirname(trustedFile));
-  cjs._compile(output.outputFiles[0].text, trustedFile);
+  cjs._compile(output.stdout, trustedFile);
   const matches = Object.entries(cjs.exports).filter(
     ([, value]) =>
       value?.type === 'lesson' &&

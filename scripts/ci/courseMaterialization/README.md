@@ -24,7 +24,10 @@ fails closed. Imported Lesson code must already be present byte-for-byte
 in the trusted default branch AND in the candidate Git checkout with an
 independently pinned source revision and methodology. The trusted
 `Lesson_Configurator` and its real Build API are loaded solely from that
-default-branch implementation, never the Course PR. A Course-local sparse
+default-branch implementation, never the Course PR. Bundling preserves each
+original authored TypeScript module's file URL (including transitive Markdown
+and other file-relative resources) using the shared Configurator loader plugin.
+Editorial drafts cannot be reused or imported. A Course-local sparse
 patch retains its _original raw expression_ and is replayed against the
 reviewed built result; it is never reverse-engineered from Props. Changes to
 independently authored Lessons that exist only on a nested integration branch

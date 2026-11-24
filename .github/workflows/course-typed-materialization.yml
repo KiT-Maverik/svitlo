@@ -9,6 +9,7 @@ on:
       - 'shared/engine/generators/materializers/**'
       - 'shared/engine/types/workflow/**'
       - 'shared/engine/configurators/**'
+      - 'shared/engine/scripts/loadAuthoredConfigurators/**'
       - 'shared/engine/build.ts'
       - 'shared/engine/package.json'
       - 'package-lock.json'
