@@ -366,4 +366,4 @@ export const defineAssessment = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type Assessment_Configurator = ReturnType<typeof defineAssessment>;
+export type Assessment_Configurator = ReturnType<typeof defineAssessment> | import('./defineAssessmentDraft').Assessment_Draft_Configurator;
