@@ -26,7 +26,15 @@ const lesson = {
     skills: [skillId],
     locale: { title: { uk: 'Спостереження' } },
   },
-  production: { methodology: 'Approved learning design.', assessment, languages },
+  production: {
+    methodology: 'Approved learning design.',
+    objective: 'Distinguish observation from inference.',
+    depth: 'Introductory observation with everyday examples.',
+    sequenceReason: 'Establish observation before explaining phenomena.',
+    assessmentEvidence: 'Explain the distinction using a new example.',
+    assessment,
+    languages,
+  },
 };
 const questions = {
   config: { ownerLessonId: id },
@@ -140,9 +148,12 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
   await assert.rejects(renderBanks(home, 'all'), /Unmaterialized editorial draft/);
 
+  // Compare publication at the same package path, without and with drafts.
+  fs.rmSync(owner, { recursive: true });
   fs.cpSync(textbook, home, { recursive: true });
-  const baselineLessons = await renderLessons(textbook, 'draft');
-  const baselineBanks = await renderBanks(textbook, 'all', 'draft');
+  const baselineLessons = await renderLessons(home, 'draft');
+  const baselineBanks = await renderBanks(home, 'all', 'draft');
+  for (const entry of entries) writeDraft(...entry);
   assert.deepEqual(await renderLessons(home, 'draft'), baselineLessons);
   assert.deepEqual(await renderBanks(home, 'all', 'draft'), baselineBanks);
 
