@@ -142,6 +142,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '26'
+      - name: Install pinned TypeScript parser for trusted source verification
+        working-directory: trusted
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - uses: actions/download-artifact@v7
         with:
           name: assessment-stage4-${{ github.run_id }}
