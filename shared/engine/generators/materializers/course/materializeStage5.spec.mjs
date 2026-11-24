@@ -127,6 +127,7 @@ test('Course emits its own allocated Lesson seed, not Stage 1 or a Configurator'
     'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/draft.ts',
   );
   assert.match(result.files[0].content, /satisfies CourseWorkflowLessonSeed/);
+  assert.match(result.files[0].content, /\/\/ prettier-ignore\nexport const lessonSeed = /);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
   assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
   const emitted = JSON.parse(
