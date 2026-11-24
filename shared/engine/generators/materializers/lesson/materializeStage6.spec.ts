@@ -337,7 +337,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       locale: { title: 'Quiz', navigationLabel: 'Q' },
       content: { items: {}, order: [] },
     },
-    production: {},
+    production: { purpose: 'Reviewed assessment' },
   } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.items.reviewCards = {
     config: {
@@ -348,7 +348,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       locale: { title: 'Cards', navigationLabel: 'C' },
       content: { items: {}, order: [] },
     },
-    production: {},
+    production: { purpose: 'Reviewed recall practice' },
   } as LessonWorkflowStage2['config']['section']['items'][string];
   input.config.section.order.push('reviewQuiz', 'reviewCards');
   input.config.params = {
@@ -390,9 +390,10 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert(!cardsSource.includes(id('08')), 'bank UUID must not replace Configurator reference');
   assert.equal(
     plan.diagnostics.some(diagnostic => diagnostic.code.startsWith('pending-')),
-    false,
+    true,
+    'approved assessment imports do not waive the separate methodology handoff',
   );
-  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
+  assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
   const provisional = structuredClone(input);
   const quiz = provisional.config.section.items.reviewQuiz as unknown as {
     config: { params: { selection: { questionIds: string[] } } };
