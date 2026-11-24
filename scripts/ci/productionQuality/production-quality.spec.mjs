@@ -12,14 +12,8 @@ const commandWorkflow = readFileSync(
   'utf8',
 );
 
-const labelerWorkflow = readFileSync(
-  new URL('../../../.github/workflows/pr-labeler.yml', import.meta.url),
-  'utf8',
-);
-const fastGateWorkflow = readFileSync(
-  new URL('../../../.github/workflows/fast-gate.yml', import.meta.url),
-  'utf8',
-);
+const labelerWorkflow = readFileSync(new URL('../../../.github/workflows/pr-labeler.yml', import.meta.url), 'utf8');
+const fastGateWorkflow = readFileSync(new URL('../../../.github/workflows/fast-gate.yml', import.meta.url), 'utf8');
 
 test('editorial-only PR edits do not relabel while required checks keep retarget coverage', () => {
   // Label scope depends on changed paths and target base; integration role

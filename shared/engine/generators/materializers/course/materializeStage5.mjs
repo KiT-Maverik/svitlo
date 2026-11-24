@@ -122,17 +122,10 @@ export function materializeCourseStage5(input, options = {}) {
   const expectedSource = root + '/draft.ts';
   const materializedPath = root + '/index.ts';
   const source = options.source;
-  if (
-    !record(source) ||
-    source.sourcePath !== expectedSource ||
-    !sha.test(source.sourceBlobSha ?? '')
-  )
+  if (!record(source) || source.sourcePath !== expectedSource || !sha.test(source.sourceBlobSha ?? ''))
     throw new Error('Stage 5 requires verified source path and blob SHA');
   // Do not trust a TypeScript "satisfies" assertion as an authorization signal.
-  if (
-    typeof options.verifySource !== 'function' ||
-    options.verifySource({ input, source, textbookRoot }) !== true
-  )
+  if (typeof options.verifySource !== 'function' || options.verifySource({ input, source, textbookRoot }) !== true)
     throw new Error('Stage 5 source was not independently verified');
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();

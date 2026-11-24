@@ -217,9 +217,7 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
 test('Flashcard source materialization does not gate on editorial bank-required status', () => {
   const notRequired = handoff();
   notRequired.production.lesson.assessment.flashcardBankRequired = false;
-  assert.doesNotThrow(() =>
-    materializeFlashcardBankDraft(notRequired as never, draftAuthorization),
-  );
+  assert.doesNotThrow(() => materializeFlashcardBankDraft(notRequired as never, draftAuthorization));
 });
 test('Flashcard Bank rejects pending nested Side Blocks and stale reviewed structured input', () => {
   const input = completed();

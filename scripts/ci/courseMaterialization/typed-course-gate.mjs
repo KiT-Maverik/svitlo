@@ -137,13 +137,7 @@ async function main() {
   const metadata = { ...(await inspectTypedCourse(number)), actor };
   const encoded = Buffer.from(JSON.stringify(metadata)).toString('base64');
   fs.appendFileSync(process.env.GITHUB_OUTPUT, 'meta=' + encoded + '\npr=' + number + '\nhead=' + metadata.head + '\n');
-  report(
-    'Verified typed Course source at ' +
-      metadata.head +
-      ' (source blob ' +
-      metadata.sourceBlobSha +
-      ')',
-  );
+  report('Verified typed Course source at ' + metadata.head + ' (source blob ' + metadata.sourceBlobSha + ')');
 }
 
 if (process.argv[1]?.endsWith('/typed-course-gate.mjs')) {

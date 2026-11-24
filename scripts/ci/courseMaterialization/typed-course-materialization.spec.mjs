@@ -33,13 +33,13 @@ const meta = {
   number: 456,
   repo: 'KiT-Maverik/svitlo',
   actor: 'trusted',
-    head,
+  head,
   branch: 'course/sky',
   textbookRoot: 'content/playground',
   courseId: id,
   sourcePath,
   sourceBlobSha,
-  };
+};
 
 const literal =
   "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
@@ -167,7 +167,7 @@ function testManifest() {
     sourcePath,
     materializedPath,
     sourceBlobSha,
-        courseId: id,
+    courseId: id,
     publishable: false,
     files: [
       { path: materializedPath, kind: 'typescript', content: 'export const course = true;\n' },
@@ -217,7 +217,7 @@ test('pinned Git tree refuses stale source, existing targets and symlinks before
     sourcePath,
     materializedPath,
     sourceBlobSha: blob,
-        courseId: id,
+    courseId: id,
     publishable: false,
     diagnostics: [],
     pendingPlacements: [],

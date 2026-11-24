@@ -44,7 +44,8 @@ function jobLink(run, repository) {
       !/^\d+$/.test(parts[5]) ||
       parts[6] !== 'job' ||
       !/^\d+$/.test(parts[7])
-    ) return null;
+    )
+      return null;
     return { runId: parts[5], jobId: parts[7] };
   } catch {
     return null;
@@ -62,7 +63,8 @@ export async function mayReuse(event, runs, options, read) {
     !/^\d+$/.test(runId ?? '') ||
     runAttempt !== '1' ||
     !Array.isArray(runs)
-  ) return false;
+  )
+    return false;
 
   const prior = [];
   for (const run of runs) {
@@ -75,7 +77,8 @@ export async function mayReuse(event, runs, options, read) {
       run.status !== 'completed' ||
       !Number.isFinite(Date.parse(run.started_at)) ||
       !Number.isFinite(Date.parse(run.completed_at))
-    ) return false;
+    )
+      return false;
     prior.push({ run, link, started: Date.parse(run.started_at) });
   }
   prior.sort((a, b) => b.started - a.started);
@@ -111,13 +114,10 @@ async function main() {
   if (process.env.GITHUB_EVENT_NAME === 'pull_request' && event.action === 'edited' && event.changes?.body) {
     try {
       const read = async route => {
-        const response = await fetch(
-          'https://api.github.com/repos/' + process.env.GITHUB_REPOSITORY + '/' + route,
-          {
-            headers: { Authorization: 'Bearer ' + process.env.GITHUB_TOKEN, Accept: 'application/vnd.github+json' },
-            signal: AbortSignal.timeout(15000),
-          },
-        );
+        const response = await fetch('https://api.github.com/repos/' + process.env.GITHUB_REPOSITORY + '/' + route, {
+          headers: { Authorization: 'Bearer ' + process.env.GITHUB_TOKEN, Accept: 'application/vnd.github+json' },
+          signal: AbortSignal.timeout(15000),
+        });
         if (!response.ok) throw Error('GitHub API lookup failed');
         return response.json();
       };
@@ -128,17 +128,30 @@ async function main() {
       const data = await read('commits/' + head + '/check-runs?filter=all&per_page=100');
       // Missing or truncated history is not evidence of successful validation.
       if (Array.isArray(data.check_runs) && data.total_count < 100 && data.total_count === data.check_runs.length) {
-        reuse = await mayReuse(event, data.check_runs, {
-          name: process.env.REQUIRED_CHECK_NAME,
-          sha: process.env.GITHUB_SHA,
-          repository: process.env.GITHUB_REPOSITORY,
-          runId: process.env.GITHUB_RUN_ID,
-          runAttempt: process.env.GITHUB_RUN_ATTEMPT,
-        }, read);
+        reuse = await mayReuse(
+          event,
+          data.check_runs,
+          {
+            name: process.env.REQUIRED_CHECK_NAME,
+            sha: process.env.GITHUB_SHA,
+            repository: process.env.GITHUB_REPOSITORY,
+            runId: process.env.GITHUB_RUN_ID,
+            runAttempt: process.env.GITHUB_RUN_ATTEMPT,
+          },
+          read,
+        );
       }
-    } catch { /* API failure must run the normal suite. */ }
+    } catch {
+      /* API failure must run the normal suite. */
+    }
   }
   fs.appendFileSync(process.env.GITHUB_OUTPUT, 'reuse=' + reuse + '\n');
-  console.log(reuse ? 'Newest successful required check proves the exact Ready validation scope.' : 'Normal validation required.');
+  console.log(
+    reuse ? 'Newest successful required check proves the exact Ready validation scope.' : 'Normal validation required.',
+  );
 }
-if (process.argv[1]?.endsWith('/required-check-reuse.mjs')) main().catch(error => { console.error(error); process.exitCode = 1; });
+if (process.argv[1]?.endsWith('/required-check-reuse.mjs'))
+  main().catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+  });

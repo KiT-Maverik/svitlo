@@ -196,4 +196,3 @@ jobs:
           COURSE_HEAD_ROOT: candidate
           COURSE_TYPED_REPORT: report/manifest.json
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-publish.mjs publish
-

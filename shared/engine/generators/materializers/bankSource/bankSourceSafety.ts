@@ -219,10 +219,7 @@ export function preflightBankSource(
     }
     assertBankSha(source.blobSha, 'Stage 3 source');
     assertBankSha(source.commitSha, 'source revision');
-    if (
-      source.commitSha !== snapshot.expectedHeadSha ||
-      gitBlobSha(source.content) !== source.blobSha
-    ) {
+    if (source.commitSha !== snapshot.expectedHeadSha || gitBlobSha(source.content) !== source.blobSha) {
       throw new Error('Stage 3 source differs from pinned bytes');
     }
     const draft = snapshot.entries[draftPath];

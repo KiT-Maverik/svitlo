@@ -140,7 +140,7 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
     source: {
       sourcePath: root + '/draft.ts',
       sourceBlobSha: '1'.repeat(40),
-                },
+    },
     verifySource: () => true,
   });
   assert.equal(source.publishable, false);

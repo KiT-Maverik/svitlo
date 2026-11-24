@@ -14,7 +14,9 @@ for (const [name, path, target, source] of [
     action: 'edited',
     changes: { body: { from: 'old' } },
     pull_request: {
-      number: 7, state: 'open', draft: false,
+      number: 7,
+      state: 'open',
+      draft: false,
       head: { ref: source, sha: head, repo: { full_name: repository } },
       base: { ref: target, sha: base, repo: { full_name: repository } },
     },
@@ -23,17 +25,29 @@ for (const [name, path, target, source] of [
   const scope = validationScope(event, options);
   assert.ok(scope);
   const check = (id, conclusion = 'success', extra = {}) => ({
-    name, head_sha: head, app: { slug: 'github-actions' }, status: 'completed', conclusion,
+    name,
+    head_sha: head,
+    app: { slug: 'github-actions' },
+    status: 'completed',
+    conclusion,
     started_at: '2026-11-24T10:00:' + id + 'Z',
     completed_at: '2026-11-24T10:01:00Z',
     details_url: 'https://github.com/owner/repo/actions/runs/' + id + '/job/' + id,
-    pull_requests: [{ number: 7 }], ...extra,
+    pull_requests: [{ number: 7 }],
+    ...extra,
   });
   const read = async route => {
     const id = Number(route.split('/').at(-1));
     return route.startsWith('actions/jobs/')
-      ? { id, run_id: id, name, status: 'completed', conclusion: 'success', run_attempt: 1,
-          steps: [{ name: scope, conclusion: 'success' }] }
+      ? {
+          id,
+          run_id: id,
+          name,
+          status: 'completed',
+          conclusion: 'success',
+          run_attempt: 1,
+          steps: [{ name: scope, conclusion: 'success' }],
+        }
       : { id, path, event: 'pull_request', head_sha: head, status: 'completed', conclusion: 'success', run_attempt: 1 };
   };
   const reuse = (runs, input = event, opts = options, lookup = read) => mayReuse(input, runs, opts, lookup);
@@ -52,31 +66,59 @@ for (const [name, path, target, source] of [
     assert.equal(await reuse([check(10, 'success', { head_sha: 'd'.repeat(40) })]), false);
   });
 
-  test(name + ': retarget, Ready transition, changed refs, Draft, stale or missing scope run normal validation', async () => {
-    for (const changed of [
-      { ...event, action: 'synchronize' },
-      { ...event, action: 'ready_for_review' },
-      { ...event, action: 'reopened' },
-      { ...event, changes: { body: {}, base: { ref: { from: 'other' } } } },
-      { ...event, changes: { title: { from: 'old title' } } },
-      { ...event, pull_request: { ...event.pull_request, draft: true } },
-      { ...event, pull_request: { ...event.pull_request, base: { ...event.pull_request.base, sha: 'd'.repeat(40) } } },
-      { ...event, pull_request: { ...event.pull_request, base: { ...event.pull_request.base, ref: 'other' } } },
-      { ...event, pull_request: { ...event.pull_request, head: { ...event.pull_request.head, sha: 'd'.repeat(40) } } },
-      { ...event, pull_request: { ...event.pull_request, head: { ...event.pull_request.head, ref: 'other' } } },
-    ]) assert.equal(await reuse([check(12)], changed), false);
-    assert.equal(await reuse([check(12)], event, { ...options, runAttempt: '2' }), false);
-    assert.equal(await reuse([check(12)], event, { ...options, sha: 'e'.repeat(40) }), false);
-    assert.equal(await reuse([check(12)], event, options, async () => { throw Error('API unavailable'); }), false);
-    for (const alteration of [
-      { steps: [] },
-      { steps: [{ name: scope, conclusion: 'skipped' }] },
-      { run_attempt: 2 },
-      { conclusion: 'failure' },
-    ]) assert.equal(await reuse([check(12)], event, options, async route =>
-      route.startsWith('actions/jobs/') ? { ...await read(route), ...alteration } : read(route)), false);
-    for (const alteration of [{ event: 'workflow_dispatch' }, { path: '.github/workflows/other.yml' }, { conclusion: 'failure' }])
-      assert.equal(await reuse([check(12)], event, options, async route =>
-        route.startsWith('actions/runs/') ? { ...await read(route), ...alteration } : read(route)), false);
-  });
+  test(
+    name + ': retarget, Ready transition, changed refs, Draft, stale or missing scope run normal validation',
+    async () => {
+      for (const changed of [
+        { ...event, action: 'synchronize' },
+        { ...event, action: 'ready_for_review' },
+        { ...event, action: 'reopened' },
+        { ...event, changes: { body: {}, base: { ref: { from: 'other' } } } },
+        { ...event, changes: { title: { from: 'old title' } } },
+        { ...event, pull_request: { ...event.pull_request, draft: true } },
+        {
+          ...event,
+          pull_request: { ...event.pull_request, base: { ...event.pull_request.base, sha: 'd'.repeat(40) } },
+        },
+        { ...event, pull_request: { ...event.pull_request, base: { ...event.pull_request.base, ref: 'other' } } },
+        {
+          ...event,
+          pull_request: { ...event.pull_request, head: { ...event.pull_request.head, sha: 'd'.repeat(40) } },
+        },
+        { ...event, pull_request: { ...event.pull_request, head: { ...event.pull_request.head, ref: 'other' } } },
+      ])
+        assert.equal(await reuse([check(12)], changed), false);
+      assert.equal(await reuse([check(12)], event, { ...options, runAttempt: '2' }), false);
+      assert.equal(await reuse([check(12)], event, { ...options, sha: 'e'.repeat(40) }), false);
+      assert.equal(
+        await reuse([check(12)], event, options, async () => {
+          throw Error('API unavailable');
+        }),
+        false,
+      );
+      for (const alteration of [
+        { steps: [] },
+        { steps: [{ name: scope, conclusion: 'skipped' }] },
+        { run_attempt: 2 },
+        { conclusion: 'failure' },
+      ])
+        assert.equal(
+          await reuse([check(12)], event, options, async route =>
+            route.startsWith('actions/jobs/') ? { ...(await read(route)), ...alteration } : read(route),
+          ),
+          false,
+        );
+      for (const alteration of [
+        { event: 'workflow_dispatch' },
+        { path: '.github/workflows/other.yml' },
+        { conclusion: 'failure' },
+      ])
+        assert.equal(
+          await reuse([check(12)], event, options, async route =>
+            route.startsWith('actions/runs/') ? { ...(await read(route)), ...alteration } : read(route),
+          ),
+          false,
+        );
+    },
+  );
 }

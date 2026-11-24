@@ -290,10 +290,16 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
     'pulls/888': child,
     ['compare/' + baseHead + '...' + head]: compare(),
     ['contents/' + folder + '/' + bank + '/draft.ts?ref=' + head]: {
-      type: 'file', path: folder + '/' + bank + '/draft.ts', sha: source, size: 100,
+      type: 'file',
+      path: folder + '/' + bank + '/draft.ts',
+      sha: source,
+      size: 100,
     },
     ['contents/' + folder + '/index.ts?ref=' + baseHead]: {
-      type: 'file', path: folder + '/index.ts', sha: lessonBlob, size: 100,
+      type: 'file',
+      path: folder + '/index.ts',
+      sha: lessonBlob,
+      size: 100,
     },
     ...overrides,
   });
@@ -318,7 +324,9 @@ test('Bank gate ignores all editorial prose, but requires current same-repositor
       assert.deepEqual(ok.identity, { id: owner, pkg: 'content/math', folder, bank });
 
       for (const body of [
-        '', 'arbitrary unrelated prose', '- [ ] 4. Independent review',
+        '',
+        'arbitrary unrelated prose',
+        '- [ ] 4. Independent review',
         '- Review evidence (v1): 4 | rejected | ' + head + ' | ' + source,
         '- Review evidence (v1): 4 | accepted | ' + 'e'.repeat(40) + ' | ' + 'f'.repeat(40),
         '- Questions: Not Applicable — no evidence',

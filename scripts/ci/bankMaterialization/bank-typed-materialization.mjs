@@ -138,8 +138,13 @@ function authorizations(meta, input, root, blocks) {
   if (!lesson || lesson.id !== meta.identity.id) throw Error('Flashcard Bank owner Lesson UUID mismatch');
   assertSourceRevision(root, lesson.sourceSha, lessonDirectory + '/index.ts', meta, 'Flashcards Lesson source');
   assertSourceRevision(root, lesson.reference.sourceSha, lesson.reference.path, meta, 'Flashcards reference');
-  return { source, blocks, ownerLessonId: meta.identity.id,
-    lessonSourceSha: lesson.sourceSha, referenceSourceSha: lesson.reference.sourceSha };
+  return {
+    source,
+    blocks,
+    ownerLessonId: meta.identity.id,
+    lessonSourceSha: lesson.sourceSha,
+    referenceSourceSha: lesson.reference.sourceSha,
+  };
 }
 function context(meta, root) {
   return {

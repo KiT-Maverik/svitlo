@@ -355,7 +355,9 @@ test('Episode Stage 5 ignores editorial prose and verifies pinned blobs and curr
       assert.throws(() => parseEpisodeMetadata(encode({ ...meta, [key]: 'invalid' })), /Invalid pinned/);
     }
     for (const body of [
-      '', 'Unrelated prose', '- [ ] Independent review',
+      '',
+      'Unrelated prose',
+      '- [ ] Independent review',
       '- Review evidence (v1): 4 | rejected | ' + head + ' | ' + blob,
       '- Review evidence (v1): 4 | accepted | ' + parentHead + ' | ' + handoffBlob,
     ]) {
@@ -380,16 +382,22 @@ test('Episode Stage 5 ignores editorial prose and verifies pinned blobs and curr
     await assert.rejects(inspectEpisode(810, 808), /modify only/);
     files = [{ filename: sourcePath, status: 'modified' }];
     for (const invalid of [
-      { sha: 'invalid' }, { size: 0 }, { size: 2 * 1024 * 1024 + 1 }, { type: 'symlink' }, { path: 'README.md' },
+      { sha: 'invalid' },
+      { size: 0 },
+      { size: 2 * 1024 * 1024 + 1 },
+      { type: 'symlink' },
+      { path: 'README.md' },
     ]) {
       resourcePatch = invalid;
       await assert.rejects(inspectEpisode(810, 808), /Missing or invalid pinned source/);
     }
     resourcePatch = {};
     for (const invalid of [
-      { draft: false }, { state: 'closed' },
+      { draft: false },
+      { state: 'closed' },
       { head: { ...pr.head, repo: { full_name: 'fork/svitlo' } } },
-      { base: { ...pr.base, sha: head } }, { base: { ...pr.base, ref: 'wrong/course' } },
+      { base: { ...pr.base, sha: head } },
+      { base: { ...pr.base, ref: 'wrong/course' } },
       { base: { ...pr.base, repo: { full_name: 'fork/svitlo' } } },
     ]) {
       prPatch = invalid;
@@ -400,7 +408,8 @@ test('Episode Stage 5 ignores editorial prose and verifies pinned blobs and curr
     await assert.rejects(inspectEpisode(810, 808), /same-repository Draft Episode PR/);
     parentPatch = {};
     for (const invalid of [
-      { draft: false }, { head: { ...pr.head, sha: 'c'.repeat(40) } },
+      { draft: false },
+      { head: { ...pr.head, sha: 'c'.repeat(40) } },
       { base: { ...pr.base, sha: 'c'.repeat(40) } },
     ]) {
       prReads = 0;

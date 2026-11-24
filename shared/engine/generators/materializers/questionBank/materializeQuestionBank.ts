@@ -67,10 +67,7 @@ export type QuestionBankFinalAuthorization = {
   blocks: AssessmentBlockEvidence;
 };
 
-function validateStage1(
-  input: QuestionBankWorkflowStage1,
-  lessonId: string,
-): void {
+function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): void {
   assertBankUuid(lessonId, 'Question Bank owning Lesson');
   if (!input || input.config?.ownerLessonId !== lessonId) {
     throw new Error('Question Bank must use the actual owning Lesson UUID');

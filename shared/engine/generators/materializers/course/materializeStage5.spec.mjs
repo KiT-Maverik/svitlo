@@ -99,7 +99,7 @@ const options = () => ({
   source: {
     sourcePath: root + '/draft.ts',
     sourceBlobSha: sha,
-          },
+  },
   verifySource: () => true,
 });
 

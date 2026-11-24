@@ -463,9 +463,7 @@ async function main() {
       sourceBlobSha: meta.sourceBlobSha,
     },
     verifySource: ({ input: candidate, source, textbookRoot }) =>
-      candidate === input &&
-      source.sourceBlobSha === meta.sourceBlobSha &&
-      textbookRoot === meta.textbookRoot,
+      candidate === input && source.sourceBlobSha === meta.sourceBlobSha && textbookRoot === meta.textbookRoot,
     // Existing-Lesson references are not executable/verified literals.
     // Stage 5 refuses them instead of fabricating Build API or import evidence.
     materializeSection: materializeCourseEpisodeSection,

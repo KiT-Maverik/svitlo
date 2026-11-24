@@ -211,9 +211,7 @@ export function replan(meta, source, candidateRoot = process.env.COURSE_HEAD_ROO
       sourceBlobSha: meta.sourceBlobSha,
     },
     verifySource: ({ input: candidate, source, textbookRoot }) =>
-      candidate === input &&
-      source.sourceBlobSha === meta.sourceBlobSha &&
-      textbookRoot === meta.textbookRoot,
+      candidate === input && source.sourceBlobSha === meta.sourceBlobSha && textbookRoot === meta.textbookRoot,
     materializeSection: materializeCourseEpisodeSection,
     resolveExistingLesson: reviewedLessonPatchResolver(input, resolver, patches, meta.sourceBlobSha),
   });
@@ -233,16 +231,9 @@ function readManifest(filename) {
 }
 
 function equalMetadata(a, b) {
-  return [
-    'repo',
-    'number',
-    'head',
-    'branch',
-    'courseId',
-    'sourcePath',
-    'sourceBlobSha',
-    'textbookRoot',
-  ].every(key => a[key] === b[key]);
+  return ['repo', 'number', 'head', 'branch', 'courseId', 'sourcePath', 'sourceBlobSha', 'textbookRoot'].every(
+    key => a[key] === b[key],
+  );
 }
 
 async function publish() {
