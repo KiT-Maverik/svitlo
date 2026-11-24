@@ -10,9 +10,9 @@ const same = (a, b) => isDeepStrictEqual(a, b);
 const nameOf = node => (ts.isIdentifier(node) || ts.isStringLiteral(node) ? node.text : undefined);
 const safe = x => typeof x === 'string' && slug.test(x) && !['constructor', 'prototype', '__proto__'].includes(x);
 
-/** Read the immutable Course-generated Episode Stage 1 handoff.
- * The generated file is a canonical JSON object in a fixed TS wrapper; this
- * reader does not interpret arbitrary TypeScript or execute authored code.
+/** Read the immutable Course-generated Episode Stage 1 literal.
+ * The shared TypeScript syntax reader accepts ordinary formatting but only
+ * decodes inert literal data; authored code is never evaluated here.
  */
 export function parseEpisodeHandoff(source) {
   const result = readGeneratedCourseHandoff(source, {
