@@ -13,6 +13,8 @@ export type SubtitlesExtension = (typeof subtitlesExtensions)[number];
 
 /** Reserved unresolved filename identity for typed source materialization; never a published asset. */
 export const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000' as const;
+/** Non-URL sentinel for a pending YouTube reference; never navigable or publishable. */
+export const UNRESOLVED_YOUTUBE_HREF = UNRESOLVED_RESOURCE_UUID;
 const mediaUuid_Schema = z.union([z.uuid(), z.literal(UNRESOLVED_RESOURCE_UUID)]);
 
 /** Filename schemas preserve UUID and extension constraints in generated JSON Schema. */
