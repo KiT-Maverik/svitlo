@@ -22,6 +22,7 @@ import { module_Props_Schema } from '../defineModule';
 import { chapter_Props_Schema } from '../defineChapter';
 import { lesson_Props_Schema } from '../../lessons/defineLesson';
 import { episode_Props_Schema } from '../../episodes/defineEpisode';
+import { assessment_Props_Schema } from '../../assessments/defineAssessment';
 import {
   course_Config_Schema,
   course_Override_Config_Schema,
@@ -60,7 +61,7 @@ type CourseConfigBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> &
   locale: DeepPartial<Course_Locale<'config'>>;
 };
 
-const allowedChildren = ['module', 'chapter', 'lesson', 'episode'] as const;
+const allowedChildren = ['module', 'chapter', 'lesson', 'episode', 'assessment'] as const;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -126,6 +127,11 @@ const parseChild = (value: unknown): Course_Child_Props => {
     }
     case 'episode': {
       const parsed = episode_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
+      return structuredClone(value) as Course_Child_Props;
+    }
+    case 'assessment': {
+      const parsed = assessment_Props_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
       return structuredClone(value) as Course_Child_Props;
     }
