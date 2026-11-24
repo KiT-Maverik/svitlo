@@ -50,7 +50,63 @@ for (const [name, path, target, source] of [
         }
       : { id, path, event: 'pull_request', head_sha: head, status: 'completed', conclusion: 'success', run_attempt: 1 };
   };
-  const reuse = (runs, input = event, opts = options, lookup = read) => mayReuse(input, runs, opts, lookup);
+  const workflowRun = (id, extra = {}) => ({
+    id,
+    path,
+    event: 'pull_request',
+    head_sha: head,
+    status: 'completed',
+    conclusion: 'success',
+    run_number: id,
+    run_attempt: 1,
+    pull_requests: [{ number: 7 }],
+    ...extra,
+  });
+  const reuse = (runs, input = event, opts = options, lookup = read, history) => {
+    const workflowRuns = [
+      workflowRun(13, { status: 'in_progress', conclusion: null }),
+      ...runs
+        .map(run => Number(run.details_url?.split('/').at(-3)))
+        .filter(id => id !== 13)
+        .map(id => workflowRun(id)),
+    ];
+    return mayReuse(input, runs, opts, route =>
+      route.startsWith('actions/runs?')
+        ? Promise.resolve(history ?? { total_count: workflowRuns.length, workflow_runs: workflowRuns })
+        : lookup(route),
+    );
+  };
+
+  test(name + ': a newer workflow without a required check cannot reuse an older success', async () => {
+    const current = workflowRun(13, { status: 'in_progress', conclusion: null });
+    const prior = workflowRun(10);
+    for (const newer of [
+      workflowRun(12, { status: 'queued', conclusion: null }),
+      workflowRun(12, { status: 'in_progress', conclusion: null }),
+      workflowRun(12, { conclusion: 'failure' }),
+      workflowRun(12, { conclusion: 'cancelled' }),
+      workflowRun(12),
+      workflowRun(9, { run_attempt: 2, conclusion: 'failure' }),
+    ]) {
+      assert.equal(
+        await reuse([check(10)], event, options, read, {
+          total_count: 3,
+          workflow_runs: [current, prior, newer],
+        }),
+        false,
+      );
+    }
+    for (const history of [
+      { total_count: 3, workflow_runs: [current, prior] },
+      { total_count: 1, workflow_runs: [current] },
+      { total_count: 1, workflow_runs: [prior] },
+    ])
+      assert.equal(await reuse([check(10)], event, options, read, history), false);
+    assert.equal(
+      await reuse([check(10)], event, options, read, { total_count: 2, workflow_runs: [current, prior] }),
+      true,
+    );
+  });
 
   test(name + ': newest exact Ready success only, independent of check order', async () => {
     assert.equal(await reuse([check(10, 'failure'), check(12)]), true);

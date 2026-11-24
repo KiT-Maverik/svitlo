@@ -85,6 +85,41 @@ export async function mayReuse(event, runs, options, read) {
   const latest = prior[0];
   if (!latest || prior[1]?.started === latest.started || latest.run.conclusion !== 'success') return false;
   try {
+    // A newer workflow can exist before its final required job is created.
+    // Never reuse an older check in that gap, even if the check history is complete.
+    const history = await read('actions/runs?head_sha=' + event.pull_request.head.sha + '&per_page=100');
+    if (
+      !Array.isArray(history?.workflow_runs) ||
+      !Number.isSafeInteger(history.total_count) ||
+      history.total_count >= 100 ||
+      history.total_count !== history.workflow_runs.length
+    )
+      return false;
+    const matching = history.workflow_runs.filter(run => run.path === names[name]);
+    const current = matching.find(run => String(run.id) === runId);
+    const previous = matching.filter(run => String(run.id) !== runId);
+    const candidate = previous.find(run => String(run.id) === latest.link.runId);
+    if (
+      !current ||
+      current.head_sha !== event.pull_request.head.sha ||
+      current.event !== 'pull_request' ||
+      current.run_attempt !== 1 ||
+      !current.pull_requests?.some(pr => pr.number === event.pull_request.number) ||
+      !candidate ||
+      candidate.conclusion !== 'success' ||
+      previous.some(
+        run =>
+          run.head_sha !== event.pull_request.head.sha ||
+          run.status !== 'completed' ||
+          !Number.isSafeInteger(run.run_number) ||
+          !Number.isSafeInteger(run.run_attempt) ||
+          run.run_number > candidate.run_number ||
+          // An older run can be retried later. Its missing/ambiguous required
+          // check must not be mistaken for proof that the previous success is current.
+          (String(run.id) !== latest.link.runId && run.run_attempt !== 1),
+      )
+    )
+      return false;
     const job = await read('actions/jobs/' + latest.link.jobId);
     const workflow = await read('actions/runs/' + latest.link.runId);
     return (
@@ -101,6 +136,7 @@ export async function mayReuse(event, runs, options, read) {
       workflow.conclusion === 'success' &&
       Number.isSafeInteger(job.run_attempt) &&
       job.run_attempt === workflow.run_attempt &&
+      job.run_attempt === candidate.run_attempt &&
       job.steps?.filter(step => step.name === scope && step.conclusion === 'success').length === 1
     );
   } catch {
