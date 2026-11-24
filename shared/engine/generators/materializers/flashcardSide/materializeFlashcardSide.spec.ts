@@ -108,6 +108,19 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
   );
 });
 
+test('FlashcardSide: refuses delegated child without an importable index', () => {
+  assert.throws(
+    () =>
+      materializeFlashcardSide({ items: { first: block('first', 1) }, order: ['first'] }, {
+        ...context,
+        materializeBlock: (_node, ctx) => ({
+          exportName: 'first',
+          files: [{ path: ctx.directory + '/specification.md', kind: 'markdown' as const, content: '# draft\\n' }],
+        }),
+      }),
+    /missing delegated ContentBlock index\.ts/,
+  );
+});
 // Flashcard sides are created only from reviewed, ordered side Config data.
 test('FlashcardSide: editorial handoff does not synthesize front/back side content', () => {
   assert.throws(
