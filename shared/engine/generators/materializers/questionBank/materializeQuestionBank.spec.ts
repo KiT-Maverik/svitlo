@@ -81,6 +81,18 @@ const completeBank = () => ({
   },
 });
 
+test('questions Bank languages are derived only from the reviewed locale plan', () => {
+  const input = completeBank();
+  input.production.languages.planned = ['uk', 'en'] as never;
+  const output = materializeQuestionBank(input as never, finalAuth(input));
+  const source = output.files.find(file => file.path === 'questionsLanguages.ts')!.content;
+  assert.match(source, /\/\/   "uk",/);
+  assert.match(source, /\/\/   "en",/);
+  assert.doesNotMatch(source, /\/\/   "zh",/);
+  assert.match(source, /export const languages = \["uk"\] as const satisfies SupportedLanguages/);
+  assert(output.diagnostics.some(entry => entry.code === 'pending-locales'));
+});
+
 test('Question Bank Stage 1 creates exactly one type-annotated editable source', () => {
   const result = materializeQuestionBankDraft(handoff() as never, draftAuth);
   assert.equal(result.publishable, false);
