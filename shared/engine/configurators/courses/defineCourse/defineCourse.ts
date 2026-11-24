@@ -91,6 +91,7 @@ const validate = (config: Course_Config): void => {
         !isRecord(child.config) ||
         !isRecord(child.config.base) ||
         child.config.base.id !== child.id ||
+        (child.draft === true && child.slug !== slug) ||
         (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
         child.config.base.type !== child.type
       ) {
@@ -385,6 +386,7 @@ export const defineCourse = <
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
           child.config.base.id !== child.id ||
+          (child.draft === true && child.slug !== key) ||
           (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== key) ||
           child.config.base.type !== child.type
         ) {

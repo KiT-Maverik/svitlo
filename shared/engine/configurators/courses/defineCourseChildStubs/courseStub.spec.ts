@@ -64,6 +64,19 @@ describe('Configurators', () => {
         }
       });
 
+      test('validates UUIDs and never re-aliases a draft Lesson placement', () => {
+        const malformed = defineLessonStub({ id: 'invalid-id', slug: 'slot' });
+        assert.throws(() => malformed.validate(), /Invalid/i);
+        const stub = defineLessonStub({ id: id('41'), slug: 'originalSlot' });
+        const course = defineCourse({
+          id: id('42'), slug: 'invalidPlacement', type: 'course',
+          params: { languages: ['en'] as const },
+          locale: { title: 'Draft', description: 'Only a preview' },
+          content: { items: { renamedSlot: stub }, order: ['renamedSlot'] },
+        });
+        assert.throws(() => course.build.props({ languages: ['en'] }), /immutable child identity/i);
+      });
+
       test('Course, Module and Chapter each retain the original ordered draft placement', () => {
         const lesson = defineLessonStub({ id: id('21'), slug: 'lessonSlot' });
         const episode = defineEpisodeStub({ id: id('22'), slug: 'episodeSlot' });

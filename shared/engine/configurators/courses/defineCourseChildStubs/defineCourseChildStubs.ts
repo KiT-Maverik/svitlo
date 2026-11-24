@@ -4,6 +4,7 @@ import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#sch
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
 import { resolvePublicationLanguages } from '../../_shared__configurators';
+import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
 import { episode_Draft_Props_Schema } from '../../episodes/defineEpisode';
 import { lesson_Draft_Props_Schema } from '../../lessons/defineLesson';
@@ -51,6 +52,7 @@ const createStub = <const K extends Kind, const Slug extends string>(
     : { languages: [...allLanguageCodes] as LanguageCode[] };
 
   const validate = (): void => {
+    identityBase_Schema.parse({ id, slug });
     const built = section.build.props({ languages: ['en'] });
     if (!built.base.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')) {
       throw new Error('Stub preview must include a Not implemented Text ContentBlock');
