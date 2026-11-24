@@ -242,7 +242,16 @@ export function materializeLessonStage6(
   )
     throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
   if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
-  const params = { ...config.params, languages: [...planned] };
+  const params = {
+    ...config.params,
+    languages: [...planned],
+    sections: {
+      allowNavigation: true,
+      allowSkipping: true,
+      showIndexes: true,
+      ...config.params?.sections,
+    },
+  };
   const parsed = lesson_Config_Schema.shape.params.safeParse(params);
   if (!parsed.success)
     throw new Error('Lesson Stage 6: incomplete or invalid Lesson Config params: ' + parsed.error.message);
