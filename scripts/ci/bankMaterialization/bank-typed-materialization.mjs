@@ -183,7 +183,7 @@ function scenePath(filename, meta) {
     !/^[0-9a-f]$/.test(parts[0]) ||
     !sceneUuid.test(parts[1]) ||
     parts[1].at(-1) !== parts[0] ||
-    !/^[A-Za-z][A-Za-z0-9]*(?:\.(?:tsx|ts|css))?$/.test(parts[2])
+    !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.module\.css|\.constants\.ts|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(parts[2])
   ) return null;
   return { id: parts[1], name: parts[2], directory: prefix + parts[0] + '/' + parts[1] };
 }
