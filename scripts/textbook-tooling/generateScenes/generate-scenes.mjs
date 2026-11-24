@@ -37,8 +37,8 @@ export async function syncSceneRegistry(root, mode, packageName = 'the selected 
   // including pending Scenes. A textbook with only pending Scenes has an empty
   // registry, not an invented implementation.
   const pendingRegistration = /^\s*\/\/ TODO \(BLOCKER\): Register this Scene UUID only after /m;
-  const entries = authored.filter(entry =>
-    !pendingRegistration.test(readFileSync(join(scenes, entry.path, 'index.ts'), 'utf8')),
+  const entries = authored.filter(
+    entry => !pendingRegistration.test(readFileSync(join(scenes, entry.path, 'index.ts'), 'utf8')),
   );
   const imports = entries
     .map(

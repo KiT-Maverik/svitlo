@@ -86,16 +86,18 @@ test('CLI refuses invocation outside a textbook workspace', () => {
   assert.match(result.stderr, /Run Scene generation from a content textbook workspace/);
 });
 
-
 test('Stage 6.1 Scene draft UUIDs remain absent from lazy registry until Stage 6.3 approval', async t => {
   const { root, loader, add } = fixture(t);
   const draftIndex = join(root, 'scenes/c', gamma, 'index.ts');
   add('c', gamma);
-  writeFileSync(draftIndex, [
-    '// TODO (BLOCKER): Register this Scene UUID only after the implementation, tests and review are complete.',
-    "export { ChooseColors as default } from './ChooseColors';",
-    '',
-  ].join('\n'));
+  writeFileSync(
+    draftIndex,
+    [
+      '// TODO (BLOCKER): Register this Scene UUID only after the implementation, tests and review are complete.',
+      "export { ChooseColors as default } from './ChooseColors';",
+      '',
+    ].join('\n'),
+  );
   assert.equal(await syncSceneRegistry(root, '--write', '@svitlo/example'), 2);
   let source = readFileSync(loader, 'utf8');
   assert.doesNotMatch(source, new RegExp(gamma));
@@ -112,9 +114,11 @@ test('Stage 6.1 Scene draft UUIDs remain absent from lazy registry until Stage 6
 test('all-pending Scene inventory yields an empty but valid nonregistering loader', async t => {
   const { root, loader } = fixture(t);
   for (const id of [alpha, beta]) {
-    writeFileSync(join(root, 'scenes', id.at(-1), id, 'index.ts'),
+    writeFileSync(
+      join(root, 'scenes', id.at(-1), id, 'index.ts'),
       '// TODO (BLOCKER): Register this Scene UUID only after the implementation, tests and review are complete.\n' +
-      'export default () => null;\n');
+        'export default () => null;\n',
+    );
   }
   assert.equal(await syncSceneRegistry(root, '--write', '@svitlo/example'), 0);
   const output = readFileSync(loader, 'utf8');
