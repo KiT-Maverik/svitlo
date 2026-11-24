@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 import ts from 'typescript';
 import { textbook } from '../../testing/fixtures.mjs';
+import { materializeLessonDraft } from '../../generators/materializers/course/lessonDraft.mjs';
 import { render as renderLessons } from '../generateLessonProps/generateLessonProps.mjs';
 import { render as renderBanks } from '../generateAssessmentResources/generateAssessmentResources.mjs';
 
@@ -140,20 +141,20 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   for (const entry of entries) writeDraft(...entry);
   const files = entries.map(entry => entry[0]);
   // A Course seed is valid inert source at exactly the same path, but not a completed Lesson.
-  const seed = { config: lesson.config, proposal: {
-    methodology: lesson.production.methodology,
-    objective: lesson.production.objective,
-    depth: lesson.production.depth,
-    sequenceReason: lesson.production.sequenceReason,
-    assessmentEvidence: lesson.production.assessmentEvidence,
-    assessment,
-  }, languageContext: languages };
-  writeDraft(files[0], 'CourseWorkflowLessonSeed', seed);
+  const { id: allocatedId, ...proposalConfig } = lesson.config;
+  const { languages: courseLanguages, ...proposal } = lesson.production;
+  const emitted = materializeLessonDraft(
+    { config: proposalConfig, production: { kind: 'new', ...proposal } },
+    { lessonId: allocatedId, textbookRoot: 'content/example', reviewedSourceSha: sha, languageContext: courseLanguages },
+  ).files[0];
+  assert.ok(emitted.path.endsWith('/data/lessons/5/' + id + '/draft.ts'));
+  fs.writeFileSync(files[0], emitted.content);
   assert.deepEqual(diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')), []);
   assert.deepEqual(await renderLessons(home, 'draft'), new Map());
   await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
   // Authorized Lesson Stage 1 replaces the seed in place; no conversion API or second file.
   writeDraft(files[0], 'LessonWorkflowStage1', lesson);
+  assert.match(fs.readFileSync(files[0], 'utf8'), new RegExp(allocatedId));
   assert.equal(fs.readdirSync(owner).filter(name => name.endsWith('.ts')).length, 1);
   assert.deepEqual(
     diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')),

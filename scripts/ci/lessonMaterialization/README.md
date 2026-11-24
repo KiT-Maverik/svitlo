@@ -6,7 +6,7 @@ default-branch GitHub Actions workflow has three jobs:
 
 The input is the exact source-commit/source-blob-pinned Lesson
 `draft.ts satisfies LessonWorkflowMaterializerInput` under the canonical
-UUID bucket. The operation deletes the pinned draft and atomically creates `index.ts` and the deterministic Lesson-owned `define*` module tree. Exact original bytes remain in the pinned Git commit/blob. It does not generate translations, Question/Flashcard
+UUID bucket. An initial Course-owned seed or completed Lesson Stage 1 draft is not valid materializer input. The operation deletes the pinned draft and atomically creates `index.ts` and the deterministic Lesson-owned `define*` module tree. Exact original bytes remain in the pinned Git commit/blob. It does not generate translations, Question/Flashcard
 Banks, assets, Scene implementations or publishable runtime Props.
 
 ## Trigger

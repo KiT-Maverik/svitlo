@@ -224,7 +224,7 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   assert.equal(props.base.section[0].type, 'content');
   assert.deepEqual(props.base.skills, [id('04')]);
 });
-test('Course-origin Stage 1 remains insufficient; a completed Stage 2 handoff can materialize', () => {
+test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
   delete (stage1.config as unknown as { section?: unknown }).section;
   assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
