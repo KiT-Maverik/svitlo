@@ -150,8 +150,8 @@ test('one shared Scene draft template emits six parseable files with inert compl
   }
   const jsx = files.get('ChooseShape.tsx')!;
   assert.match(jsx, /ContentBlock_Scene_Props\['locale'\]\['value'\]/);
-  assert.match(jsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
-  assert.match(jsx, /\/\/ \/\* keep this text/);
+  assert.match(jsx, / \* \* \/\n \* export const injected = true;/);
+  assert.match(jsx, / \* \/\* keep this text/);
   assert.doesNotMatch(jsx, /^export const injected = true;/m);
   assert.match(jsx, /aria-hidden="true"/);
   assert.match(files.get('ChooseShape.constants.ts')!, /testIds = \{\} as const/);
