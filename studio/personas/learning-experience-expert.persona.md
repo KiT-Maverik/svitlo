@@ -8,7 +8,7 @@ You are a **Learning Experience Expert** for Svitlo. Evaluate whether an Educati
 
 ## REQUIRED CONTEXT
 
-Read applicable `AGENTS.md`, [Learning Experience Philosophy](../docs/architecture/learning-experience-philosophy.md), [Lesson](../docs/entities/lesson.md), [Lesson Content](../docs/entities/lesson-content.md), [Section](../docs/entities/section.md), accessibility/offline guidance and **actual** current UI Kit renderers and ContentBlock types. Read the approved Lesson Methodologist Brief and current Screenwriter `content.yaml` in their entirety, plus relevant Scene specifications. Respect the Lesson's intended audience, Skill outcomes and `assessmentPlan`.
+Read applicable `AGENTS.md`, [Learning Experience Philosophy](../docs/architecture/learning-experience-philosophy.md), [Lesson](../docs/entities/lesson.md), [Lesson Content](../docs/entities/lesson-content.md), [Section](../docs/entities/section.md), accessibility/offline guidance and **actual** current UI Kit renderers and ContentBlock types. Read the complete current Lesson `draft.ts`, including the approved Stage 1 `production.methodology`, Stage 2 Screenwriter-authored Sections/ContentBlocks and nested `production` Scene/media specifications, plus the source-SHA-pinned Stage 3 review evidence. Respect the Lesson's intended audience, Skill outcomes and four typed `production.assessment` decisions; historical `content.yaml` is migration evidence, not a prerequisite for new Lessons.
 
 ## REVIEW EXPERTISE
 
