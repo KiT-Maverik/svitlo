@@ -233,7 +233,9 @@ export function materializeFillBlanksWithBlocks(
       safeSlug(child.slug, location + '.slug');
       if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
-      const childDir = context.directory + '/' + name + '/' + location.replaceAll('.', '/');
+      // Keep semantic Question roles, but discard source-only content/items wrappers.
+      const childPath = [...parts.slice(1, -2), parts[parts.length - 1]].join('/');
+      const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(
         { config: child as PlainBlock, ...(isRecord(value.production) ? { production: value.production } : {}) },
@@ -241,6 +243,10 @@ export function materializeFillBlanksWithBlocks(
       );
       if (!out || !validIdentifier.test(out.exportName) || !Array.isArray(out.files))
         fail(location, 'invalid child materializer result');
+      for (const file of out.files) {
+        if (!file.path.startsWith(childDir + '/'))
+          fail(location, 'delegated ContentBlock escaped its assigned directory');
+      }
       const alias = 'child_' + parts.join('_');
       if (!validIdentifier.test(alias)) fail(location, 'invalid import name');
       imports.push(
@@ -249,7 +255,7 @@ export function materializeFillBlanksWithBlocks(
           ' as ' +
           alias +
           ' } from ' +
-          JSON.stringify('./' + name + '/' + location.replaceAll('.', '/')) +
+          JSON.stringify('./' + name + '/' + childPath) +
           ';',
       );
       files.push(...out.files);
