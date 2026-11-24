@@ -2,6 +2,7 @@
  * Explicit Lesson-owned Flashcard Bank Stage 1/Stage 5 source operations.
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import type {
   FlashcardBankWorkflowStage1,
   FlashcardBankWorkflowMaterializerInput,
@@ -78,13 +79,7 @@ function validateStage1(
     throw new Error('Stale Lesson/reference approval for Flashcards');
   }
   assertBankLanguages(lesson.languages);
-  if (
-    !lesson.assessment ||
-    typeof lesson.assessment.questionBankRequired !== 'boolean' ||
-    typeof lesson.assessment.flashcardBankRequired !== 'boolean' ||
-    typeof lesson.assessment.quizSectionRequired !== 'boolean' ||
-    typeof lesson.assessment.flashcardsSectionRequired !== 'boolean'
-  ) {
+  if (!lessonProductionAssessmentRequirements_Schema.safeParse(lesson.assessment).success) {
     throw new Error('All four Lesson assessment decisions must be preserved');
   }
   if (lesson.assessment.flashcardBankRequired !== true) {

@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
+import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
 import { materializeContentSection } from '../contentSection/contentSection';
@@ -58,7 +60,6 @@ export type LessonStage6Plan = {
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
 const safeSlug = /^[A-Za-z][A-Za-z0-9]*$/;
-const locale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 type Node = { config: Record<string, unknown>; production?: Record<string, unknown> };
@@ -226,18 +227,10 @@ export function materializeLessonStage6(input: LessonWorkflowStage2, options: Le
   )
     throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
 
-  const documentLanguage = input.production.languages?.document;
-  const planned = input.production.languages?.planned;
-  if (
-    typeof documentLanguage !== 'string' ||
-    !locale.test(documentLanguage) ||
-    !Array.isArray(planned) ||
-    !planned.length ||
-    planned.some(code => typeof code !== 'string' || !locale.test(code)) ||
-    new Set(planned).size !== planned.length ||
-    !planned.includes(documentLanguage)
-  )
+  const languagePlan = workflowLanguages_Schema.safeParse(input.production.languages);
+  if (!languagePlan.success)
     throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  const { document: documentLanguage, planned } = languagePlan.data;
   if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
   const params = {
     ...config.params,
@@ -255,13 +248,7 @@ export function materializeLessonStage6(input: LessonWorkflowStage2, options: Le
   if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
     throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
   const assessment = input.production.assessment;
-  const assessmentKeys = [
-    'questionBankRequired',
-    'flashcardBankRequired',
-    'quizSectionRequired',
-    'flashcardsSectionRequired',
-  ] as const;
-  if (!isRecord(assessment) || assessmentKeys.some(key => typeof assessment[key] !== 'boolean'))
+  if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
   const { sections, metadata } = normalizeStage2(input);
 

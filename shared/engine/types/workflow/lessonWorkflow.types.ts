@@ -21,6 +21,7 @@ import type { ContentBlock_Carousel_Config } from '../../configurators/contentBl
 import type { ContentBlock_Checkpoint_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
 import type { ContentBlock_CheckpointItem_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import type { ContentBlock_CheckpointAnswer_Config } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
+import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 
 /**
@@ -41,8 +42,6 @@ export type LessonWorkflowStage1Config = Pick<Lesson_Config, 'id' | 'type' | 'sl
   events?: never;
 };
 
-type LessonLanguage = Lesson_Config['params']['languages'][number];
-
 /** Completed Lesson-owned methodology, regardless of the editorial inputs used. */
 export type LessonWorkflowStage1Production = {
   /** Full pedagogical specification, including scope, prerequisites and misconceptions. */
@@ -56,10 +55,7 @@ export type LessonWorkflowStage1Production = {
   /** Explain how intended learning is evaluated. */
   assessmentEvidence: string;
   /** Actual source locale and nonempty intended publication locales. */
-  languages: {
-    document: LessonLanguage;
-    planned: readonly [LessonLanguage, ...LessonLanguage[]];
-  };
+  languages: CourseWorkflowStage1Languages;
   /** Bank ownership is independent of Quiz/Flashcards Section presence. */
   assessment: LessonProductionAssessmentRequirements;
   /** Verified references and unresolved editorial decisions, when applicable. */

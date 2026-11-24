@@ -1,3 +1,5 @@
+import type { z } from 'zod';
+import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
@@ -16,15 +18,8 @@ export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'sl
   locale?: Partial<Course_Config['locale']>;
 };
 
-type CourseLanguage = Course_Config['params']['languages'][number];
-
 /** The complete planned set is nonempty; publication initially uses only document. */
-export type CourseWorkflowStage1Languages = {
-  /** The actual editorial source language, not a guessed translation target. */
-  document: CourseLanguage;
-  /** Nonempty intended publication languages; each requires authentic localization and review. */
-  planned: readonly [CourseLanguage, ...CourseLanguage[]];
-};
+export type CourseWorkflowStage1Languages = z.infer<typeof workflowLanguages_Schema>;
 
 /** Required methodology fields mirror the Stage 1 YAML field names.
  * Fields formerly optional in YAML are required for a completed Stage 1 plan:

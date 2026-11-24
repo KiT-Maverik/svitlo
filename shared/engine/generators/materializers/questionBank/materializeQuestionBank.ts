@@ -2,6 +2,7 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
 import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowMaterializerInput,
@@ -103,11 +104,7 @@ function validateStage1(
   ] as const)
     assertBankStatement(value, label);
   if (
-    !p.assessment ||
-    typeof p.assessment.questionBankRequired !== 'boolean' ||
-    typeof p.assessment.flashcardBankRequired !== 'boolean' ||
-    typeof p.assessment.quizSectionRequired !== 'boolean' ||
-    typeof p.assessment.flashcardsSectionRequired !== 'boolean' ||
+    !lessonProductionAssessmentRequirements_Schema.safeParse(p.assessment).success ||
     typeof p.assessment.quizRequiredForCompletion !== 'boolean'
   ) {
     throw new Error('Preserve all independent Lesson assessment decisions');
