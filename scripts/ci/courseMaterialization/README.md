@@ -1,115 +1,18 @@
-# Typed Course Stage 5 — trusted PR-command materialization
+# Trusted direct Course Stage 5
 
-The Course-owned TypeScript Stage 3 source is the only supported editorial input. Follow the [canonical Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md): during Stage 4, replace the type-only import and `satisfies` clause on the existing exported Course object with `CourseWorkflowMaterializerInput`, then commit, reinspect and pin the final revision. Stage 5 consumes those exact reviewed bytes without editing the source. The single-export form is exercised by the full typed fixture in `typed-course-materialization.spec.mjs`. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, with exact top-level `/course materialize` comment support and manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before invocation; never bypass authorization.
+Stage 1–3 progressively author **one Course object** at `content/<book>/data/courses/<bucket>/<uuid>/draft.ts`. During Stage 4, after independent substantive review and correction, keep its `satisfies CourseWorkflowMaterializerInput` contract and make it the argument of **one** `materializeCourse(input)` invocation imported from `@svitlo/engine/build`. Pin that exact reviewed source blob and HEAD before authorizing Stage 5.
 
-## Authorization and source fidelity
+```ts
+import { materializeCourse } from '@svitlo/engine/build';
+materializeCourse(reviewedCourse satisfies CourseWorkflowMaterializerInput);
+```
 
-To exercise the staged path on an open same-repository **Draft Course PR**:
-post exactly `/course materialize` as a top-level PR comment, or choose
-**Actions → Typed Course materialization** and supply `pr_number`. The gate requires a single changed canonical
-content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
-the current source blob SHA, accepted Stage 4 evidence in the Course PR
-description using the [canonical independent review rule](../../../studio/rules/independent-review.md),
-and a write-authorized invoking actor. Review and command authorization are
-separate. Missing, rejected, duplicate or stale evidence fails closed.
+Reused existing Lessons are real imported Lesson Configurators supplied as `production.source` and their real `production.sourceExportName`. If `production.existing` is a built sparse `build.overrides()` result, supply the corresponding **original plain, JSON-safe** `production.sourcePatch`. The materializer must verify that the real Lesson Build API reproduces the reviewed built result. Never reconstruct the raw patch from Props, override an independently owned Lesson, fabricate import aliases or import an unmaterialized Lesson. Candidate and trusted default-branch Lesson trees and source revisions must match.
 
-The **read-only analyze job** parses the Course PR TypeScript through trusted
-TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
-literal objects and aliases, verified canonical Lesson imports, an imported
-Lesson's immutable `.id`, and that trusted Lesson's
-`build.overrides(rawPatch, { languages })` with reviewed literal arguments
-are supported. Every other executable call/import, computed key or spread
-fails closed. Imported Lesson code must already be present byte-for-byte
-in the trusted default branch AND in the candidate Git checkout with an
-independently pinned source revision and methodology. The trusted
-`Lesson_Configurator` and its real Build API are loaded solely from that
-default-branch implementation, never the Course PR. Bundling preserves each
-original authored TypeScript module's file URL (including transitive Markdown
-and other file-relative resources) using the shared Configurator loader plugin.
-Editorial drafts cannot be reused or imported. A Course-local sparse
-patch retains its _original raw expression_ and is replayed against the
-reviewed built result; it is never reverse-engineered from Props. Changes to
-independently authored Lessons that exist only on a nested integration branch
-must first be approved and made available to the trusted implementation.
-This conservative boundary rejects such imports rather than executing PR code.
+The exact top-level `/course materialize` comment or default-branch `workflow_dispatch(pr_number)` is authorized only for the current same-repo Draft Course PR, write-capable actor, unique changed root draft and accepted exact-HEAD Stage 4 review evidence. `resolve` pins HEAD/blob/reviews. `analyze` compiles the **ordinary** trusted Engine package and executes only the reviewed direct call in the credential-free, read-only, network-disabled shared worker. It validates Course Zod/Configurator contracts, output inventory, immutable reused Lesson dependencies and bounded output paths/hashes. No untrusted code runs in the publisher; no AST decoder, special trusted-Lesson esbuild bundle, second semantic validator or privileged replay exists in the active execution path.
 
-This path uses the already-implemented Course/Module/Chapter/Episode
-orchestrators, concrete Episode Section/ContentBlock renderers shared with
-Lesson Stage 6, and Course → new Lesson seeds (not Stage 1 completion). It does not begin
-independent Lesson PRs, Question Banks, Flashcard Banks, translation, Scenes,
-or Course Props publishing. Unresolved child and release
-`TODO (BLOCKER)` markers persist in generated authored source. Generated
-TypeScript is typechecked semantically against real trusted Engine Build
-contracts as virtual in-memory files before manifest creation and again
-before a privileged write.
+The analyzer seals a complete `publishable:false` manifest. `publish` reauthorizes the actor, exact Stage 4 evidence, HEAD, source and immutable dependencies, verifies every output byte, prohibits existing targets/symlinks/path escapes, and atomically deletes `draft.ts` and creates `index.ts`/Course-owned files using one non-force Git Data API commit. The original bytes remain in Git history. A separate metadata-only task confirms the committed tree and reconciles Course Lesson/Episode inventory tables.
 
-The read-only job writes a bounded artifact containing the complete generated
-file set, exact UTF-8 bytes and SHA-256 hashes, source blob, review verdict and
-review commit. **Only trusted default-branch scripts** execute in both jobs.
-Candidate TS is not imported, compiled to executable JS, or evaluated —
-including in the privileged publisher. The publisher rechecks the actor and
-independent Stage 4 review at the pinned HEAD, rereads original source/blob,
-recreates the identical plan from inert AST, checks every target for symlinks
-and clobbers, and builds **one Git Data API tree commit** that deletes the reviewed
-draft.ts and creates index.ts plus all approved outputs. Exact original bytes
-remain available at the pinned parent commit and blob. It checks
-the branch/PR before a non-force ref update. A separate metadata-only job verifies the committed manifest and reconciles Lessons and Episodes tables in the current PR description. No Course Props publication, child Lesson/Episode production or automatic bank work occurs.
+Stage 5 may allocate new Lesson seeds and Episode handoffs but **does not** author them, start PRs, implement banks/Scenes, translate, publish Props or grant QA acceptance. Explicit `TODO (BLOCKER)` markers and pending inventories remain.
 
-### Clean trusted dependency preparation
-
-Both read-only `analyze` and privileged `publish` install dependencies in their
-trusted default-branch checkout with `npm ci --ignore-scripts` and invoke
-`node scripts/ci/courseMaterialization/build-course-renderers.mjs` **before**
-loading an existing Lesson. That preparation bundles the concrete Section/Block
-renderers and **both** public Engine entries (`dist/build.js` and
-`dist/runtime.js`) from trusted source, since transitive authored Lesson
-modules can import `@svitlo/engine/runtime`. Neither prebuilt dist output nor
-an npm lifecycle script is a prerequisite. The bundles remain untracked,
-trusted temporary build artifacts; this preparation does not substitute for
-Engine package typechecking or permit candidate source execution. Both reviewed
-input and virtual generated-source semantic checks explicitly resolve
-`@svitlo/engine/build` and `@svitlo/engine/runtime` to trusted TypeScript sources.
-This also covers Episode generated-source validation. The temporary esbuild
-outputs need no declarations; the canonical Engine package build separately
-emits the real public declarations and is verified in Ready Course CI.
-
-The Ready Course Stage 5 full-path regression uses the actual Playground
-Lesson and the reviewed #806 Course fixture (only the two Lesson source
-revision pins are adapted to the separate candidate Git checkout). It checks
-clean preparation, both reuse variants, two new Lesson seeds, four Episode
-handoffs, real semantic compilation, exact deterministic privileged replay and
-no-clobber enforcement. A child-only negative control restores the missing
-runtime source mapping from the old analyzer and must reproduce TS7016
-through the same CLI before the corrected analysis succeeds. A passing regression is not evidence that a live
-Course PR has materialized: verify the subsequent authorized Actions run and
-commit.
-
-### Validation and activation
-
-Run on a checkout containing this PR with dependencies installed:
-
-    node --test scripts/ci/courseMaterialization/trusted-course-full-path.spec.mjs
-    node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
-    node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
-    node --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
-    node --test shared/engine/generators/materializers/course/sourceCommit.spec.mjs
-    npm run code:check:types --workspace @svitlo/engine
-    npm run package:build --workspace @svitlo/engine
-    npm run test:coverage --workspace @svitlo/engine
-
-Before these focused tests, run:
-
-    node scripts/ci/courseMaterialization/build-course-renderers.mjs
-
-This transient trusted-only esbuild compilation supports isolated regressions. It is not a substitute for those real Engine gates.
-The typed PR-targeted test job also requires the actual
-`npm run code:check:types --workspace @svitlo/engine`; failure must be
-reported and repaired in its owning workstream, not silently skipped.
-
-The Engine tests check real source renderers, generated TS compilation and
-Git-source writer. A complete successful Actions run on the default branch
-against a pinned Course PR SHA is still required. A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational.
-
-## Course PR inventory reconciliation
-
-Only after the exact source commit succeeds, the publisher emits the commit/manifest digest proof. The separate `reconcile-pr-tables` job has contents read and pull-requests write permissions, verifies the manifest digest, commit parent, commit provenance and actual generated Git blobs, then updates the two managed blocks. It re-reads the current PR and body before editing, uses an ETag precondition and verifies the resulting body. GitHub's PR REST endpoint does not document a transactional body compare-and-swap; human edits during the final request cannot be absolutely locked. Avoid concurrent description edits while this job runs. On an observed race, stale HEAD or malformed markers it refuses to write. If source publication succeeds but metadata fails, **rerun only the failed metadata job of the same workflow run** while the artifact is available and the materialization commit remains HEAD. Do not dispatch materialization again. The source commit remains valid; if HEAD has advanced, explicitly reconcile from the verified historical run/commit instead of overwriting current metadata. No child PR is created by either job.
+**Validation:** `npm run package:build --workspace @svitlo/engine`, `npm run code:check:types --workspace @svitlo/engine`, `node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs`, and the existing concrete Course materializer/metadata tests. A test pass does not prove actual deployment; verify a real authorized default-branch workflow run, reviewed input SHA, output commit and updated inventory.
