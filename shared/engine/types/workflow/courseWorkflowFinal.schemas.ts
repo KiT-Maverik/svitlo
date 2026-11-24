@@ -100,21 +100,17 @@ const episodeSlot = z.strictObject({
   production: z.strictObject({ focus: rationale, purpose: rationale }),
 });
 const chapter = z.strictObject({
-  config: chapter_Config_Schema
-    .pick({ type: true, slug: true, locale: true })
-    .extend({
-      params: chapter_Config_Schema.shape.params.partial().optional(),
-      content: ordered(z.union([newLesson, existingLesson, episodeSlot])),
-    }),
+  config: chapter_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
+    params: chapter_Config_Schema.shape.params.partial().optional(),
+    content: ordered(z.union([newLesson, existingLesson, episodeSlot])),
+  }),
   production: unitProduction,
 });
 const module = z.strictObject({
-  config: module_Config_Schema
-    .pick({ type: true, slug: true, locale: true })
-    .extend({
-      params: unitParams.optional(),
-      content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])),
-    }),
+  config: module_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
+    params: unitParams.optional(),
+    content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])),
+  }),
   production: unitProduction,
 });
 
