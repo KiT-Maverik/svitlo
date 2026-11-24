@@ -78,7 +78,7 @@ When all seven stages are independently verified: **"All seven Flashcards workfl
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `lessonId`                                                           | `production.lesson.id`, reused Lesson UUID                                                           |
 | `documentLanguage`, `supportedLanguages`                             | `production.lesson.languages.document/planned`, shared typed language contract                       |
-| source Lesson reference, methodology, Question prerequisites         | `production.lesson.sourceSha/reference/assessment`; Questions completion/N/A in PR only (editorial)                 |
+| source Lesson reference, methodology, Question prerequisites         | `production.lesson.sourceSha/reference/assessment`; Questions completion/N/A in PR only (editorial)  |
 | analysis inventory/exclusions                                        | `production.analysis` (Stage 1)                                                                      |
 | `flashcards.items/order`                                             | `config.flashcards.items/order` (Stage 2)                                                            |
 | individual Card `id/slug/parameters/content`                         | each `config.flashcards.items[key].config` (Stage 2); real Engine Config                             |
