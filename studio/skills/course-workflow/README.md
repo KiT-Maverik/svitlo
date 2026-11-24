@@ -33,4 +33,4 @@ Stage 10 is mandatory human-owned integrated Course QA, after Stage 9. Agents an
 
 Verify the trusted workflow on the default branch and the actual authorized run, pinned source SHAs and generated commit before declaring successful materialization.
 
-For detailed methodology, partial/final acceptance, assessment-only Lesson dependencies, PR tracker format and Stage 5–10 handoffs, consult only [Create Course Flow](./create-course-flow.skill.md).
+For detailed methodology, partial/final acceptance, Assessment upstream/additional Lesson dependencies, PR tracker format and Stage 5–10 handoffs, consult only [Create Course Flow](./create-course-flow.skill.md).
