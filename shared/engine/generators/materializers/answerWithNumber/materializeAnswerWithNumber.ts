@@ -227,6 +227,8 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
         if (!file.path.startsWith(childDir + '/'))
           fail(location, 'delegated ContentBlock escaped its assigned directory');
       }
+      if (!out.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
+        fail(location, 'missing delegated ContentBlock index.ts');
       const alias = 'child_' + parts.join('_');
       if (!validIdentifier.test(alias)) fail(location, 'invalid import name');
       imports.push(
