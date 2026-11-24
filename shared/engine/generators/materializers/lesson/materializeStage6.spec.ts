@@ -718,7 +718,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const plan = materializeLessonStage6(fixture, options);
   assert.deepEqual(plan, materializeLessonStage6(fixture, options));
   const lessonRoot = plan.files.find(file => file.path === folder + 'index.ts')?.content ?? '';
-  assert.match(lessonRoot, /TODO \(BLOCKER\): Quest is Build-only/);
+  assert.match(lessonRoot, /TODO \(BLOCKER\): Implement and verify Quest runtime support or remove the Quest/);
   assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
   assert.match(lessonRoot, /"order": \["introduction"\]/);
   assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
@@ -833,12 +833,6 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     production: {
       focus: 'Reviewed transition',
       purpose: 'Continue the narrative',
-      placement: {
-        courseId: id('34'),
-        path: 'content/transition',
-        orderPath: [0],
-        reviewedCourseSourceBlobSha: 'a'.repeat(40),
-      },
       languages: lesson.production.languages,
       scenario: {
         audience: 'Beginners',
@@ -854,6 +848,14 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     },
   };
   assert.equal(episodeWorkflowStage2_Schema.safeParse(episode).success, true);
+  // Course-owned Git evidence must not leak back into the authored Episode protocol.
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      production: { ...episode.production, placement: { courseId: id('34'), path: 'content/transition' } },
+    }).success,
+    false,
+  );
   assert.equal(
     episodeWorkflowStage2_Schema.safeParse({
       ...episode,
