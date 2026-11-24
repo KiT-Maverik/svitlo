@@ -651,12 +651,12 @@ export const howLightMoves = defineLesson({
   section: { items: { intro }, order: ['intro'] },
 });
 `,
-    [methodology]: '# Independently reviewed Lesson fixture\\n',
-    [lessonRoot + '/constants.ts']: \`
+    [methodology]: '# Independently reviewed Lesson fixture\n',
+    [lessonRoot + '/constants.ts']: `
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 export const lessonLanguages = ['en', 'uk'].filter(language =>
   DEFAULT_SUPPORTED_LANGUAGES.some(supported => supported.language === language));
-\`,
+`,
     [intro + '/index.ts']: `
 import { defineContentSection } from '@svitlo/engine/build';
 import { first } from './content/first';
