@@ -3,6 +3,8 @@
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { flashcardBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   FlashcardBankWorkflowStage1,
   FlashcardBankWorkflowMaterializerInput,
@@ -222,6 +224,17 @@ function checkSides(card: Card, slug: string): void {
  * This is a source plan, NOT a write, Lesson Section change, or publication.
  */
 export function materializeFlashcardBank(
+  input: FlashcardBankWorkflowMaterializerInput,
+  authorization?: FlashcardBankFinalAuthorization,
+): BankSourceResult {
+  return invokeMaterializer('flashcards-stage5', authorization, approved => {
+    const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
+    if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+    return planFlashcardBank(input, approved);
+  });
+}
+
+function planFlashcardBank(
   input: FlashcardBankWorkflowMaterializerInput,
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {

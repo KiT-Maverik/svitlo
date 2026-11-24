@@ -3,6 +3,8 @@
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowMaterializerInput,
@@ -225,6 +227,17 @@ function renderQuestion(
  * #775's trusted writer must apply the complete returned plan atomically.
  */
 export function materializeQuestionBank(
+  input: QuestionBankWorkflowMaterializerInput,
+  authorization?: QuestionBankFinalAuthorization,
+): BankSourceResult {
+  return invokeMaterializer('questions-stage5', authorization, approved => {
+    const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+    if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+    return planQuestionBank(input, approved);
+  });
+}
+
+function planQuestionBank(
   input: QuestionBankWorkflowMaterializerInput,
   authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
