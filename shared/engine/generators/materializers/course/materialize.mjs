@@ -413,9 +413,6 @@ export function materializeCourse(input, context = {}) {
   }
   if (!record(config.locale) || config.locale.title === undefined || config.locale.description === undefined)
     throw Error(dir + '.config.locale: reviewed title and description required before materialization');
-  const assessmentBlocker = order.some(key => unwrap(collection.items[key])?.type === 'assessment')
-    ? '// TODO (BLOCKER): Complete and review the Assessment with real Questions and enabled Quiz, then replace its draft stub before Course publication.\n'
-    : '';
   const fields = { ...config, id, slug };
   delete fields.content;
   delete fields.params;
@@ -427,15 +424,6 @@ export function materializeCourse(input, context = {}) {
     }
   }
   const orderSource = JSON.stringify(order);
-  const blocker = pendingPlacements.length
-    ? '// TODO (BLOCKER): Finish and independently materialize pending Lesson seeds, then replace their stubs before Course publication.\n'
-    : '';
-  const ownPendingEpisodes = pendingEpisodes.filter(
-    entry => entry.path === [dir, 'content', entry.slug].filter(Boolean).join('/'),
-  );
-  const episodeBlocker = ownPendingEpisodes.length
-    ? '// TODO (BLOCKER): Finish independently reviewed Episode production and replace its stub before Course publication.\n'
-    : '';
   const itemsSource =
     '{ ' +
     Object.entries(items)
@@ -466,9 +454,6 @@ export function materializeCourse(input, context = {}) {
     ', order: ' +
     orderSource +
     ' };\n\n' +
-    blocker +
-    episodeBlocker +
-    assessmentBlocker +
     'export const ' +
     exportName(slug) +
     ' = defineCourse<' +
