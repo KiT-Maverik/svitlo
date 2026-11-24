@@ -107,7 +107,9 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
 
   return {
     ...source,
-    placement: { source, patch: authored },
+    // Expose a separate inspection snapshot so external mutations cannot change
+    // this placement's closed-over authored patch between Build calls.
+    placement: { source, patch: structuredClone(authored) },
     build,
   } as PlacedLesson<Lesson>;
 }
