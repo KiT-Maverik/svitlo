@@ -23,7 +23,8 @@ export async function verifyCommittedInventory(manifest, proof, api = github) {
     !SHA.test(proof.reviewedHead ?? '') ||
     !Array.isArray(manifest.entries) ||
     !Array.isArray(manifest.inventory?.lessons) ||
-    !Array.isArray(manifest.inventory?.episodes)
+    !Array.isArray(manifest.inventory?.episodes) ||
+    !Array.isArray(manifest.inventory?.assessments)
   )
     throw Error('Course metadata proof does not match verified materialization manifest');
   // Final typed-source boundary: the reviewed draft must be consumed, not archived.
@@ -76,7 +77,7 @@ export async function verifyCommittedInventory(manifest, proof, api = github) {
     generated.add(file.path);
   }
   if (!generated.has(manifest.materializedPath)) throw Error('Missing committed Course index');
-  for (const row of [...manifest.inventory.lessons, ...manifest.inventory.episodes]) {
+  for (const row of [...manifest.inventory.lessons, ...manifest.inventory.episodes, ...manifest.inventory.assessments]) {
     if (
       !generated.has(row.placementSourcePath) ||
       !blobs.has(row.placementSourcePath) ||
@@ -166,7 +167,7 @@ async function main() {
   report(
     'Course Stage 5 committed ' +
       proof.commit +
-      '; Lessons/Episodes tables ' +
+      '; Lessons/Episodes/Assessments tables ' +
       (changed ? 'updated' : 'already current'),
   );
 }
