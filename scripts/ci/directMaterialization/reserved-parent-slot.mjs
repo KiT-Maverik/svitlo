@@ -180,3 +180,68 @@ export function verifyReservedParentSlot(source, candidate, allocation) {
     throw Error('Parent patch is not the exact authorized one-slot restoration');
   return true;
 }
+
+/** Decode only a pinned Course-generated typed *data literal*, using the same
+ * existing TypeScript parser as the parent source check. This never interprets
+ * author-written Stage 1/2 TypeScript, comments or executable expressions.
+ * Unlike JSON.parse of a TS substring, it survives ordinary Prettier.
+ */
+export function readGeneratedCourseHandoff(source, { variable, contract }) {
+  if (typeof source !== 'string' || source.length > 2 * 1024 * 1024 ||
+      !identifier(variable) || !identifier(contract))
+    throw Error('Invalid Course-generated handoff source');
+  const ast = ts.createSourceFile('handoff.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  if (ast.parseDiagnostics.length || ast.statements.length !== 2)
+    throw Error('Course handoff must contain only its typed import and data export');
+  const [imported, exported] = ast.statements;
+  if (!ts.isImportDeclaration(imported) || !ts.isStringLiteral(imported.moduleSpecifier) ||
+      imported.moduleSpecifier.text !== '@svitlo/engine/build' ||
+      !imported.importClause?.namedBindings ||
+      !ts.isNamedImports(imported.importClause.namedBindings) ||
+      imported.importClause.namedBindings.elements.length !== 1 ||
+      imported.importClause.namedBindings.elements[0].name.text !== contract ||
+      (!imported.importClause.isTypeOnly && !imported.importClause.namedBindings.elements[0].isTypeOnly))
+    throw Error('Course handoff has an unexpected authoring contract import');
+  if (
+    !ts.isVariableStatement(exported) ||
+    !(ts.getCombinedModifierFlags(exported) & ts.ModifierFlags.Export) ||
+    !(exported.declarationList.flags & ts.NodeFlags.Const) ||
+    exported.declarationList.declarations.length !== 1 ||
+    name(exported.declarationList.declarations[0].name) !== variable
+  ) throw Error('Course handoff must export its one canonical immutable data object');
+  let initializer = exported.declarationList.declarations[0].initializer;
+  while (initializer && ts.isParenthesizedExpression(initializer)) initializer = initializer.expression;
+  if (!initializer || !ts.isSatisfiesExpression(initializer) ||
+      !ts.isTypeReferenceNode(initializer.type) || name(initializer.type.typeName) !== contract)
+    throw Error('Course handoff must satisfy the exact typed seed contract');
+  const literal = unwrap(initializer.expression);
+  if (!ts.isObjectLiteralExpression(literal))
+    throw Error('Course handoff must be a literal data object');
+  const decode = node => {
+    node = unwrap(node);
+    if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
+    if (ts.isNumericLiteral(node)) {
+      const value = Number(node.text);
+      if (!Number.isSafeInteger(value) || value < 0) throw Error('Unsafe handoff numeric value');
+      return value;
+    }
+    if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
+    if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
+    if (node.kind === ts.SyntaxKind.NullKeyword) return null;
+    if (ts.isArrayLiteralExpression(node)) return node.elements.map(decode);
+    if (ts.isObjectLiteralExpression(node)) {
+      const entries = node.properties.map(property => {
+        if (!ts.isPropertyAssignment(property)) throw Error('Handoff may contain data properties only');
+        const key = name(property.name);
+        if (!key || ['__proto__', 'prototype', 'constructor'].includes(key))
+          throw Error('Unsafe Course handoff property');
+        return [key, decode(property.initializer)];
+      });
+      if (new Set(entries.map(([key]) => key)).size !== entries.length)
+        throw Error('Duplicate Course handoff object property');
+      return Object.fromEntries(entries);
+    }
+    throw Error('Course handoff must not contain executable TypeScript');
+  };
+  return decode(literal);
+}
