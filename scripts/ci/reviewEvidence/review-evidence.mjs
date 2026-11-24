@@ -12,8 +12,22 @@ export function parseReviewEvidence(body, requiredStages, allowedStages = requir
   if (typeof body !== 'string' || body.length > 65536 || !requiredStages.length)
     throw Error('Missing or oversized PR review evidence');
   const entries = new Map();
+  let fence = null;
+  let comment = false;
   for (const line of body.split(/\r?\n/)) {
-    if (!line.toLowerCase().includes(PREFIX.trim().toLowerCase())) continue;
+    const delimiter = /^ {0,3}(`{3,}|~{3,})(.*)$/.exec(line);
+    const containsEvidence = line.toLowerCase().includes(PREFIX.trim().toLowerCase());
+    if (containsEvidence && (fence || comment || delimiter || line.includes('<!--')))
+      throw Error('Review evidence must be a visible PR description record');
+    if (!comment && delimiter) {
+      if (!fence) fence = delimiter[1];
+      else if (delimiter[1][0] === fence[0] && delimiter[1].length >= fence.length && !delimiter[2].trim())
+        fence = null;
+    }
+    if (!fence && !delimiter) {
+      for (const token of line.match(/<!--|-->/g) ?? []) comment = token === '<!--';
+    }
+    if (!containsEvidence) continue;
     const match = LINE.exec(line);
     if (!match) throw Error('Malformed review evidence');
     const [, rawStage, verdict, commit, blob] = match;

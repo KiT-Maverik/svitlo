@@ -27,6 +27,8 @@ test('rejects missing, stale, malformed, duplicate, rejected and contradictory e
     row(4) + '\n' + row(5),
     row(4).replace('accepted', 'pending'),
     row(4).replace(head, 'not-a-sha'),
+    '```text\n' + row(4) + '\n```',
+    '<!--\n' + row(4) + '\n-->',
   ]) await assert.rejects(verifyReviewEvidence(body, current), /evidence/i);
 });
 
