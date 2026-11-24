@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import ts from 'typescript';
 import test from 'node:test';
-import { materializeLesson } from './lesson';
+import { materializeLesson, assertLessonSourceReleaseReady } from './lesson';
 import { materializeContentSection, type Source as ContentSource } from '../contentSection/contentSection';
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const section = () => ({
