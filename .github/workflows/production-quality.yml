@@ -17,7 +17,12 @@ concurrency:
 jobs:
   policy:
     name: Production / source policy
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    # Description-only edits do not change the release source or policy.
+    # Retargeting to main must still rerun the complete release suite.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (!github.event.pull_request.draft &&
+       (github.event.action != 'edited' || github.event.changes.base != null))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -211,7 +216,9 @@ jobs:
     # On Ready the final status exists even when one prerequisite fails or skips.
     if: >-
       always() &&
-      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+      (github.event_name == 'workflow_dispatch' ||
+       (!github.event.pull_request.draft &&
+        (github.event.action != 'edited' || github.event.changes.base != null)))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
