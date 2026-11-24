@@ -21,14 +21,24 @@ test('FastGate limits Ready checks to TypeScript and defers installs for Drafts'
   const fast = workflow('fast-gate.yml');
   const guard =
     "if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)";
-  assert.equal(fast.split(guard).length - 1, 2);
+  // Dependency installation, the focused stub-guard test, and the manual
+  // typecheck share the Ready/manual gate; Drafts must not execute any of them.
+  assert.equal(fast.split(guard).length - 1, 3);
+  assert.match(fast, /name: Verify symbol-aware Course stub guard/);
+  assert.match(fast, /run: node --test scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/);
+  assert.match(fast, /name: Reject newly introduced Course stub imports and uses/);
+  assert.match(fast, /run: node scripts\/ci\/checkStubImports\/check-stub-imports\.mjs "\$BASE_SHA" "\$HEAD_SHA"/);
+  const focusedTests = [...fast.matchAll(/node --test [^\n]+/g)].map(match => match[0]);
+  assert.deepEqual(focusedTests, [
+    'node --test scripts/ci/checkStubImports/check-stub-imports.spec.mjs',
+  ]);
   assert.match(
     fast,
     /if: steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
   );
   assert.match(fast, /if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'/);
   assert.match(fast, /Draft PR - typechecks are deferred/);
-  assert.doesNotMatch(fast, /node --test|test:coverage|test:components|app:build/);
+  assert.doesNotMatch(fast, /test:coverage|test:components|app:build/);
 });
 
 test('heavy PR suites run on Ready transition and can run manually on Draft branches', () => {
