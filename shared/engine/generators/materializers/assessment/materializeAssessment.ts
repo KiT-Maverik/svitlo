@@ -175,8 +175,17 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
   }
   if (!questionIds.length) throw Error('Assessment requires real upstream Question selection');
 
-  const languageImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/languages';
   const ownDirectory = placement;
+  // The Course only declares a local `languages` constant; it has no
+  // guaranteed #coursesData/.../languages module. Own the Assessment source
+  // languages and import them relatively from every nested Section/Block.
+  const languageImport = (directory: string) => {
+    const relative = directory.slice(ownDirectory.length).replace(/^\//, '');
+    if (relative && (!directory.startsWith(ownDirectory + '/') ||
+      relative.split('/').some(part => !slug.test(part))))
+      throw Error('Assessment Section escaped its own language scope: ' + directory);
+    return relative ? '../'.repeat(relative.split('/').length) + 'languages' : './languages';
+  };
   const files: GeneratedFile[] = [];
   const diagnostics: PlanDiagnostic[] = [];
   const renderBlock = (block: Config, context: RenderOptions): Result => {
@@ -198,22 +207,22 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
       case 'carousel': return materializeCarousel(block as unknown as Parameters<typeof materializeCarousel>[0], {
         ...current,
         renderChild: (child, directory) => renderBlock(child as Config, {
-          directory, documentLanguage: document, languagesImport: languageImport,
+          directory, documentLanguage: document, languagesImport: languageImport(directory),
           production: metadata.get(child.id),
         }),
       });
       case 'checkpoint': return materializeCheckpoint(block as unknown as Parameters<typeof materializeCheckpoint>[0], {
         ...current,
         renderItem: (item, directory) => materializeCheckpointItem(item, {
-          directory, documentLanguage: document, languagesImport: languageImport,
+          directory, documentLanguage: document, languagesImport: languageImport(directory),
           renderQuestion: (question, childDir) => renderBlock(question as Config, {
-            directory: childDir, documentLanguage: document, languagesImport: languageImport,
+            directory: childDir, documentLanguage: document, languagesImport: languageImport(directory),
             production: metadata.get(question.id),
           }),
           renderAnswer: (answer, childDir) => materializeCheckpointAnswer(answer, {
-            directory: childDir, documentLanguage: document, languagesImport: languageImport,
+            directory: childDir, documentLanguage: document, languagesImport: languageImport(directory),
             renderChild: (child, deeper) => renderBlock(child as Config, {
-              directory: deeper, documentLanguage: document, languagesImport: languageImport,
+              directory: deeper, documentLanguage: document, languagesImport: languageImport(directory),
               production: metadata.get(child.id),
             }),
           }),
@@ -232,7 +241,7 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
     const renderContentBlock = (child: Config, context: RenderOptions) =>
       renderBlock(child, context);
     const opts = {
-      directory, documentLanguage: document, languagesImport: languageImport,
+      directory, documentLanguage: document, languagesImport: languageImport(directory),
       ...(wrapped.production ? { production: wrapped.production } : {}),
       renderContentBlock,
     };
@@ -248,7 +257,7 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
   }
   const rendered = [
     "import { defineAssessment } from '@svitlo/engine/build';",
-    'import { languages } from ' + JSON.stringify(languageImport) + ';',
+    'import { languages } from "./languages";',
     ...imports,
     '',
     '// TODO (BLOCKER): Validate selected Questions against reviewed upstream Lesson banks before release.',
@@ -265,6 +274,12 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
     '});',
     '',
   ].filter(Boolean).join('\n');
+  files.push({
+    path: ownDirectory + '/languages.ts',
+    content: "// Authored source locale only; planned translations require independent review.\\n" +
+      "export const languages = " + JSON.stringify([document]) + " as const;\\n",
+    kind: 'typescript',
+  });
   files.push({ path: ownDirectory + '/index.ts', content: rendered, kind: 'typescript' });
   const specification = '# Assessment design\n\n' + production.design + '\n\n' +
     '## Reviewed content specification\n\n' + production.specification + '\n\n' +
