@@ -11,7 +11,7 @@ import {
 } from './assessment-transaction.mjs';
 
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
-const assessmentId = 'a73572e7-bd85-4516-86e2-3de07d209e03';
+const assessmentId = deriveCourseEntityId(courseId, 'assessment', 'finalReview');
 const questionId = '12345678-1234-4234-8234-123456789010';
 const courseRoot = 'content/math/data/courses/3/' + courseId;
 const meta = {
@@ -69,6 +69,7 @@ const plan = {
 
 test('Course-allocated seed is immutable; independent Assessment adds reviewed design', () => {
   assert.deepEqual(parseAssessmentSeed(source), seed);
+  assert.deepEqual(parseAssessmentSeed(source.replace('// TODO (BLOCKER):', '// editorial:')), seed);
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
   assert.throws(() =>
