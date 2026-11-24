@@ -65,6 +65,10 @@ const verifiedSkillModules: Readonly<Record<string, { name: string; path: string
     name: 'testRecognizeBlue',
     path: '#skillsData/testColors/testCoolColors/testRecognizeBlue',
   },
+  '54f96aba-7db2-48bb-97ae-5ba2f3436095': {
+    name: 'identify2dShapes',
+    path: '#skillsData/geometry/figures/identify2dShapes',
+  },
 };
 const sectionTypes = new Set(['content', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'quiz', 'quest']);
 const reserved = new Set([
