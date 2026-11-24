@@ -102,8 +102,19 @@ export const courseStage3 = {
                       'Ages 12–16; assume only everyday shape vocabulary. A circle is a closed curve whose points are equally distant from its centre; distinguish the circular outline from an oval and from straight-sided polygons. Model a familiar circular rim, contrast different-sized circles with elongated ovals and polygons, then ask learners to classify new examples and explain why rotation and size do not alter the shape. Address the misconception that every round-looking object or oval is a circle. Provide verbal shape descriptions conveying equivalent geometry, keyboard-accessible actions and feedback, avoiding color-only distinctions. Use varied examples rather than identical repetitions. The Lesson remains independent of the exhibition narrative. Build a short enabled Quiz from the owned independently authored Question Bank; no invented selections. English source, Ukrainian planned. Verify actual Skill definition testRecognizeCircle. Technical fixture; no formal geometry or curriculum certification.',
                   },
                 },
+                chapterReview: {
+                  config: {
+                    type: 'assessment',
+                    locale: { title: 'Recognizing circles — chapter review' },
+                  },
+                  production: {
+                    purpose:
+                      'Check independent transfer of circle recognition after the Chapter Lesson, with genuine reviewed Questions selected only during the Assessment workflow. Keep this Course fixture assessment blocked until its upstream Lesson Bank is available.',
+                    lessonDependencies: ['content/familiarCircles/circleRecognition'],
+                  },
+                },
               },
-              order: ['circleMission', 'circleRecognition'],
+              order: ['circleMission', 'circleRecognition', 'chapterReview'],
             },
           },
           production: {
@@ -236,8 +247,22 @@ export const courseStage3 = {
                       'Conclude practice by combining previously introduced Skills in one unfamiliar situation.',
                   },
                 },
+                moduleReview: {
+                  config: {
+                    type: 'assessment',
+                    locale: { title: 'Exhibition practice — module review' },
+                  },
+                  production: {
+                    purpose:
+                      'Evaluate the two previously practised light and shape Skills in a fresh context, using independently reviewed Lesson-owned Question Banks and a separately authorized Assessment Quiz.',
+                    lessonDependencies: [
+                      'content/exhibitionPractice/shadowPractice',
+                      'content/exhibitionPractice/combinedObservations/combinedPractice',
+                    ],
+                  },
+                },
               },
-              order: ['practiceMission', 'shadowPractice', 'combinedObservations'],
+              order: ['practiceMission', 'shadowPractice', 'combinedObservations', 'moduleReview'],
             },
           },
           production: {
@@ -254,8 +279,23 @@ export const courseStage3 = {
               'Follow the initial light and circle activities with practice at greater contextual variety, without adding new prerequisite Skills.',
           },
         },
+        finalCourseReview: {
+          config: {
+            type: 'assessment',
+            locale: { title: 'Light and shapes — final course review' },
+          },
+          production: {
+            purpose:
+              'Independently assess the two Course outcomes through a final cross-Lesson evaluation. Real Questions, Quiz and human review are deferred to the Assessment workflow; do not invent completed resources in Course Stage 5.',
+            lessonDependencies: [
+              'content/lightBasics',
+              'content/familiarCircles/circleRecognition',
+              'content/exhibitionPractice/combinedObservations/combinedPractice',
+            ],
+          },
+        },
       },
-      order: ['openingMission', 'lightBasics', 'familiarCircles', 'exhibitionPractice'],
+      order: ['openingMission', 'lightBasics', 'familiarCircles', 'exhibitionPractice', 'finalCourseReview'],
     },
   },
   production: {
