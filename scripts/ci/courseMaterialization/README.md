@@ -1,12 +1,12 @@
-# Typed Course Stage 5 — trusted manual materialization
+# Typed Course Stage 5 — trusted PR-command materialization
 
-The Course-owned TypeScript Stage 3 source is the only supported editorial input. Follow the [canonical Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md): during Stage 4, replace the type-only import and `satisfies` clause on the existing exported Course object with `CourseWorkflowMaterializerInput`, then commit, reinspect and pin the final revision. Stage 5 consumes those exact reviewed bytes without editing the source. The single-export form is exercised by the full typed fixture in `typed-course-materialization.spec.mjs`. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before dispatch; never bypass authorization.
+The Course-owned TypeScript Stage 3 source is the only supported editorial input. Follow the [canonical Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md): during Stage 4, replace the type-only import and `satisfies` clause on the existing exported Course object with `CourseWorkflowMaterializerInput`, then commit, reinspect and pin the final revision. Stage 5 consumes those exact reviewed bytes without editing the source. The single-export form is exercised by the full typed fixture in `typed-course-materialization.spec.mjs`. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, with exact top-level `/course materialize` comment support and manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before invocation; never bypass authorization.
 
 ## Authorization and source fidelity
 
 To exercise the staged path on an open same-repository **Draft Course PR**:
-choose **Actions → Stage typed Course materialization (manual rollout)** and
-supply pr_number. The gate requires a single changed canonical
+post exactly `/course materialize` as a top-level PR comment, or choose
+**Actions → Typed Course materialization** and supply `pr_number`. The gate requires a single changed canonical
 content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
 the current source blob SHA, accepted Stage 4 evidence in the Course PR
 description using the [canonical independent review rule](../../../studio/rules/independent-review.md),

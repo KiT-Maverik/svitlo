@@ -10,8 +10,8 @@ import { github, parseIdentity, requireActor, requireReviewedStages, safeBranch,
 
 const SHA = /^[a-f0-9]{40}$/;
 const COMMANDS = {
-  '/questions materialize typed': 'questions',
-  '/flashcards materialize typed': 'flashcards',
+  '/questions materialize': 'questions',
+  '/flashcards materialize': 'flashcards',
 };
 
 export function typedCommand(event, name, actor) {
@@ -19,6 +19,7 @@ export function typedCommand(event, name, actor) {
   let number, bank;
   if (name === 'issue_comment') {
     if (
+      event.action !== 'created' ||
       !event.issue?.pull_request ||
       event.comment?.user?.login !== actor ||
       !Object.hasOwn(COMMANDS, event.comment.body)
@@ -28,8 +29,11 @@ export function typedCommand(event, name, actor) {
     number = event.issue.number;
     bank = COMMANDS[event.comment.body];
   } else if (name === 'workflow_dispatch') {
-    if (event.inputs?.mode !== 'typed' || !['questions', 'flashcards'].includes(event.inputs?.bank)) {
-      throw Error('Typed dispatch mode required');
+    if (
+      !['questions', 'flashcards'].includes(event.inputs?.bank) ||
+      Object.keys(event.inputs ?? {}).some(key => !['pr_number', 'bank'].includes(key))
+    ) {
+      throw Error('Invalid Bank dispatch inputs');
     }
     number = Number(event.inputs.pr_number);
     bank = event.inputs.bank;
@@ -187,6 +191,8 @@ export async function inspectTyped(number, bank, expected) {
 }
 
 async function resolve() {
+  if (!process.env.BANK_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.BANK_DEFAULT_BRANCH)
+    throw Error('Bank materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const command = typedCommand(event, process.env.GITHUB_EVENT_NAME, process.env.GITHUB_ACTOR);
   await requireActor(command.actor);

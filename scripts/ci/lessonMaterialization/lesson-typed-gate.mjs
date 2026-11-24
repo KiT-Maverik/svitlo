@@ -54,14 +54,18 @@ export function parseTypedTrigger(event, type, actor) {
   let number;
   if (type === 'issue_comment') {
     if (
+      event.action !== 'created' ||
       !event.issue?.pull_request ||
       event.comment?.user?.login !== actor ||
-      event.comment?.body !== '/lesson materialize typed'
+      event.comment?.body !== '/lesson materialize'
     )
       throw Error('Only exact top-level typed Lesson command allowed');
     number = event.issue.number;
   } else if (type === 'workflow_dispatch') {
-    if (event.inputs?.operation !== 'materialize-typed' || !/^[1-9]\d*$/.test(String(event.inputs?.pr_number ?? '')))
+    if (
+      Object.keys(event.inputs ?? {}).some(key => key !== 'pr_number') ||
+      !/^[1-9]\d*$/.test(String(event.inputs?.pr_number ?? ''))
+    )
       throw Error('Invalid typed Lesson dispatch');
     number = Number(event.inputs.pr_number);
   } else throw Error('Unsupported Lesson trigger');
@@ -131,11 +135,16 @@ export function typedPath(filename, identity) {
 
 async function main() {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: lesson-typed-gate.mjs resolve');
+  if (
+    !process.env.LESSON_DEFAULT_BRANCH ||
+    process.env.GITHUB_REF !== 'refs/heads/' + process.env.LESSON_DEFAULT_BRANCH
+  )
+    throw Error('Lesson materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const action = parseTypedTrigger(event, process.env.GITHUB_EVENT_NAME, process.env.GITHUB_ACTOR);
   await requireActor(action.actor);
   const snapshot = await inspectTyped(action.number);
-  const meta = { ...snapshot, actor: action.actor, operation: 'materialize-typed' };
+  const meta = { ...snapshot, actor: action.actor, operation: 'lesson-stage6' };
   fs.appendFileSync(
     process.env.GITHUB_OUTPUT,
     'meta=' +
