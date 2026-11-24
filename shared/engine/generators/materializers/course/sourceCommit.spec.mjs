@@ -11,8 +11,8 @@ const reviewed =
   'export const course = {} satisfies CourseWorkflowMaterializerInput;\n';
 const generated = "export const generatedCourse = { type: 'course' };\n";
 const id = '663572e7-bd85-4516-86e2-3de07d209e03';
-const sourcePath = 'content/playground/data/courses/3/' + id + '/index.ts';
-const archivePath = 'content/playground/data/courses/3/' + id + '/workflow.stage3.ts';
+const sourcePath = 'content/playground/data/courses/3/' + id + '/draft.ts';
+const materializedPath = 'content/playground/data/courses/3/' + id + '/index.ts';
 const generatedPath = 'content/playground/data/courses/3/' + id + '/methodology.md';
 const cmd = (root, ...args) => {
   const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
@@ -37,12 +37,12 @@ function fixture(t) {
   const plan = {
     courseId: id,
     sourcePath,
-    sourceArchivePath: archivePath,
+    materializedPath,
     sourceBlobSha: blob,
     reviewCommitSha: head,
     publishable: false,
     files: [
-      { path: sourcePath, kind: 'typescript', content: generated },
+      { path: materializedPath, kind: 'typescript', content: generated },
       { path: generatedPath, kind: 'markdown', content: '# Reviewed methodology\n' },
     ],
   };
@@ -55,14 +55,14 @@ test('read-only check does not change HEAD, refs, worktree or Git tree', t => {
   const beforeFiles = fs.readdirSync(path.dirname(path.join(root, sourcePath)));
   const status = commitCourseSourcePlan(plan, { ...options, mode: 'check' });
   assert.equal(status.mode, 'check');
-  assert.deepEqual(status.pending.sort(), [archivePath, generatedPath, sourcePath].sort());
+  assert.deepEqual(status.pending.sort(), [materializedPath, generatedPath, sourcePath].sort());
   assert.equal(cmd(root, 'rev-parse', 'HEAD'), head);
   assert.deepEqual(fs.readdirSync(path.dirname(path.join(root, sourcePath))), beforeFiles);
   assert.equal(fs.readFileSync(path.join(root, sourcePath), 'utf8'), reviewed);
   assert.equal(cmd(root, 'rev-parse', 'refs/heads/agent/course-stage5-test'), head);
 });
 
-test('one authorized Git commit archives exact source and changes the root atomically', t => {
+test('one authorized Git commit consumes draft and creates root atomically', t => {
   const { root, plan, options, head } = fixture(t);
   assert.throws(() => commitCourseSourcePlan(plan, { ...options, mode: 'write' }), /not explicitly authorized/);
   const result = commitCourseSourcePlan(plan, { ...options, mode: 'write', authorizeWrite: () => true });
@@ -71,14 +71,13 @@ test('one authorized Git commit archives exact source and changes the root atomi
   assert.equal(cmd(root, 'rev-list', '--count', head + '..' + result.commitSha), '1');
   assert.equal(cmd(root, 'rev-parse', result.commitSha + '^'), head);
   assert.equal(cmd(root, 'rev-parse', 'refs/heads/agent/course-stage5-test'), result.commitSha);
-  assert.equal(cmd(root, 'show', result.commitSha + ':' + archivePath), reviewed.trim());
-  assert.equal(cmd(root, 'show', result.commitSha + ':' + sourcePath), generated.trim());
+  assert.equal(cmd(root, 'show', head + ':' + sourcePath), reviewed.trim());
+  assert.equal(cmd(root, 'ls-tree', result.commitSha, '--', sourcePath), '');
+  assert.equal(cmd(root, 'show', result.commitSha + ':' + materializedPath), generated.trim());
   assert.match(cmd(root, 'show', result.commitSha + ':' + generatedPath), /Reviewed methodology/);
   assert.equal(cmd(root, 'status', '--porcelain'), '');
   cmd(root, 'checkout', '-q', '--detach', result.commitSha);
-  const rerun = commitCourseSourcePlan(plan, { ...options, mode: 'write' });
-  assert.equal(rerun.already, true);
-  assert.equal(rerun.changed, 0);
+  assert.throws(() => commitCourseSourcePlan(plan, { ...options, mode: 'write' }), /draft has disappeared/);
 });
 
 test('stale reviewed SHA and changed committed source fail before creation', t => {
@@ -104,7 +103,7 @@ test('symlinks, duplicate paths, untracked files and incomplete materialization 
     ...plan,
     files: [
       ...plan.files,
-      { path: sourcePath.replace('index.ts', 'other/deeper.ts'), kind: 'typescript', content: 'export {};\n' },
+      { path: sourcePath.replace('draft.ts', 'other/deeper.ts'), kind: 'typescript', content: 'export {};\n' },
     ],
   };
   assert.throws(() => preflightCourseSourceCommit(symlink, options), /Symlink in generated path/);

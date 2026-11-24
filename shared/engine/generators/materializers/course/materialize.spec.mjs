@@ -151,7 +151,7 @@ const lessonBridge = (node, ctx) => {
       lessonId,
       files: [
         {
-          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/index.ts',
+          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
             '// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n',
@@ -347,7 +347,7 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
             },
           ],
         };
-  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 index.ts/);
+  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 draft.ts/);
   const noAssessment = course();
   delete noAssessment.config.content.items.directLesson.production.assessment;
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);

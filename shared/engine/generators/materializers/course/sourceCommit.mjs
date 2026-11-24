@@ -91,8 +91,8 @@ const assertTypescript = file => {
 export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
   if (
     !valid(plan?.sourcePath) ||
-    !valid(plan?.sourceArchivePath) ||
-    plan.sourcePath === plan.sourceArchivePath ||
+    !valid(plan?.materializedPath) ||
+    plan.sourcePath === plan.materializedPath ||
     !sha.test(plan.sourceBlobSha ?? '') ||
     !sha.test(plan.reviewCommitSha ?? '') ||
     !Array.isArray(plan.files) ||
@@ -101,18 +101,18 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
   )
     throw new Error('Invalid Course Stage 5 source-preserving manifest');
   const courseMatch = plan.sourcePath.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/courses\/([0-9a-f])\/([0-9a-f-]{36})\/index\.ts$/,
+    /^content\/([a-z][a-z0-9-]*)\/data\/courses\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
   );
   if (
     !courseMatch ||
     !sha.test(plan.sourceBlobSha) ||
     courseMatch[3] !== plan.courseId ||
     courseMatch[2] !== plan.courseId.at(-1).toLowerCase() ||
-    plan.sourceArchivePath !== path.posix.dirname(plan.sourcePath) + '/workflow.stage3.ts'
+    plan.materializedPath !== path.posix.dirname(plan.sourcePath) + '/index.ts'
   )
-    throw new Error('Stage 5 source/archive are not the same canonical Course UUID root');
+    throw new Error('Stage 5 draft/output are not the same canonical Course UUID root');
   const book = courseMatch[1];
-  const lessonFile = new RegExp('^content/' + book + '/data/lessons/([0-9a-f])/([0-9a-f-]{36})/index\\.ts$');
+  const lessonFile = new RegExp('^content/' + book + '/data/lessons/([0-9a-f])/([0-9a-f-]{36})/draft\\.ts$');
   const rootPrefix = path.posix.dirname(plan.sourcePath) + '/';
   const permittedPath = file =>
     file.startsWith(rootPrefix) ||
@@ -131,7 +131,7 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
       !permitted.has(file?.kind) ||
       typeof file.content !== 'string' ||
       all.has(file.path) ||
-      file.path === plan.sourceArchivePath
+      file.path === plan.sourcePath
     )
       throw new Error('Duplicate, invalid or colliding source target: ' + file?.path);
     if (!permittedPath(file.path))
@@ -140,25 +140,20 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     assertTypescript(file);
     all.set(file.path, file.content);
   }
-  if (!all.has(plan.sourcePath)) throw new Error('Course must replace the original root index.ts in the atomic commit');
+  if (!all.has(plan.materializedPath)) throw new Error('Course must create the canonical root index.ts in the atomic commit');
   assertSafeTarget(root, plan.sourcePath);
-  assertSafeTarget(root, plan.sourceArchivePath);
-  const archive = blobAt(root, head, plan.sourceArchivePath);
-  const source = archive ?? blobAt(root, head, plan.sourcePath);
-  if (source === undefined) throw new Error('Reviewed Course TypeScript source has disappeared');
-  const verifiedBlob = git(root, ['hash-object', '--stdin'], { input: source });
-  if (verifiedBlob !== plan.sourceBlobSha) throw new Error('Course source blob SHA differs from the reviewed source');
-  const already = archive !== undefined;
-  if (!already && head !== plan.reviewCommitSha)
+  const source = blobAt(root, head, plan.sourcePath);
+  if (source === undefined || trackedMode(root, head, plan.sourcePath) !== '100644')
+    throw new Error('Reviewed Course draft has disappeared or is not an ordinary file');
+  if (git(root, ['hash-object', '--stdin'], { input: source }) !== plan.sourceBlobSha)
+    throw new Error('Course source blob SHA differs from the reviewed source');
+  if (head !== plan.reviewCommitSha)
     throw new Error('Course review commit is stale; re-review current HEAD before Stage 5');
-  if (already && blobAt(root, head, plan.sourcePath) !== all.get(plan.sourcePath))
-    throw new Error('Materialized Course index.ts was edited or replaced since Stage 5');
-  if (trackedMode(root, head, plan.sourceArchivePath) === '120000')
-    throw new Error('Symlinked reviewed source archive');
-  const files = new Map(all);
-  files.set(plan.sourceArchivePath, source);
+  if (git(root, ['status', '--porcelain', '--', plan.sourcePath]))
+    throw new Error('Locally modified Course draft');
+  const files = all;
   const pending = [];
-  for (const [file, contents] of files) {
+  for (const [file] of files) {
     const parts = file.split('/');
     for (let depth = 1; depth < parts.length; depth++) {
       const ancestor = parts.slice(0, depth).join('/');
@@ -173,21 +168,18 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     const status = git(root, ['status', '--porcelain', '--', file]);
     if (status) throw new Error('Locally modified or untracked Course file: ' + file);
     const before = blobAt(root, head, file);
-    if (before !== undefined && before !== contents && (file !== plan.sourcePath || already))
+    if (before !== undefined)
       throw new Error('Refusing divergent authored target: ' + file);
-    if (before !== contents) pending.push(file);
+    pending.push(file);
   }
-  if (already && pending.length)
-    throw new Error('Incomplete previously committed Course source transition; refusing partial rerun');
-  if (!already && !pending.includes(plan.sourcePath))
-    throw new Error('Course Stage 3 input is already materialized without source archive');
-  return { head, files, pending, already, archivePath: plan.sourceArchivePath };
+  pending.push(plan.sourcePath);
+  return { head, files, pending, already: false };
 }
 
 /**
  * One authorized, source-SHA-pinned Git tree commit. The original reviewed
- * index.ts is copied byte-for-byte to workflow.stage3.ts in the SAME commit
- * that replaces index.ts. The worktree is never partially written.
+ * draft.ts is deleted in the SAME commit that creates index.ts. Reviewed
+ * bytes remain at the pinned parent commit and blob. The worktree is never partially written.
  *
  * Requires an explicit checked-out branch ref already at HEAD, while the
  * checkout itself is DETACHED (CI convention); refuses writing the active
@@ -224,12 +216,16 @@ export function commitCourseSourcePlan(plan, options = {}) {
   try {
     git(root, ['read-tree', preview.head], { index });
     for (const file of preview.pending.slice().sort()) {
+      if (file === plan.sourcePath) {
+        git(root, ['update-index', '--force-remove', '--', file], { index });
+        continue;
+      }
       const blob = git(root, ['hash-object', '-w', '--stdin'], { input: preview.files.get(file) });
       git(root, ['update-index', '--add', '--cacheinfo', '100644,' + blob + ',' + file], { index });
     }
     const tree = git(root, ['write-tree'], { index });
     if (!sha.test(tree)) throw new Error('Invalid staged Course source Git tree');
-    const message = 'Materialize reviewed Course source ' + plan.courseId;
+    const message = 'Materialize reviewed Course source ' + plan.courseId + '\n\nSource-Blob: ' + plan.sourceBlobSha + '\nReview-Commit: ' + plan.reviewCommitSha;
     const commitSha = git(root, ['commit-tree', tree, '-p', preview.head, '-m', message]);
     git(root, ['update-ref', target, commitSha, preview.head]);
     return {
@@ -237,7 +233,6 @@ export function commitCourseSourcePlan(plan, options = {}) {
       head: preview.head,
       commitSha,
       changed: preview.pending.length,
-      archivePath: preview.archivePath,
       already: false,
     };
   } finally {

@@ -101,7 +101,7 @@ export function materializeLessonDraft(node, context) {
     context.lessonId.at(-1).toLowerCase() +
     '/' +
     context.lessonId.toLowerCase() +
-    '/index.ts';
+    '/draft.ts';
   return {
     lessonId: context.lessonId,
     files: [
