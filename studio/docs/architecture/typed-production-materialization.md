@@ -1,6 +1,6 @@
-# Typed production materialization and historical YAML retirement
+# Typed production materialization
 
-**Current implementation in integration PR #775 (23 November 2026).** The canonical editorial input for Course, Lesson, Question Bank and Flashcard Bank is a single Stage-specific TypeScript `index.ts` object. The former YAML editor schemas, generic factory registry, YAML builders, Course/Lesson/Bank legacy GitHub commands and JSON Schema generator are removed from this integration branch. There is **no supported parallel YAML authoring format** for new production.
+The canonical editorial input for Course, Lesson, Question Bank and Flashcard Bank is a single Stage-specific TypeScript object. Editorial inputs and materialized Configurators have distinct responsibilities; the trusted source-materialization workflows do not publish runtime Props.
 
 ## Entity-owned source flows
 
@@ -14,7 +14,7 @@ Engine's concrete source materializers live under `shared/engine/generators/mate
 
 The separate `generateLessonProps`, `generateCourseProps` and `generateAssessmentResources` scripts consume **completed** typed Configurators. A source scaffold or reviewed Stage 3 plan is not publishable. `TODO (BLOCKER):`, `TODO(asset)`, Nil UUIDs, missing real selections, physical assets, implemented Scenes or languages fail publication as appropriate. A known Course/Question/Flashcard bank does not imply the associated Section is complete.
 
-Typed commands in #775 are not deployed for live PR comments until their trusted workflows merge into default `develop`. Verify real default-branch Actions with safe reviewed inputs after deployment before claiming the production pipeline operational. Old YAML commands are intentionally retired in this integration branch; they are not live fallbacks.
+Before invoking a typed command, verify the corresponding trusted workflow exists on the default branch. Verify an authorized Actions run on safe reviewed inputs, its pinned source/review SHAs and resulting commit before declaring the pipeline operational.
 
 ## Historical source preservation
 

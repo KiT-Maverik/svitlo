@@ -65,7 +65,7 @@ Before integration, the next action is the required final QA/owner-authorized re
 
 **Terminal state:** when all seven Questions stages are verified complete, explicitly say **"All seven Questions workflow stages are complete. There is no next Questions stage. You can assign new work."** Stop; report outstanding integration, independent Flashcards, Lesson QA, publication or merge separately rather than inventing stage eight or continuing automatically. An unmerged or unpublished bank does not satisfy downstream integration/readiness gates.
 
-**Typed authoring boundary (migration #783, integration pending #775):** a bank
+**Typed authoring boundary:** a bank
 is authored in the same Lesson-owned `questions/index.ts` from Stage 1 through
 Stage 4, with `satisfies QuestionBankWorkflowStage1`, then Stage 2 and Stage 3.
 The file is an **incomplete bank-owned authoring object**, not the final published
@@ -74,9 +74,7 @@ or mistaken for a bank. Stage 4 reviews and directly corrects the Stage 3
 source in the same Questions PR, retaining baseline/final SHA evidence in the
 PR only. Stage 5 uses `QuestionBankWorkflowMaterializerInput`, an alias to
 the final Stage 3 type, and an explicit verified source-preserving transition to
-the canonical `questions/index.ts` export plus child modules. The parent
-integration #775 owns that transition, safe writes and orchestration.
-No separate `questions.yaml` may be authored alongside the canonical typed source. The old YAML builder and command were retired in #775; never use them as fallbacks. The typed trusted command requires default-branch deployment, immutable source SHA and independent review.
+the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, immutable source SHA and independent review.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
 does not prove unique order keys/UUIDs, source SHA, completed review, scoring,
@@ -182,9 +180,7 @@ rather than inventing assessment semantics.
 
 ## Stage 5 — Resource Production
 
-**Dependency:** #775 must first complete and verify the bank-level bridge,
-create-only safe writer and actual composition of #780's nine Question-kind
-materializers. The final input is exactly
+**Prerequisite:** verify the current bank-level bridge, safe writer and actual composition of the nine Question-kind materializers. The final input is exactly
 `QuestionBankWorkflowMaterializerInput = QuestionBankWorkflowStage3`;
 review evidence remains on the PR, not in a second MaterializeProps object.
 A Stage 1 or Stage 2 source cannot call the final materializer.
@@ -202,7 +198,7 @@ the parent must implement an explicit SHA-pinned, verified transition of
 that file, never a naive create-only write that silently skips, overwrites or
 deletes reviewed authored content. No Question UUID is regenerated on rename.
 
-The nine concrete materializers from #780 remain the only owners of their
+The nine concrete materializers remain the only owners of their
 kind-specific source renderers. The bank root orders, dispatches and verifies
 the full bank, without another generic Question factory. The materializer
 does not author Quiz Sections: only the Lesson Section owner imports the

@@ -1,6 +1,6 @@
 # Typed Course Stage 5 — trusted manual materialization
 
-The Course-owned TypeScript Stage 3 source is the only supported editorial input. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`; it is present in integration #775 but not deployed on default `develop` until the integration is merged. The obsolete Course YAML command and workflow have been removed from the integration tree. Until deployment, Stage 5 is unavailable through default-branch Actions; do not dispatch a removed command or bypass authorization.
+The Course-owned TypeScript Stage 3 source is the only supported editorial input. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before dispatch; never bypass authorization.
 
 ## Authorization and source fidelity
 
@@ -69,15 +69,11 @@ Before these focused tests, run:
 
     node scripts/ci/courseMaterialization/build-course-renderers.mjs
 
-This transient trusted-only esbuild compilation supports isolated regressions
-while the parent #775 full Engine TypeScript build currently fails in
-Lesson Stage 6 sources. It is not a substitute for those real Engine gates.
+This transient trusted-only esbuild compilation supports isolated regressions. It is not a substitute for those real Engine gates.
 The typed PR-targeted test job also requires the actual
 `npm run code:check:types --workspace @svitlo/engine`; failure must be
 reported and repaired in its owning workstream, not silently skipped.
 
 The Engine tests check real source renderers, generated TS compilation and
 Git-source writer. A complete successful Actions run on the default branch
-against a pinned Course PR SHA is still required. This staged route has
-**no claimed successful live run** while it exists only in this child Draft.
-A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational. No live run has been verified here.
+against a pinned Course PR SHA is still required. A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational.

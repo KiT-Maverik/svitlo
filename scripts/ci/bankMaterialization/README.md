@@ -1,10 +1,10 @@
 # Typed Question/Flashcard Stage 5 trusted PR command
 
-The only supported Bank materialization source is the owning Lesson's progressively authored `questions/index.ts` or `flashcards/index.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively. The legacy YAML-only routes and builders were retired in integration #775. No `questions.yaml`/`flashcards.yaml` input or fallback is supported.
+The only supported Bank materialization source is the owning Lesson's progressively authored `questions/index.ts` or `flashcards/index.ts` satisfying `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowStage3`, respectively.
 
 ## Invocation and deployment
 
-After these workflow/scripts are deployed to the repository's default `develop` branch, a collaborator with write permission can post exactly `/questions materialize typed` or `/flashcards materialize typed` as a top-level comment on the corresponding existing Draft bank PR. Manual `workflow_dispatch` accepts the PR number, matching bank and `mode: typed`. On an unmerged #775 Draft, neither PR comments nor successful tests prove live default-branch availability.
+After these workflow/scripts are deployed to the repository's default `develop` branch, a collaborator with write permission can post exactly `/questions materialize typed` or `/flashcards materialize typed` as a top-level comment on the corresponding existing Draft bank PR. Manual `workflow_dispatch` accepts the PR number, matching bank and `mode: typed`. Verify the actual trusted workflow exists on the default branch; neither PR comments nor successful tests prove live availability.
 
 The bank PR must carry its existing `svitlo-create-questions-flow:v1` or `svitlo-create-flashcards-flow:v1` marker, owning Lesson UUID, textbook path, parent Lesson PR, true seven-stage checklist with Stages 1–4 complete and Stage 5 pending, and a **formal independent GitHub APPROVED review on the current HEAD SHA**. The gate verifies actor permission, source blob, actual Lesson parent ancestry and Question-first prerequisite. A self-attested checkbox or approval on an earlier SHA is insufficient.
 
@@ -27,6 +27,6 @@ npm run code:check:types --workspace @svitlo/engine
 npm test --workspace @svitlo/engine
 ```
 
-Then verify an authorized **real** default-branch workflow_dispatch or comment on safe reviewed input. Preserve the resulting immutable Actions run, source/review SHAs, artifact and exact generated commit before declaring deployment operational. If the current branch is only #775, report this as pending, not a successful live run.
+Then verify an authorized **real** default-branch workflow_dispatch or comment on safe reviewed input. Preserve the resulting immutable Actions run, source/review SHAs, artifact and exact generated commit before declaring deployment operational.
 
 See [Questions Flow](../../../studio/skills/lesson-workflow/create-questions-flow.skill.md), [Flashcards Flow](../../../studio/skills/lesson-workflow/create-flashcards-flow.skill.md), and [Bank source materializers](../../../shared/engine/generators/materializers/).
