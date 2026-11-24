@@ -4,7 +4,9 @@
 
 ## Responsibility
 
-- Generators run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize those results. They do not accept configurators or invoke `build`/`assemble` methods.
+The following completed-Props rules apply to `generators/{skills,lessons,courses}` publication generators, **not** to entity-owned authored TypeScript source materializers in `generators/materializers/`. The latter accept validated editorial Stage objects and Configurators at their own build-only boundary, plan once in the isolated worker, and hand off an immutable manifest to a non-executing Git publisher. See [direct typed materialization](../../studio/docs/architecture/typed-production-materialization.md).
+
+- Completed-Props generators run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize those results. They do not accept configurators or invoke `build`/`assemble` methods.
 - Configurators own entity validation, override resolution, nested composition, disabled-item filtering, ordering, and Props preparation. Generators **must not interpret Config/Overrides, filter or sort children, recreate schemas, or build Props**.
 - Treat each independently prepared override context as its own publication artifact. Never mutate supplied payloads or combine unrelated publication contexts merely because they refer to the same original resource.
 - Define paths, file naming, ownership and cleanup rules with the actual resource/index contracts before implementing a generator. Do not invent a universal directory layout from this document alone.

@@ -1,6 +1,6 @@
 # Direct Course Stage 5 source orchestration
 
-An independently reviewed, UUID-addressed `draft.ts` keeps its complete `CourseWorkflowMaterializerInput` Stage 3 plan and invokes `materializeCourse(reviewedCourse)` once. No separate AST decoding, source-to-source analyzer, special esbuild bundle or privileged replay is supported in the active source materialization path.
+An independently reviewed, UUID-addressed `draft.ts` keeps its complete `CourseWorkflowStage3` Stage 3 plan and invokes `materializeCourse(reviewedCourse)` once. No separate AST decoding, source-to-source analyzer, special esbuild bundle or privileged replay is supported in the active source materialization path.
 
 - `materializeCourseDirect.ts` validates the input through the Engine Course Zod schema and composes the concrete `materializeStage5.mjs` Course/Module/Chapter/Episode source renderers, including deterministic UUIDs and derived methodology.
 - `lessonDraft.mjs` creates only the new Lesson's `draft.ts satisfies CourseWorkflowLessonSeed` and Stage 1 handoff; no unrelated Lesson work is started.
