@@ -86,7 +86,9 @@ export function scanSource(file, source) {
   const hashComments = ['.yml', '.yaml', '.sh', '.bash', '.py'].includes(extension);
   const dashComments = extension === '.sql';
   const htmlComments = extension === '.html';
-  const marker = /^\s*\**\s*TODO \(BLOCKER\):/;
+  // Both // TODO and the leading `* TODO` inside a single /*...*/ brief
+  // are real source comments; markers inside quoted literals are not.
+  const marker = /^\s*(?:\*+\s*)?TODO \(BLOCKER\):/;
   const lines = source.split(/\r?\n/);
   const findings = [];
   let quoted = null;

@@ -12,7 +12,6 @@ import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
 import { manifestDigest } from './course-handoff-publish.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
-import { assessmentDraftExpression } from '../../../shared/engine/generators/materializers/course/materializeAssessmentPlaceholder.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -43,11 +42,11 @@ function allowedOutput(filename, meta) {
     if (parts.slice(0, -1).some(part => !/^[A-Za-z][A-Za-z0-9]*$/.test(part))) return false;
     if (parts.length > 12 || ['workflow.stage3.ts'].includes(leaf)) return false;
     return (
+      (leaf !== 'constants.ts' || parts.length === 1) &&
       [
         'index.ts',
         'draft.ts',
-        'languages.ts',
-        'authoredCourseOverrides.ts',
+        'constants.ts',
         'methodology.md',
         'specification.md',
         'markdown.md',
@@ -107,6 +106,33 @@ function assertCourseInventory(manifest, meta, entries) {
       throw Error('Invalid JSON seed handoff: ' + filename);
     }
   }
+  /** A placement source belongs to the immediate Course/Module/Chapter parent,
+   * never to a shadow Lesson re-export or draft handoff. */
+  function expectedParent(row) {
+    const parts = row.placementPath.slice(root.length + 1).split('/');
+    // The Assessment kind, not an ambiguous parent slug, selects the extra segment.
+    const ancestors = parts.slice(0, row.type === 'assessment' ? -2 : -1);
+    const parent = ancestors.length === 1 && ancestors[0] === 'content' ? '' : ancestors.join('/');
+    return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
+  }
+  function parentSource(row) {
+    const expected = expectedParent(row);
+    if (row.placementSourcePath !== expected || entries.get(expected)?.kind !== 'typescript')
+      throw Error('Course placement does not identify the owning parent index.ts');
+    return Buffer.from(entries.get(expected).data, 'base64').toString('utf8');
+  }
+  function requireStub(row) {
+    const name = row.type === 'lesson'
+      ? 'defineLessonStub'
+      : row.type === 'episode'
+        ? 'defineEpisodeStub'
+        : 'defineAssessmentStub';
+    const expected = JSON.stringify(row.slug) + ': ' + name +
+      '({ id: ' + JSON.stringify(row.id) + ', slug: ' + JSON.stringify(row.slug) + ' })';
+    const source = parentSource(row);
+    if (!source.includes(expected) || !source.includes(name))
+      throw Error('Missing or displaced Course ' + row.type + ' stub at ' + row.placementPath);
+  }
   for (const row of [...inventory.lessons, ...inventory.episodes, ...inventory.assessments]) {
     if (
       !row ||
@@ -142,7 +168,7 @@ function assertCourseInventory(manifest, meta, entries) {
           row.id !== deriveCourseEntityId(meta.courseId, 'lesson', allocationPath) ||
           row.status !== 'pending-lesson-stage1' ||
           row.sourcePath !== draft ||
-          row.placementSourcePath !== draft ||
+          row.placementSourcePath !== expectedParent(row) ||
           !seeds.delete(draft)
         )
           throw Error('Course Lesson inventory does not match a unique generated seed');
@@ -155,26 +181,30 @@ function assertCourseInventory(manifest, meta, entries) {
           !source.languageContext
         )
           throw Error('Generated Lesson seed differs from Course inventory identity');
+        requireStub(row);
         pendingLessons.set(rel, row);
       } else if (['reused', 'overridden'].includes(row.kind)) {
         if (
           row.status !== 'verified-reference' ||
           row.sourcePath !== lessonRoot + '/index.ts' ||
-          row.placementSourcePath !== row.placementPath + '/index.ts' ||
+          row.placementSourcePath !== expectedParent(row) ||
           !SHA.test(row.sourceSha || '') ||
-          entries.get(row.placementSourcePath)?.kind !== 'typescript'
+          !isSlug(row.sourceExportName)
         )
-          throw Error('Course reused Lesson inventory does not match generated reference');
-        const reference = Buffer.from(entries.get(row.placementSourcePath).data, 'base64').toString('utf8');
-        const parsed =
-          /^export \{ ([A-Za-z][A-Za-z0-9]*) as ([A-Za-z][A-Za-z0-9]*) \} from (["'])([^"'\\\n]+)\3;\n$/.exec(
-            reference,
-          );
-        const reserved = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'];
-        const expectedExport = reserved.includes(row.slug) ? 'config_' + row.slug : row.slug;
+          throw Error('Course reused Lesson inventory does not match generated direct reference');
+        const parent = parentSource(row);
         const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
-        if (!parsed || parsed[2] !== expectedExport || parsed[4] !== expectedImport)
-          throw Error('Course reused Lesson reference differs from inventory identity or canonical import');
+        const quoted = JSON.stringify(expectedImport);
+        const normalized = parent.replaceAll("'" + expectedImport + "'", quoted);
+        const expectedLine = 'import { ' + row.sourceExportName + ' as child_' + row.slug +
+          ' } from ' + quoted + ';';
+        const expectedPlacement = JSON.stringify(row.slug) + ': ' +
+          (row.kind === 'overridden' ? 'placeLesson(child_' + row.slug + ', ' : 'child_' + row.slug);
+        if (
+          normalized.split('\n').filter(line => line === expectedLine).length !== 1 ||
+          !parent.includes(expectedPlacement)
+        )
+          throw Error('Course Lesson direct import or placement-local Config patch missing');
       } else throw Error('Invalid Course Lesson kind');
     } else if (row.type === 'episode') {
       if (
@@ -184,7 +214,7 @@ function assertCourseInventory(manifest, meta, entries) {
       )
         throw Error('Invalid Course Episode inventory');
       const filename = row.placementPath + (row.status === 'pending-episode-scenario' ? '/draft.ts' : '/index.ts');
-      if (row.sourcePath !== filename || row.placementSourcePath !== filename || !entries.has(filename))
+      if (row.sourcePath !== filename || row.placementSourcePath !== expectedParent(row) || !entries.has(filename))
         throw Error('Episode inventory source missing or displaced');
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
@@ -200,22 +230,19 @@ function assertCourseInventory(manifest, meta, entries) {
           placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha
         )
           throw Error('Episode handoff differs from Course inventory identity');
+        requireStub(row);
         pendingEpisodes.set(rel, row);
       }
     } else {
       // Assessment Stage 5 is intentionally only a typed seed plus an inline
       // Not implemented Configurator. No fake bank IDs or completed Quiz.
       const draft = row.placementPath + '/draft.ts';
-      const marker = row.placementPath.includes('/content/', root.length + '/content/'.length)
-        ? row.placementPath.slice(0, row.placementPath.lastIndexOf('/content/')) + '/index.ts'
-        : root + '/index.ts';
       if (
         row.kind !== 'new' ||
         row.status !== 'pending-assessment-design' ||
         row.id !== deriveCourseEntityId(meta.courseId, 'assessment', allocationPath) ||
         row.sourcePath !== draft ||
-        row.placementSourcePath !== marker ||
-        entries.get(marker)?.kind !== 'typescript' ||
+        row.placementSourcePath !== expectedParent(row) ||
         !episodes.delete(draft) ||
         !Array.isArray(row.lessonDependencies) ||
         !row.lessonDependencies.length ||
@@ -237,17 +264,7 @@ function assertCourseInventory(manifest, meta, entries) {
         JSON.stringify(seed.production.lessonDependencies) !== JSON.stringify(row.lessonDependencies)
       )
         throw Error('Assessment seed differs from pinned Course inventory');
-      const parentSource = Buffer.from(entries.get(marker).data, 'base64').toString('utf8');
-      if (
-        !parentSource.includes(assessmentDraftExpression(row.id, row.slug)) ||
-        !parentSource.includes(
-          "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';",
-        ) ||
-        !parentSource.includes('slug: ' + JSON.stringify(row.slug)) ||
-        !parentSource.includes('title: "Not implemented"') ||
-        !parentSource.includes('TODO (BLOCKER): Not implemented')
-      )
-        throw Error('Assessment inline blocker is missing or differs from pending seed');
+      requireStub(row);
     }
   }
   function checkPending(list, expected, idField, filename) {

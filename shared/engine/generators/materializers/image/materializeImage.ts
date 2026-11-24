@@ -8,6 +8,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { image_Config_Schema, type ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type ImageDraftConfig = Pick<ContentBlock_Image_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Image_Config['params']>;
@@ -183,7 +184,7 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
   const expressions: Record<string, string> = {};
   const imports = ['defineImage'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for image ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for image ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -219,7 +220,7 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO (BLOCKER): ' + instruction + ' for image ' + config.id + '.\n' + JSON.stringify(reference);
+        renderBlockerTodo(instruction + ' for image ' + config.id + '.') + '\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',
@@ -230,7 +231,7 @@ export function materializeImage(config: ImageDraftConfig, options: ImageMateria
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + '.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

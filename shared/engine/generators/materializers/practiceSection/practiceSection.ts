@@ -1,4 +1,5 @@
 import type { PracticeSection_Config } from '../../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * definePracticeSection source materializer (not a Props/JSON publisher).
@@ -209,12 +210,10 @@ export function materializePracticeSection(config: Source, options: Options): Re
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed practice Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo('Transfer reviewed practice Section notes (' + sectionNotes.join(', ') + ') into the owning Lesson methodology and verify the transfer before removing this marker.'),
     );
   if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Complete reviewed practice Section production.');
+    blocker.push(renderBlockerTodo('Implement, validate and review the practice Section production before removing this marker.'));
   if (blocker.length)
     diagnostics.push({
       path: (directory || 'practice') + '/index.ts',

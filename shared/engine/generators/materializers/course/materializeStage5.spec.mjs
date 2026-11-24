@@ -155,7 +155,9 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/index.ts'));
   assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts'));
   assert.ok(paths.includes(root + '/methodology.md'));
-  assert.ok(paths.includes(root + '/languages.ts'));
+  assert.ok(paths.includes(root + '/constants.ts'));
+  assert.ok(!paths.includes(root + '/languages.ts'));
+  assert.ok(!paths.includes(root + '/authoredCourseOverrides.ts'));
   const lessonFiles = paths.filter(file => file.includes('/data/lessons/'));
   assert.equal(lessonFiles.length, 2);
   assert.deepEqual(first.pendingPlacements.map(p => p.slug).sort(), ['directLesson', 'lessonOne']);
@@ -168,7 +170,37 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
     first.files.find(f => f.path === root + '/index.ts').content,
     /TODO \(BLOCKER\): Course Stage 5 source is not publication approval/,
   );
-  assert.doesNotMatch(first.files.find(f => f.path === root + '/index.ts').content, /import \{ directLesson /);
+  const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
+  const chapterContent = first.files.find(f => f.path === root + '/content/moduleOne/chapterOne/index.ts').content;
+  assert.match(rootContent, /"directLesson": defineLessonStub\(\{ id: "/);
+  assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
+  assert.match(chapterContent, /"lessonOne": defineLessonStub\(\{ id: "/);
+  assert.match(chapterContent, /"episodeOne": defineEpisodeStub\(\{ id: "/);
+  assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
+  assert.doesNotMatch(rootContent, /Reviewed original content order|Pending handoffs|const languages =/);
+  const constants = first.files.find(f => f.path === root + '/constants.ts').content;
+  assert.match(constants, /export type Languages = typeof languages/);
+});
+
+test('parent indices distinguish the root content prefix from a unit named content', () => {
+  const input = source();
+  const module = input.config.content.items.moduleOne;
+  module.config.slug = 'content';
+  input.config.content.items.content = module;
+  delete input.config.content.items.moduleOne;
+  input.config.content.order = ['content', 'directLesson'];
+  const chapter = module.config.content.items.chapterOne;
+  chapter.config.slug = 'content';
+  module.config.content.items.content = chapter;
+  delete module.config.content.items.chapterOne;
+  module.config.content.order = ['content'];
+
+  const plan = materializeCourseStage5(input, options());
+  const [nested] = plan.inventory.lessons.filter(row => row.slug === 'lessonOne');
+  assert.equal(nested.placementSourcePath, root + '/content/content/content/index.ts');
+  const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
+  assert.equal(direct.placementSourcePath, root + '/index.ts');
+  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('defineLessonStub'));
 });
 
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
@@ -238,18 +270,42 @@ function reuseOptions() {
 }
 test('existing Lesson preserves source-authored plain Config patch and placement', () => {
   const result = materializeCourseStage5(patchedSource(), reuseOptions());
-  const patchSource = result.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
-  assert.ok(patchSource);
-  assert.match(patchSource.content, /allowSkipping/);
-  assert.match(patchSource.content, /sections/);
-  assert.match(patchSource.content, /"directLesson"/);
-  assert.doesNotMatch(patchSource.content, /import \{ sharedSection \}/);
+  assert.equal(result.files.some(file => file.path.endsWith('authoredCourseOverrides.ts')), false);
+  assert.equal(result.files.some(file => file.path === root + '/content/directLesson/index.ts'), false);
   const main = result.files.find(file => file.path === root + '/index.ts');
-  assert.match(main.content, /export \{ authoredCourseOverrides \}/);
-  const wrapper = result.files.find(file => file.path === root + '/content/directLesson/index.ts');
-  assert.match(wrapper.content, /export \{ actualLesson as directLesson \}/);
+  assert.match(main.content, /import \{ actualLesson as child_directLesson \} from "#lessonsData\//);
+  assert.match(main.content, /"directLesson": placeLesson\(child_directLesson, \{/);
+  assert.match(main.content, /"allowSkipping": false/);
+  assert.doesNotMatch(main.content, /authoredCourseOverrides/);
+  assert.equal(result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath, root + '/index.ts');
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
+test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
+  const input = patchedSource();
+  const original = input.config.content.items.directLesson;
+  input.config.content.items.secondLesson = {
+    config: { ...original.config, slug: 'secondLesson' },
+    production: {
+      ...original.production,
+      existing: { id: reusedLessonId },
+      sourcePatch: undefined,
+      overrideRationale: undefined,
+    },
+  };
+  input.config.content.order.push('secondLesson');
+  const result = materializeCourseStage5(input, reuseOptions());
+  const references = result.inventory.lessons.filter(row => row.id === reusedLessonId);
+  assert.deepEqual(references.map(row => row.kind), ['overridden', 'reused']);
+  assert.deepEqual(references.map(row => row.placementSourcePath), [root + '/index.ts', root + '/index.ts']);
+  assert.equal(references[0].sourcePath, references[1].sourcePath);
+  assert.equal(result.files.some(file => file.path === root + '/content/secondLesson/index.ts'), false);
+  const index = result.files.find(file => file.path === root + '/index.ts').content;
+  assert.match(index, /"directLesson": placeLesson\(child_directLesson, \{/);
+  assert.match(index, /"secondLesson": child_secondLesson/);
+  assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
+  assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
+});
+
 test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
   const stale = patchedSource();
   delete stale.config.content.items.directLesson.production.sourcePatch;
@@ -261,7 +317,7 @@ test('existing Lesson refuses stale, absent or non-equivalent raw Build provenan
 
 test('verified built sparse Lesson override round-trips through real Lesson and Course Build APIs', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-  const { defineLesson, defineCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const { defineLesson, defineCourse, placeLesson } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
   const realLesson = defineLesson({
     id: reusedLessonId,
     slug: 'independentLesson',
@@ -297,18 +353,18 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   reviewed.config.content.items.reused.production.sourcePatch = raw;
   const opts = options();
   const plan = materializeCourseStage5(reviewed, opts);
-  const authoredPatchFile = plan.files.find(file => file.path === root + '/authoredCourseOverrides.ts');
-  assert.match(authoredPatchFile.content, /allowSkipping/);
+  assert.equal(plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')), false);
+  assert.match(plan.files.find(file => file.path === root + '/index.ts').content,
+    /"reused": placeLesson\(child_reused, \{/);
   const actualCourse = defineCourse({
     id: rootId,
     type: 'course',
     slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
-    content: { items: { reused: realLesson }, order: ['reused'] },
+    content: { items: { reused: placeLesson(realLesson, raw) }, order: ['reused'] },
   });
-  const actualPatch = { content: { items: { reused: raw } } };
-  const actualCourseBuild = actualCourse.build.overrides(actualPatch, { languages: ['uk'] });
+  const actualCourseBuild = actualCourse.build.props({ languages: ['uk'] });
   assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
   assert.equal(realLesson.build.props({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
@@ -429,9 +485,11 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     const seed = result.files.find(file => file.path === row.sourcePath);
     const parent = result.files.find(file => file.path === row.placementSourcePath);
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
-    assert.ok(parent?.content.includes('defineAssessmentDraft({ id: ' + JSON.stringify(row.id)));
-    assert.ok(parent?.content.includes('TODO (BLOCKER): Not implemented'));
-    assert.ok(parent?.content.includes('Not implemented'));
+    assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
+    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
+    assert.ok(parent?.content.includes('order: '));
+    assert.ok(parent?.content.includes('TODO (BLOCKER): Complete and review the Assessment'));
+    assert.ok(parent?.content.includes('replace its draft stub'));
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
     assert.ok(row.lessonDependencies.every(path => path.startsWith('content/')));
   }
