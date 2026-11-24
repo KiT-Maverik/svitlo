@@ -217,12 +217,14 @@ export function materializeCourseStage5(input, options = {}) {
       !match.matchingRationale.trim() ||
       typeof match.languageEvidence !== 'string' ||
       !match.languageEvidence.trim() ||
-      typeof options.resolveExistingLesson !== 'function'
+      (typeof options.resolveExistingLesson !== 'function' && !record(production.source))
     )
       throw new Error(context.directory + ': verified existing Lesson matching and resolver required');
     // The final reviewed invocation supplies its imported Lesson directly.
     // No AST import decoder, special bundler or Props-to-Config reconstruction.
     const imported = production.source;
+    if (imported && typeof production.sourceExportName !== 'string')
+      throw new Error(context.directory + ': direct imported Lesson must declare its actual export name');
     const lesson = imported && typeof production.sourceExportName === 'string'
       ? {
           id: existing.id,
