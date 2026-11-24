@@ -8,7 +8,7 @@ CI is not deployment or operational validation.
 The open same-repository Draft PR must contain exactly one changed canonical
 Lesson-root `content/<book>/data/lessons/<bucket>/<uuid>/draft.ts`
 in its pinned base/head Git comparison. Its actual source must satisfy
-`LessonWorkflowMaterializerInput` (an alias of `LessonWorkflowStage2`).
+`LessonWorkflowStage2`.
 Missing or ambiguous paths and incomplete comparisons fail closed.
 
 Editorial Stages 1–5 remain responsibilities of the Lesson agents; the PR

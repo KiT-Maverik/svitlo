@@ -25,6 +25,7 @@ const lesson = {
     id,
     slug: 'editorialOnly',
     skills: [skillId],
+    params: { quizRequiredForCompletion: false },
     locale: { title: { uk: 'Спостереження' } },
   },
   production: {
@@ -145,11 +146,19 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   const { languages: courseLanguages, ...proposal } = lesson.production;
   const emitted = materializeLessonDraft(
     { config: proposalConfig, production: { kind: 'new', ...proposal } },
-    { lessonId: allocatedId, textbookRoot: 'content/example', reviewedSourceSha: sha, languageContext: courseLanguages },
+    {
+      lessonId: allocatedId,
+      textbookRoot: 'content/example',
+      reviewedSourceSha: sha,
+      languageContext: courseLanguages,
+    },
   ).files[0];
   assert.ok(emitted.path.endsWith('/data/lessons/5/' + id + '/draft.ts'));
   fs.writeFileSync(files[0], emitted.content);
-  assert.deepEqual(diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')), []);
+  assert.deepEqual(
+    diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')),
+    [],
+  );
   assert.deepEqual(await renderLessons(home, 'draft'), new Map());
   await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
   // Authorized Lesson Stage 1 replaces the seed in place; no conversion API or second file.

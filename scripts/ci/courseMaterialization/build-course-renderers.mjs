@@ -2,7 +2,7 @@
 /**
  * @fileoverview Build exactly the trusted concrete Section/Block renderers
  * for the Course Episode bridge. This does not execute candidate PR code,
- * produce public Engine packages or bypass the independent Engine typecheck.
+ * replace the public Engine package build or bypass its independent typecheck.
  * Temporary compilation is deliberately distinct from package:build.
  */
 import path from 'node:path';
@@ -62,13 +62,15 @@ await build({
   sourcemap: false,
   logLevel: 'warning',
 });
-// The existing Course Build API integration fixture requires dist/build.js.
-// This is a temporary, trusted source bundle, not a successful Engine tsc
-// package build; full TypeScript typechecking remains a separate mandatory gate.
+// Existing trusted Lessons may import both public Engine entrypoints, including
+// @svitlo/engine/runtime through transitive authored constants modules. Build
+// both from trusted sources on the clean analyze/publish checkout; never rely
+// on a previous npm lifecycle build or committed dist artifacts. These bundles
+// are temporary preparation, NOT the tsc package build/typecheck gate.
 await build({
   absWorkingDir: root,
-  entryPoints: [path.join(root, 'build.ts')],
-  outfile: path.join(root, 'dist/build.js'),
+  entryPoints: [path.join(root, 'build.ts'), path.join(root, 'runtime.ts')],
+  outdir: path.join(root, 'dist'),
   bundle: true,
   platform: 'node',
   format: 'cjs',

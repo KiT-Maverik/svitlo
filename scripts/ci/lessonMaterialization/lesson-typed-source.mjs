@@ -328,11 +328,7 @@ function reviewedExport(file) {
   const typed = declarations[0].initializer;
   if (!ts.isSatisfiesExpression(typed)) throw Error('Lesson object must use satisfies');
   const type = typed.type;
-  if (
-    !ts.isTypeReferenceNode(type) ||
-    !ts.isIdentifier(type.typeName) ||
-    !['LessonWorkflowStage2', 'LessonWorkflowMaterializerInput'].includes(type.typeName.text)
-  )
+  if (!ts.isTypeReferenceNode(type) || !ts.isIdentifier(type.typeName) || type.typeName.text !== 'LessonWorkflowStage2')
     throw Error('Lesson source does not satisfy the Engine Stage 2 materializer input');
   return typed.expression;
 }
