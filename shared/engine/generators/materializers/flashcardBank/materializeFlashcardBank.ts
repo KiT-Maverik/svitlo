@@ -33,6 +33,7 @@ import {
   type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
+import { assertBankLessonLanguages, lessonConstantsImport, type LessonLanguageOwnership } from '../bankSource/lessonLanguageOwnership';
 
 export type FlashcardBankDraftAuthorization = {
   authorized: true;
@@ -44,6 +45,7 @@ export type FlashcardBankDraftAuthorization = {
 export type FlashcardBankFinalAuthorization = Omit<FlashcardBankDraftAuthorization, 'authorized'> & {
   source: BankPinnedSource;
   blocks: AssessmentBlockEvidence;
+  ownerLanguages: LessonLanguageOwnership;
 };
 
 const symmetric = new Set<Flashcard_Relationship_Type>(['reverse', 'equivalent', 'contrast', 'complementary']);
@@ -252,6 +254,8 @@ function planFlashcardBank(
   }
   const edges = projectRelationships(input);
   const languages = input.production.lesson.languages;
+  assertBankLessonLanguages(authorization.ownerLanguages, languages);
+  const ownerImport = lessonConstantsImport(authorization.ownerLessonId);
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
   const imports: string[] = [];
@@ -274,8 +278,9 @@ function planFlashcardBank(
       {
         directory: 'flashcards',
         languages,
+        ownerLanguagesImport: ownerImport,
         materializeBlock: (block, context) =>
-          materializeAssessmentBlock(block, context, languages.planned, 'flashcardsLanguages', authorization.blocks),
+          materializeAssessmentBlock(block, context, languages.planned, 'flashcards', ownerImport, authorization.blocks),
       },
     );
     files.push(...output.files);
@@ -287,31 +292,7 @@ function planFlashcardBank(
   files.push({
     path: 'flashcards/index.ts',
     kind: 'typescript',
-    content: imports.join('\n') + '\n\nexport const flashcards = {\n' + entries.join('\n') + '\n};\n',
-  });
-  files.push({
-    path: 'flashcardsLanguages.ts',
-    kind: 'typescript',
-    content: [
-      "import type { SupportedLanguages } from '@svitlo/engine/build';",
-      '',
-      ...( languages.planned.length > 1 ? [
-        '// TODO (BLOCKER): Restore reviewed flashcards languages only after independent translation review.',
-        '// export const languages = [',
-        ...languages.planned.map(language => '//   ' + JSON.stringify(language) + ','),
-        '// ] as const satisfies SupportedLanguages;',
-        '',
-      ] : []),
-      'export const languages = ' + JSON.stringify([languages.document]) + ' as const satisfies SupportedLanguages;',
-      'export type Languages = typeof languages;',
-      '',
-    ].join('\n'),
-  });
-  if (languages.planned.length > 1) diagnostics.push({
-    path: 'flashcardsLanguages.ts',
-    code: 'pending-locales',
-    severity: 'warning',
-    message: 'Restore reviewed flashcards languages after translation approval',
+    content: 'export type { Languages } from ' + JSON.stringify(ownerImport) + ';\n' + imports.join('\n') + '\n\nexport const flashcards = {\n' + entries.join('\n') + '\n};\n',
   });
   const plan = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'flashcards/index.ts',
