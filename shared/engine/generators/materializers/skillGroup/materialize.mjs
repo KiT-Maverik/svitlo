@@ -123,6 +123,9 @@ export function materializeSkillGroup(input, context = {}) {
     const expected = [dir, key + '.ts'].filter(Boolean).join('/');
     if (!child.files.some(file => file.path === expected && file.kind === 'typescript'))
       throw Error(dir + '.skills.' + key + ': missing canonical Skill module');
+    const evidencePrefix = [dir, key].filter(Boolean).join('/') + '/';
+    if (child.files.some(file => file.path !== expected && !file.path.startsWith(evidencePrefix)))
+      throw Error(dir + '.skills.' + key + ': delegated Skill escaped its source owner');
     const actualId = child.id ?? raw.id;
     if (typeof actualId !== 'string' || !uuid.test(actualId))
       throw Error(dir + '.skills.' + key + ': immutable child UUID required');
