@@ -39,7 +39,7 @@ type GeneratedFile = {
   kind: 'typescript' | 'specification' | 'markdown' | 'code';
   content: string;
 };
-type Diagnostic = { path: string; code: string; severity: 'warning'; message?: string };
+type Diagnostic = { path: string; code: string; severity: 'warning'; message: string };
 type PlanDiagnostic = Diagnostic | { path: string; code: string; severity: 'blocker'; message: string };
 type Result = { exportName: string; files: GeneratedFile[]; diagnostics: Diagnostic[] };
 type Config = Record<string, unknown> & { type: string; slug: string; id: string };
@@ -125,7 +125,7 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
       if (!record(collection) || !record(collection.items) || !Array.isArray(collection.order) ||
         new Set(collection.order).size !== collection.order.length ||
         Object.keys(collection.items).length !== collection.order.length ||
-        collection.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection.items, key)))
+        collection.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection.items as Record<string, unknown>, key)))
         throw Error(name + ': invalid authored order');
       return {
         items: Object.fromEntries(Object.entries(collection.items).map(([key, child]) => {
