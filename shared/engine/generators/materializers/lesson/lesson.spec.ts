@@ -435,7 +435,7 @@ test('Lesson resolves verified Playground Skill modules as Configurator .id refe
   assert.throws(() => assertLessonSourceReleaseReady(unknown), /unresolved materializer diagnostics/);
 });
 
-test('Lesson methodology preserves reviewed root and Section intent without sourceEvidence sidecars', () => {
+test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and checkColors notes', () => {
   const base = lesson();
   const input = {
     ...base,
@@ -444,18 +444,24 @@ test('Lesson methodology preserves reviewed root and Section intent without sour
         exploreColors: {
           config: { ...section(), slug: 'exploreColors' },
           production: {
-            purpose: 'Recognize the distinction in the example.',
+            purpose: 'Guided exploration and formative reflection without graded evidence.',
             pedagogicalIntent: 'Compare without positional cues.',
             specification: 'Use the two reviewed examples.',
           },
         },
         recallColors: {
           config: { ...section(), id: id('55'), slug: 'recallColors' },
-          production: { purpose: 'Retrieve both color words without hints.' },
+          production: {
+            purpose: 'Required independent Flashcard Bank selection will be integrated in Stage 8.',
+            pedagogicalIntent: 'Retrieval (canonical slug retrieval) practice for both approved color terms.',
+          },
         },
         checkColors: {
           config: { ...section(), id: id('56'), slug: 'checkColors' },
-          production: { purpose: 'Assess recognition independently.' },
+          production: {
+            purpose: 'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
+            pedagogicalIntent: 'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
+          },
         },
       },
       order: ['exploreColors', 'recallColors', 'checkColors'],
@@ -484,8 +490,9 @@ test('Lesson methodology preserves reviewed root and Section intent without sour
     'Pedagogical plan.', 'Distinguish two colors.', 'Introductory classification.',
     'Learn, retrieve, then assess.', 'Identify unlabeled examples.',
     'Section: exploreColors', 'Section: recallColors', 'Section: checkColors',
-    'Recognize the distinction', 'Compare without positional cues.',
-    'Retrieve both color words without hints.', 'Assess recognition independently.',
+    'Guided exploration and formative reflection', 'Compare without positional cues.',
+    'Required independent Flashcard Bank selection', 'Required independent Question Bank selection',
+    'Retrieval (canonical slug retrieval)', 'Classification (canonical slug classification)',
     'Question Bank (Stage 7): required', 'Flashcard Bank (Stage 8): required',
   ]) assert(methodology.includes(phrase), phrase);
   assert.doesNotMatch(methodology, /PRIVATE SOURCE EVIDENCE/);
