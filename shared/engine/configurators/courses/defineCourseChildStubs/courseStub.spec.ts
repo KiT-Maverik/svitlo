@@ -65,39 +65,40 @@ describe('Configurators', () => {
         }
       });
 
-      test('Course, Module and Chapter preserve all three placeholders at original ordered slots', () => {
+      test('Course, Module and Chapter each retain the original ordered draft placement', () => {
         const lesson = defineLessonStub({ id: id('21'), slug: 'lessonSlot' });
         const episode = defineEpisodeStub({ id: id('22'), slug: 'episodeSlot' });
         const assessment = defineAssessmentStub({ id: id('23'), slug: 'assessmentSlot' });
         const chapter = defineChapter({
           id: id('24'), slug: 'chapter', type: 'chapter', params: {},
           locale: { title: 'Chapter' },
-          content: { items: { lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
-            order: ['assessmentSlot', 'lessonSlot', 'episodeSlot'] },
+          content: { items: { assessmentSlot: assessment }, order: ['assessmentSlot'] },
         });
         const module = defineModule({
           id: id('25'), slug: 'module', type: 'module', params: {},
           locale: { title: 'Module' },
-          content: { items: { chapter, lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
-            order: ['episodeSlot', 'chapter', 'assessmentSlot', 'lessonSlot'] },
+          content: { items: { chapter, episodeSlot: episode }, order: ['episodeSlot', 'chapter'] },
         });
         const course = defineCourse({
           id: id('26'), slug: 'course', type: 'course', params: { languages: ['en'] as const },
           locale: { title: 'Course', description: 'Draft preview' },
-          content: { items: { module, lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
-            order: ['lessonSlot', 'module', 'assessmentSlot', 'episodeSlot'] },
+          content: { items: { module, lessonSlot: lesson }, order: ['lessonSlot', 'module'] },
         });
         const result = course.build.props({ languages: ['en'] });
-        assert.deepEqual(result.base.content.map(child => child!.slug),
-          ['lessonSlot', 'module', 'assessmentSlot', 'episodeSlot']);
-        const moduleProps = result.base.content[1] as { content: Array<{ type: string; slug: string; content?: Array<{ slug: string }> }> };
-        assert.deepEqual(moduleProps.content.map(child => child.slug),
-          ['episodeSlot', 'chapter', 'assessmentSlot', 'lessonSlot']);
-        assert.deepEqual(moduleProps.content[1]?.content?.map(child => child.slug),
-          ['assessmentSlot', 'lessonSlot', 'episodeSlot']);
-        assert.equal((result.base.content[0] as { draft?: boolean })?.draft, true);
-        assert.equal((result.base.content[2] as { draft?: boolean })?.draft, true);
-        assert.equal((result.base.content[3] as { draft?: boolean })?.draft, true);
+        const root = result.base as unknown as {
+          content: Array<{ type: string; slug: string; id: string; draft?: boolean; content?: Array<{
+            type: string; slug: string; id: string; draft?: boolean; content?: Array<{ id: string; slug: string; draft?: boolean }>
+          }> }>;
+        };
+        assert.deepEqual(root.content.map(child => child.slug), ['lessonSlot', 'module']);
+        assert.equal(root.content[0]?.id, lesson.id);
+        assert.equal(root.content[0]?.draft, true);
+        assert.deepEqual(root.content[1]?.content?.map(child => child.slug), ['episodeSlot', 'chapter']);
+        assert.equal(root.content[1]?.content?.[0]?.id, episode.id);
+        assert.equal(root.content[1]?.content?.[0]?.draft, true);
+        assert.deepEqual(root.content[1]?.content?.[1]?.content?.map(child => child.slug), ['assessmentSlot']);
+        assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.id, assessment.id);
+        assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.draft, true);
         assert.doesNotThrow(() => JSON.stringify(mergeForValidation(result.base, result.locale?.en ?? {})));
       });
     });

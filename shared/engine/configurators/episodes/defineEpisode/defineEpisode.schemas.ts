@@ -58,6 +58,7 @@ export const episode_Draft_Props_Schema = identity
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
     draft: z.literal(true),
     section: z.array(contentSection_Props_Schema).nonempty(),
+    events: z.record(z.string(), z.json()).optional(),
   })
   .strict()
   .refine(value => value.section.some(section => section.params.disabled !== true && section.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')), 'Episode draft needs the Not implemented Text ContentBlock');
