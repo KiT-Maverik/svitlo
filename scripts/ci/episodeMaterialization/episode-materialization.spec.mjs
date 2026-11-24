@@ -139,6 +139,10 @@ test('drafts are inert and immutable allocated identity, locale plan and intent 
   const original = parseEpisodeDraft(initial, 'EpisodeWorkflowStage1Handoff');
   const final = parseEpisodeDraft(completed(), 'EpisodeWorkflowMaterializerInput');
   assert.equal(verifyEpisodeHandoff(original, final, identity), true);
+  assert.equal(
+    Object.getPrototypeOf(final.config.section.items.intro.config.content.items.greeting.config.params),
+    Object.prototype,
+  );
   for (const changed of [
     { ...final, config: { ...final.config, id: courseId } },
     { ...final, production: { ...final.production, focus: 'Different intent' } },
