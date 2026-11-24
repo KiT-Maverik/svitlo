@@ -31,7 +31,7 @@ test('Carousel retains reviewed nested Scene production specification', () => {
   };
   const result = render(carousel);
   assert.equal(
-    result.files.find(file => file.path.endsWith('/slides/items/visual/specification.md'))?.content,
+    result.files.find(file => file.path.endsWith('/slides/visual/specification.md'))?.content,
     '# Reviewed nested Scene\n',
   );
   assert.equal(result.diagnostics.length, 0);
@@ -88,7 +88,7 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
   };
   const result = render(checkpoint);
   assert.equal(
-    result.files.find(file => file.path.endsWith('/answer/content/items/visual/specification.md'))?.content,
+    result.files.find(file => file.path.endsWith('/answer/visual/specification.md'))?.content,
     '# Reviewed nested Scene\n',
   );
   assert.equal(result.diagnostics.length, 0);
