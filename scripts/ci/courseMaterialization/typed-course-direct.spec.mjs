@@ -177,7 +177,9 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   const reused = formattedReference.inventory.lessons.find(row => row.kind === 'reused');
   const importedFile = formattedReference.entries.find(entry => entry.path === reused.placementSourcePath);
   const originalReference = Buffer.from(importedFile.data, 'base64').toString('utf8');
-  const singleQuoted = originalReference.replace(/from "([^"\n]+)";/, "from '$1';");
+  const exactImport = '#lessonsData/' + reused.id.at(-1) + '/' + reused.id + '/index';
+  const singleQuoted = originalReference.replace('from "' + exactImport + '";',
+    "from '" + exactImport + "';");
   assert.notEqual(singleQuoted, originalReference);
   importedFile.data = Buffer.from(singleQuoted).toString('base64');
   importedFile.sha256 = createHash('sha256').update(singleQuoted).digest('hex');
@@ -187,7 +189,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     edit(manifest);
     assert.throws(
       () => verifyTypedCourseManifest(manifest, pinned),
-      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import/i,
+      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import|Unsafe|placement|parent/i,
     );
   };
   const seed = complete.inventory.lessons.find(x => x.kind === 'new').sourcePath;
@@ -210,6 +212,30 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   mutate(m => {
     m.pendingPlacements = [];
   });
+  // The sealed inventory must prove the stub is in the immediate owning
+  // parent, not merely carry the pending Lesson's UUID and draft path.
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    row.placementSourcePath = row.sourcePath;
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    const file = m.entries.find(item => item.path === row.placementSourcePath);
+    const content = Buffer.from(file.data, 'base64').toString('utf8');
+    const replacement = content.replace(
+      'defineLessonStub({ id: "' + row.id + '"',
+      'defineLessonStub({ id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"',
+    );
+    assert.notEqual(replacement, content);
+    file.data = Buffer.from(replacement).toString('base64');
+    file.sha256 = createHash('sha256').update(replacement).digest('hex');
+  });
+  mutate(m => {
+    const file = m.entries.find(item => item.path.endsWith('/constants.ts'));
+    assert.ok(file);
+    file.path = m.sourcePath.replace('/draft.ts', '/content/spurious/constants.ts');
+  });
+
   mutate(m => {
     m.pendingEpisodes = [m.pendingEpisodes[0], m.pendingEpisodes[0]];
   });
@@ -287,7 +313,8 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
   assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
-  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content, /defineAssessmentDraft\(\{/);
+  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content,
+    /defineAssessmentStub\(\{/);
   const sealed = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
   const mutate = patch => {
