@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
-import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { materializeLesson, assertLessonSourceReleaseReady, type Result, type ChildConfig } from './lesson';
 import { materializeContentSection } from '../contentSection/contentSection';
 import { materializePracticeSection } from '../practiceSection/practiceSection';
@@ -251,6 +251,10 @@ export function materializeLessonStage6(input: LessonWorkflowStage2, options: Le
   if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
     throw new Error('Lesson Stage 6: four independent assessment decisions are required');
   const { sections, metadata } = normalizeStage2(input);
+  // Validate the actual editorial input before calling any source renderer.
+  // Keep the original object for source fidelity; parsing is not a new authored representation.
+  const validated = lessonWorkflowStage2_Schema.safeParse(input);
+  if (!validated.success) throw new Error('Invalid Lesson Stage 2 input: ' + validated.error.message);
 
   function block(config: ChildConfig, context: RenderOptions): Result {
     const production = context.production ?? metadata.get(config.id);

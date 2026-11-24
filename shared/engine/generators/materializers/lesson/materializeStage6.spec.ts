@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import ts from 'typescript';
 import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
-import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
@@ -712,4 +712,14 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
   assertSemanticModules(plan);
+});
+
+test('final Lesson schema rejects invalid nested input before rendering', () => {
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(valid()).success, true);
+  const invalid = valid();
+  const { config } = invalid.config.section.items.introduction.config.content.items.prompt;
+  const broken = { ...config, locale: { value: 123 } };
+  Object.assign(config, broken);
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(invalid).success, false);
+  assert.throws(() => produce(invalid), /Invalid Lesson Stage 2 input/);
 });
