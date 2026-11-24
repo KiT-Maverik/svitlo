@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { CoursePage } from './CoursePage';
 import { CoursesPage } from './CoursesPage';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';

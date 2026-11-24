@@ -1,4 +1,5 @@
-import { defineLesson, defineText, defineContentSection, defineQuizSection } from '@svitlo/engine/build';
+import { defineContentSection, defineLesson, defineQuizSection, defineText } from '@svitlo/engine/build';
+
 import { sampleQuestion } from './questions';
 
 const introText = defineText({

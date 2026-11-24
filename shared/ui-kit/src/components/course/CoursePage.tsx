@@ -1,5 +1,13 @@
 'use client';
 
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
+import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRounded';
+import FactCheckOutlined from '@mui/icons-material/FactCheckOutlined';
+import LayersOutlined from '@mui/icons-material/LayersOutlined';
+import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
+import PlayCircleOutlineRounded from '@mui/icons-material/PlayCircleOutlineRounded';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
@@ -7,18 +15,12 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
-import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
-import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
-import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRounded';
-import LayersOutlined from '@mui/icons-material/LayersOutlined';
-import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
-import PlayCircleOutlineRounded from '@mui/icons-material/PlayCircleOutlineRounded';
-import FactCheckOutlined from '@mui/icons-material/FactCheckOutlined';
+
 import type { LanguageCode } from '@svitlo/engine/runtime';
-import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';
-import { CourseLanguages } from './CourseLanguages';
+
 import { CourseArtwork } from './CourseArtwork';
+import { CourseLanguages } from './CourseLanguages';
+import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';
 
 function firstPlayable(items: readonly CourseOutlineItem[]): string | undefined {
   for (const item of items) {

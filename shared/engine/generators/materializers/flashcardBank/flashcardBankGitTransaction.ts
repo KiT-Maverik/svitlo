@@ -4,19 +4,19 @@ import type {
   FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import {
-  materializeFlashcardBankDraft,
+  checkBankGitPlan,
+  commitBankGitPlan,
+  readBankGitSnapshot,
+  type BankGitCheck,
+  type BankGitCommit,
+  type BankGitContext,
+} from '../bankSource/bankSourceGitTransaction';
+import {
   materializeFlashcardBank,
+  materializeFlashcardBankDraft,
   type FlashcardBankDraftAuthorization,
   type FlashcardBankFinalAuthorization,
 } from './materializeFlashcardBank';
-import {
-  readBankGitSnapshot,
-  checkBankGitPlan,
-  commitBankGitPlan,
-  type BankGitContext,
-  type BankGitCheck,
-  type BankGitCommit,
-} from '../bankSource/bankSourceGitTransaction';
 
 export type FlashcardBankDraftGitAuthorization = Omit<FlashcardBankDraftAuthorization, 'snapshot'>;
 export type FlashcardBankFinalGitAuthorization = Omit<FlashcardBankFinalAuthorization, 'snapshot'>;

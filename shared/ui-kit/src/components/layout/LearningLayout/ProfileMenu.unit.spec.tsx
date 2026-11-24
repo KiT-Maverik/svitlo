@@ -1,8 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ProfileMenu from './ProfileMenu';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { learningLayout } from '../../../../data/locale/learningLayout';
+import ProfileMenu from './ProfileMenu';
 
 const messages = learningLayout.uk;
 const active = { id: 'one', displayName: 'Олена' };

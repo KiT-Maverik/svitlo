@@ -1,9 +1,12 @@
-import type { ReactNode } from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import type { Lesson_Props } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
+
 import { preloadScene } from '@/generated/textbookScenes';
+
 import WebLesson from './Lesson';
 
 vi.mock('@/generated/textbookScenes', () => ({ preloadScene: vi.fn(), resolveScene: vi.fn() }));

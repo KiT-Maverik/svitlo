@@ -1,13 +1,17 @@
-import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { SvitloThemeProvider } from '@svitlo/ui-kit';
+
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
-const aria = ukUiKitMessages.learningLayout;
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';
+import { fixtureJsonForSkillUrl, TEST_SKILL_NODES_UK, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+
+const aria = ukUiKitMessages.learningLayout;
+
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ replace: vi.fn() }),
 }));
-import { fixtureJsonForSkillUrl, TEST_SKILLS_DOMAIN_SLUGS, TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 describe('Skills page in shared LearningLayout', () => {
   const originalFetch = globalThis.fetch;

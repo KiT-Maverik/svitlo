@@ -1,9 +1,10 @@
 // @vitest-environment node
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import { beforeAll, describe, it } from 'vitest';
 import { z } from 'zod';
 

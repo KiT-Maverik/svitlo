@@ -1,27 +1,27 @@
-import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { z } from 'zod';
-import type { DeepPartial } from '#types';
+
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
-import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
+import type { DeepPartial } from '#types';
+
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { Configurator_Mode } from '../../configurator.schemas';
-import { module_Props_Schema } from '../defineModule/defineModule.schemas';
-import type { Module_Configurator } from '../defineModule/defineModule';
-import type { Module_Props } from '../defineModule/defineModule.schemas';
-import { chapter_Props_Schema } from '../defineChapter/defineChapter.schemas';
-import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import type { Chapter_Props } from '../defineChapter/defineChapter.schemas';
-import { lesson_Props_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
-import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import type { Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
-import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode.schemas';
-import { assessment_Props_Schema } from '../../assessments/defineAssessment/defineAssessment.schemas';
+import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
-import type { Assessment_Props } from '../../assessments/defineAssessment/defineAssessment.schemas';
+import {
+  assessment_Props_Schema,
+  type Assessment_Props,
+} from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
-import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import { episode_Props_Schema, type Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
+import { lesson_Props_Schema, type Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
+import type { Chapter_Configurator } from '../defineChapter/defineChapter';
+import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
+import type { Module_Configurator } from '../defineModule/defineModule';
+import { module_Props_Schema, type Module_Props } from '../defineModule/defineModule.schemas';
 
 /** Course audience and educational-standard references describe scope, never certification. */
 

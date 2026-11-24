@@ -18,18 +18,16 @@ import {
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import type {
-  Assessment_Content_Section_Configurator,
-  Assessment_Quiz_Configurator,
-  Assessment_Section_Configurator,
-} from './defineAssessment.schemas';
 import {
   assessment_Config_Schema,
   assessment_Override_Metadata_Schema,
   assessment_Props_Schema,
   type Assessment_Config,
+  type Assessment_Content_Section_Configurator,
   type Assessment_Overrides,
   type Assessment_PropsBase,
+  type Assessment_Quiz_Configurator,
+  type Assessment_Section_Configurator,
 } from './defineAssessment.schemas';
 
 const contentSectionTypes = ['content'] as const;

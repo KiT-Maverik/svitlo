@@ -1,5 +1,7 @@
-import type { ConfigWithLanguages, LanguageScope, PublicationLanguageOptions, DeepPartial } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
+
+import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   mergeForValidation,
   onlyLocales,
@@ -9,11 +11,10 @@ import {
   splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { runtimeMediaLocale } from '../_shared__contentBlocks';
 import {
   subtitles_Config_Schema,
-  subtitles_Props_Schema,
   subtitles_Override_Config_Schema,
+  subtitles_Props_Schema,
   type ContentBlock_Subtitles_Config,
   type ContentBlock_Subtitles_Overrides,
 } from './defineSubtitles.schemas';

@@ -1,15 +1,16 @@
 import {
-  resolveEntityPath,
   assembleLessonProps,
   createAssessmentResourceLoader,
-  languageCode_Schema,
   getLanguageCode,
   isLocale,
+  languageCode_Schema,
+  resolveEntityPath,
+  type LanguageCode,
   type Lesson_Props,
-  type PublishedLessonPropsResource,
   type LessonPropsFragment,
+  type Locale,
+  type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
-import type { LanguageCode, Locale } from '@svitlo/engine/runtime';
 
 /** Fetch only build-published Lesson Props. No Node, Electron or authored *.data.ts at runtime. */
 async function loadJson(url: string, optional = false): Promise<unknown | undefined> {

@@ -1,5 +1,6 @@
-import type { CoursePreview } from '@svitlo/ui-kit';
 import type { LanguageCode } from '@svitlo/engine/runtime';
+import type { CoursePreview } from '@svitlo/ui-kit';
+
 import type { LocalizedCourse, LocalizedCourseContent } from './courseResources';
 
 function counts(content: LocalizedCourseContent): { lessons: number; modules: number } {

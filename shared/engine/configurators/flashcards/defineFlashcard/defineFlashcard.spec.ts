@@ -1,10 +1,9 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineFlashcard } from './defineFlashcard';
 import { defineFlashcardSide } from '../defineFlashcardSide';
+import { defineFlashcard } from './defineFlashcard';
 import {
   flashcard_Config_Schema,
   flashcard_Props_Schema,

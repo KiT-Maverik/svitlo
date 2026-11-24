@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import { executeMaterializerEntrypoint, invokeMaterializer } from './directMaterialization';
 
 test('one direct invocation receives runner-owned options and returns its result', async () => {

@@ -1,8 +1,9 @@
 'use client';
 
-import styles from './LightRayDiagram.module.css';
 import { useTheme } from '@mui/material/styles';
+
 import type { LightRayDiagramLocale } from '../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/content/scenes/lightRayDiagram';
+import styles from './LightRayDiagram.module.css';
 
 export function LightRayDiagram({ locales }: { locales: LightRayDiagramLocale }) {
   const rtl = useTheme().direction === 'rtl';

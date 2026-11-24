@@ -1,4 +1,5 @@
 import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
+
 import { howLightMoves_languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 
 const story = defineContentSection({

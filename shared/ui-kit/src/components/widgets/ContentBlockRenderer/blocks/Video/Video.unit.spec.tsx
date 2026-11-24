@@ -1,8 +1,9 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Video } from './Video';
 
 const response: ContentBlock_Video_Props = {

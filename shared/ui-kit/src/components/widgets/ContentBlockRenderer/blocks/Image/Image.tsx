@@ -1,17 +1,16 @@
 'use client';
 
-import type { Image_Locale } from '../../../../../../data/locale/image';
-
-import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
+import { useEffect, useRef, useState } from 'react';
 
 import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
+import type { Image_Locale } from '../../../../../../data/locale/image';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
+import styles from './Image.module.css';
 import { imageUnoptimized, type ImageFailureKind } from './Image.utils';
 import { useImageRenderer } from './ImageRenderer';
-import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 

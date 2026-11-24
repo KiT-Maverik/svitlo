@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ThreeSlotLayout from './ThreeSlotLayout';
 import { testId } from './ThreeSlotLayout.constants';
 

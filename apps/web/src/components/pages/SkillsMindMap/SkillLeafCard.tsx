@@ -1,6 +1,5 @@
-import type { SkillNode } from './skillsMindMap.utils';
-import { mockSkillMastery, skillLearningHref } from './skillsMindMap.utils';
 import styles from './SkillsMindMap.module.css';
+import { mockSkillMastery, skillLearningHref, type SkillNode } from './skillsMindMap.utils';
 import { useSkillsPageSettings } from './SkillsPageSettingsContext';
 
 type MasteryTier = 'starting' | 'growing' | 'strong';

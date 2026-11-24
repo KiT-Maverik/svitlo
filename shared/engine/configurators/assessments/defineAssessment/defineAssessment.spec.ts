@@ -1,16 +1,16 @@
-import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, test } from 'node:test';
 
-import { defineQuizSection } from '../../sections/defineQuizSection';
-import { defineContentSection } from '../../sections/defineContentSection';
+import { mergeForValidation } from '../../_shared__configurators';
 import { defineText } from '../../contentBlocks/defineText';
+import { defineChapter } from '../../courses/defineChapter';
 import { defineCourse } from '../../courses/defineCourse';
 import { defineModule } from '../../courses/defineModule';
-import { defineChapter } from '../../courses/defineChapter';
-import { mergeForValidation } from '../../_shared__configurators';
+import { defineContentSection } from '../../sections/defineContentSection';
+import { defineQuizSection } from '../../sections/defineQuizSection';
 import { defineAssessment } from './defineAssessment';
-import { defineAssessmentDraft } from './defineAssessmentDraft';
 import { assessment_Props_Schema, assessmentConfigurator_Schema } from './defineAssessment.schemas';
+import { defineAssessmentDraft } from './defineAssessmentDraft';
 
 describe('Course-owned Assessment Configurator', () => {
   const id = (suffix: string) => 'c275647f-203d-481a-a1c7-4d331c779d' + suffix;

@@ -1,29 +1,30 @@
 import { z } from 'zod';
+
+import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
+import { carousel_Config_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
+import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
+import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
+import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import { scene_Config_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { subtitles_Config_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import { video_Config_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
+import { youtube_Config_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import { lesson_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { contentSection_Config_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
-import { practiceSection_Config_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { codingTaskSection_Config_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
-import { learningFlowSection_Config_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
-import { quizSection_Config_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+import { contentSection_Config_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import { learningFlowSection_Config_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import { practiceSection_Config_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { questSection_Config_Schema } from '../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 import { stage_Config_Schema } from '../../configurators/sections/defineQuestSection/defineStage/defineStage.schemas';
 import { task_Config_Schema } from '../../configurators/sections/defineQuestSection/defineTask/defineTask.schemas';
-import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import { video_Config_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import { youtube_Config_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
-import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { subtitles_Config_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { scene_Config_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
-import { carousel_Config_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
-import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import { workflowLanguages_Schema } from './workflowLanguages.schemas';
+import { quizSection_Config_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
+import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Stage 1 is an editorial plan, not a partially built Lesson Configurator. */
 const lessonStage1Params_Schema = lesson_Config_Schema.shape.params

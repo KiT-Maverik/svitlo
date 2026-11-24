@@ -1,6 +1,6 @@
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { courseWorkflowStage3_Schema } from '../../../types/workflow/courseWorkflowFinal.schemas';
 import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
+import { courseWorkflowStage3_Schema } from '../../../types/workflow/courseWorkflowFinal.schemas';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeCourseStage5, type CourseStage5Options, type CourseStage5Plan } from './materializeStage5.mjs';
 
 /** Executes the reviewed final Course input exactly once in the isolated worker.

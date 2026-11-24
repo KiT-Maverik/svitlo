@@ -1,15 +1,16 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+
 import {
   assembleCourseLesson,
   assembleCourseTree,
-  type LocalizedCourse,
-  resolveEntityPath,
   languageCode_Schema,
+  resolveEntityPath,
   type LanguageCode,
   type Lesson_Props,
-  type PublishedLessonPropsResource,
+  type LocalizedCourse,
   type PublishedCoursePropsFiles,
+  type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
 
 /** Host-owned publication roots. The generator can choose different directories. */

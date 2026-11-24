@@ -1,6 +1,7 @@
-import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+
 import { Flashcard_fx } from './Flashcard.unit.fx';
 
 describe('Components', () => {

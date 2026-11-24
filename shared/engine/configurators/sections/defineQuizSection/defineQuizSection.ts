@@ -1,32 +1,33 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
-  DeepPartial,
-  ConfigWithLanguages,
-  LanguageScope,
   ChildrenSupporting,
+  ConfigWithLanguages,
+  DeepPartial,
+  LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+
 import {
   mergeForValidation,
-  resolvePublicationLanguages,
-  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/assessmentResources';
+import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   quizSection_Config_Schema,
-  quizSection_Props_Schema,
   quizSection_Override_Config_Schema,
+  quizSection_Props_Schema,
   type QuizSection_Config,
   type QuizSection_Locale,
+  type QuizSection_MetadataOverrides,
   type QuizSection_Overrides,
   type QuizSection_PropsBase,
-  type QuizSection_MetadataOverrides,
 } from './defineQuizSection.schemas';
 
 type Block = ContentBlock_Configurator;

@@ -1,11 +1,11 @@
+import type { Skill_Props } from '../../configurators/skills/defineSkill/defineSkill.schemas';
 import {
   skillDomain_Props_Schema,
   type SkillDomain_Props,
 } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+import type { SkillGroup_Props } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import type { DeepPartial } from '../../types/transformer.types';
-import type { Skill_Props } from '../../configurators/skills/defineSkill/defineSkill.schemas';
-import type { SkillGroup_Props } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 
 /** One published file contains the whole slug-keyed Domain tree. */
 export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;

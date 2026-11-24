@@ -1,12 +1,15 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, Typography } from '@mui/material';
+
 import type { Question_BuildAnswerWithBlocks_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
+import { shuffleItems, type QuestionItem } from '../response/QuestionContent';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
-import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
 import { QuestionSortable } from '../response/QuestionSortable';
 
 export function BuildAnswerWithBlocks({

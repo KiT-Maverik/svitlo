@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '#schemas';
+
 import { getLanguageCode, getLocaleDirection, getSupportedLanguages, isLocale } from './index';
 
 // Exercise custom catalog views without introducing an unsupported Czech locale.

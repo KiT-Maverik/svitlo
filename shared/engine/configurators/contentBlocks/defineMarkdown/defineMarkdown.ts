@@ -1,20 +1,20 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
+import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   mergeForValidation,
   onlyLocales,
   onlyStrings,
-  splitLocalizedFields,
   resolvePublicationLanguages,
   selectPublicationLocales,
+  splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
-  markdown_Props_Schema,
   markdown_Override_Config_Schema,
+  markdown_Props_Schema,
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
   type ContentBlock_Markdown_Overrides,

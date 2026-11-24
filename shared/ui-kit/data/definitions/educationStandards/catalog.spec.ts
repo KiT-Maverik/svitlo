@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+
 import { test } from 'vitest';
 
 import { allLanguageCodes, educationStandard_Props_Schema } from '@svitlo/engine/runtime';

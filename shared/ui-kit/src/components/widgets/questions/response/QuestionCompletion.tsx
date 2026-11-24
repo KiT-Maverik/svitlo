@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext } from 'react';
+
 import type { QuizSection_Props } from '@svitlo/engine/runtime';
 
 /** Coordinates assessment status, feedback and retry policies across Question widgets. */

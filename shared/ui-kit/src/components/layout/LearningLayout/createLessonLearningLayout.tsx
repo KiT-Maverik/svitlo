@@ -1,13 +1,15 @@
 'use client';
 
+import { useColorScheme } from '@mui/material/styles';
+import { useMemo, type ElementType } from 'react';
+
+import type { Locale } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
 
-import { useMemo, type ElementType } from 'react';
-import type { Locale } from '@svitlo/engine/runtime';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 import ThemeSwitch from './NavbarPreferences/ThemeSwitch';
-import { useColorScheme } from '@mui/material/styles';
 
 export type LessonLearningLayoutProps = Pick<
   LearningLayoutProps,

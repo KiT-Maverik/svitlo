@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useSyncExternalStore } from 'react';
 import { Box, Button, Paper, Slider, Typography } from '@mui/material';
-import styles from './LightPropagationSimulation.module.css';
+import { useState, useSyncExternalStore } from 'react';
+
 import type { LightPropagationSimulationLocale } from '../../../data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/content/scenes/lightPropagationSimulation';
+import styles from './LightPropagationSimulation.module.css';
 
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
 

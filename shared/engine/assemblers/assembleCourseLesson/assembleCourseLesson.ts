@@ -1,8 +1,8 @@
+import type { Assessment_PropsBase } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Episode_PropsBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import type { LanguageCode } from '../../schemas';
 import type { DeepPartial } from '../../types/transformer.types';
-import type { Episode_PropsBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import type { Assessment_PropsBase } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
   type PublishedLessonPropsOverride,

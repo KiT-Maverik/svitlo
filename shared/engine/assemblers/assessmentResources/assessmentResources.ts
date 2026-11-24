@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { disability_Schema, type Disability } from '../../schemas/disabilities.schemas';
 
+import type { Flashcard_Props } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import { questionTypes, type Question_Type } from '../../configurators/questions/question.constants';
 import type { Question_Props } from '../../configurators/questions/question.types';
-import type { Flashcard_Props } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import { disability_Schema, type Disability } from '../../schemas/disabilities.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
 

@@ -1,21 +1,22 @@
-import { readFileSync, lstatSync } from 'node:fs';
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import { lstatSync, readFileSync } from 'node:fs';
 
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
+
+import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   mergeForValidation,
   onlyLocales,
   onlyStrings,
-  splitLocalizedFields,
   resolvePublicationLanguages,
   selectPublicationLocales,
+  splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
-import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   code_Config_Schema,
-  code_Props_Schema,
   code_Override_Config_Schema,
+  code_Props_Schema,
   type ContentBlock_Code_Config,
   type ContentBlock_Code_Locale,
   type ContentBlock_Code_Overrides,

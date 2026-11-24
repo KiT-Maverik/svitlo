@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import ts from 'typescript';
-import { materializeSubtitles } from './materializeSubtitles';
+
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow';
+import { materializeSubtitles } from './materializeSubtitles';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 // The reviewed Course Stage 1 source is typed with production.languages.

@@ -1,11 +1,12 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
+  ChildrenSupporting,
   ConfigWithLanguages,
+  DeepPartial,
   LanguageScope,
   PublicationLanguageOptions,
-  ChildrenSupporting,
-  DeepPartial,
 } from '#types';
-import type { AllLanguageCodes, LanguageCode } from '#schemas';
+
 import {
   mergeForValidation,
   onlyLocales,
@@ -16,8 +17,8 @@ import {
 } from '../../_shared__configurators';
 import {
   questSection_Config_Schema,
-  questSection_Props_Schema,
   questSection_Override_Metadata_Schema,
+  questSection_Props_Schema,
   type QuestSection_Config,
   type QuestSection_Metadata_Overrides,
 } from './defineQuestSection.schemas';
@@ -25,9 +26,9 @@ import type { Stage_Configurator, Stage_Overrides } from './defineStage';
 import type { Task_Configurator, Task_Overrides } from './defineTask';
 import {
   assertQuestMap,
-  projectQuestTree,
-  nestQuestPublication,
   mergeQuestPatches,
+  nestQuestPublication,
+  projectQuestTree,
   validateQuestPublication,
 } from './quest.utils';
 

@@ -1,26 +1,27 @@
 'use client';
 
-import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
-
-import { forwardRef, type ReactNode } from 'react';
-import { useState } from 'react';
+import LabelOutlined from '@mui/icons-material/LabelOutlined';
+import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
+import MoreVert from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import type { Flashcard_Flag_Props } from '@svitlo/engine/runtime';
-import { toFlashcardLabel, type FlashcardLabel } from './FlashcardFlags';
-export type { FlashcardLabel } from './FlashcardFlags';
 import Divider from '@mui/material/Divider';
 import Fade from '@mui/material/Fade';
 import IconButton from '@mui/material/IconButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import LabelOutlined from '@mui/icons-material/LabelOutlined';
-import MoreVert from '@mui/icons-material/MoreVert';
-import LockOpenOutlined from '@mui/icons-material/LockOpenOutlined';
 import Stack from '@mui/material/Stack';
+import { forwardRef, useState, type ReactNode } from 'react';
+
+import type { Flashcard_Flag_Props } from '@svitlo/engine/runtime';
+
+import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 import styles from './Flashcard.module.css';
+import { toFlashcardLabel, type FlashcardLabel } from './FlashcardFlags';
+
+export type { FlashcardLabel } from './FlashcardFlags';
 
 export interface FlashcardProps {
   messages: Flashcard_Locale;

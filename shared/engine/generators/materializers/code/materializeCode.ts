@@ -4,10 +4,9 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
-import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode';
-import { code_Config_Schema } from '../../../configurators/contentBlocks/defineCode';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
+import { code_Config_Schema, type ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode';
 
 export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Code_Config['params']>;

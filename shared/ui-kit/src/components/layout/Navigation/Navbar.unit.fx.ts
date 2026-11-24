@@ -1,5 +1,6 @@
-import { createElement } from 'react';
 import { render, screen, within } from '@testing-library/react';
+import { createElement } from 'react';
+
 import Navbar, { type NavbarProps } from './Navbar';
 import { testId } from './Navbar.constants';
 

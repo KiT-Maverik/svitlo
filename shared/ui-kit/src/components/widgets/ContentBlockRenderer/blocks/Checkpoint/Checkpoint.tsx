@@ -1,23 +1,25 @@
 'use client';
 
-import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
-
-import { createElement, useEffect, useId, useState } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Button from '@mui/material/Button';
+import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
 import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import LightbulbOutlineRounded from '@mui/icons-material/LightbulbOutlineRounded';
 import RadioButtonUncheckedRounded from '@mui/icons-material/RadioButtonUncheckedRounded';
-import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
-import type { ContentBlock_Checkpoint_Props } from '@svitlo/engine/runtime';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import { getLocaleDirection } from '@svitlo/engine/runtime';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Button from '@mui/material/Button';
+import { createElement, useEffect, useId, useState } from 'react';
 
-import type { RenderNested } from '../../types';
-import { useContentLanguage } from '../../ContentLanguageContext';
+import {
+  DEFAULT_SUPPORTED_LANGUAGES,
+  getLocaleDirection,
+  type ContentBlock_Checkpoint_Props,
+} from '@svitlo/engine/runtime';
+
+import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
 import { useOptionalLessonActions } from '../../../../lesson/LessonOperationsContext';
+import { useContentLanguage } from '../../ContentLanguageContext';
+import type { RenderNested } from '../../types';
 import styles from './Checkpoint.module.css';
 
 type CheckpointProps = ContentBlock_Checkpoint_Props & {

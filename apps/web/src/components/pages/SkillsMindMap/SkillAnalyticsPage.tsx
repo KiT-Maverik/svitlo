@@ -1,21 +1,24 @@
 'use client';
 
-import { useCallback } from 'react';
+import { Box, Container } from '@mui/material';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import type { SkillNode } from './skillsMindMap.utils';
+import { useCallback } from 'react';
+
 import {
-  type UiKitMessages,
-  useSvitloColorScheme,
   LearningLayout,
   NavbarPreferences,
   ThemeSwitch,
+  useSvitloColorScheme,
+  type UiKitMessages,
 } from '@svitlo/ui-kit';
-import Link from 'next/link';
-import { Box, Container } from '@mui/material';
+
+import { textbook } from '@/generated/textbook';
+
 import { SkillsMindMap } from './SkillsMindMap';
+import type { SkillNode } from './skillsMindMap.utils';
 import { SkillsPagePreferences } from './SkillsPagePreferences';
 import { SkillsPageSettingsProvider, useSkillsPageSettings } from './SkillsPageSettingsContext';
-import { textbook } from '@/generated/textbook';
 
 const idleProgress = {
   ready: false,

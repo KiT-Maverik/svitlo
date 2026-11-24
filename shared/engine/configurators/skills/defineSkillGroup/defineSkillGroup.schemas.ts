@@ -1,8 +1,10 @@
 import { z } from 'zod';
+
 import { localeText_Schema } from '#schemas';
+
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
 import type { Skill_Configurator } from '../defineSkill/defineSkill';
+import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
 
 const frontendByMode = {
   config: localizationSwitch.config.optional(),

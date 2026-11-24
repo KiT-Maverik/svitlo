@@ -1,8 +1,8 @@
 'use client';
 
-import type { Lesson_Locale } from '../../../data/locale/lesson';
-
 import Box from '@mui/material/Box';
+
+import type { Lesson_Locale } from '../../../data/locale/lesson';
 import styles from './Lesson.module.css';
 
 export type QuestionStatus = 'unanswered' | 'correct' | 'incorrect' | 'deferred';

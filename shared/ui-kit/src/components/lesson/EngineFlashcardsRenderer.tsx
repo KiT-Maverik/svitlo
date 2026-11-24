@@ -1,17 +1,20 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
+import { useEffect, useMemo, useState } from 'react';
+
 import type {
   AssessmentResourceLoader,
+  Disability,
   Flashcard_Props,
   FlashcardsSection_Props,
   LanguageCode,
-  Disability,
 } from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
-import { Flashcard } from '../widgets/Flashcard/Flashcard';
+
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
+import { Flashcard } from '../widgets/Flashcard/Flashcard';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 
 /** Only the explicitly selected cards are fetched from the independent Lesson bank. */

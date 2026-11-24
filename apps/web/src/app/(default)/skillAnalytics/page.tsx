@@ -1,11 +1,13 @@
-import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
 import { SkillAnalyticsPage } from '@/components/pages/SkillsMindMap/SkillAnalyticsPage';
-import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
-import { loadPublishedSkills } from '@/lib/skillResources';
 import { textbook } from '@/generated/textbook';
+import { loadPublishedSkills } from '@/lib/skillResources';
+import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
 
 export const metadata: Metadata = { title: `Аналітика навичок — ${textbook.title}` };
 

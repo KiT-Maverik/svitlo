@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { getCourseMessages } from './courseMessages';
 import { toCoursePreview } from './coursePreview';
 import type { LocalizedCourse } from './courseResources';

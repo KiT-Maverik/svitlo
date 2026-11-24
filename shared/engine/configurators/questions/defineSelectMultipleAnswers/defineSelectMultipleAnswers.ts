@@ -1,41 +1,42 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import type { ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+
 import {
   assertEnabledBlock,
-  isEnabledBlock,
   cloneJson,
-  finishFiles,
-  isRecord,
   ensureQuestionPatchShape,
+  finishFiles,
+  isEnabledBlock,
+  isRecord,
   mergeQuestionContent,
   projectQuestionLocale,
-  resolveCommonContent,
   resolveBlockCollection,
   resolveBlockMap,
-  snapshotCommonContent,
+  resolveCommonContent,
+  resolvePublicationLanguages,
   snapshotBlockCollection,
+  snapshotCommonContent,
   validateBlockCollection,
   validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch,
-  type ResolvableBlockPatch,
-  type QuestionCommonPatch,
-  type QuestionResourcePublication,
-  type QuestionOverridePublication,
-  resolvePublicationLanguages,
   validateQuestionPublication,
+  type OrderedBlockPatch,
   type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
+  type ResolvableBlockPatch,
 } from '../_shared__questions';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectMultipleAnswers_Config_Schema,
   selectMultipleAnswers_Override_Config_Schema,
-  type Question_SelectMultipleAnswers_Config,
   selectMultipleAnswers_Props_Schema,
-  type Question_SelectMultipleAnswers_Props,
+  type Question_SelectMultipleAnswers_Config,
   type Question_SelectMultipleAnswers_MetadataOverrides,
+  type Question_SelectMultipleAnswers_Props,
 } from './defineSelectMultipleAnswers.schemas';
 
 const metadataSchema = selectMultipleAnswers_Config_Schema.omit({ content: true });

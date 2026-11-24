@@ -1,5 +1,6 @@
-import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+
+import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Video } from './Video';
 
 const poster =

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('supported RTL lesson locale sets document direction', async ({ page }) => {
   await page.goto('/');

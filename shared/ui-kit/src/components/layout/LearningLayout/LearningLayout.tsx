@@ -1,26 +1,26 @@
 'use client';
 
-import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
-
-import { useEffect, useState, type ReactNode, type ElementType, type Dispatch, type SetStateAction } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
-import Fade from '@mui/material/Fade';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { alpha } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import CloseIcon from '@mui/icons-material/Close';
-import TopNavbar from '../Navigation/TopNavbar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import Fade from '@mui/material/Fade';
+import IconButton from '@mui/material/IconButton';
+import { alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { useEffect, useState, type Dispatch, type ElementType, type ReactNode, type SetStateAction } from 'react';
+
+import { getLocaleDirection, type Locale } from '@svitlo/engine/runtime';
+
+import type { LearningLayout_Locale } from '../../../../data/locale/learningLayout';
 import BottomNavbar from '../Navigation/BottomNavbar';
-import { type Locale } from '@svitlo/engine/runtime';
-import { getLocaleDirection } from '@svitlo/engine/runtime';
+import TopNavbar from '../Navigation/TopNavbar';
 import ThreeSlotLayout from '../ThreeSlotLayout';
-import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 import CourseTopicList, { type Topic } from './CourseTopicList';
+import ProfileMenu, { type LearningProfile } from './ProfileMenu';
 
 export type { Topic } from './CourseTopicList';
 export type LearningLayoutProgress = {

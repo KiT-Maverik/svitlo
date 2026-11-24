@@ -1,5 +1,6 @@
-import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
+
 import { DATABASE_NAME, DATABASE_VERSION } from './databaseConfig.utils';
 
 describe('DB', () => {

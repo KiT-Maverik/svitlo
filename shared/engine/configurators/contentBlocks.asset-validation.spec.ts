@@ -1,6 +1,7 @@
-import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { defineImage, defineAudio, defineVideo, defineCarousel } from './contentBlocks';
+import { describe, test } from 'node:test';
+
+import { defineAudio, defineCarousel, defineImage, defineVideo } from './contentBlocks';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {

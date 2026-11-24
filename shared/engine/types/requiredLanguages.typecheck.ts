@@ -1,13 +1,13 @@
+import type { AllLanguageCodes, SupportedLanguages } from '../schemas/languages.schemas';
 import type {
-  ChildSupporting,
   ChildrenSupporting,
+  ChildSupporting,
   ConfigWithLanguages,
   DeepPartial,
   LanguageScope,
   PublicationLanguageOptions,
   RequireLanguages,
 } from './index';
-import type { AllLanguageCodes, SupportedLanguages } from '../schemas/languages.schemas';
 
 type Assert<Condition extends true> = Condition;
 type Equal<Left, Right> = (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;

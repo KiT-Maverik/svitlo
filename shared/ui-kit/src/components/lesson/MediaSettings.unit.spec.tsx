@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { Audio } from '../widgets/ContentBlockRenderer/blocks/Audio/Audio';
 import { Video } from '../widgets/ContentBlockRenderer/blocks/Video/Video';

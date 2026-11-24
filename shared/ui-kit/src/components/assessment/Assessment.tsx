@@ -1,19 +1,26 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import type { AssessmentResourceLoader, LanguageCode, LocalizedAssessment } from '@svitlo/engine/runtime';
+import { useEffect, useRef, useState } from 'react';
+
+import {
+  DEFAULT_SUPPORTED_LANGUAGES,
+  type AssessmentResourceLoader,
+  type LanguageCode,
+  type LocalizedAssessment,
+} from '@svitlo/engine/runtime';
+
 import type { UiKitMessages } from '#types/uiKitMessages';
+
+import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import { EngineContentBlockRenderer } from '../lesson/EngineContentBlockRenderer';
 import { EngineQuestionRenderer } from '../lesson/EngineQuestionRenderer';
 import { MediaSettingsProvider } from '../lesson/MediaSettings';
 import { MediaVolumeControl } from '../lesson/MediaVolumeControl';
-import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type AssessmentProps = {

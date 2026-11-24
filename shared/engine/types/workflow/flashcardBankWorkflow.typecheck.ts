@@ -1,23 +1,23 @@
-import type { FlashcardNode, FlashcardContext } from '../../generators/materializers/flashcard/materializeFlashcard';
-import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
-import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
-import type { CheckpointItemSource } from '../../generators/materializers/checkpointItem/materializeCheckpointItem';
 import type { CheckpointAnswerSource } from '../../generators/materializers/checkpointAnswer/materializeCheckpointAnswer';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+import type { CheckpointItemSource } from '../../generators/materializers/checkpointItem/materializeCheckpointItem';
+import type { FlashcardContext, FlashcardNode } from '../../generators/materializers/flashcard/materializeFlashcard';
+import type { FlashcardSideSource } from '../../generators/materializers/flashcardSide/materializeFlashcardSide';
 import type {
-  FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowStage2,
-  FlashcardBankWorkflowStage3,
   FlashcardBankWorkflowCardConfig,
-  FlashcardBankWorkflowSideSource,
   FlashcardBankWorkflowFlags,
   FlashcardBankWorkflowRelationshipEdge,
   FlashcardBankWorkflowSectionDecision,
+  FlashcardBankWorkflowSideSource,
+  FlashcardBankWorkflowStage1,
+  FlashcardBankWorkflowStage2,
+  FlashcardBankWorkflowStage3,
 } from './flashcardBankWorkflow.types';
 
 const uuid = 'b775647f-203d-481a-a1c7-4d331c000001';

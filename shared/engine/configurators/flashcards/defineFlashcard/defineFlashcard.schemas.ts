@@ -1,9 +1,10 @@
 import { z } from 'zod';
-import { disability_Schema } from '../../../schemas/disabilities.schemas';
-import type { DeepPartial } from '#types';
+
 import { deepStrict_Schema } from '#schemas';
+import type { DeepPartial } from '#types';
 
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { disability_Schema } from '../../../schemas/disabilities.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import {
   localizationSwitch as contentBlockLocalizationSwitch,

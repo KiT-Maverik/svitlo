@@ -1,5 +1,6 @@
-import type { DeepPartial } from '#types';
 import type { LanguageCode } from '#schemas';
+import type { DeepPartial } from '#types';
+
 import { isLocaleDictionary } from './onlyLocales/onlyLocales.utils';
 
 type FileLocales = Partial<Record<LanguageCode, Record<string, unknown>>>;

@@ -1,12 +1,15 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
+
 import type { Question_SelectMultipleAnswers_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
-import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { questionLabel } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
 export function SelectMultipleAnswers({
   response,

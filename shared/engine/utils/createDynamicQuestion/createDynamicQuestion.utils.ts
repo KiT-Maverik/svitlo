@@ -1,8 +1,8 @@
 import type {
   DynamicQuestion,
   DynamicQuestion_ArgumentProposal,
-  DynamicQuestion_ArgumentValidation,
   DynamicQuestion_Arguments,
+  DynamicQuestion_ArgumentValidation,
   DynamicQuestion_Config,
   DynamicQuestion_Variant,
 } from './createDynamicQuestion.types';

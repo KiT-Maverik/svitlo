@@ -1,18 +1,19 @@
-import type { DeepPartial, ChildrenSupporting } from '#types';
 import type { LanguageCode } from '#schemas';
+import type { ChildrenSupporting, DeepPartial } from '#types';
+
 import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
-import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
-import { text_Props_Schema } from '../../contentBlocks/defineText';
-import { markdown_Props_Schema } from '../../contentBlocks/defineMarkdown';
-import { code_Props_Schema } from '../../contentBlocks/defineCode';
-import { image_Props_Schema } from '../../contentBlocks/defineImage';
-import { video_Props_Schema } from '../../contentBlocks/defineVideo';
+import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import { audio_Props_Schema } from '../../contentBlocks/defineAudio';
-import { youtube_Props_Schema } from '../../contentBlocks/defineYoutube';
 import { carousel_Props_Schema } from '../../contentBlocks/defineCarousel';
 import { checkpoint_Props_Schema } from '../../contentBlocks/defineCheckpoint';
+import { code_Props_Schema } from '../../contentBlocks/defineCode';
+import { image_Props_Schema } from '../../contentBlocks/defineImage';
+import { markdown_Props_Schema } from '../../contentBlocks/defineMarkdown';
 import { scene_Props_Schema } from '../../contentBlocks/defineScene';
+import { text_Props_Schema } from '../../contentBlocks/defineText';
+import { video_Props_Schema } from '../../contentBlocks/defineVideo';
+import { youtube_Props_Schema } from '../../contentBlocks/defineYoutube';
 
 type Block = ContentBlock_Configurator;
 type Fragment = Record<string, unknown>;

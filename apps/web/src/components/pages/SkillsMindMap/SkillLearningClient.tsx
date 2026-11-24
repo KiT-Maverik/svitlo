@@ -1,10 +1,11 @@
 'use client';
 
-import Link from 'next/link';
-import { textbook } from '@/generated/textbook';
 import { Alert, Box, Paper, Stack, Typography } from '@mui/material';
+import Link from 'next/link';
+
 import { SkillMastery } from '@/components/pages/SkillsMindMap/SkillLeafCard';
 import type { SkillNode } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
+import { textbook } from '@/generated/textbook';
 
 interface SkillLearningClientProps {
   node: SkillNode | null;

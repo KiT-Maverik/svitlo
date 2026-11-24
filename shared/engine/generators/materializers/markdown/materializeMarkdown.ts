@@ -4,10 +4,12 @@
  * This is not a Props/JSON publisher, and never executes the YAML builder.
  */
 import { isDeepStrictEqual } from 'node:util';
-import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown';
-import { markdown_Config_Schema } from '../../../configurators/contentBlocks/defineMarkdown';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
+import {
+  markdown_Config_Schema,
+  type ContentBlock_Markdown_Config,
+} from '../../../configurators/contentBlocks/defineMarkdown';
 
 export type MarkdownDraftConfig = Pick<ContentBlock_Markdown_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Markdown_Config['params']>;

@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
+
 import type { LessonActions } from './LessonController';
 
 /** Optional for content blocks that can also render outside a LessonController (e.g. Storybook). */

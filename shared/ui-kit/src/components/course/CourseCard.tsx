@@ -1,17 +1,19 @@
 'use client';
 
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
-import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
+
 import type { LanguageCode } from '@svitlo/engine/runtime';
-import type { CourseMessages, CoursePreview } from './types';
-import { CourseLanguages } from './CourseLanguages';
+
 import { CourseArtwork } from './CourseArtwork';
+import { CourseLanguages } from './CourseLanguages';
+import type { CourseMessages, CoursePreview } from './types';
 
 export type CourseCardProps = {
   course: CoursePreview;

@@ -1,6 +1,7 @@
 import { defineLesson } from '@svitlo/engine/build';
-import { howLightMoves_languages } from './constants';
+
 import { testExplainLightTravel } from '../../../skills/testLight/testLightPropagation/testExplainLightTravel';
+import { howLightMoves_languages } from './constants';
 import { contentSection } from './sections/content';
 import { practiceSection } from './sections/practice';
 import { quizSection } from './sections/quiz';

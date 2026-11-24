@@ -1,11 +1,10 @@
-import { describe } from 'node:test';
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import { allLanguageCodes, type LanguageCode } from '../schemas/languages.schemas';
 import { defineSkill } from './skills/defineSkill/defineSkill';
-import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 import { defineSkillDomain } from './skills/defineSkillDomain/defineSkillDomain';
+import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 
 describe('Configurators', () => {
   describe('Skills', () => {
