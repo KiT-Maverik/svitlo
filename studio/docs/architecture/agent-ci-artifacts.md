@@ -22,6 +22,23 @@ Agents with the GitHub connector can list and download actual run artifacts and 
 
 Machine JSON alone is enough for lookup/coverage; no second duplicate Markdown is needed. Git audit retains readable Markdown for the on-run human summary.
 
+### Lesson and Question Bank Markdown commands
+
+Use these exact commands on the existing PR (or the `lesson` input in the workflow's manual dispatch):
+
+```text
+/agent-artifacts generate lessons content/playground <lesson-uuid> en
+/agent-artifacts generate questions content/playground <lesson-uuid> en
+/agent-artifacts generate lessons content/playground <lesson-uuid>
+/agent-artifacts generate questions content/playground <lesson-uuid>
+/agent-artifacts generate lessons content/playground en
+/agent-artifacts generate questions content/playground en
+```
+
+The Lesson UUID is optional and precedes the optional locale; the final lone language code remains a locale, preserving existing textbook-wide commands. A UUID without locale selects that Lesson's supported languages; a UUID with locale requests only its matching Markdown. `questions` selects the Question Bank owned by that Lesson, with associated Quiz text, not banks in other Lessons. Incorrect UUIDs, ambiguous extra arguments and missing entities fail the request. The manifest's `scope.lesson` contains the canonical lowercase UUID, and each `generated[]` entry must reference only that Lesson path and selected locale(s).
+
+These are **read-only reference exports**, not bank/Lesson source materialization and not proof of editorial review. The dispatcher passes the UUID to the existing generator and validates the exact `sourceCommit`, PR, run ID, Lesson/locale scope, file inventory, byte sizes and SHA-256 before uploading the one-day ZIP. A comment command becomes available only after its YAML is deployed to default `develop`; pre-merge tests of an integration branch do not prove the live command works.
+
 The reference generator writes only under `$RUNNER_TEMP/agent-reference-library/` (or ignored local `temp/agent-reference-library/`). `manifest.json` schemaVersion 3 includes `sourceCommit`, `pr`, `runId`, exact `scope`, `generated[]` relative ZIP-root paths, `failures[]`, `summary`, `status` and per-document `bytes` and `sha256`. Markdown hyperlinks are permalinks to source Code at that SHA. The generator supports one selected reference family and named textbook/locale/UUID component scope; missing localized `%%MISSING%%` values yield non-review-ready previews.
 
 This workflow is **not** a Lesson/Course/Question/Flashcard _source materialization_ workflow. Those commands intentionally create authorized real source files and are not replaced by report artifacts.
@@ -30,6 +47,6 @@ This workflow is **not** a Lesson/Course/Question/Flashcard _source materializat
 
 The previous mechanism created a Git-tracked `.agent-ci-artifacts/` directory. The new report workflow does not write there, and the separate `Agent CI Artifacts / clean` workflow has been **deleted**. Existing historical PRs may still contain tracked reports; inspect their tree and remove those files via explicit normal commits before merging.
 
-**Owner action required for branch protection:** GitHub's `Protect develop` and `Protect main` rulesets may still require the deleted `Agent CI Artifacts / clean` status. Repository commits cannot change these rulesets. Remove that requirement **before merge**; otherwise GitHub can block the merge indefinitely waiting for a missing context. Keep all other mandatory checks and branch protections unchanged. Do not introduce a fake green replacement check.
+**Verified against live GitHub rulesets on 2026-11-24:** `Protect develop` requires `Affected content / build, taxonomy and packaging`, `Blocker TODOs / clean` and `FastGate / verify`; `Protect main` requires the first two plus `Production Quality / verify`. Neither ruleset requires the deleted `Agent CI Artifacts / clean` context. No ruleset change or replacement check is needed for that historical status. Recheck live rulesets when merge requirements change.
 
 There is no `/agent-artifacts cleanup` operation, no cleanup-on-Ready, and no privileged diagnostic report publisher. One-day Actions artifact expiration never changes tracked source files.
