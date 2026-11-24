@@ -54,8 +54,7 @@ recreates the identical plan from inert AST, checks every target for symlinks
 and clobbers, and builds **one Git Data API tree commit** that deletes the reviewed
 draft.ts and creates index.ts plus all approved outputs. Exact original bytes
 remain available at the pinned parent commit and blob. It checks
-the branch/PR before a non-force ref update. There is no PR-description edit,
-Course Props publication, child Lesson Production or automatic bank work.
+the branch/PR before a non-force ref update. A separate metadata-only job verifies the committed manifest and reconciles Lessons and Episodes tables in the current PR description. No Course Props publication, child Lesson/Episode production or automatic bank work occurs.
 
 ### Validation and activation
 
@@ -81,3 +80,7 @@ reported and repaired in its owning workstream, not silently skipped.
 The Engine tests check real source renderers, generated TS compilation and
 Git-source writer. A complete successful Actions run on the default branch
 against a pinned Course PR SHA is still required. A successful authorized default-branch workflow run and source-SHA-pinned result remain prerequisites before treating Stage 5 as operational.
+
+## Course PR inventory reconciliation
+
+Only after the exact source commit succeeds, the publisher emits the commit/manifest digest proof. The separate `reconcile-pr-tables` job has contents read and pull-requests write permissions, verifies the manifest digest, commit parent, commit provenance and actual generated Git blobs, then updates the two managed blocks. It re-reads the current PR and body before editing, uses an ETag precondition and verifies the resulting body. GitHub's PR REST endpoint does not document a transactional body compare-and-swap; human edits during the final request cannot be absolutely locked. Avoid concurrent description edits while this job runs. On an observed race, stale HEAD or malformed markers it refuses to write. If source publication succeeds but metadata fails, **rerun only the failed metadata job of the same workflow run** while the artifact is available and the materialization commit remains HEAD. Do not dispatch materialization again. The source commit remains valid; if HEAD has advanced, explicitly reconcile from the verified historical run/commit instead of overwriting current metadata. No child PR is created by either job.

@@ -69,6 +69,18 @@ export type CourseStage5Options = {
     },
   ) => SourceRenderResult;
 };
+export type CoursePlacementInventoryRow = {
+  type: 'lesson' | 'episode';
+  id: string;
+  slug: string;
+  kind: 'new' | 'reused' | 'overridden';
+  status: 'pending-lesson-stage1' | 'pending-episode-scenario' | 'verified-reference' | 'materialized-source';
+  placementPath: string;
+  orderPath: readonly number[];
+  sourcePath: string;
+  placementSourcePath: string;
+  sourceSha?: string;
+};
 export type CourseStage5Plan = {
   sourcePath: string;
   materializedPath: string;
@@ -78,8 +90,16 @@ export type CourseStage5Plan = {
   root: string;
   files: readonly SourceFile[];
   diagnostics: readonly SourceDiagnostic[];
+  inventory: { lessons: readonly CoursePlacementInventoryRow[]; episodes: readonly CoursePlacementInventoryRow[] };
   placements: readonly { path: string; slug: string; lessonId: string; kind: string }[];
   pendingPlacements: readonly { path: string; slug: string; lessonId: string; handoffPath: string }[];
+  pendingEpisodes: readonly {
+    path: string;
+    slug: string;
+    episodeId: string;
+    handoffPath: string;
+    orderIndex: number;
+  }[];
   publishable: false;
 };
 

@@ -21,6 +21,7 @@ import { materializeCourseStage5 } from '../../../shared/engine/generators/mater
 import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
 import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
 import { checkGeneratedCourseTypes } from './typed-course-semantics.mjs';
+import { manifestDigest } from './course-handoff-publish.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -52,6 +53,7 @@ function allowedOutput(filename, meta) {
     return (
       [
         'index.ts',
+        'draft.ts',
         'languages.ts',
         'authoredCourseOverrides.ts',
         'methodology.md',
@@ -272,6 +274,7 @@ async function publish() {
     tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
+  const digest = manifestDigest(manifest);
   const commit = await github('git/commits', 'POST', {
     message:
       'Materialize reviewed typed Course ' +
@@ -281,7 +284,9 @@ async function publish() {
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.evidenceUrl,
+      meta.evidenceUrl +
+      '\nCourse-Inventory-Manifest: ' +
+      digest,
     tree: tree.sha,
     parents: [meta.head],
   });
@@ -308,9 +313,23 @@ async function publish() {
       manifest.entries.length +
       ' generated sources; reviewed draft consumed, exact bytes retained in Git history.',
   );
+  if (process.env.GITHUB_OUTPUT) {
+    const proof = {
+      repo: meta.repo,
+      number: meta.number,
+      branch: meta.branch,
+      courseId: meta.courseId,
+      reviewedHead: meta.head,
+      commit: commit.sha,
+      digest,
+    };
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
+  }
   const placements = manifest.pendingPlacements ?? [];
   for (const placement of placements)
     report('Lesson Stage 1 pending (no automatic PR): ' + placement.lessonId + ' — ' + placement.handoffPath);
+  for (const placement of manifest.pendingEpisodes ?? [])
+    report('Episode Stage 1 pending (no automatic PR): ' + placement.episodeId + ' — ' + placement.handoffPath);
   report(
     'TODO (BLOCKER): Course is not approved for Props publication; verify all independent child/review/locale/asset gates.',
   );

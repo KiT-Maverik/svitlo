@@ -57,8 +57,8 @@ describe('independent lesson and interface locales from route', () => {
     expect(replace).toHaveBeenCalledWith(`/en/lesson/uk/${lessonId}`, { scroll: false });
   });
 
-  it('uses the interface language for a course episode and keeps the episode URL when switching it', () => {
-    const episodePath = '/uk/course/course-one/episode/episode-one';
+  it('preserves the explicit Episode content language when switching the interface', () => {
+    const episodePath = '/uk/course/course-one/episode/en/episode-one';
     vi.mocked(usePathname).mockReturnValue(episodePath);
     window.history.replaceState({}, '', episodePath + '?ref=abc&lang=uk-UA');
     expect(renderHook(() => useLessonLanguage()).result.current.locale).toBe('uk-UA');
@@ -67,6 +67,6 @@ describe('independent lesson and interface locales from route', () => {
     expect(result.current.lessonLocale).toBeUndefined();
     expect(result.current.setLessonLocale).toBeUndefined();
     act(() => result.current.setLocale('de-DE'));
-    expect(replace).toHaveBeenCalledWith('/de/course/course-one/episode/episode-one?ref=abc', { scroll: false });
+    expect(replace).toHaveBeenCalledWith('/de/course/course-one/episode/en/episode-one?ref=abc', { scroll: false });
   });
 });

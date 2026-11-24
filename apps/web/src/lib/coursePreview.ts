@@ -7,6 +7,7 @@ function counts(content: LocalizedCourseContent): { lessons: number; modules: nu
     (total, slug) => {
       const item = content.items[slug];
       if (item.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
+      if (item.type === 'episode') return total;
       const nested = counts(item.content);
       return {
         lessons: total.lessons + nested.lessons,

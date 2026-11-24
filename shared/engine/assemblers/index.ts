@@ -9,3 +9,5 @@ export * from './assembleCourseLesson/assembleCourseLesson';
 export * from './assessmentResources/assessmentResources';
 export { createAssessmentResourceLoader } from './assessmentResources/createAssessmentResourceLoader';
 export type { ReadAssessmentFiles } from './assessmentResources/createAssessmentResourceLoader';
+
+export * from './assembleCourseLesson/assembleCourseTree';

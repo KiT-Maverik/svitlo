@@ -126,31 +126,42 @@ test('refuses directory traversal before source emission', () => {
   );
 });
 
-test('typed Stage 2/3 provisional Episode creates a blocked valid-TS draft without fabricated Scenes', () => {
+test('provisional Episode emits only an allocated typed draft with reviewed Course context', () => {
   const planned = {
     config: { type: 'episode', slug: 'transition' },
     production: { focus: 'Learning context', purpose: 'Narrative transition' },
   };
-  const context = { ...ctx(), deriveId: () => 'f0000000-0000-4000-8000-000000000001' };
+  const context = {
+    ...ctx(),
+    courseId: IDs.course,
+    directory: 'content/transition',
+    orderPath: [2],
+    plannedLanguages: ['uk'],
+    reviewedCourseSourceBlobSha: '1'.repeat(40),
+    deriveId: () => 'f0000000-0000-4000-8000-000000000001',
+  };
   const result = materializeEpisode(planned, context);
   assert.equal(result.id, 'f0000000-0000-4000-8000-000000000001');
-  assert.ok(result.diagnostics.some(d => d.severity === 'blocker' && d.code === 'pending-episode-scenario'));
-  const index = result.files.find(f => f.path === 'index.ts').content;
-  assert.match(index, /TODO \(BLOCKER\): Not implemented/);
-  assert.match(index, /defineEpisode<"transition"/);
-  assert.match(index, /order: \[\]/);
-  assert.ok(!result.files.some(f => f.path.includes('/sections/')));
-  assert.match(result.files.find(f => f.path === 'specification.md').content, /Learning context/);
-  assert.match(result.files.find(f => f.path === 'specification.md').content, /Narrative transition/);
+  assert.equal(result.pendingEpisode, true);
+  assert.deepEqual(
+    result.files.map(f => f.path),
+    ['content/transition/draft.ts'],
+  );
+  const draft = result.files[0].content;
+  assert.match(draft, /TODO \(BLOCKER\)/);
+  assert.match(draft, /satisfies EpisodeWorkflowStage1Handoff/);
+  assert.match(draft, /Learning context/);
+  assert.match(draft, /Narrative transition/);
+  assert.doesNotMatch(draft, /defineEpisode|Not implemented/);
   syntax(result.files);
   assert.deepEqual(result, materializeEpisode(planned, context));
-});
-test('provisional Episode rejects missing reviewed intent and unallocated UUIDs', () => {
-  const value = { config: { type: 'episode', slug: 'transition' }, production: { focus: '', purpose: 'Transition' } };
-  assert.throws(() => materializeEpisode(value, { ...ctx(), deriveId: () => IDs.episode }), /nonempty reviewed focus/);
-  const planned = {
-    config: { type: 'episode', slug: 'transition' },
-    production: { focus: 'Bridge', purpose: 'Why here' },
-  };
-  assert.throws(() => materializeEpisode(planned, ctx()), /parent deterministic deriveId required/);
+  assert.throws(
+    () => materializeEpisode(planned, { ...context, deriveId: undefined }),
+    /parent deterministic deriveId/,
+  );
+  assert.throws(() => materializeEpisode(planned, { ...context, courseId: undefined }), /verified owning Course/);
+  assert.throws(
+    () => materializeEpisode({ ...planned, production: { focus: '', purpose: 'Transition' } }, context),
+    /nonempty reviewed focus/,
+  );
 });

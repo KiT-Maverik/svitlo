@@ -26,6 +26,7 @@ const families = new Set([
   'lessons',
   'questions',
   'courses',
+  'episodes',
   'assessment-methods',
   'ui-kit',
   'geography-home-copy',
@@ -38,22 +39,22 @@ export function parseArguments(args) {
   for (let i = 0; i < args.length; ++i) {
     const key = args[i];
     if (
-      !['--kind', '--package', '--locale', '--component', '--lesson', '--course'].includes(key) ||
+      !['--kind', '--package', '--locale', '--component', '--lesson', '--course', '--episode'].includes(key) ||
       Object.hasOwn(options, key.slice(2)) ||
       !args[i + 1] ||
       args[i + 1].startsWith('--')
     ) {
       throw new Error(
-        'Usage: --kind <skills|lessons|questions|courses|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
-          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>]',
+        'Usage: --kind <skills|lessons|questions|courses|episodes|assessment-methods|ui-kit|geography-home-copy|education-standards> ' +
+          '[--package content/<textbook>] [--locale <code>] [--component <name>] [--lesson <uuid>] [--course <uuid>] [--episode <uuid>]',
       );
     }
     options[key.slice(2)] = args[++i];
   }
   if (!families.has(options.kind)) throw new Error('An explicit supported --kind is required');
-  const hasPackage = ['skills', 'lessons', 'questions', 'courses'].includes(options.kind);
+  const hasPackage = ['skills', 'lessons', 'questions', 'courses', 'episodes'].includes(options.kind);
   if (hasPackage !== Boolean(options.package))
-    throw new Error('Only Skills, Lessons, Questions and Courses require --package content/<textbook>');
+    throw new Error('Only Skills, Lessons, Questions, Courses and Episodes require --package content/<textbook>');
   if (options.package && !/^content\/[a-z][a-z0-9-]*$/.test(options.package)) {
     throw new Error('Unsafe textbook path: ' + options.package);
   }
@@ -63,9 +64,15 @@ export function parseArguments(args) {
   if (options.lesson && (!['lessons', 'questions'].includes(options.kind) || !uuidPattern.test(options.lesson))) {
     throw new Error('--lesson requires Lessons/Questions and a canonical UUID');
   }
-  if (options.course && (options.kind !== 'courses' || !uuidPattern.test(options.course))) {
+  if (options.course && (!['courses', 'episodes'].includes(options.kind) || !uuidPattern.test(options.course))) {
     throw new Error('--course requires Courses and a canonical UUID');
   }
+  if (
+    options.kind === 'episodes' &&
+    (!options.course || !options.episode || !options.locale || !uuidPattern.test(options.episode))
+  )
+    throw Error('Episodes require exact --course, --episode and --locale');
+  if (options.episode && options.kind !== 'episodes') throw Error('--episode requires Episodes');
   if (options.locale && !/^[a-z]{2,4}$/.test(options.locale)) throw new Error('Invalid language code');
   return options;
 }
@@ -75,7 +82,11 @@ function checkTextbook(options) {
   const directory = path.join(root, options.package);
   const target = path.join(
     directory,
-    options.kind === 'skills' ? 'data/skills' : options.kind === 'courses' ? 'data/courses' : 'data/lessons',
+    options.kind === 'skills'
+      ? 'data/skills'
+      : ['courses', 'episodes'].includes(options.kind)
+        ? 'data/courses'
+        : 'data/lessons',
   );
   for (const location of [directory, target]) {
     if (!fs.existsSync(location) || !fs.statSync(location).isDirectory() || fs.lstatSync(location).isSymbolicLink()) {
@@ -126,6 +137,7 @@ export async function generate(options) {
       component: options.component ?? null,
       lesson: options.lesson ?? null,
       course: options.course ?? null,
+      ...(options.kind === 'episodes' ? { episode: options.episode } : {}),
     },
     packages: options.package ? [options.package] : [],
     locales: options.locale ? [options.locale] : [],
@@ -223,6 +235,20 @@ export async function generate(options) {
       languages: options.locale ? languages : null,
       supportedLanguages: registered,
     });
+  } else if (options.kind === 'episodes') {
+    const { generateEpisodeReviewArtifacts } =
+      await import('../../shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.mjs');
+    await generateEpisodeReviewArtifacts({
+      root,
+      output,
+      manifest,
+      saveManifest,
+      packageName: options.package,
+      courseId: options.course,
+      episodeId: options.episode,
+      languages,
+      supportedLanguages: registered,
+    });
   } else if (options.kind === 'assessment-methods') {
     const { generateAssessmentMethodsReviewArtifacts } =
       await import('../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs');
@@ -275,6 +301,7 @@ export async function generate(options) {
     lessonDocuments: manifest.generated.filter(item => item.kind === 'lesson').length,
     questionDocuments: manifest.generated.filter(item => item.kind === 'question').length,
     courseDocuments: manifest.generated.filter(item => item.kind === 'course').length,
+    episodeDocuments: manifest.generated.filter(item => item.kind === 'episode').length,
     assessmentMethodDocuments: manifest.generated.filter(item => item.kind === 'assessment-method').length,
     uiKitDocuments: manifest.generated.filter(item => item.kind === 'ui-kit-locale').length,
     geographyHomeCopyDocuments: manifest.generated.filter(item => item.kind === 'geography-home-copy').length,
