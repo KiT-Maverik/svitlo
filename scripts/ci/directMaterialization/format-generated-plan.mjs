@@ -66,7 +66,7 @@ export function groupGeneratedImports(source, filename) {
     // Preserve directives such as 'use client' ahead of imports.
     start++;
   }
-  if (!ts.isImportDeclaration(statements[start])) return source;
+  if (start >= statements.length || !ts.isImportDeclaration(statements[start])) return source;
   let stop = start;
   while (stop < statements.length && ts.isImportDeclaration(statements[stop])) stop++;
   const imports = statements.slice(start, stop);
