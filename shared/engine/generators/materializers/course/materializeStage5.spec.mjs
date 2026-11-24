@@ -182,6 +182,27 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(constants, /export type Languages = typeof languages/);
 });
 
+test('parent indices distinguish the root content prefix from a unit named content', () => {
+  const input = source();
+  const module = input.config.content.items.moduleOne;
+  module.config.slug = 'content';
+  input.config.content.items.content = module;
+  delete input.config.content.items.moduleOne;
+  input.config.content.order = ['content', 'directLesson'];
+  const chapter = module.config.content.items.chapterOne;
+  chapter.config.slug = 'content';
+  module.config.content.items.content = chapter;
+  delete module.config.content.items.chapterOne;
+  module.config.content.order = ['content'];
+
+  const plan = materializeCourseStage5(input, options());
+  const [nested] = plan.inventory.lessons.filter(row => row.slug === 'lessonOne');
+  assert.equal(nested.placementSourcePath, root + '/content/content/content/index.ts');
+  const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
+  assert.equal(direct.placementSourcePath, root + '/index.ts');
+  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('defineLessonStub'));
+});
+
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
   const unverified = options();
   unverified.verifySource = () => false;
