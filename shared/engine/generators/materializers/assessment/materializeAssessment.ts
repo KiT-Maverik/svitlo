@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 import {
   assessmentWorkflowStage2_Schema,
@@ -374,8 +375,8 @@ function plan(
     'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
     ...imports,
     '',
-    '// TODO (BLOCKER): Validate selected Questions against reviewed upstream Lesson banks before release.',
-    planned.length > 1 ? '// TODO (BLOCKER): Complete reviewed Assessment localizations before release.' : '',
+    renderBlockerTodo('Resolve each selected Question against a reviewed integrated upstream Lesson Question Bank before releasing this Assessment.'),
+    planned.length > 1 ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.') : '',
     'const before = { items: { ' +
       before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
       ' }, order: ' +
