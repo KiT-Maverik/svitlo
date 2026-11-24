@@ -108,7 +108,8 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
       fail('items.' + key + '.id', 'existing block UUID required');
     if (safeSlug(child.slug, 'items.' + key + '.slug') !== key)
       fail('items.' + key + '.slug', 'slug must equal map key');
-    const childDir = context.directory + '/items/' + key;
+    // The role directory already owns this collection. Avoid a redundant /items/ layer.
+    const childDir = context.directory + '/' + key;
     safePath(childDir);
     const output = context.materializeBlock(
       { config: child as PlainBlock, ...(record(node.production) ? { production: node.production } : {}) },
@@ -116,9 +117,13 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
     );
     if (!output || !identifier.test(output.exportName) || !Array.isArray(output.files))
       fail('items.' + key, 'invalid delegated ContentBlock output');
-    imports.push(
-      'import { ' + output.exportName + ' as child_' + key + ' } from ' + JSON.stringify('./items/' + key) + ';',
-    );
+    for (const file of output.files) {
+      if (!file.path.startsWith(childDir + '/'))
+        fail('items.' + key, 'delegated ContentBlock escaped its assigned directory');
+    }
+    if (!output.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
+      fail('items.' + key, 'missing delegated ContentBlock index.ts');
+    imports.push('import { ' + output.exportName + ' as child_' + key + ' } from ' + JSON.stringify('./' + key) + ';');
     entries.push('  ' + key + ': child_' + key + ',');
     files.push(...output.files);
     diagnostics.push(...(output.diagnostics ?? []));

@@ -118,7 +118,8 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
   assert(paths.includes('questions/index.ts'));
   assert(paths.includes('questions/selectOneAnswer/index.ts'));
   assert(paths.includes('questions/selectOneAnswer/promptOne.ts'));
-  assert(paths.includes('questions/selectOneAnswer/promptOne/content/question/items/prompt/index.ts'));
+  assert(paths.includes('questions/selectOneAnswer/promptOne/question/prompt/index.ts'));
+  assert(!paths.some(path => path.includes('/content/question/items/')));
   const registry = result.files.find(file => file.path === 'questions/index.ts')?.content ?? '';
   assert.match(registry, /export const questions =/);
   assert.match(registry, /from "\.\/selectOneAnswer"/);
@@ -197,7 +198,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
   });
   assert.equal(planned.publishable, false);
   const source = planned.files.find(file =>
-    file.path.endsWith('content/question/items/pendingDiagram/index.ts'),
+    file.path.endsWith('question/pendingDiagram/index.ts'),
   )?.content ?? '';
   assert.match(source, /TODO \(BLOCKER\)/);
   assert.match(source, /00000000-0000-0000-0000-000000000000.webp/);

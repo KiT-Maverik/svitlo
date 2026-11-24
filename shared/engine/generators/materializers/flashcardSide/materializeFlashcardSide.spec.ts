@@ -29,7 +29,11 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
   assert.match(root.content, /defineFlashcardSide<typeof items, \["uk"\]>/);
   assert.match(root.content, /order: \["first","second"\]/);
   assert(!root.content.includes('id:'));
-  assert(output.files.some(file => file.path.endsWith('/front/items/first/index.ts')));
+  assert(output.files.some(file => file.path.endsWith('/front/first/index.ts')));
+  assert(output.files.some(file => file.path.endsWith('/front/second/index.ts')));
+  assert(!output.files.some(file => file.path.includes('/items/')));
+  assert.match(root.content, /from "\.\/first"/);
+  assert.match(root.content, /from "\.\/second"/);
   assert.deepEqual(output, materializeFlashcardSide(source, context));
   for (const file of output.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
@@ -73,8 +77,50 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
       ),
     /languages.planned/,
   );
+  assert.throws(
+    () =>
+      materializeFlashcardSide(
+        { items: { first }, order: ['first'] },
+        {
+          ...context,
+          existingPaths: new Set(['flashcards/cardOne/content/front/first/index.ts']),
+        },
+      ),
+    /no clobber/,
+  );
+  assert.throws(
+    () =>
+      materializeFlashcardSide(
+        { items: { first }, order: ['first'] },
+        {
+          ...context,
+          materializeBlock: () => ({
+            exportName: 'first',
+            files: [{
+              path: 'flashcards/cardOne/content/back/index.ts',
+              kind: 'typescript' as const,
+              content: 'export const first = 1;\n',
+            }],
+          }),
+        },
+      ),
+    /escaped its assigned directory/,
+  );
 });
 
+test('FlashcardSide: refuses delegated child without an importable index', () => {
+  assert.throws(
+    () =>
+      materializeFlashcardSide({ items: { first: block('first', 1) }, order: ['first'] }, {
+        ...context,
+        materializeBlock: (_node, ctx) => ({
+          exportName: 'first',
+          files: [{ path: ctx.directory + '/specification.md', kind: 'markdown' as const, content: '# draft\\n' }],
+        }),
+      }),
+    /missing delegated ContentBlock index\.ts/,
+  );
+});
 // Flashcard sides are created only from reviewed, ordered side Config data.
 test('FlashcardSide: editorial handoff does not synthesize front/back side content', () => {
   assert.throws(

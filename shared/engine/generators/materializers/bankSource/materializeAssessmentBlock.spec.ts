@@ -16,7 +16,7 @@ const scene = (pending = false) => ({
     ...(pending ? { pending: true } : {}),
   },
 });
-const context = { directory: 'questions/selectOneAnswer/first/content/question/items/nested', documentLanguage: 'uk' };
+const context = { directory: 'questions/selectOneAnswer/first/question/nested', documentLanguage: 'uk' };
 const evidence = { registeredSceneIds: new Set([id(1)]), approvedMediaBlockIds: new Set<string>() };
 const render = (config: Record<string, unknown>) =>
   materializeAssessmentBlock({ config: config as never }, context, ['uk'], 'questionsLanguages', evidence);
@@ -31,7 +31,7 @@ test('Carousel retains reviewed nested Scene production specification', () => {
   };
   const result = render(carousel);
   assert.equal(
-    result.files.find(file => file.path.endsWith('/slides/items/visual/specification.md'))?.content,
+    result.files.find(file => file.path.endsWith('/slides/visual/specification.md'))?.content,
     '# Reviewed nested Scene\n',
   );
   assert.equal(result.diagnostics.length, 0);
@@ -88,7 +88,7 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
   };
   const result = render(checkpoint);
   assert.equal(
-    result.files.find(file => file.path.endsWith('/answer/content/items/visual/specification.md'))?.content,
+    result.files.find(file => file.path.endsWith('/answer/visual/specification.md'))?.content,
     '# Reviewed nested Scene\n',
   );
   assert.equal(result.diagnostics.length, 0);

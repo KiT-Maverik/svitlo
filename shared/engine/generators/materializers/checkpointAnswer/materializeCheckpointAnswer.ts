@@ -144,15 +144,13 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   for (const key of config.content.order) {
     const child = config.content.items[key];
     if (child === false) continue;
-    const target = (at ? at + '/' : '') + 'content/items/' + key;
+    const target = (at ? at + '/' : '') + key;
     const result = context.renderChild(child, target);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid delegate export');
     }
     const alias = 'answer_' + key;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./content/items/' + key) + ';',
-    );
+    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
     items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
     for (const file of result.files) {
       if (!file.path.startsWith(target + '/')) {

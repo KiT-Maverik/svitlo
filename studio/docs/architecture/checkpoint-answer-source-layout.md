@@ -20,7 +20,7 @@ sections/<sectionSlug>/<checkpointSlug>/
         specification.md / code.ts / text.md / locale/...
 ```
 
-Question is a flat role folder because there is always one Text child. Answer owns a separately typed and validated child collection, whose nested Blocks can themselves own resources. Never group nested Blocks by type, invent missing IDs, flatten Answer into an untyped collection or reintroduce a YAML source renderer.
+Question is a flat role folder because there is always one Text child. Answer owns a separately typed and validated child collection, whose nested Blocks can themselves own resources. Never group nested Blocks by type, invent missing IDs, flatten Answer into an untyped collection or reintroduce a YAML source renderer. Likewise, Carousel child files belong in `slides/<slideSlug>/`, without an `items` directory. Section-level production notes must be incorporated into the Lesson methodology; `specification.md` is not emitted for Sections. These filesystem conventions do not alter the Configurator `items/order` contracts.
 
 ## Review and verification
 
