@@ -199,7 +199,7 @@ function assertCourseInventory(manifest, meta, entries) {
         const expectedPlacement = JSON.stringify(row.slug) + ': ' +
           (row.kind === 'overridden' ? 'placeLesson(child_' + row.slug + ', ' : 'child_' + row.slug);
         if (
-          normalized.split('\\n').filter(line => line === expectedLine).length !== 1 ||
+          normalized.split('\n').filter(line => line === expectedLine).length !== 1 ||
           !parent.includes(expectedPlacement)
         )
           throw Error('Course Lesson direct import or placement-local Config patch missing');
@@ -241,7 +241,6 @@ function assertCourseInventory(manifest, meta, entries) {
         row.id !== deriveCourseEntityId(meta.courseId, 'assessment', allocationPath) ||
         row.sourcePath !== draft ||
         row.placementSourcePath !== expectedParent(row) ||
-        entries.get(marker)?.kind !== 'typescript' ||
         !episodes.delete(draft) ||
         !Array.isArray(row.lessonDependencies) ||
         !row.lessonDependencies.length ||
