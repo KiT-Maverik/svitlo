@@ -12,7 +12,7 @@ copies the entire textbook `assets/` tree to
 Production fail with aggregated diagnostics, without replacing an earlier
 distribution. `SVITLO_MEDIA_MODE=draft` permits missing physical media with
 warnings for preview, but not invalid Config or malformed UUID filenames.
-`dist/manifest.json` includes staged files; the existing portable publisher
+Canonical Course, Lesson and assessment bank `draft.ts` roots are never materialized by this build. Draft mode runs the owning generator even for an editorial-only scope to avoid staging stale generated resources; production refuses unfinished roots. `dist/manifest.json` includes staged files; the existing portable publisher
 owns cleanup of stale published paths.
 
 Source-local `data/lessons/.../<slug>.<extension>` staging is retired.

@@ -84,7 +84,7 @@ const blobSha = (source: string) =>
     .update(source)
     .digest('hex');
 const reviewed = {
-  sourcePath: folder + 'index.ts',
+  sourcePath: folder + 'draft.ts',
   sourceBlobSha: blobSha(stage2Source),
   reviewCommitSha: '1'.repeat(40),
   reviewEvidenceSha: '2'.repeat(40),
@@ -104,7 +104,7 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   const result = produce(input);
   assert.deepEqual(input, original, 'pure source planning must not mutate the authored Stage 2 object');
   assert.deepEqual(result, produce(input), 'deterministic generated source');
-  assert.equal(result.archivePath, folder + 'workflow.stage2.ts');
+  assert.equal(result.materializedPath, folder + 'index.ts');
   assert.equal(result.sourceBlobSha, reviewed.sourceBlobSha);
   assert.equal(result.publishable, false, 'generation does not mean publishing');
   const paths = result.files.map(file => file.path);

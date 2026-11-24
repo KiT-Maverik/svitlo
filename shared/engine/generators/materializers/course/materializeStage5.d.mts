@@ -83,7 +83,7 @@ export type CoursePlacementInventoryRow = {
 };
 export type CourseStage5Plan = {
   sourcePath: string;
-  sourceArchivePath: string;
+  materializedPath: string;
   sourceBlobSha: string;
   reviewCommitSha: string;
   courseId: string;

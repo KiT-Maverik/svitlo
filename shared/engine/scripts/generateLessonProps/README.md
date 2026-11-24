@@ -32,8 +32,7 @@ already Props-shaped object directly. The generator does not unwrap, wrap,
 merge, reorder or reinterpret authored content.
 
 The CLI discovers one Lesson exported from each `*.data.ts` or `index.ts`
-in `data/lessons/<bucket>/<uuid>/`. Editorial-only Lesson directories are
-ignored. A source that is still a legacy Lesson creator is reported as an
+in `data/lessons/<bucket>/<uuid>/`. Canonical `draft.ts` files are never loaded by discovery. Draft mode excludes those editorial-only roots, including a scope containing only editorial drafts; strict production rejects them. Conflicting draft and materialized entrypoints fail in both modes. Other Lesson directories without a supported entrypoint are ignored. A source that is still a legacy Lesson creator is reported as an
 unsupported Build API instead of being silently skipped.
 
 All IDs are checked for uniqueness across textbook Lesson source directories,
@@ -52,4 +51,4 @@ The CLI and its regression tests live in this named directory. The Props seriali
 
 ## Independent assessments
 
-A separate Engine CLI at [`../generateAssessmentResources/`](../generateAssessmentResources/) publishes already-authored Question/Flashcard configurators into UUID-addressed files and metadata-only manifests. The textbook build stages those files beside `data/lessons/<bucket>/<uuid>/base.json`, rather than embedding them in Lesson JSON. The Lesson Props generator and this CLI are distinct workflows; neither automatically produces approved `questions/questions.yaml` or `flashcards/flashcards.yaml` drafts.
+A separate Engine CLI at [`../generateAssessmentResources/`](../generateAssessmentResources/) publishes already-authored Question/Flashcard configurators into UUID-addressed files and metadata-only manifests. The textbook build stages those files beside `data/lessons/<bucket>/<uuid>/base.json`, rather than embedding them in Lesson JSON. The Lesson Props generator and this CLI are distinct workflows; neither creates or modifies editorial bank drafts.

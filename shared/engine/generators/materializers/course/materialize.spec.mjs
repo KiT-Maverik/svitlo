@@ -151,7 +151,7 @@ const lessonBridge = (node, ctx) => {
       lessonId,
       files: [
         {
-          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/index.ts',
+          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
             '// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n',
@@ -243,7 +243,7 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.equal(result.pendingPlacements.length, 1);
   const handoff = result.files.find(f => f.path === result.pendingPlacements[0].handoffPath);
   assert.ok(handoff);
-  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/index\.ts$/);
+  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.ok(!result.files.find(f => f.path === 'index.ts').content.includes('import { newLesson '));
   assert.match(result.files.find(f => f.path === 'index.ts').content, /TODO \(BLOCKER\): New Lesson Stage 1/);
@@ -350,7 +350,7 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
             },
           ],
         };
-  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 index.ts/);
+  assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 draft.ts/);
   const noAssessment = course();
   delete noAssessment.config.content.items.directLesson.production.assessment;
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);

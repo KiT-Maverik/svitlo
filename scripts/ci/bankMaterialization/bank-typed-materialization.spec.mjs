@@ -20,7 +20,7 @@ const canonical = bank => ({
   meta: {
     bank,
     identity: { folder, bank, id: owner, pkg: 'content/math', parent: 777 },
-    sourcePath: folder + '/' + bank + '/index.ts',
+    sourcePath: folder + '/' + bank + '/draft.ts',
     head: 'a'.repeat(40),
     sourceBlob: gitBlob('export const source = {};\n'),
     reviewer: 'independent-reviewer',
@@ -41,10 +41,10 @@ function sample(bank) {
     ...data,
     inputSha256: sha256('{}'),
     treeSha: 'b'.repeat(40),
+    deletedSource: { path: data.meta.sourcePath, blobSha: data.meta.sourceBlob },
     files: [
-      file(data.meta.sourcePath, 'export const finished = {};\n'),
+      file(root + bank + '/index.ts', 'export const finished = {};\n'),
       file(root + bank + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
-      file(root + bank + '.reviewed-stage3.ts.txt', 'export const source = {};\n'),
       file(root + bank + '/first.ts', 'export const first = true;\n'),
       file(root + bank + '/first/specification.md', '# reviewed\n'),
     ],
@@ -167,7 +167,7 @@ test('typed commands require exact top-level issue_comment actor, bank and stage
   }
 });
 
-test('typed Bank publisher rejects mutated checksums, archive and non-bank paths', () => {
+test('typed Bank publisher rejects mutated checksums, deletion evidence and non-bank paths', () => {
   for (const bank of Object.keys(events)) {
     const valid = sample(bank);
     assert.doesNotThrow(() => verifyTypedManifest(valid, valid.meta));
@@ -181,10 +181,7 @@ test('typed Bank publisher rejects mutated checksums, archive and non-bank paths
       ),
     );
     assert.throws(() =>
-      verifyTypedManifest(
-        { ...valid, files: valid.files.map((f, i) => (i === 2 ? file(f.path, 'modified reviewer source') : f)) },
-        valid.meta,
-      ),
+      verifyTypedManifest({ ...valid, deletedSource: { ...valid.deletedSource, blobSha: 'c'.repeat(40) } }, valid.meta),
     );
     assert.throws(() =>
       verifyTypedManifest(
@@ -206,7 +203,7 @@ test('typed Bank publisher rejects mutated checksums, archive and non-bank paths
     );
     assert.throws(() =>
       verifyTypedManifest(
-        { ...valid, files: valid.files.map((f, i) => (i === 4 ? { ...f, path: folder + '/other-bank/index.ts' } : f)) },
+        { ...valid, files: valid.files.map((f, i) => (i === 2 ? { ...f, path: folder + '/other-bank/index.ts' } : f)) },
         valid.meta,
       ),
     );
@@ -306,7 +303,7 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
   const resources = () => ({
     'pulls/888': child,
     'pulls/777': parent,
-    ['contents/' + folder + '/questions/index.ts?ref=' + head]: { type: 'file', sha: source },
+    ['contents/' + folder + '/questions/draft.ts?ref=' + head]: { type: 'file', sha: source },
     'pulls/888/reviews?per_page=100': [review],
     'collaborators/independent/permission': { permission: 'write' },
     ...overrides,
@@ -323,7 +320,7 @@ test('GitHub typed gate requires real independent exact-HEAD review and Lesson b
     assert.equal(ok.sourceBlob, source);
     assert.equal(ok.reviewCommitSha, head);
     assert.equal(ok.reviewer, 'independent');
-    assert.equal(ok.sourcePath, folder + '/questions/index.ts');
+    assert.equal(ok.sourcePath, folder + '/questions/draft.ts');
     const base = { ...ok, head: 'd'.repeat(40) };
     await assert.rejects(inspectTyped(888, 'questions', base), /changed/);
 
@@ -373,7 +370,7 @@ test('all nine Question kinds are checked for complete member source emission', 
     kinds.map((kind, i) => [kind, { ['question' + i]: { config: { type: kind } } }]),
   );
   const files = [
-    { path: meta.sourcePath },
+    { path: folder + '/' + meta.bank + '/index.ts' },
     ...kinds.flatMap((kind, i) => [
       { path: folder + '/questions/' + kind + '/index.ts' },
       { path: folder + '/questions/' + kind + '/question' + i + '.ts' },
@@ -418,7 +415,7 @@ test('every authored Flashcard Card, Side and nested Side Block is emitted', () 
       },
     },
   };
-  const files = [{ path: meta.sourcePath }];
+  const files = [{ path: folder + '/' + meta.bank + '/index.ts' }];
   for (const slug of input.config.flashcards.order) {
     files.push({ path: folder + '/flashcards/' + slug + '.ts' });
     const sides = input.config.flashcards.items[slug].config.content;
@@ -454,7 +451,7 @@ test('Flashcard typed inventory refuses unlisted, repeated or empty reviewed Car
     },
   };
   const files = [
-    { path: meta.sourcePath },
+    { path: folder + '/' + meta.bank + '/index.ts' },
     { path: folder + '/flashcards/card.ts' },
     ...['front', 'back'].flatMap(side => [
       { path: folder + '/flashcards/card/content/' + side + '/index.ts' },

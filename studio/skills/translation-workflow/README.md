@@ -19,7 +19,7 @@ Reusable agent report workflow: [Agent CI Artifacts](../../../.github/workflows/
 
 ## Typed Stage 1 handoffs are not translation reference sources
 
-Course Stage 5 and Lesson Stage 7/8 may hand off only typed Stage 1 Lesson/Question/Flashcard `index.ts` plans. Those do **not** yet contain complete source-language ContentBlocks, Question/Card banks or localized Props. Do not request complete generated Lesson/Bank Markdown or record linguistic approval from these files. Wait for the owning Lesson Stage 6 or each bank Stage 5 **completed source** and verify the exact SHA and requested locale before invoking the existing reference-artifact generators. Preserve the same entity-owned PR and distinct reviewer context, one-day scoped artifacts, translation completeness and accessibility/RTL checks. Existing YAML-sourced completed entities still use their deployed review path.
+Course Stage 5 and Lesson Stage 7/8 may hand off only typed Stage 1 Lesson/Question/Flashcard `draft.ts` plans. Those do **not** yet contain complete source-language ContentBlocks, Question/Card banks or localized Props. Do not request complete generated Lesson/Bank Markdown or record linguistic approval from these files. Wait for the owning Lesson Stage 6 or each bank Stage 5 **completed source** and verify the exact SHA and requested locale before invoking the existing reference-artifact generators. Preserve the same entity-owned PR and distinct reviewer context, one-day scoped artifacts, translation completeness and accessibility/RTL checks. Existing YAML-sourced completed entities still use their deployed review path.
 
 ## Lesson translation review references
 

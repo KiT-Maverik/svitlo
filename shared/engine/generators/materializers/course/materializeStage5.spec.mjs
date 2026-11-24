@@ -97,7 +97,7 @@ const root = 'content/playground/data/courses/3/' + rootId;
 const options = () => ({
   textbookRoot: 'content/playground',
   review: {
-    sourcePath: root + '/index.ts',
+    sourcePath: root + '/draft.ts',
     sourceBlobSha: sha,
     reviewCommitSha: sha,
     reviewer: 'independent-methodologist',
@@ -128,7 +128,7 @@ test('Lesson Draft emits exactly the independent typed Stage 1 source and no Con
   assert.equal(result.files.length, 1);
   assert.equal(
     result.files[0].path,
-    'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/index.ts',
+    'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/draft.ts',
   );
   assert.match(result.files[0].content, /satisfies LessonWorkflowStage1/);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
@@ -153,8 +153,8 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.deepEqual(first.pendingPlacements.map(p => p.slug).sort(), ['directLesson', 'lessonOne']);
   assert.ok(first.diagnostics.some(d => d.code === 'pending-lesson-stage1'));
   assert.ok(first.diagnostics.some(d => d.code === 'pending-episode-scenario'));
-  assert.equal(first.sourcePath, root + '/index.ts');
-  assert.equal(first.sourceArchivePath, root + '/workflow.stage3.ts');
+  assert.equal(first.sourcePath, root + '/draft.ts');
+  assert.equal(first.materializedPath, root + '/index.ts');
   assert.equal(first.publishable, false);
   assert.match(
     first.files.find(f => f.path === root + '/index.ts').content,

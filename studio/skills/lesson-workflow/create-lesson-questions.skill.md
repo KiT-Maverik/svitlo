@@ -10,7 +10,7 @@ it does not authorize code, translation or independent sign-off.
 
 ## Current source of truth
 
-Use the existing Lesson's canonical UUID directory. Its complete reviewed typed Lesson `index.ts`, approved `production.methodology`
+Use the existing Lesson's canonical UUID directory. Its complete reviewed typed Lesson `index.ts`, approved derived `methodology.md`
 and source-derived Lesson Markdown at an exact SHA establish learning
 content and Quiz placement. Historical `methodologist-brief.md`, `lesson.yaml`
 and `content.yaml` may remain as provenance; do not recreate them, generate
@@ -18,7 +18,7 @@ a new Lesson, or require a new Lesson Production Issue for this PR-driven flow.
 
 Use **one Lesson-owned, progressively typed source** at:
 
-    content/<textbook>/data/lessons/<last-hex>/<lesson-uuid>/questions/index.ts
+    content/<textbook>/data/lessons/<last-hex>/<lesson-uuid>/questions/draft.ts
 
 Stage 1 is `{ config, production } satisfies QuestionBankWorkflowStage1`,
 verified against the owning Lesson UUID and exact source SHA. It contains
@@ -28,15 +28,14 @@ full grouped bank in `config.questions`. Stage 3 refines that source to
 `satisfies QuestionBankWorkflowStage3` with local Quiz design intent.
 Stage 4 independent review corrects that same source and stores approval
 evidence only in the Questions PR. Stage 5 uses exactly
-`QuestionBankWorkflowMaterializerInput` and, after the parent #775 bridge
-has been verified, transitions the reviewed staging index into canonical
-`define*` modules and an actual bank export. An incomplete Stage 1 file
+`QuestionBankWorkflowMaterializerInput` and atomically consumes the reviewed draft,
+creating canonical `define*` modules and the actual bank export. An incomplete Stage 1 file
 must not be imported/published as the final `questions/index.ts` bank.
 
 Use the nine actual Engine Config/Zod variants for scoring and their
 plain nested ContentBlock Config data; specialized Stage 2 nodes hold
 production-only assessment rationale, not fields on the final Config.
-Do not maintain a parallel editor schema, YAML authoring source, status flags, `questionSlugs` or bank-level selection UUID list. The YAML-only Questions Builder and its generated editor schemas were removed in #775 and are not fallbacks.
+Do not maintain a parallel editor schema, YAML authoring source, status flags, `questionSlugs` or bank-level selection UUID list.
 
 Use actual Engine code for the nine Question discriminators, all
 Assessment Method slugs, params.restrictions Disability[] and nested
@@ -111,7 +110,7 @@ a small default Quiz selection for each pedagogically required
 defineQuizSection in its actual Lesson order. Reuse an approved Quiz's
 UUID, slug and existing learner copy rather than creating a duplicate.
 When methodology requires no Quiz, retain the independent bank without
-fabricating a Quiz Section. Another Lesson's assessment-only Quiz may later select reviewed Question UUIDs from multiple such banks, but its own Section owner—not this bank author—maintains that Quiz. Verify integrated branch ancestry, published Question ownership, target locales and PR #668's global resolver before final selection or publication.
+fabricating a Quiz Section. Another Lesson's assessment-only Quiz may later select reviewed Question UUIDs from multiple such banks, but its own Section owner—not this bank author—maintains that Quiz. Verify integrated branch ancestry, published Question ownership, target locales and the global resolver before final selection or publication.
 
 Each Quiz's modern params.selection.questionIds is a nonempty explicit
 list of **Question UUIDs**. mode all includes all **listed** IDs, not the
@@ -138,10 +137,10 @@ authority remains separate. Source changes require review refresh.
 
 After the independent reviewer has directly corrected and re-verified the
 Stage 3 source in the same PR at a final SHA, a separate Coding Agent
-materializes via the **nine kind-owned materializers from #780**, composed
-by the #775 bank-level writer/orchestrator. The staging `questions/index.ts`
-must be transitioned with explicit source/SHA preservation: it collides
-with the canonical final bank entrypoint and cannot be quietly clobbered.
+materializes through the bank-level orchestrator and its **nine kind-owned materializers**.
+The reviewed `questions/draft.ts` is consumed in the same Git commit that creates
+`questions/index.ts` and member modules. Keep the exact reviewed commit/blob
+as provenance; reject existing output destinations.
 The output is separate `questions/<type>/<slug>.ts` and grouped indexes.
 The Coding Agent does not overwrite Lesson Sections, invent missing assets,
 or prune unselected items. The actual Lesson Section owner then imports
@@ -149,7 +148,7 @@ selected Question Configurators in the real `defineQuizSection` and
 validates global UUID/locale resolution. The existing assessment publisher
 publishes all members, independently of Quiz selection.
 
-**Active typed bridge:** the complete Bank Stage 5 source-materialization path is integrated in #775, using the existing Questions PR, a formal independently accepted reviewed Stage 3 source and the SHA-pinned `/questions materialize typed` trusted command. It is not live until deployed and exercised from default `develop`. The old YAML Builder and unqualified command are retired. A collision, stale SHA or partial output must leave reviewed input intact; do not delete historical YAML or pretend passing draft checks certify completion.
+**Trusted materialization:** follow [Create Questions Flow](./create-questions-flow.skill.md) and the [bank runbook](../../../scripts/ci/bankMaterialization/README.md). Verify the default-branch workflow and actual authorized run. A collision, stale SHA or partial output must leave reviewed input intact; do not delete historical YAML or pretend passing draft checks certify completion.
 
 Do not claim Custom Practice UI exists merely because those resources
 are now publishable.

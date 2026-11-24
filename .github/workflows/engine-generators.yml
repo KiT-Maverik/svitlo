@@ -85,6 +85,15 @@ jobs:
             shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
+            shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
+            shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
+            shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \
+            shared/engine/generators/materializers/course/*.spec.mjs \
+            shared/engine/generators/materializers/module/*.spec.mjs \
+            shared/engine/generators/materializers/chapter/*.spec.mjs \
+            shared/engine/generators/materializers/lesson/*.spec.mjs \
+            shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
+            scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
             scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
 
       - name: Test typed Bank source and PR-command security

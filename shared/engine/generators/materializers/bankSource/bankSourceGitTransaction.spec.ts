@@ -43,11 +43,11 @@ function setup(kind: BankGitKind): { root: string; context: BankGitContext } {
     },
   };
 }
-function file(name: string, content: string, kind: 'typescript' | 'archive' = 'typescript') {
+function file(name: string, content: string, kind: 'typescript' = 'typescript') {
   return { path: name, content, kind } as const;
 }
 function draft(kind: BankGitKind, content = '// Stage 1 authored bank\n'): BankSourceResult {
-  return { files: [file(kind + '/index.ts', content)], diagnostics: [], publishable: false };
+  return { files: [file(kind + '/draft.ts', content)], diagnostics: [], publishable: false };
 }
 function stage3(kind: BankGitKind, original: string) {
   const created = setup(kind);
@@ -92,21 +92,20 @@ function final(kind: BankGitKind, original: string, context: BankGitContext): Ba
       file(member, 'export const answer = { id: "' + entityId + '" };\n'),
       ...barrel,
       file(kind + 'Languages.ts', 'export const languages = ["uk"] as const;\n'),
-      file(kind + '.reviewed-stage3.ts.txt', original, 'archive'),
     ],
     diagnostics: [],
     publishable: false,
     transition: {
       expectedHeadSha: context.expectedHeadSha,
-      reviewedIndexPath: kind + '/index.ts',
-      reviewedIndexBlobSha: gitBlobSha(original),
-      archivePath: kind + '.reviewed-stage3.ts.txt',
+      reviewedDraftPath: kind + '/draft.ts',
+      reviewedDraftBlobSha: gitBlobSha(original),
+      materializedPath: kind + '/index.ts',
     },
   };
 }
 
 for (const kind of ['questions', 'flashcards'] as const) {
-  test(kind + ': Stage 1 check/create, reviewed atomic replacement and deterministic rerun', () => {
+  test(kind + ': Stage 1 check/create, reviewed atomic creation and consumed draft', () => {
     const initial = setup(kind);
     try {
       const first = draft(kind);
@@ -114,7 +113,7 @@ for (const kind of ['questions', 'flashcards'] as const) {
       const draftWrite = commitBankGitPlan(kind, initial.context, first);
       assert.equal(git(initial.root, 'rev-list', '--count', 'HEAD'), '2');
       assert.equal(
-        git(initial.root, 'show', 'HEAD:' + lessonDirectory + '/' + kind + '/index.ts'),
+        git(initial.root, 'show', 'HEAD:' + lessonDirectory + '/' + kind + '/draft.ts'),
         first.files[0].content.trim(),
       );
       git(initial.root, 'reset', '--hard', draftWrite.commitSha);
@@ -127,12 +126,15 @@ for (const kind of ['questions', 'flashcards'] as const) {
       const checked = checkBankGitPlan(kind, current, plan, stage);
       assert.equal(checked.noop, false);
       const committed = commitBankGitPlan(kind, current, plan, stage);
-      assert.equal(checked.changedPaths.length, plan.files.length);
+      assert.equal(checked.changedPaths.length, plan.files.length + 1);
       assert.equal(git(initial.root, 'rev-list', '--count', 'HEAD'), '3');
       const tree = git(initial.root, 'diff-tree', '--no-commit-id', '--name-only', '-r', 'HEAD').split('\n').sort();
-      assert.deepEqual(tree, plan.files.map(f => lessonDirectory + '/' + f.path).sort());
+      assert.deepEqual(
+        tree,
+        [...plan.files.map(f => lessonDirectory + '/' + f.path), lessonDirectory + '/' + kind + '/draft.ts'].sort(),
+      );
       assert.equal(
-        git(initial.root, 'show', 'HEAD:' + lessonDirectory + '/' + kind + '.reviewed-stage3.ts.txt'),
+        git(initial.root, 'show', draftWrite.commitSha + ':' + lessonDirectory + '/' + kind + '/draft.ts'),
         first.files[0].content.trim(),
       );
       git(initial.root, 'reset', '--hard', committed.commitSha);
@@ -141,17 +143,8 @@ for (const kind of ['questions', 'flashcards'] as const) {
         readBankGitSnapshot(latest).entries[kind + '/index.ts']?.content,
         plan.files.find(f => f.path === kind + '/index.ts')?.content,
       );
-      const rerun = commitBankGitPlan(
-        kind,
-        latest,
-        {
-          ...plan,
-          transition: { ...plan.transition!, expectedHeadSha: latest.expectedHeadSha },
-        },
-        stage,
-      );
-      assert.equal(rerun.noop, true);
-      assert.equal(rerun.commitSha, latest.expectedHeadSha);
+      assert.equal(readBankGitSnapshot(latest).entries[kind + '/draft.ts'], undefined);
+      assert.throws(() => commitBankGitPlan(kind, latest, plan, stage), /approved revision/);
     } finally {
       rmSync(initial.root, { recursive: true, force: true });
     }
@@ -225,7 +218,7 @@ for (const kind of ['questions', 'flashcards'] as const) {
             context,
             {
               ...plan,
-              files: plan.files.filter(f => f.kind !== 'archive'),
+              files: plan.files.filter(f => f.path !== kind + '/index.ts'),
             },
             evidence,
           ),
@@ -247,7 +240,7 @@ for (const kind of ['questions', 'flashcards'] as const) {
               ...plan,
               transition: { ...plan.transition!, expectedHeadSha: next.expectedHeadSha },
             },
-            evidence,
+            reviewed(kind, original, next),
           ),
         /Unexpected bank-owned source/,
       );
@@ -273,7 +266,7 @@ for (const kind of ['questions', 'flashcards'] as const) {
       const current = { ...context, expectedHeadSha: git(root, 'rev-parse', 'HEAD') };
       const plan = final(kind, original, current);
       assert.throws(
-        () => checkBankGitPlan(kind, current, plan, reviewed(kind, original, context)),
+        () => checkBankGitPlan(kind, current, plan, reviewed(kind, original, current)),
         /Partial reviewed bank source already exists/,
       );
     } finally {
@@ -324,7 +317,7 @@ test('Existing global UUID declaration collision is rejected before the commit',
           'questions',
           latest,
           final('questions', original, latest),
-          reviewed('questions', original, { ...context, expectedHeadSha: context.expectedHeadSha }),
+          reviewed('questions', original, latest),
         ),
       /duplicate immutable bank UUID/,
     );

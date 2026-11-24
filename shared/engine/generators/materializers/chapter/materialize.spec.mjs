@@ -149,7 +149,7 @@ const lessonBridge = (node, ctx) => {
       lessonId,
       files: [
         {
-          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/index.ts',
+          path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
             '// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n',

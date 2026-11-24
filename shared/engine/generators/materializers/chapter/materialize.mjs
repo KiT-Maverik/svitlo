@@ -282,10 +282,10 @@ export function materializeChapter(input, context = {}) {
             child.files[0].kind !== 'typescript' ||
             typeof child.files[0].path !== 'string' ||
             typeof child.files[0].content !== 'string' ||
-            !child.files[0].path.endsWith('/' + refId.slice(-1) + '/' + refId + '/index.ts') ||
+            !child.files[0].path.endsWith('/' + refId.slice(-1) + '/' + refId + '/draft.ts') ||
             !child.files[0].path.includes('/data/lessons/')
           )
-            throw Error(childFolder + ': new Lesson bridge must return only the UUID-addressed Stage 1 index.ts');
+            throw Error(childFolder + ': new Lesson bridge must return only the UUID-addressed Stage 1 draft.ts');
           if (/\bdefineLesson\s*[(<]|TODO \(BLOCKER\): Not implemented — Lesson Sections/.test(child.files[0].content))
             throw Error(childFolder + ': Stage 1 handoff cannot contain defineLesson or fabricated Sections');
           pendingPlacements.push({
