@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Create-only staged FillBlanksWithText source emission.
  * This is NOT a Props publisher or a YAML/Configurator adapter.
@@ -293,7 +294,7 @@ export function materializeFillBlanksWithText(
         : []),
       ...imports.sort(),
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       nested +
         'export const ' +
         exportedName +
