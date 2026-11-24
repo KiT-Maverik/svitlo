@@ -55,4 +55,4 @@ npx tsc -p shared/engine/tsconfig.test.json
 node --test shared/engine/.test-build/generators/materializers/*/*.spec.js
 ```
 
-The typed Bank Stage 5 orchestration owns complete generator-to-production wiring, all-kind final Config validation, GitHub SHA-pinned editorial review, safe atomic filesystem writing and source eligibility gates. The new Stage 1 bank handoff types and Lesson→bank orchestration are also parent/#777 responsibilities. No Ready transition or merge is authorized by this subtask.
+The typed Bank Stage 5 orchestration owns complete generator-to-production wiring, all-kind final Config validation, GitHub SHA-pinned editorial review, safe atomic filesystem writing and source eligibility gates. The Lesson and bank workflows own their Stage 1 handoffs; follow the shared CI and GitHub lifecycle rules.

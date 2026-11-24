@@ -85,6 +85,7 @@ jobs:
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
             shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
             shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
+            shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \
             shared/engine/generators/materializers/course/*.spec.mjs \
             shared/engine/generators/materializers/module/*.spec.mjs \
             shared/engine/generators/materializers/chapter/*.spec.mjs \
