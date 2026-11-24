@@ -97,12 +97,12 @@ export function parseTypedIdentity(body) {
   if (!uuid.test(id || '') || !/^content\/[a-z][a-z0-9-]*$/.test(pkg || '') || !/^[a-z][A-Za-z0-9]*$/.test(slug || ''))
     throw Error('Invalid Lesson UUID / textbook / slug');
   const folder = pkg + '/data/lessons/' + id.at(-1) + '/' + id;
-  const source = folder + '/index.ts';
+  const source = folder + '/draft.ts';
   const recorded = single(body, /^- (?:Source path|Canonical source):\s*(.+)$/gm, 'canonical typed source')
     .replaceAll(String.fromCharCode(96), '')
     .split(/\s+\(/)[0]
     .trim();
-  if (recorded !== source) throw Error('Lesson source path is not the canonical Stage 2 index.ts');
+  if (recorded !== source) throw Error('Lesson source path is not the canonical Stage 2 draft.ts');
   const count = body.split(courseMarker).length - 1;
   if (count > 1) throw Error('Duplicate Course Lesson marker');
   let parent = null;
@@ -263,7 +263,7 @@ export async function inspectTyped(number, expectedHead) {
     source.size < 1 ||
     source.size > 4 * 1024 * 1024
   )
-    throw Error('Reviewed Stage 2 Lesson index.ts missing or oversized');
+    throw Error('Reviewed Stage 2 Lesson draft.ts missing or oversized');
   const reviews = await reviewsFor(number, identity.source, pr.head.sha, source.sha);
   const again = await github('pulls/' + number);
   if (
@@ -299,7 +299,7 @@ export function typedPath(filename, identity) {
   )
     return false;
   const relative = filename.slice(identity.folder.length + 1);
-  if (['index.ts', 'workflow.stage2.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative))
+  if (['index.ts', 'draft.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative))
     return true;
   return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(
     relative,

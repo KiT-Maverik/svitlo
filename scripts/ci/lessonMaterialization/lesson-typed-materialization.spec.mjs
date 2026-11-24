@@ -27,7 +27,7 @@ import {
 const id = '12345678-1234-4234-8234-123456789001';
 const courseId = '22345678-1234-4234-8234-123456789002';
 const folder = 'content/math/data/lessons/1/' + id;
-const source = folder + '/index.ts';
+const source = folder + '/draft.ts';
 const pkg = 'content/math';
 const original = Buffer.from('export const stage2 = { config: {}, production: {} };\n');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -155,7 +155,7 @@ test('only the canonical Lesson-owned Stage 6 output tree is writable', () => {
   const identity = parseTypedIdentity(tracker());
   for (const relative of [
     'index.ts',
-    'workflow.stage2.ts',
+    'draft.ts',
     'languages.ts',
     'methodology.md',
     'specification.md',
@@ -298,14 +298,14 @@ function fixture(callback) {
     const plan = {
       lessonId: id,
       sourcePath: source,
-      archivePath: folder + '/workflow.stage2.ts',
+      materializedPath: folder + '/index.ts',
       sourceBlobSha: info.sourceBlob,
       reviewCommitSha: head,
       reviewEvidenceSha: gitBlob(Buffer.from(JSON.stringify(info.reviews))),
       publishable: false,
       diagnostics: [{ code: 'pending-scene', severity: 'warning' }],
       files: [
-        { path: source, kind: 'typescript', content: 'export const lesson = 1;\n' },
+        { path: folder + '/index.ts', kind: 'typescript', content: 'export const lesson = 1;\n' },
         { path: folder + '/languages.ts', kind: 'typescript', content: 'export const languages = ["en"];\n' },
       ],
     };
@@ -315,14 +315,14 @@ function fixture(callback) {
   }
 }
 
-test('source/archive are atomic, immutable, hashed and confined to one Lesson', () =>
+test('draft deletion/index creation are atomic, immutable, hashed and confined to one Lesson', () =>
   fixture(({ root, info, plan, tracked }) => {
     const manifest = typedManifest(plan, info, original, tracked, root);
     assert.equal(verifyTypedManifest(manifest, info, root, tracked, original), 3);
-    assert.equal(manifest.entries.find(item => item.path === source).action, 'replace');
-    assert.equal(manifest.entries.find(item => item.path.endsWith('workflow.stage2.ts')).action, 'create');
+    assert.equal(manifest.entries.find(item => item.path === source).action, 'delete');
+    assert.equal(manifest.entries.find(item => item.path === folder + '/index.ts').action, 'create');
     assert.equal(
-      manifest.entries.find(item => item.path.endsWith('workflow.stage2.ts')).data,
+      manifest.entries.find(item => item.path === source).data,
       original.toString('base64'),
     );
     assert.throws(
@@ -382,8 +382,8 @@ test('source/archive are atomic, immutable, hashed and confined to one Lesson', 
       /out-of-scope/,
     );
     assert.equal(matchingSnapshot(info, { ...info, head: sha('a') }), false);
-    fs.writeFileSync(path.join(root, folder, 'workflow.stage2.ts'), 'already created');
-    assert.throws(() => typedManifest(plan, info, original, tracked, root), /already exists/);
+    fs.writeFileSync(path.join(root, folder, 'index.ts'), 'already created');
+    assert.throws(() => typedManifest(plan, info, original, tracked, root), /collision/);
   }));
 
 test('SHA256 attestation rejects missing or tampered analysis report', () => {

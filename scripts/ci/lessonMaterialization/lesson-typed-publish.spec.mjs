@@ -12,7 +12,7 @@ import { gitBlob } from '../courseMaterialization/course-gate.mjs';
 const repo = 'KiT-Maverik/svitlo';
 const id = '12345678-1234-4234-8234-123456789001';
 const folder = 'content/math/data/lessons/1/' + id;
-const source = folder + '/index.ts';
+const source = folder + '/draft.ts';
 const raw = Buffer.from('export const authored = { config: {}, production: {} };\n');
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const identityBody = [
@@ -92,14 +92,14 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
     const plan = {
       lessonId: id,
       sourcePath: source,
-      archivePath: folder + '/workflow.stage2.ts',
+      materializedPath: folder + '/index.ts',
       sourceBlobSha: blob,
       reviewCommitSha: head,
       publishable: false,
       reviewEvidenceSha: gitBlob(Buffer.from(JSON.stringify(meta.reviews))),
       diagnostics: [{ code: 'pending-scene', severity: 'warning' }],
       files: [
-        { path: source, kind: 'typescript', content: 'export const lesson = 1;\n' },
+        { path: folder + '/index.ts', kind: 'typescript', content: 'export const lesson = 1;\n' },
         { path: folder + '/languages.ts', kind: 'typescript', content: 'export const languages = ["en"];\n' },
       ],
     };
@@ -160,7 +160,7 @@ async function exercise({ permission = 'write', advance = false, rejectLease = f
   }
 }
 
-test('typed publisher makes one atomic no-force source+archive commit at exact reviewed parent', async () => {
+test('typed publisher makes one atomic no-force draft deletion + index creation commit at exact reviewed parent', async () => {
   const { calls } = await exercise();
   const commit = calls.find(call => call.route === 'git/commits' && call.method === 'POST');
   const tree = calls.find(call => call.route === 'git/trees' && call.method === 'POST');
@@ -169,8 +169,9 @@ test('typed publisher makes one atomic no-force source+archive commit at exact r
   assert.equal(commit.data.parents[0].length, 40);
   assert.deepEqual(
     tree.data.tree.map(file => file.path).sort(),
-    [source, folder + '/languages.ts', folder + '/workflow.stage2.ts'].sort(),
+    [source, folder + '/languages.ts', folder + '/index.ts'].sort(),
   );
+  assert.deepEqual(tree.data.tree.find(file => file.path === source), { path: source, mode: '100644', type: 'blob', sha: null });
   assert.equal(lease.data.force, false);
   assert.equal(lease.data.sha, 'd'.repeat(40));
 });

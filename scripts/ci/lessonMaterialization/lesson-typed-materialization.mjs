@@ -37,6 +37,7 @@ export function typedMeta(encoded = process.env.LESSON_TYPED_META_B64) {
     !/^[A-Za-z0-9-]+$/.test(info.actor || '') ||
     !info.identity?.source ||
     !info.identity?.folder ||
+    info.identity.source !== info.identity.folder + '/draft.ts' ||
     !Array.isArray(info.reviews) ||
     info.reviews.length !== 3 ||
     !info.reviews.every(
@@ -77,8 +78,14 @@ export function safeTarget(root, relative, requireFile = false) {
   let target = root;
   for (const part of relative.split('/')) {
     target = path.join(target, part);
-    if (fs.existsSync(target) && fs.lstatSync(target).isSymbolicLink())
-      throw Error('Symlink in Lesson source/output ancestry: ' + relative);
+    try {
+      const stat = fs.lstatSync(target);
+      if (stat.isSymbolicLink()) throw Error('Symlink in Lesson source/output ancestry: ' + relative);
+      if (target !== path.join(root, relative) && !stat.isDirectory())
+        throw Error('Non-directory Lesson source/output ancestor: ' + relative);
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
   }
   if (requireFile && (!fs.existsSync(target) || !fs.lstatSync(target).isFile()))
     throw Error('Expected regular tracked Lesson source: ' + relative);
@@ -140,11 +147,11 @@ function asEntry(pathname, action, bytes) {
   return { path: pathname, action, sha256: digest(bytes), data: bytes.toString('base64') };
 }
 
-/** A root index replacement and archive constitute one atomic transition. */
+/** Creating index.ts and deleting the reviewed draft constitute one atomic transition. */
 export function typedManifest(plan, meta, original, tracked, root) {
   if (
     plan?.sourcePath !== meta.identity.source ||
-    plan.archivePath !== meta.identity.folder + '/workflow.stage2.ts' ||
+    plan.materializedPath !== meta.identity.folder + '/index.ts' ||
     plan.lessonId !== meta.identity.id ||
     plan.sourceBlobSha !== meta.sourceBlob ||
     plan.reviewCommitSha !== meta.reviews[2].commit ||
@@ -162,29 +169,22 @@ export function typedManifest(plan, meta, original, tracked, root) {
     if (
       !typedPath(filename, meta.identity) ||
       seen.has(filename) ||
-      filename === plan.archivePath ||
+      filename === meta.identity.source ||
       !['typescript', 'markdown', 'specification', 'code'].includes(file.kind) ||
       typeof file.content !== 'string'
     )
       throw Error('Duplicate, unsupported or out-of-scope Engine Lesson file: ' + filename);
     seen.add(filename);
     safeTarget(root, filename);
-    if (filename !== meta.identity.source && (tracked.has(filename) || fs.existsSync(path.join(root, filename))))
+    if (tracked.has(filename) || fs.existsSync(path.join(root, filename)))
       throw Error('Existing Lesson source collision: ' + filename);
     const contents = Buffer.from(file.content, 'utf8');
-    entries.push(asEntry(filename, filename === meta.identity.source ? 'replace' : 'create', contents));
+    entries.push(asEntry(filename, 'create', contents));
   }
-  if (
-    !seen.has(meta.identity.source) ||
-    !tracked.has(meta.identity.source) ||
-    entries.find(item => item.path === meta.identity.source)?.data === original.toString('base64')
-  )
-    throw Error('Expected changed, tracked Lesson root index.ts replacement');
-  const archive = plan.archivePath;
-  safeTarget(root, archive);
-  if (tracked.has(archive) || fs.existsSync(path.join(root, archive)))
-    throw Error('Reviewed Stage 2 archive already exists; cannot re-materialize');
-  entries.push(asEntry(archive, 'create', original));
+  if (!seen.has(plan.materializedPath) || !tracked.has(meta.identity.source) ||
+      gitBlob(original) !== meta.sourceBlob)
+    throw Error('Expected pinned Lesson draft deletion and canonical index.ts creation');
+  entries.push(asEntry(meta.identity.source, 'delete', original));
   entries.sort((a, b) => a.path.localeCompare(b.path));
   const manifest = {
     version: 2,
@@ -217,7 +217,7 @@ export function verifyTypedManifest(manifest, meta, root, tracked, original) {
     throw Error('Typed Lesson artifact failed immutable source/review attestation');
   let total = 0,
     source = false,
-    archive = false;
+    index = false;
   const seen = new Set();
   for (const entry of manifest.entries) {
     if (
@@ -244,19 +244,16 @@ export function verifyTypedManifest(manifest, meta, root, tracked, original) {
       throw Error('Typed Lesson artifact changed bytes, hash or size: ' + entry.path);
     safeTarget(root, entry.path);
     if (entry.path === meta.identity.source) {
-      if (entry.action !== 'replace' || !tracked.has(entry.path) || bytes.equals(original))
-        throw Error('Expected reviewed Lesson root replacement');
+      if (entry.action !== 'delete' || !tracked.has(entry.path) || !bytes.equals(original))
+        throw Error('Expected exact reviewed Lesson draft deletion');
       source = true;
     } else {
       if (entry.action !== 'create' || tracked.has(entry.path) || fs.existsSync(path.join(root, entry.path)))
         throw Error('Typed Lesson cannot clobber existing authored source: ' + entry.path);
-      if (entry.path === meta.identity.folder + '/workflow.stage2.ts') {
-        if (!bytes.equals(original)) throw Error('Archived Stage 2 source is not byte-identical');
-        archive = true;
-      }
+      if (entry.path === meta.identity.folder + '/index.ts') index = true;
     }
   }
-  if (!source || !archive) throw Error('Incomplete typed Lesson replacement/archive pair');
+  if (!source || !index) throw Error('Incomplete typed Lesson draft deletion/index creation pair');
   return manifest.entries.length;
 }
 
@@ -338,7 +335,7 @@ async function analyze(root, meta) {
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
   if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the reviewed PR');
-  if (tracked.has(meta.identity.folder + '/workflow.stage2.ts'))
+  if (tracked.has(meta.identity.folder + '/index.ts'))
     throw Error('Lesson Stage 6 already materialized; no overwrite');
   const { parseTypedLesson, typecheckTypedLesson } = await import('./lesson-typed-source.mjs');
   const input = parseTypedLesson(root, meta.identity.source, original.toString('utf8'));
@@ -402,7 +399,7 @@ export async function publish(root, meta) {
       path: entry.path,
       mode: '100644',
       type: 'blob',
-      content: Buffer.from(entry.data, 'base64').toString('utf8'),
+      ...(entry.action === 'delete' ? { sha: null } : { content: Buffer.from(entry.data, 'base64').toString('utf8') }),
     })),
   });
   if (!sha.test(tree?.sha || '')) throw Error('Unable to create trusted Lesson Git tree');
@@ -424,7 +421,8 @@ export async function publish(root, meta) {
   if (!sha.test(commit?.sha || '')) throw Error('Unable to create typed Lesson commit');
   // Strict recheck immediately before the non-force branch reference lease.
   await fresh(meta);
-  await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: commit.sha, force: false });
+  const updated = await github('git/refs/heads/' + meta.branch, 'PATCH', { sha: commit.sha, force: false });
+  if (updated?.object?.sha !== commit.sha) throw Error('Lesson branch did not advance to exact commit');
   report(
     'Committed reviewed typed Lesson Stage 6.1 (' +
       count +
