@@ -1,6 +1,6 @@
-import type { CourseWorkflowStage1 } from '@svitlo/engine/build';
+import type { CourseWorkflowStage2 } from '@svitlo/engine/build';
 
-export const courseStage1 = {
+export const courseStage2 = {
   config: {
     id: '403f4a50-266d-4b84-8b16-d879bfe8bab6',
     type: 'course',
@@ -15,6 +15,119 @@ export const courseStage1 = {
     locale: {
       title: 'Light and Shapes',
       description: 'Explore how light travels and recognize circles in everyday objects.',
+    },
+    content: {
+      items: {
+        openingMission: {
+          config: { type: 'episode' },
+          production: {
+            focus: 'A visitor to a small exhibition needs help interpreting a lamp, an object and its shadow.',
+            purpose: 'Introduce the Course-specific mission and connect the subsequent standalone learning activities.',
+          },
+        },
+        lightBasics: {
+          config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000015'] },
+        },
+        familiarCircles: {
+          config: {
+            type: 'chapter',
+            slug: 'familiarCircles',
+            locale: { title: 'Familiar circles' },
+            content: {
+              items: {
+                circleMission: {
+                  config: { type: 'episode' },
+                  production: {
+                    focus: 'The exhibition visitor needs to identify circular signs among different shapes.',
+                    purpose: 'Provide a local narrative reason for the next independent classification activity.',
+                  },
+                },
+                circleRecognition: {
+                  config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000008'] },
+                },
+              },
+              order: ['circleMission', 'circleRecognition'],
+            },
+          },
+          production: {
+            methodology: 'Compare familiar circles with ovals and polygons; use equivalent verbal descriptions and feedback about shape rather than size or orientation.',
+            outcomes: { skills: ['00000000-0000-4000-8000-000000000008'] },
+            prerequisites: { skills: [] },
+            depth: 'Recognize circles in simple examples without measurement or geometric proof.',
+            sequenceReason: 'Introduce the second target Skill after the basic light activity so both are available for later application.',
+          },
+        },
+        exhibitionPractice: {
+          config: {
+            type: 'module',
+            slug: 'exhibitionPractice',
+            locale: { title: 'Exhibition practice' },
+            content: {
+              items: {
+                practiceMission: {
+                  config: { type: 'episode' },
+                  production: {
+                    focus: 'The visitor returns to the exhibition and encounters a different arrangement of light and objects.',
+                    purpose: 'Introduce the Module as a new narrative situation for applying previously introduced Skills.',
+                  },
+                },
+                shadowPractice: {
+                  config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000015'] },
+                },
+                combinedObservations: {
+                  config: {
+                    type: 'chapter',
+                    slug: 'combinedObservations',
+                    locale: { title: 'Combined observations' },
+                    content: {
+                      items: {
+                        finalMission: {
+                          config: { type: 'episode' },
+                          production: {
+                            focus: 'The visitor has one remaining exhibition task involving an opaque object and circular signs.',
+                            purpose: 'Create a Course-specific transition into the final independent practice without embedding instruction in the story.',
+                          },
+                        },
+                        combinedPractice: {
+                          config: {
+                            type: 'lesson',
+                            skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+                          },
+                        },
+                      },
+                      order: ['finalMission', 'combinedPractice'],
+                    },
+                  },
+                  production: {
+                    methodology: 'Use a new example to predict a shadow and distinguish a circle; explain each observation separately and provide equivalent nonvisual descriptions.',
+                    outcomes: {
+                      skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+                    },
+                    prerequisites: {
+                      skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+                    },
+                    depth: 'Introductory transfer of two independently learned concepts, without quantitative optics or formal geometry.',
+                    sequenceReason: 'Conclude practice by combining previously introduced Skills in one unfamiliar situation.',
+                  },
+                },
+              },
+              order: ['practiceMission', 'shadowPractice', 'combinedObservations'],
+            },
+          },
+          production: {
+            methodology: 'Revisit the straight-line light model with a new arrangement, then apply light and circle recognition in a combined observation. Use prediction, explanation and corrective feedback.',
+            outcomes: {
+              skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+            },
+            prerequisites: {
+              skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+            },
+            depth: 'Qualitative application and reinforcement of the two introductory Skills.',
+            sequenceReason: 'Follow the initial light and circle activities with practice at greater contextual variety, without adding new prerequisite Skills.',
+          },
+        },
+      },
+      order: ['openingMission', 'lightBasics', 'familiarCircles', 'exhibitionPractice'],
     },
   },
   production: {
@@ -48,4 +161,4 @@ export const courseStage1 = {
     standardsAlignment: [],
     openDecisions: {},
   },
-} satisfies CourseWorkflowStage1;
+} satisfies CourseWorkflowStage2;
