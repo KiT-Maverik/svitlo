@@ -42,10 +42,14 @@ const render = () =>
 test('delegates nested source and emits parseable TypeScript with concrete child imports', () => {
   const result = render();
   const paths = result.files.map(file => file.path);
-  assert.ok(paths.includes('skills/firstSkill/index.ts'));
-  assert.ok(paths.includes('groups/firstGroup/index.ts'));
+  assert.ok(paths.includes('firstSkill.ts'));
+  assert.ok(paths.includes('firstGroup/secondSkill.ts'));
+  assert(!paths.some(path => path.startsWith('skills/') || path.startsWith('groups/')));
+  assert.ok(paths.includes('firstGroup/index.ts'));
   const code = result.files.find(file => file.path === 'index.ts').content;
   assert.match(code, /defineSkillDomain</);
+  assert.match(code, /from "\.\/firstGroup"/);
+  assert.match(code, /from "\.\/firstSkill"/);
   assert.match(code, /TODO \(BLOCKER\)/);
   assert.equal(
     ts.createSourceFile('index.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS).parseDiagnostics.length,
@@ -63,6 +67,15 @@ test('invalid child slug and unresolved dependency fail explicitly', () => {
   assert.throws(() => materializeSkillDomain(config(), { sourceLanguage: 'uk' }), /missing .* renderer/);
 });
 
+test('SkillDomain refuses direct Skill name conflicting with the owner entrypoint', () => {
+  const input = config();
+  input.skills = { index: skill('index') };
+  assert.throws(() => materializeSkillDomain(input, {
+    sourceLanguage: 'uk',
+    materializeSkill,
+    materializeSkillGroup,
+  }), /reserved source filename/);
+});
 test('skillDomain rejects escaped destination directories', () => {
   assert.throws(
     () => materializeSkillDomain(config(), { sourceLanguage: 'uk', directory: '../unsafe' }),
@@ -80,5 +93,5 @@ test('missing direct Skill identity is allocated through delegated deterministic
     materializeSkillGroup,
     deriveId: (kind, location) => (kind === 'skill' ? SID : ID),
   });
-  assert.ok(result.files.some(file => file.path === 'skills/firstSkill/index.ts'));
+  assert.ok(result.files.some(file => file.path === 'firstSkill.ts'));
 });
