@@ -157,6 +157,20 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   );
 });
 
+test('Question Bank Stage 3 permits minimal local Quiz intent without redundant prose fields', () => {
+  const input = completeBank();
+  input.production.quiz = {
+    kind: 'local',
+    sections: {
+      items: { practice: { sectionId: id(300), sectionPath: 'sections/practice' } },
+      order: ['practice'],
+    },
+  } as never;
+  const output = materializeQuestionBank(input as never, finalAuth(input));
+  assert(output.files.some(file => file.path === 'questions/index.ts'));
+  assert(output.files.every(file => !file.content.includes('Quiz selection rationale')));
+});
+
 test('Question Bank validates the source language and drops duplicated assessment state', () => {
   const input = handoff();
   assert.doesNotThrow(() => materializeQuestionBankDraft(input as never, draftAuth));
