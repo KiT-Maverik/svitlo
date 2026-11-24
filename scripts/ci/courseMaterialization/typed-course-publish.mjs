@@ -71,6 +71,8 @@ function assertCourseInventory(manifest, meta, entries) {
     !inventory ||
     !Array.isArray(inventory.lessons) ||
     !Array.isArray(inventory.episodes) ||
+    inventory.lessons.some(row => row?.type !== 'lesson') ||
+    inventory.episodes.some(row => row?.type !== 'episode') ||
     !Array.isArray(manifest.pendingPlacements) ||
     !Array.isArray(manifest.pendingEpisodes)
   )
