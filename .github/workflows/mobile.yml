@@ -27,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -46,17 +46,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
       # Cache the Gradle wrapper and resolved dependencies between native builds.
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v5
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android
@@ -69,8 +69,8 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm

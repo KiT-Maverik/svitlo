@@ -79,13 +79,13 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Check out the immutable PR head
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ steps.pr.outputs.head_sha }}
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -162,7 +162,7 @@ jobs:
           fs.writeFileSync(file, output);
           NODE
       - name: Upload gap-only diagnostics
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: engine-coverage-gaps-pr-${{ steps.pr.outputs.pr_number }}-${{ github.run_id }}
           path: ${{ runner.temp }}/engine-coverage-report/engine-gaps.json

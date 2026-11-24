@@ -113,11 +113,11 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -165,7 +165,7 @@ jobs:
           fs.writeFileSync(process.env.RUNNER_TEMP + '/get-lesson/result.json', body);
           NODE
       - name: Upload report only as Actions artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: get-lesson-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/get-lesson/result.json

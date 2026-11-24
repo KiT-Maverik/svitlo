@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -55,7 +55,7 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.draft
         run: echo 'Draft PR - typechecks are deferred until Ready for review or explicit workflow_dispatch.'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
         with:
           node-version: '24'

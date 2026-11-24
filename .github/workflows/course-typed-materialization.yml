@@ -38,10 +38,10 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -86,11 +86,11 @@ jobs:
       head: ${{ steps.gate.outputs.head }}
     steps:
       - name: Check out trusted default-branch authorization gate
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
       - name: Verify exact source and authorized actor
@@ -109,19 +109,19 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out trusted materializers from default branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
       - name: Check out pinned PR as inert data, never a workflow or script source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -142,7 +142,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-direct.mjs analyze
       - name: Upload read-only job result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/typed-course/manifest.json
@@ -161,25 +161,25 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out trusted default-branch publisher only
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
       - name: Check out pinned PR data; never execute PR source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - name: Download exact read-only job manifest
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
@@ -204,14 +204,14 @@ jobs:
       pull-requests: write
     steps:
       - name: Check out trusted metadata reconciliation (never candidate code)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report

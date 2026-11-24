@@ -37,10 +37,10 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -64,11 +64,11 @@ jobs:
       meta: ${{ steps.gate.outputs.meta }}
       head: ${{ steps.gate.outputs.head }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
       - id: gate
@@ -84,18 +84,18 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -112,7 +112,7 @@ jobs:
           EPISODE_HEAD_ROOT: candidate
           EPISODE_MANIFEST: ${{ runner.temp }}/episode/manifest.json
         run: node trusted/scripts/ci/episodeMaterialization/episode-transaction.mjs analyze
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: episode-stage5-${{ github.run_id }}
           path: ${{ runner.temp }}/episode/manifest.json
@@ -127,21 +127,21 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with:
           name: episode-stage5-${{ github.run_id }}
           path: report

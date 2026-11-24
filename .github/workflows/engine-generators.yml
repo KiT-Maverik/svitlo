@@ -49,10 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
       - name: Prove typed Lesson and bank publishers load without installed packages
@@ -63,10 +63,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
       - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
@@ -77,8 +77,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm

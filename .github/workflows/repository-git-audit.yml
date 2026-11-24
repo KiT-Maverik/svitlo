@@ -25,13 +25,13 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out full default-branch history and refs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
 
@@ -45,7 +45,7 @@ jobs:
         run: cat "$RUNNER_TEMP/git-audit/git-audit.md" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload full JSON and Markdown reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: repository-git-audit-${{ github.run_id }}
           path: ${{ runner.temp }}/git-audit/
