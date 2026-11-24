@@ -8,5 +8,25 @@
   "trailingComma": "all",
   "arrowParens": "avoid",
   "endOfLine": "lf",
-  "quoteProps": "as-needed"
+  "quoteProps": "as-needed",
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@svitlo/",
+    "",
+    "^#",
+    "",
+    "^[.]"
+  ],
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "decorators-legacy"
+  ],
+  "importOrderTypeScriptVersion": "5.9.3"
 }
