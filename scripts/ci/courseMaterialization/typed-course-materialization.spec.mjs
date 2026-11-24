@@ -623,7 +623,10 @@ export const intro = defineContentSection({
 });
 `,
   };
-  for (const [key, directory, number] of [['first', first, 31], ['second', second, 32]]) {
+  for (const [key, directory, number] of [
+    ['first', first, 31],
+    ['second', second, 32],
+  ]) {
     fixture[directory + '/index.ts'] = `
 import { defineMarkdown, readMarkdown } from '@svitlo/engine/build';
 export const ${key} = defineMarkdown({
@@ -648,18 +651,28 @@ export const ${key} = defineMarkdown({
   }
   const filename = path.join(trustedRoot, source);
   const previous = buildSync({
-    entryPoints: [filename], absWorkingDir: path.dirname(filename),
-    bundle: true, write: false, platform: 'node', format: 'cjs', target: 'node24', logLevel: 'silent',
+    entryPoints: [filename],
+    absWorkingDir: path.dirname(filename),
+    bundle: true,
+    write: false,
+    platform: 'node',
+    format: 'cjs',
+    target: 'node24',
+    logLevel: 'silent',
   });
   const legacy = new Module(filename);
   legacy.filename = filename;
   legacy.paths = Module._nodeModulePaths(path.dirname(filename));
-  assert.throws(() => legacy._compile(previous.outputFiles[0].text, filename), /Invalid URL|Missing or invalid Markdown/);
+  assert.throws(
+    () => legacy._compile(previous.outputFiles[0].text, filename),
+    /Invalid URL|Missing or invalid Markdown/,
+  );
 
   const args = {
     id: lessonId,
     matching: { sourceSha: git(candidateRoot, 'rev-parse', 'HEAD'), methodologySourcePath: methodology },
-    languages: ['en', 'uk'], placement: 'content/observation',
+    languages: ['en', 'uk'],
+    placement: 'content/observation',
   };
   const options = { trustedRoot, candidateRoot, textbookRoot: 'content/playground' };
   const resolve = createTrustedCourseLessonResolver(options);
@@ -679,11 +692,17 @@ export const ${key} = defineMarkdown({
   ]) {
     const stage = structuredClone(reviewedStage3);
     stage.config.content.items.observation.production = {
-      kind: 'existing', existing: '__REUSE__', matching: args.matching,
+      kind: 'existing',
+      existing: '__REUSE__',
+      matching: args.matching,
     };
-    const body = "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
-      'import { howLightMoves } from ' + JSON.stringify(specifier) + ';\n' +
-      'export const reviewedInput = ' + JSON.stringify(stage).replace('"__REUSE__"', expression) +
+    const body =
+      "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
+      'import { howLightMoves } from ' +
+      JSON.stringify(specifier) +
+      ';\n' +
+      'export const reviewedInput = ' +
+      JSON.stringify(stage).replace('"__REUSE__"', expression) +
       ' satisfies CourseWorkflowMaterializerInput;';
     const patches = [];
     const input = parseCanonicalCourseSource(body, { resolveImport: resolve.loadImport, patches });
