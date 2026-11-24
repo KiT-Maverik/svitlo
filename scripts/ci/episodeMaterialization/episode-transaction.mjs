@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
-import { parseEpisodeDraft, restoreEpisodePlacement, composeEpisodeDirectPlan } from './episode-source.mjs';
+import { parseEpisodeHandoff, restoreEpisodePlacement, composeEpisodeDirectPlan } from './episode-source.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -211,7 +211,7 @@ export function prepareEpisode(meta, root, execute = runIsolatedMaterialization)
   const original = reader.blob(base.get(meta.sourcePath), meta.sourcePath);
   const source = reader.blob(tree.get(meta.sourcePath), meta.sourcePath);
   const parent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const handoff = parseEpisodeDraft(original, 'EpisodeWorkflowStage1Handoff');
+  const handoff = parseEpisodeHandoff(original);
   const worker = execute({
     trustedRoot: path.resolve(import.meta.dirname, '../../..'),
     candidateRoot: root,
@@ -253,8 +253,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
       tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
       tree.get(meta.parentPath)?.sha !== meta.parentBlobSha)
     throw Error('Episode parent/handoff source is not the authorized Git version');
-  const handoff = parseEpisodeDraft(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath),
-    'EpisodeWorkflowStage1Handoff');
+  const handoff = parseEpisodeHandoff(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (handoff.config.id !== manifest.episodeId ||
       handoff.production.placement.courseId !== meta.courseId ||
       handoff.production.placement.path !== meta.placement)
