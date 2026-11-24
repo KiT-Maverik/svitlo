@@ -51,12 +51,6 @@ const reviewed = (): EpisodeWorkflowStage2 =>
     production: {
       focus: 'Introduce the story',
       purpose: 'Narrative transition',
-      placement: {
-        courseId: id('01'),
-        path: 'content/transition',
-        orderPath: [0],
-        reviewedCourseSourceBlobSha: 'c'.repeat(40),
-      },
       languages: { document: 'uk', planned: ['uk', 'en'] },
       scenario: {
         audience: 'Novices',
