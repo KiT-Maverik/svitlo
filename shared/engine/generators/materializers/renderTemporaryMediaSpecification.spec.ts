@@ -19,8 +19,8 @@ test('temporary media brief: deterministic labeled block after implementation wi
   const comment = renderTemporaryMediaSpecification(production, 'Video');
   assert.deepEqual(production, original);
   assert.equal(comment, renderTemporaryMediaSpecification(production, 'Video'));
-  assert.match(comment, /^\/\/ TODO \(BLOCKER\): Remove the temporary Video specification/);
-  assert.match(comment, /\/\*\*[\s\S]*# specification[\s\S]*Opening frame/);
+  assert.match(comment, /^\/\*\n \* TODO \(BLOCKER\): Remove the temporary Video specification/);
+  assert.match(comment, /\* # specification[\s\S]*Opening frame/);
   assert.match(comment, /# accessibility[\s\S]*Українською/);
   assert(!comment.includes('*/ then a blue cup'), 'reviewed text cannot close the source comment');
   assert(comment.includes('* / then a blue cup'));
