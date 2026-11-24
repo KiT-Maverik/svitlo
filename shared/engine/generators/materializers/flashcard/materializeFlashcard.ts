@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
@@ -249,7 +250,7 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
         : []),
       ...imports,
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       paramsSource +
         contentSource +
         'export const ' +
