@@ -78,8 +78,8 @@ test('Episode Stage 5 owns one typed constants module and nested descendants use
   assert(root.includes('import { languages } from ' + JSON.stringify(courseLanguageImport)));
   assert.doesNotMatch(root, /const languages =/);
   assert.doesNotMatch(root, /SupportedLanguages/);
-  assert.match(root, /Human Media Generation Stage 9/);
-  assert.match(root, /Human QA Stage 10/);
+  assert.match(root, /Episode media generation at Stage 9/);
+  assert.match(root, /human QA acceptance for Episode Stage 10/);
   const section = file('sections/introduction/index.ts') ?? '';
   assert.match(section, /#coursesData\/1\/e1100000-0000-4000-8000-000000000001\/content\/transition\/constants/);
   assert.equal(plan.publishable, false);
