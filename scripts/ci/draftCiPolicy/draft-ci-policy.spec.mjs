@@ -80,7 +80,7 @@ test('on-demand agent report generation uses read-only Actions artifacts, withou
   const oldGuard = new URL('../../../.github/workflows/agent-ci-artifacts-guard.yml', import.meta.url);
   assert.equal(existsSync(oldGuard), false, 'Obsolete check workflow must remain removed');
   assert.match(references, /issue_comment:/);
-  assert.match(references, /actions\/upload-artifact@v4/);
+  assert.match(references, /actions\/upload-artifact@v6/);
   assert.match(references, /retention-days: 1/);
   assert.match(references, /persist-credentials: false/);
   assert.match(references, /SVITLO_AGENT_REPORT_OUTPUT/);
