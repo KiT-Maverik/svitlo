@@ -95,7 +95,7 @@ independently because no automatic Skill/Method stratification is
 provided. Prefer a curated fixed subset when every required method
 must appear. Several Quizzes may each have a different deliberately
 chosen subset. Reuse an existing Quiz Section UUID whenever possible.
-Do not fabricate a Quiz when methodology calls for none. A meaningful instructional bank may have **zero local Quiz Sections**. A Course assessment-only Lesson may have a Quiz and **no own Question Bank**: review its Course placement and real upstream Lesson/Skill plans, then select UUIDs from their independently owned banks only after those banks' PRs are independently reviewed and integrated into the assessment Lesson's actual branch ancestry. Keep bank Questions in their owning Lesson, never duplicate them in the Quiz or its screen ContentBlocks.
+Do not fabricate a Quiz when methodology calls for none. A meaningful instructional bank may have **zero local Quiz Sections**. A **historically authored** Course assessment-only Lesson may have a Quiz and **no own Question Bank**; new cross-Lesson evaluations use a Course-owned Assessment instead: review its Course placement and real upstream Lesson/Skill plans, then select UUIDs from their independently owned banks only after those banks' PRs are independently reviewed and integrated into the assessment Lesson's actual branch ancestry. Keep bank Questions in their owning Lesson, never duplicate them in the Quiz or its screen ContentBlocks.
 
 During Course Stage 3/4, review **assessment intent and upstream bank ownership without inventing IDs**; missing bank UUIDs need not block Course plan approval, but incomplete learning outcomes or unidentified owners do. Before actual external selection, confirm each bank's reviewed source SHA, owner Lesson UUID, requested locale files, published manifest and global UUID loader. Missing/unmerged or unavailable upstream resources **block downstream assessment selection/publication only**, not the source Lessons' own production. The source-language editorial handoff may temporarily record
 quizSelections as Section UUID -> selected Question UUIDs; after
@@ -134,7 +134,7 @@ Author the genuine source-language content only in the canonical typed `question
 
 ## OWNERSHIP, OUTPUT AND REVIEW
 
-Author a full Questions bank **only for a Lesson that owns that bank**, and the pedagogically justified **local** Quiz selections when required. For an assessment-only Lesson consuming external banks, independently review the cross-Lesson selection as part of that Lesson's authorized production; it is not a reason to create an empty bank PR or rewrite upstream banks. Methodologist owns curriculum/Skill scope and
+Author a full Questions bank **only for a Lesson that owns that bank**, and the pedagogically justified **local** Quiz selections when required. For a historically authored assessment-only Lesson consuming external banks, independently review the cross-Lesson selection as part of that Lesson's authorized production; for new Course-owned Assessments, review it in the separate Assessment Flow after Course Stage 6 readiness; it is not a reason to create an empty bank PR or rewrite upstream banks. Methodologist owns curriculum/Skill scope and
 Quiz necessity. A separate, independent Assessment Architect verifies
 item quality and Section coverage. Coding Agent owns deterministic
 Question TypeScript generation; the Lesson Section owner materializes
