@@ -4,6 +4,7 @@
  */
 export const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 export const reusedLessonId = '1368c1c9-2fd8-4007-b2c8-6bbfd98d5111';
+export const overriddenLessonId = '1368c1c9-2fd8-4007-b2c8-6bbfd98d5112';
 export const lessonId = '12345678-1234-4234-8234-123456789001';
 export const bankOwnerId = 'b775647f-203d-481a-a1c7-4d331c000200';
 export const skillId = '663572e7-bd85-4516-86e2-3de07d209e04';
@@ -15,11 +16,11 @@ export const assessment = {
   quizSectionRequired: false,
   flashcardsSectionRequired: false,
 };
-export function independentLessonConfig() {
+export function independentLessonConfig(sourceId = reusedLessonId, slug = 'independentLesson') {
   return {
-    id: reusedLessonId,
+    id: sourceId,
     type: 'lesson',
-    slug: 'independentLesson',
+    slug,
     skills: [skillId],
     params: {
       languages: ['uk'],
@@ -83,20 +84,21 @@ export function lessonStage2() {
     },
   };
 }
-export function courseStage3(lesson) {
-  const matching = {
+export function courseStage3(lesson, overriddenLesson) {
+  const matching = sourceId => ({
     sourceSha: sha('a'),
-    methodologySourcePath: 'content/math/data/lessons/1/' + reusedLessonId + '/methodology.md',
+    methodologySourcePath:
+      'content/math/data/lessons/' + sourceId.at(-1) + '/' + sourceId + '/methodology.md',
     matchingRationale: 'Reviewed Skill and age match',
     languageEvidence: 'Ukrainian source available',
-  };
-  const baseExisting = {
+  });
+  const baseExisting = (source, sourceId, sourceExportName) => ({
     kind: 'existing',
-    matching,
+    matching: matching(sourceId),
     assessment: { ...assessment },
-    source: lesson,
-    sourceExportName: 'independentLesson',
-  };
+    source,
+    sourceExportName,
+  });
   const patch = { params: { sections: { allowSkipping: false } } };
   const newLesson = {
     config: {
@@ -128,13 +130,13 @@ export function courseStage3(lesson) {
           newLesson,
           reused: {
             config: { type: 'lesson', slug: 'reused', skills: [skillId] },
-            production: { ...baseExisting, existing: { id: reusedLessonId } },
+            production: { ...baseExisting(lesson, reusedLessonId, 'independentLesson'), existing: { id: reusedLessonId } },
           },
           overridden: {
             config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
             production: {
-              ...baseExisting,
-              existing: lesson.build.overrides(patch, { languages: ['uk'] }),
+              ...baseExisting(overriddenLesson, overriddenLessonId, 'overriddenLesson'),
+              existing: overriddenLesson.build.overrides(patch, { languages: ['uk'] }),
               sourcePatch: patch,
               overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
             },
