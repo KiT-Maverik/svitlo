@@ -234,6 +234,18 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
     blocker.push(
       '// TODO (BLOCKER): Complete independent Flashcard review and verified bank selection; remove this TODO after integration.',
     );
+  // Keep the reviewed Flashcards specification at the point of implementation.
+  // The Lesson/Episode methodology is a durable editorial record; this is an
+  // intentionally removable, inert source comment, never executable TS.
+  const specification =
+    typeof options.production?.specification === 'string' ? options.production.specification.trim() : '';
+  if (specification) {
+    if (!blocker.some(line => line.includes('TODO (BLOCKER): Implement reviewed Flashcards Section')))
+      blocker.push('// TODO (BLOCKER): Implement reviewed Flashcards specification before releasing this Section.');
+    blocker.push('// BEGIN REVIEWED FLASHCARDS SPECIFICATION (remove after implementation)');
+    blocker.push(...specification.replace(/\r\n?|\u2028|\u2029/g, '\n').split('\n').map(line => '// ' + line));
+    blocker.push('// END REVIEWED FLASHCARDS SPECIFICATION');
+  }
 
   if (blocker.length)
     diagnostics.push({
