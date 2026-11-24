@@ -39,7 +39,7 @@ const plan = {
   publishable: false,
   materializedPath: index,
   files: [{ path: index, kind: 'typescript', content: 'export const course = 1;\n' }],
-  inventory: { lessons: [], episodes: [] },
+  inventory: { lessons: [], episodes: [], assessments: [] },
   diagnostics: [],
   pendingEpisodes: [],
   pendingPlacements: [],
@@ -56,7 +56,11 @@ test('direct Course manifest binds reviewed source to deterministic authored out
   assert.throws(() =>
     verifyCourseDependencies(meta, '', '', {
       ...plan,
-      inventory: { lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }], episodes: [] },
+      inventory: {
+        lessons: [{ placementPath: '../escape', kind: 'new', type: 'lesson' }],
+        episodes: [],
+        assessments: [],
+      },
     }),
   );
 });
@@ -159,4 +163,65 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     plan.files.length,
     'negative cases must not modify original trusted plan',
   );
+});
+
+test('trusted Course manifest seals Assessment seed, inline parent and upstream Lesson inventory', () => {
+  const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
+  const { defineLesson } = createRequire(import.meta.url)(build);
+  const actual = courseStage3(
+    defineLesson(independentLessonConfig()),
+    defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+  );
+  actual.config.content.items.finalReview = {
+    config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+    production: {
+      purpose: 'Measure transfer after the reviewed Lessons',
+      lessonDependencies: ['content/newLesson', 'content/reused'],
+    },
+  };
+  actual.config.content.order.push('finalReview');
+  const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
+  const pinned = {
+    ...meta,
+    repo: 'fixture/repo',
+    head: 'b'.repeat(40),
+    branch: 'test',
+    actor: 'tester',
+    courseId,
+    textbookRoot: 'content/math',
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
+  };
+  const plan = materializeCourseStage5(actual, {
+    textbookRoot: 'content/math',
+    source: { sourcePath, sourceBlobSha: pinned.sourceBlobSha },
+    verifySource: () => true,
+  });
+  assert.equal(plan.inventory.assessments.length, 1);
+  const [row] = plan.inventory.assessments;
+  assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
+  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content, /defineAssessmentDraft\(\{/);
+  const sealed = buildTypedCourseManifest(pinned, plan);
+  assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
+  const mutate = patch => {
+    const copy = structuredClone(sealed);
+    patch(copy);
+    assert.throws(
+      () => verifyTypedCourseManifest(copy, pinned),
+      /Assessment|inventory|seed|duplicate|handoff|generated|invalid/i,
+    );
+  };
+  mutate(m => {
+    m.inventory.assessments[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+  });
+  mutate(m => {
+    m.inventory.assessments[0].lessonDependencies = ['content/notReviewed'];
+  });
+  mutate(m => {
+    m.entries = m.entries.filter(f => f.path !== row.sourcePath);
+  });
+  mutate(m => {
+    m.inventory.assessments.push(structuredClone(m.inventory.assessments[0]));
+  });
+  assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });

@@ -27,6 +27,7 @@ export * from './configurators/courses/defineChapter/defineChapter.schemas';
 export * from './configurators/courses/defineCourse/defineCourse.schemas';
 export * from './configurators/courses/defineModule/defineModule.schemas';
 export * from './configurators/episodes/defineEpisode/defineEpisode.schemas';
+export * from './configurators/assessments/defineAssessment/defineAssessment.schemas';
 export * from './configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 export * from './configurators/lessons/defineLesson/defineLesson.schemas';
 export * from './configurators/questions/assessmentMethod.schemas';

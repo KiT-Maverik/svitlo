@@ -19,3 +19,5 @@ export { resolveAssessmentMethod } from './utils/assessmentMethods';
 export type { AssessmentMethodBase, AssessmentMethodLocalized } from './utils/assessmentMethods';
 
 export * from './components/episode/Episode';
+
+export { Assessment, type AssessmentProps } from './components/assessment/Assessment';

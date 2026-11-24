@@ -385,3 +385,78 @@ test('inventory follows all four Episode nesting levels and retains repeated Les
   assert.equal(lessons.filter(row => row.kind === 'new').length, 2);
   assert.deepEqual(result.inventory, materializeCourseStage5(input, reuseOptions()).inventory);
 });
+
+const assessmentSlot = (...dependencies) => ({
+  config: {
+    type: 'assessment',
+    locale: { title: { uk: 'Підсумкове оцінювання' } },
+  },
+  production: { purpose: 'Check understanding after upstream Lessons', lessonDependencies: dependencies },
+});
+
+test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners with verified upstream Lessons', () => {
+  const input = source();
+  const rootContent = input.config.content;
+  const moduleContent = rootContent.items.moduleOne.config.content;
+  const chapterContent = moduleContent.items.chapterOne.config.content;
+
+  chapterContent.items.chapterReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  chapterContent.order.push('chapterReview');
+  moduleContent.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  moduleContent.order.push('moduleReview');
+  rootContent.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
+  rootContent.order.push('finalReview');
+
+  const result = materializeCourseStage5(input, options());
+  assert.equal(result.inventory.assessments.length, 3);
+  assert.deepEqual(
+    result.inventory.assessments.map(row => row.orderPath),
+    [[0, 0, 2], [0, 1], [2]],
+  );
+  const paths = result.inventory.assessments.map(row => row.sourcePath);
+  assert.deepEqual(paths, [
+    root + '/content/moduleOne/chapterOne/content/chapterReview/draft.ts',
+    root + '/content/moduleOne/content/moduleReview/draft.ts',
+    root + '/content/finalReview/draft.ts',
+  ]);
+  for (const row of result.inventory.assessments) {
+    assert.equal(
+      row.id,
+      deriveCourseEntityId(rootId, 'assessment', row.placementPath.slice((root + '/content/').length)),
+    );
+    assert.equal(row.status, 'pending-assessment-design');
+    const seed = result.files.find(file => file.path === row.sourcePath);
+    const parent = result.files.find(file => file.path === row.placementSourcePath);
+    assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
+    assert.ok(parent?.content.includes('defineAssessmentDraft({ id: ' + JSON.stringify(row.id)));
+    assert.ok(parent?.content.includes('TODO (BLOCKER): Not implemented'));
+    assert.ok(parent?.content.includes('Not implemented'));
+    assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
+    assert.ok(row.lessonDependencies.every(path => path.startsWith('content/')));
+  }
+  assert.deepEqual(result.inventory, materializeCourseStage5(input, options()).inventory);
+});
+
+test('Course Assessment placement rejects missing, forward, repeated and ambiguous Lesson dependencies', () => {
+  const base = source();
+  const content = base.config.content;
+  content.items.finalReview = assessmentSlot('content/missingLesson');
+  content.order.push('finalReview');
+  assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
+
+  content.items.finalReview = assessmentSlot('content/directLesson', 'content/directLesson');
+  assert.throws(() => materializeCourseStage5(base, options()), /duplicat/i);
+
+  content.items.finalReview = assessmentSlot('content/directLesson');
+  content.order.unshift(content.order.pop());
+  assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
+
+  const another = source();
+  another.config.content.items.finalReview = assessmentSlot('content/directLesson');
+  another.config.content.order.push('finalReview');
+  another.config.content.items.moduleOne.config.content.items.chapterOne.config.content.items.chapterReview =
+    assessmentSlot('content/directLesson');
+  const chapter = another.config.content.items.moduleOne.config.content.items.chapterOne.config.content;
+  chapter.order.push('chapterReview');
+  assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
+});

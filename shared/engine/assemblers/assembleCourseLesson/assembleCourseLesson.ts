@@ -1,6 +1,7 @@
 import type { LanguageCode } from '../../schemas';
 import type { DeepPartial } from '../../types/transformer.types';
 import type { Episode_PropsBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { Assessment_PropsBase } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
 import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
@@ -24,7 +25,10 @@ export type CoursePublishedContent = {
 };
 
 export type CoursePublishedNode =
-  CourseLessonEntry | Episode_PropsBase | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  | CourseLessonEntry
+  | Episode_PropsBase
+  | Assessment_PropsBase
+  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';
@@ -120,8 +124,8 @@ function findLesson(
         }
       } else if (raw.type === 'module' || raw.type === 'chapter') {
         visit(raw.content, location + '/content', [...prefix, slug]);
-      } else if (raw.type === 'episode') {
-        // Episode is Course-owned narrative content, not a Lesson reference.
+      } else if (raw.type === 'episode' || raw.type === 'assessment') {
+        // Course-owned Episodes and Assessments are not Lesson references.
         continue;
       } else {
         throw new Error('Unsupported Course child type at ' + location);
