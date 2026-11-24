@@ -1,6 +1,6 @@
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
-const safe = key => slug.test(key) && !['constructor', '__proto__', 'prototype'].includes(key);
+const safe = key => typeof key === 'string' && slug.test(key) && !['constructor', '__proto__', 'prototype'].includes(key);
 
 /** Course Stage 5 handoff only. No runtime Configurator, fake title or Sections. */
 export function materializeEpisodeDraft(input, context) {
