@@ -146,7 +146,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "**%_%RED_NAME%_%** and **%_%BLUE_NAME%_%** are color names.\n\n- Two circles can have different colors.\n- A circle and a square can have the same color.\n- A toy car can be red or blue. A cup can also be red or blue.\n\nWe have learned two color names: $1 + 1 = 2$. This counts the names; it does not mix the colors."
+                        "en": "**%_%RED_NAME%_%** and **%_%BLUE_NAME%_%** are color names.\n\n- Two circles can have different colors.\n- A circle and a square can have the same color.\n- A toy car can be red or blue. A cup can also be red or blue.\n\nA color may look a little different on another screen. Focus on clearly red and clearly blue examples.\n\nThere are two color names here. $1 + 1 = 2$ is another way to count the names; you do not need to calculate anything or mix the colors."
                       },
                       "variables": {
                         "RED_NAME": {
@@ -427,7 +427,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "In the gallery, use Next and Previous to move between the blue shapes and the activity. Explore at your own pace; you can reset the activity. The following online video is optional. You may see yellow, too, but our focus is red and blue. If it is unavailable, continue with the local examples."
+                        "en": "In the gallery, use Next and Previous to move between the blue shapes and the activity. Explore at your own pace; you can reset the activity. The following online video is optional. Look for red and blue on different objects if you watch it. You may see yellow, too, but our focus is red and blue. If the video is unavailable, continue with the local examples."
                       }
                     }
                   }
@@ -508,7 +508,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Choose Red or Blue and think of the color name. Predict what will happen before you change the shape. Does the color stay the same? Then predict what will happen before you change the color. Does the shape stay the same? Try Reset if you want to start again. You can also follow the written descriptions. For the two reflections below, think of an answer, reveal the explanation, then use the check button below each answer when you are ready. You do not need to play every video or activity."
+                        "en": "Choose Red or Blue and think of the color name. Predict what will happen before you change the shape. Does the color stay the same? Then predict what will happen before you change the color. Does the shape stay the same? Try Reset if you want to start again. You can also follow the written or spoken examples. For the two reflections below, think of an answer, reveal the explanation, then use the check button below each answer when you are ready. These checks mean you have considered the explanation; they are not a score. You do not need to play every video or activity."
                       }
                     }
                   }
@@ -622,7 +622,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "Yes. A red circle and a red square have the same color, even though their outlines differ. A blue circle and a blue square can also have the same color. Look at color, not just shape. The pictures, audio and gallery below are different ways to explore this idea. You can use the descriptions instead of the media. In the gallery, use Next or Previous to move between the picture and the activity; Reset lets you try again. Use the check button at the end when you have considered the explanation."
+                                            "en": "Yes. A red circle and a red square have the same color, even though their outlines differ. A blue circle and a blue square can also have the same color. Look at color, not just shape. Now try a different example: look at the cup and the toy car below and think of their color names. Use the description to check your ideas. This is guided practice, not a test. In the gallery, use Next or Previous to move between the picture and the activity. Reset lets you try again. Use the check button at the end when you have considered the explanation."
                                           }
                                         }
                                       }
@@ -635,7 +635,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Two squares can be different colors. Two different shapes can share a color. Shape alone cannot tell you the color."
+                                            "en": "**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Two squares can have different colors. Different objects can share a color. Shape, size and position alone cannot tell you the color."
                                           },
                                           "variables": {
                                             "FIRST_COLOR": {
@@ -661,14 +661,14 @@ export const lessonStage1 = {
                                         "locale": {
                                           "fileName": "00000000-0000-0000-0000-000000000000.webp",
                                           "alt": {
-                                            "en": "A blue square on the left and a red square on the right."
+                                            "en": "A blue cup on the left and a red toy car on the right."
                                           },
                                           "caption": {
-                                            "en": "Same shape, different colors; the colors have changed places."
+                                            "en": "The cup is blue; the toy car is red. Different objects can have either color."
                                           },
                                           "fallback": {
                                             "offline": {
-                                              "en": "A blue square and a red square have the same shape, although they have different colors."
+                                              "en": "Imagine a blue cup and a red toy car. A cup could also be red, and a toy car could be blue."
                                             },
                                             "unavailable": {
                                               "en": "The picture is unavailable. Read its description."
@@ -680,12 +680,12 @@ export const lessonStage1 = {
                                         }
                                       },
                                       "production": {
-                                        "purpose": "Compare color independently of shape.",
-                                        "specification": "Two equally sized squares on a neutral background, blue on the left and red on the right in the English illustration. Reverse the order used in the opening picture to show that placement does not define color.",
-                                        "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
-                                        "offline": "Bundle a local WebP and retain the written description.",
+                                        "purpose": "Transfer the two learned color names from simple shapes to different everyday objects; counter position and object-identity shortcuts.",
+                                        "specification": "Show a clearly blue cup on the left and a clearly red toy car on the right in the English illustration, on a neutral light background. Keep both objects large enough to recognize at mobile widths. Use solid, unambiguous dominant colors without competing decorations or multicolored accents. Reverse the opening image's color positions. The cup and car are examples, not objects that must always have these colors. Keep actual spatial description consistent across localized versions.",
+                                        "accessibility": "Provide matching caption and alt, with spoken or written descriptions as supported vocabulary-learning alternatives. The labeled illustration is a guided example, not independent visual assessment. Keep object outlines distinguishable without depending on color alone.",
+                                        "offline": "Bundle a local WebP and retain the descriptive example and its counterexamples.",
                                         "readiness": "production-pending",
-                                        "prompt": "Two same-sized squares side by side, blue on the left and red on the right, on a neutral background."
+                                        "prompt": "A solid blue cup beside a solid red toy car, cup on the left, toy car on the right, neutral background, no text or competing colors."
                                       }
                                     },
                                     "answerAudio": {
@@ -702,17 +702,17 @@ export const lessonStage1 = {
                                             "en": "Listen to the color words"
                                           },
                                           "description": {
-                                            "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
+                                            "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. Here the cup is blue and the toy car is red. A cup can also be red, and a toy car can be blue. Shape, size and position do not tell you the color."
                                           },
                                           "fallback": {
                                             "offline": {
-                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. Here the cup is blue and the toy car is red. A cup can also be red, and a toy car can be blue. Shape, size and position do not tell you the color."
                                             },
                                             "unavailable": {
-                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. Here the cup is blue and the toy car is red. A cup can also be red, and a toy car can be blue. Shape, size and position do not tell you the color."
                                             },
                                             "playbackError": {
-                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. Here the cup is blue and the toy car is red. A cup can also be red, and a toy car can be blue. Shape, size and position do not tell you the color."
                                             },
                                             "retry": {
                                               "en": "Try again"
@@ -723,10 +723,10 @@ export const lessonStage1 = {
                                       "production": {
                                         "purpose": "Hear the color names.",
                                         "specification": "Produce a clear spoken English recording of the script; no music, no sound effects; short pause between examples.",
-                                        "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
+                                        "accessibility": "The complete spoken script appears in the visible Audio description; user-controlled playback. The adjacent written and visual examples support the same color vocabulary and conceptual contrast.",
                                         "offline": "Bundle source-language MP3; text remains available.",
                                         "readiness": "production-pending",
-                                        "script": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
+                                        "script": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. Here the cup is blue and the toy car is red. A cup can also be red, and a toy car can be blue. Shape, size and position do not tell you the color."
                                       }
                                     },
                                     "answerGallery": {
@@ -1202,7 +1202,7 @@ export const lessonStage1 = {
             }
           },
           "production": {
-            "purpose": "Optional technical representation of the two known color names; no coding prerequisite."
+            "purpose": "Supplementary technical representation of two already learned color names for E2E Code coverage only. No coding, English programming syntax or arithmetic prerequisite or extra Skill; the same conceptual distinction is taught in ordinary localized text."
           }
         },
         "recallColors": {
@@ -1241,7 +1241,8 @@ export const lessonStage1 = {
             }
           },
           "production": {
-            "purpose": "Required independent Flashcard Bank selection will be integrated in Stage 8."
+            "purpose": "Required independent Flashcard Bank selection will be integrated in Stage 8.",
+            "pedagogicalIntent": "Retrieval (canonical slug retrieval) practice for both approved color terms, using cues that do not give away the answer before reveal. Keep red and blue recall distinct; use Stage 8 reviewed bank members, not invented IDs. Flashcard reveal/completion is supported recall practice, never independently scored recognition or proof of mastery."
           }
         },
         "checkColors": {
@@ -1281,7 +1282,7 @@ export const lessonStage1 = {
           },
           "production": {
             "purpose": "Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.",
-            "pedagogicalIntent": "Independent classification evidence for each target Skill and supplementary retrieval, with no assumed time pressure. The Assessment Architect owns actual question forms, access restrictions, selection and grading in Stage 7; do not score the vocabulary-only route as equivalent visual recognition."
+            "pedagogicalIntent": "Classification (canonical slug classification): obtain distinct evidence for Skill 00000000-0000-4000-8000-000000000001 (recognize red) and Skill 00000000-0000-4000-8000-000000000004 (recognize blue) using multiple clear visual examples across varied objects, shapes, sizes and positions, including new instances and contrast examples. Supplement with unaided color-name recall (canonical slug retrieval) where justified; do not conflate recognition with recall, assisted practice, a check or mastery. Avoid answer-revealing labels or irrelevant cues in independently scored visual evidence. Preserve accessible navigation and fair accommodations, disclose when nonvisual vocabulary practice cannot provide equivalent perceptual evidence. Assessment Architect owns item formats, restrictions, selection, scoring and grading in Stage 7; no invented ID or grade policy and no assumed time pressure."
           }
         }
       },
