@@ -48,16 +48,17 @@ export type CourseStage5Options = {
   ) => SourceRenderResult;
 };
 export type CoursePlacementInventoryRow = {
-  type: 'lesson' | 'episode';
+  type: 'lesson' | 'episode' | 'assessment';
   id: string;
   slug: string;
   kind: 'new' | 'reused' | 'overridden';
-  status: 'pending-lesson-stage1' | 'pending-episode-scenario' | 'verified-reference' | 'materialized-source';
+  status: 'pending-lesson-stage1' | 'pending-episode-scenario' | 'pending-assessment-design' | 'verified-reference' | 'materialized-source';
   placementPath: string;
   orderPath: readonly number[];
   sourcePath: string;
   placementSourcePath: string;
   sourceSha?: string;
+  lessonDependencies?: readonly string[];
 };
 export type CourseStage5Plan = {
   sourcePath: string;
@@ -67,7 +68,11 @@ export type CourseStage5Plan = {
   root: string;
   files: readonly SourceFile[];
   diagnostics: readonly SourceDiagnostic[];
-  inventory: { lessons: readonly CoursePlacementInventoryRow[]; episodes: readonly CoursePlacementInventoryRow[] };
+  inventory: {
+    lessons: readonly CoursePlacementInventoryRow[];
+    episodes: readonly CoursePlacementInventoryRow[];
+    assessments: readonly CoursePlacementInventoryRow[];
+  };
   placements: readonly { path: string; slug: string; lessonId: string; kind: string }[];
   pendingPlacements: readonly { path: string; slug: string; lessonId: string; handoffPath: string }[];
   pendingEpisodes: readonly {
