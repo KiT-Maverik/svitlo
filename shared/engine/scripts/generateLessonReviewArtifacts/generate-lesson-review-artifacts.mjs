@@ -31,8 +31,30 @@ function directories(directory) {
     .sort();
 }
 
-export function discoverLessons(root, packageName = null) {
+export function discoverLessons(root, packageName = null, lessonId = null) {
   const applications = path.join(root, 'content');
+  if (lessonId) {
+    // Resolve exactly one UUID-addressed directory. Do not enumerate unrelated
+    // Lessons or require their source to be valid for a scoped reference.
+    if (!packageName || !/^content\/[a-z][a-z0-9-]*$/.test(packageName) || !UUID_PATTERN.test(lessonId)) {
+      throw new Error('Scoped Lesson references require textbook and canonical UUID');
+    }
+    const id = lessonId.toLowerCase();
+    const app = packageName.slice('content/'.length);
+    const relative = resolveEntityPath(id);
+    const rootDirectory = path.join(applications, app, 'data', 'lessons');
+    const bucketDirectory = path.join(rootDirectory, id.slice(-1));
+    const directory = path.join(rootDirectory, relative);
+    for (const location of [rootDirectory, bucketDirectory, directory]) {
+      if (!fs.existsSync(location)) throw new Error('No canonical Lesson source for ' + id);
+      if (fs.lstatSync(location).isSymbolicLink() || !fs.statSync(location).isDirectory()) {
+        throw new Error('Unsafe scoped Lesson source: ' + location);
+      }
+    }
+    const { source } = resolveMaterializedEntrypoint(directory, { mode: 'draft', legacyLesson: true });
+    if (!source) throw new Error('No canonical Lesson source for ' + id);
+    return [{ textbook: app, package: packageName, id, relative, source }];
+  }
   const lessons = [];
   for (const app of packageName ? [packageName.slice('content/'.length)] : directories(applications)) {
     if (!appNamePattern.test(app)) continue;
@@ -68,7 +90,7 @@ export function generateLessonReviewArtifacts({
   lessonId = null,
   supportedLanguages = null,
 }) {
-  const lessons = discoverLessons(root, packageName).filter(item => !lessonId || item.id === lessonId);
+  const lessons = discoverLessons(root, packageName, lessonId);
   const generator = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs');
   const generatorAvailable = fs.existsSync(generator) && fs.lstatSync(generator).isFile();
   const result = { discoveredLessons: lessons.length, generated: 0, failures: 0 };
