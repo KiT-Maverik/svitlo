@@ -265,7 +265,20 @@ test('trust rejects source SHA drift, invalid path and unverified pinned source'
 test('incomplete Lesson params and source-language plan fail closed without fabrication', () => {
   const input = valid();
   delete (input.config.params as { sections?: unknown }).sections;
-  assert.throws(() => produce(input), /incomplete or invalid Lesson Config params/);
+  const root = produce(input).files.find(file => file.path.endsWith('/index.ts') || file.path === 'index.ts');
+  assert.ok(root);
+  const output = produce(input).files.map(file => file.content).join('\n');
+  for (const key of ['allowNavigation', 'allowSkipping', 'showIndexes'])
+    assert.match(output, new RegExp('"' + key + '": true'));
+  const partial = valid();
+  partial.config.params.sections.allowNavigation = false;
+  delete (partial.config.params.sections as { showIndexes?: boolean }).showIndexes;
+  const partialOutput = produce(partial).files.map(file => file.content).join('\n');
+  assert.match(partialOutput, /"allowNavigation": false/);
+  assert.match(partialOutput, /"showIndexes": true/);
+  const missingPolicy = valid();
+  delete (missingPolicy.config.params as { quizRequiredForCompletion?: boolean }).quizRequiredForCompletion;
+  assert.throws(() => produce(missingPolicy), /incomplete or invalid Lesson Config params/);
   const lang = valid();
   lang.production.languages.planned = ['uk'];
   assert.throws(() => produce(lang), /invalid reviewed document\/planned languages/);
