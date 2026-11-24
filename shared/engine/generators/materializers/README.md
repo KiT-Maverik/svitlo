@@ -29,10 +29,11 @@ independent work; a green Draft guard is not a substitute for Ready CI.
 | Text, Markdown, Code, Carousel, Checkpoint, Sections | Direct nested source paths; optional semantic role boundaries preserved | Section educational notes must be integrated by owning Lesson/Episode, never discarded |
 | Scene / Image / Video / YouTube / Audio / Subtitles | Shared concrete emitters; Scene executable draft owned by Lesson/Episode, Bank Scene evidence pinned independently; YouTube avoids redundant empty-URL verification TODO | Incomplete content remains blocked; no fabricated asset, registered Scene or license approval |
 
-All emitted TypeScript/TSX goes through the **one trusted worker formatter before
-the sealed manifest**. Generated Course machine handoffs and static re-exports
-have an inert AST shape verifier so neither quote style nor key formatting is
-an authorization condition. Real output is still nonpublishable until each
+The source materializers seal their emitted TypeScript bytes unchanged, with **no
+pre-seal formatter or handoff AST parser**. The existing `PR Auto-format` action
+is responsible for applying repository Prettier on Ready PRs to `develop`.
+Course-generated JSON handoffs remain subject to their original strict,
+non-executing publisher checks. Real output is still nonpublishable until each
 entity-specific check, independent editorial review and authorized workflow pass.
 
 ## Skill taxonomy source placement
