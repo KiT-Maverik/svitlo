@@ -44,6 +44,20 @@ test('side-effect imports retain their relative order and act as barriers', asyn
   assert(result.indexOf("'second-side-effect'") < result.indexOf("from '@svitlo/engine/build'"));
 });
 
+test('import sorting applies only to TypeScript, leaving existing JavaScript tooling order intact', async () => {
+  const jsFilename = resolve('scripts/checkImportFormatting/sample.mjs');
+  const config = await resolveConfig(jsFilename);
+  assert(config, 'JavaScript Prettier configuration must load');
+  assert.equal(config.plugins?.includes('@ianvs/prettier-plugin-sort-imports') ?? false, false);
+  const source = [
+    "import { local } from './local';",
+    "import { external } from 'node:fs';",
+    'export const answer = [local, external];',
+  ].join('\\n');
+  const formatted = await format(source, { ...config, filepath: jsFilename });
+  assert(formatted.indexOf("from './local'") < formatted.indexOf("from 'node:fs'"));
+});
+
 test('quoteProps as-needed preserves quoted keys only when required', async () => {
   const result = await prettier('export const value = { "safe": 1, "needs-hyphen": 2 };\n');
   assert.match(result, /safe: 1/);
