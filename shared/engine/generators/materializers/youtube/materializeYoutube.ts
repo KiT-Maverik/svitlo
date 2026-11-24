@@ -258,20 +258,30 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     throw new Error('Cannot materialize type-valid Youtube Config: unsupported authored fields');
   }
 
+  // Even a syntactically valid link needs human media review; the authoring
+  // URL/label are not proof of availability, rights or accessible alternatives.
+  const verificationInstruction =
+    'Verify external video (availability, appropriateness, access, captions, language/offline alternative, link) during Lesson Stage 6 media work';
+  blockers.push('// TODO (BLOCKER): ' + verificationInstruction + ' for youtube ' + config.id + '.');
+  diagnostics.push({
+    path: '$.config.locale.href',
+    code: 'pending-youtube-verification',
+    message: verificationInstruction,
+    severity: 'warning',
+  });
+
   if (options.production !== undefined) {
     if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
     const details = Object.entries(options.production).filter(
       ([key]) => key !== 'pending' && key !== 'documentLanguage',
     );
     if (details.length) {
-      const body =
-        details
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n';
-      files.push({ path: 'specification.md', content: body, kind: 'specification' });
+      // Retain reviewed external-video target notes beside the removable TODO,
+      // rather than leaving a permanent specification.md next to a URL.
+      const context = JSON.stringify(Object.fromEntries(details)).replace(/[\u2028\u2029]/g, character =>
+        character === '\u2028' ? '\\u2028' : '\\u2029',
+      );
+      blockers.push('// Reviewed external-video context (remove with verification TODO): ' + context);
     }
   }
 
