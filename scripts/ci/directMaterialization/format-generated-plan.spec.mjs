@@ -150,15 +150,22 @@ test('keeps strict Course-generated JSON seeds and quoted reference exports veri
     files: [
       { path: 'content/math/data/lessons/1/uuid/draft.ts', kind: 'typescript', content: source },
       { path: 'content/math/data/courses/1/uuid/content/example/index.ts', kind: 'typescript', content: reference },
-      { path: 'content/math/data/courses/1/uuid/index.ts', kind: 'typescript', content: 'export const config = { "name": "yes" };\n' },
+      {
+        path: 'content/math/data/courses/1/uuid/index.ts',
+        kind: 'typescript',
+        content: 'export const config = { "name": "yes" };\n',
+      },
     ],
   };
   const formatted = await formatGeneratedPlan(plan, { operation: 'course-stage5' });
   assert.equal(formatted.files[0].content, source);
   assert.equal(formatted.files[1].content, reference);
-  assert.deepEqual(JSON.parse(formatted.files[0].content.split('export const lessonSeed = ')[1].split(' as const satisfies ')[0]), {
-    config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' },
-  });
+  assert.deepEqual(
+    JSON.parse(formatted.files[0].content.split('export const lessonSeed = ')[1].split(' as const satisfies ')[0]),
+    {
+      config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' },
+    },
+  );
   assert.match(formatted.files[2].content, /name: 'yes'/);
   const ordinary = await formatGeneratedPlan(plan, { operation: 'lesson-stage6' });
   assert.notEqual(ordinary.files[0].content, source);

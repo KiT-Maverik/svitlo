@@ -161,9 +161,7 @@ function isCourseMachineHandoff(file, operation) {
   if (file.path.endsWith('/draft.ts')) return true;
   return (
     file.path.endsWith('/index.ts') &&
-    /^export \{ [A-Za-z][A-Za-z0-9]* as [A-Za-z][A-Za-z0-9]* \} from "[^"\n]+";\n$/.test(
-      file.content,
-    )
+    /^export \{ [A-Za-z][A-Za-z0-9]* as [A-Za-z][A-Za-z0-9]* \} from "[^"\n]+";\n$/.test(file.content)
   );
 }
 
