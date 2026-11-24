@@ -136,3 +136,31 @@ test('fails closed for invalid generated TypeScript and malformed plans', async 
   await assert.rejects(formatGeneratedPlan({ files: null }), /file plan/);
   await assert.rejects(formatGeneratedPlan(null), /file plan/);
 });
+
+test('keeps strict Course-generated JSON seeds and quoted reference exports verifiable', async () => {
+  const json = JSON.stringify({ config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' } }, null, 2);
+  const source =
+    '// TODO (BLOCKER): Complete this seed.\n' +
+    "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
+    'export const lessonSeed = ' +
+    json +
+    ' as const satisfies CourseWorkflowLessonSeed;\n';
+  const reference = 'export { primary as example } from "#lessonsData/1/uuid/index";\n';
+  const plan = {
+    files: [
+      { path: 'content/math/data/lessons/1/uuid/draft.ts', kind: 'typescript', content: source },
+      { path: 'content/math/data/courses/1/uuid/content/example/index.ts', kind: 'typescript', content: reference },
+      { path: 'content/math/data/courses/1/uuid/index.ts', kind: 'typescript', content: 'export const config = { "name": "yes" };\n' },
+    ],
+  };
+  const formatted = await formatGeneratedPlan(plan, { operation: 'course-stage5' });
+  assert.equal(formatted.files[0].content, source);
+  assert.equal(formatted.files[1].content, reference);
+  assert.deepEqual(JSON.parse(formatted.files[0].content.split('export const lessonSeed = ')[1].split(' as const satisfies ')[0]), {
+    config: { id: '00000000-0000-0000-0000-000000000001', slug: 'example' },
+  });
+  assert.match(formatted.files[2].content, /name: 'yes'/);
+  const ordinary = await formatGeneratedPlan(plan, { operation: 'lesson-stage6' });
+  assert.notEqual(ordinary.files[0].content, source);
+  assert.notEqual(ordinary.files[1].content, reference);
+});
