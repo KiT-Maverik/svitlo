@@ -9,6 +9,10 @@
 - **Planned / proposed:** target behavior; no assumption of a completed runtime contract.
 - **Open:** an architectural decision or implementation mechanism still to be designed.
 
+## Course-owned Assessment (planned implementation, PR #826)
+
+[Assessment](../entities/assessment.md) is a first-class Course/Module/Chapter child separate from instructional Lesson and narrative Episode. The Course methodology records explicit direct Assessment requirements, ordered slots and upstream Lesson dependencies; full Assessment production composes existing Content/Quiz Sections and externally owned Questions. Course Stage 5 returns an Assessment inventory for its PR-description tables and uses an inline blocked draft placeholder; a separate authorized materialization creates the nested source under `content/<slug>/index.ts` at the owning Course tree level. These are design requirements, **not evidence of shipped materialization, navigation or runtime readiness**. Follow [Create Assessment Flow](../../skills/assessment-workflow/create-assessment-flow.skill.md) and reconcile the direct materialization refactor #823.
+
 ## Typed production and publication boundaries
 
 - **Course:** One `CourseWorkflowStage1/2/3` TypeScript `draft.ts` source, SHA-pinned independent Stage 4 review and trusted Stage 5 source materialization. New Lessons receive minimal UUID-addressed Course-owned `CourseWorkflowLessonSeed` drafts, not completed Lesson Stage 1; mandatory Stage 8 human QA follows translation review and verifies the integrated Course; existing Lessons are imported and contextually patched without rewriting standalone source.
