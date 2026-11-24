@@ -77,12 +77,20 @@ export function materializeEpisodeStage5(
     source => {
       const checked = episodeWorkflowStage2_Schema.safeParse(input);
       if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
-      const root = input.production.placement.path;
+      // Technical ownership comes from the sealed Git source path, never an
+      // editable repetition of courseId/path/orderPath in Episode narrative.
+      const owned = source.source.sourcePath.match(
+        /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
+      );
+      if (
+        !owned ||
+        owned[2] !== owned[3].at(-1) ||
+        owned[4].split('/').at(-1) !== input.config.slug
+      )
+        throw Error('Episode Stage 5 requires its exact allocated Course draft path');
+      const [, textbook, , courseId, root] = owned;
       const document = input.production.languages.document;
       const planned = [...input.production.languages.planned];
-      const courseId = input.production.placement.courseId;
-      const textbook = source.source.sourcePath.match(/^(content\/[a-z][a-z0-9-]*)\/data\/courses\//)?.[1];
-      if (!textbook) throw Error('Episode Stage 5 requires an owned Course draft in its textbook');
       const sceneDrafts = episodeSceneDrafts(input, document, textbook);
       const result = materializeEpisode(
         {
