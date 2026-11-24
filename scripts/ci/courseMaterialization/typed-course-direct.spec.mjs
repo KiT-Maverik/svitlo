@@ -5,7 +5,10 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
 import {
-  courseStage3, independentLessonConfig, courseId, overriddenLessonId,
+  courseStage3,
+  independentLessonConfig,
+  courseId,
+  overriddenLessonId,
 } from '../directMaterialization/fixtures/worker-inputs.mjs';
 
 import { buildTypedCourseManifest, verifyCourseDependencies } from './typed-course-direct.mjs';

@@ -87,8 +87,7 @@ export function lessonStage2() {
 export function courseStage3(lesson, overriddenLesson) {
   const matching = sourceId => ({
     sourceSha: sha('a'),
-    methodologySourcePath:
-      'content/math/data/lessons/' + sourceId.at(-1) + '/' + sourceId + '/methodology.md',
+    methodologySourcePath: 'content/math/data/lessons/' + sourceId.at(-1) + '/' + sourceId + '/methodology.md',
     matchingRationale: 'Reviewed Skill and age match',
     languageEvidence: 'Ukrainian source available',
   });
@@ -130,7 +129,10 @@ export function courseStage3(lesson, overriddenLesson) {
           newLesson,
           reused: {
             config: { type: 'lesson', slug: 'reused', skills: [skillId] },
-            production: { ...baseExisting(lesson, reusedLessonId, 'independentLesson'), existing: { id: reusedLessonId } },
+            production: {
+              ...baseExisting(lesson, reusedLessonId, 'independentLesson'),
+              existing: { id: reusedLessonId },
+            },
           },
           overridden: {
             config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
