@@ -299,7 +299,7 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
       const pending = production?.pending === true;
       if (config.type === 'scene') {
         try {
-          const ready = !pending && checkScene(root, meta, config, production, git, ts);
+          const ready = checkScene(root, meta, config, production, git, ts) && !pending;
           if (ready) registeredSceneIds.add(config.id);
           else {
             if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard Scene: ' + config.id);
@@ -310,11 +310,13 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
             throw error;
           unregisteredSceneIds.add(config.id);
         }
-      } else if (!pending && checkMedia(root, meta, config, production, language, git)) {
-        approvedMediaBlockIds.add(config.id);
       } else {
-        if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard media: ' + config.id);
-        unresolvedMediaBlockIds.add(config.id);
+        const ready = checkMedia(root, meta, config, production, language, git);
+        if (ready && !pending) approvedMediaBlockIds.add(config.id);
+        else {
+          if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard media: ' + config.id);
+          unresolvedMediaBlockIds.add(config.id);
+        }
       }
       // Recurse into composite children, never into locale, schema fields or
       // production metadata (which could mimic a Config by accident).
