@@ -300,6 +300,13 @@ jobs:
           for (const [key, value] of Object.entries(request)) {
             if (manifest.scope[key] !== value) throw Error('Report scope does not match authorized request: ' + key);
           }
+          if (request.kind === 'episodes') {
+            const expectedPath = 'episodes/' + request.package.slice(8) + '/' + request.course.at(-1) + '/' + request.course + '/' + request.episode + '/' + request.locale + '.md';
+            const row = manifest.generated[0];
+            if (manifest.generated.length !== 1 || row.kind !== 'episode' || row.textbook !== request.package ||
+                row.course !== request.course || row.episode !== request.episode || row.locale !== request.locale || row.path !== expectedPath)
+              throw Error('Episode artifact does not match exact authorized scope');
+          }
           const expected = new Set(['manifest.json']);
           let total = 0;
           for (const item of manifest.generated) {

@@ -267,3 +267,15 @@ test('trusted Actions report validator rejects stale SHA, wrong scope, wrong run
     fs.rmSync(output, { recursive: true, force: true });
   }
 });
+
+test('Episode artifacts require exact Course, Episode and locale scope', () => {
+  const course = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
+  const episode = '7f88144d-3c6f-49fd-8e42-b0ab0b9be7bd';
+  const args = ['--kind', 'episodes', '--package', 'content/math', '--course', course, '--episode', episode, '--locale', 'uk'];
+  assert.deepEqual(parseArguments(args), { kind: 'episodes', package: 'content/math', course, episode, locale: 'uk' });
+  for (const flag of ['--course', '--episode', '--locale']) {
+    const copy = [...args]; copy.splice(copy.indexOf(flag), 2);
+    assert.throws(() => parseArguments(copy));
+  }
+  assert.throws(() => parseArguments(['--kind', 'courses', '--package', 'content/math', '--episode', episode]));
+});

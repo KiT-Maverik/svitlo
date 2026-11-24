@@ -6,6 +6,8 @@ import { test } from 'node:test';
 import {
   discoverCourses,
   generateCourseReviewArtifacts,
+  generateEpisodeReviewArtifacts,
+  renderEpisodeMarkdown,
   mergeCourseReview,
   renderCourseMarkdown,
 } from './generate-course-review-artifacts.mjs';
@@ -86,7 +88,7 @@ test('merges locale objects and replaces nested arrays atomically', () => {
   assert.equal(selected.content[0].content[0].content[1].locale.title, 'Епізод');
   assert.equal(selected.content[0].content[0].locale.title, 'Розділ');
 });
-test('renders only Course-owned hierarchy/locale and Episode Sections, not standalone Lesson contents', () => {
+test('renders Course metadata and opaque Lesson and Episode UUID references', () => {
   const markdown = renderCourseMarkdown({
     course: sample(),
     locale: 'en',
@@ -97,14 +99,12 @@ test('renders only Course-owned hierarchy/locale and Episode Sections, not stand
     'English course',
     'English module',
     'English chapter',
-    'English episode',
-    'English scene',
-    'Course-owned narrative',
+    id.episode,
     id.lesson,
   ]) {
     assert(markdown.includes(expected), expected);
   }
-  for (const forbidden of ['SECRET LESSON TITLE', 'SECRET LESSON CONTENT', 'SECRET QUESTION', 'SECRET FLASHCARD'])
+  for (const forbidden of ['SECRET LESSON TITLE', 'SECRET LESSON CONTENT', 'SECRET QUESTION', 'SECRET FLASHCARD', 'English episode', 'English scene', 'Course-owned narrative'])
     assert(!markdown.includes(forbidden), forbidden);
   const duplicated = sample();
   duplicated.content.push(sample().content[0]);
@@ -186,7 +186,6 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
   const { readModularCourse } = await import('./course-static-projection.mjs');
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-stage5-review-'));
   const owned = path.join(root, 'content/math/data/courses', id.course.slice(-1), id.course);
-  const prefix = '#coursesData/' + id.course.slice(-1) + '/' + id.course + '/';
   const write = (file, code) => {
     const target = path.join(owned, file);
     fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -194,10 +193,8 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
   };
   try {
     write(
-      'constants.ts',
+      'languages.ts',
       [
-        '// TODO (BLOCKER): Restore the complete language set when translations are ready:',
-        '// export const languages = ["uk","en","pl"] as const satisfies SupportedLanguages;',
         'export const languages = ["uk", "en"] as const satisfies SupportedLanguages;',
         '',
       ].join('\n'),
@@ -205,7 +202,8 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     write(
       'index.ts',
       [
-        'import { foundations } from "' + prefix + 'content/foundations/index";',
+        '// TODO (BLOCKER): Restore reviewed languages: ["uk","en","pl"]',
+        'import { foundations } from "./content/foundations";',
         'import { lesson } from "#lessonsData/' + id.lesson.slice(-1) + '/' + id.lesson + '/index";',
         'const items = { foundations, lesson };',
         'export const course = defineCourse<"course", typeof items, CourseLanguages>({',
@@ -219,8 +217,8 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     write(
       'content/foundations/index.ts',
       [
-        'import { first } from "' + prefix + 'content/foundations/first/index";',
-        'import { story } from "' + prefix + 'content/foundations/story/index";',
+        'import { first } from "./first";',
+        'import { story } from "./story";',
         'const items = { first, story };',
         'export const foundations = defineModule<"foundations", typeof items, CourseLanguages>({',
         '  id: "' + id.module + '", slug: "foundations", type: "module", params: {},',
@@ -263,7 +261,9 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
     const en = parsed.project('en');
     assert.equal(en.course.locale.title, 'Course');
     assert.equal(en.course.content[0].locale.title, 'Module');
-    assert.equal(en.course.content[0].content[1].locale.title, 'Episode');
+    assert.equal(en.course.content[0].content[1].id, id.episode);
+    assert.equal(en.course.content[0].content[1].locale, undefined);
+    assert.equal(parsed.episodeEntries[0].entry, path.join(owned, 'content/foundations/story/index.ts'));
     assert.equal(en.course.content[1].id, id.lesson);
     assert.equal(en.missing, 1);
     const markdown = renderCourseMarkdown({
@@ -272,17 +272,50 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
       sourceRef: 'a'.repeat(40),
       packageName: 'content/math',
     });
-    assert(markdown.includes('Narrative'));
+    assert(!markdown.includes('Narrative'));
     assert(markdown.includes('%%MISSING%%'));
     assert(!markdown.includes('SECRET LESSON CONTENT'));
     const uk = parsed.project('uk');
     assert.equal(uk.missing, 0);
-    assert(uk.course.content[0].content[1].section.items.opening.content.items.caption.locale.value === 'Оповідь');
+    assert.equal(uk.course.content[0].content[1].section, undefined);
     const pl = parsed.project('pl');
     assert(pl.missing > 0, 'planned but untranslated language must be marked missing');
     assert.equal(pl.course.locale.title, '%%MISSING%%');
     assert.throws(() => parsed.project('de'), /not declared or planned/);
+    const episode = sample().content[0].content[0].content[1];
+    const manifest = { sourceCommit: 'a'.repeat(40), generated: [], failures: [] };
+    const options = {
+      root, output: path.join(root, 'temp/references'), manifest, saveManifest() {},
+      packageName: 'content/math', courseId: id.course, episodeId: id.episode,
+      supportedLanguages: ['uk', 'en', 'pl'], languages: ['en'],
+      loader: async entry => {
+        assert.equal(entry, path.join(owned, 'content/foundations/story/index.ts'));
+        return [{ ...episode, config: { base: { params: { languages: ['en'] } } },
+          build: { props: () => ({ base: episode }) } }];
+      },
+    };
+    assert.deepEqual(await generateEpisodeReviewArtifacts(options), { generated: 1, failures: 0 });
+    const row = manifest.generated[0];
+    assert.equal(row.episode, id.episode);
+    assert.equal(row.course, id.course);
+    assert.equal(row.locale, 'en');
+    assert.equal(row.reviewReady, true);
+    const episodeMarkdown = fs.readFileSync(path.join(options.output, row.path), 'utf8');
+    assert(episodeMarkdown.includes('Course-owned narrative'));
+    assert(!episodeMarkdown.includes('SECRET LESSON'));
+    assert(!episodeMarkdown.includes('English course'));
+    assert.deepEqual(await generateEpisodeReviewArtifacts({ ...options, languages: ['pl'] }), { generated: 0, failures: 1 });
+    await assert.rejects(generateEpisodeReviewArtifacts({ ...options, episodeId: id.lesson }), /Exact materialized Episode/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
+});
+
+test('renders a complete Episode independently of Course and Lesson metadata', () => {
+  const episode = sample().content[0].content[0].content[1];
+  const md = renderEpisodeMarkdown({ episode, locale: 'en', packageName: 'content/math', sourceRef: 'a'.repeat(40) });
+  assert(md.includes('English episode'));
+  assert(md.includes('Course-owned narrative'));
+  assert(!md.includes('English course'));
+  assert.throws(() => renderEpisodeMarkdown({ episode: { ...episode, section: [] }, locale: 'en', packageName: 'content/math', sourceRef: 'a'.repeat(40) }), /Complete resolved Episode Sections/);
 });
