@@ -44,6 +44,7 @@ function metadata() {
     meta.identity?.id !== meta.identity?.folder?.split('/').at(-1) ||
     !SHA.test(meta.baseHead || '') ||
     !SHA.test(meta.lessonBlob || '') ||
+    !SHA.test(meta.lessonConstantsBlob || '') ||
     typeof meta.branch !== 'string'
   ) {
     throw Error('Typed Bank metadata is incomplete or contradictory');
@@ -116,8 +117,33 @@ function assertSourceRevision(root, sha, pathname, meta, label) {
     }
   } else throw Error(label + ': SHA must identify source blob or ancestor commit');
 }
+function verifyOwnerLanguages(meta, input, root) {
+  const filename = meta.identity.folder + '/constants.ts';
+  assertTracked(root, filename, meta, 'Lesson languages constants');
+  const tracked = git(root, 'ls-files', '--stage', '--', filename);
+  if (!/^100644 [a-f0-9]{40} 0\t/.test(tracked) || !tracked.endsWith('\t' + filename))
+    throw Error('Owning Lesson constants.ts must be a regular Git blob');
+  let current = root;
+  for (const segment of filename.split('/')) {
+    current = path.join(current, segment);
+    if (fs.lstatSync(current).isSymbolicLink())
+      throw Error('Symlink in owning Lesson constants.ts path');
+  }
+  const bytes = fs.readFileSync(current);
+  if (gitBlob(bytes) !== meta.lessonConstantsBlob || git(root, 'rev-parse', 'HEAD:' + filename) !== meta.lessonConstantsBlob)
+    throw Error('Owning Lesson constants.ts differs from pinned Git blob');
+  const {
+    parseLessonLanguageConstants,
+    assertBankLessonLanguages,
+  } = require(path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js'));
+  const reviewed = parseLessonLanguageConstants(bytes.toString('utf8'));
+  const languages = meta.bank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
+  assertBankLessonLanguages(reviewed, languages);
+  return reviewed;
+}
 function authorizations(meta, input, root, blocks) {
   const lessonDirectory = meta.identity.folder;
+  verifyOwnerLanguages(meta, input, root);
   const source = {
     content: fs.readFileSync(path.join(root, meta.sourcePath), 'utf8'),
     blobSha: meta.sourceBlob,
@@ -157,7 +183,6 @@ function validTypedPath(filename, meta) {
   )
     return false;
   const relative = filename.slice(folder.length);
-  if (relative === meta.bank + 'Languages.ts') return true;
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
   return (
@@ -177,7 +202,7 @@ export function verifyTypedManifest(result, meta) {
     result.deletedSource?.path !== meta.sourcePath ||
     result.deletedSource?.blobSha !== meta.sourceBlob ||
     !Array.isArray(result.files) ||
-    result.files.length < 4 ||
+    result.files.length < 3 ||
     result.files.length > MAX_COUNT ||
     !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')
   ) {
@@ -208,7 +233,7 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
-  for (const filename of [root + meta.bank + '/index.ts', root + meta.bank + 'Languages.ts']) {
+  for (const filename of [root + meta.bank + '/index.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
   return result.files;
@@ -290,7 +315,7 @@ export function assertTypedBankInventory(meta, input, files) {
           throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' + slug + '/' + side);
         }
         for (const block of content.order) {
-          if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
+          if (!paths.has(prefix + block + '/index.ts')) {
             throw Error('Reviewed Side ContentBlock omitted: ' + slug + '/' + side + '/' + block);
           }
         }
@@ -313,6 +338,7 @@ async function analyze(meta) {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlob,
       sourceCommitSha: meta.head,
+      lessonConstantsBlobSha: meta.lessonConstantsBlob,
     },
   });
   const { plan, input } = result ?? {};

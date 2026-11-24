@@ -69,9 +69,30 @@ const approvedBlockIdentifiers = input => {
   walk(input?.config);
   return { registeredSceneIds, approvedMediaBlockIds };
 };
+const { parseLessonLanguageConstants, assertBankLessonLanguages } = require(
+  './shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js',
+);
 const bankOptions = input => {
   capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
+  const rootParts = source.sourcePath.split('/').slice(0, 6);
+  let ownerFile = '/work';
+  for (const segment of rootParts.concat('constants.ts')) {
+    ownerFile = path.join(ownerFile, segment);
+    if (fs.lstatSync(ownerFile).isSymbolicLink()) throw Error('Unsafe owning Lesson constants.ts symlink');
+  }
+  if (!sha.test(source.lessonConstantsBlobSha ?? '')) throw Error('Missing pinned owning Lesson constants SHA');
+  const ownerBytes = fs.readFileSync(ownerFile);
+  const ownerBlob = createHash('sha1')
+    .update('blob ' + ownerBytes.length + '\0')
+    .update(ownerBytes)
+    .digest('hex');
+  if (ownerBlob !== source.lessonConstantsBlobSha)
+    throw Error('Owning Lesson constants.ts differs from reviewed base');
+  const ownerLanguages = parseLessonLanguageConstants(ownerBytes.toString('utf8'));
+  const requestedLanguages =
+    selectedBank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
+  assertBankLessonLanguages(ownerLanguages, requestedLanguages);
   const sourceAuthorization = {
     content: sourceText,
     blobSha: source.sourceBlobSha,
@@ -91,6 +112,7 @@ const bankOptions = input => {
     source: sourceAuthorization,
     snapshot,
     blocks: approvedBlockIdentifiers(input),
+    ownerLanguages,
   };
   if (selectedBank === 'questions') return base;
   return {
