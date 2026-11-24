@@ -29,7 +29,7 @@ Use the approved Course slot rather than re-deciding the Course curriculum. Stag
 
 ### Stages 3–4: review
 
-Stage 3 starts in a distinct context. Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Neither stage authorizes materialization or merge.
+Stage 3 follows the [independent review rule](../../rules/independent-review.md). Record baseline commit and source blob SHA, exact node paths, findings, severity and required action in the Episode PR. Correct authorized in-scope defects, reread the complete corrected source and record final commit/blob SHA and verdict. Stage 4 is a specialist experience audit, not a second independent content review; it may make bounded corrections inline, preserve Stage 3 historical evidence, and pin its actual final source. Escalate Course-intent changes or unresolved runtime dependencies. Record each final verdict using the [canonical review evidence format](../../rules/independent-review.md) in the existing PR description. Neither stage authorizes materialization or merge.
 
 ### Stages 5–6: implementation
 
@@ -74,6 +74,7 @@ Initialize once in the existing Episode PR description and reconcile before each
 
 ## Evidence and handoffs
 
+- <Stage 3 and 4 review evidence lines; see independent-review.md>
 - <stage, owner, commit/blob, findings, actual checks, verdict, unresolved requirements>
 ```
 

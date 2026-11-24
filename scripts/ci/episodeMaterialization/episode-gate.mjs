@@ -1,7 +1,7 @@
 /** Authorization and identity gate. Only the pinned default-branch implementation runs. */
 import fs from 'node:fs';
 import { github, requireActor, safeBranch } from '../courseMaterialization/course-gate.mjs';
-import { selectStage4Review } from '../courseMaterialization/typed-course-gate.mjs';
+import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -85,15 +85,28 @@ export async function inspectEpisode(number, parentNumber, expected) {
   const sourceBlobSha = await resource(identity.sourcePath, pr.head.sha);
   const handoffBlobSha = await resource(identity.sourcePath, parent.head.sha);
   const parentBlobSha = await resource(identity.parentPath, parent.head.sha);
-  const reviews = await github('pulls/' + number + '/reviews?per_page=100');
-  if (!Array.isArray(reviews) || reviews.length >= 100) throw Error('Incomplete Episode review listing');
-  const permissions = Object.create(null);
-  for (const review of reviews) {
-    const login = review.user?.login;
-    if (/^[A-Za-z0-9-]+$/.test(login ?? '') && !Object.hasOwn(permissions, login.toLowerCase()))
-      permissions[login.toLowerCase()] = (await github('collaborators/' + login + '/permission'))?.permission ?? 'none';
-  }
-  const approved = selectStage4Review(reviews, pr, permissions);
+  const reviews = await verifyReviewEvidence(pr.body, {
+    stages: [3, 4],
+    head: pr.head.sha,
+    blob: sourceBlobSha,
+    readBlob: commit => resource(identity.sourcePath, commit),
+    isAncestor: async (from, to) => {
+      if (from === to) return true;
+      const comparison = await github('compare/' + from + '...' + to);
+      return comparison?.status === 'ahead' && comparison.merge_base_commit?.sha === from;
+    },
+  });
+  const again = await github('pulls/' + number);
+  const parentAgain = await github('pulls/' + parentNumber);
+  if (
+    again?.state !== 'open' || !again.draft || again.body !== pr.body ||
+    again.head?.sha !== pr.head.sha || again.head?.ref !== pr.head.ref ||
+    again.head?.repo?.full_name !== repo || again.base?.sha !== parent.head.sha ||
+    again.base?.ref !== parent.head.ref || again.base?.repo?.full_name !== repo ||
+    parentAgain?.state !== 'open' || parentAgain.head?.sha !== parent.head.sha ||
+    parentAgain.head?.ref !== parent.head.ref || parentAgain.head?.repo?.full_name !== repo ||
+    parentAgain.base?.ref !== base
+  ) throw Error('Episode or parent PR changed during review evidence verification');
   return {
     repo,
     number,
@@ -106,10 +119,7 @@ export async function inspectEpisode(number, parentNumber, expected) {
     sourceBlobSha,
     handoffBlobSha,
     parentBlobSha,
-    reviewer: approved.user.login,
-    reviewCommitSha: approved.commit_id,
-    evidenceUrl:
-      approved.html_url || 'https://github.com/' + repo + '/pull/' + number + '#pullrequestreview-' + approved.id,
+    reviews,
   };
 }
 async function main() {
