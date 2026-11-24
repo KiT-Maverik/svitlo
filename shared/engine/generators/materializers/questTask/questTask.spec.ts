@@ -59,3 +59,24 @@ test('Quest Task: rejects a non-Scene child', () => {
     /exactly one Scene/,
   );
 });
+
+test('Quest Task retains reviewed narrative notes without specification sidecar', () => {
+  const out = materializeQuestTask(
+    { id: id('01'), slug: 'start', type: 'questTask', scene: { id: id('02'), slug: 'interactive', type: 'scene' } }
+      as Parameters<typeof materializeQuestTask>[0],
+    {
+      documentLanguage: 'en',
+      directory: 'tasks/start',
+      languagesImport: '#lessonsData/c/example/constants',
+      production: { specification: 'Do not discard the learner choice.' },
+      renderScene: (child, ctx) => ({
+        exportName: child.slug,
+        files: [{ path: ctx.directory + '/index.ts', kind: 'typescript', content: '//scene' }],
+        diagnostics: [],
+      }),
+    },
+  );
+  assert(!out.files.some(file => file.path.endsWith('specification.md')));
+  assert.match(out.files.find(file => file.path === 'tasks/start/index.ts')?.content ?? '', /Do not discard the learner choice/);
+  assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
+});

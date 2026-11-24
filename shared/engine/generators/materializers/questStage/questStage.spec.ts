@@ -84,3 +84,23 @@ test('Quest Stage: missing mandatory subtitles does not generate fake media', ()
     /mandatory media is missing/,
   );
 });
+
+test('Quest Stage preserves reviewed child notes in safe source comments without sidecar', () => {
+  const out = materializeQuestStage(stage() as Parameters<typeof materializeQuestStage>[0], {
+    documentLanguage: 'en',
+    directory: 'stages/start',
+    languagesImport: '#lessonsData/c/example/constants',
+    production: { specification: 'Narration must describe the changes\n*/ no code injection', pending: false },
+    renderMedia: (child, ctx) => ({
+      exportName: child.slug,
+      files: [{ path: ctx.directory + '/index.ts', kind: 'typescript', content: '//media' }],
+      diagnostics: [],
+    }),
+  });
+  assert(!out.files.some(file => file.path.endsWith('specification.md')));
+  const src = out.files.find(file => file.path === 'stages/start/index.ts')?.content ?? '';
+  assert.match(src, /Reviewed specification:/);
+  assert.match(src, /TODO \(BLOCKER\): Integrate these reviewed Quest child notes/);
+  assert.doesNotMatch(src, /^\*\//m);
+  assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
+});

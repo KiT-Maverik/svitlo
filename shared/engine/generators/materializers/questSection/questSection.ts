@@ -2,7 +2,7 @@ import type { QuestSection_Config } from '../../../configurators/sections/define
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
 /**
- * Keep the exact Lesson/Episode languages.ts reference when child files live
+ * Keep the exact Lesson/Episode constants.ts reference when child files live
  * deeper than their parent. Package aliases remain rooted independently.
  */
 function childLanguagesImport(parentImport: string, nestedDepth: number): string {
