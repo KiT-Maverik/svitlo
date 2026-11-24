@@ -97,3 +97,9 @@ Do not pass built `{ id, base, locale }` override results as authored Config,
 or author a separate Course-root patch tree. Section additions requiring
 Configurator instances are not plain JSON patches and do not belong in this
 placement-local helper.
+
+## Reserved Course child previews
+
+`defineLessonStub({ id, slug })`, `defineEpisodeStub({ id, slug })` and `defineAssessmentStub({ id, slug })` are build-only draft placement previews, not finished entities. They preserve the reviewed immutable UUID, camelCase slug and parent `content.order`; each renders a genuine ContentSection with a Text ContentBlock displaying `Not implemented`. Only the original Course source language need be selected for a preview; the displayed text is invariant and no Questions, Quiz, banks, Episode events or finished Lesson methodology is invented. `defineAssessmentStub` reuses the existing `defineAssessmentDraft` preview contract.
+
+Each Configurator and published preview carries `draft: true`; completed Configurators carry a distinct `draft: false` type brand. The draft-only Props schemas are separate from completed Props schemas. Stub overrides always throw. The strict Course/Lesson publishers reject drafts independently of the required, symbol-aware FastGate CI guard that blocks newly introduced stub imports/usages from production-authored source on Ready PRs. These placeholders must be replaced with separately reviewed completed Configurators before production publication; a successful preview Build never certifies release readiness.

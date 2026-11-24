@@ -83,6 +83,7 @@ function findLessonPatches(course, languages) {
     if (!entity || typeof entity.id !== 'string' || !uuid.test(entity.id)) {
       throw new Error('Invalid Course entity identity at ' + location);
     }
+    if (entity.draft === true) throw new Error('Course draft stub cannot be published at ' + location);
     if (entity.type === 'lesson') {
       // A placed Lesson carries its own authored Config patch. The original
       // Lesson's Build API publishes sparse Props for this placement alone.
@@ -140,6 +141,7 @@ function compactEntity(value, lessonPatches, language, location) {
   if (!isObject(value) || typeof value.id !== 'string') {
     throw new Error('Invalid resolved Course Props entity');
   }
+  if (value.draft === true) throw new Error('Course draft stub cannot be published at ' + location);
   if (value.type === 'lesson') {
     if (!lessonPatches.has(location)) throw new Error('Unregistered Course Lesson at ' + location + ': ' + value.id);
     const patch = lessonPatches.get(location);
