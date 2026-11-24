@@ -55,8 +55,6 @@ jobs:
           git rev-parse HEAD
       - name: Build ordinary Engine package
         run: npm run package:build --workspace @svitlo/engine
-      - name: Verify sealed Course source manifest without replay
-        run: node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs
       - name: Test trusted typed Course Stage 5 boundary
         run: node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs
       - name: Test Course source generator and atomic writer

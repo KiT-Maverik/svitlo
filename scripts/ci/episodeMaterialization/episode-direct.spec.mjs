@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
+import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
+import { parseEpisodeHandoff } from './episode-source.mjs';
 import { buildEpisodeManifest, episodeCommitTree } from './episode-transaction.mjs';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const episodeId = '663572e7-bd85-4516-86e2-3de07d209e04';
@@ -56,7 +58,31 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
   assert.doesNotMatch(combined.files.find(x=>x.path===meta.parentPath).content,/Pending Episode handoffs/);
   const manifest = buildEpisodeManifest(meta, combined);
   assert.equal(manifest.sourceExportName,worker.exportName);
+  const generatedParent = combined.files.find(file => file.path === meta.parentPath).content;
+  assert.equal(verifyReservedEpisodeParent(parent, generatedParent, {
+    placement, slug:'episodeOne', episodeId, orderIndex:0,
+    exportName:worker.exportName,
+  }), true);
+  for (const changed of [
+    generatedParent + '// unauthorized edit',
+    generatedParent.replace('child_episodeOne', 'unreviewed'),
+    generatedParent.replace('"episodeOne"', '"other"'),
+  ])
+    assert.throws(() => verifyReservedEpisodeParent(parent, changed, {
+      placement, slug:'episodeOne',episodeId,orderIndex:0,exportName:worker.exportName,
+    }));
+
   assert.equal(episodeCommitTree(manifest).at(-1).sha,null);
   assert.throws(()=>composeEpisodeDirectPlan(handoff,reviewed,meta,parent,{...worker,episodeId:courseId}),/invalid source plan/);
   assert.throws(()=>composeEpisodeDirectPlan(handoff,{...reviewed,config:{...reviewed.config,id:courseId}},meta,parent,worker),/preserve/);
+});
+
+test('canonical Course-generated Episode handoff is JSON in an exact TypeScript wrapper, never executable code', () => {
+  const original = '// TODO (BLOCKER): Episode Stage 1 handoff; scenario is not yet authored or reviewed.\n' +
+    "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
+    'export const episodeStage1 = ' + JSON.stringify(handoff, null, 2) +
+    ' as const satisfies EpisodeWorkflowStage1Handoff;\n';
+  assert.deepEqual(parseEpisodeHandoff(original), handoff);
+  assert.throws(() => parseEpisodeHandoff(original.replace('as const satisfies','as never satisfies')));
+  assert.throws(() => parseEpisodeHandoff(original + 'process.exit(1);'));
 });
