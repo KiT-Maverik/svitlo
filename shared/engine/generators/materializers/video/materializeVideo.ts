@@ -7,7 +7,6 @@ import { isDeepStrictEqual } from 'node:util';
 
 import { video_Config_Schema, type ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type VideoDraftConfig = Pick<ContentBlock_Video_Config, 'id' | 'slug' | 'type'> & {

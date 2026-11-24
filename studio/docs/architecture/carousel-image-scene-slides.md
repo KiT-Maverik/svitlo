@@ -25,12 +25,12 @@ sections/<sectionSlug>/<carouselSlug>/
     index.ts                       # defineScene; executable Scene draft is textbook-scoped
 ```
 
-  The Image slide's reviewed `production` brief appears **after** its
-  `defineImage` declaration as a `TODO (BLOCKER)` plus removable multiline
-  TypeScript comment; it does not create `specification.md`. For a Lesson Scene
-  slide, the full reviewed brief belongs in the separately generated
-  `scenes/<uuid-last-hex>/<uuid>/<SceneName>.tsx` draft. No duplicate Scene
-  specification sidecar is emitted by Lesson Stage 6.1.
+The Image slide's reviewed `production` brief appears **after** its
+`defineImage` declaration as a `TODO (BLOCKER)` plus removable multiline
+TypeScript comment; it does not create `specification.md`. For a Lesson Scene
+slide, the full reviewed brief belongs in the separately generated
+`scenes/<uuid-last-hex>/<uuid>/<SceneName>.tsx` draft. No duplicate Scene
+specification sidecar is emitted by Lesson Stage 6.1.
 
 - Physical images are **textbook-wide**, under
   `content/<book>/assets/images/<UUID>.<extension>`, not beside their

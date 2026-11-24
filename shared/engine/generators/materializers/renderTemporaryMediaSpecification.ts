@@ -16,9 +16,7 @@ export function renderTemporaryMediaSpecification(
   if (production === undefined) return '';
   if (!plainRecord(production)) throw new Error('$.production: expected plain authoring notes');
 
-  const details = Object.entries(production).filter(
-    ([key]) => key !== 'pending' && key !== 'documentLanguage',
-  );
+  const details = Object.entries(production).filter(([key]) => key !== 'pending' && key !== 'documentLanguage');
   if (!details.length) return '';
 
   const body = details

@@ -7,10 +7,7 @@ import { renderTemporaryMediaSpecification } from './renderTemporaryMediaSpecifi
 
 test('temporary media brief: absent and metadata-only production emit no extra source', () => {
   assert.equal(renderTemporaryMediaSpecification(undefined, 'Video'), '');
-  assert.equal(
-    renderTemporaryMediaSpecification({ pending: true, documentLanguage: 'uk' }, 'Video'),
-    '',
-  );
+  assert.equal(renderTemporaryMediaSpecification({ pending: true, documentLanguage: 'uk' }, 'Video'), '');
 });
 
 test('temporary media brief: deterministic labeled block after implementation with safe delimiters', () => {
@@ -27,7 +24,7 @@ test('temporary media brief: deterministic labeled block after implementation wi
   assert.match(comment, /# accessibility[\s\S]*Українською/);
   assert(!comment.includes('*/ then a blue cup'), 'reviewed text cannot close the source comment');
   assert(comment.includes('* / then a blue cup'));
-  const source = "export const value = 1;\n" + comment + "\nexport const after = 2;\n";
+  const source = 'export const value = 1;\n' + comment + '\nexport const after = 2;\n';
   const parsed = ts.transpileModule(source, {
     fileName: 'index.ts',
     reportDiagnostics: true,
@@ -38,8 +35,5 @@ test('temporary media brief: deterministic labeled block after implementation wi
 });
 
 test('temporary media brief: invalid production notes fail without fabricating content', () => {
-  assert.throws(
-    () => renderTemporaryMediaSpecification([] as never, 'Image'),
-    /expected plain authoring notes/,
-  );
+  assert.throws(() => renderTemporaryMediaSpecification([] as never, 'Image'), /expected plain authoring notes/);
 });

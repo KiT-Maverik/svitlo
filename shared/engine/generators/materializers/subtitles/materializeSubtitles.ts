@@ -10,7 +10,6 @@ import {
   type ContentBlock_Subtitles_Config,
 } from '../../../configurators/contentBlocks/defineSubtitles';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type SubtitlesDraftConfig = Pick<ContentBlock_Subtitles_Config, 'id' | 'slug' | 'type'> & {
