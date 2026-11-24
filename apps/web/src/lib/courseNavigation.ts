@@ -45,7 +45,12 @@ export function coursePropsToTopics(
         href: root + '/episode/' + lessonLanguage + '/' + node.id,
       };
     if (node.type === 'assessment')
-      return { id: node.id, title: node.locale.title, type: 'assessment' };
+      return {
+        id: node.id,
+        title: node.locale.title,
+        type: 'assessment',
+        href: root + '/assessment/' + lessonLanguage + '/' + node.id,
+      };
     return {
       id: node.id,
       title: node.locale.title,
