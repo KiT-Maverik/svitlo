@@ -1,4 +1,4 @@
-name: Materialize reviewed typed Lesson from PR command
+name: Materialize typed Lesson from PR command
 
 # The trusted workflow runs on the default branch. Never execute candidate PR code.
 on:
@@ -11,7 +11,7 @@ on:
         type: number
         required: true
       operation:
-        description: Reviewed typed Lesson Stage 6
+        description: Typed Lesson Stage 6
         type: choice
         options: [materialize-typed]
         required: true
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Authorize typed Lesson actor, review source and Course origin
+      - name: Authorize actor and locate pinned Lesson source
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -70,7 +70,7 @@ jobs:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - name: Check out reviewed Lesson commit as untrusted data only
+      - name: Check out pinned Lesson commit as untrusted data only
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.typed-resolve.outputs.head }}
@@ -118,7 +118,7 @@ jobs:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - name: Check out approved Lesson HEAD as data, never execute it
+      - name: Check out pinned Lesson HEAD as data, never execute it
         uses: actions/checkout@v4
         with:
           ref: ${{ needs.typed-resolve.outputs.head }}
@@ -132,7 +132,7 @@ jobs:
         with:
           name: typed-lesson-stage6-${{ needs.typed-resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Verify source HEAD, review evidence and manifest before atomic commit
+      - name: Verify source HEAD, blob and manifest before atomic commit
         env:
           GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}

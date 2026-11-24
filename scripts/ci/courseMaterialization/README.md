@@ -35,7 +35,7 @@ This conservative boundary rejects such imports rather than executing PR code.
 
 This path uses the already-implemented Course/Module/Chapter/Episode
 orchestrators, concrete Episode Section/ContentBlock renderers shared with
-Lesson Stage 6, and Course → new Lesson Stage 1 handoffs. It does not begin
+Lesson Stage 6, and Course → new Lesson seeds (not Stage 1 completion). It does not begin
 independent Lesson PRs, Question Banks, Flashcard Banks, translation, Scenes,
 or Course Props publishing. Unresolved child and release
 `TODO (BLOCKER)` markers persist in generated authored source. Generated

@@ -34,8 +34,7 @@ function setup(t) {
     sourcePath,
     materializedPath,
     sourceBlobSha,
-    reviewCommitSha: reviewed,
-    reviewEvidenceSha: '2'.repeat(40),
+    sourceCommitSha: reviewed,
     publishable: false,
     files: [
       { path: folder + '/languages.ts', content: 'export const languages = ["en"] as const;\n', kind: 'typescript' },
@@ -80,15 +79,11 @@ test('check is read-only; write atomically consumes exact Stage 2 draft under an
   git(root, 'checkout', '--detach', 'source');
   assert.throws(() => commitLessonStage6Plan(plan, { repoRoot: root, mode: 'write' }), /draft is missing/);
 });
-test('refuses stale review, modified source and untrusted output paths', t => {
+test('refuses stale source, modified source and untrusted output paths', t => {
   const { root, plan } = setup(t);
   assert.throws(
-    () => preflightLessonStage6Commit({ ...plan, reviewCommitSha: 'a'.repeat(40) }, { repoRoot: root }),
+    () => preflightLessonStage6Commit({ ...plan, sourceCommitSha: 'a'.repeat(40) }, { repoRoot: root }),
     /stale/,
-  );
-  assert.throws(
-    () => preflightLessonStage6Commit({ ...plan, reviewEvidenceSha: 'invalid' }, { repoRoot: root }),
-    /Invalid reviewed/,
   );
   assert.throws(
     () => preflightLessonStage6Commit({ ...plan, sourceBlobSha: 'a'.repeat(40) }, { repoRoot: root }),
@@ -154,7 +149,7 @@ test('refuses invalid generated TypeScript and any attempt to publish from this 
   const { root, plan } = setup(t);
   assert.throws(
     () => preflightLessonStage6Commit({ ...plan, publishable: true }, { repoRoot: root }),
-    /Invalid reviewed/,
+    /Invalid pinned/,
   );
   assert.throws(
     () =>

@@ -190,20 +190,6 @@ export interface CourseWorkflowStage2 extends CourseWorkflowStage1 {
  */
 type CourseWorkflowStage3PlacementConfig = CourseWorkflowStage2LessonSlot['config'] & Pick<Lesson_Config, 'slug'>;
 
-/** Stage 3 authors the fields needed to start an independent Lesson later.
- * Reuse the canonical Lesson Config, but defer its UUID, languages, Sections and
- * required runtime-only settings until the Lesson's own Production process.
- */
-export type CourseWorkflowStage3NewLessonConfig = CourseWorkflowStage3PlacementConfig &
-  Pick<Lesson_Config, 'locale'> & {
-    id?: never;
-    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & {
-      languages?: never;
-    };
-    section?: never;
-    events?: never;
-  };
-
 /** Reuse keeps the planned Course placement; the referenced ID is held
  * only by production.existing, either directly or in an override result.
  */
@@ -224,25 +210,6 @@ export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3Place
 export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> &
   Partial<Pick<ReturnType<Lesson_Configurator['build']['overrides']>, 'base' | 'locale'>>;
 
-/** Course uses the same editorial assessment decisions as standalone Lessons.
- * Only the Course's stage sequencing is Course-specific.
- */
-export type CourseWorkflowStage3AssessmentRequirements = LessonProductionAssessmentRequirements;
-
-/** Course-specific intent for a genuinely new Lesson; editorial, not Props. */
-export type CourseWorkflowStage3LessonIntent = {
-  /** Observable learning objective, not a generic topic label. */
-  objective: string;
-  /** Pedagogical level and boundaries of the proposed Lesson. */
-  depth: string;
-  /** Why this Lesson belongs at this position in the Course sequence. */
-  sequenceReason: string;
-  /** How the intended learning will be evaluated, without inventing Question IDs. */
-  assessmentEvidence: string;
-  /** Explicit assessment banks/Sections plan; each is an independent decision. */
-  assessment: CourseWorkflowStage3AssessmentRequirements;
-};
-
 /** Verification evidence for reusing an independent Lesson.
  * The Lesson UUID is carried by production.existing; do not store it twice.
  */
@@ -257,22 +224,6 @@ export type CourseWorkflowStage3LessonMatch = {
   languageEvidence: string;
 };
 
-/** New Lesson: full methodology here, no separate Lesson UUID or PR yet. */
-export type CourseWorkflowStage3NewLesson = {
-  config: CourseWorkflowStage3NewLessonConfig;
-  production: CourseWorkflowStage3LessonIntent & {
-    kind: 'new';
-    /** Complete reviewable Lesson methodology, not a one-line outline.
-     * The Course Workflow Skill owns the full pedagogical acceptance criteria.
-     */
-    methodology: string;
-    lessonId?: never;
-    matching?: never;
-    overrides?: never;
-    overrideRationale?: never;
-  };
-};
-
 /** Two outcomes remain: new or existing. Every existing placement uses
  * exactly the same { id, base?, locale? } reference object, regardless of
  * whether this Course modifies the Lesson.
@@ -285,7 +236,7 @@ export type CourseWorkflowStage3ExistingLesson = {
     /** Evidence that the referenced Lesson was inspected for pedagogical reuse. */
     matching: CourseWorkflowStage3LessonMatch;
     /** Required explicit assessment decisions for the reused Lesson placement. */
-    assessment: CourseWorkflowStage3AssessmentRequirements;
+    assessment: LessonProductionAssessmentRequirements;
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */
@@ -294,6 +245,47 @@ export type CourseWorkflowStage3ExistingLesson = {
     lessonId?: never;
     overrides?: never;
   };
+};
+
+/** A Course proposal describes the planned Lesson, not completion of Lesson Stage 1. */
+export type CourseWorkflowLessonProposal = {
+  methodology: string;
+  objective: string;
+  depth: string;
+  sequenceReason: string;
+  assessmentEvidence: string;
+  assessment: LessonProductionAssessmentRequirements;
+  sourceEvidence?: string;
+};
+
+export type CourseWorkflowStage3NewLessonConfig = CourseWorkflowStage3PlacementConfig &
+  Pick<Lesson_Config, 'locale'> & {
+    id?: never;
+    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+    section?: never;
+    events?: never;
+  };
+
+export type CourseWorkflowStage3NewLesson = {
+  config: CourseWorkflowStage3NewLessonConfig;
+  production: CourseWorkflowLessonProposal & {
+    kind: 'new';
+    existing?: never;
+    matching?: never;
+    lessonId?: never;
+    overrides?: never;
+    overrideRationale?: never;
+    languages?: never;
+  };
+};
+
+/** Course-owned editorial seed, emitted at the future Lesson's canonical draft path.
+ * It carries an allocated identity and Course context, never a Lesson Stage 1 deliverable.
+ */
+export type CourseWorkflowLessonSeed = {
+  config: Omit<CourseWorkflowStage3NewLessonConfig, 'id'> & Pick<Lesson_Config, 'id'>;
+  proposal: CourseWorkflowLessonProposal;
+  languageContext: CourseWorkflowStage1Languages;
 };
 
 export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | CourseWorkflowStage3ExistingLesson;

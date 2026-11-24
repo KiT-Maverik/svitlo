@@ -7,10 +7,11 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
-import { parseTypedIdentity, parseTypedTrigger, typedPath, inspectTyped } from './lesson-typed-gate.mjs';
+import { lessonSourceIdentity, parseTypedTrigger, typedPath, inspectTyped } from './lesson-typed-gate.mjs';
 import {
   typedMeta,
   checkedTypedRoot,
+  safeTarget,
   matchingSnapshot,
   typedManifest,
   verifyTypedManifest,
@@ -19,80 +20,24 @@ import {
 } from './lesson-typed-materialization.mjs';
 
 const id = '12345678-1234-4234-8234-123456789001';
-const courseId = '22345678-1234-4234-8234-123456789002';
 const folder = 'content/math/data/lessons/1/' + id;
 const source = folder + '/draft.ts';
 const pkg = 'content/math';
 const original = Buffer.from('export const stage2 = { config: {}, production: {} };\n');
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const sha = value => value.repeat(40);
-const stamp = String.fromCharCode(96);
-const stages = [
-  'Methodology',
-  'Content Creation',
-  'Content Review',
-  'Experience Review',
-  'Methodology Compliance',
-  'Resource Production',
-  'Questions',
-  'Flashcards',
-  'Translation',
-  'Translation Review',
-];
-const ticks = [
-  '  - [ ] 6.1 Materialize Lesson sources',
-  '  - [ ] 6.2 Complete generated Lesson resources',
-  '  - [ ] 6.3 Implement and integrate Scenes',
-];
-function tracker({ course = false, approved = true } = {}) {
-  return [
-    '<!-- svitlo-create-lesson-flow:v1 -->',
-    ...(course ? ['<!-- svitlo-course-lesson:v1 -->', 'Course: ' + courseId, 'Lesson: ' + id, 'Parent PR: #770'] : []),
-    '## Lesson identity',
-    '- Lesson UUID / textbook / slug: ' +
-      stamp +
-      id +
-      stamp +
-      ' / ' +
-      stamp +
-      pkg +
-      stamp +
-      ' / ' +
-      stamp +
-      'intro' +
-      stamp,
-    '- Source path: ' + source + ' (single reviewed Lesson Stage 2 object)',
-    '## Lesson stages',
-    ...stages.flatMap((name, i) => [
-      '- [' + (approved && i < 5 ? 'x' : ' ') + '] ' + (i + 1) + '. ' + name,
-      ...(i === 5 ? ticks : []),
-    ]),
-    '## Evidence',
-  ].join('\n');
-}
 const commit = sha('a');
-const reviewRows = [3, 4, 5].map(
-  stage =>
-    '- Review evidence (v1): ' +
-    stage +
-    ' | accepted | ' +
-    (stage === 5 ? commit : sha(stage === 3 ? 'b' : 'c')) +
-    ' | ' +
-    (stage === 5 ? gitBlob(original) : sha(stage === 3 ? 'd' : 'e')),
-);
-const reviewedTracker = options => tracker(options) + '\n' + reviewRows.join('\n');
+const baseHead = sha('b');
 
-test('canonical typed Lesson identity, Course linkage and exact command are enforced', () => {
-  const expected = { id, pkg, slug: 'intro', folder, source, parent: null };
-  assert.deepEqual(parseTypedIdentity(tracker()), expected);
-  assert.deepEqual(parseTypedIdentity(tracker({ course: true })).parent, { courseId, parentPr: 770 });
-  for (const body of [
-    tracker().replace('/lessons/1/', '/lessons/2/'),
-    tracker().replace('intro' + stamp, '../escape' + stamp),
-    tracker() + '\n<!-- svitlo-create-lesson-flow:v1 -->',
-    tracker({ course: true }).replace('Lesson: ' + id, 'Lesson: ' + courseId),
+test('canonical Lesson path and exact command are enforced', () => {
+  assert.deepEqual(lessonSourceIdentity(source), { id, pkg, folder, source });
+  for (const bad of [
+    source.replace('/lessons/1/', '/lessons/2/'),
+    source.replace('draft.ts', 'index.ts'),
+    source.replace(id, '../escape'),
+    source.replace(id, 'a'.repeat(36)),
   ])
-    assert.throws(() => parseTypedIdentity(body));
+    assert.throws(() => lessonSourceIdentity(bad), /canonical/);
   const event = {
     issue: { number: 794, pull_request: {} },
     comment: { body: '/lesson materialize typed', user: { login: 'owner' } },
@@ -118,7 +63,7 @@ test('canonical typed Lesson identity, Course linkage and exact command are enfo
 });
 
 test('only the canonical Lesson-owned Stage 6 output tree is writable', () => {
-  const identity = parseTypedIdentity(tracker());
+  const identity = lessonSourceIdentity(source);
   for (const relative of [
     'index.ts',
     'draft.ts',
@@ -146,76 +91,58 @@ test('only the canonical Lesson-owned Stage 6 output tree is writable', () => {
   assert.equal(typedPath('content/history/data/lessons/1/' + id + '/index.ts', identity), false);
 });
 
-test('typed gate re-checks review blobs, genealogy, parent and source SHA', async () => {
+test('source discovery ignores PR prose and Course ancestry; rejects missing, ambiguous and stale inputs', async () => {
   const previous = {
     GITHUB_REPOSITORY: process.env.GITHUB_REPOSITORY,
-    LESSON_DEFAULT_BRANCH: process.env.LESSON_DEFAULT_BRANCH,
     GH_TOKEN: process.env.GH_TOKEN,
   };
   const originalFetch = globalThis.fetch;
   try {
     process.env.GITHUB_REPOSITORY = 'KiT-Maverik/svitlo';
-    process.env.LESSON_DEFAULT_BRANCH = 'develop';
     process.env.GH_TOKEN = 'fixture-token';
-    let stale = false;
     const remote = {
       number: 710,
       state: 'open',
       draft: true,
-      body: reviewedTracker({ course: true }),
+      body: '',
       head: { sha: commit, ref: 'agent/lesson', repo: { full_name: 'KiT-Maverik/svitlo' } },
-      base: { ref: 'course/integration', repo: { full_name: 'KiT-Maverik/svitlo' } },
+      base: { sha: baseHead, ref: 'course/integration', repo: { full_name: 'KiT-Maverik/svitlo' } },
     };
-    const parent = {
-      state: 'open',
-      body: '<!-- svitlo-course-flow:v1 -->\n- Course UUID: ' + courseId + '\n- Textbook: ' + pkg + '\n',
-      head: { sha: sha('f'), ref: 'course/integration', repo: { full_name: 'KiT-Maverik/svitlo' } },
-      base: { ref: 'develop', repo: { full_name: 'KiT-Maverik/svitlo' } },
-    };
-    globalThis.fetch = async (url, options = {}) => {
+    const entry = { filename: source, status: 'modified', sha: gitBlob(original) };
+    let files = [entry];
+    let stale = false;
+    globalThis.fetch = async url => {
       const route = url.split('/repos/KiT-Maverik/svitlo/')[1];
       let payload;
-      if (route === 'pulls/710') payload = remote;
-      else if (route === 'pulls/770') payload = parent;
-      else if (route === 'compare/' + sha('b') + '...' + sha('c') || route === 'compare/' + sha('c') + '...' + commit)
-        payload = { status: 'ahead' };
-      else if (route.includes('contents/') && route.endsWith('?ref=' + sha('f'))) {
-        payload = {
-          type: 'file',
-          size: 400,
-          sha: sha('1'),
-          content: Buffer.from('LessonWorkflowStage1 ' + id + ' intro').toString('base64'),
-        };
-      } else if (route.includes('contents/') && route.endsWith('?ref=' + sha('b')))
-        payload = { type: 'file', sha: sha('d') };
-      else if (route.includes('contents/') && route.endsWith('?ref=' + sha('c')))
-        payload = { type: 'file', sha: sha('e') };
+      if (route === 'pulls/710') payload = structuredClone(remote);
+      else if (route === 'compare/' + baseHead + '...' + commit) payload = { files };
       else if (route.includes('contents/') && route.endsWith('?ref=' + commit))
         payload = { type: 'file', sha: stale ? sha('0') : gitBlob(original), size: original.length };
       else throw Error('Unexpected GitHub API: ' + route);
       return { ok: true, status: 200, json: async () => payload };
     };
-    const snapshot = await inspectTyped(710);
-    assert.equal(snapshot.identity.id, id);
-    assert.equal(snapshot.parent.parentPr, 770);
-    assert.equal(snapshot.sourceBlob, gitBlob(original));
-    assert.equal(snapshot.reviews.length, 3);
-    stale = true;
-    await assert.rejects(() => inspectTyped(710), /source|review/i);
-    stale = false;
-    parent.head.ref = 'course/other';
-    await assert.rejects(() => inspectTyped(710), /parent branch/);
-    parent.head.ref = 'course/integration';
-    remote.body = tracker({ course: true });
-    await assert.rejects(() => inspectTyped(710), /Missing accepted review evidence/);
-    remote.body = reviewedTracker({ course: true }) + '\n' + reviewRows[0];
-    await assert.rejects(() => inspectTyped(710), /duplicate review evidence/);
-    remote.body = tracker({ approved: false });
-    await assert.rejects(() => inspectTyped(710), /Stage 1 is not completed/);
-    remote.body = reviewedTracker();
+    const first = await inspectTyped(710);
+    assert.equal(first.identity.id, id);
+    assert.equal(first.sourceBlob, gitBlob(original));
+    remote.body = 'Unrelated text, no checklist or provenance.';
+    assert.deepEqual(await inspectTyped(710), first);
     remote.base.ref = 'develop';
-    const standalone = await inspectTyped(710);
-    assert.equal(standalone.parent, null);
+    assert.equal((await inspectTyped(710)).sourceBlob, first.sourceBlob);
+    files = [];
+    await assert.rejects(() => inspectTyped(710), /exactly one changed Lesson draft/);
+    files = [entry, { ...entry, filename: source.replace('/1/', '/2/') }];
+    await assert.rejects(() => inspectTyped(710), /exactly one changed Lesson draft/);
+    files = [{ ...entry, filename: source.replace('/1/', '/2/') }];
+    await assert.rejects(() => inspectTyped(710), /canonical/);
+    files = Array.from({ length: 300 }, () => entry);
+    await assert.rejects(() => inspectTyped(710), /complete bounded Git comparison/);
+    files = [entry];
+    stale = true;
+    await assert.rejects(() => inspectTyped(710), /changed blob/);
+    stale = false;
+    await assert.rejects(() => inspectTyped(710, sha('0')), /HEAD advanced/);
+    remote.head.ref = 'main';
+    await assert.rejects(() => inspectTyped(710), /Draft typed Lesson PR required/);
   } finally {
     globalThis.fetch = originalFetch;
     for (const [key, value] of Object.entries(previous)) {
@@ -246,23 +173,17 @@ function fixture(callback) {
       branch: 'agent/lesson',
       base: 'develop',
       sourceBlob: gitBlob(original),
-      identity: parseTypedIdentity(tracker()),
-      parent: null,
+      identity: lessonSourceIdentity(source),
+      baseHead,
       actor: 'maintainer',
       operation: 'materialize-typed',
-      reviews: [
-        { stage: 3, verdict: 'accepted', commit: head, blob: gitBlob(original) },
-        { stage: 4, verdict: 'accepted', commit: head, blob: gitBlob(original) },
-        { stage: 5, verdict: 'accepted', commit: head, blob: gitBlob(original) },
-      ],
     };
     const plan = {
       lessonId: id,
       sourcePath: source,
       materializedPath: folder + '/index.ts',
       sourceBlobSha: info.sourceBlob,
-      reviewCommitSha: head,
-      reviewEvidenceSha: gitBlob(Buffer.from(JSON.stringify(info.reviews))),
+      sourceCommitSha: head,
       publishable: false,
       diagnostics: [{ code: 'pending-scene', severity: 'warning' }],
       files: [
@@ -275,6 +196,24 @@ function fixture(callback) {
     fs.rmSync(root, { recursive: true, force: true });
   }
 }
+
+test('candidate checkout must have the pinned HEAD, clean files and no symlink source', () =>
+  fixture(({ root, info }) => {
+    const previous = process.env.LESSON_TYPED_CANDIDATE;
+    try {
+      process.env.LESSON_TYPED_CANDIDATE = root;
+      assert.equal(checkedTypedRoot(info), fs.realpathSync(root));
+      assert.throws(() => checkedTypedRoot({ ...info, head: sha('0') }), /pinned Lesson HEAD/);
+      fs.writeFileSync(path.join(root, source), 'changed');
+      assert.throws(() => checkedTypedRoot(info), /must be clean/);
+      fs.unlinkSync(path.join(root, source));
+      fs.symlinkSync(path.join(root, '.git', 'HEAD'), path.join(root, source));
+      assert.throws(() => safeTarget(root, source, true), /Symlink/);
+    } finally {
+      if (previous === undefined) delete process.env.LESSON_TYPED_CANDIDATE;
+      else process.env.LESSON_TYPED_CANDIDATE = previous;
+    }
+  }));
 
 test('draft deletion/index creation are atomic, immutable, hashed and confined to one Lesson', () =>
   fixture(({ root, info, plan, tracked }) => {
@@ -352,9 +291,9 @@ test('SHA256 attestation rejects missing or tampered analysis report', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-typed-artifact-'));
   try {
     process.env.LESSON_TYPED_REPORT = path.join(dir, 'report.json');
-    fs.writeFileSync(process.env.LESSON_TYPED_REPORT, '{"version":2}');
-    process.env.LESSON_TYPED_REPORT_SHA256 = digest(Buffer.from('{"version":2}'));
-    assert.deepEqual(readTypedReport(), { version: 2 });
+    fs.writeFileSync(process.env.LESSON_TYPED_REPORT, '{"version":3}');
+    process.env.LESSON_TYPED_REPORT_SHA256 = digest(Buffer.from('{"version":3}'));
+    assert.deepEqual(readTypedReport(), { version: 3 });
     fs.appendFileSync(process.env.LESSON_TYPED_REPORT, ' ');
     assert.throws(() => readTypedReport(), /SHA256 attestation/);
   } finally {
@@ -374,7 +313,6 @@ test('typed publisher is importable without node_modules or any Engine source', 
       'scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs',
       'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs',
       'scripts/ci/courseMaterialization/course-gate.mjs',
-      'scripts/ci/reviewEvidence/review-evidence.mjs',
     ];
     for (const filename of files) {
       const target = path.join(isolated, filename);
@@ -412,6 +350,10 @@ test('Lesson workflow has one typed-only entrypoint after YAML retirement', () =
   assert.doesNotMatch(workflow, /lesson-materialization\.mjs|lesson-gate\.mjs/);
 
   const typedGate = fs.readFileSync(path.join(root, 'scripts/ci/lessonMaterialization/lesson-typed-gate.mjs'), 'utf8');
-  assert.match(typedGate, /export function requireStageSixPending/);
+  assert.match(typedGate, /export async function discoverLessonSource/);
+  assert.doesNotMatch(
+    typedGate,
+    /requireStageSixPending|parseTypedIdentity|reviewsFor|courseProvenance|verifyReviewEvidence|pr\.body/,
+  );
   assert.doesNotMatch(typedGate, /from '\.\/lesson-gate\.mjs'/);
 });

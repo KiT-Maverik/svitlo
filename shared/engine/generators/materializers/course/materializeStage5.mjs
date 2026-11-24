@@ -211,8 +211,7 @@ export function materializeCourseStage5(input, options = {}) {
       const lessonId = deriveId('lesson', context.directory);
       const result = materializeLessonDraft(node, {
         lessonId,
-        sourceLanguage,
-        plannedLanguages: planned,
+        languageContext: input.production.languages,
         textbookRoot,
         reviewedSourceSha: review.sourceBlobSha,
       });
