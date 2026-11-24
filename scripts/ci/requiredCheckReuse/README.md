@@ -1,8 +1,3 @@
 # Required check reuse on PR description edits
 
-The `edited` event is retained for base retargets. On a description-only edit,
-the required job may reuse a prior successful GitHub Actions check on the exact
-current PR merge commit. The lookup is read-only and fails closed: absent,
-failed, pending, cancelled, or ambiguous results run the normal validation.
-The current required job still completes and reports its own result. No reuse
-is allowed on code changes, base changes, Draft → Ready, or manual dispatch.
+The edited event is retained for base retargets. Only a body-only edit on an open same-repository Ready PR can reuse the newest completed check for the exact current merge SHA, with the same PR, head/base refs and SHAs, workflow and Ready scope. FastGate and Production Quality record that scope in their final successful Ready step. The read-only lookup checks all check-run attempts, the latest candidate job and its actual workflow attempt. Missing, truncated, failed, cancelled, pending, ambiguous, legacy (no scope marker), Draft, rerun or mismatched results execute normal validation. Draft still defers expensive work; manual dispatch, base/source changes and Ready transitions never reuse. The current required job reports its own result.
