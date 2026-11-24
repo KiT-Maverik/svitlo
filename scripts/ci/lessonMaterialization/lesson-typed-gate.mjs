@@ -139,7 +139,7 @@ export function typedPath(filename, identity) {
   )
     return false;
   const relative = filename.slice(identity.folder.length + 1);
-  if (['index.ts', 'draft.ts', 'languages.ts', 'methodology.md', 'specification.md'].includes(relative)) return true;
+  if (['index.ts', 'draft.ts', 'languages.ts', 'constants.ts', 'methodology.md', 'specification.md'].includes(relative)) return true;
   return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(relative);
 }
 

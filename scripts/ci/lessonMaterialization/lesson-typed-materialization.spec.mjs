@@ -70,6 +70,7 @@ test('only the canonical Lesson-owned Stage 6 output tree is writable', () => {
     'index.ts',
     'draft.ts',
     'languages.ts',
+    'constants.ts',
     'methodology.md',
     'specification.md',
     'sections/intro/index.ts',

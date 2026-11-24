@@ -798,7 +798,7 @@ test('direct Lesson invocation returns the same source plan using runner-owned m
 
 
 test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Config in one sealed output', () => {
-  const input = valid() as unknown as Record<string, any>;
+  const input = valid() as unknown as Record<string, { [key: string]: any }>;
   const sceneId = id('05');
   const collection = input.config.section.items.introduction.config.content;
   collection.items.chooseShape = {
@@ -818,7 +818,7 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   };
   collection.order.push('chooseShape');
   const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
-  const result = produce(input as unknown as ReturnType<typeof valid>, {
+  const result = produce(input as unknown as unknown as unknown as ReturnType<typeof valid>, {
     sourceText,
     source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     verifySourceInput: () => true,
@@ -843,4 +843,38 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
     source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
     verifySourceInput: () => true,
   }), /reviewed production\.specification/);
+});
+
+
+test('four reviewed Scene nodes retain their UUIDs and emit four isolated executable scaffold directories', () => {
+  const input = valid() as unknown as Record<string, any>;
+  const collection = input.config.section.items.introduction.config.content;
+  for (const [suffix, slug] of [['05', 'chooseShape'], ['06', 'chooseColor'],
+    ['07', 'resetSelection'], ['08', 'explorePatterns']]) {
+    collection.items[slug] = {
+      config: {
+        id: id(suffix), slug, type: 'scene', params: {},
+        locale: { value: { status: { en: slug } } },
+      },
+      production: {
+        purpose: 'Verify the reviewed behavior', specification: 'Approved interaction for ' + slug,
+        accessibility: 'Keyboard and touch parity', offline: 'Works offline',
+      },
+    };
+    collection.order.push(slug);
+  }
+  const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
+  const plan = produce(input as unknown as ReturnType<typeof valid>, {
+    sourceText, source: { ...reviewed, sourceBlobSha: blobSha(sourceText) }, verifySourceInput: () => true,
+  });
+  const dirs = new Set(plan.files
+    .filter(file => file.path.includes('/scenes/') && file.path.endsWith('.tsx'))
+    .filter(file => !file.path.endsWith('.stories.tsx') && !file.path.endsWith('.unit.spec.tsx'))
+    .map(file => file.path.split('/').slice(0, -1).join('/')));
+  assert.deepEqual([...dirs].sort(), ['05','06','07','08']
+    .map(suffix => 'content/math/scenes/' + suffix.at(-1) + '/' + id(suffix)).sort());
+  assert.equal(plan.files.filter(file => /^content\/math\/scenes\/[0-9a-f]\//.test(file.path)).length, 24);
+  assert.equal(plan.files.filter(file => /\/specification\.md$/.test(file.path)
+    && file.path.includes('/scenes/')).length, 0);
+  assert(plan.files.every(file => !file.path.endsWith('/sceneLoader.ts')));
 });

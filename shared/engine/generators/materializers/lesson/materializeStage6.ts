@@ -77,8 +77,16 @@ function gitBlobSha(source: string): string {
     .update(source, 'utf8')
     .digest('hex');
 }
-function languagesFromRoot(directory: string): string {
-  return directory ? '../'.repeat(directory.split('/').length) + 'languages' : './languages';
+/** Preserve owner-rooted Lesson/Episode aliases through recursive children.
+ * For old relative imports, resolve only the additional directory depth;
+ * never assume a Lesson root when rendering an Episode subtree. */
+function childLanguagesImport(parent: RenderOptions, childDirectory: string): string {
+  const from = parent.languagesImport;
+  if (from.startsWith('#') || from.startsWith('@')) return from;
+  if (!/^(?:\.\.?\/)/.test(from)) throw new Error('Unsafe inherited languages import: ' + from);
+  const delta = childDirectory.split('/').length - parent.directory.split('/').length;
+  if (delta < 0) throw new Error('Child languages import escaped parent directory');
+  return '../'.repeat(delta) + from.replace(/^\.\//, '');
 }
 function node(value: unknown, at: string): Node {
   if (!isRecord(value) || !isRecord(value.config) || (!isRecord(value.production) && value.production !== undefined))
@@ -303,7 +311,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
             block(child as ChildConfig, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               production: metadata.get(child.id),
             }),
         });
@@ -314,24 +322,24 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
             materializeCheckpointItem(item, {
               directory,
               documentLanguage,
-              languagesImport: languagesFromRoot(directory),
+              languagesImport: childLanguagesImport(context, directory),
               renderQuestion: (text, childDir) =>
                 block(text as ChildConfig, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   production: metadata.get(text.id),
                 }),
               renderAnswer: (answer, childDir) =>
                 materializeCheckpointAnswer(answer, {
                   directory: childDir,
                   documentLanguage,
-                  languagesImport: languagesFromRoot(childDir),
+                  languagesImport: childLanguagesImport(context, childDir),
                   renderChild: (child, deeper) =>
                     block(child as ChildConfig, {
                       directory: deeper,
                       documentLanguage,
-                      languagesImport: languagesFromRoot(deeper),
+                      languagesImport: childLanguagesImport(context, deeper),
                       production: metadata.get(child.id),
                     }),
                 }),
