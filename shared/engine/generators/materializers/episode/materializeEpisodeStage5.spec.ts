@@ -91,7 +91,8 @@ test('Episode Stage 5 owns one typed constants module and nested descendants use
   assert.deepEqual(plan, materializeEpisodeStage5(reviewed(), { source }));
   for (const entry of plan.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.createSourceFile(entry.path, entry.content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-    assert.equal(parsed.parseDiagnostics.length, 0, 'Invalid generated TS: ' + entry.path);
+    const syntaxDiagnostics = (parsed as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics;
+    assert.equal(syntaxDiagnostics?.length ?? 0, 0, 'Invalid generated TS: ' + entry.path);
   }
 });
 

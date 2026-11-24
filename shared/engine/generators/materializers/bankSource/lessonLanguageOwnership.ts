@@ -20,7 +20,8 @@ function safeTuple(values: readonly string[], label: string): readonly string[] 
 /** Accept only the static export emitted by Lesson Stage 6, not computed expressions. */
 export function parseLessonLanguageConstants(content: string): LessonLanguageOwnership {
   const ast = ts.createSourceFile('constants.ts', content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  if (ast.parseDiagnostics.length) throw new Error('Owning Lesson constants.ts contains invalid TypeScript');
+  const syntaxDiagnostics = (ast as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics;
+  if (syntaxDiagnostics?.length) throw new Error('Owning Lesson constants.ts contains invalid TypeScript');
   const definitions = ast.statements
     .filter(ts.isVariableStatement)
     .filter(statement => statement.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword))
