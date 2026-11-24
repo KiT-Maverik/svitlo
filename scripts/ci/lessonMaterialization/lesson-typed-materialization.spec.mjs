@@ -55,10 +55,10 @@ test('canonical Lesson path and exact command are enforced', () => {
   assert.throws(() => parseTypedTrigger(event, 'issue_comment', 'attacker'));
   assert.throws(() => parseTypedTrigger({ ...event, action: 'edited' }, 'issue_comment', 'owner'));
   assert.throws(() => parseTypedTrigger({ ...event, issue: { number: 794 } }, 'issue_comment', 'owner'));
-  assert.deepEqual(
-    parseTypedTrigger({ inputs: { pr_number: '794' } }, 'workflow_dispatch', 'owner'),
-    { number: 794, actor: 'owner' },
-  );
+  assert.deepEqual(parseTypedTrigger({ inputs: { pr_number: '794' } }, 'workflow_dispatch', 'owner'), {
+    number: 794,
+    actor: 'owner',
+  });
   assert.throws(() =>
     parseTypedTrigger({ inputs: { operation: 'finalize', pr_number: '794' } }, 'workflow_dispatch', 'owner'),
   );

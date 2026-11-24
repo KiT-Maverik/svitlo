@@ -135,7 +135,10 @@ export function typedPath(filename, identity) {
 
 async function main() {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: lesson-typed-gate.mjs resolve');
-  if (!process.env.LESSON_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.LESSON_DEFAULT_BRANCH)
+  if (
+    !process.env.LESSON_DEFAULT_BRANCH ||
+    process.env.GITHUB_REF !== 'refs/heads/' + process.env.LESSON_DEFAULT_BRANCH
+  )
     throw Error('Lesson materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const action = parseTypedTrigger(event, process.env.GITHUB_EVENT_NAME, process.env.GITHUB_ACTOR);

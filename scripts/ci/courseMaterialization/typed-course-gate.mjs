@@ -136,7 +136,10 @@ export function parseTypedMetadata(encoded) {
 
 async function main() {
   if (process.argv[2] !== 'resolve' || process.argv.length !== 3) throw Error('Usage: typed-course-gate.mjs resolve');
-  if (!process.env.COURSE_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH)
+  if (
+    !process.env.COURSE_DEFAULT_BRANCH ||
+    process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH
+  )
     throw Error('Course materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const actor = process.env.GITHUB_ACTOR;

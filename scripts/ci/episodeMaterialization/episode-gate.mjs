@@ -147,23 +147,33 @@ export async function discoverOwningCourse(number) {
   )
     throw Error('Expected open same-repository Draft Episode PR with an owning Course target');
   const candidates = [];
-  const query = 'pulls?state=open&head=' + encodeURIComponent(repo.split('/')[0] + ':' + pr.base.ref) +
-    '&base=' + encodeURIComponent(base) + '&per_page=100&page=';
+  const query =
+    'pulls?state=open&head=' +
+    encodeURIComponent(repo.split('/')[0] + ':' + pr.base.ref) +
+    '&base=' +
+    encodeURIComponent(base) +
+    '&per_page=100&page=';
   for (let page = 1; page <= 30; page++) {
     const batch = await github(query + page);
     if (!Array.isArray(batch)) throw Error('Cannot inspect owning Course PR candidates');
     candidates.push(
-      ...batch.filter(parent =>
-        parent.state === 'open' &&
-        parent.head?.repo?.full_name === repo &&
-        parent.head?.ref === pr.base.ref &&
-        parent.base?.ref === base &&
-        parent.base?.repo?.full_name === repo,
+      ...batch.filter(
+        parent =>
+          parent.state === 'open' &&
+          parent.head?.repo?.full_name === repo &&
+          parent.head?.ref === pr.base.ref &&
+          parent.base?.ref === base &&
+          parent.base?.repo?.full_name === repo,
       ),
     );
     if (batch.length < 100) {
-      if (candidates.length !== 1 || candidates[0].head.sha !== pr.base.sha ||
-          !Number.isSafeInteger(candidates[0].number) || candidates[0].number < 1 || candidates[0].number === number)
+      if (
+        candidates.length !== 1 ||
+        candidates[0].head.sha !== pr.base.sha ||
+        !Number.isSafeInteger(candidates[0].number) ||
+        candidates[0].number < 1 ||
+        candidates[0].number === number
+      )
         throw Error('Exactly one open owning Course PR at the current Episode target revision required');
       return candidates[0].number;
     }
@@ -172,7 +182,10 @@ export async function discoverOwningCourse(number) {
 }
 
 async function main() {
-  if (!process.env.COURSE_DEFAULT_BRANCH || process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH)
+  if (
+    !process.env.COURSE_DEFAULT_BRANCH ||
+    process.env.GITHUB_REF !== 'refs/heads/' + process.env.COURSE_DEFAULT_BRANCH
+  )
     throw Error('Episode materialization requires the trusted default branch');
   const event = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const actor = process.env.GITHUB_ACTOR;
