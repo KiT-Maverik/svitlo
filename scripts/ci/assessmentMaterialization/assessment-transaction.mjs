@@ -157,9 +157,15 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
     // UUIDs appearing in comments, content blocks, or unrelated files are not proof.
     const rootSource = reader.blob(tree.get(bankRoot + 'index.ts'), bankRoot + 'index.ts');
     const kinds = new Set([
-      'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks', 'answerWithText',
-      'answerWithNumber', 'orderSequence', 'buildAnswerWithBlocks',
-      'fillBlanksWithBlocks', 'fillBlanksWithText',
+      'selectOneAnswer',
+      'selectMultipleAnswers',
+      'matchBlocks',
+      'answerWithText',
+      'answerWithNumber',
+      'orderSequence',
+      'buildAnswerWithBlocks',
+      'fillBlanksWithBlocks',
+      'fillBlanksWithText',
     ]);
     let items = 0;
     for (const [filename, entry] of tree) {
@@ -174,9 +180,12 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
       if (
         !rootSource.includes(JSON.stringify('./' + match[1])) ||
         !kindSource.includes(JSON.stringify('./' + match[2]))
-      ) continue;
+      )
+        continue;
       const source = reader.blob(entry, filename);
-      const definition = source.match(/export const [A-Za-z_$][A-Za-z0-9_$]*\s*=\s*define[A-Za-z]+(?:<[^;]*?>)?\s*\(\s*\{([\s\S]*?)\n\s*\}\s*\);/);
+      const definition = source.match(
+        /export const [A-Za-z_$][A-Za-z0-9_$]*\s*=\s*define[A-Za-z]+(?:<[^;]*?>)?\s*\(\s*\{([\s\S]*?)\n\s*\}\s*\);/,
+      );
       if (!definition) continue;
       const identity = definition[1].match(/^\s*id:\s*["']([0-9a-f-]{36})["'],?\s*$/m);
       if (!identity || !UUID.test(identity[1])) continue;

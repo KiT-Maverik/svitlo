@@ -1,5 +1,11 @@
 import type { LanguageCode } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+import type {
+  ChildrenSupporting,
+  DeepPartial,
+  LanguageScope,
+  PublicationLanguageOptions,
+  RequireLanguages,
+} from '#types';
 import {
   mergeForValidation,
   onlyLocales,
@@ -29,16 +35,14 @@ export const defineAssessmentDraft = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Preview extends Assessment_Content_Section_Configurator,
->(
-  config: {
-    id: Assessment_Config['id'];
-    slug: Slug;
-    type: 'assessment';
-    params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
-    locale: RequireLanguages<Assessment_Config['locale'], Languages>;
-    preview: Preview & ChildrenSupporting<Languages, { preview: Preview }>['preview'];
-  },
-) => {
+>(config: {
+  id: Assessment_Config['id'];
+  slug: Slug;
+  type: 'assessment';
+  params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
+  locale: RequireLanguages<Assessment_Config['locale'], Languages>;
+  preview: Preview & ChildrenSupporting<Languages, { preview: Preview }>['preview'];
+}) => {
   const metadataSchema = assessment_Config_Schema.omit({ before: true, quiz: true, after: true });
   const { preview, ...metadata } = config;
   const authored = structuredClone(metadata);
@@ -49,11 +53,7 @@ export const defineAssessmentDraft = <
     if (preview.type !== 'content' || preview.config.base.params?.disabled === true)
       throw new Error('Assessment draft preview requires an enabled Content Section');
     const source = preview.build.props({ languages: [authored.params.languages[0]] });
-    if (
-      !source.base.content?.some(block =>
-        block.type === 'text' && block.locale?.value === 'Not implemented',
-      )
-    ) {
+    if (!source.base.content?.some(block => block.type === 'text' && block.locale?.value === 'Not implemented')) {
       throw new Error('Assessment draft requires the Not implemented Text ContentBlock');
     }
   };
@@ -83,9 +83,7 @@ export const defineAssessmentDraft = <
       type,
       params: { ...own.params, languages: [...languages] },
       draft: true,
-      ...(Object.keys(split.base ?? {}).length
-        ? { locale: split.base as { title?: string } }
-        : {}),
+      ...(Object.keys(split.base ?? {}).length ? { locale: split.base as { title?: string } } : {}),
       section: [section.base],
     };
     const result: Publication = {
@@ -100,13 +98,17 @@ export const defineAssessmentDraft = <
     throw new Error('Assessment draft preview cannot be overridden; complete the Assessment first');
   };
   const result = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     preview,
     validate,
     build: { props, overrides },
     config: {
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         params: { ...structuredClone(authored.params), languages: [...authored.params.languages] },
         locale: {},
       },

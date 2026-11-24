@@ -54,14 +54,16 @@ type OverrideBase = {
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
-const emptyCollection = () => ({ items: {} as Record<string, Assessment_Content_Section_Configurator>, order: [] as string[] });
+const emptyCollection = () => ({
+  items: {} as Record<string, Assessment_Content_Section_Configurator>,
+  order: [] as string[],
+});
 
 const composeSections = (input: Assessment_Config) => {
   const before = input.before ?? emptyCollection();
   const after = input.after ?? emptyCollection();
   if (input.quiz?.type !== 'quiz') throw new Error('Assessment must define exactly one Quiz in quiz');
-  if (input.quiz.config?.base?.params?.disabled === true)
-    throw new Error('Assessment Quiz cannot be disabled');
+  if (input.quiz.config?.base?.params?.disabled === true) throw new Error('Assessment Quiz cannot be disabled');
   const quizKey = input.quiz.slug;
   const names = [...before.order, quizKey, ...after.order];
   if (new Set(names).size !== names.length)
@@ -79,10 +81,12 @@ const validate = (config: Assessment_Config): void => {
     ...validateOrderedKeys(before, { path: 'before' }),
     ...validateOrderedKeys(after, { path: 'after' }),
     ...validateSluggedConfiguratorMap(before.items, contentSectionTypes, {
-      path: 'before.items', itemLabel: 'Assessment Content Section',
+      path: 'before.items',
+      itemLabel: 'Assessment Content Section',
     }),
     ...validateSluggedConfiguratorMap(after.items, contentSectionTypes, {
-      path: 'after.items', itemLabel: 'Assessment Content Section',
+      path: 'after.items',
+      itemLabel: 'Assessment Content Section',
     }),
   ];
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
@@ -139,7 +143,9 @@ export const defineAssessment = <
   const section = composeSections({
     ...metadataInput,
     params: { ...metadataInput.params, languages: [...metadataInput.params.languages] },
-    before, quiz, after,
+    before,
+    quiz,
+    after,
   } as Assessment_Config);
   const initialSections = section.items;
   const initialOrder = section.order;
@@ -280,7 +286,8 @@ export const defineAssessment = <
         if (!isRecord(changes) || !isRecord(additions))
           throw new Error('Assessment ' + name + ' override maps must be objects');
         const issues = validateSluggedConfiguratorMap(additions, contentSectionTypes, {
-          path: name + '.additionalItems', itemLabel: 'Assessment Content Section',
+          path: name + '.additionalItems',
+          itemLabel: 'Assessment Content Section',
         });
         if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
         const active: Record<string, Assessment_Content_Section_Configurator | false> = { ...original.items };
@@ -291,8 +298,7 @@ export const defineAssessment = <
           active[key] = child as Assessment_Content_Section_Configurator;
         }
         for (const [key, change] of Object.entries(changes)) {
-          if (!Object.hasOwn(original.items, key))
-            throw new Error('Unknown Assessment supporting Section: ' + key);
+          if (!Object.hasOwn(original.items, key)) throw new Error('Unknown Assessment supporting Section: ' + key);
           if (change === false) {
             active[key] = false;
             structural = true;
@@ -331,8 +337,7 @@ export const defineAssessment = <
       if (patch.before !== undefined || patch.after !== undefined || patch.quiz !== undefined) {
         const sections = composeSections(edited);
         const keys = [...Object.keys(sections.items)];
-        if (keys.length !== new Set(keys).size)
-          throw new Error('Assessment Section slug collision');
+        if (keys.length !== new Set(keys).size) throw new Error('Assessment Section slug collision');
         const resolved = buildSections(sections.items, sections.order, languages, childPatches);
         output.base.section = resolved.base;
         for (const [language, values] of Object.entries(resolved.locale))
@@ -370,4 +375,5 @@ export const defineAssessment = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type Assessment_Configurator = ReturnType<typeof defineAssessment> | import('./defineAssessmentDraft').Assessment_Draft_Configurator;
+export type Assessment_Configurator =
+  ReturnType<typeof defineAssessment> | import('./defineAssessmentDraft').Assessment_Draft_Configurator;

@@ -107,8 +107,7 @@ it('links a nested Assessment from the Course outline and activity navigation', 
   const chapter = withAssessment.content.items.laboratory;
   if (chapter.type !== 'module' && chapter.type !== 'chapter') throw Error('Expected Course module fixture');
   const fundamentals = chapter.content.items.fundamentals;
-  if (fundamentals.type !== 'module' && fundamentals.type !== 'chapter')
-    throw Error('Expected Course chapter fixture');
+  if (fundamentals.type !== 'module' && fundamentals.type !== 'chapter') throw Error('Expected Course chapter fixture');
   fundamentals.content.items.finalReview = {
     id: '11111111-1111-4111-8111-111111111119',
     slug: 'finalReview',

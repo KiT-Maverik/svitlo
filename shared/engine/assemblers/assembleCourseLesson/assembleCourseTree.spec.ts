@@ -216,7 +216,6 @@ test('Assessment runtime fails closed for missing/disabled quizzes and unknown s
   );
 });
 
-
 test('Assessment rejects a duplicated Section identity even when the first Section is disabled', () => {
   const valid = assessment(95, 'duplicates');
   const disabled = {
@@ -274,16 +273,22 @@ test('Course preview accepts a real draft Assessment Text block but rejects fake
   assert.equal(found !== undefined && 'draft' in found && found.draft, true);
   assert.throws(() => validateAssessmentRuntime({ ...draft, draft: undefined }, 'en'));
   assert.throws(() =>
-    validateAssessmentRuntime({
-      ...draft,
-      section: [{ ...draft.section[0], content: [] }],
-    }, 'en'),
+    validateAssessmentRuntime(
+      {
+        ...draft,
+        section: [{ ...draft.section[0], content: [] }],
+      },
+      'en',
+    ),
   );
   assert.throws(() =>
-    validateAssessmentRuntime({
-      ...draft,
-      section: [{ ...draft.section[0], params: { disabled: true } }],
-    }, 'en'),
+    validateAssessmentRuntime(
+      {
+        ...draft,
+        section: [{ ...draft.section[0], params: { disabled: true } }],
+      },
+      'en',
+    ),
   );
 });
 

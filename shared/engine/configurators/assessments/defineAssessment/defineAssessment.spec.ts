@@ -102,39 +102,32 @@ describe('Course-owned Assessment Configurator', () => {
         }).build.props({ languages: ['en'] }),
       /Quiz/,
     );
+    assert.throws(() => assessment.build.overrides({ quiz: false as never }, { languages: ['en'] }), /Quiz/);
     assert.throws(
-      () =>
-        assessment.build.overrides({ quiz: false as never }, { languages: ['en'] }),
-      /Quiz/,
-    );
-    assert.throws(
-      () =>
-        assessment.build.overrides(
-          { quiz: { params: { disabled: true } } },
-          { languages: ['en'] },
-        ),
+      () => assessment.build.overrides({ quiz: { params: { disabled: true } } }, { languages: ['en'] }),
       /Quiz/,
     );
   });
 
   test('permits supporting Sections to be removed without disabling the one Quiz', () => {
     const assessment = makeAssessment('withOptionalIntro', '15', '16');
-    const patch = assessment.build.overrides(
-      { before: { items: { intro: false }, order: [] } },
-      { languages: ['en'] },
+    const patch = assessment.build.overrides({ before: { items: { intro: false }, order: [] } }, { languages: ['en'] });
+    assert.deepEqual(
+      patch.base.section?.map(item => item.type),
+      ['quiz'],
     );
-    assert.deepEqual(patch.base.section?.map(item => item.type), ['quiz']);
     assert.throws(
-      () => defineAssessment({
-        id: id('17'),
-        slug: 'duplicatePhases',
-        type: 'assessment',
-        params: { languages },
-        locale: { title: 'Review' },
-        before: { items: { intro }, order: ['intro'] },
-        quiz: makeQuiz('18'),
-        after: { items: { intro }, order: ['intro'] },
-      }).build.props({ languages: ['en'] }),
+      () =>
+        defineAssessment({
+          id: id('17'),
+          slug: 'duplicatePhases',
+          type: 'assessment',
+          params: { languages },
+          locale: { title: 'Review' },
+          before: { items: { intro }, order: ['intro'] },
+          quiz: makeQuiz('18'),
+          after: { items: { intro }, order: ['intro'] },
+        }).build.props({ languages: ['en'] }),
       /unique/,
     );
   });
@@ -167,12 +160,12 @@ describe('Course-owned Assessment Configurator', () => {
     assert.equal(result.base.draft, true);
     assert.equal(result.base.section.length, 1);
     assert.equal(result.base.section[0]?.type, 'content');
-    assert.deepEqual(result.base.section[0]?.content.map(block => block.type), ['text']);
-    assert.equal(assessment_Props_Schema.safeParse(result.base).success, true);
-    assert.throws(
-      () => draft.build.overrides({} as never, { languages: ['en'] }),
-      /cannot be overridden/,
+    assert.deepEqual(
+      result.base.section[0]?.content.map(block => block.type),
+      ['text'],
     );
+    assert.equal(assessment_Props_Schema.safeParse(result.base).success, true);
+    assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
   });
 
   test('preserves identity and isolates localized overrides', () => {
@@ -200,7 +193,11 @@ describe('Course-owned Assessment Configurator', () => {
       locale: { title: 'Chapter' },
       content: { items: { chapterAssessment }, order: ['chapterAssessment'] },
     });
-    const module = defineModule<'module', { chapter: typeof chapter; moduleAssessment: typeof moduleAssessment }, typeof languages>({
+    const module = defineModule<
+      'module',
+      { chapter: typeof chapter; moduleAssessment: typeof moduleAssessment },
+      typeof languages
+    >({
       id: id('41'),
       slug: 'module',
       type: 'module',

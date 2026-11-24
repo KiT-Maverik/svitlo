@@ -10,19 +10,24 @@ const isRecord = value => value !== null && typeof value === 'object' && !Array.
  * a Text ContentBlock, never a fake Quiz or Question UUID.
  */
 export function assessmentDraftExpression(id, slug) {
-  if (!uuid.test(id) || !slugPattern.test(slug))
-    throw Error('Invalid Course-owned Assessment preview identity');
+  if (!uuid.test(id) || !slugPattern.test(slug)) throw Error('Invalid Course-owned Assessment preview identity');
   const previewId = deriveCourseEntityId(id, 'assessmentPreview', 'preview');
   const textId = deriveCourseEntityId(id, 'assessmentText', 'preview/message');
-  return 'defineAssessmentDraft({ id: ' + JSON.stringify(id) +
-    ', type: "assessment", slug: ' + JSON.stringify(slug) +
+  return (
+    'defineAssessmentDraft({ id: ' +
+    JSON.stringify(id) +
+    ', type: "assessment", slug: ' +
+    JSON.stringify(slug) +
     ', params: { languages }, locale: { title: "Not implemented" },' +
-    ' preview: defineContentSection({ id: ' + JSON.stringify(previewId) +
+    ' preview: defineContentSection({ id: ' +
+    JSON.stringify(previewId) +
     ', slug: "preview", type: "content", params: {},' +
     ' locale: { title: "Preview", navigationLabel: "Preview" },' +
-    ' content: { items: { message: defineText({ id: ' + JSON.stringify(textId) +
+    ' content: { items: { message: defineText({ id: ' +
+    JSON.stringify(textId) +
     ', slug: "message", type: "text", params: {}, locale: { value: "Not implemented" } }) },' +
-    ' order: ["message"] } }) })';
+    ' order: ["message"] } }) })'
+  );
 }
 
 /** Course Stage 5 reserves a previewable, blocked Assessment without Questions. */

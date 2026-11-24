@@ -24,14 +24,17 @@ export default function WebAssessment(props: Omit<AssessmentProps, 'sceneRegistr
   const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === props.language);
   const ids = useMemo(() => sceneIds(props.response.section), [props.response.section]);
   const assessmentLoader = useMemo(
-    () => createAssessmentResourceLoader(async (paths, signal) => {
-      const entries = await Promise.all(paths.map(async path => {
-        const result = await fetch('/' + path, { signal });
-        if (!result.ok) throw new Error('Failed to load assessment resource: ' + path);
-        return [path, await result.json()] as const;
-      }));
-      return new Map(entries);
-    }),
+    () =>
+      createAssessmentResourceLoader(async (paths, signal) => {
+        const entries = await Promise.all(
+          paths.map(async path => {
+            const result = await fetch('/' + path, { signal });
+            if (!result.ok) throw new Error('Failed to load assessment resource: ' + path);
+            return [path, await result.json()] as const;
+          }),
+        );
+        return new Map(entries);
+      }),
     [],
   );
   const [attempt, setAttempt] = useState(0);
@@ -40,14 +43,24 @@ export default function WebAssessment(props: Omit<AssessmentProps, 'sceneRegistr
   useEffect(() => {
     let active = true;
     Promise.all(ids.map(id => preloadScene(id))).then(
-      () => { if (active) setStatus({ key, state: 'ready' }); },
-      () => { if (active) setStatus({ key, state: 'error' }); },
+      () => {
+        if (active) setStatus({ key, state: 'ready' });
+      },
+      () => {
+        if (active) setStatus({ key, state: 'error' });
+      },
     );
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, [ids, key]);
   if (!descriptor) throw Error('Unsupported Assessment locale');
   if (status?.key !== key)
-    return <div role="status" aria-busy="true">{props.response.locale.title}</div>;
+    return (
+      <div role="status" aria-busy="true">
+        {props.response.locale.title}
+      </div>
+    );
   if (status.state === 'error')
     return (
       <div role="alert">

@@ -97,7 +97,10 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
     [courseRoot + '/content/newLesson/index.ts', 'export const newLesson = defineLesson({});'],
     [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\nexport const questions = {};'],
     [bank + 'selectOneAnswer/index.ts', 'export { prompt } from "./prompt";'],
-    [bank + 'selectOneAnswer/prompt.ts', 'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});'],
+    [
+      bank + 'selectOneAnswer/prompt.ts',
+      'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});',
+    ],
   ]);
   const tree = new Map([...contents].map(([name]) => [name, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) }]));
   const reader = { blob: (_entry, filename) => contents.get(filename) };
@@ -111,7 +114,10 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
     () => checkAssessmentBanks(meta, seed, [questionId], reader, tree),
     /absent|no materialized Question definitions/,
   );
-  contents.set(bank + 'selectOneAnswer/prompt.ts', 'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});');
+  contents.set(
+    bank + 'selectOneAnswer/prompt.ts',
+    'export const prompt = defineSelectOneAnswer<"prompt">({\n  id: "' + questionId + '",\n  content,\n});',
+  );
   tree.delete(bank + 'index.ts');
   assert.throws(
     () => checkAssessmentBanks(meta, seed, [questionId], reader, tree),

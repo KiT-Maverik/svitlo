@@ -238,7 +238,9 @@ function assertCourseInventory(manifest, meta, entries) {
       const parentSource = Buffer.from(entries.get(marker).data, 'base64').toString('utf8');
       if (
         !parentSource.includes(assessmentDraftExpression(row.id, row.slug)) ||
-        !parentSource.includes("import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';") ||
+        !parentSource.includes(
+          "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';",
+        ) ||
         !parentSource.includes('slug: ' + JSON.stringify(row.slug)) ||
         !parentSource.includes('title: "Not implemented"') ||
         !parentSource.includes('TODO (BLOCKER): Not implemented')

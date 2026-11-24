@@ -7,11 +7,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import type {
-  AssessmentResourceLoader,
-  LanguageCode,
-  LocalizedAssessment,
-} from '@svitlo/engine/runtime';
+import type { AssessmentResourceLoader, LanguageCode, LocalizedAssessment } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { EngineContentBlockRenderer } from '../lesson/EngineContentBlockRenderer';
 import { EngineQuestionRenderer } from '../lesson/EngineQuestionRenderer';
@@ -111,12 +107,7 @@ function AssessmentController({
               {labels.actions.next}
             </Button>
           ) : (
-            <Button
-              variant="contained"
-              component="a"
-              href={nextActivity?.href ?? courseHref}
-              disabled={!canAdvance}
-            >
+            <Button variant="contained" component="a" href={nextActivity?.href ?? courseHref} disabled={!canAdvance}>
               {nextActivity?.title ?? courseTitle}
             </Button>
           )}

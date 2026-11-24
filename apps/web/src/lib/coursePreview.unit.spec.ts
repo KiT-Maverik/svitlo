@@ -42,8 +42,7 @@ describe('published course presentation', () => {
 it('does not count a Course-owned Assessment as a Lesson or Module', () => {
   const withAssessment = structuredClone(course);
   const courseModule = withAssessment.content.items.module;
-  if (courseModule.type !== 'module' && courseModule.type !== 'chapter')
-    throw Error('Expected Module fixture');
+  if (courseModule.type !== 'module' && courseModule.type !== 'chapter') throw Error('Expected Module fixture');
   courseModule.content.items.review = {
     id: '11111111-1111-4111-8111-111111111119',
     type: 'assessment',

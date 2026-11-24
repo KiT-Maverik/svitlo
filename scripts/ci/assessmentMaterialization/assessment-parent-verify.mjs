@@ -7,7 +7,8 @@ import { assessmentDraftExpression } from '../../../shared/engine/generators/mat
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const blocker = '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n';
-const assessmentImport = "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';\n";
+const assessmentImport =
+  "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';\n";
 
 export function restoreAssessmentPlacement(source, { id, slug, placement, exportName }) {
   if (

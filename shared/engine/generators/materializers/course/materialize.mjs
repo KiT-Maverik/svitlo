@@ -235,7 +235,9 @@ export function materializeCourse(input, context = {}) {
         if (!child?.pendingAssessment || typeof child.placeholderSource !== 'string')
           throw Error(childFolder + ': Assessment must remain a blocked inline placeholder');
         if (!imports.some(line => line.includes('defineAssessmentDraft')))
-          imports.push("import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';");
+          imports.push(
+            "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';",
+          );
         break;
       case 'lesson': {
         const lessonProduction = production(node);

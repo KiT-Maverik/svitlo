@@ -69,13 +69,56 @@ const sha = /^[a-f0-9]{40}$/i;
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 const reservedNames = new Set([
-  'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'debugger',
-  'default', 'delete', 'do', 'else', 'enum', 'export', 'extends', 'false',
-  'finally', 'for', 'function', 'if', 'import', 'in', 'instanceof', 'new',
-  'null', 'return', 'super', 'switch', 'this', 'throw', 'true', 'try',
-  'typeof', 'var', 'void', 'while', 'with', 'yield', 'let', 'static',
-  'implements', 'interface', 'private', 'protected', 'public', 'package',
-  'content', 'languages', 'section', 'quiz',
+  'await',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'enum',
+  'export',
+  'extends',
+  'false',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'null',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'true',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'yield',
+  'let',
+  'static',
+  'implements',
+  'interface',
+  'private',
+  'protected',
+  'public',
+  'package',
+  'content',
+  'languages',
+  'section',
+  'quiz',
 ]);
 const exportName = (value: string) => (reservedNames.has(value) ? 'config_' + value : value);
 const plain = (value: unknown, path: string): { config: Config; production?: Record<string, unknown> } => {
@@ -334,10 +377,14 @@ function plan(
     planned.length > 1 ? '// TODO (BLOCKER): Complete reviewed Assessment localizations before release.' : '',
     'const before = { items: { ' +
       before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
-      ' }, order: ' + JSON.stringify(before.order) + ' };',
+      ' }, order: ' +
+      JSON.stringify(before.order) +
+      ' };',
     'const after = { items: { ' +
       after.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
-      ' }, order: ' + JSON.stringify(after.order) + ' };',
+      ' }, order: ' +
+      JSON.stringify(after.order) +
+      ' };',
     'const quiz = child_section_' + quizKey + ';',
     'export const ' +
       exportName(config.slug) +

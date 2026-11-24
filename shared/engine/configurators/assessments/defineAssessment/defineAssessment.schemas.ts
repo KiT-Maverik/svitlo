@@ -13,9 +13,7 @@ import type { QuizSection_Configurator } from '../../sections/defineQuizSection/
 /** The one Quiz is structurally separate from optional supporting Content Sections. */
 export type Assessment_Content_Section_Configurator = ConfiguratorChild<ContentSection_Configurator>;
 export type Assessment_Quiz_Configurator = QuizSection_Configurator;
-export type Assessment_Section_Configurator =
-  | Assessment_Content_Section_Configurator
-  | Assessment_Quiz_Configurator;
+export type Assessment_Section_Configurator = Assessment_Content_Section_Configurator | Assessment_Quiz_Configurator;
 
 const languages = z
   .array(languageCode_Schema)
@@ -48,7 +46,8 @@ const completedAssessment_Props_Schema = identity
   })
   .strict()
   .refine(
-    value => value.section.filter(section => section.type === 'quiz').length === 1 &&
+    value =>
+      value.section.filter(section => section.type === 'quiz').length === 1 &&
       value.section.some(section => section.type === 'quiz' && section.params.disabled !== true),
     'A completed Assessment must contain exactly one enabled Quiz',
   );
@@ -62,16 +61,19 @@ export const assessment_Draft_Props_Schema = identity
   })
   .strict()
   .refine(
-    value => value.section.some(section =>
-      section.params.disabled !== true &&
-      section.content.some(block =>
-        block.type === 'text' &&
-        typeof block.locale === 'object' &&
-        block.locale !== null &&
-        'value' in block.locale &&
-        block.locale.value === 'Not implemented',
+    value =>
+      value.section.some(
+        section =>
+          section.params.disabled !== true &&
+          section.content.some(
+            block =>
+              block.type === 'text' &&
+              typeof block.locale === 'object' &&
+              block.locale !== null &&
+              'value' in block.locale &&
+              block.locale.value === 'Not implemented',
+          ),
       ),
-    ),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',
   );
 export const assessment_Completed_Props_Schema = completedAssessment_Props_Schema;

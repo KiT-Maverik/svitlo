@@ -30,7 +30,9 @@ const reviewed = () => ({
     slug: 'moduleReview',
     type: 'assessment',
     locale: { title: { uk: 'Підсумкове оцінювання' } },
-    before: { items: { intro: {
+    before: {
+      items: {
+        intro: {
           config: {
             id: sectionId,
             slug: 'intro',
@@ -40,32 +42,35 @@ const reviewed = () => ({
             content: { items: {}, order: [] },
           },
           production: { purpose: 'Clarify the rules' },
-        } }, order: ['intro'] },
-    quiz: {
-          config: {
-            id: 'b775647f-203d-481a-a1c7-4d331c000202',
-            slug: 'quiz',
-            type: 'quiz',
-            params: {
-              selection: { mode: 'all', questionIds: [questionId] },
-              layout: { mode: 'stack' },
-              feedbackMode: 'after-completion',
-              interaction: {
-                retries: 1,
-                showErrors: true,
-                showCorrectAnswers: true,
-                allowExplanations: true,
-                allowDeferring: false,
-                allowQuestionNavigation: true,
-                skippable: false,
-              },
-              results: { visibility: 'immediate', showScore: true },
-            },
-            locale: { title: { uk: 'Запитання' }, navigationLabel: 'Q' },
-            content: { items: {}, order: [] },
-          },
-          production: { purpose: 'Verify the approved evidence' },
         },
+      },
+      order: ['intro'],
+    },
+    quiz: {
+      config: {
+        id: 'b775647f-203d-481a-a1c7-4d331c000202',
+        slug: 'quiz',
+        type: 'quiz',
+        params: {
+          selection: { mode: 'all', questionIds: [questionId] },
+          layout: { mode: 'stack' },
+          feedbackMode: 'after-completion',
+          interaction: {
+            retries: 1,
+            showErrors: true,
+            showCorrectAnswers: true,
+            allowExplanations: true,
+            allowDeferring: false,
+            allowQuestionNavigation: true,
+            skippable: false,
+          },
+          results: { visibility: 'immediate', showScore: true },
+        },
+        locale: { title: { uk: 'Запитання' }, navigationLabel: 'Q' },
+        content: { items: {}, order: [] },
+      },
+      production: { purpose: 'Verify the approved evidence' },
+    },
     after: { items: {}, order: [] },
   },
   production: {
@@ -118,8 +123,7 @@ test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions 
   delete withoutQuiz.config.quiz;
   assert.throws(() => materializeAssessment(withoutQuiz, options), /Quiz|Invalid reviewed/);
   const fakeQuestion = reviewed();
-  fakeQuestion.config.quiz.config.params.selection.questionIds[0] =
-    'feedc0de-1234-4234-8234-123456789010';
+  fakeQuestion.config.quiz.config.params.selection.questionIds[0] = 'feedc0de-1234-4234-8234-123456789010';
   assert.throws(() => materializeAssessment(fakeQuestion, options), /reviewed upstream|Invalid reviewed/);
   assert.throws(
     () =>
@@ -156,7 +160,8 @@ test('Assessment materializer escapes reserved TypeScript slug exports', () => {
       sourcePath: 'content/math/data/courses/3/' + courseId + '/content/moduleOne/content/for/draft.ts',
     },
   });
-  const generated = plan.files.find(file => file.path.endsWith('/index.ts') &&
-    file.path === 'content/moduleOne/content/for/index.ts');
+  const generated = plan.files.find(
+    file => file.path.endsWith('/index.ts') && file.path === 'content/moduleOne/content/for/index.ts',
+  );
   assert.match(generated.content, /export const config_for = defineAssessment/);
 });
