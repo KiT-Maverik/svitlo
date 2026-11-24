@@ -66,7 +66,8 @@ test('unquotes only safe object-literal IdentifierNames, not invalid property na
 });
 
 test('preserves statement order when a side-effect-only import is present', () => {
-  const raw = "import { child } from './child';\nimport './register';\nimport { parent } from '@svitlo/engine/build';\n";
+  const raw =
+    "import { child } from './child';\nimport './register';\nimport { parent } from '@svitlo/engine/build';\n";
   assert.equal(groupGeneratedImports(raw, 'x.ts'), raw);
 });
 
@@ -106,7 +107,11 @@ test('formats every generated TypeScript file once without modifying metadata, n
     diagnostics: Object.freeze([{ path: 'unit', code: 'pending' }]),
     files: Object.freeze([
       Object.freeze({ path: 'lesson/index.ts', kind: 'typescript', content: fixture }),
-      Object.freeze({ path: 'scenes/demo/Scene.stories.tsx', kind: 'typescript', content: 'export const A=()=> <div/>;' }),
+      Object.freeze({
+        path: 'scenes/demo/Scene.stories.tsx',
+        kind: 'typescript',
+        content: 'export const A=()=> <div/>;',
+      }),
       Object.freeze({ path: 'lesson/readme.md', kind: 'markdown', content: '# Raw  text\n' }),
       Object.freeze({ path: 'lesson/snippet.ts', kind: 'code', content: 'const intentionallyRaw=1' }),
     ]),

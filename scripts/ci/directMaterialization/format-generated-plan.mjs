@@ -155,11 +155,7 @@ export async function formatGeneratedPlan(plan) {
   }
   const files = [];
   for (const file of plan.files) {
-    if (
-      file?.kind === 'typescript' &&
-      typeof file.path === 'string' &&
-      /\.(?:[cm]?ts|tsx)$/.test(file.path)
-    ) {
+    if (file?.kind === 'typescript' && typeof file.path === 'string' && /\.(?:[cm]?ts|tsx)$/.test(file.path)) {
       files.push({ ...file, content: await formatGeneratedTypeScript(file.content, file.path) });
     } else {
       files.push(file);
