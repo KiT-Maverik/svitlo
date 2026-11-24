@@ -261,7 +261,7 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
   files.set(
     name + '.module.css',
     [
-      '/* TODO (BLOCKER): Implement accessible, responsive, reduced-motion Scene styling before release. */',
+      ('/* ' + renderBlockerTodo('Implement and test accessible, responsive, reduced-motion Scene styling before release; remove this marker after verified keyboard and motion checks.').slice(3) + ' */'),
       '.root {',
       '  inline-size: 100%;',
       '  min-inline-size: 0;',
