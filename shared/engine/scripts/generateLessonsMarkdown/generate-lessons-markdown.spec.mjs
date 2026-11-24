@@ -370,8 +370,10 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
       assert.equal(await generate(output, { root }), 1);
       assert.equal(fs.readFileSync(path.join(root, 'scoped/engine-fixture', relative, 'uk.md'), 'utf8'), baseline);
 
-      await assert.rejects(generate({ ...list, lesson: '00000000-0000-4000-8000-00000000000f' }, { root }),
-        /No matching canonical lessons/);
+      await assert.rejects(
+        generate({ ...list, lesson: '00000000-0000-4000-8000-00000000000f' }, { root }),
+        /No matching canonical lessons/,
+      );
       await assert.rejects(generate({ ...markdown, locale: 'invalid' }, { root }), /Unsupported locale/);
       const mismatchedId = '00000000-0000-4000-8000-00000000001c';
       const mismatched = path.join(fixtureTextbook, 'data/lessons/c', mismatchedId);
