@@ -428,7 +428,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     const seed = result.files.find(file => file.path === row.sourcePath);
     const parent = result.files.find(file => file.path === row.placementSourcePath);
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
-    assert.ok(parent?.content.includes('defineAssessment({ id: ' + JSON.stringify(row.id)));
+    assert.ok(parent?.content.includes('defineAssessmentDraft({ id: ' + JSON.stringify(row.id)));
     assert.ok(parent?.content.includes('TODO (BLOCKER): Not implemented'));
     assert.ok(parent?.content.includes('Not implemented'));
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);

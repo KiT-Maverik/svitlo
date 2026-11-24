@@ -1,18 +1,13 @@
+import { assessmentDraftExpression } from '../../../shared/engine/generators/materializers/course/materializeAssessmentPlaceholder.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
 
 const id = 'a73572e7-bd85-4516-86e2-3de07d209e03';
 const second = 'a73572e7-bd85-4516-86e2-3de07d209e04';
-const placeholder = (uuid, slug) =>
-  'defineAssessment({ id: ' +
-  JSON.stringify(uuid) +
-  ', type: "assessment", slug: ' +
-  JSON.stringify(slug) +
-  ', params: { languages }, locale: { title: "Not implemented" },' +
-  ' section: { items: {}, order: [] } })';
+const placeholder = assessmentDraftExpression;
 const intro =
-  "import { defineAssessment } from '@svitlo/engine/build';\n" +
+  "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n';
 const item = (slug, uuid) => JSON.stringify(slug) + ': ' + placeholder(uuid, slug);
 const parent = (items, order) =>
