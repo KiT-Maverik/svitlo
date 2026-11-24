@@ -64,9 +64,20 @@ function realDirectory(directory, parent) {
   }
 }
 
-export function discoverLessons(packageDirectory) {
+export function discoverLessons(packageDirectory, lessonId) {
   const root = path.join(packageDirectory, 'data/lessons');
   realDirectory(root, packageDirectory);
+  if (lessonId) {
+    const relative = resolveEntityPath(lessonId);
+    const [bucket, id] = relative.split('/');
+    const bucketPath = path.join(root, bucket);
+    const directory = path.join(bucketPath, id);
+    if (!fs.existsSync(bucketPath) || !fs.existsSync(directory)) return [];
+    realDirectory(bucketPath, root);
+    realDirectory(directory, bucketPath);
+    const { source: entry } = resolveMaterializedEntrypoint(directory, { mode: 'draft', legacyLesson: true });
+    return entry ? [{ id, relative, directory, entry }] : [];
+  }
   const result = [];
   for (const bucket of fs
     .readdirSync(root, { withFileTypes: true })
@@ -152,8 +163,7 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
   const locales = supportedLanguages(root);
   if (!options.listLocales && !locales.includes(options.locale))
     throw new Error(`Unsupported locale ${options.locale}; expected one of ${locales.join(', ')}`);
-  const candidates = discoverLessons(packageDirectory);
-  const selected = options.lesson ? candidates.filter(item => item.id === options.lesson) : candidates;
+  const selected = discoverLessons(packageDirectory, options.lesson);
   if (!selected.length) throw new Error(`No matching canonical lessons for ${options.lesson ?? options.package}`);
   if (options.listLocales) {
     const item = selected[0];

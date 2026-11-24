@@ -181,3 +181,30 @@ test('missing target language shows MISSING and rejects review readiness, not so
     assert.equal(manifest.generated[0].missing, 1);
     assert.match(fs.readFileSync(path.join(output, 'questions/astronomy/e', lessonId, 'qm.md'), 'utf8'), /%%MISSING%%/);
   }));
+
+test('exact Question Bank UUID bypasses unrelated unsafe buckets and rejects missing bank', () =>
+  fixture(({ root, run, manifest }) => {
+    // Broad discovery would reject this symlinked bucket, but selected
+    // Question Bank output must only inspect the requested Lesson.
+    const buckets = path.join(root, 'content/astronomy/data/lessons');
+    fs.symlinkSync(path.join(buckets, 'e'), path.join(buckets, 'f'), 'dir');
+    run(['en']);
+    assert.equal(manifest.failures.length, 0);
+    assert.deepEqual(
+      manifest.generated.map(row => row.path),
+      ['questions/astronomy/e/' + lessonId + '/en.md'],
+    );
+    assert.throws(
+      () =>
+        generateQuestionReviewArtifacts({
+          root,
+          output: path.join(root, 'temp/other-reference'),
+          manifest: { generated: [], failures: [] },
+          saveManifest() {},
+          packageName: 'content/astronomy',
+          lessonId: '00000000-0000-4000-8000-00000000000f',
+          languages: ['en'],
+        }),
+      /Missing or unsafe Question directory/,
+    );
+  }));
