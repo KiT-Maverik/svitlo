@@ -68,10 +68,10 @@ export function materializeEpisodeStage5(
         '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
         '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
         '// Reviewed Episode source blob: ' +
-        source.sourceBlobSha +
+        source.source.sourceBlobSha +
         '\n' +
         '// Reviewed Episode HEAD: ' +
-        source.sourceCommitSha +
+        source.source.sourceCommitSha +
         '\n' +
         index.content;
       return {

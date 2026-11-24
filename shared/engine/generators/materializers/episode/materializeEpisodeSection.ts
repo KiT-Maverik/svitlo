@@ -21,7 +21,7 @@ type File = { path: string; content: string; kind: 'typescript' | 'markdown' | '
 type Result = {
   exportName: string;
   files: File[];
-  diagnostics: { path: string; code: string; severity: 'warning'; message?: string }[];
+  diagnostics: { path: string; code: string; severity: 'warning'; message: string }[];
 };
 type Context = { directory: string; documentLanguage: string; languagesImport: string; production?: Raw };
 const object = (x: unknown): x is Raw => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -60,7 +60,10 @@ function block(value: unknown, context: Context): Result {
       return materializeScene(config as Parameters<typeof materializeScene>[0], {
         ...opts,
         registered: false,
-        production: { specification: production?.specification, pending: true },
+        production: {
+          specification: typeof production?.specification === 'string' ? production.specification : undefined,
+          pending: true,
+        },
       }) as Result;
     case 'carousel':
       return materializeCarousel(config as unknown as Parameters<typeof materializeCarousel>[0], {
