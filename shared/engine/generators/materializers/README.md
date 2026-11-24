@@ -32,7 +32,9 @@ independent work; a green Draft guard is not a substitute for Ready CI.
 The source materializers seal their emitted TypeScript bytes unchanged, with **no
 pre-seal formatter or handoff AST parser**. The existing `PR Auto-format` action
 is responsible for applying repository Prettier on Ready PRs to `develop`.
-Course-generated JSON handoffs remain subject to their original strict,
+Course-generated JSON handoffs protect the immutable literal with a narrow
+`// prettier-ignore` directive; ordinary static re-exports accept either
+Prettier quote style. They remain subject to their original strict,
 non-executing publisher checks. Real output is still nonpublishable until each
 entity-specific check, independent editorial review and authorized workflow pass.
 
