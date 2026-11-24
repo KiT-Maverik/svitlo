@@ -14,6 +14,7 @@ import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
+const verifiedMathSkillId = '54f96aba-7db2-48bb-97ae-5ba2f3436095';
 const assessment = {
   questionBankRequired: false,
   flashcardBankRequired: false,
@@ -25,7 +26,7 @@ const valid = () => ({
     type: 'lesson' as const,
     id: id('01'),
     slug: 'basics',
-    skills: [id('04')],
+    skills: [verifiedMathSkillId],
     params: {
       quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
@@ -117,7 +118,9 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     ].sort(),
   );
   assert(paths.includes(folder + 'methodology.md'));
-  assert(paths.includes(folder + 'specification.md'));
+  assert(!paths.includes(folder + 'specification.md'));
+  assert(paths.includes(folder + 'constants.ts'));
+  assert(!paths.includes(folder + 'languages.ts'));
   assert(paths.includes(folder + 'sections/introduction/specification.md'));
   assert(paths.includes(folder + 'sections/introduction/content/items/prompt/specification.md'));
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
@@ -129,6 +132,10 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
     result.files.find(file => file.path === folder + 'methodology.md')!.content,
     /Source lesson methodology/,
   );
+  const rootMethodology = result.files.find(file => file.path === folder + 'methodology.md')!.content;
+  assert.match(rootMethodology, /One observable learning outcome/);
+  assert.match(rootMethodology, /Section: introduction/);
+  assert.match(rootMethodology, /Reviewed sequence/);
   assert.doesNotThrow(
     () => assertLessonStage6ReleaseReady(result),
     'no unresolved resources in a complete one-locale Lesson',
@@ -208,6 +215,10 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
     const execute = vm.compileFunction(js, ['require', 'exports']);
     execute((specifier: string) => {
       if (specifier === '@svitlo/engine/build') return { defineLesson, defineContentSection, defineText };
+      if (specifier === '#skillsData/geometry/figures/identify2dShapes')
+        return { identify2dShapes: { id: verifiedMathSkillId } };
+      if (specifier.startsWith('#lessonsData/') && specifier.endsWith('/constants'))
+        return load('constants.ts');
       assert(specifier.startsWith('.'), 'only exact imported generated modules allowed');
       const next = posix.join(posix.dirname(normalized), specifier);
       return load(sources.has(next + '.ts') ? next + '.ts' : next + '/index.ts');
@@ -224,7 +235,7 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   const props = lesson.build.props({ languages: ['en'] });
   assert.equal(props.base.section.length, 1);
   assert.equal(props.base.section[0].type, 'content');
-  assert.deepEqual(props.base.skills, [id('04')]);
+  assert.deepEqual(props.base.skills, [verifiedMathSkillId]);
 });
 test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
@@ -518,7 +529,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const fixture: LessonWorkflowStage2 = {
     config: {
       ...base.config,
-      skills: [id('04')],
+      skills: [verifiedMathSkillId],
       section: {
         items: {
           introduction: {
