@@ -96,7 +96,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     edit(manifest);
     assert.throws(
       () => verifyTypedCourseManifest(manifest, pinned),
-      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode/i,
+      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import/i,
     );
   };
   const seed = complete.inventory.lessons.find(x => x.kind === 'new').sourcePath;
@@ -139,6 +139,20 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     const file = structuredClone(m.entries.find(f => f.path === episode));
     file.path = m.sourcePath.replace('/draft.ts', '/content/unlisted/draft.ts');
     m.entries.push(file);
+  });
+  mutate(m => {
+    m.inventory.lessons[0].type = 'episode';
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'reused');
+    const file = m.entries.find(item => item.path === row.placementSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const expected = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
+    const other = '#lessonsData/' + overriddenLessonId.at(-1) + '/' + overriddenLessonId + '/index';
+    assert(source.includes(expected));
+    const altered = source.replace(expected, other);
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
   });
   assert.equal(
     verifyTypedCourseManifest(complete, pinned),
