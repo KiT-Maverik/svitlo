@@ -228,11 +228,11 @@ export function materializeQuestStage(config: Source, options: Options): Result 
     part(raw.config.slug, 'questStage.content.' + slot + '.slug');
     if (mediaIds.has(raw.config.id)) throw new Error('questStage.content.' + slot + ': duplicate UUID');
     mediaIds.add(raw.config.id);
-    const childDir = [dir, 'content', ...entry.path].filter(Boolean).join('/');
+    const childDir = [dir, ...entry.path].filter(Boolean).join('/');
     const result = options.renderMedia(raw.config, {
       directory: childDir,
       documentLanguage: options.documentLanguage,
-      languagesImport: childLanguagesImport(options.languagesImport, 1 + entry.path.length),
+      languagesImport: childLanguagesImport(options.languagesImport, entry.path.length),
       ...(raw.production ? { production: raw.production } : {}),
     });
     includeChild(files, seen, diagnostics, result, childDir, raw.config.slug);
@@ -243,7 +243,7 @@ export function materializeQuestStage(config: Source, options: Options): Result 
         ' as ' +
         alias +
         ' } from ' +
-        JSON.stringify('./content/' + entry.path.join('/')) +
+        JSON.stringify('./' + entry.path.join('/')) +
         ';',
     );
     if (head === 'video') video[leaf] = imported(alias);
