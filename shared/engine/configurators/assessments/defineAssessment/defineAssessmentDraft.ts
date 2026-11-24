@@ -99,7 +99,7 @@ export const defineAssessmentDraft = <
   const overrides = (_patch: never, _options: PublicationLanguageOptions<Languages>): Publication => {
     throw new Error('Assessment draft preview cannot be overridden; complete the Assessment first');
   };
-  return {
+  const result = {
     id, slug, type,
     preview,
     validate,
@@ -115,19 +115,8 @@ export const defineAssessmentDraft = <
       }),
       validate,
     },
-  } as const as {
-    readonly id: typeof id;
-    readonly slug: Slug;
-    readonly type: 'assessment';
-    readonly preview: Preview;
-    readonly validate: typeof validate;
-    readonly build: { readonly props: typeof props; readonly overrides: typeof overrides };
-    readonly config: {
-      readonly base: { id: string; slug: Slug; type: 'assessment'; params: Assessment_Config['params']; locale: {} };
-      readonly locales: () => { locale: DeepPartial<Assessment_Config['locale']> };
-      readonly validate: typeof validate;
-    };
-  } & LanguageScope<Languages>;
+  } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type Assessment_Draft_Configurator = ReturnType<typeof defineAssessmentDraft>;
