@@ -7,6 +7,7 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/episodeMaterialization/**'
+      - 'scripts/ci/directMaterialization/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'shared/engine/generators/materializers/episode/**'
       - 'shared/engine/types/workflow/episodeWorkflow.types.ts'
@@ -140,6 +141,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Install trusted inert handoff parser dependencies (no lifecycle scripts)
+        working-directory: trusted
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - uses: actions/download-artifact@v4
         with:
           name: episode-stage5-${{ github.run_id }}
