@@ -60,6 +60,8 @@ checks. The workflow must exist on the default branch for the manual control.
 Do not use a fake success job or a permanent Draft skip for any check that
 must execute before merge.
 
+**Production Quality is opt-in for agent-initiated runs.** The full suite is intentionally not run automatically on most PRs because it is time-consuming and consumes substantial CI resources. Agents must not manually launch or rerun it (by PR comment, Actions UI, CLI or API) unless the user directly requests Production Quality for the relevant PR or repair cycle. Its absence on a non-release PR is expected, not a blocker. The automatic required gate on Ready `develop → main` promotions is unchanged.
+
 ### Repairing a failed production promotion
 
 When the Ready `develop → main` PR fails `Production Quality / verify`, a green
@@ -69,8 +71,8 @@ fixed. Keep the existing protections and automatic CI triggers unchanged:
 1. Create a temporary, normally named fix branch from the **current `develop`
    HEAD** and a Draft PR from that branch to `develop`. No special branch-name
    prefix is required. Preserve the release promotion PR `develop → main`.
-2. Commit repairs on the fix branch. **After every candidate fix**, post
-   `/production-quality` as an exact comment on the fix PR. The
+2. Commit repairs on the fix branch. **Only if the user explicitly requests Production Quality for this PR or repair cycle**, post
+   `/production-quality` as an exact comment on the fix PR after the authorized candidate fix. Otherwise report that full validation has not been requested or run; do not initiate it independently. The
    default-branch `production-quality-command.yml` workflow resolves the open
    same-repository PR and dispatches the **existing full**
    `production-quality.yml` on that PR's head branch. This uses the existing
