@@ -71,10 +71,24 @@ const earlySection: LessonWorkflowStage1Config = {
 const earlyLanguageConfig: LessonWorkflowStage1Config = {
   ...standalone.config,
   params: {
+    quizRequiredForCompletion: true,
     // @ts-expect-error Source/target languages are editorial planning fields.
     languages: ['uk', 'en'],
   },
 };
+
+const missingCompletionPolicy: LessonWorkflowStage1Config = {
+  ...standalone.config,
+  // @ts-expect-error Methodologist must explicitly decide completion policy.
+  params: { sections: { allowNavigation: false } },
+};
+void missingCompletionPolicy;
+
+const partialSectionPolicy: LessonWorkflowStage1Config = {
+  ...standalone.config,
+  params: { quizRequiredForCompletion: false, sections: { allowSkipping: false } },
+};
+void partialSectionPolicy;
 
 const emptySkills: LessonWorkflowStage1Config = {
   ...standalone.config,
