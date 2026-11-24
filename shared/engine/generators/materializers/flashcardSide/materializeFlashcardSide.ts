@@ -121,6 +121,8 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
       if (!file.path.startsWith(childDir + '/'))
         fail('items.' + key, 'delegated ContentBlock escaped its assigned directory');
     }
+    if (!output.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
+      fail('items.' + key, 'missing delegated ContentBlock index.ts');
     imports.push('import { ' + output.exportName + ' as child_' + key + ' } from ' + JSON.stringify('./' + key) + ';');
     entries.push('  ' + key + ': child_' + key + ',');
     files.push(...output.files);
