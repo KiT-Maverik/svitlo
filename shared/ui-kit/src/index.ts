@@ -17,3 +17,5 @@ export { testId as navbarTestId } from './components/layout/Navigation/Navbar.co
 export { testId as threeSlotLayoutTestId } from './components/layout/ThreeSlotLayout.constants';
 export { resolveAssessmentMethod } from './utils/assessmentMethods';
 export type { AssessmentMethodBase, AssessmentMethodLocalized } from './utils/assessmentMethods';
+
+export * from './components/episode/Episode';
