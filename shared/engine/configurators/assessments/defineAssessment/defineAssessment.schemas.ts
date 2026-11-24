@@ -80,6 +80,7 @@ export const assessment_Draft_Props_Schema = identity
   );
 export const assessment_Completed_Props_Schema = completedAssessment_Props_Schema;
 export const assessment_Props_Schema = z.union([completedAssessment_Props_Schema, assessment_Draft_Props_Schema]);
+export type Assessment_Draft_Props = z.infer<typeof assessment_Draft_Props_Schema>;
 export type Assessment_Props = z.infer<typeof assessment_Props_Schema>;
 export type Assessment_PropsBase = Pick<Assessment_Props, 'id' | 'slug' | 'type' | 'params'> & {
   draft?: true;
