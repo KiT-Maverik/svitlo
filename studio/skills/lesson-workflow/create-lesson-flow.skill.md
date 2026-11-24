@@ -1,5 +1,7 @@
 # Create Lesson Flow
 
+**Final technical invocation (Stage 6.1):** The same reviewed `draft.ts` invokes `materializeLessonStage6(reviewedLesson)` from `@svitlo/engine/build` once, retaining `satisfies LessonWorkflowStage2` on the approved object. This direct call runs only in the no-token, no-network worker; the privileged Git publisher consumes the sealed manifest and does not evaluate candidate TypeScript or inspect a separate AST draft representation. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
 **Authority:** the primary Git-first, staged TypeScript workflow for one standalone or Course-originated Lesson. One **Draft Lesson PR** is the sole canonical progress tracker; Git owns authored files and independent reviewer evidence. Do not introduce workflow status to Engine Config/Props or preserve competing Issue/YAML progress trackers. Before every action read root `AGENTS.md` and `README.md`, the applicable Studio rules, Persona(s), Skill(s), architecture/entity docs and current code/tests.
 
 ## Typed authoring contract and rollout boundary

@@ -1,3 +1,5 @@
+import type { z } from 'zod';
+import type { questionBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { QuizSection_Config } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
@@ -285,11 +287,5 @@ export type QuestionBankWorkflowStage3Production = QuestionBankWorkflowStage1Pro
 /** Final source still contains the entire independently reviewed bank.
  * Actual source-SHA approval is recorded in the owning Questions PR, not here.
  */
-export interface QuestionBankWorkflowStage3 extends QuestionBankWorkflowStage2 {
-  production: QuestionBankWorkflowStage3Production;
-}
-
-/** Reviewed Stage 3 is the exact source passed to the nine concrete materializers.
- * This alias grants no review approval, file-writing permission or publication.
- */
-export type QuestionBankWorkflowMaterializerInput = QuestionBankWorkflowStage3;
+/** Final Question Bank contract is inferred from the owning runtime schema. */
+export type QuestionBankWorkflowStage3 = z.infer<typeof questionBankWorkflowStage3_Schema>;

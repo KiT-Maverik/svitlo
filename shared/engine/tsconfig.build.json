@@ -7,6 +7,8 @@
     "rootDir": ".",
     "outDir": "./dist",
     "declaration": true,
+    "allowJs": true,
+    "checkJs": false,
     "noEmit": false,
     "incremental": false
   },
@@ -19,7 +21,8 @@
     "schemas/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts",
-    "generators/**/*.ts"
+    "generators/**/*.ts",
+    "generators/materializers/**/*.mjs"
   ],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.spec.mjs", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
 }

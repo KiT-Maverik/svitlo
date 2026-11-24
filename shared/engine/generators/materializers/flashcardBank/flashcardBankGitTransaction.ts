@@ -1,7 +1,7 @@
 /** Trusted Git check/commit adapter for the existing Flashcard Bank source plans. */
 import type {
   FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowMaterializerInput,
+  FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import {
   materializeFlashcardBankDraft,
@@ -46,7 +46,7 @@ export function writeFlashcardBankDraftSource(
 }
 
 export function checkReviewedFlashcardBankSource(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCheck {
@@ -61,7 +61,7 @@ export function checkReviewedFlashcardBankSource(
 }
 
 export function writeReviewedFlashcardBankSource(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalGitAuthorization,
   git: BankGitContext,
 ): BankGitCommit {

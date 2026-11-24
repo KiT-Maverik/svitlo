@@ -6,11 +6,9 @@ import type {
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage2,
   QuestionBankWorkflowStage3,
-  QuestionBankWorkflowMaterializerInput,
   FlashcardBankWorkflowStage1,
   FlashcardBankWorkflowStage2,
   FlashcardBankWorkflowStage3,
-  FlashcardBankWorkflowMaterializerInput,
 } from '../../build';
 
 import type { CourseWorkflowLessonSeed as InternalSeed } from './courseWorkflow.types';
@@ -29,8 +27,8 @@ type Expect<Condition extends true> = Condition;
 export type EngineWorkflowBuildExports = [
   Expect<Equal<LessonWorkflowStage1, InternalLessonStage1>>,
   Expect<Equal<LessonWorkflowStage2, InternalLessonStage2>>,
-  Expect<Equal<QuestionBankWorkflowMaterializerInput, InternalQuestionsStage3>>,
-  Expect<Equal<FlashcardBankWorkflowMaterializerInput, InternalFlashcardsStage3>>,
+  Expect<Equal<QuestionBankWorkflowStage3, InternalQuestionsStage3>>,
+  Expect<Equal<FlashcardBankWorkflowStage3, InternalFlashcardsStage3>>,
   Expect<Equal<CourseWorkflowLessonSeed, InternalSeed>>,
   Expect<Equal<CourseWorkflowLessonSeed extends LessonWorkflowStage1 ? true : false, false>>,
   Expect<Equal<LessonWorkflowStage1 extends CourseWorkflowLessonSeed ? true : false, false>>,

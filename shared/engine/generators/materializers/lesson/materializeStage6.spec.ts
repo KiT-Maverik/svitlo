@@ -3,7 +3,8 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 import ts from 'typescript';
 import { materializeLessonStage6, assertLessonStage6ReleaseReady } from './materializeStage6';
-import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
@@ -712,4 +713,85 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   assert.throws(() => assertLessonStage6ReleaseReady(plan), /publication blocked/);
   assertSemanticModules(plan);
+});
+
+test('final Lesson schema rejects invalid nested input before rendering', () => {
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(valid()).success, true);
+  const invalid = valid();
+  const { config } = invalid.config.section.items.introduction.config.content.items.prompt;
+  const broken = { ...config, locale: { value: 123 } };
+  Object.assign(config, broken);
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(invalid).success, false);
+  assert.throws(() => produce(invalid), /Invalid Lesson Stage 2 input/);
+});
+
+test('Episode shares ordinary Section contracts without importing Lesson assessment ownership', () => {
+  const lesson = valid();
+  const episode = {
+    config: {
+      type: 'episode',
+      id: id('33'),
+      slug: 'transition',
+      locale: lesson.config.locale,
+      section: lesson.config.section,
+    },
+    production: {
+      focus: 'Reviewed transition',
+      purpose: 'Continue the narrative',
+      placement: {
+        courseId: id('34'),
+        path: 'content/transition',
+        orderPath: [0],
+        reviewedCourseSourceBlobSha: 'a'.repeat(40),
+      },
+      languages: lesson.production.languages,
+      scenario: {
+        audience: 'Beginners',
+        entrySituation: 'Arrival',
+        exitSituation: 'Observation',
+        continuity: 'Next scene',
+        sceneIntent: 'Show the setting',
+        interactionIntent: 'Read and reflect',
+        accessibility: 'Equivalent text',
+        narrativeConstraints: 'No new assessment',
+      },
+      specification: 'Reviewed narrative',
+    },
+  };
+  assert.equal(episodeWorkflowStage2_Schema.safeParse(episode).success, true);
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, skills: lesson.config.skills },
+    }).success,
+    false,
+  );
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      config: { ...episode.config, events: { unsupported: {} } },
+    }).success,
+    false,
+  );
+});
+
+test('direct Lesson invocation returns the same source plan using runner-owned metadata', async () => {
+  const { executeMaterializerEntrypoint } = await import('../directMaterialization/directMaterialization');
+  const input = valid() as unknown as LessonWorkflowStage2;
+  const sourceText =
+    "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
+    'materializeLessonStage6(' +
+    JSON.stringify(input) +
+    ');\n';
+  const directOptions = {
+    ...options,
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+  };
+  const expected = materializeLessonStage6(input, directOptions);
+  const actual = await executeMaterializerEntrypoint('lesson-stage6', directOptions, async () => {
+    materializeLessonStage6(input);
+  });
+  assert.deepEqual(actual, expected);
+  assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
 });

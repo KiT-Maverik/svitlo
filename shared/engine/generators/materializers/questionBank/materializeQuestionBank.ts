@@ -2,9 +2,12 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
+import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
+import { invokeMaterializer } from '../directMaterialization/directMaterialization';
+import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
 import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
@@ -95,11 +98,7 @@ function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): vo
   ] as const)
     assertBankStatement(value, label);
   if (
-    !p.assessment ||
-    typeof p.assessment.questionBankRequired !== 'boolean' ||
-    typeof p.assessment.flashcardBankRequired !== 'boolean' ||
-    typeof p.assessment.quizSectionRequired !== 'boolean' ||
-    typeof p.assessment.flashcardsSectionRequired !== 'boolean' ||
+    !lessonProductionAssessmentRequirements_Schema.safeParse(p.assessment).success ||
     typeof p.assessment.quizRequiredForCompletion !== 'boolean'
   ) {
     throw new Error('Preserve all independent Lesson assessment decisions');
@@ -156,7 +155,7 @@ export function materializeQuestionBankDraft(
 function renderQuestion(
   kind: Kind,
   node: Record<string, unknown>,
-  sourceLanguage: QuestionBankWorkflowMaterializerInput['production']['languages'],
+  sourceLanguage: QuestionBankWorkflowStage3['production']['languages'],
   blocks: AssessmentBlockEvidence,
 ): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
@@ -213,7 +212,23 @@ function renderQuestion(
  * #775's trusted writer must apply the complete returned plan atomically.
  */
 export function materializeQuestionBank(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
+  authorization?: QuestionBankFinalAuthorization,
+): BankSourceResult {
+  return invokeMaterializer(
+    'questions-stage5',
+    authorization,
+    approved => {
+      const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+      if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+      return planQuestionBank(input, approved);
+    },
+    input,
+  );
+}
+
+function planQuestionBank(
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization.ownerLessonId);

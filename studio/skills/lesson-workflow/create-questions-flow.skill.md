@@ -1,5 +1,7 @@
 # Create Questions Flow — resumable Lesson Question Bank production
 
+**Final technical invocation (Stage 5):** The SHA-reviewed bank `draft.ts` invokes `materializeQuestionBank(reviewedQuestionBank)` once from `@svitlo/engine/build` with a complete `QuestionBankWorkflowStage3` object. Independent review and Lesson ownership are checked outside the no-token worker; the write-token publisher never replays or compiles authored source. No AST literal decoder, local temporary Git writer or second materialization input is supported. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
+
 **Purpose:** produce an independent full Question Bank for an existing **bank-owning Lesson**, plus deliberate Quiz Section selections **only when that Lesson has approved Quizzes**. A full bank can exist with no Quiz Sections.
 Input is the Lesson UUID or its current parent Lesson PR number.
 The bank and each Quiz Section are separate deliverables; neither
@@ -72,8 +74,7 @@ The file is an **incomplete bank-owned authoring object**, not the final publish
 Question Configurator index. It must NOT be imported by the assessment publisher
 or mistaken for a bank. Stage 4 reviews and directly corrects the Stage 3
 source in the same Questions PR, retaining baseline/final SHA evidence in the
-PR only. Stage 5 uses `QuestionBankWorkflowMaterializerInput`, an alias to
-the final Stage 3 type, and an explicit verified source-preserving transition to
+PR only. Stage 5 uses the final `QuestionBankWorkflowStage3` type inferred from the canonical Zod schema, and an explicit verified source-preserving transition to
 the canonical `questions/index.ts` export plus child modules. The trusted bank materializer owns that transition, safe writes and orchestration. The typed trusted command requires default-branch deployment, explicit authorized invocation and immutable source SHA. Independent review remains editorial; no PR prose or verdict is parsed.
 
 **Validation:** TypeScript `satisfies` enables early source diagnostics but
@@ -181,7 +182,7 @@ rather than inventing assessment semantics.
 ## Stage 5 — Resource Production
 
 **Prerequisite:** verify the current bank-level bridge, safe writer and actual composition of the nine Question-kind materializers. The final input is exactly
-`QuestionBankWorkflowMaterializerInput = QuestionBankWorkflowStage3`;
+`QuestionBankWorkflowStage3 = QuestionBankWorkflowStage3`;
 review evidence remains human-readable on the PR, not in a second MaterializeProps object or machine-parsed eligibility gate.
 A Stage 1 or Stage 2 source cannot call the final materializer.
 
