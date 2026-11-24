@@ -52,7 +52,7 @@ export const lessonStage1 = {
                     },
                     "locale": {
                       "value": {
-                        "en": "Look at the two colors. This one is %_%id: redWord; value: red%_%. This one is %_%id: blueWord; value: blue%_%."
+                        "en": "Look at the two circles in the picture. One is %_%id: redWord; value: red%_%. The other is %_%id: blueWord; value: blue%_%. Both are circles. Their colors are different."
                       }
                     }
                   }
@@ -70,14 +70,14 @@ export const lessonStage1 = {
                     "locale": {
                       "fileName": "00000000-0000-0000-0000-000000000000.webp",
                       "alt": {
-                        "en": "A red circle and a blue circle."
+                        "en": "Two circles of the same size: a red circle on the left and a blue circle on the right."
                       },
                       "caption": {
-                        "en": "A red circle and a blue circle."
+                        "en": "Red circle and blue circle: same shape, different colors."
                       },
                       "fallback": {
                         "offline": {
-                          "en": "A red circle and a blue circle."
+                          "en": "Imagine two equally sized circles, one red and one blue. They have the same shape but different colors."
                         },
                         "unavailable": {
                           "en": "The picture is unavailable. Read its description."
@@ -90,11 +90,11 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Compare color independently of shape.",
-                    "specification": "Two equally sized circles side by side: red and blue. Neutral light background; no labels in pixels.",
+                    "specification": "Two equally sized circles side by side on a neutral light background: red on the left and blue on the right in this English illustration. No words in pixels. The placement is an example, not a rule for recognizing a color. If a localized layout changes the order, keep the spoken and written descriptions consistent with the illustration.",
                     "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
                     "offline": "Bundle a local WebP and retain the written description.",
                     "readiness": "production-pending",
-                    "prompt": "Two equally sized circles side by side: red and blue. Neutral light background; no labels in pixels."
+                    "prompt": "Two equally sized circles, red on the left and blue on the right, on a neutral light background. No words in pixels."
                   }
                 },
                 "colorNames": {
@@ -111,17 +111,17 @@ export const lessonStage1 = {
                         "en": "Listen to the color words"
                       },
                       "description": {
-                        "en": "This is red. This is blue. The two circles have different colors."
+                        "en": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
                       },
                       "fallback": {
                         "offline": {
-                          "en": "This is red. This is blue. The two circles have different colors."
+                          "en": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
                         },
                         "unavailable": {
-                          "en": "This is red. This is blue. The two circles have different colors."
+                          "en": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
                         },
                         "playbackError": {
-                          "en": "This is red. This is blue. The two circles have different colors."
+                          "en": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
                         },
                         "retry": {
                           "en": "Try again"
@@ -131,11 +131,11 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Hear the color names.",
-                    "specification": "Produce a clear spoken English recording of the script; no music, no sound effects; short pause between examples.",
+                    "specification": "Produce a clear spoken English recording of the script; no music or sound effects; short pause between examples. Keep the descriptions consistent with the actual image in each locale.",
                     "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
                     "offline": "Bundle source-language MP3; text remains available.",
                     "readiness": "production-pending",
-                    "script": "This is red. This is blue. The two circles have different colors."
+                    "script": "The picture shows a red circle on the left and a blue circle on the right. Both are circles. Red and blue are different color names."
                   }
                 },
                 "colorNamesSummary": {
@@ -146,7 +146,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "**%_%RED_NAME%_%** and **%_%BLUE_NAME%_%** are color names.\n\n- Same shape, different colors.\n- Different shapes can have the same color.\n\nThere are two colors in this lesson: $1 + 1 = 2$. One color plus one different color makes two."
+                        "en": "**%_%RED_NAME%_%** and **%_%BLUE_NAME%_%** are color names.\n\n- Two circles can have different colors.\n- A circle and a square can have the same color.\n- A toy car can be red or blue. A cup can also be red or blue.\n\nWe have learned two color names: $1 + 1 = 2$. This counts the names; it does not mix the colors."
                       },
                       "variables": {
                         "RED_NAME": {
@@ -222,7 +222,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Watch how a red circle becomes a red square, then how a blue square becomes a blue circle. The color stays the same while the shape changes."
+                        "en": "Watch a red circle become a red square, then a blue square become a blue circle. In each example, the shape changes but the color stays the same."
                       }
                     }
                   }
@@ -377,11 +377,17 @@ export const lessonStage1 = {
                                   "en": "Change shape"
                                 },
                                 "status": {
-                                  "red": {
-                                    "en": "The sample is red."
+                                  "redCircle": {
+                                    "en": "The sample is a red circle."
                                   },
-                                  "blue": {
-                                    "en": "The sample is blue."
+                                  "redSquare": {
+                                    "en": "The sample is a red square."
+                                  },
+                                  "blueCircle": {
+                                    "en": "The sample is a blue circle."
+                                  },
+                                  "blueSquare": {
+                                    "en": "The sample is a blue square."
                                   }
                                 },
                                 "sampleLabel": {
@@ -392,8 +398,8 @@ export const lessonStage1 = {
                           },
                           "production": {
                             "purpose": "Explore how color and shape vary independently.",
-                            "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
-                            "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                            "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
+                            "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
                             "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
                             "readiness": "production-pending",
                             "weakDeviceAlternative": "Static swatch plus text labels and native controls."
@@ -418,7 +424,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Optional: look for red and blue objects in the following video. You may also see other colors; you do not need to learn them here."
+                        "en": "Optional: look for examples of red and blue in the following video. You may see yellow, too; this lesson focuses only on red and blue. You can skip the video and continue with the examples here."
                       }
                     }
                   }
@@ -454,7 +460,7 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Optional extension: recognize red and blue on familiar objects.",
-                    "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (published 2023-07-10). Public video listing and description verified; full playback, embed permission, captions and regional availability must be reviewed before release. Yellow is incidental, not an assessed target. Do not copy the video into assets.",
+                    "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (July 10, 2023). Public listing and description identify red, blue and yellow, including a cherry example. Full playback, captions, embedding permission and regional availability remain to be verified during resource production. Yellow is incidental to this Lesson and is not an assessed target. Do not copy the video into assets.",
                     "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
                     "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
                     "readiness": "production-pending"
@@ -499,7 +505,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Choose Red or Blue, then change the shape. Notice which property stays the same."
+                        "en": "Choose Red or Blue. Say the color name. Then change the shape: does the color stay the same? Change the color next: does the shape stay the same?"
                       }
                     }
                   }
@@ -531,11 +537,17 @@ export const lessonStage1 = {
                           "en": "Change shape"
                         },
                         "status": {
-                          "red": {
-                            "en": "The sample is red."
+                          "redCircle": {
+                            "en": "The sample is a red circle."
                           },
-                          "blue": {
-                            "en": "The sample is blue."
+                          "redSquare": {
+                            "en": "The sample is a red square."
+                          },
+                          "blueCircle": {
+                            "en": "The sample is a blue circle."
+                          },
+                          "blueSquare": {
+                            "en": "The sample is a blue square."
                           }
                         },
                         "sampleLabel": {
@@ -546,8 +558,8 @@ export const lessonStage1 = {
                   },
                   "production": {
                     "purpose": "Explore how color and shape vary independently.",
-                    "specification": "Render one large sample, initially blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
-                    "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                    "specification": "Render one large sample, initially a blue circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial blue circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
+                    "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
                     "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
                     "readiness": "production-pending",
                     "weakDeviceAlternative": "Static swatch plus text labels and native controls."
@@ -607,7 +619,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "A circle or square can be red or blue. Look at the color, not the outline."
+                                            "en": "Yes. A red circle and a red square have the same color, even though their outlines differ. A blue circle and a blue square can also have the same color. Look at color, not just shape. The following examples let you explore this idea in pictures, words, sounds and a simple activity. Take them at your own pace. The local video changes a red circle into a red square and a blue square into a blue circle; in each case the color stays the same."
                                           }
                                         }
                                       }
@@ -620,7 +632,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Shape alone cannot tell you the color."
+                                            "en": "**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Two squares can be different colors. Two different shapes can share a color. Shape alone cannot tell you the color."
                                           },
                                           "variables": {
                                             "FIRST_COLOR": {
@@ -644,7 +656,7 @@ export const lessonStage1 = {
                                         },
                                         "locale": {
                                           "title": {
-                                            "en": "Two color names"
+                                            "en": "Three examples, two distinct color names"
                                           }
                                         }
                                       }
@@ -662,14 +674,14 @@ export const lessonStage1 = {
                                         "locale": {
                                           "fileName": "00000000-0000-0000-0000-000000000000.webp",
                                           "alt": {
-                                            "en": "A red square and a blue square."
+                                            "en": "A blue square on the left and a red square on the right."
                                           },
                                           "caption": {
-                                            "en": "A red square and a blue square."
+                                            "en": "Same shape, different colors; the colors have changed places."
                                           },
                                           "fallback": {
                                             "offline": {
-                                              "en": "A red square and a blue square."
+                                              "en": "A blue square and a red square have the same shape, although they have different colors."
                                             },
                                             "unavailable": {
                                               "en": "The picture is unavailable. Read its description."
@@ -682,11 +694,11 @@ export const lessonStage1 = {
                                       },
                                       "production": {
                                         "purpose": "Compare color independently of shape.",
-                                        "specification": "Two same-sized squares side by side, left red and right blue, on neutral background.",
+                                        "specification": "Two equally sized squares on a neutral background, blue on the left and red on the right in the English illustration. Reverse the order used in the opening picture to show that placement does not define color.",
                                         "accessibility": "No embedded words; the adjacent caption and alt describe the objects and their colors. These labels teach vocabulary, not scored visual recognition.",
                                         "offline": "Bundle a local WebP and retain the written description.",
                                         "readiness": "production-pending",
-                                        "prompt": "Two same-sized squares side by side, left red and right blue, on neutral background."
+                                        "prompt": "Two same-sized squares side by side, blue on the left and red on the right, on a neutral background."
                                       }
                                     },
                                     "answerAudio": {
@@ -703,17 +715,17 @@ export const lessonStage1 = {
                                             "en": "Listen to the color words"
                                           },
                                           "description": {
-                                            "en": "Red and blue are color names. A square can be either color."
+                                            "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                           },
                                           "fallback": {
                                             "offline": {
-                                              "en": "Red and blue are color names. A square can be either color."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                             },
                                             "unavailable": {
-                                              "en": "Red and blue are color names. A square can be either color."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                             },
                                             "playbackError": {
-                                              "en": "Red and blue are color names. A square can be either color."
+                                              "en": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                             },
                                             "retry": {
                                               "en": "Try again"
@@ -727,7 +739,7 @@ export const lessonStage1 = {
                                         "accessibility": "Provide the same script in adjacent text and audio description; user-controlled playback.",
                                         "offline": "Bundle source-language MP3; text remains available.",
                                         "readiness": "production-pending",
-                                        "script": "Red and blue are color names. A square can be either color."
+                                        "script": "A red circle and a red square have the same color. A blue circle and a blue square have the same color. A red square and a blue square have different colors."
                                       }
                                     },
                                     "answerVideo": {
@@ -802,7 +814,7 @@ export const lessonStage1 = {
                                       },
                                       "production": {
                                         "purpose": "Optional extension: recognize red and blue on familiar objects.",
-                                        "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (published 2023-07-10). Public video listing and description verified; full playback, embed permission, captions and regional availability must be reviewed before release. Yellow is incidental, not an assessed target. Do not copy the video into assets.",
+                                        "specification": "External publisher: Khan Academy Kids, Red, Blue, and Yellow (July 10, 2023). Public listing and description identify red, blue and yellow, including a cherry example. Full playback, captions, embedding permission and regional availability remain to be verified during resource production. Yellow is incidental to this Lesson and is not an assessed target. Do not copy the video into assets.",
                                         "accessibility": "Do not require watching the video to progress; use the equivalent local color examples.",
                                         "offline": "Skip the external video and use the local explanation; no network dependency for essential learning.",
                                         "readiness": "production-pending"
@@ -856,11 +868,17 @@ export const lessonStage1 = {
                                               "en": "Change shape"
                                             },
                                             "status": {
-                                              "red": {
-                                                "en": "The sample is red."
+                                              "redCircle": {
+                                                "en": "The sample is a red circle."
                                               },
-                                              "blue": {
-                                                "en": "The sample is blue."
+                                              "redSquare": {
+                                                "en": "The sample is a red square."
+                                              },
+                                              "blueCircle": {
+                                                "en": "The sample is a blue circle."
+                                              },
+                                              "blueSquare": {
+                                                "en": "The sample is a blue square."
                                               }
                                             },
                                             "sampleLabel": {
@@ -871,8 +889,8 @@ export const lessonStage1 = {
                                       },
                                       "production": {
                                         "purpose": "Explore how color and shape vary independently.",
-                                        "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
-                                        "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                                        "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
+                                        "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
                                         "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
                                         "readiness": "production-pending",
                                         "weakDeviceAlternative": "Static swatch plus text labels and native controls."
@@ -966,11 +984,17 @@ export const lessonStage1 = {
                                                       "en": "Change shape"
                                                     },
                                                     "status": {
-                                                      "red": {
-                                                        "en": "The sample is red."
+                                                      "redCircle": {
+                                                        "en": "The sample is a red circle."
                                                       },
-                                                      "blue": {
-                                                        "en": "The sample is blue."
+                                                      "redSquare": {
+                                                        "en": "The sample is a red square."
+                                                      },
+                                                      "blueCircle": {
+                                                        "en": "The sample is a blue circle."
+                                                      },
+                                                      "blueSquare": {
+                                                        "en": "The sample is a blue square."
                                                       }
                                                     },
                                                     "sampleLabel": {
@@ -981,8 +1005,8 @@ export const lessonStage1 = {
                                               },
                                               "production": {
                                                 "purpose": "Explore how color and shape vary independently.",
-                                                "specification": "Render one large sample, initially red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial state. Use visibly distinct saturated red and blue fills, a neutral background, and the localized status text. No scoring, network, animation, or timer. Repeated selection is idempotent; keyboard/touch actions give the same result.",
-                                                "accessibility": "All controls are labeled native buttons with visible focus and keyboard activation. Expose current color and shape through visible and screen-reader-readable text; no color-only feedback. Nonvisual vocabulary exploration is not scored as visual recognition.",
+                                                "specification": "Render one large sample, initially a red circle. Red and Blue buttons select the color while preserving shape. Change shape toggles circle/square while preserving color. Reset restores the initial red circle. Use clearly distinct red and blue fills on a neutral background. For each of the four color/shape combinations, display and announce the corresponding localized status (redCircle, redSquare, blueCircle, blueSquare). Repeated selection of the same color is idempotent; Reset works from any state. Keyboard and touch actions give the same result. No scoring, network, animation or timer.",
+                                                "accessibility": "Use labeled native buttons, visible focus and keyboard activation. Present the localized current color and shape as visible text and a polite accessible status update. Do not communicate changes through color alone. Nonvisual vocabulary exploration is not scored as visual recognition.",
                                                 "offline": "Bundle the registered Scene locally; provide the same two color/shape examples in text and avoid expensive graphics.",
                                                 "readiness": "production-pending",
                                                 "weakDeviceAlternative": "Static swatch plus text labels and native controls."
@@ -1037,7 +1061,7 @@ export const lessonStage1 = {
                                 "params": {},
                                 "locale": {
                                   "value": {
-                                    "en": "If a red circle becomes blue but stays a circle, what changed?"
+                                    "en": "Imagine a red circle that becomes blue but stays a circle. What changed? Think first, then reveal the explanation."
                                   }
                                 }
                               }
@@ -1057,7 +1081,7 @@ export const lessonStage1 = {
                                         "params": {},
                                         "locale": {
                                           "value": {
-                                            "en": "The color changed from red to blue. The shape is still a circle."
+                                            "en": "The color changed from red to blue. The shape did not change: it is still a circle. Now imagine changing the circle into a square without changing the blue color."
                                           }
                                         }
                                       }
@@ -1120,7 +1144,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "A computer can store a color name as a word. Read these two examples; you do not need to know programming."
+                        "en": "A computer can store a color name as a word. The following is a static example, not a programming task. Read the two color words in quotation marks."
                       }
                     }
                   }
@@ -1154,7 +1178,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "The two words are different. The code represents names, not an exact definition of how a color looks."
+                        "en": "The words in quotation marks are different. They name two colors; the code does not define exactly how either color looks."
                       }
                     }
                   }
@@ -1195,7 +1219,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Recall the color names, then turn the cards over to check. Practice is not a test of mastery."
+                        "en": "Try to remember each color name before revealing the answer on its card. Check your recall and practice again when you need to."
                       }
                     }
                   }
@@ -1234,7 +1258,7 @@ export const lessonStage1 = {
                     "params": {},
                     "locale": {
                       "value": {
-                        "en": "Look at the examples carefully. Focus on color rather than shape or position. Take your time."
+                        "en": "Look at each example carefully. Decide on its color rather than relying on its shape or position. Take your time and try to answer independently."
                       }
                     }
                   }
