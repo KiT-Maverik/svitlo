@@ -152,7 +152,6 @@ test('one shared Scene draft template emits six parseable files with inert compl
   assert.throws(() => renderSceneFiles({ ...info, id: '../injected' }), /canonical lowercase UUID/);
 });
 
-
 test('non-Lesson Scene consumers retain the original reviewed specification sidecar by default', () => {
   const reviewed = context().production.specification;
   const result = materializeScene(scene(), { ...context(), specificationSidecar: undefined });
@@ -160,6 +159,9 @@ test('non-Lesson Scene consumers retain the original reviewed specification side
   assert.equal(sidecar?.content, reviewed);
   assert.equal(sidecar?.kind, 'specification');
   assert(result.files.some(file => file.path === 'content/items/activity/index.ts'));
-  assert.equal(materializeScene(scene(), context()).files.some(file => file.kind === 'specification'), false,
-    'Lesson Stage 6.1 opts out of the sidecar when its TSX stores the complete specification');
+  assert.equal(
+    materializeScene(scene(), context()).files.some(file => file.kind === 'specification'),
+    false,
+    'Lesson Stage 6.1 opts out of the sidecar when its TSX stores the complete specification',
+  );
 });
