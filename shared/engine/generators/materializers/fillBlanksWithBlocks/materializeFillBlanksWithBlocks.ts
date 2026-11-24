@@ -237,8 +237,7 @@ export function materializeFillBlanksWithBlocks(
       if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
       // Preserve slot identity and correct-answer role without source-only items wrappers.
-      const childPath =
-        parts[1] === 'slots' ? ['slots', parts[3], parts[4]].join('/') : [parts[1], parts[3]].join('/');
+      const childPath = parts[1] === 'slots' ? ['slots', parts[3], parts[4]].join('/') : [parts[1], parts[3]].join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(
