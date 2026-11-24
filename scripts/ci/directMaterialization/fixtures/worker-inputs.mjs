@@ -230,17 +230,6 @@ export function episodeStage2(episodeId) {
     },
   };
 }
-const evidence = {
-  skillId,
-  outcome: 'Recall the principle',
-  assessmentMethod: 'retrieval',
-  cognitiveOperation: 'retrieve',
-  knowledgeAspect: 'principle',
-  cognitiveDemand: 'transfer',
-  misconception: 'Common misconception',
-  context: 'Independent assessment',
-  expectedEvidence: 'Correct explanation',
-};
 function questionBlock(slug, n) {
   return {
     config: {
@@ -270,12 +259,6 @@ export function questionStage3() {
         },
       },
     },
-    production: {
-      evidence,
-      distinction: 'Tests a distinct context',
-      intendedUse: 'core',
-      rationale: 'Targets the approved outcome',
-    },
   };
   return {
     config: {
@@ -284,23 +267,6 @@ export function questionStage3() {
     },
     production: {
       languages: { document: 'uk', planned: ['uk'] },
-      lesson: {
-        sourcePath: 'content/math/data/lessons/0/' + bankOwnerId + '/index.ts',
-        sourceSha: sha('a'),
-        referencePath: 'references/lesson.md',
-        referenceSha: sha('b'),
-        methodologyPath: 'references/methodology.md',
-        title: 'Mathematics lesson',
-      },
-      assessment: { ...assessment, quizRequiredForCompletion: false },
-      ownershipRationale: 'Independent source bank',
-      audience: 'Grade 3',
-      scope: 'Arithmetic',
-      prerequisites: 'Counting',
-      evidenceIntent: [evidence],
-      misconceptions: 'Confuses order',
-      mediaNeeds: 'No media needed',
-      sourcesAndDependencies: 'Verified Lesson',
       quiz: { kind: 'none', rationale: 'No local Quiz' },
     },
   };
