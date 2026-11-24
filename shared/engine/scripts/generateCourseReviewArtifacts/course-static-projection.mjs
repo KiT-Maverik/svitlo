@@ -133,7 +133,7 @@ function parseModule(filename, root, languages) {
 }
 
 function declaredLanguages(root) {
-  const file = path.join(root, 'constants.ts');
+  const file = path.join(root, 'languages.ts');
   safeFile(file, root);
   const source = fs.readFileSync(file, 'utf8');
   const ast = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
@@ -161,10 +161,8 @@ export function readModularCourse(item, supportedLanguages) {
   // Stage 5 temporarily exposes only the source locale as executable TS, while
   // preserving the planned translation roster in this deterministic generator marker.
   // These languages are eligible for review previews, NOT production publication.
-  const constants = fs.readFileSync(path.join(root, 'constants.ts'), 'utf8');
-  const marker = constants.match(
-    /\/\/ TODO \(BLOCKER\): Restore the complete language set when translations are ready:\s*\r?\n\s*\/\/ export const languages = (\[[^\n]*\]) as const satisfies SupportedLanguages;/,
-  );
+  const source = fs.readFileSync(item.entry, 'utf8');
+  const marker = source.match(/\/\/ TODO \(BLOCKER\): Restore reviewed languages: (\[[^\n]*\])/);
   const planned = marker ? JSON.parse(marker[1]) : declared;
   if (
     !Array.isArray(planned) ||
@@ -175,6 +173,13 @@ export function readModularCourse(item, supportedLanguages) {
   )
     throw new Error('Invalid planned Course language roster');
   const coursePrefix = '#coursesData/' + item.id.slice(-1) + '/' + item.id + '/';
+  const episodeEntries = [];
+  const lessonReference = (specifier, slug) => {
+    const match = specifier.match(/^#lessonsData\/([0-9a-f])\/([0-9a-f-]{36})\/index$/);
+    if (!match || !UUID.test(match[2]) || match[2].at(-1) !== match[1])
+      throw Error('Unresolvable Lesson UUID reference: ' + specifier);
+    return {type:'lesson',id:match[2],slug};
+  };
   const visit = (file, depth, ids = new Set()) => {
     if (depth > 20) throw new Error('Course hierarchy exceeds depth limit');
     const config = parseModule(file, root, declared);
@@ -182,7 +187,10 @@ export function readModularCourse(item, supportedLanguages) {
     ids.add(config.id);
     if (depth === 0 && (config.type !== 'course' || config.id !== item.id))
       throw new Error('Root Course identity mismatch');
-    if (config.type === 'episode') return config;
+    if (config.type === 'episode') {
+      episodeEntries.push({id:config.id,slug:config.slug,entry:file});
+      return {type:'episode',id:config.id,slug:config.slug};
+    }
     const { items, order } = config.content ?? {};
     if (
       !record(items) ||
@@ -202,22 +210,33 @@ export function readModularCourse(item, supportedLanguages) {
         throw new Error('Invalid Course child import: ' + slug);
       const spec = items[slug].__courseImport.source;
       if (spec.startsWith('#lessonsData/')) {
-        const match = spec.match(/^#lessonsData\/[0-9a-f]\/([0-9a-f-]{36})(?:\/.*)?$/);
-        if (!match || !UUID.test(match[1]) || match[1].slice(-1) !== spec.split('/')[1])
-          throw new Error('Unresolvable Lesson UUID reference: ' + spec);
-        children.push({ type: 'lesson', id: match[1], slug });
-      } else if (spec.startsWith(coursePrefix)) {
-        const name = spec.slice(coursePrefix.length);
-        if (!/^content\/[a-zA-Z0-9/]+\/index$/.test(name) || name.includes('//'))
-          throw new Error('Unsafe Course-owned import: ' + spec);
-        const nested = path.join(root, name + '.ts');
-        const relative = path.relative(root, nested).split(path.sep);
-        if (relative.includes('..') || path.isAbsolute(path.relative(root, nested)))
-          throw new Error('Course import escapes own root');
-        const child = visit(nested, depth + 1, ids);
-        if (child.slug !== slug || !['module', 'chapter', 'episode'].includes(child.type))
-          throw new Error('Course child slug/type mismatch: ' + slug);
-        children.push(child);
+        children.push(lessonReference(spec,slug));
+      } else if (spec.startsWith(coursePrefix) || spec.startsWith('./')) {
+        const candidate = spec.startsWith(coursePrefix)
+          ? path.join(root,spec.slice(coursePrefix.length))
+          : path.resolve(path.dirname(file),spec);
+        const nested = candidate.endsWith('/index') ? candidate + '.ts' : path.join(candidate,'index.ts');
+        const relative = path.relative(root,nested).split(path.sep).join('/');
+        if (!/^content\/(?:[a-zA-Z][a-zA-Z0-9]*\/){1,3}index\.ts$/.test(relative) ||
+            relative.split('/').some(key=>['__proto__','prototype','constructor'].includes(key)) ||
+            path.basename(path.dirname(nested)) !== slug)
+          throw Error('Unsafe or mismatched Course-owned child import: ' + spec);
+        safeFile(nested,root);
+        const ast = ts.createSourceFile(nested,fs.readFileSync(nested,'utf8'),ts.ScriptTarget.Latest,true);
+        // Stage 5 reused Lessons use one explicit re-export rather than a duplicate Configurator.
+        const statement = ast.statements[0];
+        if (!ast.parseDiagnostics.length && ast.statements.length === 1 && ts.isExportDeclaration(statement) &&
+            statement.moduleSpecifier && ts.isStringLiteral(statement.moduleSpecifier) &&
+            statement.moduleSpecifier.text.startsWith('#lessonsData/') &&
+            statement.exportClause && ts.isNamedExports(statement.exportClause) &&
+            statement.exportClause.elements.length === 1) {
+          children.push(lessonReference(statement.moduleSpecifier.text,slug));
+        } else {
+          const child = visit(nested,depth+1,ids);
+          if (child.slug !== slug || !['module','chapter','episode'].includes(child.type))
+            throw Error('Course child slug/type mismatch: ' + slug);
+          children.push(child);
+        }
       } else throw new Error('Unexpected external Course child: ' + spec);
     }
     return { ...config, content: children };
@@ -226,6 +245,7 @@ export function readModularCourse(item, supportedLanguages) {
   return {
     id: item.id,
     type: 'course',
+    episodeEntries,
     config: { base: { params: { languages: planned } } },
     project(locale) {
       if (!planned.includes(locale)) throw new Error('Locale not declared or planned by Course');

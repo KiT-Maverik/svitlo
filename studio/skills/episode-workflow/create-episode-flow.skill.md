@@ -39,7 +39,7 @@ At Stage 6 implement typed resources and Scenes using [Implement Scene](../lesso
 
 ### Stages 7–8: localization
 
-Apply [Technical Translation](../translation-workflow/technical-translation.skill.md) and [Review Translation](../translation-workflow/review-translation.skill.md) to Episode-owned fields only. Course Stages 6–7 own Course/Module/Chapter text. Use the existing Episode PR, exact locale inventory and verified source-derived reference artifacts; missing Episode scope or reference generation is a hard stop. Review localized text and media scripts/planned paths; do not require not-yet-produced media bytes at Stage 8 or claim that they exist. Preserve actual locale evidence and final SHA; no translation or reviewer PR.
+Apply [Technical Translation](../translation-workflow/technical-translation.skill.md) and [Review Translation](../translation-workflow/review-translation.skill.md) to Episode-owned fields only. Course Stages 6–7 own Course/Module/Chapter text. Use the existing Episode PR, exact locale inventory and verified source-derived reference artifacts from `/agent-artifacts generate episodes content/<book> <course-uuid> <episode-uuid> <locale>`; missing Episode scope or reference generation is a hard stop. Review localized text and media scripts/planned paths; do not require not-yet-produced media bytes at Stage 8 or claim that they exist. Preserve actual locale evidence and final SHA; no translation or reviewer PR.
 
 ### Stages 9–10: human handoff
 

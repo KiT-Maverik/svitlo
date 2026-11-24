@@ -110,9 +110,9 @@ export function mergeCourseReview(base, patch) {
 }
 
 /** Render only the Course-owned tree; a Lesson is an opaque UUID reference. */
-export function renderCourseMarkdown({ course, locale, packageName, sourceRef, sources = [] }) {
-  if (!object(course) || course.type !== 'course' || !UUID.test(course.id))
-    throw new Error('Expected resolved Course Props');
+function renderOwnedMarkdown({ entity, rootType, locale, packageName, sourceRef, sources = [] }) {
+  if (!object(entity) || entity.type !== rootType || !UUID.test(entity.id))
+    throw new Error('Expected resolved ' + rootType + ' Props');
   if (
     !/^content\/[a-z][a-z0-9-]*$/.test(packageName) ||
     !/^[a-z]{2,4}$/.test(locale) ||
@@ -161,8 +161,8 @@ export function renderCourseMarkdown({ course, locale, packageName, sourceRef, s
   const walk = (entry, depth) => {
     if (!object(entry) || !UUID.test(entry.id) || !allowed.has(entry.type))
       throw new Error('Invalid Course-owned hierarchy node');
-    if (entry.type === 'lesson') {
-      add('  '.repeat(depth) + '- Lesson UUID reference: ' + entry.id);
+    if (entry.type === 'lesson' || (entry.type === 'episode' && rootType === 'course')) {
+      add('  '.repeat(depth) + '- ' + (entry.type === 'lesson' ? 'Lesson' : 'Episode') + ' UUID reference: ' + entry.id);
       return;
     }
     if (ids.has(entry.id)) throw new Error('Duplicate Course-owned ID: ' + entry.id);
@@ -176,7 +176,9 @@ export function renderCourseMarkdown({ course, locale, packageName, sourceRef, s
     write('Locale', entry.locale);
     if (entry.type === 'episode') {
       // Episode Sections, Scenes and blocks are Course-owned; no Lesson banks are followed.
-      if (entry.section !== undefined) write('Episode Sections', entry.section);
+      if (!Array.isArray(entry.section) || !entry.section.length) throw Error('Complete resolved Episode Sections required');
+      write('Episode Sections', entry.section);
+      if (entry.events !== undefined) write('Events',entry.events);
       add('');
       return;
     }
@@ -184,11 +186,18 @@ export function renderCourseMarkdown({ course, locale, packageName, sourceRef, s
     add('');
     entry.content.forEach(child => walk(child, depth + 1));
   };
-  walk(course, 0);
+  walk(entity, 0);
   const md = lines.join('\n').trimEnd() + '\n';
   if (Buffer.byteLength(md, 'utf8') > 2 * 1024 * 1024)
     throw new Error('Course Markdown exceeds the 2 MiB document limit');
   return md;
+}
+
+export function renderCourseMarkdown({course,...options}) {
+  return renderOwnedMarkdown({entity:course,rootType:'course',...options});
+}
+export function renderEpisodeMarkdown({episode,...options}) {
+  return renderOwnedMarkdown({entity:episode,rootType:'episode',...options});
 }
 
 function courseSources(root, item) {
@@ -304,4 +313,62 @@ export async function generateCourseReviewArtifacts({
   }
   if (courseId && !matches) throw new Error('Requested Course not found: ' + courseId);
   return { generated, failures };
+}
+
+/** Exact Episode/locale scope, on the existing low-privilege reference workflow.
+ * Build validates real localized Props; media file existence is a later human gate.
+ */
+export async function generateEpisodeReviewArtifacts({
+  root,output,manifest,saveManifest,packageName,courseId,episodeId,languages,supportedLanguages,
+  loader = async entry => {
+    const {loadAuthoredConfigurators} = await import('../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs');
+    return loadAuthoredConfigurators(entry,'episode');
+  },
+}) {
+  if (!UUID.test(courseId ?? '') || !UUID.test(episodeId ?? '') || !Array.isArray(languages) ||
+      !languages.length || languages.some(locale=>!supportedLanguages.includes(locale)))
+    throw Error('Exact Course, Episode and locale scope required');
+  const item = discoverCourses(root,packageName).find(entry=>entry.id===courseId);
+  if (!item) throw Error('Requested materialized Course not found: ' + courseId);
+  const projection = readModularCourse(item,supportedLanguages);
+  const matches = projection.episodeEntries.filter(entry=>entry.id===episodeId);
+  if (matches.length!==1) throw Error('Exact materialized Episode not found in verified Course composition');
+  const [slot] = matches;
+  const configurators = await loader(slot.entry);
+  if (!Array.isArray(configurators) || configurators.length!==1 ||
+      configurators[0].id!==episodeId || configurators[0].slug!==slot.slug ||
+      configurators[0].type!=='episode' || typeof configurators[0].build?.props!=='function')
+    throw Error('Episode Configurator identity differs from requested slot');
+  const episode = configurators[0];
+  const declared = episode.config?.base?.params?.languages;
+  if (!Array.isArray(declared) || new Set(declared).size!==declared.length ||
+      declared.some(code=>!supportedLanguages.includes(code)))
+    throw Error('Invalid Episode active locale scope');
+  let generated=0,failures=0;
+  for (const locale of languages) {
+    try {
+      if (!declared.includes(locale)) throw Error('Locale is not active in materialized Episode');
+      const props=episode.build.props({languages:[locale]});
+      const resolved=mergeCourseReview(props.base,props.locale?.[locale]);
+      if (resolved.id!==episodeId || resolved.type!=='episode') throw Error('Resolved Episode identity mismatch');
+      const md=renderEpisodeMarkdown({episode:resolved,locale,packageName,sourceRef:manifest.sourceCommit,
+        sources:courseSources(root,{entry:slot.entry,directory:path.dirname(slot.entry),relative:'index.ts'})});
+      const relative='episodes/'+packageName.slice(8)+'/'+courseId.at(-1)+'/'+courseId+'/'+episodeId+'/'+locale+'.md';
+      const destination=path.join(output,relative);
+      fs.mkdirSync(path.dirname(destination),{recursive:true});
+      if (fs.existsSync(destination) && (fs.lstatSync(destination).isSymbolicLink()||!fs.statSync(destination).isFile()))
+        throw Error('Unsafe Episode Markdown output');
+      fs.writeFileSync(destination,md);
+      const missing=(md.match(/%%MISSING%%/g)??[]).length;
+      manifest.generated.push({kind:'episode',textbook:packageName,course:courseId,episode:episodeId,
+        locale,path:relative,missing,reviewReady:missing===0});
+      generated++;
+    } catch(error) {
+      failures++;
+      manifest.failures.push({kind:'episode',textbook:packageName,course:courseId,episode:episodeId,
+        locale,error:String(error.message??error).slice(0,1500)});
+    }
+    saveManifest();
+  }
+  return {generated,failures};
 }
