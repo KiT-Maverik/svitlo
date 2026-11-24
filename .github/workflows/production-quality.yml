@@ -9,15 +9,30 @@ on:
 
 permissions:
   contents: read
+  checks: read
 
 concurrency:
   group: production-quality-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
+  reuse:
+    name: Production / prior result
+    runs-on: ubuntu-latest
+    outputs:
+      reuse: ${{ steps.check.outputs.reuse }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check prior required result
+        id: check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          REQUIRED_CHECK_NAME: Production Quality / verify
+        run: node scripts/ci/requiredCheckReuse/required-check-reuse.mjs
   policy:
     name: Production / source policy
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    needs: reuse
+    if: (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) && needs.reuse.outputs.reuse != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -206,7 +221,7 @@ jobs:
 
   verify:
     name: Production Quality / verify
-    needs: [policy, repository, types, unit, components, lint, packages, apps]
+    needs: [reuse, policy, repository, types, unit, components, lint, packages, apps]
     # On Draft the required context must not masquerade as a validated release.
     # On Ready the final status exists even when one prerequisite fails or skips.
     if: >-
@@ -218,9 +233,18 @@ jobs:
       - name: Require every production validation suite to succeed
         env:
           PRODUCTION_RESULTS: ${{ toJSON(needs) }}
+          REUSED_RESULT: ${{ needs.reuse.outputs.reuse }}
         run: |
           node --input-type=module <<'NODE'
           const needs = JSON.parse(process.env.PRODUCTION_RESULTS);
+          if (needs.reuse?.result !== 'success') {
+            console.error('::error::Prior-result verification did not succeed');
+            process.exit(1);
+          }
+          if (process.env.REUSED_RESULT === 'true') {
+            console.log('Prior successful Production Quality / verify on the exact PR merge commit was verified.');
+            process.exit(0);
+          }
           const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
           let failures = 0;
           for (const name of required) {

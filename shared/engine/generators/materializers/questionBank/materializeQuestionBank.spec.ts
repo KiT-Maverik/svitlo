@@ -68,7 +68,6 @@ const draftAuth = {
   ownerLessonId: lessonId,
   lessonSourceSha: sha('a'),
   referenceSha: sha('b'),
-  methodologistReviewSha: sha('d'),
   snapshot: snapshot(),
 };
 const block = (slug: string, num: number) => ({
@@ -107,13 +106,11 @@ const question = () => ({
 const editorial = 'export const reviewedBank = { reviewedAtStage3: true };\n';
 const finalAuth = (input: unknown = completeBank()) => ({
   ownerLessonId: lessonId,
-  reviewed: {
-    approved: true as const,
+  source: {
     content: editorial,
     blobSha: gitBlobSha(editorial),
-    reviewedSourceBlobSha: gitBlobSha(editorial),
-    reviewCommitSha: sha('c'),
-    reviewedInputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
+    commitSha: sha('c'),
+    inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   snapshot: snapshot(editorial),
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
@@ -169,7 +166,7 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
   const result = materializeQuestionBank(completeBank() as never, finalAuth());
   assert.equal(result.publishable, false);
   assert(result.transition);
-  assert.equal(result.transition.reviewedDraftPath, 'questions/draft.ts');
+  assert.equal(result.transition.sourceDraftPath, 'questions/draft.ts');
   assert.equal(result.transition.materializedPath, 'questions/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const paths = result.files.map(file => file.path);
@@ -198,8 +195,8 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
 });
 test('Question Bank final refuses source/review drift, missing groups and malformed kind', () => {
   const badReview = finalAuth();
-  badReview.reviewed.reviewedSourceBlobSha = sha('f');
-  assert.throws(() => materializeQuestionBank(completeBank() as never, badReview), /independently approved/);
+  badReview.source.blobSha = sha('f');
+  assert.throws(() => materializeQuestionBank(completeBank() as never, badReview), /pinned bytes/);
   const empty = completeBank();
   empty.config.questions.selectOneAnswer = {} as never;
   assert.throws(() => materializeQuestionBank(empty as never, finalAuth(empty)), /no members/);
@@ -208,19 +205,10 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   assert.throws(() => materializeQuestionBank(wrong as never, finalAuth(wrong)), /kind\/slug mismatch/);
 });
 
-test('Question Bank N/A cannot start without a separately verified exception', () => {
+test('Question source materialization does not gate on editorial bank-required status', () => {
   const noBank = handoff();
   noBank.production.assessment.questionBankRequired = false;
-  assert.throws(() => materializeQuestionBankDraft(noBank as never, draftAuth), /Questions N\/A/);
-  assert.doesNotThrow(() =>
-    materializeQuestionBankDraft(noBank as never, {
-      ...draftAuth,
-      independentBankAuthorization: {
-        sourceSha: sha('a'),
-        rationale: 'Independent upstream evidence requires a bank',
-      },
-    }),
-  );
+  assert.doesNotThrow(() => materializeQuestionBankDraft(noBank as never, draftAuth));
 });
 test('Question Bank rejects pending nested Blocks even if the parent Question is complete', () => {
   const input = completeBank();

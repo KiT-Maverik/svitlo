@@ -137,13 +137,11 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   const root = 'content/playground/data/courses/3/' + id;
   const source = materializeCourseStage5(input, {
     textbookRoot: 'content/playground',
-    review: {
+    source: {
       sourcePath: root + '/draft.ts',
       sourceBlobSha: '1'.repeat(40),
-      reviewCommitSha: '2'.repeat(40),
-      reviewVerdict: 'accepted',
-    },
-    verifyReviewedSource: () => true,
+                },
+    verifySource: () => true,
   });
   assert.equal(source.publishable, false);
   assert.ok(source.diagnostics.some(d => d.code === 'pending-episode-scenario'));

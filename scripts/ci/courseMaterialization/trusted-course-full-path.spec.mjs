@@ -61,15 +61,13 @@ test('clean trusted Course analyze and privileged replay with the actual Playgro
     number: 806,
     repo: 'KiT-Maverik/svitlo',
     actor: 'trusted',
-    reviewVerdict: 'accepted',
-    head,
+        head,
     branch: 'course/full-path-regression',
     textbookRoot,
     courseId,
     sourcePath,
     sourceBlobSha: git('rev-parse', 'HEAD:' + sourcePath),
-    reviewCommitSha: head,
-  };
+      };
   const report = path.join(work, 'manifest.json');
   const analyzerUrl = new URL('./typed-course-source.mjs', import.meta.url);
   const analyzer = fileURLToPath(analyzerUrl);

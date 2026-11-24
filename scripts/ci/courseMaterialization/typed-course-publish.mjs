@@ -22,7 +22,6 @@ import { materializeCourseStage5 } from '../../../shared/engine/generators/mater
 import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
 import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
 import { checkGeneratedCourseTypes } from './typed-course-semantics.mjs';
-import { manifestDigest } from './course-handoff-publish.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -86,8 +85,6 @@ export function verifyTypedCourseManifest(manifest, meta) {
     manifest.textbookRoot !== meta.textbookRoot ||
     manifest.sourcePath !== meta.sourcePath ||
     manifest.sourceBlobSha !== meta.sourceBlobSha ||
-    manifest.reviewCommitSha !== meta.reviewCommitSha ||
-    manifest.reviewVerdict !== meta.reviewVerdict ||
     manifest.publishable !== false ||
     manifest.materializedPath !== path.posix.dirname(meta.sourcePath) + '/index.ts' ||
     !Array.isArray(manifest.entries) ||
@@ -209,16 +206,13 @@ export function replan(meta, source, candidateRoot = process.env.COURSE_HEAD_ROO
   checkCourseStage3Types(path.join(candidateRoot, meta.sourcePath));
   const plan = materializeCourseStage5(input, {
     textbookRoot: meta.textbookRoot,
-    review: {
+    source: {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
-      reviewCommitSha: meta.reviewCommitSha,
-      reviewVerdict: meta.reviewVerdict,
     },
-    verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
+    verifySource: ({ input: candidate, source, textbookRoot }) =>
       candidate === input &&
-      review.sourceBlobSha === meta.sourceBlobSha &&
-      review.reviewCommitSha === meta.head &&
+      source.sourceBlobSha === meta.sourceBlobSha &&
       textbookRoot === meta.textbookRoot,
     materializeSection: materializeCourseEpisodeSection,
     resolveExistingLesson: reviewedLessonPatchResolver(input, resolver, patches, meta.sourceBlobSha),
@@ -248,8 +242,6 @@ function equalMetadata(a, b) {
     'sourcePath',
     'sourceBlobSha',
     'textbookRoot',
-    'reviewCommitSha',
-    'reviewVerdict',
   ].every(key => a[key] === b[key]);
 }
 
@@ -273,7 +265,7 @@ async function publish() {
     tree: oneCommitTree(manifest),
   });
   if (!SHA.test(tree?.sha ?? '')) throw Error('Invalid typed Course commit tree');
-  const digest = manifestDigest(manifest);
+  const digest = sha256(Buffer.from(JSON.stringify(manifest)));
   const commit = await github('git/commits', 'POST', {
     message:
       'Materialize reviewed typed Course ' +
@@ -282,10 +274,6 @@ async function publish() {
       meta.number +
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
-      '\nStage4-Review: ' +
-      meta.reviewVerdict +
-      ' at ' +
-      meta.reviewCommitSha +
       '\nCourse-Inventory-Manifest: ' +
       digest,
     tree: tree.sha,
@@ -308,24 +296,10 @@ async function publish() {
       meta.head +
       ', reviewed blob ' +
       meta.sourceBlobSha +
-      ', verdict ' +
-      meta.reviewVerdict +
       ', ' +
       manifest.entries.length +
       ' generated sources; reviewed draft consumed, exact bytes retained in Git history.',
   );
-  if (process.env.GITHUB_OUTPUT) {
-    const proof = {
-      repo: meta.repo,
-      number: meta.number,
-      branch: meta.branch,
-      courseId: meta.courseId,
-      reviewedHead: meta.head,
-      commit: commit.sha,
-      digest,
-    };
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, 'proof=' + JSON.stringify(proof) + '\n');
-  }
   const placements = manifest.pendingPlacements ?? [];
   for (const placement of placements)
     report('Lesson Stage 1 pending (no automatic PR): ' + placement.lessonId + ' — ' + placement.handoffPath);

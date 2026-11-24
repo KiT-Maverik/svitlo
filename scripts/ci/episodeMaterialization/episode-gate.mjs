@@ -1,7 +1,6 @@
 /** Authorization and identity gate. Only the pinned default-branch implementation runs. */
 import fs from 'node:fs';
 import { github, requireActor, safeBranch, materializationInvocation } from '../courseMaterialization/course-gate.mjs';
-import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -85,23 +84,11 @@ export async function inspectEpisode(number, parentNumber, expected) {
   const sourceBlobSha = await resource(identity.sourcePath, pr.head.sha);
   const handoffBlobSha = await resource(identity.sourcePath, parent.head.sha);
   const parentBlobSha = await resource(identity.parentPath, parent.head.sha);
-  const reviews = await verifyReviewEvidence(pr.body, {
-    stages: [3, 4],
-    head: pr.head.sha,
-    blob: sourceBlobSha,
-    readBlob: commit => resource(identity.sourcePath, commit),
-    isAncestor: async (from, to) => {
-      if (from === to) return true;
-      const comparison = await github('compare/' + from + '...' + to);
-      return comparison?.status === 'ahead' && comparison.merge_base_commit?.sha === from;
-    },
-  });
   const again = await github('pulls/' + number);
   const parentAgain = await github('pulls/' + parentNumber);
   if (
     again?.state !== 'open' ||
     !again.draft ||
-    again.body !== pr.body ||
     again.head?.sha !== pr.head.sha ||
     again.head?.ref !== pr.head.ref ||
     again.head?.repo?.full_name !== repo ||
@@ -114,7 +101,7 @@ export async function inspectEpisode(number, parentNumber, expected) {
     parentAgain.head?.repo?.full_name !== repo ||
     parentAgain.base?.ref !== base
   )
-    throw Error('Episode or parent PR changed during review evidence verification');
+    throw Error('Episode or parent PR changed during source discovery');
   return {
     repo,
     number,
@@ -127,7 +114,6 @@ export async function inspectEpisode(number, parentNumber, expected) {
     sourceBlobSha,
     handoffBlobSha,
     parentBlobSha,
-    reviews,
   };
 }
 /** Discover the one open same-repository parent by the actual Episode target ref. */

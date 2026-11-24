@@ -86,14 +86,6 @@ const card: FlashcardBankWorkflowCardConfig = {
   content: { front, back, hint: { items: { cue: hintBlock }, order: ['cue'] } },
 };
 
-const prerequisite = {
-  kind: 'completed',
-  sourceSha: 'verified-question-source-sha',
-  reviewSha: 'independent-question-review-sha',
-  bankPath: 'content/math/data/lessons/1/lesson-uuid/questions/index.ts',
-  integrated: true,
-} as const;
-
 const stage1 = {
   production: {
     lesson: {
@@ -108,7 +100,6 @@ const stage1 = {
         flashcardsSectionRequired: false,
       },
     },
-    questions: prerequisite,
     analysis: {
       recallObjectives: ['Recognize orbit', 'Recall definition'],
       sourceFactsAndConcepts: ['Orbital path'],
@@ -278,14 +269,6 @@ const invalidStage1: FlashcardBankWorkflowStage1 = {
   config: stage2.config,
 };
 
-const noQuestions: FlashcardBankWorkflowStage1 = {
-  // @ts-expect-error A completed Stage 1 must carry explicit verified Questions status.
-  production: { lesson: stage1.production.lesson, analysis: stage1.production.analysis },
-};
-
-// @ts-expect-error Missing Methodologist rationale and pinned SHA cannot bypass Questions first.
-const unapprovedNA: FlashcardBankWorkflowStage1['production']['questions'] = { kind: 'notApplicable' };
-
 const badFlag: FlashcardBankWorkflowFlags = [
   // @ts-expect-error Flags must use actual built-in discriminants.
   { type: 'mnemonic', value: { uk: 'АБ' } },
@@ -359,8 +342,6 @@ void materializerWithSection;
 void tooEarly1;
 void tooEarly2;
 void invalidStage1;
-void noQuestions;
-void unapprovedNA;
 void badFlag;
 void keyedFlags;
 void forbiddenSideIdentity;

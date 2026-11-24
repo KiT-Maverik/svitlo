@@ -22,8 +22,8 @@ export type BankSourceResult = {
   diagnostics: BankSourceDiagnostic[];
   /** Consume the reviewed Stage 3 draft and create the index in one atomic commit. */
   transition?: {
-    reviewedDraftPath: string;
-    reviewedDraftBlobSha: string;
+    sourceDraftPath: string;
+    sourceDraftBlobSha: string;
     materializedPath: string;
     expectedHeadSha: string;
   };
@@ -39,16 +39,13 @@ export type BankSourceSnapshot = {
   entries: Readonly<Record<string, { kind: 'file' | 'symlink' | 'directory'; content?: string }>>;
 };
 
-export type BankReviewedSource = {
-  /** Exact Stage 3 draft.ts bytes, loaded from the approved PR revision. */
+export type BankPinnedSource = {
+  /** Exact Stage 3 draft.ts bytes from the authorized PR HEAD. */
   content: string;
   blobSha: string;
-  /** Authenticated independent-review evidence; never derived from input Config. */
-  approved: true;
-  reviewedSourceBlobSha: string;
-  /** Trusted evaluation of exact reviewed Stage 3 TS, hashed after validation. */
-  reviewedInputSha256: string;
-  reviewCommitSha: string;
+  /** Trusted evaluation of the pinned TypeScript, hashed after validation. */
+  inputSha256: string;
+  commitSha: string;
 };
 
 const hexSha = /^[a-f0-9]{40}$/i;
@@ -152,13 +149,13 @@ export function authoredBankLiteral(input: unknown): string {
 }
 
 /** Pin structured data to the independently reviewed source's trusted evaluation. */
-export function assertReviewedBankInput(input: unknown, reviewed: BankReviewedSource): void {
-  if (!/^[a-f0-9]{64}$/i.test(reviewed.reviewedInputSha256)) {
-    throw new Error('Verified structured review input SHA-256 is required');
+export function assertPinnedBankInput(input: unknown, source: BankPinnedSource): void {
+  if (!/^[a-f0-9]{64}$/i.test(source.inputSha256)) {
+    throw new Error('Verified structured input SHA-256 is required');
   }
   const current = createHash('sha256').update(authoredBankLiteral(input), 'utf8').digest('hex');
-  if (current !== reviewed.reviewedInputSha256) {
-    throw new Error('Structured bank input differs from the independently reviewed Stage 3 source');
+  if (current !== source.inputSha256) {
+    throw new Error('Structured bank input differs from the pinned Stage 3 source');
   }
 }
 
@@ -172,7 +169,7 @@ export function gitBlobSha(contents: string): string {
 export function preflightBankSource(
   files: BankSourceFile[],
   snapshot: BankSourceSnapshot,
-  transition?: { indexPath: string; draftPath: string; reviewed: BankReviewedSource },
+  transition?: { indexPath: string; draftPath: string; source: BankPinnedSource },
 ): BankSourceResult {
   if (snapshot.complete !== true) throw new Error('Trusted complete Git tree snapshot required');
   assertBankSha(snapshot.expectedHeadSha, 'expected HEAD');
@@ -208,7 +205,7 @@ export function preflightBankSource(
   }
   let verifiedTransition: BankSourceResult['transition'];
   if (transition) {
-    const { indexPath, draftPath, reviewed } = transition;
+    const { indexPath, draftPath, source } = transition;
     assertBankPath(indexPath);
     assertBankPath(draftPath);
     if (
@@ -220,24 +217,21 @@ export function preflightBankSource(
     ) {
       throw new Error('Canonical draft deletion and index creation are required in one transition plan');
     }
-    assertBankSha(reviewed.blobSha, 'Stage 3 source');
-    assertBankSha(reviewed.reviewedSourceBlobSha, 'approved reviewed source');
-    assertBankSha(reviewed.reviewCommitSha, 'review revision');
+    assertBankSha(source.blobSha, 'Stage 3 source');
+    assertBankSha(source.commitSha, 'source revision');
     if (
-      reviewed.approved !== true ||
-      reviewed.reviewCommitSha !== snapshot.expectedHeadSha ||
-      reviewed.blobSha !== reviewed.reviewedSourceBlobSha ||
-      gitBlobSha(reviewed.content) !== reviewed.blobSha
+      source.commitSha !== snapshot.expectedHeadSha ||
+      gitBlobSha(source.content) !== source.blobSha
     ) {
-      throw new Error('Stage 3 source differs from independently approved bytes');
+      throw new Error('Stage 3 source differs from pinned bytes');
     }
     const draft = snapshot.entries[draftPath];
-    if (draft?.kind !== 'file' || draft.content !== reviewed.content) {
+    if (draft?.kind !== 'file' || draft.content !== source.content) {
       throw new Error('Stale, missing or hand-edited Stage 3 draft');
     }
     verifiedTransition = {
-      reviewedDraftPath: draftPath,
-      reviewedDraftBlobSha: reviewed.blobSha,
+      sourceDraftPath: draftPath,
+      sourceDraftBlobSha: source.blobSha,
       materializedPath: indexPath,
       expectedHeadSha: snapshot.expectedHeadSha,
     };
