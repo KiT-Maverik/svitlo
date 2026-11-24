@@ -1,5 +1,7 @@
 # Create Questions Flow — resumable Lesson Question Bank production
 
+**Generated-source blocker semantics:** Follow the [Coding Agent's actionable TODO contract](../../personas/coding-agent.persona.md#actionable-generated-source-blockers): a \`TODO (BLOCKER):\` must explain the real implementation and removal criterion; keep a reviewed temporary brief in **one** safe multiline comment rather than a detached specification. Preserve all unfinished publication blockers, independent approvals and the entity-owned source of truth. This is guidance for materialized technical scaffolds, not permission to complete a workflow stage.
+
 **Final technical invocation (Stage 5):** The SHA-reviewed bank `draft.ts` invokes `materializeQuestionBank(reviewedQuestionBank)` once from `@svitlo/engine/build` with a complete `QuestionBankWorkflowStage3` object. Independent review and Lesson ownership are checked outside the no-token worker; the write-token publisher never replays or compiles authored source. No AST literal decoder, local temporary Git writer or second materialization input is supported. See [Direct source architecture](../../docs/architecture/typed-production-materialization.md).
 
 **Purpose:** produce an independent full Question Bank for an existing **bank-owning Lesson**, plus deliberate Quiz Section selections **only when that Lesson has approved Quizzes**. A full bank can exist with no Quiz Sections.
