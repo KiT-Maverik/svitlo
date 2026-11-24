@@ -39,9 +39,9 @@ test('Scene emits canonical Config source without duplicating its specification 
   assert.match(code, /"uk": "Обери форму"/);
   assert.doesNotMatch(code, /Choose shape/);
   assert.doesNotMatch(code, /sceneImplementationRequired|SceneStub\s*\(/, 'React stub must remain external');
-  assert.match(code, /\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
-  assert.match(code, /\);\n\/\/ TODO \(BLOCKER\): Remove the temporary Scene specification/);
-  assert.match(code, /\/\*\*[\s\S]*# specification[\s\S]*Use the approved interaction\./);
+  assert.match(code, /\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\);\n\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(code, /\* # specification[\s\S]*Use the approved interaction\./);
   assert.equal(result.diagnostics[0]?.code, 'pending-scene');
   assert(result.diagnostics.some(d => d.code === 'pending-temporary-specification'));
 });
