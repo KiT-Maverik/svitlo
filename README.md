@@ -33,7 +33,7 @@ Start the Web host with an explicitly installed content package, for example `SV
 
 ## Course-owned Assessment (in development)
 
-The proposed independent [Assessment](studio/docs/entities/assessment.md) is an ordered Course-owned evaluation activity that may be placed directly under a Course, Module or Chapter and reuse externally published Lesson Question Banks through Quiz Sections. Its [authoring workflow](studio/skills/assessment-workflow/create-assessment-flow.skill.md), full materialization and TOC integration are being developed in [PR #826](https://github.com/KiT-Maverik/svitlo/pull/826), with direct-materializer work in #823. It must not be treated as an already supported runtime capability.
+The proposed independent [Assessment](studio/docs/entities/assessment.md) is an ordered Course-owned evaluation activity that may be placed directly under a Course, Module or Chapter and reuse externally published Lesson Question Banks through Quiz Sections. Its [authoring workflow](studio/skills/assessment-workflow/create-assessment-flow.skill.md), staged Course placeholders/inventory and direct materialization are being implemented in [Draft PR #826](https://github.com/KiT-Maverik/svitlo/pull/826) on top of the merged #823 direct TypeScript workflow. The Methodologist decides Assessment need solely by adding ordered Stage 2 slots; no boolean is stored. Course Stage 7 is Skipped only when the entire reviewed hierarchy has zero slots. It must not be treated as an already supported runtime capability.
 
 ## Typed educational production
 
