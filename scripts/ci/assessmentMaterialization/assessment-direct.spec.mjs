@@ -30,9 +30,7 @@ const reviewed = () => ({
     slug: 'moduleReview',
     type: 'assessment',
     locale: { title: { uk: 'Підсумкове оцінювання' } },
-    section: {
-      items: {
-        intro: {
+    before: { items: { intro: {
           config: {
             id: sectionId,
             slug: 'intro',
@@ -42,8 +40,8 @@ const reviewed = () => ({
             content: { items: {}, order: [] },
           },
           production: { purpose: 'Clarify the rules' },
-        },
-        quiz: {
+        } }, order: ['intro'] },
+    quiz: {
           config: {
             id: 'b775647f-203d-481a-a1c7-4d331c000202',
             slug: 'quiz',
@@ -68,9 +66,7 @@ const reviewed = () => ({
           },
           production: { purpose: 'Verify the approved evidence' },
         },
-      },
-      order: ['intro', 'quiz'],
-    },
+    after: { items: {}, order: [] },
   },
   production: {
     purpose: 'Collect evidence after upstream lessons',
@@ -117,9 +113,8 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
 
 test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions or stale draft', () => {
   const withoutQuiz = reviewed();
-  delete withoutQuiz.config.section.items.quiz;
-  withoutQuiz.config.section.order = ['intro'];
-  assert.throws(() => materializeAssessment(withoutQuiz, options), /enabled Quiz|Invalid reviewed/);
+  delete withoutQuiz.config.quiz;
+  assert.throws(() => materializeAssessment(withoutQuiz, options), /Quiz|Invalid reviewed/);
   const fakeQuestion = reviewed();
   fakeQuestion.config.section.items.quiz.config.params.selection.questionIds[0] =
     'feedc0de-1234-4234-8234-123456789010';

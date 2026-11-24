@@ -48,12 +48,8 @@ const source =
 const input = {
   config: {
     ...seed.config,
-    section: {
-      items: {
-        quiz: {
-          config: { type: 'quiz', params: { selection: { questionIds: [questionId] } } },
-        },
-      },
+    quiz: {
+      config: { type: 'quiz', params: { selection: { questionIds: [questionId] } } },
     },
   },
   production: { ...seed.production, design: 'Design', specification: 'Reviewed content' },

@@ -126,9 +126,7 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
   const localized = title => (typeof title === 'string' ? title : title?.[document]);
   if (localized(sourceTitle) !== localized(reviewedTitle))
     throw Error('Assessment changed the Course-approved source title');
-  const selected = Object.values(input.config.section?.items ?? {})
-    .filter(node => node?.config?.type === 'quiz' && node.config.params?.disabled !== true)
-    .flatMap(node => node.config.params?.selection?.questionIds ?? []);
+  const selected = input.config.quiz?.config?.params?.selection?.questionIds ?? [];
   if (JSON.stringify(selected) !== JSON.stringify(plan.selectedQuestionIds))
     throw Error('Assessment selected Question UUIDs differ from pinned authored Quiz Sections');
   return true;
