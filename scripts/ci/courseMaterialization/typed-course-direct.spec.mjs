@@ -212,6 +212,30 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   mutate(m => {
     m.pendingPlacements = [];
   });
+  // The sealed inventory must prove the stub is in the immediate owning
+  // parent, not merely carry the pending Lesson's UUID and draft path.
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    row.placementSourcePath = row.sourcePath;
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    const file = m.entries.find(item => item.path === row.placementSourcePath);
+    const content = Buffer.from(file.data, 'base64').toString('utf8');
+    const replacement = content.replace(
+      'defineLessonStub({ id: "' + row.id + '"',
+      'defineLessonStub({ id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"',
+    );
+    assert.notEqual(replacement, content);
+    file.data = Buffer.from(replacement).toString('base64');
+    file.sha256 = createHash('sha256').update(replacement).digest('hex');
+  });
+  mutate(m => {
+    const file = m.entries.find(item => item.path.endsWith('/constants.ts'));
+    assert.ok(file);
+    file.path = m.sourcePath.replace('/draft.ts', '/content/spurious/constants.ts');
+  });
+
   mutate(m => {
     m.pendingEpisodes = [m.pendingEpisodes[0], m.pendingEpisodes[0]];
   });
