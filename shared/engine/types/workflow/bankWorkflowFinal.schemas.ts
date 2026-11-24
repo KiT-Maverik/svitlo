@@ -261,19 +261,19 @@ export const questionBankWorkflowQuestionKinds_Schema: z.ZodType<QuestionSourceG
   );
 
 export const questionBankWorkflowQuizIntent_Schema = z.discriminatedUnion('kind', [
-  z.strictObject({ kind: z.literal('none'), rationale: nonempty }),
+  z.strictObject({ kind: z.literal('none'), rationale: nonempty.optional() }),
   z.strictObject({
     kind: z.literal('local'),
-    rationale: nonempty,
+    rationale: nonempty.optional(),
     sections: z.strictObject({
       items: z.record(
         z.string(),
         z.strictObject({
           sectionId: z.uuid(),
           sectionPath: nonempty,
-          selectionRationale: nonempty,
-          coverage: nonempty,
-          upstreamDependencies: nonempty,
+          selectionRationale: nonempty.optional(),
+          coverage: nonempty.optional(),
+          upstreamDependencies: nonempty.optional(),
         }),
       ),
       order: z.array(z.string()),
