@@ -51,19 +51,53 @@ export const questionBankWorkflowBlockProduction_Schema = z.strictObject({
 function blockNode<Config extends z.ZodType>(config: Config) {
   return z.strictObject({ config, production: questionBankWorkflowBlockProduction_Schema.optional() });
 }
+/** A Question source can omit a *resource reference* which the existing
+ * concrete materializer replaces with its reserved type-valid placeholder.
+ * Every other actual Block Config requirement remains in force.
+ */
+const imageSource_Schema = image_Config_Schema.safeExtend({
+  locale: image_Config_Schema.shape.locale.extend({
+    fileName: image_Config_Schema.shape.locale.shape.fileName.optional(),
+  }),
+});
+const audioSource_Schema = audio_Config_Schema.extend({
+  locale: audio_Config_Schema.shape.locale.extend({
+    fileName: audio_Config_Schema.shape.locale.shape.fileName.optional(),
+  }),
+});
+const videoSource_Schema = video_Config_Schema.extend({
+  locale: video_Config_Schema.shape.locale.extend({
+    fileName: video_Config_Schema.shape.locale.shape.fileName.optional(),
+    posterFileName: video_Config_Schema.shape.locale.shape.posterFileName.optional(),
+  }),
+});
+const subtitlesSource_Schema = subtitles_Config_Schema.extend({
+  locale: subtitles_Config_Schema.shape.locale.extend({
+    fileName: subtitles_Config_Schema.shape.locale.shape.fileName.optional(),
+  }),
+});
+const youtubeSource_Schema = youtube_Config_Schema.extend({
+  locale: youtube_Config_Schema.shape.locale.extend({
+    href: youtube_Config_Schema.shape.locale.shape.href.optional(),
+  }),
+});
+const sceneSource_Schema = scene_Config_Schema.omit({ params: true, locale: true }).extend({
+  params: scene_Config_Schema.shape.params.optional(),
+  locale: scene_Config_Schema.shape.locale.partial().optional(),
+});
 const simpleBlock_Schema = z.union([
   text_Config_Schema,
   markdown_Config_Schema,
   code_Config_Schema,
-  image_Config_Schema,
-  video_Config_Schema,
-  youtube_Config_Schema,
-  audio_Config_Schema,
-  subtitles_Config_Schema,
-  scene_Config_Schema,
+  imageSource_Schema,
+  videoSource_Schema,
+  youtubeSource_Schema,
+  audioSource_Schema,
+  subtitlesSource_Schema,
+  sceneSource_Schema,
 ]);
 const carouselSource_Schema = carousel_Config_Schema.extend({
-  slides: workflowOrdered_Schema(z.union([blockNode(image_Config_Schema), blockNode(scene_Config_Schema)])),
+  slides: workflowOrdered_Schema(z.union([blockNode(imageSource_Schema), blockNode(sceneSource_Schema)])),
 });
 const simpleBlockNode_Schema = blockNode(simpleBlock_Schema);
 const carouselNode_Schema = blockNode(carouselSource_Schema);

@@ -85,14 +85,29 @@ function approvedUrl(value, kind) {
 function checkMedia(root, meta, config, production, documentLanguage, git) {
   if (!isRecord(config.locale)) throw Error('Media locale missing for ' + config.id);
   const primary = [];
+  let unresolved = false;
   if (config.type === 'youtube') {
-    const href = sourceValue(config.locale.href, documentLanguage, config.id + '.href');
-    approvedUrl(href, 'youtube');
     if (production?.mediaSourcePath !== undefined) throw Error('Youtube cannot claim a local mediaSourcePath');
-    return;
+    const field = config.locale.href;
+    if (field === undefined) return false;
+    const href = sourceValue(field, documentLanguage, config.id + '.href');
+    if (href === '00000000-0000-0000-0000-000000000000') return false;
+    approvedUrl(href, 'youtube');
+    return true;
   }
   for (const [field, folder] of mediaFields[config.type]) {
-    const reference = sourceValue(config.locale[field], documentLanguage, config.id + '.' + field);
+    const authored = config.locale[field];
+    if (authored === undefined) {
+      unresolved = true;
+      continue;
+    }
+    const reference = sourceValue(authored, documentLanguage, config.id + '.' + field);
+    if (reference === '00000000-0000-0000-0000-000000000000.' + {
+      images: 'webp', audio: 'mp3', video: 'mp4', subtitles: 'vtt',
+    }[folder]) {
+      unresolved = true;
+      continue;
+    }
     if (/^https?:\/\//i.test(reference)) {
       approvedUrl(reference, config.type);
       continue;
@@ -111,6 +126,7 @@ function checkMedia(root, meta, config, production, documentLanguage, git) {
   }
   if (production?.mediaSourcePath !== undefined && (primary.length !== 1 || production.mediaSourcePath !== primary[0]))
     throw Error('Authored mediaSourcePath differs from the pinned canonical asset');
+  return !unresolved;
 }
 
 function property(ts, object, name) {
@@ -121,13 +137,12 @@ function property(ts, object, name) {
       (ts.isIdentifier(prop.name) || ts.isStringLiteral(prop.name)) &&
       prop.name.text === name,
   );
-  if (matches.length !== 1) throw Error('Scene registry has no unique UUID entry: ' + name);
+  if (matches.length === 0) throw Error('Scene registry UUID entry missing: ' + name);
+  if (matches.length !== 1) throw Error('Scene registry has nonunique UUID entry: ' + name);
   return matches[0].initializer;
 }
 
 function checkScene(root, meta, config, production, git, ts) {
-  if (typeof production?.specification !== 'string' || !production.specification.trim())
-    throw Error('Scene lacks reviewed production specification: ' + config.id);
   const directory = meta.identity.pkg + '/scenes/' + config.id.at(-1) + '/' + config.id;
   const registryPath = meta.identity.pkg + '/scenes/sceneLoader.ts';
   const registry = staticFile(ts, registryPath, pinnedRegular(root, meta.head, registryPath, git));
@@ -156,6 +171,8 @@ function checkScene(root, meta, config, production, git, ts) {
   )
     throw Error('Scene registry UUID points to a different implementation');
 
+  if (typeof production?.specification !== 'string' || !production.specification.trim())
+    throw Error('Scene lacks reviewed production specification: ' + config.id);
   const indexFile = directory + '/index.ts';
   const index = staticFile(ts, indexFile, pinnedRegular(root, meta.head, indexFile, git));
   if (
@@ -211,6 +228,8 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     throw Error('Missing reviewed bank document language');
   const registeredSceneIds = new Set();
   const approvedMediaBlockIds = new Set();
+  const unregisteredSceneIds = new Set();
+  const unresolvedMediaBlockIds = new Set();
   const visited = new WeakSet();
   let count = 0;
   function visit(value) {
@@ -231,11 +250,19 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
       const { config, production } = node;
       if (production?.pending === true) throw Error('Pending reviewed Block evidence: ' + config.id);
       if (config.type === 'scene') {
-        checkScene(root, meta, config, production, git, ts);
-        registeredSceneIds.add(config.id);
-      } else {
-        checkMedia(root, meta, config, production, language, git);
+        try {
+          checkScene(root, meta, config, production, git, ts);
+          registeredSceneIds.add(config.id);
+        } catch (error) {
+          if (meta.bank !== 'questions' || !String(error?.message).startsWith('Scene registry UUID entry missing: '))
+            throw error;
+          unregisteredSceneIds.add(config.id);
+        }
+      } else if (checkMedia(root, meta, config, production, language, git)) {
         approvedMediaBlockIds.add(config.id);
+      } else {
+        if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard media: ' + config.id);
+        unresolvedMediaBlockIds.add(config.id);
       }
       // Recurse into composite children, never into locale, schema fields or
       // production metadata (which could mimic a Config by accident).
@@ -249,5 +276,5 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     }
   }
   visit(input.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
+  return { registeredSceneIds, approvedMediaBlockIds, unregisteredSceneIds, unresolvedMediaBlockIds };
 }

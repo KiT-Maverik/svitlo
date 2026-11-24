@@ -26,6 +26,9 @@ export type AssessmentBlockEvidence = {
   registeredSceneIds: ReadonlySet<string>;
   /** Independently approved real assets or externally resolved media. */
   approvedMediaBlockIds: ReadonlySet<string>;
+  /** Unresolved *source* resources verified by the pinned trusted analyzer. */
+  unresolvedMediaBlockIds?: ReadonlySet<string>;
+  unregisteredSceneIds?: ReadonlySet<string>;
 };
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = { config: PlainBlock; production?: Record<string, unknown> };
@@ -121,7 +124,8 @@ export function materializeAssessmentBlock(
   };
   if (
     ['image', 'video', 'audio', 'subtitles', 'youtube'].includes(source.type) &&
-    !evidence.approvedMediaBlockIds.has(source.id)
+    !evidence.approvedMediaBlockIds.has(source.id) &&
+    !(moduleName === 'questionsLanguages' && evidence.unresolvedMediaBlockIds?.has(source.id))
   ) {
     throw new Error('Missing verified media evidence for ' + source.type + ' ' + source.id);
   }
@@ -143,7 +147,8 @@ export function materializeAssessmentBlock(
     case 'subtitles':
       return asChildResult(materializeSubtitles(source as Parameters<typeof materializeSubtitles>[0], options));
     case 'scene': {
-      if (!evidence.registeredSceneIds.has(source.id)) {
+      const registered = evidence.registeredSceneIds.has(source.id);
+      if (!registered && !(moduleName === 'questionsLanguages' && evidence.unregisteredSceneIds?.has(source.id))) {
         throw new Error('Scene has no verified executable registry: ' + source.id);
       }
       return asChildResult(
@@ -151,7 +156,7 @@ export function materializeAssessmentBlock(
           directory: context.directory,
           documentLanguage,
           languagesImport,
-          registered: true,
+          registered,
           production:
             node.production === undefined
               ? undefined
@@ -159,7 +164,11 @@ export function materializeAssessmentBlock(
                   ...(typeof node.production.specification === 'string'
                     ? { specification: node.production.specification }
                     : {}),
-                  ...(typeof node.production.pending === 'boolean' ? { pending: node.production.pending } : {}),
+                  // Preserve Flashcard's separate authored pending contract,
+                  // never introduce this redundant status in Question source.
+                  ...(moduleName === 'flashcardsLanguages' && typeof node.production.pending === 'boolean'
+                    ? { pending: node.production.pending }
+                    : {}),
                 },
         }),
       );
