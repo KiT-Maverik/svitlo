@@ -488,8 +488,8 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
     assert.ok(parent?.content.includes('order: '));
-    assert.ok(parent?.content.includes('TODO (BLOCKER): Not implemented'));
-    assert.ok(parent?.content.includes('Not implemented'));
+    assert.ok(parent?.content.includes('TODO (BLOCKER): Complete and review the Assessment'));
+    assert.ok(parent?.content.includes('replace its draft stub'));
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
     assert.ok(row.lessonDependencies.every(path => path.startsWith('content/')));
   }

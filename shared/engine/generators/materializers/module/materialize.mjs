@@ -379,7 +379,7 @@ export function materializeModule(input, context = {}) {
     pendingEpisodes.push(...(child.pendingEpisodes ?? []));
   }
   const assessmentBlocker = order.some(key => unwrap(collection.items[key])?.type === 'assessment')
-    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\n'
+    ? '// TODO (BLOCKER): Complete and review the Assessment with real Questions and enabled Quiz, then replace its draft stub before Course publication.\n'
     : '';
   const fields = { ...config, id, slug };
   delete fields.content;
