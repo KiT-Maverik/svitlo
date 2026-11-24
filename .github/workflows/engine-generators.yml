@@ -85,6 +85,8 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build Engine
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Verify pinned Prettier import ordering without rewriting sources
+        run: npm run test:import-format
       - name: Typecheck Engine and compile generator tests
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
@@ -114,6 +116,9 @@ jobs:
             shared/engine/generators/materializers/lesson/*.spec.mjs \
             shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
             shared/engine/.test-build/generators/materializers/scene/*.spec.js \
+            shared/engine/.test-build/generators/materializers/episode/*.spec.js \
+            shared/engine/.test-build/generators/materializers/questStage/*.spec.js \
+            shared/engine/.test-build/generators/materializers/questTask/*.spec.js \
             scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs \
             shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
             scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
