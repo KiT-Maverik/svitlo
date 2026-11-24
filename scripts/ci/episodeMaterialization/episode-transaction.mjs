@@ -10,7 +10,6 @@ import { github, gitBlob, requireActor, safeBranch, report } from '../courseMate
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
-import { parseEpisodeHandoff } from './episode-source.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
@@ -296,7 +295,13 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   )
     throw Error('Episode parent/handoff source is not the authorized Git version');
   const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
-  const handoff = parseEpisodeHandoff(sourceHandoff);
+  // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
+  // reading it does not require TypeScript, user code or npm packages.
+  const match = sourceHandoff.match(
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+  );
+  if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
+  const handoff = JSON.parse(match[1]);
   if (
     handoff.config.id !== manifest.episodeId ||
     handoff.production.placement.courseId !== meta.courseId ||
