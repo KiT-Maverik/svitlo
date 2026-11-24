@@ -126,7 +126,9 @@ test('flashcards: unfinished selection blocker lives adjacent to source definiti
 });
 test('flashcards: non-provisional bank IDs leave verified Configurator rewrite to Stage 6', () => {
   const result = materializeFlashcardsSection(input() as Parameters<typeof materializeFlashcardsSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
   });
   const source = result.files.find(file => file.path === 'index.ts')!.content;
   assert.match(source, new RegExp(id('03')));

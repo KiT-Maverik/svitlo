@@ -2,13 +2,13 @@
 
 **Source contract:** five concrete, distinct source emitters, each with its own tests and owned nested source layout. They take reviewed plain Config-shaped data plus non-publishable `production` metadata and return deterministic source-file manifests and diagnostics; they never publish Props or write into unreviewed directories.
 
-| Kind             | Build factory            | Owned nested source                                           |
-| ---------------- | ------------------------ | ------------------------------------------------------------- |
-| Carousel         | `defineCarousel`         | `slides/<slug>` delegates Image or Scene children             |
-| Checkpoint       | `defineCheckpoint`       | `<slug>` delegates CheckpointItems                            |
-| CheckpointItem   | `defineCheckpointItem`   | one `question` Text and one `answer` CheckpointAnswer         |
-| CheckpointAnswer | `defineCheckpointAnswer` | `<slug>` supports ordered non-Checkpoint Blocks |
-| Scene            | `defineScene`            | localized Scene Config plus derived `specification.md`        |
+| Kind             | Build factory            | Owned nested source                                    |
+| ---------------- | ------------------------ | ------------------------------------------------------ |
+| Carousel         | `defineCarousel`         | `slides/<slug>` delegates Image or Scene children      |
+| Checkpoint       | `defineCheckpoint`       | `<slug>` delegates CheckpointItems                     |
+| CheckpointItem   | `defineCheckpointItem`   | one `question` Text and one `answer` CheckpointAnswer  |
+| CheckpointAnswer | `defineCheckpointAnswer` | `<slug>` supports ordered non-Checkpoint Blocks        |
+| Scene            | `defineScene`            | localized Scene Config plus derived `specification.md` |
 
 ## Source ownership and boundaries
 

@@ -685,15 +685,13 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
   for (const path of ['link', 'embed']) {
     const source =
-      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')
-        ?.content ?? '';
+      plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')?.content ?? '';
     assert.match(
       source,
       /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
     );
   }
-  const carouselSlide =
-    plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
+  const carouselSlide = plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
   assert.match(carouselSlide, new RegExp(id('29') + '\\.png'));
   assert.match(carouselSlide, /An accessible diagram/);
   assert.doesNotMatch(carouselSlide, /Український опис/);

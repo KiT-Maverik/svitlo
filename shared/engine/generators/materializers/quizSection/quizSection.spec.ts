@@ -143,7 +143,9 @@ test('quiz: missing params yield one TODO and Question selection a separate TODO
 });
 test('quiz: complete params and non-provisional bank IDs leave source rewriting to Stage 6', () => {
   const result = materializeQuizSection(input() as Parameters<typeof materializeQuizSection>[0], {
-    documentLanguage: 'en', languagesImport: './languages', renderContentBlock,
+    documentLanguage: 'en',
+    languagesImport: './languages',
+    renderContentBlock,
   });
   const root = result.files.find(file => file.path === 'index.ts')!.content;
   assert.match(root, new RegExp(id('03')));
