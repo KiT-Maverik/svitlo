@@ -296,13 +296,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   )
     throw Error('Episode parent/handoff source is not the authorized Git version');
   const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
-  // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
-  // reading it does not require TypeScript, user code or npm packages.
-  const match = sourceHandoff.match(
-    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
-  );
-  if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
-  const handoff = JSON.parse(match[1]);
+  const handoff = parseEpisodeHandoff(sourceHandoff);
   if (
     handoff.config.id !== manifest.episodeId ||
     handoff.production.placement.courseId !== meta.courseId ||
