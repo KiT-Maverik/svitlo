@@ -34,6 +34,7 @@ import {
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { assertBankLessonLanguages, lessonConstantsImport, type LessonLanguageOwnership } from '../bankSource/lessonLanguageOwnership';
+import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 
 export type FlashcardBankDraftAuthorization = {
   authorized: true;
@@ -299,5 +300,6 @@ function planFlashcardBank(
     draftPath: 'flashcards/draft.ts',
     source: authorization.source,
   });
-  return { ...plan, diagnostics };
+  const sceneDrafts = materializeBankSceneDrafts(input.config, languages.document, authorization.blocks);
+  return { ...plan, diagnostics, sceneDrafts };
 }

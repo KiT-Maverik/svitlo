@@ -29,6 +29,10 @@ export type AssessmentBlockEvidence = {
   /** Unresolved *source* resources verified by the pinned trusted analyzer. */
   unresolvedMediaBlockIds?: ReadonlySet<string>;
   unregisteredSceneIds?: ReadonlySet<string>;
+  /** Verified, entirely absent Scene directories approved for new six-file scaffolds. */
+  newSceneIds?: ReadonlySet<string>;
+  /** Verified complete but unfinished six-file Scene sources: never overwrite them. */
+  existingDraftSceneIds?: ReadonlySet<string>;
 };
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = { config: PlainBlock; production?: Record<string, unknown> };
@@ -142,7 +146,9 @@ export function materializeAssessmentBlock(
       return asChildResult(materializeSubtitles(source as Parameters<typeof materializeSubtitles>[0], options));
     case 'scene': {
       const registered = evidence.registeredSceneIds.has(source.id);
-      if (!registered && !(bankKind === 'questions' && evidence.unregisteredSceneIds?.has(source.id))) {
+      const newDraft = evidence.newSceneIds?.has(source.id) ?? false;
+      const existingDraft = evidence.existingDraftSceneIds?.has(source.id) ?? false;
+      if (!registered && !newDraft && !existingDraft && !(bankKind === 'questions' && evidence.unregisteredSceneIds?.has(source.id))) {
         throw new Error('Scene has no verified executable registry: ' + source.id);
       }
       return asChildResult(
@@ -151,6 +157,7 @@ export function materializeAssessmentBlock(
           documentLanguage,
           languagesImport,
           registered,
+          specificationSidecar: registered,
           production:
             node.production === undefined
               ? undefined

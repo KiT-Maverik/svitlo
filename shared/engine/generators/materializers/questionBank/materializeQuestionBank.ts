@@ -40,6 +40,7 @@ import {
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { assertBankLessonLanguages, lessonConstantsImport, type LessonLanguageOwnership } from '../bankSource/lessonLanguageOwnership';
+import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 
 const kinds = questionTypes;
 type Kind = (typeof kinds)[number];
@@ -269,6 +270,8 @@ function planQuestionBank(
     draftPath: 'questions/draft.ts',
     source: authorization.source,
   });
-  // Only an external authenticated Git writer may commit this atomic transition.
-  return { ...result, diagnostics };
+  // Scene draft paths are separately scoped/attested; the publisher atomically
+  // commits them alongside the bank, never under the Lesson's source subtree.
+  const sceneDrafts = materializeBankSceneDrafts(input.config, source.document, authorization.blocks);
+  return { ...result, diagnostics, sceneDrafts };
 }
