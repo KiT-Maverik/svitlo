@@ -26,7 +26,7 @@ const sourcePatch_Schema = z.custom<Parameters<Lesson_Configurator['build']['ove
   value => plainConfig_Schema.safeParse(value).success,
 );
 const uid = z.uuid();
-const ordered = (child: z.ZodType) =>
+const ordered = <Child extends z.ZodType>(child: Child) =>
   z
     .strictObject({
       items: z.record(z.string(), child),
