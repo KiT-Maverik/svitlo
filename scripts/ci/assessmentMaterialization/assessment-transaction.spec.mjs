@@ -131,9 +131,9 @@ test('one source transaction permits only the exact parent and new Assessment ch
   const files = [
     { path: index, kind: 'typescript', content: 'export const finalReview = 1;\n' },
     {
-      path: meta.sourcePath.replace('draft.ts', 'languages.ts'),
-      kind: 'typescript',
-      content: "export const languages = ['uk'] as const;\n",
+      path: meta.sourcePath.replace('draft.ts', 'specification.md'),
+      kind: 'specification',
+      content: '# Assessment source specification\n',
     },
     { path: meta.parentPath, kind: 'typescript', content: 'parent patched\n' },
   ];
