@@ -105,7 +105,11 @@ export const defineAssessmentDraft = <
     validate,
     build: { props, overrides },
     config: {
-      base: { id, slug, type, params: structuredClone(authored.params), locale: {} },
+      base: {
+        id, slug, type,
+        params: { ...structuredClone(authored.params), languages: [...authored.params.languages] },
+        locale: {},
+      },
       locales: (): { locale: DeepPartial<Assessment_Config['locale']> } => ({
         locale: onlyLocales(copyAuthored().locale),
       }),

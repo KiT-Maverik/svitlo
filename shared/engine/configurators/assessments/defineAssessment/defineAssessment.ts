@@ -136,7 +136,11 @@ export const defineAssessment = <
   const before = { items: { ...(config.before?.items ?? {}) }, order: [...(config.before?.order ?? [])] };
   const after = { items: { ...(config.after?.items ?? {}) }, order: [...(config.after?.order ?? [])] };
   const quiz = config.quiz;
-  const section = composeSections({ ...metadataInput, before, quiz, after } as Assessment_Config);
+  const section = composeSections({
+    ...metadataInput,
+    params: { ...metadataInput.params, languages: [...metadataInput.params.languages] },
+    before, quiz, after,
+  } as Assessment_Config);
   const initialSections = section.items;
   const initialOrder = section.order;
 

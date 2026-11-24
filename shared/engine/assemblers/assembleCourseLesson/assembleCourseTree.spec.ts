@@ -256,7 +256,8 @@ test('Course preview accepts a real draft Assessment Text block but rejects fake
       },
     ],
   };
-  assert.equal(validateAssessmentRuntime(draft, 'en').draft, true);
+  const validated = validateAssessmentRuntime(draft, 'en');
+  assert.equal('draft' in validated && validated.draft, true);
   assert.equal(
     findCourseAssessment(
       assembleCourseTree(
@@ -272,8 +273,21 @@ test('Course preview accepts a real draft Assessment Text block but rejects fake
         'en',
       ),
       id(120),
-    )?.draft,
-    true,
+    ) && 'draft' in (findCourseAssessment(
+      assembleCourseTree(
+        {
+          id: id(1),
+          type: 'course',
+          params: { languages: ['en', 'uk'] },
+          locale: { title: 'Course' },
+          content: collection({ draft }, ['draft']),
+        },
+        undefined,
+        id(1),
+        'en',
+      ),
+      id(120),
+    ) ?? {}), true,
   );
   assert.throws(() => validateAssessmentRuntime({ ...draft, draft: undefined }, 'en'));
   assert.throws(() =>

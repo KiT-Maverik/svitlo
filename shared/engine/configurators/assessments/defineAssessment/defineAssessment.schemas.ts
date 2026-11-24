@@ -12,7 +12,7 @@ import type { QuizSection_Configurator } from '../../sections/defineQuizSection/
 
 /** The one Quiz is structurally separate from optional supporting Content Sections. */
 export type Assessment_Content_Section_Configurator = ConfiguratorChild<ContentSection_Configurator>;
-export type Assessment_Quiz_Configurator = ConfiguratorChild<QuizSection_Configurator>;
+export type Assessment_Quiz_Configurator = QuizSection_Configurator;
 export type Assessment_Section_Configurator =
   | Assessment_Content_Section_Configurator
   | Assessment_Quiz_Configurator;
@@ -64,7 +64,13 @@ export const assessment_Draft_Props_Schema = identity
   .refine(
     value => value.section.some(section =>
       section.params.disabled !== true &&
-      section.content.some(block => block.type === 'text' && block.locale.value === 'Not implemented'),
+      section.content.some(block =>
+        block.type === 'text' &&
+        typeof block.locale === 'object' &&
+        block.locale !== null &&
+        'value' in block.locale &&
+        block.locale.value === 'Not implemented',
+      ),
     ),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',
   );
