@@ -228,6 +228,15 @@ export function materializeCourse(input, context = {}) {
           throw Error(childFolder + ': Episode materializer missing');
         child = context.materializeEpisode(nested, childContext);
         break;
+      case 'assessment':
+        if (typeof context.materializeAssessment !== 'function')
+          throw Error(childFolder + ': Assessment placeholder materializer required');
+        child = context.materializeAssessment(nested, childContext);
+        if (!child?.pendingAssessment || typeof child.placeholderSource !== 'string')
+          throw Error(childFolder + ': Assessment must remain a blocked inline placeholder');
+        if (!imports.some(line => line.includes('defineAssessment')))
+          imports.push("import { defineAssessment } from '@svitlo/engine/build';");
+        break;
       case 'lesson': {
         const lessonProduction = production(node);
         if (!record(lessonProduction) || !['new', 'existing'].includes(lessonProduction.kind))
@@ -349,6 +358,7 @@ export function materializeCourse(input, context = {}) {
     if (!Array.isArray(child?.files)) throw Error(childFolder + ': invalid child materializer result');
     const stage1Lesson = raw.type === 'lesson' && production(node)?.kind === 'new';
     const stage1Episode = raw.type === 'episode' && child.pendingEpisode === true;
+    const pendingAssessment = raw.type === 'assessment' && child.pendingAssessment === true;
     if (stage1Episode) {
       const handoffPath = childFolder + '/draft.ts';
       if (child.files.length !== 1 || child.files[0].path !== handoffPath || child.files[0].kind !== 'typescript')
@@ -361,7 +371,7 @@ export function materializeCourse(input, context = {}) {
         orderIndex: order.indexOf(key),
       });
     }
-    if (!stage1Lesson && !stage1Episode && !child.exportName)
+    if (!stage1Lesson && !stage1Episode && !pendingAssessment && !child.exportName)
       throw Error(childFolder + ': completed child must export a Configurator');
     if (raw.type !== 'lesson') {
       const resolvedId = raw.id ?? child.id;
@@ -370,7 +380,9 @@ export function materializeCourse(input, context = {}) {
       if (seenIds.has(resolvedId)) throw Error(childFolder + ': duplicate child UUID');
       seenIds.add(resolvedId);
     }
-    if (!stage1Lesson && !stage1Episode) {
+    if (pendingAssessment) {
+      items[key] = child.placeholderSource;
+    } else if (!stage1Lesson && !stage1Episode) {
       const alias = 'child_' + key;
       imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./content/' + key + '";');
       items[key] = alias;
@@ -383,6 +395,9 @@ export function materializeCourse(input, context = {}) {
   }
   if (!record(config.locale) || config.locale.title === undefined || config.locale.description === undefined)
     throw Error(dir + '.config.locale: reviewed title and description required before materialization');
+  const assessmentBlocker = order.some(key => unwrap(collection.items[key])?.type === 'assessment')
+    ? '// TODO (BLOCKER): Not implemented — Assessment has no reviewed Questions or Quiz. Do not publish.\\n'
+    : '';
   const fields = { ...config, id, slug };
   delete fields.content;
   delete fields.params;
@@ -447,6 +462,7 @@ export function materializeCourse(input, context = {}) {
     languageTodo +
     blocker +
     episodeBlocker +
+    assessmentBlocker +
     'export const ' +
     exportName(slug) +
     ' = defineCourse<' +
