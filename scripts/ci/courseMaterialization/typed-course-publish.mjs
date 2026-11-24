@@ -111,7 +111,8 @@ function assertCourseInventory(manifest, meta, entries) {
   function expectedParent(row) {
     const parts = row.placementPath.slice(root.length + 1).split('/');
     // The Assessment kind, not an ambiguous parent slug, selects the extra segment.
-    const parent = parts.slice(0, row.type === 'assessment' ? -2 : -1).join('/');
+    const ancestors = parts.slice(0, row.type === 'assessment' ? -2 : -1);
+    const parent = ancestors.length === 1 && ancestors[0] === 'content' ? '' : ancestors.join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   }
   function parentSource(row) {

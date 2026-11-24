@@ -134,7 +134,8 @@ export function materializeCourseStage5(input, options = {}) {
     const parts = directory.split('/');
     // Only Assessment inserts an extra /content/ segment before its slot.
     // An ordinary Module or Chapter placement is allowed to be named "content".
-    const parent = parts.slice(0, kind === 'assessment' ? -2 : -1).join('/');
+    const ancestors = parts.slice(0, kind === 'assessment' ? -2 : -1);
+    const parent = ancestors.length === 1 && ancestors[0] === 'content' ? '' : ancestors.join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   };
   const deriveId = (kind, directory) => {
