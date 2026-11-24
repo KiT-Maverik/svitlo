@@ -7,7 +7,7 @@ import { invokeMaterializer } from '../directMaterialization/directMaterializati
 import { questionBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   QuestionBankWorkflowStage1,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
 } from '../../../types/workflow/questionBankWorkflow.types';
 import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
@@ -155,7 +155,7 @@ export function materializeQuestionBankDraft(
 function renderQuestion(
   kind: Kind,
   node: Record<string, unknown>,
-  sourceLanguage: QuestionBankWorkflowMaterializerInput['production']['languages'],
+  sourceLanguage: QuestionBankWorkflowStage3['production']['languages'],
   blocks: AssessmentBlockEvidence,
 ): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
@@ -212,7 +212,7 @@ function renderQuestion(
  * #775's trusted writer must apply the complete returned plan atomically.
  */
 export function materializeQuestionBank(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization?: QuestionBankFinalAuthorization,
 ): BankSourceResult {
   return invokeMaterializer(
@@ -228,7 +228,7 @@ export function materializeQuestionBank(
 }
 
 function planQuestionBank(
-  input: QuestionBankWorkflowMaterializerInput,
+  input: QuestionBankWorkflowStage3,
   authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization.ownerLessonId);

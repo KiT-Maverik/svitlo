@@ -17,7 +17,7 @@ import type {
   FlashcardBankWorkflowSideSource,
   FlashcardBankWorkflowFlags,
   FlashcardBankWorkflowRelationshipEdge,
-  FlashcardBankWorkflowMaterializerInput,
+  FlashcardBankWorkflowStage3,
   FlashcardBankWorkflowSectionDecision,
 } from './flashcardBankWorkflow.types';
 
@@ -256,12 +256,12 @@ const emptyInventory: FlashcardBankWorkflowStage2['config']['flashcards'] = {
   order: [],
 };
 
-const materializerNoSection: FlashcardBankWorkflowMaterializerInput = stage3NoSection;
-const materializerWithSection: FlashcardBankWorkflowMaterializerInput = stage3WithSection;
+const materializerNoSection: FlashcardBankWorkflowStage3 = stage3NoSection;
+const materializerWithSection: FlashcardBankWorkflowStage3 = stage3WithSection;
 // @ts-expect-error Stage 1 has no Card collection and cannot be passed to a complete bank materializer.
-const tooEarly1: FlashcardBankWorkflowMaterializerInput = stage1;
+const tooEarly1: FlashcardBankWorkflowStage3 = stage1;
 // @ts-expect-error Stage 2 lacks the separately reviewed Section decision.
-const tooEarly2: FlashcardBankWorkflowMaterializerInput = stage2;
+const tooEarly2: FlashcardBankWorkflowStage3 = stage2;
 
 const invalidStage1: FlashcardBankWorkflowStage1 = {
   ...stage1,

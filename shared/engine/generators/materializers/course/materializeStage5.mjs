@@ -62,7 +62,7 @@ const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonica
  * verify independent review/authorization, and resolve each imported Lesson
  * from its verified source revision. This planner never reads YAML or writes.
  *
- * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowMaterializerInput} input
+ * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage3} input
  * @param {object} options
  */
 export function materializeCourseStage5(input, options = {}) {
@@ -73,7 +73,7 @@ export function materializeCourseStage5(input, options = {}) {
     !uuid.test(input.config.id ?? '') ||
     !slug.test(input.config.slug ?? '')
   )
-    throw new Error('Expected canonical reviewed CourseWorkflowMaterializerInput');
+    throw new Error('Expected canonical reviewed CourseWorkflowStage3');
   const rootId = input.config.id.toLowerCase();
   const sourceLanguage = input.production.languages?.document;
   const planned = input.production.languages?.planned;

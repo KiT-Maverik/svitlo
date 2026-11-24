@@ -15,7 +15,7 @@ import type {
   QuestionBankWorkflowStage1Production,
   QuestionBankWorkflowStage2,
   QuestionBankWorkflowStage3,
-  QuestionBankWorkflowMaterializerInput,
+  QuestionBankWorkflowStage3,
   QuestionBankWorkflowQuestionNode,
   QuestionBankWorkflowSelectOneAnswerConfig,
   QuestionBankWorkflowSelectMultipleAnswersConfig,
@@ -81,7 +81,7 @@ const production = {
 const handoff = { config, production } satisfies QuestionBankWorkflowStage1;
 
 // @ts-expect-error A Stage 1 handoff is not yet a complete materializer input.
-const premature: QuestionBankWorkflowMaterializerInput = handoff;
+const premature: QuestionBankWorkflowStage3 = handoff;
 
 // @ts-expect-error Stage 1 must identify its real owning Lesson.
 const missingOwner: QuestionBankWorkflowStage1Config = {};
@@ -249,14 +249,14 @@ const stage3 = {
   production: { ...production, quiz: localQuiz },
 } satisfies QuestionBankWorkflowStage3;
 
-const finalInput: QuestionBankWorkflowMaterializerInput = stage3;
+const finalInput: QuestionBankWorkflowStage3 = stage3;
 const withoutQuiz = {
   ...stage2,
   production: { ...production, quiz: noQuiz },
-} satisfies QuestionBankWorkflowMaterializerInput;
+} satisfies QuestionBankWorkflowStage3;
 
 // @ts-expect-error Stage 2 does not yet include the Stage 3 Quiz design decision.
-const prematureStage2: QuestionBankWorkflowMaterializerInput = stage2;
+const prematureStage2: QuestionBankWorkflowStage3 = stage2;
 
 const duplicatedSelection: QuestionBankWorkflowQuizIntent = {
   kind: 'local',

@@ -7,7 +7,7 @@ import { invokeMaterializer } from '../directMaterialization/directMaterializati
 import { flashcardBankWorkflowStage3_Schema } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import type {
   FlashcardBankWorkflowStage1,
-  FlashcardBankWorkflowMaterializerInput,
+  FlashcardBankWorkflowStage3,
 } from '../../../types/workflow/flashcardBankWorkflow.types';
 import type {
   Flashcard_Relationship,
@@ -112,11 +112,11 @@ export function materializeFlashcardBankDraft(
   return preflightBankSource(files, authorization.snapshot);
 }
 
-type Card = FlashcardBankWorkflowMaterializerInput['config']['flashcards']['items'][string];
+type Card = FlashcardBankWorkflowStage3['config']['flashcards']['items'][string];
 
 /** Expand a single reviewed edge into both existing immutable Card UUID endpoints. */
 function projectRelationships(
-  bank: FlashcardBankWorkflowMaterializerInput,
+  bank: FlashcardBankWorkflowStage3,
 ): Readonly<Record<string, { items: Record<string, Flashcard_Relationship>; order: string[] }>> {
   const cards = bank.config.flashcards.items;
   const edges = bank.config.relationships;
@@ -185,7 +185,7 @@ function checkSides(card: Card, slug: string): void {
  * This is a source plan, NOT a write, Lesson Section change, or publication.
  */
 export function materializeFlashcardBank(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization?: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   return invokeMaterializer(
@@ -201,7 +201,7 @@ export function materializeFlashcardBank(
 }
 
 function planFlashcardBank(
-  input: FlashcardBankWorkflowMaterializerInput,
+  input: FlashcardBankWorkflowStage3,
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization);
