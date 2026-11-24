@@ -79,7 +79,7 @@ const module = z.strictObject({
   config: module_Config_Schema.pick({ type: true, slug: true, locale: true })
     .extend({ params: unitParams.optional(), content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot])) }),
   production: unitProduction,
-}));
+});
 
 /** Review approval, imported dependencies and provenance are verified separately. */
 export const courseWorkflowStage3_Schema = z.strictObject({
