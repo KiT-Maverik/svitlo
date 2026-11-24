@@ -78,8 +78,10 @@ test('Lesson source retains immutable ID, order and source-only active languages
   const constants = first.files.find(f => f.path === 'constants.ts')?.content ?? '';
   assert.match(constants, /TODO \(BLOCKER\): Restore reviewed Lesson languages/);
   assert.match(constants, /export type Languages = typeof languages;/);
-  assert.match(constants, /\/\/   "ar",/);
-  assert.match(constants, /\/\/   "zh",/);
+  assert.match(constants, /\/\/   "en",/);
+  assert.match(constants, /\/\/   "uk",/);
+  assert.doesNotMatch(constants, /\/\/   "ar",/);
+  assert.doesNotMatch(constants, /\/\/   "zh",/);
   assert.match(constants, /export const languages = \["en"\] as const/);
   assert.doesNotMatch(first.files.map(f => f.path).join(' '), /languages\.ts|^specification\.md/);
 });
