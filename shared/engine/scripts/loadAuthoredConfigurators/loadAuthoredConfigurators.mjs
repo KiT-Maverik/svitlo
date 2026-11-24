@@ -8,6 +8,7 @@ import { build } from 'esbuild';
 const require = createRequire(import.meta.url);
 
 export async function loadAuthoredConfigurators(source, type, { includeExports = false } = {}) {
+  if (path.basename(source) === 'draft.ts') throw new Error('Editorial draft cannot be loaded as a Configurator: ' + source);
   const directory = fs.mkdtempSync(path.join(path.dirname(source), '.configurator-load-'));
   const outfile = path.join(directory, 'configurators.cjs');
   try {
@@ -24,13 +25,16 @@ export async function loadAuthoredConfigurators(source, type, { includeExports =
         {
           name: 'preserve-import-meta-url',
           setup(builder) {
-            builder.onLoad({ filter: /[.]tsx?$/ }, async args => ({
+            builder.onLoad({ filter: /[.]tsx?$/ }, async args => {
+              if (path.basename(args.path) === 'draft.ts') throw new Error('Editorial draft cannot be imported by a materialized Configurator: ' + args.path);
+              return ({
               contents: (await fs.promises.readFile(args.path, 'utf8')).replace(
                 /\bimport[.]meta[.]url\b/g,
                 JSON.stringify(pathToFileURL(args.path).href),
               ),
               loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
-            }));
+            });
+            });
           },
         },
       ],

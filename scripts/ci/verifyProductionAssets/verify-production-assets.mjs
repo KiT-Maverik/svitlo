@@ -70,13 +70,13 @@ export function affectedProductionScopes(changedPaths) {
       .filter(Boolean);
     if (entity.includes('/data/courses/')) return { entity, mode: 'whole', banks: [], sections: [] };
     const banks = ['questions', 'flashcards'].filter(bank =>
-      changes.some(name => name === bank + '.yaml' || name.startsWith(bank + '/')),
+      changes.some(name => name === bank + 'Languages.ts' || name.startsWith(bank + '/')),
     );
     const sections = changes.filter(name => name.startsWith('sections/') && sourceExtension.test(name));
     const unrelated = changes.some(
       name =>
         !name.startsWith('sections/') &&
-        !['questions', 'flashcards'].some(bank => name === bank + '.yaml' || name.startsWith(bank + '/')),
+        !['questions', 'flashcards'].some(bank => name === bank + 'Languages.ts' || name.startsWith(bank + '/')),
     );
     return banks.length && !unrelated
       ? { entity, mode: 'banks', banks, sections }
@@ -103,8 +103,8 @@ export function verifyChangedEntities(root, changedPaths) {
         if (!fs.existsSync(bankEntry)) {
           findings.push(entity + '/' + bank + '/index.ts: missing authored ' + bank + ' bank entrypoint');
         }
-        if (fs.existsSync(path.join(full, bank + '.yaml'))) {
-          findings.push(entity + '/' + bank + '.yaml: unfinished temporary bank YAML');
+        if (fs.existsSync(path.join(full, bank, 'draft.ts'))) {
+          findings.push(entity + '/' + bank + '/draft.ts: unfinished editorial bank draft');
         }
         inspect(root, entity + '/' + bank, findings);
       }
@@ -117,10 +117,10 @@ export function verifyChangedEntities(root, changedPaths) {
     if (!hasRoot) {
       findings.push(entity + ': missing authored ' + (isLesson ? 'Lesson' : 'Course') + ' TypeScript entrypoint');
     }
-    const temporary = isLesson ? ['lesson.yaml', 'questions.yaml', 'flashcards.yaml'] : ['course.yaml', 'config.yaml'];
+    const temporary = isLesson ? ['draft.ts', 'questions/draft.ts', 'flashcards/draft.ts'] : ['draft.ts'];
     for (const name of temporary) {
       if (fs.existsSync(path.join(full, name))) {
-        findings.push(entity + '/' + name + ': unfinished temporary authoring YAML');
+        findings.push(entity + '/' + name + ': unfinished editorial draft');
       }
     }
     inspect(root, entity, findings);

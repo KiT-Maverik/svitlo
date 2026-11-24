@@ -8,6 +8,7 @@
  *   --locale uk --output temp/agent-reference-library/lessons
  */
 import fs from 'node:fs';
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
 import path from 'node:path';
 import process from 'node:process';
 import Module from 'node:module';
@@ -81,14 +82,8 @@ export function discoverLessons(packageDirectory) {
       if (relative !== `${bucket.name}/${lesson.name}`) throw new Error(`Lesson path mismatch: ${relative}`);
       const directory = path.join(bucketPath, lesson.name);
       realDirectory(directory, bucketPath);
-      const authored = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-      const index = path.join(directory, 'index.ts');
-      if (authored.length > 1) throw new Error(`Ambiguous Lesson entry in ${directory}`);
-      // A composed Lesson is exported from index.ts; standalone .data.ts entries remain valid.
-      const entry = fs.existsSync(index) ? index : authored.length === 1 ? path.join(directory, authored[0]) : null;
-      if (entry === null) continue;
-      if (fs.lstatSync(entry).isSymbolicLink() || !fs.statSync(entry).isFile())
-        throw new Error(`Invalid Lesson entry: ${entry}`);
+      const { source: entry } = resolveMaterializedEntrypoint(directory, { mode: 'draft', legacyLesson: true });
+      if (!entry) continue;
       result.push({ id: lesson.name, relative, directory, entry });
     }
   }
@@ -97,6 +92,7 @@ export function discoverLessons(packageDirectory) {
 
 /** Bundle in memory. Execute only authoring TS in a module whose require root is the textbook workspace. */
 export async function loadLesson(entry, packageDirectory) {
+  if (path.basename(entry) === 'draft.ts') throw new Error('Editorial draft cannot be loaded as a Lesson');
   let build;
   try {
     ({ build } = await import('esbuild'));
@@ -116,13 +112,16 @@ export async function loadLesson(entry, packageDirectory) {
       {
         name: 'preserve-markdown-import-meta',
         setup(builder) {
-          builder.onLoad({ filter: /\.tsx?$/ }, async args => ({
+          builder.onLoad({ filter: /\.tsx?$/ }, async args => {
+            if (path.basename(args.path) === 'draft.ts') throw new Error('Editorial draft cannot be imported by a materialized Lesson: ' + args.path);
+            return ({
             contents: (await fs.promises.readFile(args.path, 'utf8')).replace(
               /\bimport\.meta\.url\b/g,
               JSON.stringify(pathToFileURL(args.path).href),
             ),
             loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
-          }));
+          });
+          });
         },
       },
     ],
