@@ -183,7 +183,7 @@ jobs:
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Recheck Stage 4, source hashes and branch lease; commit attested files
+      - name: Recheck source hashes and branch lease; commit attested files
         id: commit
         env:
           GH_TOKEN: ${{ github.token }}
