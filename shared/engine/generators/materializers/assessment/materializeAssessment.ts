@@ -216,13 +216,13 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
         renderItem: (item, directory) => materializeCheckpointItem(item, {
           directory, documentLanguage: document, languagesImport: languageImport(directory),
           renderQuestion: (question, childDir) => renderBlock(question as Config, {
-            directory: childDir, documentLanguage: document, languagesImport: languageImport(directory),
+            directory: childDir, documentLanguage: document, languagesImport: languageImport(childDir),
             production: metadata.get(question.id),
           }),
           renderAnswer: (answer, childDir) => materializeCheckpointAnswer(answer, {
-            directory: childDir, documentLanguage: document, languagesImport: languageImport(directory),
+            directory: childDir, documentLanguage: document, languagesImport: languageImport(childDir),
             renderChild: (child, deeper) => renderBlock(child as Config, {
-              directory: deeper, documentLanguage: document, languagesImport: languageImport(directory),
+              directory: deeper, documentLanguage: document, languagesImport: languageImport(deeper),
               production: metadata.get(child.id),
             }),
           }),
@@ -276,8 +276,8 @@ function plan(input: AssessmentWorkflowStage2, options: AssessmentMaterializatio
   ].filter(Boolean).join('\n');
   files.push({
     path: ownDirectory + '/languages.ts',
-    content: "// Authored source locale only; planned translations require independent review.\\n" +
-      "export const languages = " + JSON.stringify([document]) + " as const;\\n",
+    content: "// Authored source locale only; planned translations require independent review.\n" +
+      "export const languages = " + JSON.stringify([document]) + " as const;\n",
     kind: 'typescript',
   });
   files.push({ path: ownDirectory + '/index.ts', content: rendered, kind: 'typescript' });
