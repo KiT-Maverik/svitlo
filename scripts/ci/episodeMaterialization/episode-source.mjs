@@ -49,7 +49,10 @@ export function parseEpisodeDraft(source, type) {
   }
   if (!selected) throw Error('Missing exported reviewed Episode draft');
   for (const expr of declarations.values()) decodeLiteral(expr, declarations);
-  const result = decodeLiteral(selected, declarations);
+  // The inert decoder deliberately uses null-prototype records for safe key handling.
+// Concrete Config schemas compare ordinary JSON-shaped records, so normalize
+// only after decoding has rejected executable expressions and unsafe keys.
+const result = structuredClone(decodeLiteral(selected, declarations));
   if (!record(result?.config) || result.config.type !== 'episode' || !record(result.production))
     throw Error('Not an Episode editorial object');
   return result;
