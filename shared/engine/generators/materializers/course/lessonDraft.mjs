@@ -98,7 +98,7 @@ export function materializeLessonDraft(node, context) {
         content:
           '// TODO (BLOCKER): Course Lesson seed; complete authorized Lesson Stage 1 before continuing.\n' +
           "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
-          'export const lessonSeed = ' +
+          '// prettier-ignore\nexport const lessonSeed = ' +
           JSON.stringify(source, null, 2) +
           ' as const satisfies CourseWorkflowLessonSeed;\n',
       },
