@@ -129,8 +129,12 @@ export function materializeCourseStage5(input, options = {}) {
     throw new Error('Stage 5 source was not independently verified');
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();
-  const overrides = new Map();
   const diagnostics = [];
+  const parentIndex = directory => {
+    const parts = directory.split('/');
+    const parent = (parts.at(-2) === 'content' ? parts.slice(0, -2) : parts.slice(0, -1)).join('/');
+    return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
+  };
   const deriveId = (kind, directory) => {
     const relative = directory.replace(/^content\//, '');
     if (relative === directory || !relative) throw new Error('Unexpected Course child placement: ' + directory);
@@ -139,36 +143,6 @@ export function materializeCourseStage5(input, options = {}) {
       throw new Error('Duplicate/reserved generated UUID at ' + directory);
     newIds.add(id);
     return id;
-  };
-  const addPatch = (directory, patchSource) => {
-    const relative = directory.replace(/^content\//, '');
-    if (relative === directory || !relative) throw new Error('Invalid Course override placement');
-    const parts = relative.split('/');
-    if (parts.some(part => !slug.test(part) || ['constructor', '__proto__', 'prototype'].includes(part)))
-      throw new Error('Unsafe Course patch placement');
-    if (overrides.has(relative)) throw new Error('Duplicate Course patch placement: ' + relative);
-    overrides.set(relative, { parts, patchSource });
-  };
-  const renderPatchTree = () => {
-    const tree = { children: new Map() };
-    for (const { parts, patchSource } of overrides.values()) {
-      let node = tree;
-      for (const part of parts) {
-        if (node.source !== undefined) throw new Error('Course patch placement overlaps an existing ancestor');
-        if (!node.children.has(part)) node.children.set(part, { children: new Map() });
-        node = node.children.get(part);
-      }
-      if (node.source !== undefined || node.children.size)
-        throw new Error('Course patch placement overlaps another patch');
-      node.source = patchSource;
-    }
-    const emit = node =>
-      node.source !== undefined
-        ? node.source
-        : '{ content: { items: { ' +
-          [...node.children].map(([key, child]) => JSON.stringify(key) + ': ' + emit(child)).join(', ') +
-          ' } } }';
-    return emit(tree);
   };
   /** Validate real upstream Lesson slots in reviewed Course traversal order.
    * Cross-Module/Chapter references work by actual placement path; a reused
@@ -234,7 +208,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: 'pending-lesson-stage1',
         sourcePath: result.files[0].path,
-        placementSourcePath: result.files[0].path,
+        placementSourcePath: parentIndex(context.directory),
       });
       return result;
     }
@@ -303,6 +277,7 @@ export function materializeCourseStage5(input, options = {}) {
     knownExistingIds.add(existing.id);
     if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
     const hasPatch = existing.base !== undefined || existing.locale !== undefined;
+    let patchSource;
     if (hasPatch) {
       if (!record(lesson.rawPatch) || !production.overrideRationale?.trim())
         throw new Error(
@@ -313,7 +288,7 @@ export function materializeCourseStage5(input, options = {}) {
       if (patchLanguages.some(code => !planned.includes(code) || !lesson.languages.includes(code)))
         throw new Error(context.directory + ': override languages require reviewed Course/Lesson support');
       serialize(lesson.rawPatch);
-      const patchSource = JSON.stringify(lesson.rawPatch, null, 2);
+      patchSource = JSON.stringify(lesson.rawPatch, null, 2);
       let built;
       try {
         built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: patchLanguages });
@@ -324,7 +299,6 @@ export function materializeCourseStage5(input, options = {}) {
         throw new Error(context.directory + ': original raw patch does not reproduce reviewed built sparse override');
       if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
         throw new Error(context.directory + ': Lesson override uses an unplanned locale');
-      addPatch(context.directory, patchSource);
     }
     const placementSlug = node.config.slug;
     recordPlacement(context.directory, {
@@ -340,32 +314,17 @@ export function materializeCourseStage5(input, options = {}) {
         '/' +
         existing.id.toLowerCase() +
         '/index.ts',
-      placementSourcePath: root + '/' + context.directory + '/index.ts',
+      placementSourcePath: parentIndex(context.directory),
       sourceSha: lesson.sourceSha,
     });
-    const exportName = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'].includes(
-      placementSlug,
-    )
-      ? 'config_' + placementSlug
-      : placementSlug;
     return {
       id: existing.id,
       lessonId: existing.id,
-      exportName,
-      files: [
-        {
-          path: context.directory + '/index.ts',
-          kind: 'typescript',
-          content:
-            'export { ' +
-            lesson.exportName +
-            ' as ' +
-            exportName +
-            ' } from ' +
-            JSON.stringify(lesson.importPath) +
-            ';\n',
-        },
-      ],
+      exportName: placementSlug,
+      sourceExportName: lesson.exportName,
+      importPath: lesson.importPath,
+      ...(patchSource === undefined ? {} : { patchSource }),
+      files: [],
       diagnostics: [],
     };
   };
@@ -395,7 +354,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
         sourcePath: root + '/' + source.path,
-        placementSourcePath: root + '/' + source.path,
+        placementSourcePath: parentIndex(directory),
       });
       return result;
     },
@@ -410,9 +369,6 @@ export function materializeCourseStage5(input, options = {}) {
         },
         assessmentContext,
       );
-      const parent = directory.includes('/content/')
-        ? directory.slice(0, directory.lastIndexOf('/content/')) + '/'
-        : '';
       recordPlacement(directory, {
         type: 'assessment',
         id: result.id,
@@ -420,7 +376,7 @@ export function materializeCourseStage5(input, options = {}) {
         kind: 'new',
         status: 'pending-assessment-design',
         sourcePath: root + '/' + directory + '/draft.ts',
-        placementSourcePath: root + '/' + parent + 'index.ts',
+        placementSourcePath: parentIndex(directory),
         lessonDependencies: dependencies,
       });
       return result;
@@ -433,7 +389,7 @@ export function materializeCourseStage5(input, options = {}) {
       return options.materializeSection(node, {
         ...sectionContext,
         documentLanguage: sourceLanguage,
-        languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/languages',
+        languagesImport: '../'.repeat(sectionContext.directory.split('/').length) + 'constants',
       });
     },
   };
@@ -458,24 +414,14 @@ export function materializeCourseStage5(input, options = {}) {
     rootIndex.content;
   const languageSource =
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
-    'export const languages = ' +
-    JSON.stringify([sourceLanguage]) +
-    ' as const satisfies SupportedLanguages;\n';
-  files.push({ path: root + '/languages.ts', kind: 'typescript', content: languageSource });
-  if (overrides.size) {
-    files.push({
-      path: root + '/authoredCourseOverrides.ts',
-      kind: 'typescript',
-      content:
-        '// Reviewed raw Config values, validated through the actual Lesson Build API.\n' +
-        'export const authoredCourseOverrides = ' +
-        renderPatchTree() +
-        ';\n',
-    });
-    const indexFile = files.find(file => file.path === materializedPath);
-    if (!indexFile) throw new Error('Course root module not generated');
-    indexFile.content += "\nexport { authoredCourseOverrides } from './authoredCourseOverrides';\n";
-  }
+    (planned.length > 1
+      ? '// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) +
+        ' only after their translations and independent review are complete.\n'
+      : '') +
+    'export const languages = ' + JSON.stringify([sourceLanguage]) +
+    ' as const satisfies SupportedLanguages;\n' +
+    'export type Languages = typeof languages;\n';
+  files.push({ path: root + '/constants.ts', kind: 'typescript', content: languageSource });
 
   const paths = new Set([expectedSource]);
   for (const file of files) {

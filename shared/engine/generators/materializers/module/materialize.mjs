@@ -33,12 +33,6 @@ const localized = (value, language, path) => {
     throw Error(path + ': missing reviewed ' + language + ' locale');
   return { [language]: value[language] };
 };
-const todo = (production, ctx, language) => {
-  const langs = production?.plannedLanguages ?? ctx.plannedLanguages ?? [language];
-  if (!Array.isArray(langs) || new Set(langs).size !== langs.length || !langs.includes(language))
-    throw Error('plannedLanguages: invalid language scope');
-  return langs.length > 1 ? '// TODO (BLOCKER): Restore reviewed languages: ' + JSON.stringify(langs) + '\n' : '';
-};
 const exportName = slug =>
   [
     'class',
@@ -157,6 +151,7 @@ export function materializeModule(input, context = {}) {
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.params.languages: source language missing or duplicate');
   const imports = [],
+    inlineImports = new Set(),
     items = {},
     files = [],
     diagnostics = [],
@@ -199,12 +194,8 @@ export function materializeModule(input, context = {}) {
         if (typeof context.materializeAssessment !== 'function')
           throw Error(childFolder + ': Assessment placeholder materializer required');
         child = context.materializeAssessment(nested, childContext);
-        if (!child?.pendingAssessment || typeof child.placeholderSource !== 'string')
+        if (!child?.pendingAssessment || typeof child.id !== 'string')
           throw Error(childFolder + ': Assessment must remain a blocked inline placeholder');
-        if (!imports.some(line => line.includes('defineAssessmentDraft')))
-          imports.push(
-            "import { defineAssessmentDraft, defineContentSection, defineText } from '@svitlo/engine/build';",
-          );
         break;
       case 'lesson': {
         const lessonProduction = production(node);
@@ -349,12 +340,34 @@ export function materializeModule(input, context = {}) {
       if (seenIds.has(resolvedId)) throw Error(childFolder + ': duplicate child UUID');
       seenIds.add(resolvedId);
     }
-    if (pendingAssessment) {
-      items[key] = child.placeholderSource;
-    } else if (!stage1Lesson && !stage1Episode) {
+
+    if (stage1Lesson || stage1Episode || pendingAssessment) {
+      const stub = stage1Lesson
+        ? 'defineLessonStub'
+        : stage1Episode
+          ? 'defineEpisodeStub'
+          : 'defineAssessmentStub';
+      const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
+      inlineImports.add(stub);
+      items[key] = stub + '({ id: ' + JSON.stringify(refId) + ', slug: ' + JSON.stringify(key) + ' })';
+    } else {
       const alias = 'child_' + key;
-      imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
-      items[key] = alias;
+      if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
+        if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
+          throw Error(childFolder + ': verified direct Lesson import missing');
+        imports.push(
+          'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' +
+          JSON.stringify(child.importPath) + ';',
+        );
+        if (child.patchSource !== undefined) {
+          inlineImports.add('placeLesson');
+          items[key] = 'placeLesson(' + alias + ', ' + child.patchSource + ')';
+        } else items[key] = alias;
+      } else {
+        imports.push('import { ' + child.exportName + ' as ' + alias +
+          ' } from "./' + key + '";');
+        items[key] = alias;
+      }
     }
     files.push(...child.files);
     diagnostics.push(...(child.diagnostics ?? []));
@@ -375,25 +388,15 @@ export function materializeModule(input, context = {}) {
         fields.locale[field] = localized(fields.locale[field], lang, dir + '.locale.' + field);
     }
   }
-  const languageTodo = todo({ plannedLanguages: planned }, context, lang);
-  if (languageTodo) diagnostics.push({ path: dir, code: 'pending-locales', severity: 'warning' });
-  const orderSource = JSON.stringify(order.filter(key => Object.hasOwn(items, key)));
+  const orderSource = JSON.stringify(order);
   const blocker = pendingPlacements.length
-    ? '// TODO (BLOCKER): New Lesson Stage 1 handoffs are not completed Lesson Configurators. Do not publish.\n// Reviewed original content order: ' +
-      JSON.stringify(order) +
-      '\n// Pending handoffs: ' +
-      JSON.stringify(pendingPlacements.map(x => ({ slug: x.slug, lessonId: x.lessonId, handoffPath: x.handoffPath }))) +
-      '\n'
+    ? '// TODO (BLOCKER): Finish and independently materialize pending Lesson seeds, then replace their stubs before Course publication.\n'
     : '';
   const ownPendingEpisodes = pendingEpisodes.filter(
     entry => entry.path === [dir, entry.slug].filter(Boolean).join('/'),
   );
   const episodeBlocker = ownPendingEpisodes.length
-    ? '// TODO (BLOCKER): Episode Stage 1 handoffs are not completed Episode Configurators. Do not publish.\n// Reviewed original content order: ' +
-      JSON.stringify(order) +
-      '\n// Pending Episode handoffs: ' +
-      JSON.stringify(ownPendingEpisodes) +
-      '\n'
+    ? '// TODO (BLOCKER): Finish independently reviewed Episode production and replace its stub before Course publication.\n'
     : '';
   const itemsSource =
     '{ ' +
@@ -411,27 +414,25 @@ export function materializeModule(input, context = {}) {
     .map(([key, value]) => JSON.stringify(key) + ': ' + JSON.stringify(value) + ',')
     .join(' ');
   const paramsSource = '{ ' + paramFields + '' + ' }';
+  const languagesModule = dir ? '../'.repeat(dir.split('/').length) + 'constants' : './constants';
   const result =
-    "import { defineModule } from '@svitlo/engine/build';\n" +
-    "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
+    'import { ' + ['defineModule', ...inlineImports].join(', ') + " } from '@svitlo/engine/build';\n" +
+    'import { languages } from ' + JSON.stringify(languagesModule) + ';\n' +
+    'import type { Languages } from ' + JSON.stringify(languagesModule) + ';\n' +
     imports.join('\n') +
     '\n\n' +
-    'const languages = ' +
-    JSON.stringify([lang]) +
-    ' as const satisfies SupportedLanguages;\n' +
     'const content = { items: ' +
     itemsSource +
     ', order: ' +
     orderSource +
     ' };\n\n' +
-    languageTodo +
     blocker +
     episodeBlocker +
     assessmentBlocker +
     'export const ' +
     exportName(slug) +
     ' = defineModule<' +
-    [JSON.stringify(slug), 'typeof content.items', 'typeof languages'].join(', ') +
+    [JSON.stringify(slug), 'typeof content.items', 'Languages'].join(', ') +
     '>({\n' +
     attrs +
     '\n  params: ' +
