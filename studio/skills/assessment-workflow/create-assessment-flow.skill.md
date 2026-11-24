@@ -4,6 +4,10 @@
 
 One Assessment belongs to one Course and one reserved ordered placement. Reuse its UUID, parent Course branch and entity-owned Draft PR. Read root AGENTS.md, [Assessment](../../docs/entities/assessment.md), [Course Flow](../course-workflow/create-course-flow.skill.md), [assessment bank separation](../../docs/architecture/lesson-assessment-bank-separation.md), GitHub/CI rules and the actual contracts/tests. Do not start automatically at Course materialization.
 
+## Source ownership and paths
+
+Follow the [canonical Assessment source layout](../../docs/entities/assessment.md#canonical-source-layout). Use the exact reserved placement under the Course tree, appending `content/<slug>/` at each level. The entity-owned `draft.ts` and final `index.ts` share this directory. Course Stage 5 initially emits only the inline placeholder in the immediate parent's configurator. Full materialization replaces that exact placeholder with the relative child import and emits slug-named Section/Block folders using the existing materializers. Never relocate a nested Assessment to a global directory.
+
 ## Stages
 
 1. **Design Assessment — Methodologist + Learning Assessment Architect.** Verify Course-approved purpose, placement, dependencies (including additional Lessons), actual completed upstream Lesson and reviewed bank sources, target Skills, scope, evidence and accessible assessment strategy. Author typed Stage 1 at the canonical Assessment-owned draft path. Do not duplicate upstream methodology or create banks.
