@@ -616,6 +616,9 @@ test('literal Stage 3 safely captures the exact raw trusted Lesson Build patch',
 });
 
 test('trusted real Markdown Lesson preserves transitive module URLs and sparse Course reuse', t => {
+  // Ready CI installs with --ignore-scripts and prepares both public Engine
+  // entrypoints using build-course-renderers.mjs, without prebuilt artifacts.
+  assert.equal(fs.existsSync(fileURLToPath(new URL('../../../shared/engine/dist/runtime.js', import.meta.url))), true);
   // Keep the trusted fixture under the installed workspace so the real Engine
   // Build package resolves. The candidate is a separate committed Git tree.
   const temp = fileURLToPath(new URL('../../../shared/engine/temp/', import.meta.url));
@@ -639,15 +642,21 @@ test('trusted real Markdown Lesson preserves transitive module URLs and sparse C
     [source]: `
 import { defineLesson } from '@svitlo/engine/build';
 import { intro } from './sections/intro';
+import { lessonLanguages } from './constants';
 export const howLightMoves = defineLesson({
   id: '${lessonId}', slug: 'howLightMoves', type: 'lesson', skills: [],
-  params: { languages: ['en', 'uk'], quizRequiredForCompletion: false,
+  params: { languages: lessonLanguages, quizRequiredForCompletion: false,
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
   locale: { title: { en: 'How light moves', uk: 'Як поширюється світло' } },
   section: { items: { intro }, order: ['intro'] },
 });
 `,
     [methodology]: '# Independently reviewed Lesson fixture\n',
+    [lessonRoot + '/constants.ts']: `
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+export const lessonLanguages = ['en', 'uk'].filter(language =>
+  DEFAULT_SUPPORTED_LANGUAGES.some(supported => supported.language === language));
+`,
     [intro + '/index.ts']: `
 import { defineContentSection } from '@svitlo/engine/build';
 import { first } from './content/first';

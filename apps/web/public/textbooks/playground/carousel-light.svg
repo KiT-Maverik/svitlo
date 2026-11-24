@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Sun and light rays">
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#164e85"/><stop offset="1" stop-color="#79c7e8"/></linearGradient></defs>
+  <rect width="960" height="540" fill="url(#sky)"/>
+  <circle cx="480" cy="270" r="88" fill="#ffe17e"/>
+  <g fill="none" stroke="#ffe17e" stroke-width="14" stroke-linecap="round">
+    <path d="M480 100V45M480 440v55M310 270h-65M650 270h65M360 150l-50-50M600 390l50 50M600 150l50-50M360 390l-50 50"/>
+  </g>
+</svg>

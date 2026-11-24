@@ -55,10 +55,40 @@ draft.ts and creates index.ts plus all approved outputs. Exact original bytes
 remain available at the pinned parent commit and blob. It checks
 the branch/PR before a non-force ref update. A separate metadata-only job verifies the committed manifest and reconciles Lessons and Episodes tables in the current PR description. No Course Props publication, child Lesson/Episode production or automatic bank work occurs.
 
+### Clean trusted dependency preparation
+
+Both read-only `analyze` and privileged `publish` install dependencies in their
+trusted default-branch checkout with `npm ci --ignore-scripts` and invoke
+`node scripts/ci/courseMaterialization/build-course-renderers.mjs` **before**
+loading an existing Lesson. That preparation bundles the concrete Section/Block
+renderers and **both** public Engine entries (`dist/build.js` and
+`dist/runtime.js`) from trusted source, since transitive authored Lesson
+modules can import `@svitlo/engine/runtime`. Neither prebuilt dist output nor
+an npm lifecycle script is a prerequisite. The bundles remain untracked,
+trusted temporary build artifacts; this preparation does not substitute for
+Engine package typechecking or permit candidate source execution. Both reviewed
+input and virtual generated-source semantic checks explicitly resolve
+`@svitlo/engine/build` and `@svitlo/engine/runtime` to trusted TypeScript sources.
+This also covers Episode generated-source validation. The temporary esbuild
+outputs need no declarations; the canonical Engine package build separately
+emits the real public declarations and is verified in Ready Course CI.
+
+The Ready Course Stage 5 full-path regression uses the actual Playground
+Lesson and the reviewed #806 Course fixture (only the two Lesson source
+revision pins are adapted to the separate candidate Git checkout). It checks
+clean preparation, both reuse variants, two new Lesson seeds, four Episode
+handoffs, real semantic compilation, exact deterministic privileged replay and
+no-clobber enforcement. A child-only negative control restores the missing
+runtime source mapping from the old analyzer and must reproduce TS7016
+through the same CLI before the corrected analysis succeeds. A passing regression is not evidence that a live
+Course PR has materialized: verify the subsequent authorized Actions run and
+commit.
+
 ### Validation and activation
 
 Run on a checkout containing this PR with dependencies installed:
 
+    node --test scripts/ci/courseMaterialization/trusted-course-full-path.spec.mjs
     node --test scripts/ci/courseMaterialization/typed-course-materialization.spec.mjs
     node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
     node --test shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs
