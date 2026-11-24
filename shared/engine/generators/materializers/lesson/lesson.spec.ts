@@ -483,7 +483,10 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
         flashcardsSectionRequired: false,
       },
     },
-    renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
+    renderSection: (child, opts) => {
+      assert.equal(opts.production?.methodologyIntegrated, true, child.slug + ' must be acknowledged after transfer');
+      return renderSection(child as ContentSource, { ...opts, renderContentBlock });
+    },
   });
   const methodology = result.files.find(f => f.path === 'methodology.md')?.content ?? '';
   for (const phrase of [
@@ -518,4 +521,61 @@ test('No required banks or pending Sections means no Stage 7/8 root blockers', (
   });
   const root = result.files.find(f => f.path === 'index.ts')?.content ?? '';
   assert.doesNotMatch(root, /Stage 7|Stage 8/);
+});
+
+test('Lesson does not acknowledge Section notes omitted from methodology', () => {
+  const l = lesson();
+  const input = {
+    ...l,
+    section: {
+      items: {
+        introduction: {
+          config: section(),
+          production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
+        },
+      },
+      order: ['introduction'],
+    },
+  };
+  let acknowledged: unknown;
+  const output = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+    documentLanguage: 'en',
+    renderSection: (child, opts) => {
+      acknowledged = opts.production?.methodologyIntegrated;
+      return renderSection(child as ContentSource, { ...opts, renderContentBlock });
+    },
+  });
+  assert.equal(acknowledged, undefined);
+  assert.equal((input.section.items.introduction.production as Record<string, unknown>).methodologyIntegrated, undefined);
+  const markdown = output.files.find(f => f.path === 'methodology.md')?.content ?? '';
+  assert.match(markdown, /Source purpose/);
+  assert.doesNotMatch(markdown, /Excluded provenance/);
+});
+
+test('Lesson input Section production is immutable after successful handoff', () => {
+  const l = lesson();
+  const input = {
+    ...l,
+    section: {
+      items: {
+        introduction: {
+          config: section(),
+          production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
+        },
+      },
+      order: ['introduction'],
+    },
+  };
+  const original = structuredClone(input);
+  let handedOff = false;
+  const output = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
+    documentLanguage: 'en',
+    renderSection: (child, opts) => {
+      handedOff = opts.production?.methodologyIntegrated === true;
+      return renderSection(child as ContentSource, { ...opts, renderContentBlock });
+    },
+  });
+  assert(handedOff);
+  assert.deepEqual(input, original);
+  assert.match(output.files.find(f => f.path === 'methodology.md')?.content ?? '', /Distinct review intent/);
 });
