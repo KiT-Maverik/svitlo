@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
-import { parseEpisodeHandoff, restoreEpisodePlacement, composeEpisodeDirectPlan } from './episode-source.mjs';
+import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -188,7 +188,8 @@ export function episodeCommitTree(manifest) {
   ];
 }
 
-export function prepareEpisode(meta, root, execute = runIsolatedMaterialization) {
+export async function prepareEpisode(meta, root, execute = runIsolatedMaterialization) {
+  const { parseEpisodeHandoff, composeEpisodeDirectPlan } = await import('./episode-source.mjs');
   const reader = gitReader(root);
   if (
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
@@ -253,7 +254,14 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
       tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
       tree.get(meta.parentPath)?.sha !== meta.parentBlobSha)
     throw Error('Episode parent/handoff source is not the authorized Git version');
-  const handoff = parseEpisodeHandoff(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
+  const sourceHandoff = reader.blob(baseline.get(meta.sourcePath), meta.sourcePath);
+  // This immutable handoff is a canonical generated JSON-shaped TS wrapper;
+  // reading it does not require TypeScript, user code or npm packages.
+  const match = sourceHandoff.match(
+    /^\s*(?:\/\/[^\n]*\n\s*)*import type \{\s*EpisodeWorkflowStage1Handoff\s*\} from ['"]@svitlo\/engine\/build['"];\s*export const episodeStage1 = (\{[\s\S]*\}) as const satisfies EpisodeWorkflowStage1Handoff;\s*$/,
+  );
+  if (!match) throw Error('Invalid immutable Course Stage 1 Episode handoff');
+  const handoff = JSON.parse(match[1]);
   if (handoff.config.id !== manifest.episodeId ||
       handoff.production.placement.courseId !== meta.courseId ||
       handoff.production.placement.path !== meta.placement)
@@ -273,15 +281,15 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   });
   checkEpisodeTargets(meta, files, tree);
   const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const expected = restoreEpisodePlacement(parentSource, {
-    path: meta.placement,
+  const edited = files.find(file => file.path === meta.parentPath);
+  if (!edited) throw Error('Missing generated parent Course source');
+  verifyReservedEpisodeParent(parentSource, edited.content, {
+    placement: meta.placement,
     slug: handoff.config.slug,
     episodeId: handoff.config.id,
     orderIndex: handoff.production.placement.orderPath.at(-1),
-  }, manifest.sourceExportName, { rootParent: meta.placement.split('/').length === 2 });
-  const edited = files.find(file => file.path === meta.parentPath);
-  if (!edited || edited.content !== expected)
-    throw Error('Episode artifact altered the reserved Course parent outside the approved slot');
+    exportName: manifest.sourceExportName,
+  });
   return manifest;
 }
 
@@ -304,7 +312,7 @@ async function main() {
   if (mode === 'analyze') {
     if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
       throw Error('Read-only Episode analysis must not receive write token');
-    const manifest = prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
+    const manifest = await prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
     report('Read-only Episode plan: ' + manifest.entries.length + ' generated/parent files; no publication approval.');
