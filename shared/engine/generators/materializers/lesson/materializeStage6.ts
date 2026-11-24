@@ -27,7 +27,7 @@ import { materializeCarousel } from '../carousel/materializeCarousel';
 import { materializeCheckpoint } from '../checkpoint/materializeCheckpoint';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
-import { preserveAssessmentReferences } from './preserveAssessmentReferences';
+import { preserveAssessmentReferences, reviewedSkillReferences } from './preserveAssessmentReferences';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
@@ -411,6 +411,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     {
       documentLanguage,
       production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
+      skillReferences: reviewedSkillReferences(options.sourceText, source.sourcePath, input),
       renderSection: section,
     },
   );
