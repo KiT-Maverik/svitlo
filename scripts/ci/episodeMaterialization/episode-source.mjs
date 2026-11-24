@@ -219,7 +219,16 @@ export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, 
   )
     throw Error('Direct Episode worker returned an invalid source plan');
   const prefix = meta.courseRoot + '/';
-  const files = output.files.map(file => ({ ...file, path: prefix + file.path }));
+  // Source materializers own Course-relative Episode modules and separately
+  // UUID-scoped textbook Scenes. Their two path domains remain disjoint and
+  // are independently allowlisted by the trusted Episode transaction.
+  const files = output.files.map(file => ({
+    ...file,
+    path:
+      typeof file.path === 'string' && file.path.startsWith(meta.textbookRoot + '/scenes/')
+        ? file.path
+        : prefix + file.path,
+  }));
   const rootIndex = prefix + meta.placement + '/index.ts';
   if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
   const parent = restoreEpisodePlacement(
