@@ -1,5 +1,7 @@
 import {
   assessment_Props_Schema,
+  assessment_Draft_Props_Schema,
+  type Assessment_Draft_Props,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
 import { audio_Props_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
@@ -15,8 +17,11 @@ import { video_Props_Schema } from '../../configurators/contentBlocks/defineVide
 import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import {
   episode_Props_Schema,
+  episode_Draft_Props_Schema,
+  type Episode_Draft_Props,
   type Episode_Props,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import { lesson_Draft_Props_Schema, type Lesson_Draft_Props } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import {
   contentSection_Props_Schema,
@@ -42,8 +47,11 @@ export type LocalizedAssessment = Omit<Assessment_Props, 'section'> & {
 export type LocalizedCourseContent = { items: Record<string, LocalizedCourseNode>; order: string[] };
 export type LocalizedCourseNode =
   | CourseLessonEntry
+  | Lesson_Draft_Props
   | LocalizedEpisode
+  | Episode_Draft_Props
   | LocalizedAssessment
+  | Assessment_Draft_Props
   | {
       type: 'module' | 'chapter';
       id: string;
@@ -163,8 +171,9 @@ export function validateAssessmentRuntime(value: unknown, language: LanguageCode
 function verifyIdentity(base: unknown, selected: unknown, at: string): void {
   assertRecord(base, at);
   assertRecord(selected, at);
-  if (base.id !== selected.id || base.type !== selected.type) throw Error('Localized Course identity changed at ' + at);
-  if (base.type === 'lesson') return;
+  if (base.id !== selected.id || base.type !== selected.type || base.draft !== selected.draft)
+    throw Error('Localized Course identity changed at ' + at);
+  if (base.type === 'lesson' && base.draft !== true) return;
   if (base.type === 'episode' || base.type === 'assessment') {
     if (
       base.slug !== selected.slug ||
@@ -216,8 +225,10 @@ export function assembleCourseTree(
   locale: unknown,
   id: string,
   language: LanguageCode,
+  mode: 'production' | 'draft' = 'production',
 ): LocalizedCourse {
   languageCode_Schema.parse(language);
+  if (mode !== 'production' && mode !== 'draft') throw Error('Unsupported Course assembly mode');
   assertSafeJson(base);
   if (locale !== undefined) assertSafeJson(locale);
   const value = merge(base, locale);
@@ -249,7 +260,28 @@ export function assembleCourseTree(
       const node = content.items[key];
       assertRecord(node, key);
       if (typeof node.id !== 'string' || !uuid.test(node.id)) throw Error('Invalid Course child identity');
-      if (node.type === 'lesson') continue; // repeated references are distinct placements
+      if (Object.hasOwn(node, 'draft')) {
+        if (mode !== 'draft' || node.draft !== true)
+          throw Error('Course draft stub cannot be assembled for production at ' + key);
+        if (node.slug !== key) throw Error('Invalid Course stub placement: ' + key);
+        switch (node.type) {
+          case 'lesson':
+            lesson_Draft_Props_Schema.parse(node);
+            break;
+          case 'episode':
+            episode_Draft_Props_Schema.parse(node);
+            break;
+          case 'assessment':
+            assessment_Draft_Props_Schema.parse(node);
+            break;
+          default:
+            throw Error('Invalid Course draft child kind at ' + key);
+        }
+        if (visited.has(node.id)) throw Error('Duplicate Course draft identity: ' + node.id);
+        visited.add(node.id);
+        continue;
+      }
+      if (node.type === 'lesson') continue; // repeated completed Lesson references are distinct placements
       if (visited.has(node.id)) throw Error('Duplicate Course-owned identity: ' + node.id);
       visited.add(node.id);
       if (node.type === 'episode') {
@@ -274,7 +306,7 @@ export function assembleCourseTree(
   return value as LocalizedCourse;
 }
 
-export type CourseActivity = { node: CourseLessonEntry | LocalizedEpisode | LocalizedAssessment; placement: string };
+export type CourseActivity = { node: CourseLessonEntry | Lesson_Draft_Props | LocalizedEpisode | Episode_Draft_Props | LocalizedAssessment | Assessment_Draft_Props; placement: string };
 export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   const result: CourseActivity[] = [];
   function visit(content: LocalizedCourseContent, prefix: string[]) {
@@ -289,14 +321,14 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   visit(course.content, []);
   return result;
 }
-export function findCourseEpisode(course: LocalizedCourse, id: string): LocalizedEpisode | undefined {
+export function findCourseEpisode(course: LocalizedCourse, id: string): LocalizedEpisode | Episode_Draft_Props | undefined {
   return courseActivities(course)
     .map(item => item.node)
-    .find((node): node is LocalizedEpisode => node.type === 'episode' && node.id === id);
+    .find((node): node is LocalizedEpisode | Episode_Draft_Props => node.type === 'episode' && node.id === id);
 }
 
-export function findCourseAssessment(course: LocalizedCourse, id: string): LocalizedAssessment | undefined {
+export function findCourseAssessment(course: LocalizedCourse, id: string): LocalizedAssessment | Assessment_Draft_Props | undefined {
   return courseActivities(course)
     .map(item => item.node)
-    .find((node): node is LocalizedAssessment => node.type === 'assessment' && node.id === id);
+    .find((node): node is LocalizedAssessment | Assessment_Draft_Props => node.type === 'assessment' && node.id === id);
 }
