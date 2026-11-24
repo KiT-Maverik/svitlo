@@ -156,7 +156,7 @@ function safeOutput(file, meta) {
     !/^[A-Za-z][A-Za-z0-9]*$/.test(value) || ['constructor', 'prototype', '__proto__'].includes(value)
   )) return false;
   const leaf = parts.at(-1);
-  return ['index.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
+  return ['index.ts', 'languages.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
     /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) || /^code\.[a-z0-9]{1,10}$/.test(leaf);
 }
 export function checkAssessmentTargets(meta, files, tree) {
