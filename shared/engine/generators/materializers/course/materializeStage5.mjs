@@ -54,7 +54,9 @@ const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonica
 /**
  * Plan reviewed Course Stage 5 authored sources. The atomic writer consumes
  * draft.ts and creates index.ts; exact reviewed bytes remain in Git history.
- * Planning never overwrites a file.
+ * Planning never overwrites a file. Emitted TypeScript must satisfy current
+ * contracts; unfinished resources use valid typed placeholders and explicit
+ * TODO (BLOCKER) markers where applicable, not invalid source.
  *
  * The trusted caller must pin the evaluated TS input to the exact Git blob,
  * verify independent review/authorization, and resolve each imported Lesson

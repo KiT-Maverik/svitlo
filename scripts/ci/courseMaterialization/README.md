@@ -1,6 +1,6 @@
 # Typed Course Stage 5 — trusted manual materialization
 
-The Course-owned TypeScript Stage 3 source is the only supported editorial input. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before dispatch; never bypass authorization.
+The Course-owned TypeScript Stage 3 source is the only supported editorial input. Follow the [canonical Course Skill](../../../studio/skills/course-workflow/create-course-flow.skill.md): during Stage 4, replace the type-only import and `satisfies` clause on the existing exported Course object with `CourseWorkflowMaterializerInput`, then commit, reinspect and pin the final revision. Stage 5 consumes those exact reviewed bytes without editing the source. The single-export form is exercised by the full typed fixture in `typed-course-materialization.spec.mjs`. The trusted workflow is `.github/workflows/course-typed-materialization.yml`, a manual `workflow_dispatch` with `pr_number`. Verify its availability on default `develop` before dispatch; never bypass authorization.
 
 ## Authorization and source fidelity
 
