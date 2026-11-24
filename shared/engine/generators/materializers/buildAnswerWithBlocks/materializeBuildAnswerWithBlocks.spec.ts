@@ -47,7 +47,9 @@ test('buildAnswerWithBlocks: deterministic modular source, nested imports, sourc
   assert.match(main.content, /TODO \(BLOCKER\)/);
   assert.match(main.content, /child_content_question_items_prompt/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
-  assert(a.files.some(file => file.path.endsWith('content/question/items/prompt/index.ts')));
+  assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
+  assert(!a.files.some(file => file.path.includes('/items/')));
+  assert.match(main.content, /from "\.\/sampleQuestion\/question\/prompt"/);
   for (const file of a.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
       fileName: file.path,
@@ -59,6 +61,23 @@ test('buildAnswerWithBlocks: deterministic modular source, nested imports, sourc
       [],
     );
   }
+});
+test('buildAnswerWithBlocks: rejects delegated ContentBlock writing outside its semantic role', () => {
+  assert.throws(
+    () =>
+      materializeBuildAnswerWithBlocks(fixture() as never, {
+        ...context,
+        materializeBlock: () => ({
+          exportName: 'prompt',
+          files: [{
+            path: 'questions/buildAnswerWithBlocks/otherQuestion/index.ts',
+            content: 'export const prompt = {};\n',
+            kind: 'typescript' as const,
+          }],
+        }),
+      }),
+    /escaped its assigned directory/,
+  );
 });
 test('buildAnswerWithBlocks: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
