@@ -74,9 +74,11 @@ function safeTarget(root, filename) {
 }
 /** Narrow same-textbook Scene path, not a generic escape from Lesson ownership. */
 function ownedScenePath(filename, book) {
-  const match = typeof filename === 'string' && filename.match(
-    /^content\/([a-z][a-z0-9-]*)\/scenes\/([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/(index\.ts|[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx))$/,
-  );
+  const match =
+    typeof filename === 'string' &&
+    filename.match(
+      /^content\/([a-z][a-z0-9-]*)\/scenes\/([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/(index\.ts|[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx))$/,
+    );
   return match && book === match[1] && match[2] === match[3].at(-1)
     ? { directory: filename.slice(0, filename.lastIndexOf('/')), filename: match[4] }
     : null;
@@ -157,8 +159,14 @@ export function preflightLessonStage6Commit(plan, { repoRoot } = {}) {
     const components = [...names].filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
     if (components.length !== 1) throw new Error('Scene scaffold requires one component: ' + directory);
     const base = components[0].slice(0, -4);
-    const expected = ['index.ts', base + '.tsx', base + '.module.css', base + '.constants.ts',
-      base + '.stories.tsx', base + '.unit.spec.tsx'];
+    const expected = [
+      'index.ts',
+      base + '.tsx',
+      base + '.module.css',
+      base + '.constants.ts',
+      base + '.stories.tsx',
+      base + '.unit.spec.tsx',
+    ];
     if (names.size !== expected.length || expected.some(name => !names.has(name)))
       throw new Error('Incomplete Scene scaffold: ' + directory);
   }

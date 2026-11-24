@@ -251,8 +251,16 @@ test('rejects unsafe/duplicate identities and missing production specs before wr
   second.production.specification = 'Scene spec';
   second.config.slug = 'CompareGroupsScene';
   f.save();
-  assert.equal(renderSceneFiles({ id: anotherId, slug: 'CompareGroupsScene', documentLanguage: 'uk', specification: 'Reviewed' }).has('CompareGroupsScene.tsx'), true,
-    'same component name is safe in independent UUID directories');
+  assert.equal(
+    renderSceneFiles({
+      id: anotherId,
+      slug: 'CompareGroupsScene',
+      documentLanguage: 'uk',
+      specification: 'Reviewed',
+    }).has('CompareGroupsScene.tsx'),
+    true,
+    'same component name is safe in independent UUID directories',
+  );
   second.config.slug = '../traversal';
   f.save();
   assert.throws(() => runOne(f.source, 'generate', f.repo), /Unsafe Scene slug/);

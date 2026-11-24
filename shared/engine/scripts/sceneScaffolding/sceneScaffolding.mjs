@@ -23,8 +23,7 @@ const require = createRequire(import.meta.url);
 /** Reuse the compiled trusted Engine's exact Stage 6.1 Scene templates. */
 function sharedTemplates() {
   const built = path.join(repoRoot, 'shared/engine/dist/generators/materializers/scene/materializeScene.js');
-  if (!fs.existsSync(built))
-    throw new Error('Build @svitlo/engine before running Scene scaffold checks');
+  if (!fs.existsSync(built)) throw new Error('Build @svitlo/engine before running Scene scaffold checks');
   return require(built);
 }
 
@@ -254,9 +253,14 @@ export function runOne(source, mode = 'check', repo = repoRoot, selectedSceneId)
       results.push({ id: scene.id, changed: 0, skipped: true });
       continue;
     }
-    const files = mode === 'check'
-      ? new Map(sharedTemplates().sceneFileNames(scene).map(filename => [filename, '']))
-      : renderSceneFiles(scene);
+    const files =
+      mode === 'check'
+        ? new Map(
+            sharedTemplates()
+              .sceneFileNames(scene)
+              .map(filename => [filename, '']),
+          )
+        : renderSceneFiles(scene);
     for (const filename of files.keys()) noSymlinks(path.join(directory, filename));
     if (mode === 'check') {
       for (const filename of files.keys()) {

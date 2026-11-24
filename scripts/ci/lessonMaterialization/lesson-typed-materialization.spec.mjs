@@ -7,7 +7,13 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { gitBlob } from '../courseMaterialization/course-gate.mjs';
-import { lessonSourceIdentity, parseTypedTrigger, typedPath, inspectTyped, assertSceneScaffoldPaths } from './lesson-typed-gate.mjs';
+import {
+  lessonSourceIdentity,
+  parseTypedTrigger,
+  typedPath,
+  inspectTyped,
+  assertSceneScaffoldPaths,
+} from './lesson-typed-gate.mjs';
 import {
   typedMeta,
   checkedTypedRoot,
@@ -362,17 +368,33 @@ test('Lesson workflow has one typed-only entrypoint after YAML retirement', () =
   assert.doesNotMatch(typedGate, /from '\.\/lesson-gate\.mjs'/);
 });
 
-
 test('trusted Scene allowlist accepts only complete same-textbook UUID scaffolds', () => {
   const identity = lessonSourceIdentity(source);
   const scene = '11111111-1111-4111-8111-11111111111a';
   const prefix = 'content/math/scenes/a/' + scene + '/';
-  const files = ['index.ts', 'ChooseColor.tsx', 'ChooseColor.module.css',
-    'ChooseColor.constants.ts', 'ChooseColor.stories.tsx', 'ChooseColor.unit.spec.tsx'];
+  const files = [
+    'index.ts',
+    'ChooseColor.tsx',
+    'ChooseColor.module.css',
+    'ChooseColor.constants.ts',
+    'ChooseColor.stories.tsx',
+    'ChooseColor.unit.spec.tsx',
+  ];
   assert(files.every(name => typedPath(prefix + name, identity)));
-  assert.doesNotThrow(() => assertSceneScaffoldPaths(files.map(name => prefix + name), identity));
-  assert.throws(() => assertSceneScaffoldPaths(files.slice(0, -1).map(name => prefix + name), identity),
-    /Incomplete or inconsistent/);
+  assert.doesNotThrow(() =>
+    assertSceneScaffoldPaths(
+      files.map(name => prefix + name),
+      identity,
+    ),
+  );
+  assert.throws(
+    () =>
+      assertSceneScaffoldPaths(
+        files.slice(0, -1).map(name => prefix + name),
+        identity,
+      ),
+    /Incomplete or inconsistent/,
+  );
   for (const invalid of [
     'content/math/scenes/b/' + scene + '/index.ts',
     'content/history/scenes/a/' + scene + '/index.ts',
@@ -382,7 +404,8 @@ test('trusted Scene allowlist accepts only complete same-textbook UUID scaffolds
     prefix + '../index.ts',
     prefix + '.hidden.ts',
     'content/math/scenes/a/not-a-uuid/index.ts',
-  ]) assert.equal(typedPath(invalid, identity), false, invalid);
+  ])
+    assert.equal(typedPath(invalid, identity), false, invalid);
 });
 
 test('immutable Scene manifest is all-or-nothing and rejects collisions or symlink ancestry', () => {
@@ -390,10 +413,18 @@ test('immutable Scene manifest is all-or-nothing and rejects collisions or symli
     const scene = '11111111-1111-4111-8111-11111111111a';
     const prefix = 'content/math/scenes/a/' + scene + '/';
     for (const filename of [
-      'index.ts', 'ChooseColor.tsx', 'ChooseColor.module.css',
-      'ChooseColor.constants.ts', 'ChooseColor.stories.tsx', 'ChooseColor.unit.spec.tsx',
-    ]) plan.files.push({ path: prefix + filename, kind: filename.endsWith('.css') ? 'code' : 'typescript',
-      content: '// TODO (BLOCKER): Pending reviewed Scene\nexport {};\n' });
+      'index.ts',
+      'ChooseColor.tsx',
+      'ChooseColor.module.css',
+      'ChooseColor.constants.ts',
+      'ChooseColor.stories.tsx',
+      'ChooseColor.unit.spec.tsx',
+    ])
+      plan.files.push({
+        path: prefix + filename,
+        kind: filename.endsWith('.css') ? 'code' : 'typescript',
+        content: '// TODO (BLOCKER): Pending reviewed Scene\nexport {};\n',
+      });
     const manifest = typedManifest(plan, info, original, tracked, root);
     assert.equal(manifest.entries.length, 9, 'six Scene creations, two Lesson creations and one draft deletion');
     assert.equal(verifyTypedManifest(manifest, info, root, tracked, original), 9);

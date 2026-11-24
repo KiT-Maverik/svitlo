@@ -117,8 +117,15 @@ export async function inspectTyped(number, expectedHead) {
 
 /** The only non-Lesson output scope is a same-textbook, UUID-owned Scene draft. */
 export function sceneScaffoldPath(filename, identity) {
-  if (typeof filename !== 'string' || filename.length > 500 || filename.includes('..') ||
-      filename.includes('//') || filename.includes('\\') || filename.includes('\0')) return null;
+  if (
+    typeof filename !== 'string' ||
+    filename.length > 500 ||
+    filename.includes('..') ||
+    filename.includes('//') ||
+    filename.includes('\\') ||
+    filename.includes('\0')
+  )
+    return null;
   const match = filename.match(
     /^content\/([a-z][a-z0-9-]*)\/scenes\/([0-9a-f])\/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})\/(index\.ts|[A-Z][A-Za-z0-9]*\.(?:tsx|module\.css|constants\.ts|stories\.tsx|unit\.spec\.tsx))$/,
   );
@@ -139,8 +146,11 @@ export function typedPath(filename, identity) {
   )
     return false;
   const relative = filename.slice(identity.folder.length + 1);
-  if (['index.ts', 'draft.ts', 'languages.ts', 'constants.ts', 'methodology.md', 'specification.md'].includes(relative)) return true;
-  return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(relative);
+  if (['index.ts', 'draft.ts', 'languages.ts', 'constants.ts', 'methodology.md', 'specification.md'].includes(relative))
+    return true;
+  return /^sections\/(?:[A-Za-z][A-Za-z0-9]*\/){1,22}(?:index\.ts|specification\.md|methodology\.md|markdown\.md|[a-z]{2,3}(?:-[A-Za-z0-9]+)?\.md|code\.[A-Za-z0-9]+)$/.test(
+    relative,
+  );
 }
 
 /** Reject partially forged Scene manifests before privileged Git writes. */
@@ -158,8 +168,14 @@ export function assertSceneScaffoldPaths(paths, identity) {
     const components = [...names].filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
     if (components.length !== 1) throw Error('Scene scaffold needs one component: ' + directory);
     const name = components[0].slice(0, -4);
-    const expected = ['index.ts', name + '.tsx', name + '.module.css', name + '.constants.ts',
-      name + '.stories.tsx', name + '.unit.spec.tsx'];
+    const expected = [
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
+    ];
     if (names.size !== expected.length || expected.some(file => !names.has(file)))
       throw Error('Incomplete or inconsistent Scene scaffold: ' + directory);
   }

@@ -796,7 +796,6 @@ test('direct Lesson invocation returns the same source plan using runner-owned m
   assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
 });
 
-
 test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Config in one sealed output', () => {
   const input = valid() as unknown as Record<string, { [key: string]: any }>;
   const sceneId = id('05');
@@ -838,43 +837,63 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert.throws(() => assertLessonStage6ReleaseReady(result), /publication blocked/);
   const withoutSpec = structuredClone(input);
   withoutSpec.config.section.items.introduction.config.content.items.chooseShape.production.specification = '';
-  assert.throws(() => produce(withoutSpec as ReturnType<typeof valid>, {
-    sourceText,
-    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
-    verifySourceInput: () => true,
-  }), /reviewed production\.specification/);
+  assert.throws(
+    () =>
+      produce(withoutSpec as ReturnType<typeof valid>, {
+        sourceText,
+        source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+        verifySourceInput: () => true,
+      }),
+    /reviewed production\.specification/,
+  );
 });
-
 
 test('four reviewed Scene nodes retain their UUIDs and emit four isolated executable scaffold directories', () => {
   const input = valid() as unknown as Record<string, any>;
   const collection = input.config.section.items.introduction.config.content;
-  for (const [suffix, slug] of [['05', 'chooseShape'], ['06', 'chooseColor'],
-    ['07', 'resetSelection'], ['08', 'explorePatterns']]) {
+  for (const [suffix, slug] of [
+    ['05', 'chooseShape'],
+    ['06', 'chooseColor'],
+    ['07', 'resetSelection'],
+    ['08', 'explorePatterns'],
+  ]) {
     collection.items[slug] = {
       config: {
-        id: id(suffix), slug, type: 'scene', params: {},
+        id: id(suffix),
+        slug,
+        type: 'scene',
+        params: {},
         locale: { value: { status: { en: slug } } },
       },
       production: {
-        purpose: 'Verify the reviewed behavior', specification: 'Approved interaction for ' + slug,
-        accessibility: 'Keyboard and touch parity', offline: 'Works offline',
+        purpose: 'Verify the reviewed behavior',
+        specification: 'Approved interaction for ' + slug,
+        accessibility: 'Keyboard and touch parity',
+        offline: 'Works offline',
       },
     };
     collection.order.push(slug);
   }
   const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
   const plan = produce(input as unknown as ReturnType<typeof valid>, {
-    sourceText, source: { ...reviewed, sourceBlobSha: blobSha(sourceText) }, verifySourceInput: () => true,
+    sourceText,
+    source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
+    verifySourceInput: () => true,
   });
-  const dirs = new Set(plan.files
-    .filter(file => file.path.includes('/scenes/') && file.path.endsWith('.tsx'))
-    .filter(file => !file.path.endsWith('.stories.tsx') && !file.path.endsWith('.unit.spec.tsx'))
-    .map(file => file.path.split('/').slice(0, -1).join('/')));
-  assert.deepEqual([...dirs].sort(), ['05','06','07','08']
-    .map(suffix => 'content/math/scenes/' + suffix.at(-1) + '/' + id(suffix)).sort());
+  const dirs = new Set(
+    plan.files
+      .filter(file => file.path.includes('/scenes/') && file.path.endsWith('.tsx'))
+      .filter(file => !file.path.endsWith('.stories.tsx') && !file.path.endsWith('.unit.spec.tsx'))
+      .map(file => file.path.split('/').slice(0, -1).join('/')),
+  );
+  assert.deepEqual(
+    [...dirs].sort(),
+    ['05', '06', '07', '08'].map(suffix => 'content/math/scenes/' + suffix.at(-1) + '/' + id(suffix)).sort(),
+  );
   assert.equal(plan.files.filter(file => /^content\/math\/scenes\/[0-9a-f]\//.test(file.path)).length, 24);
-  assert.equal(plan.files.filter(file => /\/specification\.md$/.test(file.path)
-    && file.path.includes('/scenes/')).length, 0);
+  assert.equal(
+    plan.files.filter(file => /\/specification\.md$/.test(file.path) && file.path.includes('/scenes/')).length,
+    0,
+  );
   assert(plan.files.every(file => !file.path.endsWith('/sceneLoader.ts')));
 });

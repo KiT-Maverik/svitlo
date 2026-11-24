@@ -164,14 +164,17 @@ test('refuses invalid generated TypeScript and any attempt to publish from this 
   );
 });
 
-
 test('Scene drafts are one all-or-nothing UUID-scoped Git tree write; incomplete and unsafe destinations fail', t => {
   const { root, plan, reviewed } = setup(t);
   const scene = '11111111-1111-4111-8111-11111111111a';
   const prefix = 'content/math/scenes/a/' + scene + '/';
   const names = [
-    'index.ts', 'ChooseColor.tsx', 'ChooseColor.module.css',
-    'ChooseColor.constants.ts', 'ChooseColor.stories.tsx', 'ChooseColor.unit.spec.tsx',
+    'index.ts',
+    'ChooseColor.tsx',
+    'ChooseColor.module.css',
+    'ChooseColor.constants.ts',
+    'ChooseColor.stories.tsx',
+    'ChooseColor.unit.spec.tsx',
   ];
   const sceneFiles = names.map(name => ({
     path: prefix + name,
@@ -191,9 +194,14 @@ test('Scene drafts are one all-or-nothing UUID-scoped Git tree write; incomplete
     prefix + 'specification.md',
   ]) {
     assert.throws(
-      () => preflightLessonStage6Commit({
-        ...complete, files: [...plan.files, { ...sceneFiles[1], path: wrong }, ...sceneFiles.slice(2)],
-      }, { repoRoot: root }),
+      () =>
+        preflightLessonStage6Commit(
+          {
+            ...complete,
+            files: [...plan.files, { ...sceneFiles[1], path: wrong }, ...sceneFiles.slice(2)],
+          },
+          { repoRoot: root },
+        ),
       /Invalid|out-of-scope|Unsafe/i,
     );
   }
@@ -204,7 +212,10 @@ test('Scene drafts are one all-or-nothing UUID-scoped Git tree write; incomplete
   fs.unlinkSync(link);
   git(root, 'checkout', '--detach');
   const committed = commitLessonStage6Plan(complete, {
-    repoRoot: root, mode: 'write', branch: 'source', authorizeWrite: () => true,
+    repoRoot: root,
+    mode: 'write',
+    branch: 'source',
+    authorizeWrite: () => true,
   });
   assert.equal(committed.changed, 10);
   assert.equal(git(root, 'rev-parse', 'HEAD'), reviewed);

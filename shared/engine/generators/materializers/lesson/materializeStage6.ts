@@ -142,11 +142,13 @@ function normalizeStage2(input: LessonWorkflowStage2) {
     if (current.production) metadata.set(id, current.production);
     const normalized: Record<string, unknown> = { ...config };
     const typ = config.type;
-    if (typ === 'scene') scenes.push({
-      id,
-      slug: config.slug as string,
-      specification: typeof current.production?.specification === 'string' ? current.production.specification : undefined,
-    });
+    if (typ === 'scene')
+      scenes.push({
+        id,
+        slug: config.slug as string,
+        specification:
+          typeof current.production?.specification === 'string' ? current.production.specification : undefined,
+      });
 
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
       normalized.content = ordered(config.content, at + '.content', true);

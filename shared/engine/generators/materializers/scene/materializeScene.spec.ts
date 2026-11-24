@@ -27,7 +27,10 @@ test('Scene emits canonical Config source without duplicating its specification 
   const result = materializeScene(scene(), context());
   assert.deepEqual(result, materializeScene(scene(), context()), 'same source must be deterministic');
   assert.equal(result.exportName, 'chooseShape');
-  assert.deepEqual(result.files.map(file => file.path), ['content/items/activity/index.ts']);
+  assert.deepEqual(
+    result.files.map(file => file.path),
+    ['content/items/activity/index.ts'],
+  );
   const code = result.files.at(-1)!.content;
   parse(code);
   assert.match(code, /defineScene<"chooseShape", typeof languages>/);
@@ -111,7 +114,6 @@ function syntaxErrorCount(source: string, fileName = 'index.ts'): number {
   return (result.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length;
 }
 
-
 test('one shared Scene draft template emits six parseable files with inert complete reviewed specification', () => {
   const reviewed = 'Original interaction\n*/\nexport const injected = true;\r\n/* keep this text';
   const info = { id: sceneId, slug: 'chooseShape', documentLanguage: 'uk', specification: reviewed };
@@ -122,8 +124,13 @@ test('one shared Scene draft template emits six parseable files with inert compl
   for (const [filename, content] of files) {
     assert.equal((content.match(/TODO \(BLOCKER\)/g) ?? []).length, 1, filename);
     if (filename.endsWith('.ts') || filename.endsWith('.tsx')) {
-      const source = ts.createSourceFile(filename, content, ts.ScriptTarget.ES2022, true,
-        filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
+      const source = ts.createSourceFile(
+        filename,
+        content,
+        ts.ScriptTarget.ES2022,
+        true,
+        filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS,
+      );
       assert.deepEqual(source.parseDiagnostics, [], filename);
     }
     assert.doesNotMatch(content, /sceneImplementationRequired|sceneSourceLocaleRequired|as any|@ts-ignore/);
