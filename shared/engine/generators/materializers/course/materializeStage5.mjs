@@ -124,12 +124,9 @@ export function materializeCourseStage5(input, options = {}) {
     review.sourcePath !== expectedSource ||
     !sha.test(review.sourceBlobSha ?? '') ||
     !sha.test(review.reviewCommitSha ?? '') ||
-    typeof review.reviewer !== 'string' ||
-    !review.reviewer.trim() ||
-    typeof review.evidenceUrl !== 'string' ||
-    !/^https:\/\//.test(review.evidenceUrl)
+    review.reviewVerdict !== 'accepted'
   )
-    throw new Error('Stage 5 requires verified source path, blob SHA, reviewer and review commit evidence');
+    throw new Error('Stage 5 requires verified source path, blob SHA, accepted verdict and review commit evidence');
   // Do not trust a TypeScript "satisfies" assertion as an authorization signal.
   if (
     typeof options.verifyReviewedSource !== 'function' ||

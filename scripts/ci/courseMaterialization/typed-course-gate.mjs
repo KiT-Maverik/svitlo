@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Trusted typed Course Stage 5 gate.
- * Authorizes a pinned Stage 3 source + independent Stage 4 GitHub review.
+ * Authorizes a pinned Stage 3 source + accepted Stage 4 review evidence.
  * No PR-head code is loaded or executed by this gate.
  */
 import fs from 'node:fs';
+import { verifyReviewEvidence } from '../reviewEvidence/review-evidence.mjs';
 import { github, requireActor, safeBranch, report } from './course-gate.mjs';
 
 const UUID = '[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}';
@@ -38,32 +39,6 @@ export function discoverTypedCourseSource(files) {
   if (files.length !== 1 || files[0].filename !== found[0].sourcePath)
     throw Error('Typed Course Stage 3 PR must change only its canonical reviewed draft.ts');
   return found[0];
-}
-
-export function selectStage4Review(reviews, pr, permissions) {
-  if (!Array.isArray(reviews) || !SHA.test(pr?.head?.sha ?? ''))
-    throw Error('Cannot verify independent Stage 4 review');
-  const latest = new Map();
-  for (const review of reviews) {
-    const reviewer = review?.user?.login;
-    if (typeof reviewer !== 'string') continue;
-    if (review.state === 'APPROVED' || review.state === 'CHANGES_REQUESTED' || review.state === 'DISMISSED')
-      latest.set(reviewer.toLowerCase(), review);
-  }
-  if ([...latest.values()].some(review => review.state === 'CHANGES_REQUESTED' && review.commit_id === pr.head.sha))
-    throw Error('Outstanding Stage 4 change request at pinned HEAD');
-  const authorized = [...latest.values()].filter(
-    review =>
-      review.state === 'APPROVED' &&
-      review.commit_id === pr.head.sha &&
-      review.user.login.toLowerCase() !== pr.user?.login?.toLowerCase() &&
-      ['write', 'maintain', 'admin'].includes(permissions[review.user.login.toLowerCase()]) &&
-      Number.isSafeInteger(review.id) &&
-      review.id > 0,
-  );
-  if (!authorized.length) throw Error('Independent write-authorized Stage 4 APPROVED review at exact PR HEAD required');
-  authorized.sort((a, b) => a.id - b.id);
-  return authorized.at(-1);
 }
 
 async function changedPrFiles(number) {
@@ -106,24 +81,16 @@ export async function inspectTypedCourse(number, expectedHead) {
     resource.size > 2 * 1024 * 1024
   )
     throw Error('Pinned typed Course source is missing, invalid or oversized');
-  const reviews = await github('pulls/' + number + '/reviews?per_page=100');
-  if (!Array.isArray(reviews) || reviews.length === 100)
-    throw Error('Review listing is incomplete; refuse ambiguous Stage 4 approval');
-  const permissions = Object.create(null);
-  for (const review of reviews) {
-    const reviewer = review?.user?.login;
-    if (
-      typeof reviewer === 'string' &&
-      /^[A-Za-z0-9-]+$/.test(reviewer) &&
-      !Object.hasOwn(permissions, reviewer.toLowerCase())
-    ) {
-      const access = await github('collaborators/' + reviewer + '/permission');
-      permissions[reviewer.toLowerCase()] = access?.permission ?? 'none';
-    }
-  }
-  const approved = selectStage4Review(reviews, pr, permissions);
+  const [review] = await verifyReviewEvidence(pr.body, {
+    stages: [4],
+    head: pr.head.sha,
+    blob: resource.sha,
+  });
   const again = await github('pulls/' + number);
-  if (again?.head?.sha !== pr.head.sha || again?.head?.ref !== pr.head.ref || again?.state !== 'open' || !again.draft)
+  if (
+    again?.head?.sha !== pr.head.sha || again?.head?.ref !== pr.head.ref ||
+    again?.state !== 'open' || !again.draft || again.base?.ref !== base || again.body !== pr.body
+  )
     throw Error('Course PR changed during independent Stage 4 evidence verification');
   return {
     version: 2,
@@ -134,10 +101,8 @@ export async function inspectTypedCourse(number, expectedHead) {
     head: pr.head.sha,
     ...identity,
     sourceBlobSha: resource.sha,
-    reviewCommitSha: approved.commit_id,
-    reviewer: approved.user.login,
-    evidenceUrl:
-      approved.html_url || 'https://github.com/' + repo + '/pull/' + number + '#pullrequestreview-' + approved.id,
+    reviewCommitSha: review.commit,
+    reviewVerdict: review.verdict,
   };
 }
 
@@ -155,9 +120,7 @@ export function parseTypedMetadata(encoded) {
     data.reviewCommitSha !== data.head ||
     data.repo !== process.env.GITHUB_REPOSITORY ||
     !/^[A-Za-z0-9-]+$/.test(data.actor ?? '') ||
-    !/^[A-Za-z0-9-]+$/.test(data.reviewer ?? '') ||
-    typeof data.evidenceUrl !== 'string' ||
-    !data.evidenceUrl.startsWith('https://github.com/' + data.repo + '/pull/' + data.number) ||
+    data.reviewVerdict !== 'accepted' ||
     !safeBranch(data.branch, process.env.COURSE_DEFAULT_BRANCH || 'develop') ||
     !COURSE_TS.test(data.sourcePath ?? '') ||
     !data.sourcePath.startsWith(data.textbookRoot + '/data/courses/') ||
@@ -184,8 +147,8 @@ async function main() {
       metadata.head +
       ' (source blob ' +
       metadata.sourceBlobSha +
-      ', reviewer ' +
-      metadata.reviewer +
+      ', verdict ' +
+      metadata.reviewVerdict +
       ')',
   );
 }

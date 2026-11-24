@@ -100,8 +100,7 @@ const options = () => ({
     sourcePath: root + '/draft.ts',
     sourceBlobSha: sha,
     reviewCommitSha: sha,
-    reviewer: 'independent-methodologist',
-    evidenceUrl: 'https://github.com/KiT-Maverik/svitlo/pull/123',
+    reviewVerdict: 'accepted',
   },
   verifyReviewedSource: () => true,
 });

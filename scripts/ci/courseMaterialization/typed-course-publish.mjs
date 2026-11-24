@@ -84,8 +84,7 @@ export function verifyTypedCourseManifest(manifest, meta) {
     manifest.sourcePath !== meta.sourcePath ||
     manifest.sourceBlobSha !== meta.sourceBlobSha ||
     manifest.reviewCommitSha !== meta.reviewCommitSha ||
-    manifest.reviewer !== meta.reviewer ||
-    manifest.evidenceUrl !== meta.evidenceUrl ||
+    manifest.reviewVerdict !== meta.reviewVerdict ||
     manifest.publishable !== false ||
     manifest.materializedPath !== path.posix.dirname(meta.sourcePath) + '/index.ts' ||
     !Array.isArray(manifest.entries) ||
@@ -210,8 +209,7 @@ function replan(meta, source) {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlobSha,
       reviewCommitSha: meta.reviewCommitSha,
-      reviewer: meta.reviewer,
-      evidenceUrl: meta.evidenceUrl,
+      reviewVerdict: meta.reviewVerdict,
     },
     verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
       candidate === input &&
@@ -247,8 +245,7 @@ function equalMetadata(a, b) {
     'sourceBlobSha',
     'textbookRoot',
     'reviewCommitSha',
-    'reviewer',
-    'evidenceUrl',
+    'reviewVerdict',
   ].every(key => a[key] === b[key]);
 }
 
@@ -281,7 +278,7 @@ async function publish() {
       '\nSource-Blob: ' +
       meta.sourceBlobSha +
       '\nStage4-Review: ' +
-      meta.evidenceUrl,
+      meta.reviewVerdict + ' at ' + meta.reviewCommitSha,
     tree: tree.sha,
     parents: [meta.head],
   });
@@ -302,8 +299,8 @@ async function publish() {
       meta.head +
       ', reviewed blob ' +
       meta.sourceBlobSha +
-      ', reviewer ' +
-      meta.reviewer +
+      ', verdict ' +
+      meta.reviewVerdict +
       ', ' +
       manifest.entries.length +
       ' generated sources; reviewed draft consumed, exact bytes retained in Git history.',
