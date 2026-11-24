@@ -219,15 +219,22 @@ function assertCourseInventory(manifest, meta, entries) {
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
         const source = outputLiteral(filename, 'episodeStage1', ' as const satisfies EpisodeWorkflowStage1Handoff;');
-        const placement = source?.production?.placement;
+        // Ownership, source SHA and original position belong to this sealed
+        // Course manifest and parent stub, not duplicated Episode narrative.
+        const production = source?.production;
         if (
           source?.config?.id !== row.id ||
           source.config.slug !== row.slug ||
           source.config.type !== 'episode' ||
-          placement?.courseId !== meta.courseId ||
-          placement.path !== rel ||
-          JSON.stringify(placement.orderPath) !== order ||
-          placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha
+          !production ||
+          typeof production.focus !== 'string' ||
+          !production.focus.trim() ||
+          typeof production.purpose !== 'string' ||
+          !production.purpose.trim() ||
+          typeof production.languages?.document !== 'string' ||
+          !Array.isArray(production.languages.planned) ||
+          !production.languages.planned.includes(production.languages.document) ||
+          Object.keys(production).some(key => !['focus', 'purpose', 'languages'].includes(key))
         )
           throw Error('Episode handoff differs from Course inventory identity');
         requireStub(row);
