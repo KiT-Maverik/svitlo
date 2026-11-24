@@ -441,8 +441,8 @@ test('Lesson methodology preserves reviewed root and Section intent without sour
     ...base,
     section: {
       items: {
-        introduction: {
-          config: section(),
+        exploreColors: {
+          config: { ...section(), slug: 'exploreColors' },
           production: {
             purpose: 'Recognize the distinction in the example.',
             pedagogicalIntent: 'Compare without positional cues.',
@@ -458,7 +458,7 @@ test('Lesson methodology preserves reviewed root and Section intent without sour
           production: { purpose: 'Assess recognition independently.' },
         },
       },
-      order: ['introduction', 'recallColors', 'checkColors'],
+      order: ['exploreColors', 'recallColors', 'checkColors'],
     },
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
@@ -483,7 +483,7 @@ test('Lesson methodology preserves reviewed root and Section intent without sour
   for (const phrase of [
     'Pedagogical plan.', 'Distinguish two colors.', 'Introductory classification.',
     'Learn, retrieve, then assess.', 'Identify unlabeled examples.',
-    'Section: introduction', 'Section: recallColors', 'Section: checkColors',
+    'Section: exploreColors', 'Section: recallColors', 'Section: checkColors',
     'Recognize the distinction', 'Compare without positional cues.',
     'Retrieve both color words without hints.', 'Assess recognition independently.',
     'Question Bank (Stage 7): required', 'Flashcard Bank (Stage 8): required',
