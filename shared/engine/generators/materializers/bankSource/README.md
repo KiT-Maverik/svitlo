@@ -7,9 +7,9 @@
 | Question Bank     | `materializeQuestionBankDraft()`  | `materializeQuestionBank()`  |
 | Flashcard Bank    | `materializeFlashcardBankDraft()` | `materializeFlashcardBank()` |
 
-Each draft operation creates only the owning bank's editable `questions/draft.ts` or `flashcards/draft.ts` satisfying its canonical Stage 1 workflow type. It does not mint Questions/Cards, create Section selections or publish Props.
+Each draft operation creates only the owning bank's editable `questions/draft.ts` or `flashcards/draft.ts` satisfying its canonical Stage 1 workflow type. A Question draft records only its owner Lesson UUID and source/planned languages; Lesson review SHAs, Skill analysis and assessment decisions belong to the existing Lesson/Questions PR and trusted authorization, not to duplicate bank fields. Stage 1 does not mint Questions/Cards, create Section selections or publish Props.
 
-The final-stage operations require the exact final `QuestionBankWorkflowMaterializerInput` or `FlashcardBankWorkflowMaterializerInput`. They call all nine existing concrete Question-kind source materializers or, for Cards, the existing per-Card and Side materializers. The shared Block dispatcher invokes actual concrete Block implementations (including Carousel and Checkpoint). All members are exported, not just Lesson-Section selections.
+The final-stage operations require the exact final `QuestionBankWorkflowStage3` or `FlashcardBankWorkflowMaterializerInput`. They call all nine existing concrete Question-kind source materializers or, for Cards, the existing per-Card and Side materializers. The shared Block dispatcher invokes actual concrete Block implementations (including Carousel and Checkpoint). All members are exported, not just Lesson-Section selections.
 
 ## Trusted source transition and Git commit boundary
 
@@ -31,6 +31,26 @@ Preflight refuses stale HEAD/review SHA or evaluated-input digest, divergent han
 
 ## Validation and release boundaries
 
-Stage 1/Stage 3 editorial source is not a `define*` Configurator. Materializer output is not published and never modifies Lesson/Quiz/Flashcards Sections. Missing translations, incomplete media or Scene evidence and unsupported typed Question field reuse fail closed or remain blockers for the independent publisher. The retired YAML builders/commands are not supported alternatives. `generateAssessmentResources` remains a distinct publisher of fully authored Configurator banks and must not publish unreviewed Stage 1–3 editorial source.
+Stage 1/Stage 3 editorial source is not a `define*` Configurator. Materializer output is not published and never modifies Lesson/Quiz/Flashcards Sections. Missing translations, incomplete media or Scene evidence and unsupported typed Question field reuse remain blockers for the independent publisher. The Question Stage 5 source transition may emit existing type-safe media/YouTube Nil references and unregistered Scene modules with `TODO (BLOCKER)`; the SHA-pinned analyzer never approves those as real assets or executable Scenes. Forged source references, symlinks, malformed URLs and broken existing registrations remain hard failures. The retired YAML builders/commands are not supported alternatives. `generateAssessmentResources` remains a distinct publisher of fully authored Configurator banks and must not publish unreviewed Stage 1–3 editorial source.
 
 Engine's test runner already includes `generators/materializers/*/*.spec.ts`. Run Engine typechecks, full Engine tests (including temporary real-Git transaction suites), semantic generated-TS Build checks and the actual owning textbook publisher/strict build. Passing syntactic transpilation alone is insufficient.
+
+## Migration for the running Questions Workflow pilot (#824)
+
+When resuming an already-created `questions/draft.ts`, inspect its real PR HEAD
+and the current owning Lesson SHA before editing. For Stage 1, preserve
+`config.ownerLessonId` and `production.languages`; move removed Lesson
+metadata (`lesson`, `assessment`, `ownershipRationale`, `audience`, `scope`,
+`prerequisites`, `evidenceIntent`, `misconceptions`, `mediaNeeds`,
+`sourcesAndDependencies`, `course`) into the existing PR's stage evidence
+only when not already available from the Lesson. For Stage 2, retain all nine
+Question Configs, exact identities, answers and each Question's required
+`params.assessmentMethod`, but remove duplicated `production.evidence`,
+`distinction`, `intendedUse`, `rationale` and `pending` fields; keep a genuine
+optional `production.specification` if it adds useful media authoring input.
+Do not rewrite reviewed answers, UUIDs, Quiz selections, Lesson sections or
+Flashcards. Retain Stage 3 `production.quiz` only for the real local Quiz
+intent, without a duplicate selected Question-ID list. Re-run authoring type
+checks, independent review on the revised SHA, source-only materialization
+and publisher readiness checks; do not consider old Stage 4 approvals valid
+for mutated source. Never automatically overwrite an existing pilot draft.
