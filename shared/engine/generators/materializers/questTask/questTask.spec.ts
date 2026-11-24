@@ -62,8 +62,12 @@ test('Quest Task: rejects a non-Scene child', () => {
 
 test('Quest Task retains reviewed narrative notes without specification sidecar', () => {
   const out = materializeQuestTask(
-    { id: id('01'), slug: 'start', type: 'questTask', scene: { id: id('02'), slug: 'interactive', type: 'scene' } }
-      as Parameters<typeof materializeQuestTask>[0],
+    {
+      id: id('01'),
+      slug: 'start',
+      type: 'questTask',
+      scene: { id: id('02'), slug: 'interactive', type: 'scene' },
+    } as Parameters<typeof materializeQuestTask>[0],
     {
       documentLanguage: 'en',
       directory: 'tasks/start',
