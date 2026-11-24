@@ -93,7 +93,7 @@ export function materializeEpisodeStage5(
             materializeEpisodeSection(node, {
               ...context,
               documentLanguage: document,
-              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/languages',
+              languagesImport: '#coursesData/' + courseId.at(-1) + '/' + courseId + '/' + root + '/constants',
             }),
         },
       );
@@ -111,9 +111,10 @@ export function materializeEpisodeStage5(
       index.content = index.content
         .replace(
           "import type { SupportedLanguages } from '@svitlo/engine/build';",
-          "import { languages } from './languages';",
+          "import { languages } from './constants';",
         )
-        .replace(originalLanguages, '');
+        .replace(originalLanguages, '')
+        .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
       index.content =
         '// TODO (BLOCKER): Human Media Generation Stage 9 requires human verification.\n' +
         '// TODO (BLOCKER): Human QA Stage 10 requires explicit pinned acceptance.\n' +
@@ -131,13 +132,22 @@ export function materializeEpisodeStage5(
           ...result.files,
           ...sceneDrafts,
           {
-            path: root + '/languages.ts',
+            path: root + '/constants.ts',
             kind: 'typescript',
-            content:
-              "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
-              'export const languages = ' +
-              JSON.stringify([document]) +
-              ' as const satisfies SupportedLanguages;\n',
+            content: [
+              "import type { SupportedLanguages } from '@svitlo/engine/build';",
+              '',
+              ...(planned.length > 1 ? [
+                '// TODO (BLOCKER): Restore the reviewed Episode languages only after translation review.',
+                '// export const languages = [',
+                ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
+                '// ] as const satisfies SupportedLanguages;',
+                '',
+              ] : []),
+              'export const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;',
+              'export type Languages = typeof languages;',
+              '',
+            ].join('\n'),
           },
         ],
         diagnostics: result.diagnostics ?? [],

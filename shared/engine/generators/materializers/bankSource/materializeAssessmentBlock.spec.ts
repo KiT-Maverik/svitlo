@@ -17,9 +17,10 @@ const scene = (pending = false) => ({
   },
 });
 const context = { directory: 'questions/selectOneAnswer/first/question/nested', documentLanguage: 'uk' };
+const ownerImport = '#lessonsData/0/' + id(200) + '/constants';
 const evidence = { registeredSceneIds: new Set([id(1)]), approvedMediaBlockIds: new Set<string>() };
 const render = (config: Record<string, unknown>) =>
-  materializeAssessmentBlock({ config: config as never }, context, ['uk'], 'questionsLanguages', evidence);
+  materializeAssessmentBlock({ config: config as never }, context, ['uk'], 'questions', ownerImport, evidence);
 test('Carousel retains reviewed nested Scene production specification', () => {
   const carousel = {
     id: id(2),
@@ -118,10 +119,10 @@ test('Question media missing an asset uses a typed TODO without claiming approva
     unresolvedMediaBlockIds: new Set([id(20)]),
   };
   assert.throws(
-    () => materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', evidence),
+    () => materializeAssessmentBlock(source as never, context, ['uk'], 'questions', ownerImport, evidence),
     /Missing verified media evidence/,
   );
-  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', proof);
+  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questions', ownerImport, proof);
   const module = result.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '';
   assert.match(module, /TODO \(BLOCKER\)/);
   assert.match(module, /00000000-0000-0000-0000-000000000000.webp/);
@@ -145,12 +146,36 @@ test('Question unregistered Scene emits TODO while Flashcard remains strictly ve
     approvedMediaBlockIds: new Set<string>(),
     unregisteredSceneIds: new Set([id(21)]),
   };
-  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questionsLanguages', proof);
+  const result = materializeAssessmentBlock(source as never, context, ['uk'], 'questions', ownerImport, proof);
   const module = result.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '';
   assert.match(module, /TODO \(BLOCKER\): Implement and register Scene/);
   assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-scene'));
   assert.throws(
-    () => materializeAssessmentBlock(source as never, { directory: 'flashcards/test', documentLanguage: 'uk' }, ['uk'], 'flashcardsLanguages', proof),
+    () => materializeAssessmentBlock(source as never, { directory: 'flashcards/test', documentLanguage: 'uk' }, ['uk'], 'flashcards', ownerImport, proof),
     /Scene has no verified executable registry/,
   );
+});
+
+test('Lesson-owned bank languages do not create repeated ContentBlock restoration blockers', () => {
+  for (const bank of ['questions', 'flashcards'] as const) {
+    const result = materializeAssessmentBlock(
+      {
+        config: {
+          id: id(99),
+          slug: 'prompt',
+          type: 'text',
+          params: {},
+          locale: { value: { uk: 'Розглянь приклад.' } },
+        },
+      } as never,
+      { directory: bank + '/sample/prompt', documentLanguage: 'uk' },
+      ['uk', 'en'],
+      bank,
+      ownerImport,
+      evidence,
+    );
+    assert(!result.diagnostics.some(item => item.code === 'pending-locales'));
+    assert(!result.files.some(file => file.content.includes('Restore reviewed languages')));
+    assert(result.files.some(file => file.content.includes(ownerImport)));
+  }
 });

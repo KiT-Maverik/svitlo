@@ -146,65 +146,99 @@ test('missing media field is an unresolved source scaffold, never an approved as
   assert.throws(() => f.resolve(f.input({ diagram: spoofed })), /Invalid reviewed UUID/);
 });
 
-test('missing Scene registry entry yields a Question-only TODO scaffold, not approval', t => {
+test('missing Scene is a reviewed six-file handoff for both Banks, not executable approval', t => {
   const f = fixture(t);
   const registry = repoPath + '/scenes/sceneLoader.ts';
   file(f.root, registry, 'const sceneImports = {};\n');
-  git(f.root, 'add', registry);
-  git(f.root, 'commit', '-m', 'Not implemented yet', '-q');
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'New reviewed Bank Scene not yet authored', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
   const proof = f.resolve(f.input({ visual: f.scene() }));
   assert.deepEqual([...proof.registeredSceneIds], []);
+  assert.deepEqual([...proof.newSceneIds], [sceneId]);
   assert.deepEqual([...proof.unregisteredSceneIds], [sceneId]);
   f.meta.bank = 'flashcards';
   const flashcardSource = f.input({ visual: f.scene() });
   flashcardSource.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
-  assert.throws(() => f.resolve(flashcardSource), /Unresolved reviewed Flashcard Scene/);
+  const flashcardProof = f.resolve(flashcardSource);
+  assert.deepEqual([...flashcardProof.registeredSceneIds], []);
+  assert.deepEqual([...flashcardProof.newSceneIds], [sceneId]);
 });
 
-test('Lesson Scene scaffolds are pending until registered and implemented, without a specification sidecar', t => {
+test('existing six-file Scene drafts remain blocked and cannot be overwritten', t => {
   const f = fixture(t);
-  const specPath = f.base + '/specification.md';
-  const tsx = f.base + '/' + sceneName + '.tsx';
-  fs.rmSync(path.join(f.root, specPath));
-  file(f.root, tsx, [
-    '// TODO (BLOCKER): Implement reviewed Scene.',
-    '// BEGIN REVIEWED SCENE SPECIFICATION',
-    '// # Reviewed interaction',
-    '// END REVIEWED SCENE SPECIFICATION',
-    'export function ' + sceneName + '() { return <div />; }',
-  ].join('\n') + '\n');
+  const name = 'Visual';
+  const files = {
+    'index.ts': '// TODO (BLOCKER): Register after review.\nexport { Visual as default } from "./Visual";\n',
+    'Visual.tsx': [
+      '// TODO (BLOCKER): Implement reviewed Scene.',
+      '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)',
+      '// # Reviewed interaction',
+      '// END REVIEWED SCENE SPECIFICATION',
+      'export function Visual() { return <div />; }',
+      '',
+    ].join('\n'),
+    'Visual.module.css': '/* TODO (BLOCKER): Style Scene. */\n.root {}\n',
+    'Visual.constants.ts': '// TODO (BLOCKER): Supply test IDs.\nexport const testIds = {};\n',
+    'Visual.stories.tsx': '// TODO (BLOCKER): Supply Stories.\nexport const Default = {};\n',
+    'Visual.unit.spec.tsx': '// TODO (BLOCKER): Implement tests.\nexport const Pending = true;\n',
+  };
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  for (const [name, content] of Object.entries(files)) file(f.root, f.base + '/' + name, content);
   git(f.root, 'add', '-A');
-  git(f.root, 'commit', '-m', 'Lesson Stage 6 Scene draft without sidecar', '-q');
+  git(f.root, 'commit', '-m', 'Complete six-file but unfinished Scene draft', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
   const draft = f.resolve(f.input({ visual: f.scene() }));
-  assert.deepEqual([...draft.unregisteredSceneIds], [sceneId]);
+  assert.deepEqual([...draft.existingDraftSceneIds], [sceneId]);
+  assert.deepEqual([...draft.newSceneIds], []);
   assert.deepEqual([...draft.registeredSceneIds], []);
+  const changedSpec = f.input({ visual: f.scene() });
+  changedSpec.config.questions.selectOneAnswer.test.config.content.question.items.visual.production.specification =
+    '# Different reviewed interaction\n';
+  assert.throws(
+    () => f.resolve(changedSpec),
+    /Existing Bank Scene reviewed specification differs from pinned Bank source/,
+  );
+  f.meta.bank = 'flashcards';
+  const flashcardInput = f.input({ visual: f.scene() });
+  flashcardInput.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
+  assert.deepEqual([...f.resolve(flashcardInput).existingDraftSceneIds], [sceneId]);
 
-  file(f.root, tsx, 'export function ' + sceneName + '() { return <div aria-label="Reviewed interaction" />; }\n');
+  // A complete implementation removes its registration and component blockers.
+  file(f.root, f.base + '/index.ts', 'export { Visual as default } from "./Visual";\n');
+  file(f.root, f.base + '/Visual.tsx',
+    'export function Visual() { return <div aria-label="Reviewed interaction" />; }\n');
   git(f.root, 'add', '-A');
-  git(f.root, 'commit', '-m', 'Implement Scene after Lesson Stage 6', '-q');
+  git(f.root, 'commit', '-m', 'Implement reviewed Scene', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
-  const released = f.resolve(f.input({ visual: f.scene() }));
-  assert.deepEqual([...released.registeredSceneIds], [sceneId]);
-  assert.deepEqual([...released.unregisteredSceneIds], []);
-
-  const altered = f.scene();
-  altered.production.specification = 'Unreviewed bank request';
-  // With no sidecar, the SHA-pinned Question Bank source is the proof of
-  // reviewed specification; the Scene implementation is independently pinned.
-  assert.deepEqual([...f.resolve(f.input({ visual: altered })).registeredSceneIds], [sceneId]);
+  const registered = f.resolve(f.input({ visual: f.scene() }));
+  assert.deepEqual([...registered.registeredSceneIds], [sceneId]);
+  assert.deepEqual([...registered.existingDraftSceneIds], []);
 });
 
-test('Scene registry can be absent for a Question draft, but tracked or symlinked evidence cannot be spoofed', t => {
+test('partial existing Scene fails closed rather than claiming missing scaffolding', t => {
+  const f = fixture(t);
+  const registry = repoPath + '/scenes/sceneLoader.ts';
+  file(f.root, registry, 'const sceneImports = {};\n');
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
+  file(f.root, f.base + '/index.ts', '// TODO (BLOCKER): Incomplete draft\n');
+  git(f.root, 'add', '-A');
+  git(f.root, 'commit', '-m', 'Incomplete reviewed Scene', '-q');
+  f.meta.head = git(f.root, 'rev-parse', 'HEAD');
+  assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /Partial existing Bank Scene scaffold/);
+});
+
+test('absent Scene registry can be accepted for new source-only drafts; links cannot be spoofed', t => {
   const f = fixture(t);
   const registry = repoPath + '/scenes/sceneLoader.ts';
   fs.rmSync(path.join(f.root, registry));
+  fs.rmSync(path.join(f.root, f.base), { recursive: true, force: true });
   git(f.root, 'add', '-A');
   git(f.root, 'commit', '-m', 'No Scene registry authored', '-q');
   f.meta.head = git(f.root, 'rev-parse', 'HEAD');
-  assert.deepEqual([...f.resolve(f.input({ visual: f.scene() })).unregisteredSceneIds], [sceneId]);
-  fs.symlinkSync(path.join(f.root, f.base, 'index.ts'), path.join(f.root, registry));
+  assert.deepEqual([...f.resolve(f.input({ visual: f.scene() })).newSceneIds], [sceneId]);
+  fs.symlinkSync(path.join(f.root, 'README.md'), path.join(f.root, registry));
   assert.throws(() => f.resolve(f.input({ visual: f.scene() })), /Symlink/);
 });
 

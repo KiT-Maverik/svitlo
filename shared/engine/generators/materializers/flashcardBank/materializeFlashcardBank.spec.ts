@@ -66,6 +66,7 @@ const finalAuthorization = (input: unknown = completed()) => ({
     inputSha256: createHash('sha256').update(authoredBankLiteral(input)).digest('hex'),
   },
   blocks: { registeredSceneIds: new Set<string>(), approvedMediaBlockIds: new Set<string>() },
+  ownerLanguages: { active: ['uk'], planned: (input as ReturnType<typeof completed>).production.lesson.languages.planned },
 });
 const textBlock = (slug: string, n: number) => ({
   config: {
@@ -132,16 +133,18 @@ const completed = () => ({
   },
 });
 
-test('flashcards Bank languages are derived only from the reviewed locale plan', () => {
+test('Flashcard Bank emits no copied language module; cards and Sides bind to Lesson constants', () => {
   const input = completed();
   input.production.lesson.languages.planned = ['uk', 'en'] as never;
   const output = materializeFlashcardBank(input as never, finalAuthorization(input));
-  const source = output.files.find(file => file.path === 'flashcardsLanguages.ts')!.content;
-  assert.match(source, /\/\/   "uk",/);
-  assert.match(source, /\/\/   "en",/);
-  assert.doesNotMatch(source, /\/\/   "zh",/);
-  assert.match(source, /export const languages = \["uk"\] as const satisfies SupportedLanguages/);
-  assert(output.diagnostics.some(entry => entry.code === 'pending-locales'));
+  assert(!output.files.some(file => file.path === 'flashcardsLanguages.ts'));
+  const card = output.files.find(file => file.path === 'flashcards/alpha.ts')?.content ?? '';
+  const side = output.files.find(file => file.path === 'flashcards/alpha/content/front/index.ts')?.content ?? '';
+  assert.match(card, /import type \{ Languages \} from "#lessonsData\/0\//);
+  assert.match(card, /typeof parameters.flags/);
+  assert.match(card, /, Languages>/);
+  assert.match(side, /defineFlashcardSide<typeof items, Languages>/);
+  assert(!output.files.some(file => file.content.includes('Restore independently reviewed Flashcard languages')));
 });
 
 test('Flashcard Stage 1 produces one editorial source, no fake Card or Section', () => {

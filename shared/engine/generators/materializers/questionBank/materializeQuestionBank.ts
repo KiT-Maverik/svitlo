@@ -39,6 +39,8 @@ import {
   type BankSourceDiagnostic,
 } from '../bankSource/bankSourceSafety';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
+import { assertBankLessonLanguages, lessonConstantsImport, type LessonLanguageOwnership } from '../bankSource/lessonLanguageOwnership';
+import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 
 const kinds = questionTypes;
 type Kind = (typeof kinds)[number];
@@ -59,6 +61,7 @@ export type QuestionBankFinalAuthorization = {
   snapshot: BankSourceSnapshot;
   /** Concrete Scene registry and media evidence are checked before delegation. */
   blocks: AssessmentBlockEvidence;
+  ownerLanguages: LessonLanguageOwnership;
 };
 
 function validateStage1(input: QuestionBankWorkflowStage1, lessonId: string): void {
@@ -106,17 +109,19 @@ function renderQuestion(
   node: Record<string, unknown>,
   sourceLanguage: QuestionBankWorkflowStage3['production']['languages'],
   blocks: AssessmentBlockEvidence,
+  ownerImport: string,
 ): { exportName: string; files: BankSourceFile[]; diagnostics?: BankSourceDiagnostic[] } {
   const context = {
     directory: 'questions/' + kind,
     languages: sourceLanguage,
+    ownerLanguagesImport: ownerImport,
     materializeBlock: (
       block: {
         config: { id: string; slug: string; type: string } & Record<string, unknown>;
         production?: Record<string, unknown>;
       },
       location: { directory: string; documentLanguage: string },
-    ) => materializeAssessmentBlock(block, location, sourceLanguage.planned, 'questionsLanguages', blocks),
+    ) => materializeAssessmentBlock(block, location, sourceLanguage.planned, 'questions', ownerImport, blocks),
   };
   // The nine concrete renderers still use their own index-signature source
   // adapter types. Validate the reviewed typed bank first, then bridge each
@@ -203,6 +208,8 @@ function planQuestionBank(
   }
   assertUniqueBankEntityIds(questions);
   const source = input.production.languages;
+  assertBankLessonLanguages(authorization.ownerLanguages, source);
+  const ownerImport = lessonConstantsImport(authorization.ownerLessonId);
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
   const rootImports: string[] = [];
@@ -229,7 +236,7 @@ function planQuestionBank(
       assertBankUuid(config.id, 'Question ' + kind + '/' + slug);
       if (seenIds.has(config.id.toLowerCase())) throw new Error('Duplicate Question UUID: ' + config.id);
       seenIds.add(config.id.toLowerCase());
-      const output = renderQuestion(kind, { config, production }, source, authorization.blocks);
+      const output = renderQuestion(kind, { config, production }, source, authorization.blocks, ownerImport);
       files.push(...output.files);
       diagnostics.push(...(output.diagnostics ?? []));
       kindImports.push(
@@ -248,7 +255,7 @@ function planQuestionBank(
     files.push({
       path: 'questions/' + kind + '/index.ts',
       kind: 'typescript',
-      content: kindImports.join('\n') + '\n',
+      content: 'export type { Languages } from ' + JSON.stringify(ownerImport) + ';\n' + kindImports.join('\n') + '\n',
     });
     rootEntries.push('  ' + JSON.stringify(kind) + ': {\n' + entries.join('\n') + '\n  },');
   }
@@ -256,37 +263,15 @@ function planQuestionBank(
   files.push({
     path: 'questions/index.ts',
     kind: 'typescript',
-    content: rootImports.join('\n') + '\n\nexport const questions = {\n' + rootEntries.join('\n') + '\n};\n',
-  });
-  files.push({
-    path: 'questionsLanguages.ts',
-    kind: 'typescript',
-    content: [
-      "import type { SupportedLanguages } from '@svitlo/engine/build';",
-      '',
-      ...( source.planned.length > 1 ? [
-        '// TODO (BLOCKER): Restore reviewed questions languages only after independent translation review.',
-        '// export const languages = [',
-        ...source.planned.map(language => '//   ' + JSON.stringify(language) + ','),
-        '// ] as const satisfies SupportedLanguages;',
-        '',
-      ] : []),
-      'export const languages = ' + JSON.stringify([source.document]) + ' as const satisfies SupportedLanguages;',
-      'export type Languages = typeof languages;',
-      '',
-    ].join('\n'),
-  });
-  if (source.planned.length > 1) diagnostics.push({
-    path: 'questionsLanguages.ts',
-    code: 'pending-locales',
-    severity: 'warning',
-    message: 'Restore reviewed questions languages after translation approval',
+    content: 'export type { Languages } from ' + JSON.stringify(ownerImport) + ';\n' + rootImports.join('\n') + '\n\nexport const questions = {\n' + rootEntries.join('\n') + '\n};\n',
   });
   const result = preflightBankSource(files, authorization.snapshot, {
     indexPath: 'questions/index.ts',
     draftPath: 'questions/draft.ts',
     source: authorization.source,
   });
-  // Only an external authenticated Git writer may commit this atomic transition.
-  return { ...result, diagnostics };
+  // Scene draft paths are separately scoped/attested; the publisher atomically
+  // commits them alongside the bank, never under the Lesson's source subtree.
+  const sceneDrafts = materializeBankSceneDrafts(input.config, source.document, authorization.blocks);
+  return { ...result, diagnostics, sceneDrafts };
 }

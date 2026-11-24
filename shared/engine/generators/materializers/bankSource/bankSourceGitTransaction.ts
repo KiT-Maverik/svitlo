@@ -188,7 +188,7 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
     const lower = file.path.toLowerCase();
     if (names.has(lower)) throw new Error('Case-insensitive generated bank source collision');
     names.add(lower);
-    if (!file.path.startsWith(kind + '/') && file.path !== kind + 'Languages.ts') {
+    if (!file.path.startsWith(kind + '/')) {
       throw new Error('Plan attempts to modify non-bank-owned source: ' + file.path);
     }
   }
@@ -200,7 +200,6 @@ function checkOwnedPaths(kind: BankGitKind, plan: BankSourceResult): void {
       plan.transition.materializedPath !== index ||
       !names.has(index) ||
       names.has(draft) ||
-      !names.has((kind + 'Languages.ts').toLowerCase()) ||
       plan.files.filter(file => file.path.startsWith(kind + '/') && file.path !== index).length === 0
     ) {
       throw new Error('Partial reviewed bank source transition');

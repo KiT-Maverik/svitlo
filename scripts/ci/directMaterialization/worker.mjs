@@ -49,7 +49,10 @@ const selectedBank =
 let capturedInput;
 const approvedBlockIdentifiers = input => {
   const registeredSceneIds = new Set();
+  const newSceneIds = new Set();
+  const existingDraftSceneIds = new Set();
   const approvedMediaBlockIds = new Set();
+  const book = source.sourcePath.split('/').slice(0, 2).join('/');
   const visited = new WeakSet();
   function walk(value) {
     if (!value || typeof value !== 'object' || visited.has(value)) return;
@@ -60,18 +63,60 @@ const approvedBlockIdentifiers = input => {
     }
     const config = value.config && typeof value.config === 'object' ? value.config : value;
     if (typeof config.id === 'string') {
-      if (config.type === 'scene') registeredSceneIds.add(config.id);
-      else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
+      if (config.type === 'scene') {
+        if (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(config.id))
+          throw Error('Bank Scene requires canonical UUID');
+        const index = book + '/scenes/' + config.id.at(-1) + '/' + config.id + '/index.ts';
+        let current = '/work';
+        let absent = false;
+        for (const part of index.split('/')) {
+          current = path.join(current, part);
+          let stat;
+          try {
+            stat = fs.lstatSync(current);
+          } catch (error) {
+            if (error?.code !== 'ENOENT') throw error;
+            absent = true;
+            break;
+          }
+          if (stat.isSymbolicLink()) throw Error('Symlink in Bank Scene implementation path: ' + index);
+        }
+        if (absent) newSceneIds.add(config.id);
+        else if (fs.readFileSync(current, 'utf8').includes('TODO (BLOCKER)'))
+          existingDraftSceneIds.add(config.id);
+        else registeredSceneIds.add(config.id);
+      } else if (['image', 'audio', 'video', 'subtitles', 'youtube'].includes(config.type))
         approvedMediaBlockIds.add(config.id);
     }
     for (const [key, part] of Object.entries(value)) if (key !== 'production') walk(part);
   }
   walk(input?.config);
-  return { registeredSceneIds, approvedMediaBlockIds };
+  return { registeredSceneIds, newSceneIds, existingDraftSceneIds, approvedMediaBlockIds };
 };
+const { parseLessonLanguageConstants, assertBankLessonLanguages } = require(
+  './shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js',
+);
 const bankOptions = input => {
   capturedInput = input;
   const ownerLessonId = source.sourcePath.split('/')[5];
+  const rootParts = source.sourcePath.split('/').slice(0, 6);
+  let ownerFile = '/work';
+  for (const segment of rootParts.concat('constants.ts')) {
+    ownerFile = path.join(ownerFile, segment);
+    if (fs.lstatSync(ownerFile).isSymbolicLink()) throw Error('Unsafe owning Lesson constants.ts symlink');
+  }
+  if (!sha.test(source.lessonConstantsBlobSha ?? '')) throw Error('Missing pinned owning Lesson constants SHA');
+  const ownerBytes = fs.readFileSync(ownerFile);
+  const ownerBlob = createHash('sha1')
+    .update('blob ' + ownerBytes.length + '\0')
+    .update(ownerBytes)
+    .digest('hex');
+  if (ownerBlob !== source.lessonConstantsBlobSha)
+    throw Error('Owning Lesson constants.ts differs from reviewed base');
+  const ownerLanguages = parseLessonLanguageConstants(ownerBytes.toString('utf8'));
+  const requestedLanguages =
+    selectedBank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
+  assertBankLessonLanguages(ownerLanguages, requestedLanguages);
   const sourceAuthorization = {
     content: sourceText,
     blobSha: source.sourceBlobSha,
@@ -91,6 +136,7 @@ const bankOptions = input => {
     source: sourceAuthorization,
     snapshot,
     blocks: approvedBlockIdentifiers(input),
+    ownerLanguages,
   };
   if (selectedBank === 'questions') return base;
   return {

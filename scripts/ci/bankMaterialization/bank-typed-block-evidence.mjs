@@ -252,6 +252,56 @@ function checkScene(root, meta, config, production, git, ts) {
 }
 
 /**
+ * A new Scene must be completely absent from the pinned textbook-scoped tree.
+ * An existing unregistered draft must have all six files and keep its blocker:
+ * neither form is an executable registry approval.
+ */
+function classifyUnregisteredScene(root, meta, config, production, git, ts) {
+  if (typeof production?.specification !== 'string' || !production.specification.trim())
+    throw Error('Bank Scene has no reviewed production.specification: ' + config.id);
+  if (typeof config.slug !== 'string' || !/^[a-z][A-Za-z0-9]*$/.test(config.slug))
+    throw Error('Bank Scene has unsafe reviewed slug: ' + config.id);
+  const name = config.slug[0].toUpperCase() + config.slug.slice(1);
+  const folder = meta.identity.pkg + '/scenes/' + config.id.at(-1) + '/' + config.id + '/';
+  const names = [
+    'index.ts',
+    name + '.tsx',
+    name + '.module.css',
+    name + '.constants.ts',
+    name + '.stories.tsx',
+    name + '.unit.spec.tsx',
+  ];
+  const contents = names.map(filename => pinnedOptional(root, meta.head, folder + filename, git));
+  const present = contents.filter(item => item !== null).length;
+  if (present === 0) return 'new';
+  if (present !== names.length)
+    throw Error('Partial existing Bank Scene scaffold must not be overwritten: ' + config.id);
+  if (!contents[0].includes('TODO (BLOCKER)') || !contents[1].includes('TODO (BLOCKER)'))
+    throw Error('Unregistered Bank Scene is not a verified unfinished draft: ' + config.id);
+  for (const i of [0, 3]) staticFile(ts, folder + names[i], contents[i]);
+  for (const i of [1, 4, 5]) staticFile(ts, folder + names[i], contents[i], ts.ScriptKind.TSX);
+  // Never reuse an unfinished Scene with a changed reviewed specification.
+  // Compare against the exact inert comments emitted by the shared Scene
+  // template; reject incompatible drafts instead of overwriting source.
+  const marker = '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)\n';
+  const endMarker = '\n// END REVIEWED SCENE SPECIFICATION';
+  const reviewedLines = production.specification
+    .trimEnd()
+    .replace(/\r\n?|\u2028|\u2029/g, '\n')
+    .split('\n')
+    .map(line => '// ' + line)
+    .join('\n');
+  const source = contents[1];
+  if (
+    !source.includes(marker + reviewedLines + endMarker) ||
+    source.indexOf(marker) !== source.lastIndexOf(marker) ||
+    source.indexOf(endMarker) !== source.lastIndexOf(endMarker)
+  )
+    throw Error('Existing Bank Scene reviewed specification differs from pinned Bank source: ' + config.id);
+  return 'existingDraft';
+}
+
+/**
  * Traverse only Config data, never follow an author-controlled source path or
  * interpret metadata as executable evidence. The Bank gate pins the source
  * revision before this tokenless analysis.
@@ -275,6 +325,9 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
   const registeredSceneIds = new Set();
   const approvedMediaBlockIds = new Set();
   const unregisteredSceneIds = new Set();
+  const newSceneIds = new Set();
+  const existingDraftSceneIds = new Set();
+  const seenSceneIds = new Set();
   const unresolvedMediaBlockIds = new Set();
   const visited = new WeakSet();
   let count = 0;
@@ -298,16 +351,18 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
       // Malformed identities and unsafe paths still fail at the evidence gate.
       const pending = production?.pending === true;
       if (config.type === 'scene') {
-        try {
-          const ready = checkScene(root, meta, config, production, git, ts) && !pending;
-          if (ready) registeredSceneIds.add(config.id);
-          else {
-            if (meta.bank !== 'questions') throw Error('Unresolved reviewed Flashcard Scene: ' + config.id);
-            unregisteredSceneIds.add(config.id);
-          }
-        } catch (error) {
-          if (meta.bank !== 'questions' || !String(error?.message).startsWith('Scene registry UUID entry missing: '))
-            throw error;
+        if (seenSceneIds.has(config.id)) throw Error('Duplicate Bank Scene UUID: ' + config.id);
+        seenSceneIds.add(config.id);
+        const ready = checkScene(root, meta, config, production, git, ts) && !pending;
+        if (ready) registeredSceneIds.add(config.id);
+        else {
+          // Flashcard media remains strict. A *reviewed Scene draft* is a
+          // source-only implementation handoff, never Flashcard readiness.
+          if (pending && meta.bank === 'flashcards')
+            throw Error('Unresolved pending Flashcard Scene content: ' + config.id);
+          const stage = classifyUnregisteredScene(root, meta, config, production, git, ts);
+          if (stage === 'new') newSceneIds.add(config.id);
+          else existingDraftSceneIds.add(config.id);
           unregisteredSceneIds.add(config.id);
         }
       } else {
@@ -330,5 +385,12 @@ export function resolveReviewedBankBlockEvidence({ root, meta, input, git, ts })
     }
   }
   visit(input.config);
-  return { registeredSceneIds, approvedMediaBlockIds, unregisteredSceneIds, unresolvedMediaBlockIds };
+  return {
+    registeredSceneIds,
+    approvedMediaBlockIds,
+    unregisteredSceneIds,
+    newSceneIds,
+    existingDraftSceneIds,
+    unresolvedMediaBlockIds,
+  };
 }

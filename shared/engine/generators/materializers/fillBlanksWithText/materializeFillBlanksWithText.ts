@@ -28,6 +28,8 @@ export type FillBlanksWithTextContext = {
   directory: string;
   /** Same production-only language plan structure as CourseWorkflowStage1Languages. */
   languages: { document: LanguageCode; planned: SupportedLanguages };
+  /** Bank-only: bind the owning Lesson's Languages type rather than a copied tuple. */
+  ownerLanguagesImport?: string;
   /** The parent binds the matching concrete ContentBlock renderer. */
   materializeBlock: (
     node: { config: PlainBlock; production?: Record<string, unknown> },
@@ -202,7 +204,8 @@ export function materializeFillBlanksWithText(
   if (node.production?.pending === true)
     blockers.push('Independent Question Bank review and content completion required.');
   const remaining = planned.filter(code => code !== context.languages.document);
-  if (remaining.length) blockers.push('Restore independently reviewed translations for ' + remaining.join(', ') + '.');
+  if (remaining.length && !context.ownerLanguagesImport)
+    blockers.push('Restore independently reviewed translations for ' + remaining.join(', ') + '.');
   const matches = (pattern: string, parts: string[]) => {
     const tokens = pattern.split('.');
     return tokens.length === parts.length && tokens.every((token, index) => token === '*' || token === parts[index]);
@@ -285,6 +288,9 @@ export function materializeFillBlanksWithText(
     kind: 'typescript',
     content: [
       "import { defineFillBlanksWithText } from '@svitlo/engine/build';",
+      ...(context.ownerLanguagesImport
+        ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';']
+        : []),
       ...imports.sort(),
       '',
       ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
@@ -293,9 +299,9 @@ export function materializeFillBlanksWithText(
         exportedName +
         ' = defineFillBlanksWithText<' +
         JSON.stringify(name) +
-        ', typeof content, [' +
-        JSON.stringify(context.languages.document) +
-        ']>({\n' +
+        ', typeof content, ' +
+        (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(context.languages.document) + ']') +
+        '>({\n' +
         metadata +
         '\n  content,\n});\n',
     ].join('\n'),

@@ -44,6 +44,7 @@ function metadata() {
     meta.identity?.id !== meta.identity?.folder?.split('/').at(-1) ||
     !SHA.test(meta.baseHead || '') ||
     !SHA.test(meta.lessonBlob || '') ||
+    !SHA.test(meta.lessonConstantsBlob || '') ||
     typeof meta.branch !== 'string'
   ) {
     throw Error('Typed Bank metadata is incomplete or contradictory');
@@ -116,8 +117,33 @@ function assertSourceRevision(root, sha, pathname, meta, label) {
     }
   } else throw Error(label + ': SHA must identify source blob or ancestor commit');
 }
+function verifyOwnerLanguages(meta, input, root) {
+  const filename = meta.identity.folder + '/constants.ts';
+  assertTracked(root, filename, meta, 'Lesson languages constants');
+  const tracked = git(root, 'ls-files', '--stage', '--', filename);
+  if (!/^100644 [a-f0-9]{40} 0\t/.test(tracked) || !tracked.endsWith('\t' + filename))
+    throw Error('Owning Lesson constants.ts must be a regular Git blob');
+  let current = root;
+  for (const segment of filename.split('/')) {
+    current = path.join(current, segment);
+    if (fs.lstatSync(current).isSymbolicLink())
+      throw Error('Symlink in owning Lesson constants.ts path');
+  }
+  const bytes = fs.readFileSync(current);
+  if (gitBlob(bytes) !== meta.lessonConstantsBlob || git(root, 'rev-parse', 'HEAD:' + filename) !== meta.lessonConstantsBlob)
+    throw Error('Owning Lesson constants.ts differs from pinned Git blob');
+  const {
+    parseLessonLanguageConstants,
+    assertBankLessonLanguages,
+  } = require(path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/lessonLanguageOwnership.js'));
+  const reviewed = parseLessonLanguageConstants(bytes.toString('utf8'));
+  const languages = meta.bank === 'questions' ? input?.production?.languages : input?.production?.lesson?.languages;
+  assertBankLessonLanguages(reviewed, languages);
+  return reviewed;
+}
 function authorizations(meta, input, root, blocks) {
   const lessonDirectory = meta.identity.folder;
+  verifyOwnerLanguages(meta, input, root);
   const source = {
     content: fs.readFileSync(path.join(root, meta.sourcePath), 'utf8'),
     blobSha: meta.sourceBlob,
@@ -146,18 +172,68 @@ function authorizations(meta, input, root, blocks) {
     referenceSourceSha: lesson.reference.sourceSha,
   };
 }
+const sceneUuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
+function scenePath(filename, meta) {
+  if (!meta.identity.pkg || !/^content\/[a-z][a-z0-9-]*$/.test(meta.identity.pkg)) return null;
+  const prefix = meta.identity.pkg + '/scenes/';
+  if (!filename.startsWith(prefix)) return null;
+  const parts = filename.slice(prefix.length).split('/');
+  if (
+    parts.length !== 3 ||
+    !/^[0-9a-f]$/.test(parts[0]) ||
+    !sceneUuid.test(parts[1]) ||
+    parts[1].at(-1) !== parts[0] ||
+    !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.module\.css|\.constants\.ts|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(parts[2])
+  ) return null;
+  return { id: parts[1], name: parts[2], directory: prefix + parts[0] + '/' + parts[1] };
+}
+function assertSceneInventory(files, meta) {
+  const scenes = new Map();
+  for (const file of files) {
+    const parsed = scenePath(file.path, meta);
+    if (!parsed) continue;
+    const group = scenes.get(parsed.id) ?? new Map();
+    if (group.has(parsed.name)) throw Error('Duplicate Bank Scene file ' + file.path);
+    group.set(parsed.name, file);
+    scenes.set(parsed.id, group);
+  }
+  for (const [id, group] of scenes) {
+    const index = group.get('index.ts');
+    if (!index) throw Error('Incomplete Bank Scene six-file scaffold: ' + id);
+    const source = Buffer.from(index.base64, 'base64').toString('utf8');
+    const match = source.match(/export \{ ([A-Za-z][A-Za-z0-9]*) as default \} from ['"]\.\/\1['"];?/);
+    if (!match || !source.includes('TODO (BLOCKER)'))
+      throw Error('Bank Scene scaffold lacks its canonical entrypoint/blocker: ' + id);
+    const name = match[1];
+    const required = [
+      'index.ts',
+      name + '.tsx',
+      name + '.module.css',
+      name + '.constants.ts',
+      name + '.stories.tsx',
+      name + '.unit.spec.tsx',
+    ];
+    if (group.size !== required.length || required.some(filename => !group.has(filename)))
+      throw Error('Incomplete or unexpected Bank Scene scaffold files: ' + id);
+    for (const filename of required.slice(1)) {
+      const text = Buffer.from(group.get(filename).base64, 'base64').toString('utf8');
+      if (!text.includes('TODO (BLOCKER)'))
+        throw Error('Unreviewed Bank Scene draft lacks release blocker: ' + id + '/' + filename);
+    }
+  }
+  return scenes;
+}
 function validTypedPath(filename, meta) {
   const folder = meta.identity.folder + '/';
   if (
-    !filename.startsWith(folder) ||
     filename.length > 520 ||
     filename.includes('..') ||
     filename.includes('//') ||
     filename.includes('\\')
-  )
-    return false;
+  ) return false;
+  if (scenePath(filename, meta)) return true;
+  if (!filename.startsWith(folder)) return false;
   const relative = filename.slice(folder.length);
-  if (relative === meta.bank + 'Languages.ts') return true;
   if (!relative.startsWith(meta.bank + '/')) return false;
   const nested = relative.slice(meta.bank.length + 1);
   return (
@@ -177,7 +253,7 @@ export function verifyTypedManifest(result, meta) {
     result.deletedSource?.path !== meta.sourcePath ||
     result.deletedSource?.blobSha !== meta.sourceBlob ||
     !Array.isArray(result.files) ||
-    result.files.length < 4 ||
+    result.files.length < 3 ||
     result.files.length > MAX_COUNT ||
     !/^[a-f0-9]{64}$/.test(result.inputSha256 || '')
   ) {
@@ -208,7 +284,8 @@ export function verifyTypedManifest(result, meta) {
     }
   }
   const root = meta.identity.folder + '/';
-  for (const filename of [root + meta.bank + '/index.ts', root + meta.bank + 'Languages.ts']) {
+  assertSceneInventory(result.files, meta);
+  for (const filename of [root + meta.bank + '/index.ts']) {
     if (!unique.has(filename)) throw Error('Missing required typed Bank output ' + filename);
   }
   return result.files;
@@ -290,7 +367,7 @@ export function assertTypedBankInventory(meta, input, files) {
           throw Error('Flashcard Side must include every reviewed ContentBlock exactly once: ' + slug + '/' + side);
         }
         for (const block of content.order) {
-          if (!paths.has(prefix + 'items/' + block + '/index.ts')) {
+          if (!paths.has(prefix + block + '/index.ts')) {
             throw Error('Reviewed Side ContentBlock omitted: ' + slug + '/' + side + '/' + block);
           }
         }
@@ -313,6 +390,7 @@ async function analyze(meta) {
       sourcePath: meta.sourcePath,
       sourceBlobSha: meta.sourceBlob,
       sourceCommitSha: meta.head,
+      lessonConstantsBlobSha: meta.lessonConstantsBlob,
     },
   });
   const { plan, input } = result ?? {};
@@ -339,18 +417,34 @@ async function analyze(meta) {
     git,
     ts: require('typescript'),
   });
+  const { materializeBankSceneDrafts } = require(
+    path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/materializeBankSceneDrafts.js'),
+  );
+  const sceneLanguage = meta.bank === 'questions'
+    ? input.production?.languages?.document
+    : input.production?.lesson?.languages?.document;
+  const expectedSceneDrafts = materializeBankSceneDrafts(input.config, sceneLanguage, blocks);
+  if (JSON.stringify(plan.sceneDrafts ?? []) !== JSON.stringify(expectedSceneDrafts))
+    throw Error('Worker Bank Scene draft bytes, identities or complete six-file plan differ from reviewed source');
+  if (expectedSceneDrafts.length !== blocks.newSceneIds.size * 6)
+    throw Error('Every new reviewed Bank Scene must have exactly one complete six-file draft');
   const approval = authorizations(meta, input, root, blocks);
   if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
     throw Error('Bank input differs from pinned reviewed source');
-  const files = plan.files
+  const files = [
+    ...plan.files.map(file => ({
+      ...file,
+      path: meta.identity.folder + '/' + file.path,
+    })),
+    ...expectedSceneDrafts.map(file => ({
+      ...file,
+      path: meta.identity.pkg + '/' + file.path,
+    })),
+  ]
     .map(file => {
       const content = Buffer.from(file.content ?? '', 'utf8');
       if (!Buffer.from(content.toString('utf8'), 'utf8').equals(content)) throw Error('Invalid worker source bytes');
-      return {
-        path: meta.identity.folder + '/' + file.path,
-        sha256: sha256(content),
-        base64: content.toString('base64'),
-      };
+      return { path: file.path, sha256: sha256(content), base64: content.toString('base64') };
     })
     .sort((a, b) => a.path.localeCompare(b.path));
   const reportData = {
@@ -371,7 +465,7 @@ async function analyze(meta) {
       meta.bank +
       ' Stage 5 planned ' +
       files.length +
-      ' bank-owned sources from ' +
+      ' bank and reviewed Scene draft sources from ' +
       meta.sourceBlob +
       '; zero Git writes',
   );

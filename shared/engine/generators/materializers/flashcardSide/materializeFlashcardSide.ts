@@ -19,6 +19,7 @@ export type FlashcardSideContext = {
   directory: string;
   role: 'front' | 'back' | 'hint';
   languages: { document: LanguageCode; planned: SupportedLanguages };
+  ownerLanguagesImport?: string;
   existingPaths?: ReadonlySet<string>;
   /** Owner C/D concrete block renderer, supplied by parent orchestrator. */
   materializeBlock: (
@@ -130,6 +131,7 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
   }
   const sourceText = [
     "import { defineFlashcardSide } from '@svitlo/engine/build';",
+    ...(context.ownerLanguagesImport ? ['import type { Languages } from ' + JSON.stringify(context.ownerLanguagesImport) + ';'] : []),
     ...imports,
     '',
     'const items = {',
@@ -138,9 +140,9 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
     '',
     'export const ' +
       context.role +
-      ' = defineFlashcardSide<typeof items, [' +
-      JSON.stringify(context.languages.document) +
-      ']>({ items, order: ' +
+      ' = defineFlashcardSide<typeof items, ' +
+      (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(context.languages.document) + ']') +
+      '>({ items, order: ' +
       JSON.stringify(source.order) +
       ' });',
     '',
