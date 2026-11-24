@@ -58,3 +58,6 @@ export type {
 
 // Direct authored Lesson materialization (source planning only).
 export { materializeLessonStage6 } from './generators/materializers/lesson/materializeStage6';
+
+export { courseWorkflowStage3_Schema } from './types/workflow/courseWorkflowFinal.schemas';
+export { materializeCourse } from './generators/materializers/course/materializeCourseDirect';

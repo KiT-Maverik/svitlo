@@ -232,6 +232,11 @@ export type CourseWorkflowStage3ExistingLesson = {
     matching: CourseWorkflowStage3LessonMatch;
     /** Required explicit assessment decisions for the reused Lesson placement. */
     assessment: LessonProductionAssessmentRequirements;
+    /** Final invocation may directly pass the already-imported canonical Configurator. */
+    source?: Lesson_Configurator;
+    sourceExportName?: string;
+    /** Authored raw sparse Config patch, required when existing contains built overrides. */
+    sourcePatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */
