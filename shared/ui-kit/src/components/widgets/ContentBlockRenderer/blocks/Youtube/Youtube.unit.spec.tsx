@@ -2,7 +2,7 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
 import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 
@@ -36,6 +36,18 @@ afterEach(() => {
 });
 
 describe('YouTube content block', () => {
+  it.each(['link', 'embed'] as const)('renders a pending %s without navigation or retry', mode => {
+    setOnline(true);
+    const { container } = render(
+      <Youtube messages={enUiKitMessages.youtube} {...response}
+        params={{ mode }} locale={{ ...response.locale, href: UNRESOLVED_YOUTUBE_HREF }} />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('Відео не відтворюється');
+    expect(screen.queryByRole('link')).toBeNull();
+    expect(screen.queryByRole('button')).toBeNull();
+    expect(container.querySelector('iframe')).toBeNull();
+  });
+
   it('shows the offline placeholder without creating an iframe', () => {
     setOnline(false);
     const { container } = render(<Youtube messages={enUiKitMessages.youtube} {...response} />);
