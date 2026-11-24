@@ -138,7 +138,7 @@ test('complete Course -> Module -> Chapter -> Episode emitted sources typecheck 
     {
       path: 'constants.ts',
       kind: 'typescript',
-      content: "export const languages = ['uk'] as const;\\nexport type Languages = typeof languages;\\n".replaceAll('\\n', '\n'),
+      content: "export const languages = ['uk'] as const;\nexport type Languages = typeof languages;\n",
     },
   ];
   const errors = compilerDiagnostics(files);
