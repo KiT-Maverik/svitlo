@@ -67,6 +67,21 @@ export { materializeLessonStage6 } from './generators/materializers/lesson/mater
 
 export { courseWorkflowStage3_Schema } from './types/workflow/courseWorkflowFinal.schemas';
 export { materializeCourse } from './generators/materializers/course/materializeCourseDirect';
-export type { AssessmentWorkflowSeed } from './types/workflow/assessmentWorkflow.types';
+export {
+  assessmentWorkflowSeed_Schema,
+  assessmentWorkflowStage1_Schema,
+  assessmentWorkflowStage2_Schema,
+} from './types/workflow/assessmentWorkflow.types';
+export type {
+  AssessmentWorkflowSeed,
+  AssessmentWorkflowStage1,
+  AssessmentWorkflowStage2,
+} from './types/workflow/assessmentWorkflow.types';
+export { materializeAssessment } from './generators/materializers/assessment/materializeAssessment';
+export type {
+  AssessmentMaterializationOptions,
+  AssessmentMaterializationPlan,
+  AssessmentMaterializationSource,
+} from './generators/materializers/assessment/materializeAssessment';
 
 export { materializeEpisodeStage5 } from './generators/materializers/episode/materializeEpisodeStage5';
