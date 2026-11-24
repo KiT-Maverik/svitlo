@@ -23,10 +23,14 @@ For Flashcards, retain `flashcards/<slug>.ts` and `flashcards/<slug>/content/{fr
 | Course / Module / Chapter | Existing semantic child-slug directories; **not changed yet** | Coordinate with active #826 (same source renderers); consume #830; retain new/existing Lesson and Assessment ownership |
 | Episode | Existing Course-owned slot and shared Section delegation | Inherit #830 and Section layout from #832; preserve Episode trusted transaction |
 | QuestSection / QuestStage / QuestTask | Distinct stages, tasks and media/Scene role boundaries are applicable; **not changed yet** | #832 owns overlapping nested paths; #833 Scene; #834 media. Preserve Build-only Quest restriction |
-| Skill / SkillGroup / SkillDomain | Existing canonical `<domain>/<group>/<skill>.ts` hierarchy, no redundant `items/` collection | Source formatting from #830 applies; do not add collection directories or replace reviewed taxonomy |
+| Skill / SkillGroup / SkillDomain | **Changed**: direct `<domain>/<group>/<skill>.ts` and `<domain>/<group>/index.ts`, no redundant `skills/` or `groups/`; preserve separate reviewed sidecars under the Skill owner; path confinement, ID derivation and tests | Source formatting from #830 applies; do not migrate existing authored taxonomy files |
 | EducationStandard / AssessmentMethod | Standalone leaf `index.ts`; child path flattening **not applicable** | Audit language tuple, formatter and unique sidecars after #830; retain validated short locale fields |
 | Text, Markdown, Code, Carousel, Checkpoint, nested Sections | **Not owned by #835** | Inherit shared changes from #830/#832 and applicable other scoped PRs |
 | Scene, Image, Video, YouTube, Audio, Subtitles | **Not owned by #835** | Inherit #833/#834; no competing scaffolder or asset policy |
+
+## Skill taxonomy source placement
+
+Skill modules generated within their parent Group/Domain are sibling `<slug>.ts` modules next to that owner's `index.ts`. Groups remain nested semantic owners `<group>/index.ts`, without a `groups` wrapper. A Skill's separate reviewed production documentation remains at `<slug>/methodology.md` or another preserved sidecar path; flattening never deletes unique reviewed intent. The direct Skill materializer also supports a legacy standalone `index.ts` output when no owning parent supplies the sibling filename. Parent dispatchers derive immutable identity from each full logical Skill placement, reject `index` as an ambiguous sibling Skill filename, and require importable canonical entrypoints plus contained child outputs.
 
 ## Pending integration and evidence
 
