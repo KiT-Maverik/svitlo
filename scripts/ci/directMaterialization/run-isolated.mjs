@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 export const workerImage =
   'node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c';
 const workerPath = fileURLToPath(new URL('./worker.mjs', import.meta.url));
-const formatterPath = fileURLToPath(new URL('./format-generated-plan.mjs', import.meta.url));
 const MAX_OUTPUT = 64 * 1024 * 1024;
 
 /** All arguments originate in the trusted gate, not in the authored entrypoint. */
@@ -46,7 +45,6 @@ export function runIsolatedMaterialization({ trustedRoot, candidateRoot, textboo
     ...mount(path.join(trustedRoot, 'shared/engine/package.json'), '/work/shared/engine/package.json'),
     ...mount(path.join(candidateRoot, textbook), '/work/' + textbook, true),
     ...mount(workerPath, '/work/worker.mjs'),
-    ...mount(formatterPath, '/work/format-generated-plan.mjs'),
     workerImage,
     'node',
     '/work/worker.mjs',
