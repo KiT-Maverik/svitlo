@@ -86,7 +86,8 @@ function findLessonPatches(course, languages) {
     if (entity.type === 'lesson') {
       // A placed Lesson carries its own authored Config patch. The original
       // Lesson's Build API publishes sparse Props for this placement alone.
-      if (entity.placement && (
+      const isPlacement = own(entity, 'placement');
+      if (isPlacement && (
         !isObject(entity.placement) ||
         entity.placement.source?.id !== entity.id ||
         entity.placement.source?.slug !== entity.slug ||
@@ -94,7 +95,7 @@ function findLessonPatches(course, languages) {
       )) {
         throw new Error('Mismatched immutable Lesson placement identity at ' + location);
       }
-      const patch = entity.placement ? entity.build.overrides({}, { languages }) : undefined;
+      const patch = isPlacement ? entity.build.overrides({}, { languages }) : undefined;
       if (patch?.id !== undefined && patch.id !== entity.id) {
         throw new Error('Mismatched sparse Lesson override identity at ' + location);
       }
