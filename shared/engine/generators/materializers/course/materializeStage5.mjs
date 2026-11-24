@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeCourse } from './materialize.mjs';
 import { materializeModule } from '../module/materialize.mjs';
 import { materializeChapter } from '../chapter/materialize.mjs';
@@ -410,8 +411,9 @@ export function materializeCourseStage5(input, options = {}) {
   // Persist a fail-closed marker IN the generated source; returning a transient
   // {publishable:false} flag alone cannot stop an unrelated publication job.
   rootIndex.content =
-    '// TODO (BLOCKER): Course Stage 5 source is not publication approval. ' +
-    'Verify independent Lesson, Episode, locale, assessment and source-review gates before release.\n' +
+    renderBlockerTodo(
+      'Course Stage 5 source is not publication approval. Complete and verify independent Lesson, Episode, Assessment, localization, resource, editorial-review and human QA gates, then remove this marker before release.',
+    ) + '\n' +
     '// Reviewed Course source blob: ' +
     source.sourceBlobSha +
     '\n' +
@@ -419,8 +421,10 @@ export function materializeCourseStage5(input, options = {}) {
   const languageSource =
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     (planned.length > 1
-      ? '// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) +
-        ' only after their translations and independent review are complete.\n'
+      ? renderBlockerTodo(
+          'Complete and independently review translations for ' + JSON.stringify(planned) +
+            ', restore the reviewed languages tuple, and remove this marker.',
+        ) + '\n'
       : '') +
     'export const languages = ' + JSON.stringify([sourceLanguage]) +
     ' as const satisfies SupportedLanguages;\n' +
