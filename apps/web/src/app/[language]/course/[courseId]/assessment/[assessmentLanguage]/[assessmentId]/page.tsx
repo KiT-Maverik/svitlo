@@ -30,6 +30,15 @@ async function Content({ params }: Props) {
   }
   const assessment = findCourseAssessment(course, assessmentId);
   if (!assessment) notFound();
+  if ('draft' in assessment && assessment.draft === true) {
+    return (
+      <main aria-label="Draft Assessment preview">
+        <h1>Not implemented</h1>
+        <p>This Assessment has a reserved place in the Course but has not been produced.</p>
+        <a href={'/' + language + '/course/' + courseId}>Back to Course</a>
+      </main>
+    );
+  }
   const [messages, titles] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
     loadCourseLessonTitles(course, content.language),
