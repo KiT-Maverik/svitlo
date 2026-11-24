@@ -15,3 +15,5 @@ Focused validation (CI runs these on Ready):
     npm run code:check:types --workspace @svitlo/engine
 
 Verify the actual successful Actions run and exact generated Git commit on the Episode branch before recording Stage 5 completion. Do not repeat a successful materialization.
+
+The [Episode entity runtime readiness section](../../../studio/docs/entities/episode.md#runtime-and-publication-readiness) identifies the current compact Course publisher and Web host gaps. Do not record human QA or release readiness until they are resolved.

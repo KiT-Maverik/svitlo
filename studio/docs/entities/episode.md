@@ -10,7 +10,7 @@ An **Episode** carries Course-specific plot, character interactions, missions or
 - Use an **Episode** when the primary purpose is a story event, dialogue, mission, choice or scenario transition tied to a particular Course.
 - Where both are needed, keep teaching material in the Lesson and story context in an Episode or Course. Do not duplicate a Lesson to embed a dialogue.
 
-Episodes belong in their owning Course's authoring directory, e.g. `data/courses/<course-id>/episodes/<episode-id>/`. They are not intended to be standalone or shared across Courses.
+Episodes belong in their owning Course's authoring directory, at the reviewed slot, e.g. `data/courses/<bucket>/<course-id>/content/<module>/<chapter>/<episode-slug>/` (omit absent Module/Chapter levels). They are not intended to be standalone or shared across Courses.
 
 ## Independent Engine Build API
 
@@ -28,8 +28,12 @@ See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
 A provisional Course Episode placement is narrative intent, not a completed Episode. The Course Stage 5 materializer emits a blocked typed draft at the reserved placement, not a Configurator; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
 
-The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the trusted Episode Stage 5 materializer must support that boundary before Episode content may be materialized. A draft handoff is not a completed scenario.
+The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the [trusted Episode Stage 5 workflow](../../../scripts/ci/episodeMaterialization/README.md) must be deployed and verified before Episode content may be materialized. A draft handoff is not a completed scenario.
 
 ## Quest Section in Episodes (planned runtime)
 
 An Episode may eventually host a [Quest Section](./quest.md) for Course-owned interactive story beats, media reactions, missions and branching decisions. The Quest is the autonomous **Section**; the Episode remains the Course-level narrative container. The Build-only Quest Config exists separately, but current Episode composition/publication and UI rendering do **not** yet accept or run Quest. Do not embed an unregistered Quest as a content block or claim a runnable story.
+
+## Runtime and publication readiness
+
+Engine Build supports authored Episode Configurators and localized Section Props. The compact Course resource publisher (`shared/engine/generators/courses/publishCourseData.mjs`, `findLessonPatches` and `compactEntity`) currently rejects Episode children, and Web's `apps/web/src/lib/courseResources.ts` validates only Lesson, Module and Chapter nodes. `courseNavigation.ts` and Course Lesson routes do not provide an Episode route or an Episode execution/controller contract. The UI Kit CoursePage recognizes an Episode display entry, but that is not executable Episode playback. Until the compact publisher, runtime tree/adapters, navigation and host renderer/controller are explicitly implemented and tested, **Episode QA cannot pass**. Do not bypass the publisher, omit a materialized Episode, wrap it in a Lesson, or mark human QA complete. Scene/Quest/event execution support must be independently verified. Media readiness uses the existing strict textbook media projection for nonempty ordinary UUID-named assets under `content/<textbook>/assets/<kind>/`; a planned reference alone is not proof of an asset.
