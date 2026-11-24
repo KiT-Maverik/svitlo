@@ -121,7 +121,7 @@ export type LessonWorkflowStage2SimpleBlock =
   | { config: ContentBlock_Code_Config; production?: LessonWorkflowNodeProduction }
   | { config: LessonWorkflowImage; production: LessonWorkflowResourceProduction }
   | { config: LessonWorkflowVideo; production: LessonWorkflowResourceProduction }
-  | { config: ContentBlock_Youtube_Config; production: LessonWorkflowResourceProduction }
+  | { config: LessonWorkflowPendingMedia<ContentBlock_Youtube_Config, 'href'>; production: LessonWorkflowResourceProduction }
   | { config: LessonWorkflowAudio; production: LessonWorkflowResourceProduction }
   | { config: LessonWorkflowSubtitles; production: LessonWorkflowResourceProduction }
   | { config: ContentBlock_Scene_Config; production: LessonWorkflowResourceProduction };
