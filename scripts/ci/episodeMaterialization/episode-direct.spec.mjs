@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
+import { formatGeneratedTypeScript } from '../directMaterialization/format-generated-plan.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
 import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './episode-transaction.mjs';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
@@ -178,7 +179,7 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
   ])), /overwrite existing/);
 });
 
-test('canonical Course-generated Episode handoff is JSON in an exact TypeScript wrapper, never executable code', () => {
+test('canonical Course-generated Episode handoff is inert despite formatting, never executable code', async () => {
   const original =
     '// TODO (BLOCKER): Episode Stage 1 handoff; scenario is not yet authored or reviewed.\n' +
     "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
@@ -186,6 +187,9 @@ test('canonical Course-generated Episode handoff is JSON in an exact TypeScript 
     JSON.stringify(handoff, null, 2) +
     ' as const satisfies EpisodeWorkflowStage1Handoff;\n';
   assert.deepEqual(parseEpisodeHandoff(original), handoff);
+  const formatted = await formatGeneratedTypeScript(original, 'draft.ts');
+  assert.notEqual(formatted, original);
+  assert.deepEqual(parseEpisodeHandoff(formatted), handoff);
   assert.throws(() => parseEpisodeHandoff(original.replace('as const satisfies', 'as never satisfies')));
   assert.throws(() => parseEpisodeHandoff(original + 'process.exit(1);'));
 });
