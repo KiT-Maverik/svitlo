@@ -86,8 +86,8 @@ test('video: composed nested source paths and Course language handoff', () => {
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
   const inline = nested.files.find(file => file.path === directory + '/index.ts')?.content ?? '';
-  assert.match(inline, /TODO \\(BLOCKER\\): Remove the temporary Video specification/);
-  assert.match(inline, /\\* # specification[\\s\\S]*\\* Reviewed source brief/);
+  assert.match(inline, /TODO \(BLOCKER\): Remove the temporary Video specification/);
+  assert.match(inline, /\* # specification[\s\S]*\* Reviewed source brief/);
   assert(inline.indexOf(');') < inline.indexOf('Remove the temporary Video specification'));
   assert(nested.diagnostics.some(item => item.code === 'pending-temporary-specification'));
   const parsed = ts.transpileModule(inline, {
