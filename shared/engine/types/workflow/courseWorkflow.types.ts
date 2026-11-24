@@ -1,5 +1,6 @@
 import type { z } from 'zod';
 import type { workflowLanguages_Schema } from './workflowLanguages.schemas';
+import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { Course_Config } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Chapter_Config } from '../../configurators/courses/defineChapter/defineChapter.schemas';
@@ -324,13 +325,6 @@ export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'conte
   content: CourseWorkflowStage3Content;
 };
 
-export interface CourseWorkflowStage3 extends CourseWorkflowStage2 {
-  config: CourseWorkflowStage3Config;
-}
+/** Final authoring contract: the executable Zod schema owns this shape. */
+export type CourseWorkflowStage3 = z.infer<typeof courseWorkflowStage3_Schema>;
 
-/** Single canonical authored input to the Stage 5 Course source materializer.
- * Apply this alias to the existing exported Stage 3 object during Stage 4,
- * before final reinspection and sign-off. Stage 5 consumes the exact reviewed
- * bytes; implementation must additionally validate source/review evidence.
- */
-export type CourseWorkflowMaterializerInput = CourseWorkflowStage3;

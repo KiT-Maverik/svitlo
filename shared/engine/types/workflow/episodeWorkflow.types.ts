@@ -71,4 +71,3 @@ export const episodeWorkflowStage2_Schema = episodeWorkflowStage1_Schema.extend(
 export type EpisodeWorkflowStage2 = z.infer<typeof episodeWorkflowStage2_Schema>;
 
 /** Review does not create another editorial type or publish Props. */
-export type EpisodeWorkflowMaterializerInput = EpisodeWorkflowStage2;

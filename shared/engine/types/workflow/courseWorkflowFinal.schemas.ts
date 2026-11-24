@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
 import { chapter_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
@@ -10,6 +11,20 @@ import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
 
 const rationale = z.string().min(1);
+/** Sparse built Lesson values and their original Build patch must be JSON-safe
+ * plain Config structures. The imported Configurator itself is checked by
+ * Engine's existing Lesson Build boundary.
+ */
+const plainConfig_Schema = z.record(z.string(), z.json());
+const sparseBase_Schema = z.custom<ReturnType<Lesson_Configurator['build']['overrides']>['base']>(
+  value => plainConfig_Schema.safeParse(value).success,
+);
+const sparseLocale_Schema = z.custom<ReturnType<Lesson_Configurator['build']['overrides']>['locale']>(
+  value => plainConfig_Schema.safeParse(value).success,
+);
+const sourcePatch_Schema = z.custom<Parameters<Lesson_Configurator['build']['overrides']>[0]>(
+  value => plainConfig_Schema.safeParse(value).success,
+);
 const uid = z.uuid();
 const ordered = (child: z.ZodType) =>
   z
@@ -74,8 +89,8 @@ const existingLesson = z.strictObject({
     kind: z.literal('existing'),
     existing: z.strictObject({
       id: uid,
-      base: z.unknown().optional(),
-      locale: z.unknown().optional(),
+      base: sparseBase_Schema.optional(),
+      locale: sparseLocale_Schema.optional(),
     }),
     matching: z.strictObject({
       methodologySourcePath: rationale,
@@ -86,13 +101,13 @@ const existingLesson = z.strictObject({
     assessment,
     overrideRationale: z.string().optional(),
     /** The exact imported standalone Lesson Configurator, never a copied Props object. */
-    source: lessonConfigurator_Schema.optional(),
+    source: z.custom<Lesson_Configurator>(value => lessonConfigurator_Schema.safeParse(value).success).optional(),
     sourceExportName: z
       .string()
       .regex(/^[A-Za-z][A-Za-z0-9]*$/)
       .optional(),
     /** Actual authored sparse Config patch, not a reconstructed built Props patch. */
-    sourcePatch: z.unknown().optional(),
+    sourcePatch: sourcePatch_Schema.optional(),
   }),
 });
 const episodeSlot = z.strictObject({

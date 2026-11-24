@@ -1,3 +1,5 @@
+import type { z } from 'zod';
+import type { flashcardBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
 import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
@@ -189,15 +191,5 @@ export type FlashcardBankWorkflowSectionDecision =
       lessonSourceSha: string;
     };
 
-export type FlashcardBankWorkflowStage3 = Omit<FlashcardBankWorkflowStage2, 'production'> & {
-  production: FlashcardBankWorkflowStage2['production'] & {
-    section: FlashcardBankWorkflowSectionDecision;
-  };
-};
-
-/** The reviewed FINAL Stage 3 source is the sole Stage 5 input.
- * Independent Stage 4 reviewer identity, verdict, final SHA, production
- * approval and translation evidence live in the existing Flashcards PR,
- * not in duplicate Stage 4 Configs/Props or a second editorial file.
- */
-export type FlashcardBankWorkflowMaterializerInput = FlashcardBankWorkflowStage3;
+/** Final Flashcard Bank contract is inferred from the owning runtime schema. */
+export type FlashcardBankWorkflowStage3 = z.infer<typeof flashcardBankWorkflowStage3_Schema>;
