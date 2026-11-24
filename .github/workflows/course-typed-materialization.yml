@@ -6,6 +6,12 @@ on:
     types: [opened, synchronize, ready_for_review]
     paths:
       - 'scripts/ci/courseMaterialization/**'
+      - 'shared/engine/generators/materializers/**'
+      - 'shared/engine/types/workflow/**'
+      - 'shared/engine/configurators/**'
+      - 'shared/engine/build.ts'
+      - 'shared/engine/package.json'
+      - 'package-lock.json'
       - '.github/workflows/course-typed-materialization.yml'
   workflow_dispatch:
     inputs:

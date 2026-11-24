@@ -243,7 +243,7 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.equal(result.pendingPlacements.length, 1);
   const handoff = result.files.find(f => f.path === result.pendingPlacements[0].handoffPath);
   assert.ok(handoff);
-  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/index\.ts$/);
+  assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.ok(!result.files.find(f => f.path === 'index.ts').content.includes('import { newLesson '));
   assert.match(result.files.find(f => f.path === 'index.ts').content, /TODO \(BLOCKER\): New Lesson Stage 1/);
