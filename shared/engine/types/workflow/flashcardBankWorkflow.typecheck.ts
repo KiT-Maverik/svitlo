@@ -17,7 +17,6 @@ import type {
   FlashcardBankWorkflowSideSource,
   FlashcardBankWorkflowFlags,
   FlashcardBankWorkflowRelationshipEdge,
-  FlashcardBankWorkflowStage3,
   FlashcardBankWorkflowSectionDecision,
 } from './flashcardBankWorkflow.types';
 
