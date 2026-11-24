@@ -49,7 +49,7 @@ scope('shared', 'shared');
 assert.ok(names.has('repo: scripts'), 'Missing repo: scripts');
 assert.ok(names.has('studio'), 'Missing standalone studio label');
 assert.ok(names.has('work: architecture'), 'Missing architecture work type');
-const educationalTypes = ['course', 'lesson', 'questions', 'flashcards', 'media'];
+const educationalTypes = ['course', 'episode', 'lesson', 'questions', 'flashcards', 'media'];
 for (const type of educationalTypes) {
   assert.ok(names.has('work: ' + type), 'Missing educational work label: work: ' + type);
   assert.ok(!names.has('pr: ' + type), 'Obsolete PR deliverable label: pr: ' + type);

@@ -45,11 +45,10 @@ const meta = {
 
 const literal =
   "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
-  'const courseStage3 = { config: { id: "' +
+  'export const courseStage3 = { config: { id: "' +
   id +
   '", type: "course", slug: "sky" }, ' +
-  'production: { languages: { document: "uk", planned: ["uk"] } } } as const;\n' +
-  'export const reviewedInput = courseStage3 satisfies CourseWorkflowMaterializerInput;\n';
+  'production: { languages: { document: "uk", planned: ["uk"] } } } satisfies CourseWorkflowMaterializerInput;\n';
 
 test('exactly one changed canonical typed Course root is required', () => {
   const file = { filename: sourcePath, status: 'modified' };
@@ -151,6 +150,12 @@ test('inert TypeScript parser accepts canonical literal, never evaluates importe
     literal.replace('slug: "sky"', 'slug: "sky", slug: "duplicate"'),
     literal.replace('slug: "sky"', '__proto__: "polluted"'),
     literal.replace('satisfies CourseWorkflowMaterializerInput', 'satisfies CourseWorkflowStage3'),
+    literal.replace('export const courseStage3', 'const courseStage3'),
+    literal +
+      literal
+        .replace("import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n", '')
+        .replace('courseStage3', 'anotherCourse'),
+    literal.replace('type: "course"', 'type: "lesson"'),
   ])
     assert.throws(() => parseCanonicalCourseSource(injected));
 });
@@ -318,7 +323,7 @@ test('real reviewed Stage 3 TS typechecks and produces a complete deterministic 
   git('config', 'user.name', 'Course typed integration');
   const body =
     "import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n" +
-    'export const reviewedInput = ' +
+    'export const courseStage3 = ' +
     JSON.stringify(reviewedStage3, null, 2) +
     ' satisfies CourseWorkflowMaterializerInput;\n';
   fs.mkdirSync(path.dirname(path.join(root, sourcePath)), { recursive: true });
@@ -327,6 +332,7 @@ test('real reviewed Stage 3 TS typechecks and produces a complete deterministic 
   git('commit', '-qm', 'Reviewed and corrected Stage 3');
   const commit = git('rev-parse', 'HEAD');
   const sourceBlob = git('rev-parse', 'HEAD:' + sourcePath);
+  assert.equal(parseCanonicalCourseSource(body).config.id, id);
   checkCourseStage3Types(path.join(root, sourcePath));
   const pinned = { ...meta, head: commit, reviewCommitSha: commit, sourceBlobSha: sourceBlob };
   const reportFile = path.join(base, 'manifest.json');

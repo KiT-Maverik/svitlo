@@ -16,7 +16,7 @@ function languageForLocale(locale: Locale) {
   return language;
 }
 
-/** Lessons may select a separate content language; episodes use the UI language. */
+/** Lessons and Course-owned Episodes may select a separate content language. */
 function lessonRoute(pathname: string) {
   const lesson = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
   if (lesson) {
@@ -28,14 +28,14 @@ function lessonRoute(pathname: string) {
       routePrefix: lesson[2] ?? '',
     };
   }
-  const episode = /^\/([a-z]{2})(\/course\/[^/]+)\/episode\/([^/]+)\/?$/.exec(pathname);
+  const episode = /^\/([a-z]{2})(\/course\/[^/]+)\/episode\/([a-z]{2})\/([^/]+)\/?$/.exec(pathname);
   if (episode) {
     const interfaceLanguage = languageForCode(episode[1]);
     return {
       kind: 'episode' as const,
       interfaceLanguage,
-      lessonLanguage: interfaceLanguage,
-      entryId: episode[3],
+      lessonLanguage: languageForCode(episode[3]),
+      entryId: episode[4],
       routePrefix: episode[2],
     };
   }
@@ -58,7 +58,7 @@ export function useLessonLocale() {
       const query = params.toString();
       const nextPath =
         kind === 'episode'
-          ? `/${interfaceCode}${routePrefix}/episode/${entryId}`
+          ? `/${interfaceCode}${routePrefix}/episode/${lessonCode}/${entryId}`
           : `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${entryId}`;
       router.replace(nextPath + (query ? `?${query}` : ''), { scroll: false });
     },

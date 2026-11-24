@@ -1,5 +1,6 @@
 import type { LanguageCode } from '../../schemas';
 import type { DeepPartial } from '../../types/transformer.types';
+import type { Episode_PropsBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
@@ -23,9 +24,7 @@ export type CoursePublishedContent = {
 };
 
 export type CoursePublishedNode =
-  | CourseLessonEntry
-  | { type: 'episode'; id: string }
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  CourseLessonEntry | Episode_PropsBase | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';
@@ -42,6 +41,8 @@ export type PublishedCoursePropsFiles = {
 export type AssembleCourseLessonInput = {
   courseId: string;
   lessonId: string;
+  /** Required when the same Lesson occurs in multiple distinct Course slots. */
+  placement?: string;
   language: LanguageCode;
   lesson: PublishedLessonPropsResource;
   course: PublishedCoursePropsFiles;
@@ -92,6 +93,7 @@ function findLesson(
   root: Record<string, unknown>,
   lessonId: string,
   label: string,
+  placement?: string,
 ): { node: Record<string, unknown>; path: string[] } | undefined {
   let match: { node: Record<string, unknown>; path: string[] } | undefined;
   const visit = (content: unknown, at: string, prefix: string[]): void => {
@@ -112,7 +114,7 @@ function findLesson(
       const raw = items[slug];
       if (!isRecord(raw) || typeof raw.id !== 'string') throw new Error('Invalid Course child at ' + location);
       if (raw.type === 'lesson') {
-        if (raw.id === lessonId) {
+        if (raw.id === lessonId && (placement === undefined || [...prefix, slug].join('/') === placement)) {
           if (match) throw new Error('Duplicate Lesson ID ' + lessonId + ' in ' + label + ' Course publication');
           match = { node: raw, path: [...prefix, slug] };
         }
@@ -177,6 +179,7 @@ function getOverride(
 export function assembleCourseLesson({
   courseId,
   lessonId,
+  placement,
   language,
   lesson,
   course,
@@ -190,7 +193,7 @@ export function assembleCourseLesson({
     throw new Error('Course does not support language ' + language);
   }
 
-  const baseMatch = findLesson(base, lessonId, 'base');
+  const baseMatch = findLesson(base, lessonId, 'base', placement);
   if (!baseMatch) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
 
   const localeData = course.locale?.[language];

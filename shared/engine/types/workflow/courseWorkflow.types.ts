@@ -337,7 +337,8 @@ export interface CourseWorkflowStage3 extends CourseWorkflowStage2 {
 }
 
 /** Single canonical authored input to the Stage 5 Course source materializer.
- * Reuse the final reviewed Stage 3/4 object; do not maintain a second copy of
- * its schema. Implementation must additionally validate source/review evidence.
+ * Apply this alias to the existing exported Stage 3 object during Stage 4,
+ * before final reinspection and sign-off. Stage 5 consumes the exact reviewed
+ * bytes; implementation must additionally validate source/review evidence.
  */
 export type CourseWorkflowMaterializerInput = CourseWorkflowStage3;

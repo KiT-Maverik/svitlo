@@ -4,6 +4,7 @@ import { materializeModule } from '../module/materialize.mjs';
 import { materializeChapter } from '../chapter/materialize.mjs';
 import { materializeEpisode } from '../episode/materialize.mjs';
 import { materializeLessonDraft } from './lessonDraft.mjs';
+import { buildPlacementInventory } from './placementInventory.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -54,7 +55,9 @@ const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonica
 /**
  * Plan reviewed Course Stage 5 authored sources. The atomic writer consumes
  * draft.ts and creates index.ts; exact reviewed bytes remain in Git history.
- * Planning never overwrites a file.
+ * Planning never overwrites a file. Emitted TypeScript must satisfy current
+ * contracts; unfinished resources use valid typed placeholders and explicit
+ * TODO (BLOCKER) markers where applicable, not invalid source.
  *
  * The trusted caller must pin the evaluated TS input to the exact Git blob,
  * verify independent review/authorization, and resolve each imported Lesson
@@ -197,17 +200,32 @@ export function materializeCourseStage5(input, options = {}) {
           ' } } }';
     return emit(tree);
   };
+  const renderedPlacements = new Map();
+  const recordPlacement = (directory, row) => {
+    if (renderedPlacements.has(directory)) throw Error('Duplicate Course inventory placement: ' + directory);
+    renderedPlacements.set(directory, row);
+  };
   const resolvePlacement = (node, context) => {
     const production = node.production;
     if (production.kind === 'new') {
       const lessonId = deriveId('lesson', context.directory);
-      return materializeLessonDraft(node, {
+      const result = materializeLessonDraft(node, {
         lessonId,
         sourceLanguage,
         plannedLanguages: planned,
         textbookRoot,
         reviewedSourceSha: review.sourceBlobSha,
       });
+      recordPlacement(context.directory, {
+        type: 'lesson',
+        id: lessonId,
+        slug: node.config.slug,
+        kind: 'new',
+        status: 'pending-lesson-stage1',
+        sourcePath: result.files[0].path,
+        placementSourcePath: result.files[0].path,
+      });
+      return result;
     }
     const existing = production.existing;
     const match = production.matching;
@@ -322,6 +340,22 @@ export function materializeCourseStage5(input, options = {}) {
       addPatch(context.directory, patchSource);
     }
     const placementSlug = node.config.slug;
+    recordPlacement(context.directory, {
+      type: 'lesson',
+      id: existing.id,
+      slug: placementSlug,
+      kind: hasPatch ? 'overridden' : 'reused',
+      status: 'verified-reference',
+      sourcePath:
+        textbookRoot +
+        '/data/lessons/' +
+        existing.id.at(-1).toLowerCase() +
+        '/' +
+        existing.id.toLowerCase() +
+        '/index.ts',
+      placementSourcePath: root + '/' + context.directory + '/index.ts',
+      sourceSha: lesson.sourceSha,
+    });
     const exportName = ['class', 'default', 'export', 'import', 'const', 'new', 'return', 'let', 'var'].includes(
       placementSlug,
     )
@@ -351,12 +385,33 @@ export function materializeCourseStage5(input, options = {}) {
 
   const context = {
     directory: '',
+    courseId: rootId,
+    reviewedCourseSourceBlobSha: review.sourceBlobSha,
+    orderPath: [],
     sourceLanguage,
     plannedLanguages: planned,
     deriveId,
     materializeModule,
     materializeChapter,
-    materializeEpisode,
+    materializeEpisode(node, episodeContext) {
+      const result = materializeEpisode(node, episodeContext);
+      const directory = episodeContext.directory;
+      const pending = result.diagnostics.some(d => d.code === 'pending-episode-scenario');
+      const source =
+        result.files.find(file => file.path === directory + '/draft.ts') ??
+        result.files.find(file => file.path === directory + '/index.ts');
+      if (!source) throw Error('Episode inventory requires emitted source: ' + directory);
+      recordPlacement(directory, {
+        type: 'episode',
+        id: result.id,
+        slug: node.config.slug,
+        kind: 'new',
+        status: pending ? 'pending-episode-scenario' : 'materialized-source',
+        sourcePath: root + '/' + source.path,
+        placementSourcePath: root + '/' + source.path,
+      });
+      return result;
+    },
     materializeLessonPlacement: resolvePlacement,
     materializeSection(node, sectionContext) {
       // Must be the SAME concrete Section dispatcher used by standalone Lessons.
@@ -457,8 +512,10 @@ export function materializeCourseStage5(input, options = {}) {
     root,
     files: Object.freeze(files),
     diagnostics: Object.freeze(allDiagnostics),
+    inventory: buildPlacementInventory(input, renderedPlacements, root, files),
     placements: materialized.placements ?? [],
     pendingPlacements: materialized.pendingPlacements ?? [],
+    pendingEpisodes: materialized.pendingEpisodes ?? [],
     publishable: false,
   });
 }

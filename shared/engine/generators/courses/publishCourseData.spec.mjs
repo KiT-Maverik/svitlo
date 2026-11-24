@@ -3,7 +3,18 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { defineChapter, defineCourse, defineLesson, defineModule } from '@svitlo/engine/build';
+import {
+  defineChapter,
+  defineCourse,
+  defineLesson,
+  defineModule,
+  defineEpisode,
+  defineContentSection,
+  defineText,
+  defineScene,
+  defineImage,
+} from '@svitlo/engine/build';
+import { assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode } from '@svitlo/engine/runtime';
 import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
@@ -390,4 +401,140 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   assert.equal(localized.content.items.directUse.overrides.locale.title, 'Course direct title');
   assert.equal(lesson.slug, 'independentLesson');
   assert.equal(lesson.build.props({ languages }).base.slug, 'independentLesson');
+});
+
+test('real Episode Configurators publish at all four levels with localized ordered blocks and repeated Lesson overrides', () => {
+  const languages = ['en', 'uk'];
+  const id = n => '11111111-1111-4111-8111-' + n.toString(16).padStart(12, '0');
+  const make = (n, slug, events) => {
+    const line = defineText({
+      id: id(n + 100),
+      slug: 'line',
+      type: 'text',
+      params: {},
+      locale: { value: { en: 'Enter', uk: 'Увійди' } },
+    });
+    const scene = defineScene({
+      id: id(n + 200),
+      slug: 'scene',
+      type: 'scene',
+      params: {},
+      locale: { value: { en: 'Sky', uk: 'Небо' } },
+    });
+    const image = defineImage({
+      id: id(n + 300),
+      slug: 'image',
+      type: 'image',
+      params: { width: 100, height: 100 },
+      locale: {
+        fileName: { en: 'https://example.org/en.png', uk: 'https://example.org/uk.png' },
+        alt: { en: 'Sky', uk: 'Небо' },
+      },
+    });
+    const intro = defineContentSection({
+      id: id(n + 400),
+      slug: 'intro',
+      type: 'content',
+      params: {},
+      locale: { title: 'Intro', navigationLabel: '1' },
+      content: { items: { line, image, scene }, order: ['line', 'image', 'scene'] },
+    });
+    return defineEpisode({
+      id: id(n),
+      slug,
+      type: 'episode',
+      params: { languages },
+      locale: { title: { en: 'Story', uk: 'Історія' } },
+      section: { items: { intro }, order: ['intro'] },
+      ...(events ? { events } : {}),
+    });
+  };
+  const lesson = defineLesson({
+    id: id(20),
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Original' },
+    section: { items: {}, order: [] },
+  });
+  const start = make(2, 'start'),
+    middle = make(3, 'middle'),
+    nestedStory = make(4, 'nestedStory'),
+    directStory = make(5, 'directStory');
+  const nested = defineChapter({
+    id: id(6),
+    slug: 'nested',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Nested' },
+    content: { items: { nestedStory, reused: lesson }, order: ['nestedStory', 'reused'] },
+  });
+  const module = defineModule({
+    id: id(7),
+    slug: 'module',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: { items: { middle, nested }, order: ['middle', 'nested'] },
+  });
+  const chapter = defineChapter({
+    id: id(8),
+    slug: 'chapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { directStory }, order: ['directStory'] },
+  });
+  const course = defineCourse({
+    id: id(1),
+    slug: 'course',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Story course' },
+    content: { items: { start, module, chapter, repeated: lesson }, order: ['start', 'module', 'chapter', 'repeated'] },
+  });
+  const overrides = { content: { items: { repeated: { locale: { title: { uk: 'Контекст' } } } } } };
+  const files = renderCourseFiles(course, { overrides });
+  const base = JSON.parse(files.get('base.json')),
+    uk = JSON.parse(files.get('uk.json'));
+  const assembled = assembleCourseTree(base, uk, course.id, 'uk');
+  assert.deepEqual(
+    courseActivities(assembled).map(item => item.placement),
+    ['start', 'module/middle', 'module/nested/nestedStory', 'module/nested/reused', 'chapter/directStory', 'repeated'],
+  );
+  const episode = findCourseEpisode(assembled, start.id);
+  assert.equal(episode.locale.title, 'Історія');
+  assert.deepEqual(
+    episode.section[0].content.map(block => block.type),
+    ['text', 'image', 'scene'],
+  );
+  assert.equal(episode.section[0].content[1].locale.src, 'https://example.org/uk.png');
+  assert.equal(episode.section[0].content[2].locale.value, 'Небо');
+  assert.equal(Object.hasOwn(episode, 'skills'), false);
+  const resource = lesson.build.props({ languages });
+  const input = {
+    courseId: course.id,
+    lessonId: lesson.id,
+    language: 'uk',
+    lesson: resource,
+    course: { base, locale: { uk } },
+  };
+  assert.equal(assembleCourseLesson({ ...input, placement: 'module/nested/reused' }).locale.title, 'Original');
+  assert.equal(assembleCourseLesson({ ...input, placement: 'repeated' }).locale.title, 'Контекст');
+  assert.throws(() => assembleCourseLesson(input), /Duplicate Lesson ID/);
+  const unsupported = make(9, 'unsupported', { enter: { trigger: 'onStart' } });
+  const bad = defineCourse({
+    id: id(10),
+    slug: 'bad',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Bad', description: 'Bad' },
+    content: { items: { unsupported }, order: ['unsupported'] },
+  });
+  assert.throws(() => renderCourseFiles(bad), /unsupported Episode events/i);
 });

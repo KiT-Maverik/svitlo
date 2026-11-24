@@ -79,6 +79,8 @@ jobs:
             shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
             shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
             shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
+            shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js \
+            shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs \
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \

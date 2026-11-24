@@ -3,6 +3,7 @@ export * from './index';
 
 // Typed editorial production contracts are build-only; keep runtime entrypoint unchanged.
 export type * from './types/workflow/lessonWorkflow.types';
+export type * from './types/workflow/episodeWorkflow.types';
 export type * from './types/workflow/questionBankWorkflow.types';
 export type * from './types/workflow/flashcardBankWorkflow.types';
 export {

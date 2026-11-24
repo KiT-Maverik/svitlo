@@ -1,0 +1,151 @@
+name: Typed Episode materialization
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+    paths:
+      - 'scripts/ci/episodeMaterialization/**'
+      - 'scripts/ci/courseMaterialization/**'
+      - 'shared/engine/generators/materializers/episode/**'
+      - 'shared/engine/types/workflow/episodeWorkflow.types.ts'
+      - '.github/workflows/episode-materialization.yml'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Open Draft Episode PR with independent review
+        type: number
+        required: true
+      parent_pr:
+        description: Exact owning Course PR
+        type: number
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: episode-materialization-${{ github.event.pull_request.number || inputs.pr_number }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - run: node --test scripts/ci/episodeMaterialization/*.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs
+      - run: npm run code:check:types --workspace @svitlo/engine
+
+  resolve:
+    if: github.event_name == 'workflow_dispatch' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      meta: ${{ steps.gate.outputs.meta }}
+      head: ${{ steps.gate.outputs.head }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - id: gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: node scripts/ci/episodeMaterialization/episode-gate.mjs resolve
+
+  analyze:
+    needs: resolve
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - working-directory: trusted
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - working-directory: trusted
+        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - env:
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
+          EPISODE_HEAD_ROOT: candidate
+          EPISODE_MANIFEST: ${{ runner.temp }}/episode/manifest.json
+        run: node trusted/scripts/ci/episodeMaterialization/episode-transaction.mjs analyze
+      - uses: actions/upload-artifact@v4
+        with:
+          name: episode-stage5-${{ github.run_id }}
+          path: ${{ runner.temp }}/episode/manifest.json
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: [resolve, analyze]
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.resolve.outputs.head }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: trusted/package-lock.json
+      - working-directory: trusted
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - working-directory: trusted
+        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
+      - uses: actions/download-artifact@v4
+        with:
+          name: episode-stage5-${{ github.run_id }}
+          path: report
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
+          EPISODE_HEAD_ROOT: candidate
+          EPISODE_MANIFEST: report/manifest.json
+        run: node trusted/scripts/ci/episodeMaterialization/episode-transaction.mjs publish

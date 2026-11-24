@@ -8,6 +8,7 @@ import { isInvalidPublishedRoute } from './proxy';
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const lessonId = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
 const otherId = 'ffffffff-ffff-ffff-ffff-ffffffffffff';
+const episodeId = '11111111-1111-4111-8111-000000000141';
 const retiredEpisodeId = '9f417177-1d07-5a9d-ad74-0146c5637e84';
 const dirs: string[] = [];
 
@@ -39,8 +40,11 @@ function fixture() {
             id: 'module',
             type: 'module',
             content: {
-              order: ['intro'],
-              items: { intro: { id: lessonId, type: 'lesson' } },
+              order: ['intro', 'story'],
+              items: {
+                intro: { id: lessonId, type: 'lesson' },
+                story: { id: episodeId, type: 'episode', params: { languages: ['uk'] } },
+              },
             },
           },
         },
@@ -102,4 +106,18 @@ describe('HTTP status preflight for streamed educational routes', () => {
     );
     expect(isInvalidPublishedRoute('/uk/lesson/uk/' + lessonId, root)).toBe(true);
   });
+});
+
+it('admits only canonical localized Episode routes for actual Course members', () => {
+  const root = fixture();
+  expect(isInvalidPublishedRoute('/en/course/' + courseId + '/episode/uk/' + episodeId, root)).toBe(false);
+  for (const route of [
+    '/uk/course/' + courseId + '/episode/en/' + episodeId,
+    '/uk/course/' + courseId + '/episode/uk/' + otherId,
+    '/uk/course/' + otherId + '/episode/uk/' + episodeId,
+    '/xx/course/' + courseId + '/episode/uk/' + episodeId,
+    '/uk/course/' + courseId + '/episode/xx/' + episodeId,
+    '/uk/course/' + courseId + '/episode/' + episodeId,
+  ])
+    expect(isInvalidPublishedRoute(route, root), route).toBe(true);
 });

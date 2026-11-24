@@ -434,6 +434,8 @@ export function buildTypedCourseManifest(meta, plan) {
     reviewVerdict: meta.reviewVerdict,
     publishable: false,
     diagnostics: plan.diagnostics,
+    inventory: plan.inventory,
+    pendingEpisodes: plan.pendingEpisodes,
     pendingPlacements: plan.pendingPlacements,
     entries: entries.sort((a, b) => a.path.localeCompare(b.path)),
   };

@@ -144,7 +144,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   const paths = first.files.map(file => file.path);
   assert.ok(paths.includes(root + '/index.ts'));
   assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/index.ts'));
-  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/episodeOne/index.ts'));
+  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts'));
   assert.ok(paths.includes(root + '/methodology.md'));
   assert.ok(paths.includes(root + '/languages.ts'));
   const lessonFiles = paths.filter(file => file.includes('/data/lessons/'));
@@ -360,4 +360,46 @@ test('Lesson Stage1 refuses an authored title without the reviewed document loca
       }),
     /reviewed source-language Lesson title/,
   );
+});
+
+test('inventory follows all four Episode nesting levels and retains repeated Lesson placements', () => {
+  const input = patchedSource();
+  const top = input.config.content;
+  const module = top.items.moduleOne.config.content;
+  const nested = module.items.chapterOne.config.content;
+  top.items.directEpisode = episode();
+  top.items.directChapter = chapter();
+  top.items.directChapter.config.slug = 'directChapter';
+  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.items.moduleEpisode = episode();
+  module.order = ['moduleEpisode', 'chapterOne'];
+  nested.items.reused = {
+    ...top.items.directLesson,
+    config: { ...top.items.directLesson.config, slug: 'reused' },
+    production: { ...top.items.directLesson.production, existing: { id: reusedLessonId } },
+  };
+  nested.order.push('reused');
+  const result = materializeCourseStage5(input, reuseOptions());
+  const { lessons, episodes } = result.inventory;
+  assert.deepEqual(
+    episodes.map(row => row.orderPath),
+    [[0], [1, 0], [1, 1, 1], [2, 1]],
+  );
+  assert.deepEqual(
+    episodes.map(row => row.slug),
+    ['directEpisode', 'moduleEpisode', 'episodeOne', 'episodeOne'],
+  );
+  assert.equal(new Set(episodes.map(row => row.id)).size, 4);
+  assert.ok(episodes.every(row => row.status === 'pending-episode-scenario' && row.sourcePath.endsWith('/draft.ts')));
+  assert.equal(result.pendingEpisodes.length, 4);
+  assert.ok(episodes.every(row => !result.files.some(file => file.path === row.placementPath + '/index.ts')));
+  const repeated = lessons.filter(row => row.id === reusedLessonId);
+  assert.deepEqual(
+    repeated.map(row => row.kind),
+    ['reused', 'overridden'],
+  );
+  assert.notEqual(repeated[0].placementPath, repeated[1].placementPath);
+  assert.equal(repeated[0].sourcePath, repeated[1].sourcePath);
+  assert.equal(lessons.filter(row => row.kind === 'new').length, 2);
+  assert.deepEqual(result.inventory, materializeCourseStage5(input, reuseOptions()).inventory);
 });

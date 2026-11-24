@@ -1,15 +1,14 @@
+import { courseActivities } from '@svitlo/engine/runtime';
 import type { LocalizedCourse, LocalizedCourseNode } from './courseResources';
 
-/** Host-owned URLs; the portable UI Kit receives only navigable view data. */
 export type CourseNavigationTopic = {
   id: string;
   title: string;
-  type: 'module' | 'chapter' | 'lesson';
+  type: 'module' | 'chapter' | 'lesson' | 'episode';
   href?: string;
   children?: readonly CourseNavigationTopic[];
 };
 
-/** Project the new slug-keyed Course hierarchy, not the retired TOC JSON. */
 export function coursePropsToTopics(
   course: LocalizedCourse,
   interfaceLanguage: string,
@@ -17,23 +16,43 @@ export function coursePropsToTopics(
   lessonTitles: Readonly<Record<string, string>>,
 ): CourseNavigationTopic[] {
   const root = '/' + interfaceLanguage + '/course/' + course.id;
-  function convert(node: LocalizedCourseNode): CourseNavigationTopic {
+  const counts = new Map<string, number>();
+  for (const { node } of courseActivities(course))
+    if (node.type === 'lesson') counts.set(node.id, (counts.get(node.id) ?? 0) + 1);
+  function convert(node: LocalizedCourseNode, slot: string): CourseNavigationTopic {
     if (node.type === 'lesson') {
-      const title = lessonTitles[node.id];
-      if (!title) throw new Error('Missing localized Lesson title in Course ' + course.id + ': ' + node.id);
+      const title = lessonTitles['placement:' + slot] ?? lessonTitles[node.id];
+      if (!title) throw Error('Missing localized Lesson title in Course ' + course.id + ': ' + node.id);
+      const repeated = (counts.get(node.id) ?? 0) > 1;
       return {
-        id: node.id,
+        id: repeated ? slot : node.id,
         title,
         type: 'lesson',
-        href: root + '/lesson/' + lessonLanguage + '/' + node.id,
+        href:
+          root +
+          '/lesson/' +
+          lessonLanguage +
+          '/' +
+          node.id +
+          (repeated ? '?placement=' + encodeURIComponent(slot) : ''),
       };
     }
+    if (node.type === 'episode')
+      return {
+        id: node.id,
+        title: node.locale.title,
+        type: 'episode',
+        href: root + '/episode/' + lessonLanguage + '/' + node.id,
+      };
     return {
       id: node.id,
       title: node.locale.title,
       type: node.type,
-      children: node.content.order.map(slug => convert(node.content.items[slug])),
+      children: node.content.order.map(key => convert(node.content.items[key], slot + '/' + key)),
     };
   }
-  return course.content.order.map(slug => convert(course.content.items[slug]));
+  return course.content.order.map(key => convert(course.content.items[key], key));
+}
+export function flattenCourseTopics(topics: readonly CourseNavigationTopic[]): CourseNavigationTopic[] {
+  return topics.flatMap(topic => (topic.href ? [topic] : flattenCourseTopics(topic.children ?? [])));
 }

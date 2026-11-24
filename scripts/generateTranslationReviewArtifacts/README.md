@@ -9,6 +9,7 @@ The reference corpus is a **disposable read-only ZIP**, not authored data or a G
 /agent-artifacts generate lessons content/math it
 /agent-artifacts generate questions content/astronomy qm
 /agent-artifacts generate courses content/astronomy 1e79d8fc-2223-4fa7-bc64-70d8172d3e8b uk
+/agent-artifacts generate episodes content/astronomy <course-uuid> <episode-uuid> uk
 /agent-artifacts generate assessment-methods it
 /agent-artifacts generate ui-kit audio it
 /agent-artifacts generate ui-kit all it
@@ -45,7 +46,7 @@ questions/<questionType>/<questionSlug>.ts
 
 Root and type indexes must agree with the actual Question files. Child ContentBlocks may live in sibling directories, but the Question module itself is the direct `<questionSlug>.ts`. Reviews include prompts, answer correctness, distractors, hints, explanation, source Ukrainian and requested locale, and related Quiz fields. The generator rejects unsupported/mismatched bank layouts rather than silently skipping Questions.
 
-Course references contain Course/Module/Chapter/Episode-owned content; standalone Lessons appear by UUID reference rather than duplicating a different author's Lesson. Skills, UI Kit, Assessment Methods and EducationStandard have distinct family generators. The archive is not a new publication format. Preserve the existing source/materialization, editorial and independent review gates.
+Course references contain Course/Module/Chapter-owned text. Lessons and Episodes appear by UUID reference. Episode references require exact Course UUID, Episode UUID and locale, use actual localized Episode Build Props (including ordered Sections/Blocks and events), and never follow unrelated Lessons or other Episodes. Physical media bytes are not required for linguistic review; media verification belongs to the later human stage. Skills, UI Kit, Assessment Methods and EducationStandard have distinct family generators. The archive is not a new publication format. Preserve the existing source/materialization, editorial and independent review gates.
 
 ## Local generation
 

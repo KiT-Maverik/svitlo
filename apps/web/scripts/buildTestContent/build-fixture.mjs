@@ -247,6 +247,102 @@ if (id === 'web-fixture-alpha') {
       },
     },
   });
+  // Test-only second Course: all four Episode placements with a repeated Lesson.
+  const STORY = uuid(0x140);
+  const storyTitles = { uk: 'Контрольний епізод', en: 'Controlled Episode', ar: 'حلقة اختبارية', qm: 'Sınav epizodı' };
+  function episode(lang, n, slug) {
+    const t = translations[lang];
+    return {
+      id: uuid(n),
+      slug,
+      type: 'episode',
+      params: { languages },
+      locale: { title: storyTitles[lang] + ' ' + n },
+      section: [
+        {
+          id: uuid(n + 0x20),
+          slug: 'opening',
+          type: 'content',
+          params: {},
+          locale: { title: t[1], navigationLabel: t[1] },
+          content: [
+            block(n + 0x40, 'narration', 'text', {}, { value: t[5] }),
+            block(
+              n + 0x60,
+              'picture',
+              'image',
+              { width: 120, height: 90 },
+              { src: '/textbooks/web-fixture-alpha/beam.svg', alt: t[4] },
+            ),
+            block(0x117, 'fixtureScene', 'scene', {}, { value: t[4] }),
+          ],
+        },
+        {
+          id: uuid(n + 0x80),
+          slug: 'closing',
+          type: 'practice',
+          params: {},
+          locale: { title: t[2], navigationLabel: t[2] },
+          content: [block(n + 0xa0, 'closingText', 'text', {}, { value: t[5] })],
+        },
+      ],
+    };
+  }
+  function story(lang) {
+    const t = translations[lang];
+    const collection = (items, order) => ({ items, order });
+    const chapter = (n, slug, children) => ({
+      id: uuid(n),
+      slug,
+      type: 'chapter',
+      locale: { title: t[9] },
+      content: children,
+    });
+    const lesson = { id: LESSON, type: 'lesson' };
+    return {
+      id: STORY,
+      type: 'course',
+      params: { languages },
+      locale: { title: storyTitles[lang], description: t[7] },
+      content: collection(
+        {
+          opening: episode(lang, 0x141, 'opening'),
+          module: {
+            id: uuid(0x145),
+            type: 'module',
+            locale: { title: t[8] },
+            content: collection(
+              {
+                moduleStory: episode(lang, 0x142, 'moduleStory'),
+                nested: chapter(
+                  0x146,
+                  'nested',
+                  collection({ nestedStory: episode(lang, 0x143, 'nestedStory'), repeat: lesson }, [
+                    'nestedStory',
+                    'repeat',
+                  ]),
+                ),
+              },
+              ['moduleStory', 'nested'],
+            ),
+          },
+          direct: chapter(
+            0x147,
+            'direct',
+            collection({ directStory: episode(lang, 0x144, 'directStory') }, ['directStory']),
+          ),
+          finalLesson: { ...lesson, overrides: { locale: { title: t[0] + ' 2' } } },
+        },
+        ['opening', 'module', 'direct', 'finalLesson'],
+      ),
+    };
+  }
+  publish('data/courses/' + STORY + '/base.json', story('en'));
+  for (const lang of languages)
+    publish('data/courses/' + STORY + '/' + lang + '.json', {
+      locale: story(lang).locale,
+      content: story(lang).content,
+    });
   function course(lang) {
     const t = translations[lang];
     return {
