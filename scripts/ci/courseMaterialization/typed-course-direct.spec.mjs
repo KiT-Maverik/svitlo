@@ -97,10 +97,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   const reused = formattedReference.inventory.lessons.find(row => row.kind === 'reused');
   const importedFile = formattedReference.entries.find(entry => entry.path === reused.placementSourcePath);
   const originalReference = Buffer.from(importedFile.data, 'base64').toString('utf8');
-  const singleQuoted = originalReference.replace(
-    /from "([^"\n]+)";/,
-    "from '$1';",
-  );
+  const singleQuoted = originalReference.replace(/from "([^"\n]+)";/, "from '$1';");
   assert.notEqual(singleQuoted, originalReference);
   importedFile.data = Buffer.from(singleQuoted).toString('base64');
   importedFile.sha256 = createHash('sha256').update(singleQuoted).digest('hex');
