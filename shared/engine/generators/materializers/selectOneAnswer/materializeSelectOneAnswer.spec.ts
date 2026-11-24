@@ -84,6 +84,25 @@ test('selectOneAnswer: rejects delegated ContentBlock writing outside its semant
     /escaped its assigned directory/,
   );
 });
+test('selectOneAnswer: preserves a real block slug named items', () => {
+  const question = fixture();
+  question.config.content.question = collection({ items: block('items', 9) });
+  const result = materializeSelectOneAnswer(question as never, context);
+  assert(result.files.some(file => file.path.endsWith('/question/items/index.ts')));
+});
+test('selectOneAnswer: refuses imported child without a generated entrypoint', () => {
+  assert.throws(
+    () =>
+      materializeSelectOneAnswer(fixture() as never, {
+        ...context,
+        materializeBlock: (_node, props) => ({
+          exportName: 'prompt',
+          files: [{ path: props.directory + '/specification.md', content: '# draft\\n', kind: 'markdown' as const }],
+        }),
+      }),
+    /missing delegated ContentBlock index\.ts/,
+  );
+});
 test('selectOneAnswer: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
   Object.assign(noPrompt.config.content.question, { items: {}, order: [] });
