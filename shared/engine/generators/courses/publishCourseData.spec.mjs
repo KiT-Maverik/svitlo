@@ -6,6 +6,7 @@ import test from 'node:test';
 import {
   defineChapter,
   defineCourse,
+  placeLesson,
   defineLesson,
   defineModule,
   defineEpisode,
@@ -537,4 +538,85 @@ test('real Episode Configurators publish at all four levels with localized order
     content: { items: { unsupported }, order: ['unsupported'] },
   });
   assert.throws(() => renderCourseFiles(bad), /unsupported Episode events/i);
+});
+
+test('real placement-local Lesson patch publishes only sparse overrides at each placement without Course-root patch', () => {
+  const languages = ['en', 'uk'];
+  const lesson = defineLesson({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d21',
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Original', uk: 'Оригінал' } },
+    section: { items: {}, order: [] },
+  });
+  const raw = {
+    params: { sections: { allowSkipping: false } },
+    locale: { title: { uk: 'Тіньова практика' } },
+  };
+  const placement = placeLesson(lesson, raw);
+  const chapter = defineChapter({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d22',
+    slug: 'unit',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Unit' },
+    content: { items: { shadow: placement }, order: ['shadow'] },
+  });
+  const module = defineModule({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d23',
+    slug: 'group',
+    type: 'module',
+    params: {},
+    locale: { title: 'Group' },
+    content: { items: { unit: chapter }, order: ['unit'] },
+  });
+  const course = defineCourse({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d24',
+    slug: 'course',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Inline Lesson patches' },
+    content: { items: { group: module, original: lesson }, order: ['group', 'original'] },
+  });
+  const files = renderCourseFiles(course);
+  const base = JSON.parse(files.get('base.json'));
+  const nested = base.content.items.group.content.items.unit.content.items.shadow;
+  assert.deepEqual(nested, {
+    id: lesson.id,
+    type: 'lesson',
+    overrides: { params: { sections: { allowSkipping: false } } },
+  });
+  assert.deepEqual(base.content.items.original, { id: lesson.id, type: 'lesson' });
+  const uk = JSON.parse(files.get('uk.json'));
+  const assembled = mergeCourseProps(base, uk);
+  assert.equal(
+    assembled.content.items.group.content.items.unit.content.items.shadow.overrides.locale.title,
+    'Тіньова практика',
+  );
+  assert.equal(Object.hasOwn(assembled.content.items.original, 'overrides'), false);
+  assert.equal(lesson.build.props({ languages }).base.params.sections.allowSkipping, true);
+  assert.deepEqual(lesson.build.overrides(raw, { languages }).base, placement.build.overrides({}, { languages }).base);
+  assert(![...files.values()].join('').includes('"section"'));
+  assert(![...files.values()].join('').includes('"skills"'));
+  assert.throws(
+    () => renderCourseFiles(course, { languages: ['pl'] }),
+    /does not support publication language/,
+  );
+  const tampered = placeLesson(lesson, {});
+  tampered.placement.source = { ...lesson, id: 'e775647f-203d-481a-a1c7-4d331c779d99' };
+  const invalid = defineCourse({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d25',
+    slug: 'invalidCourse',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Identity check' },
+    content: { items: { shadow: tampered }, order: ['shadow'] },
+  });
+  assert.throws(() => renderCourseFiles(invalid), /Mismatched immutable Lesson placement identity/);
 });
