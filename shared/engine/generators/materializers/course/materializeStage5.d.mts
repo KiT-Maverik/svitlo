@@ -1,6 +1,5 @@
 import type {
   CourseWorkflowMaterializerInput,
-  CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3LessonMatch,
 } from '../../../types/workflow/courseWorkflow.types';
 import type { Lesson_Configurator } from '../../../configurators/lessons/defineLesson/defineLesson';

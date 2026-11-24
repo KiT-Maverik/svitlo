@@ -1,3 +1,5 @@
+import type { LessonWorkflowStage1, LessonWorkflowStage1Config } from './lessonWorkflow.types';
+import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
@@ -19,13 +21,9 @@ import type {
   CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
-  CourseWorkflowStage3LessonIntent,
-  CourseWorkflowStage3AssessmentRequirements,
   CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
-  CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
-  CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';
@@ -310,7 +308,7 @@ const assessment = {
   flashcardBankRequired: false,
   quizSectionRequired: true,
   flashcardsSectionRequired: false,
-} satisfies CourseWorkflowStage3AssessmentRequirements;
+} satisfies LessonProductionAssessmentRequirements;
 
 /** Stage 3 resolves every provisional Lesson using only two public variants. */
 declare const importedLesson: Lesson_Configurator;
@@ -320,7 +318,8 @@ const newIntent = {
   sequenceReason: 'After foundational observations',
   assessmentEvidence: 'Apply the model to a new example',
   assessment,
-} satisfies CourseWorkflowStage3LessonIntent;
+  languages: { document: 'uk', planned: ['uk', 'en'] },
+} as const;
 
 const match = {
   methodologySourcePath: 'content/example/data/lessons/a/lesson-uuid/methodology.md',
@@ -335,7 +334,7 @@ const newConfig = {
   skills: lessonSlot.config.skills,
   params: { age: { min: 6, max: 10 }, grade: { min: 1, max: 4 } },
   locale: { title: 'Day and night' },
-} satisfies CourseWorkflowStage3NewLessonConfig;
+} satisfies LessonWorkflowStage1Config<false>;
 
 const newLesson = {
   config: newConfig,
@@ -344,7 +343,7 @@ const newLesson = {
     ...newIntent,
     methodology: 'Complete pedagogical specification belongs here; this test is not reviewed content.',
   },
-} satisfies CourseWorkflowStage3NewLesson;
+} satisfies LessonWorkflowStage1<false>;
 
 const existingConfig = {
   type: 'lesson',
@@ -424,13 +423,13 @@ const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
 // @ts-expect-error Stage 3 course must replace unresolved Stage 2 Lesson slots.
 const unresolvedCourse: CourseWorkflowStage3Config = planned.config;
 
-const missingNewMethodology: CourseWorkflowStage3NewLesson = {
+const missingNewMethodology: LessonWorkflowStage1<false> = {
   config: newConfig,
   // @ts-expect-error Newly planned Lessons require substantive methodology.
   production: { ...newIntent, kind: 'new' },
 };
 
-const newWithId: CourseWorkflowStage3NewLesson = {
+const newWithId: LessonWorkflowStage1<false> = {
   config: {
     ...newConfig,
     // @ts-expect-error New Lesson UUIDs are minted only at Stage 5.
@@ -439,10 +438,10 @@ const newWithId: CourseWorkflowStage3NewLesson = {
   production: newLesson.production,
 };
 
-const newWithLanguages: CourseWorkflowStage3NewLessonConfig = {
+const newWithLanguages: LessonWorkflowStage1Config<false> = {
   ...newConfig,
   params: {
-    // @ts-expect-error Stage 3 planned languages belong to Course production.
+    // @ts-expect-error Lesson planned languages belong to Lesson production.
     languages: ['uk'],
   },
 };
@@ -603,7 +602,7 @@ void obsoleteThirdVariant;
 void malformedReference;
 void missingReferenceId;
 
-const missingAssessmentChoice: CourseWorkflowStage3AssessmentRequirements = {
+const missingAssessmentChoice: LessonProductionAssessmentRequirements = {
   questionBankRequired: true,
   quizSectionRequired: true,
   // @ts-expect-error The Flashcard Bank decision must be explicit.

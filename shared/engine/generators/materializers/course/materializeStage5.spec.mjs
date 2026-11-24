@@ -26,6 +26,7 @@ const lesson = slug => ({
   },
   production: {
     kind: 'new',
+    languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: 'Reviewed full factual and pedagogical specification',
     objective: 'Demonstrate the intended skill',
     depth: 'Introductory',
@@ -120,8 +121,6 @@ test('Lesson Draft emits exactly the independent typed Stage 1 source and no Con
   const lessonId = deriveCourseEntityId(rootId, 'lesson', 'directLesson');
   const result = materializeLessonDraft(lesson('directLesson'), {
     lessonId,
-    sourceLanguage: 'uk',
-    plannedLanguages: ['uk', 'en'],
     reviewedSourceSha: sha,
     textbookRoot: 'content/playground',
   });
@@ -133,7 +132,12 @@ test('Lesson Draft emits exactly the independent typed Stage 1 source and no Con
   assert.match(result.files[0].content, /satisfies LessonWorkflowStage1/);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
   assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
-  assert.match(result.files[0].content, /"sourceEvidence":/);
+  const emitted = JSON.parse(
+    result.files[0].content.split('export const lessonStage1 = ')[1].split(' as const satisfies')[0],
+  );
+  const expected = lesson('directLesson');
+  const { kind, ...production } = expected.production;
+  assert.deepEqual(emitted, { config: { ...expected.config, id: lessonId }, production });
   assert.doesNotMatch(result.files[0].content, /defineLesson\(|defineQuizSection|feedc0de-/);
   assert.equal(result.diagnostics[0].severity, 'blocker');
 });
@@ -354,8 +358,6 @@ test('Lesson Stage1 refuses an authored title without the reviewed document loca
     () =>
       materializeLessonDraft(source, {
         lessonId: deriveCourseEntityId(rootId, 'lesson', 'notLocalized'),
-        sourceLanguage: 'uk',
-        plannedLanguages: ['uk', 'en'],
         reviewedSourceSha: sha,
         textbookRoot: 'content/playground',
       }),

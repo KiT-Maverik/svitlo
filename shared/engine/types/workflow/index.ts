@@ -20,13 +20,9 @@ export type {
   CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
-  CourseWorkflowStage3LessonIntent,
-  CourseWorkflowStage3AssessmentRequirements,
   CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
-  CourseWorkflowStage3NewLesson,
   CourseWorkflowStage3ExistingLesson,
-  CourseWorkflowStage3NewLessonConfig,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from './courseWorkflow.types';

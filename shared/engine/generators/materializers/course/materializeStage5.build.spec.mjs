@@ -30,6 +30,7 @@ const pendingLesson = {
   },
   production: {
     kind: 'new',
+    languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: 'Reviewed complete objective, pedagogy, cognitive depth and misconception handling',
     objective: 'Independently describe and compare observed changes',
     depth: 'Introductory',
@@ -151,7 +152,7 @@ test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck
   assert.ok(source.diagnostics.some(d => d.code === 'pending-lesson-stage1'));
   const handoff = source.files.filter(file => file.path.includes('/data/lessons/') && file.kind === 'typescript');
   assert.equal(handoff.length, 1);
-  assert.match(handoff[0].content, /satisfies LessonWorkflowStage1 & LessonWorkflowStage1CourseHandoff/);
+  assert.match(handoff[0].content, /satisfies LessonWorkflowStage1/);
   assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(/);
   assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
   const errors = diagnostics(source.files);

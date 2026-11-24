@@ -1,6 +1,5 @@
 import type {
   LessonWorkflowStage1,
-  LessonWorkflowStage1CourseHandoff,
   LessonWorkflowStage2,
   LessonWorkflowMaterializerInput,
   QuestionBankWorkflowStage1,
@@ -27,7 +26,7 @@ export type EngineWorkflowBuildExports = [
   Expect<Equal<LessonWorkflowMaterializerInput, LessonWorkflowStage2>>,
   Expect<Equal<QuestionBankWorkflowMaterializerInput, InternalQuestionsStage3>>,
   Expect<Equal<FlashcardBankWorkflowMaterializerInput, InternalFlashcardsStage3>>,
-  LessonWorkflowStage1CourseHandoff,
+  Expect<Equal<LessonWorkflowStage1<false>, InternalLessonStage1<false>>>,
   QuestionBankWorkflowStage1,
   QuestionBankWorkflowStage2,
   FlashcardBankWorkflowStage1,

@@ -69,6 +69,7 @@ const newLesson = slug => ({
   config: { type: 'lesson', slug, skills: [skillId], locale: { title: { uk: 'Новий урок' } } },
   production: {
     kind: 'new',
+    languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: 'Reviewed comprehensive independent methodology',
     objective: 'Describe observations',
     depth: 'Introductory',

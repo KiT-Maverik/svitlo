@@ -1,9 +1,7 @@
-import type { CourseWorkflowStage3NewLesson } from './courseWorkflow.types';
 import type { ContentBlock_Text_Configurator } from '../../configurators/contentBlocks/defineText/defineText';
 import type {
   LessonWorkflowStage1,
   LessonWorkflowStage1Config,
-  LessonWorkflowStage1CourseHandoff,
   LessonWorkflowStage1Production,
   LessonWorkflowStage2,
   LessonWorkflowStage2Section,
@@ -24,6 +22,7 @@ const courseNewLesson = {
   },
   production: {
     kind: 'new',
+    languages: { document: 'uk', planned: ['uk', 'en'] },
     objective: 'Explain observable differences between light and darkness.',
     depth: 'Introductory observation with grounded examples.',
     sequenceReason: 'After the course introduces everyday observation.',
@@ -39,23 +38,16 @@ const courseNewLesson = {
       'contrast valid examples and misconceptions, specify source checks, outcomes, cognitive ' +
       'assessment methods, accessible representations, offline paths and excluded claims.',
   },
-} satisfies CourseWorkflowStage3NewLesson;
+} satisfies LessonWorkflowStage1<false>;
 
+const { kind: _placementKind, ...lessonProduction } = courseNewLesson.production;
 const courseHandoff = {
   config: {
     ...courseNewLesson.config,
     id: '663572e7-bd85-4516-86e2-3de07d209e03',
   },
-  production: {
-    methodology: courseNewLesson.production.methodology,
-    objective: courseNewLesson.production.objective,
-    depth: courseNewLesson.production.depth,
-    sequenceReason: courseNewLesson.production.sequenceReason,
-    assessmentEvidence: courseNewLesson.production.assessmentEvidence,
-    assessment: courseNewLesson.production.assessment,
-    languages: { document: 'uk', planned: ['uk', 'en'] },
-  },
-} satisfies LessonWorkflowStage1CourseHandoff;
+  production: lessonProduction,
+} satisfies LessonWorkflowStage1;
 
 const fromCourse: LessonWorkflowStage1 = courseHandoff;
 
