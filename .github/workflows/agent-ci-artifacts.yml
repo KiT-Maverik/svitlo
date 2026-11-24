@@ -238,14 +238,14 @@ jobs:
     env:
       SVITLO_AGENT_REPORT_PR: ${{ needs.resolve.outputs.pr }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head_sha }}
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - name: Install dependencies for the requested generator
         run: npm ci --silent --ignore-scripts --no-audit --no-fund
       - name: Detect complete EducationStandard authoring matrix
@@ -386,7 +386,7 @@ jobs:
             throw Error('Unlisted files in report archive');
           NODE
       - name: Upload run-scoped reference corpus
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: agent-reference-pr-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: ${{ runner.temp }}/agent-reference-library/

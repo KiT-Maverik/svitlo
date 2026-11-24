@@ -37,12 +37,12 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run package:build --workspace @svitlo/engine
@@ -64,13 +64,13 @@ jobs:
       meta: ${{ steps.gate.outputs.meta }}
       head: ${{ steps.gate.outputs.head }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
       - id: gate
         env:
           GH_TOKEN: ${{ github.token }}
@@ -84,20 +84,20 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
+          node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
       - working-directory: trusted
@@ -105,14 +105,14 @@ jobs:
       - working-directory: trusted
         run: npm run package:build --workspace @svitlo/engine
       - name: Pull pinned isolated Episode worker
-        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - env:
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
           EPISODE_HEAD_ROOT: candidate
           EPISODE_MANIFEST: ${{ runner.temp }}/episode/manifest.json
         run: node trusted/scripts/ci/episodeMaterialization/episode-transaction.mjs analyze
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: episode-stage5-${{ github.run_id }}
           path: ${{ runner.temp }}/episode/manifest.json
@@ -127,21 +127,21 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ needs.resolve.outputs.head }}
           path: candidate
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: '24'
-      - uses: actions/download-artifact@v4
+          node-version: '26'
+      - uses: actions/download-artifact@v7
         with:
           name: episode-stage5-${{ github.run_id }}
           path: report

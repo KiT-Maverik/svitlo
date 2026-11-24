@@ -33,7 +33,7 @@ test('CI reuses prepared Mobile content for typechecking and preserves native co
   assert.match(workflow, /npm run code:check:types:prepared --workspace @svitlo\/mobile/);
   assert.doesNotMatch(workflow, /npm run code:check:types --workspace @svitlo\/mobile/);
   assert.match(workflow, /playwright install chromium --with-deps/);
-  assert.match(workflow, /gradle\/actions\/setup-gradle@v4/);
+  assert.match(workflow, /gradle\/actions\/setup-gradle@v5/);
   assert.match(workflow, /cap sync android/);
   assert.match(workflow, /gradlew assembleDebug --no-daemon/);
 });
