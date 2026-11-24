@@ -1,0 +1,1 @@
+**%_%FIRST_COLOR%_%** and **%_%SECOND_COLOR%_%** are color names. Two squares can have different colors. Different objects can share a color. Shape, size and position alone cannot tell you the color.
