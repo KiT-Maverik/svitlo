@@ -9,11 +9,11 @@ const assessmentKeys = [
 ];
 
 /**
- * Course Stage 5 → independent Lesson Stage 1 source, not a Lesson Configurator.
- * The unallocated placement and allocated source use the same Lesson-owned type.
+ * Course Stage 5 emits a Course-owned proposal at the canonical Lesson draft path.
+ * It does not execute Lesson Stage 1 or create a Lesson Configurator.
  *
- * @param {import('../../../types/workflow/lessonWorkflow.types').LessonWorkflowStage1<false>} node
- * @param {{lessonId: string, textbookRoot: string, reviewedSourceSha: string}} context
+ * @param {import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage3NewLesson} node
+ * @param {{lessonId: string, textbookRoot: string, reviewedSourceSha: string, languageContext: import('../../../types/workflow/courseWorkflow.types').CourseWorkflowStage1Languages}} context
  */
 export function materializeLessonDraft(node, context) {
   if (
@@ -35,7 +35,7 @@ export function materializeLessonDraft(node, context) {
   )
     throw new Error('Lesson Draft requires reviewed, unique Skill UUIDs');
   const title = node.config.locale?.title;
-  const languages = node.production.languages;
+  const languages = context.languageContext;
   const document = languages?.document;
   if (
     !isRecord(node.config.locale) ||
@@ -74,10 +74,13 @@ export function materializeLessonDraft(node, context) {
   const textbookRoot = context.textbookRoot;
   if (typeof textbookRoot !== 'string' || !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot))
     throw new Error('Lesson Draft requires a canonical textbook root');
-  const { kind: _placementKind, ...production } = node.production;
+  if (Object.keys(node.production).some(key => !['kind', 'methodology', 'objective', 'depth', 'sequenceReason', 'assessmentEvidence', 'assessment', 'sourceEvidence'].includes(key)))
+    throw new Error('Lesson seed contains unsupported Course proposal fields');
+  const { kind: _placementKind, ...proposal } = node.production;
   const source = {
     config: { ...node.config, id: context.lessonId },
-    production,
+    proposal,
+    languageContext: { document, planned: [...languages.planned] },
   };
   const path =
     textbookRoot +
@@ -93,11 +96,11 @@ export function materializeLessonDraft(node, context) {
         path,
         kind: 'typescript',
         content:
-          '// TODO (BLOCKER): Lesson Stage 1 authoring handoff; not a completed Lesson Configurator.\n' +
-          "import type { LessonWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
-          'export const lessonStage1 = ' +
+          '// TODO (BLOCKER): Course Lesson seed; complete authorized Lesson Stage 1 before continuing.\n' +
+          "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
+          'export const lessonSeed = ' +
           JSON.stringify(source, null, 2) +
-          ' as const satisfies LessonWorkflowStage1;\n',
+          ' as const satisfies CourseWorkflowLessonSeed;\n',
       },
     ],
     diagnostics: [

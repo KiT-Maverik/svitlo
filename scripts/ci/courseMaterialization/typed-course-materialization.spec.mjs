@@ -289,7 +289,6 @@ const reviewedStage3 = {
           },
           production: {
             kind: 'new',
-            languages: { document: 'uk', planned: ['uk', 'en'] },
             methodology: 'Complete independently reviewed methodology for observing sky changes',
             objective: 'Compare two observed changes in accessible forms',
             depth: 'Foundational',

@@ -40,6 +40,15 @@ test('one exported literal satisfies the real Lesson Stage 2 input without execu
     assert.deepEqual([...parsed.production.languages.planned], ['en']);
   }));
 
+test('a Course-owned seed is not Lesson Stage 6 input, even at the canonical draft path', () =>
+  fixture(({ root }) => {
+    const seed = [
+      "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';",
+      'export const lessonSeed = { config: { id: "' + id + '", type: "lesson", slug: "intro" }, proposal: {}, languageContext: { document: "en", planned: ["en"] } } satisfies CourseWorkflowLessonSeed;',
+    ].join('\\n');
+    assert.throws(() => parseTypedLesson(root, sourcePath, seed), /Stage 2|workflow type|materializer input|import/i);
+  }));
+
 test('dynamic expressions, code imports, duplicate keys and spreads fail closed', () =>
   fixture(({ root }) => {
     for (const source of [

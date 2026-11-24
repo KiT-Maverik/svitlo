@@ -28,22 +28,18 @@ import type { LessonProductionAssessmentRequirements } from './lessonAssessment.
  * The Methodologist verifies Skill UUIDs and source language against Git.
  * The canonical Lesson UUID is allocated once, including for Course handoffs.
  */
-export type LessonWorkflowStage1Config<Allocated extends boolean = true> = Pick<
-  Lesson_Config,
-  'type' | 'slug' | 'locale'
-> &
-  (Allocated extends true ? Pick<Lesson_Config, 'id'> : { id?: never }) & {
-    /** Cite real Skill definitions; do not copy another Lesson's skills array. */
-    skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
-    /** Completion policy is separate from the four editorial bank/Section decisions. */
-    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
-    section?: never;
-    events?: never;
-  };
+export type LessonWorkflowStage1Config = Pick<Lesson_Config, 'id' | 'type' | 'slug' | 'locale'> & {
+  /** Cite real Skill definitions; do not copy another Lesson's skills array. */
+  skills: readonly [Lesson_Config['skills'][number], ...Lesson_Config['skills'][number][]];
+  /** Completion policy is separate from the four editorial bank/Section decisions. */
+  params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+  section?: never;
+  events?: never;
+};
 
 type LessonLanguage = Lesson_Config['params']['languages'][number];
 
-/** One Lesson-owned editorial plan, whether standalone or planned inside a Course. */
+/** Completed Lesson-owned methodology, regardless of the editorial inputs used. */
 export type LessonWorkflowStage1Production = {
   /** Full pedagogical specification, including scope, prerequisites and misconceptions. */
   methodology: string;
@@ -66,23 +62,10 @@ export type LessonWorkflowStage1Production = {
   sourceEvidence?: string;
 };
 
-/** Only an unallocated Course placement carries the new-placement discriminator.
- * Allocation adds the permanent Lesson UUID and removes that discriminator;
- * it never changes the substantive Lesson plan.
- */
-export type LessonWorkflowStage1<Allocated extends boolean = true> = {
-  config: LessonWorkflowStage1Config<Allocated>;
-  production: LessonWorkflowStage1Production &
-    (Allocated extends true
-      ? { kind?: never }
-      : {
-          kind: 'new';
-          existing?: never;
-          matching?: never;
-          lessonId?: never;
-          overrides?: never;
-          overrideRationale?: never;
-        });
+/** The canonical deliverable of authorized Lesson Stage 1. */
+export type LessonWorkflowStage1 = {
+  config: LessonWorkflowStage1Config;
+  production: LessonWorkflowStage1Production;
 };
 
 /** Ordered editorial maps mirror Engine collections, but hold plain authoring nodes. */

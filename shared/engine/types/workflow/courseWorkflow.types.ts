@@ -5,7 +5,6 @@ import type { Lesson_Config } from '../../configurators/lessons/defineLesson/def
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
-import type { LessonWorkflowStage1 } from './lessonWorkflow.types';
 
 /** Stage 1 is a plain editorial config, not a built Course Configurator. */
 export type CourseWorkflowStage1Config = Pick<Course_Config, 'id' | 'type' | 'slug'> & {
@@ -248,7 +247,48 @@ export type CourseWorkflowStage3ExistingLesson = {
   };
 };
 
-export type CourseWorkflowStage3LessonSlot = LessonWorkflowStage1<false> | CourseWorkflowStage3ExistingLesson;
+/** A Course proposal describes the planned Lesson, not completion of Lesson Stage 1. */
+export type CourseWorkflowLessonProposal = {
+  methodology: string;
+  objective: string;
+  depth: string;
+  sequenceReason: string;
+  assessmentEvidence: string;
+  assessment: LessonProductionAssessmentRequirements;
+  sourceEvidence?: string;
+};
+
+export type CourseWorkflowStage3NewLessonConfig = CourseWorkflowStage3PlacementConfig &
+  Pick<Lesson_Config, 'locale'> & {
+    id?: never;
+    params?: Partial<Omit<Lesson_Config['params'], 'languages'>> & { languages?: never };
+    section?: never;
+    events?: never;
+  };
+
+export type CourseWorkflowStage3NewLesson = {
+  config: CourseWorkflowStage3NewLessonConfig;
+  production: CourseWorkflowLessonProposal & {
+    kind: 'new';
+    existing?: never;
+    matching?: never;
+    lessonId?: never;
+    overrides?: never;
+    overrideRationale?: never;
+    languages?: never;
+  };
+};
+
+/** Course-owned editorial seed, emitted at the future Lesson's canonical draft path.
+ * It carries an allocated identity and Course context, never a Lesson Stage 1 deliverable.
+ */
+export type CourseWorkflowLessonSeed = {
+  config: Omit<CourseWorkflowStage3NewLessonConfig, 'id'> & Pick<Lesson_Config, 'id'>;
+  proposal: CourseWorkflowLessonProposal;
+  languageContext: CourseWorkflowStage1Languages;
+};
+
+export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | CourseWorkflowStage3ExistingLesson;
 
 /** Stage 3 changes only the nested Lesson slots, keeping Stage 2 hierarchy. */
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {

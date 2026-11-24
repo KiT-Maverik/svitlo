@@ -1,4 +1,3 @@
-import type { LessonWorkflowStage1, LessonWorkflowStage1Config } from './lessonWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
@@ -21,6 +20,9 @@ import type {
   CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage3NewLessonConfig,
+  CourseWorkflowLessonSeed,
   CourseWorkflowMaterializerInput,
   CourseWorkflowStage3LessonMatch,
   CourseWorkflowStage3ExistingLesson,
@@ -318,7 +320,6 @@ const newIntent = {
   sequenceReason: 'After foundational observations',
   assessmentEvidence: 'Apply the model to a new example',
   assessment,
-  languages: { document: 'uk', planned: ['uk', 'en'] },
 } as const;
 
 const match = {
@@ -334,7 +335,7 @@ const newConfig = {
   skills: lessonSlot.config.skills,
   params: { age: { min: 6, max: 10 }, grade: { min: 1, max: 4 } },
   locale: { title: 'Day and night' },
-} satisfies LessonWorkflowStage1Config<false>;
+} satisfies CourseWorkflowStage3NewLessonConfig;
 
 const newLesson = {
   config: newConfig,
@@ -343,7 +344,15 @@ const newLesson = {
     ...newIntent,
     methodology: 'Complete pedagogical specification belongs here; this test is not reviewed content.',
   },
-} satisfies LessonWorkflowStage1<false>;
+} satisfies CourseWorkflowStage3NewLesson;
+
+const { kind: _newKind, ...proposal } = newLesson.production;
+const allocatedSeed = {
+  config: { ...newLesson.config, id: '663572e7-bd85-4516-86e2-3de07d209e05' },
+  proposal,
+  languageContext: complete.production.languages,
+} satisfies CourseWorkflowLessonSeed;
+void allocatedSeed;
 
 const existingConfig = {
   type: 'lesson',
@@ -423,13 +432,13 @@ const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
 // @ts-expect-error Stage 3 course must replace unresolved Stage 2 Lesson slots.
 const unresolvedCourse: CourseWorkflowStage3Config = planned.config;
 
-const missingNewMethodology: LessonWorkflowStage1<false> = {
+const missingNewMethodology: CourseWorkflowStage3NewLesson = {
   config: newConfig,
   // @ts-expect-error Newly planned Lessons require substantive methodology.
   production: { ...newIntent, kind: 'new' },
 };
 
-const newWithId: LessonWorkflowStage1<false> = {
+const newWithId: CourseWorkflowStage3NewLesson = {
   config: {
     ...newConfig,
     // @ts-expect-error New Lesson UUIDs are minted only at Stage 5.
@@ -438,10 +447,10 @@ const newWithId: LessonWorkflowStage1<false> = {
   production: newLesson.production,
 };
 
-const newWithLanguages: LessonWorkflowStage1Config<false> = {
+const newWithLanguages: CourseWorkflowStage3NewLessonConfig = {
   ...newConfig,
   params: {
-    // @ts-expect-error Lesson planned languages belong to Lesson production.
+    // @ts-expect-error Course language context belongs to the Course root.
     languages: ['uk'],
   },
 };

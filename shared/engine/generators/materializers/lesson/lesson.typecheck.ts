@@ -1,14 +1,17 @@
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type {
+  CourseWorkflowStage3NewLesson,
+  CourseWorkflowStage3NewLessonConfig,
+  CourseWorkflowLessonSeed,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
 } from '../../../types/workflow/courseWorkflow.types';
-import type { LessonWorkflowStage1, LessonWorkflowStage1Config } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowMaterializerInput, LessonWorkflowStage1 } from '../../../types/workflow/lessonWorkflow.types';
 import type { Source } from './lesson';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 
 /** Stage 3 placements do not yet have the complete standalone Lesson shape. */
-declare const newPlacement: LessonWorkflowStage1Config<false>;
+declare const newPlacement: CourseWorkflowStage3NewLessonConfig;
 declare const existingPlacement: CourseWorkflowStage3ExistingLessonConfig;
 declare const builtReuse: CourseWorkflowStage3ExistingLessonReference;
 // @ts-expect-error No immutable Lesson UUID, publication languages or section tree in Stage 3.
@@ -27,9 +30,16 @@ void invalidPatch;
 void validAudience;
 
 /** Parent-owned Stage 5 Course handoff is editorial, not a completed Lesson Config. */
-declare const courseStage3New: LessonWorkflowStage1<false>;
+declare const courseStage3New: CourseWorkflowStage3NewLesson;
 // @ts-expect-error Stage 3 {config, production} envelope cannot be a completed Lesson source.
 const invalidStage3Envelope: Source = courseStage3New;
+declare const seed: CourseWorkflowLessonSeed;
+// @ts-expect-error Course seed is editorial input, not Lesson Stage 1 output.
+const incompleteMethodology: LessonWorkflowStage1 = seed;
+// @ts-expect-error Course seed cannot be materialized as Lesson Stage 2.
+const incompleteContent: LessonWorkflowMaterializerInput = seed;
+void incompleteMethodology;
+void incompleteContent;
 const requirements: LessonProductionAssessmentRequirements = {
   questionBankRequired: true,
   flashcardBankRequired: false,

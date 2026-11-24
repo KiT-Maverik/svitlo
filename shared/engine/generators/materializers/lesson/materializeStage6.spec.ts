@@ -7,7 +7,8 @@ import type { LessonWorkflowMaterializerInput } from '../../../types/workflow/le
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { posix, resolve, sep } from 'node:path';
+import { posix, resolve, sep, dirname, join } from 'node:path';
+import { existsSync } from 'node:fs';
 import vm from 'node:vm';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
@@ -143,7 +144,13 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
 
 test('generated Lesson source passes the real TypeScript semantic checker', () => {
   const plan = produce();
-  const workspace = resolve(process.cwd(), '../..');
+  // Resolve the checkout containing the compiled test, never the caller's cwd.
+  let workspace = __dirname;
+  while (!existsSync(join(workspace, 'shared/engine/package.json'))) {
+    const parent = dirname(workspace);
+    assert.notEqual(parent, workspace, 'repository root not found');
+    workspace = parent;
+  }
   const files = new Map(
     plan.files.filter(file => file.kind === 'typescript').map(file => [resolve(workspace, file.path), file.content]),
   );

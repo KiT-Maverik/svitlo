@@ -30,7 +30,6 @@ const pendingLesson = {
   },
   production: {
     kind: 'new',
-    languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: 'Reviewed complete objective, pedagogy, cognitive depth and misconception handling',
     objective: 'Independently describe and compare observed changes',
     depth: 'Introductory',
@@ -134,7 +133,7 @@ function diagnostics(files) {
   const contractFixture = path.join(engineRoot, 'generators/materializers/course/materializeStage5.typecheck.ts');
   return ts.getPreEmitDiagnostics(ts.createProgram([...virtual.keys(), contractFixture], opts, host));
 }
-test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck against actual Engine Build', () => {
+test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck against actual Engine Build', () => {
   const root = 'content/playground/data/courses/3/' + id;
   const source = materializeCourseStage5(input, {
     textbookRoot: 'content/playground',
@@ -151,8 +150,8 @@ test('canonical Stage3 Course hierarchy and UUID Lesson Stage1 handoff typecheck
   assert.ok(source.diagnostics.some(d => d.code === 'pending-lesson-stage1'));
   const handoff = source.files.filter(file => file.path.includes('/data/lessons/') && file.kind === 'typescript');
   assert.equal(handoff.length, 1);
-  assert.match(handoff[0].content, /satisfies LessonWorkflowStage1/);
-  assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(/);
+  assert.match(handoff[0].content, /satisfies CourseWorkflowLessonSeed/);
+  assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(|LessonWorkflowStage1/);
   assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
   const errors = diagnostics(source.files);
   assert.deepEqual(

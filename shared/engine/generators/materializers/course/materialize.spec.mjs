@@ -69,7 +69,6 @@ const newLesson = slug => ({
   config: { type: 'lesson', slug, skills: [skillId], locale: { title: { uk: 'Новий урок' } } },
   production: {
     kind: 'new',
-    languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: 'Reviewed comprehensive independent methodology',
     objective: 'Describe observations',
     depth: 'Introductory',
@@ -134,8 +133,8 @@ const sectionRenderer = (node, ctx) => ({
   files: [{ path: ctx.directory + '/index.ts', kind: 'typescript', content: 'export const opening = {};\n' }],
 });
 const reused = [];
-// Test double for parent-owned LessonWorkflowStage1 emitter: its placeholder body is deliberately NOT a valid authored Lesson.
-// These scenarios cover only the UUID path/metadata handoff; they do NOT establish Stage 1 type compatibility.
+// Test double for Course-owned Lesson seed emitter: its placeholder body is deliberately NOT a valid authored Lesson.
+// These scenarios cover only the UUID path/metadata handoff; they do NOT establish seed type compatibility.
 const lessonBridge = (node, ctx) => {
   reused.push({
     location: ctx.directory,
@@ -155,7 +154,7 @@ const lessonBridge = (node, ctx) => {
           path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
-            '// Future LessonWorkflowStage1 authored source; no runtime Configurator\\nexport const lessonStage1 = {};\\n',
+            '// Future CourseWorkflowLessonSeed authored source; no runtime Configurator\\nexport const lessonSeed = {};\\n',
         },
       ],
     };

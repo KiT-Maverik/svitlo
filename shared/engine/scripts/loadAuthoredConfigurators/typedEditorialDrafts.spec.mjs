@@ -139,6 +139,22 @@ test('canonical Lesson and bank drafts typecheck but do not enter mixed publicat
   ];
   for (const entry of entries) writeDraft(...entry);
   const files = entries.map(entry => entry[0]);
+  // A Course seed is valid inert source at exactly the same path, but not a completed Lesson.
+  const seed = { config: lesson.config, proposal: {
+    methodology: lesson.production.methodology,
+    objective: lesson.production.objective,
+    depth: lesson.production.depth,
+    sequenceReason: lesson.production.sequenceReason,
+    assessmentEvidence: lesson.production.assessmentEvidence,
+    assessment,
+  }, languageContext: languages };
+  writeDraft(files[0], 'CourseWorkflowLessonSeed', seed);
+  assert.deepEqual(diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')), []);
+  assert.deepEqual(await renderLessons(home, 'draft'), new Map());
+  await assert.rejects(renderLessons(home, 'production'), /Unmaterialized editorial draft/);
+  // Authorized Lesson Stage 1 replaces the seed in place; no conversion API or second file.
+  writeDraft(files[0], 'LessonWorkflowStage1', lesson);
+  assert.equal(fs.readdirSync(owner).filter(name => name.endsWith('.ts')).length, 1);
   assert.deepEqual(
     diagnostics(files).map(d => ts.flattenDiagnosticMessageText(d.messageText, ' ')),
     [],
