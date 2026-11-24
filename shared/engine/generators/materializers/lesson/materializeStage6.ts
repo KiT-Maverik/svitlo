@@ -301,7 +301,6 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
         return materializeScene(config as Parameters<typeof materializeScene>[0], {
           ...opts,
           registered: false,
-          specificationSidecar: false,
           production: {
             specification: typeof production?.specification === 'string' ? production.specification : undefined,
             pending: true,
