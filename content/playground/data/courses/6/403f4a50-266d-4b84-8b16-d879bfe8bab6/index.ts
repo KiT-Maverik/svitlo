@@ -1,6 +1,7 @@
-import type { CourseWorkflowStage2 } from '@svitlo/engine/build';
+import type { CourseWorkflowStage3 } from '@svitlo/engine/build';
+import { howLightMoves } from '#lessonsData/c/d3048d21-8690-5255-b62c-984c69ac272c/index';
 
-export const courseStage2 = {
+export const courseStage3 = {
   config: {
     id: '403f4a50-266d-4b84-8b16-d879bfe8bab6',
     type: 'course',
@@ -26,7 +27,29 @@ export const courseStage2 = {
           },
         },
         lightBasics: {
-          config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000015'] },
+          config: {
+            type: "lesson",
+            slug: "lightBasics",
+            skills: [
+              "00000000-0000-4000-8000-000000000015"
+            ]
+          },
+          production: {
+            kind: "existing",
+            existing: { id: howLightMoves.id },
+            matching: {
+              methodologySourcePath: "content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/index.ts",
+              sourceSha: "af9db146258932eda68bd5f49139b0358f80e71c",
+              matchingRationale: "Reuse the real light-propagation fixture with theory, practice and its existing Quiz. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is requested; exact age fit, quantitative extension and accessibility need independent review. No canonical methodology.md exists: index.ts is provisional inspected implementation evidence, not an accepted methodology source. Trusted reuse is blocked until separately authorized canonical methodology is integrated.",
+              languageEvidence: "The inspected Lesson declares all default supported languages; English and Ukrainian titles, introductory Markdown and practice text exist. Full locale/review and asset readiness remain unverified."
+            },
+            assessment: {
+              questionBankRequired: true,
+              flashcardBankRequired: true,
+              quizSectionRequired: true,
+              flashcardsSectionRequired: false
+            }
+          }
         },
         familiarCircles: {
           config: {
@@ -43,7 +66,37 @@ export const courseStage2 = {
                   },
                 },
                 circleRecognition: {
-                  config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000008'] },
+                  config: {
+                    type: "lesson",
+                    slug: "circleRecognition",
+                    skills: [
+                      "00000000-0000-4000-8000-000000000008"
+                    ],
+                    locale: {
+                      title: "Recognizing circles"
+                    },
+                    params: {
+                      age: {
+                        min: 12,
+                        max: 16
+                      },
+                      quizRequiredForCompletion: true
+                    }
+                  },
+                  production: {
+                    kind: "new",
+                    objective: "Identify a circle among ovals and polygons and explain the distinguishing feature.",
+                    depth: "Qualitative recognition only; no formulas or geometric proofs.",
+                    sequenceReason: "Introduce the second target Skill before combined practice.",
+                    assessmentEvidence: "Own a small independent Question Bank for classification, counterexample recognition and explanation; include an enabled Quiz to check transfer. No Flashcard Bank or Section: discrimination practice is more useful than memorizing a label.",
+                    assessment: {
+                      questionBankRequired: true,
+                      flashcardBankRequired: false,
+                      quizSectionRequired: true,
+                      flashcardsSectionRequired: false
+                    },
+                    methodology: "Ages 12–16; assume only everyday shape vocabulary. A circle is a closed curve whose points are equally distant from its centre; distinguish the circular outline from an oval and from straight-sided polygons. Model a familiar circular rim, contrast different-sized circles with elongated ovals and polygons, then ask learners to classify new examples and explain why rotation and size do not alter the shape. Address the misconception that every round-looking object or oval is a circle. Provide verbal shape descriptions conveying equivalent geometry, keyboard-accessible actions and feedback, avoiding color-only distinctions. Use varied examples rather than identical repetitions. The Lesson remains independent of the exhibition narrative. Build a short enabled Quiz from the owned independently authored Question Bank; no invented selections. English source, Ukrainian planned. Verify actual Skill definition testRecognizeCircle. Technical fixture; no formal geometry or curriculum certification."
+                  }
                 },
               },
               order: ['circleMission', 'circleRecognition'],
@@ -76,7 +129,30 @@ export const courseStage2 = {
                   },
                 },
                 shadowPractice: {
-                  config: { type: 'lesson', skills: ['00000000-0000-4000-8000-000000000015'] },
+                  config: {
+                    type: "lesson",
+                    slug: "shadowPractice",
+                    skills: [
+                      "00000000-0000-4000-8000-000000000015"
+                    ]
+                  },
+                  production: {
+                    kind: "existing",
+                    existing: howLightMoves.build.overrides({ params: { sections: { allowSkipping: false } } }, { languages: ['en', 'uk'] }),
+                    matching: {
+                      methodologySourcePath: "content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/index.ts",
+                      sourceSha: "af9db146258932eda68bd5f49139b0358f80e71c",
+                      matchingRationale: "Revisit the same light Skill through the existing theory, practice and Quiz while requiring the ordered experience rather than skipping. The source includes ray models, speed comparisons and an opaque-object-shadow Question. Technical E2E reuse is requested; exact age fit, quantitative extension and accessibility need independent review. No canonical methodology.md exists: index.ts is provisional inspected implementation evidence, not an accepted methodology source. Trusted reuse is blocked until separately authorized canonical methodology is integrated.",
+                      languageEvidence: "The inspected Lesson declares all default supported languages; English and Ukrainian titles, introductory Markdown and practice text exist. Full locale/review and asset readiness remain unverified."
+                    },
+                    assessment: {
+                      questionBankRequired: true,
+                      flashcardBankRequired: true,
+                      quizSectionRequired: true,
+                      flashcardsSectionRequired: false
+                    },
+                    overrideRationale: "Disable Lesson-wide section skipping for this Course placement only; preserve canonical Lesson identity, Skills, Quiz requirement, banks and all source content. This exercises a real nonempty sparse Build override without modifying the original Lesson."
+                  }
                 },
                 combinedObservations: {
                   config: {
@@ -96,9 +172,37 @@ export const courseStage2 = {
                         },
                         combinedPractice: {
                           config: {
-                            type: 'lesson',
-                            skills: ['00000000-0000-4000-8000-000000000015', '00000000-0000-4000-8000-000000000008'],
+                            type: "lesson",
+                            slug: "combinedPractice",
+                            skills: [
+                              "00000000-0000-4000-8000-000000000015",
+                              "00000000-0000-4000-8000-000000000008"
+                            ],
+                            locale: {
+                              title: "Light and shape observations"
+                            },
+                            params: {
+                              age: {
+                                min: 12,
+                                max: 16
+                              },
+                              quizRequiredForCompletion: true
+                            }
                           },
+                          production: {
+                            kind: "new",
+                            objective: "Predict a shadow in a simple light path and recognize a circle in an independent unfamiliar example.",
+                            depth: "Qualitative application of both target Skills, independently assessed; no numerical optics or proofs.",
+                            sequenceReason: "Finish the sequence with transfer after the light and circle activities.",
+                            assessmentEvidence: "Own a small independent Question Bank with separate prediction/explanation and circle-classification evidence; an enabled Quiz checks both independently. Own a Flashcard Bank for retrieval of light-path and circle-defining features; a short Flashcards Section precedes the Quiz. No borrowed or invented Question IDs.",
+                            assessment: {
+                              questionBankRequired: true,
+                              flashcardBankRequired: true,
+                              quizSectionRequired: true,
+                              flashcardsSectionRequired: true
+                            },
+                            methodology: "Ages 12–16; prerequisite concepts are straight-line propagation in a uniform medium and recognition of circles. Provide a short recall prompt, a light source and opaque obstacle with a screen, and independent circle-versus-oval examples. Explain that opaque objects block direct light and can cast a shadow; distinguish the shape of an object from a shadow projection and do not claim shadows are always the same shape. Ask learners to predict which region is shadowed and justify the prediction, then separately identify a circle among contrasting outlines. Give error-directed feedback on bent-ray and round-looking-oval misconceptions. Use verbal geometric descriptions, keyboard navigation and equivalent nonvisual evidence without revealing answers; no external network. Keep the Lesson Course-neutral and suitable for standalone practice after the stated prerequisites. Independently own both banks and select real reviewed members later; use Flashcards for retrieval and Quiz for independent evidence of each Skill. English source and planned Ukrainian localization; verify the two Playground Skill definitions. No quantitative refraction or proof."
+                          }
                         },
                       },
                       order: ['finalMission', 'combinedPractice'],
@@ -172,4 +276,4 @@ export const courseStage2 = {
     standardsAlignment: [],
     openDecisions: {},
   },
-} satisfies CourseWorkflowStage2;
+} satisfies CourseWorkflowStage3;
