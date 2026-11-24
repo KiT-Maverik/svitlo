@@ -63,3 +63,37 @@ test('rejects damaged blocks, duplicate placements, unsafe paths and dropped han
     reconcileCourseHandoffTables('', { ...inventory, lessons: [{ ...lesson, sourcePath: '../outside.ts' }] }),
   );
 });
+
+
+const assessment = {
+  ...lesson,
+  type: 'assessment',
+  id: 'a73572e7-bd85-4516-86e2-3de07d209e03',
+  placementPath: 'content/book/data/courses/3/' + id + '/content/module/content/finalAssessment',
+  sourcePath: 'content/book/data/courses/3/' + id + '/content/module/content/finalAssessment/draft.ts',
+  orderPath: [0, 2],
+  kind: 'new',
+  status: 'pending-assessment-design',
+  lessonDependencies: ['content/module/lesson', 'content/otherLesson'],
+};
+test('Assessment table includes nested placement, dependencies, status and preserved manual review', () => {
+  const initial = reconcileCourseHandoffTables('## Workflow\n- [ ] 7. Design Assessments', {
+    ...inventory, assessments: [assessment],
+  });
+  assert.match(initial, /### Assessments/);
+  assert.match(initial, /Lesson dependencies/);
+  assert.match(initial, /content\\/module\\/lesson, content\\/otherLesson/);
+  assert.match(initial, /Authorize Assessment Stage 1/);
+  assert.match(initial, /- \\[ \\] 7\\. Design Assessments/);
+  const edited = initial.replace(
+    'pending-assessment-design | — | Authorize Assessment Stage 1 | —',
+    'Stage 2 reviewed | #901 | Materialize | SHA verified',
+  );
+  const again = reconcileCourseHandoffTables(edited, { ...inventory, assessments: [assessment] });
+  assert.match(again, /Stage 2 reviewed \\| #901 \\| Materialize \\| SHA verified/);
+  assert.equal(reconcileCourseHandoffTables(again, { ...inventory, assessments: [assessment] }), again);
+  assert.throws(() => reconcileCourseHandoffTables(again, { ...inventory, assessments: [] }), /missing/);
+  assert.throws(() => reconcileCourseHandoffTables('', {
+    ...inventory, assessments: [{ ...assessment, lessonDependencies: ['../outside'] }],
+  }), /Lesson dependency/);
+});
