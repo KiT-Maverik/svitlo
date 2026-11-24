@@ -105,26 +105,31 @@ function requirePR(pr, proof) {
     throw Error('Course PR identity, Draft state or committed HEAD changed; metadata reconciliation refused');
 }
 
-async function getPR(route, method = 'GET', body, etag) {
-  const response = await fetch('https://api.github.com/repos/' + process.env.GITHUB_REPOSITORY + '/' + route, {
+export async function getPR(route, method = 'GET', body, transport = fetch) {
+  // GitHub only documents ETag conditionals for safe reads. Sending If-Match
+  // on the Pull Request PATCH endpoint results in HTTP 400.
+  const response = await transport('https://api.github.com/repos/' + process.env.GITHUB_REPOSITORY + '/' + route, {
     method,
     headers: {
       Authorization: 'Bearer ' + process.env.GH_TOKEN,
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      ...(etag ? { 'If-Match': etag } : {}),
       ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
     },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
     signal: AbortSignal.timeout(30000),
   });
-  if (!response.ok) throw Error('Course PR metadata HTTP ' + response.status);
+  if (!response.ok) {
+    const errorBody = await response.json().catch(() => null);
+    const message = typeof errorBody?.message === 'string' ? ': ' + errorBody.message.slice(0, 240) : '';
+    throw Error('Course PR metadata ' + method + ' HTTP ' + response.status + message);
+  }
   return { pr: await response.json(), etag: response.headers.get('etag') };
 }
 
-/** Optimistic edit: compare two current reads, send the version precondition,
- * and verify postcondition. GitHub PR REST does not document atomic body CAS;
- * this detects observed races, not an absolute lock against human edits.
+/** Optimistic edit: compare two ETag/versioned reads before PATCH and verify
+ * the postcondition. The GitHub PR PATCH endpoint does not support If-Match;
+ * this detects observed races, not an atomic lock against human edits.
  */
 export async function reconcileCommittedPR(manifest, proof, request = getPR) {
   const route = 'pulls/' + proof.number;
@@ -143,7 +148,7 @@ export async function reconcileCommittedPR(manifest, proof, request = getPR) {
     latest.pr.updated_at !== before.pr.updated_at
   )
     throw Error('Concurrent Course PR description edit; retry metadata only');
-  const written = await request(route, 'PATCH', { body: next }, latest.etag);
+  const written = await request(route, 'PATCH', { body: next });
   requirePR(written.pr, proof);
   if (written.pr.body !== next) throw Error('Course PR description update did not preserve exact intended content');
   const after = await request(route);
