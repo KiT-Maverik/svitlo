@@ -148,7 +148,7 @@ export function replaceReservedParentSlot(source, { kind, id, slug, placement, e
   let references = 0;
   const visit = node => {
     if (ts.isIdentifier(node) && node.text === binding &&
-        node !== specifier.name && node !== slot.expression) references++;
+        node !== specifier.name && node !== specifier.propertyName && node !== slot.expression) references++;
     ts.forEachChild(node, visit);
   };
   ts.forEachChild(ast, visit);
