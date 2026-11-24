@@ -218,13 +218,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO(asset): Replace reserved Nil UUID with a verified asset.\n' +
-        '// TODO (BLOCKER): ' +
-        instruction +
-        ' for audio ' +
-        config.id +
-        '.\n' +
-        JSON.stringify(reference);
+        '// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',
@@ -282,6 +276,16 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
           )
           .join('\n\n') + '\n';
       files.push({ path: 'specification.md', content: body, kind: 'specification' });
+      // This specification is a temporary Stage 6 production aid, not a
+      // permanent output or evidence that the physical audio was verified.
+      const removalInstruction = 'Remove the temporary Audio specification after the asset is generated and verified';
+      blockers.push('// TODO (BLOCKER): ' + removalInstruction + ' for audio ' + config.id + '.');
+      diagnostics.push({
+        path: '$.production.specification',
+        code: 'pending-temporary-specification',
+        message: removalInstruction,
+        severity: 'warning',
+      });
     }
   }
 
