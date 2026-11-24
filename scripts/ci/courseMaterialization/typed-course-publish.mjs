@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
  * @fileoverview Privileged typed Course Stage 5 publisher. NEVER imports or
- * executes PR-authored TypeScript. Recomputes the complete deterministic plan
- * from a literal AST using trusted Engine code, checks the artifact byte for
- * byte, and consumes the reviewed draft and commits outputs in ONE Git tree.
+ * executes PR-authored TypeScript. Verifies the previously sealed, scoped
+ * source manifest and commits its files in ONE guarded Git tree.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,17 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, requireActor, report, gitBlob } from './course-gate.mjs';
 import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs';
-import {
-  checkedSource,
-  checkCourseStage3Types,
-  parseCanonicalCourseSource,
-  buildTypedCourseManifest,
-  reviewedLessonPatchResolver,
-} from './typed-course-source.mjs';
-import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
-import { materializeCourseEpisodeSection } from './typed-course-section.mjs';
-import { createTrustedCourseLessonResolver } from './typed-course-lesson.mjs';
-import { checkGeneratedCourseTypes } from './typed-course-semantics.mjs';
+import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
 import { manifestDigest } from './course-handoff-publish.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -191,42 +180,6 @@ export function oneCommitTree(manifest) {
   ];
 }
 
-/**
- * No PR code evaluation: both read-only analysis and the write-token job
- * compute the identical plan from a strictly literal TypeScript AST.
- */
-export function replan(meta, source, candidateRoot = process.env.COURSE_HEAD_ROOT) {
-  const resolver = createTrustedCourseLessonResolver({
-    trustedRoot: path.resolve(import.meta.dirname, '../../..'),
-    candidateRoot,
-    textbookRoot: meta.textbookRoot,
-  });
-  const patches = [];
-  const input = parseCanonicalCourseSource(source, {
-    resolveImport: resolver.loadImport,
-    patches,
-  });
-  checkCourseStage3Types(path.join(candidateRoot, meta.sourcePath));
-  const plan = materializeCourseStage5(input, {
-    textbookRoot: meta.textbookRoot,
-    review: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlobSha,
-      reviewCommitSha: meta.reviewCommitSha,
-      reviewVerdict: meta.reviewVerdict,
-    },
-    verifyReviewedSource: ({ input: candidate, review, textbookRoot }) =>
-      candidate === input &&
-      review.sourceBlobSha === meta.sourceBlobSha &&
-      review.reviewCommitSha === meta.head &&
-      textbookRoot === meta.textbookRoot,
-    materializeSection: materializeCourseEpisodeSection,
-    resolveExistingLesson: reviewedLessonPatchResolver(input, resolver, patches, meta.sourceBlobSha),
-  });
-  checkGeneratedCourseTypes(plan, meta.textbookRoot);
-  return plan;
-}
-
 function readManifest(filename) {
   if (
     !filename ||
@@ -262,9 +215,13 @@ async function publish() {
   if (gitBlob(Buffer.from(source, 'utf8')) !== meta.sourceBlobSha) throw Error('Reviewed Course source bytes changed');
   const manifest = readManifest(process.env.COURSE_TYPED_REPORT);
   verifyTypedCourseManifest(manifest, meta);
-  const expected = buildTypedCourseManifest(meta, replan(meta, source));
-  if (JSON.stringify(manifest) !== JSON.stringify(expected))
-    throw Error('Manifest does not reproduce the trusted deterministic Course Stage 5 plan');
+  // The write-token job NEVER executes authored code or recomputes a plan.
+  // Reauthorize and verify the exact SHA-pinned manifest and existing Lesson dependencies.
+  verifyCourseDependencies(meta, root, path.resolve(import.meta.dirname, '../../..'), {
+    courseId: meta.courseId,
+    publishable: false,
+    inventory: manifest.inventory,
+  });
   checkTypedCourseTargets(meta, root, manifest);
   const original = await github('git/commits/' + meta.head);
   if (!SHA.test(original?.tree?.sha ?? '')) throw Error('Missing approved parent Git tree');

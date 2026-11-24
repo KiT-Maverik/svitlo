@@ -132,16 +132,18 @@ jobs:
       - name: Install only trusted dependencies without lifecycle scripts
         working-directory: trusted
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Compile trusted concrete Course renderers before read-only analysis
+      - name: Build the ordinary Engine package
         working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
-      - name: Parse untrusted Stage 3 as inert TypeScript and emit bounded source manifest
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Pull the pinned, credential-free worker image
+        run: docker pull node:24-bookworm-slim@sha256:c86ecead9e55a5210ac1727de38a4ca840bf03dcaf34dc9749addbf383b1920c
+      - name: Execute direct Course entrypoint in an isolated worker and seal manifest
         env:
           COURSE_TYPED_META_B64: ${{ needs.resolve.outputs.meta }}
           COURSE_HEAD_ROOT: candidate
           COURSE_TYPED_REPORT: ${{ runner.temp }}/typed-course/manifest.json
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-source.mjs analyze
+        run: node trusted/scripts/ci/quietRun/quiet-run.mjs -- node trusted/scripts/ci/courseMaterialization/typed-course-direct.mjs analyze
       - name: Upload read-only job result
         uses: actions/upload-artifact@v4
         with:
@@ -179,18 +181,12 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
-      - name: Install trusted publisher dependencies without lifecycle scripts
-        working-directory: trusted
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
-      - name: Compile trusted concrete Course renderers for manifest replay
-        working-directory: trusted
-        run: node scripts/ci/courseMaterialization/build-course-renderers.mjs
       - name: Download exact read-only job manifest
         uses: actions/download-artifact@v4
         with:
           name: typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }}
           path: report
-      - name: Recheck Stage 4, SHA, deterministic output and branch lease; write one commit
+      - name: Recheck Stage 4, source hashes and branch lease; commit attested files
         id: commit
         env:
           GH_TOKEN: ${{ github.token }}
