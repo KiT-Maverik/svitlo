@@ -297,3 +297,37 @@ export function planEpisode(handoff, reviewed, meta, parentSource, materializeSe
   outputs.push({ path: meta.parentPath, kind: 'typescript', content: parent });
   return { files: outputs, diagnostics: result.diagnostics, episodeId: result.id, publishable: false };
 }
+
+/** Assemble only the exact generated Episode-owned files and one reserved parent
+ * source change. The already-reviewed Episode entrypoint is executed ONLY by
+ * the credential-free worker, not by this trusted composition helper.
+ */
+export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, output) {
+  verifyEpisodeHandoff(handoff, reviewed, meta);
+  if (!output || output.publishable !== false ||
+      output.episodeId !== reviewed.config.id || output.episodeId !== handoff.config.id ||
+      typeof output.exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(output.exportName) ||
+      !Array.isArray(output.files) || !output.files.length || !Array.isArray(output.diagnostics))
+    throw Error('Direct Episode worker returned an invalid source plan');
+  const prefix = meta.courseRoot + '/';
+  const files = output.files.map(file => ({ ...file, path: prefix + file.path }));
+  const rootIndex = prefix + meta.placement + '/index.ts';
+  if (!files.some(file => file.path === rootIndex))
+    throw Error('Direct Episode did not emit its allocated root index');
+  const parent = restoreEpisodePlacement(
+    parentSource,
+    {
+      path: meta.placement,
+      slug: handoff.config.slug,
+      episodeId: handoff.config.id,
+      orderIndex: handoff.production.placement.orderPath.at(-1),
+    },
+    output.exportName,
+    { rootParent: meta.placement.split('/').length === 2 },
+  );
+  files.push({ path: meta.parentPath, kind: 'typescript', content: parent });
+  return {
+    files, diagnostics: output.diagnostics, episodeId: output.episodeId,
+    sourceExportName: output.exportName, publishable: false,
+  };
+}

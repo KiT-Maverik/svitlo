@@ -1,15 +1,15 @@
 /** Trusted Episode Stage 5: read-only analysis, manifest replay and one Git commit.
- * Candidate source is read as Git blobs and parsed/typechecked, never executed.
+ * Candidate code executes only in the isolated, credential-free worker. The trusted
+ * transaction handles source provenance, reserved parent restoration and Git writes.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
-import { checkGeneratedCourseTypes } from '../courseMaterialization/typed-course-semantics.mjs';
-import { materializeCourseEpisodeSection } from '../courseMaterialization/typed-course-section.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
-import { parseEpisodeDraft, planEpisode } from './episode-source.mjs';
+import { parseEpisodeDraft, restoreEpisodePlacement, composeEpisodeDirectPlan } from './episode-source.mjs';
+import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
@@ -173,6 +173,7 @@ export function buildEpisodeManifest(meta, plan) {
     publishable: false,
     entries,
     diagnostics: plan.diagnostics,
+    sourceExportName: plan.sourceExportName,
   };
 }
 export function episodeCommitTree(manifest) {
@@ -187,12 +188,7 @@ export function episodeCommitTree(manifest) {
   ];
 }
 
-export function prepareEpisode(
-  meta,
-  root,
-  renderSection = materializeCourseEpisodeSection,
-  checkTypes = checkGeneratedCourseTypes,
-) {
+export function prepareEpisode(meta, root, execute = runIsolatedMaterialization) {
   const reader = gitReader(root);
   if (
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
@@ -216,46 +212,19 @@ export function prepareEpisode(
   const source = reader.blob(tree.get(meta.sourcePath), meta.sourcePath);
   const parent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
   const handoff = parseEpisodeDraft(original, 'EpisodeWorkflowStage1Handoff');
-  const reviewed = parseEpisodeDraft(source, 'EpisodeWorkflowMaterializerInput');
-  checkTypes({ files: [{ path: meta.sourcePath, kind: 'typescript', content: source }] }, meta.textbookRoot);
-  const plan = planEpisode(handoff, reviewed, meta, parent, renderSection);
+  const worker = execute({
+    trustedRoot: path.resolve(import.meta.dirname, '../../..'),
+    candidateRoot: root,
+    textbook: meta.textbookRoot,
+    operation: 'episode-stage5',
+    source: {
+      sourcePath: meta.sourcePath,
+      sourceBlobSha: meta.sourceBlobSha,
+      sourceCommitSha: meta.head,
+    },
+  });
+  const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, worker?.plan);
   checkEpisodeTargets(meta, plan.files, tree);
-  // Supply pinned authored dependency modules as virtual TS files, never import/execute them.
-  const replace = new Set(plan.files.map(file => file.path));
-  const context = [];
-  let total = 0;
-  function addContext(filename, entry) {
-    if (
-      !filename.endsWith('.ts') ||
-      filename.endsWith('/draft.ts') ||
-      /\/workflow\.stage\d+\.ts$/.test(filename) ||
-      replace.has(filename)
-    )
-      return;
-    if (
-      !filename.startsWith(meta.textbookRoot + '/') ||
-      filename.split('/').some(part => !/^[A-Za-z0-9_.-]+$/.test(part) || part === '.' || part === '..')
-    )
-      throw Error('Unsafe virtual authored dependency path');
-    const content = reader.blob(entry, filename);
-    total += Buffer.byteLength(content);
-    if (total > maxBytes || context.length >= 5000)
-      throw Error('Episode dependency scope exceeds trusted analysis bound');
-    context.push({ path: filename, kind: 'typescript', content });
-  }
-  for (const [filename, entry] of tree) addContext(filename, entry);
-  const lessonRefs = new Set();
-  for (const file of [...context, ...plan.files]) {
-    for (const match of file.content.matchAll(
-      /#lessonsData\/([a-f0-9]\/([a-f0-9-]{36}))\/(?:index|[A-Za-z0-9_/-]+)(?=['"])/g,
-    )) {
-      if (match[1][0] !== match[2].at(-1)) throw Error('Invalid Lesson dependency bucket');
-      lessonRefs.add(meta.textbookRoot + '/data/lessons/' + match[1]);
-    }
-  }
-  for (const lesson of lessonRefs)
-    for (const [filename, entry] of reader.tree(meta.head, lesson)) addContext(filename, entry);
-  checkTypes({ files: [...context, ...plan.files] }, meta.textbookRoot);
   return buildEpisodeManifest(meta, plan);
 }
 
