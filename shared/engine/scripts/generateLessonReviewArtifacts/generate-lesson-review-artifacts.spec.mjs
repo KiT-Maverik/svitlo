@@ -189,3 +189,31 @@ test('omitting locale enumerates only the languages declared by a scoped Lesson'
       ['en', 'uk'],
     );
   }));
+
+
+test('exact Lesson UUID bypasses unrelated malformed lessons and fails for a missing entity', () =>
+  setup(root => {
+    const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+    createLesson(root);
+    createGenerator(root);
+    // Full discovery would reject this non-UUID sibling; scoped references must not visit it.
+    fs.mkdirSync(path.join(root, 'content/playground/data/lessons/f/not-a-uuid'), { recursive: true });
+    const output = path.join(root, 'temp/agent-reference-library');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const selected = generateLessonReviewArtifacts({
+      root,
+      output,
+      languages: ['en'],
+      packageName: 'content/playground',
+      lessonId: id.toUpperCase(),
+      manifest,
+      saveManifest() {},
+    });
+    assert.deepEqual(selected, { discoveredLessons: 1, generated: 1, failures: 0 });
+    assert.deepEqual(manifest.generated.map(row => row.path), ['lessons/playground/c/' + id + '/en.md']);
+    assert.throws(
+      () => discoverLessons(root, 'content/playground', '00000000-0000-4000-8000-00000000000f'),
+      /No canonical Lesson source/,
+    );
+  }));
