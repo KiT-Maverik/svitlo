@@ -114,6 +114,11 @@ export function materializeSkillDomain(input, context = {}) {
       directory: [dir, key].filter(Boolean).join('/'),
     });
     if (!Array.isArray(child?.files) || !child.exportName) throw Error('Invalid SkillGroup materializer result');
+    const groupDirectory = [dir, key].filter(Boolean).join('/');
+    if (!child.files.some(file => file.path === groupDirectory + '/index.ts' && file.kind === 'typescript'))
+      throw Error(dir + '.groups.' + key + ': missing canonical Group module');
+    if (child.files.some(file => !file.path.startsWith(groupDirectory + '/')))
+      throw Error(dir + '.groups.' + key + ': delegated Group escaped its source owner');
     const actualId = child.id ?? raw.id;
     if (typeof actualId !== 'string' || !uuid.test(actualId))
       throw Error(dir + '.groups.' + key + ': immutable child UUID required');
@@ -150,6 +155,9 @@ export function materializeSkillDomain(input, context = {}) {
     const expected = [dir, key + '.ts'].filter(Boolean).join('/');
     if (!child.files.some(file => file.path === expected && file.kind === 'typescript'))
       throw Error(dir + '.skills.' + key + ': missing canonical Skill module');
+    const evidencePrefix = [dir, key].filter(Boolean).join('/') + '/';
+    if (child.files.some(file => file.path !== expected && !file.path.startsWith(evidencePrefix)))
+      throw Error(dir + '.skills.' + key + ': delegated Skill escaped its source owner');
     const actualId = child.id ?? raw.id;
     if (typeof actualId !== 'string' || !uuid.test(actualId))
       throw Error(dir + '.skills.' + key + ': immutable child UUID required');
