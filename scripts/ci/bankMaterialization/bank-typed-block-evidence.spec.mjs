@@ -159,7 +159,7 @@ test('missing Scene registry entry yields a Question-only TODO scaffold, not app
   f.meta.bank = 'flashcards';
   const flashcardSource = f.input({ visual: f.scene() });
   flashcardSource.production.lesson = { languages: { document: 'uk', planned: ['uk'] } };
-  assert.throws(() => f.resolve(flashcardSource), /UUID entry missing/);
+  assert.throws(() => f.resolve(flashcardSource), /Unresolved reviewed Flashcard Scene/);
 });
 
 test('Lesson Scene scaffolds are pending until registered and implemented, without a specification sidecar', t => {
