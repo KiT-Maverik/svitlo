@@ -9,7 +9,7 @@ import {
   youtube_Config_Schema,
   type ContentBlock_Youtube_Config,
 } from '../../../configurators/contentBlocks/defineYoutube';
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
@@ -287,12 +287,17 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
       ([key]) => key !== 'pending' && key !== 'documentLanguage',
     );
     if (details.length) {
-      // Retain reviewed external-video target notes beside the removable TODO,
-      // rather than leaving a permanent specification.md next to a URL.
-      const context = JSON.stringify(Object.fromEntries(details)).replace(/[\u2028\u2029]/g, character =>
-        character === '\u2028' ? '\\u2028' : '\\u2029',
+      // One removable source comment owns the reviewed external-video brief,
+      // including its independent human media-verification obligation.
+      blockers.push(
+        renderBlockerSpecification(
+          'Verify external video access, rights, captions and language/offline alternatives for youtube ' +
+            config.id + '; remove this temporary brief after documented media QA.',
+          details
+            .map(([key, value]) => key + ': ' + (typeof value === 'string' ? value : JSON.stringify(value)))
+            .join('\n'),
+        ),
       );
-      blockers.push('// Reviewed external-video context (remove with verification TODO): ' + context);
     }
   }
 
