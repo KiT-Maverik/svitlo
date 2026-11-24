@@ -15,7 +15,6 @@ import type {
   QuestionBankWorkflowStage1Production,
   QuestionBankWorkflowStage2,
   QuestionBankWorkflowStage3,
-  QuestionBankWorkflowStage3,
   QuestionBankWorkflowQuestionNode,
   QuestionBankWorkflowSelectOneAnswerConfig,
   QuestionBankWorkflowSelectMultipleAnswersConfig,
