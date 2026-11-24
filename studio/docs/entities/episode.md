@@ -24,6 +24,10 @@ The typed [Course workflow](../../skills/course-workflow/create-course-flow.skil
 
 See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
+## Production boundary
+
+A provisional Course Episode placement is narrative intent, not a completed Episode. The current Course materializer emits a blocked scaffold; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
+
 ## Quest Section in Episodes (planned runtime)
 
 An Episode may eventually host a [Quest Section](./quest.md) for Course-owned interactive story beats, media reactions, missions and branching decisions. The Quest is the autonomous **Section**; the Episode remains the Course-level narrative container. The Build-only Quest Config exists separately, but current Episode composition/publication and UI rendering do **not** yet accept or run Quest. Do not embed an unregistered Quest as a content block or claim a runnable story.
