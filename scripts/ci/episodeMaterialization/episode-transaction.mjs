@@ -10,6 +10,7 @@ import { github, gitBlob, requireActor, safeBranch, report } from '../courseMate
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
+import { parseEpisodeHandoff } from './episode-source.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
