@@ -274,8 +274,10 @@ export function materializeLesson(config: Source, options: Options): Result {
     if (!section.production) continue;
     const notes: string[] = [];
     let allTransferred = true;
+    let hasReviewedNotes = false;
     for (const [key, value] of Object.entries(section.production)) {
       if (['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key)) continue;
+      hasReviewedNotes = true;
       // Source provenance is intentionally not materialized as editorial copy.
       // Leave a guard instead of falsely acknowledging its transfer.
       if (key === 'sourceEvidence' || typeof value !== 'string' || !value.trim()) {
@@ -288,7 +290,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     }
     if (notes.length)
       additions.push('### Section: ' + sectionKey + ' (' + section.config.type + ')\n\n' + notes.join('\n\n'));
-    if (allTransferred) integratedSections.add(sectionKey);
+    if (allTransferred && hasReviewedNotes) integratedSections.add(sectionKey);
   }
   const combinedMethodology = [methodology, ...additions].filter(Boolean).join('\n\n').trim();
 
