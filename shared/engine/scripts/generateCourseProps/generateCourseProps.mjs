@@ -106,6 +106,16 @@ export function checkCourseSourceReadiness(source, mode) {
   return pending;
 }
 
+/** Refuse old root patches; ignoring them would silently lose Course adaptations. */
+export function assertNoLegacyCourseOverrides(exports, source) {
+  if (Object.hasOwn(exports, 'authoredCourseOverrides')) {
+    throw new Error(
+      'Legacy authoredCourseOverrides export is not supported; migrate each Lesson patch to placeLesson at its placement: ' +
+      source,
+    );
+  }
+}
+
 export async function render(pkg, mode) {
   const diagnostics = [];
   const textbookId = path.basename(pkg);
@@ -123,11 +133,7 @@ export async function render(pkg, mode) {
     if (path.basename(source) === 'index.ts' && path.basename(path.dirname(source)) !== course.id) {
       throw new Error('UUID-bucketed Course ID does not match exported configurator: ' + source);
     }
-    // Every reviewed Lesson adaptation belongs to its immediate placement.
-    // Refuse legacy root patches rather than silently discarding adaptations.
-    if (Object.hasOwn(moduleExports, 'authoredCourseOverrides')) {
-      throw new Error('Legacy authoredCourseOverrides export is not supported; migrate each Lesson patch to placeLesson at its placement: ' + source);
-    }
+    assertNoLegacyCourseOverrides(moduleExports, source);
     if (ids.has(course.id)) throw new Error('Duplicate Course ID: ' + course.id);
     ids.add(course.id);
     for (const [file, body] of renderCourseFiles(course, {
