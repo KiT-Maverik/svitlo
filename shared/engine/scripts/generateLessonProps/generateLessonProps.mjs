@@ -17,6 +17,7 @@ import {
   projectTextbookMedia,
   assertMediaPublicationReady,
 } from '@svitlo/engine/build';
+import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
 import { assertSafeDirectoryPath, checkLessonProps, publishLessonProps } from './publishLessonProps.mjs';
 
 export { checkLessonProps as check } from './publishLessonProps.mjs';
@@ -75,23 +76,15 @@ function containsPendingAssessmentLabel(value) {
   return Object.values(value).some(containsPendingAssessmentLabel);
 }
 
-function lessonSource(directory) {
-  const authoredFiles = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-  const index = path.join(directory, 'index.ts');
-  if (authoredFiles.length > 1 || (authoredFiles.length === 1 && fs.existsSync(index))) {
-    throw new Error('Ambiguous Lesson entrypoints: ' + directory);
-  }
-  if (authoredFiles.length === 1) return path.join(directory, authoredFiles[0]);
-  return fs.existsSync(index) ? index : undefined;
-}
-
-async function render(packageDirectory, mode) {
+export async function render(packageDirectory, mode) {
   const diagnostics = [];
   const textbookId = path.basename(packageDirectory);
   const entries = [];
+  let editorialDrafts = 0;
   for (const { id, directory } of lessonDirectories(packageDirectory)) {
-    const source = lessonSource(directory);
-    if (!source) continue; // Editorial-only drafts have no authored Lesson configurator.
+    const { source, draft } = resolveMaterializedEntrypoint(directory, { mode, legacyLesson: true });
+    if (draft) editorialDrafts++;
+    if (!source) continue;
     const lesson = await loadLessonData(source);
     if (!lesson || typeof lesson !== 'object' || !lesson.build || typeof lesson.build.props !== 'function') {
       throw new Error('Lesson source does not export a Build API configurator: ' + source);
@@ -147,7 +140,7 @@ async function render(packageDirectory, mode) {
       }),
     });
   }
-  if (entries.length === 0) {
+  if (entries.length === 0 && !(mode === 'draft' && editorialDrafts > 0)) {
     throw new Error('No authored Lesson configurators found; refusing to replace generated output');
   }
   assertMediaPublicationReady(diagnostics, mode);

@@ -57,7 +57,7 @@ test('Course batch publisher rejects a symlink in an output ancestor', () => {
   }
 });
 
-test('Course publisher discovers UUID-bucketed materialized roots but ignores unfinished editorial YAML', () => {
+test('Course publisher discovers materialized roots and isolates editorial drafts in draft mode', () => {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-discovery-'));
   const root = path.join(home, 'data/courses');
   const active = '7c4e6d20-5ad3-4af8-b9d7-d1f3587b0a8e';
@@ -68,8 +68,9 @@ test('Course publisher discovers UUID-bucketed materialized roots but ignores un
     fs.mkdirSync(path.join(root, 'sections'), { recursive: true });
     fs.writeFileSync(path.join(root, 'legacyCourse.data.ts'), 'export const course = {};');
     fs.writeFileSync(path.join(root, 'e', active, 'index.ts'), 'export const course = {};');
-    fs.writeFileSync(path.join(root, 'e', pending, 'course.yaml'), 'id: ' + pending);
-    assert.deepEqual(discoverCourseSources(root), [
+    fs.writeFileSync(path.join(root, 'e', pending, 'draft.ts'), 'throw new Error("draft must not execute");');
+    assert.throws(() => discoverCourseSources(root), /Unmaterialized editorial draft/);
+    assert.deepEqual(discoverCourseSources(root, 'draft'), [
       path.join(root, 'e', active, 'index.ts'),
       path.join(root, 'legacyCourse.data.ts'),
     ]);
@@ -89,7 +90,7 @@ test('Course publisher will not resolve a symlinked UUID entrypoint', () => {
     const outside = path.join(home, 'outside.ts');
     fs.writeFileSync(outside, 'export default {};');
     fs.symlinkSync(outside, path.join(folder, 'index.ts'));
-    assert.throws(() => discoverCourseSources(root), /Symlink|symlink/i);
+    assert.throws(() => discoverCourseSources(root), /Symlink|symlink|Invalid authored entrypoint/i);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
