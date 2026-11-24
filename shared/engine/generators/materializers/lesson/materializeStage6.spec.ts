@@ -756,7 +756,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
       plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')?.content ?? '';
     assert.match(
       source,
-      /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
+      /TODO \(BLOCKER\): Supply and verify the YouTube URL, access and captions before publication\.\n"00000000-0000-0000-0000-000000000000"/,
     );
   }
   const carouselSlide = plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
