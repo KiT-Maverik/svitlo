@@ -46,7 +46,9 @@ export type EpisodeWorkflowSection = Extract<
 >;
 
 export type EpisodeWorkflowStage2 = {
-  config: EpisodeWorkflowStage1['config'] & Pick<Episode_Config, 'locale' | 'events'> & {
+  config: EpisodeWorkflowStage1['config'] & Pick<Episode_Config, 'locale'> & {
+    /** Opaque Episode events have no supported runtime semantics yet. */
+    events?: Record<string, never>;
     params?: Omit<Episode_Config['params'], 'languages'> & { languages?: never };
     section: LessonWorkflowOrdered<EpisodeWorkflowSection>;
   };

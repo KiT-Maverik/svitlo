@@ -69,7 +69,7 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
       .every(key => nonempty(q.scenario[key])) || !nonempty(q.specification))
     throw Error('Complete reviewed Episode scenario and specification required');
   if (Object.keys(b).some(key => !['id','slug','type','params','locale','section','events'].includes(key)) ||
-      b.params?.languages !== undefined || !record(b.section?.items) ||
+      Object.keys(b.events ?? {}).length || b.params?.languages !== undefined || !record(b.section?.items) ||
       !Array.isArray(b.section.order) || !b.section.order.length)
     throw Error('Complete Episode source Sections required; no Lesson-owned fields or publication language params');
   if (!nonempty(typeof b.locale?.title === 'string' ? b.locale.title : b.locale?.title?.[languages.document]))
@@ -153,6 +153,11 @@ export function planEpisode(handoff, reviewed, meta, parentSource, materializeSe
   const index = result.files.find(file => file.path === placement + '/index.ts');
   if (!index || result.id !== reviewed.config.id || result.pendingEpisode)
     throw Error('Episode materializer did not produce the reviewed Configurator');
+  // One active locale tuple is shared by Episode and its Sections.
+  const localLanguages = 'const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;';
+  if (!index.content.includes(localLanguages)) throw Error('Expected deterministic Episode language declaration');
+  index.content = index.content.replace("import type { SupportedLanguages } from '@svitlo/engine/build';", "import { languages } from './languages';")
+    .replace(localLanguages, '');
   index.content = '// TODO (BLOCKER): Human Media Generation Stage 9 requires explicit verified completion or human-confirmed N/A.\n' +
     '// TODO (BLOCKER): Human QA Stage 10 requires actual inspection in Course context and explicit revision-pinned acceptance.\n' +
     '// Reviewed Episode draft blob: ' + meta.sourceBlobSha + '\n' +

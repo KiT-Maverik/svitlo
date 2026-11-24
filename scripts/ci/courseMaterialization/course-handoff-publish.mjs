@@ -17,6 +17,12 @@ export async function verifyCommittedInventory(manifest, proof, api = github) {
       !SHA.test(proof.reviewedHead ?? '') || !Array.isArray(manifest.entries) ||
       !Array.isArray(manifest.inventory?.lessons) || !Array.isArray(manifest.inventory?.episodes))
     throw Error('Course metadata proof does not match verified materialization manifest');
+  // Final typed-source boundary: the reviewed draft must be consumed, not archived.
+  if (manifest.version !== 2 || manifest.operation !== 'typed-course-stage5' ||
+      !manifest.sourcePath?.endsWith('/draft.ts') || !SHA.test(manifest.sourceBlobSha ?? '') ||
+      manifest.materializedPath !== manifest.sourcePath.replace(/draft\.ts$/, 'index.ts') ||
+      Object.hasOwn(manifest, 'sourceArchivePath'))
+    throw Error('Course metadata requires the atomic draft.ts consumption contract');
   const commit = await api('git/commits/' + proof.commit);
   if (commit?.sha !== proof.commit || commit.parents?.length !== 1 ||
       commit.parents[0].sha !== proof.reviewedHead ||
@@ -25,13 +31,24 @@ export async function verifyCommittedInventory(manifest, proof, api = github) {
     throw Error('Course metadata requires the exact committed materialization transaction');
   const tree = await api('git/trees/' + commit.tree.sha + '?recursive=1');
   if (!tree || tree.truncated || !Array.isArray(tree.tree)) throw Error('Incomplete committed Course tree inventory');
+  const parent = await api('git/commits/' + proof.reviewedHead);
+  if (parent?.sha !== proof.reviewedHead || !SHA.test(parent.tree?.sha ?? ''))
+    throw Error('Missing exact reviewed Course commit');
+  const reviewedTree = await api('git/trees/' + parent.tree.sha + '?recursive=1');
+  if (!reviewedTree || reviewedTree.truncated || !Array.isArray(reviewedTree.tree) ||
+      !reviewedTree.tree.some(entry => entry.path === manifest.sourcePath && entry.type === 'blob' &&
+        entry.mode === '100644' && entry.sha === manifest.sourceBlobSha))
+    throw Error('Reviewed draft blob does not match exact parent commit');
+  if (tree.tree.some(entry => entry.path === manifest.sourcePath))
+    throw Error('Consumed Course draft still exists in committed tree');
   const blobs = new Map(tree.tree.filter(entry => entry.type === 'blob' && entry.mode === '100644').map(entry => [entry.path, entry.sha]));
   const generated = new Set();
   for (const file of manifest.entries) {
-    if (blobs.get(file.path) !== gitBlob(Buffer.from(file.data, 'base64')))
+    if (generated.has(file.path) || blobs.get(file.path) !== gitBlob(Buffer.from(file.data, 'base64')))
       throw Error('Committed Course output differs from verified manifest: ' + file.path);
     generated.add(file.path);
   }
+  if (!generated.has(manifest.materializedPath)) throw Error('Missing committed Course index');
   for (const row of [...manifest.inventory.lessons, ...manifest.inventory.episodes]) {
     if (!generated.has(row.placementSourcePath) || !blobs.has(row.placementSourcePath) ||
         (row.status.startsWith('pending') && !generated.has(row.sourcePath)))

@@ -9,13 +9,13 @@
 - **Planned / proposed:** target behavior; no assumption of a completed runtime contract.
 - **Open:** an architectural decision or implementation mechanism still to be designed.
 
-## Typed-production integration boundary (23 November 2026)
+## Typed production and publication boundaries
 
-- **Course:** One `CourseWorkflowStage1/2/3` TypeScript source, SHA-pinned independent Stage 4 review and trusted Stage 5 source materialization. New Lessons receive minimal UUID-addressed Stage 1 TS handoffs; existing Lessons are imported and contextually patched without rewriting standalone source.
+- **Course:** One `CourseWorkflowStage1/2/3` TypeScript `draft.ts` source, SHA-pinned independent Stage 4 review and trusted Stage 5 source materialization. New Lessons receive minimal UUID-addressed Stage 1 `draft.ts` handoffs; existing Lessons are imported and contextually patched without rewriting standalone source.
 - **Episode:** Course Stage 5 allocates a typed handoff at the reviewed slot. The separate Episode workflow owns Stage 1/2 scenario/content, independent Stage 3 and Stage 4 review, trusted atomic Stage 5, resources/locales and human Media Generation/QA. See [Episode](../entities/episode.md).
 - **Lesson:** Typed Stage 1/2 source followed by independent Stages 3–5 review and trusted Stage 6.1 Section/Block/Scene source handoff. Resource completion (6.2), executable Scenes (6.3), independent banks and locales are separate gates.
 - **Questions/Flashcards:** Separate seven-stage typed bank sources and reviewed Stage 5 Git transactions. The full bank is independent of optional selected Quiz/Flashcards Sections; only genuine reviewed Configurator IDs may be published.
-- **Source vs publication:** 43 concrete type-specific source renderers and root orchestrators are integrated in #775. The legacy YAML-only builders/editor-schema infrastructure was retired from the integration branch. Existing historical `lesson.yaml` files remain source provenance, not deployed authoring inputs.
+- **Source vs publication:** Concrete type-specific source renderers and root orchestrators consume the reviewed editorial draft, emit valid modular TypeScript and delete the consumed draft atomically. Git history preserves review evidence. Historical YAML is provenance, not an executable authoring input.
 - **Deployment boundary:** Typed trusted GitHub workflows must be present on default `develop` and exercised on safe reviewed PRs before claiming live availability. A successful integration PR test does not establish deployed command functionality. Preserve SHA/reviewer proof, branch-lease, no-clobber, path safety and fail-closed production guards.
 
 ## Required reading by responsibility
@@ -31,7 +31,7 @@
 | [UUID Entity Addressing](./entity-uuid-addressing.md)                                  | One Engine resolver for immutable UUID-based Lesson paths; Skills remain hierarchical                                                                                                               |
 | [Quest Section](../entities/quest.md)                                                  | Build-only Quest structure, media/accessibility requirements and pending runtime integration                                                                                                        |
 | [EducationStandard](../entities/education-standard.md)                                 | Immutable original-language standard definition, English methodology and complete short standard-locale descriptions; Course alignment remains separate future work                                 |
-| [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md)         | Seven-stage typed Course authoring, independent corrective Stage 4 review, entity PR, authorized materialization and translation gates                                                              |
+| [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md)         | Eight-stage typed Course authoring with final human QA, independent corrective Stage 4 review, entity PR, authorized materialization and translation gates                                                              |
 | [Create Episode Flow](../../skills/episode-workflow/create-episode-flow.skill.md) | Ten-stage Course-owned narrative production, independent content/locale review, human Media Generation and QA; verify trusted materializer and host support before use |
 | [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md)         | Ten-stage Lesson PR; Stage 6.1 scaffolds, 6.2 completes typed resources, 6.3 implements/tests/registers Scenes; Stages 7/8 banks, 9/10 locales                                                      |
 | [Lesson, Content, Section & Course](../entities/lesson.md)                             | Read entity definitions at [Lesson](../entities/lesson.md), [Lesson Content](../entities/lesson-content.md), [Section](../entities/section.md) and [Course](../entities/course.md) before authoring |

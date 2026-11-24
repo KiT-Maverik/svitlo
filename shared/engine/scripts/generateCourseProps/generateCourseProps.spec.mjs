@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { publish, readCurrent, discoverCourseSources } from './generateCourseProps.mjs';
+import { publish, readCurrent, discoverCourseSources, checkCourseSourceReadiness } from './generateCourseProps.mjs';
 
 const id = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 
@@ -93,4 +93,24 @@ test('Course publisher will not resolve a symlinked UUID entrypoint', () => {
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
+});
+
+test('draft Episode preview is inspectable but editorial or human gates block strict publication',()=>{
+  const home=fs.mkdtempSync(path.join(os.tmpdir(),'svitlo-episode-readiness-'));
+  try {
+    const index=path.join(home,'index.ts');
+    fs.writeFileSync(index,'export const course = {};');
+    const slot=path.join(home,'content','episode');
+    fs.mkdirSync(slot,{recursive:true});
+    fs.writeFileSync(path.join(slot,'draft.ts'),'export const draft = {};');
+    assert.equal(checkCourseSourceReadiness(index,'draft').length,1);
+    assert.throws(()=>checkCourseSourceReadiness(index,'production'),/not release-ready/);
+    fs.rmSync(path.join(slot,'draft.ts'));
+    const materialized=path.join(slot,'index.ts');
+    fs.writeFileSync(materialized,'// TODO (BLOCKER): Human QA required.\nexport const story = {};');
+    assert.equal(checkCourseSourceReadiness(index,'draft').length,1);
+    assert.throws(()=>checkCourseSourceReadiness(index,'production'),/not release-ready/);
+    fs.writeFileSync(materialized,'export const story = {};');
+    assert.deepEqual(checkCourseSourceReadiness(index,'production'),[]);
+  } finally {fs.rmSync(home,{recursive:true,force:true});}
 });
