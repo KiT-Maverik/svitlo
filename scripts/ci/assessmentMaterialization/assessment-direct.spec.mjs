@@ -97,7 +97,8 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   assert.deepEqual(plan.selectedQuestionIds, [questionId]);
   const paths = plan.files.map(file => file.path);
   assert(paths.includes(placement + '/index.ts'));
-  assert(paths.includes(placement + '/languages.ts'));
+  assert(!paths.includes(placement + '/languages.ts'));
+  assert(!paths.includes(placement + '/constants.ts'));
   assert(paths.includes(placement + '/sections/intro/index.ts'));
   assert(paths.includes(placement + '/sections/quiz/index.ts'));
   assert(paths.includes(placement + '/specification.md'));
@@ -105,11 +106,11 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   assert.match(root, /defineAssessment/);
   assert.match(root, /const quiz = child_section_quiz;/);
   assert.match(root, /before, quiz, after,/);
-  assert.match(root, /from "\.\/languages"/);
+  assert.match(root, /from "#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants"/);
   assert.match(root, /TODO \(BLOCKER\)/);
   assert.doesNotMatch(root, /#coursesData/);
   const section = plan.files.find(f => f.path === placement + '/sections/quiz/index.ts').content;
-  assert.match(section, /\.\.\/\.\.\/languages/);
+  assert.match(section, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.equal(
     materializeAssessment(input, options)
       .files.map(f => [f.path, f.content])
