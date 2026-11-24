@@ -231,7 +231,7 @@ export function materializeFlashcardBank(
     const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
     if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
     return planFlashcardBank(input, approved);
-  });
+  }, input);
 }
 
 function planFlashcardBank(

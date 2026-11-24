@@ -9,6 +9,7 @@ type Execution = {
   attempts: number;
   result?: unknown;
   completed: boolean;
+  onInput?: (input: unknown) => unknown;
 };
 let active: Execution | undefined;
 
@@ -17,9 +18,10 @@ export async function executeMaterializerEntrypoint<Result>(
   operation: string,
   options: unknown,
   load: () => Promise<unknown>,
+  onInput?: (input: unknown) => unknown,
 ): Promise<Result> {
   if (active) throw new Error('Nested materializer execution is not supported');
-  const execution: Execution = { operation, options, attempts: 0, completed: false };
+  const execution: Execution = { operation, options, attempts: 0, completed: false, onInput };
   active = execution;
   try {
     await load();
@@ -36,6 +38,7 @@ export function invokeMaterializer<Options, Result>(
   operation: string,
   options: Options | undefined,
   materialize: (options: Options) => Result,
+  input?: unknown,
 ): Result {
   if (!active) {
     if (options === undefined) throw new Error('Materializer requires an isolated execution context');
@@ -44,7 +47,8 @@ export function invokeMaterializer<Options, Result>(
   active.attempts++;
   if (active.attempts !== 1 || active.operation !== operation || options !== undefined)
     throw new Error('Entrypoint must invoke only its authorized materializer without execution options');
-  const result = materialize(active.options as Options);
+  const options = active.onInput ? active.onInput(input) : active.options;
+  const result = materialize(options as Options);
   active.result = result;
   active.completed = true;
   return result;
