@@ -11,7 +11,7 @@ export type AudioExtension = (typeof audioExtensions)[number];
 export type VideoExtension = (typeof videoExtensions)[number];
 export type SubtitlesExtension = (typeof subtitlesExtensions)[number];
 
-/** Reserved unresolved filename identity used by YAML -> TypeScript scaffolding only. */
+/** Reserved unresolved filename identity for typed source materialization; never a published asset. */
 export const UNRESOLVED_RESOURCE_UUID = '00000000-0000-0000-0000-000000000000' as const;
 const mediaUuid_Schema = z.union([z.uuid(), z.literal(UNRESOLVED_RESOURCE_UUID)]);
 
