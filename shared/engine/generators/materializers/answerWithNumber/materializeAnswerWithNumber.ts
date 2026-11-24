@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Create-only staged AnswerWithNumber source emission.
  * This is NOT a Props publisher or a YAML/Configurator adapter.
@@ -279,7 +280,7 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
         : []),
       ...imports.sort(),
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       nested +
         'export const ' +
         exportedName +
