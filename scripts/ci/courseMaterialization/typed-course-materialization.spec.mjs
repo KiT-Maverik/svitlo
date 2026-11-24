@@ -136,7 +136,10 @@ test('inert TypeScript parser accepts canonical literal, never evaluates importe
     literal.replace('slug: "sky"', '__proto__: "polluted"'),
     literal.replace('satisfies CourseWorkflowMaterializerInput', 'satisfies CourseWorkflowStage3'),
     literal.replace('export const courseStage3', 'const courseStage3'),
-    literal + literal.replace("import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n", '').replace('courseStage3', 'anotherCourse'),
+    literal +
+      literal
+        .replace("import type { CourseWorkflowMaterializerInput } from '@svitlo/engine/build';\n", '')
+        .replace('courseStage3', 'anotherCourse'),
     literal.replace('type: "course"', 'type: "lesson"'),
   ])
     assert.throws(() => parseCanonicalCourseSource(injected));
