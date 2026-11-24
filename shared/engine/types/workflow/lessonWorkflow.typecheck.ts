@@ -5,7 +5,6 @@ import type {
   LessonWorkflowStage1Production,
   LessonWorkflowStage2,
   LessonWorkflowStage2Section,
-  LessonWorkflowMaterializerInput,
   LessonWorkflowStage2QuizSection,
   LessonWorkflowStage2SimpleBlock,
   LessonWorkflowStage2Checkpoint,
@@ -172,7 +171,7 @@ const stage2 = {
   },
 } satisfies LessonWorkflowStage2;
 
-const reviewedStage5: LessonWorkflowMaterializerInput = stage2;
+const reviewedStage5: LessonWorkflowStage2 = stage2;
 
 // No Quiz Section does not imply that a separately authored Question Bank is unnecessary.
 const bankWithoutQuiz = {
