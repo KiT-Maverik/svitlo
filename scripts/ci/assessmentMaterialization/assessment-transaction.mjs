@@ -61,7 +61,7 @@ export function parseAssessmentMetadata(encoded) {
   return meta;
 }
 
-/** The original Course seed is a fixed JSON literal in a generated TS wrapper. */
+/** Decode only inert literal fields from the pinned Course-generated typed seed. */
 export function parseAssessmentSeed(source) {
   const seed = readGeneratedCourseHandoff(source, {
     variable: 'assessmentSeed',
