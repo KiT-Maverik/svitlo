@@ -129,8 +129,7 @@ changes, even at unchanged HEAD. **Do not skip a required check job solely on
 `edited` without verifying prior required-check conclusions:** GitHub can treat a
 new `skipped` context as acceptable even if an earlier check failed. The PR
 labeler may skip description-only edits because it is not a required check;
-it still processes title and base changes. Retain full required-check execution
-until a separately validated, fail-closed reuse mechanism exists.
+it still processes title and base changes. FastGate and Production Quality may reuse only the newest successful check on a body-only edit of the same open Ready PR, exact merge SHA, head/base SHA and refs, and proven workflow/Ready validation scope. Missing, ambiguous, failed, pending, cancelled, stale or legacy results without proof run the normal validation. Base retargets, source changes, Ready transitions, reopens and manual dispatch never reuse. The required context still reports its own result; Draft keeps its ordinary lightweight tier.
 The separate `/engine-coverage` PR comment invokes optional, diagnostic-only
 Engine coverage; FastGate never invokes coverage automatically. Content Build plans scope before
 npm install: Draft defers distribution builds, Ready `develop` selects impacted

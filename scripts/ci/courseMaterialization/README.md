@@ -8,10 +8,9 @@ To exercise the staged path on an open same-repository **Draft Course PR**:
 post exactly `/course materialize` as a top-level PR comment, or choose
 **Actions → Typed Course materialization** and supply `pr_number`. The gate requires a single changed canonical
 content/<book>/data/courses/<UUID-last-hex>/<UUID>/draft.ts,
-the current source blob SHA, accepted Stage 4 evidence in the Course PR
-description using the [canonical independent review rule](../../../studio/rules/independent-review.md),
-and a write-authorized invoking actor. Review and command authorization are
-separate. Missing, rejected, duplicate or stale evidence fails closed.
+the current source blob SHA and a write-authorized invoking actor. The
+[independent review rule](../../../studio/rules/independent-review.md) governs editorial work only.
+The command does not read PR descriptions, editorial checklists or review verdicts.
 
 The **read-only analyze job** parses the Course PR TypeScript through trusted
 TypeScript AST analysis; it never runs untrusted candidate modules. Only inert
@@ -44,11 +43,10 @@ contracts as virtual in-memory files before manifest creation and again
 before a privileged write.
 
 The read-only job writes a bounded artifact containing the complete generated
-file set, exact UTF-8 bytes and SHA-256 hashes, source blob, review verdict and
-review commit. **Only trusted default-branch scripts** execute in both jobs.
+file set, exact UTF-8 bytes and SHA-256 hashes, source blob and pinned commit. **Only trusted default-branch scripts** execute in both jobs.
 Candidate TS is not imported, compiled to executable JS, or evaluated —
 including in the privileged publisher. The publisher rechecks the actor and
-independent Stage 4 review at the pinned HEAD, rereads original source/blob,
+pinned source/HEAD, rereads original source/blob,
 recreates the identical plan from inert AST, checks every target for symlinks
 and clobbers, and builds **one Git Data API tree commit** that deletes the reviewed
 draft.ts and creates index.ts plus all approved outputs. Exact original bytes
