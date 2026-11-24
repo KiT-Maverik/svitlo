@@ -99,12 +99,26 @@ jobs:
           if (isComment) {
             if (parts[0] !== '/agent-artifacts' || parts[1] !== 'generate') throw Error('Unknown command');
               kind = parts[2] || '';
-              if (kind === 'skills' || kind === 'lessons' || kind === 'questions') {
+              if (kind === 'skills') {
                 if (![4, 5].includes(parts.length)) {
-                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [locale]');
+                  throw Error('Usage: /agent-artifacts generate skills content/<book> [locale]');
                 }
                 textbook = parts[3];
                 locale = parts[4] || '';
+              } else if (kind === 'lessons' || kind === 'questions') {
+                if (![4, 5, 6].includes(parts.length)) {
+                  throw Error('Usage: /agent-artifacts generate ' + kind + ' content/<book> [lesson-uuid] [locale]');
+                }
+                textbook = parts[3];
+                const extra = parts.slice(4);
+                const isUuid = value => /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value);
+                if (extra.length === 1) {
+                  if (isUuid(extra[0])) lesson = extra[0].toLowerCase();
+                  else locale = extra[0];
+                } else if (extra.length === 2) {
+                  lesson = extra[0].toLowerCase();
+                  locale = extra[1];
+                }
               } else if (kind === 'courses') {
                 if (![4, 5, 6].includes(parts.length)) throw Error('Usage: /agent-artifacts generate courses content/<book> [course-uuid] [locale]');
                 textbook = parts[3];
@@ -136,6 +150,9 @@ jobs:
           } else {
             ({ kind = '', textbook = '', locale = '', component = '', lesson = '', course = '', episode = '' } = event.inputs);
           }
+          // Manual dispatch accepts uppercase UUID text, but source paths and
+          // manifest scopes use the canonical lowercase UUID.
+          if (lesson) lesson = lesson.toLowerCase();
           const allowed = ['skills', 'lessons', 'questions', 'courses', 'episodes', 'ui-kit', 'assessment-methods', 'geography-home-copy', 'education-standards'];
           if (!allowed.includes(kind)) throw Error('Unsupported reference family');
             if ((kind === 'skills' || kind === 'lessons' || kind === 'questions' || kind === 'courses' || kind === 'episodes') !== Boolean(textbook) ||
@@ -299,6 +316,26 @@ jobs:
           }
           for (const [key, value] of Object.entries(request)) {
             if (manifest.scope[key] !== value) throw Error('Report scope does not match authorized request: ' + key);
+          }
+          if (request.lesson) {
+            // A request for one Lesson may contain multiple locales, but may
+            // never include other Lessons or unrelated Question Banks.
+            const lessonPath = request.lesson.at(-1) + '/' + request.lesson;
+            const kind = request.kind === 'lessons' ? 'lesson' : 'question';
+            const prefix = request.kind + '/' + request.package.slice(8) + '/' + lessonPath + '/';
+            const observedLocales = new Set();
+            for (const row of manifest.generated) {
+              if (row.kind !== kind || row.textbook !== request.package || row.lesson !== lessonPath ||
+                  typeof row.locale !== 'string' || !/^[a-z]{2,4}$/.test(row.locale) ||
+                  (request.locale && row.locale !== request.locale) ||
+                  row.path !== prefix + row.locale + '.md' || observedLocales.has(row.locale))
+                throw Error('Generated document escaped exact Lesson UUID scope');
+              observedLocales.add(row.locale);
+            }
+            if (request.locale && (manifest.generated.length !== 1 || !observedLocales.has(request.locale)))
+              throw Error('Scoped Lesson request must produce exactly its selected locale');
+            if (manifest.failures.some(row => row.lesson && row.lesson !== lessonPath))
+              throw Error('Reference failures escaped exact Lesson UUID scope');
           }
           if (request.kind === 'episodes') {
             const expectedPath = 'episodes/' + request.package.slice(8) + '/' + request.course.at(-1) + '/' + request.course + '/' + request.episode + '/' + request.locale + '.md';
