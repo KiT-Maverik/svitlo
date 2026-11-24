@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { LocalizedCourse } from './courseResources';
-import { coursePropsToTopics } from './courseNavigation';
+import { coursePropsToTopics, flattenCourseTopics } from './courseNavigation';
 
 const course: LocalizedCourse = {
   id: 'course-id',
@@ -73,4 +73,22 @@ describe('coursePropsToTopics', () => {
   it('rejects missing Lesson titles rather than exposing UUIDs in navigation', () => {
     expect(() => coursePropsToTopics(course, 'uk', 'uk', {})).toThrow(/Missing localized Lesson title/);
   });
+});
+
+it('preserves mixed Episode and repeated Lesson navigation in reviewed order',()=>{
+  const mixed=structuredClone(course);
+  mixed.content.items.start={id:'episode-one',slug:'start',type:'episode',params:{languages:['en']},
+    locale:{title:'Start story'},section:[]};
+  mixed.content.items.repeat={id:'lesson-1',type:'lesson'};
+  mixed.content.order=['start','laboratory','repeat'];
+  const flat=flattenCourseTopics(coursePropsToTopics(mixed,'uk','en',{
+    ...titles,'placement:repeat':'Second placement',
+  }));
+  expect(flat.map(topic=>topic.href)).toEqual([
+    '/uk/course/course-id/episode/en/episode-one',
+    '/uk/course/course-id/lesson/en/lesson-1?placement=laboratory%2Ffundamentals%2Freflection',
+    '/uk/course/course-id/lesson/en/lesson-2',
+    '/uk/course/course-id/lesson/en/lesson-1?placement=repeat',
+  ]);
+  expect(flat.at(-1)?.title).toBe('Second placement');
 });

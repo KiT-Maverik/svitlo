@@ -115,6 +115,13 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
       assertRecord(original, at); assertRecord(translated, at);
       if (original.id !== translated.id || original.type !== translated.type || original.slug !== translated.slug)
         throw Error('Localized Episode Section identity changed at ' + at);
+      if (!Array.isArray(original.content) || !Array.isArray(translated.content) || original.content.length !== translated.content.length)
+        throw Error('Localized Episode Block structure changed at ' + at);
+      for (let j = 0; j < original.content.length; j++) {
+        const a: unknown = original.content[j], b: unknown = translated.content[j];
+        assertRecord(a, at); assertRecord(b, at);
+        if (a.id !== b.id || a.type !== b.type || a.slug !== b.slug) throw Error('Localized Episode Block identity changed at ' + at);
+      }
     }
     return;
   }

@@ -88,14 +88,14 @@ test('Episode host renders localized media and registered Scene, then follows re
   const story='11111111-1111-4111-8111-000000000140';
   const episode='11111111-1111-4111-8111-000000000141';
   await page.goto('/uk/course/'+story);
-  await page.getByRole('link',{name:'Контрольний епізод 321'}).click();
+  await page.getByRole('link',{name:/Контрольний епізод 321/}).click();
   await expect(page).toHaveURL('/uk/course/'+story+'/episode/uk/'+episode);
   await expect(page.getByRole('heading',{name:'Контрольний епізод 321',level:1})).toBeVisible();
   await expect(page.getByRole('img',{name:'Контрольна інтерактивна сцена'})).toBeVisible();
   await expect(page.getByRole('region',{name:'Контрольна інтерактивна сцена'})).toBeVisible();
   await page.getByRole('button',{name:'Далі',exact:true}).click();
   await expect(page.getByRole('heading',{name:'Практика',level:2})).toBeVisible();
-  await page.getByRole('link',{name:'Контрольний епізод 322'}).first().click();
+  await page.getByRole('link',{name:/Контрольний епізод 322/}).first().click();
   await expect(page).toHaveURL('/uk/course/'+story+'/episode/uk/11111111-1111-4111-8111-000000000142');
   await page.goto('/uk/course/'+story+'/lesson/uk/'+lessonId+'?placement=finalLesson');
   await expect(page.getByRole('heading',{name:'Контрольний урок 2',level:1})).toBeVisible();
