@@ -796,3 +796,44 @@ test('Course and Episode commands resolve exact comment and dispatch identities'
     assert.throws(() => parse({ inputs: { pr_number: 0 } }, 'workflow_dispatch'));
   }
 });
+
+test('all five materialization commands route to trusted resolve jobs with per-PR concurrency', () => {
+  const workflows = [
+    ['course-typed', 'resolve', ['course'], ['pr_number'], 'courseMaterialization/typed-course-gate.mjs'],
+    ['episode', 'resolve', ['episode'], ['pr_number', 'parent_pr'], 'episodeMaterialization/episode-gate.mjs'],
+    ['lesson', 'typed-resolve', ['lesson'], ['pr_number'], 'lessonMaterialization/lesson-typed-gate.mjs'],
+    [
+      'bank',
+      'typed_resolve',
+      ['questions', 'flashcards'],
+      ['pr_number', 'bank'],
+      'bankMaterialization/bank-typed-gate.mjs',
+    ],
+  ];
+  for (const [filename, resolve, commands, inputs, gate] of workflows) {
+    const flow = YAML.parse(
+      fs.readFileSync(
+        fileURLToPath(new URL('../../../.github/workflows/' + filename + '-materialization.yml', import.meta.url)),
+        'utf8',
+      ),
+    );
+    assert.deepEqual(flow.on.issue_comment.types, ['created']);
+    assert.deepEqual(Object.keys(flow.on.workflow_dispatch.inputs), inputs);
+    assert.match(flow.concurrency.group, /github\.event\.issue\.number/);
+    assert.match(flow.concurrency.group, /inputs\.pr_number/);
+    assert.equal(flow.concurrency['cancel-in-progress'], false);
+    const resolver = flow.jobs[resolve];
+    assert.match(resolver.if, /github\.event\.issue\.pull_request/);
+    assert.match(resolver.if, /github\.event\.repository\.default_branch/);
+    for (const entity of commands) {
+      assert(resolver.if.includes("github.event.comment.body == '/" + entity + " materialize'"));
+      assert(!resolver.if.includes('/' + entity + ' materialize typed'));
+    }
+    assert(resolver.steps.some(step => step.run === 'node scripts/ci/' + gate + ' resolve'));
+    assert.equal(resolver.permissions.contents, 'read');
+    const analyze = flow.jobs.analyze ?? flow.jobs['typed-analyze'] ?? flow.jobs.typed_analyze;
+    const publish = flow.jobs.publish ?? flow.jobs['typed-publish'] ?? flow.jobs.typed_publish;
+    assert.equal(analyze.permissions.contents, 'read');
+    assert.equal(publish.permissions.contents, 'write');
+  }
+});
