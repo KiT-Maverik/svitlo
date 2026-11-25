@@ -190,12 +190,12 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
     assert(!coursePlan.files.some(f => f.path.endsWith('/authoredCourseOverrides.ts')));
     const courseIndex = coursePlan.files.find(f => f.path === courseRoot + '/index.ts')?.content;
     assert(courseIndex, 'Course Stage 5 must emit its canonical index.ts');
-    assert.match(courseIndex, /import \\{ independentLesson as child_reused \\}/);
-    assert.match(courseIndex, /import \\{ overriddenLesson as child_overridden \\}/);
-    assert.match(courseIndex, /"reused": child_reused/);
-    assert.match(courseIndex, /"overridden": placeLesson\\(child_overridden, \\{/);
-    assert.match(courseIndex, /"allowSkipping": false/);
-    assert.equal((courseIndex.match(/placeLesson\\(/g) ?? []).length, 1);
+    assert(courseIndex.includes('import { independentLesson as child_reused }'));
+    assert(courseIndex.includes('import { overriddenLesson as child_overridden }'));
+    assert(courseIndex.includes('"reused": child_reused'));
+    assert(courseIndex.includes('"overridden": placeLesson(child_overridden, {'));
+    assert(courseIndex.includes('"allowSkipping": false'));
+    assert.equal(courseIndex.split('placeLesson(').length - 1, 1);
     const meta = {
       version: 2,
       operation: 'typed-course-stage5',
