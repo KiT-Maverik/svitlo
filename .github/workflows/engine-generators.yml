@@ -118,6 +118,7 @@ jobs:
             shared/engine/generators/materializers/module/*.spec.mjs \
             shared/engine/generators/materializers/chapter/*.spec.mjs \
             shared/engine/generators/materializers/lesson/*.spec.mjs \
+            shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js \
             shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
             shared/engine/.test-build/generators/materializers/scene/*.spec.js \
             shared/engine/.test-build/generators/materializers/episode/*.spec.js \
