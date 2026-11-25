@@ -35,7 +35,7 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
     directory + '/sections/content/index.ts',
   ]);
   assert.match(first.files[0].content, /section_content is literal user text/);
-  assert.match(first.files[1].content, /import \{ contentBlockOverride as block_p1 \} from "\.\/content\/p1"/);
+  assert.match(first.files[1].content, /import \{ contentBlockOverride as block_p1 \} from "\.\/p1"/);
   assert.match(first.files[1].content, /"p1": block_p1/);
   assert.match(first.files[1].content, /"p2": false/);
   assert.match(first.patchSource, /"content": section_content/);
