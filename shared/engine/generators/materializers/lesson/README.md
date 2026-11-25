@@ -2,6 +2,10 @@
 
 **Implemented:** concrete Lesson and Section/Quest source renderers under this directory, with the parent-owned trusted Lesson Stage 6.1 source transition. These are **Build-time source renderers**, not runtime Props serializers, YAML-to-TS builders or permission to publish an unfinished Lesson.
 
+## ContentBlock production briefs
+
+Ready-to-author blocks (`Text`, `Markdown`, `Code`, including Checkpoint questions) carry their finished learner-facing source in their Config/locale or code payload; they must not generate a separate `specification.md` or a redundant technical brief. Unresolved media retain one temporary, actionable implementation brief adjacent to their generated `index.ts`, not a detached sidecar. **Image briefs must provide a concrete image-generation prompt** describing the actual composition, subjects, layout, important visual relationships, and constraints, not just a generic purpose. Audio, Video and Subtitles preserve their real generation inputs (scripts/storyboards or text). Generic accessibility, offline, weak-device and readiness declarations are platform/workflow quality gates, not per-resource specification boilerplate; omit them from generated media briefs. Never remove the real publication blockers for missing assets, verified alt text, captions or QA.
+
 ## Ownership and stage boundaries
 
 - **Optional Course seed:** Course Stage 5 emits a persisted UUID-addressed `draft.ts satisfies CourseWorkflowLessonSeed` with reviewed proposal and Course language context. Lesson Stage 1 is independent and may use this seed, operator brief or other material. Its authorized Methodologist completes `LessonWorkflowStage1` in the same file, preserving allocated identity. Course Stage 5 does not call the Lesson renderer, author Sections, mint bank IDs or open a Lesson PR.
