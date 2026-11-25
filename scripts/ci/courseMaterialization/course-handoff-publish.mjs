@@ -124,12 +124,14 @@ export async function getPR(route, method = 'GET', body, transport = fetch) {
     const message = typeof errorBody?.message === 'string' ? ': ' + errorBody.message.slice(0, 240) : '';
     throw Error('Course PR metadata ' + method + ' HTTP ' + response.status + message);
   }
-  return { pr: await response.json(), etag: response.headers.get('etag') };
+  return { pr: await response.json() };
 }
 
-/** Optimistic edit: compare two ETag/versioned reads before PATCH and verify
- * the postcondition. The GitHub PR PATCH endpoint does not support If-Match;
- * this detects observed races, not an atomic lock against human edits.
+/** Optimistic description edit: compare two PR bodies before PATCH, then verify
+ * the postcondition. ETags and updated_at describe the entire PR resource and
+ * can change without any description edit (or be absent). GitHub's PR PATCH
+ * does not support If-Match, so this detects observed body races, not an
+ * atomic lock against edits between the second read and PATCH.
  */
 export async function reconcileCommittedPR(manifest, proof, request = getPR) {
   const route = 'pulls/' + proof.number;
@@ -140,14 +142,7 @@ export async function reconcileCommittedPR(manifest, proof, request = getPR) {
   if (next === body) return false;
   const latest = await request(route);
   requirePR(latest.pr, proof);
-  if (
-    !before.etag ||
-    !latest.etag ||
-    before.etag !== latest.etag ||
-    (latest.pr.body ?? '') !== body ||
-    latest.pr.updated_at !== before.pr.updated_at
-  )
-    throw Error('Concurrent Course PR description edit; retry metadata only');
+  if ((latest.pr.body ?? '') !== body) throw Error('Concurrent Course PR description edit; retry metadata only');
   const written = await request(route, 'PATCH', { body: next });
   requirePR(written.pr, proof);
   if (written.pr.body !== next) throw Error('Course PR description update did not preserve exact intended content');
