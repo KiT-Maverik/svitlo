@@ -30,24 +30,7 @@ const source = ctx => {
     throw Error('sourceLanguage: reviewed locale required');
   return ctx.sourceLanguage;
 };
-const exportName = slug =>
-  [
-    'class',
-    'default',
-    'export',
-    'import',
-    'const',
-    'new',
-    'return',
-    'let',
-    'var',
-    'await',
-    'content',
-    'languages',
-    'section',
-  ].includes(slug)
-    ? 'config_' + slug
-    : slug;
+const exportName = slug => slug;
 const sidecars = (meta, dir) => {
   if (meta === undefined) return [];
   if (!record(meta)) throw Error(dir + '.production: typed production object required');
@@ -369,17 +352,14 @@ export function materializeCourse(input, context = {}) {
     if (stage1Lesson || stage1Episode || pendingAssessment) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
-      const alias = 'child_' + key;
-      const location = './';
-      imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location }));
-      items[key] = alias;
+      imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location: './' }));
+      items[key] = key;
     } else {
-      const alias = 'child_' + key;
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
         imports.push(
-          'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(child.importPath) + ';',
+          'import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';',
         );
         if (child.extraImports !== undefined) {
           if (!Array.isArray(child.extraImports) || child.extraImports.some(line => typeof line !== 'string'))
@@ -388,11 +368,11 @@ export function materializeCourse(input, context = {}) {
         }
         if (child.patchSource !== undefined) {
           inlineImports.add('placeLesson');
-          items[key] = 'placeLesson(' + alias + ', ' + child.patchSource + ')';
-        } else items[key] = alias;
+          items[key] = 'placeLesson(' + child.sourceExportName + ', ' + child.patchSource + ')';
+        } else items[key] = child.sourceExportName;
       } else {
-        imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
-        items[key] = alias;
+        imports.push('import { ' + child.exportName + ' } from "./' + key + '";');
+        items[key] = child.exportName;
       }
     }
     files.push(...child.files);
@@ -422,7 +402,7 @@ export function materializeCourse(input, context = {}) {
   const itemsSource =
     '{ ' +
     Object.entries(items)
-      .map(([key, alias]) => JSON.stringify(key) + ': ' + alias)
+      .map(([key, name]) => (key === name ? name : JSON.stringify(key) + ': ' + name))
       .join(', ') +
     ' }';
   const attrs = Object.entries(fields)
@@ -436,13 +416,6 @@ export function materializeCourse(input, context = {}) {
     resolveSkill: context.resolveSkill,
     textbookRoot: context.textbookRoot,
     directory: dir,
-    reservedNames: [
-      'defineCourse',
-      exportName(slug),
-      ...inlineImports,
-      ...order.map(key => 'child_' + key),
-      ...imports.map(line => line.match(/\bas ([A-Za-z_$][A-Za-z0-9_$]*) \}/)?.[1]).filter(Boolean),
-    ],
     includeLanguages: true,
   });
   const paramsSource = bound.source;
