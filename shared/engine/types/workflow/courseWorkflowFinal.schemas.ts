@@ -103,7 +103,7 @@ const episodeSlot = z.strictObject({
  * educational purpose and upstream Lesson placements/UUIDs. Its own Quiz
  * and Questions are not fabricated by Course materialization.
  */
-const lessonPlacementPath = z.string().regex(/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/);
+const lessonPlacementPath = z.string().regex(/^(?:content\/)?[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/);
 const assessmentSlot = z.strictObject({
   config: assessment_Config_Schema.pick({ type: true, locale: true }),
   production: z.strictObject({
