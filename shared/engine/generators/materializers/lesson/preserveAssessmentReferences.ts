@@ -303,10 +303,10 @@ function bindTrustedBankSelections(
           member.id !== selection.ids[index] || !sha.test(member.sourceSha) ||
           typeof member.importPath !== 'string' ||
           !member.importPath.startsWith(base + category) ||
-          !member.importPath.slice((base + category).length).split('/').every(identifier.test.bind(identifier)) ||
+          !member.importPath.slice((base + category).length).split('/').every(part => identifier.test(part)) ||
           !identifier.test(member.exportName) ||
           (member.memberPath !== undefined &&
-            (!Array.isArray(member.memberPath) || !member.memberPath.every(identifier.test.bind(identifier))))) {
+            (!Array.isArray(member.memberPath) || !member.memberPath.every(part => identifier.test(part))))) {
         throw Error('Stage 6: unapproved or mismatched Lesson-owned bank member at ' + selection.sectionKey);
       }
       const alias = 'stage6_ref_' + index;
@@ -318,7 +318,7 @@ function bindTrustedBankSelections(
     });
     return { ...selection, references };
   });
-  if (bound.length !== approved.size && [...approved.keys()].some(key => !selections.some(sel => sel.sectionKey === key)))
+  if ([...approved.keys()].some(key => !selections.some(sel => sel.sectionKey === key)))
     throw Error('Stage 6: trusted bank selection refers to absent authored Section');
   return bound;
 }
