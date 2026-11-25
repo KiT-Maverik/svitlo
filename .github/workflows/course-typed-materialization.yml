@@ -108,11 +108,12 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Check out trusted materializers from default branch
+      - name: Check out trusted materializers and immutable default-branch Lesson history
         uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
+          fetch-depth: 0
           persist-credentials: false
       - name: Check out pinned PR as inert data, never a workflow or script source
         uses: actions/checkout@v5
