@@ -290,6 +290,7 @@ export function materializeCourseStage5(input, options = {}) {
     }
     knownExistingIds.add(existing.id);
     if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
+    const placementSlug = node.config.slug;
     const hasPatch = production.sourcePatch !== undefined;
     let patchSource;
     let extraImports = [];
@@ -371,7 +372,10 @@ export function materializeCourseStage5(input, options = {}) {
             'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
             ...extraImports,
             '',
-            'export const placedLesson = placeLesson(originalLesson, ' + patchSource + ');',
+            renderBlockerTodo(
+              'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
+            ),
+            'export const ' + placementSlug + ' = placeLesson(originalLesson, ' + patchSource + ');',
             '',
           ].join('\n'),
         },
@@ -404,7 +408,6 @@ export function materializeCourseStage5(input, options = {}) {
     } else if (production.overrideRationale !== undefined) {
       throw new Error(context.directory + ': override rationale without a Course-local patch');
     }
-    const placementSlug = node.config.slug;
     recordPlacement(context.directory, {
       type: 'lesson',
       id: existing.id,
@@ -427,7 +430,7 @@ export function materializeCourseStage5(input, options = {}) {
       id: existing.id,
       lessonId: existing.id,
       exportName: placementSlug,
-      sourceExportName: hasPatch ? 'placedLesson' : lesson.exportName,
+      sourceExportName: hasPatch ? placementSlug : lesson.exportName,
       importPath: hasPatch ? './' + placementSlug : lesson.importPath,
       files: placementFiles,
       diagnostics: placementDiagnostics,
