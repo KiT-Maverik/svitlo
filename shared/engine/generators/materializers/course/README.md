@@ -1,5 +1,7 @@
 # Typed Course family source materializers
 
+**Contract clarification (#875):** Course-level Skill targets are genuine Config/Props fields and resolve to imported Skill `.id` references. Module/Chapter learning outcomes and prerequisites are **production-only methodology**, still verified against approved Skills and included in derived `methodology.md`; Config/Props reject these fields, and generated `index.ts` does not import Skills for them. Course-owned Lesson override fragments use `satisfies` constraints derived from the trusted standalone Lesson's actual `build.overrides()` via type-only imports, including nested existing Sections and ContentBlocks. Canonical child-export collisions cause explicit errors, never invented aliases.
+
 **Implementation status:** the Course/Module/Chapter/Episode source renderers and typed Course Stage 5 orchestrator compose reviewed typed source. Their job is to emit reviewed, immutable **TypeScript authoring modules and derived methodology**, not runtime Course Props/JSON, editorial approval or a YAML conversion.
 
 ## Concrete kinds and responsibility

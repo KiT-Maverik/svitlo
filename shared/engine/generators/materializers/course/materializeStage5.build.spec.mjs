@@ -192,9 +192,16 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   assert.equal(source.files.filter(file => file.path.endsWith('/stub.ts')).length, 2);
   for (const pathSuffix of ['/index.ts', '/moduleOne/index.ts', '/moduleOne/chapterOne/index.ts']) {
     const authored = source.files.find(file => file.path === root + pathSuffix).content;
-    assert.match(authored, /#skillsData\/test/);
-    assert.match(authored, /test(?:RecognizeCircle|ExplainLightTravel)\.id/);
+    if (pathSuffix === '/index.ts') {
+      assert.match(authored, /#skillsData\/test/);
+      assert.match(authored, /test(?:RecognizeCircle|ExplainLightTravel)\.id/);
+    } else {
+      assert.doesNotMatch(authored, /skillsData|outcomes|prerequisites/);
+    }
     assert.match(authored, /#coursesData\/3\//);
+  }
+  for (const suffix of ['/moduleOne/methodology.md', '/moduleOne/chapterOne/methodology.md']) {
+    assert.match(source.files.find(file => file.path === root + suffix).content, /Intended learning outcomes/);
   }
   const rootSource = source.files.find(file => file.path === root + '/index.ts').content;
   assert.equal(

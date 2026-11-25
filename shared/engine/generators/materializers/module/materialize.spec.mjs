@@ -222,8 +222,8 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
-  assert.doesNotMatch(main, /outcomes|prerequisites|#skillsData\\//);
-  assert.match(main, /params: \\{\\}/);
+  assert.doesNotMatch(main, /outcomes|prerequisites|skillsData/);
+  assert.ok(main.includes('params: {}'));
   assert.match(out.files.find(file => file.path === 'methodology.md').content, /Intended learning outcomes/);
   assert.equal(out.id, IDs.module);
   syntax(out.files);

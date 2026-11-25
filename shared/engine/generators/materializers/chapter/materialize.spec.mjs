@@ -240,7 +240,7 @@ test('Chapter refuses unsafe source directory', () => {
 test('Chapter excludes production-only Skill targets and rejects legacy config params', () => {
   const result = materializeChapter(ch(), ctx());
   const index = result.files.find(file => file.path === 'index.ts').content;
-  assert.doesNotMatch(index, /outcomes|prerequisites|#skillsData\\//);
+  assert.doesNotMatch(index, /outcomes|prerequisites|skillsData/);
   assert.match(result.files.find(file => file.path === 'methodology.md').content, /Intended learning outcomes/);
   for (const field of ['outcomes', 'prerequisites']) {
     const value = ch();
