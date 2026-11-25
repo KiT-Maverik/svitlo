@@ -146,12 +146,17 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const courseParent = courseRoot + '/index.ts';
   const parent = lessonImports =>
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    lessonImports.map(({ slug, id }) =>
-      'import { lesson as child_' + slug + ' } from "#lessonsData/' +
-      id.at(-1) + '/' + id + '/index";\n').join('') +
+    lessonImports
+      .map(
+        ({ slug, id }) =>
+          'import { lesson as child_' + slug + ' } from "#lessonsData/' + id.at(-1) + '/' + id + '/index";\n',
+      )
+      .join('') +
     'const content = { items: { ' +
     lessonImports.map(({ slug }) => JSON.stringify(slug) + ': child_' + slug).join(', ') +
-    ' }, order: ' + JSON.stringify(lessonImports.map(({ slug }) => slug)) + ' };\n' +
+    ' }, order: ' +
+    JSON.stringify(lessonImports.map(({ slug }) => slug)) +
+    ' };\n' +
     'export const demo = defineCourse({ content });\n';
   const contents = new Map([
     [courseParent, parent([{ slug: 'newLesson', id: lessonId }])],
@@ -168,17 +173,21 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
   // A sibling import must never replace the approved dependency's bank.
   const unrelated = '44444444-4444-4444-8444-444444444444';
-  contents.set(courseParent, parent([
-    { slug: 'otherLesson', id: unrelated },
-    { slug: 'newLesson', id: lessonId },
-  ]));
+  contents.set(
+    courseParent,
+    parent([
+      { slug: 'otherLesson', id: unrelated },
+      { slug: 'newLesson', id: lessonId },
+    ]),
+  );
   assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
   contents.set(courseParent, parent([{ slug: 'otherLesson', id: unrelated }]));
   assert.throws(() => checkAssessmentBanks(meta, seed, [questionId], reader, tree), /integrated/);
   contents.set(courseParent, parent([{ slug: 'newLesson', id: lessonId }]));
-  contents.set(courseParent, contents.get(courseParent).replace(
-    '"newLesson": child_newLesson', '"newLesson": unverified',
-  ));
+  contents.set(
+    courseParent,
+    contents.get(courseParent).replace('"newLesson": child_newLesson', '"newLesson": unverified'),
+  );
   assert.throws(() => checkAssessmentBanks(meta, seed, [questionId], reader, tree), /integrated/);
   contents.set(courseParent, parent([{ slug: 'newLesson', id: lessonId }]));
 

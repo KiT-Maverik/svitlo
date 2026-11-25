@@ -322,46 +322,59 @@ test('Course seed AST reader rejects executable default exports and forged manif
   }
 });
 
-
 test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent imports', () => {
   const lessonId = '11111111-1111-4111-8111-111111111111';
   const siblingId = '22222222-2222-4222-8222-222222222222';
   const parent = (ownerKind, overridden = false) => {
     const definition = 'define' + ownerKind[0].toUpperCase() + ownerKind.slice(1);
-    return [
-      'import { ' + definition + (overridden ? ', placeLesson' : '') + ' } from "@svitlo/engine/build";',
-      'import { sibling as child_other } from "#lessonsData/' + siblingId.at(-1) + '/' + siblingId + '/index";',
-      'import { lesson as child_newLesson } from "#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index";',
-      'const content = { items: { "other": child_other, "newLesson": ' +
-        (overridden ? 'placeLesson(child_newLesson, {})' : 'child_newLesson') +
-        ' }, order: ["other", "newLesson"] };',
-      'export const owner = ' + definition + '({ content });',
-    ].join('\n') + '\n';
+    return (
+      [
+        'import { ' + definition + (overridden ? ', placeLesson' : '') + ' } from "@svitlo/engine/build";',
+        'import { sibling as child_other } from "#lessonsData/' + siblingId.at(-1) + '/' + siblingId + '/index";',
+        'import { lesson as child_newLesson } from "#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index";',
+        'const content = { items: { "other": child_other, "newLesson": ' +
+          (overridden ? 'placeLesson(child_newLesson, {})' : 'child_newLesson') +
+          ' }, order: ["other", "newLesson"] };',
+        'export const owner = ' + definition + '({ content });',
+      ].join('\n') + '\n'
+    );
   };
   for (const ownerKind of ['course', 'module', 'chapter']) {
     const source = parent(ownerKind);
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind }), lessonId);
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'other', ownerKind }), siblingId);
-    assert.equal(resolveIntegratedCourseLesson(
-      '// #lessonsData/0/00000000-0000-4000-8000-000000000000/index\n' + source,
-      { slug: 'newLesson', ownerKind },
-    ), lessonId);
+    assert.equal(
+      resolveIntegratedCourseLesson('// #lessonsData/0/00000000-0000-4000-8000-000000000000/index\n' + source, {
+        slug: 'newLesson',
+        ownerKind,
+      }),
+      lessonId,
+    );
     assert.equal(resolveIntegratedCourseLesson(parent(ownerKind, true), { slug: 'newLesson', ownerKind }), lessonId);
     assert.throws(() => resolveIntegratedCourseLesson(source, { slug: 'absent', ownerKind }), /integrated/);
-    assert.throws(() => resolveIntegratedCourseLesson(source, {
-      slug: 'newLesson', ownerKind: ownerKind === 'course' ? 'module' : 'course',
-    }), /owner/);
-    assert.throws(() => resolveIntegratedCourseLesson(
-      source.replace('"newLesson": child_newLesson', '"newLesson": child_other'),
-      { slug: 'newLesson', ownerKind },
-    ), /integrated/);
-    assert.throws(() => resolveIntegratedCourseLesson(
-      source.replace('index";', 'stub";'),
-      { slug: 'other', ownerKind },
-    ), /canonical verified Lesson UUID/);
-    assert.throws(() => resolveIntegratedCourseLesson(
-      source + 'process.exit(1);',
-      { slug: 'newLesson', ownerKind },
-    ), /syntax/);
+    assert.throws(
+      () =>
+        resolveIntegratedCourseLesson(source, {
+          slug: 'newLesson',
+          ownerKind: ownerKind === 'course' ? 'module' : 'course',
+        }),
+      /owner/,
+    );
+    assert.throws(
+      () =>
+        resolveIntegratedCourseLesson(source.replace('"newLesson": child_newLesson', '"newLesson": child_other'), {
+          slug: 'newLesson',
+          ownerKind,
+        }),
+      /integrated/,
+    );
+    assert.throws(
+      () => resolveIntegratedCourseLesson(source.replace('index";', 'stub";'), { slug: 'other', ownerKind }),
+      /canonical verified Lesson UUID/,
+    );
+    assert.throws(
+      () => resolveIntegratedCourseLesson(source + 'process.exit(1);', { slug: 'newLesson', ownerKind }),
+      /syntax/,
+    );
   }
 });

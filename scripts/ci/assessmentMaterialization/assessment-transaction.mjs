@@ -11,7 +11,10 @@ import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs'
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
 import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
-import { readGeneratedCourseHandoff, resolveIntegratedCourseLesson } from '../directMaterialization/reserved-parent-slot.mjs';
+import {
+  readGeneratedCourseHandoff,
+  resolveIntegratedCourseLesson,
+} from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -175,11 +178,10 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
     // content/<lesson>/index.ts. Resolve the exact pinned import, not the first
     // #lessonsData string in the parent or a guessed allocated UUID.
     const segments = dep.split('/');
-    if (![2, 3, 4].includes(segments.length))
-      throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
+    if (![2, 3, 4].includes(segments.length)) throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
     const ownerKind = ['course', 'module', 'chapter'][segments.length - 2];
-    const parentPath = meta.courseRoot + '/' +
-      (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
+    const parentPath =
+      meta.courseRoot + '/' + (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
     const parent = tree.get(parentPath);
     if (!ordinary(parent)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
     const owner = resolveIntegratedCourseLesson(reader.blob(parent, parentPath), {
@@ -187,8 +189,7 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
       ownerKind,
     });
     const lessonRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/';
-    if (!ordinary(tree.get(lessonRoot + 'index.ts')))
-      throw Error('Upstream Lesson source is not materialized: ' + dep);
+    if (!ordinary(tree.get(lessonRoot + 'index.ts'))) throw Error('Upstream Lesson source is not materialized: ' + dep);
     const bankRoot = lessonRoot + 'questions/';
     if (!ordinary(tree.get(bankRoot + 'index.ts')))
       throw Error('Upstream Lesson lacks a materialized Question Bank: ' + dep);
