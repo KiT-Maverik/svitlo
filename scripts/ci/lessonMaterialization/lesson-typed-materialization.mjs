@@ -265,7 +265,7 @@ export function readTypedReport() {
   return JSON.parse(bytes.toString('utf8'));
 }
 
-async function analyze(root, meta) {
+export async function analyze(root, meta) {
   // Resolve already authorized the actor and sealed the exact PR HEAD/source.
   // Analysis is intentionally credential-free: the publisher reauthorizes the
   // live actor/branch immediately before the single non-force Git transaction.
