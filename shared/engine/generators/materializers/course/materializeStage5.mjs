@@ -342,16 +342,20 @@ export function materializeCourseStage5(input, options = {}) {
         const disabled = Object.entries(rawPatch.section?.items ?? {})
           .filter(([, value]) => value === false)
           .map(([key]) => key);
-        const expected = [...originals.filter(key => !disabled.includes(key)),
-          ...Object.keys(rawPatch.section?.additionalItems ?? {})];
+        const expected = [
+          ...originals.filter(key => !disabled.includes(key)),
+          ...Object.keys(rawPatch.section?.additionalItems ?? {}),
+        ];
         const order = rawPatch.section?.order;
-        if (!Array.isArray(order) || order.length !== expected.length ||
-            new Set(order).size !== expected.length ||
-            order.some(key => !expected.includes(key)))
+        if (
+          !Array.isArray(order) ||
+          order.length !== expected.length ||
+          new Set(order).size !== expected.length ||
+          order.some(key => !expected.includes(key))
+        )
           throw Error(context.directory + ': Course-owned Section order must include all and only active Sections');
       }
-      placementDiagnostics = Object.values(binding.createdSections)
-        .flatMap(section => section.diagnostics ?? []);
+      placementDiagnostics = Object.values(binding.createdSections).flatMap(section => section.diagnostics ?? []);
       const layout = renderCourseLessonPatch({ directory: context.directory, rawPatch, binding });
       patchSource = layout.patchSource;
       extraImports = layout.imports;

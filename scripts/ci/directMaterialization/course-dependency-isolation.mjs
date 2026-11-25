@@ -79,7 +79,8 @@ export function courseAddedSectionReferences(input) {
             // renderer validates it and emits the owned files inside the worker.
             if (
               !/^[A-Za-z][A-Za-z0-9]*$/.test(slug) ||
-              !section || Array.isArray(section) ||
+              !section ||
+              Array.isArray(section) ||
               Object.keys(section).sort().join(',') !== '$create,source' ||
               section.source?.config?.slug !== slug ||
               !UUID.test(section.source?.config?.id ?? '')

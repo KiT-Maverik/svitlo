@@ -14,8 +14,13 @@ const clean = (value, where) => {
 function literal(value, path = [], references = new Map()) {
   const reference = references.get(keyPath(path));
   if (reference !== undefined) return reference;
-  if (value === null || typeof value === 'string' || typeof value === 'boolean' ||
-      (typeof value === 'number' && Number.isFinite(value))) return JSON.stringify(value);
+  if (
+    value === null ||
+    typeof value === 'string' ||
+    typeof value === 'boolean' ||
+    (typeof value === 'number' && Number.isFinite(value))
+  )
+    return JSON.stringify(value);
   if (Array.isArray(value)) {
     const body = '[' + value.map((v, i) => literal(v, [...path, String(i)], references)).join(', ') + ']';
     // Extracting a nested override from a contextual Build call would widen
@@ -27,8 +32,13 @@ function literal(value, path = [], references = new Map()) {
   }
   if (!record(value) || Object.keys(value).some(k => reserved.has(k)))
     throw Error('Unsafe Course Lesson override fragment');
-  return '{' + Object.entries(value).map(([key, child]) =>
-    JSON.stringify(key) + ': ' + literal(child, [...path, key], references)).join(', ') + '}';
+  return (
+    '{' +
+    Object.entries(value)
+      .map(([key, child]) => JSON.stringify(key) + ': ' + literal(child, [...path, key], references))
+      .join(', ') +
+    '}'
+  );
 }
 
 /**
@@ -39,8 +49,13 @@ function literal(value, path = [], references = new Map()) {
  *   {imports:string[], aliases:Record<string,string>}}} args
  */
 export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
-  if (!directory || directory.split('/').some(part => !slug.test(part) || reserved.has(part)) ||
-      !record(rawPatch) || !record(binding) || !Array.isArray(binding.imports))
+  if (
+    !directory ||
+    directory.split('/').some(part => !slug.test(part) || reserved.has(part)) ||
+    !record(rawPatch) ||
+    !record(binding) ||
+    !Array.isArray(binding.imports)
+  )
     throw Error('Unsafe or missing Course Lesson placement source');
   const imports = [];
   const files = [];
@@ -63,19 +78,21 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
             kind: 'typescript',
             content: 'export const contentBlockOverride = ' + literal(blockPatch) + ';\n',
           });
-          childImports.push('import { contentBlockOverride as block_' + blockKey +
-            ' } from "./' + blockKey + '";');
+          childImports.push('import { contentBlockOverride as block_' + blockKey + ' } from "./' + blockKey + '";');
           childRefs.set(keyPath(['content', 'items', blockKey]), 'block_' + blockKey);
         }
       }
       files.push({
         path: directory + '/sections/' + sectionKey + '/index.ts',
         kind: 'typescript',
-        content: [...childImports, '', 'export const sectionOverride = ' +
-          literal(sectionPatch, [], childRefs) + ';', ''].join('\n'),
+        content: [
+          ...childImports,
+          '',
+          'export const sectionOverride = ' + literal(sectionPatch, [], childRefs) + ';',
+          '',
+        ].join('\n'),
       });
-      imports.push('import { sectionOverride as section_' + sectionKey +
-        ' } from "./sections/' + sectionKey + '";');
+      imports.push('import { sectionOverride as section_' + sectionKey + ' } from "./sections/' + sectionKey + '";');
       rootRefs.set(keyPath(['section', 'items', sectionKey]), 'section_' + sectionKey);
     }
   }
@@ -91,8 +108,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
         if (!Array.isArray(created.files) || typeof created.exportName !== 'string')
           throw Error('Invalid generated Course-owned Section: ' + sectionKey);
         files.push(...created.files);
-        imports.push('import { ' + created.exportName + ' as ' + alias +
-          ' } from "./sections/' + sectionKey + '";');
+        imports.push('import { ' + created.exportName + ' as ' + alias + ' } from "./sections/' + sectionKey + '";');
         rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), alias);
         continue;
       }
@@ -103,8 +119,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
         kind: 'typescript',
         content: dependency + '\nexport const sectionAddition = ' + alias + ';\n',
       });
-      imports.push('import { sectionAddition as ' + alias +
-        ' } from "./sections/' + sectionKey + '";');
+      imports.push('import { sectionAddition as ' + alias + ' } from "./sections/' + sectionKey + '";');
       rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), alias);
     }
   }

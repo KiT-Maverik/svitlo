@@ -318,7 +318,10 @@ test('existing Lesson preserves source-authored plain Config patch and placement
     result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath,
     root + '/index.ts',
   );
-  assert.equal(result.inventory.lessons.find(row => row.slug === 'directLesson').overrideSourcePath, root + '/directLesson/index.ts');
+  assert.equal(
+    result.inventory.lessons.find(row => row.slug === 'directLesson').overrideSourcePath,
+    root + '/directLesson/index.ts',
+  );
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
 test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
@@ -419,7 +422,10 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     false,
   );
   assert.match(plan.files.find(file => file.path === root + '/index.ts').content, /"reused": child_reused/);
-  assert.match(plan.files.find(file => file.path === root + '/reused/index.ts').content, /placeLesson\(originalLesson, \{/);
+  assert.match(
+    plan.files.find(file => file.path === root + '/reused/index.ts').content,
+    /placeLesson\(originalLesson, \{/,
+  );
   const actualCourse = defineCourse({
     id: rootId,
     type: 'course',
@@ -682,9 +688,7 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
 
 test('new Course-owned Section and Text block materialize below an overridden Lesson', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-  const { defineLesson, materializeCourse } = createRequire(import.meta.url)(
-    path.join(engineRoot, 'dist/build.js'),
-  );
+  const { defineLesson, materializeCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
   const original = defineLesson({
     id: reusedLessonId,
     type: 'lesson',
@@ -752,15 +756,19 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
-  assert.ok(plan.files.every(file =>
-    !file.path.startsWith('content/playground/data/lessons/')), 'new Section cannot mutate standalone Lesson');
+  assert.ok(
+    plan.files.every(file => !file.path.startsWith('content/playground/data/lessons/')),
+    'new Section cannot mutate standalone Lesson',
+  );
   assert.equal(plan.inventory.lessons[0].overrideSourcePath, root + '/reused/index.ts');
   assert.deepEqual(plan.files, materializeCourse(reviewed, opts).files);
   const invalid = structuredClone(reviewed);
-  invalid.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug = 'other';
+  invalid.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug =
+    'other';
   assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
   const collision = structuredClone(reviewed);
-  collision.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.id = original.id;
+  collision.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.id =
+    original.id;
   assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
 

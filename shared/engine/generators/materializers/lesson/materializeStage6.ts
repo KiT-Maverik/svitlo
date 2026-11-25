@@ -2,7 +2,12 @@ import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
-import { lessonWorkflowSection_Schema, lessonWorkflowStage2_Schema, type LessonWorkflowStage2, type LessonWorkflowStage2Section } from '../../../types/workflow/lessonWorkflow.types';
+import {
+  lessonWorkflowSection_Schema,
+  lessonWorkflowStage2_Schema,
+  type LessonWorkflowStage2,
+  type LessonWorkflowStage2Section,
+} from '../../../types/workflow/lessonWorkflow.types';
 import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { materializeAudio } from '../audio/materializeAudio';
 import { materializeCarousel } from '../carousel/materializeCarousel';
@@ -374,7 +379,8 @@ export function materializeCourseOwnedLessonSection(
   const { sections, metadata, scenes } = normalizeStage2(virtual);
   // A Scene requires its independent package-level implementation/registry; this
   // Course-local Section scaffold cannot silently create or activate one.
-  if (scenes.length) throw new Error(options.directory + ': Course-owned Section Scenes need separate source production');
+  if (scenes.length)
+    throw new Error(options.directory + ': Course-owned Section Scenes need separate source production');
   const entry = sections.items[name] as { config: ChildConfig };
   const section = createSectionSourceRenderer(metadata, options.documentLanguage);
   return section(entry.config, {

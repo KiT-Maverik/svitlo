@@ -47,15 +47,18 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
         const rendered = renderAddedSection(reference.source, { directory, slug: key });
         if (
           !record(rendered) ||
-          typeof rendered.exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(rendered.exportName) ||
+          typeof rendered.exportName !== 'string' ||
+          !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(rendered.exportName) ||
           !Array.isArray(rendered.files) ||
           !rendered.files.length ||
           !rendered.files.some(file => file.path === directory + '/index.ts' && file.kind === 'typescript') ||
-          rendered.files.some(file =>
-            !record(file) || typeof file.path !== 'string' ||
-            !file.path.startsWith(directory + '/') ||
-            !['typescript', 'markdown', 'specification', 'code'].includes(file.kind) ||
-            typeof file.content !== 'string'
+          rendered.files.some(
+            file =>
+              !record(file) ||
+              typeof file.path !== 'string' ||
+              !file.path.startsWith(directory + '/') ||
+              !['typescript', 'markdown', 'specification', 'code'].includes(file.kind) ||
+              typeof file.content !== 'string',
           )
         )
           throw Error(placementPath + ': invalid trusted Section materializer result at ' + key);

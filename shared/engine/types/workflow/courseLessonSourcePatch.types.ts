@@ -40,6 +40,7 @@ type ExcludeExistingKeys<Lesson extends Lesson_Configurator> =
 
 export type CourseLessonSourcePatch<Lesson extends Lesson_Configurator> = Omit<ConcretePatch<Lesson>, 'section'> & {
   section?: Omit<NonNullable<ConcretePatch<Lesson>['section']>, 'additionalItems'> & {
-    additionalItems?: Record<string, CourseLessonSectionReference | CourseLessonNewSection> & ExcludeExistingKeys<Lesson>;
+    additionalItems?: Record<string, CourseLessonSectionReference | CourseLessonNewSection> &
+      ExcludeExistingKeys<Lesson>;
   };
 };
