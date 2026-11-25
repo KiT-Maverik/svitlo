@@ -933,8 +933,13 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
       module.includes('/*\n * TODO (BLOCKER): Remove the temporary ' + kind + ' specification'),
       path + ': expected a single actionable multiline specification TODO in ' + module.slice(-600),
     );
-    assert(module.includes(' * # purpose'), path + ': missing reviewed purpose in ' + module.slice(-600));
-    assert(module.includes(' * # specification'), path + ': missing reviewed specification in ' + module.slice(-600));
+    assert.doesNotMatch(module, /\* # (?:purpose|accessibility|offline|weakDeviceAlternative|readiness)/);
+    if (kind === 'Image') {
+      assert(module.includes(' * # prompt'), path + ': missing reviewed Image generation prompt');
+      assert.doesNotMatch(module, /\* # specification/);
+    } else {
+      assert(module.includes(' * # specification'), path + ': missing reviewed media production brief');
+    }
     assert(
       module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'),
       path + ': temporary brief must follow the generated Configurator',
