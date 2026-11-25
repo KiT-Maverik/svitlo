@@ -514,105 +514,22 @@ export function materializeCourseStage5(input, options = {}) {
     },
   };
   const materialized = materializeCourse(input, context);
-  // Scene executable drafts belong to the textbook UUID tree, not a Course
-  // placement or the reused standalone Lesson. Only the shared Section
-  // renderer may contribute them; preserve the same absolute path convention
-  // used by standalone Lesson Stage 6.
+  // Preserve the shared Section renderer's textbook-rooted Scene sources.
+  // The trusted Course publisher separately restricts these UUID destinations.
   const sceneRoot = textbookRoot + '/scenes/';
   for (const file of sceneScaffolds) {
-    const match = file?.path?.match(
-      new RegExp('^' + sceneRoot + '([0-9a-f])/([0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12})/([^/]+)
-  const rootIndex = files.find(file => file.path === materializedPath);
-  if (!rootIndex || rootIndex.kind !== 'typescript')
-    throw new Error('Course Stage 5 failed to emit the canonical root source');
-  // The Course publisher discovers UUID-root index.ts automatically.
-  // Persist a fail-closed marker IN the generated source; returning a transient
-  // {publishable:false} flag alone cannot stop an unrelated publication job.
-  rootIndex.content =
-    renderBlockerTodo(
-      'Course Stage 5 source is not publication approval. Complete and verify independent Lesson, Episode, Assessment, localization, resource, editorial-review and human QA gates, then remove this marker before release.',
-    ) +
-    '\n' +
-    '// Reviewed Course source blob: ' +
-    source.sourceBlobSha +
-    '\n' +
-    rootIndex.content;
-  const languageSource =
-    "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
-    (planned.length > 1
-      ? '// Planned languages (INACTIVE until complete and reviewed): ' +
-        JSON.stringify(planned) +
-        '\n' +
-        renderBlockerTodo(
-          'Complete and independently review every planned Course translation for ' +
-            JSON.stringify(planned) +
-            '; REPLACE the tuple in the single existing export const languages below with the verified active languages, then remove this marker.',
-        ) +
-        '\n'
-      : '') +
-    'export const languages = ' +
-    JSON.stringify([sourceLanguage]) +
-    ' as const satisfies SupportedLanguages;\n' +
-    'export type Languages = typeof languages;\n';
-  files.push({ path: root + '/constants.ts', kind: 'typescript', content: languageSource });
-
-  const paths = new Set([expectedSource]);
-  for (const file of files) {
+    const parts = typeof file?.path === 'string' && file.path.startsWith(sceneRoot)
+      ? file.path.slice(sceneRoot.length).split('/')
+      : [];
+    const [bucket, id, filename] = parts;
     if (
-      !record(file) ||
-      !sourceKinds.has(file.kind) ||
-      !safePath(file.path) ||
-      typeof file.content !== 'string' ||
-      paths.has(file.path)
-    )
-      throw new Error('Stage 5 generated duplicate, unsafe, colliding or invalid file: ' + String(file?.path));
-    paths.add(file.path);
-  }
-  const allDiagnostics = [...(materialized.diagnostics ?? []), ...diagnostics];
-  if (Object.keys(input.production.openDecisions ?? {}).length)
-    allDiagnostics.push({
-      path: root,
-      code: 'pending-methodology-decisions',
-      severity: 'blocker',
-      message: 'Reviewed Course still contains unresolved openDecisions',
-    });
-  if (planned.length > 1)
-    allDiagnostics.push({
-      path: root,
-      code: 'pending-locales',
-      severity: 'blocker',
-      message: 'Planned locales do not establish translated or reviewed source',
-    });
-  allDiagnostics.push({
-    path: root,
-    code: 'requires-publication-gates',
-    severity: 'blocker',
-    message:
-      'Source materialization does not authorize Course publication or bypass unresolved Lesson, Episode, Scene, locale, bank and review gates',
-  });
-  return Object.freeze({
-    sourcePath: expectedSource,
-    materializedPath,
-    sourceBlobSha: source.sourceBlobSha,
-    courseId: rootId,
-    root,
-    files: Object.freeze(files),
-    diagnostics: Object.freeze(allDiagnostics),
-    inventory: buildPlacementInventory(input, renderedPlacements, root, files),
-    placements: materialized.placements ?? [],
-    pendingPlacements: materialized.pendingPlacements ?? [],
-    pendingEpisodes: materialized.pendingEpisodes ?? [],
-    publishable: false,
-  });
-}
-),
-    );
-    if (
-      !match ||
-      match[1] !== match[2].at(-1) ||
+      parts.length !== 3 ||
+      !/^[0-9a-f]$/.test(bucket) ||
+      !uuid.test(id ?? '') ||
+      bucket !== id.at(-1) ||
+      !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(filename ?? '') ||
       !['typescript', 'code'].includes(file.kind) ||
-      typeof file.content !== 'string' ||
-      !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(match[3])
+      typeof file.content !== 'string'
     ) throw Error('Unsafe generated Scene output: ' + String(file?.path));
   }
   const files = [
