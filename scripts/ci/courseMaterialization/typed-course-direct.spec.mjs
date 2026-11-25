@@ -381,11 +381,11 @@ test('Course publisher accepts all three generated inert default-export seeds un
   const found = new Set();
   for (const entry of sealed.entries) {
     const emitted = Buffer.from(entry.data, 'base64').toString('utf8');
-    const contract = emitted.match(/export default [\\s\\S]* satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/);
+    const contract = emitted.match(/export default [\s\S]* satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/);
     if (!contract) continue;
     found.add(contract[1]);
     assert.doesNotMatch(emitted, /export const (?:lessonSeed|episodeStage1|assessmentSeed) = /);
-    assert.doesNotMatch(emitted, /materialize(?:Lesson|Episode|Assessment)\\(/);
+    assert.doesNotMatch(emitted, /materialize(?:Lesson|Episode|Assessment)\(/);
   }
   assert.deepEqual([...found].sort(), [
     'AssessmentWorkflowSeed',
