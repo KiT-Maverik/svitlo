@@ -16,7 +16,15 @@ function literal(value, path = [], references = new Map()) {
   if (reference !== undefined) return reference;
   if (value === null || typeof value === 'string' || typeof value === 'boolean' ||
       (typeof value === 'number' && Number.isFinite(value))) return JSON.stringify(value);
-  if (Array.isArray(value)) return '[' + value.map((v, i) => literal(v, [...path, String(i)], references)).join(', ') + ']';
+  if (Array.isArray(value)) {
+    const body = '[' + value.map((v, i) => literal(v, [...path, String(i)], references)).join(', ') + ']';
+    // Extracting a nested override from a contextual Build call would widen
+    // its order tuple to string[]. Preserve the exact valid keys across files
+    // with a mutable tuple (readonly "as const" is not assignable to Build).
+    if (path.at(-1) === 'order' && value.every(v => typeof v === 'string'))
+      return body + ' as [' + value.map(v => JSON.stringify(v)).join(', ') + ']';
+    return body;
+  }
   if (!record(value) || Object.keys(value).some(k => reserved.has(k)))
     throw Error('Unsafe Course Lesson override fragment');
   return '{' + Object.entries(value).map(([key, child]) =>
