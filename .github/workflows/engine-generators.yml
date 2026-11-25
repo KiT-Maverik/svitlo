@@ -2,7 +2,8 @@ name: Engine generators
 
 on:
   pull_request:
-    branches: [main, develop, integration-branch]
+    # Generator and materialization changes also arrive through nested agent PRs
+    # targeting integration/<name>; the path filter controls the scope.
     types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/generators/**'
