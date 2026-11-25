@@ -4,6 +4,8 @@
 
 **Workflow owners:** [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md) owns the parent Lesson; [Create Questions Flow](../../skills/lesson-workflow/create-questions-flow.skill.md) and [Create Flashcards Flow](../../skills/lesson-workflow/create-flashcards-flow.skill.md) own separate independently reviewed, seven-stage child Draft PRs. Read the [Questions authoring standard](../../skills/lesson-workflow/create-lesson-questions.skill.md), [Flashcards authoring standard](../../skills/lesson-workflow/create-lesson-flashcards.skill.md) and current Engine implementation for details.
 
+**Authoring trust boundary (#857 target):** Both Lesson-owned banks progress through one inert, default-exported `questions/draft.ts` or `flashcards/draft.ts`. Their reviewed Stage 3 source is statically parsed without code execution and passed to canonical Zod/real entity materializers only after a separately authorized Stage 5 command. This does not change Questions-first sequencing, independently owned Sections, or the Lesson's language tuple. Check actual runner deployment before invoking.
+
 ## Source and ownership
 
 - A Lesson Config/Props owns ordered Sections, **not** embedded Questions or Flashcards. A Quiz or Flashcards Section selects explicit resources but does not serialize a bank in Lesson JSON, Course overrides, SSR payloads or screen ContentBlocks.
