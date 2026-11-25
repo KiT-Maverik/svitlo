@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { createHash } from 'node:crypto';
 
 import {
@@ -344,6 +345,8 @@ function plan(
     }
   };
   const imports: string[] = [];
+  const sectionNames: Record<string, string> = {};
+  const claim = createSourceIdentifierRegistry('assessment', ['defineAssessment', 'languages', 'before', 'after', 'quiz', exportName(config.slug)]);
   for (const key of sectionOrder) {
     const wrapped = sections[key];
     if (!wrapped) throw Error('Assessment: missing ordered Section ' + key);
@@ -363,10 +366,9 @@ function plan(
         : materializeContentSection(section as Parameters<typeof materializeContentSection>[0], opts);
     files.push(...childResult.files);
     diagnostics.push(...childResult.diagnostics);
-    const alias = 'child_section_' + key;
-    imports.push(
-      'import { ' + childResult.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./sections/' + key) + ';',
-    );
+    const name = claim(childResult.exportName, 'sections.' + key);
+    sectionNames[key] = name;
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./sections/' + key) + ';');
   }
   const reviewedLocale = {
     ...config.locale,
@@ -384,16 +386,16 @@ function plan(
       ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.')
       : '',
     'const before = { items: { ' +
-      before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
+      before.order.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
       ' }, order: ' +
       JSON.stringify(before.order) +
       ' };',
     'const after = { items: { ' +
-      after.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
+      after.order.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
       ' }, order: ' +
       JSON.stringify(after.order) +
       ' };',
-    'const quiz = child_section_' + quizKey + ';',
+    'const quiz = ' + sectionNames[quizKey] + ';',
     'export const ' +
       exportName(config.slug) +
       ' = defineAssessment<' +

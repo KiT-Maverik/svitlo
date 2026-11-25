@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
@@ -98,7 +99,11 @@ function render(value: unknown, depth = 0): string {
   return (
     '{\n' +
     entries
-      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .map(key => {
+        const child = value[key];
+        const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
+        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+      })
       .join('\n') +
     '\n' +
     '  '.repeat(depth) +
@@ -190,6 +195,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   const seen = new Set<string>(),
     imports: string[] = [];
   const values: Record<string, unknown> = {};
+  const claim = createSourceIdentifierRegistry('questSection', ['defineQuestSection', 'languages', 'stages', 'tasks', exported(config.slug)]);
   const identities = new Set<string>([config.id]);
   for (const category of ['stages', 'tasks'] as const) {
     const source = config[category];
@@ -214,17 +220,9 @@ export function materializeQuestSection(config: Source, options: Options): Resul
         ...(raw.production ? { production: raw.production } : {}),
       });
       includeChild(files, seen, diagnostics, child, childDir, key);
-      const alias = 'child_' + category + '_' + key;
-      rendered[key] = imported(alias);
-      imports.push(
-        'import { ' +
-          child.exportName +
-          ' as ' +
-          alias +
-          ' } from ' +
-          JSON.stringify('./' + category + '/' + key) +
-          ';',
-      );
+      const name = claim(child.exportName, category + '.' + key);
+      rendered[key] = imported(name);
+      imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + category + '/' + key) + ';');
     }
     values[category] = rendered;
   }

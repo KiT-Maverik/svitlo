@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Stage_Config } from '../../../configurators/sections/defineQuestSection/defineStage/defineStage.schemas';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
@@ -98,7 +99,11 @@ function render(value: unknown, depth = 0): string {
   return (
     '{\n' +
     entries
-      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .map(key => {
+        const child = value[key];
+        const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
+        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+      })
       .join('\n') +
     '\n' +
     '  '.repeat(depth) +
@@ -201,6 +206,7 @@ export function materializeQuestStage(config: Source, options: Options): Result 
   if (!isObject(config.content) || !isObject(config.content.video) || !isObject(config.content.audio))
     throw new Error('questStage.content: video and audio records required');
   const mediaIds = new Set<string>([config.id]);
+  const claim = createSourceIdentifierRegistry('questStage', ['defineStage', 'languages', 'content', exported(config.slug)]);
   const typePaths: Array<{ path: string[]; expected: string; source: SourceChild | null }> = [
     { path: ['video', 'medium'], expected: 'video', source: config.content.video.medium },
     { path: ['video', 'small'], expected: 'video', source: config.content.video.small },
@@ -238,13 +244,11 @@ export function materializeQuestStage(config: Source, options: Options): Result 
       ...(raw.production ? { production: raw.production } : {}),
     });
     includeChild(files, seen, diagnostics, result, childDir, raw.config.slug);
-    const alias = 'child_content_' + slot;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + entry.path.join('/')) + ';',
-    );
-    if (head === 'video') video[leaf] = imported(alias);
-    else if (head === 'audio') audio[leaf] = imported(alias);
-    else content[head] = imported(alias);
+    const name = claim(result.exportName, 'content.' + slot);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + entry.path.join('/')) + ';');
+    if (head === 'video') video[leaf] = imported(name);
+    else if (head === 'audio') audio[leaf] = imported(name);
+    else content[head] = imported(name);
   }
   const own: Record<string, unknown> = {
     id: config.id,
