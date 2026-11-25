@@ -287,22 +287,10 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
     throw new Error('Cannot materialize type-valid Markdown Config: unsupported authored fields');
   }
 
-  if (options.production !== undefined) {
-    if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
-    const details = Object.entries(options.production).filter(
-      ([key]) => key !== 'pending' && key !== 'documentLanguage',
-    );
-    if (details.length) {
-      const body =
-        details
-          .map(
-            ([key, value]) =>
-              '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
-          )
-          .join('\n\n') + '\n';
-      files.push({ path: 'specification.md', content: body, kind: 'specification' });
-    }
-  }
+  // Authored Markdown is already complete in Config/locale or the source payload.
+  // Production/editorial notes are not a second specification artifact.
+  if (options.production !== undefined && !isRecord(options.production))
+    throw new Error('$.production: expected plain authoring notes');
 
   const name = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
   const sourceModule =

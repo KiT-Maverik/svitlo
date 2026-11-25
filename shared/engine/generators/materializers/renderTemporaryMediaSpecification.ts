@@ -18,7 +18,19 @@ export function renderTemporaryMediaSpecification(
   if (production === undefined) return '';
   if (!plainRecord(production)) throw new Error('$.production: expected plain authoring notes');
 
-  const details = Object.entries(production).filter(([key]) => key !== 'pending' && key !== 'documentLanguage');
+  // A media brief is a production instruction, never a second policy/status
+  // inventory. Global accessibility, offline and device requirements are
+  // verified independently by the workflow and do not need repeating here.
+  const byKind: Record<typeof kind, readonly string[]> = {
+    Image: ['prompt'],
+    Video: ['script', 'storyboard', 'prompt', 'specification'],
+    Audio: ['script', 'prompt', 'specification'],
+    Subtitles: ['script', 'specification'],
+    Scene: ['specification', 'pedagogicalIntent', 'script', 'storyboard'],
+  };
+  const details = Object.entries(production).filter(([key]) => byKind[kind].includes(key));
+  if (kind === 'Image' && (typeof production.prompt !== 'string' || production.prompt.trim().length < 80))
+    throw new Error('$.production.prompt: Image requires a concrete generation prompt with visual detail');
   if (!details.length) return '';
 
   const body = details

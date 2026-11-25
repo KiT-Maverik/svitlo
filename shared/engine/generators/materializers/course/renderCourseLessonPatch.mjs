@@ -50,7 +50,14 @@ function literal(value, path = [], references = new Map()) {
   return (
     '{' +
     Object.entries(value)
-      .map(([key, child]) => JSON.stringify(key) + ': ' + literal(child, [...path, key], references))
+      .map(([key, child]) => {
+        const childPath = [...path, key];
+        // An identifier already bound through a trusted generated import
+        // can use real TypeScript object shorthand. Never rewrite authored
+        // literal string values just because they happen to match a key.
+        if (references.get(keyPath(childPath)) === key && slug.test(key) && !reserved.has(key)) return key;
+        return JSON.stringify(key) + ': ' + literal(child, childPath, references);
+      })
       .join(', ') +
     '}'
   );

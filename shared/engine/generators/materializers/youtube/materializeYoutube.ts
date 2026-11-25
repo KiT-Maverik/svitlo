@@ -292,8 +292,8 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
 
   if (options.production !== undefined) {
     if (!isRecord(options.production)) throw new Error('$.production: expected plain authoring notes');
-    const details = Object.entries(options.production).filter(
-      ([key]) => key !== 'pending' && key !== 'documentLanguage',
+    const details = Object.entries(options.production).filter(([key]) =>
+      ['specification', 'script', 'storyboard', 'prompt'].includes(key),
     );
     if (details.length) {
       // One removable source comment owns the reviewed external-video brief,
