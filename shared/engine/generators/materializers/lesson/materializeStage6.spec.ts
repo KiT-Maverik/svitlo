@@ -502,6 +502,69 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   }
   assert.throws(() => assertLessonStage6ReleaseReady(inertPlan), /publication blocked/);
 
+  // A trusted gate resolves each inert ID against its exact independently
+  // published source without executing an authored value import.
+  const lessonBankPrefix = '#lessonsData/1/' + id('01');
+  const trustedSkillReferences = [{
+    approved: true as const,
+    id: verifiedMathSkillId,
+    path: '#skillsData/geometry/figures/identify2dShapes',
+    exported: 'identify2dShapes',
+    sourceSha: 'a'.repeat(40),
+  }];
+  const trustedBankSelections = [
+    { sectionKey: 'reviewQuiz', kind: 'quiz' as const, members: [{
+      approved: true as const,
+      id: id('07'),
+      sourceSha: 'b'.repeat(40),
+      importPath: lessonBankPrefix + '/questions/selectOneAnswer/reviewQuestion',
+      exportName: 'reviewQuestion',
+    }] },
+    { sectionKey: 'reviewCards', kind: 'flashcards' as const, members: [{
+      approved: true as const,
+      id: id('08'),
+      sourceSha: 'c'.repeat(40),
+      importPath: lessonBankPrefix + '/flashcards/reviewCard',
+      exportName: 'reviewCard',
+    }] },
+  ];
+  const trustedOptions = {
+    ...options,
+    sourceText: inert,
+    source: { ...reviewed, sourceBlobSha: blobSha(inert) },
+    trustedSkillReferences,
+    trustedBankSelections,
+  };
+  const trustedPlan = materializeLessonStage6(input, trustedOptions);
+  const trustedLesson = trustedPlan.files.find(file => file.path === folder + 'index.ts')!.content;
+  const trustedQuiz = trustedPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
+  const trustedCards = trustedPlan.files.find(file => file.path === folder + 'sections/reviewCards/index.ts')!.content;
+  assert.match(trustedLesson, /import \{ identify2dShapes as skill_ref_0 \}/);
+  assert.match(trustedQuiz, /#lessonsData\/1\/.+\/questions\/selectOneAnswer\/reviewQuestion/);
+  assert.match(trustedCards, /#lessonsData\/1\/.+\/flashcards\/reviewCard/);
+  assert.match(trustedQuiz, /\[stage6_ref_0.id\]/);
+  assert.match(trustedCards, /\[stage6_ref_0.id\]/);
+  assert.doesNotThrow(() => assertLessonStage6ReleaseReady(trustedPlan));
+  assert.deepEqual(trustedPlan, materializeLessonStage6(input, trustedOptions));
+  assert.throws(() => materializeLessonStage6(input, {
+    ...trustedOptions,
+    trustedSkillReferences: [{ ...trustedSkillReferences[0], sourceSha: 'unsafe' }],
+  }), /unapproved or mismatched trusted Skill/);
+  assert.throws(() => materializeLessonStage6(input, {
+    ...trustedOptions,
+    trustedBankSelections: [{
+      ...trustedBankSelections[0],
+      members: [{ ...trustedBankSelections[0].members[0], id: id('09') }],
+    }, trustedBankSelections[1]],
+  }), /unapproved or mismatched Lesson-owned bank member/);
+  assert.throws(() => materializeLessonStage6(input, {
+    ...trustedOptions,
+    trustedBankSelections: [{
+      ...trustedBankSelections[0],
+      sectionKey: 'notAuthored',
+    }, trustedBankSelections[1]],
+  }), /absent authored Section/);
+
   const unbound = sourceFor(input).sourceText.replace('reviewQuestion.id', 'notImported.id');
   assert.throws(
     () =>
