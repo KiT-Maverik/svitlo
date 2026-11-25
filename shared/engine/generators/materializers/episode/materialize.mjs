@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeEpisodeDraft } from './materializeDraft.mjs';
 
@@ -29,12 +30,6 @@ const source = ctx => {
   if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(ctx.sourceLanguage ?? ''))
     throw Error('sourceLanguage: reviewed locale required');
   return ctx.sourceLanguage;
-};
-const localized = (value, language, path) => {
-  if (typeof value === 'string') return value;
-  if (!record(value) || typeof value[language] !== 'string' || !value[language].trim())
-    throw Error(path + ': missing reviewed ' + language + ' locale');
-  return { [language]: value[language] };
 };
 const todo = (production, ctx, language) => {
   const langs = production?.plannedLanguages ?? ctx.plannedLanguages ?? [language];
@@ -187,7 +182,7 @@ export function materializeEpisode(input, context = {}) {
   if (record(fields.locale)) {
     fields.locale = { ...fields.locale };
     if (fields.locale.title !== undefined)
-      fields.locale.title = localized(fields.locale.title, lang, dir + '.locale.title');
+      fields.locale.title = normalizeWorkflowLocalized(fields.locale.title, lang, dir + '.locale.title', planned);
   }
   if (!record(config.params)) throw Error(dir + '.params: Config params object required');
   const attrs = Object.entries(fields)

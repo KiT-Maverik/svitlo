@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -26,12 +27,6 @@ const source = ctx => {
   if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(ctx.sourceLanguage ?? ''))
     throw Error('sourceLanguage: reviewed locale required');
   return ctx.sourceLanguage;
-};
-const localized = (value, language, path) => {
-  if (typeof value === 'string') return value;
-  if (!record(value) || typeof value[language] !== 'string' || !value[language].trim())
-    throw Error(path + ': missing reviewed ' + language + ' locale');
-  return { [language]: value[language] };
 };
 const exportName = slug =>
   [
@@ -374,7 +369,7 @@ export function materializeChapter(input, context = {}) {
     fields.locale = { ...fields.locale };
     for (const field of ['title']) {
       if (fields.locale[field] !== undefined)
-        fields.locale[field] = localized(fields.locale[field], lang, dir + '.locale.' + field);
+        fields.locale[field] = normalizeWorkflowLocalized(fields.locale[field], lang, dir + '.locale.' + field, planned);
     }
   }
   const orderSource = JSON.stringify(order);

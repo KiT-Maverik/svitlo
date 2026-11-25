@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { createHash } from 'node:crypto';
 
 import {
@@ -369,6 +370,10 @@ function plan(
       'import { ' + childResult.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./sections/' + key) + ';',
     );
   }
+  const reviewedLocale = {
+    ...config.locale,
+    title: normalizeWorkflowLocalized(config.locale.title, document, ownDirectory + '.locale.title', planned),
+  };
   const rendered = [
     "import { defineAssessment } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
@@ -398,7 +403,7 @@ function plan(
       ', typeof languages, typeof before.items, typeof quiz, typeof after.items>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
-    '  locale: ' + JSON.stringify(config.locale) + ',',
+    '  locale: ' + JSON.stringify(reviewedLocale) + ',',
     '  before, quiz, after,',
     '});',
     '',

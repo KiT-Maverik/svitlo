@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 
@@ -69,7 +70,15 @@ export function materializeAssessmentPlaceholder(node, context) {
     reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
   };
   const seed = {
-    config: { id, type: 'assessment', slug: reservedSlug, locale: config.locale },
+    config: {
+      id,
+      type: 'assessment',
+      slug: reservedSlug,
+      locale: {
+        ...config.locale,
+        title: normalizeWorkflowLocalized(title, context.sourceLanguage, directory + '.locale.title', context.plannedLanguages),
+      },
+    },
     production: {
       purpose: production.purpose,
       lessonDependencies: [...production.lessonDependencies],

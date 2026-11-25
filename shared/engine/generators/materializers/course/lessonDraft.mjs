@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -93,7 +94,14 @@ export function materializeLessonDraft(node, context) {
     throw new Error('Lesson seed contains unsupported Course proposal fields');
   const { kind: _placementKind, ...proposal } = node.production;
   const source = {
-    config: { ...node.config, id: context.lessonId },
+    config: {
+      ...node.config,
+      id: context.lessonId,
+      locale: {
+        ...node.config.locale,
+        title: normalizeWorkflowLocalized(title, document, 'lesson.locale.title', languages.planned),
+      },
+    },
     proposal,
     languageContext: { document, planned: [...languages.planned] },
   };

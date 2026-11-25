@@ -439,10 +439,11 @@ export function materializeCourseStage5(input, options = {}) {
   const languageSource =
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     (planned.length > 1
-      ? renderBlockerTodo(
-          'Complete and independently review translations for ' +
+      ? '// Planned languages (INACTIVE until complete and reviewed): ' + JSON.stringify(planned) + '\n' +
+        renderBlockerTodo(
+          'Complete and independently review every planned Course translation for ' +
             JSON.stringify(planned) +
-            ', restore the reviewed languages tuple, and remove this marker.',
+            '; REPLACE the tuple in the single existing export const languages below with the verified active languages, then remove this marker.',
         ) + '\n'
       : '') +
     'export const languages = ' +
