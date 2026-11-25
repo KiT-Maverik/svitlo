@@ -11,7 +11,7 @@ import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs'
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
 import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
-import { readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
+import { readGeneratedCourseHandoff, resolveIntegratedCourseLesson } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -170,15 +170,26 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
   for (const dep of seed.production.lessonDependencies) {
     if (typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep))
       throw Error('Assessment must name resolved Course Lesson placement paths');
-    const placementSource = meta.courseRoot + '/' + dep + '/index.ts';
-    const placementEntry = tree.get(placementSource);
-    if (!ordinary(placementEntry)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
-    const contents = reader.blob(placementEntry, placementSource);
-    const reused = contents.match(/#lessonsData\/([a-f0-9])\/([a-f0-9-]{36})\/index/);
-    const derived = deriveCourseEntityId(meta.courseId, 'lesson', dep.slice('content/'.length));
-    const owner = reused ? reused[2] : derived;
-    if (reused && reused[1] !== owner.at(-1)) throw Error('Upstream Lesson import UUID bucket mismatch');
-    const bankRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/questions/';
+    // Course Lesson placements are references in their immediate parent's
+    // content.items/order. Neither new nor reused Lessons own a Course-local
+    // content/<lesson>/index.ts. Resolve the exact pinned import, not the first
+    // #lessonsData string in the parent or a guessed allocated UUID.
+    const segments = dep.split('/');
+    if (![2, 3, 4].includes(segments.length))
+      throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
+    const ownerKind = ['course', 'module', 'chapter'][segments.length - 2];
+    const parentPath = meta.courseRoot + '/' +
+      (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
+    const parent = tree.get(parentPath);
+    if (!ordinary(parent)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
+    const owner = resolveIntegratedCourseLesson(reader.blob(parent, parentPath), {
+      slug: segments.at(-1),
+      ownerKind,
+    });
+    const lessonRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/';
+    if (!ordinary(tree.get(lessonRoot + 'index.ts')))
+      throw Error('Upstream Lesson source is not materialized: ' + dep);
+    const bankRoot = lessonRoot + 'questions/';
     if (!ordinary(tree.get(bankRoot + 'index.ts')))
       throw Error('Upstream Lesson lacks a materialized Question Bank: ' + dep);
     // The source materializer writes a real Question definition to
