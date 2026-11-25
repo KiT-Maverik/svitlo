@@ -640,7 +640,7 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   another.config.content.items.moduleOne.config.content.items.chapterOne.config.content.items.chapterReview =
     assessmentSlot('content/directLesson');
   const chapter = another.config.content.items.moduleOne.config.content.items.chapterOne.config.content;
-  chapterContent.order.push('chapterReview');
+  chapter.order.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
