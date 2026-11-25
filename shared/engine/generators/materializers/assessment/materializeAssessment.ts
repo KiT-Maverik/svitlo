@@ -346,7 +346,7 @@ function plan(
   };
   const imports: string[] = [];
   const sectionNames: Record<string, string> = {};
-  const claim = createSourceIdentifierRegistry('assessment', ['defineAssessment', 'languages', 'before', 'after', 'quiz', exportName(config.slug)]);
+  const claim = createSourceIdentifierRegistry('assessment', ['defineAssessment', 'languages', 'before', 'after', exportName(config.slug)]);
   for (const key of sectionOrder) {
     const wrapped = sections[key];
     if (!wrapped) throw Error('Assessment: missing ordered Section ' + key);
@@ -395,16 +395,16 @@ function plan(
       ' }, order: ' +
       JSON.stringify(after.order) +
       ' };',
-    'const quiz = ' + sectionNames[quizKey] + ';',
+
     'export const ' +
       exportName(config.slug) +
       ' = defineAssessment<' +
       JSON.stringify(config.slug) +
-      ', typeof languages, typeof before.items, typeof quiz, typeof after.items>({',
+      ', typeof languages, typeof before.items, typeof ' + sectionNames[quizKey] + ', typeof after.items>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
     '  locale: ' + JSON.stringify(reviewedLocale) + ',',
-    '  before, quiz, after,',
+    '  before, ' + renderSourceItem('quiz', sectionNames[quizKey]) + ', after,',
     '});',
     '',
   ]
