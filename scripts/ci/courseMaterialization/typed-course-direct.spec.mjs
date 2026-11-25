@@ -344,7 +344,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     const row = m.inventory.lessons.find(item => item.kind === 'overridden');
     const file = m.entries.find(item => item.path === row.overrideSourcePath);
     const source = Buffer.from(file.data, 'base64').toString('utf8');
-    const altered = source.replace('placeLesson(howLightMoves, ', 'placeLesson(wrongLesson, ');
+    const altered = source.replace('placeLesson(' + row.sourceExportName + ', ', 'placeLesson(wrongLesson, ');
     assert.notEqual(altered, source);
     file.data = Buffer.from(altered).toString('base64');
     file.sha256 = createHash('sha256').update(altered).digest('hex');
