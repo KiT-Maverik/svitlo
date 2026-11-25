@@ -82,6 +82,7 @@ const source = () => ({
       audience: 'Learners aged 6-10',
       approach: 'Observe then reflect',
       depth: 'Introduction',
+      accessibility: 'Keyboard and screen reader alternatives',
       scope: 'Daytime observations',
       entryConditions: 'No assumed astronomy knowledge',
       sourceNotes: 'Checked primary educational references',
