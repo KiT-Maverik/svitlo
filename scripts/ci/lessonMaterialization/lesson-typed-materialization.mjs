@@ -266,7 +266,11 @@ export function readTypedReport() {
 }
 
 async function analyze(root, meta) {
-  await fresh(meta);
+  // Resolve already authorized the actor and sealed the exact PR HEAD/source.
+  // Analysis is intentionally credential-free: the publisher reauthorizes the
+  // live actor/branch immediately before the single non-force Git transaction.
+  if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
+    throw Error('Lesson analysis must not receive GitHub credentials');
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
   if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the pinned PR');
