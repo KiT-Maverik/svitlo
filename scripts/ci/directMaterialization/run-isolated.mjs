@@ -58,7 +58,12 @@ export function runIsolatedMaterialization({ trustedRoot, candidateRoot, textboo
       killSignal: 'SIGKILL',
     });
     // Never print candidate-controlled stdout/stderr to the Actions command stream.
-    if (result.error || result.status !== 0) throw Error('Isolated materialization failed');
+    if (result.error || result.status !== 0)
+      throw Error(
+        'Isolated materialization failed (worker ' +
+          (result.error ? 'launch error' : 'exit ' + String(result.status)) +
+          ')',
+      );
     try {
       return JSON.parse(result.stdout);
     } catch {
