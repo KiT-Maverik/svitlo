@@ -42,8 +42,13 @@ export function bindVerifiedSkills(params, { resolveSkill, textbookRoot, directo
     if ((key === 'outcomes' || key === 'prerequisites') && record(value)) {
       const targets = Object.entries(value).map(([target, refs]) =>
         JSON.stringify(target) + ': ' +
-        (target === 'skills' && Array.isArray(refs)
-          ? '[' + refs.map(resolve).join(', ') + ']'
+        (target === 'skills'
+          ? (() => {
+              if (!Array.isArray(refs) ||
+                  new Set(refs.map(id => typeof id === 'string' ? id.toLowerCase() : id)).size !== refs.length)
+                throw Error(directory + ': Skill target IDs must be a unique array');
+              return '[' + refs.map(resolve).join(', ') + ']';
+            })()
           : JSON.stringify(refs)));
       return JSON.stringify(key) + ': { ' + targets.join(', ') + ' }';
     }

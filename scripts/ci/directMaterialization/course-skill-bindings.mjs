@@ -26,8 +26,10 @@ export function courseSkillReferences(input) {
     if (!record(value)) throw Error(location + ': invalid Skill targets');
     const ids = value.skills;
     if (ids === undefined) return;
-    if (!Array.isArray(ids) || ids.length > 250 || ids.some(id => typeof id !== 'string' || !UUID.test(id)))
-      throw Error(location + ': invalid Skill UUID list');
+    if (!Array.isArray(ids) || ids.length > 250 ||
+        ids.some(id => typeof id !== 'string' || !UUID.test(id)) ||
+        new Set(ids.map(id => id.toLowerCase())).size !== ids.length)
+      throw Error(location + ': invalid or duplicate Skill UUID list');
     for (const id of ids) found.add(id);
   }
   function visit(node, depth) {
