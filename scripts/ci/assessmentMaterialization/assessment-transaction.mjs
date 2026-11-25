@@ -91,7 +91,7 @@ export function parseAssessmentSeed(source) {
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
     seed.production.lessonDependencies.some(dep =>
-      typeof dep !== 'string' || !/^content(?:\\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep)
+      typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep)
     ) ||
     new Set(seed.production.lessonDependencies).size !== seed.production.lessonDependencies.length ||
     !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
