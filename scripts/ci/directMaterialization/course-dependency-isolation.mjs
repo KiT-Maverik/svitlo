@@ -48,6 +48,84 @@ export function courseLessonReferences(input) {
   return [...entries.values()];
 }
 
+
+/** Only top-level Lesson Section additions have a concrete declarative binding.
+ * The trusted runner checks the referenced Section itself, not a PR status.
+ */
+export function courseAddedSectionReferences(input) {
+  const references = new Map();
+  const seen = new Set();
+  let count = 0;
+  const walk = (node, depth) => {
+    if (!node || typeof node !== 'object') return;
+    if (depth > 80 || ++count > 100000) throw Error('Oversized Course Section reference tree');
+    if (seen.has(node)) return;
+    seen.add(node);
+    if (Array.isArray(node)) {
+      for (const child of node) walk(child, depth + 1);
+      return;
+    }
+    if (node.production?.kind === 'existing') {
+      const additions = node.production.sourcePatch?.section?.additionalItems;
+      if (additions !== undefined) {
+        if (!additions || typeof additions !== 'object' || Array.isArray(additions))
+          throw Error('Invalid Course additional Section references');
+        for (const [slug, section] of Object.entries(additions)) {
+          if (!/^[A-Za-z][A-Za-z0-9]*$/.test(slug) ||
+              !section || typeof section !== 'object' || Array.isArray(section) ||
+              Object.keys(section).sort().join(',') !== '$ref,exportName,lessonId,sectionId,sourceSha' ||
+              section.$ref !== 'lesson-section' ||
+              !UUID.test(section.lessonId ?? '') || !UUID.test(section.sectionId ?? '') ||
+              !SHA.test(section.sourceSha ?? '') ||
+              !/^[A-Za-z][A-Za-z0-9]*$/.test(section.exportName ?? '')) {
+            throw Error('Invalid Course additional Section reference at ' + slug);
+          }
+          const ref = {
+            id: section.sectionId,
+            ownerLessonId: section.lessonId,
+            sourceSha: section.sourceSha,
+            slug,
+            exportName: section.exportName,
+          };
+          references.set(Object.values(ref).join(':'), ref);
+        }
+      }
+    }
+    for (const [key, child] of Object.entries(node)) {
+      if (key !== 'production') walk(child, depth + 1);
+    }
+  };
+  walk(input, 0);
+  if (references.size > 250) throw Error('Too many Course additional Section dependencies');
+  return [...references.values()];
+}
+
+/** Require precisely pinned *trusted default-branch* Section source. */
+function checkedSectionReference(ref, textbookRoot, candidateRoot, trustedRoot) {
+  const relative = textbookRoot + '/data/lessons/' + ref.ownerLessonId.at(-1) + '/' +
+    ref.ownerLessonId + '/sections/' + ref.slug + '/index.ts';
+  const blob = git(trustedRoot, 'rev-parse', 'HEAD:' + relative);
+  if (!SHA.test(blob) || git(candidateRoot, 'rev-parse', 'HEAD:' + relative) !== blob)
+    throw Error('Added Section differs from trusted default branch');
+  if (git(trustedRoot, 'ls-files', '--stage', '--', relative) !== '100644 ' + blob + ' 0\t' + relative)
+    throw Error('Added Section is not ordinary trusted source');
+  const revisionType = git(trustedRoot, 'cat-file', '-t', ref.sourceSha);
+  if (revisionType === 'blob') {
+    if (ref.sourceSha !== blob) throw Error('Added Section source blob changed');
+  } else if (revisionType === 'commit') {
+    git(trustedRoot, 'merge-base', '--is-ancestor', ref.sourceSha, 'HEAD');
+    if (git(trustedRoot, 'rev-parse', ref.sourceSha + ':' + relative) !== blob)
+      throw Error('Added Section source revision changed');
+  } else {
+    throw Error('Added Section SHA is neither a blob nor ancestor commit');
+  }
+  let at = trustedRoot;
+  for (const segment of relative.split('/')) {
+    at = path.join(at, segment);
+    if (fs.lstatSync(at).isSymbolicLink()) throw Error('Symlink in trusted added Section path');
+  }
+}
+
 function checkedReference(ref, textbookRoot, candidateRoot, trustedRoot) {
   const relative = textbookRoot + '/data/lessons/' + ref.id.at(-1) + '/' + ref.id + '/index.ts';
   const treeBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + relative);
@@ -81,8 +159,10 @@ export function runIsolatedCourseDependencies({ input, source, textbookRoot, can
   const checkedTrusted = fs.realpathSync(trustedRoot);
   const checkedCandidate = fs.realpathSync(candidateRoot);
   const references = courseLessonReferences(input);
+  const sections = courseAddedSectionReferences(input);
   if (!references.length) throw Error('Dependency worker requires a real reused Lesson');
   for (const ref of references) checkedReference(ref, textbookRoot, checkedCandidate, checkedTrusted);
+  for (const ref of sections) checkedSectionReference(ref, textbookRoot, checkedCandidate, checkedTrusted);
   const mount = (filename, target, directory = false) => {
     const stat = fs.lstatSync(filename);
     if (stat.isSymbolicLink() || (directory ? !stat.isDirectory() : !stat.isFile()) || filename.includes(','))
@@ -106,7 +186,7 @@ export function runIsolatedCourseDependencies({ input, source, textbookRoot, can
   ];
   try {
     const result = spawn('docker', args, {
-      input: JSON.stringify({ input, source, textbookRoot, references }),
+      input: JSON.stringify({ input, source, textbookRoot, references, sections }),
       encoding: 'utf8', timeout: 120000, maxBuffer: 36 * 1024 * 1024,
     });
     if (result.error || result.status !== 0)
