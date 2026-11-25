@@ -21,7 +21,7 @@ test('temporary media brief: deterministic labeled block after implementation wi
   assert.equal(comment, renderTemporaryMediaSpecification(production, 'Video'));
   assert.match(comment, /^\/\*\n \* TODO \(BLOCKER\): Remove the temporary Video specification/);
   assert.match(comment, /\* # specification[\s\S]*Opening frame/);
-  assert.match(comment, /# accessibility[\s\S]*Українською/);
+  assert.doesNotMatch(comment, /# accessibility|Українською/);
   assert(!comment.includes('*/ then a blue cup'), 'reviewed text cannot close the source comment');
   assert(comment.includes('* / then a blue cup'));
   const source = 'export const value = 1;\n' + comment + '\nexport const after = 2;\n';
@@ -32,6 +32,23 @@ test('temporary media brief: deterministic labeled block after implementation wi
   });
   assert.equal((parsed.diagnostics ?? []).filter(d => d.category === ts.DiagnosticCategory.Error).length, 0);
   assert(!parsed.outputText.includes('red toy car'));
+});
+
+test('Image requires a generation prompt and drops generic media policy fields', () => {
+  const prompt = 'Create an original scientifically accurate diagram of a lamp on the left, a cube in the center and its shadow on a right-side screen; label the light rays clearly.';
+  const brief = renderTemporaryMediaSpecification({
+    purpose: 'Illustrate shadows',
+    specification: 'This is a diagram',
+    prompt,
+    accessibility: 'Generic accessibility statement',
+    offline: 'Generic offline statement',
+    readiness: 'production-pending',
+    weakDeviceAlternative: 'Generic fallback',
+  }, 'Image');
+  assert.match(brief, /# prompt/);
+  assert.match(brief, /lamp on the left/);
+  assert.doesNotMatch(brief, /# purpose|# specification|# accessibility|# offline|# readiness|# weakDeviceAlternative/);
+  assert.throws(() => renderTemporaryMediaSpecification({ specification: 'A diagram' }, 'Image'), /generation prompt/);
 });
 
 test('temporary media brief: invalid production notes fail without fabricating content', () => {
