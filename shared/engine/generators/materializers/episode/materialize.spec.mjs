@@ -159,7 +159,7 @@ test('provisional Episode emits only an allocated typed draft with reviewed Cour
   const context = {
     ...ctx(),
     courseId: IDs.course,
-    directory: 'content/transition',
+    directory: 'transition',
     orderPath: [2],
     plannedLanguages: ['uk'],
     reviewedCourseSourceBlobSha: '1'.repeat(40),
@@ -170,7 +170,7 @@ test('provisional Episode emits only an allocated typed draft with reviewed Cour
   assert.equal(result.pendingEpisode, true);
   assert.deepEqual(
     result.files.map(f => f.path),
-    ['content/transition/draft.ts'],
+    ['transition/draft.ts'],
   );
   const draft = result.files[0].content;
   assert.match(draft, /TODO \(BLOCKER\)/);

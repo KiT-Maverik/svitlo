@@ -128,7 +128,7 @@ test('existing Lesson commit revision preserves trailing source newline and reje
     id: lessonId,
     sourcePath: filename,
     sourceSha: lessonCommit,
-    placementPath: 'content/playground/data/courses/3/' + id + '/content/reused',
+    placementPath: 'content/playground/data/courses/3/' + id + '/reused',
   };
   const revisionPlan = {
     courseId: id,
@@ -330,7 +330,7 @@ test('trusted Course manifest seals Assessment seed, imported stub and upstream 
     config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
     production: {
       purpose: 'Measure transfer after the reviewed Lessons',
-      lessonDependencies: ['content/newLesson', 'content/reused'],
+      lessonDependencies: ['newLesson', 'reused'],
     },
   };
   actual.config.content.order.push('finalReview');
@@ -352,7 +352,7 @@ test('trusted Course manifest seals Assessment seed, imported stub and upstream 
   );
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
-  assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
+  assert.deepEqual(row.lessonDependencies, ['newLesson', 'reused']);
   assert.match(plan.files.find(f => f.path === row.stubSourcePath).content, /defineAssessmentStub\(\{/);
   const sealed = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
@@ -368,7 +368,7 @@ test('trusted Course manifest seals Assessment seed, imported stub and upstream 
     m.inventory.assessments[0].id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
   });
   mutate(m => {
-    m.inventory.assessments[0].lessonDependencies = ['content/notReviewed'];
+    m.inventory.assessments[0].lessonDependencies = ['notReviewed'];
   });
   mutate(m => {
     m.entries = m.entries.filter(f => f.path !== row.sourcePath);
@@ -389,7 +389,7 @@ test('Course publisher accepts all three generated inert default-export seeds un
     config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
     production: {
       purpose: 'Measure transfer',
-      lessonDependencies: ['content/newLesson', 'content/reused'],
+      lessonDependencies: ['newLesson', 'reused'],
     },
   };
   course.config.content.order.push('finalReview');
@@ -447,7 +447,7 @@ test('trusted publisher accepts all pending stub kinds in a direct Course Chapte
                 config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
                 production: {
                   purpose: 'Measure transfer',
-                  lessonDependencies: ['content/directChapter/newLesson'],
+                  lessonDependencies: ['directChapter/newLesson'],
                 },
               },
             },
@@ -486,6 +486,6 @@ test('trusted publisher accepts all pending stub kinds in a direct Course Chapte
     row => row.stubSourcePath,
   );
   assert.equal(rows.length, 3);
-  assert.ok(rows.every(row => row.placementSourcePath.endsWith('/content/directChapter/index.ts')));
+  assert.ok(rows.every(row => row.placementSourcePath.endsWith('/directChapter/index.ts')));
   assert.equal(verifyTypedCourseManifest(buildTypedCourseManifest(pinned, plan), pinned), plan.files.length);
 });

@@ -19,11 +19,11 @@ export function materializeEpisodeDraft(input, context) {
     throw Error('Episode draft requires nonempty reviewed focus and purpose and a safe slot');
   if (
     typeof directory !== 'string' ||
-    !directory.startsWith('content/') ||
+    !directory ||
     directory.split('/').some(key => !safe(key)) ||
     directory.split('/').at(-1) !== config.slug ||
     !Array.isArray(orderPath) ||
-    orderPath.length !== directory.split('/').length - 1 ||
+    orderPath.length !== directory.split('/').length ||
     orderPath.some(value => !Number.isSafeInteger(value) || value < 0) ||
     !uuid.test(context.courseId ?? '') ||
     !/^[0-9a-f]{40}$/i.test(context.reviewedCourseSourceBlobSha ?? '')

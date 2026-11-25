@@ -151,7 +151,7 @@ function plan(
   if (!checked.success) throw Error('Invalid reviewed Assessment Stage 2: ' + checked.error.message);
   const source = options?.source;
   const sourceMatch = source?.sourcePath.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/courses\/([0-9a-f])\/([0-9a-f-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/i,
+    /^content\/([a-z][a-z0-9-]*)\/data\/courses\/([0-9a-f])\/([0-9a-f-]{36})\/((?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/i,
   );
   if (
     !source ||

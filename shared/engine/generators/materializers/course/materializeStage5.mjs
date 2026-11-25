@@ -119,17 +119,16 @@ export function materializeCourseStage5(input, options = {}) {
   const newIds = new Set([rootId]),
     knownExistingIds = new Set();
   const diagnostics = [];
-  const parentIndex = (directory, kind) => {
-    const parts = directory.split('/');
-    // Only Assessment inserts an extra /content/ segment before its slot.
-    // An ordinary Module or Chapter placement is allowed to be named "content".
-    const ancestors = parts.slice(0, kind === 'assessment' ? -2 : -1);
-    const parent = ancestors.length === 1 && ancestors[0] === 'content' ? '' : ancestors.join('/');
+  const parentIndex = directory => {
+    const parent = directory.split('/').slice(0, -1).join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   };
   const deriveId = (kind, directory) => {
-    const relative = directory.replace(/^content\//, '');
-    if (relative === directory || !relative) throw new Error('Unexpected Course child placement: ' + directory);
+    if (!directory) throw new Error('Unexpected Course child placement: ' + directory);
+    const relative =
+      kind === 'assessment' && directory.includes('/')
+        ? directory.split('/').slice(0, -1).join('/') + '/content/' + directory.split('/').at(-1)
+        : directory;
     const id = deriveCourseEntityId(rootId, kind, relative);
     if (newIds.has(id) || knownExistingIds.has(id))
       throw new Error('Duplicate/reserved generated UUID at ' + directory);
@@ -149,7 +148,7 @@ export function materializeCourseStage5(input, options = {}) {
       for (const key of owner.config.content.order) {
         const child = owner.config.content.items[key];
         const kind = child?.config?.type;
-        const path = parent ? parent + (kind === 'assessment' ? '/content/' : '/') + key : 'content/' + key;
+        const path = [parent, key].filter(Boolean).join('/');
         if (kind === 'module' || kind === 'chapter') {
           inspect(child, path);
         } else if (kind === 'lesson') {
@@ -161,7 +160,7 @@ export function materializeCourseStage5(input, options = {}) {
           if (!Array.isArray(deps) || !deps.length)
             throw Error(path + ': Assessment requires upstream Lesson dependencies');
           const resolved = deps.map(value => {
-            const found = previousLessons.get(value);
+            const found = previousLessons.get(value) ?? previousLessons.get(value.replace(/^content\//, ''));
             if (found) return found.path;
             const matches = priorById.get(value) ?? [];
             if (matches.length !== 1)

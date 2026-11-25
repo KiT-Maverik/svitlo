@@ -90,9 +90,7 @@ function assertCourseInventory(manifest, meta, entries) {
   const seeds = new Set(
     [...entries.keys()].filter(p => p.startsWith(meta.textbookRoot + '/data/lessons/') && p.endsWith('/draft.ts')),
   );
-  const episodes = new Set(
-    [...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/draft.ts')),
-  );
+  const episodes = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/draft.ts')));
   const stubs = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/stub.ts')));
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
@@ -110,9 +108,7 @@ function assertCourseInventory(manifest, meta, entries) {
    * never to a shadow Lesson re-export or draft handoff. */
   function expectedParent(row) {
     const parts = row.placementPath.slice(root.length + 1).split('/');
-    // The Assessment kind, not an ambiguous parent slug, selects the extra segment.
-    const ancestors = parts.slice(0, row.type === 'assessment' ? -2 : -1);
-    const parent = ancestors.length === 1 && ancestors[0] === 'content' ? '' : ancestors.join('/');
+    const parent = parts.slice(0, -1).join('/');
     return root + '/' + (parent ? parent + '/' : '') + 'index.ts';
   }
   function parentSource(row) {
@@ -141,7 +137,7 @@ function assertCourseInventory(manifest, meta, entries) {
       !['lesson', 'episode', 'assessment'].includes(row.type) ||
       !UUID.test(row.id) ||
       typeof row.placementPath !== 'string' ||
-      !row.placementPath.startsWith(root + '/content/') ||
+      !row.placementPath.startsWith(root + '/') ||
       !isSlug(row.slug) ||
       row.placementPath.split('/').at(-1) !== row.slug ||
       !row.placementPath
@@ -160,8 +156,11 @@ function assertCourseInventory(manifest, meta, entries) {
     seen.add(row.placementPath);
     seenOrder.add(order);
     const rel = row.placementPath.slice(root.length + 1);
-    // Course's deterministic UUID namespace excludes the top-level content/ segment.
-    const allocationPath = rel.slice('content/'.length);
+    // Preserve the historic UUID namespace independently of physical layout.
+    const allocationPath =
+      row.type === 'assessment' && rel.includes('/')
+        ? rel.split('/').slice(0, -1).join('/') + '/content/' + row.slug
+        : rel;
     if (row.type === 'lesson') {
       const lessonRoot = meta.textbookRoot + '/data/lessons/' + row.id.at(-1) + '/' + row.id;
       if (row.kind === 'new') {
@@ -259,7 +258,7 @@ function assertCourseInventory(manifest, meta, entries) {
         !episodes.delete(draft) ||
         !Array.isArray(row.lessonDependencies) ||
         !row.lessonDependencies.length ||
-        row.lessonDependencies.some(value => typeof value !== 'string' || !value.startsWith('content/'))
+        row.lessonDependencies.some(value => typeof value !== 'string' || !value.split('/').every(isSlug))
       )
         throw Error('Invalid Course Assessment pending seed or owned stub placement');
       const seed = outputLiteral(draft, 'assessmentSeed', 'AssessmentWorkflowSeed');

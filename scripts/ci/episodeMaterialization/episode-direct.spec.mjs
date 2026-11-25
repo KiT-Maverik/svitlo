@@ -1,13 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
+import { discoverEpisodeDraft } from './episode-gate.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './episode-transaction.mjs';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const episodeId = deriveCourseEntityId(courseId, 'episode', 'episodeOne');
 const courseRoot = 'content/playground/data/courses/3/' + courseId;
-const placement = 'content/episodeOne';
+const placement = 'episodeOne';
 const handoff = {
   config: { id: episodeId, type: 'episode', slug: 'episodeOne' },
   production: {
@@ -69,7 +70,7 @@ const stubSource =
   ', slug: "episodeOne" });\n';
 const parent =
   "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
-  'import { stub as child_episodeOne } from "./content/episodeOne/stub";\n' +
+  'import { stub as child_episodeOne } from "./episodeOne/stub";\n' +
   'const content = { items: { ' +
   '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
   '"episodeOne": child_episodeOne, ' +
@@ -78,19 +79,50 @@ const parent =
   'export const demo = defineCourse({ id: ' +
   JSON.stringify(courseId) +
   ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
+test('Episode source discovery preserves direct and nested owners without structural content directories', () => {
+  for (const [path, parent] of [
+    ['episodeOne', 'index.ts'],
+    ['light/episodeOne', 'light/index.ts'],
+    ['light/reflection/episodeOne', 'light/reflection/index.ts'],
+  ]) {
+    const result = discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]);
+    assert.equal(result.placement, path);
+    assert.equal(result.parentPath, courseRoot + '/' + parent);
+  }
+  for (const path of ['../../episodeOne', 'light/reflection/deep/episodeOne', 'constructor/episodeOne']) {
+    assert.throws(() =>
+      discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]),
+    );
+  }
+});
+
 test('trusted Episode plan creates only owned source and retains Course parent/stub', () => {
   const worker = {
-    episodeId, exportName: 'episodeOne', publishable: false, diagnostics: [],
+    episodeId,
+    exportName: 'episodeOne',
+    publishable: false,
+    diagnostics: [],
     files: [{ path: placement + '/index.ts', kind: 'typescript', content: 'export const episodeOne = 1;\n' }],
   };
   const combined = composeEpisodeDirectPlan(handoff, reviewed, meta, parent, stubSource, worker);
   assert.equal(combined.episodeId, episodeId);
   assert.equal(combined.sourceExportName, 'episodeOne');
-  assert.deepEqual(combined.files.map(file => file.path), [courseRoot + '/' + placement + '/index.ts']);
+  assert.deepEqual(
+    combined.files.map(file => file.path),
+    [courseRoot + '/' + placement + '/index.ts'],
+  );
   const manifest = buildEpisodeManifest(meta, combined);
-  assert.deepEqual(manifest.entries.map(file => file.path), [courseRoot + '/' + placement + '/index.ts']);
-  assert.deepEqual(episodeCommitTree(manifest).filter(entry => entry.sha === null).map(entry => entry.path), [meta.sourcePath]);
-  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/content\/episodeOne\/stub";/);
+  assert.deepEqual(
+    manifest.entries.map(file => file.path),
+    [courseRoot + '/' + placement + '/index.ts'],
+  );
+  assert.deepEqual(
+    episodeCommitTree(manifest)
+      .filter(entry => entry.sha === null)
+      .map(entry => entry.path),
+    [meta.sourcePath],
+  );
+  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/episodeOne\/stub";/);
   assert.match(stubSource, new RegExp(episodeId));
   for (const changed of [
     parent.replace('stub as child_episodeOne', 'stub as child_other'),
@@ -103,7 +135,15 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
     /invalid source plan/,
   );
   assert.throws(
-    () => composeEpisodeDirectPlan(handoff, { ...reviewed, config: { ...reviewed.config, id: courseId } }, meta, parent, stubSource, worker),
+    () =>
+      composeEpisodeDirectPlan(
+        handoff,
+        { ...reviewed, config: { ...reviewed.config, id: courseId } },
+        meta,
+        parent,
+        stubSource,
+        worker,
+      ),
     /preserve/,
   );
 });

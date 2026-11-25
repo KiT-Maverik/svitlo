@@ -167,7 +167,7 @@ export function materializeChapter(input, context = {}) {
       throw Error(dir + '.content.items.' + key + ': child slug mismatch');
     const nodeConfig = { ...raw, slug: raw.type === 'lesson' ? (raw.slug ?? key) : key };
     const nested = record(node?.config) ? { ...node, config: nodeConfig } : nodeConfig;
-    const childFolder = [dir, raw.type === 'assessment' ? 'content' : null, key].filter(Boolean).join('/');
+    const childFolder = [dir, key].filter(Boolean).join('/');
     const childContext = {
       ...context,
       sourceLanguage: lang,
@@ -340,7 +340,7 @@ export function materializeChapter(input, context = {}) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
       const alias = 'child_' + key;
-      const location = raw.type === 'assessment' || !dir ? './content/' : './';
+      const location = './';
       imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location }));
       items[key] = alias;
     } else {
@@ -410,6 +410,7 @@ export function materializeChapter(input, context = {}) {
     resolveSkill: context.resolveSkill,
     textbookRoot: context.textbookRoot,
     directory: dir,
+    reservedNames: ['defineChapter', exportName(slug), ...inlineImports, ...order.map(key => 'child_' + key)],
   });
   const paramsSource = bound.source;
   const courseId = context.courseId;

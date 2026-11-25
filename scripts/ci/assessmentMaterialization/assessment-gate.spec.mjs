@@ -8,10 +8,10 @@ const draft = placement => ({ filename: root + '/' + placement + '/draft.ts', st
 
 test('Assessment owner is the exact Course, Module or Chapter at its nested source path', () => {
   const cases = [
-    ['content/finalReview', root + '/index.ts'],
-    ['content/moduleOne/content/moduleReview', root + '/content/moduleOne/index.ts'],
-    ['content/chapterOne/content/chapterReview', root + '/content/chapterOne/index.ts'],
-    ['content/moduleOne/chapterOne/content/chapterReview', root + '/content/moduleOne/chapterOne/index.ts'],
+    ['finalReview', root + '/index.ts'],
+    ['moduleOne/moduleReview', root + '/moduleOne/index.ts'],
+    ['chapterOne/chapterReview', root + '/chapterOne/index.ts'],
+    ['moduleOne/chapterOne/chapterReview', root + '/moduleOne/chapterOne/index.ts'],
   ];
   for (const [placement, parentPath] of cases) {
     const got = discoverAssessmentDraft([draft(placement)]);
@@ -23,10 +23,10 @@ test('Assessment owner is the exact Course, Module or Chapter at its nested sour
 });
 
 test('rejects an invented/moved Assessment source and unrelated concurrent diff', () => {
-  assert.throws(() => discoverAssessmentDraft([draft('content/moduleOne/review')]));
-  assert.throws(() => discoverAssessmentDraft([draft('content/review'), draft('content/another')]));
-  assert.throws(() => discoverAssessmentDraft([{ ...draft('content/review'), status: 'added' }]));
-  assert.throws(() => discoverAssessmentDraft([draft('content/moduleOne/chapterOne/extra/content/review')]));
-  assert.throws(() => discoverAssessmentDraft([draft('content/constructor')]));
-  assert.throws(() => discoverAssessmentDraft([draft('content/lessonOne/questions')]));
+  assert.throws(() => discoverAssessmentDraft([draft('moduleOne/chapterOne/deep/review')]));
+  assert.throws(() => discoverAssessmentDraft([draft('review'), draft('another')]));
+  assert.throws(() => discoverAssessmentDraft([{ ...draft('review'), status: 'added' }]));
+  assert.throws(() => discoverAssessmentDraft([draft('moduleOne/chapterOne/extra/review')]));
+  assert.throws(() => discoverAssessmentDraft([draft('constructor')]));
+  assert.throws(() => discoverAssessmentDraft([draft('lessonOne/questions/review/extra')]));
 });

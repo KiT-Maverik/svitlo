@@ -146,3 +146,5 @@ TypeScript before normal validation and publication.
 ## EducationStandard relationship (planned)
 
 A Course may later reference independently approved [EducationStandard](./education-standard.md) UUIDs to state and substantiate standards alignment. The same standard definition may be reused by multiple Courses. A reference is not an accreditation, certification or proof of coverage; mapping claims require separate methodological evidence and review. No Course Config, `Course.params` or Course YAML field for EducationStandard references is introduced by PR #637.
+
+**Course-owned source layout:** Generated child folders follow the semantic Course → Module → Chapter hierarchy directly (`<course-id>/<module>/<chapter>/index.ts`, `<course-id>/<module>/<chapter>/<episode>/draft.ts`, or the analogous Lesson stub/Assessment draft). There is no implicit filesystem `content/` folder at any level; Configurator `content.items/order` remains unchanged. Previously generated immutable UUIDs are preserved independently of filesystem layout, and existing materialized branches must be explicitly reconciled rather than silently moved.
