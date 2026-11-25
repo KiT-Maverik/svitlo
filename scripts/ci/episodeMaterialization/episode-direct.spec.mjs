@@ -122,7 +122,7 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
       .map(entry => entry.path),
     [meta.sourcePath],
   );
-  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/episodeOne\/stub";/);
+  assert.match(parent, /import \{ episodeOne \} from "\.\/episodeOne\/stub";/);
   assert.match(stubSource, new RegExp(episodeId));
   for (const changed of [
     parent.replace('import { episodeOne }', 'import { other }'),
