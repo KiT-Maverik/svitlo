@@ -354,6 +354,8 @@ export function materializeCourseStage5(input, options = {}) {
   const context = {
     directory: '',
     courseId: rootId,
+    textbookRoot,
+    resolveSkill: options.resolveSkill,
     reviewedCourseSourceBlobSha: source.sourceBlobSha,
     orderPath: [],
     sourceLanguage,
