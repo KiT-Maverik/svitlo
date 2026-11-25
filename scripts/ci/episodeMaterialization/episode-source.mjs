@@ -1,8 +1,8 @@
-/** Inert Episode draft parsing and deterministic restoration of one reserved parent slot. */
+/** Inert Episode handoff parsing and read-only Course placement verification. */
 import { isDeepStrictEqual } from 'node:util';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import {
-  replaceReservedParentSlot,
+  verifyPendingCourseParent,
   readGeneratedCourseHandoff,
 } from '../directMaterialization/reserved-parent-slot.mjs';
 
@@ -96,23 +96,8 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
   return true;
 }
 
-/** Replace only an existing, UUID-bound defineEpisodeStub at its actual
- * content.items[slug] and leave the parent's original content.order unchanged.
- * Neither TODO comments nor authored placement arrays establish ownership.
- */
-export function restoreEpisodePlacement(parent, stubSource, placement, exportName) {
-  return replaceReservedParentSlot(parent, {
-    kind: 'episode',
-    id: placement.episodeId,
-    slug: placement.slug,
-    placement: placement.path,
-    exportName,
-    stubSource,
-  }).content;
-}
-
-/** Assemble only the exact generated Episode-owned files and one reserved parent
- * source change. The already-reviewed Episode entrypoint is executed ONLY by
+/** Assemble only Episode-owned files, verifying the pinned Course parent and
+ * child stub read-only. The already-reviewed Episode entrypoint is executed ONLY by
  * the credential-free worker, not by this trusted composition helper.
  */
 export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, stubSource, output) {
@@ -142,17 +127,13 @@ export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, 
   }));
   const rootIndex = prefix + meta.placement + '/index.ts';
   if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
-  const parent = restoreEpisodePlacement(
-    parentSource,
+  verifyPendingCourseParent(parentSource, {
+    kind: 'episode',
+    id: handoff.config.id,
+    slug: handoff.config.slug,
+    placement: meta.placement,
     stubSource,
-    {
-      path: meta.placement,
-      slug: handoff.config.slug,
-      episodeId: handoff.config.id,
-    },
-    output.exportName,
-  );
-  files.push({ path: meta.parentPath, kind: 'typescript', content: parent });
+  });
   return {
     files,
     diagnostics: output.diagnostics,

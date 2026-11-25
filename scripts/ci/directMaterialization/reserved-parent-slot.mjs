@@ -1,8 +1,6 @@
-/** Trusted, byte-preserving replacement of one generated Course child stub.
- *
- * Reuse the TypeScript parser already required by the Episode analyzer; never
- * interpret TODO comments, evaluate parent code, or reconstruct a parent.
- * The publisher applies the same deterministic edit to its pinned parent blob.
+/** Trusted read-only verification of Course reservations, stubs and Lesson imports.
+ * Parse the pinned TypeScript source; never evaluate candidate code or infer
+ * child ownership from comments or authored placement arrays.
  */
 import ts from 'typescript';
 
@@ -223,8 +221,8 @@ export function verifyOwnedCourseStub(source, { kind, id, slug }) {
 
 /** Read-only Course Stage 5 seal: the generated parent must import the
  * exact local stub and use it once at the actual ordered child key. This is
- * equally strict for pending Lessons, which deliberately have no automatic
- * parent-restoration transaction.
+ * equally strict for pending Lessons, Episodes and Assessments. No child
+ * materialization transaction rewrites a parent or deletes its stub.
  */
 export function verifyPendingCourseParent(source, { kind, id, slug, placement, stubSource }) {
   if (
@@ -377,196 +375,6 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
     )
   )
     throw Error('Immediate parent must import its declared Configurator');
-  return true;
-}
-
-/** Pin the immediate parent AST and its separately imported, immutable stub.
- * Comments, text search, author-supplied orderPath and executable code are
- * never evidence of Course ownership or an eligible restoration.
- */
-export function replaceReservedParentSlot(source, { kind, id, slug, placement, exportName, stubSource }) {
-  if (
-    typeof source !== 'string' ||
-    source.length > 4 * 1024 * 1024 ||
-    !['episode', 'assessment'].includes(kind) ||
-    !UUID.test(id ?? '') ||
-    !safe(slug) ||
-    !identifier(exportName) ||
-    typeof placement !== 'string' ||
-    placement.split('/').at(-1) !== slug
-  )
-    throw Error('Invalid reserved child identity');
-  const parts = placement.split('/');
-  const root = parts.length === 2;
-  if (
-    parts[0] !== 'content' ||
-    (kind === 'episode' && (parts.length < 2 || parts.length > 4)) ||
-    (kind === 'assessment' && ![2, 4, 5].includes(parts.length)) ||
-    parts.some(part => !safe(part)) ||
-    (kind === 'assessment' && parts.length > 2 && parts.at(-2) !== 'content')
-  )
-    throw Error('Invalid reserved Course child ownership path');
-  verifyOwnedCourseStub(stubSource, { kind, id, slug });
-  const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  if (ast.parseDiagnostics.length) throw Error('Invalid generated parent TypeScript');
-  if (ast.statements.some(statement => !ts.isImportDeclaration(statement) && !ts.isVariableStatement(statement)))
-    throw Error('Unexpected executable generated parent statement');
-  const declarations = ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(statement => [...statement.declarationList.declarations])
-    .filter(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'content');
-  if (declarations.length !== 1 || !ts.isObjectLiteralExpression(unwrap(declarations[0].initializer)))
-    throw Error('Expected one generated parent content collection');
-  const collection = unwrap(declarations[0].initializer);
-  if (
-    collection.properties.length !== 2 ||
-    !ts.isObjectLiteralExpression(unwrap(singleProperty(collection, 'items').initializer)) ||
-    !ts.isArrayLiteralExpression(unwrap(singleProperty(collection, 'order').initializer))
-  )
-    throw Error('Unsupported parent content shape');
-  const items = unwrap(singleProperty(collection, 'items').initializer);
-  const order = unwrap(singleProperty(collection, 'order').initializer);
-  const entries = items.properties.map(property => {
-    if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
-      throw Error('Parent items must be a literal keyed collection');
-    return { key: name(property.name), value: unwrap(property.initializer) };
-  });
-  const keys = entries.map(entry => entry.key);
-  const ordered = order.elements.map(element => {
-    const value = unwrap(element);
-    if (!ts.isStringLiteral(value) || !safe(value.text)) throw Error('Parent content.order must contain literal keys');
-    return value.text;
-  });
-  if (
-    keys.length !== ordered.length ||
-    new Set(keys).size !== keys.length ||
-    new Set(ordered).size !== ordered.length ||
-    keys.some(key => !ordered.includes(key))
-  )
-    throw Error('Parent content.items/order is incomplete or ambiguous');
-  const slot = entries.find(entry => entry.key === slug)?.value;
-  const orderIndex = ordered.indexOf(slug);
-  if (orderIndex < 0 || !slot) throw Error('Reserved child stub missing from actual parent order/items');
-  const importPath = (root || kind === 'assessment' ? './content/' : './') + slug + '/stub';
-  const childAlias = 'child_' + slug;
-  const imports = ast.statements.filter(ts.isImportDeclaration);
-  const ownedImports = imports.filter(
-    statement => ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === importPath,
-  );
-  if (ownedImports.length !== 1) throw Error('Expected exactly one immediate-parent stub import');
-  const owned = ownedImports[0];
-  const clause = owned.importClause;
-  if (
-    !clause ||
-    clause.isTypeOnly ||
-    clause.name ||
-    owned.attributes ||
-    !clause.namedBindings ||
-    !ts.isNamedImports(clause.namedBindings) ||
-    clause.namedBindings.elements.length !== 1 ||
-    clause.namedBindings.elements[0].isTypeOnly ||
-    clause.namedBindings.elements[0].propertyName?.text !== 'stub' ||
-    clause.namedBindings.elements[0].name.text !== childAlias ||
-    !ts.isIdentifier(slot) ||
-    slot.text !== childAlias
-  )
-    throw Error('Parent slot must reference the exact imported draft-only stub');
-  if (
-    imports.some(
-      statement =>
-        statement !== owned &&
-        ts.isStringLiteral(statement.moduleSpecifier) &&
-        [importPath, importPath + '/index'].includes(statement.moduleSpecifier.text),
-    )
-  )
-    throw Error('Ambiguous imported Course stub module');
-  let occurrences = 0;
-  const visit = node => {
-    if (ts.isIdentifier(node) && node.text === childAlias) occurrences++;
-    ts.forEachChild(node, visit);
-  };
-  ts.forEachChild(ast, visit);
-  if (occurrences !== 2) throw Error('Reserved stub alias is referenced outside its exact parent slot');
-  const expectedParent = root
-    ? 'defineCourse'
-    : kind === 'assessment'
-      ? parts.length === 4
-        ? 'defineModule'
-        : 'defineChapter'
-      : parts.length === 3
-        ? 'defineModule'
-        : 'defineChapter';
-  const parents = ast.statements.filter(ts.isVariableStatement).flatMap(statement =>
-    [...statement.declarationList.declarations].filter(declaration => {
-      const init = unwrap(declaration.initializer);
-      if (
-        !ts.isCallExpression(init) ||
-        !ts.isIdentifier(init.expression) ||
-        init.expression.text !== expectedParent ||
-        init.arguments.length !== 1 ||
-        !ts.isObjectLiteralExpression(unwrap(init.arguments[0]))
-      )
-        return false;
-      return unwrap(init.arguments[0]).properties.some(
-        property => ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content',
-      );
-    }),
-  );
-  if (parents.length !== 1) throw Error('Unexpected immediate Course/Module/Chapter parent Configurator');
-  const variableStatements = ast.statements.filter(ts.isVariableStatement);
-  if (
-    variableStatements.length !== 2 ||
-    variableStatements.some(
-      statement =>
-        statement.declarationList.declarations.length !== 1 || !(statement.declarationList.flags & ts.NodeFlags.Const),
-    )
-  )
-    throw Error('Unexpected executable or additional immediate parent declaration');
-
-  const engineImports = imports.filter(
-    statement =>
-      ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === '@svitlo/engine/build',
-  );
-  if (
-    !engineImports.some(
-      statement =>
-        !!statement.importClause?.namedBindings &&
-        ts.isNamedImports(statement.importClause.namedBindings) &&
-        statement.importClause.namedBindings.elements.some(
-          element => !element.isTypeOnly && !element.propertyName && element.name.text === expectedParent,
-        ),
-    )
-  )
-    throw Error('Immediate parent Configurator API must be imported from Engine build');
-  const target = root || kind === 'assessment' ? './content/' + slug : './' + slug;
-  if (
-    imports.some(
-      statement =>
-        ts.isStringLiteral(statement.moduleSpecifier) &&
-        [target, target + '/index'].includes(statement.moduleSpecifier.text),
-    )
-  )
-    throw Error('Completed child import already exists');
-  // Exactly two edits: replace only the reviewed parent slot and remove ONLY
-  // the now-unused imported stub. Other imports, children and order are intact.
-  const edits = [
-    { start: slot.getStart(ast), end: slot.end, value: childAlias },
-    {
-      start: owned.getStart(ast),
-      end: source[owned.end] === '\n' ? owned.end + 1 : owned.end,
-      value: '',
-    },
-  ];
-  let updated = source;
-  for (const edit of edits.sort((a, b) => b.start - a.start))
-    updated = updated.slice(0, edit.start) + edit.value + updated.slice(edit.end);
-  const childImport = 'import { ' + exportName + ' as ' + childAlias + ' } from ' + JSON.stringify(target) + ';\n';
-  return { content: childImport + updated, orderIndex, order: ordered };
-}
-
-export function verifyReservedParentSlot(source, candidate, allocation) {
-  if (replaceReservedParentSlot(source, allocation).content !== candidate)
-    throw Error('Parent patch is not the exact authorized one-slot restoration');
   return true;
 }
 

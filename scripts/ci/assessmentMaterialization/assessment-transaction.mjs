@@ -1,6 +1,6 @@
 /** Trusted Assessment source transaction. Candidate TS executes only in the
  * shared credential-free direct worker. The privileged job replays an exact
- * bounded manifest and edits only its Course-owned parent placeholder.
+ * bounded create-only manifest. Course parent and stub are read-only pinned inputs.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,10 +10,10 @@ import { pinnedGitReader, ordinary } from '../directMaterialization/pinned-git.m
 import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
-import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
 import {
   readGeneratedCourseHandoff,
   resolveIntegratedCourseLesson,
+  verifyPendingCourseParent,
 } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
@@ -241,7 +241,6 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
 }
 
 function safeOutput(file, meta) {
-  if (file === meta.parentPath) return true;
   if (
     typeof file !== 'string' ||
     !file.startsWith(meta.courseRoot + '/' + meta.placement + '/') ||
@@ -286,7 +285,7 @@ export function checkAssessmentTargets(meta, files, tree) {
     )
       throw Error('Assessment generated an unsafe or duplicate file path');
     seen.add(file.path);
-    if (file.path !== meta.parentPath && tree.has(file.path))
+    if (tree.has(file.path)
       throw Error('Assessment would overwrite existing authored source');
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++)
@@ -295,8 +294,8 @@ export function checkAssessmentTargets(meta, files, tree) {
     if ([...tree.keys()].some(other => other.startsWith(file.path + '/')))
       throw Error('Assessment output would replace a directory');
   }
-  if (!seen.has(meta.parentPath) || !seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
-    throw Error('Assessment must atomically restore parent and generate exact nested index');
+  if (!seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
+    throw Error('Assessment must create its exact owned nested index without changing the parent');
   return true;
 }
 
@@ -339,7 +338,6 @@ export function assessmentCommitTree(manifest) {
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     { path: manifest.meta.sourcePath, mode: '100644', type: 'blob', sha: null },
-    { path: stubPath(manifest.meta), mode: '100644', type: 'blob', sha: null },
   ];
 }
 
@@ -386,17 +384,12 @@ export async function prepareAssessment(meta, root, execute = executeTrustedDraf
   checkAssessmentBanks(meta, seed, worker.plan.selectedQuestionIds, reader, tree);
   const output = worker.plan;
   const files = output.files.map(file => ({ ...file, path: meta.courseRoot + '/' + file.path }));
-  const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  files.push({
-    path: meta.parentPath,
-    kind: 'typescript',
-    content: restoreAssessmentPlacement(parentSource, {
-      id: seed.config.id,
-      slug: seed.config.slug,
-      placement: meta.placement,
-      exportName: output.sourceExportName,
-      stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
-    }),
+  verifyPendingCourseParent(reader.blob(tree.get(meta.parentPath), meta.parentPath), {
+    kind: 'assessment',
+    id: seed.config.id,
+    slug: seed.config.slug,
+    placement: meta.placement,
+    stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   checkAssessmentTargets(meta, files, tree);
   return buildAssessmentManifest(meta, { ...output, files });
@@ -463,13 +456,11 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
     return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
   });
   checkAssessmentTargets(meta, files, tree);
-  const originalParent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const revised = files.find(file => file.path === meta.parentPath);
-  verifyAssessmentParentPatch(originalParent, revised.content, {
+  verifyPendingCourseParent(reader.blob(tree.get(meta.parentPath), meta.parentPath), {
+    kind: 'assessment',
     id: seed.config.id,
     slug: seed.config.slug,
     placement: meta.placement,
-    exportName: manifest.sourceExportName,
     stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   return manifest;
@@ -497,7 +488,7 @@ async function main() {
     const manifest = await prepareAssessment(meta, process.env.ASSESSMENT_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    report('Assessment source plan: ' + manifest.entries.length + ' generated/parent files; release remains blocked.');
+    report('Assessment source plan: ' + manifest.entries.length + ' Assessment-owned files; Course parent and stub retained; release remains blocked.');
     return;
   }
   await requireActor(meta.actor);
@@ -538,7 +529,7 @@ async function main() {
   report(
     'Assessment Stage 4 committed ' +
       nextCommit.sha +
-      '; draft consumed and one Course placeholder replaced. Resources, translations and human QA remain pending.',
+      '; draft consumed while Course parent/stub remain unchanged. Resources, translations and human QA remain pending.',
   );
 }
 if (process.argv[1]?.endsWith('/assessment-transaction.mjs')) {

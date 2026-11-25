@@ -1,5 +1,6 @@
 import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderPendingChildStub } from './renderPendingChildStub.mjs';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -371,7 +372,12 @@ export function materializeCourse(input, context = {}) {
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
       const alias = 'child_' + key;
       const location = raw.type === 'assessment' || !dir ? './content/' : './';
-      imports.push('import { stub as ' + alias + ' } from ' + JSON.stringify(location + key + '/stub') + ';');
+      imports.push(
+          renderBlockerTodo(
+            'Keep this pending ' + raw.type + ' stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.',
+          ) + '\n' +
+          'import { stub as ' + alias + ' } from ' + JSON.stringify(location + key + '/stub') + ';',
+        );
       items[key] = alias;
     } else {
       const alias = 'child_' + key;
