@@ -203,7 +203,7 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   );
   assert.match(
     rootSource,
-    /"skills": \[skill_00000000_0000_4000_8000_000000000015\.id, skill_00000000_0000_4000_8000_000000000008\.id\]/,
+    /"skills": \[testExplainLightTravel\.id, testRecognizeCircle\.id\]/,
   );
   const errors = diagnostics(source.files);
   assert.deepEqual(
