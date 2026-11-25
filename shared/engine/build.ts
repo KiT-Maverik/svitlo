@@ -85,3 +85,6 @@ export type {
 } from './generators/materializers/assessment/materializeAssessment';
 
 export { materializeEpisodeStage5 } from './generators/materializers/episode/materializeEpisodeStage5';
+
+// Inert Course-local Lesson additions use approved Section references, not live objects.
+export type { CourseLessonSourcePatch, CourseLessonSectionReference } from './types/workflow/courseLessonSourcePatch.types';
