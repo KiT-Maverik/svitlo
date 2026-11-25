@@ -113,5 +113,5 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, placementPath 
       '}'
     );
   };
-  return { patch, patchSource: render(raw), imports };
+  return { patch, patchSource: render(raw), imports, aliases: Object.fromEntries(aliases) };
 }
