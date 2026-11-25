@@ -73,6 +73,20 @@ export function courseAddedSectionReferences(input) {
         if (!additions || typeof additions !== 'object' || Array.isArray(additions))
           throw Error('Invalid Course additional Section references');
         for (const [slug, section] of Object.entries(additions)) {
+          if (section?.$create === 'course-section') {
+            // This is inert authored Course source, never an executable
+            // default-branch dependency. The compiled trusted Engine Section
+            // renderer validates it and emits the owned files inside the worker.
+            if (
+              !/^[A-Za-z][A-Za-z0-9]*$/.test(slug) ||
+              !section || Array.isArray(section) ||
+              Object.keys(section).sort().join(',') !== '$create,source' ||
+              section.source?.config?.slug !== slug ||
+              !UUID.test(section.source?.config?.id ?? '')
+            )
+              throw Error('Invalid authored Course-owned Section at ' + slug);
+            continue;
+          }
           if (
             !/^[A-Za-z][A-Za-z0-9]*$/.test(slug) ||
             !section ||
