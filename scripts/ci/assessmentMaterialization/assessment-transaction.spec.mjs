@@ -37,9 +37,9 @@ const seed = {
 const source =
   "import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete independently authorized Assessment Stage 1, then Stage 2 and review.\n' +
-  'export const assessmentSeed = ' +
+  'export default ' +
   JSON.stringify(seed, null, 2) +
-  ' as const satisfies AssessmentWorkflowSeed;\n';
+  ' satisfies AssessmentWorkflowSeed;\n';
 const input = {
   config: {
     ...seed.config,
@@ -65,6 +65,18 @@ const plan = {
 test('Course-allocated seed is immutable; independent Assessment adds reviewed design', () => {
   assert.deepEqual(parseAssessmentSeed(source), seed);
   assert.deepEqual(parseAssessmentSeed(source.replace('// TODO (BLOCKER):', '// editorial:')), seed);
+  assert.throws(
+    () => parseAssessmentSeed(source.replace('"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"', '"placement": {"path": "content/foreign"}, "reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"')),
+    /Invalid pinned Assessment seed/,
+  );
+  assert.throws(
+    () => parseAssessmentSeed(source.replace('"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"', '"reviewedCourseSourceBlobSha": "bad"')),
+    /Invalid pinned Assessment seed/,
+  );
+  assert.throws(
+    () => parseAssessmentSeed(source.replace('"content\\/newLesson"', '"content\\/foreign"')),
+    /Invalid pinned Assessment seed/,
+  );
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
   assert.throws(() => verifyAssessmentDesign(seed, { ...input, production: { ...input.production, reviewedCourseSourceBlobSha: 'f'.repeat(40) } }, meta, plan), /immutable/);
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
