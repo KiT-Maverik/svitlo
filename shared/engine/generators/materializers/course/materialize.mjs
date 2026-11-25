@@ -441,7 +441,7 @@ export function materializeCourse(input, context = {}) {
       exportName(slug),
       ...inlineImports,
       ...order.map(key => 'child_' + key),
-      ...imports.map(line => line.match(/\\bas ([A-Za-z_$][A-Za-z0-9_$]*) \\}/)?.[1]).filter(Boolean),
+      ...imports.map(line => line.match(/\bas ([A-Za-z_$][A-Za-z0-9_$]*) \}/)?.[1]).filter(Boolean),
     ],
     includeLanguages: true,
   });
