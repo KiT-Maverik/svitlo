@@ -1,0 +1,5 @@
+/* TODO (BLOCKER): Implement and test accessible, responsive, reduced-motion Scene styling before release; remove this marker after verified keyboard and motion checks. */
+.root {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
