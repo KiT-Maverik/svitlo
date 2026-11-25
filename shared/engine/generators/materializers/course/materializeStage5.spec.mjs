@@ -202,7 +202,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(constants, /export type Languages = typeof languages/);
 });
 
-test('parent indices distinguish the root content prefix from a unit named content', () => {
+test('parent indices preserve literal content slugs without a structural content folder', () => {
   const input = source();
   const module = input.config.content.items.moduleOne;
   module.config.slug = 'content';
