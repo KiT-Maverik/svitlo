@@ -2,6 +2,7 @@
  * Explicit Lesson-owned Flashcard Bank Stage 1/Stage 5 source operations.
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type {
   Flashcard_Relationship,
   Flashcard_Relationship_Type,
@@ -258,6 +259,7 @@ function planFlashcardBank(
   const diagnostics: BankSourceDiagnostic[] = [];
   const imports: string[] = [];
   const entries: string[] = [];
+  const claim = createSourceIdentifierRegistry('flashcardBank', ['flashcards', 'Languages']);
   for (const slug of inventory.order) {
     const card = inventory.items[slug];
     const projected = edges[slug];
@@ -290,9 +292,9 @@ function planFlashcardBank(
     );
     files.push(...output.files);
     diagnostics.push(...(output.diagnostics ?? []));
-    const alias = 'card_' + slug;
-    imports.push('import { ' + output.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + slug) + ';');
-    entries.push('  ' + JSON.stringify(slug) + ': ' + alias + ',');
+    const name = claim(output.exportName, 'flashcards.items.' + slug);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + slug) + ';');
+    entries.push('  ' + renderSourceItem(slug, name) + ',');
   }
   files.push({
     path: 'flashcards/index.ts',

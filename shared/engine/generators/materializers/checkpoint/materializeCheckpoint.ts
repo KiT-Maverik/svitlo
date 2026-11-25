@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_Checkpoint_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
 import type { CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
 
@@ -118,6 +119,7 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   const files: CheckpointFile[] = [];
   const diagnostics: CheckpointDiagnostic[] = [];
   const imports: string[] = [];
+  const claim = createSourceIdentifierRegistry('checkpoint', ['defineCheckpoint', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
   const entries: string[] = [];
   const paths = new Set<string>();
   for (const key of config.content.order) {
@@ -128,9 +130,9 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('Checkpoint.content.items.' + key + ': child materializer returned invalid export');
     }
-    const alias = 'item_' + key;
-    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
-    entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
+    const name = claim(result.exportName, 'content.items.' + key);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
+    entries.push('    ' + renderSourceItem(key, name) + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(target + '/')) {
         throw new Error(

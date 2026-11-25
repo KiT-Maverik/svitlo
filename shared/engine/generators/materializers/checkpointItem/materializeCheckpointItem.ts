@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_CheckpointItem_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { CheckpointAnswerSource } from '../checkpointAnswer/materializeCheckpointAnswer';
@@ -113,23 +114,26 @@ export function materializeCheckpointItem(
     }
   }
   const exportName = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
+  const claim = createSourceIdentifierRegistry('checkpointItem', ['defineCheckpointItem', 'languages', exportName]);
+  claim(question.exportName, 'question');
+  claim(answer.exportName, 'answer');
   const code = [
     "import { defineCheckpointItem } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
-    'import { ' + question.exportName + ' as question } from "./question";',
-    'import { ' + answer.exportName + ' as answer } from "./answer";',
+    'import { ' + question.exportName + ' } from "./question";',
+    'import { ' + answer.exportName + ' } from "./answer";',
     '',
     'export const ' +
       exportName +
       ' = defineCheckpointItem<' +
       JSON.stringify(config.slug) +
-      ', typeof answer, typeof question, typeof languages>({',
+      ', typeof ' + answer.exportName + ', typeof ' + question.exportName + ', typeof languages>({',
     '  id: ' + JSON.stringify(config.id) + ',',
     '  slug: ' + JSON.stringify(config.slug) + ',',
     "  type: 'checkpointItem',",
     ...(config.check === true ? ['  check: true,'] : []),
-    '  question,',
-    '  answer,',
+    '  ' + renderSourceItem('question', question.exportName) + ',',
+    '  ' + renderSourceItem('answer', answer.exportName) + ',',
     '});',
     '',
   ].join('\n');
