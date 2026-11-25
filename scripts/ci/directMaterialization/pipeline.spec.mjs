@@ -9,8 +9,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { runIsolatedMaterialization, workerImage } from './run-isolated.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
+import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
 import { buildTypedCourseManifest } from '../courseMaterialization/typed-course-direct.mjs';
 import { verifyTypedCourseManifest } from '../courseMaterialization/typed-course-publish.mjs';
 import {
@@ -27,6 +29,9 @@ import {
   flashcardStage3,
 } from './fixtures/worker-inputs.mjs';
 
+const require = createRequire(import.meta.url);
+const { defineLesson } = require('../../../shared/engine/dist/build.js');
+const { courseWorkflowStage3_Schema } = require('../../../shared/engine/dist/types/workflow/courseWorkflowFinal.schemas.js');
 const trustedRoot = fileURLToPath(new URL('../../..', import.meta.url));
 const textbook = 'content/math';
 const courseRoot = textbook + '/data/courses/3/' + courseId;
@@ -175,6 +180,27 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
         },
       });
     };
+    // The fixtures are repository-owned, not candidate-controlled code. Validate
+    // their real Build objects before testing the untrusted-source worker so a
+    // schema/materializer regression is actionable without leaking sandbox logs.
+    const trustedCourseFixture = courseStage3(
+      defineLesson(independentLessonConfig()),
+      defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+    );
+    const checkedCourse = courseWorkflowStage3_Schema.safeParse(trustedCourseFixture);
+    assert.equal(checkedCourse.success, true, checkedCourse.error?.message);
+    assert.equal(
+      materializeCourseStage5(trustedCourseFixture, {
+        textbookRoot: textbook,
+        source: {
+          sourcePath: paths.course,
+          sourceBlobSha: git(candidateRoot, 'rev-parse', 'HEAD:' + paths.course),
+        },
+        verifySource: () => true,
+      }).publishable,
+      false,
+    );
+
     const coursePlan = invoke('course-stage5', paths.course);
     assert.equal(coursePlan.publishable, false);
     assert.equal(coursePlan.inventory.lessons.length, 3);
