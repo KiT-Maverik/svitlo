@@ -17,6 +17,7 @@ const SHA = /^[0-9a-f]{40}$/;
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const maxBytes = 32 * 1024 * 1024;
 const sha256 = value => createHash('sha256').update(value).digest('hex');
+const stubPath = meta => meta.sourcePath.replace(/draft\.ts$/, 'stub.ts');
 const keys = [
   'repo',
   'number',
@@ -34,6 +35,7 @@ const keys = [
   'sourceBlobSha',
   'handoffBlobSha',
   'parentBlobSha',
+  'stubBlobSha',
 ];
 export const sameAssessmentMeta = (a, b) => keys.every(key => a[key] === b[key]);
 
@@ -52,7 +54,7 @@ export function parseAssessmentMetadata(encoded) {
     meta.number === meta.parentNumber ||
     !safeBranch(meta.branch, meta.parentBranch) ||
     !safeBranch(meta.parentBranch, process.env.COURSE_DEFAULT_BRANCH) ||
-    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha'].every(key =>
+    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha', 'stubBlobSha'].every(key =>
       SHA.test(meta[key] ?? ''),
     ) ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '')
@@ -247,7 +249,9 @@ export function checkAssessmentTargets(meta, files, tree) {
     !ordinary(tree.get(meta.sourcePath)) ||
     tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
     !ordinary(tree.get(meta.parentPath)) ||
-    tree.get(meta.parentPath).sha !== meta.parentBlobSha
+    tree.get(meta.parentPath).sha !== meta.parentBlobSha ||
+    !ordinary(tree.get(stubPath(meta))) ||
+    tree.get(stubPath(meta)).sha !== meta.stubBlobSha
   )
     throw Error('Assessment source/parent is not exact pinned regular Git blobs');
   const seen = new Set();
@@ -316,6 +320,7 @@ export function assessmentCommitTree(manifest) {
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     { path: manifest.meta.sourcePath, mode: '100644', type: 'blob', sha: null },
+    { path: stubPath(manifest.meta), mode: '100644', type: 'blob', sha: null },
   ];
 }
 
@@ -335,8 +340,10 @@ export async function prepareAssessment(meta, root, execute = executeTrustedDraf
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    baseline.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Assessment parent and allocated seed changed after review');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
@@ -369,6 +376,7 @@ export async function prepareAssessment(meta, root, execute = executeTrustedDraf
       slug: seed.config.slug,
       placement: meta.placement,
       exportName: output.sourceExportName,
+      stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
     }),
   });
   checkAssessmentTargets(meta, files, tree);
@@ -404,8 +412,10 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    baseline.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Sealed Assessment original sources changed');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
@@ -441,6 +451,7 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
     slug: seed.config.slug,
     placement: meta.placement,
     exportName: manifest.sourceExportName,
+    stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   return manifest;
 }

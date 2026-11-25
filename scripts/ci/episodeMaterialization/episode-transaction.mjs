@@ -18,6 +18,7 @@ const SHA = /^[a-f0-9]{40}$/;
 const maxBytes = 32 * 1024 * 1024;
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const ordinary = entry => entry?.type === 'blob' && entry.mode === '100644';
+const stubPath = meta => meta.sourcePath.replace(/draft\.ts$/, 'stub.ts');
 const metadataKeys = [
   'repo',
   'number',
@@ -35,6 +36,7 @@ const metadataKeys = [
   'sourceBlobSha',
   'handoffBlobSha',
   'parentBlobSha',
+  'stubBlobSha',
 ];
 export const sameMeta = (a, b) => metadataKeys.every(key => a[key] === b[key]);
 export function parseEpisodeMetadata(encoded) {
@@ -52,7 +54,7 @@ export function parseEpisodeMetadata(encoded) {
     meta.number === meta.parentNumber ||
     !safeBranch(meta.branch, meta.parentBranch) ||
     !safeBranch(meta.parentBranch, process.env.COURSE_DEFAULT_BRANCH) ||
-    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha'].every(key =>
+    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha', 'stubBlobSha'].every(key =>
       SHA.test(meta[key] ?? ''),
     ) ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '')
@@ -101,7 +103,9 @@ export function checkEpisodeTargets(meta, files, tree) {
     !ordinary(tree.get(meta.sourcePath)) ||
     tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
     !ordinary(tree.get(meta.parentPath)) ||
-    tree.get(meta.parentPath).sha !== meta.parentBlobSha
+    tree.get(meta.parentPath).sha !== meta.parentBlobSha ||
+    !ordinary(tree.get(stubPath(meta))) ||
+    tree.get(stubPath(meta)).sha !== meta.stubBlobSha
   )
     throw Error('Reviewed Episode draft or parent source differs from pinned Git blob');
   const seen = new Set();
@@ -196,6 +200,7 @@ export function episodeCommitTree(manifest) {
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     { path: manifest.meta.sourcePath, mode: '100644', type: 'blob', sha: null },
+    { path: stubPath(manifest.meta), mode: '100644', type: 'blob', sha: null },
   ];
 }
 
@@ -219,8 +224,10 @@ export async function prepareEpisode(meta, root, execute = executeTrustedDraft) 
   if (
     base.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     base.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    base.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Source/parent Git tree does not match independent review and allocated handoff');
   const original = reader.blob(base.get(meta.sourcePath), meta.sourcePath);
@@ -235,7 +242,7 @@ export async function prepareEpisode(meta, root, execute = executeTrustedDraft) 
     sourceText: source,
     options: { source: pinned },
   });
-  const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, worker?.plan);
+  const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, reader.blob(tree.get(stubPath(meta)), stubPath(meta)), worker?.plan);
   checkEpisodeTargets(meta, plan.files, tree);
   return buildEpisodeManifest(meta, plan);
 }
@@ -272,8 +279,10 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    baseline.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Episode parent/handoff source is not the authorized Git version');
   const handoff = parseEpisodeHandoff(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
@@ -310,6 +319,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
     slug: handoff.config.slug,
     episodeId: handoff.config.id,
     exportName: manifest.sourceExportName,
+    stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   return manifest;
 }

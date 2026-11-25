@@ -62,13 +62,17 @@ const meta = {
   sourceBlobSha: 'b'.repeat(40),
   head: 'c'.repeat(40),
 };
+const stubSource =
+  "import { defineEpisodeStub } from '@svitlo/engine/build';\n" +
+  '// TODO (BLOCKER): Complete Episode source then remove this stub in its trusted transaction.\n' +
+  'export const stub = defineEpisodeStub({ id: ' +
+  JSON.stringify(episodeId) + ', slug: "episodeOne" });\n';
 const parent =
-  "import { defineCourse, defineEpisodeStub, defineLessonStub } from '@svitlo/engine/build';\n" +
+  "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
+  'import { stub as child_episodeOne } from "./content/episodeOne/stub";\n' +
   'const content = { items: { ' +
   '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
-  '"episodeOne": defineEpisodeStub({ id: ' +
-  JSON.stringify(episodeId) +
-  ', slug: "episodeOne" }), ' +
+  '"episodeOne": child_episodeOne, ' +
   '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
   '}, order: ["before", "episodeOne", "after"] };\n' +
   'export const demo = defineCourse({ id: ' +
@@ -82,7 +86,7 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
     diagnostics: [],
     files: [{ path: placement + '/index.ts', kind: 'typescript', content: 'export const episodeOne = 1;\n' }],
   };
-  const combined = composeEpisodeDirectPlan(handoff, reviewed, meta, parent, worker);
+  const combined = composeEpisodeDirectPlan(handoff, reviewed, meta, parent, stubSource, worker);
   assert.equal(combined.episodeId, episodeId);
   assert.equal(combined.sourceExportName, 'episodeOne');
   assert.equal(combined.files.length, 2);
@@ -105,6 +109,7 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
       episodeId,
       orderIndex: 0,
       exportName: worker.exportName,
+      stubSource,
     }),
     true,
   );
@@ -120,12 +125,13 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
         episodeId,
         orderIndex: 0,
         exportName: worker.exportName,
+      stubSource,
       }),
     );
 
-  assert.equal(episodeCommitTree(manifest).at(-1).sha, null);
+  assert.deepEqual(episodeCommitTree(manifest).slice(-2).map(x => x.sha), [null, null]);
   assert.throws(
-    () => composeEpisodeDirectPlan(handoff, reviewed, meta, parent, { ...worker, episodeId: courseId }),
+    () => composeEpisodeDirectPlan(handoff, reviewed, meta, parent, stubSource, { ...worker, episodeId: courseId }),
     /invalid source plan/,
   );
   assert.throws(
@@ -135,6 +141,7 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
         { ...reviewed, config: { ...reviewed.config, id: courseId } },
         meta,
         parent,
+        stubSource,
         worker,
       ),
     /preserve/,
@@ -153,7 +160,7 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
     component + '.stories.tsx',
     component + '.unit.spec.tsx',
   ];
-  const scoped = { ...meta, textbookRoot: 'content/playground', parentBlobSha: 'd'.repeat(40) };
+  const scoped = { ...meta, textbookRoot: 'content/playground', parentBlobSha: 'd'.repeat(40), stubBlobSha: 'e'.repeat(40) };
   const worker = {
     episodeId,
     exportName: 'episodeOne',
@@ -172,6 +179,7 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
   const tree = new Map([
     [scoped.sourcePath, { type: 'blob', mode: '100644', sha: scoped.sourceBlobSha }],
     [scoped.parentPath, { type: 'blob', mode: '100644', sha: scoped.parentBlobSha }],
+    [scoped.sourcePath.replace(/draft\.ts$/, 'stub.ts'), { type: 'blob', mode: '100644', sha: scoped.stubBlobSha }],
   ]);
   assert(plan.files.some(f => f.path === scenePath + component + '.tsx'));
   assert.doesNotThrow(() => checkEpisodeTargets(scoped, plan.files, tree));
