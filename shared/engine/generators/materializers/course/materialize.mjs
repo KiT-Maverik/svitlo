@@ -384,6 +384,11 @@ export function materializeCourse(input, context = {}) {
         imports.push(
           'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(child.importPath) + ';',
         );
+        if (child.extraImports !== undefined) {
+          if (!Array.isArray(child.extraImports) || child.extraImports.some(line => typeof line !== 'string'))
+            throw Error(childFolder + ': invalid trusted additional Section imports');
+          imports.push(...child.extraImports);
+        }
         if (child.patchSource !== undefined) {
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + alias + ', ' + child.patchSource + ')';
