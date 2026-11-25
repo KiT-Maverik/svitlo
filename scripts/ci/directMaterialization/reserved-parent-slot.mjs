@@ -300,10 +300,10 @@ export function replaceReservedParentSlot(source, { kind, id, slug, placement, e
       );
     }));
   if (parents.length !== 1) throw Error('Unexpected immediate Course/Module/Chapter parent Configurator');
-  const declarations = ast.statements.filter(ts.isVariableStatement);
+  const variableStatements = ast.statements.filter(ts.isVariableStatement);
   if (
-    declarations.length !== 2 ||
-    declarations.some(statement =>
+    variableStatements.length !== 2 ||
+    variableStatements.some(statement =>
       statement.declarationList.declarations.length !== 1 ||
       !(statement.declarationList.flags & ts.NodeFlags.Const))
   ) throw Error('Unexpected executable or additional immediate parent declaration');
