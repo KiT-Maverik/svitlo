@@ -23,3 +23,4 @@ export const exhibitionPractice = defineModule<"exhibitionPractice", typeof cont
   params: { "outcomes": { "skills": [skill_00000000_0000_4000_8000_000000000015.id, skill_00000000_0000_4000_8000_000000000008.id] }, "prerequisites": { "skills": [skill_00000000_0000_4000_8000_000000000015.id, skill_00000000_0000_4000_8000_000000000008.id] }, },
   content,
 });
+// agent note: content folder is extra

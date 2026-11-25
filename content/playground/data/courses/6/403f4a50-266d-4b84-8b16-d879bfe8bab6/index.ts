@@ -2,6 +2,7 @@
 // Reviewed Course source blob: 0d3b76ec3edcdcebe617de14c2e9b897cd1ad929
 import { defineCourse } from '@svitlo/engine/build';
 import { languages, type Languages } from "#coursesData/6/403f4a50-266d-4b84-8b16-d879bfe8bab6/constants";
+// agent note: why rename?
 import { testRecognizeCircle as skill_00000000_0000_4000_8000_000000000008 } from "#skillsData/testShapes/testRoundShapes/testRecognizeCircle";
 import { testExplainLightTravel as skill_00000000_0000_4000_8000_000000000015 } from "#skillsData/testLight/testLightPropagation/testExplainLightTravel";
 // TODO (BLOCKER): Keep this pending episode stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.
