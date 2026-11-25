@@ -7,7 +7,7 @@ import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const episodeId = deriveCourseEntityId(courseId, 'episode', 'episodeOne');
 const courseRoot = 'content/playground/data/courses/3/' + courseId;
-const placement = 'content/episodeOne';
+const placement = 'episodeOne';
 const handoff = {
   config: { id: episodeId, type: 'episode', slug: 'episodeOne' },
   production: {
@@ -69,7 +69,7 @@ const stubSource =
   ', slug: "episodeOne" });\n';
 const parent =
   "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
-  'import { stub as child_episodeOne } from "./content/episodeOne/stub";\n' +
+  'import { stub as child_episodeOne } from "./episodeOne/stub";\n' +
   'const content = { items: { ' +
   '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
   '"episodeOne": child_episodeOne, ' +
@@ -90,7 +90,7 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
   const manifest = buildEpisodeManifest(meta, combined);
   assert.deepEqual(manifest.entries.map(file => file.path), [courseRoot + '/' + placement + '/index.ts']);
   assert.deepEqual(episodeCommitTree(manifest).filter(entry => entry.sha === null).map(entry => entry.path), [meta.sourcePath]);
-  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/content\/episodeOne\/stub";/);
+  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/episodeOne\/stub";/);
   assert.match(stubSource, new RegExp(episodeId));
   for (const changed of [
     parent.replace('stub as child_episodeOne', 'stub as child_other'),
