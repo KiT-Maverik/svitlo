@@ -68,20 +68,22 @@ const snapshotPatch = <Patch>(patch: Patch): Patch => {
     throw new Error('Lesson placement section.additionalItems must be a Section Configurator map');
   const placeholders: Record<string, null> = Object.create(null);
   for (const [key, child] of Object.entries(additions)) {
-    if (!/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
-        ['constructor', '__proto__', 'prototype'].includes(key) ||
-        !isObject(child) ||
-        child.slug !== key ||
-        typeof child.id !== 'string' ||
-        typeof child.type !== 'string' ||
-        !isObject(child.config) ||
-        !isObject(child.config.base) ||
-        child.config.base.id !== child.id ||
-        child.config.base.slug !== key ||
-        child.config.base.type !== child.type ||
-        !isObject(child.build) ||
-        typeof child.build.props !== 'function' ||
-        typeof child.build.overrides !== 'function')
+    if (
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+      ['constructor', '__proto__', 'prototype'].includes(key) ||
+      !isObject(child) ||
+      child.slug !== key ||
+      typeof child.id !== 'string' ||
+      typeof child.type !== 'string' ||
+      !isObject(child.config) ||
+      !isObject(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type ||
+      !isObject(child.build) ||
+      typeof child.build.props !== 'function' ||
+      typeof child.build.overrides !== 'function'
+    )
       throw new Error('Lesson placement requires a verified Section Configurator at section.additionalItems.' + key);
     placeholders[key] = null;
   }
