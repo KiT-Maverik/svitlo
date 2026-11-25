@@ -72,5 +72,8 @@ test('production builds packages and apps independently, verifying each in its o
   assert.match(workflow, /name: Production Quality \/ verify/);
   // The packages job and every app runner use clean local workspaces rather
   // than illegally sharing dist/ across GitHub-hosted runners.
-  assert.match(workflow, /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/);
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
 });
