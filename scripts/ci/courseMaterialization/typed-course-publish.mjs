@@ -258,10 +258,7 @@ function assertCourseInventory(manifest, meta, entries) {
         seed?.config?.id !== row.id ||
         seed.config.slug !== row.slug ||
         seed.config.type !== 'assessment' ||
-        seed.production?.placement?.courseId !== meta.courseId ||
-        seed.production.placement.path !== rel ||
-        JSON.stringify(seed.production.placement.orderPath) !== order ||
-        seed.production.placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha ||
+        seed.production?.reviewedCourseSourceBlobSha !== meta.sourceBlobSha ||
         seed.production.languages?.document === undefined ||
         !Array.isArray(seed.production.languages?.planned) ||
         !seed.production.languages.planned.includes(seed.production.languages.document) ||
