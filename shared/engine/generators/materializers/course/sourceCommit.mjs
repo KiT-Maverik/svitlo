@@ -6,6 +6,7 @@ import ts from 'typescript';
 import { assertSafeDirectoryPath } from '../../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const sha = /^[0-9a-f]{40}$/i;
+const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const branchPattern = /^[A-Za-z0-9][A-Za-z0-9._/-]*$/;
 const permitted = new Set(['typescript', 'markdown', 'specification', 'code']);
 const valid = value =>
@@ -120,6 +121,53 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
       const match = file.match(lessonFile);
       return !!match && match[2].at(-1).toLowerCase() === match[1];
     })();
+  // An untrusted artifact cannot add an orphan stub under the otherwise
+  // course-owned root. The emitted inventory is the sole reviewed placement
+  // map; its exact one-to-one pending stub paths must match the sealed files.
+  if (
+    !plan.inventory ||
+    !['lessons', 'episodes', 'assessments'].every(key => Array.isArray(plan.inventory[key])) ||
+    Object.keys(plan.inventory).some(key => !['lessons', 'episodes', 'assessments'].includes(key))
+  )
+    throw new Error('Course Stage 5 requires an exact ordered placement inventory');
+  const pendingStubs = new Map();
+  const seenPlacements = new Set();
+  for (const type of ['lessons', 'episodes', 'assessments']) {
+    for (const row of plan.inventory[type]) {
+      if (
+        !row ||
+        typeof row !== 'object' ||
+        !uuid.test(row.id ?? '') ||
+        typeof row.status !== 'string' ||
+        !valid(row.placementPath) ||
+        !row.placementPath.startsWith(rootPrefix) ||
+        seenPlacements.has(row.placementPath) ||
+        typeof row.placementSourcePath !== 'string' ||
+        !row.placementSourcePath.startsWith(rootPrefix) ||
+        !row.placementSourcePath.endsWith('/index.ts')
+      )
+        throw new Error('Unsafe or duplicate Course placement inventory row');
+      seenPlacements.add(row.placementPath);
+      if (row.status.startsWith('pending')) {
+        const stub = row.placementPath + '/stub.ts';
+        if (row.stubSourcePath !== stub || pendingStubs.has(stub))
+          throw new Error('Course pending placement has missing/duplicate owned stub');
+        pendingStubs.set(stub, row);
+      } else if (row.stubSourcePath !== undefined) {
+        throw new Error('Completed Course placement cannot declare a draft stub');
+      }
+    }
+  }
+  const actualStubs = plan.files.filter(file => file?.path?.endsWith('/stub.ts'));
+  if (
+    actualStubs.length !== pendingStubs.size ||
+    actualStubs.some(file => !pendingStubs.has(file.path)) ||
+    [...pendingStubs.values()].some(
+      row => !plan.files.some(file => file.path === row.placementSourcePath && file.kind === 'typescript'),
+    )
+  )
+    throw new Error('Course Stage 5 manifest contains missing, unexpected or foreign stub.ts');
+
   const root = path.resolve(repoRoot ?? '');
   assertSafeDirectoryPath(root);
   if (git(root, ['rev-parse', '--show-toplevel']) !== root)

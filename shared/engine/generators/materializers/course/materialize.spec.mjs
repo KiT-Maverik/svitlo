@@ -177,6 +177,24 @@ const deriveId = (kind, placement) => {
 };
 const ctx = () => ({
   sourceLanguage: 'uk',
+  textbookRoot: 'content/playground',
+  courseId: IDs.course,
+  resolveSkill: ({ id }) => ({
+    approved: true,
+    id,
+    slug: 'testExplainLightTravel',
+    exportName: 'testExplainLightTravel',
+    importPath: '#skillsData/testLight/testLightPropagation/testExplainLightTravel',
+    sourcePath: 'content/playground/data/skills/testLight/testLightPropagation/testExplainLightTravel.ts',
+    sourceSha: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    configurator: {
+      id,
+      slug: 'testExplainLightTravel',
+      type: 'skill',
+      config: { base: { id, slug: 'testExplainLightTravel' } },
+      build: { props() {} },
+    },
+  }),
   deriveId,
   materializeCourse,
   materializeModule,
@@ -209,8 +227,17 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.match(method.content, /## Entry conditions/);
   const main = first.files.find(f => f.path === 'index.ts').content;
   assert.match(main, /defineCourse<"rootCourse", typeof content.items, Languages>/);
-  assert.match(main, /import \{ languages \} from "\.\/constants"/);
-  assert.match(main, /import type \{ Languages \} from "\.\/constants"/);
+  assert.match(
+    main,
+    /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/,
+  );
+  const unit = first.files.find(f => f.path === 'content/moduleOne/index.ts').content;
+  const chapter = first.files.find(f => f.path === 'content/moduleOne/chapterOne/index.ts').content;
+  assert.match(unit, /import type \{ Languages \} from "#coursesData\//);
+  assert.match(chapter, /import type \{ Languages \} from "#coursesData\//);
+  assert.doesNotMatch(unit, /import \{ languages \}/);
+  assert.match(unit, /skill_[0-9a-f_]+\.id/);
+  assert.match(chapter, /skill_[0-9a-f_]+\.id/);
   assert.doesNotMatch(main, /const languages =|Restore reviewed languages/);
   assert.equal(first.placements.length, 1);
   syntax(first.files);
@@ -249,7 +276,11 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.ok(handoff);
   assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": defineLessonStub\(\{ id:/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": child_newLesson/);
+  assert.match(
+    result.files.find(f => f.path === 'content/newLesson/stub.ts').content,
+    /export const stub = defineLessonStub/,
+  );
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
   assert.doesNotMatch(
     result.files.find(f => f.path === 'index.ts').content,
@@ -276,7 +307,8 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   assert.doesNotMatch(handoff, /defineEpisode/);
   assert.ok(!result.files.some(f => f.path === 'content/directEpisode/index.ts'));
   assert.equal(result.pendingEpisodes.length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content, /"directEpisode": defineEpisodeStub\(\{ id:/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /"directEpisode": child_directEpisode/);
+  assert.match(result.files.find(f => f.path === 'content/directEpisode/stub.ts').content, /defineEpisodeStub/);
   syntax(result.files);
   assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();

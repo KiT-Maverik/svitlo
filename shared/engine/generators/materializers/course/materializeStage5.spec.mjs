@@ -101,6 +101,22 @@ const options = () => ({
     sourceBlobSha: sha,
   },
   verifySource: () => true,
+  resolveSkill: ({ id }) => ({
+    approved: true,
+    id,
+    slug: 'sampleSkill',
+    exportName: 'sampleSkill',
+    importPath: '#skillsData/sampleSkill',
+    sourcePath: 'content/playground/data/skills/sampleSkill.ts',
+    sourceSha: sha,
+    configurator: {
+      id,
+      slug: 'sampleSkill',
+      type: 'skill',
+      config: { base: { id, slug: 'sampleSkill' } },
+      build: { props() {} },
+    },
+  }),
 });
 
 test('historical UUID namespace uses full placement and remains deterministic on retry', () => {
@@ -172,10 +188,14 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   );
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
   const chapterContent = first.files.find(f => f.path === root + '/content/moduleOne/chapterOne/index.ts').content;
-  assert.match(rootContent, /"directLesson": defineLessonStub\(\{ id: "/);
+  assert.match(rootContent, /"directLesson": child_directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
-  assert.match(chapterContent, /"lessonOne": defineLessonStub\(\{ id: "/);
-  assert.match(chapterContent, /"episodeOne": defineEpisodeStub\(\{ id: "/);
+  assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
+  assert.match(chapterContent, /#skillsData\/sampleSkill/);
+  assert.match(chapterContent, /sampleSkill as skill_/);
+  assert.match(chapterContent, /skill_[0-9a-f_]+\.id/);
+  assert.match(chapterContent, /"lessonOne": child_lessonOne/);
+  assert.match(chapterContent, /"episodeOne": child_episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
   assert.doesNotMatch(rootContent, /Reviewed original content order|Pending handoffs|const languages =/);
   const constants = first.files.find(f => f.path === root + '/constants.ts').content;
@@ -200,7 +220,7 @@ test('parent indices distinguish the root content prefix from a unit named conte
   assert.equal(nested.placementSourcePath, root + '/content/content/content/index.ts');
   const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
   assert.equal(direct.placementSourcePath, root + '/index.ts');
-  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('defineLessonStub'));
+  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('child_lessonOne'));
 });
 
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
@@ -499,6 +519,69 @@ const assessmentSlot = (...dependencies) => ({
   production: { purpose: 'Check understanding after upstream Lessons', lessonDependencies: dependencies },
 });
 
+test('reviewed Course preview with four Episodes, three Assessments and two new Lessons has nine owned stubs', () => {
+  const input = patchedSource();
+  const top = input.config.content;
+  const module = top.items.moduleOne.config.content;
+  const chapterContent = module.items.chapterOne.config.content;
+  top.items.directEpisode = episode();
+  top.items.directChapter = chapter();
+  top.items.directChapter.config.slug = 'directChapter';
+  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.items.moduleEpisode = episode();
+  module.order = ['moduleEpisode', 'chapterOne'];
+  chapterContent.items.reused = {
+    ...top.items.directLesson,
+    config: { ...top.items.directLesson.config, slug: 'reused' },
+    production: {
+      ...top.items.directLesson.production,
+      existing: { id: reusedLessonId },
+      sourcePatch: undefined,
+      overrideRationale: undefined,
+    },
+  };
+  chapterContent.order.push('reused');
+  chapterContent.items.chapterReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  chapterContent.order.push('chapterReview');
+  module.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  module.order.push('moduleReview');
+  top.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
+  top.order.push('finalReview');
+  const plan = materializeCourseStage5(input, reuseOptions());
+  assert.equal(plan.inventory.episodes.length, 4);
+  assert.equal(plan.inventory.assessments.length, 3);
+  assert.equal(plan.inventory.lessons.filter(row => row.kind === 'new').length, 2);
+  const rows = [...plan.inventory.episodes, ...plan.inventory.assessments, ...plan.inventory.lessons].filter(row =>
+    row.status.startsWith('pending'),
+  );
+  assert.equal(rows.length, 9);
+  const stubFiles = plan.files.filter(file => file.path.endsWith('/stub.ts'));
+  assert.equal(stubFiles.length, 9);
+  assert.equal(new Set(stubFiles.map(file => file.path)).size, 9);
+  const apis = { lesson: 'defineLessonStub', episode: 'defineEpisodeStub', assessment: 'defineAssessmentStub' };
+  for (const row of rows) {
+    const stub = stubFiles.find(file => file.path === row.stubSourcePath);
+    assert.ok(stub, row.placementPath);
+    assert.match(stub.content, /TODO \(BLOCKER\):.*delete this stub\.ts/);
+    assert.ok(stub.content.includes(apis[row.type] + '({ id: ' + JSON.stringify(row.id)));
+    const parent = plan.files.find(file => file.path === row.placementSourcePath);
+    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
+    assert.ok(parent.content.includes('/' + row.slug + '/stub'));
+    const lines = parent.content.split('\n');
+    const imported = lines.findIndex(line =>
+      line.includes('import { stub as child_' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
+    );
+    assert.ok(imported > 0, row.placementPath);
+    assert.match(lines[imported - 1], /^\/\/ TODO \(BLOCKER\): Keep this pending /);
+    assert.match(lines[imported - 1], /Coding Agent replaces this import/);
+    assert.match(lines[imported - 1], /TypeScript\/preview checks/);
+    assert.doesNotMatch(parent.content, new RegExp(apis[row.type] + '\\('));
+    assert.ok(row.sourcePath.endsWith('/draft.ts'));
+    assert.notEqual(row.sourcePath, row.stubSourcePath);
+  }
+  assert.deepEqual(plan.files, materializeCourseStage5(input, reuseOptions()).files);
+});
+
 test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners with verified upstream Lessons', () => {
   const input = source();
   const rootContent = input.config.content;
@@ -535,8 +618,12 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
     assert.match(seed?.content ?? '', /export default \{/);
     assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
-    assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
-    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
+    assert.doesNotMatch(seed.content, /"placement"|"courseId"|"orderPath"/);
+    assert.match(seed.content, /"reviewedCourseSourceBlobSha": "0123456789abcdef0123456789abcdef01234567"/);
+    const stub = result.files.find(file => file.path === row.stubSourcePath);
+    assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
+    assert.ok(stub?.content.includes('TODO (BLOCKER): Complete and validate the Assessment Configurator'));
+    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
     assert.ok(parent?.content.includes('order: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
@@ -668,4 +755,101 @@ test('Course additionalItems binds only verified Sections and retains real neste
     resolveAddedSection: request => ({ ...opts.resolveAddedSection(request), approved: false }),
   };
   assert.throws(() => materializeCourseStage5(reviewed, denied), /unapproved/);
+});
+
+test('Course Stage 5 normalizes reviewed English workflow fields and preserves only authored translations', () => {
+  const input = source();
+  input.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  input.config.locale = {
+    title: { en: 'Sky', uk: 'Небо' },
+    description: 'Observe our world',
+    prerequisitesText: 'Start here',
+    outcomesText: 'Learn to observe',
+  };
+  const module = input.config.content.items.moduleOne;
+  module.config.locale.title = 'Module';
+  const chapter = module.config.content.items.chapterOne;
+  chapter.config.locale.title = { en: 'Chapter', uk: 'Розділ' };
+  chapter.config.content.items.lessonOne.config.locale.title = 'First Lesson';
+  input.config.content.items.directLesson.config.locale.title = { en: 'Lesson', uk: 'Урок' };
+  chapter.config.content.items.chapterReview = {
+    config: { type: 'assessment', locale: { title: 'Check knowledge' } },
+    production: {
+      purpose: 'Check understanding of the first Lesson',
+      lessonDependencies: ['content/moduleOne/chapterOne/lessonOne'],
+    },
+  };
+  chapter.config.content.order.push('chapterReview');
+  const result = materializeCourseStage5(input, options());
+  const file = suffix => {
+    const found = result.files.find(item => item.path === suffix);
+    assert.ok(found, suffix);
+    return found.content;
+  };
+  const index = file(root + '/index.ts');
+  assert.match(index, /"en": "Sky"/);
+  assert.match(index, /"uk": "Небо"/);
+  for (const phrase of ['Observe our world', 'Start here', 'Learn to observe'])
+    assert.ok(index.includes('"en": "' + phrase + '"'));
+  assert.ok(!index.includes('"uk": "Observe our world"'));
+  assert.match(file(root + '/content/moduleOne/index.ts'), /"en": "Module"/);
+  const child = file(root + '/content/moduleOne/chapterOne/index.ts');
+  assert.match(child, /"en": "Chapter"/);
+  assert.match(child, /"uk": "Розділ"/);
+  const seeds = result.files.filter(item => item.path.includes('/data/lessons/'));
+  assert.equal(seeds.length, 2);
+  assert.ok(seeds.some(seed => seed.content.includes('"en": "First Lesson"')));
+  assert.ok(seeds.some(seed => seed.content.includes('"uk": "Урок"')));
+  const assessmentSeed = result.files.find(item => item.path.endsWith('/content/chapterReview/draft.ts'));
+  assert.ok(assessmentSeed);
+  assert.match(assessmentSeed.content, /"en": "Check knowledge"/);
+  assert.doesNotMatch(assessmentSeed.content, /"uk": "Check knowledge"/);
+  const episodeHandoff = file(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts');
+  assert.match(episodeHandoff, /"document": "en"/);
+  assert.doesNotMatch(episodeHandoff, /"locale": \{/);
+  const constants = file(root + '/constants.ts');
+  assert.equal((constants.match(/export const languages =/g) ?? []).length, 1);
+  assert.match(constants, /Planned languages \(INACTIVE/);
+  assert.match(constants, /REPLACE the tuple in the single existing export const languages/);
+  assert.match(constants, /\["en","uk"\]/);
+  assert.match(constants, /export const languages = \["en"\]/);
+  assert.ok(result.diagnostics.some(d => d.code === 'pending-locales'));
+});
+
+test('Course Build rejects a missing requested translation without changing intentionally invariant Configurator text', () => {
+  const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const { defineCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const create = locale =>
+    defineCourse({
+      id: rootId,
+      type: 'course',
+      slug: 'localizationTest',
+      params: { languages: ['en', 'uk'] },
+      locale,
+      content: { items: {}, order: [] },
+    });
+  const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
+  const english = incomplete.build.props({ languages: ['en'] });
+  assert.equal(english.locale.en.locale.title, 'Sky');
+  assert.equal(english.locale.uk, undefined);
+  assert.throws(() => incomplete.build.props({ languages: ['en', 'uk'] }));
+  const invariant = create({ title: 'H₂O', description: 'Non-translatable label' });
+  const both = invariant.build.props({ languages: ['en', 'uk'] });
+  assert.equal(both.base.locale.title, 'H₂O');
+  assert.equal(both.base.locale.description, 'Non-translatable label');
+  assert.equal(both.locale, undefined);
+});
+
+test('Course root scalar English title and description materialize as sparse localized fields', () => {
+  const input = source();
+  input.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  input.config.locale = { title: 'Sky', description: 'Explore the sky' };
+  input.config.content = { items: {}, order: [] };
+  const plan = materializeCourseStage5(input, options());
+  const rootSource = plan.files.find(file => file.path === root + '/index.ts')?.content ?? '';
+  assert.match(rootSource, /"title": \{\s*"en": "Sky"/);
+  assert.match(rootSource, /"description": \{\s*"en": "Explore the sky"/);
+  assert.doesNotMatch(rootSource, /"uk": "Sky"/);
+  assert.doesNotMatch(rootSource, /"uk": "Explore the sky"/);
+  assert.ok(plan.diagnostics.some(d => d.code === 'pending-locales'));
 });

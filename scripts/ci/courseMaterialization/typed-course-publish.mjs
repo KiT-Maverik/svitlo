@@ -13,7 +13,10 @@ import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs'
 import { manifestDigest } from './course-handoff-publish.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
-import { readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
+import {
+  readGeneratedCourseHandoff,
+  verifyPendingCourseParent,
+} from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -44,7 +47,15 @@ function allowedOutput(filename, meta) {
     if (parts.length > 12 || ['workflow.stage3.ts'].includes(leaf)) return false;
     return (
       ((leaf !== 'constants.ts' || parts.length === 1) &&
-        ['index.ts', 'draft.ts', 'constants.ts', 'methodology.md', 'specification.md', 'markdown.md'].includes(leaf)) ||
+        [
+          'index.ts',
+          'draft.ts',
+          'stub.ts',
+          'constants.ts',
+          'methodology.md',
+          'specification.md',
+          'markdown.md',
+        ].includes(leaf)) ||
       /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
       /^code\.[a-z0-9]{1,10}$/.test(leaf)
     );
@@ -82,6 +93,7 @@ function assertCourseInventory(manifest, meta, entries) {
   const episodes = new Set(
     [...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/draft.ts')),
   );
+  const stubs = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/stub.ts')));
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
   const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
@@ -110,24 +122,18 @@ function assertCourseInventory(manifest, meta, entries) {
     return Buffer.from(entries.get(expected).data, 'base64').toString('utf8');
   }
   function requireStub(row) {
-    const name =
-      row.type === 'lesson'
-        ? 'defineLessonStub'
-        : row.type === 'episode'
-          ? 'defineEpisodeStub'
-          : 'defineAssessmentStub';
-    const expected =
-      JSON.stringify(row.slug) +
-      ': ' +
-      name +
-      '({ id: ' +
-      JSON.stringify(row.id) +
-      ', slug: ' +
-      JSON.stringify(row.slug) +
-      ' })';
-    const source = parentSource(row);
-    if (!source.includes(expected) || !source.includes(name))
-      throw Error('Missing or displaced Course ' + row.type + ' stub at ' + row.placementPath);
+    const expected = row.placementPath + '/stub.ts';
+    if (row.stubSourcePath !== expected || !stubs.delete(expected) || entries.get(expected)?.kind !== 'typescript')
+      throw Error('Missing, duplicated or displaced owned Course child stub: ' + row.placementPath);
+    const stubSource = Buffer.from(entries.get(expected).data, 'base64').toString('utf8');
+    const parent = parentSource(row);
+    verifyPendingCourseParent(parent, {
+      kind: row.type,
+      id: row.id,
+      slug: row.slug,
+      placement: row.placementPath.slice(root.length + 1),
+      stubSource,
+    });
   }
   for (const row of [...inventory.lessons, ...inventory.episodes, ...inventory.assessments]) {
     if (
@@ -181,6 +187,7 @@ function assertCourseInventory(manifest, meta, entries) {
         pendingLessons.set(rel, row);
       } else if (['reused', 'overridden'].includes(row.kind)) {
         if (
+          row.stubSourcePath !== undefined ||
           row.status !== 'verified-reference' ||
           row.sourcePath !== lessonRoot + '/index.ts' ||
           row.placementSourcePath !== expectedParent(row) ||
@@ -213,6 +220,8 @@ function assertCourseInventory(manifest, meta, entries) {
       const filename = row.placementPath + (row.status === 'pending-episode-scenario' ? '/draft.ts' : '/index.ts');
       if (row.sourcePath !== filename || row.placementSourcePath !== expectedParent(row) || !entries.has(filename))
         throw Error('Episode inventory source missing or displaced');
+      if (row.status !== 'pending-episode-scenario' && row.stubSourcePath !== undefined)
+        throw Error('Completed Course Episode cannot retain a draft stub');
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
         const source = outputLiteral(filename, 'episodeStage1', 'EpisodeWorkflowStage1Handoff');
@@ -238,8 +247,8 @@ function assertCourseInventory(manifest, meta, entries) {
         pendingEpisodes.set(rel, row);
       }
     } else {
-      // Assessment Stage 5 is intentionally only a typed seed plus an inline
-      // Not implemented Configurator. No fake bank IDs or completed Quiz.
+      // Assessment Stage 5 is intentionally only a typed seed and an owned
+      // imported draft stub. No fake bank IDs or completed Quiz.
       const draft = row.placementPath + '/draft.ts';
       if (
         row.kind !== 'new' ||
@@ -252,16 +261,13 @@ function assertCourseInventory(manifest, meta, entries) {
         !row.lessonDependencies.length ||
         row.lessonDependencies.some(value => typeof value !== 'string' || !value.startsWith('content/'))
       )
-        throw Error('Invalid Course Assessment pending seed or inline parent placement');
+        throw Error('Invalid Course Assessment pending seed or owned stub placement');
       const seed = outputLiteral(draft, 'assessmentSeed', 'AssessmentWorkflowSeed');
       if (
         seed?.config?.id !== row.id ||
         seed.config.slug !== row.slug ||
         seed.config.type !== 'assessment' ||
-        seed.production?.placement?.courseId !== meta.courseId ||
-        seed.production.placement.path !== rel ||
-        JSON.stringify(seed.production.placement.orderPath) !== order ||
-        seed.production.placement.reviewedCourseSourceBlobSha !== meta.sourceBlobSha ||
+        seed.production?.reviewedCourseSourceBlobSha !== meta.sourceBlobSha ||
         seed.production.languages?.document === undefined ||
         !Array.isArray(seed.production.languages?.planned) ||
         !seed.production.languages.planned.includes(seed.production.languages.document) ||
@@ -290,7 +296,8 @@ function assertCourseInventory(manifest, meta, entries) {
   }
   checkPending(manifest.pendingPlacements, pendingLessons, 'lessonId', row => row.sourcePath);
   checkPending(manifest.pendingEpisodes, pendingEpisodes, 'episodeId', row => row.sourcePath.slice(root.length + 1));
-  if (seeds.size || episodes.size) throw Error('Unregistered Course Lesson, Episode or Assessment draft');
+  if (seeds.size || episodes.size || stubs.size)
+    throw Error('Unregistered Course Lesson, Episode, Assessment draft or child stub.ts');
 }
 
 export function verifyTypedCourseManifest(manifest, meta) {

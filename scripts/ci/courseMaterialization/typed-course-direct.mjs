@@ -13,6 +13,7 @@ import {
   courseLessonReferences,
   runIsolatedCourseDependencies,
 } from '../directMaterialization/course-dependency-isolation.mjs';
+import { courseSkillReferences } from '../directMaterialization/course-skill-bindings.mjs';
 
 const sha = /^[a-f0-9]{40}$/i;
 const safePath = value =>
@@ -179,21 +180,23 @@ export function analyzeDirectCourse(meta, candidateRoot, trustedRoot) {
       pinned.sourceBlobSha === meta.sourceBlobSha &&
       textbookRoot === meta.textbookRoot,
   };
-  const plan = references.length
-    ? runIsolatedCourseDependencies({
-        input,
-        source,
-        textbookRoot: meta.textbookRoot,
-        candidateRoot: root,
-        trustedRoot,
-      })
-    : renderTrustedDraft({
-        operation: 'course-stage5',
-        source,
-        input,
-        renderers: engine,
-        options,
-      });
+  const skillReferences = courseSkillReferences(input);
+  const plan =
+    references.length || skillReferences.length
+      ? runIsolatedCourseDependencies({
+          input,
+          source,
+          textbookRoot: meta.textbookRoot,
+          candidateRoot: root,
+          trustedRoot,
+        })
+      : renderTrustedDraft({
+          operation: 'course-stage5',
+          source,
+          input,
+          renderers: engine,
+          options,
+        });
   verifyCourseDependencies(meta, root, trustedRoot, plan);
   return buildTypedCourseManifest(meta, plan);
 }

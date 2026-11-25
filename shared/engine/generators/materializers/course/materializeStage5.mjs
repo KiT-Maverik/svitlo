@@ -201,6 +201,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: 'pending-lesson-stage1',
         sourcePath: result.files[0].path,
         placementSourcePath: parentIndex(context.directory, 'lesson'),
+        stubSourcePath: root + '/' + context.directory + '/stub.ts',
       });
       return result;
     }
@@ -354,6 +355,8 @@ export function materializeCourseStage5(input, options = {}) {
   const context = {
     directory: '',
     courseId: rootId,
+    textbookRoot,
+    resolveSkill: options.resolveSkill,
     reviewedCourseSourceBlobSha: source.sourceBlobSha,
     orderPath: [],
     sourceLanguage,
@@ -377,6 +380,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
         sourcePath: root + '/' + source.path,
         placementSourcePath: parentIndex(directory, 'episode'),
+        ...(pending ? { stubSourcePath: root + '/' + directory + '/stub.ts' } : {}),
       });
       return result;
     },
@@ -399,6 +403,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: 'pending-assessment-design',
         sourcePath: root + '/' + directory + '/draft.ts',
         placementSourcePath: parentIndex(directory, 'assessment'),
+        stubSourcePath: root + '/' + directory + '/stub.ts',
         lessonDependencies: dependencies,
       });
       return result;
@@ -439,11 +444,15 @@ export function materializeCourseStage5(input, options = {}) {
   const languageSource =
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     (planned.length > 1
-      ? renderBlockerTodo(
-          'Complete and independently review translations for ' +
+      ? '// Planned languages (INACTIVE until complete and reviewed): ' +
+        JSON.stringify(planned) +
+        '\n' +
+        renderBlockerTodo(
+          'Complete and independently review every planned Course translation for ' +
             JSON.stringify(planned) +
-            ', restore the reviewed languages tuple, and remove this marker.',
-        ) + '\n'
+            '; REPLACE the tuple in the single existing export const languages below with the verified active languages, then remove this marker.',
+        ) +
+        '\n'
       : '') +
     'export const languages = ' +
     JSON.stringify([sourceLanguage]) +

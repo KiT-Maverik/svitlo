@@ -76,12 +76,7 @@ const reviewed = () => ({
   production: {
     purpose: 'Collect evidence after upstream lessons',
     lessonDependencies: ['content/moduleOne/lessonOne'],
-    placement: {
-      courseId,
-      path: placement,
-      orderPath: [0, 2],
-      reviewedCourseSourceBlobSha: 'a'.repeat(40),
-    },
+    reviewedCourseSourceBlobSha: 'a'.repeat(40),
     languages: { document: 'uk', planned: ['uk', 'en'] },
     design: 'One accessible Quiz draws on an independently owned Lesson bank',
     specification: 'Use an introductory Content Section and one reviewed Quiz',
@@ -119,6 +114,18 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   );
 });
 
+test('Assessment Stage 2 rejects duplicative authored placement metadata', () => {
+  const input = reviewed();
+  assert.equal(Object.hasOwn(input.production, 'placement'), false);
+  input.production.placement = {
+    courseId,
+    path: placement,
+    orderPath: [0, 2],
+    reviewedCourseSourceBlobSha: 'a'.repeat(40),
+  };
+  assert.equal(assessmentWorkflowStage2_Schema.safeParse(input).success, false);
+});
+
 test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions or stale draft', () => {
   const withoutQuiz = reviewed();
   delete withoutQuiz.config.quiz;
@@ -153,7 +160,6 @@ test('Assessment Stage 2 requires exactly one non-disabled Quiz and Content-only
 test('Assessment materializer escapes reserved TypeScript slug exports', () => {
   const input = reviewed();
   input.config.slug = 'for';
-  input.production.placement.path = 'content/moduleOne/content/for';
   const plan = materializeAssessment(input, {
     ...options,
     source: {

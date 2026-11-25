@@ -9,10 +9,16 @@ const ts = createRequire(import.meta.url)('typescript');
 const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const virtualRoot = path.join(engineRoot, 'temp', 'stage5-course-build');
 const id = '663572e7-bd85-4516-86e2-3de07d209e03';
+const lightSkill = '00000000-0000-4000-8000-000000000015';
+const circleSkill = '00000000-0000-4000-8000-000000000008';
+const skillModules = new Map([
+  [lightSkill, 'testLight/testLightPropagation/testExplainLightTravel'],
+  [circleSkill, 'testShapes/testRoundShapes/testRecognizeCircle'],
+]);
 const unit = () => ({
   methodology: 'Reviewed unit scope and methods',
-  outcomes: { skills: [] },
-  prerequisites: { skills: [] },
+  outcomes: { skills: [lightSkill] },
+  prerequisites: { skills: [circleSkill] },
   depth: 'Foundation',
   sequenceReason: 'First unit prepares later knowledge',
 });
@@ -48,6 +54,10 @@ const input = {
     id,
     slug: 'skyBasics',
     type: 'course',
+    params: {
+      outcomes: { skills: [lightSkill, circleSkill] },
+      prerequisites: { skills: [circleSkill] },
+    },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Природа' } },
     content: {
       items: {
@@ -109,7 +119,12 @@ function diagnostics(files) {
     incremental: false,
     composite: false,
     baseUrl: engineRoot,
-    paths: { ...parsed.options.paths, '@svitlo/engine/build': ['build.ts'] },
+    paths: {
+      ...parsed.options.paths,
+      '@svitlo/engine/build': ['build.ts'],
+      '#coursesData/*': ['temp/stage5-course-build/content/playground/data/courses/3/' + id + '/constants.ts'],
+      '#skillsData/*': ['../../content/playground/data/skills/*.ts'],
+    },
   };
   const virtual = new Map(
     files.filter(f => f.kind === 'typescript').map(file => [path.resolve(virtualRoot, file.path), file.content]),
@@ -142,6 +157,27 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
       sourceBlobSha: '1'.repeat(40),
     },
     verifySource: () => true,
+    resolveSkill({ id: skillId }) {
+      const modulePath = skillModules.get(skillId);
+      if (!modulePath) throw Error('Unapproved Playground Skill fixture ' + skillId);
+      const slug = modulePath.split('/').at(-1);
+      return {
+        approved: true,
+        id: skillId,
+        slug,
+        exportName: slug,
+        importPath: '#skillsData/' + modulePath,
+        sourcePath: 'content/playground/data/skills/' + modulePath + '.ts',
+        sourceSha: 'a'.repeat(40),
+        configurator: {
+          type: 'skill',
+          id: skillId,
+          slug,
+          config: { base: { id: skillId, slug } },
+          build: { props() {} },
+        },
+      };
+    },
   });
   assert.equal(source.publishable, false);
   assert.ok(source.diagnostics.some(d => d.code === 'pending-episode-scenario'));
@@ -150,7 +186,25 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   assert.equal(handoff.length, 1);
   assert.match(handoff[0].content, /satisfies CourseWorkflowLessonSeed/);
   assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(|LessonWorkflowStage1/);
-  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
+  // Three parent Configurators, one Course constants module, one Lesson handoff,
+  // one Episode handoff and two separately owned pending child stub modules.
+  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 8);
+  assert.equal(source.files.filter(file => file.path.endsWith('/stub.ts')).length, 2);
+  for (const pathSuffix of ['/index.ts', '/content/moduleOne/index.ts', '/content/moduleOne/chapterOne/index.ts']) {
+    const authored = source.files.find(file => file.path === root + pathSuffix).content;
+    assert.match(authored, /#skillsData\/test/);
+    assert.match(authored, /skill_[0-9a-f_]+\.id/);
+    assert.match(authored, /#coursesData\/3\//);
+  }
+  const rootSource = source.files.find(file => file.path === root + '/index.ts').content;
+  assert.equal(
+    (rootSource.match(/from "#skillsData\/testShapes\/testRoundShapes\/testRecognizeCircle"/g) ?? []).length,
+    1,
+  );
+  assert.match(
+    rootSource,
+    /"skills": \[skill_00000000_0000_4000_8000_000000000015\.id, skill_00000000_0000_4000_8000_000000000008\.id\]/,
+  );
   const errors = diagnostics(source.files);
   assert.deepEqual(
     errors.map(error => {

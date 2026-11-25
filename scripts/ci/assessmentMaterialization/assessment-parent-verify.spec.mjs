@@ -1,63 +1,38 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-
-import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
+import { verifyPendingCourseParent } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const id = 'a73572e7-bd85-4516-86e2-3de07d209e03';
-const second = 'a73572e7-bd85-4516-86e2-3de07d209e04';
-const stub = (slug, uuid) =>
-  JSON.stringify(slug) +
-  ': defineAssessmentStub({ id: ' +
-  JSON.stringify(uuid) +
-  ', slug: ' +
-  JSON.stringify(slug) +
-  ' })';
-const parent = (items, order) =>
-  "import { defineModule, defineAssessmentStub } from '@svitlo/engine/build';\n" +
-  'const content = { items: { ' +
-  items.join(', ') +
-  ' }, order: ' +
-  JSON.stringify(order) +
-  ' };\n' +
+const slug = 'review';
+const stubSource =
+  "import { defineAssessmentStub } from '@svitlo/engine/build';\n" +
+  '// TODO (BLOCKER): Coding Agent integrates after validating the completed Assessment.\n' +
+  'export const stub = defineAssessmentStub({ id: ' + JSON.stringify(id) + ', slug: "review" });\n';
+const importLine = 'import { stub as child_review } from "./content/review/stub";\n';
+const source =
+  "import { defineModule } from '@svitlo/engine/build';\n" +
+  importLine +
+  'const content = { items: { "before": child_before, "review": child_review }, order: ["before", "review"] };\n' +
   'export const moduleOne = defineModule({ content });\n';
-const placement = (slug = 'review', uuid = id) => ({
-  id: uuid,
-  slug,
-  placement: 'content/moduleOne/content/' + slug,
-  exportName: slug,
+const validSource = source.replace('const content', 'import { before as child_before } from "./before";\nconst content');
+const allocation = {
+  kind: 'assessment', id, slug, placement: 'content/moduleOne/content/review', stubSource,
+};
+
+test('Assessment preserves an exact pending Course slot without mutating parent', () => {
+  assert.equal(verifyPendingCourseParent(validSource, allocation), true);
+  assert.ok(validSource.includes(importLine));
+  assert.match(validSource, /order: \["before", "review"\]/);
 });
 
-test('restores only the exact Assessment stub, preserving all siblings and order', () => {
-  const before = parent([stub('intro', second), stub('review', id)], ['intro', 'review']);
-  const after = restoreAssessmentPlacement(before, placement());
-  assert.match(after, /import \{ review as child_review \} from "\.\/content\/review"/);
-  assert.match(after, /"review": child_review/);
-  assert.match(after, /"intro": defineAssessmentStub/);
-  assert.match(after, /"intro","review"/);
-  assert.equal(verifyAssessmentParentPatch(before, after, placement()), true);
-  const end = restoreAssessmentPlacement(after, placement('intro', second));
-  assert.doesNotMatch(end, /defineAssessmentStub/);
-  assert.match(end, /"review": child_review/);
-  assert.match(end, /"intro": child_intro/);
-  assert.match(end, /"intro","review"/);
-});
-
-test('rejects spoofed UUID, parent edits, missing stub, replay and reordered siblings', () => {
-  const original = parent([stub('review', id)], ['review']);
-  const updated = restoreAssessmentPlacement(original, placement());
-  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /[Rr]eserved|identity/);
-  assert.throws(() => restoreAssessmentPlacement(original, placement('review', second)), /UUID\/slug/);
-  assert.throws(() => restoreAssessmentPlacement(updated, placement()), /imported draft-only|reserved/);
-  assert.throws(
-    () => verifyAssessmentParentPatch(original, updated + '// unauthorized\n', placement()),
-    /exact authorized/,
-  );
-  assert.throws(
-    () => restoreAssessmentPlacement(original.replace('const content', 'const changed'), placement()),
-    /generated parent content/,
-  );
-  assert.throws(
-    () => restoreAssessmentPlacement(original.replace('order: ["review"]', 'order: []'), placement()),
-    /incomplete/,
-  );
+test('Assessment read-only validation rejects foreign parent/UUID/stub and malformed content', () => {
+  assert.throws(() => verifyPendingCourseParent(validSource, { ...allocation, id: 'a73572e7-bd85-4516-86e2-3de07d209e04' }));
+  assert.throws(() => verifyPendingCourseParent(validSource, { ...allocation, placement: 'content/moduleOne/content/other' }));
+  assert.throws(() => verifyPendingCourseParent(validSource, { ...allocation, stubSource: stubSource.replace(JSON.stringify(id), JSON.stringify('a73572e7-bd85-4516-86e2-3de07d209e04')) }));
+  for (const edited of [
+    validSource.replace('stub as child_review', 'stub as child_foreign'),
+    validSource.replace('"review": child_review', '"review": child_before'),
+    validSource.replace('["before", "review"]', '["review", "review"]'),
+    validSource.replace('const content', 'const unexpected = 1;\nconst content'),
+  ]) assert.throws(() => verifyPendingCourseParent(edited, allocation));
 });

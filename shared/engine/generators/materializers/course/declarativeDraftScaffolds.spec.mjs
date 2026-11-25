@@ -118,7 +118,8 @@ test('Course-created Assessment seed has inert literal dependencies and no fake 
   const literal = assertInertSeed(output.files[0].content, 'AssessmentWorkflowSeed');
   assert.equal(literal.config.id, id);
   assert.deepEqual(literal.production.lessonDependencies, ['content/firstObservation']);
-  assert.deepEqual(literal.production.placement.orderPath, [1]);
+  assert.equal(literal.production.reviewedCourseSourceBlobSha, sha);
+  assert.equal(Object.hasOwn(literal.production, 'placement'), false);
   assert(!output.files[0].content.includes('questionIds'));
   assert.match(output.placeholderSource, /defineAssessmentDraft/);
 });
