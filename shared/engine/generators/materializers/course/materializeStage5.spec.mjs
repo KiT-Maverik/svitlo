@@ -82,7 +82,6 @@ const source = () => ({
       audience: 'Learners aged 6-10',
       approach: 'Observe then reflect',
       depth: 'Introduction',
-      accessibility: 'Keyboard and screen reader alternatives',
       scope: 'Daytime observations',
       entryConditions: 'No assumed astronomy knowledge',
       sourceNotes: 'Checked primary educational references',
@@ -741,9 +740,6 @@ test('new Course-owned Section and Text block materialize below an overridden Le
     production: {
       purpose: 'Verify shared nested Scene materialization',
       specification: 'Implement and keyboard-test the source-language shadow scene.',
-      accessibility: 'Provide equivalent text and focus management.',
-      offline: 'Fully operable offline.',
-      readiness: 'production-pending',
     },
   });
   const directSceneId = '663572e7-bd85-4516-86e2-3de07d209e32';
