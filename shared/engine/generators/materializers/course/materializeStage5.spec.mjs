@@ -509,7 +509,9 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.equal(row.status, 'pending-assessment-design');
     const seed = result.files.find(file => file.path === row.sourcePath);
     const parent = result.files.find(file => file.path === row.placementSourcePath);
-    assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));\n    assert.match(seed?.content ?? '', /export default \{/);\n    assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
+    assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
+    assert.match(seed?.content ?? '', /export default \{/);
+    assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
     assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
     assert.ok(parent?.content.includes('order: '));
