@@ -747,8 +747,8 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts')?.content;
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
   const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
-  assert.match(wrapper ?? '', /import \\{ practice as added_section_reused_practice \\} from "\\.\\/sections\\/practice"/);
-  assert.match(wrapper ?? '', /"additionalItems": \\{"practice": added_section_reused_practice\\}/);
+  assert.match(wrapper ?? '', /import \{ practice as added_section_reused_practice \} from "\.\/sections\/practice"/);
+  assert.match(wrapper ?? '', /"additionalItems": \{"practice": added_section_reused_practice\}/);
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
