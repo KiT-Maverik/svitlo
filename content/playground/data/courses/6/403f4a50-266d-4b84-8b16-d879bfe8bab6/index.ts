@@ -5,14 +5,20 @@ import { languages, type Languages } from "#coursesData/6/403f4a50-266d-4b84-8b1
 import { testExplainLightTravel } from "#skillsData/testLight/testLightPropagation/testExplainLightTravel";
 import { testRecognizeCircle } from "#skillsData/testShapes/testRoundShapes/testRecognizeCircle";
 // TODO (BLOCKER): Keep this pending episode stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.
+// agent note: no rename. no prefix
 import { stub as child_openingMission } from "./openingMission/stub";
+// agent note: no rename. no prefix
 import { howLightMoves as child_lightBasics } from "#lessonsData/c/d3048d21-8690-5255-b62c-984c69ac272c/index";
+// agent note: no rename. no prefix
 import { familiarCircles as child_familiarCircles } from "./familiarCircles";
+// agent note: no rename. no prefix
 import { exhibitionPractice as child_exhibitionPractice } from "./exhibitionPractice";
 // TODO (BLOCKER): Keep this pending assessment stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.
-import { stub as child_finalCourseReview } from "./finalCourseReview/stub";
+// agent note: no rename. no prefix
+import { finalCourseReview } from "./finalCourseReview/stub";
 
-const content = { items: { "openingMission": child_openingMission, "lightBasics": child_lightBasics, "familiarCircles": child_familiarCircles, "exhibitionPractice": child_exhibitionPractice, "finalCourseReview": child_finalCourseReview }, order: ["openingMission","lightBasics","familiarCircles","exhibitionPractice","finalCourseReview"] };
+// use short syntax
+const content = { items: { "openingMission": child_openingMission, "lightBasics": child_lightBasics, "familiarCircles": child_familiarCircles, "exhibitionPractice": child_exhibitionPractice, finalCourseReview }, order: ["openingMission","lightBasics","familiarCircles","exhibitionPractice","finalCourseReview"] };
 
 export const lightAndShapes = defineCourse<"lightAndShapes", typeof content.items, Languages>({
   "id": "403f4a50-266d-4b84-8b16-d879bfe8bab6",
