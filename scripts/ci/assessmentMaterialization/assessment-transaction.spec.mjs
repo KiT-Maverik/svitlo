@@ -30,12 +30,7 @@ const seed = {
   production: {
     purpose: 'Check evidence after an upstream Lesson',
     lessonDependencies: ['content/newLesson'],
-    placement: {
-      courseId,
-      path: 'content/finalReview',
-      orderPath: [2],
-      reviewedCourseSourceBlobSha: 'a'.repeat(40),
-    },
+    reviewedCourseSourceBlobSha: 'a'.repeat(40),
     languages: { document: 'uk', planned: ['uk'] },
   },
 };
@@ -71,6 +66,7 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
   assert.deepEqual(parseAssessmentSeed(source), seed);
   assert.deepEqual(parseAssessmentSeed(source.replace('// TODO (BLOCKER):', '// editorial:')), seed);
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
+  assert.throws(() => verifyAssessmentDesign(seed, { ...input, production: { ...input.production, reviewedCourseSourceBlobSha: 'f'.repeat(40) } }, meta, plan), /immutable/);
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
   assert.throws(() =>
     verifyAssessmentDesign(
