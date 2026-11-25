@@ -263,15 +263,9 @@ export function materializeCourse(input, context = {}) {
           if (Object.keys(raw).some(field => !['type', 'slug', 'skills'].includes(field)))
             throw Error(childFolder + '.config: reused Lesson cannot duplicate independent Config');
           if (
-            Object.keys(existing).some(field => !['id', 'base', 'locale'].includes(field)) ||
-            (existing.base !== undefined && !record(existing.base)) ||
-            (existing.locale !== undefined && !record(existing.locale)) ||
-            (record(existing.base) &&
-              ['id', 'slug', 'type', 'skills'].some(field => Object.hasOwn(existing.base, field)))
+            Object.keys(existing).some(field => field !== 'id')
           )
-            throw Error(childFolder + '.production.existing: expected {id,base?,locale?}, not raw patches');
-          if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
-            throw Error(childFolder + '.production.existing.locale: outside reviewed Course languages');
+            throw Error(childFolder + '.production.existing: expected only {id}, not built overrides');
         } else {
           if (
             raw.locale === undefined ||

@@ -40,19 +40,6 @@ const serialize = value => {
     throw new Error('Course override must be JSON-safe Config patch, not a Configurator or built Props');
   for (const child of Object.values(value)) serialize(child);
 };
-const canonical = value => {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (record(value))
-    return Object.fromEntries(
-      Object.entries(value)
-        .filter(([, child]) => child !== undefined)
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([key, child]) => [key, canonical(child)]),
-    );
-  return value;
-};
-const equal = (a, b) => JSON.stringify(canonical(a)) === JSON.stringify(canonical(b));
-
 /**
  * Plan reviewed Course Stage 5 authored sources. The atomic writer consumes
  * draft.ts and creates index.ts; exact reviewed bytes remain in Git history.
@@ -229,21 +216,38 @@ export function materializeCourseStage5(input, options = {}) {
       !match.matchingRationale.trim() ||
       typeof match.languageEvidence !== 'string' ||
       !match.languageEvidence.trim() ||
-      !record(production.source) ||
-      typeof production.sourceExportName !== 'string'
+      typeof production.sourceExportName !== 'string' ||
+      !slug.test(production.sourceExportName) ||
+      typeof options.resolveExistingLesson !== 'function'
     )
-      throw new Error(context.directory + ': verified existing Lesson matching and direct source import required');
-    // The final reviewed invocation supplies its imported Lesson directly.
-    // No AST import decoder, special bundler or Props-to-Config reconstruction.
-    const imported = production.source;
+      throw new Error(context.directory + ': reviewed Lesson matching and trusted dependency resolver required');
+    const requested = {
+      id: existing.id,
+      sourceSha: match.sourceSha,
+      importPath: '#lessonsData/' + existing.id.at(-1).toLowerCase() + '/' + existing.id.toLowerCase() + '/index',
+      exportName: production.sourceExportName,
+      placementPath: context.directory,
+    };
+    // The runner MUST attest the execution trust of this specific source.
+    // A SHA alone only identifies bytes; it never authorizes code execution.
+    const approved = options.resolveExistingLesson(requested);
+    if (
+      !record(approved) ||
+      approved.approved !== true ||
+      approved.id !== requested.id ||
+      approved.sourceSha !== requested.sourceSha ||
+      approved.importPath !== requested.importPath ||
+      approved.exportName !== requested.exportName
+    )
+      throw new Error(context.directory + ': unapproved, stale or mismatched Lesson execution dependency');
+    const imported = approved.configurator;
     const lesson = {
       id: existing.id,
       sourceSha: match.sourceSha,
-      importPath: '#lessonsData/' + existing.id.at(-1) + '/' + existing.id + '/index',
-      exportName: production.sourceExportName,
-      languages: imported.config?.base?.params?.languages,
+      importPath: requested.importPath,
+      exportName: requested.exportName,
+      languages: imported?.config?.base?.params?.languages,
       configurator: imported,
-      rawPatch: production.sourcePatch,
     };
     if (
       !record(lesson) ||
@@ -280,29 +284,28 @@ export function materializeCourseStage5(input, options = {}) {
     }
     knownExistingIds.add(existing.id);
     if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
-    const hasPatch = existing.base !== undefined || existing.locale !== undefined;
+    const hasPatch = production.sourcePatch !== undefined;
     let patchSource;
     if (hasPatch) {
-      if (!record(lesson.rawPatch) || !production.overrideRationale?.trim())
-        throw new Error(
-          context.directory +
-            ': built sparse override requires verified original raw Build expression and editorial rationale',
-        );
-      const patchLanguages = [...new Set([sourceLanguage, ...Object.keys(existing.locale ?? {})])];
-      if (patchLanguages.some(code => !planned.includes(code) || !lesson.languages.includes(code)))
-        throw new Error(context.directory + ': override languages require reviewed Course/Lesson support');
-      serialize(lesson.rawPatch);
-      patchSource = JSON.stringify(lesson.rawPatch, null, 2);
-      let built;
+      const rawPatch = production.sourcePatch;
+      if (!record(rawPatch) || !Object.keys(rawPatch).length || !production.overrideRationale?.trim())
+        throw new Error(context.directory + ': nonempty sparse Lesson patch requires an editorial rationale');
+      serialize(rawPatch);
+      // Restrict Build to reviewed Course languages which this exact Lesson
+      // supports. Do not project Props or invent missing translations here.
+      const patchLanguages = planned.filter(code => lesson.languages.includes(code));
+      if (!patchLanguages.includes(sourceLanguage))
+        throw new Error(context.directory + ': Lesson source locale is outside reviewed publication scope');
+      patchSource = JSON.stringify(rawPatch, null, 2);
       try {
-        built = lesson.configurator.build.overrides(lesson.rawPatch, { languages: patchLanguages });
+        const built = lesson.configurator.build.overrides(rawPatch, { languages: patchLanguages });
+        if (built.id !== existing.id)
+          throw new Error('Lesson Build override changed the independently owned Lesson identity');
       } catch (error) {
         throw new Error(context.directory + ': raw Lesson patch is invalid against real Build API', { cause: error });
       }
-      if (!equal({ id: built.id, base: built.base, locale: built.locale }, existing))
-        throw new Error(context.directory + ': original raw patch does not reproduce reviewed built sparse override');
-      if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
-        throw new Error(context.directory + ': Lesson override uses an unplanned locale');
+    } else if (production.overrideRationale !== undefined) {
+      throw new Error(context.directory + ': override rationale without a Course-local patch');
     }
     const placementSlug = node.config.slug;
     recordPlacement(context.directory, {
