@@ -48,9 +48,9 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
   assert.match(first.files[1].content, /satisfies SectionPatch/);
   assert.match(first.files[1].content, /typeof standaloneLesson\.build\.overrides/);
   assert.match(first.files[1].content, /import \{ p1 \} from "\.\/p1"/);
-  assert.match(first.files[1].content, /"p1": p1/);
+  assert.match(first.files[1].content, /"items": \{p1, "p2": false\}/);
   assert.match(first.files[1].content, /"p2": false/);
-  assert.match(first.patchSource, /"content": content/);
+  assert.match(first.patchSource, /"items": \{content, "practice": false\}/);
   assert.match(first.patchSource, /"practice": false/);
   assert.doesNotMatch(first.patchSource, /section_content is literal user text/);
   assert.deepEqual(first.imports, ['import { content } from "./sections/content";']);
@@ -74,7 +74,7 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
     [directory + '/sections/extra/index.ts'],
   );
   assert.match(result.files[0].content, /export \{ extra \}/);
-  assert.match(result.patchSource, new RegExp('"extra": ' + exportName));
+  assert.match(result.patchSource, /"additionalItems": \{extra\}/);
   assert.doesNotMatch(result.patchSource, /"\$ref"/);
   assert.deepEqual(result.imports, ['import { extra } from "./sections/extra";']);
 });
