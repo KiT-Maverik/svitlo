@@ -133,7 +133,7 @@ const pendingImage = {
   production: {
     purpose: 'Illustrate the path of light.',
     prompt:
-      'Create a diagram with a warm-yellow lamp at left emitting two straight light rays toward an opaque rectangular object; show the resulting dark shadow on a pale screen at right and label the ray direction clearly.'
+      'Create a diagram with a warm-yellow lamp at left emitting two straight light rays toward an opaque rectangular object; show the resulting dark shadow on a pale screen at right and label the ray direction clearly.',
   },
 } satisfies LessonWorkflowStage2SimpleBlock;
 
