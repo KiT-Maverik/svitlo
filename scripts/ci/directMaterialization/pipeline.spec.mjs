@@ -31,7 +31,9 @@ import {
 
 const require = createRequire(import.meta.url);
 const { defineLesson } = require('../../../shared/engine/dist/build.js');
-const { courseWorkflowStage3_Schema } = require('../../../shared/engine/dist/types/workflow/courseWorkflowFinal.schemas.js');
+const {
+  courseWorkflowStage3_Schema,
+} = require('../../../shared/engine/dist/types/workflow/courseWorkflowFinal.schemas.js');
 const trustedRoot = fileURLToPath(new URL('../../..', import.meta.url));
 const textbook = 'content/math';
 const courseRoot = textbook + '/data/courses/3/' + courseId;
