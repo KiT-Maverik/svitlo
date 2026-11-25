@@ -10,11 +10,11 @@ const apis = Object.freeze({
 });
 const instructions = Object.freeze({
   lesson:
-    'Complete the independently authorized Lesson workflow, verify the completed UUID-addressed Lesson and its Course integration, then replace this Lesson placement with that verified Configurator import and delete this stub.ts with its blocker marker. Lesson Stage 6 alone does not authorize parent mutation.',
+    'Complete and validate the independently authored Lesson Configurator, resources, banks, Scenes and locales; then a Coding Agent must replace the immediate parent stub import with the verified Lesson Configurator import and delete this stub.ts and blocker. Lesson source materialization alone does not activate the placement.',
   episode:
-    'Complete the independently reviewed Episode and its trusted Stage 5 materialization, atomically replace the reserved parent import with the completed Episode and delete this stub.ts and marker.',
+    'Complete and validate the Episode Configurator, resources, Scenes and locales after source materialization; then a Coding Agent must replace the immediate parent stub import with the verified Episode Configurator import and delete this stub.ts and blocker. Stage 5 materialization leaves both parent and stub unchanged.',
   assessment:
-    'Complete the independently reviewed Assessment and its trusted Stage 4 materialization, atomically replace the reserved parent import with the completed Assessment and delete this stub.ts and marker.',
+    'Complete and validate the Assessment Configurator, upstream Question Banks, resources and locales after source materialization; then a Coding Agent must replace the immediate parent stub import with the verified Assessment Configurator import and delete this stub.ts and blocker. Stage 4 materialization leaves both parent and stub unchanged.',
 });
 
 /** One owning, previewable draft-only Configurator per pending Course child.
@@ -48,4 +48,24 @@ export function renderPendingChildStub({ directory, kind, id, slug }) {
       JSON.stringify(slug) +
       ' });\n',
   };
+}
+
+/** Preview-only import with an actionable blocker immediately above it.
+ * Shared by Course, Module and Chapter so nested child slots cannot diverge.
+ */
+export function renderPendingChildImport({ kind, slug, location }) {
+  if (!apis[kind] || !safe(slug ?? '') || !['./', './content/'].includes(location))
+    throw Error('Invalid pending Course child import');
+  return (
+    renderBlockerTodo(
+      'Keep this pending ' +
+        kind +
+        ' stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.',
+    ) +
+    '\nimport { stub as child_' +
+    slug +
+    ' } from ' +
+    JSON.stringify(location + slug + '/stub') +
+    ';'
+  );
 }

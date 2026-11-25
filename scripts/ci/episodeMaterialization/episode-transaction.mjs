@@ -1,6 +1,6 @@
 /** Trusted Episode Stage 5: read-only analysis, manifest replay and one Git commit.
  * Candidate code executes only in the isolated, credential-free worker. The trusted
- * transaction handles source provenance, reserved parent restoration and Git writes.
+ * transaction authenticates Course ownership read-only and writes only Episode-owned files.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +8,7 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { github, gitBlob, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
 import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
-import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
+import { verifyPendingCourseParent } from '../directMaterialization/reserved-parent-slot.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs';
@@ -81,7 +81,6 @@ function safeOutput(file, meta) {
   if (typeof file === 'string' && file.startsWith(meta.textbookRoot + '/scenes/'))
     return episodeSceneTarget(file, meta) !== null;
   const prefix = meta.courseRoot + '/' + meta.placement + '/';
-  if (file === meta.parentPath) return true;
   if (typeof file !== 'string' || !file.startsWith(prefix) || file.length > 500) return false;
   const parts = file.slice(prefix.length).split('/');
   if (
@@ -126,7 +125,7 @@ export function checkEpisodeTargets(meta, files, tree) {
       group.push({ leaf: scene.leaf, kind: file.kind });
       sceneGroups.set(scene.id, group);
     }
-    if (file.path !== meta.parentPath && tree.has(file.path))
+    if (tree.has(file.path))
       throw Error('Episode target would overwrite existing authored source: ' + file.path);
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++) {
@@ -136,8 +135,8 @@ export function checkEpisodeTargets(meta, files, tree) {
     if ([...tree.keys()].some(existing => existing.startsWith(file.path + '/')))
       throw Error('Episode target would replace an existing directory: ' + file.path);
   }
-  if (!seen.has(meta.parentPath) || !seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
-    throw Error('Episode transaction must restore exact parent and create final index');
+  if (!seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
+    throw Error('Episode transaction must create its exact owned final index');
   for (const [id, entries] of sceneGroups) {
     const components = entries.map(entry => entry.leaf).filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
     if (components.length !== 1) throw Error('Episode Scene must have exactly one component: ' + id);
@@ -200,7 +199,6 @@ export function episodeCommitTree(manifest) {
       content: Buffer.from(file.data, 'base64').toString('utf8'),
     })),
     { path: manifest.meta.sourcePath, mode: '100644', type: 'blob', sha: null },
-    { path: stubPath(manifest.meta), mode: '100644', type: 'blob', sha: null },
   ];
 }
 
@@ -254,8 +252,8 @@ export async function prepareEpisode(meta, root, execute = executeTrustedDraft) 
   return buildEpisodeManifest(meta, plan);
 }
 
-/** Verify the sealed artifact and EXACT reserved parent restoration, without
- * executing or importing the reviewed candidate entrypoint in a tokened job.
+/** Verify sealed create-only Episode files and the unchanged reserved parent, without
+ * importing or evaluating the reviewed candidate in the tokened publisher.
  */
 export function verifyDirectEpisodeManifest(meta, manifest, root) {
   if (
@@ -318,14 +316,11 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
     return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
   });
   checkEpisodeTargets(meta, files, tree);
-  const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const edited = files.find(file => file.path === meta.parentPath);
-  if (!edited) throw Error('Missing generated parent Course source');
-  verifyReservedEpisodeParent(parentSource, edited.content, {
-    placement: meta.placement,
+  verifyPendingCourseParent(reader.blob(tree.get(meta.parentPath), meta.parentPath), {
+    kind: 'episode',
+    id: handoff.config.id,
     slug: handoff.config.slug,
-    episodeId: handoff.config.id,
-    exportName: manifest.sourceExportName,
+    placement: meta.placement,
     stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   return manifest;
@@ -353,7 +348,7 @@ async function main() {
     const manifest = await prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    report('Read-only Episode plan: ' + manifest.entries.length + ' generated/parent files; no publication approval.');
+    report('Read-only Episode plan: ' + manifest.entries.length + ' Episode-owned files; the Course parent and stub remain unchanged.');
     return;
   }
   await requireActor(meta.actor);
@@ -390,7 +385,7 @@ async function main() {
       commit.sha +
       '; consumed exact draft ' +
       meta.sourceBlobSha +
-      ', restored reserved parent placement, source only. Human Media Generation and QA remain incomplete.',
+      ', retained reserved Course stub and parent import, source only. Human Media Generation and QA remain incomplete.',
   );
 }
 if (process.argv[1]?.endsWith('/episode-transaction.mjs'))

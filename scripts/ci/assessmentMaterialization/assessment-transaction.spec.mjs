@@ -211,16 +211,11 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   );
 });
 
-test('one source transaction permits only the exact parent and new Assessment child files', () => {
+test('Assessment source transaction generates only owned files and retains parent and stub', () => {
   const index = meta.sourcePath.replace('draft.ts', 'index.ts');
   const files = [
     { path: index, kind: 'typescript', content: 'export const finalReview = 1;\n' },
-    {
-      path: meta.sourcePath.replace('draft.ts', 'specification.md'),
-      kind: 'specification',
-      content: '# Assessment source specification\n',
-    },
-    { path: meta.parentPath, kind: 'typescript', content: 'parent patched\n' },
+    { path: meta.sourcePath.replace('draft.ts', 'specification.md'), kind: 'specification', content: '# Reviewed specification\n' },
   ];
   const tree = new Map([
     [meta.sourcePath, { type: 'blob', mode: '100644', sha: meta.sourceBlobSha }],
@@ -229,20 +224,16 @@ test('one source transaction permits only the exact parent and new Assessment ch
   ]);
   assert.equal(checkAssessmentTargets(meta, files, tree), true);
   const manifest = buildAssessmentManifest(meta, { ...plan, files, diagnostics: [] });
-  assert.equal(manifest.entries.length, 3);
-  assert.deepEqual(
-    assessmentCommitTree(manifest)
-      .filter(e => e.sha === null)
-      .map(e => e.path),
-    [meta.sourcePath, meta.sourcePath.replace('draft.ts', 'stub.ts')],
-  );
-  assert.throws(() =>
-    checkAssessmentTargets(
-      meta,
-      [...files, { path: courseRoot + '/content/other/index.ts', kind: 'typescript', content: 'bad' }],
-      tree,
-    ),
-  );
-  tree.set(index, { type: 'blob', mode: '100644', sha: meta.sourceBlobSha });
-  assert.throws(() => checkAssessmentTargets(meta, files, tree), /overwrite/);
+  assert.deepEqual(manifest.entries.map(entry => entry.path).sort(), files.map(file => file.path).sort());
+  assert.deepEqual(assessmentCommitTree(manifest).filter(entry => entry.sha === null).map(entry => entry.path), [meta.sourcePath]);
+  assert.equal(tree.get(meta.parentPath).sha, meta.parentBlobSha);
+  assert.equal(tree.get(meta.sourcePath.replace('draft.ts', 'stub.ts')).sha, meta.stubBlobSha);
+  assert.throws(() => checkAssessmentTargets(meta, [...files, { path: meta.parentPath, kind: 'typescript', content: 'patched' }], tree));
+  assert.throws(() => checkAssessmentTargets(meta, [...files, { path: courseRoot + '/content/other/index.ts', kind: 'typescript', content: 'bad' }], tree));
+  const occupied = new Map(tree);
+  occupied.set(index, { type: 'blob', mode: '100644', sha: meta.sourceBlobSha });
+  assert.throws(() => checkAssessmentTargets(meta, files, occupied), /overwrite/);
+  const symlink = new Map(tree);
+  symlink.set(meta.sourcePath.replace('draft.ts', 'stub.ts'), { type: 'blob', mode: '120000', sha: meta.stubBlobSha });
+  assert.throws(() => checkAssessmentTargets(meta, files, symlink), /pinned regular Git blobs/);
 });

@@ -567,6 +567,14 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     const parent = plan.files.find(file => file.path === row.placementSourcePath);
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
     assert.ok(parent.content.includes('/' + row.slug + '/stub'));
+    const lines = parent.content.split('\n');
+    const imported = lines.findIndex(line =>
+      line.includes('import { stub as child_' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
+    );
+    assert.ok(imported > 0, row.placementPath);
+    assert.match(lines[imported - 1], /^\/\/ TODO \(BLOCKER\): Keep this pending /);
+    assert.match(lines[imported - 1], /Coding Agent replaces this import/);
+    assert.match(lines[imported - 1], /TypeScript\/preview checks/);
     assert.doesNotMatch(parent.content, new RegExp(apis[row.type] + '\\('));
     assert.ok(row.sourcePath.endsWith('/draft.ts'));
     assert.notEqual(row.sourcePath, row.stubSourcePath);
@@ -614,7 +622,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.match(seed.content, /"reviewedCourseSourceBlobSha": "0123456789abcdef0123456789abcdef01234567"/);
     const stub = result.files.find(file => file.path === row.stubSourcePath);
     assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
-    assert.ok(stub?.content.includes('TODO (BLOCKER): Complete the independently reviewed Assessment'));
+    assert.ok(stub?.content.includes('TODO (BLOCKER): Complete and validate the Assessment Configurator'));
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
     assert.ok(parent?.content.includes('order: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
