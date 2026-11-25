@@ -201,6 +201,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: 'pending-lesson-stage1',
         sourcePath: result.files[0].path,
         placementSourcePath: parentIndex(context.directory, 'lesson'),
+        stubSourcePath: root + '/' + context.directory + '/stub.ts',
       });
       return result;
     }
@@ -377,6 +378,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: pending ? 'pending-episode-scenario' : 'materialized-source',
         sourcePath: root + '/' + source.path,
         placementSourcePath: parentIndex(directory, 'episode'),
+        ...(pending ? { stubSourcePath: root + '/' + directory + '/stub.ts' } : {}),
       });
       return result;
     },
@@ -399,6 +401,7 @@ export function materializeCourseStage5(input, options = {}) {
         status: 'pending-assessment-design',
         sourcePath: root + '/' + directory + '/draft.ts',
         placementSourcePath: parentIndex(directory, 'assessment'),
+        stubSourcePath: root + '/' + directory + '/stub.ts',
         lessonDependencies: dependencies,
       });
       return result;
