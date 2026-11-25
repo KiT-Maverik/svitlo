@@ -34,7 +34,7 @@ const manifest = {
         id,
         kind: 'new',
         status: 'pending-episode-scenario',
-        placementPath: root + '/content/episode',
+        placementPath: root + '/episode',
         sourcePath: source,
         placementSourcePath: source,
         orderPath: [0],
