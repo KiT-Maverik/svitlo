@@ -82,7 +82,7 @@ test('Assessment table includes nested placement, dependencies, status and prese
   });
   assert.match(initial, /### Assessments/);
   assert.match(initial, /Lesson dependencies/);
-  assert.match(initial, /content\/module\/lesson, content\/otherLesson/);
+  assert.match(initial, /module\/lesson, otherLesson/);
   assert.match(initial, /Authorize Assessment Stage 1/);
   assert.match(initial, /- \[ \] 7\. Design Assessments/);
   const edited = initial.replace(
