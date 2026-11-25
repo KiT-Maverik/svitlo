@@ -2,6 +2,8 @@
 
 **Status:** Git as source of authored content and typed `*.data.ts` conventions are approved architectural requirements. Universal generators/registries, all cross-package distribution and automated publishing are **not assumed implemented**.
 
+**Declarative draft source (#857 migration target):** Six root education workflows author a single inert `export default { ... } satisfies StageType` literal in each `draft.ts` with type-only imports. The trusted [static Draft Reader](./typed-production-materialization.md) parses immutable Git bytes without evaluating candidate code, then canonical Zod and concrete materializers construct normal executable `index.ts` source. This is a target distinct from the current deployed runner; generated data remains Git-reproducible and editorial reviews remain independent.
+
 ## Git is the editorial source of truth
 
 The canonical **authored educational content** lives in a Git repository: lesson facts, curricular and instructional specifications, text/Markdown, typed resource configurations, translations, media assets, identity maps and their review history. It is created, changed, audited, approved and versioned using commits and **PR/code review**. Authored content must not silently diverge into an unreviewed production database or editable client state.

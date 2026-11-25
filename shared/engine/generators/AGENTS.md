@@ -4,7 +4,7 @@
 
 ## Responsibility
 
-The following completed-Props rules apply to `generators/{skills,lessons,courses}` publication generators, **not** to entity-owned authored TypeScript source materializers in `generators/materializers/`. The latter accept validated editorial Stage objects and Configurators at their own build-only boundary, plan once in the isolated worker, and hand off an immutable manifest to a non-executing Git publisher. See [direct typed materialization](../../studio/docs/architecture/typed-production-materialization.md).
+The following completed-Props rules apply to `generators/{skills,lessons,courses}` publication generators, **not** to entity-owned authored TypeScript source materializers in `generators/materializers/`. The latter accept final-stage Zod-validated **plain values** from a trusted static Draft Reader (the #857 target), use actual Configurators only from separately trusted dependencies in their build-only implementation, and hand off a sealed immutable manifest to a non-executing Git publisher. The existing isolated-worker path may remain until Agent C proves source-dependency trust. See [declarative typed materialization](../../studio/docs/architecture/typed-production-materialization.md).
 
 - Completed-Props generators run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize those results. They do not accept configurators or invoke `build`/`assemble` methods.
 - Configurators own entity validation, override resolution, nested composition, disabled-item filtering, ordering, and Props preparation. Generators **must not interpret Config/Overrides, filter or sort children, recreate schemas, or build Props**.

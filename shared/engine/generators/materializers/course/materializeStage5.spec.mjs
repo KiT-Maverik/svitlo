@@ -127,7 +127,7 @@ test('Course emits its own allocated Lesson seed, not Stage 1 or a Configurator'
     'content/playground/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/draft.ts',
   );
   assert.match(result.files[0].content, /satisfies CourseWorkflowLessonSeed/);
-  assert.match(result.files[0].content, /\/\/ prettier-ignore\nexport default /);
+  assert.match(result.files[0].content, /export default \{/);
   assert.match(result.files[0].content, /"quizSectionRequired": true/);
   assert.match(result.files[0].content, /"quizRequiredForCompletion": true/);
   const emitted = JSON.parse(
@@ -528,6 +528,8 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     const seed = result.files.find(file => file.path === row.sourcePath);
     const parent = result.files.find(file => file.path === row.placementSourcePath);
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
+    assert.match(seed?.content ?? '', /export default \{/);
+    assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
     assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
     assert.ok(parent?.content.includes('order: '));

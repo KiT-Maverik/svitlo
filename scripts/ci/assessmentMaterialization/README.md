@@ -1,28 +1,15 @@
-# Trusted direct Assessment materialization
+# Trusted Assessment Stage 4 materialization
 
-An Assessment is a separately authored **Course-owned** activity directly placed under a Course, Module or Chapter. Course Stage 2 reserves its ordered `type: 'assessment'` slot; there is **no** owner-level Assessment-required boolean. Stage 5 allocates a stable UUID and writes a previewable, nonpublishable draft-only `defineAssessmentStub({ id, slug })` Configurator with a nonpublishable `Not implemented` preview plus a typed `AssessmentWorkflowSeed` at the same nested `content/<slug>/draft.ts` placement. Course Stage 5 does not create an approved Quiz or start Assessment Production.
+**Migration target #857; deployment and real Actions success unverified.** The Course Stage 2 Methodologist inserts zero or more ordered Assessment slots (no required flag). Course Stage 5 allocates a stable UUID, an inert `AssessmentWorkflowSeed` at the nested `content/<slug>/draft.ts` path, and a blocked, previewable `defineAssessmentStub` in its immediate Course/Module/Chapter parent. That seed is not Stage 1 completion, and Assessment has no own Question Bank.
 
-## Independent editorial source and authorization
+## Source, authorization and handoff
 
-The Assessment's existing `draft.ts` progresses from Course seed to `AssessmentWorkflowStage1` to `AssessmentWorkflowStage2`; Stage 3 requires a separate-context independent review, and Stage 4 materialization needs explicit authorization. The reviewed final source must invoke `materializeAssessment(reviewedAssessment)` exactly once using `@svitlo/engine/build`. Reuse reviewed upstream Lesson Question Bank IDs; Assessment never duplicates or authors its own bank. Read [Create Assessment Flow](../../../studio/skills/assessment-workflow/create-assessment-flow.skill.md) and the [Assessment entity](../../../studio/docs/entities/assessment.md) before authoring or review.
+Assessment Stage 1 advances the same draft to `AssessmentWorkflowStage1`, Stage 2 to `AssessmentWorkflowStage2` (optional `before`/`after` ordered Content Sections and exactly one required enabled `config.quiz`), and independent Stage 3 reviews it at pinned source SHA. Final `draft.ts` is one inert, default-exported object with exact Stage 2 `satisfies`. Store **verified literal Question UUID selections**; do not value-import or execute reviewed Question Configurators or call `materializeAssessment()` in the draft. Question IDs must be independently checked against actual integrated upstream Lesson Bank exports by the trusted gate.
 
-The workflow `.github/workflows/assessment-materialization.yml` runs only after it is deployed on default `develop`. Its exact top-level PR comment command is `/assessment materialize`; a manual dispatch requires both the Assessment PR number and owning Course PR number. Neither is a routine test trigger. The gate needs one same-repository **Draft Assessment PR** targeting the exact Course branch with **only its existing pinned `draft.ts` changed**, matching the immutable reviewed Course seed, exact ordered parent stub and allowed actor. Review evidence remains an editorial responsibility, never parsed from PR prose by the trusted gate.
+After explicit authorization, post `/assessment materialize` on the existing same-repo Draft Assessment child PR or use supported dispatch with Assessment/Course PR numbers. The gate checks actor, exact owning Course branch, immutable original handoff and parent placement, current HEAD/blob, allowed changed path and upstream Lesson dependency identity; editorial review evidence remains in the PR and is not machine-parsed. The shared Draft Reader statically parses the pinned bytes, canonical `assessmentWorkflowStage2_Schema` checks one non-disabled Quiz, and the trusted Assessment materializer composes the actual Sections/Blocks using Course-root languages. The reader is not a dependency-readiness or PR lookup service.
 
-## Execution and transaction boundaries
+## Immutable source transaction
 
-The read-only analyzer compiles the ordinary trusted Engine package and runs the pinned final TypeScript invocation in the shared credential-free isolated worker. Engine validates `assessmentWorkflowStage2_Schema` (exactly one non-disabled `config.quiz`, optional Content Section `before`/`after`, and explicit real Question UUID selections), materializes nested Section/ContentBlock `index.ts` files importing the single Course-root `constants.ts` (no Assessment-local `languages.ts`), and returns a bounded `publishable: false` file plan. The trusted transaction independently verifies the Course handoff and unchanged immediate parent and its complete order, resolved upstream/additional Lesson paths and materialized Question Banks, each selected UUID against an exported canonical Question definition rather than incidental source text, output path allowlist and hashes. It writes exactly the approved nested Assessment files and the byte-exact parent placeholder replacement while deleting the consumed draft in **one non-force Git commit**. It never executes candidate TypeScript with write credentials or rewrites independently owned Lesson banks.
+The tokenless analyzer verifies upstream/additional Lesson Question Banks and selected UUID provenance, immutable Course slot, deterministic nested paths and physical source limits. It seals `publishable:false` generated bytes plus SHA256 manifest. The write-token publisher revalidates the actor/HEAD/parent blob/source and complete file allowlist, rejects traversal, symlink ancestors and overwritten paths, then commits new Assessment `index.ts`/Section/Block modules and only the immediate parent's exact reserved-stub restoration while deleting `draft.ts` in **one non-force commit**. Publisher never evaluates authored source or regenerates output. Keep all resource/locales/Question blockers and Stage 8 human QA distinct; Course Stage 10 human integrated QA is another separate gate.
 
-A generated Assessment source remains blocked from publication until physical media, completed target locales, verified global Question resolution, child review and human QA are genuinely complete. The separate Course Stage 10 human QA verifies the integrated experience. No job success authorizes a merge or any independent downstream stage.
-
-## Validation
-
-On a prepared repository checkout:
-
-```sh
-npm run package:build --workspace @svitlo/engine
-npm run code:check:types --workspace @svitlo/engine
-node --test scripts/ci/assessmentMaterialization/*.spec.mjs
-node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs
-```
-
-The Assessment Ready PR workflow also executes `node --test scripts/ci/assessmentMaterialization/*.spec.mjs` against the built Engine. Draft FastGate skips deep typechecking; green Draft checks are not test evidence. Confirm actual Ready checks on the latest SHA, and after deployment require a separately authorized real Assessment PR, a successful pinned run and the resulting atomic source commit before claiming operational materialization.
+**Validation:** after Agent A/B/C integration, Engine build/typecheck, Assessment schema/renderer tests, exact-parent transaction tests, malicious-reader fixtures and real authorized deployed workflow run. Do not infer readiness from a green Draft check.

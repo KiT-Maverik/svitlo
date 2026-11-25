@@ -99,3 +99,7 @@ export type {
   TrustedBankSelection,
   TrustedBankMember,
 } from './generators/materializers/lesson/preserveAssessmentReferences';
+
+// Trusted, parse-only reader for pinned inert authoring drafts (Node/build only).
+export { readDeclarativeDraft, DeclarativeDraftError } from './generators/materializers/directMaterialization/readDeclarativeDraft';
+export type { DeclarativeDraftEntityKind, DeclarativeDraftValue } from './generators/materializers/directMaterialization/readDeclarativeDraft';
