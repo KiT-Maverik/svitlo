@@ -7,6 +7,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { assertTokenless } from './trusted-draft.mjs';
+import { resolveTrustedCourseSkills } from './course-skill-bindings.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/;
@@ -178,7 +179,8 @@ export function runIsolatedCourseDependencies(
   const checkedCandidate = fs.realpathSync(candidateRoot);
   const references = courseLessonReferences(input);
   const sections = courseAddedSectionReferences(input);
-  if (!references.length) throw Error('Dependency worker requires a real reused Lesson');
+  const skills = resolveTrustedCourseSkills(input, textbookRoot, checkedCandidate, checkedTrusted);
+  if (!references.length && !skills.length) throw Error('Dependency worker requires a trusted Lesson or Skill');
   for (const ref of references) checkedReference(ref, textbookRoot, checkedCandidate, checkedTrusted);
   for (const ref of sections) checkedSectionReference(ref, textbookRoot, checkedCandidate, checkedTrusted);
   const mount = (filename, target, directory = false) => {
@@ -219,7 +221,7 @@ export function runIsolatedCourseDependencies(
   ];
   try {
     const result = spawn('docker', args, {
-      input: JSON.stringify({ input, source, textbookRoot, references, sections }),
+      input: JSON.stringify({ input, source, textbookRoot, references, sections, skills }),
       encoding: 'utf8',
       timeout: 120000,
       maxBuffer: 36 * 1024 * 1024,

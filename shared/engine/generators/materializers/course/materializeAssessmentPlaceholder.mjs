@@ -1,3 +1,4 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 
@@ -62,18 +63,25 @@ export function materializeAssessmentPlaceholder(node, context) {
     throw Error(directory + ': Assessment title is missing reviewed source language');
   const id = context.deriveId('assessment', directory);
   if (!uuid.test(id)) throw Error(directory + ': invalid allocated Assessment UUID');
-  const placement = {
-    courseId: context.courseId,
-    path: directory,
-    orderPath: [...context.orderPath],
-    reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
-  };
   const seed = {
-    config: { id, type: 'assessment', slug: reservedSlug, locale: config.locale },
+    config: {
+      id,
+      type: 'assessment',
+      slug: reservedSlug,
+      locale: {
+        ...config.locale,
+        title: normalizeWorkflowLocalized(
+          title,
+          context.sourceLanguage,
+          directory + '.locale.title',
+          context.plannedLanguages,
+        ),
+      },
+    },
     production: {
       purpose: production.purpose,
       lessonDependencies: [...production.lessonDependencies],
-      placement,
+      reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
       languages: { document: context.sourceLanguage, planned: [...context.plannedLanguages] },
     },
   };

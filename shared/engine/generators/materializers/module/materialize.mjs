@@ -1,3 +1,6 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
+import { renderPendingChildStub, renderPendingChildImport } from '../course/renderPendingChildStub.mjs';
+import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -26,12 +29,6 @@ const source = ctx => {
   if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(ctx.sourceLanguage ?? ''))
     throw Error('sourceLanguage: reviewed locale required');
   return ctx.sourceLanguage;
-};
-const localized = (value, language, path) => {
-  if (typeof value === 'string') return value;
-  if (!record(value) || typeof value[language] !== 'string' || !value[language].trim())
-    throw Error(path + ': missing reviewed ' + language + ' locale');
-  return { [language]: value[language] };
 };
 const exportName = slug =>
   [
@@ -345,10 +342,12 @@ export function materializeModule(input, context = {}) {
     }
 
     if (stage1Lesson || stage1Episode || pendingAssessment) {
-      const stub = stage1Lesson ? 'defineLessonStub' : stage1Episode ? 'defineEpisodeStub' : 'defineAssessmentStub';
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
-      inlineImports.add(stub);
-      items[key] = stub + '({ id: ' + JSON.stringify(refId) + ', slug: ' + JSON.stringify(key) + ' })';
+      files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
+      const alias = 'child_' + key;
+      const location = raw.type === 'assessment' || !dir ? './content/' : './';
+      imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location }));
+      items[key] = alias;
     } else {
       const alias = 'child_' + key;
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
@@ -379,7 +378,12 @@ export function materializeModule(input, context = {}) {
     fields.locale = { ...fields.locale };
     for (const field of ['title']) {
       if (fields.locale[field] !== undefined)
-        fields.locale[field] = localized(fields.locale[field], lang, dir + '.locale.' + field);
+        fields.locale[field] = normalizeWorkflowLocalized(
+          fields.locale[field],
+          lang,
+          dir + '.locale.' + field,
+          planned,
+        );
     }
   }
   const orderSource = JSON.stringify(order);
@@ -394,23 +398,37 @@ export function materializeModule(input, context = {}) {
     .join('\n');
   const params = config.params ?? {};
   if (!record(params)) throw Error(dir + '.params: Config params object required');
-  const paramFields = Object.entries(params)
-    .filter(([key]) => key !== 'languages')
-    .map(([key, value]) => JSON.stringify(key) + ': ' + JSON.stringify(value) + ',')
-    .join(' ');
-  const paramsSource = '{ ' + paramFields + '' + ' }';
-  const languagesModule = dir ? '../'.repeat(dir.split('/').length) + 'constants' : './constants';
+  for (const field of ['outcomes', 'prerequisites']) {
+    if (
+      params[field] !== undefined &&
+      meta?.[field] !== undefined &&
+      JSON.stringify(params[field]) !== JSON.stringify(meta[field])
+    )
+      throw Error(dir + ': conflicting config/production Skill ' + field + ' targets');
+  }
+  const unitParams = {
+    ...params,
+    ...(meta?.outcomes === undefined ? {} : { outcomes: meta.outcomes }),
+    ...(meta?.prerequisites === undefined ? {} : { prerequisites: meta.prerequisites }),
+  };
+  const bound = bindVerifiedSkills(unitParams, {
+    resolveSkill: context.resolveSkill,
+    textbookRoot: context.textbookRoot,
+    directory: dir,
+  });
+  const paramsSource = bound.source;
+  const courseId = context.courseId;
+  if (typeof courseId !== 'string' || !uuid.test(courseId))
+    throw Error(dir + ': reviewed Course UUID required for canonical languages import');
+  const languagesModule = '#coursesData/' + courseId.at(-1).toLowerCase() + '/' + courseId.toLowerCase() + '/constants';
   const result =
     'import { ' +
     ['defineModule', ...inlineImports].join(', ') +
     " } from '@svitlo/engine/build';\n" +
-    'import { languages } from ' +
-    JSON.stringify(languagesModule) +
-    ';\n' +
     'import type { Languages } from ' +
     JSON.stringify(languagesModule) +
     ';\n' +
-    imports.join('\n') +
+    [...bound.imports, ...imports].join('\n') +
     '\n\n' +
     'const content = { items: ' +
     itemsSource +

@@ -1,3 +1,6 @@
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
+import { renderPendingChildStub, renderPendingChildImport } from './renderPendingChildStub.mjs';
+import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -26,12 +29,6 @@ const source = ctx => {
   if (!/^[a-z]{2}(?:-[A-Z]{2})?$/.test(ctx.sourceLanguage ?? ''))
     throw Error('sourceLanguage: reviewed locale required');
   return ctx.sourceLanguage;
-};
-const localized = (value, language, path) => {
-  if (typeof value === 'string') return value;
-  if (!record(value) || typeof value[language] !== 'string' || !value[language].trim())
-    throw Error(path + ': missing reviewed ' + language + ' locale');
-  return { [language]: value[language] };
 };
 const exportName = slug =>
   [
@@ -370,10 +367,12 @@ export function materializeCourse(input, context = {}) {
     }
 
     if (stage1Lesson || stage1Episode || pendingAssessment) {
-      const stub = stage1Lesson ? 'defineLessonStub' : stage1Episode ? 'defineEpisodeStub' : 'defineAssessmentStub';
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
-      inlineImports.add(stub);
-      items[key] = stub + '({ id: ' + JSON.stringify(refId) + ', slug: ' + JSON.stringify(key) + ' })';
+      files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
+      const alias = 'child_' + key;
+      const location = raw.type === 'assessment' || !dir ? './content/' : './';
+      imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location }));
+      items[key] = alias;
     } else {
       const alias = 'child_' + key;
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
@@ -411,7 +410,12 @@ export function materializeCourse(input, context = {}) {
     fields.locale = { ...fields.locale };
     for (const field of ['title', 'description', 'prerequisitesText', 'outcomesText']) {
       if (fields.locale[field] !== undefined)
-        fields.locale[field] = localized(fields.locale[field], lang, dir + '.locale.' + field);
+        fields.locale[field] = normalizeWorkflowLocalized(
+          fields.locale[field],
+          lang,
+          dir + '.locale.' + field,
+          planned,
+        );
     }
   }
   const orderSource = JSON.stringify(order);
@@ -428,23 +432,22 @@ export function materializeCourse(input, context = {}) {
   if (record(input?.config) && Object.hasOwn(params, 'languages'))
     throw Error(dir + '.config.params.languages: authoring languages belong to production');
   if (!record(params)) throw Error(dir + '.params: Config params object required');
-  const paramFields = Object.entries(params)
-    .filter(([key]) => key !== 'languages')
-    .map(([key, value]) => JSON.stringify(key) + ': ' + JSON.stringify(value) + ',')
-    .join(' ');
-  const paramsSource = '{ ' + paramFields + ' languages,' + ' }';
-  const languagesModule = dir ? '../'.repeat(dir.split('/').length) + 'constants' : './constants';
+  const bound = bindVerifiedSkills(params, {
+    resolveSkill: context.resolveSkill,
+    textbookRoot: context.textbookRoot,
+    directory: dir,
+    includeLanguages: true,
+  });
+  const paramsSource = bound.source;
+  const languagesModule = '#coursesData/' + id.at(-1).toLowerCase() + '/' + id.toLowerCase() + '/constants';
   const result =
     'import { ' +
     ['defineCourse', ...inlineImports].join(', ') +
     " } from '@svitlo/engine/build';\n" +
-    'import { languages } from ' +
+    'import { languages, type Languages } from ' +
     JSON.stringify(languagesModule) +
     ';\n' +
-    'import type { Languages } from ' +
-    JSON.stringify(languagesModule) +
-    ';\n' +
-    imports.join('\n') +
+    [...bound.imports, ...imports].join('\n') +
     '\n\n' +
     'const content = { items: ' +
     itemsSource +

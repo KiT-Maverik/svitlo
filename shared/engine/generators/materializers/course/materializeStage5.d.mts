@@ -1,4 +1,5 @@
 import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
+import type { Skill_Configurator } from '../../../configurators/skills/defineSkill/defineSkill';
 import type { Lesson_Configurator } from '../../../configurators/lessons/defineLesson/defineLesson';
 
 export type SourceDiagnostic = {
@@ -49,6 +50,17 @@ export type CourseStage5Options = {
    * attest execution trust and pinned dependency identity before returning.
    */
   resolveExistingLesson?: (request: ExistingLessonRequest) => ApprovedExistingLesson;
+  /** Only trusted, default-branch taxonomy references may authorize live Skill imports. */
+  resolveSkill?: (request: { id: string; placementPath: string }) => {
+    approved: true;
+    id: string;
+    slug: string;
+    exportName: string;
+    importPath: string;
+    sourcePath: string;
+    sourceSha: string;
+    configurator: Skill_Configurator;
+  };
   /** Optional trusted binder for inert added Section references. */
   resolveAddedSection?: (request: {
     id: string;

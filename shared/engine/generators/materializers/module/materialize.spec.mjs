@@ -173,6 +173,24 @@ const deriveId = (kind, placement) => {
 };
 const ctx = () => ({
   sourceLanguage: 'uk',
+  textbookRoot: 'content/playground',
+  courseId: IDs.course,
+  resolveSkill: ({ id }) => ({
+    approved: true,
+    id,
+    slug: 'testExplainLightTravel',
+    exportName: 'testExplainLightTravel',
+    importPath: '#skillsData/testLight/testLightPropagation/testExplainLightTravel',
+    sourcePath: 'content/playground/data/skills/testLight/testLightPropagation/testExplainLightTravel.ts',
+    sourceSha: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    configurator: {
+      id,
+      slug: 'testExplainLightTravel',
+      type: 'skill',
+      config: { base: { id, slug: 'testExplainLightTravel' } },
+      build: { props() {} },
+    },
+  }),
   deriveId,
   materializeCourse,
   materializeModule,
@@ -204,7 +222,7 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
-  assert.match(main, /params: \{  \}/);
+  assert.match(main, /params: \{ "outcomes": \{ "skills": \[skill_[0-9a-f_]+\.id\] \}/);
   assert.equal(out.id, IDs.module);
   syntax(out.files);
 });

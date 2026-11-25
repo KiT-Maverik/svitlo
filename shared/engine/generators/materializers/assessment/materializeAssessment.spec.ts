@@ -47,12 +47,7 @@ const fixture = (): AssessmentWorkflowStage2 =>
       design: 'Use a reviewed upstream Question',
       specification: 'Record learner evidence',
       lessonDependencies: ['content/chapter/lesson'],
-      placement: {
-        courseId,
-        path: 'content/chapter/assessment',
-        orderPath: [0, 1],
-        reviewedCourseSourceBlobSha: 'a'.repeat(40),
-      },
+      reviewedCourseSourceBlobSha: 'a'.repeat(40),
       languages: { document: 'uk', planned: ['uk'] },
     },
   }) as AssessmentWorkflowStage2;
@@ -105,10 +100,25 @@ test('Assessment Stage 4 rejects stale data and altered parent placement', () =>
       }),
     /untrusted or stale/,
   );
-  const differentCourse = structuredClone(input);
-  differentCourse.production.placement.courseId = assessmentId;
-  assert.throws(() => materializeAssessment(differentCourse, opts), /mismatch/);
+  const foreignPlacement = structuredClone(input);
+  foreignPlacement.config.slug = 'foreign';
+  assert.throws(() => materializeAssessment(foreignPlacement, opts), /mismatch/);
   const noQuestions = structuredClone(input);
   noQuestions.config.quiz.config.params.selection = { mode: 'all', questionIds: [] };
   assert.throws(() => materializeAssessment(noQuestions, opts), /Invalid reviewed Assessment/);
+});
+
+test('Assessment Stage 4 keeps authored locale maps and marks English-only titles as translated fields', () => {
+  const en = fixture();
+  en.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  en.config.locale.title = 'Knowledge check';
+  en.config.quiz.config.locale.title = { en: 'Questions', uk: 'Запитання' };
+  const text = 'export default ' + JSON.stringify(en) + ' satisfies AssessmentWorkflowStage2;\n';
+  const result = materializeAssessment(en, options(text));
+  const source = result.files.find(file => file.path.endsWith('/assessment/index.ts'))?.content ?? '';
+  assert.match(source, /"title":\{"en":"Knowledge check"\}/);
+  assert.doesNotMatch(source, /"title":"Knowledge check"/);
+  assert.doesNotMatch(source, /"uk":"Knowledge check"/);
+  assert.equal(result.publishable, false);
+  assert.match(source, /Complete and independently review all planned Assessment localizations/);
 });

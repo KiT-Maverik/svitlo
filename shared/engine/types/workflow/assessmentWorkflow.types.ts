@@ -18,12 +18,6 @@ const dependency = z
     /^content(?:\/[A-Za-z][A-Za-z0-9]*)+$|^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i,
     'Assessment dependencies must identify Course Lesson placements or existing Lesson UUIDs',
   );
-const placement = z.strictObject({
-  courseId: z.uuid(),
-  path: z.string().regex(/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/),
-  orderPath: z.array(z.number().int().nonnegative()).nonempty(),
-  reviewedCourseSourceBlobSha: z.string().regex(/^[a-f0-9]{40}$/i),
-});
 
 /** Allocated at authorized Course Stage 5, not an Assessment authoring stage. */
 export const assessmentWorkflowSeed_Schema = z.strictObject({
@@ -34,7 +28,9 @@ export const assessmentWorkflowSeed_Schema = z.strictObject({
       .array(dependency)
       .nonempty()
       .refine(values => new Set(values).size === values.length, 'Assessment Lesson dependencies must be unique'),
-    placement,
+    // Retain the reviewed Course blob until the trusted Course transaction can
+    // independently authenticate that provenance from immutable Git history.
+    reviewedCourseSourceBlobSha: z.string().regex(/^[a-f0-9]{40}$/i),
     languages: workflowLanguages_Schema,
   }),
 });

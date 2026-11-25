@@ -34,12 +34,14 @@ const reuse = (sourceSha = sha) => ({
   production: { kind: 'existing', existing: { id }, matching: { sourceSha }, sourceExportName: 'realLesson' },
 });
 test('Course default-branch Lesson dependency inventory is deterministic, de-duplicated and bounded', () => {
-  const input = { config: { content: { items: { first: reuse(), second: reuse() }, order: ['first', 'second'] } } };
+  const input = {
+    config: { type: 'course', content: { items: { first: reuse(), second: reuse() }, order: ['first', 'second'] } },
+  };
   assert.deepEqual(courseLessonReferences(input), [{ id, sourceSha: sha, exportName: 'realLesson' }]);
-  assert.deepEqual(courseLessonReferences({ config: { content: { items: {}, order: [] } } }), []);
+  assert.deepEqual(courseLessonReferences({ config: { type: 'course', content: { items: {}, order: [] } } }), []);
 });
 test('Course declarative added Section references are deduplicated and fail closed', () => {
-  const value = { config: { content: { items: { first: withSection(), second: withSection() } } } };
+  const value = { config: { type: 'course', content: { items: { first: withSection(), second: withSection() } } } };
   assert.deepEqual(courseAddedSectionReferences(value), [
     {
       id: sectionId,
@@ -52,13 +54,13 @@ test('Course declarative added Section references are deduplicated and fail clos
   const forged = withSection();
   forged.production.sourcePatch.section.additionalItems.practice.exportName = '../unsafe';
   assert.throws(
-    () => courseAddedSectionReferences({ config: { content: { items: { forged } } } }),
+    () => courseAddedSectionReferences({ config: { type: 'course', content: { items: { forged } } } }),
     /Invalid Course additional Section reference/,
   );
   const unowned = withSection();
   unowned.production.sourcePatch.section.additionalItems.practice.lessonId = '../../../owner';
   assert.throws(
-    () => courseAddedSectionReferences({ config: { content: { items: { unowned } } } }),
+    () => courseAddedSectionReferences({ config: { type: 'course', content: { items: { unowned } } } }),
     /Invalid Course additional Section reference/,
   );
 });
@@ -100,6 +102,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   const sectionBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + sectionRelative);
   const input = {
     config: {
+      type: 'course',
       content: {
         items: {
           reused: reuse(expectedBlob),
@@ -138,7 +141,10 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
 
   calls.length = 0;
   const withAdded = {
-    config: { content: { items: { reused: withSection(sectionBlob, id, expectedBlob) }, order: ['reused'] } },
+    config: {
+      type: 'course',
+      content: { items: { reused: withSection(sectionBlob, id, expectedBlob) }, order: ['reused'] },
+    },
   };
   const withAddedResult = runIsolatedCourseDependencies({ ...request, input: withAdded }, fakeSpawn);
   assert.equal(withAddedResult.publishable, false);
@@ -159,7 +165,10 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
         {
           ...request,
           input: {
-            config: { content: { items: { reused: withSection('c'.repeat(40), id, expectedBlob) } } },
+            config: {
+              type: 'course',
+              content: { items: { reused: withSection('c'.repeat(40), id, expectedBlob) }, order: ['reused'] },
+            },
           },
         },
         fakeSpawn,
@@ -176,8 +185,10 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
           ...request,
           input: {
             config: {
+              type: 'course',
               content: {
                 items: { reused: withSection(sectionBlob, '33333333-3333-4333-8333-333333333333', expectedBlob) },
+                order: ['reused'],
               },
             },
           },
@@ -194,7 +205,9 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
       runIsolatedCourseDependencies(
         {
           ...request,
-          input: { config: { content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } } },
+          input: {
+            config: { type: 'course', content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } },
+          },
         },
         fakeSpawn,
       ),

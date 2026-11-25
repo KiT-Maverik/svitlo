@@ -1,6 +1,6 @@
 /** Trusted Assessment source transaction. Candidate TS executes only in the
  * shared credential-free direct worker. The privileged job replays an exact
- * bounded manifest and edits only its Course-owned parent placeholder.
+ * bounded create-only manifest. Course parent and stub are read-only pinned inputs.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -10,13 +10,17 @@ import { pinnedGitReader, ordinary } from '../directMaterialization/pinned-git.m
 import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
-import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
-import { readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
+import {
+  readGeneratedCourseHandoff,
+  resolveIntegratedCourseLesson,
+  verifyPendingCourseParent,
+} from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const maxBytes = 32 * 1024 * 1024;
 const sha256 = value => createHash('sha256').update(value).digest('hex');
+const stubPath = meta => meta.sourcePath.replace(/draft\.ts$/, 'stub.ts');
 const keys = [
   'repo',
   'number',
@@ -34,6 +38,7 @@ const keys = [
   'sourceBlobSha',
   'handoffBlobSha',
   'parentBlobSha',
+  'stubBlobSha',
 ];
 export const sameAssessmentMeta = (a, b) => keys.every(key => a[key] === b[key]);
 
@@ -52,7 +57,7 @@ export function parseAssessmentMetadata(encoded) {
     meta.number === meta.parentNumber ||
     !safeBranch(meta.branch, meta.parentBranch) ||
     !safeBranch(meta.parentBranch, process.env.COURSE_DEFAULT_BRANCH) ||
-    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha'].every(key =>
+    !['head', 'parentHead', 'sourceBlobSha', 'handoffBlobSha', 'parentBlobSha', 'stubBlobSha'].every(key =>
       SHA.test(meta[key] ?? ''),
     ) ||
     !/^[A-Za-z0-9-]+$/.test(meta.actor ?? '')
@@ -61,7 +66,19 @@ export function parseAssessmentMetadata(encoded) {
   return meta;
 }
 
-/** Decode only inert literal fields from the pinned Course-generated typed seed. */
+/** Decode only the minimal, exact Course-generated seed shape from a pinned Git
+ * blob. Editorial "placement" or arbitrary extra metadata is never authority.
+ */
+function exactKeys(value, keys) {
+  return (
+    value !== null &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every(key => Object.hasOwn(value, key))
+  );
+}
+
 export function parseAssessmentSeed(source) {
   const seed = readGeneratedCourseHandoff(source, {
     variable: 'assessmentSeed',
@@ -69,18 +86,43 @@ export function parseAssessmentSeed(source) {
   });
   if (
     !seed ||
+    !exactKeys(seed, ['config', 'production']) ||
+    !exactKeys(seed.config, ['id', 'type', 'slug', 'locale']) ||
+    !exactKeys(seed.production, ['purpose', 'lessonDependencies', 'reviewedCourseSourceBlobSha', 'languages']) ||
     !UUID.test(seed.config?.id ?? '') ||
-    seed.config?.type !== 'assessment' ||
-    typeof seed.config.slug !== 'string' ||
-    !seed.production?.purpose ||
+    seed.config.type !== 'assessment' ||
+    !/^[A-Za-z][A-Za-z0-9]*$/.test(seed.config.slug ?? '') ||
+    !seed.config.locale ||
+    typeof seed.production.purpose !== 'string' ||
+    !seed.production.purpose.trim() ||
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
-    !Array.isArray(seed.production.placement?.orderPath) ||
-    !seed.production.placement.orderPath.length ||
-    !SHA.test(seed.production.placement.reviewedCourseSourceBlobSha ?? '') ||
-    !Array.isArray(seed.production.languages?.planned)
+    seed.production.lessonDependencies.some(
+      dep => typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep),
+    ) ||
+    new Set(seed.production.lessonDependencies).size !== seed.production.lessonDependencies.length ||
+    !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
+    !exactKeys(seed.production.languages, ['document', 'planned']) ||
+    !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(seed.production.languages.document ?? '') ||
+    !Array.isArray(seed.production.languages.planned) ||
+    !seed.production.languages.planned.includes(seed.production.languages.document) ||
+    seed.production.languages.planned.some(
+      code => typeof code !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(code),
+    ) ||
+    new Set(seed.production.languages.planned).size !== seed.production.languages.planned.length
   )
     throw Error('Invalid pinned Assessment seed identity and planning data');
+  const title = seed.config.locale?.title;
+  const language = seed.production.languages.document;
+  if (!(
+    (typeof title === 'string' && title.trim()) ||
+    (title &&
+      typeof title === 'object' &&
+      !Array.isArray(title) &&
+      typeof title[language] === 'string' &&
+      title[language].trim())
+  ))
+    throw Error('Pinned Assessment seed lacks the approved Course source-language title');
   return seed;
 }
 
@@ -94,10 +136,8 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     input.config.type !== 'assessment' ||
     input.production?.purpose !== seed.production.purpose ||
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
-    JSON.stringify(input.production.placement) !== JSON.stringify(seed.production.placement) ||
+    input.production.reviewedCourseSourceBlobSha !== seed.production.reviewedCourseSourceBlobSha ||
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
@@ -133,15 +173,24 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
   for (const dep of seed.production.lessonDependencies) {
     if (typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep))
       throw Error('Assessment must name resolved Course Lesson placement paths');
-    const placementSource = meta.courseRoot + '/' + dep + '/index.ts';
-    const placementEntry = tree.get(placementSource);
-    if (!ordinary(placementEntry)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
-    const contents = reader.blob(placementEntry, placementSource);
-    const reused = contents.match(/#lessonsData\/([a-f0-9])\/([a-f0-9-]{36})\/index/);
-    const derived = deriveCourseEntityId(meta.courseId, 'lesson', dep.slice('content/'.length));
-    const owner = reused ? reused[2] : derived;
-    if (reused && reused[1] !== owner.at(-1)) throw Error('Upstream Lesson import UUID bucket mismatch');
-    const bankRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/questions/';
+    // Course Lesson placements are references in their immediate parent's
+    // content.items/order. Neither new nor reused Lessons own a Course-local
+    // content/<lesson>/index.ts. Resolve the exact pinned import, not the first
+    // #lessonsData string in the parent or a guessed allocated UUID.
+    const segments = dep.split('/');
+    if (![2, 3, 4].includes(segments.length)) throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
+    const ownerKind = ['course', 'module', 'chapter'][segments.length - 2];
+    const parentPath =
+      meta.courseRoot + '/' + (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
+    const parent = tree.get(parentPath);
+    if (!ordinary(parent)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
+    const owner = resolveIntegratedCourseLesson(reader.blob(parent, parentPath), {
+      slug: segments.at(-1),
+      ownerKind,
+    });
+    const lessonRoot = meta.textbookRoot + '/data/lessons/' + owner.at(-1) + '/' + owner + '/';
+    if (!ordinary(tree.get(lessonRoot + 'index.ts'))) throw Error('Upstream Lesson source is not materialized: ' + dep);
+    const bankRoot = lessonRoot + 'questions/';
     if (!ordinary(tree.get(bankRoot + 'index.ts')))
       throw Error('Upstream Lesson lacks a materialized Question Bank: ' + dep);
     // The source materializer writes a real Question definition to
@@ -192,7 +241,6 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
 }
 
 function safeOutput(file, meta) {
-  if (file === meta.parentPath) return true;
   if (
     typeof file !== 'string' ||
     !file.startsWith(meta.courseRoot + '/' + meta.placement + '/') ||
@@ -219,7 +267,9 @@ export function checkAssessmentTargets(meta, files, tree) {
     !ordinary(tree.get(meta.sourcePath)) ||
     tree.get(meta.sourcePath).sha !== meta.sourceBlobSha ||
     !ordinary(tree.get(meta.parentPath)) ||
-    tree.get(meta.parentPath).sha !== meta.parentBlobSha
+    tree.get(meta.parentPath).sha !== meta.parentBlobSha ||
+    !ordinary(tree.get(stubPath(meta))) ||
+    tree.get(stubPath(meta)).sha !== meta.stubBlobSha
   )
     throw Error('Assessment source/parent is not exact pinned regular Git blobs');
   const seen = new Set();
@@ -235,7 +285,7 @@ export function checkAssessmentTargets(meta, files, tree) {
     )
       throw Error('Assessment generated an unsafe or duplicate file path');
     seen.add(file.path);
-    if (file.path !== meta.parentPath && tree.has(file.path))
+    if (tree.has(file.path))
       throw Error('Assessment would overwrite existing authored source');
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++)
@@ -244,8 +294,8 @@ export function checkAssessmentTargets(meta, files, tree) {
     if ([...tree.keys()].some(other => other.startsWith(file.path + '/')))
       throw Error('Assessment output would replace a directory');
   }
-  if (!seen.has(meta.parentPath) || !seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
-    throw Error('Assessment must atomically restore parent and generate exact nested index');
+  if (!seen.has(meta.sourcePath.replace(/draft\.ts$/, 'index.ts')))
+    throw Error('Assessment must create its exact owned nested index without changing the parent');
   return true;
 }
 
@@ -307,8 +357,10 @@ export async function prepareAssessment(meta, root, execute = executeTrustedDraf
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    baseline.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Assessment parent and allocated seed changed after review');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
@@ -332,16 +384,12 @@ export async function prepareAssessment(meta, root, execute = executeTrustedDraf
   checkAssessmentBanks(meta, seed, worker.plan.selectedQuestionIds, reader, tree);
   const output = worker.plan;
   const files = output.files.map(file => ({ ...file, path: meta.courseRoot + '/' + file.path }));
-  const parentSource = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  files.push({
-    path: meta.parentPath,
-    kind: 'typescript',
-    content: restoreAssessmentPlacement(parentSource, {
-      id: seed.config.id,
-      slug: seed.config.slug,
-      placement: meta.placement,
-      exportName: output.sourceExportName,
-    }),
+  verifyPendingCourseParent(reader.blob(tree.get(meta.parentPath), meta.parentPath), {
+    kind: 'assessment',
+    id: seed.config.id,
+    slug: seed.config.slug,
+    placement: meta.placement,
+    stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   checkAssessmentTargets(meta, files, tree);
   return buildAssessmentManifest(meta, { ...output, files });
@@ -376,15 +424,15 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   if (
     baseline.get(meta.sourcePath)?.sha !== meta.handoffBlobSha ||
     baseline.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    baseline.get(stubPath(meta))?.sha !== meta.stubBlobSha ||
     tree.get(meta.sourcePath)?.sha !== meta.sourceBlobSha ||
-    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha
+    tree.get(meta.parentPath)?.sha !== meta.parentBlobSha ||
+    tree.get(stubPath(meta))?.sha !== meta.stubBlobSha
   )
     throw Error('Sealed Assessment original sources changed');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');
@@ -408,13 +456,12 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
     return { path: entry.path, kind: entry.kind, content: bytes.toString('utf8') };
   });
   checkAssessmentTargets(meta, files, tree);
-  const originalParent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
-  const revised = files.find(file => file.path === meta.parentPath);
-  verifyAssessmentParentPatch(originalParent, revised.content, {
+  verifyPendingCourseParent(reader.blob(tree.get(meta.parentPath), meta.parentPath), {
+    kind: 'assessment',
     id: seed.config.id,
     slug: seed.config.slug,
     placement: meta.placement,
-    exportName: manifest.sourceExportName,
+    stubSource: reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
   });
   return manifest;
 }
@@ -441,7 +488,7 @@ async function main() {
     const manifest = await prepareAssessment(meta, process.env.ASSESSMENT_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    report('Assessment source plan: ' + manifest.entries.length + ' generated/parent files; release remains blocked.');
+    report('Assessment source plan: ' + manifest.entries.length + ' Assessment-owned files; Course parent and stub retained; release remains blocked.');
     return;
   }
   await requireActor(meta.actor);
@@ -482,7 +529,7 @@ async function main() {
   report(
     'Assessment Stage 4 committed ' +
       nextCommit.sha +
-      '; draft consumed and one Course placeholder replaced. Resources, translations and human QA remain pending.',
+      '; draft consumed while Course parent/stub remain unchanged. Resources, translations and human QA remain pending.',
   );
 }
 if (process.argv[1]?.endsWith('/assessment-transaction.mjs')) {

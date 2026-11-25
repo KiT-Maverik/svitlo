@@ -13,6 +13,7 @@ import { materializeCode } from '../code/materializeCode';
 import { materializeContentSection } from '../contentSection/contentSection';
 import { materializeImage } from '../image/materializeImage';
 import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { materializeQuizSection } from '../quizSection/quizSection';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeScene } from '../scene/materializeScene';
@@ -172,9 +173,7 @@ function plan(
   if (
     config.id !== config.id.toLowerCase() ||
     config.slug !== placement.split('/').at(-1) ||
-    production.placement.courseId !== courseId ||
-    production.placement.path !== placement ||
-    production.placement.reviewedCourseSourceBlobSha.length !== 40 ||
+    !sha.test(production.reviewedCourseSourceBlobSha ?? '') ||
     !planned.includes(document)
   )
     throw Error('Assessment: Course-owned UUID/placement/source language mismatch');
@@ -369,6 +368,10 @@ function plan(
       'import { ' + childResult.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./sections/' + key) + ';',
     );
   }
+  const reviewedLocale = {
+    ...config.locale,
+    title: normalizeWorkflowLocalized(config.locale.title, document, ownDirectory + '.locale.title', planned),
+  };
   const rendered = [
     "import { defineAssessment } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
@@ -398,7 +401,7 @@ function plan(
       ', typeof languages, typeof before.items, typeof quiz, typeof after.items>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
-    '  locale: ' + JSON.stringify(config.locale) + ',',
+    '  locale: ' + JSON.stringify(reviewedLocale) + ',',
     '  before, quiz, after,',
     '});',
     '',

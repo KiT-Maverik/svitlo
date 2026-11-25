@@ -41,6 +41,7 @@ function fixture(t) {
     sourceBlobSha: blob,
     reviewCommitSha: head,
     publishable: false,
+    inventory: { lessons: [], episodes: [], assessments: [] },
     files: [
       { path: materializedPath, kind: 'typescript', content: generated },
       { path: generatedPath, kind: 'markdown', content: '# Reviewed methodology\n' },
@@ -107,4 +108,62 @@ test('symlinks, duplicate paths, untracked files and incomplete materialization 
     ],
   };
   assert.throws(() => preflightCourseSourceCommit(symlink, options), /Symlink in generated path/);
+});
+
+test('pending stub allowlist is exact to reviewed inventory, not merely inside Course root', t => {
+  const { plan, options } = fixture(t);
+  const stub = plan.sourcePath.replace('/draft.ts', '/content/lessonOne/stub.ts');
+  const root = path.posix.dirname(plan.sourcePath);
+  const row = {
+    id: '12345678-1234-4234-8234-123456789011',
+    status: 'pending-lesson-stage1',
+    placementPath: root + '/content/lessonOne',
+    placementSourcePath: plan.materializedPath,
+    stubSourcePath: stub,
+  };
+  const file = {
+    path: stub,
+    kind: 'typescript',
+    content: 'export const stub = 1;\n',
+  };
+  assert.throws(
+    () => preflightCourseSourceCommit({ ...plan, files: [...plan.files, file] }, options),
+    /missing, unexpected or foreign stub/,
+  );
+  assert.throws(
+    () => preflightCourseSourceCommit({ ...plan, inventory: { ...plan.inventory, lessons: [row] } }, options),
+    /missing, unexpected or foreign stub/,
+  );
+  assert.doesNotThrow(() =>
+    preflightCourseSourceCommit(
+      {
+        ...plan,
+        files: [...plan.files, file],
+        inventory: { ...plan.inventory, lessons: [row] },
+      },
+      options,
+    ),
+  );
+  assert.throws(() =>
+    preflightCourseSourceCommit(
+      {
+        ...plan,
+        files: [...plan.files, { ...file, path: root + '/content/foreign/stub.ts' }],
+        inventory: { ...plan.inventory, lessons: [row] },
+      },
+      options,
+    ),
+  );
+  assert.throws(
+    () =>
+      preflightCourseSourceCommit(
+        {
+          ...plan,
+          inventory: { ...plan.inventory, lessons: [row, row] },
+          files: [...plan.files, file],
+        },
+        options,
+      ),
+    /duplicate/i,
+  );
 });

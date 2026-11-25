@@ -93,7 +93,11 @@ const compilerDiagnostics = files => {
     incremental: false,
     composite: false,
     baseUrl: engineRoot,
-    paths: { ...parsed.options.paths, '@svitlo/engine/build': ['build.ts'] },
+    paths: {
+      ...parsed.options.paths,
+      '@svitlo/engine/build': ['build.ts'],
+      '#coursesData/*': ['temp/course-materializer-semantic-check/constants.ts'],
+    },
   };
   const generated = new Map(
     files.filter(file => file.kind === 'typescript').map(file => [path.resolve(root, file.path), file.content]),
@@ -119,6 +123,8 @@ const compilerDiagnostics = files => {
 test('complete Course -> Module -> Chapter -> Episode emitted sources typecheck against the real Engine Build API', () => {
   const context = {
     sourceLanguage: 'uk',
+    courseId: id(1),
+    textbookRoot: 'content/playground',
     deriveId: (kind, location) => (kind === 'module' ? id(2) : kind === 'chapter' ? id(3) : id(4)),
     materializeModule,
     materializeChapter,
