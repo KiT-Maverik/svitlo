@@ -8,7 +8,7 @@ import { materializeAssessment } from './materializeAssessment';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const assessmentId = '663572e7-bd85-4516-86e2-3de07d209e31';
 const questionId = '663572e7-bd85-4516-86e2-3de07d209e33';
-const sourcePath = 'content/playground/data/courses/3/' + courseId + '/content/chapter/assessment/draft.ts';
+const sourcePath = 'content/playground/data/courses/3/' + courseId + '/chapter/assessment/draft.ts';
 const fixture = (): AssessmentWorkflowStage2 =>
   ({
     config: {
@@ -46,7 +46,7 @@ const fixture = (): AssessmentWorkflowStage2 =>
       purpose: 'Verify the preceding Lesson',
       design: 'Use a reviewed upstream Question',
       specification: 'Record learner evidence',
-      lessonDependencies: ['content/chapter/lesson'],
+      lessonDependencies: ['chapter/lesson'],
       reviewedCourseSourceBlobSha: 'a'.repeat(40),
       languages: { document: 'uk', planned: ['uk'] },
     },
@@ -70,11 +70,11 @@ test('Assessment Stage 4 renders deterministic nonpublishable Course-owned sourc
   assert.equal(result.assessmentId, assessmentId);
   assert.equal(result.publishable, false);
   assert.deepEqual(result.selectedQuestionIds, [questionId]);
-  assert(result.files.some(file => file.path === 'content/chapter/assessment/sections/quiz/index.ts'));
+  assert(result.files.some(file => file.path === 'chapter/assessment/sections/quiz/index.ts'));
   assert(
     result.files.some(
       file =>
-        file.path === 'content/chapter/assessment/index.ts' &&
+        file.path === 'chapter/assessment/index.ts' &&
         file.content.includes('TODO (BLOCKER): Resolve each selected Question'),
     ),
   );
