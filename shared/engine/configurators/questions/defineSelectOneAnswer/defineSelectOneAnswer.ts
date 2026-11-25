@@ -1,0 +1,267 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+
+import {
+  assertEnabledBlock,
+  cloneJson,
+  ensureQuestionPatchShape,
+  finishFiles,
+  isEnabledBlock,
+  isRecord,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveBlockCollection,
+  resolveBlockMap,
+  resolveCommonContent,
+  resolvePublicationLanguages,
+  snapshotBlockCollection,
+  snapshotCommonContent,
+  validateBlockCollection,
+  validateCommonContent,
+  validateEffectiveQuestionMetadata,
+  validateQuestionPublication,
+  type OrderedBlockPatch,
+  type PublicationLanguageOptions,
+  type QuestionCommonPatch,
+  type QuestionOverridePublication,
+  type QuestionResourcePublication,
+  type ResolvableBlockPatch,
+} from '../_shared__questions';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { QuestionChildrenSupporting } from '../question.schemas';
+import {
+  selectOneAnswer_Config_Schema,
+  selectOneAnswer_Override_Config_Schema,
+  selectOneAnswer_Props_Schema,
+  type Question_SelectOneAnswer_Config,
+  type Question_SelectOneAnswer_MetadataOverrides,
+  type Question_SelectOneAnswer_Props,
+} from './defineSelectOneAnswer.schemas';
+
+const metadataSchema = selectOneAnswer_Config_Schema.omit({ content: true });
+
+/** Validate authored Question metadata and owned child collection boundaries. */
+const validate = (candidate: Question_SelectOneAnswer_Config): void => {
+  selectOneAnswer_Config_Schema.parse(candidate);
+  validateCommonContent(candidate.content);
+  const groups = candidate.content.answers;
+  for (const group of ['correct', 'incorrect', 'distractors'] as const) {
+    validateBlockCollection(groups[group], 'content.answers.' + group);
+  }
+  if (groups.correct.order.length !== 1) throw new Error('SelectOneAnswer requires exactly one correct answer');
+  const slugs = (['correct', 'incorrect', 'distractors'] as const).flatMap(group => groups[group].order);
+  if (new Set(slugs).size !== slugs.length) {
+    throw new Error('An answer cannot occur in multiple scoring groups');
+  }
+  assertEnabledBlock(groups.correct.items[groups.correct.order[0]].config.base, 'content.answers.correct');
+};
+
+type ContentShape = Question_SelectOneAnswer_Config['content'];
+export type Question_SelectOneAnswer_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
+> = Question_SelectOneAnswer_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    answers?: {
+      correct?: OrderedBlockPatch<Content['answers']['correct']['items'], Added, Languages>;
+      incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items'], Added, Languages>;
+      distractors?: OrderedBlockPatch<Content['answers']['distractors']['items'], Added, Languages>;
+    };
+  };
+};
+
+/**
+ * Author a single-choice Question with exactly one correct answer.
+ *
+ * @remarks
+ * Place the correct option in `content.answers.correct`, plausible wrong
+ * answers in `incorrect`, and optional decoys in `distractors`.
+ * Use distinct answer slugs across these three collections; the one
+ * correct option must remain enabled.
+ */
+export const defineSelectOneAnswer = <
+  const Slug extends string,
+  const Content extends ContentShape,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
+  config: Omit<Question_SelectOneAnswer_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        answers: {
+          correct: { items: ChildrenSupporting<Languages, Content['answers']['correct']['items']> };
+          incorrect: { items: ChildrenSupporting<Languages, Content['answers']['incorrect']['items']> };
+          distractors: { items: ChildrenSupporting<Languages, Content['answers']['distractors']['items']> };
+        };
+      };
+  } & ConfigWithLanguages<Question_SelectOneAnswer_Config, Languages>,
+) => {
+  const { content: _content, ...metadataInput } = config;
+  const authored = cloneJson(metadataInput);
+  const copyMetadata = () => cloneJson(authored);
+  const { id, type } = authored;
+  const slug = config.slug;
+  const initialContent = {
+    ...snapshotCommonContent(config.content),
+    answers: {
+      correct: snapshotBlockCollection(config.content.answers.correct),
+      incorrect: snapshotBlockCollection(config.content.answers.incorrect),
+      distractors: snapshotBlockCollection(config.content.answers.distractors),
+    },
+  } as Content;
+  // Transitional authored access; never pass these mutable objects into Build.
+  const content = {
+    ...snapshotCommonContent(initialContent),
+    answers: {
+      correct: snapshotBlockCollection(initialContent.answers.correct),
+      incorrect: snapshotBlockCollection(initialContent.answers.incorrect),
+      distractors: snapshotBlockCollection(initialContent.answers.distractors),
+    },
+  } as Content;
+
+  const extraContent = (
+    source: Content,
+    languages: readonly LanguageCode[],
+    patch?: {
+      correct?: ResolvableBlockPatch;
+      incorrect?: ResolvableBlockPatch;
+      distractors?: ResolvableBlockPatch;
+    },
+  ) => {
+    const base: Record<string, unknown> = {};
+    const locale: Record<string, Record<string, unknown>> = {};
+    const answers: Record<string, unknown> = {};
+    const groups = ['correct', 'incorrect', 'distractors'] as const;
+    for (const key of Object.keys(patch ?? {})) {
+      if (!groups.some(group => group === key)) throw new Error('Unknown scoring group: ' + key);
+    }
+    const complete = {
+      correct: resolveBlockMap(source.answers.correct, languages, patch?.correct, 'content.answers.correct'),
+      incorrect: resolveBlockMap(source.answers.incorrect, languages, patch?.incorrect, 'content.answers.incorrect'),
+      distractors: resolveBlockMap(
+        source.answers.distractors,
+        languages,
+        patch?.distractors,
+        'content.answers.distractors',
+      ),
+    };
+    const correctCount = Object.keys(complete.correct.base).length;
+    if (correctCount !== 1) {
+      throw new Error('SelectOneAnswer has an invalid number of correct answers');
+    }
+    assertEnabledBlock(Object.values(complete.correct.base)[0], 'content.answers.correct');
+    const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));
+    if (new Set(activeKeys).size !== activeKeys.length) {
+      throw new Error('An answer cannot occur in multiple scoring groups');
+    }
+    for (const group of groups) {
+      if (patch && patch[group] === undefined) continue;
+      const resolved = complete[group];
+      answers[group] = resolved.base;
+      for (const [language, blocks] of Object.entries(resolved.locale)) {
+        const fields = (locale[language] ??= {});
+        ((fields.answers ??= {}) as Record<string, unknown>)[group] = blocks;
+      }
+    }
+    if (Object.keys(answers).length) base.answers = answers;
+    return { base, locale };
+  };
+
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
+    const languages = resolvePublicationLanguages(options);
+    validate({ ...copyMetadata(), content: initialContent });
+    const metadata = copyMetadata();
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = extraContent(initialContent, languages);
+    const files = own.files;
+    mergeQuestionContent(files, common.locale, extra.locale);
+    const resource = {
+      base: {
+        id,
+        slug,
+        type,
+        params: metadata.params,
+        locale: own.base,
+        content: { ...common.base, ...extra.base },
+      },
+      locale: finishFiles(files),
+    } as unknown as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
+    validateQuestionPublication(selectOneAnswer_Props_Schema, languages, resource);
+    return resource;
+  };
+
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionOverridePublication<Question_SelectOneAnswer_Props> => {
+    try {
+      const languages = resolvePublicationLanguages(options);
+      validate({ ...copyMetadata(), content: initialContent });
+      ensureQuestionPatchShape(patch);
+      const metadataPatch = selectOneAnswer_Override_Config_Schema.parse({
+        ...(patch.params !== undefined ? { params: patch.params } : {}),
+        ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
+      });
+      validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
+      const files = own.files;
+      const base: Record<string, unknown> = {
+        ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
+        ...(Object.keys(own.base).length ? { locale: own.base } : {}),
+      };
+      if (patch.content !== undefined) {
+        if (!isRecord(patch.content)) throw new Error('content must be a plain object');
+        for (const key of Object.keys(patch.content)) {
+          if (!['question', 'hint', 'explanation', 'answers'].includes(key)) {
+            throw new Error('Unknown Question content override field: ' + key);
+          }
+        }
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
+        const extra =
+          patch.content.answers !== undefined
+            ? extraContent(initialContent, languages, patch.content.answers)
+            : { base: {}, locale: {} };
+        const changed = { ...common.base, ...extra.base };
+        if (Object.keys(changed).length) base.content = changed;
+        mergeQuestionContent(files, common.locale, extra.locale);
+      }
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
+      validateQuestionPublication(selectOneAnswer_Props_Schema, languages, props(options), publication);
+      return publication;
+    } catch (error) {
+      throw new Error(
+        'Invalid SelectOneAnswer Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
+
+  const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const result = {
+    id,
+    slug,
+    type,
+    content,
+    validate,
+    build: { props, overrides },
+    config: {
+      base,
+      locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),
+      validate,
+    },
+  } as const;
+  return result as typeof result & LanguageScope<Languages>;
+};
+
+export type Question_SelectOneAnswer_Configurator = ReturnType<typeof defineSelectOneAnswer>;

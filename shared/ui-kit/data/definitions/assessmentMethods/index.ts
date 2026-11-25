@@ -1,0 +1,16 @@
+export { analogicalReasoning } from './analogicalReasoning';
+export { application } from './application';
+export { classification } from './classification';
+export { errorDiagnosis } from './errorDiagnosis';
+export { interpretation } from './interpretation';
+export { justification } from './justification';
+export { knowledgeConstruction } from './knowledgeConstruction';
+export { knowledgeTransfer } from './knowledgeTransfer';
+export { missingInformationInference } from './missingInformationInference';
+export { patternGeneralization } from './patternGeneralization';
+export { prediction } from './prediction';
+export { relationshipMapping } from './relationshipMapping';
+export { representationTranslation } from './representationTranslation';
+export { retrieval } from './retrieval';
+export { structuralAnalysis } from './structuralAnalysis';
+export { verification } from './verification';

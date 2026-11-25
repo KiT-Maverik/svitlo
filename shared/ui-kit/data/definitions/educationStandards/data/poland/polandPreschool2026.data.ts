@@ -1,0 +1,50 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Authored cross-textbook reference, not a claim of Course alignment. */
+export const polandPreschool2026 = defineEducationStandard({
+  id: 'd4721754-428f-4c0e-821b-c1a73615eca0',
+  slug: 'polandPreschool2026',
+  name: 'Podstawa programowa wychowania przedszkolnego',
+  params: {
+    countries: ['PL'],
+    nameLanguage: 'pl',
+    sourceUrl: 'https://eli.gov.pl/eli/DU/2026/378/ogl/pol',
+    version: '2026 (Dz.U. poz. 378; amended by poz. 958)',
+  },
+  description: {
+    methodological:
+      "Poland's Minister of Education issued a new preschool core curriculum through the regulation of 11 March 2026, published in Dziennik Ustaw 2026 item 378 and later amended by item 958 of July 2026. Its preschool annex defines developmental and educational tasks, expected preparation for schooling, and cross-domain learning in early childhood settings. It applies from the 2026/2027 school year according to legal transition rules. This record covers preschool only and is not a duplicate of the separate primary-school curriculum in the same regulation. Always check the amending act for the effective consolidated wording.",
+    frontend: {
+      ar: 'يحدد أهداف التعلم والنمو في رياض الأطفال ببولندا وفق منهج 2026.',
+      be: 'Вызначае мэты разьвіцьця і навучаньня дашкольнікаў у Польшчы паводле праграмы 2026 году.',
+      bn: 'পোল্যান্ডে ২০২৬ সালের প্রাক্‌প্রাথমিক শিক্ষাক্রমের বিকাশ ও শেখার লক্ষ্য নির্ধারণ করে।',
+      de: 'Legt Entwicklungs- und Lernziele für Polens Vorschulerziehung nach dem Lehrplan von 2026 fest.',
+      en: 'Defines preschool development and learning goals in Poland under the 2026 curriculum.',
+      es: 'Define metas de desarrollo y aprendizaje preescolar en Polonia según el currículo de 2026.',
+      et: 'Määrab Poola alushariduse arengu- ja õpieesmärgid 2026. aasta õppekava järgi.',
+      fr: "Définit les objectifs de développement et d'apprentissage préscolaire en Pologne selon le programme de 2026.",
+      he: 'מגדיר יעדי התפתחות ולמידה בגני ילדים בפולין לפי תוכנית 2026.',
+      hi: 'पोलैंड में 2026 के पाठ्यक्रम के अनुसार पूर्व-प्राथमिक विकास और सीखने के लक्ष्य तय करता है।',
+      id: 'Menetapkan tujuan perkembangan dan belajar prasekolah di Polandia menurut kurikulum 2026.',
+      it: 'Definisce gli obiettivi di sviluppo e apprendimento prescolare in Polonia nel curricolo 2026.',
+      ja: '2026年の教育課程に基づくポーランドの就学前教育の発達・学習目標を定めます。',
+      ka: 'განსაზღვრავს პოლონეთის სკოლამდელი აღზრდის განვითარებისა და სწავლის მიზნებს 2026 წლის პროგრამით.',
+      kk: 'Польшадағы 2026 жылғы бағдарламаға сай мектепке дейінгі даму мен оқу мақсаттарын айқындайды.',
+      ko: '2026년 교육과정에 따른 폴란드 유아교육의 발달 및 학습 목표를 정합니다.',
+      lt: 'Apibrėžia ikimokyklinio ugdymo raidos ir mokymosi tikslus Lenkijoje pagal 2026 m. programą.',
+      lv: 'Nosaka pirmsskolas attīstības un mācību mērķus Polijā saskaņā ar 2026. gada programmu.',
+      mr: 'पोलंडमध्ये 2026 च्या अभ्यासक्रमानुसार पूर्वप्राथमिक विकास व अध्ययनाची उद्दिष्टे ठरवते.',
+      ms: 'Menetapkan matlamat perkembangan dan pembelajaran prasekolah Poland menurut kurikulum 2026.',
+      pl: 'Określa cele rozwoju i uczenia się w polskim przedszkolu według podstawy z 2026 roku.',
+      pt: 'Define metas de desenvolvimento e aprendizagem pré-escolar na Polônia conforme o currículo de 2026.',
+      qm: 'Polşada 2026-ncı yıl programmasına köre mektepke qadar balalarnıñ inkişaf ve ögrenüv maqsatlarını belgiley.',
+      ta: '2026 பாடத்திட்டத்தின்படி போலந்தில் முன்பள்ளி வளர்ச்சி மற்றும் கற்றல் இலக்குகளை வரையறுக்கிறது.',
+      te: '2026 పాఠ్యప్రణాళిక ప్రకారం పోలాండ్‌లో పూర్వప్రాథమిక వికాసం, అభ్యసన లక్ష్యాలను నిర్దేశిస్తుంది.',
+      tr: "Polonya'da 2026 programına göre okul öncesi gelişim ve öğrenme hedeflerini belirler.",
+      uk: 'Визначає цілі розвитку й навчання дошкільнят у Польщі за програмою 2026 року.',
+      ur: 'پولینڈ میں 2026 کے نصاب کے مطابق قبل از اسکول نشوونما اور سیکھنے کے اہداف طے کرتا ہے۔',
+      vi: 'Quy định mục tiêu phát triển và học tập mầm non ở Ba Lan theo chương trình 2026.',
+      zh: '规定波兰2026年学前教育课程的发展与学习目标。',
+    },
+  },
+});

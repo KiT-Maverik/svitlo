@@ -1,0 +1,48 @@
+import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+
+import { parseText } from '../text/parseText';
+import styles from './StyledText.module.css';
+
+type StyledText_Rules = ContentBlock_Text_Props['params']['variables'];
+
+export interface ApplyStyledTextOptions {
+  text: string;
+  variables?: StyledText_Rules;
+}
+
+export function applyStyledText({ text, variables }: ApplyStyledTextOptions) {
+  const content = parseText(text).map((part, index) => {
+    if (part.kind === 'text') return part.value;
+
+    const rule = variables?.[part.id];
+    if (!rule) return part.value;
+
+    const applied = new Set(rule.applyStyle);
+    const className = [
+      applied.has('highlight') && styles.highlight,
+      applied.has('highlight') && rule.tone === 'neutral' && styles.highlightNeutral,
+      applied.has('highlight') && rule.tone === 'info' && styles.highlightInfo,
+      applied.has('highlight') && rule.tone === 'success' && styles.highlightSuccess,
+      applied.has('bold') && styles.bold,
+      applied.has('cursive') && styles.cursive,
+      applied.has('variable') && styles.variable,
+    ]
+      .filter(Boolean)
+      .join(' ');
+    const decoration = [applied.has('underscore') && 'underline', applied.has('crossed') && 'line-through']
+      .filter(Boolean)
+      .join(' ');
+
+    return (
+      <span
+        key={`${part.id}:${index}`}
+        className={className || undefined}
+        style={{ color: rule.applyColor, textDecorationLine: decoration || undefined }}
+      >
+        {part.value}
+      </span>
+    );
+  });
+
+  return content.every(part => typeof part === 'string') ? content.join('') : content;
+}

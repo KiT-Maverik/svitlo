@@ -1,0 +1,44 @@
+{
+  "name": "@svitlo/adapter-nextjs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "package:build": "tsc -p tsconfig.build.json",
+    "code:check:types": "tsc -p tsconfig.json --noEmit",
+    "prepack": "npm run package:build",
+    "test": "node ../../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/adapter-nextjs && node --test tests/*.spec.mjs",
+    "code:format:check": "prettier --check . --ignore-path ../../../.prettierignore",
+    "code:format:fix": "prettier --write . --ignore-path ../../../.prettierignore"
+  },
+  "dependencies": {
+    "@svitlo/engine": "0.0.0",
+    "@svitlo/ui-kit": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "typescript": "^5"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "browser": {
+        "types": "./dist/browser.d.ts",
+        "default": "./dist/browser.js"
+      },
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "next": "16.4.6",
+    "react": "^19.3.1"
+  }
+}

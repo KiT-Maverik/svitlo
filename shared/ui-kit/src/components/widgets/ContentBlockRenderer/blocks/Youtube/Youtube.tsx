@@ -1,0 +1,135 @@
+'use client';
+
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+
+import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+
+import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
+import { useContentLanguage } from '../../ContentLanguageContext';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
+import styles from './Youtube.module.css';
+import {
+  createYoutubeIframe,
+  getConnectionSnapshot,
+  getServerConnectionSnapshot,
+  loadYoutubeApi,
+  subscribeConnectionChange,
+  youtubeEmbedUrl,
+  youtubeVideoId,
+  type YoutubePlayer,
+} from './Youtube.utils';
+
+type FallbackKind = 'loading' | 'offline' | 'unavailable';
+
+export const Youtube = ({
+  params: { mode },
+  locale: { href, title, label, fallback: fallbackMessages },
+  messages,
+}: ContentBlock_Youtube_Props & {
+  messages: Youtube_Locale;
+}) => {
+  const contentLanguage = useContentLanguage();
+  const resolvedTitle = resolveOptionalLocalizedText(title, contentLanguage, 'youtube.title');
+  const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
+  const playerHost = useRef<HTMLDivElement>(null);
+  const [failedHref, setFailedHref] = useState<string | null>(null);
+  const pending = href === UNRESOLVED_YOUTUBE_HREF;
+  const unavailable = pending || (mode === 'embed' && failedHref === href);
+  const attributes = localizedAttributes({ locale: { code: contentLanguage } });
+  if (!pending) {
+    if (mode === 'link') youtubeVideoId(href);
+    else youtubeEmbedUrl(href);
+  }
+
+  useEffect(() => {
+    if (mode !== 'embed' || online !== true || unavailable) return;
+    const host = playerHost.current;
+    if (!host) return;
+
+    let active = true;
+    let player: YoutubePlayer | undefined;
+    const iframe = createYoutubeIframe(href, label);
+    host.replaceChildren(iframe);
+    const timeout = window.setTimeout(() => {
+      if (active) setFailedHref(href);
+    }, 20_000);
+
+    loadYoutubeApi()
+      .then(api => {
+        if (!active) return;
+        player = new api.Player(iframe, {
+          events: {
+            onReady: () => window.clearTimeout(timeout),
+            onError: () => {
+              window.clearTimeout(timeout);
+              if (active) setFailedHref(href);
+            },
+          },
+        });
+      })
+      .catch(() => {
+        if (active) setFailedHref(href);
+      });
+
+    return () => {
+      active = false;
+      window.clearTimeout(timeout);
+      player?.destroy();
+      host.replaceChildren();
+    };
+  }, [href, mode, label, online, unavailable]);
+
+  const fallbackKind: FallbackKind | null = pending
+    ? 'unavailable'
+    : online === null
+      ? 'loading'
+      : !online
+        ? 'offline'
+        : unavailable
+          ? 'unavailable'
+          : null;
+  const fallbackText =
+    fallbackKind === 'loading'
+      ? messages['loading']
+      : fallbackKind
+        ? (resolveOptionalLocalizedText(
+            fallbackMessages?.[fallbackKind],
+            contentLanguage,
+            'youtube.fallback.' + fallbackKind,
+          ) ?? messages[fallbackKind])
+        : null;
+  const fallback = fallbackKind && (
+    <div key="fallback" className={styles.placeholder} role="status">
+      <strong>{label}</strong>
+      <span>{fallbackText}</span>
+      {fallbackKind === 'unavailable' && !pending && (
+        <button type="button" onClick={() => setFailedHref(null)}>
+          {resolveOptionalLocalizedText(fallbackMessages?.retry, contentLanguage, 'youtube.fallback.retry') ??
+            messages.retry}
+        </button>
+      )}
+    </div>
+  );
+
+  if (mode === 'link') {
+    return (
+      <figure {...attributes} className={styles.figure}>
+        {fallbackKind ? (
+          <div className={styles.linkFallback}>{fallback}</div>
+        ) : (
+          <a href={href} rel="noopener noreferrer" target="_blank">
+            {label}
+          </a>
+        )}
+        {resolvedTitle && <figcaption>{resolvedTitle}</figcaption>}
+      </figure>
+    );
+  }
+
+  return (
+    <figure {...attributes} className={styles.figure}>
+      {fallback || <div key="player" ref={playerHost} className={styles.player} />}
+      {resolvedTitle && <figcaption>{resolvedTitle}</figcaption>}
+    </figure>
+  );
+};

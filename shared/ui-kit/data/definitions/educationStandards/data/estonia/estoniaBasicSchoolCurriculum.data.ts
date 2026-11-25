@@ -1,0 +1,51 @@
+import { defineEducationStandard } from '@svitlo/engine/build';
+
+/** Build-time reference; does not independently establish Course alignment. */
+export const estoniaBasicSchoolCurriculum = defineEducationStandard({
+  id: 'a8554086-44ac-428e-a3f2-8be6999d4a5d',
+  slug: 'estoniaBasicSchoolCurriculum',
+  name: 'Põhikooli riiklik õppekava',
+  params: {
+    countries: ['EE'],
+    grade: { min: 1, max: 9 },
+    nameLanguage: 'et',
+    version: '2011 Government Regulation No. 1 (consolidated December 2025)',
+    sourceUrl: 'https://www.riigiteataja.ee/et/akt/123122025007',
+  },
+  description: {
+    methodological:
+      "Estonia's Government Regulation No. 1 of 6 January 2011 establishes the national curriculum for basic schools (Põhikooli riiklik õppekava), defining the nine-year national basic-education standard. Its general part and subject-area annexes establish learning outcomes, transversal competencies, subject content, assessment principles and requirements for school curricula. Subsequent amendments include provisions with differing effective dates, notably changes published in December 2025, some taking effect in September 2026. Schools implement the national requirements through their own curricula; this record is not the distinct simplified basic-school curriculum or a secondary-school standard.",
+    frontend: {
+      ar: 'يحدد منهج التعليم الأساسي الوطني في إستونيا ونتائج التعلم للصفوف 1–9.',
+      be: 'Вызначае нацыянальную праграму асноўнай школы Эстоніі і вынікі навучаньня ў 1–9 клясах.',
+      bn: 'এস্তোনিয়ায় প্রথম থেকে নবম শ্রেণির জাতীয় মৌলিক শিক্ষাক্রম ও শিখনফল নির্ধারণ করে।',
+      de: 'Legt Estlands nationalen Lehrplan für die Klassen 1–9 und dessen Lernziele fest.',
+      en: "Defines Estonia's national basic-school curriculum and outcomes for grades 1–9.",
+      es: 'Establece el currículo nacional de educación básica de Estonia para los grados 1–9.',
+      et: 'Kehtestab Eesti põhikooli riikliku õppekava ja 1.–9. klassi õpitulemused.',
+      fr: "Définit le programme national estonien de l'école fondamentale et ses acquis des classes 1 à 9.",
+      he: 'מגדיר את תוכנית הלימודים הארצית של בתי הספר הבסיסיים באסטוניה לכיתות א׳–ט׳.',
+      hi: 'एस्तोनिया में कक्षा 1–9 का राष्ट्रीय बुनियादी विद्यालय पाठ्यक्रम और अधिगम परिणाम तय करता है।',
+      id: 'Menetapkan kurikulum nasional pendidikan dasar Estonia untuk kelas 1–9 beserta hasil belajar yang dituju.',
+      it: 'Definisce il curricolo nazionale estone della scuola di base per le classi 1–9.',
+      ja: 'エストニアの1～9年生向け基礎学校の全国教育課程と学習成果を定めます。',
+      ka: 'განსაზღვრავს ესტონეთის საბაზო სკოლის ეროვნულ პროგრამასა და 1–9 კლასების სასწავლო შედეგებს.',
+      kk: 'Эстониядағы 1–9-сыныптардың негізгі мектеп ұлттық бағдарламасы мен оқу нәтижелерін айқындайды.',
+      ko: '에스토니아 1~9학년 기초학교의 국가 교육과정과 학습 성과를 정합니다.',
+      lt: 'Apibrėžia Estijos pagrindinės mokyklos nacionalinę programą ir 1–9 klasių mokymosi rezultatus.',
+      lv: 'Nosaka Igaunijas pamatskolas valsts programmu un mācību rezultātus 1.–9. klasē.',
+      mr: 'एस्टोनियातील इयत्ता 1–9 चा राष्ट्रीय मूलभूत शाळा अभ्यासक्रम व अध्ययन निष्पत्ती ठरवते.',
+      ms: 'Menetapkan kurikulum kebangsaan sekolah asas Estonia untuk gred 1–9.',
+      pl: 'Określa estońską krajową podstawę programową dla klas 1–9 i efekty nauczania.',
+      pt: 'Define o currículo nacional do ensino básico na Estônia e os resultados do 1.º ao 9.º ano.',
+      qm: 'Estoniyada 1–9-ncı sınıflar içün esasiy mektepniñ milliy programmasını ve ögrenüv neticelerini belgiley.',
+      ta: 'எஸ்தோனியாவின் 1–9 ஆம் வகுப்புகளுக்கான தேசிய அடிப்படைக் கல்விப் பாடத்திட்டத்தையும் கற்றல் விளைவுகளையும் வரையறுக்கிறது.',
+      te: 'ఎస్టోనియాలో 1–9 తరగతులకు వర్తించే జాతీయ విద్యా పాఠ్యప్రణాళిక, అభ్యసన ఫలితాలను నిర్దేశిస్తుంది.',
+      tr: "Estonya'nın 1–9. sınıflar için ulusal temel okul programını ve öğrenme çıktılarını belirler.",
+      uk: 'Визначає національну програму базової школи Естонії та результати навчання для 1–9 класів.',
+      ur: 'ایسٹونیا میں جماعت 1–9 کے قومی بنیادی اسکول نصاب اور تعلیمی نتائج طے کرتا ہے۔',
+      vi: 'Quy định chương trình quốc gia và kết quả học tập lớp 1–9 ở trường cơ sở Estonia.',
+      zh: '规定爱沙尼亚1至9年级基础学校的国家课程与学习成果。',
+    },
+  },
+});

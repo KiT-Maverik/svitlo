@@ -1,0 +1,107 @@
+'use client';
+
+import { Box, ButtonBase, Stack, Typography } from '@mui/material';
+
+import type { Question_FillBlanksWithBlocks_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
+import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { QuestionChoice } from '../response/QuestionChoice';
+import { QuestionContent, shuffleItems, type QuestionItem } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
+
+export function FillBlanksWithBlocks({
+  response,
+  sceneRegistry,
+  messages,
+}: {
+  response: Question_FillBlanksWithBlocks_Props;
+  sceneRegistry?: SceneRegistry;
+  messages: UiKitMessages;
+}) {
+  const correct: QuestionItem[] = response.content.slots.map(slot => ({
+    id: 'correct:' + slot.selector,
+    block: slot.correctAnswer,
+  }));
+  const distractors: QuestionItem[] = response.content.distractors.map((block, index) => ({
+    id: 'distractor:' + index + ':' + block.id,
+    block,
+  }));
+  const items = shuffleItems([...correct, ...distractors], response.id);
+  const attempt = useQuestionAttempt<Record<string, string | null>>(
+    () => Object.fromEntries(response.content.slots.map(slot => [slot.selector, null])),
+    value => response.content.slots.every(slot => value[slot.selector] === 'correct:' + slot.selector),
+    value => response.content.slots.length > 0 && response.content.slots.every(slot => Boolean(value[slot.selector])),
+  );
+  const used = new Set(Object.values(attempt.value));
+  const nextEmpty = response.content.slots.find(slot => !attempt.value[slot.selector]);
+  const place = (id: string) => {
+    if (!nextEmpty || attempt.checked) return;
+    attempt.setValue({ ...attempt.value, [nextEmpty.selector]: id });
+  };
+  return (
+    <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
+      <Stack spacing={2}>
+        <Stack
+          direction="row"
+          useFlexGap
+          spacing={1}
+          sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
+          role="group"
+          aria-label={messages.questionFrame.blanks}
+        >
+          {response.content.slots.map(slot => {
+            const selected = items.find(item => item.id === attempt.value[slot.selector]);
+            const correctSlot = selected?.id === 'correct:' + slot.selector;
+            return (
+              <ButtonBase
+                key={slot.selector}
+                component="div"
+                role="button"
+                aria-label={slot.selector}
+                disabled={attempt.checked}
+                onClick={() => attempt.setValue({ ...attempt.value, [slot.selector]: null })}
+                sx={{
+                  display: 'flex',
+                  minWidth: 100,
+                  minHeight: 50,
+                  p: 1,
+                  border: '1px dashed',
+                  borderRadius: 1,
+                  borderColor: attempt.checked ? (correctSlot ? 'success.main' : 'error.main') : 'divider',
+                  bgcolor: 'background.paper',
+                  textAlign: 'center',
+                  '&.Mui-disabled': { opacity: 1 },
+                }}
+              >
+                {selected ? (
+                  <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} messages={messages} />
+                ) : (
+                  <Typography color="text.secondary">{response.locale.placeholder}</Typography>
+                )}
+              </ButtonBase>
+            );
+          })}
+        </Stack>
+        <Box role="group" aria-label={messages.questionFrame.availableBlocks}>
+          <Stack spacing={1}>
+            {items
+              .filter(item => !used.has(item.id))
+              .map(item => (
+                <QuestionChoice
+                  key={item.id}
+                  block={item.block}
+                  selected={false}
+                  sceneRegistry={sceneRegistry}
+                  messages={messages}
+                  disabled={attempt.checked || !nextEmpty}
+                  onToggle={() => place(item.id)}
+                />
+              ))}
+          </Stack>
+        </Box>
+      </Stack>
+    </QuestionFrame>
+  );
+}

@@ -1,0 +1,56 @@
+'use client';
+
+import { Stack, TextField } from '@mui/material';
+
+import type { Question_FillBlanksWithText_Props } from '@svitlo/engine/runtime';
+
+import type { UiKitMessages } from '#types/uiKitMessages';
+
+import type { SceneRegistry } from '../../ContentBlockRenderer';
+import { normalizedAnswer } from '../response/QuestionContent';
+import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
+
+export function FillBlanksWithText({
+  response,
+  sceneRegistry,
+  messages,
+}: {
+  response: Question_FillBlanksWithText_Props;
+  sceneRegistry?: SceneRegistry;
+  messages: UiKitMessages;
+}) {
+  const attempt = useQuestionAttempt<Record<string, string>>(
+    () => ({}),
+    value =>
+      response.locale.slots.every(slot =>
+        slot.correctAnswers.some(correct => normalizedAnswer(correct) === normalizedAnswer(value[slot.selector] ?? '')),
+      ),
+    value =>
+      response.locale.slots.length > 0 &&
+      response.locale.slots.every(slot => (value[slot.selector] ?? '').trim().length > 0),
+  );
+  return (
+    <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
+      <Stack spacing={2} role="group">
+        {response.locale.slots.map(slot => {
+          const value = attempt.value[slot.selector] ?? '';
+          const correct = slot.correctAnswers.some(answer => normalizedAnswer(answer) === normalizedAnswer(value));
+          return (
+            <TextField
+              key={slot.selector}
+              label={slot.selector}
+              placeholder={response.locale.placeholder}
+              value={value}
+              fullWidth
+              onChange={event => attempt.setValue({ ...attempt.value, [slot.selector]: event.target.value })}
+              disabled={attempt.checked}
+              error={attempt.checked && !correct}
+              color={attempt.checked && correct ? 'success' : 'primary'}
+              sx={{ maxWidth: 540, mx: 'auto' }}
+            />
+          );
+        })}
+      </Stack>
+    </QuestionFrame>
+  );
+}

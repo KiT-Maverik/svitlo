@@ -1,0 +1,58 @@
+import type { UserCabinetProps } from './UserCabinet';
+
+/** Storybook and test fixtures only — not production account data. */
+export const userCabinetDemo: Omit<UserCabinetProps, 'initialTab'> = {
+  profile: {
+    id: 'demo-main',
+    displayName: 'Олена Мельник',
+    firstName: 'Олена',
+    lastName: 'Мельник',
+    avatarId: 'sunflower',
+    email: 'olena@example.test',
+  },
+  avatars: [
+    { id: 'sunflower', label: 'Сонях', symbol: '🌻', background: '#F9E8AE' },
+    { id: 'fox', label: 'Лисеня', symbol: '🦊', background: '#F9D4B9' },
+    { id: 'owl', label: 'Сова', symbol: '🦉', background: '#DBCDF7' },
+    { id: 'whale', label: 'Кит', symbol: '🐳', background: '#BCE9F1' },
+    { id: 'stars', label: 'Зірки', symbol: '✨', background: '#F4DDFA' },
+  ],
+  additionalAccounts: [
+    { id: 'demo-anna', displayName: 'Анна', subtitle: 'Навчальний профіль', avatarId: 'fox', role: 'learner' },
+    { id: 'demo-max', displayName: 'Максим', subtitle: 'Навчальний профіль', avatarId: 'whale', role: 'learner' },
+  ],
+  messages: {
+    title: 'Особистий кабінет',
+    subtitle: 'Ваші дані, налаштування профілю та пов’язані акаунти в одному місці.',
+    demoBadge: 'Макет',
+    demoDescription:
+      'Це демонстрація інтерфейсу. Зміни зберігаються лише на цій сторінці; акаунт і пароль на сервері не змінюються.',
+    navigationLabel: 'Розділи особистого кабінету',
+    tabs: { profile: 'Профіль', security: 'Безпека', accounts: 'Додаткові акаунти' },
+    profileTitle: 'Мій профіль',
+    profileDescription: 'Оберіть аватар і відредагуйте ім’я, прізвище та відображуване ім’я.',
+    avatarTitle: 'Аватар',
+    avatarDescription: 'Оберіть зображення для свого профілю.',
+    chooseAvatar: 'Обрати аватар',
+    displayName: 'Відображуване ім’я',
+    firstName: 'Ім’я',
+    lastName: 'Прізвище',
+    email: 'Email (демо)',
+    saveProfile: 'Зберегти зміни',
+    profilePreviewNotice: 'Зміни показано в макеті. Дані облікового запису не змінено.',
+    securityTitle: 'Змінити пароль',
+    securityDescription: 'Спробуйте форму зміни пароля. У демонстраційному режимі дані ніде не надсилаються.',
+    currentPassword: 'Поточний пароль',
+    newPassword: 'Новий пароль',
+    confirmPassword: 'Повторіть новий пароль',
+    changePassword: 'Змінити пароль',
+    passwordMismatch: 'Новий пароль і підтвердження не збігаються.',
+    passwordTooShort: 'Новий пароль має містити щонайменше 8 символів.',
+    passwordDemoNotice: 'Форму заповнено, але пароль не змінено: це лише макет.',
+    accountsTitle: 'Пов’язані профілі',
+    accountsDescription: 'Перегляньте профілі, пов’язані з вашим обліковим записом.',
+    currentAccount: 'Поточний',
+    noAdditionalAccounts: 'Додаткових профілів поки немає.',
+    accountRoles: { owner: 'Основний акаунт', learner: 'Учнівський профіль', other: 'Додатковий профіль' },
+  },
+};

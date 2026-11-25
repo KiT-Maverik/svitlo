@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./.test-build",
+    "types": ["node"],
+    "sourceMap": true
+  },
+  "include": [
+    "index.ts",
+    "runtime.ts",
+    "configurators/**/*.ts",
+    "assemblers/**/*.ts",
+    "schemas/**/*.ts",
+    "types/**/*.ts",
+    "utils/**/*.ts",
+    "generators/**/*.ts",
+    "generators/materializers/**/*.mjs"
+  ],
+  "exclude": ["node_modules", "dist", ".test-build", "**/*.typecheck.ts"]
+}

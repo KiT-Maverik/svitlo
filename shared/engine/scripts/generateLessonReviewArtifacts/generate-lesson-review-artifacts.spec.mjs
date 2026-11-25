@@ -1,0 +1,221 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { test } from 'node:test';
+import { discoverLessons, generateLessonReviewArtifacts } from './generate-lesson-review-artifacts.mjs';
+
+function setup(fn) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-artifacts-'));
+  try {
+    return fn(root);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+}
+function createLesson(root, app = 'playground', id = 'd3048d21-8690-5255-b62c-984c69ac272c', slug = 'howLightMoves') {
+  const dir = path.join(root, 'content', app, 'data', 'lessons', id.slice(-1), id);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, `${slug}.data.ts`), 'export const lesson = {};\n');
+}
+function createGenerator(root) {
+  const dir = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(
+    path.join(dir, 'generate-lessons-markdown.mjs'),
+    `
+const args = process.argv.slice(2);
+const lookup = key => args[args.indexOf(key) + 1];
+if (args.includes('--list-locales')) { process.stdout.write(JSON.stringify(['en', 'uk'])); process.exit(0); }
+if (lookup('--locale') === 'qm') { console.error('No qm translation'); process.exit(2); }
+process.stdout.write('# ' + lookup('--lesson') + ': ' + lookup('--locale') + '\\n');
+`,
+  );
+}
+function run(root, languages = ['en', 'uk']) {
+  const output = path.join(root, 'temp/agent-reference-library');
+  const manifest = { generated: [], failures: [] };
+  const saveManifest = () => fs.writeFileSync(path.join(output, 'manifest.json'), JSON.stringify(manifest));
+  fs.mkdirSync(output, { recursive: true });
+  const result = generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest });
+  return { result, manifest, output };
+}
+
+test('discovers only canonical UUID-addressed lessons with actual data files in deterministic order', () =>
+  setup(root => {
+    createLesson(root, 'playground', '00000000-0000-5000-8000-000000000002', 'someLesson');
+    createLesson(root, 'playground', 'd3048d21-8690-5255-b62c-984c69ac272c', 'howLightMoves');
+    createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
+    const invalid = path.join(root, 'content', 'playground', 'data', 'lessons', 'misc', 'bogus');
+    fs.mkdirSync(invalid, { recursive: true });
+    fs.writeFileSync(path.join(invalid, 'bogus.data.ts'), '');
+    const actual = discoverLessons(root).map(l => `${l.textbook}/${l.relative}`);
+    assert.deepEqual(actual, [
+      'math/3/00000000-0000-5000-8000-000000000003',
+      'playground/2/00000000-0000-5000-8000-000000000002',
+      'playground/c/d3048d21-8690-5255-b62c-984c69ac272c',
+    ]);
+  }));
+
+test('discovers composed index.ts Lessons without retired data files', () =>
+  setup(root => {
+    const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+    const directory = path.join(root, 'content/playground/data/lessons/c', id);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.writeFileSync(path.join(directory, 'index.ts'), 'export const howLightMoves = {};\n');
+    const entries = discoverLessons(root);
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0].source, path.join(directory, 'index.ts'));
+    createGenerator(root);
+    const { result, manifest } = run(root);
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
+    assert.equal(manifest.generated[0].lesson, 'c/' + id);
+  }));
+
+test('generates locale-specific Markdown and records ZIP-root-relative paths', () =>
+  setup(root => {
+    createLesson(root);
+    createGenerator(root);
+    const { result, manifest, output } = run(root);
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
+    assert.equal(manifest.generated[0].path, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md');
+    assert.equal(manifest.generated[0].kind, 'lesson');
+    assert.equal(
+      fs.readFileSync(path.join(output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/uk.md'), 'utf8'),
+      '# d3048d21-8690-5255-b62c-984c69ac272c: uk\n',
+    );
+    assert.equal(
+      fs.readFileSync(
+        path.join(root, 'content/playground/data/lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/howLightMoves.data.ts'),
+        'utf8',
+      ),
+      'export const lesson = {};\n',
+    );
+  }));
+
+test('records individual locale failures while generating other locales', () =>
+  setup(root => {
+    createLesson(root);
+    createGenerator(root);
+    const { result, manifest } = run(root, ['en', 'qm', 'uk']);
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 1 });
+    assert.deepEqual(
+      manifest.failures.map(f => [f.kind, f.lesson, f.locale]),
+      [['lesson', 'c/d3048d21-8690-5255-b62c-984c69ac272c', 'qm']],
+    );
+    assert.match(manifest.failures[0].error, /No qm translation/);
+  }));
+
+test('clearly records a missing Agent 4 generator without inventing Markdown', () =>
+  setup(root => {
+    createLesson(root);
+    const { result, manifest, output } = run(root);
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 0, failures: 1 });
+    assert.match(manifest.failures[0].error, /Agent 4 dependency/);
+    assert.deepEqual(fs.readdirSync(path.join(output, 'lessons')), []);
+  }));
+
+test('repeat generation is deterministic and ignores unrelated/noncanonical folders', () =>
+  setup(root => {
+    createLesson(root);
+    createGenerator(root);
+    const first = run(root);
+    const firstMarkdown = fs.readFileSync(
+      path.join(first.output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md'),
+      'utf8',
+    );
+    const second = run(root);
+    assert.equal(
+      firstMarkdown,
+      fs.readFileSync(
+        path.join(second.output, 'lessons/playground/c/d3048d21-8690-5255-b62c-984c69ac272c/en.md'),
+        'utf8',
+      ),
+    );
+    assert.deepEqual(first.manifest, second.manifest);
+  }));
+
+test('rejects symlinked lesson directories during discovery', () =>
+  setup(root => {
+    createLesson(root);
+    const group = path.join(root, 'content/playground/data/lessons/c');
+    fs.symlinkSync(path.join(group, 'd3048d21-8690-5255-b62c-984c69ac272c'), path.join(group, 'linkedLesson'));
+    assert.equal(discoverLessons(root).length, 1);
+  }));
+
+test('scoped Lesson generation visits only the selected textbook and locale', () =>
+  setup(root => {
+    createLesson(root, 'playground');
+    createLesson(root, 'math', '00000000-0000-5000-8000-000000000003', 'numbers');
+    createGenerator(root);
+    const output = path.join(root, 'temp/agent-reference-library');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const result = generateLessonReviewArtifacts({
+      root,
+      output,
+      languages: ['it'],
+      packageName: 'content/math',
+      manifest,
+      saveManifest: () => {},
+    });
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 1, failures: 0 });
+    assert.deepEqual(
+      manifest.generated.map(x => x.path),
+      ['lessons/math/3/00000000-0000-5000-8000-000000000003/it.md'],
+    );
+    assert.equal(fs.existsSync(path.join(output, 'lessons/playground')), false);
+  }));
+
+test('omitting locale enumerates only the languages declared by a scoped Lesson', () =>
+  setup(root => {
+    createLesson(root, 'playground');
+    createGenerator(root);
+    const output = path.join(root, 'temp/agent-reference-library');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const result = generateLessonReviewArtifacts({
+      root,
+      output,
+      languages: null,
+      packageName: 'content/playground',
+      supportedLanguages: ['en', 'uk', 'it'],
+      manifest,
+      saveManifest: () => {},
+    });
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
+    assert.deepEqual(
+      manifest.generated.map(x => x.locale),
+      ['en', 'uk'],
+    );
+  }));
+
+test('exact Lesson UUID bypasses unrelated malformed lessons and fails for a missing entity', () =>
+  setup(root => {
+    const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+    createLesson(root);
+    createGenerator(root);
+    // Full discovery would reject this non-UUID sibling; scoped references must not visit it.
+    fs.mkdirSync(path.join(root, 'content/playground/data/lessons/f/not-a-uuid'), { recursive: true });
+    const output = path.join(root, 'temp/agent-reference-library');
+    fs.mkdirSync(output, { recursive: true });
+    const manifest = { generated: [], failures: [] };
+    const selected = generateLessonReviewArtifacts({
+      root,
+      output,
+      languages: ['en'],
+      packageName: 'content/playground',
+      lessonId: id.toUpperCase(),
+      manifest,
+      saveManifest() {},
+    });
+    assert.deepEqual(selected, { discoveredLessons: 1, generated: 1, failures: 0 });
+    assert.deepEqual(
+      manifest.generated.map(row => row.path),
+      ['lessons/playground/c/' + id + '/en.md'],
+    );
+    assert.throws(
+      () => discoverLessons(root, 'content/playground', '00000000-0000-4000-8000-00000000000f'),
+      /No canonical Lesson source/,
+    );
+  }));

@@ -1,0 +1,100 @@
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
+import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+
+import {
+  mergeForValidation,
+  onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  splitLocalizedFields,
+} from '../../_shared__configurators';
+import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
+
+type SkillPublication<Base> = {
+  base: Base;
+  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Props>>> | undefined;
+};
+
+const validate = (config: Skill_Config): void => {
+  skill_Config_Schema.parse(config);
+};
+
+/** Authored dictionaries are projected into complete Props-shaped locale-file bodies. */
+const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>) => {
+  const split = splitLocalizedFields(input);
+  return {
+    base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
+    locale: split.locale as
+      Partial<Record<LanguageCode, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
+  };
+};
+
+/** Fixed public surface preserves literal Slug and optional language tuple. */
+export type Skill_Configurator<
+  Slug extends string = string,
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'skill';
+  readonly validate: typeof validate;
+  readonly build: {
+    props(
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
+  };
+  readonly config: {
+    base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
+    validate: typeof validate;
+    locales: () => DeepPartial<Skill_Config>;
+  };
+} & LanguageScope<Languages>;
+
+export function defineSkill<
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
+  config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
+): Skill_Configurator<Slug, Languages> {
+  const authored = structuredClone(config);
+  const { id } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));
+
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> => {
+    const languages = resolvePublicationLanguages(options);
+    const current = copyAuthored();
+    const own = project({ name: current.name, description: current.description });
+    const result: SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> = {
+      base: { id: id as Skill_Config['id'], slug, ...own.base },
+      locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
+    };
+    for (const language of languages) {
+      skill_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
+  };
+
+  const result = {
+    id,
+    slug,
+    type: 'skill' as const,
+    validate,
+    build: { props },
+    config: {
+      base: {
+        id: id as Skill_Config['id'],
+        slug,
+        ...project({ name: authored.name, description: authored.description }).base,
+      },
+      validate,
+      locales: (): DeepPartial<Skill_Config> => {
+        const current = copyAuthored();
+        return onlyLocales({ name: current.name, description: { frontend: current.description.frontend } });
+      },
+    },
+  } as const;
+  return result as typeof result & LanguageScope<Languages>;
+}
