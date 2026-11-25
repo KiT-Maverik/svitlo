@@ -753,8 +753,8 @@ test('Course additionalItems binds only verified Sections and retains real neste
   };
   const plan = materializeCourseStage5(reviewed, opts);
   const index = plan.files.find(file => file.path === root + '/index.ts').content;
-  assert.match(index, /import \{ practice as added_section_content_reused_practice \} from "#lessonsData\/1\//);
-  assert.match(index, /"additionalItems": \{"practice": added_section_content_reused_practice\}/);
+  assert.match(index, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
+  assert.match(index, /"additionalItems": \{"practice": added_section_reused_practice\}/);
   assert.doesNotMatch(index, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
