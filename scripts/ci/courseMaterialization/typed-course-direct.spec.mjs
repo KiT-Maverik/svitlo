@@ -320,6 +320,24 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     const row = m.inventory.lessons.find(item => item.kind === 'overridden');
     const file = m.entries.find(item => item.path === row.overrideSourcePath);
     const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const altered = source.replace('export const ' + row.slug + ' = placeLesson(', 'export const placedLesson = placeLesson(');
+    assert.notEqual(altered, source, 'placement export must be its actual slug');
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'overridden');
+    const file = m.entries.find(item => item.path === row.overrideSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const altered = source.replace(/\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\n/, '');
+    assert.notEqual(altered, source, 'resources blocker must be adjacent to the placement export');
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'overridden');
+    const file = m.entries.find(item => item.path === row.overrideSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
     const altered = source.replace('placeLesson(originalLesson, ', 'placeLesson(wrongLesson, ');
     assert.notEqual(altered, source);
     file.data = Buffer.from(altered).toString('base64');
