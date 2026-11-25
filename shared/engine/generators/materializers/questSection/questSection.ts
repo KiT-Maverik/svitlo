@@ -192,10 +192,12 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   if (!localeKey.test(options.documentLanguage)) throw new Error('quest: invalid documentLanguage');
   const files: GeneratedFile[] = [],
     diagnostics: Diagnostic[] = [];
-  const seen = new Set<string>(),
-    imports: string[] = [];
+  const seen = new Set<string>();
   const values: Record<string, unknown> = {};
-  const claim = createSourceIdentifierRegistry('questSection', ['defineQuestSection', 'languages', 'stages', 'tasks', exported(config.slug)]);
+  // Both Quest maps require "start". Independent modules preserve canonical
+  // child names without aliases or a collision between the two maps.
+  const mapImports: Record<'stages' | 'tasks', string[]> = { stages: [], tasks: [] };
+  createSourceIdentifierRegistry('questSection', ['defineQuestSection', 'languages', 'stages', 'tasks', exported(config.slug)]);
   const identities = new Set<string>([config.id]);
   for (const category of ['stages', 'tasks'] as const) {
     const source = config[category];
@@ -204,6 +206,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     if (Object.hasOwn(source, 'order'))
       throw new Error('quest.' + category + ': order is prohibited; Quest branches via Actions');
     const rendered: Record<string, Reference> = {};
+    const claim = createSourceIdentifierRegistry('questSection ' + category, [category]);
     const ids = new Set<string>();
     for (const key of Object.keys(source).sort()) {
       part(key, 'quest.' + category + '.' + key);
@@ -222,9 +225,16 @@ export function materializeQuestSection(config: Source, options: Options): Resul
       includeChild(files, seen, diagnostics, child, childDir, key);
       const name = claim(child.exportName, category + '.' + key);
       rendered[key] = imported(name);
-      imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + category + '/' + key) + ';');
+      mapImports[category].push('import { ' + name + ' } from ' + JSON.stringify('./' + category + '/' + key) + ';');
     }
     values[category] = rendered;
+  }
+  for (const category of ['stages', 'tasks'] as const) {
+    addOwn(files, seen, {
+      path: destination(dir, category + '.ts'),
+      kind: 'typescript',
+      content: [...mapImports[category], '', 'export const ' + category + ' = ' + render(values[category]) + ';', ''].join('\n'),
+    });
   }
   const { stages: _ignoredStages, tasks: _ignoredTasks, ...metadata } = config;
   const own = {
@@ -258,12 +268,11 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   const source = [
     "import { defineQuestSection } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(options.languagesImport) + ';',
-    ...imports,
+    'import { stages } from "./stages";',
+    'import { tasks } from "./tasks";',
     '',
     blocker,
     ...(methodologyBlocker ? [methodologyBlocker] : []),
-    'const stages = ' + render(values.stages) + ';',
-    'const tasks = ' + render(values.tasks) + ';',
     'export const ' +
       exported(config.slug) +
       ' = defineQuestSection<' +

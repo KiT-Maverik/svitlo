@@ -838,6 +838,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
   assert.match(lessonRoot, /"order": \["introduction"\]/);
   assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
+  assert(plan.files.some(file => file.path === folder + 'sections/quest/stages.ts'));
+  assert(plan.files.some(file => file.path === folder + 'sections/quest/tasks.ts'));
   assert(
     plan.diagnostics.some(
       item => item.code === 'pending-lesson' && item.message.includes('Implement and verify Quest runtime support'),
