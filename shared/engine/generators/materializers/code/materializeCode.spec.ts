@@ -83,7 +83,7 @@ test('code: composed nested source paths and Course language handoff', () => {
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
-  assert(nested.files.some(file => file.path === directory + '/specification.md'));
+  assert(!nested.files.some(file => file.path === directory + '/specification.md'));
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );
