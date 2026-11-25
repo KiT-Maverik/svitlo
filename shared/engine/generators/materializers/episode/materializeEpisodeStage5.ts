@@ -77,7 +77,7 @@ export function materializeEpisodeStage5(
   // Technical ownership comes from the sealed Git source path, never an
   // editable repetition of courseId/path/orderPath in Episode narrative.
   const owned = source.source.sourcePath.match(
-    /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
+    /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/((?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
   );
   if (!owned || owned[2] !== owned[3].at(-1) || owned[4].split('/').at(-1) !== input.config.slug)
     throw Error('Episode Stage 5 requires its exact allocated Course draft path');
