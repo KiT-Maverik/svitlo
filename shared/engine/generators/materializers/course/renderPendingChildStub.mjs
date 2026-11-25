@@ -49,3 +49,23 @@ export function renderPendingChildStub({ directory, kind, id, slug }) {
       ' });\n',
   };
 }
+
+/** Preview-only import with an actionable blocker immediately above it.
+ * Shared by Course, Module and Chapter so nested child slots cannot diverge.
+ */
+export function renderPendingChildImport({ kind, slug, location }) {
+  if (!apis[kind] || !safe(slug ?? '') || !['./', './content/'].includes(location))
+    throw Error('Invalid pending Course child import');
+  return (
+    renderBlockerTodo(
+      'Keep this pending ' +
+        kind +
+        ' stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.',
+    ) +
+    '\nimport { stub as child_' +
+    slug +
+    ' } from ' +
+    JSON.stringify(location + slug + '/stub') +
+    ';'
+  );
+}
