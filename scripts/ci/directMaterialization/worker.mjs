@@ -27,9 +27,23 @@ process.on('uncaughtException', error => {
             ? 75
             : /Unexpected token|SyntaxError|syntax errors/.test(message)
               ? 76
-              : error instanceof TypeError
-                ? 77
-                : 78;
+              : /Unsupported materializer request/.test(message)
+                ? 79
+                : /Invalid candidate UTF-8/.test(message)
+                  ? 80
+                  : /Stage 6:/.test(message)
+                    ? 81
+                    : /Cannot materialize|incomplete or invalid|invalid source|Section|Text Config/.test(message)
+                      ? 82
+                      : String(error?.stack ?? '').includes('/work/shared/engine/dist/generators/materializers/lesson/')
+                        ? 83
+                        : /node_modules\\/jiti|node_modules\\/typescript/.test(String(error?.stack ?? ''))
+                          ? 84
+                          : String(error?.stack ?? '').includes('/work/worker.mjs')
+                            ? 85
+                            : error instanceof TypeError
+                              ? 77
+                              : 78;
   process.exit(code);
 });
 const { operation, source } = JSON.parse(fs.readFileSync(0, 'utf8'));
