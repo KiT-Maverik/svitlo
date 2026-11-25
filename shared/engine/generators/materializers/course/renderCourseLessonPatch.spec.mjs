@@ -31,7 +31,7 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
   assert.deepEqual(first, second, 'rendering must be deterministic');
   assert.equal(JSON.stringify(rawPatch), before, 'authored patch must remain immutable');
   assert.deepEqual(first.files.map(file => file.path), [
-    directory + '/sections/content/content/p1/index.ts',
+    directory + '/sections/content/p1/index.ts',
     directory + '/sections/content/index.ts',
   ]);
   assert.match(first.files[0].content, /section_content is literal user text/);
