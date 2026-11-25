@@ -76,12 +76,7 @@ const reviewed = () => ({
   production: {
     purpose: 'Collect evidence after upstream lessons',
     lessonDependencies: ['content/moduleOne/lessonOne'],
-    placement: {
-      courseId,
-      path: placement,
-      orderPath: [0, 2],
-      reviewedCourseSourceBlobSha: 'a'.repeat(40),
-    },
+    reviewedCourseSourceBlobSha: 'a'.repeat(40),
     languages: { document: 'uk', planned: ['uk', 'en'] },
     design: 'One accessible Quiz draws on an independently owned Lesson bank',
     specification: 'Use an introductory Content Section and one reviewed Quiz',
@@ -153,7 +148,6 @@ test('Assessment Stage 2 requires exactly one non-disabled Quiz and Content-only
 test('Assessment materializer escapes reserved TypeScript slug exports', () => {
   const input = reviewed();
   input.config.slug = 'for';
-  input.production.placement.path = 'content/moduleOne/content/for';
   const plan = materializeAssessment(input, {
     ...options,
     source: {
