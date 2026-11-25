@@ -257,6 +257,7 @@ const section_Schema = z.union([
   flashcardsSectionNode_Schema,
   questSectionNode_Schema,
 ]);
+export const lessonWorkflowSection_Schema = section_Schema;
 export type LessonWorkflowStage2Section = z.infer<typeof section_Schema>;
 
 const lessonStage2Config_Schema = lessonStage1Config_Schema.omit({ section: true, events: true }).extend({

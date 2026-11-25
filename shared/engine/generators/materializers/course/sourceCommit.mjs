@@ -156,6 +156,17 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
       } else if (row.stubSourcePath !== undefined) {
         throw new Error('Completed Course placement cannot declare a draft stub');
       }
+      // A Course-authored Lesson override must have one owned, sealed adapter
+      // module at the exact reviewed placement. Pure reuse never allocates it.
+      if (row.type === 'lesson' && row.kind === 'overridden') {
+        if (
+          row.overrideSourcePath !== row.placementPath + '/index.ts' ||
+          !plan.files.some(file => file.path === row.overrideSourcePath && file.kind === 'typescript')
+        )
+          throw new Error('Course-local Lesson override is missing its placement index.ts');
+      } else if (row.overrideSourcePath !== undefined) {
+        throw new Error('Unmodified Course placement cannot claim a Lesson override module');
+      }
     }
   }
   const actualStubs = plan.files.filter(file => file?.path?.endsWith('/stub.ts'));

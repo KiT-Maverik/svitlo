@@ -80,6 +80,11 @@ export type CourseStage5Options = {
     exportName: string;
     configurator: import('../../../configurators/sections').Section_Configurator;
   };
+  /** Trusted concrete renderer for newly authored Course-owned Sections. */
+  renderAddedSection?: (
+    node: import('../../../types/workflow/lessonWorkflow.types').LessonWorkflowStage2Section,
+    context: { directory: string; slug: string },
+  ) => SourceRenderResult;
   materializeSection?: (
     node: unknown,
     context: {
@@ -105,6 +110,7 @@ export type CoursePlacementInventoryRow = {
   orderPath: readonly number[];
   sourcePath: string;
   placementSourcePath: string;
+  overrideSourcePath?: string;
   sourceSha?: string;
   lessonDependencies?: readonly string[];
 };
