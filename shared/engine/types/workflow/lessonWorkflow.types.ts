@@ -136,7 +136,7 @@ const textNode_Schema = node(text_Config_Schema);
 /** An Image is not producible from a generic purpose; Stage 2 must author a generation prompt. */
 const imageNode_Schema = z.strictObject({
   config: imageSource_Schema,
-  production: resourceProduction_Schema.extend({
+  production: nodeProduction_Schema.extend({
     prompt: z.string().trim().min(80, 'Image requires a concrete generation prompt with visual detail'),
   }),
 });
