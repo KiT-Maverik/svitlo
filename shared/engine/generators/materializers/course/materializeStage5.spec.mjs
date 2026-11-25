@@ -499,6 +499,60 @@ const assessmentSlot = (...dependencies) => ({
   production: { purpose: 'Check understanding after upstream Lessons', lessonDependencies: dependencies },
 });
 
+test('reviewed Course preview with four Episodes, three Assessments and two new Lessons has nine owned stubs', () => {
+  const input = patchedSource();
+  const top = input.config.content;
+  const module = top.items.moduleOne.config.content;
+  const chapterContent = module.items.chapterOne.config.content;
+  top.items.directEpisode = episode();
+  top.items.directChapter = chapter();
+  top.items.directChapter.config.slug = 'directChapter';
+  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.items.moduleEpisode = episode();
+  module.order = ['moduleEpisode', 'chapterOne'];
+  chapterContent.items.reused = {
+    ...top.items.directLesson,
+    config: { ...top.items.directLesson.config, slug: 'reused' },
+    production: {
+      ...top.items.directLesson.production,
+      existing: { id: reusedLessonId },
+      sourcePatch: undefined,
+      overrideRationale: undefined,
+    },
+  };
+  chapterContent.order.push('reused');
+  chapterContent.items.chapterReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  chapterContent.order.push('chapterReview');
+  module.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  module.order.push('moduleReview');
+  top.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
+  top.order.push('finalReview');
+  const plan = materializeCourseStage5(input, reuseOptions());
+  assert.equal(plan.inventory.episodes.length, 4);
+  assert.equal(plan.inventory.assessments.length, 3);
+  assert.equal(plan.inventory.lessons.filter(row => row.kind === 'new').length, 2);
+  const rows = [...plan.inventory.episodes, ...plan.inventory.assessments, ...plan.inventory.lessons]
+    .filter(row => row.status.startsWith('pending'));
+  assert.equal(rows.length, 9);
+  const stubFiles = plan.files.filter(file => file.path.endsWith('/stub.ts'));
+  assert.equal(stubFiles.length, 9);
+  assert.equal(new Set(stubFiles.map(file => file.path)).size, 9);
+  const apis = { lesson: 'defineLessonStub', episode: 'defineEpisodeStub', assessment: 'defineAssessmentStub' };
+  for (const row of rows) {
+    const stub = stubFiles.find(file => file.path === row.stubSourcePath);
+    assert.ok(stub, row.placementPath);
+    assert.match(stub.content, /TODO \(BLOCKER\):.*delete this stub\.ts/);
+    assert.ok(stub.content.includes(apis[row.type] + '({ id: ' + JSON.stringify(row.id)));
+    const parent = plan.files.find(file => file.path === row.placementSourcePath);
+    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
+    assert.ok(parent.content.includes('/' + row.slug + '/stub'));
+    assert.doesNotMatch(parent.content, new RegExp(apis[row.type] + '\\('));
+    assert.ok(row.sourcePath.endsWith('/draft.ts'));
+    assert.notEqual(row.sourcePath, row.stubSourcePath);
+  }
+  assert.deepEqual(plan.files, materializeCourseStage5(input, reuseOptions()).files);
+});
+
 test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners with verified upstream Lessons', () => {
   const input = source();
   const rootContent = input.config.content;
@@ -568,7 +622,7 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   another.config.content.items.moduleOne.config.content.items.chapterOne.config.content.items.chapterReview =
     assessmentSlot('content/directLesson');
   const chapter = another.config.content.items.moduleOne.config.content.items.chapterOne.config.content;
-  chapter.order.push('chapterReview');
+  chapterContent.order.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
