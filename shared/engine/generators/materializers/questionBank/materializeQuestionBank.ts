@@ -38,7 +38,6 @@ import {
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
@@ -171,18 +170,11 @@ function renderQuestion(
  */
 export function materializeQuestionBank(
   input: QuestionBankWorkflowStage3,
-  authorization?: QuestionBankFinalAuthorization,
+  authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer(
-    'questions-stage5',
-    authorization,
-    approved => {
-      const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
-      if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
-      return planQuestionBank(input, approved);
-    },
-    input,
-  );
+  const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+  if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+  return planQuestionBank(parsed.data, authorization);
 }
 
 function planQuestionBank(

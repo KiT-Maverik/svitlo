@@ -2,7 +2,6 @@ import {
   episodeWorkflowStage2_Schema,
   type EpisodeWorkflowStage2,
 } from '../../../types/workflow/episodeWorkflow.types';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderSceneFiles } from '../scene/materializeScene';
 import { materializeEpisode } from './materialize.mjs';
@@ -70,13 +69,10 @@ export type EpisodeStage5Plan = {
  */
 export function materializeEpisodeStage5(
   input: EpisodeWorkflowStage2,
-  options?: EpisodeStage5Options,
+  options: EpisodeStage5Options,
 ): EpisodeStage5Plan {
-  return invokeMaterializer(
-    'episode-stage5',
-    options,
-    source => {
-      const checked = episodeWorkflowStage2_Schema.safeParse(input);
+  const source = options;
+  const checked = episodeWorkflowStage2_Schema.safeParse(input);
       if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
       // Technical ownership comes from the sealed Git source path, never an
       // editable repetition of courseId/path/orderPath in Episode narrative.
@@ -149,7 +145,4 @@ export function materializeEpisodeStage5(
         diagnostics: result.diagnostics ?? [],
         publishable: false,
       };
-    },
-    input,
-  );
 }

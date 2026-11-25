@@ -23,20 +23,34 @@ export type CourseStage5Source = {
   sourcePath: string;
   sourceBlobSha: string;
 };
-export type ExistingLesson = {
+/** Trusted runner approval to execute the exact independent Lesson Build source.
+ * A matching SHA or a caller-provided Configurator by itself is not approval.
+ */
+export type ExistingLessonRequest = {
   id: string;
   sourceSha: string;
   importPath: string;
   exportName: string;
-  languages: readonly string[];
+  placementPath: string;
+};
+export type ApprovedExistingLesson = {
+  approved: true;
+  id: string;
+  sourceSha: string;
+  importPath: string;
+  exportName: string;
   configurator: Lesson_Configurator;
-  /** Original raw Lesson Build expression corresponding to reviewed built sparse output. */
-  rawPatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
 };
 export type CourseStage5Options = {
   textbookRoot: `content/${string}`;
   source: CourseStage5Source;
   verifySource: (arg: { input: CourseWorkflowStage3; source: CourseStage5Source; textbookRoot: string }) => boolean;
+  /** Required whenever the Course reuses a Lesson. The trusted runner must
+   * attest execution trust and pinned dependency identity before returning.
+   */
+  resolveExistingLesson?: (request: ExistingLessonRequest) => ApprovedExistingLesson;
+  /** Optional trusted binder for inert added Section references. */
+  resolveAddedSection?: (request: { id: string; ownerLessonId: string; sourceSha: string; slug: string; importPath: string; exportName: string; placementPath: string }) => { approved: true; id: string; ownerLessonId: string; sourceSha: string; slug: string; importPath: string; exportName: string; configurator: import('../../../configurators/sections').Section_Configurator };
   materializeSection?: (
     node: unknown,
     context: {

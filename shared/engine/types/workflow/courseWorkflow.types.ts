@@ -6,6 +6,7 @@ import type { Course_Config } from '../../configurators/courses/defineCourse/def
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
@@ -219,14 +220,14 @@ export type CourseWorkflowStage3ExistingLessonConfig = CourseWorkflowStage3Place
   events?: never;
 };
 
-/** One uniform plain object for every existing Lesson placement.
- * The mandatory ID identifies the independently owned Lesson.
- * Optional base/locale reuse exactly the sparse Lesson Build override format.
- * Stage 3 authoring should use importedLesson.id or the actual result of
- * importedLesson.build.overrides(...), not fabricate a patch manually.
+/** A declarative reference to the independently owned canonical Lesson.
+ * The reviewed sparse Course-local patch is authored separately; built Props
+ * fragments never belong in the Stage 3 draft.
  */
-export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> &
-  Partial<Pick<ReturnType<Lesson_Configurator['build']['overrides']>, 'base' | 'locale'>>;
+export type CourseWorkflowStage3ExistingLessonReference = Pick<Lesson_Config, 'id'> & {
+  base?: never;
+  locale?: never;
+};
 
 /** Verification evidence for reusing an independent Lesson.
  * The Lesson UUID is carried by production.existing; do not store it twice.
@@ -242,9 +243,8 @@ export type CourseWorkflowStage3LessonMatch = {
   languageEvidence: string;
 };
 
-/** Two outcomes remain: new or existing. Every existing placement uses
- * exactly the same { id, base?, locale? } reference object, regardless of
- * whether this Course modifies the Lesson.
+/** Two outcomes remain: new or existing. An existing Lesson is referenced
+ * solely by UUID, with optional plain, placement-local sourcePatch.
  */
 export type CourseWorkflowStage3ExistingLesson = {
   config: CourseWorkflowStage3ExistingLessonConfig;
@@ -255,11 +255,16 @@ export type CourseWorkflowStage3ExistingLesson = {
     matching: CourseWorkflowStage3LessonMatch;
     /** Required explicit assessment decisions for the reused Lesson placement. */
     assessment: LessonProductionAssessmentRequirements;
-    /** Final invocation may directly pass the already-imported canonical Configurator. */
-    source?: Lesson_Configurator;
-    sourceExportName?: string;
-    /** Authored raw sparse Config patch, required when existing contains built overrides. */
-    sourcePatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
+    /** Named export of the canonical Lesson. This is inert source metadata.
+     * A trusted dependency resolver must approve and verify it before execution.
+     */
+    sourceExportName: string;
+    source?: never;
+    /** Only the authored sparse Config patch; no pre-built duplicate. In a
+     * concrete draft, derive its exact type from a type-only Lesson import:
+     * Parameters<typeof actualLesson.build.overrides>[0].
+     */
+    sourcePatch?: CourseLessonSourcePatch<Lesson_Configurator>;
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */

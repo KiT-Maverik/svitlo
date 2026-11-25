@@ -37,7 +37,6 @@ import {
 } from '../bankSource/lessonLanguageOwnership';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 
 export type FlashcardBankDraftAuthorization = {
@@ -193,18 +192,11 @@ function checkSides(card: Card, slug: string): void {
  */
 export function materializeFlashcardBank(
   input: FlashcardBankWorkflowStage3,
-  authorization?: FlashcardBankFinalAuthorization,
+  authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer(
-    'flashcards-stage5',
-    authorization,
-    approved => {
-      const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
-      if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
-      return planFlashcardBank(input, approved);
-    },
-    input,
-  );
+  const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
+  if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+  return planFlashcardBank(parsed.data, authorization);
 }
 
 function planFlashcardBank(

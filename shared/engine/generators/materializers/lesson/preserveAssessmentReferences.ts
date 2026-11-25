@@ -2,6 +2,8 @@ import { posix } from 'node:path';
 
 import ts from 'typescript';
 
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import type { Result } from './lesson';
 
@@ -51,6 +53,12 @@ function at(object: ts.Expression, keys: string[]): ts.Expression | undefined {
 function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
   const candidates: ts.Expression[] = [];
   for (const statement of file.statements) {
+    // The canonical inert draft may export its Stage object directly rather
+    // than using an executable materializer call or intermediate const.
+    if (ts.isExportAssignment(statement)) {
+      const root = unwrap(statement.expression);
+      if (at(root, ['config', 'section', 'items']) && at(root, ['production'])) candidates.push(root);
+    }
     if (ts.isExpressionStatement(statement) && ts.isCallExpression(statement.expression)) {
       const call = statement.expression;
       if (
@@ -119,6 +127,7 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     throw new Error('Stage 6: reviewed Stage 2 TypeScript has syntax errors');
   const root = findReviewedLesson(file);
   const imports = importedBindings(file);
+  const inertDefaultExport = file.statements.some(statement => ts.isExportAssignment(statement) && !statement.isExportEquals);
   const selected: Selection[] = [];
   for (const key of input.config.section.order) {
     const node = input.config.section.items[key];
@@ -143,6 +152,16 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     if (elements.length !== ids.length)
       throw new Error('Stage 6: reviewed ' + key + '.' + field + ' does not match evaluated Config');
     const generatedPath = posix.join(posix.dirname(sourcePath), 'sections', key, 'index.ts');
+    // In declarative drafts, UUID selections are inert reviewable data, not
+    // executable references. Emit the selected IDs but keep an explicit
+    // publication blocker until the Section owner integrates actual approved
+    // bank Configurator references. Legacy executable drafts retain the
+    // stricter imported-expression handling during the CI migration.
+    if (inertDefaultExport && elements.every((value, i) => ts.isStringLiteral(unwrap(value as ts.Expression)) &&
+        (unwrap(value as ts.Expression) as ts.StringLiteral).text === ids[i])) {
+      selected.push({ sectionKey: key, kind, field, ids, references: [] });
+      continue;
+    }
     const references = elements.map((value, i) => {
       const expression = unwrap(value as ts.Expression);
       if (!ts.isPropertyAccessExpression(expression) || expression.name.text !== 'id')
@@ -188,6 +207,14 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
   return selected;
 }
 function applySelection(source: string, filePath: string, selection: Selection): string {
+  if (selection.references.length === 0) {
+    return (
+      renderBlockerTodo(
+        'Replace provisional ' + selection.field +
+          ' UUIDs with verified imported Question/Flashcard Configurator references before publication.',
+      ) + '\n' + source
+    );
+  }
   const file = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length)
     throw new Error('Stage 6: malformed rendered Section TypeScript');
@@ -227,14 +254,86 @@ function applySelection(source: string, filePath: string, selection: Selection):
   );
 }
 
+/**
+ * Exact bank members attested by the trusted runner. These are not authored
+ * draft imports and the SHA is evidence of identity, not execution trust.
+ * The runner must check each approval against the immutable Lesson-owned bank.
+ */
+export type TrustedBankMember = Readonly<{
+  approved: true;
+  id: string;
+  sourceSha: string;
+  importPath: string;
+  exportName: string;
+  memberPath?: readonly string[];
+}>;
+export type TrustedBankSelection = Readonly<{
+  sectionKey: string;
+  kind: BankKind;
+  members: readonly TrustedBankMember[];
+}>;
+
+function bindTrustedBankSelections(
+  selections: Selection[],
+  trusted: readonly TrustedBankSelection[],
+  lessonId: string,
+): Selection[] {
+  const seen = new Set<string>();
+  const approved = new Map<string, TrustedBankSelection>();
+  for (const value of trusted) {
+    if (!value || !identifier.test(value.sectionKey) ||
+        (value.kind !== 'quiz' && value.kind !== 'flashcards') ||
+        seen.has(value.sectionKey) || !Array.isArray(value.members)) {
+      throw Error('Stage 6: invalid or repeated trusted bank Section selection');
+    }
+    seen.add(value.sectionKey);
+    approved.set(value.sectionKey, value);
+  }
+  const base = '#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/';
+  const sha = /^[0-9a-f]{40}$/i;
+  const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+  const bound = selections.map(selection => {
+    const matching = approved.get(selection.sectionKey);
+    if (!matching) return selection;
+    if (matching.kind !== selection.kind || matching.members.length !== selection.ids.length)
+      throw Error('Stage 6: trusted bank selection differs from reviewed ' + selection.sectionKey);
+    const category = selection.kind === 'quiz' ? 'questions/' : 'flashcards/';
+    const references = matching.members.map((member, index) => {
+      if (!member || member.approved !== true || !uuid.test(member.id) ||
+          member.id !== selection.ids[index] || !sha.test(member.sourceSha) ||
+          typeof member.importPath !== 'string' ||
+          !member.importPath.startsWith(base + category) ||
+          !member.importPath.slice((base + category).length).split('/').every(part => identifier.test(part)) ||
+          !identifier.test(member.exportName) ||
+          (member.memberPath !== undefined &&
+            (!Array.isArray(member.memberPath) || !member.memberPath.every(part => identifier.test(part))))) {
+        throw Error('Stage 6: unapproved or mismatched Lesson-owned bank member at ' + selection.sectionKey);
+      }
+      const alias = 'stage6_ref_' + index;
+      return {
+        importDeclaration: 'import { ' + member.exportName + ' as ' + alias + ' } from ' +
+          JSON.stringify(member.importPath) + ';',
+        expression: alias + (member.memberPath?.length ? '.' + member.memberPath.join('.') : '') + '.id',
+      };
+    });
+    return { ...selection, references };
+  });
+  if ([...approved.keys()].some(key => !selections.some(sel => sel.sectionKey === key)))
+    throw Error('Stage 6: trusted bank selection refers to absent authored Section');
+  return bound;
+}
+
 /** Unchanged manifests for Sections without selected bank members. */
 export function preserveAssessmentReferences(
   sourceText: string,
   sourcePath: string,
   input: LessonWorkflowStage2,
   files: Result['files'],
+  trustedBankSelections?: readonly TrustedBankSelection[],
 ): Result['files'] {
-  const selections = pickSelections(sourceText, sourcePath, input);
+  const selections = trustedBankSelections === undefined
+    ? pickSelections(sourceText, sourcePath, input)
+    : bindTrustedBankSelections(pickSelections(sourceText, sourcePath, input), trustedBankSelections, input.config.id);
   if (!selections.length) return files;
   const replacements = new Map<string, Selection>(
     selections.map(selection => [
