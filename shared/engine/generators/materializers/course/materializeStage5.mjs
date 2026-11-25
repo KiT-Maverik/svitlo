@@ -221,6 +221,10 @@ export function materializeCourseStage5(input, options = {}) {
       typeof options.resolveExistingLesson !== 'function'
     )
       throw new Error(context.directory + ': reviewed Lesson matching and trusted dependency resolver required');
+    if (Object.keys(existing).some(key => key !== 'id'))
+      throw new Error(context.directory + ': expected only {id}, never built Props');
+    if (Object.hasOwn(production, 'source'))
+      throw new Error(context.directory + ': a Course draft must not embed a live Lesson Configurator');
     const requested = {
       id: existing.id,
       sourceSha: match.sourceSha,
