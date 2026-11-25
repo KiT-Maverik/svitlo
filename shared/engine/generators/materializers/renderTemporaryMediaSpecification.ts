@@ -29,8 +29,8 @@ export function renderTemporaryMediaSpecification(
     Scene: ['specification', 'pedagogicalIntent', 'script', 'storyboard'],
   };
   const details = Object.entries(production).filter(([key]) => byKind[kind].includes(key));
-  if (kind === 'Image' && (typeof production.prompt !== 'string' || !production.prompt.trim()))
-    throw new Error('$.production.prompt: Image requires a concrete generation prompt');
+  if (kind === 'Image' && (typeof production.prompt !== 'string' || production.prompt.trim().length < 80))
+    throw new Error('$.production.prompt: Image requires a concrete generation prompt with visual detail');
   if (!details.length) return '';
 
   const body = details
