@@ -159,7 +159,7 @@ test('Flashcard Stage 1 produces one editorial source, no fake Card or Section',
     result.files.map(file => file.path),
     ['flashcards/draft.ts'],
   );
-  assert.match(result.files[0].content, /satisfies FlashcardBankWorkflowStage1/);
+  assert.match(result.files[0].content, /satisfies FlashcardBankWorkflowStage1/);\n  assert.match(result.files[0].content, /export default \{/);\n  assert.doesNotMatch(result.files[0].content, /export const flashcardBank|materializeFlashcardBank\(/);
   assert.doesNotMatch(result.files[0].content, /defineFlashcard|defineFlashcardsSection/);
 });
 test('Flashcard Stage 1 rejects a stale Lesson reference', () => {

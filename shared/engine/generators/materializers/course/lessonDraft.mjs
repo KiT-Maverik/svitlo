@@ -116,9 +116,9 @@ export function materializeLessonDraft(node, context) {
           ) +
           '\n' +
           "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
-          '// prettier-ignore\nexport const lessonSeed = ' +
+          'export default ' +
           JSON.stringify(source, null, 2) +
-          ' as const satisfies CourseWorkflowLessonSeed;\n',
+          ' satisfies CourseWorkflowLessonSeed;\n',
       },
     ],
     diagnostics: [

@@ -84,9 +84,9 @@ export function materializeAssessmentPlaceholder(node, context) {
       'Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.',
     ) +
     '\n' +
-    'export const assessmentSeed = ' +
+    'export default ' +
     JSON.stringify(seed, null, 2) +
-    ' as const satisfies AssessmentWorkflowSeed;\n';
+    ' satisfies AssessmentWorkflowSeed;\n';
   const placeholderSource = assessmentDraftExpression(id, reservedSlug);
   return {
     id,
