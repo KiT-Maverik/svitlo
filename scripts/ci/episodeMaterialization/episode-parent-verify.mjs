@@ -4,12 +4,13 @@
  */
 import { verifyReservedParentSlot } from '../directMaterialization/reserved-parent-slot.mjs';
 
-export function verifyReservedEpisodeParent(source, candidate, { placement, slug, episodeId, exportName }) {
+export function verifyReservedEpisodeParent(source, candidate, { placement, slug, episodeId, exportName, stubSource }) {
   return verifyReservedParentSlot(source, candidate, {
     kind: 'episode',
     id: episodeId,
     slug,
     placement,
     exportName,
+    stubSource,
   });
 }
