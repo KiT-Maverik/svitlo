@@ -535,6 +535,8 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
     assert.match(seed?.content ?? '', /export default \{/);
     assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
+    assert.doesNotMatch(seed.content, /"placement"|"courseId"|"orderPath"/);
+    assert.match(seed.content, /"reviewedCourseSourceBlobSha": "0123456789abcdef0123456789abcdef01234567"/);
     assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
     assert.ok(parent?.content.includes('order: '));
