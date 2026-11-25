@@ -252,7 +252,7 @@ test('Chapter excludes production-only Skill targets and rejects legacy config p
 
 test('Chapter rejects a child canonical import that collides with generated locals', () => {
   const node = ch();
-  node.config.content.items.content = lesson('content', 'Текст');
+  node.config.content.items.content = ep('content');
   node.config.content.order.push('content');
   assert.throws(() => materializeChapter(node, ctx()), /generated identifier collision.*content/);
 });
