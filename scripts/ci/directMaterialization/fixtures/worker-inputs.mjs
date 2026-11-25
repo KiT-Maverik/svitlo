@@ -84,18 +84,18 @@ export function lessonStage2() {
     },
   };
 }
-export function courseStage3(lesson, overriddenLesson) {
+export function courseStage3() {
   const matching = sourceId => ({
     sourceSha: sha('a'),
     methodologySourcePath: 'content/math/data/lessons/' + sourceId.at(-1) + '/' + sourceId + '/methodology.md',
     matchingRationale: 'Reviewed Skill and age match',
     languageEvidence: 'Ukrainian source available',
   });
-  const baseExisting = (source, sourceId, sourceExportName) => ({
+  const baseExisting = (sourceId, sourceExportName) => ({
     kind: 'existing',
+    existing: { id: sourceId },
     matching: matching(sourceId),
     assessment: { ...assessment },
-    source,
     sourceExportName,
   });
   const patch = { params: { sections: { allowSkipping: false } } };
@@ -130,15 +130,13 @@ export function courseStage3(lesson, overriddenLesson) {
           reused: {
             config: { type: 'lesson', slug: 'reused', skills: [skillId] },
             production: {
-              ...baseExisting(lesson, reusedLessonId, 'independentLesson'),
-              existing: { id: reusedLessonId },
+              ...baseExisting(reusedLessonId, 'independentLesson'),
             },
           },
           overridden: {
             config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
             production: {
-              ...baseExisting(overriddenLesson, overriddenLessonId, 'overriddenLesson'),
-              existing: overriddenLesson.build.overrides(patch, { languages: ['uk'] }),
+              ...baseExisting(overriddenLessonId, 'overriddenLesson'),
               sourcePatch: patch,
               overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
             },
