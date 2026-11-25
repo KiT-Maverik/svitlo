@@ -1,4 +1,5 @@
 import type { FlashcardsSection_Config } from '../../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * defineFlashcardsSection source materializer (not a Props/JSON publisher).
@@ -209,30 +210,40 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed flashcards Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo(
+        'Transfer reviewed flashcards Section notes (' +
+          sectionNotes.join(', ') +
+          ') into Lesson methodology; remove this marker after verifying the transfer.',
+      ),
     );
   const params: Record<string, unknown> = isObject(config.params) ? config.params : {};
   const select = isObject(params.selection) ? params.selection : {};
   const ids = select.flashcardIds;
   if (!Array.isArray(ids) || ids.length === 0) {
     blocker.push(
-      '// TODO (BLOCKER): Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.',
+      renderBlockerTodo(
+        'Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.',
+      ),
     );
   } else {
     if (ids.some(id => typeof id !== 'string' || !uuid.test(id)))
       throw new Error('flashcards.params.selection.flashcardIds: invalid Flashcard UUID');
     if (new Set(ids).size !== ids.length) throw new Error('flashcards.params.selection.flashcardIds: duplicate UUID');
     if (ids.some(id => String(id).startsWith('feedc0de-'))) {
-      blocker.push('// TODO (BLOCKER): Replace provisional Flashcard IDs with reviewed bank selections.');
+      blocker.push(
+        renderBlockerTodo(
+          'Replace provisional Flashcard IDs with verified bank selections; remove after UUID ownership is checked.',
+        ),
+      );
     }
     // The Stage 6 owner validates reviewed imported Flashcard.id expressions
     // against the pinned Stage 2 source and rewrites these IDs after rendering.
   }
   if (options.production?.pending === true && !blocker.length)
     blocker.push(
-      '// TODO (BLOCKER): Complete independent Flashcard review and verified bank selection; remove this TODO after integration.',
+      renderBlockerTodo(
+        'Complete independent Flashcard review and verified bank selection; remove this TODO after integration.',
+      ),
     );
   // Keep the reviewed Flashcards specification at the point of implementation.
   // The Lesson/Episode methodology is a durable editorial record; this is an
@@ -240,16 +251,19 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   const specification =
     typeof options.production?.specification === 'string' ? options.production.specification.trim() : '';
   if (specification) {
-    if (!blocker.some(line => line.includes('TODO (BLOCKER): Implement reviewed Flashcards Section')))
-      blocker.push('// TODO (BLOCKER): Implement reviewed Flashcards specification before releasing this Section.');
-    blocker.push('// BEGIN REVIEWED FLASHCARDS SPECIFICATION (remove after implementation)');
-    blocker.push(
-      ...specification
-        .replace(/\r\n?|\u2028|\u2029/g, '\n')
-        .split('\n')
-        .map(line => '// ' + line),
+    const pendingInstruction =
+      'Implement reviewed Flashcards Section with real flashcard.id imports; remove this TODO after bank integration.';
+    const index = blocker.findIndex(line =>
+      line.startsWith('// TODO (BLOCKER): Implement reviewed Flashcards Section'),
     );
-    blocker.push('// END REVIEWED FLASHCARDS SPECIFICATION');
+    const comment = renderBlockerSpecification(
+      index < 0
+        ? 'Implement reviewed Flashcards specification and accessibility tests; remove after verified bank integration.'
+        : pendingInstruction,
+      specification,
+    );
+    if (index < 0) blocker.push(comment);
+    else blocker.splice(index, 1, comment);
   }
 
   if (blocker.length)

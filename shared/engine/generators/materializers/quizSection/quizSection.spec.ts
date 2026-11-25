@@ -139,7 +139,11 @@ test('quiz: missing params yield one TODO and Question selection a separate TODO
     renderContentBlock,
   });
   const code = result.files.find(file => file.path === 'index.ts')!.content;
-  assert.equal((code.match(/Design and complete reviewed Quiz parameters/g) ?? []).length, 1);
+  assert.equal(
+    (code.match(/Define and validate reviewed Quiz selection, layout, feedback, interaction and results/g) ?? [])
+      .length,
+    1,
+  );
   assert.match(code, /Select verified Question Bank IDs/);
   assert.doesNotMatch(code, /no Questions have been fabricated/);
 });

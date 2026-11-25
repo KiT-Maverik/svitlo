@@ -1,4 +1,5 @@
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
 /**
@@ -234,19 +235,25 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     stages: imported('stages'),
     tasks: imported('tasks'),
   };
-  const blocker =
-    '// TODO (BLOCKER): Quest is Build-only; Lesson/Episode Section runtime and playback are not implemented.';
+  const blocker = renderBlockerTodo(
+    'Implement and test Quest Section runtime/playback in Lesson and Episode or remove it from publication after review; current support is Build-only.',
+  );
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
-  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+  const methodologyBlocker =
+    sectionNotes.length && options.production?.methodologyIntegrated !== true
+      ? renderBlockerTodo(
+          'Transfer reviewed Quest Section notes (' +
+            sectionNotes.join(', ') +
+            ') into Lesson methodology; verify the transfer before removing this marker.',
+        )
+      : undefined;
+  if (methodologyBlocker)
     diagnostics.push({
       path: destination(dir),
       code: 'pending-quest-methodology',
-      message:
-        'TODO (BLOCKER): Transfer reviewed Quest Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology.',
+      message: methodologyBlocker,
       severity: 'warning',
     });
   diagnostics.push({ path: destination(dir), code: 'quest-build-only', message: blocker, severity: 'warning' });
@@ -256,6 +263,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     ...imports,
     '',
     blocker,
+    ...(methodologyBlocker ? [methodologyBlocker] : []),
     'const stages = ' + render(values.stages) + ';',
     'const tasks = ' + render(values.tasks) + ';',
     'export const ' +

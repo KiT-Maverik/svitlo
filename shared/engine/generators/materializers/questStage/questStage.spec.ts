@@ -103,7 +103,7 @@ test('Quest Stage preserves reviewed child notes in safe source comments without
   assert(!out.files.some(file => file.path.endsWith('specification.md')));
   const src = out.files.find(file => file.path === 'stages/start/index.ts')?.content ?? '';
   assert.match(src, /Reviewed specification:/);
-  assert.match(src, /TODO \(BLOCKER\): Integrate these reviewed Quest child notes/);
+  assert.match(src, /TODO \(BLOCKER\): Integrate reviewed Quest child notes/);
   assert.doesNotMatch(src, /^\*\//m);
   assert(out.diagnostics.some(item => item.code === 'pending-quest-child-notes'));
 });

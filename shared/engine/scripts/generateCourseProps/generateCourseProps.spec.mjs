@@ -8,6 +8,7 @@ import {
   readCurrent,
   discoverCourseSources,
   checkCourseSourceReadiness,
+  assertNoLegacyCourseOverrides,
   render,
 } from './generateCourseProps.mjs';
 
@@ -142,6 +143,45 @@ test('draft Episode preview is inspectable but editorial or human gates block st
     assert.throws(() => checkCourseSourceReadiness(index, 'production'), /not release-ready/);
     fs.writeFileSync(materialized, 'export const story = {};');
     assert.deepEqual(checkCourseSourceReadiness(index, 'production'), []);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
+test('legacy authoredCourseOverrides exports fail closed to prevent silent loss of Lesson changes', () => {
+  assert.doesNotThrow(() => assertNoLegacyCourseOverrides({ course: {} }, 'course/index.ts'));
+  assert.throws(
+    () => assertNoLegacyCourseOverrides({ authoredCourseOverrides: undefined }, 'course/index.ts'),
+    /Legacy authoredCourseOverrides.*placeLesson/,
+  );
+  assert.throws(
+    () => assertNoLegacyCourseOverrides({ authoredCourseOverrides: { content: { items: {} } } }, 'course/index.ts'),
+    /Legacy authoredCourseOverrides.*placeLesson/,
+  );
+});
+
+test('strict Course readiness catches canonical one-line and multiline blockers but ignores quoted markers', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-block-comments-'));
+  try {
+    const source = path.join(home, 'index.ts');
+    const nested = path.join(home, 'content', 'lesson', 'index.ts');
+    fs.mkdirSync(path.dirname(nested), { recursive: true });
+    fs.writeFileSync(source, 'export const course = {};\n');
+    fs.writeFileSync(
+      nested,
+      [
+        'const quote = "// TODO (BLOCKER): quoted text";',
+        'const template = \`/* TODO (BLOCKER): quoted block */\`;',
+        'export const draft = true;',
+      ].join('\n'),
+    );
+    assert.deepEqual(checkCourseSourceReadiness(source, 'production'), []);
+    fs.appendFileSync(nested, '\n/*\n * TODO (BLOCKER): Implement reviewed Lesson.\n *\n * Reviewed brief\n */\n');
+    assert.equal(checkCourseSourceReadiness(source, 'draft').length, 1);
+    assert.throws(() => checkCourseSourceReadiness(source, 'production'), /not release-ready/);
+    fs.writeFileSync(nested, '// TODO (BLOCKER): Implement reviewed Lesson.\n');
+    assert.equal(checkCourseSourceReadiness(source, 'draft').length, 1);
+    assert.throws(() => checkCourseSourceReadiness(source, 'production'), /not release-ready/);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }

@@ -12,6 +12,7 @@ import {
   type SourceDiagnostic,
   type SourceFile,
 } from '../flashcardSide/materializeFlashcardSide';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type FlashcardSource = Omit<Flashcard_Config, 'content'> & {
   content: { front: FlashcardSideSource; back: FlashcardSideSource; hint?: FlashcardSideSource };
@@ -249,7 +250,7 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
         : []),
       ...imports,
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       paramsSource +
         contentSource +
         'export const ' +

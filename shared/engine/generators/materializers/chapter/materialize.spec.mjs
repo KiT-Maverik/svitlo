@@ -159,13 +159,9 @@ const lessonBridge = (node, ctx) => {
   return {
     lessonId,
     exportName: node.config.slug,
-    files: [
-      {
-        path: ctx.directory + '/index.ts',
-        kind: 'typescript',
-        content: 'export const ' + node.config.slug + ' = {};\n',
-      },
-    ],
+    importPath: '#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index',
+    sourceExportName: 'independentLesson',
+    files: [],
   };
 };
 const deriveId = (kind, placement) => {
@@ -201,7 +197,11 @@ test('Chapter preserves one direct Episode and an existing Lesson placement', ()
   value.config.content.order.push('extraLesson');
   const result = materializeChapter(value, ctx());
   assert.ok(result.files.some(file => file.path === 'episodeOne/sections/opening/index.ts'));
-  assert.ok(result.files.some(file => file.path === 'extraLesson/index.ts'));
+  assert.ok(!result.files.some(file => file.path === 'extraLesson/index.ts'));
+  assert.match(
+    result.files.find(file => file.path === 'index.ts').content,
+    /import \{ independentLesson as child_extraLesson \} from "#lessonsData\//,
+  );
   assert.match(result.files.find(file => file.path === 'index.ts').content, /defineChapter</);
   assert.equal(result.id, IDs.chapter);
   syntax(result.files);

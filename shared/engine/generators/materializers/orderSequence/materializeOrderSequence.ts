@@ -5,6 +5,7 @@
  */
 import type { Question_OrderSequence_Config } from '../../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -281,7 +282,7 @@ export function materializeOrderSequence(node: OrderSequenceNode, context: Order
         : []),
       ...imports.sort(),
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       nested +
         'export const ' +
         exportedName +

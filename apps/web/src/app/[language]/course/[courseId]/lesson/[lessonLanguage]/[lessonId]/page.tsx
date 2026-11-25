@@ -35,6 +35,17 @@ async function Content({ params, searchParams }: Props) {
   )
     notFound();
 
+  const selected = candidates.find(candidate => candidate.placement === (placement ?? candidates[0]?.placement));
+  if (selected && 'draft' in selected.node && selected.node.draft === true) {
+    return (
+      <main aria-label="Draft Lesson preview">
+        <h1>Not implemented</h1>
+        <p>This Lesson has a reserved place in the Course but has not been produced.</p>
+        <a href={'/' + language + '/course/' + courseId}>Back to Course</a>
+      </main>
+    );
+  }
+
   const [response, messages, titles] = await Promise.all([
     loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language, { placement }),
     loadPublishedUiKitMessages(descriptor.locale),

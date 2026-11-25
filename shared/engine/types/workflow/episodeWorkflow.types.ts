@@ -4,7 +4,7 @@ import { episode_Config_Schema } from '../../configurators/episodes/defineEpisod
 import { lessonWorkflowOrdinarySection_Schema, workflowOrdered_Schema } from './lessonWorkflow.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
-/** Immutable Course-owned placement allocated once during authorized Course Stage 5. */
+/** Gate-only Course placement evidence. It is not serialized in authored Episode input. */
 const episodePlacement_Schema = z.strictObject({
   courseId: episode_Config_Schema.shape.id,
   path: z.string(),
@@ -17,7 +17,6 @@ const episodeHandoffConfig_Schema = episode_Config_Schema.pick({ id: true, slug:
 const episodeHandoffProduction_Schema = z.strictObject({
   focus: z.string().refine(value => !!value.trim()),
   purpose: z.string().refine(value => !!value.trim()),
-  placement: episodePlacement_Schema,
   languages: workflowLanguages_Schema,
 });
 

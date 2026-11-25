@@ -10,6 +10,7 @@ import {
   type ContentBlock_Subtitles_Config,
 } from '../../../configurators/contentBlocks/defineSubtitles';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type SubtitlesDraftConfig = Pick<ContentBlock_Subtitles_Config, 'id' | 'slug' | 'type'> & {
@@ -186,7 +187,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
   const expressions: Record<string, string> = {};
   const imports = ['defineSubtitles'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for subtitles ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for subtitles ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -222,7 +223,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO (BLOCKER): ' + instruction + ' for subtitles ' + config.id + '.\n' + JSON.stringify(reference);
+        renderBlockerTodo(instruction + ' for subtitles ' + config.id + '.') + '\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',
@@ -233,7 +234,7 @@ export function materializeSubtitles(config: SubtitlesDraftConfig, options: Subt
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + '.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

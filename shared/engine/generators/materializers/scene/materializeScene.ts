@@ -1,4 +1,5 @@
 import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 /** Stage-5 source handoff. This is not a Props/JSON publisher or a Scene renderer. */
@@ -123,7 +124,7 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   const diagnostics: SceneDiagnostic[] = [];
   const todos: string[] = [];
   if (incompleteSource) {
-    todos.push('// TODO (BLOCKER): Complete Scene params/locale.value with reviewed source before production.');
+    todos.push(renderBlockerTodo('Complete Scene params/locale.value with reviewed source before production.'));
     diagnostics.push({
       path: directory || '.',
       code: 'incomplete-scene-source',
@@ -133,9 +134,9 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   }
   if (pending) {
     todos.push(
-      '// TODO (BLOCKER): Implement and register Scene ' +
-        config.id +
-        ' before production; Draft Preview may use SceneStub.',
+      renderBlockerTodo(
+        'Implement and register Scene ' + config.id + ' before production; Draft Preview may use SceneStub.',
+      ),
     );
     diagnostics.push({
       path: directory || '.',
@@ -146,7 +147,7 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   }
   const specification = context.production?.specification;
   if (typeof specification !== 'string' || !specification.trim()) {
-    todos.push('// TODO (BLOCKER): Provide the reviewed Scene specification for ' + config.id + '.');
+    todos.push(renderBlockerTodo('Provide the reviewed Scene specification for ' + config.id + '.'));
     diagnostics.push({
       path: directory || '.',
       code: 'missing-scene-specification',
@@ -225,16 +226,11 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
   if (typeof specification !== 'string' || !specification.trim())
     throw new Error('Scene ' + id + ' needs its reviewed production.specification');
   const name = sceneComponentName(authoredSlug);
-  const reviewedLines = specification
-    .trimEnd()
-    .replace(/\r\n?|\u2028|\u2029/g, '\n')
-    .split('\n')
-    .map(line => '// ' + line);
   const files = new Map<string, string>();
   files.set(
     'index.ts',
     [
-      '// TODO (BLOCKER): Register this Scene UUID only after the implementation, tests and review are complete.',
+      renderBlockerTodo('Register this Scene UUID only after the implementation, tests and review are complete.'),
       'export { ' + name + " as default } from './" + name + "';",
       '',
     ].join('\n'),
@@ -251,12 +247,12 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
       "  locales: ContentBlock_Scene_Props['locale']['value'];",
       '};',
       '',
-      '// TODO (BLOCKER): Implement and accessibly test the reviewed Scene ' +
-        id +
-        ' before release; remove the specification comment only after implementation.',
-      '// BEGIN REVIEWED SCENE SPECIFICATION (remove after implementation)',
-      ...reviewedLines,
-      '// END REVIEWED SCENE SPECIFICATION',
+      renderBlockerSpecification(
+        'Implement and accessibly test the reviewed Scene ' +
+          id +
+          ' before release; remove this temporary brief only after implementation is verified.',
+        specification,
+      ),
       'export function ' + name + '({ locales }: ' + name + 'Props) {',
       '  void locales;',
       '  return <section className={styles.root} aria-hidden="true" />;',
@@ -267,7 +263,11 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
   files.set(
     name + '.module.css',
     [
-      '/* TODO (BLOCKER): Implement accessible, responsive, reduced-motion Scene styling before release. */',
+      '/* ' +
+        renderBlockerTodo(
+          'Implement and test accessible, responsive, reduced-motion Scene styling before release; remove this marker after verified keyboard and motion checks.',
+        ).slice(3) +
+        ' */',
       '.root {',
       '  inline-size: 100%;',
       '  min-inline-size: 0;',
@@ -278,7 +278,7 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
   files.set(
     name + '.constants.ts',
     [
-      '// TODO (BLOCKER): Define verified, implementation-owned test IDs before release.',
+      renderBlockerTodo('Define verified, implementation-owned test IDs before release.'),
       'export const testIds = {} as const;',
       '',
     ].join('\n'),
@@ -288,7 +288,7 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
     [
       'import { ' + name + " } from './" + name + "';",
       '',
-      '// TODO (BLOCKER): Implement a Storybook scenario with reviewed source-locale values before release.',
+      renderBlockerTodo('Implement a Storybook scenario with reviewed source-locale values before release.'),
       'export default { title: ' + JSON.stringify('Scenes/' + name) + ', component: ' + name + ' };',
       'export const PendingImplementation = { render: () => null };',
       '',
@@ -299,7 +299,9 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
     [
       "import { describe, it } from 'vitest';",
       '',
-      '// TODO (BLOCKER): Replace pending checks with rendering, interactions, accessibility and reset tests before release.',
+      renderBlockerTodo(
+        'Replace pending checks with rendering, interactions, accessibility and reset tests before release.',
+      ),
       'describe(' + JSON.stringify(name) + ', () => {',
       "  it.todo('implements the reviewed Scene interaction and reset behavior');",
       "  it.todo('provides source-locale accessibility and keyboard/touch parity');",

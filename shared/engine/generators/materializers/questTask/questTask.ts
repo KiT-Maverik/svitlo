@@ -1,4 +1,5 @@
 import type { Task_Config } from '../../../configurators/sections/defineQuestSection/defineTask/defineTask.schemas';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /** Quest Task owns exactly one Scene; interactive Scene implementation belongs to its own agent. */
 /**
@@ -120,8 +121,10 @@ function reviewedNotes(production: Record<string, unknown> | undefined): string[
   const entries = Object.entries(production ?? {}).filter(([key]) => !['pending', 'documentLanguage'].includes(key));
   if (!entries.length) return [];
   return [
-    '// TODO (BLOCKER): Integrate these reviewed Quest child notes into the owning methodology/narrative before removing them.',
-    ...entries.map(([key, value]) => '// Reviewed ' + key + ': ' + JSON.stringify(value)),
+    renderBlockerSpecification(
+      'Integrate reviewed Quest child notes into the owning methodology or narrative, verify the transfer, then remove this temporary brief.',
+      entries.map(([key, value]) => 'Reviewed ' + key + ': ' + JSON.stringify(value)).join('\n'),
+    ),
   ];
 }
 function verifyChild(
@@ -202,7 +205,11 @@ export function materializeQuestTask(config: Source, options: Options): Result {
   includeChild(files, seen, diagnostics, { ...child, diagnostics: [] }, childDir, node.config.slug);
   const blockers =
     options.production?.pending === true || node.production?.pending === true
-      ? ['// TODO (BLOCKER): Implement, register and independently review the referenced Quest Task Scene.']
+      ? [
+          renderBlockerTodo(
+            'Implement, register and independently review the referenced Quest Task Scene before removing this marker.',
+          ),
+        ]
       : [];
   if (blockers.length)
     diagnostics.push({ path: destination(dir), code: 'pending-quest-task', message: blockers[0], severity: 'warning' });

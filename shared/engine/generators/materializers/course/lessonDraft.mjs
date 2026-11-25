@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -110,7 +111,10 @@ export function materializeLessonDraft(node, context) {
         path,
         kind: 'typescript',
         content:
-          '// TODO (BLOCKER): Course Lesson seed; complete authorized Lesson Stage 1 before continuing.\n' +
+          renderBlockerTodo(
+            'Complete the separately authorized Lesson Stage 1 from this Course seed, obtain its required review, and replace this seed with approved Lesson authoring before removing the marker.',
+          ) +
+          '\n' +
           "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
           '// prettier-ignore\nexport const lessonSeed = ' +
           JSON.stringify(source, null, 2) +

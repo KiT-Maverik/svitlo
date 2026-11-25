@@ -14,6 +14,10 @@ const commandWorkflow = readFileSync(
 
 const labelerWorkflow = readFileSync(new URL('../../../.github/workflows/pr-labeler.yml', import.meta.url), 'utf8');
 const fastGateWorkflow = readFileSync(new URL('../../../.github/workflows/fast-gate.yml', import.meta.url), 'utf8');
+const engineGeneratorsWorkflow = readFileSync(
+  new URL('../../../.github/workflows/engine-generators.yml', import.meta.url),
+  'utf8',
+);
 
 test('editorial-only PR edits do not relabel while required checks keep retarget coverage', () => {
   // Label scope depends on changed paths and target base; integration role
@@ -91,7 +95,11 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.match(workflow, /fail-fast: false/);
   assert.match(workflow, /if: matrix.e2e/);
   assert.match(workflow, /if: matrix.integration/);
-  const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
+  assert.ok(workflow.includes('  generators:\n    name: Production / Engine generators\n    needs: policy'));
+  assert.ok(workflow.includes('uses: ./.github/workflows/engine-generators.yml'));
+  assert.ok(engineGeneratorsWorkflow.includes('  workflow_call:'));
+  assert.ok(engineGeneratorsWorkflow.includes('node --test scripts/ci/directMaterialization/pipeline.spec.mjs'));
+  const required = ['policy', 'repository', 'types', 'unit', 'generators', 'components', 'lint', 'packages', 'apps'];
   assert.ok(workflow.includes('needs: [reuse, ' + required.join(', ') + ']'));
   for (const name of required) {
     assert.ok(workflow.includes("'" + name + "'"), 'aggregate must validate ' + name);

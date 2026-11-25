@@ -301,6 +301,7 @@ export const defineEpisode = <
     id,
     slug,
     type,
+    draft: false as const,
     section,
     validate,
     build: { props, overrides },

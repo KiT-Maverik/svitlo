@@ -1,4 +1,5 @@
 import type { LearningFlowSection_Config } from '../../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * defineLearningFlowSection source materializer (not a Props/JSON publisher).
@@ -209,12 +210,18 @@ export function materializeLearningFlowSection(config: Source, options: Options)
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed learningFlow Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo(
+        'Transfer reviewed learningFlow Section notes (' +
+          sectionNotes.join(', ') +
+          ') into the owning Lesson methodology and verify the transfer before removing this marker.',
+      ),
     );
   if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Complete reviewed learningFlow Section production.');
+    blocker.push(
+      renderBlockerTodo(
+        'Implement, validate and review the learningFlow Section production before removing this marker.',
+      ),
+    );
   if (blocker.length)
     diagnostics.push({
       path: (directory || 'learningFlow') + '/index.ts',

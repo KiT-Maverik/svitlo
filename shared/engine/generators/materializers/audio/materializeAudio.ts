@@ -7,6 +7,7 @@ import { isDeepStrictEqual } from 'node:util';
 
 import { audio_Config_Schema, type ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type AudioDraftConfig = Pick<ContentBlock_Audio_Config, 'id' | 'slug' | 'type'> & {
@@ -183,7 +184,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
   const expressions: Record<string, string> = {};
   const imports = ['defineAudio'];
   function block(field: string, code: string, instruction: string): void {
-    blockers.push('// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.');
+    blockers.push(renderBlockerTodo(instruction + ' for audio ' + config.id + '.'));
     diagnostics.push({ path: '$.config.' + field, code, message: instruction, severity: 'warning' });
   }
   function requireCopy(field: string, description: string): void {
@@ -219,7 +220,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
       const fieldPath = 'locale.' + field + (localized ? '.' + language : '');
       const instruction = 'Supply verified ' + field + ' asset (reserved Nil UUID is not an asset)';
       expressions[fieldPath] =
-        '// TODO (BLOCKER): ' + instruction + ' for audio ' + config.id + '.\n' + JSON.stringify(reference);
+        renderBlockerTodo(instruction + ' for audio ' + config.id + '.') + '\n' + JSON.stringify(reference);
       diagnostics.push({
         path: '$.config.' + fieldPath,
         code: 'pending-media',
@@ -230,7 +231,7 @@ export function materializeAudio(config: AudioDraftConfig, options: AudioMateria
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push('// TODO (BLOCKER): Restore reviewed languages ' + JSON.stringify(planned) + '.');
+    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + '.'));
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

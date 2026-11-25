@@ -11,7 +11,7 @@ import {
 } from './assessment-transaction.mjs';
 
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
-const assessmentId = 'a73572e7-bd85-4516-86e2-3de07d209e03';
+const assessmentId = deriveCourseEntityId(courseId, 'assessment', 'finalReview');
 const questionId = '12345678-1234-4234-8234-123456789010';
 const courseRoot = 'content/math/data/courses/3/' + courseId;
 const meta = {
@@ -69,6 +69,7 @@ const plan = {
 
 test('Course-allocated seed is immutable; independent Assessment adds reviewed design', () => {
   assert.deepEqual(parseAssessmentSeed(source), seed);
+  assert.deepEqual(parseAssessmentSeed(source.replace('// TODO (BLOCKER):', '// editorial:')), seed);
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
   assert.throws(() =>
@@ -130,9 +131,9 @@ test('one source transaction permits only the exact parent and new Assessment ch
   const files = [
     { path: index, kind: 'typescript', content: 'export const finalReview = 1;\n' },
     {
-      path: meta.sourcePath.replace('draft.ts', 'languages.ts'),
-      kind: 'typescript',
-      content: "export const languages = ['uk'] as const;\n",
+      path: meta.sourcePath.replace('draft.ts', 'specification.md'),
+      kind: 'specification',
+      content: '# Assessment source specification\n',
     },
     { path: meta.parentPath, kind: 'typescript', content: 'parent patched\n' },
   ];

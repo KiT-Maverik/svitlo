@@ -1,7 +1,9 @@
+import { renderBlockerSpecification } from './renderBlockerTodo.mjs';
+
 /**
  * A reviewed media brief is temporary implementation guidance, not a
  * persistent specification file or runtime Config. Keep it at the end of its
- * owning generated index.ts, with an explicit cleanup blocker.
+ * owning generated index.ts in the same comment as its cleanup blocker.
  */
 const plainRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null &&
@@ -24,18 +26,12 @@ export function renderTemporaryMediaSpecification(
       ([key, value]) =>
         '# ' + key + '\n\n' + (typeof value === 'string' ? value.trimEnd() : JSON.stringify(value, null, 2)),
     )
-    .join('\n\n')
-    .replace(/\r\n?|\u2028|\u2029/g, '\n')
-    // An authored brief cannot terminate the generated TS block comment.
-    .replace(/\*\//g, '* /');
+    .join('\n\n');
 
-  return [
-    '// TODO (BLOCKER): Remove the temporary ' +
-      kind +
-      ' specification after this content item is implemented and verified.',
-    '/**',
-    ...body.split('\n').map(line => ' *' + (line ? ' ' + line : '')),
-    ' */',
-    '',
-  ].join('\n');
+  return (
+    renderBlockerSpecification(
+      'Remove the temporary ' + kind + ' specification after this content item is implemented and verified.',
+      body,
+    ) + '\n'
+  );
 }

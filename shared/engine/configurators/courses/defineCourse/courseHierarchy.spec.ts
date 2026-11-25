@@ -5,6 +5,7 @@ import { mergeForValidation } from '../../_shared__configurators';
 import { defineLesson } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
+import { placeLesson } from '../placeLesson';
 import { defineCourse } from './defineCourse';
 import { course_Config_Schema, course_Props_Schema } from './defineCourse.schemas';
 
@@ -429,4 +430,93 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
   assert.match(JSON.stringify(patch.locale?.uk?.content), /"slug":"caseStudy"/);
   assert.match(JSON.stringify(patch.locale?.uk?.content), /Інша назва/);
   assert.equal(original.locale?.uk?.locale?.title, 'Самостійний', 'standalone Lesson title is immutable');
+});
+
+test('Lesson placement patch resolves through original Build, survives nested Course Build and leaves source intact', () => {
+  const languages = ['en', 'uk'] as const;
+  const original = defineLesson({
+    id: 'c775647f-203d-481a-a1c7-4d331c779d21',
+    slug: 'originalLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Original', uk: 'Оригінал' } },
+    section: { items: {}, order: [] },
+  });
+  const raw = {
+    params: { sections: { allowSkipping: false } },
+    locale: { title: { uk: 'Контекстний урок' } },
+  } as const;
+  const shadow = placeLesson(original, raw);
+  const chapter = defineChapter<'contextChapter', { shadow: typeof shadow }, typeof languages>({
+    id: 'c775647f-203d-481a-a1c7-4d331c779d22',
+    slug: 'contextChapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { shadow }, order: ['shadow'] },
+  });
+  const module = defineModule<'contextModule', { contextChapter: typeof chapter }, typeof languages>({
+    id: 'c775647f-203d-481a-a1c7-4d331c779d23',
+    slug: 'contextModule',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: { items: { contextChapter: chapter }, order: ['contextChapter'] },
+  });
+  const course = defineCourse<
+    'contextCourse',
+    { contextModule: typeof module; direct: typeof original },
+    typeof languages
+  >({
+    id: 'c775647f-203d-481a-a1c7-4d331c779d24',
+    slug: 'contextCourse',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Lesson placements' },
+    content: { items: { contextModule: module, direct: original }, order: ['contextModule', 'direct'] },
+  });
+  const expectedSparse = original.build.overrides(raw, { languages });
+  assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
+  assert.deepEqual(shadow.placement.patch, raw);
+  const publication = course.build.props({ languages });
+  const shadowBase = (
+    publication.base.content[0] as {
+      content: { content: { params: { sections: { allowSkipping: boolean } }; slug: string }[] }[];
+    }
+  ).content[0].content[0];
+  assert.equal(shadowBase.slug, 'shadow');
+  assert.equal(shadowBase.params.sections.allowSkipping, false);
+  assert.equal(publication.base.content[1]?.slug, 'direct');
+  assert.match(JSON.stringify(publication.locale?.uk), /Контекстний урок/);
+  assert.equal(JSON.stringify(publication.locale?.en).includes('Контекстний урок'), false);
+  assert.equal(original.build.props({ languages }).base.params.sections.allowSkipping, true);
+  assert.equal(original.build.props({ languages }).base.slug, 'originalLesson');
+  assert.equal(shadow.placement.source, original);
+
+  const additional = shadow.build.overrides({ params: { sections: { allowNavigation: false } } }, { languages });
+  assert.equal(additional.base.params?.sections?.allowSkipping, false);
+  assert.equal(additional.base.params?.sections?.allowNavigation, false);
+  assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
+  assert.throws(() => shadow.build.props({ languages: ['pl'] } as never), /does not support publication language/);
+  assert.throws(
+    () => placeLesson(original, { params: { languages: ['uk'] } } as never).build.props({ languages }),
+    /Invalid Lesson overrides/,
+  );
+  assert.throws(
+    () => placeLesson(original, { id: 'c775647f-203d-481a-a1c7-4d331c779d99' } as never).build.props({ languages }),
+    /Invalid Lesson overrides/,
+  );
+  assert.throws(
+    () =>
+      placeLesson(original, { base: { params: { sections: { allowSkipping: false } } } } as never).build.props({
+        languages,
+      }),
+    /Invalid Lesson overrides/,
+  );
+  assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);
 });

@@ -102,6 +102,7 @@ export const defineAssessmentDraft = <
     id,
     slug,
     type,
+    draft: true as const,
     preview,
     validate,
     build: { props, overrides },

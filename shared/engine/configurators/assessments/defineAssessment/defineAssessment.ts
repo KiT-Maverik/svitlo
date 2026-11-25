@@ -357,6 +357,7 @@ export const defineAssessment = <
     id,
     slug,
     type,
+    draft: false as const,
     before,
     quiz,
     after,
@@ -373,5 +374,4 @@ export const defineAssessment = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type Assessment_Configurator =
-  ReturnType<typeof defineAssessment> | import('./defineAssessmentDraft').Assessment_Draft_Configurator;
+export type Assessment_Configurator = ReturnType<typeof defineAssessment>;
