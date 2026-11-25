@@ -39,78 +39,68 @@ Author **all** fields:
 
 These must contain actual, substantive editorial reasoning proportionate to scope. Audience is more than a grade. Approach describes concepts, practice, feedback and differentiation, not a pedagogical slogan. Depth and scope explain expected performance and excluded content. Entry conditions distinguish prerequisite knowledge and support needs. Accessibility covers equivalent nonvisual, keyboard, screen-reader, localization and offline implications. Source notes identify checkable evidence and uncertainty; the completed plan must be independently reviewable without guessing its meaning. No arbitrary word quota; one-line stubs do not pass methodological review.
 
-Minimal _shape example only_ (replace all explanatory strings and identifiers from real evidence):
+**Stage 1 inert literal example** (synthetic UUIDs and illustrative content; use verified IDs and substantively reviewed methodology for real work):
 
 ```ts
 import type { CourseWorkflowStage1 } from '@svitlo/engine/build';
 
-const courseStage1 = {
+export default {
   config: {
-    id: verifiedCourseUuid,
+    id: '663572e7-bd85-4516-86e2-3de07d209e03',
     type: 'course',
     slug: 'skyObservation',
-    params: { outcomes: { skills: [verifiedSkillUuid] }, prerequisites: { skills: [] } },
-    locale: { title: 'Sky observation', description: 'Observe and explain sky patterns' },
+    params: { outcomes: { skills: [] }, prerequisites: { skills: [] } },
+    locale: { title: 'Sky observation', description: 'Practice observing patterns' },
   },
   production: {
     languages: { document: 'uk', planned: ['uk', 'en'] },
     methodology: {
-      purpose: substantivePurpose,
-      audience: substantiveLearnerProfile,
-      approach: substantiveTeachingAndFeedbackPlan,
-      depth: substantiveExpectedDepth,
-      accessibility: substantiveAccessibilityAndOfflinePlan,
-      scope: substantiveScopeAndExclusions,
-      entryConditions: substantivePrerequisiteEvidence,
-      sourceNotes: verifiedSourceReferencesAndUncertainties,
+      purpose: 'Teach observation skills',
+      audience: 'Novice learners with varied access needs',
+      approach: 'Observe, compare, practice and receive feedback',
+      depth: 'Describe patterns without advanced physics',
+      accessibility: 'Accessible audio, nonvisual and offline alternatives',
+      scope: 'Safe daytime observations, never look directly at the Sun',
+      entryConditions: 'No assumed astronomy knowledge',
+      sourceNotes: 'Confirm facts against reviewed references',
     },
-    outcomes: { explanation: substantiveOutcomesAndEvidence },
-    prerequisites: { explanation: substantiveEntryRequirements },
+    outcomes: { explanation: 'Identify observable patterns' },
+    prerequisites: { explanation: 'Basic observation vocabulary' },
     standardsAlignment: [],
     openDecisions: {},
   },
 } satisfies CourseWorkflowStage1;
 ```
 
-The variables above stand for actual verified authored values, **not** invented identities or copy-ready production content. Complete Stage 1 only after checking the declared Stage 1 type contract, source IDs and substantive methodological readiness at a recorded SHA.
+The actual `draft.ts` contains exactly one type-only import and default-exported literal. The synthetic example is a syntax illustration, not a claim of editorial approval or existing taxonomy identity.
 
 ### 2. Design Course Structure
 
 **Owner:** Methodologist. **Target:** `CourseWorkflowStage2 extends CourseWorkflowStage1`. Retain _the same_ root `config`/`production` object, add required `config.content: { items, order }` (including `order` at **every** nested level).
 
-Target approved structure: **Course → Module / Chapter / Lesson slot / Episode slot / Assessment slot; Module → Chapter / Lesson slot / Episode slot / Assessment slot; Chapter → Lesson slot / Episode slot / Assessment slot**. Assessment is Course-owned, not a Lesson or Episode subtype. **Its ordered Stage 2 slot is the decision**: no separate required/not-required flag exists or should be introduced. The Stage 2 Assessment slot's typed Engine contract and materialization remain pending #826 integration with #823. Never nest Modules or Chapters under Chapters; no obligatory artificial Module wrapper. Each Module and Chapter has `config.type`, `slug`, source-language `locale.title`, ordered `content`, and complete `production.methodology`, `outcomes`, `prerequisites`, `depth` and `sequenceReason`. Explain why each unit exists, what it expects and produces, how cognition progresses, why its position is chosen and where reinforcement/assessment transitions are necessary. Audit gaps, repetition, cycles and cognitive load across the _whole Course_.
+Target approved structure: **Course → Module / Chapter / Lesson slot / Episode slot / Assessment slot; Module → Chapter / Lesson slot / Episode slot / Assessment slot; Chapter → Lesson slot / Episode slot / Assessment slot**. Assessment is Course-owned, not a Lesson or Episode subtype. **Its ordered Stage 2 slot is the decision**: no separate required/not-required flag exists or should be introduced. The Stage 2 Assessment slot's typed Engine contract exists; materialization deployment and integrated QA remain separate. Never nest Modules or Chapters under Chapters; no obligatory artificial Module wrapper. Each Module and Chapter has `config.type`, `slug`, source-language `locale.title`, ordered `content`, and complete `production.methodology`, `outcomes`, `prerequisites`, `depth` and `sequenceReason`. Explain why each unit exists, what it expects and produces, how cognition progresses, why its position is chosen and where reinforcement/assessment transitions are necessary. Audit gaps, repetition, cycles and cognitive load across the _whole Course_.
 
-A provisional Lesson slot has **only** `config: { type: 'lesson', skills: [realVerifiedSkillId, ...] }`. A provisional Episode has **only** `config: { type: 'episode' }` and `production: { focus, purpose }`, explaining the educational situation and reason for its placement. **At Stage 2 the Methodologist decides whether and where Assessments are pedagogically necessary by adding zero or more `type: 'assessment'` slots directly to the appropriate Course, Module or Chapter `config.content.items` and listing each in that exact owner's `content.order`.** A Course-level final Assessment is a direct Course child; a Module or Chapter Assessment stays directly inside that owner. The absence of Assessment slots **anywhere in the completed ordered tree** means that no Course-owned Assessments were planned. Do **not** author an Assessment-required boolean at Course, Module or Chapter level; this would duplicate the structure. For each chosen slot document its purpose/target evidence, provisional upstream and additional Lesson dependencies and rationale within the existing Course methodology/slot planning, not a second owner-level flag. The eventual Engine Stage 2 Assessment slot TypeScript schema must support these actual slots; the current source contract does not yet, pending #823/#826 integration. **Do not** invent Lesson UUID/title/slug/objective/methodology, choose matched Lessons, write Assessment Quiz/Question IDs or content, write Episode plots/Scenes/Sections, create Questions or author translations.
+A provisional Lesson slot has **only** `config: { type: 'lesson', skills: [realVerifiedSkillId, ...] }`. A provisional Episode has **only** `config: { type: 'episode' }` and `production: { focus, purpose }`, explaining the educational situation and reason for its placement. **At Stage 2 the Methodologist decides whether and where Assessments are pedagogically necessary by adding zero or more `type: 'assessment'` slots directly to the appropriate Course, Module or Chapter `config.content.items` and listing each in that exact owner's `content.order`.** A Course-level final Assessment is a direct Course child; a Module or Chapter Assessment stays directly inside that owner. The absence of Assessment slots **anywhere in the completed ordered tree** means that no Course-owned Assessments were planned. Do **not** author an Assessment-required boolean at Course, Module or Chapter level; this would duplicate the structure. For each chosen slot document its purpose/target evidence, provisional upstream and additional Lesson dependencies and rationale within the existing Course methodology/slot planning, not a second owner-level flag. The eventual Engine Stage 2 Assessment slot TypeScript schema must support these actual slots; the current Stage 2 schema does; verify any proposed dependency in the actual Course hierarchy. **Do not** invent Lesson UUID/title/slug/objective/methodology, choose matched Lessons, write Assessment Quiz/Question IDs or content, write Episode plots/Scenes/Sections, create Questions or author translations.
 
 **Placement examples (Stage 2 design, independent of eventual UUID allocation):** a final Course-wide review belongs to `course.config.content.items.finalAssessment` and the root `content.order`; a Module assessment belongs to that Module's own `config.content.items.moduleReview` and `content.order`; a Chapter assessment belongs to that Chapter's own `config.content.items.chapterReview` and `content.order`. These are `type: 'assessment'` slots, **not** Lessons, flags on the parent or a standalone global Assessment list. Preserve the direct owner, stable collection key, scope rationale and exact relative order against adjacent Lessons/Episodes. **The TypeScript example below currently demonstrates already-implemented Lesson/Episode slots only**; do not invent an unimplemented Assessment slot object shape or pretend it compiles until the Engine Stage 2 contract is extended in #826.
 
+**Inert Stage 2 authoring:** keep one complete default-exported literal satisfying `CourseWorkflowStage2`. Copy the actual verified Stage 1 **values** into the same object and add `config.content: { items, order }`; do not reference a `courseStage1` variable, create a helper `observationSlot`, use `...spread`, import runtime Lessons, or author an executable builder. For example, the following is a **nested content fragment, not a complete source file**:
+
 ```ts
-import type { CourseWorkflowStage2, CourseWorkflowStage2LessonSlot } from '@svitlo/engine/build';
-
-const observationSlot = {
-  config: { type: 'lesson', skills: [verifiedSkillUuid] },
-} satisfies CourseWorkflowStage2LessonSlot;
-
-const courseStage2 = {
-  ...courseStage1,
-  config: {
-    ...courseStage1.config,
-    content: {
-      items: {
-        firstObservation: observationSlot,
-        transition: {
-          config: { type: 'episode' },
-          production: {
-            focus: 'Apply the observation question in a new situation',
-            purpose: 'Connect observations to the next learning objective',
-          },
-        },
-      },
-      order: ['firstObservation', 'transition'],
+content: {
+  items: {
+    firstObservation: { config: { type: 'lesson', skills: ['663572e7-bd85-4516-86e2-3de07d209e04'] } },
+    transition: { config: { type: 'episode' }, production: { focus: 'New context', purpose: 'Connect observations' } },
+    finalAssessment: {
+      config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+      production: { purpose: 'Assess earlier learning', lessonDependencies: ['content/firstObservation'] },
     },
   },
-} satisfies CourseWorkflowStage2;
+  order: ['firstObservation', 'transition', 'finalAssessment'],
+},
 ```
+
+The Skill UUID above is synthetic, never an assertion of verified Skills. Assessment slots are supported by the current Stage 2 Engine contract, and remain only planning decisions until separately authorized production.
 
 Use stable collection keys; replace any historical `TMP_*` names by Stage 3. Type-checking cannot establish that all items are ordered exactly once, that Skill IDs exist or that sequencing is pedagogically justified; inspect these in the source. Stage 2 completion means the **entire** macrostructure and provisional Skill coverage are supported by evidence, not just a syntactically valid tree.
 
