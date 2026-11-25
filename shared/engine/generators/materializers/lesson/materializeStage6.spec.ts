@@ -130,12 +130,20 @@ test('Image authoring requires a substantive generation prompt and rejects polic
     production: { specification: 'A lamp and cube' },
   };
   section.order.push('diagram');
-  assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, false, 'generic intent is not a generation prompt');
+  assert.equal(
+    lessonWorkflowStage2_Schema.safeParse(input).success,
+    false,
+    'generic intent is not a generation prompt',
+  );
   section.items.diagram.production.prompt =
     'Create a diagram with a lamp at the left, one opaque blue cube in the center, a gray screen to the right, and a clearly defined cast shadow behind the cube, with light rays correctly aligned.';
   assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, true);
   section.items.diagram.production.offline = 'Generic offline-ready declaration';
-  assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, false, 'generic per-resource policy fields are not part of typed authoring');
+  assert.equal(
+    lessonWorkflowStage2_Schema.safeParse(input).success,
+    false,
+    'generic per-resource policy fields are not part of typed authoring',
+  );
 });
 
 test('reviewed source yields deterministic ordinary Lesson and nested Section/ContentBlock manifests', () => {
@@ -696,7 +704,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
     },
     production: {
       ...resource('Explain the diagram'),
-      prompt: 'Draw a clean educational schematic with one yellow desk lamp on the left, an opaque blue cube at center, and a clearly outlined shadow on a neutral screen at right; mark the straight light rays.',
+      prompt:
+        'Draw a clean educational schematic with one yellow desk lamp on the left, an opaque blue cube at center, and a clearly outlined shadow on a neutral screen at right; mark the straight light rays.',
     },
   });
   const video = (slug: string, number: string, fileName?: string) => ({

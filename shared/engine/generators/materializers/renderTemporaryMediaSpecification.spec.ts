@@ -35,16 +35,20 @@ test('temporary media brief: deterministic labeled block after implementation wi
 });
 
 test('Image requires a generation prompt and drops generic media policy fields', () => {
-  const prompt = 'Create an original scientifically accurate diagram of a lamp on the left, a cube in the center and its shadow on a right-side screen; label the light rays clearly.';
-  const brief = renderTemporaryMediaSpecification({
-    purpose: 'Illustrate shadows',
-    specification: 'This is a diagram',
-    prompt,
-    accessibility: 'Generic accessibility statement',
-    offline: 'Generic offline statement',
-    readiness: 'production-pending',
-    weakDeviceAlternative: 'Generic fallback',
-  }, 'Image');
+  const prompt =
+    'Create an original scientifically accurate diagram of a lamp on the left, a cube in the center and its shadow on a right-side screen; label the light rays clearly.';
+  const brief = renderTemporaryMediaSpecification(
+    {
+      purpose: 'Illustrate shadows',
+      specification: 'This is a diagram',
+      prompt,
+      accessibility: 'Generic accessibility statement',
+      offline: 'Generic offline statement',
+      readiness: 'production-pending',
+      weakDeviceAlternative: 'Generic fallback',
+    },
+    'Image',
+  );
   assert.match(brief, /# prompt/);
   assert.match(brief, /lamp on the left/);
   assert.doesNotMatch(brief, /# purpose|# specification|# accessibility|# offline|# readiness|# weakDeviceAlternative/);

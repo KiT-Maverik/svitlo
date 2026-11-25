@@ -80,7 +80,10 @@ test('image: composed nested source paths and Course language handoff', () => {
     ...options,
     directory,
     languagesImport: '../../../../../languages',
-    production: { prompt: 'Generate an original, accurately proportioned vector diagram showing a yellow light source at left, opaque cube center, and a gray cast shadow on the right screen, using clear rays and no decorative objects.' },
+    production: {
+      prompt:
+        'Generate an original, accurately proportioned vector diagram showing a yellow light source at left, opaque cube center, and a gray cast shadow on the right screen, using clear rays and no decorative objects.',
+    },
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
@@ -105,17 +108,19 @@ test('image: composed nested source paths and Course language handoff', () => {
 
 test('image: a generic specification is not a generation prompt', () => {
   assert.throws(
-    () => materializeImage(valid(), {
-      ...options,
-      production: { specification: 'Produce an illustration' },
-    }),
+    () =>
+      materializeImage(valid(), {
+        ...options,
+        production: { specification: 'Produce an illustration' },
+      }),
     /Image requires a concrete generation prompt/,
   );
   assert.throws(
-    () => materializeImage(valid(), {
-      ...options,
-      production: { prompt: 'Draw a picture' },
-    }),
+    () =>
+      materializeImage(valid(), {
+        ...options,
+        production: { prompt: 'Draw a picture' },
+      }),
     /Image requires a concrete generation prompt/,
   );
 });
