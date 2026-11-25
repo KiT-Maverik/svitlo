@@ -5,6 +5,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
+import { analyze as analyzeLesson } from '../lessonMaterialization/lesson-typed-materialization.mjs';
 
 const flows = [
   ['course-typed-materialization.yml', '/course materialize', 'resolve', 'analyze', 'publish'],
@@ -80,5 +81,18 @@ test('manual dispatch preserves entity-specific input contracts', () => {
       assert.match(source, /      parent_pr:\n\s*description:.*\n\s*type: number\n\s*required: true/);
     if (filename.startsWith('bank'))
       assert.match(source, /      bank:\n\s*description:.*\n\s*type: choice\n\s*options: \[questions, flashcards\]/);
+  }
+});
+
+test('Lesson analyzer rejects inherited GitHub credentials before loading pinned data', async () => {
+  for (const key of ['GH_TOKEN', 'GITHUB_TOKEN']) {
+    const original = process.env[key];
+    process.env[key] = 'test-only-sentinel';
+    try {
+      await assert.rejects(analyzeLesson(undefined, undefined), /Lesson analysis must not receive GitHub credentials/);
+    } finally {
+      if (original === undefined) delete process.env[key];
+      else process.env[key] = original;
+    }
   }
 });
