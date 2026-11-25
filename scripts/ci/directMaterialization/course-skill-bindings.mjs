@@ -55,7 +55,7 @@ export function courseSkillReferences(input) {
   if (found.size > 250) throw Error('Too many Course Skill dependencies');
   return [...found].sort();
 }
-function textField(config, name) {
+function textField(ts, config, name) {
   if (!ts.isObjectLiteralExpression(config)) return null;
   const field = config.properties.find(x =>
     ts.isPropertyAssignment(x) &&
@@ -84,8 +84,8 @@ function extractSkillExports(filename, content) {
           init.expression.text !== 'defineSkill') continue;
       if (!hasDefineSkillImport || !ts.isIdentifier(dec.name) || !NAME.test(dec.name.text) ||
           init.arguments.length !== 1) throw Error('Unsafe trusted Skill declaration in ' + filename);
-      const id = textField(init.arguments[0], 'id');
-      const slug = textField(init.arguments[0], 'slug');
+      const id = textField(ts, init.arguments[0], 'id');
+      const slug = textField(ts, init.arguments[0], 'slug');
       if (!UUID.test(id ?? '') || !NAME.test(slug ?? '') || slug !== dec.name.text)
         throw Error('Trusted Skill UUID/slug/export mismatch in ' + filename);
       result.push({ id, slug, exportName: dec.name.text });
