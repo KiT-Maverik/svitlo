@@ -216,9 +216,9 @@ const syntax = files => {
 test('full Course > Module > Chapter > Episode, direct placements and Stage 1 language metadata', () => {
   const first = materializeCourse(course(), ctx());
   const paths = first.files.map(f => f.path);
-  assert.ok(paths.includes('content/moduleOne/chapterOne/episodeOne/index.ts'));
-  assert.ok(paths.includes('content/directEpisode/index.ts'));
-  assert.ok(!paths.includes('content/directLesson/index.ts'));
+  assert.ok(paths.includes('moduleOne/chapterOne/episodeOne/index.ts'));
+  assert.ok(paths.includes('directEpisode/index.ts'));
+  assert.ok(!paths.includes('directLesson/index.ts'));
   assert.match(
     first.files.find(f => f.path === 'index.ts').content,
     /import \{ independentLesson as child_directLesson \} from "#lessonsData\//,
@@ -231,13 +231,13 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
     main,
     /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/,
   );
-  const unit = first.files.find(f => f.path === 'content/moduleOne/index.ts').content;
-  const chapter = first.files.find(f => f.path === 'content/moduleOne/chapterOne/index.ts').content;
+  const unit = first.files.find(f => f.path === 'moduleOne/index.ts').content;
+  const chapter = first.files.find(f => f.path === 'moduleOne/chapterOne/index.ts').content;
   assert.match(unit, /import type \{ Languages \} from "#coursesData\//);
   assert.match(chapter, /import type \{ Languages \} from "#coursesData\//);
   assert.doesNotMatch(unit, /import \{ languages \}/);
-  assert.match(unit, /skill_[0-9a-f_]+\.id/);
-  assert.match(chapter, /skill_[0-9a-f_]+\.id/);
+  assert.match(unit, /testExplainLightTravel\\.id/);
+  assert.match(chapter, /testExplainLightTravel\\.id/);
   assert.doesNotMatch(main, /const languages =|Restore reviewed languages/);
   assert.equal(first.placements.length, 1);
   syntax(first.files);
@@ -278,7 +278,7 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": child_newLesson/);
   assert.match(
-    result.files.find(f => f.path === 'content/newLesson/stub.ts').content,
+    result.files.find(f => f.path === 'newLesson/stub.ts').content,
     /export const stub = defineLessonStub/,
   );
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
@@ -300,15 +300,15 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   const context = { ...ctx(), courseId: IDs.course, reviewedCourseSourceBlobSha: '1'.repeat(40) };
   const result = materializeCourse(draft, context);
   assert.ok(result.diagnostics.some(d => d.code === 'pending-episode-scenario' && d.severity === 'blocker'));
-  const handoff = result.files.find(f => f.path === 'content/directEpisode/draft.ts').content;
+  const handoff = result.files.find(f => f.path === 'directEpisode/draft.ts').content;
   assert.match(handoff, /TODO \(BLOCKER\)/);
   assert.match(handoff, /Situation/);
   assert.match(handoff, /Transition/);
   assert.doesNotMatch(handoff, /defineEpisode/);
-  assert.ok(!result.files.some(f => f.path === 'content/directEpisode/index.ts'));
+  assert.ok(!result.files.some(f => f.path === 'directEpisode/index.ts'));
   assert.equal(result.pendingEpisodes.length, 1);
   assert.match(result.files.find(f => f.path === 'index.ts').content, /"directEpisode": child_directEpisode/);
-  assert.match(result.files.find(f => f.path === 'content/directEpisode/stub.ts').content, /defineEpisodeStub/);
+  assert.match(result.files.find(f => f.path === 'directEpisode/stub.ts').content, /defineEpisodeStub/);
   syntax(result.files);
   assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();
@@ -358,8 +358,8 @@ test('Methodology Markdown is ordered, preserves evidence and never JSON dumps C
   input.production.openDecisions = { translation: 'Await expert review' };
   const result = materializeCourse(input, ctx());
   const courseMarkdown = result.files.find(f => f.path === 'methodology.md').content;
-  const moduleMarkdown = result.files.find(f => f.path === 'content/moduleOne/methodology.md').content;
-  const chapterMarkdown = result.files.find(f => f.path === 'content/moduleOne/chapterOne/methodology.md').content;
+  const moduleMarkdown = result.files.find(f => f.path === 'moduleOne/methodology.md').content;
+  const chapterMarkdown = result.files.find(f => f.path === 'moduleOne/chapterOne/methodology.md').content;
   assert.match(courseMarkdown, /## Standards alignment[\s\S]*Reviewed scientific alignment/);
   assert.match(courseMarkdown, /## Open decisions[\s\S]*Await expert review/);
   assert.ok(courseMarkdown.indexOf('## Purpose') < courseMarkdown.indexOf('## Intended learning outcomes'));
@@ -384,7 +384,7 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
           exportName: 'pending',
           files: [
             {
-              path: 'content/course/content/pending/index.ts',
+              path: 'course/pending/index.ts',
               kind: 'typescript',
               content: 'export const pending = {};',
             },
