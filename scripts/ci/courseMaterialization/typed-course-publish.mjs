@@ -234,7 +234,7 @@ function assertCourseInventory(manifest, meta, entries) {
             !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
             !source.includes('export const placedLesson = placeLesson(originalLesson, ')
           )
-            throw Error('Course Lesson override module lacks verified original or Build patch');
+            throw Error('Course Lesson override placement module lacks verified original or Build patch');
         }
       } else throw Error('Invalid Course Lesson kind');
     } else if (row.type === 'episode') {
