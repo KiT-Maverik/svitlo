@@ -7,7 +7,7 @@ const UUID = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
 const pathPattern = new RegExp(
   '^(content/[a-z][a-z0-9-]*/data/courses/([a-f0-9])/(' +
     UUID +
-    '))/(content/(?:[A-Za-z][A-Za-z0-9]*/){0,2}[A-Za-z][A-Za-z0-9]*)/draft\\.ts$',
+    '))/((?:[A-Za-z][A-Za-z0-9]*/){0,2}[A-Za-z][A-Za-z0-9]*)/draft\\.ts$',
 );
 const bad = new Set(['constructor', 'prototype', '__proto__']);
 export function discoverEpisodeDraft(files) {
@@ -20,7 +20,7 @@ export function discoverEpisodeDraft(files) {
   const courseRoot = match[1],
     placement = match[4];
   const parentPath =
-    placement.split('/').length === 2
+    placement.split('/').length === 1
       ? courseRoot + '/index.ts'
       : courseRoot + '/' + placement.split('/').slice(0, -1).join('/') + '/index.ts';
   return {
