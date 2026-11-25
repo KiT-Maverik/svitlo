@@ -145,18 +145,18 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const bank = lessonRoot + 'questions/';
   const courseParent = courseRoot + '/index.ts';
   const parent = lessonImports =>
-    'import { defineCourse } from "@svitlo/engine/build";\\n' +
+    'import { defineCourse } from "@svitlo/engine/build";\n' +
     lessonImports.map(({ slug, id }) =>
       'import { lesson as child_' + slug + ' } from "#lessonsData/' +
-      id.at(-1) + '/' + id + '/index";\\n').join('') +
+      id.at(-1) + '/' + id + '/index";\n').join('') +
     'const content = { items: { ' +
     lessonImports.map(({ slug }) => JSON.stringify(slug) + ': child_' + slug).join(', ') +
-    ' }, order: ' + JSON.stringify(lessonImports.map(({ slug }) => slug)) + ' };\\n' +
-    'export const demo = defineCourse({ content });\\n';
+    ' }, order: ' + JSON.stringify(lessonImports.map(({ slug }) => slug)) + ' };\n' +
+    'export const demo = defineCourse({ content });\n';
   const contents = new Map([
     [courseParent, parent([{ slug: 'newLesson', id: lessonId }])],
     [lessonRoot + 'index.ts', 'export const lesson = defineLesson({});'],
-    [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\\nexport const questions = {};'],
+    [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\nexport const questions = {};'],
     [bank + 'selectOneAnswer/index.ts', 'export { prompt } from "./prompt";'],
     [
       bank + 'selectOneAnswer/prompt.ts',
