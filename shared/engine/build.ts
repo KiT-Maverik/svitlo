@@ -88,3 +88,14 @@ export { materializeEpisodeStage5 } from './generators/materializers/episode/mat
 
 // Inert Course-local Lesson additions use approved Section references, not live objects.
 export type { CourseLessonSourcePatch, CourseLessonSectionReference } from './types/workflow/courseLessonSourcePatch.types';
+
+// Trusted Lesson source planning declarations (all build-only).
+export type {
+  LessonStage6Options,
+  LessonStage6Plan,
+  LessonStage6Source,
+} from './generators/materializers/lesson/materializeStage6';
+export type {
+  TrustedBankSelection,
+  TrustedBankMember,
+} from './generators/materializers/lesson/preserveAssessmentReferences';
