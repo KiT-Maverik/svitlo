@@ -107,7 +107,7 @@ test('Course publisher accepts only complete UUID Scene scaffold groups', () => 
   assert.throws(() => verifyTypedCourseManifest(partial, meta), /Incomplete or mixed Course Scene scaffold/);
   const wrongBucket = buildTypedCourseManifest(meta, {
     ...plan,
-    files: [...plan.files, { ...scenes[0], path: base.replace('/2/', '/0/') }],
+    files: [...plan.files, { ...scenes[0], path: scenes[0].path.replace('/scenes/2/', '/scenes/0/') }],
   });
   assert.throws(() => verifyTypedCourseManifest(wrongBucket, meta), /Unsafe, duplicated or malformed/);
   const unrelated = buildTypedCourseManifest(meta, {
