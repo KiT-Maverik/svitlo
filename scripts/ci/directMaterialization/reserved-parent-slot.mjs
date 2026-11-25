@@ -78,6 +78,107 @@ export function verifyOwnedCourseStub(source, { kind, id, slug }) {
   return true;
 }
 
+/** Read-only Course Stage 5 seal: the generated parent must import the
+ * exact local stub and use it once at the actual ordered child key. This is
+ * equally strict for pending Lessons, which deliberately have no automatic
+ * parent-restoration transaction.
+ */
+export function verifyPendingCourseParent(source, { kind, id, slug, placement, stubSource }) {
+  if (!['lesson', 'episode', 'assessment'].includes(kind) ||
+    typeof source !== 'string' || source.length > 4 * 1024 * 1024 ||
+    !UUID.test(id ?? '') || !safe(slug) ||
+    typeof placement !== 'string' || placement.split('/').at(-1) !== slug)
+    throw Error('Invalid pending Course stub or placement identity');
+  const parts = placement.split('/');
+  const depth = parts.length;
+  if (parts[0] !== 'content' || parts.some(part => !safe(part)) ||
+    (kind === 'assessment' && ![2,4,5].includes(depth)) ||
+    (kind !== 'assessment' && ![2,3,4].includes(depth)) ||
+    (kind === 'assessment' && depth > 2 && parts.at(-2) !== 'content'))
+    throw Error('Invalid pending Course parent ownership');
+  verifyOwnedCourseStub(stubSource, { kind, id, slug });
+  const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  if (ast.parseDiagnostics.length ||
+    ast.statements.some(statement => !ts.isImportDeclaration(statement) && !ts.isVariableStatement(statement)))
+    throw Error('Unexpected generated parent syntax');
+  const imported = ast.statements.filter(ts.isImportDeclaration);
+  const prefix = depth === 2 || kind === 'assessment' ? './content/' : './';
+  const stubImport = prefix + slug + '/stub';
+  const found = imported.filter(statement =>
+    ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === stubImport);
+  if (found.length !== 1) throw Error('Missing or duplicate Course child stub import');
+  const clause = found[0].importClause;
+  if (!clause || clause.isTypeOnly || clause.name || found[0].attributes ||
+    !clause.namedBindings || !ts.isNamedImports(clause.namedBindings) ||
+    clause.namedBindings.elements.length !== 1 ||
+    clause.namedBindings.elements[0].isTypeOnly ||
+    clause.namedBindings.elements[0].propertyName?.text !== 'stub' ||
+    clause.namedBindings.elements[0].name.text !== 'child_' + slug)
+    throw Error('Unexpected imported Course stub alias/export');
+  if (imported.some(statement => statement !== found[0] &&
+    ts.isStringLiteral(statement.moduleSpecifier) &&
+    [stubImport, stubImport + '/index'].includes(statement.moduleSpecifier.text)))
+    throw Error('Ambiguous imported Course stub');
+  const variable = ast.statements.filter(ts.isVariableStatement).flatMap(statement =>
+    [...statement.declarationList.declarations]).filter(declaration =>
+      ts.isIdentifier(declaration.name) && declaration.name.text === 'content');
+  if (variable.length !== 1 || !ts.isObjectLiteralExpression(unwrap(variable[0].initializer)))
+    throw Error('Missing exact immediate parent content collection');
+  const collection = unwrap(variable[0].initializer);
+  if (collection.properties.length !== 2) throw Error('Unrecognized parent items/order shape');
+  const itemNode = unwrap(singleProperty(collection, 'items').initializer);
+  const orderNode = unwrap(singleProperty(collection, 'order').initializer);
+  if (!ts.isObjectLiteralExpression(itemNode) || !ts.isArrayLiteralExpression(orderNode))
+    throw Error('Parent items/order must be literals');
+  const items = itemNode.properties.map(property => {
+    if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
+      throw Error('Unexpected parent item syntax');
+    return { key: name(property.name), value: unwrap(property.initializer) };
+  });
+  const ordered = orderNode.elements.map(element => {
+    const node = unwrap(element);
+    if (!ts.isStringLiteral(node) || !safe(node.text)) throw Error('Unsafe parent order');
+    return node.text;
+  });
+  if (items.length !== ordered.length ||
+    new Set(items.map(item => item.key)).size !== items.length ||
+    new Set(ordered).size !== ordered.length ||
+    items.some(item => !ordered.includes(item.key)))
+    throw Error('Incomplete or duplicate immediate parent order');
+  const owned = items.find(item => item.key === slug);
+  if (!owned || !ts.isIdentifier(owned.value) || owned.value.text !== 'child_' + slug)
+    throw Error('Course pending child slot does not use its approved stub alias');
+  let references = 0;
+  const visit = node => {
+    if (ts.isIdentifier(node) && node.text === 'child_' + slug) references++;
+    ts.forEachChild(node, visit);
+  };
+  ts.forEachChild(ast, visit);
+  if (references !== 2) throw Error('Course pending stub alias has ambiguous references');
+  const owner = depth === 2 ? 'defineCourse' :
+    kind === 'assessment' ? (depth === 4 ? 'defineModule' : 'defineChapter') :
+    (depth === 3 ? 'defineModule' : 'defineChapter');
+  const parents = ast.statements.filter(ts.isVariableStatement).flatMap(statement =>
+    [...statement.declarationList.declarations]).filter(declaration => {
+      const init = unwrap(declaration.initializer);
+      return ts.isCallExpression(init) && ts.isIdentifier(init.expression) &&
+        init.expression.text === owner && init.arguments.length === 1 &&
+        ts.isObjectLiteralExpression(unwrap(init.arguments[0])) &&
+        unwrap(init.arguments[0]).properties.some(property =>
+          ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content');
+    }));
+  if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
+  const builds = imported.filter(statement =>
+    ts.isStringLiteral(statement.moduleSpecifier) &&
+    statement.moduleSpecifier.text === '@svitlo/engine/build');
+  if (!builds.some(statement => statement.importClause?.namedBindings &&
+    ts.isNamedImports(statement.importClause.namedBindings) &&
+    statement.importClause.namedBindings.elements.some(specifier =>
+      !specifier.isTypeOnly && !specifier.propertyName && specifier.name.text === owner)))
+    throw Error('Immediate parent must import its declared Configurator');
+  return true;
+}
+
 /** Pin the immediate parent AST and its separately imported, immutable stub.
  * Comments, text search, author-supplied orderPath and executable code are
  * never evidence of Course ownership or an eligible restoration.
