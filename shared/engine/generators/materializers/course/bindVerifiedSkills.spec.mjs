@@ -42,8 +42,8 @@ test('binds actual Skill IDs while retaining exact target order and unrelated ta
     },
   };
   const result = bindVerifiedSkills(params, { ...ctx, includeLanguages: true });
-  const a = 'skill_' + first.replaceAll('-', '_') + '.id';
-  const b = 'skill_' + second.replaceAll('-', '_') + '.id';
+  const a = 'testExplainLightTravel.id';
+  const b = 'testRecognizeCircle.id';
   assert(result.source.indexOf(a) < result.source.indexOf(b));
   assert(result.source.includes('"skills": [' + a + ', ' + b + ']'));
   assert(result.source.includes('"skills": [' + b + ']'));
@@ -53,6 +53,28 @@ test('binds actual Skill IDs while retaining exact target order and unrelated ta
   assert.equal(result.imports.length, 2, 'reuse a Skill binding across Course outcome and prerequisite arrays');
   assert(result.imports.some(i => i.includes('#skillsData/testLight/testLightPropagation/testExplainLightTravel')));
   assert(result.imports.some(i => i.includes('#skillsData/testShapes/testRoundShapes/testRecognizeCircle')));
+});
+
+test('uses readable aliases only when Skill names collide with imports or each other', () => {
+  const source = bindVerifiedSkills({ outcomes: { skills: [first, second] } }, {
+    ...ctx,
+    reservedNames: ['testExplainLightTravel'],
+    resolveSkill: request => request.id === second
+      ? { ...approve(request), exportName: 'testExplainLightTravel' }
+      : approve(request),
+  });
+  assert.match(source.source, /testExplainLightTravel_2\\.id/);
+  assert.match(source.source, /testExplainLightTravel_3\\.id/);
+  assert.equal(source.imports.length, 2);
+  assert(source.imports.every(line => line.includes(' as testExplainLightTravel_')));
+  const again = bindVerifiedSkills({ outcomes: { skills: [first, second] } }, {
+    ...ctx,
+    reservedNames: ['testExplainLightTravel'],
+    resolveSkill: request => request.id === second
+      ? { ...approve(request), exportName: 'testExplainLightTravel' }
+      : approve(request),
+  });
+  assert.deepEqual(again, source);
 });
 
 test('fails closed for unknown, unapproved, stale, spoofed or wrong-type Skill dependencies', () => {
