@@ -14,8 +14,11 @@ const id = '11111111-1111-4111-8111-111111111111';
 const sha = 'a'.repeat(40);
 const sectionId = '22222222-2222-4222-8222-222222222222';
 const addedSection = (sourceSha = sha, ownerLessonId = id) => ({
-  $ref: 'lesson-section', lessonId: ownerLessonId, sectionId,
-  sourceSha, exportName: 'practice',
+  $ref: 'lesson-section',
+  lessonId: ownerLessonId,
+  sectionId,
+  sourceSha,
+  exportName: 'practice',
 });
 const withSection = (sourceSha = sha, ownerLessonId = id) => ({
   config: { type: 'lesson', slug: 'first' },
@@ -37,17 +40,27 @@ test('Course default-branch Lesson dependency inventory is deterministic, de-dup
 });
 test('Course declarative added Section references are deduplicated and fail closed', () => {
   const value = { config: { content: { items: { first: withSection(), second: withSection() } } } };
-  assert.deepEqual(courseAddedSectionReferences(value), [{
-    id: sectionId, ownerLessonId: id, sourceSha: sha, slug: 'practice', exportName: 'practice',
-  }]);
+  assert.deepEqual(courseAddedSectionReferences(value), [
+    {
+      id: sectionId,
+      ownerLessonId: id,
+      sourceSha: sha,
+      slug: 'practice',
+      exportName: 'practice',
+    },
+  ]);
   const forged = withSection();
   forged.production.sourcePatch.section.additionalItems.practice.exportName = '../unsafe';
-  assert.throws(() => courseAddedSectionReferences({ config: { content: { items: { forged } } } }),
-    /Invalid Course additional Section reference/);
+  assert.throws(
+    () => courseAddedSectionReferences({ config: { content: { items: { forged } } } }),
+    /Invalid Course additional Section reference/,
+  );
   const unowned = withSection();
   unowned.production.sourcePatch.section.additionalItems.practice.lessonId = '../../../owner';
-  assert.throws(() => courseAddedSectionReferences({ config: { content: { items: { unowned } } } }),
-    /Invalid Course additional Section reference/);
+  assert.throws(
+    () => courseAddedSectionReferences({ config: { content: { items: { unowned } } } }),
+    /Invalid Course additional Section reference/,
+  );
 });
 
 test('Course dependencies reject executable-path and source-SHA ambiguity before Docker', () => {
@@ -55,7 +68,8 @@ test('Course dependencies reject executable-path and source-SHA ambiguity before
     reuse('x'.repeat(40)),
     { ...reuse(), production: { ...reuse().production, sourceExportName: '../evil' } },
     { ...reuse(), production: { ...reuse().production, existing: { id: '__proto__' } } },
-  ]) assert.throws(() => courseLessonReferences(invalid), /Unsafe Course Lesson dependency/);
+  ])
+    assert.throws(() => courseLessonReferences(invalid), /Unsafe Course Lesson dependency/);
 });
 
 test('Course isolated loader mounts only trusted default-branch dependency code', t => {
@@ -64,8 +78,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   const trustedRoot = path.join(root, 'trusted');
   const candidateRoot = path.join(root, 'candidate');
   fs.mkdirSync(trustedRoot);
-  const git = (directory, ...args) =>
-    execFileSync('git', ['-C', directory, ...args], { encoding: 'utf8' }).trim();
+  const git = (directory, ...args) => execFileSync('git', ['-C', directory, ...args], { encoding: 'utf8' }).trim();
   git(trustedRoot, 'init', '-q');
   git(trustedRoot, 'config', 'user.name', 'Svitlo Fixture');
   git(trustedRoot, 'config', 'user.email', 'svitlo@example.invalid');
@@ -85,12 +98,20 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   git(root, 'clone', '-q', trustedRoot, candidateRoot);
   const expectedBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + relative);
   const sectionBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + sectionRelative);
-  const input = { config: { content: { items: {
-    reused: reuse(expectedBlob),
-  }, order: ['reused'] } } };
+  const input = {
+    config: {
+      content: {
+        items: {
+          reused: reuse(expectedBlob),
+        },
+        order: ['reused'],
+      },
+    },
+  };
   const source = {
     sourcePath: 'content/math/data/courses/1/' + id + '/draft.ts',
-    sourceBlobSha: 'b'.repeat(40), sourceCommitSha: git(candidateRoot, 'rev-parse', 'HEAD'),
+    sourceBlobSha: 'b'.repeat(40),
+    sourceCommitSha: git(candidateRoot, 'rev-parse', 'HEAD'),
   };
   const calls = [];
   const fakeSpawn = (binary, args, options) => {
@@ -121,39 +142,70 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   };
   const withAddedResult = runIsolatedCourseDependencies({ ...request, input: withAdded }, fakeSpawn);
   assert.equal(withAddedResult.publishable, false);
-  assert.deepEqual(JSON.parse(calls[0].options.input).sections, [{
-    id: sectionId, ownerLessonId: id, sourceSha: sectionBlob, slug: 'practice', exportName: 'practice',
-  }]);
+  assert.deepEqual(JSON.parse(calls[0].options.input).sections, [
+    {
+      id: sectionId,
+      ownerLessonId: id,
+      sourceSha: sectionBlob,
+      slug: 'practice',
+      exportName: 'practice',
+    },
+  ]);
 
   calls.length = 0;
-  assert.throws(() => runIsolatedCourseDependencies({
-    ...request,
-    input: {
-      config: { content: { items: { reused: withSection('c'.repeat(40)) } } },
-    },
-  }, fakeSpawn), /Section|fatal|git/i);
+  assert.throws(
+    () =>
+      runIsolatedCourseDependencies(
+        {
+          ...request,
+          input: {
+            config: { content: { items: { reused: withSection('c'.repeat(40)) } } },
+          },
+        },
+        fakeSpawn,
+      ),
+    /Section|fatal|git/i,
+  );
   assert.equal(calls.length, 0, 'untrusted Section revision never launches Docker');
 
   calls.length = 0;
-  assert.throws(() => runIsolatedCourseDependencies({
-    ...request,
-    input: {
-      config: { content: { items: { reused: withSection(sectionBlob,
-        '33333333-3333-4333-8333-333333333333') } } },
-    },
-  }, fakeSpawn), /Section|fatal|git/i);
+  assert.throws(
+    () =>
+      runIsolatedCourseDependencies(
+        {
+          ...request,
+          input: {
+            config: {
+              content: { items: { reused: withSection(sectionBlob, '33333333-3333-4333-8333-333333333333') } },
+            },
+          },
+        },
+        fakeSpawn,
+      ),
+    /Section|fatal|git/i,
+  );
   assert.equal(calls.length, 0, 'wrong Section owner never launches Docker');
 
   calls.length = 0;
-  assert.throws(() => runIsolatedCourseDependencies({
-    ...request,
-    input: { config: { content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } } },
-  }, fakeSpawn), /git|fatal|Lesson|SHA|revision/i);
+  assert.throws(
+    () =>
+      runIsolatedCourseDependencies(
+        {
+          ...request,
+          input: { config: { content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } } },
+        },
+        fakeSpawn,
+      ),
+    /git|fatal|Lesson|SHA|revision/i,
+  );
   assert.equal(calls.length, 0, 'untrusted revision never launches Docker');
 
   fs.writeFileSync(file, 'export const altered = true;\n');
   git(trustedRoot, 'add', '.');
   git(trustedRoot, 'commit', '-qm', 'Changed trusted Lesson');
-  assert.throws(() => runIsolatedCourseDependencies(request, fakeSpawn), /Reused Lesson differs from trusted default branch/);
+  assert.throws(
+    () => runIsolatedCourseDependencies(request, fakeSpawn),
+    /Reused Lesson differs from trusted default branch/,
+  );
   assert.equal(calls.length, 0);
 });

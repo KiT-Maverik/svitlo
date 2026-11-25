@@ -4,8 +4,8 @@
  * as the original stateless Lesson Build API does.
  */
 import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
-import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
+import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import type { CourseLessonSourcePatch } from '../../../types/workflow/courseLessonSourcePatch.types';
 
 const paragraph = defineText<'paragraph', ['en', 'uk']>({
@@ -106,26 +106,32 @@ const reviewed = {
 } satisfies ReviewedPatch;
 const reviewedDisabled = { section: { items: { intro: false }, order: [] } } satisfies ReviewedPatch;
 const invalidReviewChild = {
-  section: { items: {
-    // @ts-expect-error Reviewed Lesson does not contain this Section.
-    invented: false,
-  } },
+  section: {
+    items: {
+      // @ts-expect-error Reviewed Lesson does not contain this Section.
+      invented: false,
+    },
+  },
 } satisfies ReviewedPatch;
 const invalidReviewAddition = {
-  section: { additionalItems: {
-    // @ts-expect-error Existing Section cannot be reintroduced as an addition.
-    intro: sectionRef,
-  } },
+  section: {
+    additionalItems: {
+      // @ts-expect-error Existing Section cannot be reintroduced as an addition.
+      intro: sectionRef,
+    },
+  },
 } satisfies ReviewedPatch;
 const invalidReviewMetadata = {
   // @ts-expect-error SourcePatch retains Lesson's exact navigation booleans.
   params: { sections: { allowNavigation: 'false' } },
 } satisfies ReviewedPatch;
 const invalidReviewReference = {
-  section: { additionalItems: {
-    // @ts-expect-error Course drafts accept inert descriptors, not executable Configurators.
-    practice,
-  } },
+  section: {
+    additionalItems: {
+      // @ts-expect-error Course drafts accept inert descriptors, not executable Configurators.
+      practice,
+    },
+  },
 } satisfies ReviewedPatch;
 void reviewed;
 void reviewedDisabled;

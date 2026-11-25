@@ -9,7 +9,10 @@ import { createHash } from 'node:crypto';
 import { gitBlob } from './course-gate.mjs';
 import { parseTypedMetadata } from './typed-course-gate.mjs';
 import { parseTrustedDraft, renderTrustedDraft, trustedEngine } from '../directMaterialization/trusted-draft.mjs';
-import { courseLessonReferences, runIsolatedCourseDependencies } from '../directMaterialization/course-dependency-isolation.mjs';
+import {
+  courseLessonReferences,
+  runIsolatedCourseDependencies,
+} from '../directMaterialization/course-dependency-isolation.mjs';
 
 const sha = /^[a-f0-9]{40}$/i;
 const safePath = value =>
@@ -159,7 +162,10 @@ export function analyzeDirectCourse(meta, candidateRoot, trustedRoot) {
   const source = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlobSha, sourceCommitSha: meta.head };
   const engine = trustedEngine(trustedRoot);
   const input = parseTrustedDraft({
-    operation: 'course-stage5', source, sourceText, read: engine.readDeclarativeDraft,
+    operation: 'course-stage5',
+    source,
+    sourceText,
+    read: engine.readDeclarativeDraft,
   });
   // Only a reused Lesson can require executing a Configurator module. Never
   // import candidate code here: execute trusted default-branch dependencies
@@ -175,10 +181,18 @@ export function analyzeDirectCourse(meta, candidateRoot, trustedRoot) {
   };
   const plan = references.length
     ? runIsolatedCourseDependencies({
-        input, source, textbookRoot: meta.textbookRoot, candidateRoot: root, trustedRoot,
+        input,
+        source,
+        textbookRoot: meta.textbookRoot,
+        candidateRoot: root,
+        trustedRoot,
       })
     : renderTrustedDraft({
-        operation: 'course-stage5', source, input, renderers: engine, options,
+        operation: 'course-stage5',
+        source,
+        input,
+        renderers: engine,
+        options,
       });
   verifyCourseDependencies(meta, root, trustedRoot, plan);
   return buildTypedCourseManifest(meta, plan);

@@ -73,76 +73,72 @@ export function materializeEpisodeStage5(
 ): EpisodeStage5Plan {
   const source = options;
   const checked = episodeWorkflowStage2_Schema.safeParse(input);
-      if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
-      // Technical ownership comes from the sealed Git source path, never an
-      // editable repetition of courseId/path/orderPath in Episode narrative.
-      const owned = source.source.sourcePath.match(
-        /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
-      );
-      if (!owned || owned[2] !== owned[3].at(-1) || owned[4].split('/').at(-1) !== input.config.slug)
-        throw Error('Episode Stage 5 requires its exact allocated Course draft path');
-      const [, textbook, , courseId, root] = owned;
-      const document = input.production.languages.document;
-      const planned = [...input.production.languages.planned];
-      const courseLanguagesImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/constants';
-      const sceneDrafts = episodeSceneDrafts(input, document, textbook);
-      const result = materializeEpisode(
-        {
-          config: { ...input.config, params: { ...input.config.params, languages: planned } },
-          production: { ...input.production, plannedLanguages: planned },
-        },
-        {
-          directory: root,
-          sourceLanguage: document,
-          plannedLanguages: planned,
-          materializeSection: (node: unknown, context: { directory: string }) =>
-            materializeEpisodeSection(node, {
-              ...context,
-              documentLanguage: document,
-              languagesImport: courseLanguagesImport,
-            }),
-        },
-      );
-      if (
-        result.id !== input.config.id ||
-        result.pendingEpisode ||
-        !result.files.some((file: { path: string }) => file.path === root + '/index.ts')
-      )
-        throw new Error('Episode source renderer did not produce its allocated Configurator');
-      const index = result.files.find((file: { path: string }) => file.path === root + '/index.ts');
-      if (!index) throw new Error('Missing Episode root index.ts');
-      const originalLanguages =
-        'const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;';
-      if (!index.content.includes(originalLanguages)) throw new Error('Unexpected Episode language declaration');
-      index.content = index.content
-        .replace(
-          "import type { SupportedLanguages } from '@svitlo/engine/build';",
-          'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
-        )
-        .replace(originalLanguages, '')
-        .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
-      index.content =
-        renderBlockerTodo(
-          'Complete and human-verify Episode media generation at Stage 9 before removing this blocker.',
-        ) +
-        '\n' +
-        renderBlockerTodo(
-          'Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.',
-        ) +
-        '\n' +
-        '// Reviewed Episode source blob: ' +
-        source.source.sourceBlobSha +
-        '\n' +
-        '// Reviewed Episode HEAD: ' +
-        source.source.sourceCommitSha +
-        '\n' +
-        index.content;
-      return {
-        episodeId: result.id,
-        exportName: result.exportName,
-        // All Course-owned children import the single root language tuple.
-        files: [...result.files, ...sceneDrafts],
-        diagnostics: result.diagnostics ?? [],
-        publishable: false,
-      };
+  if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
+  // Technical ownership comes from the sealed Git source path, never an
+  // editable repetition of courseId/path/orderPath in Episode narrative.
+  const owned = source.source.sourcePath.match(
+    /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
+  );
+  if (!owned || owned[2] !== owned[3].at(-1) || owned[4].split('/').at(-1) !== input.config.slug)
+    throw Error('Episode Stage 5 requires its exact allocated Course draft path');
+  const [, textbook, , courseId, root] = owned;
+  const document = input.production.languages.document;
+  const planned = [...input.production.languages.planned];
+  const courseLanguagesImport = '#coursesData/' + courseId.at(-1) + '/' + courseId + '/constants';
+  const sceneDrafts = episodeSceneDrafts(input, document, textbook);
+  const result = materializeEpisode(
+    {
+      config: { ...input.config, params: { ...input.config.params, languages: planned } },
+      production: { ...input.production, plannedLanguages: planned },
+    },
+    {
+      directory: root,
+      sourceLanguage: document,
+      plannedLanguages: planned,
+      materializeSection: (node: unknown, context: { directory: string }) =>
+        materializeEpisodeSection(node, {
+          ...context,
+          documentLanguage: document,
+          languagesImport: courseLanguagesImport,
+        }),
+    },
+  );
+  if (
+    result.id !== input.config.id ||
+    result.pendingEpisode ||
+    !result.files.some((file: { path: string }) => file.path === root + '/index.ts')
+  )
+    throw new Error('Episode source renderer did not produce its allocated Configurator');
+  const index = result.files.find((file: { path: string }) => file.path === root + '/index.ts');
+  if (!index) throw new Error('Missing Episode root index.ts');
+  const originalLanguages =
+    'const languages = ' + JSON.stringify([document]) + ' as const satisfies SupportedLanguages;';
+  if (!index.content.includes(originalLanguages)) throw new Error('Unexpected Episode language declaration');
+  index.content = index.content
+    .replace(
+      "import type { SupportedLanguages } from '@svitlo/engine/build';",
+      'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
+    )
+    .replace(originalLanguages, '')
+    .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
+  index.content =
+    renderBlockerTodo('Complete and human-verify Episode media generation at Stage 9 before removing this blocker.') +
+    '\n' +
+    renderBlockerTodo('Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.') +
+    '\n' +
+    '// Reviewed Episode source blob: ' +
+    source.source.sourceBlobSha +
+    '\n' +
+    '// Reviewed Episode HEAD: ' +
+    source.source.sourceCommitSha +
+    '\n' +
+    index.content;
+  return {
+    episodeId: result.id,
+    exportName: result.exportName,
+    // All Course-owned children import the single root language tuple.
+    files: [...result.files, ...sceneDrafts],
+    diagnostics: result.diagnostics ?? [],
+    publishable: false,
+  };
 }

@@ -175,10 +175,10 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     sourcePath,
     sourceBlobSha: 'a'.repeat(40),
   };
-  const plan = materializeCourseStage5(actual, approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [
-    firstLesson,
-    overriddenLesson,
-  ]));
+  const plan = materializeCourseStage5(
+    actual,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
   assert.equal(plan.inventory.lessons.length, 3);
   assert.equal(plan.inventory.episodes.length, 1);
   const complete = buildTypedCourseManifest(pinned, plan);
@@ -315,10 +315,10 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
     sourcePath,
     sourceBlobSha: 'a'.repeat(40),
   };
-  const plan = materializeCourseStage5(actual, approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [
-    firstLesson,
-    overriddenLesson,
-  ]));
+  const plan = materializeCourseStage5(
+    actual,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
   assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
@@ -348,7 +348,6 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });
 
-
 test('Course publisher accepts all three generated inert default-export seeds under sealed SHA256', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
@@ -372,16 +371,18 @@ test('Course publisher accepts all three generated inert default-export seeds un
     courseId,
     textbookRoot: 'content/math',
   };
-  const plan = materializeCourseStage5(course, approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [
-    firstLesson,
-    overriddenLesson,
-  ]));
+  const plan = materializeCourseStage5(
+    course,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
   const sealed = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
   const found = new Set();
   for (const entry of sealed.entries) {
     const emitted = Buffer.from(entry.data, 'base64').toString('utf8');
-    const contract = emitted.match(/export default [\s\S]* satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/);
+    const contract = emitted.match(
+      /export default [\s\S]* satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/,
+    );
     if (!contract) continue;
     found.add(contract[1]);
     assert.doesNotMatch(emitted, /export const (?:lessonSeed|episodeStage1|assessmentSeed) = /);

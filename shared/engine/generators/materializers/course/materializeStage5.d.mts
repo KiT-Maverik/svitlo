@@ -50,7 +50,24 @@ export type CourseStage5Options = {
    */
   resolveExistingLesson?: (request: ExistingLessonRequest) => ApprovedExistingLesson;
   /** Optional trusted binder for inert added Section references. */
-  resolveAddedSection?: (request: { id: string; ownerLessonId: string; sourceSha: string; slug: string; importPath: string; exportName: string; placementPath: string }) => { approved: true; id: string; ownerLessonId: string; sourceSha: string; slug: string; importPath: string; exportName: string; configurator: import('../../../configurators/sections').Section_Configurator };
+  resolveAddedSection?: (request: {
+    id: string;
+    ownerLessonId: string;
+    sourceSha: string;
+    slug: string;
+    importPath: string;
+    exportName: string;
+    placementPath: string;
+  }) => {
+    approved: true;
+    id: string;
+    ownerLessonId: string;
+    sourceSha: string;
+    slug: string;
+    importPath: string;
+    exportName: string;
+    configurator: import('../../../configurators/sections').Section_Configurator;
+  };
   materializeSection?: (
     node: unknown,
     context: {

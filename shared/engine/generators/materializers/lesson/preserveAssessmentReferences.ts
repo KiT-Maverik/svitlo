@@ -2,9 +2,8 @@ import { posix } from 'node:path';
 
 import ts from 'typescript';
 
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
-
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import type { Result } from './lesson';
 
 /**
@@ -127,7 +126,9 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     throw new Error('Stage 6: reviewed Stage 2 TypeScript has syntax errors');
   const root = findReviewedLesson(file);
   const imports = importedBindings(file);
-  const inertDefaultExport = file.statements.some(statement => ts.isExportAssignment(statement) && !statement.isExportEquals);
+  const inertDefaultExport = file.statements.some(
+    statement => ts.isExportAssignment(statement) && !statement.isExportEquals,
+  );
   const selected: Selection[] = [];
   for (const key of input.config.section.order) {
     const node = input.config.section.items[key];
@@ -157,8 +158,14 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     // publication blocker until the Section owner integrates actual approved
     // bank Configurator references. Legacy executable drafts retain the
     // stricter imported-expression handling during the CI migration.
-    if (inertDefaultExport && elements.every((value, i) => ts.isStringLiteral(unwrap(value as ts.Expression)) &&
-        (unwrap(value as ts.Expression) as ts.StringLiteral).text === ids[i])) {
+    if (
+      inertDefaultExport &&
+      elements.every(
+        (value, i) =>
+          ts.isStringLiteral(unwrap(value as ts.Expression)) &&
+          (unwrap(value as ts.Expression) as ts.StringLiteral).text === ids[i],
+      )
+    ) {
       selected.push({ sectionKey: key, kind, field, ids, references: [] });
       continue;
     }
@@ -210,9 +217,12 @@ function applySelection(source: string, filePath: string, selection: Selection):
   if (selection.references.length === 0) {
     return (
       renderBlockerTodo(
-        'Replace provisional ' + selection.field +
+        'Replace provisional ' +
+          selection.field +
           ' UUIDs with verified imported Question/Flashcard Configurator references before publication.',
-      ) + '\n' + source
+      ) +
+      '\n' +
+      source
     );
   }
   const file = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
@@ -281,9 +291,13 @@ function bindTrustedBankSelections(
   const seen = new Set<string>();
   const approved = new Map<string, TrustedBankSelection>();
   for (const value of trusted) {
-    if (!value || !identifier.test(value.sectionKey) ||
-        (value.kind !== 'quiz' && value.kind !== 'flashcards') ||
-        seen.has(value.sectionKey) || !Array.isArray(value.members)) {
+    if (
+      !value ||
+      !identifier.test(value.sectionKey) ||
+      (value.kind !== 'quiz' && value.kind !== 'flashcards') ||
+      seen.has(value.sectionKey) ||
+      !Array.isArray(value.members)
+    ) {
       throw Error('Stage 6: invalid or repeated trusted bank Section selection');
     }
     seen.add(value.sectionKey);
@@ -299,20 +313,28 @@ function bindTrustedBankSelections(
       throw Error('Stage 6: trusted bank selection differs from reviewed ' + selection.sectionKey);
     const category = selection.kind === 'quiz' ? 'questions/' : 'flashcards/';
     const references = matching.members.map((member, index) => {
-      if (!member || member.approved !== true || !uuid.test(member.id) ||
-          member.id !== selection.ids[index] || !sha.test(member.sourceSha) ||
-          typeof member.importPath !== 'string' ||
-          !member.importPath.startsWith(base + category) ||
-          !member.importPath.slice((base + category).length).split('/').every(part => identifier.test(part)) ||
-          !identifier.test(member.exportName) ||
-          (member.memberPath !== undefined &&
-            (!Array.isArray(member.memberPath) || !member.memberPath.every(part => identifier.test(part))))) {
+      if (
+        !member ||
+        member.approved !== true ||
+        !uuid.test(member.id) ||
+        member.id !== selection.ids[index] ||
+        !sha.test(member.sourceSha) ||
+        typeof member.importPath !== 'string' ||
+        !member.importPath.startsWith(base + category) ||
+        !member.importPath
+          .slice((base + category).length)
+          .split('/')
+          .every(part => identifier.test(part)) ||
+        !identifier.test(member.exportName) ||
+        (member.memberPath !== undefined &&
+          (!Array.isArray(member.memberPath) || !member.memberPath.every(part => identifier.test(part))))
+      ) {
         throw Error('Stage 6: unapproved or mismatched Lesson-owned bank member at ' + selection.sectionKey);
       }
       const alias = 'stage6_ref_' + index;
       return {
-        importDeclaration: 'import { ' + member.exportName + ' as ' + alias + ' } from ' +
-          JSON.stringify(member.importPath) + ';',
+        importDeclaration:
+          'import { ' + member.exportName + ' as ' + alias + ' } from ' + JSON.stringify(member.importPath) + ';',
         expression: alias + (member.memberPath?.length ? '.' + member.memberPath.join('.') : '') + '.id',
       };
     });
@@ -331,9 +353,14 @@ export function preserveAssessmentReferences(
   files: Result['files'],
   trustedBankSelections?: readonly TrustedBankSelection[],
 ): Result['files'] {
-  const selections = trustedBankSelections === undefined
-    ? pickSelections(sourceText, sourcePath, input)
-    : bindTrustedBankSelections(pickSelections(sourceText, sourcePath, input), trustedBankSelections, input.config.id);
+  const selections =
+    trustedBankSelections === undefined
+      ? pickSelections(sourceText, sourcePath, input)
+      : bindTrustedBankSelections(
+          pickSelections(sourceText, sourcePath, input),
+          trustedBankSelections,
+          input.config.id,
+        );
   if (!selections.length) return files;
   const replacements = new Map<string, Selection>(
     selections.map(selection => [

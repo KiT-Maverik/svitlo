@@ -495,8 +495,12 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
     sourceText: inert,
     source: { ...reviewed, sourceBlobSha: blobSha(inert) },
   });
-  for (const [name, expectedId] of [['reviewQuiz', id('07')], ['reviewCards', id('08')]] as const) {
-    const sectionSource = inertPlan.files.find(file => file.path === folder + 'sections/' + name + '/index.ts')?.content ?? '';
+  for (const [name, expectedId] of [
+    ['reviewQuiz', id('07')],
+    ['reviewCards', id('08')],
+  ] as const) {
+    const sectionSource =
+      inertPlan.files.find(file => file.path === folder + 'sections/' + name + '/index.ts')?.content ?? '';
     assert.match(sectionSource, /TODO \(BLOCKER\): Replace provisional/);
     assert.match(sectionSource, new RegExp(expectedId));
   }
@@ -505,28 +509,42 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   // A trusted gate resolves each inert ID against its exact independently
   // published source without executing an authored value import.
   const lessonBankPrefix = '#lessonsData/1/' + id('01');
-  const trustedSkillReferences = [{
-    approved: true as const,
-    id: verifiedMathSkillId,
-    path: '#skillsData/geometry/figures/identify2dShapes',
-    exported: 'identify2dShapes',
-    sourceSha: 'a'.repeat(40),
-  }];
+  const trustedSkillReferences = [
+    {
+      approved: true as const,
+      id: verifiedMathSkillId,
+      path: '#skillsData/geometry/figures/identify2dShapes',
+      exported: 'identify2dShapes',
+      sourceSha: 'a'.repeat(40),
+    },
+  ];
   const trustedBankSelections = [
-    { sectionKey: 'reviewQuiz', kind: 'quiz' as const, members: [{
-      approved: true as const,
-      id: id('07'),
-      sourceSha: 'b'.repeat(40),
-      importPath: lessonBankPrefix + '/questions/selectOneAnswer/reviewQuestion',
-      exportName: 'reviewQuestion',
-    }] },
-    { sectionKey: 'reviewCards', kind: 'flashcards' as const, members: [{
-      approved: true as const,
-      id: id('08'),
-      sourceSha: 'c'.repeat(40),
-      importPath: lessonBankPrefix + '/flashcards/reviewCard',
-      exportName: 'reviewCard',
-    }] },
+    {
+      sectionKey: 'reviewQuiz',
+      kind: 'quiz' as const,
+      members: [
+        {
+          approved: true as const,
+          id: id('07'),
+          sourceSha: 'b'.repeat(40),
+          importPath: lessonBankPrefix + '/questions/selectOneAnswer/reviewQuestion',
+          exportName: 'reviewQuestion',
+        },
+      ],
+    },
+    {
+      sectionKey: 'reviewCards',
+      kind: 'flashcards' as const,
+      members: [
+        {
+          approved: true as const,
+          id: id('08'),
+          sourceSha: 'c'.repeat(40),
+          importPath: lessonBankPrefix + '/flashcards/reviewCard',
+          exportName: 'reviewCard',
+        },
+      ],
+    },
   ];
   const trustedOptions = {
     ...options,
@@ -546,24 +564,42 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   assert.match(trustedCards, /\[stage6_ref_0.id\]/);
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(trustedPlan));
   assert.deepEqual(trustedPlan, materializeLessonStage6(input, trustedOptions));
-  assert.throws(() => materializeLessonStage6(input, {
-    ...trustedOptions,
-    trustedSkillReferences: [{ ...trustedSkillReferences[0], sourceSha: 'unsafe' }],
-  }), /unapproved or mismatched trusted Skill/);
-  assert.throws(() => materializeLessonStage6(input, {
-    ...trustedOptions,
-    trustedBankSelections: [{
-      ...trustedBankSelections[0],
-      members: [{ ...trustedBankSelections[0].members[0], id: id('09') }],
-    }, trustedBankSelections[1]],
-  }), /unapproved or mismatched Lesson-owned bank member/);
-  assert.throws(() => materializeLessonStage6(input, {
-    ...trustedOptions,
-    trustedBankSelections: [{
-      ...trustedBankSelections[0],
-      sectionKey: 'notAuthored',
-    }, trustedBankSelections[1]],
-  }), /absent authored Section/);
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...trustedOptions,
+        trustedSkillReferences: [{ ...trustedSkillReferences[0], sourceSha: 'unsafe' }],
+      }),
+    /unapproved or mismatched trusted Skill/,
+  );
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...trustedOptions,
+        trustedBankSelections: [
+          {
+            ...trustedBankSelections[0],
+            members: [{ ...trustedBankSelections[0].members[0], id: id('09') }],
+          },
+          trustedBankSelections[1],
+        ],
+      }),
+    /unapproved or mismatched Lesson-owned bank member/,
+  );
+  assert.throws(
+    () =>
+      materializeLessonStage6(input, {
+        ...trustedOptions,
+        trustedBankSelections: [
+          {
+            ...trustedBankSelections[0],
+            sectionKey: 'notAuthored',
+          },
+          trustedBankSelections[1],
+        ],
+      }),
+    /absent authored Section/,
+  );
 
   const unbound = sourceFor(input).sourceText.replace('reviewQuestion.id', 'notImported.id');
   assert.throws(

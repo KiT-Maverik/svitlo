@@ -6,8 +6,8 @@ import type { Course_Config } from '../../configurators/courses/defineCourse/def
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
-import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
 import type { workflowLanguages_Schema } from './workflowLanguages.schemas';

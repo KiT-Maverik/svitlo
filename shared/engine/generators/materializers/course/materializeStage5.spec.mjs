@@ -565,11 +565,11 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
-
 test('Course additionalItems binds only verified Sections and retains real nested Lesson Build semantics', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-  const { defineLesson, defineCourse, defineContentSection, defineText, placeLesson } =
-    createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const { defineLesson, defineCourse, defineContentSection, defineText, placeLesson } = createRequire(import.meta.url)(
+    path.join(engineRoot, 'dist/build.js'),
+  );
   const extraBlock = defineText({
     id: '663572e7-bd85-4516-86e2-3de07d209e30',
     type: 'text',
@@ -586,9 +586,13 @@ test('Course additionalItems binds only verified Sections and retains real neste
     content: { items: { message: extraBlock }, order: ['message'] },
   });
   const original = defineLesson({
-    id: reusedLessonId, type: 'lesson', slug: 'independentLesson', skills: [skill],
+    id: reusedLessonId,
+    type: 'lesson',
+    slug: 'independentLesson',
+    skills: [skill],
     params: {
-      languages: ['uk'], quizRequiredForCompletion: false,
+      languages: ['uk'],
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: { uk: 'Самостійний урок' } },
@@ -613,8 +617,12 @@ test('Course additionalItems binds only verified Sections and retains real neste
     reused: {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
-        kind: 'existing', existing: { id: original.id }, matching, assessment,
-        sourceExportName: 'independentLesson', sourcePatch: raw,
+        kind: 'existing',
+        existing: { id: original.id },
+        matching,
+        assessment,
+        sourceExportName: 'independentLesson',
+        sourcePatch: raw,
         overrideRationale: 'Reviewed added practice Section',
       },
     },
@@ -641,12 +649,18 @@ test('Course additionalItems binds only verified Sections and retains real neste
   assert.equal(built.base.section[0].type, 'content');
   assert.deepEqual(original.build.props({ languages: ['uk'] }).base.section, []);
   const course = defineCourse({
-    id: rootId, type: 'course', slug: 'skyBasics', params: { languages: ['uk'] },
+    id: rootId,
+    type: 'course',
+    slug: 'skyBasics',
+    params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
     content: { items: { reused: placeLesson(original, bound) }, order: ['reused'] },
   });
   assert.equal(course.build.props({ languages: ['uk'] }).base.content[0].section[0].type, 'content');
 
-  const denied = { ...opts, resolveAddedSection: request => ({ ...opts.resolveAddedSection(request), approved: false }) };
+  const denied = {
+    ...opts,
+    resolveAddedSection: request => ({ ...opts.resolveAddedSection(request), approved: false }),
+  };
   assert.throws(() => materializeCourseStage5(reviewed, denied), /unapproved/);
 });

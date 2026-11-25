@@ -386,17 +386,28 @@ async function analyze(meta) {
   const source = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlob, sourceCommitSha: meta.head };
   const engine = trustedEngine(trustedRoot);
   const input = parseTrustedDraft({
-    operation, source, sourceText: pinnedSource, read: engine.readDeclarativeDraft,
+    operation,
+    source,
+    sourceText: pinnedSource,
+    read: engine.readDeclarativeDraft,
   });
   // The trusted evidence gate runs BEFORE rendering. No candidate source,
   // Lesson, Scene or media module is imported or executed to establish trust.
   const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
   const blocks = resolveReviewedBankBlockEvidence({
-    root, meta, input, git, ts: require('typescript'),
+    root,
+    meta,
+    input,
+    git,
+    ts: require('typescript'),
   });
   const approval = authorizations(meta, input, root, blocks);
   const plan = renderTrustedDraft({
-    operation, source, input, options: approval, renderers: engine,
+    operation,
+    source,
+    input,
+    options: approval,
+    renderers: engine,
   });
   if (
     !plan ||

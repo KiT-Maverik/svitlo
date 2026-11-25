@@ -14,8 +14,16 @@ const cases = [
   ['assessment-stage4', 'assessment', 'materializeAssessment', base + 'courses/1/' + uuid + '/content/review/draft.ts'],
 ];
 const textSource = 'export default { config: {}, production: {} } satisfies Stage;\n';
-const gitBlob = data => createHash('sha1').update('blob ' + Buffer.byteLength(data) + '\0').update(data).digest('hex');
-const pinned = filename => ({ sourcePath: filename, sourceBlobSha: gitBlob(textSource), sourceCommitSha: 'a'.repeat(40) });
+const gitBlob = data =>
+  createHash('sha1')
+    .update('blob ' + Buffer.byteLength(data) + '\0')
+    .update(data)
+    .digest('hex');
+const pinned = filename => ({
+  sourcePath: filename,
+  sourceBlobSha: gitBlob(textSource),
+  sourceCommitSha: 'a'.repeat(40),
+});
 
 for (const [operation, kind, method, filename] of cases) {
   test(operation + ' selects the sole trusted schema and renderer', () => {
@@ -35,7 +43,12 @@ for (const [operation, kind, method, filename] of cases) {
       },
     };
     const result = executeTrustedDraft({
-      operation, source, sourceText: textSource, reader, renderers, options: { source },
+      operation,
+      source,
+      sourceText: textSource,
+      reader,
+      renderers,
+      options: { source },
     });
     assert.equal(result.plan.publishable, false);
     assert.deepEqual(events, ['read:' + kind, 'render:' + method]);
@@ -45,13 +58,19 @@ for (const [operation, kind, method, filename] of cases) {
 test('malicious source is parsed only and never executed', () => {
   const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
   const source = pinned(cases[1][3]);
-  const read = () => { throw Error('Executable statement forbidden'); };
-  assert.throws(() => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: textSource, read }),
-    /Executable statement forbidden/);
+  const read = () => {
+    throw Error('Executable statement forbidden');
+  };
+  assert.throws(
+    () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: textSource, read }),
+    /Executable statement forbidden/,
+  );
   assert.equal(Object.hasOwn(globalThis, marker), false);
   const injected = textSource + 'globalThis.' + marker + ' = true;';
-  assert.throws(() => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
-    /exact pinned/);
+  assert.throws(
+    () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
+    /exact pinned/,
+  );
   assert.equal(Object.hasOwn(globalThis, marker), false);
 });
 
@@ -61,36 +80,72 @@ test('invalid operation/path/stale blob and output spoofing fail before publicat
     { ...original, sourcePath: '../draft.ts' },
     { ...original, sourcePath: base + 'lessons/2/' + uuid + '/draft.ts' },
     { ...original, sourceBlobSha: 'z'.repeat(40) },
-  ]) assert.throws(() => operationSpec('lesson-stage6', wrong));
+  ])
+    assert.throws(() => operationSpec('lesson-stage6', wrong));
   assert.throws(() => operationSpec('delete-branch', original));
-  assert.throws(() => parseTrustedDraft({
-    operation: 'lesson-stage6', source: original, sourceText: 'export default evil();',
-    read: () => { throw Error('reader must never be invoked'); },
-  }), /exact pinned/);
+  assert.throws(
+    () =>
+      parseTrustedDraft({
+        operation: 'lesson-stage6',
+        source: original,
+        sourceText: 'export default evil();',
+        read: () => {
+          throw Error('reader must never be invoked');
+        },
+      }),
+    /exact pinned/,
+  );
   const input = { config: {}, production: {} };
   for (const files of [
     [{ path: '../outside.ts', kind: 'typescript', content: 'x' }],
-    [{ path: 'index.ts', kind: 'typescript', content: 'x' }, { path: 'index.ts', kind: 'typescript', content: 'x' }],
+    [
+      { path: 'index.ts', kind: 'typescript', content: 'x' },
+      { path: 'index.ts', kind: 'typescript', content: 'x' },
+    ],
     [{ path: 'index.ts', kind: 'typescript', content: '' }],
     [{ path: 'index.ts', kind: 'binary', content: 'x' }],
-  ]) assert.throws(() => renderTrustedDraft({
-    operation: 'lesson-stage6', source: original, input, options: {},
-    renderers: { materializeLessonStage6: () => ({ publishable: false, files }) },
-  }));
-  assert.throws(() => renderTrustedDraft({
-    operation: 'lesson-stage6', source: original, input, options: {},
-    renderers: { materializeLessonStage6: () => ({ publishable: true, files: [{ path: 'index.ts', kind: 'typescript', content: 'x' }] }) },
-  }));
+  ])
+    assert.throws(() =>
+      renderTrustedDraft({
+        operation: 'lesson-stage6',
+        source: original,
+        input,
+        options: {},
+        renderers: { materializeLessonStage6: () => ({ publishable: false, files }) },
+      }),
+    );
+  assert.throws(() =>
+    renderTrustedDraft({
+      operation: 'lesson-stage6',
+      source: original,
+      input,
+      options: {},
+      renderers: {
+        materializeLessonStage6: () => ({
+          publishable: true,
+          files: [{ path: 'index.ts', kind: 'typescript', content: 'x' }],
+        }),
+      },
+    }),
+  );
 });
 
 test('credential presence blocks reader and renderer before any side effects', () => {
   const env = process.env.GH_TOKEN;
   process.env.GH_TOKEN = 'synthetic-test-secret';
   try {
-    assert.throws(() => parseTrustedDraft({
-      operation: 'lesson-stage6', source: pinned(cases[1][3]), sourceText: textSource,
-      read: () => { throw Error('reader executed'); },
-    }), /cannot access GitHub credentials/);
+    assert.throws(
+      () =>
+        parseTrustedDraft({
+          operation: 'lesson-stage6',
+          source: pinned(cases[1][3]),
+          sourceText: textSource,
+          read: () => {
+            throw Error('reader executed');
+          },
+        }),
+      /cannot access GitHub credentials/,
+    );
   } finally {
     if (env === undefined) delete process.env.GH_TOKEN;
     else process.env.GH_TOKEN = env;

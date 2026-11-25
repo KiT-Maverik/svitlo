@@ -45,23 +45,31 @@ function assertInertSeed(content, contract) {
 }
 
 test('Course-created Lesson proposal is an inert typed default-exported seed', () => {
-  const output = materializeLessonDraft({
-    config: { type: 'lesson', slug: 'firstObservation', skills: [skill], locale: { title: { uk: 'Спостереження' } } },
-    production: {
-      kind: 'new',
-      methodology: 'Reviewed methodology',
-      objective: 'Observe patterns',
-      depth: 'Foundational',
-      sequenceReason: 'Prepare subsequent concepts',
-      assessmentEvidence: 'Explain a verified observation',
-      assessment: { questionBankRequired: true, flashcardBankRequired: false, quizSectionRequired: true, flashcardsSectionRequired: false },
+  const output = materializeLessonDraft(
+    {
+      config: { type: 'lesson', slug: 'firstObservation', skills: [skill], locale: { title: { uk: 'Спостереження' } } },
+      production: {
+        kind: 'new',
+        methodology: 'Reviewed methodology',
+        objective: 'Observe patterns',
+        depth: 'Foundational',
+        sequenceReason: 'Prepare subsequent concepts',
+        assessmentEvidence: 'Explain a verified observation',
+        assessment: {
+          questionBankRequired: true,
+          flashcardBankRequired: false,
+          quizSectionRequired: true,
+          flashcardsSectionRequired: false,
+        },
+      },
     },
-  }, {
-    lessonId: id,
-    textbookRoot: 'content/playground',
-    reviewedSourceSha: sha,
-    languageContext: { document: 'uk', planned: ['uk', 'en'] },
-  });
+    {
+      lessonId: id,
+      textbookRoot: 'content/playground',
+      reviewedSourceSha: sha,
+      languageContext: { document: 'uk', planned: ['uk', 'en'] },
+    },
+  );
   assert.equal(output.files.length, 1);
   const literal = assertInertSeed(output.files[0].content, 'CourseWorkflowLessonSeed');
   assert.equal(literal.config.id, id);
@@ -71,36 +79,42 @@ test('Course-created Lesson proposal is an inert typed default-exported seed', (
 });
 
 test('Course-created Episode handoff is inert, typed and retains ordered placement identity', () => {
-  const output = materializeEpisodeDraft({
-    config: { type: 'episode', slug: 'transition' },
-    production: { focus: 'Follow observations', purpose: 'Narrative bridge' },
-  }, {
-    directory: 'content/transition',
-    orderPath: [0],
-    courseId: id,
-    sourceLanguage: 'uk',
-    plannedLanguages: ['uk'],
-    reviewedCourseSourceBlobSha: sha,
-    deriveId: () => id,
-  });
+  const output = materializeEpisodeDraft(
+    {
+      config: { type: 'episode', slug: 'transition' },
+      production: { focus: 'Follow observations', purpose: 'Narrative bridge' },
+    },
+    {
+      directory: 'content/transition',
+      orderPath: [0],
+      courseId: id,
+      sourceLanguage: 'uk',
+      plannedLanguages: ['uk'],
+      reviewedCourseSourceBlobSha: sha,
+      deriveId: () => id,
+    },
+  );
   const literal = assertInertSeed(output.files[0].content, 'EpisodeWorkflowStage1Handoff');
   assert.equal(literal.config.id, id);
   assert.equal(literal.production.focus, 'Follow observations');
 });
 
 test('Course-created Assessment seed has inert literal dependencies and no fake Questions', () => {
-  const output = materializeAssessmentPlaceholder({
-    config: { type: 'assessment', locale: { title: { uk: 'Перевірка знань' } } },
-    production: { purpose: 'Evaluate actual prior learning', lessonDependencies: ['content/firstObservation'] },
-  }, {
-    directory: 'content/finalReview',
-    orderPath: [1],
-    courseId: id,
-    reviewedCourseSourceBlobSha: sha,
-    sourceLanguage: 'uk',
-    plannedLanguages: ['uk'],
-    deriveId: () => id,
-  });
+  const output = materializeAssessmentPlaceholder(
+    {
+      config: { type: 'assessment', locale: { title: { uk: 'Перевірка знань' } } },
+      production: { purpose: 'Evaluate actual prior learning', lessonDependencies: ['content/firstObservation'] },
+    },
+    {
+      directory: 'content/finalReview',
+      orderPath: [1],
+      courseId: id,
+      reviewedCourseSourceBlobSha: sha,
+      sourceLanguage: 'uk',
+      plannedLanguages: ['uk'],
+      deriveId: () => id,
+    },
+  );
   const literal = assertInertSeed(output.files[0].content, 'AssessmentWorkflowSeed');
   assert.equal(literal.config.id, id);
   assert.deepEqual(literal.production.lessonDependencies, ['content/firstObservation']);
@@ -122,15 +136,31 @@ test('canonical authoring examples never contain executable materializer calls',
   for (const name of paths) {
     const markdown = readFileSync(root + 'studio/skills/' + name, 'utf8');
     assert.match(markdown, /draft\.ts/);
-    const snippets = markdown.split('```ts\n').slice(1).map(code => code.split('\n```')[0]);
+    const snippets = markdown
+      .split('```ts\n')
+      .slice(1)
+      .map(code => code.split('\n```')[0]);
     for (const code of snippets) {
-      assert.doesNotMatch(code, /^\s*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)\s*\(/m, name);
-      assert.doesNotMatch(code, /import\s*\{[^}]*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)/, name);
+      assert.doesNotMatch(
+        code,
+        /^\s*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)\s*\(/m,
+        name,
+      );
+      assert.doesNotMatch(
+        code,
+        /import\s*\{[^}]*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)/,
+        name,
+      );
       if (!code.includes('export default')) continue;
       const file = ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
       assert.equal(file.parseDiagnostics.length, 0, name);
       assert.equal(file.statements.filter(ts.isExportAssignment).length, 1, name);
-      assert(file.statements.every(node => (ts.isImportDeclaration(node) && node.importClause?.isTypeOnly) || ts.isExportAssignment(node)), name);
+      assert(
+        file.statements.every(
+          node => (ts.isImportDeclaration(node) && node.importClause?.isTypeOnly) || ts.isExportAssignment(node),
+        ),
+        name,
+      );
     }
   }
 });

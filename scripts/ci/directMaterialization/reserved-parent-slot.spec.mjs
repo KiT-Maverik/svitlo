@@ -238,10 +238,12 @@ test('generated handoff AST rejects nonliteral code and duplicate/prototype fiel
   assert.throws(() => check(valid.replace('as const satisfies', 'satisfies')), /immutable as const/);
 });
 
-
 test('Course handoff reader accepts inert default-export seeds for all three child entities', () => {
   for (const contract of ['CourseWorkflowLessonSeed', 'EpisodeWorkflowStage1Handoff', 'AssessmentWorkflowSeed']) {
-    const body = '{ config: { id: "' + ids.episode + '", slug: "story" }, production: { ' +
+    const body =
+      '{ config: { id: "' +
+      ids.episode +
+      '", slug: "story" }, production: { ' +
       'purpose: "Plan", languages: { document: "uk", planned: ["uk", "en"] } } }';
     const prefix = 'import type { ' + contract + " } from '@svitlo/engine/build';\n";
     const opts = { variable: 'oldSeed', contract };
@@ -258,7 +260,7 @@ test('Course handoff reader accepts inert default-export seeds for all three chi
 
 test('Course seed AST reader rejects executable default exports and forged manifest content', () => {
   const contract = 'EpisodeWorkflowStage1Handoff';
-  const header = "import type { " + contract + " } from '@svitlo/engine/build';\n";
+  const header = 'import type { ' + contract + " } from '@svitlo/engine/build';\n";
   const opts = { variable: 'episodeStage1', contract };
   const literal = '{ config: { id: "' + ids.episode + '" }, production: { purpose: "story" } }';
   const valid = header + 'export default ' + literal + ' satisfies ' + contract + ';';

@@ -262,9 +262,7 @@ export function materializeCourse(input, context = {}) {
             throw Error(childFolder + '.production.matching: verified methodology and source revision required');
           if (Object.keys(raw).some(field => !['type', 'slug', 'skills'].includes(field)))
             throw Error(childFolder + '.config: reused Lesson cannot duplicate independent Config');
-          if (
-            Object.keys(existing).some(field => field !== 'id')
-          )
+          if (Object.keys(existing).some(field => field !== 'id'))
             throw Error(childFolder + '.production.existing: expected only {id}, not built overrides');
         } else {
           if (

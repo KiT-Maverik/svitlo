@@ -362,7 +362,10 @@ const existingConfig = {
 const existingLesson = {
   config: existingConfig,
   production: {
-    kind: 'existing', existing: { id: importedLesson.id }, matching: match, assessment,
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    matching: match,
+    assessment,
     sourceExportName: 'independentLesson',
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
@@ -489,7 +492,12 @@ const existingAsString: CourseWorkflowStage3ExistingLesson = {
 const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Reuse needs verified matching evidence.
-  production: { kind: 'existing', existing: { id: importedLesson.id }, assessment, sourceExportName: 'independentLesson' },
+  production: {
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    assessment,
+    sourceExportName: 'independentLesson',
+  },
 };
 
 /** A single structural object shape does not impose a two-branch rationale union.
@@ -498,8 +506,12 @@ const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
 const patchedForReview: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   production: {
-    kind: 'existing', matching: match, assessment,
-    existing: { id: importedLesson.id }, sourceExportName: 'independentLesson', sourcePatch: rawPatch,
+    kind: 'existing',
+    matching: match,
+    assessment,
+    existing: { id: importedLesson.id },
+    sourceExportName: 'independentLesson',
+    sourcePatch: rawPatch,
   },
 };
 
@@ -639,6 +651,11 @@ void missingAssessmentChoice;
 const existingWithoutAssessment: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Every reused placement needs explicit assessment decisions.
-  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match, sourceExportName: 'independentLesson' },
+  production: {
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    matching: match,
+    sourceExportName: 'independentLesson',
+  },
 };
 void existingWithoutAssessment;

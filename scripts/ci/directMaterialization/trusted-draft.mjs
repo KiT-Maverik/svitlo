@@ -20,7 +20,11 @@ const contract = Object.freeze({
   'flashcards-stage5': ['flashcards', 'materializeFlashcardBank', book + 'lessons/[a-f0-9]/' + id + '/flashcards'],
   'assessment-stage4': ['assessment', 'materializeAssessment', book + 'courses/[a-f0-9]/' + id + '/' + nested],
 });
-const blobSha = bytes => createHash('sha1').update('blob ' + bytes.length + '\0').update(bytes).digest('hex');
+const blobSha = bytes =>
+  createHash('sha1')
+    .update('blob ' + bytes.length + '\0')
+    .update(bytes)
+    .digest('hex');
 
 export function assertTokenless() {
   if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN || process.env.GH_ENTERPRISE_TOKEN)
@@ -28,10 +32,14 @@ export function assertTokenless() {
 }
 export function operationSpec(operation, source) {
   const selected = Object.hasOwn(contract, operation) ? contract[operation] : undefined;
-  if (!selected || !source || !SHA.test(source.sourceBlobSha ?? '') ||
-      !SHA.test(source.sourceCommitSha ?? '') ||
-      !new RegExp('^' + selected[2] + '/draft\\.ts$').test(source.sourcePath ?? '') ||
-      source.sourcePath.split('/').some(x => ['.', '..', '__proto__', 'prototype', 'constructor'].includes(x)))
+  if (
+    !selected ||
+    !source ||
+    !SHA.test(source.sourceBlobSha ?? '') ||
+    !SHA.test(source.sourceCommitSha ?? '') ||
+    !new RegExp('^' + selected[2] + '/draft\\.ts$').test(source.sourcePath ?? '') ||
+    source.sourcePath.split('/').some(x => ['.', '..', '__proto__', 'prototype', 'constructor'].includes(x))
+  )
     throw Error('Unsafe materialization operation/source');
   const parts = source.sourcePath.split('/');
   if (parts[4] !== parts[5].at(-1)) throw Error('Noncanonical UUID bucket');
@@ -42,8 +50,11 @@ export function readPinnedDraft({ operation, source, candidateRoot, git }) {
   assertTokenless();
   operationSpec(operation, source);
   const root = fs.realpathSync(candidateRoot);
-  if (!fs.statSync(root).isDirectory() || git(root, 'rev-parse', 'HEAD') !== source.sourceCommitSha ||
-      git(root, 'status', '--porcelain=v1', '--untracked-files=all'))
+  if (
+    !fs.statSync(root).isDirectory() ||
+    git(root, 'rev-parse', 'HEAD') !== source.sourceCommitSha ||
+    git(root, 'status', '--porcelain=v1', '--untracked-files=all')
+  )
     throw Error('Candidate is not the clean pinned HEAD');
   const indexed = git(root, 'ls-files', '--stage', '--', source.sourcePath);
   if (indexed !== '100644 ' + source.sourceBlobSha + ' 0\t' + source.sourcePath)
@@ -54,17 +65,23 @@ export function readPinnedDraft({ operation, source, candidateRoot, git }) {
     if (fs.lstatSync(filename).isSymbolicLink()) throw Error('Symlink in reviewed draft ancestry');
   }
   const bytes = fs.readFileSync(filename);
-  if (!bytes.length || bytes.length > 4 * 1024 * 1024 ||
-      !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
-      blobSha(bytes) !== source.sourceBlobSha)
+  if (
+    !bytes.length ||
+    bytes.length > 4 * 1024 * 1024 ||
+    !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes) ||
+    blobSha(bytes) !== source.sourceBlobSha
+  )
     throw Error('Reviewed draft bytes/UTF-8 differ from pinned blob');
   return bytes.toString('utf8');
 }
 export function parseTrustedDraft({ operation, source, sourceText, read }) {
   assertTokenless();
   const { kind } = operationSpec(operation, source);
-  if (typeof sourceText !== 'string' || Buffer.byteLength(sourceText) > 4 * 1024 * 1024 ||
-      blobSha(Buffer.from(sourceText, 'utf8')) !== source.sourceBlobSha)
+  if (
+    typeof sourceText !== 'string' ||
+    Buffer.byteLength(sourceText) > 4 * 1024 * 1024 ||
+    blobSha(Buffer.from(sourceText, 'utf8')) !== source.sourceBlobSha
+  )
     throw Error('Source is not exact pinned UTF-8 draft');
   if (typeof read !== 'function') throw Error('Trusted static Draft Reader unavailable');
   return read(sourceText, kind);
@@ -75,22 +92,32 @@ export function renderTrustedDraft({ operation, source, input, renderers, option
   const render = renderers?.[method];
   if (typeof render !== 'function') throw Error('Trusted Engine renderer unavailable');
   const plan = render(input, options);
-  if (!plan || plan.publishable !== false || !Array.isArray(plan.files) ||
-      plan.files.length < 1 || plan.files.length > 1500)
+  if (
+    !plan ||
+    plan.publishable !== false ||
+    !Array.isArray(plan.files) ||
+    plan.files.length < 1 ||
+    plan.files.length > 1500
+  )
     throw Error('Invalid nonpublishable Engine output plan');
   let total = 0;
   const paths = new Set();
   for (const file of plan.files) {
-    if (!file || typeof file.path !== 'string' || file.path.startsWith('/') ||
-        file.path.includes('\\') || file.path.split('/').some(x => !x || x === '.' || x === '..') ||
-        paths.has(file.path) || typeof file.content !== 'string' ||
-        !['typescript', 'markdown', 'specification', 'code'].includes(file.kind))
+    if (
+      !file ||
+      typeof file.path !== 'string' ||
+      file.path.startsWith('/') ||
+      file.path.includes('\\') ||
+      file.path.split('/').some(x => !x || x === '.' || x === '..') ||
+      paths.has(file.path) ||
+      typeof file.content !== 'string' ||
+      !['typescript', 'markdown', 'specification', 'code'].includes(file.kind)
+    )
       throw Error('Unsafe or duplicate generated file path');
     paths.add(file.path);
     const bytes = Buffer.from(file.content, 'utf8');
     total += bytes.length;
-    if (!bytes.length || total > 32 * 1024 * 1024 ||
-        !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
+    if (!bytes.length || total > 32 * 1024 * 1024 || !Buffer.from(bytes.toString('utf8'), 'utf8').equals(bytes))
       throw Error('Oversized or malformed generated source');
   }
   return plan;

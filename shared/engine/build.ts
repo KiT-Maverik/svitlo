@@ -87,7 +87,10 @@ export type {
 export { materializeEpisodeStage5 } from './generators/materializers/episode/materializeEpisodeStage5';
 
 // Inert Course-local Lesson additions use approved Section references, not live objects.
-export type { CourseLessonSourcePatch, CourseLessonSectionReference } from './types/workflow/courseLessonSourcePatch.types';
+export type {
+  CourseLessonSourcePatch,
+  CourseLessonSectionReference,
+} from './types/workflow/courseLessonSourcePatch.types';
 
 // Trusted Lesson source planning declarations (all build-only).
 export type {
@@ -101,5 +104,11 @@ export type {
 } from './generators/materializers/lesson/preserveAssessmentReferences';
 
 // Trusted, parse-only reader for pinned inert authoring drafts (Node/build only).
-export { readDeclarativeDraft, DeclarativeDraftError } from './generators/materializers/directMaterialization/readDeclarativeDraft';
-export type { DeclarativeDraftEntityKind, DeclarativeDraftValue } from './generators/materializers/directMaterialization/readDeclarativeDraft';
+export {
+  readDeclarativeDraft,
+  DeclarativeDraftError,
+} from './generators/materializers/directMaterialization/readDeclarativeDraft';
+export type {
+  DeclarativeDraftEntityKind,
+  DeclarativeDraftValue,
+} from './generators/materializers/directMaterialization/readDeclarativeDraft';

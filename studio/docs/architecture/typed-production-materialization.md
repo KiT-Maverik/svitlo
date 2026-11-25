@@ -24,14 +24,14 @@ Fail closed on unrecognized syntax, arbitrary identifiers, calls/constructors, v
 
 ## Six distinct source handoffs
 
-| Entity | Final reviewed Stage type | Trusted PR comment | Transition | Independent/release boundary |
-| --- | --- | --- | --- | --- |
-| Course | `CourseWorkflowStage3` | `/course materialize` | Stage 5 → Course/Module/Chapter `index.ts`, derived methodology and new Lesson/Episode/Assessment seeds | Independent corrective Stage 4; 10-stage Course flow with Stage 10 human QA |
-| Lesson | `LessonWorkflowStage2` | `/lesson materialize` | Stage 6.1 → Lesson `index.ts`, Sections/Blocks/Scene scaffolds | Independent Stage 3, specialist Stages 4–5; resources 6.2, Scenes 6.3, banks 7–8, locales 9–10 |
-| Episode | `EpisodeWorkflowStage2` | `/episode materialize` | Stage 5 → Episode modules and exact reserved Course slot update | Independent Stage 3, experience Stage 4; human Media Generation Stage 9 and QA Stage 10 |
-| Question Bank | `QuestionBankWorkflowStage3` | `/questions materialize` | Stage 5 → Lesson-owned `questions/index.ts` + question modules | Independent Stage 4; separate selections and translations 6–7; Question-first before Flashcards |
-| Flashcard Bank | `FlashcardBankWorkflowStage3` | `/flashcards materialize` | Stage 5 → Lesson-owned `flashcards/index.ts` + cards/sides | Independent Stage 4; Questions-first; translations 6–7 |
-| Assessment | `AssessmentWorkflowStage2` | `/assessment materialize` | Stage 4 → Course-owned nested `content/<slug>/index.ts` + parent placeholder restoration | Independent Stage 3; resources/locales 5–7 and human QA Stage 8 |
+| Entity         | Final reviewed Stage type     | Trusted PR comment        | Transition                                                                                              | Independent/release boundary                                                                    |
+| -------------- | ----------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Course         | `CourseWorkflowStage3`        | `/course materialize`     | Stage 5 → Course/Module/Chapter `index.ts`, derived methodology and new Lesson/Episode/Assessment seeds | Independent corrective Stage 4; 10-stage Course flow with Stage 10 human QA                     |
+| Lesson         | `LessonWorkflowStage2`        | `/lesson materialize`     | Stage 6.1 → Lesson `index.ts`, Sections/Blocks/Scene scaffolds                                          | Independent Stage 3, specialist Stages 4–5; resources 6.2, Scenes 6.3, banks 7–8, locales 9–10  |
+| Episode        | `EpisodeWorkflowStage2`       | `/episode materialize`    | Stage 5 → Episode modules and exact reserved Course slot update                                         | Independent Stage 3, experience Stage 4; human Media Generation Stage 9 and QA Stage 10         |
+| Question Bank  | `QuestionBankWorkflowStage3`  | `/questions materialize`  | Stage 5 → Lesson-owned `questions/index.ts` + question modules                                          | Independent Stage 4; separate selections and translations 6–7; Question-first before Flashcards |
+| Flashcard Bank | `FlashcardBankWorkflowStage3` | `/flashcards materialize` | Stage 5 → Lesson-owned `flashcards/index.ts` + cards/sides                                              | Independent Stage 4; Questions-first; translations 6–7                                          |
+| Assessment     | `AssessmentWorkflowStage2`    | `/assessment materialize` | Stage 4 → Course-owned nested `content/<slug>/index.ts` + parent placeholder restoration                | Independent Stage 3; resources/locales 5–7 and human QA Stage 8                                 |
 
 Quest, QuestStage and QuestTask remain **nested Lesson content** materializers, not a seventh root PR command. Course Stage 2 inserts Assessment slots by ordered placement, not an Assessment-required boolean. Course Stage 5 may create only blocked child seeds, not completed Lesson/Assessment/Episode productions. Stage 6 Course Questions readiness, conditional Stage 7 Assessment design, Course Stages 8–9 translations and mandatory Stage 10 human QA are independent obligations.
 

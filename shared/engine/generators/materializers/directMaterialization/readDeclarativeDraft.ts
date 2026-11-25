@@ -1,22 +1,23 @@
 import * as ts from 'typescript';
 import type { z } from 'zod';
 
-import { courseWorkflowStage3_Schema } from '../../../types/workflow/courseWorkflowFinal.schemas';
-import { lessonWorkflowStage2_Schema } from '../../../types/workflow/lessonWorkflow.types';
-import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
+import {
+  assessmentWorkflowStage2_Schema,
+  type AssessmentWorkflowStage2,
+} from '../../../types/workflow/assessmentWorkflow.types';
 import {
   flashcardBankWorkflowStage3_Schema,
   questionBankWorkflowStage3_Schema,
 } from '../../../types/workflow/bankWorkflowFinal.schemas';
-import { assessmentWorkflowStage2_Schema } from '../../../types/workflow/assessmentWorkflow.types';
-
 import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
-import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import type { EpisodeWorkflowStage2 } from '../../../types/workflow/episodeWorkflow.types';
-import type { QuestionBankWorkflowStage3 } from '../../../types/workflow/questionBankWorkflow.types';
+import { courseWorkflowStage3_Schema } from '../../../types/workflow/courseWorkflowFinal.schemas';
+import {
+  episodeWorkflowStage2_Schema,
+  type EpisodeWorkflowStage2,
+} from '../../../types/workflow/episodeWorkflow.types';
 import type { FlashcardBankWorkflowStage3 } from '../../../types/workflow/flashcardBankWorkflow.types';
-import type { AssessmentWorkflowStage2 } from '../../../types/workflow/assessmentWorkflow.types';
-
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import type { QuestionBankWorkflowStage3 } from '../../../types/workflow/questionBankWorkflow.types';
 
 /**
  * A parse-only boundary for untrusted, pinned authoring bytes. No source file,
@@ -44,7 +45,7 @@ export type DeclarativeDraftValue<K extends DeclarativeDraftEntityKind> = FinalS
 
 /** Explicit annotations keep emitted declarations finite even for large Stage schemas. */
 const finalStages: {
-  [K in DeclarativeDraftEntityKind]: { name: StageNames[K]; schema: z.ZodType<FinalStageValues[K]> }
+  [K in DeclarativeDraftEntityKind]: { name: StageNames[K]; schema: z.ZodType<FinalStageValues[K]> };
 } = {
   course: { name: 'CourseWorkflowStage3', schema: courseWorkflowStage3_Schema },
   lesson: { name: 'LessonWorkflowStage2', schema: lessonWorkflowStage2_Schema },
@@ -99,8 +100,12 @@ function fail(
 function withoutTypeWrappers(context: ParseContext, node: ts.Expression): ts.Expression {
   let current = node;
   let count = 0;
-  while (ts.isParenthesizedExpression(current) || ts.isAsExpression(current) ||
-         ts.isSatisfiesExpression(current) || ts.isTypeAssertionExpression(current)) {
+  while (
+    ts.isParenthesizedExpression(current) ||
+    ts.isAsExpression(current) ||
+    ts.isSatisfiesExpression(current) ||
+    ts.isTypeAssertionExpression(current)
+  ) {
     if (++count > MAX_DEPTH) fail(context, current, 'limit', 'Too many parentheses or type assertions');
     current = current.expression;
   }
@@ -131,8 +136,11 @@ function decode(
   if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
   if (node.kind === ts.SyntaxKind.NullKeyword) return null;
 
-  if (ts.isPrefixUnaryExpression(node) && node.operator === ts.SyntaxKind.MinusToken &&
-      ts.isNumericLiteral(node.operand)) {
+  if (
+    ts.isPrefixUnaryExpression(node) &&
+    node.operator === ts.SyntaxKind.MinusToken &&
+    ts.isNumericLiteral(node.operand)
+  ) {
     const value = -Number(node.operand.text.replaceAll('_', ''));
     if (!Number.isFinite(value)) fail(context, node, 'literal', 'Only finite numbers are allowed');
     return value;
@@ -199,7 +207,8 @@ function parseWithPositions(
     throw new DeclarativeDraftError('syntax', 1, 1, 'Unable to parse TypeScript source');
   }
   const context: ParseContext = { source, visited: 0, positions: new Map() };
-  const diagnostics = (source as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics ?? [];
+  const diagnostics =
+    (source as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics ?? [];
   if (diagnostics.length > 0) {
     const first = diagnostics[0];
     fail(context, first.start ?? 0, 'syntax', ts.flattenDiagnosticMessageText(first.messageText, '\n'));
@@ -209,9 +218,13 @@ function parseWithPositions(
   let assignment: ts.ExportAssignment | undefined;
   for (const statement of source.statements) {
     if (ts.isImportDeclaration(statement) && isTypeOnlyImport(statement)) continue;
-    if (ts.isVariableStatement(statement) && !declaration &&
-        statement.declarationList.flags & ts.NodeFlags.Const &&
-        statement.modifiers === undefined && statement.declarationList.declarations.length === 1) {
+    if (
+      ts.isVariableStatement(statement) &&
+      !declaration &&
+      statement.declarationList.flags & ts.NodeFlags.Const &&
+      statement.modifiers === undefined &&
+      statement.declarationList.declarations.length === 1
+    ) {
       const candidate = statement.declarationList.declarations[0];
       if (ts.isIdentifier(candidate.name) && candidate.name.text === 'draft' && candidate.initializer) {
         declaration = candidate;
@@ -238,10 +251,13 @@ function parseWithPositions(
   }
 
   const typedRoot = withoutParentheses(context, root);
-  if (!ts.isSatisfiesExpression(typedRoot) || !ts.isTypeReferenceNode(typedRoot.type) ||
-      !ts.isIdentifier(typedRoot.type.typeName) ||
-      typedRoot.type.typeName.text !== contract.name ||
-      typedRoot.type.typeArguments?.length) {
+  if (
+    !ts.isSatisfiesExpression(typedRoot) ||
+    !ts.isTypeReferenceNode(typedRoot.type) ||
+    !ts.isIdentifier(typedRoot.type.typeName) ||
+    typedRoot.type.typeName.text !== contract.name ||
+    typedRoot.type.typeArguments?.length
+  ) {
     fail(context, typedRoot, 'structure', 'Root object must satisfy ' + contract.name);
   }
   const literal = withoutTypeWrappers(context, typedRoot.expression);
@@ -252,10 +268,7 @@ function parseWithPositions(
 }
 
 /** Syntax-only parser for security tests; materialization must use readDeclarativeDraft. */
-export function parseInertDraftSyntax(
-  sourceText: string,
-  expectedEntityKind: DeclarativeDraftEntityKind,
-): DraftValue {
+export function parseInertDraftSyntax(sourceText: string, expectedEntityKind: DeclarativeDraftEntityKind): DraftValue {
   return parseWithPositions(sourceText, expectedEntityKind).value;
 }
 
@@ -301,19 +314,17 @@ export function readDeclarativeDraft<K extends DeclarativeDraftEntityKind>(
   if (!parsed.success) {
     const issue = parsed.error.issues[0];
     const path = issue.path.map(part => String(part)).join('.');
-    const keys = issue.path.map(part => typeof part === 'symbol' ? String(part) : part);
+    const keys = issue.path.map(part => (typeof part === 'symbol' ? String(part) : part));
     let offset = positions.get('[]') ?? 0;
     for (let count = keys.length; count >= 0; count--) {
       const found = positions.get(JSON.stringify(keys.slice(0, count)));
-      if (found !== undefined) { offset = found; break; }
+      if (found !== undefined) {
+        offset = found;
+        break;
+      }
     }
     const { line, character } = source.getLineAndCharacterOfPosition(offset);
-    throw new DeclarativeDraftError(
-      'schema',
-      line + 1,
-      character + 1,
-      (path || '<root>') + ': ' + issue.message,
-    );
+    throw new DeclarativeDraftError('schema', line + 1, character + 1, (path || '<root>') + ': ' + issue.message);
   }
   try {
     rejectStrippedFields(original, parsed.data);

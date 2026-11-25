@@ -279,12 +279,18 @@ export async function analyze(root, meta) {
   const source = { sourcePath: meta.identity.source, sourceBlobSha: meta.sourceBlob, sourceCommitSha: meta.head };
   const sourceText = original.toString('utf8');
   const { plan } = executeTrustedDraft({
-    operation: 'lesson-stage6', source, sourceText, trustedRoot: ROOT,
+    operation: 'lesson-stage6',
+    source,
+    sourceText,
+    trustedRoot: ROOT,
     options: {
-      source, sourceText,
+      source,
+      sourceText,
       verifySourceInput: (_input, pinned, text) =>
-        pinned.sourcePath === source.sourcePath && pinned.sourceBlobSha === source.sourceBlobSha &&
-        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
+        pinned.sourcePath === source.sourcePath &&
+        pinned.sourceBlobSha === source.sourceBlobSha &&
+        pinned.sourceCommitSha === source.sourceCommitSha &&
+        text === sourceText,
     },
   });
   const manifest = typedManifest(plan, meta, original, tracked, root);
