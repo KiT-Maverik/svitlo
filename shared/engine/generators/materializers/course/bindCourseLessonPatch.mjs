@@ -62,8 +62,7 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
           )
         )
           throw Error(placementPath + ': invalid trusted Section materializer result at ' + key);
-        const alias = 'added_section_' + placementPath.replace(/[^A-Za-z0-9_]/g, '_') + '_' + key;
-        aliases.set(key, alias);
+        aliases.set(key, rendered.exportName);
         createdSections[key] = rendered;
         Object.defineProperty(bound, key, { value: null, enumerable: true, writable: true, configurable: true });
         continue;
@@ -122,9 +121,8 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
       ) {
         throw Error(placementPath + ': resolved additional Section has invalid Configurator identity');
       }
-      const alias = 'added_section_' + placementPath.replace(/[^A-Za-z0-9_]/g, '_') + '_' + key;
-      aliases.set(key, alias);
-      imports.push('import { ' + request.exportName + ' as ' + alias + ' } from ' + JSON.stringify(importPath) + ';');
+      aliases.set(key, request.exportName);
+      imports.push('import { ' + request.exportName + ' } from ' + JSON.stringify(importPath) + ';');
       Object.defineProperty(bound, key, { value: section, enumerable: true, writable: true, configurable: true });
     }
     patch = { ...raw, section: { ...raw.section, additionalItems: bound } };
