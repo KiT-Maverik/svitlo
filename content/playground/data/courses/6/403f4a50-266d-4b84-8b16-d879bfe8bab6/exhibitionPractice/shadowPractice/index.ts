@@ -4,4 +4,4 @@ import { practice } from "./sections/practice";
 import { exhibitionNotes } from "./sections/exhibitionNotes";
 
 // TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.
-export const shadowPractice = placeLesson(howLightMoves, {"params": {"sections": {"allowSkipping": false}}, "section": {"items": {"practice": practice}, "additionalItems": {"exhibitionNotes": exhibitionNotes}, "order": ["content", "practice", "quiz", "exhibitionNotes"] as ["content", "practice", "quiz", "exhibitionNotes"]}} satisfies Parameters<typeof howLightMoves.build.overrides>[0]);
+export const shadowPractice = placeLesson(howLightMoves, {"params": {"sections": {"allowSkipping": false}}, "section": {"items": {practice}, "additionalItems": {exhibitionNotes}, "order": ["content", "practice", "quiz", "exhibitionNotes"] as ["content", "practice", "quiz", "exhibitionNotes"]}} satisfies Parameters<typeof howLightMoves.build.overrides>[0]);

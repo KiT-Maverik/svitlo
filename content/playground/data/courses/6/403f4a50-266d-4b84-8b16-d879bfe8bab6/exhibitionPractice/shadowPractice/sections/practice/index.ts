@@ -3,4 +3,4 @@ type LessonPatch = Parameters<typeof howLightMoves.build.overrides>[0];
 import { task } from "./task";
 type SectionPatch = Exclude<NonNullable<NonNullable<LessonPatch["section"]>["items"]>["practice"], undefined | false>;
 
-export const practice = {"params": {"skippable": false}, "content": {"items": {"task": task}}} satisfies SectionPatch;
+export const practice = {"params": {"skippable": false}, "content": {"items": {task}}} satisfies SectionPatch;
