@@ -118,8 +118,6 @@ const scene = {
   production: {
     purpose: 'Explore light paths through learner-controlled inputs.',
     specification: 'Specify exact state transitions and visible feedback for every input.',
-    accessibility: 'Keyboard control and screen-reader result descriptions.',
-    offline: 'Bundled local Scene and equivalent text exercise.',
   },
 } satisfies LessonWorkflowStage2SimpleBlock;
 
@@ -134,9 +132,8 @@ const pendingImage = {
   },
   production: {
     purpose: 'Illustrate the path of light.',
-    specification: 'An annotated diagram with two rays leaving the lamp.',
-    accessibility: 'Equivalent source-language text description.',
-    offline: 'Bundled local illustration or equivalent text.',
+    prompt:
+      'Create a diagram with a warm-yellow lamp at left emitting two straight light rays toward an opaque rectangular object; show the resulting dark shadow on a pale screen at right and label the ray direction clearly.'
   },
 } satisfies LessonWorkflowStage2SimpleBlock;
 
