@@ -25,6 +25,107 @@ function singleProperty(object, key) {
   return found[0];
 }
 
+/** Resolve an integrated Lesson from the exact Course/Module/Chapter content slot.
+ * Independent Lessons live in #lessonsData, not inside a Course placement.
+ * Inspect the pinned immediate-parent AST; never search import text/comments or
+ * infer a bank owner from an arbitrary sibling import.
+ */
+export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
+  if (typeof source !== 'string' || source.length > 4 * 1024 * 1024 ||
+      !safe(slug) || !['course', 'module', 'chapter'].includes(ownerKind))
+    throw Error('Invalid Course Lesson parent or placement');
+  const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  if (ast.parseDiagnostics.length ||
+      ast.statements.some(statement => !ts.isImportDeclaration(statement) && !ts.isVariableStatement(statement)))
+    throw Error('Unexpected integrated Course Lesson parent syntax');
+  const imports = ast.statements.filter(ts.isImportDeclaration);
+  const declarations = ast.statements.filter(ts.isVariableStatement).flatMap(statement =>
+    [...statement.declarationList.declarations]);
+  const collections = declarations.filter(declaration => ts.isIdentifier(declaration.name) &&
+    declaration.name.text === 'content');
+  if (collections.length !== 1 || !ts.isObjectLiteralExpression(unwrap(collections[0].initializer)))
+    throw Error('Integrated Lesson requires one immediate parent content collection');
+  const collection = unwrap(collections[0].initializer);
+  if (collection.properties.length !== 2) throw Error('Unexpected Course Lesson content shape');
+  const items = unwrap(singleProperty(collection, 'items').initializer);
+  const order = unwrap(singleProperty(collection, 'order').initializer);
+  if (!ts.isObjectLiteralExpression(items) || !ts.isArrayLiteralExpression(order))
+    throw Error('Integrated Lesson parent items/order must be literal');
+  const entries = items.properties.map(property => {
+    if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
+      throw Error('Unexpected integrated Lesson item syntax');
+    return { key: name(property.name), value: unwrap(property.initializer) };
+  });
+  const keys = order.elements.map(element => {
+    const node = unwrap(element);
+    if (!ts.isStringLiteral(node) || !safe(node.text))
+      throw Error('Invalid integrated Lesson parent order');
+    return node.text;
+  });
+  if (keys.length !== entries.length || new Set(keys).size !== keys.length ||
+      new Set(entries.map(entry => entry.key)).size !== entries.length ||
+      entries.some(entry => !keys.includes(entry.key)))
+    throw Error('Integrated Lesson parent items/order mismatch');
+  const item = entries.find(entry => entry.key === slug)?.value;
+  const alias = 'child_' + slug;
+  const direct = ts.isIdentifier(item) && item.text === alias;
+  const placed = ts.isCallExpression(item) &&
+    ts.isIdentifier(item.expression) && item.expression.text === 'placeLesson' &&
+    item.arguments.length === 2 && ts.isIdentifier(unwrap(item.arguments[0])) &&
+    unwrap(item.arguments[0]).text === alias;
+  if (!direct && !placed) throw Error('Upstream Lesson is not integrated into its reviewed Course slot');
+  const owned = imports.filter(statement => {
+    const clause = statement.importClause;
+    return clause && !clause.isTypeOnly && clause.namedBindings &&
+      ts.isNamedImports(clause.namedBindings) &&
+      clause.namedBindings.elements.some(element => !element.isTypeOnly && element.name.text === alias);
+  });
+  if (owned.length !== 1 || owned[0].attributes ||
+      owned[0].importClause.name ||
+      owned[0].importClause.namedBindings.elements.length !== 1)
+    throw Error('Missing or ambiguous integrated Lesson import');
+  const binding = owned[0].importClause.namedBindings.elements[0];
+  const specifier = owned[0].moduleSpecifier;
+  const match = ts.isStringLiteral(specifier) &&
+    /^#lessonsData\/([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/index$/.exec(specifier.text);
+  if (!binding.propertyName || !identifier(binding.propertyName.text) ||
+      !match || match[1] !== match[2].at(-1))
+    throw Error('Upstream Lesson import must bind a canonical verified Lesson UUID');
+  const occurrences = { count: 0 };
+  const visit = node => {
+    if (ts.isIdentifier(node) && node.text === alias) occurrences.count++;
+    ts.forEachChild(node, visit);
+  };
+  ts.forEachChild(ast, visit);
+  if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson alias reference');
+  const definition = 'define' + ownerKind[0].toUpperCase() + ownerKind.slice(1);
+  const parents = declarations.filter(declaration => {
+    const call = unwrap(declaration.initializer);
+    return ts.isCallExpression(call) && ts.isIdentifier(call.expression) &&
+      call.expression.text === definition && call.arguments.length === 1 &&
+      ts.isObjectLiteralExpression(unwrap(call.arguments[0])) &&
+      unwrap(call.arguments[0]).properties.some(property =>
+        ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content');
+  });
+  if (parents.length !== 1 || !imports.some(statement =>
+    ts.isStringLiteral(statement.moduleSpecifier) &&
+    statement.moduleSpecifier.text === '@svitlo/engine/build' &&
+    statement.importClause?.namedBindings &&
+    ts.isNamedImports(statement.importClause.namedBindings) &&
+    statement.importClause.namedBindings.elements.some(element =>
+      !element.isTypeOnly && !element.propertyName && element.name.text === definition)))
+    throw Error('Unexpected immediate Course Lesson owner');
+  if (placed && !imports.some(statement =>
+    ts.isStringLiteral(statement.moduleSpecifier) &&
+    statement.moduleSpecifier.text === '@svitlo/engine/build' &&
+    statement.importClause?.namedBindings &&
+    ts.isNamedImports(statement.importClause.namedBindings) &&
+    statement.importClause.namedBindings.elements.some(element =>
+      !element.isTypeOnly && !element.propertyName && element.name.text === 'placeLesson')))
+    throw Error('Course Lesson override lacks verified placement API');
+  return match[2];
+}
+
 /** Verify an inert, generated, locally-owned stub; never import or execute it. */
 export function verifyOwnedCourseStub(source, { kind, id, slug }) {
   const api = { lesson: 'defineLessonStub', episode: 'defineEpisodeStub', assessment: 'defineAssessmentStub' }[kind];
