@@ -436,7 +436,13 @@ export function materializeCourse(input, context = {}) {
     resolveSkill: context.resolveSkill,
     textbookRoot: context.textbookRoot,
     directory: dir,
-    reservedNames: ['defineCourse', exportName(slug), ...inlineImports, ...order.map(key => 'child_' + key)],
+    reservedNames: [
+      'defineCourse',
+      exportName(slug),
+      ...inlineImports,
+      ...order.map(key => 'child_' + key),
+      ...imports.map(line => line.match(/\\bas ([A-Za-z_$][A-Za-z0-9_$]*) \\}/)?.[1]).filter(Boolean),
+    ],
     includeLanguages: true,
   });
   const paramsSource = bound.source;
