@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
+import { discoverEpisodeDraft } from './episode-gate.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './episode-transaction.mjs';
@@ -78,6 +79,21 @@ const parent =
   'export const demo = defineCourse({ id: ' +
   JSON.stringify(courseId) +
   ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
+test('Episode source discovery preserves direct and nested owners without structural content directories', () => {
+  for (const [path, parent] of [
+    ['episodeOne', 'index.ts'],
+    ['light/episodeOne', 'light/index.ts'],
+    ['light/reflection/episodeOne', 'light/reflection/index.ts'],
+  ]) {
+    const result = discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]);
+    assert.equal(result.placement, path);
+    assert.equal(result.parentPath, courseRoot + '/' + parent);
+  }
+  for (const path of ['../../episodeOne', 'light/reflection/deep/episodeOne', 'constructor/episodeOne']) {
+    assert.throws(() => discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]));
+  }
+});
+
 test('trusted Episode plan creates only owned source and retains Course parent/stub', () => {
   const worker = {
     episodeId, exportName: 'episodeOne', publishable: false, diagnostics: [],
