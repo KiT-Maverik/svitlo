@@ -116,6 +116,28 @@ const options = {
 function produce(value = valid(), config = options) {
   return materializeLessonStage6(value as unknown as LessonWorkflowStage2, config);
 }
+test('Image authoring requires a substantive generation prompt and rejects policy boilerplate', () => {
+  const input = structuredClone(valid()) as unknown as Record<string, any>;
+  const section = input.config.section.items.introduction.config.content;
+  section.items.diagram = {
+    config: {
+      id: id('90'),
+      slug: 'diagram',
+      type: 'image',
+      params: { width: 640, height: 360 },
+      locale: { alt: { en: 'Lamp, opaque cube and cast shadow' } },
+    },
+    production: { specification: 'A lamp and cube' },
+  };
+  section.order.push('diagram');
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, false, 'generic intent is not a generation prompt');
+  section.items.diagram.production.prompt =
+    'Create a diagram with a lamp at the left, one opaque blue cube in the center, a gray screen to the right, and a clearly defined cast shadow behind the cube, with light rays correctly aligned.';
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, true);
+  section.items.diagram.production.offline = 'Generic offline-ready declaration';
+  assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, false, 'generic per-resource policy fields are not part of typed authoring');
+});
+
 test('reviewed source yields deterministic ordinary Lesson and nested Section/ContentBlock manifests', () => {
   const input = valid();
   const original = structuredClone(input);
