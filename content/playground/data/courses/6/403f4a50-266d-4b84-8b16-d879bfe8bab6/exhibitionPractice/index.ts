@@ -20,6 +20,7 @@ export const exhibitionPractice = defineModule<"exhibitionPractice", typeof cont
   }
 },
   "id": "3398626f-aa6f-5f8a-a18d-e8259c979252",
+  // agent note: outcomes is invvalid prop?
   params: { "outcomes": { "skills": [testExplainLightTravel.id, testRecognizeCircle.id] }, "prerequisites": { "skills": [testExplainLightTravel.id, testRecognizeCircle.id] }, },
   content,
 });

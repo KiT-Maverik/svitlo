@@ -1,11 +1,13 @@
 import { defineContentSection } from '@svitlo/engine/build';
 import { languages } from "#coursesData/6/403f4a50-266d-4b84-8b16-d879bfe8bab6/constants";
-import { shadowObservation as child_content_items_shadowObservation } from "./shadowObservation";
+// agent note: no rename
+import { shadowObservation } from "./shadowObservation";
 
 // TODO (BLOCKER): Transfer reviewed content Section notes (purpose) into the owning Lesson methodology and verify the transfer before removing this marker.
 const content = {
   "items": {
-    "shadowObservation": child_content_items_shadowObservation,
+    // note: use this syntax
+    shadowObservation,
   },
   "order": ["shadowObservation"],
 };
