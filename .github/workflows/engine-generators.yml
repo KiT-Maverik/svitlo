@@ -35,6 +35,7 @@ on:
       - 'package.json'
       - '.github/workflows/engine-generators.yml'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
