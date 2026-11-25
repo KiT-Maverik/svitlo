@@ -9,6 +9,7 @@ import {
 } from './reserved-parent-slot.mjs';
 
 const ids = {
+  lesson: '66666666-6666-4666-8666-666666666666',
   episode: '11111111-1111-4111-8111-111111111111',
   assessment: '22222222-2222-4222-8222-222222222222',
   sibling: '33333333-3333-4333-8333-333333333333',
@@ -28,13 +29,13 @@ const stubSource = ({ kind, id, slug }) =>
   JSON.stringify(slug) +
   ' });\n';
 
-function parent(kind, depth) {
-  const slug = kind === 'episode' ? 'story' : 'review';
-  const owner = depth === 0 ? 'defineCourse' : depth === 1 ? 'defineModule' : 'defineChapter';
+function parent(kind, depth, directChapter = false) {
+  const slug = kind === 'episode' ? 'story' : kind === 'lesson' ? 'lessonOne' : 'review';
+  const owner = depth === 0 ? 'defineCourse' : depth === 1 && !directChapter ? 'defineModule' : 'defineChapter';
   const placement =
     depth === 0
       ? 'content/' + slug
-      : kind === 'episode'
+      : kind !== 'assessment'
         ? depth === 1
           ? 'content/moduleOne/' + slug
           : 'content/moduleOne/chapterOne/' + slug
@@ -75,13 +76,13 @@ function parent(kind, depth) {
     kind,
     id,
     slug,
-    placement,
+    placement: directChapter ? placement.replace('moduleOne', 'directChapter') : placement,
     exportName: 'config_' + slug,
     stubSource: stubSource({ kind, id, slug }),
   };
 }
 
-for (const kind of ['episode', 'assessment']) {
+for (const kind of ['lesson', 'episode', 'assessment']) {
   for (const depth of [0, 1, 2]) {
     test(kind + ' pending stub is authenticated read-only at depth ' + depth, () => {
       const { source, ...allocation } = parent(kind, depth);
@@ -96,6 +97,16 @@ for (const kind of ['episode', 'assessment']) {
       ), allocation));
     });
   }
+}
+
+for (const kind of ['lesson', 'episode', 'assessment']) {
+  test(kind + ' pending stub accepts a Chapter directly under Course', () => {
+    const { source, ...allocation } = parent(kind, 1, true);
+    assert.equal(verifyPendingCourseParent(source, allocation), true);
+    assert.throws(() => verifyPendingCourseParent(source.replaceAll('defineChapter', 'defineCourse'), allocation));
+    const nested = parent(kind, 2);
+    assert.throws(() => verifyPendingCourseParent(nested.source.replaceAll('defineChapter', 'defineModule'), nested));
+  });
 }
 
 test('read-only reservation rejects foreign, executable, aliased or malformed stub and parent', () => {
@@ -275,6 +286,14 @@ test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent i
   };
   for (const ownerKind of ['course', 'module', 'chapter']) {
     const source = parent(ownerKind);
+    if (ownerKind !== 'course') {
+      assert.equal(
+        resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind: ['module', 'chapter'] }),
+        lessonId,
+      );
+    } else {
+      assert.throws(() => resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind: ['module', 'chapter'] }));
+    }
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind }), lessonId);
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'other', ownerKind }), siblingId);
     assert.equal(
