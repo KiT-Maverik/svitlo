@@ -45,7 +45,9 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
   assert.ok(first.files.every(file => !file.path.includes('/content/items/')));
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
-  assert.match(root, /\.\/prompt/);
+  assert.match(root, /import \{ prompt \} from "\.\/prompt"/);
+  assert.match(root, /"items": \{ prompt \}/);
+  assert.doesNotMatch(root, /child_content_items_/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
@@ -100,4 +102,30 @@ test('contentSection: Section notes are guarded without specification sidecars',
   const root = result.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
   assert.match(root, /Transfer reviewed .* Section notes/);
   assert.ok(result.diagnostics.some(item => item.message.includes('sequenceReason')));
+});
+
+test('content: verifies canonical child export, permits explicit differing map key and rejects collisions', () => {
+  const alternative = materializeContentSection(input() as Parameters<typeof materializeContentSection>[0], {
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
+    languagesImport: '../../languages',
+    renderContentBlock: (child, options) => ({
+      ...renderContentBlock(child, options),
+      exportName: 'actualPrompt',
+    }),
+  });
+  const code = alternative.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
+  assert.match(code, /import \{ actualPrompt \} from "\.\/prompt"/);
+  assert.match(code, /"prompt": actualPrompt/);
+  assert.throws(() =>
+    materializeContentSection(input() as Parameters<typeof materializeContentSection>[0], {
+      documentLanguage: 'en',
+      directory: 'sections/introduction',
+      languagesImport: '../../languages',
+      renderContentBlock: (child, options) => ({
+        ...renderContentBlock(child, options),
+        exportName: 'content',
+      }),
+    }),
+  /generated identifier collision.*content/);
 });

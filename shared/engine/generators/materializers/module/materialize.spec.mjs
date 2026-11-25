@@ -222,6 +222,8 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
+  assert.match(main, /import \{ chapterOne \} from "\.\/chapterOne"/);
+  assert.doesNotMatch(main, /child_| as chapterOne/);
   assert.doesNotMatch(main, /outcomes|prerequisites|skillsData/);
   assert.ok(main.includes('params: {}'));
   assert.match(out.files.find(file => file.path === 'methodology.md').content, /Intended learning outcomes/);
@@ -247,4 +249,11 @@ test('Module rejects legacy Skill targets in config.params rather than dropping 
     value.config.params = { [field]: { skills: [skillId] } };
     assert.throws(() => materializeModule(value, ctx()), new RegExp('config\\.params\\.' + field));
   }
+});
+
+test('Module rejects a child canonical import that collides with generated locals', () => {
+  const node = mod();
+  node.config.content.items.content = lesson('content', 'Текст');
+  node.config.content.order.push('content');
+  assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*content/);
 });

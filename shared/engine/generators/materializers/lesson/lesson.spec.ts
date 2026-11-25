@@ -437,13 +437,16 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
   const root = result.files.find(file => file.path === 'index.ts')?.content ?? '';
   assert.match(
     root,
-    /import \{ testRecognizeRed as skill_ref_0 \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/,
+    /import \{ testRecognizeRed \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/,
   );
   assert.match(
     root,
-    /import \{ testRecognizeBlue as skill_ref_1 \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/,
+    /import \{ testRecognizeBlue \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/,
   );
-  assert.match(root, /"skills": \[skill_ref_0\.id, skill_ref_1\.id\]/);
+  assert.match(root, /"skills": \[testRecognizeRed\.id, testRecognizeBlue\.id\]/);
+  assert.doesNotMatch(root, /skill_ref_|child_section_items_/);
+  assert.match(root, /import \{ introduction \} from "\.\/sections\/introduction"/);
+  assert.match(root, /"items": \{ introduction \}/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
   const unknown = materializeLesson(

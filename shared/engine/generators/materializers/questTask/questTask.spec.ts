@@ -38,7 +38,9 @@ test('Quest Task: one Scene delegation, typed import and a visible pending block
   );
   assert.match(src, /defineTask<"start", typeof languages>/);
   assert.match(src, /TODO \(BLOCKER\)/);
-  assert.match(src, /child_scene/);
+  assert.match(src, /import \{ interactive \} from "\.\/scene"/);
+  assert.match(src, /scene: interactive/);
+  assert.doesNotMatch(src, /child_scene/);
   assert.equal(out.files[0].path, 'tasks/start/scene/index.ts');
 });
 test('Quest Task: rejects a non-Scene child', () => {

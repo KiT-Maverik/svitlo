@@ -221,6 +221,7 @@ test('Chapter preserves one direct Episode and an existing Lesson placement', ()
     /import \{ independentLesson \} from "#lessonsData\//,
   );
   assert.match(result.files.find(file => file.path === 'index.ts').content, /defineChapter</);
+  assert.doesNotMatch(result.files.find(file => file.path === 'index.ts').content, /child_|skill_ref_/);
   assert.equal(result.id, IDs.chapter);
   syntax(result.files);
 });
@@ -247,4 +248,11 @@ test('Chapter excludes production-only Skill targets and rejects legacy config p
     value.config.params = { [field]: { skills: [skillId] } };
     assert.throws(() => materializeChapter(value, ctx()), new RegExp('config\\.params\\.' + field));
   }
+});
+
+test('Chapter rejects a child canonical import that collides with generated locals', () => {
+  const node = ch();
+  node.config.content.items.content = lesson('content', 'Текст');
+  node.config.content.order.push('content');
+  assert.throws(() => materializeChapter(node, ctx()), /generated identifier collision.*content/);
 });

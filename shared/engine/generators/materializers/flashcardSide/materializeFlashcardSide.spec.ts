@@ -37,6 +37,9 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
   assert(!output.files.some(file => file.path.includes('/items/')));
   assert.match(root.content, /from "\.\/first"/);
   assert.match(root.content, /from "\.\/second"/);
+  assert.match(root.content, /import \{ first \} from "\.\/first"/);
+  assert.match(root.content, /first,/);
+  assert.doesNotMatch(root.content, /child_/);
   assert.deepEqual(output, materializeFlashcardSide(source, context));
   for (const file of output.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {

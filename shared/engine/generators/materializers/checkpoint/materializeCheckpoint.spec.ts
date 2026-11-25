@@ -195,8 +195,8 @@ test('Checkpoint omits a draft-disabled item rather than emitting false into fin
     languagesImport: './languages',
     renderItem: primitive,
   });
-  assert.match(result.files.at(-1)!.content, /"second": item_second/);
-  assert.doesNotMatch(result.files.at(-1)!.content, /item_first/);
+  assert.match(result.files.at(-1)!.content, /\bsecond,/);
+  assert.doesNotMatch(result.files.at(-1)!.content, /\bfirst\b/);
 });
 
 test('Checkpoint rejects a delegated item that writes into another module', () => {
