@@ -184,7 +184,10 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   assert.equal(handoff.length, 1);
   assert.match(handoff[0].content, /satisfies CourseWorkflowLessonSeed/);
   assert.doesNotMatch(handoff[0].content, /defineLesson\s*\(|LessonWorkflowStage1/);
-  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 6);
+  // Three parent Configurators, one Course constants module, one Lesson handoff,
+  // one Episode handoff and two separately owned pending child stub modules.
+  assert.equal(source.files.filter(file => file.kind === 'typescript').length, 8);
+  assert.equal(source.files.filter(file => file.path.endsWith('/stub.ts')).length, 2);
   for (const pathSuffix of ['/index.ts', '/content/moduleOne/index.ts', '/content/moduleOne/chapterOne/index.ts']) {
     const authored = source.files.find(file => file.path === root + pathSuffix).content;
     assert.match(authored, /#skillsData\/test/);
