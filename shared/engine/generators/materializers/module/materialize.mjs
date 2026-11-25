@@ -345,11 +345,7 @@ export function materializeModule(input, context = {}) {
     }
 
     if (stage1Lesson || stage1Episode || pendingAssessment) {
-      const stub = stage1Lesson
-        ? 'defineLessonStub'
-        : stage1Episode
-          ? 'defineEpisodeStub'
-          : 'defineAssessmentStub';
+      const stub = stage1Lesson ? 'defineLessonStub' : stage1Episode ? 'defineEpisodeStub' : 'defineAssessmentStub';
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       inlineImports.add(stub);
       items[key] = stub + '({ id: ' + JSON.stringify(refId) + ', slug: ' + JSON.stringify(key) + ' })';
@@ -359,16 +355,14 @@ export function materializeModule(input, context = {}) {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
         imports.push(
-          'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' +
-          JSON.stringify(child.importPath) + ';',
+          'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(child.importPath) + ';',
         );
         if (child.patchSource !== undefined) {
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + alias + ', ' + child.patchSource + ')';
         } else items[key] = alias;
       } else {
-        imports.push('import { ' + child.exportName + ' as ' + alias +
-          ' } from "./' + key + '";');
+        imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
         items[key] = alias;
       }
     }
@@ -407,9 +401,15 @@ export function materializeModule(input, context = {}) {
   const paramsSource = '{ ' + paramFields + '' + ' }';
   const languagesModule = dir ? '../'.repeat(dir.split('/').length) + 'constants' : './constants';
   const result =
-    'import { ' + ['defineModule', ...inlineImports].join(', ') + " } from '@svitlo/engine/build';\n" +
-    'import { languages } from ' + JSON.stringify(languagesModule) + ';\n' +
-    'import type { Languages } from ' + JSON.stringify(languagesModule) + ';\n' +
+    'import { ' +
+    ['defineModule', ...inlineImports].join(', ') +
+    " } from '@svitlo/engine/build';\n" +
+    'import { languages } from ' +
+    JSON.stringify(languagesModule) +
+    ';\n' +
+    'import type { Languages } from ' +
+    JSON.stringify(languagesModule) +
+    ';\n' +
     imports.join('\n') +
     '\n\n' +
     'const content = { items: ' +

@@ -80,7 +80,10 @@ export function materializeAssessmentPlaceholder(node, context) {
   const sourcePath = directory + '/draft.ts';
   const source =
     "import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';\n" +
-    renderBlockerTodo('Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.') + '\n' +
+    renderBlockerTodo(
+      'Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.',
+    ) +
+    '\n' +
     'export const assessmentSeed = ' +
     JSON.stringify(seed, null, 2) +
     ' as const satisfies AssessmentWorkflowSeed;\n';

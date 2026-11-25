@@ -26,13 +26,19 @@ function withRepo(run) {
     git('init', '-q');
     git('config', 'user.name', 'Test');
     git('config', 'user.email', 'test@example.test');
-    put(factories, [
-      'export const defineLessonStub = () => 1;',
-      'export const defineEpisodeStub = () => 2;',
-      'export const defineAssessmentStub = () => 3;',
-      '',
-    ].join('\n'));
-    put('shared/engine/build.ts', "export * from './configurators/courses/defineCourseChildStubs/defineCourseChildStubs';\n");
+    put(
+      factories,
+      [
+        'export const defineLessonStub = () => 1;',
+        'export const defineEpisodeStub = () => 2;',
+        'export const defineAssessmentStub = () => 3;',
+        '',
+      ].join('\n'),
+    );
+    put(
+      'shared/engine/build.ts',
+      "export * from './configurators/courses/defineCourseChildStubs/defineCourseChildStubs';\n",
+    );
     run({ root, git, put, commit });
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -43,19 +49,25 @@ test('detects aliases, namespace exports and indirect static re-exports', () => 
   withRepo(({ root, put, commit }) => {
     const base = commit();
     put('content/demo/adapter.ts', "export { defineAssessmentStub as saved } from '@svitlo/engine/build';\n");
-    put('content/demo/use.ts', [
-      "import { defineLessonStub as quick } from '@svitlo/engine/build';",
-      "import * as engine from '@svitlo/engine/build';",
-      "import { saved as assessment } from './adapter';",
-      'export const a = quick();',
-      'export const b = engine.defineEpisodeStub();',
-      'export const c = assessment();',
-      '',
-    ].join('\n'));
+    put(
+      'content/demo/use.ts',
+      [
+        "import { defineLessonStub as quick } from '@svitlo/engine/build';",
+        "import * as engine from '@svitlo/engine/build';",
+        "import { saved as assessment } from './adapter';",
+        'export const a = quick();',
+        'export const b = engine.defineEpisodeStub();',
+        'export const c = assessment();',
+        '',
+      ].join('\n'),
+    );
     const head = commit();
     const hits = scanReferences(root, addedLines(root, base, head));
     for (const line of [1, 4, 5, 6]) {
-      assert.ok(hits.some(x => x.file === 'content/demo/use.ts' && x.line === line), 'missing line ' + line);
+      assert.ok(
+        hits.some(x => x.file === 'content/demo/use.ts' && x.line === line),
+        'missing line ' + line,
+      );
     }
     const errors = [];
     const report = console.error;
@@ -71,9 +83,15 @@ test('detects aliases, namespace exports and indirect static re-exports', () => 
 
 test('detects a new use of a preexisting imported factory alias', () => {
   withRepo(({ root, put, commit }) => {
-    put('content/demo/keep.ts', "import { defineEpisodeStub as create } from '@svitlo/engine/build';\nconst older = create;\n");
+    put(
+      'content/demo/keep.ts',
+      "import { defineEpisodeStub as create } from '@svitlo/engine/build';\nconst older = create;\n",
+    );
     const base = commit();
-    put('content/demo/keep.ts', "import { defineEpisodeStub as create } from '@svitlo/engine/build';\nconst older = create;\nexport const newlyAdded = older();\n");
+    put(
+      'content/demo/keep.ts',
+      "import { defineEpisodeStub as create } from '@svitlo/engine/build';\nconst older = create;\nexport const newlyAdded = older();\n",
+    );
     const head = commit();
     assert.ok(scanReferences(root, addedLines(root, base, head)).some(x => x.line === 3));
   });
@@ -83,13 +101,16 @@ test('ignores comments, strings, unrelated same-name functions and historical un
   withRepo(({ root, put, commit }) => {
     put('content/demo/old.ts', "import { defineLessonStub } from '@svitlo/engine/build';\n");
     const base = commit();
-    put('content/demo/new.ts', [
-      '// defineLessonStub()',
-      'const plain = "defineEpisodeStub()";',
-      'const defineLessonStub = () => true;',
-      'export const allowed = defineLessonStub();',
-      '',
-    ].join('\n'));
+    put(
+      'content/demo/new.ts',
+      [
+        '// defineLessonStub()',
+        'const plain = "defineEpisodeStub()";',
+        'const defineLessonStub = () => true;',
+        'export const allowed = defineLessonStub();',
+        '',
+      ].join('\n'),
+    );
     const head = commit();
     assert.deepEqual(scanReferences(root, addedLines(root, base, head)), []);
     assert.doesNotThrow(() => main([base, head], root));

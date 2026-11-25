@@ -255,7 +255,9 @@ export function materializeQuestStage(config: Source, options: Options): Result 
   const blockers: string[] = [];
   if (options.production?.pending === true)
     blockers.push(
-      renderBlockerTodo('Implement and verify reviewed Quest Stage media, accessibility alternatives and caption timings; remove after approval.'),
+      renderBlockerTodo(
+        'Implement and verify reviewed Quest Stage media, accessibility alternatives and caption timings; remove after approval.',
+      ),
     );
   if (blockers.length)
     diagnostics.push({

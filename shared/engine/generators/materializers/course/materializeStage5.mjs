@@ -413,7 +413,8 @@ export function materializeCourseStage5(input, options = {}) {
   rootIndex.content =
     renderBlockerTodo(
       'Course Stage 5 source is not publication approval. Complete and verify independent Lesson, Episode, Assessment, localization, resource, editorial-review and human QA gates, then remove this marker before release.',
-    ) + '\n' +
+    ) +
+    '\n' +
     '// Reviewed Course source blob: ' +
     source.sourceBlobSha +
     '\n' +
@@ -422,11 +423,13 @@ export function materializeCourseStage5(input, options = {}) {
     "import type { SupportedLanguages } from '@svitlo/engine/build';\n" +
     (planned.length > 1
       ? renderBlockerTodo(
-          'Complete and independently review translations for ' + JSON.stringify(planned) +
+          'Complete and independently review translations for ' +
+            JSON.stringify(planned) +
             ', restore the reviewed languages tuple, and remove this marker.',
         ) + '\n'
       : '') +
-    'export const languages = ' + JSON.stringify([sourceLanguage]) +
+    'export const languages = ' +
+    JSON.stringify([sourceLanguage]) +
     ' as const satisfies SupportedLanguages;\n' +
     'export type Languages = typeof languages;\n';
   files.push({ path: root + '/constants.ts', kind: 'typescript', content: languageSource });

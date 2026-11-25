@@ -6,12 +6,19 @@ import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './asses
 const id = 'a73572e7-bd85-4516-86e2-3de07d209e03';
 const second = 'a73572e7-bd85-4516-86e2-3de07d209e04';
 const stub = (slug, uuid) =>
-  JSON.stringify(slug) + ': defineAssessmentStub({ id: ' +
-  JSON.stringify(uuid) + ', slug: ' + JSON.stringify(slug) + ' })';
+  JSON.stringify(slug) +
+  ': defineAssessmentStub({ id: ' +
+  JSON.stringify(uuid) +
+  ', slug: ' +
+  JSON.stringify(slug) +
+  ' })';
 const parent = (items, order) =>
   "import { defineModule, defineAssessmentStub } from '@svitlo/engine/build';\n" +
-  'const content = { items: { ' + items.join(', ') +
-  ' }, order: ' + JSON.stringify(order) + ' };\n' +
+  'const content = { items: { ' +
+  items.join(', ') +
+  ' }, order: ' +
+  JSON.stringify(order) +
+  ' };\n' +
   'export const moduleOne = defineModule({ content });\n';
 const placement = (slug = 'review', uuid = id) => ({
   id: uuid,
@@ -41,7 +48,10 @@ test('rejects spoofed UUID, parent edits, missing stub, replay and reordered sib
   assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /[Rr]eserved|identity/);
   assert.throws(() => restoreAssessmentPlacement(original, placement('review', second)), /UUID\/slug/);
   assert.throws(() => restoreAssessmentPlacement(updated, placement()), /imported draft-only|reserved/);
-  assert.throws(() => verifyAssessmentParentPatch(original, updated + '// unauthorized\n', placement()), /exact authorized/);
+  assert.throws(
+    () => verifyAssessmentParentPatch(original, updated + '// unauthorized\n', placement()),
+    /exact authorized/,
+  );
   assert.throws(
     () => restoreAssessmentPlacement(original.replace('const content', 'const changed'), placement()),
     /generated parent content/,

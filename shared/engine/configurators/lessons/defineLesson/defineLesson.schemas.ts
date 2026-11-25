@@ -68,7 +68,22 @@ export const lesson_Draft_Props_Schema = identity
     section: z.array(contentSection_Props_Schema).nonempty(),
   })
   .strict()
-  .refine(value => value.section.some(section => section.params.disabled !== true && section.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')), 'Lesson draft needs the Not implemented Text ContentBlock');
+  .refine(
+    value =>
+      value.section.some(
+        section =>
+          section.params.disabled !== true &&
+          section.content.some(
+            block =>
+              block.type === 'text' &&
+              typeof block.locale === 'object' &&
+              block.locale !== null &&
+              'value' in block.locale &&
+              block.locale.value === 'Not implemented',
+          ),
+      ),
+    'Lesson draft needs the Not implemented Text ContentBlock',
+  );
 export const lesson_Props_Schema = z.union([lesson_Completed_Props_Schema, lesson_Draft_Props_Schema]);
 export type Lesson_Draft_Props = z.infer<typeof lesson_Draft_Props_Schema>;
 export type Lesson_Props = Omit<z.infer<typeof lesson_Completed_Props_Schema>, 'section'> & {

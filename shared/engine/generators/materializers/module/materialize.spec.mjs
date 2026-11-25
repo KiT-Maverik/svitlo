@@ -198,8 +198,10 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   const out = materializeModule(value, ctx());
   assert.ok(out.files.some(file => file.path === 'chapterOne/index.ts'));
   assert.ok(!out.files.some(file => file.path === 'directLesson/index.ts'));
-  assert.match(out.files.find(file => file.path === 'index.ts').content,
-    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//);
+  assert.match(
+    out.files.find(file => file.path === 'index.ts').content,
+    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//,
+  );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
   assert.match(main, /params: \{  \}/);

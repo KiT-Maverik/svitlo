@@ -468,7 +468,11 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     locale: { title: 'Module' },
     content: { items: { contextChapter: chapter }, order: ['contextChapter'] },
   });
-  const course = defineCourse<'contextCourse', { contextModule: typeof module; direct: typeof original }, typeof languages>({
+  const course = defineCourse<
+    'contextCourse',
+    { contextModule: typeof module; direct: typeof original },
+    typeof languages
+  >({
     id: 'c775647f-203d-481a-a1c7-4d331c779d24',
     slug: 'contextCourse',
     type: 'course',
@@ -480,8 +484,11 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
   assert.deepEqual(shadow.placement.patch, raw);
   const publication = course.build.props({ languages });
-  const shadowBase = (publication.base.content[0] as { content: { content: { params: { sections: { allowSkipping: boolean } }; slug: string }[] }[] })
-    .content[0].content[0];
+  const shadowBase = (
+    publication.base.content[0] as {
+      content: { content: { params: { sections: { allowSkipping: boolean } }; slug: string }[] }[];
+    }
+  ).content[0].content[0];
   assert.equal(shadowBase.slug, 'shadow');
   assert.equal(shadowBase.params.sections.allowSkipping, false);
   assert.equal(publication.base.content[1]?.slug, 'direct');
@@ -505,7 +512,10 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     /Invalid Lesson overrides/,
   );
   assert.throws(
-    () => placeLesson(original, { base: { params: { sections: { allowSkipping: false } } } } as never).build.props({ languages }),
+    () =>
+      placeLesson(original, { base: { params: { sections: { allowSkipping: false } } } } as never).build.props({
+        languages,
+      }),
     /Invalid Lesson overrides/,
   );
   assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);

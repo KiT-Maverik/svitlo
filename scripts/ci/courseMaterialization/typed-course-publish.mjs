@@ -42,15 +42,8 @@ function allowedOutput(filename, meta) {
     if (parts.slice(0, -1).some(part => !/^[A-Za-z][A-Za-z0-9]*$/.test(part))) return false;
     if (parts.length > 12 || ['workflow.stage3.ts'].includes(leaf)) return false;
     return (
-      (leaf !== 'constants.ts' || parts.length === 1) &&
-      [
-        'index.ts',
-        'draft.ts',
-        'constants.ts',
-        'methodology.md',
-        'specification.md',
-        'markdown.md',
-      ].includes(leaf) ||
+      ((leaf !== 'constants.ts' || parts.length === 1) &&
+        ['index.ts', 'draft.ts', 'constants.ts', 'methodology.md', 'specification.md', 'markdown.md'].includes(leaf)) ||
       /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
       /^code\.[a-z0-9]{1,10}$/.test(leaf)
     );
@@ -122,13 +115,21 @@ function assertCourseInventory(manifest, meta, entries) {
     return Buffer.from(entries.get(expected).data, 'base64').toString('utf8');
   }
   function requireStub(row) {
-    const name = row.type === 'lesson'
-      ? 'defineLessonStub'
-      : row.type === 'episode'
-        ? 'defineEpisodeStub'
-        : 'defineAssessmentStub';
-    const expected = JSON.stringify(row.slug) + ': ' + name +
-      '({ id: ' + JSON.stringify(row.id) + ', slug: ' + JSON.stringify(row.slug) + ' })';
+    const name =
+      row.type === 'lesson'
+        ? 'defineLessonStub'
+        : row.type === 'episode'
+          ? 'defineEpisodeStub'
+          : 'defineAssessmentStub';
+    const expected =
+      JSON.stringify(row.slug) +
+      ': ' +
+      name +
+      '({ id: ' +
+      JSON.stringify(row.id) +
+      ', slug: ' +
+      JSON.stringify(row.slug) +
+      ' })';
     const source = parentSource(row);
     if (!source.includes(expected) || !source.includes(name))
       throw Error('Missing or displaced Course ' + row.type + ' stub at ' + row.placementPath);
@@ -196,9 +197,10 @@ function assertCourseInventory(manifest, meta, entries) {
         const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
         const quoted = JSON.stringify(expectedImport);
         const normalized = parent.replaceAll("'" + expectedImport + "'", quoted);
-        const expectedLine = 'import { ' + row.sourceExportName + ' as child_' + row.slug +
-          ' } from ' + quoted + ';';
-        const expectedPlacement = JSON.stringify(row.slug) + ': ' +
+        const expectedLine = 'import { ' + row.sourceExportName + ' as child_' + row.slug + ' } from ' + quoted + ';';
+        const expectedPlacement =
+          JSON.stringify(row.slug) +
+          ': ' +
           (row.kind === 'overridden' ? 'placeLesson(child_' + row.slug + ', ' : 'child_' + row.slug);
         if (
           normalized.split('\n').filter(line => line === expectedLine).length !== 1 ||

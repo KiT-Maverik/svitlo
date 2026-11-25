@@ -7,7 +7,10 @@ const MARKER = 'TODO (BLOCKER):';
 /** A physical single-line instruction; embedded newlines cannot inject code. */
 export function renderBlockerTodo(instruction) {
   if (typeof instruction !== 'string') throw new TypeError('Blocker instruction must be a string');
-  const action = instruction.replace(/\r\n?|\u2028|\u2029/g, '\n').replace(/\s+/g, ' ').trim();
+  const action = instruction
+    .replace(/\r\n?|\u2028|\u2029/g, '\n')
+    .replace(/\s+/g, ' ')
+    .trim();
   if (!action) throw new Error('Blocker instruction must explain how to unblock');
   return '// ' + MARKER + ' ' + action;
 }
@@ -22,7 +25,8 @@ export function renderBlockerSpecification(instruction, specification) {
   const lines = specification.replace(/\r\n?|\u2028|\u2029/g, '\n').split('\n');
   while (lines.length && !lines[0].trim()) lines.shift();
   while (lines.length && !lines.at(-1).trim()) lines.pop();
-  if (!lines.some(line => line.trim())) throw new Error('Blocker specification must contain reviewed implementation context');
+  if (!lines.some(line => line.trim()))
+    throw new Error('Blocker specification must contain reviewed implementation context');
   if (lines.some(line => line.includes(MARKER)))
     throw new Error('Blocker specification must not duplicate the canonical TODO marker');
   const indent = Math.min(...lines.filter(line => line.trim()).map(line => /^\s*/.exec(line)[0].length));

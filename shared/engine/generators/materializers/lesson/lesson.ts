@@ -324,7 +324,11 @@ export function materializeLesson(config: Source, options: Options): Result {
     const skill = options.skillReferences?.[index];
     if (!skill) {
       blockers.push(
-        renderBlockerTodo('Import the actual Skill Configurator for ' + id + ' from this textbook taxonomy in the reviewed Lesson draft before publication.'),
+        renderBlockerTodo(
+          'Import the actual Skill Configurator for ' +
+            id +
+            ' from this textbook taxonomy in the reviewed Lesson draft before publication.',
+        ),
       );
       return id;
     }
@@ -344,7 +348,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     '',
     ...(planned.length > 1
       ? [
-          renderBlockerTodo('Restore reviewed Lesson languages after translation approval and verify locale coverage before removing this marker.'),
+          renderBlockerTodo(
+            'Restore reviewed Lesson languages after translation approval and verify locale coverage before removing this marker.',
+          ),
           '// export const languages = [',
           ...planned.map(language => '//   ' + JSON.stringify(language) + ','),
           '// ] as const satisfies SupportedLanguages;',
@@ -370,8 +376,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     options.production?.assessment?.questionBankRequired === true ||
     diagnostics.some(item => item.code === 'pending-quiz')
   ) {
-    const message =
-      renderBlockerTodo('Stage 7: author, review and integrate the required Question Bank and Quiz selections; remove after verifying bank UUIDs.');
+    const message = renderBlockerTodo(
+      'Stage 7: author, review and integrate the required Question Bank and Quiz selections; remove after verifying bank UUIDs.',
+    );
     assessmentBlockers.push(message);
     diagnostics.push({ path: destination(dir, 'index.ts'), code: 'pending-questions', message, severity: 'warning' });
   }
@@ -379,8 +386,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     options.production?.assessment?.flashcardBankRequired === true ||
     diagnostics.some(item => item.code === 'pending-flashcards')
   ) {
-    const message =
-      renderBlockerTodo('Stage 8: author, review and integrate the required Flashcard Bank and Flashcards selections; remove after verifying bank UUIDs.');
+    const message = renderBlockerTodo(
+      'Stage 8: author, review and integrate the required Flashcard Bank and Flashcards selections; remove after verifying bank UUIDs.',
+    );
     assessmentBlockers.push(message);
     diagnostics.push({
       path: destination(dir, 'index.ts'),
@@ -391,10 +399,16 @@ export function materializeLesson(config: Source, options: Options): Result {
   }
   if (hasQuest)
     blockers.push(
-      renderBlockerTodo('Implement and verify Quest runtime support or remove the Quest after methodological review before publishing this Lesson.'),
+      renderBlockerTodo(
+        'Implement and verify Quest runtime support or remove the Quest after methodological review before publishing this Lesson.',
+      ),
     );
   if (options.production?.pending === true)
-    blockers.push(renderBlockerTodo('Complete Lesson methodology, secure independent review evidence, and verify approval before removing this marker.'));
+    blockers.push(
+      renderBlockerTodo(
+        'Complete Lesson methodology, secure independent review evidence, and verify approval before removing this marker.',
+      ),
+    );
   if (blockers.length)
     diagnostics.push({
       path: destination(dir, 'index.ts'),

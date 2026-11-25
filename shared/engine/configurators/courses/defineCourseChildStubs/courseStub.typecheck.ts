@@ -12,18 +12,28 @@ const episode = defineEpisodeStub({ id, slug: 'episodeSlot' });
 const assessment = defineAssessmentStub({ id, slug: 'assessmentSlot' });
 
 const chapter = defineChapter({
-  id, slug: 'chapter', type: 'chapter', params: {},
+  id,
+  slug: 'chapter',
+  type: 'chapter',
+  params: {},
   locale: { title: 'Chapter' },
-  content: { items: { lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
-    order: ['lessonSlot', 'episodeSlot', 'assessmentSlot'] },
+  content: {
+    items: { lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
+    order: ['lessonSlot', 'episodeSlot', 'assessmentSlot'],
+  },
 });
 const module = defineModule({
-  id, slug: 'module', type: 'module', params: {},
+  id,
+  slug: 'module',
+  type: 'module',
+  params: {},
   locale: { title: 'Module' },
   content: { items: { chapter }, order: ['chapter'] },
 });
 const course = defineCourse({
-  id, slug: 'course', type: 'course',
+  id,
+  slug: 'course',
+  type: 'course',
   params: { languages: ['en'] as const },
   locale: { title: 'Course', description: 'Draft' },
   content: { items: { module }, order: ['module'] },

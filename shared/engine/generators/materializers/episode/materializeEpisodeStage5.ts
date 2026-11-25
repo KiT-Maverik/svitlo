@@ -3,8 +3,8 @@ import {
   type EpisodeWorkflowStage2,
 } from '../../../types/workflow/episodeWorkflow.types';
 import { invokeMaterializer } from '../directMaterialization/directMaterialization';
-import { renderSceneFiles } from '../scene/materializeScene';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { renderSceneFiles } from '../scene/materializeScene';
 import { materializeEpisode } from './materialize.mjs';
 import { materializeEpisodeSection } from './materializeEpisodeSection';
 
@@ -83,11 +83,7 @@ export function materializeEpisodeStage5(
       const owned = source.source.sourcePath.match(
         /^(content\/[a-z][a-z0-9-]*)\/data\/courses\/([a-f0-9])\/([a-f0-9-]{36})\/(content\/(?:[A-Za-z][A-Za-z0-9]*\/){0,2}[A-Za-z][A-Za-z0-9]*)\/draft\.ts$/,
       );
-      if (
-        !owned ||
-        owned[2] !== owned[3].at(-1) ||
-        owned[4].split('/').at(-1) !== input.config.slug
-      )
+      if (!owned || owned[2] !== owned[3].at(-1) || owned[4].split('/').at(-1) !== input.config.slug)
         throw Error('Episode Stage 5 requires its exact allocated Course draft path');
       const [, textbook, , courseId, root] = owned;
       const document = input.production.languages.document;
@@ -130,8 +126,14 @@ export function materializeEpisodeStage5(
         .replace(originalLanguages, '')
         .replace(/^\/\/ TODO \(BLOCKER\): Restore reviewed languages: [^\n]*\n/m, '');
       index.content =
-        renderBlockerTodo('Complete and human-verify Episode media generation at Stage 9 before removing this blocker.') + '\n' +
-        renderBlockerTodo('Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.') + '\n' +
+        renderBlockerTodo(
+          'Complete and human-verify Episode media generation at Stage 9 before removing this blocker.',
+        ) +
+        '\n' +
+        renderBlockerTodo(
+          'Record explicit pinned human QA acceptance for Episode Stage 10 before removing this blocker.',
+        ) +
+        '\n' +
         '// Reviewed Episode source blob: ' +
         source.source.sourceBlobSha +
         '\n' +

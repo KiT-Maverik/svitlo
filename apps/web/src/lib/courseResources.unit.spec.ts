@@ -1,5 +1,8 @@
 import { afterEach, expect, it, vi } from 'vitest';
+
 import type { LocalizedCourse } from '@svitlo/engine/runtime';
+
+import { courseHasLesson, courseLessonIds, loadCourseLessonTitles, loadCourseTree } from './courseResources';
 
 const adapter = vi.hoisted(() => ({
   lesson: vi.fn(),
@@ -10,13 +13,6 @@ vi.mock('@svitlo/adapter-nextjs', () => ({
   loadPublishedCourseLessonProps: adapter.lesson,
   loadPublishedCourseTree: adapter.course,
 }));
-
-import {
-  courseHasLesson,
-  courseLessonIds,
-  loadCourseLessonTitles,
-  loadCourseTree,
-} from './courseResources';
 
 const courseId = '99999999-9999-4999-8999-999999999999';
 const completeId = '88888888-8888-4888-8888-888888888888';

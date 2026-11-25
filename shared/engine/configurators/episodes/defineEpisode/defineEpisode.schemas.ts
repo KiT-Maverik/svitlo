@@ -61,7 +61,22 @@ export const episode_Draft_Props_Schema = identity
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict()
-  .refine(value => value.section.some(section => section.params.disabled !== true && section.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')), 'Episode draft needs the Not implemented Text ContentBlock');
+  .refine(
+    value =>
+      value.section.some(
+        section =>
+          section.params.disabled !== true &&
+          section.content.some(
+            block =>
+              block.type === 'text' &&
+              typeof block.locale === 'object' &&
+              block.locale !== null &&
+              'value' in block.locale &&
+              block.locale.value === 'Not implemented',
+          ),
+      ),
+    'Episode draft needs the Not implemented Text ContentBlock',
+  );
 export const episode_Props_Schema = z.union([episode_Completed_Props_Schema, episode_Draft_Props_Schema]);
 export type Episode_Draft_Props = z.infer<typeof episode_Draft_Props_Schema>;
 export type Episode_Props = Omit<z.infer<typeof episode_Completed_Props_Schema>, 'section'> & {

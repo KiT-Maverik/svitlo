@@ -1,6 +1,6 @@
 import {
-  assessment_Props_Schema,
   assessment_Draft_Props_Schema,
+  assessment_Props_Schema,
   type Assessment_Draft_Props,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
@@ -16,12 +16,15 @@ import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/
 import { video_Props_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
 import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import {
-  episode_Props_Schema,
   episode_Draft_Props_Schema,
+  episode_Props_Schema,
   type Episode_Draft_Props,
   type Episode_Props,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import { lesson_Draft_Props_Schema, type Lesson_Draft_Props } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import {
+  lesson_Draft_Props_Schema,
+  type Lesson_Draft_Props,
+} from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import {
   contentSection_Props_Schema,
@@ -306,7 +309,16 @@ export function assembleCourseTree(
   return value as LocalizedCourse;
 }
 
-export type CourseActivity = { node: CourseLessonEntry | Lesson_Draft_Props | LocalizedEpisode | Episode_Draft_Props | LocalizedAssessment | Assessment_Draft_Props; placement: string };
+export type CourseActivity = {
+  node:
+    | CourseLessonEntry
+    | Lesson_Draft_Props
+    | LocalizedEpisode
+    | Episode_Draft_Props
+    | LocalizedAssessment
+    | Assessment_Draft_Props;
+  placement: string;
+};
 export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   const result: CourseActivity[] = [];
   function visit(content: LocalizedCourseContent, prefix: string[]) {
@@ -321,13 +333,19 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   visit(course.content, []);
   return result;
 }
-export function findCourseEpisode(course: LocalizedCourse, id: string): LocalizedEpisode | Episode_Draft_Props | undefined {
+export function findCourseEpisode(
+  course: LocalizedCourse,
+  id: string,
+): LocalizedEpisode | Episode_Draft_Props | undefined {
   return courseActivities(course)
     .map(item => item.node)
     .find((node): node is LocalizedEpisode | Episode_Draft_Props => node.type === 'episode' && node.id === id);
 }
 
-export function findCourseAssessment(course: LocalizedCourse, id: string): LocalizedAssessment | Assessment_Draft_Props | undefined {
+export function findCourseAssessment(
+  course: LocalizedCourse,
+  id: string,
+): LocalizedAssessment | Assessment_Draft_Props | undefined {
   return courseActivities(course)
     .map(item => item.node)
     .find((node): node is LocalizedAssessment | Assessment_Draft_Props => node.type === 'assessment' && node.id === id);

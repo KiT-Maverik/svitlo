@@ -52,7 +52,10 @@ export function materializeEpisodeDraft(input, context) {
         path: handoffPath,
         kind: 'typescript',
         content:
-          renderBlockerTodo('Author and independently review the Episode Stage 1 scenario before materializing the completed Episode; remove this draft blocker only after the approved handoff is consumed.') + '\n' +
+          renderBlockerTodo(
+            'Author and independently review the Episode Stage 1 scenario before materializing the completed Episode; remove this draft blocker only after the approved handoff is consumed.',
+          ) +
+          '\n' +
           "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
           'export const episodeStage1 = ' +
           JSON.stringify(handoff, null, 2) +

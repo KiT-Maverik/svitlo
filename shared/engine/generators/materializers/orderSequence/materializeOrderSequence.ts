@@ -1,4 +1,3 @@
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Create-only staged OrderSequence source emission.
  * This is NOT a Props publisher or a YAML/Configurator adapter.
@@ -6,6 +5,7 @@ import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
  */
 import type { Question_OrderSequence_Config } from '../../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };

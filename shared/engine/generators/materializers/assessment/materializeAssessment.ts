@@ -1,5 +1,4 @@
 import { createHash } from 'node:crypto';
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 import {
   assessmentWorkflowStage2_Schema,
@@ -16,6 +15,7 @@ import { invokeMaterializer } from '../directMaterialization/directMaterializati
 import { materializeImage } from '../image/materializeImage';
 import { materializeMarkdown } from '../markdown/materializeMarkdown';
 import { materializeQuizSection } from '../quizSection/quizSection';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeScene } from '../scene/materializeScene';
 import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeText } from '../text/materializeText';
@@ -375,8 +375,12 @@ function plan(
     'import { languages } from ' + JSON.stringify(courseLanguagesImport) + ';',
     ...imports,
     '',
-    renderBlockerTodo('Resolve each selected Question against a reviewed integrated upstream Lesson Question Bank before releasing this Assessment.'),
-    planned.length > 1 ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.') : '',
+    renderBlockerTodo(
+      'Resolve each selected Question against a reviewed integrated upstream Lesson Question Bank before releasing this Assessment.',
+    ),
+    planned.length > 1
+      ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.')
+      : '',
     'const before = { items: { ' +
       before.order.map(key => JSON.stringify(key) + ': child_section_' + key).join(', ') +
       ' }, order: ' +

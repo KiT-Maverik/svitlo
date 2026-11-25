@@ -6,8 +6,8 @@
 import { isDeepStrictEqual } from 'node:util';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { code_Config_Schema, type ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Code_Config['params']>;
@@ -224,7 +224,11 @@ export function materializeCode(config: CodeDraftConfig, options: CodeMaterializ
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
+    blockers.push(
+      renderBlockerTodo(
+        'Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.',
+      ),
+    );
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

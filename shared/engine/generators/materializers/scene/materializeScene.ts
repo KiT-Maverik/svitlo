@@ -1,6 +1,6 @@
 import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
-import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 /** Stage-5 source handoff. This is not a Props/JSON publisher or a Scene renderer. */
 export type SceneSourceFile = { path: string; content: string; kind: 'typescript' };
@@ -134,7 +134,9 @@ export function materializeScene(config: SceneSource, context: SceneSourceContex
   }
   if (pending) {
     todos.push(
-      renderBlockerTodo('Implement and register Scene ' + config.id + ' before production; Draft Preview may use SceneStub.'),
+      renderBlockerTodo(
+        'Implement and register Scene ' + config.id + ' before production; Draft Preview may use SceneStub.',
+      ),
     );
     diagnostics.push({
       path: directory || '.',
@@ -261,7 +263,11 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
   files.set(
     name + '.module.css',
     [
-      ('/* ' + renderBlockerTodo('Implement and test accessible, responsive, reduced-motion Scene styling before release; remove this marker after verified keyboard and motion checks.').slice(3) + ' */'),
+      '/* ' +
+        renderBlockerTodo(
+          'Implement and test accessible, responsive, reduced-motion Scene styling before release; remove this marker after verified keyboard and motion checks.',
+        ).slice(3) +
+        ' */',
       '.root {',
       '  inline-size: 100%;',
       '  min-inline-size: 0;',
@@ -293,7 +299,9 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
     [
       "import { describe, it } from 'vitest';",
       '',
-      renderBlockerTodo('Replace pending checks with rendering, interactions, accessibility and reset tests before release.'),
+      renderBlockerTodo(
+        'Replace pending checks with rendering, interactions, accessibility and reset tests before release.',
+      ),
       'describe(' + JSON.stringify(name) + ', () => {',
       "  it.todo('implements the reviewed Scene interaction and reset behavior');",
       "  it.todo('provides source-locale accessibility and keyboard/touch parity');",

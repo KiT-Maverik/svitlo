@@ -111,7 +111,10 @@ export function materializeLessonDraft(node, context) {
         path,
         kind: 'typescript',
         content:
-          renderBlockerTodo('Complete the separately authorized Lesson Stage 1 from this Course seed, obtain its required review, and replace this seed with approved Lesson authoring before removing the marker.') + '\n' +
+          renderBlockerTodo(
+            'Complete the separately authorized Lesson Stage 1 from this Course seed, obtain its required review, and replace this seed with approved Lesson authoring before removing the marker.',
+          ) +
+          '\n' +
           "import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';\n\n" +
           '// prettier-ignore\nexport const lessonSeed = ' +
           JSON.stringify(source, null, 2) +

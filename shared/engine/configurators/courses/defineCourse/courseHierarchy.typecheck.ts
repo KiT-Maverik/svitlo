@@ -145,9 +145,15 @@ const placedModule = defineModule<'placedModule', { placedChapter: typeof placed
   locale: { title: 'Placed module' },
   content: { items: { placedChapter }, order: ['placedChapter'] },
 });
-const placedCourse = defineCourse<'placedCourse', {
-  placedModule: typeof placedModule; directLesson: typeof lesson; lessonAgain: typeof lessonAgain;
-}, ['en', 'uk']>({
+const placedCourse = defineCourse<
+  'placedCourse',
+  {
+    placedModule: typeof placedModule;
+    directLesson: typeof lesson;
+    lessonAgain: typeof lessonAgain;
+  },
+  ['en', 'uk']
+>({
   id,
   type: 'course',
   slug: 'placedCourse',
@@ -159,7 +165,10 @@ const placedCourse = defineCourse<'placedCourse', {
   },
 });
 placedCourse.build.props({ languages: ['uk'] });
-placedCourse.build.overrides({ content: { items: { lessonAgain: { params: { sections: { allowNavigation: false } } } } } }, { languages: ['uk'] });
+placedCourse.build.overrides(
+  { content: { items: { lessonAgain: { params: { sections: { allowNavigation: false } } } } } },
+  { languages: ['uk'] },
+);
 // @ts-expect-error Immutable Lesson ID is never a valid authored Config patch.
 placeLesson(lesson, { id });
 // @ts-expect-error A built Props fragment is not an authored Lesson Config patch.

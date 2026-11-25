@@ -117,7 +117,8 @@ function findLesson(
       const location = at + '/' + slug;
       const raw = items[slug];
       if (!isRecord(raw) || typeof raw.id !== 'string') throw new Error('Invalid Course child at ' + location);
-      if (Object.hasOwn(raw, 'draft')) throw new Error('Course draft stub cannot be assembled as a completed Lesson at ' + location);
+      if (Object.hasOwn(raw, 'draft'))
+        throw new Error('Course draft stub cannot be assembled as a completed Lesson at ' + location);
       if (raw.type === 'lesson') {
         if (raw.id === lessonId && (placement === undefined || [...prefix, slug].join('/') === placement)) {
           if (match) throw new Error('Duplicate Lesson ID ' + lessonId + ' in ' + label + ' Course publication');
@@ -192,7 +193,8 @@ export function assembleCourseLesson({
   if (!isRecord(lesson.base) || lesson.base.id !== lessonId || lesson.base.type !== 'lesson') {
     throw new Error('Standalone Lesson publication ID/type mismatch');
   }
-  if (Object.hasOwn(lesson.base, 'draft')) throw new Error('Standalone Lesson draft cannot be assembled as completed Props');
+  if (Object.hasOwn(lesson.base, 'draft'))
+    throw new Error('Standalone Lesson draft cannot be assembled as completed Props');
   const base = assertCourseRoot(course.base, courseId, 'base');
   if (base.type !== 'course' || base.id !== courseId) throw new Error('Missing Course base identity');
   if (!isRecord(base.params) || !Array.isArray(base.params.languages) || !base.params.languages.includes(language)) {

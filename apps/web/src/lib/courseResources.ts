@@ -6,12 +6,7 @@ import { courseActivities, type LanguageCode, type LocalizedCourse } from '@svit
 export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } from '@svitlo/engine/runtime';
 /** Draft-only content is available locally; production always fails closed. */
 export const loadCourseTree = (id: string, language: LanguageCode) =>
-  loadPublishedCourseTree(
-    id,
-    language,
-    undefined,
-    process.env.NODE_ENV === 'development' ? 'draft' : 'production',
-  );
+  loadPublishedCourseTree(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
 
 export function courseHasLesson(course: LocalizedCourse, id: string): boolean {
   return courseActivities(course).some(({ node }) => node.type === 'lesson' && node.id === id);

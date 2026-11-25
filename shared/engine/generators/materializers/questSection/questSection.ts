@@ -235,14 +235,17 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     stages: imported('stages'),
     tasks: imported('tasks'),
   };
-  const blocker = renderBlockerTodo('Implement and test Quest Section runtime/playback in Lesson and Episode or remove it from publication after review; current support is Build-only.');
+  const blocker = renderBlockerTodo(
+    'Implement and test Quest Section runtime/playback in Lesson and Episode or remove it from publication after review; current support is Build-only.',
+  );
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
   const methodologyBlocker =
     sectionNotes.length && options.production?.methodologyIntegrated !== true
       ? renderBlockerTodo(
-          'Transfer reviewed Quest Section notes (' + sectionNotes.join(', ') +
+          'Transfer reviewed Quest Section notes (' +
+            sectionNotes.join(', ') +
             ') into Lesson methodology; verify the transfer before removing this marker.',
         )
       : undefined;

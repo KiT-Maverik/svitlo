@@ -313,7 +313,10 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
     type: 'chapter',
     params: {},
     locale: { title: 'Chapter' },
-    content: { items: { chapterUse: placeLesson(lesson, { locale: { title: { uk: 'Розділ курсу' } } }) }, order: ['chapterUse'] },
+    content: {
+      items: { chapterUse: placeLesson(lesson, { locale: { title: { uk: 'Розділ курсу' } } }) },
+      order: ['chapterUse'],
+    },
   });
   const module = defineModule({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d33',
@@ -329,7 +332,10 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
     type: 'course',
     params: { languages },
     locale: { title: 'Course', description: 'Course-specific nested and direct reuse' },
-    content: { items: { contextualModule: module, directUse: placeLesson(lesson, { locale: { title: 'Course direct title' } }) }, order: ['contextualModule', 'directUse'] },
+    content: {
+      items: { contextualModule: module, directUse: placeLesson(lesson, { locale: { title: 'Course direct title' } }) },
+      order: ['contextualModule', 'directUse'],
+    },
   });
   const files = renderCourseFiles(course);
   const base = JSON.parse(files.get('base.json'));
@@ -555,10 +561,7 @@ test('real placement-local Lesson patch publishes only sparse overrides at each 
   assert.deepEqual(lesson.build.overrides(raw, { languages }).base, placement.build.overrides({}, { languages }).base);
   assert(![...files.values()].join('').includes('"section"'));
   assert(![...files.values()].join('').includes('"skills"'));
-  assert.throws(
-    () => renderCourseFiles(course, { languages: ['pl'] }),
-    /does not support publication language/,
-  );
+  assert.throws(() => renderCourseFiles(course, { languages: ['pl'] }), /does not support publication language/);
   const tampered = placeLesson(lesson, {});
   tampered.placement.source = { ...lesson, id: 'e775647f-203d-481a-a1c7-4d331c779d99' };
   const invalid = defineCourse({
@@ -593,9 +596,13 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
   const languages = ['en', 'uk'];
   const id = n => 'b275647f-203d-481a-a1c7-4d331c779d' + String(n).padStart(2, '0');
   const existing = defineLesson({
-    id: id(50), slug: 'standalone', type: 'lesson', skills: [],
+    id: id(50),
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
     params: {
-      languages, quizRequiredForCompletion: false,
+      languages,
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: 'Existing Lesson' },
@@ -605,12 +612,18 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
   const plannedEpisode = defineEpisodeStub({ id: id(52), slug: 'plannedEpisode' });
   const plannedAssessment = defineAssessmentStub({ id: id(53), slug: 'plannedAssessment' });
   const chapter = defineChapter({
-    id: id(54), type: 'chapter', slug: 'chapter', params: {},
+    id: id(54),
+    type: 'chapter',
+    slug: 'chapter',
+    params: {},
     locale: { title: 'Chapter' },
     content: { items: { plannedAssessment }, order: ['plannedAssessment'] },
   });
   const module = defineModule({
-    id: id(55), type: 'module', slug: 'module', params: {},
+    id: id(55),
+    type: 'module',
+    slug: 'module',
+    params: {},
     locale: { title: 'Module' },
     content: {
       items: {
@@ -622,7 +635,10 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
     },
   });
   const course = defineCourse({
-    id: id(56), type: 'course', slug: 'draftCourse', params: { languages },
+    id: id(56),
+    type: 'course',
+    slug: 'draftCourse',
+    params: { languages },
     locale: { title: 'Draft Course', description: 'Preview only' },
     content: {
       items: { existing, module, plannedLesson },
@@ -639,7 +655,9 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
   assert.deepEqual(base.content.items.module.content.items.chapter.content.order, ['plannedAssessment']);
   assert.deepEqual(base.content.items.existing, { type: 'lesson', id: existing.id });
   assert.deepEqual(base.content.items.module.content.items.adapted, {
-    type: 'lesson', id: existing.id, overrides: { params: { sections: { allowSkipping: false } } },
+    type: 'lesson',
+    id: existing.id,
+    overrides: { params: { sections: { allowSkipping: false } } },
   });
   for (const [node, original] of [
     [base.content.items.plannedLesson, plannedLesson],

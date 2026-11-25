@@ -6,7 +6,10 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { scanDiff, scanFull, scanSource, scanChanged, scanPendingReview, main } from './check-blocker-todos.mjs';
-import { renderBlockerTodo, renderBlockerSpecification } from '../../../shared/engine/generators/materializers/renderBlockerTodo.mjs';
+import {
+  renderBlockerTodo,
+  renderBlockerSpecification,
+} from '../../../shared/engine/generators/materializers/renderBlockerTodo.mjs';
 
 const blocker = '// ' + 'TODO (BLOCKER): Complete translations';
 const ordinary = '// TODO: Refactor later';
@@ -263,15 +266,30 @@ test('generated short and reviewed-brief TODOs are detected in full, diff and ch
   withRepo(({ root, put, commit }) => {
     put('generated.ts', 'export const prior = true;\n');
     const base = commit();
-    put('generated.ts', [
-      'const literal = ' + JSON.stringify('/* TODO (BLOCKER): quoted */') + ';',
-      renderBlockerTodo('Implement the missing asset and verify its file before removal.'),
-      renderBlockerSpecification('Implement the verified Scene and remove this brief.', 'Reviewed plan\n  Step 1 */ escaped\nStep 2'),
-      'export const finished = false;',
-    ].join('\n'));
+    put(
+      'generated.ts',
+      [
+        'const literal = ' + JSON.stringify('/* TODO (BLOCKER): quoted */') + ';',
+        renderBlockerTodo('Implement the missing asset and verify its file before removal.'),
+        renderBlockerSpecification(
+          'Implement the verified Scene and remove this brief.',
+          'Reviewed plan\n  Step 1 */ escaped\nStep 2',
+        ),
+        'export const finished = false;',
+      ].join('\n'),
+    );
     const head = commit();
-    assert.deepEqual(scanFull(root).map(x => x.line), [2, 4]);
-    assert.deepEqual(scanDiff(root, base, head).map(x => x.line), [2, 4]);
-    assert.deepEqual(scanChanged(root, base, head).map(x => x.line), [2, 4]);
+    assert.deepEqual(
+      scanFull(root).map(x => x.line),
+      [2, 4],
+    );
+    assert.deepEqual(
+      scanDiff(root, base, head).map(x => x.line),
+      [2, 4],
+    );
+    assert.deepEqual(
+      scanChanged(root, base, head).map(x => x.line),
+      [2, 4],
+    );
   });
 });

@@ -2,10 +2,7 @@
  * The parser inspects the actual Course/Module/Chapter items and order;
  * TODO comments are never used as a source of placement truth.
  */
-import {
-  replaceReservedParentSlot,
-  verifyReservedParentSlot,
-} from '../directMaterialization/reserved-parent-slot.mjs';
+import { replaceReservedParentSlot, verifyReservedParentSlot } from '../directMaterialization/reserved-parent-slot.mjs';
 
 export function restoreAssessmentPlacement(source, { id, slug, placement, exportName }) {
   return replaceReservedParentSlot(source, {

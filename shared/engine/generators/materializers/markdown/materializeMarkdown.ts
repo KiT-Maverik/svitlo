@@ -6,11 +6,11 @@
 import { isDeepStrictEqual } from 'node:util';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import {
   markdown_Config_Schema,
   type ContentBlock_Markdown_Config,
 } from '../../../configurators/contentBlocks/defineMarkdown';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type MarkdownDraftConfig = Pick<ContentBlock_Markdown_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Markdown_Config['params']>;
@@ -227,7 +227,11 @@ export function materializeMarkdown(config: MarkdownDraftConfig, options: Markdo
     fields.locale = locale;
   }
   if (planned.length > 1) {
-    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
+    blockers.push(
+      renderBlockerTodo(
+        'Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.',
+      ),
+    );
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',

@@ -6,19 +6,31 @@ import type { DeepPartial } from '#types';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
-import type { Assessment_Stub_Configurator, Episode_Stub_Configurator, Lesson_Stub_Configurator } from '../defineCourseChildStubs/defineCourseChildStubs';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
-import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import {
   assessment_Props_Schema,
   type Assessment_Props,
 } from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
-import { episode_Props_Schema, type Episode_Props, type Episode_Draft_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import {
+  episode_Props_Schema,
+  type Episode_Draft_Props,
+  type Episode_Props,
+} from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import { lesson_Props_Schema, type Lesson_Props, type Lesson_Draft_Props } from '../../lessons/defineLesson/defineLesson.schemas';
+import {
+  lesson_Props_Schema,
+  type Lesson_Draft_Props,
+  type Lesson_Props,
+} from '../../lessons/defineLesson/defineLesson.schemas';
+import type {
+  Assessment_Stub_Configurator,
+  Episode_Stub_Configurator,
+  Lesson_Stub_Configurator,
+} from '../defineCourseChildStubs/defineCourseChildStubs';
 
 const params = paramsBase_Schema.shape.params.extend({
   iconKey: z.string().optional(),
@@ -31,8 +43,17 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
 });
 export type Chapter_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-export type Chapter_Child = ConfiguratorChild<Lesson_Configurator | Episode_Configurator | Assessment_Configurator | Assessment_Draft_Configurator | Lesson_Stub_Configurator | Episode_Stub_Configurator | Assessment_Stub_Configurator>;
-export type Chapter_Child_Props = Lesson_Props | Episode_Props | Assessment_Props | Lesson_Draft_Props | Episode_Draft_Props;
+export type Chapter_Child = ConfiguratorChild<
+  | Lesson_Configurator
+  | Episode_Configurator
+  | Assessment_Configurator
+  | Assessment_Draft_Configurator
+  | Lesson_Stub_Configurator
+  | Episode_Stub_Configurator
+  | Assessment_Stub_Configurator
+>;
+export type Chapter_Child_Props =
+  Lesson_Props | Episode_Props | Assessment_Props | Lesson_Draft_Props | Episode_Draft_Props;
 
 export const chapter_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),

@@ -94,12 +94,13 @@ function findLessonPatches(course, languages, mode) {
       // A placed Lesson carries its own authored Config patch. The original
       // Lesson's Build API publishes sparse Props for this placement alone.
       const isPlacement = own(entity, 'placement');
-      if (isPlacement && (
-        !isObject(entity.placement) ||
-        entity.placement.source?.id !== entity.id ||
-        entity.placement.source?.slug !== entity.slug ||
-        entity.placement.source?.type !== 'lesson'
-      )) {
+      if (
+        isPlacement &&
+        (!isObject(entity.placement) ||
+          entity.placement.source?.id !== entity.id ||
+          entity.placement.source?.slug !== entity.slug ||
+          entity.placement.source?.type !== 'lesson')
+      ) {
         throw new Error('Mismatched immutable Lesson placement identity at ' + location);
       }
       const patch = isPlacement ? entity.build.overrides({}, { languages }) : undefined;
@@ -238,8 +239,11 @@ export function renderCourseFiles(
   { languages = course?.config?.base?.params?.languages, projectMedia, mode = 'production', ...unknownOptions } = {},
 ) {
   if (Object.keys(unknownOptions).length) {
-    throw new Error('Unsupported Course publication options: ' + Object.keys(unknownOptions).join(', ') +
-      '; attach Lesson patches with placeLesson at their placement');
+    throw new Error(
+      'Unsupported Course publication options: ' +
+        Object.keys(unknownOptions).join(', ') +
+        '; attach Lesson patches with placeLesson at their placement',
+    );
   }
   if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
@@ -294,10 +298,16 @@ export function renderCourseFiles(
  * Write only this Course's generated directory. No unrelated textbook assets
  * are modified. Check mode is read-only and verifies stale/unexpected files.
  */
-export function publishCourse(course, { packageRoot, outputRoot, languages, mode = 'production', check = false, ...unknownOptions } = {}) {
+export function publishCourse(
+  course,
+  { packageRoot, outputRoot, languages, mode = 'production', check = false, ...unknownOptions } = {},
+) {
   if (Object.keys(unknownOptions).length) {
-    throw new Error('Unsupported Course publication options: ' + Object.keys(unknownOptions).join(', ') +
-      '; attach Lesson patches with placeLesson at their placement');
+    throw new Error(
+      'Unsupported Course publication options: ' +
+        Object.keys(unknownOptions).join(', ') +
+        '; attach Lesson patches with placeLesson at their placement',
+    );
   }
   if (
     (typeof outputRoot !== 'string' || !outputRoot.trim()) &&

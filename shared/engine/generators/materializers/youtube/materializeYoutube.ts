@@ -9,8 +9,8 @@ import {
   youtube_Config_Schema,
   type ContentBlock_Youtube_Config,
 } from '../../../configurators/contentBlocks/defineYoutube';
-import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type YoutubeDraftConfig = Pick<ContentBlock_Youtube_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Youtube_Config['params']>;
@@ -202,7 +202,11 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
     }
   }
   if (planned.length > 1) {
-    blockers.push(renderBlockerTodo('Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.'));
+    blockers.push(
+      renderBlockerTodo(
+        'Restore reviewed languages ' + JSON.stringify(planned) + ' after approved translations and verified coverage.',
+      ),
+    );
     diagnostics.push({
       path: '$.production.plannedLanguages',
       code: 'pending-locales',
@@ -226,7 +230,8 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   ) {
     const fieldPath = 'locale.href' + (isRecord(resolvedHref) ? '.' + language : '');
     expressions[fieldPath] =
-      renderBlockerTodo('Supply and verify the YouTube URL, access and captions before publication.') + '\n' +
+      renderBlockerTodo('Supply and verify the YouTube URL, access and captions before publication.') +
+      '\n' +
       JSON.stringify(UNRESOLVED_YOUTUBE_HREF);
     diagnostics.push({
       path: '$.config.' + fieldPath,
@@ -272,7 +277,11 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
   // The missing-URL TODO already blocks publication. Add the separate
   // verification instruction only after there is a real URL to review.
   if (!unresolvedHref) {
-    blockers.push(renderBlockerTodo(verificationInstruction + ' for youtube ' + config.id + '; remove after recorded media verification.'));
+    blockers.push(
+      renderBlockerTodo(
+        verificationInstruction + ' for youtube ' + config.id + '; remove after recorded media verification.',
+      ),
+    );
     diagnostics.push({
       path: '$.config.locale.href',
       code: 'pending-youtube-verification',
@@ -292,7 +301,8 @@ export function materializeYoutube(config: YoutubeDraftConfig, options: YoutubeM
       blockers.push(
         renderBlockerSpecification(
           'Verify external video access, rights, captions and language/offline alternatives for youtube ' +
-            config.id + '; remove this temporary brief after documented media QA.',
+            config.id +
+            '; remove this temporary brief after documented media QA.',
           details
             .map(([key, value]) => key + ': ' + (typeof value === 'string' ? value : JSON.stringify(value)))
             .join('\n'),

@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
 import { defineLessonStub } from '../../configurators/courses/defineCourseChildStubs';
+import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
 import { renderLessonPropsFiles, type LessonPublicationEntry } from './generateLessonProps.utils';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -136,7 +136,6 @@ test('rejects deeply non-JSON Lesson publication values instead of silently drop
   assert.throws(() => renderLessonPropsFiles(bad([, 'value'])), /Sparse Lesson array/);
   assert.throws(() => renderLessonPropsFiles(bad({ nested: () => null })), /Non-JSON value/);
 });
-
 
 test('rejects an authored Lesson stub preview at the strict publication boundary', () => {
   const draft = defineLessonStub({ id, slug: 'lightLesson' });

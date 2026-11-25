@@ -26,7 +26,11 @@ const assertPlain = (value: unknown, trail = 'patch', seen = new Set<object>()):
   if (typeof value !== 'object' || value === null || seen.has(value)) {
     throw new Error('Lesson placement requires a plain JSON Config patch at ' + trail);
   }
-  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+  if (
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) !== Object.prototype &&
+    Object.getPrototypeOf(value) !== null
+  ) {
     throw new Error('Lesson placement requires a plain JSON Config patch at ' + trail);
   }
   seen.add(value);
@@ -67,8 +71,12 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
   source: Lesson,
   patch: LessonPatch<Lesson>,
 ): PlacedLesson<Lesson> {
-  if (source?.type !== 'lesson' || typeof source.build?.props !== 'function' ||
-      typeof source.build?.overrides !== 'function' || isObject(source) && Object.hasOwn(source, 'placement')) {
+  if (
+    source?.type !== 'lesson' ||
+    typeof source.build?.props !== 'function' ||
+    typeof source.build?.overrides !== 'function' ||
+    (isObject(source) && Object.hasOwn(source, 'placement'))
+  ) {
     throw new Error('placeLesson requires an original defineLesson Configurator');
   }
   if (!isObject(patch)) throw new Error('Lesson placement patch must be a plain Config object');
@@ -90,10 +98,14 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
       const files: Record<string, Record<string, unknown>> = {};
       for (const code of options.languages as readonly LanguageCode[]) {
         if (original.locale?.[code] === undefined && changed.locale?.[code] === undefined) continue;
-        const before = merge(original.base as Record<string, unknown>,
-          (original.locale?.[code] ?? {}) as Record<string, unknown>);
-        files[code] = merge(merge(before, changed.base as Record<string, unknown>),
-          (changed.locale?.[code] ?? {}) as Record<string, unknown>);
+        const before = merge(
+          original.base as Record<string, unknown>,
+          (original.locale?.[code] ?? {}) as Record<string, unknown>,
+        );
+        files[code] = merge(
+          merge(before, changed.base as Record<string, unknown>),
+          (changed.locale?.[code] ?? {}) as Record<string, unknown>,
+        );
       }
       return {
         base,

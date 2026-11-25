@@ -4,9 +4,9 @@ import type { LanguageScope, PublicationLanguageOptions } from '#types';
 import { resolvePublicationLanguages } from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
+import { defineText } from '../../contentBlocks/defineText';
 import { episode_Draft_Props_Schema } from '../../episodes/defineEpisode';
 import { lesson_Draft_Props_Schema } from '../../lessons/defineLesson';
-import { defineText } from '../../contentBlocks/defineText';
 import { defineContentSection } from '../../sections/defineContentSection';
 
 /**
@@ -24,7 +24,9 @@ const previewId = (parentId: string, role: string): string => {
     return hash.toString(16).padStart(8, '0');
   };
   const hex = [0x811c9dc5, 0x17a50f23, 0xc2b2ae35, 0x9e3779b9].map(hashWord).join('');
-  return [hex.slice(0, 8), hex.slice(8, 12), '5' + hex.slice(13, 16), '8' + hex.slice(17, 20), hex.slice(20, 32)].join('-');
+  return [hex.slice(0, 8), hex.slice(8, 12), '5' + hex.slice(13, 16), '8' + hex.slice(17, 20), hex.slice(20, 32)].join(
+    '-',
+  );
 };
 
 const preview = (id: string) => {
@@ -48,23 +50,30 @@ const preview = (id: string) => {
 type StubInput<Slug extends string> = { id: string; slug: Slug };
 type Kind = 'lesson' | 'episode';
 
-const createStub = <const K extends Kind, const Slug extends string>(
-  type: K,
-  { id, slug }: StubInput<Slug>,
-) => {
+const createStub = <const K extends Kind, const Slug extends string>(type: K, { id, slug }: StubInput<Slug>) => {
   const section = preview(id);
-  const params = type === 'lesson'
-    ? {
-        languages: [...allLanguageCodes] as LanguageCode[],
-        quizRequiredForCompletion: false,
-        sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
-      }
-    : { languages: [...allLanguageCodes] as LanguageCode[] };
+  const params =
+    type === 'lesson'
+      ? {
+          languages: [...allLanguageCodes] as LanguageCode[],
+          quizRequiredForCompletion: false,
+          sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
+        }
+      : { languages: [...allLanguageCodes] as LanguageCode[] };
 
   const validate = (): void => {
     identityBase_Schema.parse({ id, slug });
     const built = section.build.props({ languages: ['en'] });
-    if (!built.base.content.some(block => block.type === 'text' && typeof block.locale === 'object' && block.locale !== null && 'value' in block.locale && block.locale.value === 'Not implemented')) {
+    if (
+      !built.base.content.some(
+        block =>
+          block.type === 'text' &&
+          typeof block.locale === 'object' &&
+          block.locale !== null &&
+          'value' in block.locale &&
+          block.locale.value === 'Not implemented',
+      )
+    ) {
       throw new Error('Stub preview must include a Not implemented Text ContentBlock');
     }
   };
@@ -105,12 +114,10 @@ const createStub = <const K extends Kind, const Slug extends string>(
 };
 
 /** A Course placement, never a completed pedagogical Lesson. */
-export const defineLessonStub = <const Slug extends string>(config: StubInput<Slug>) =>
-  createStub('lesson', config);
+export const defineLessonStub = <const Slug extends string>(config: StubInput<Slug>) => createStub('lesson', config);
 
 /** A Course placement, never a completed narrative Episode. */
-export const defineEpisodeStub = <const Slug extends string>(config: StubInput<Slug>) =>
-  createStub('episode', config);
+export const defineEpisodeStub = <const Slug extends string>(config: StubInput<Slug>) => createStub('episode', config);
 
 /** Reuse the existing typed Assessment draft with the canonical preview children. */
 export const defineAssessmentStub = <const Slug extends string>({ id, slug }: StubInput<Slug>) =>

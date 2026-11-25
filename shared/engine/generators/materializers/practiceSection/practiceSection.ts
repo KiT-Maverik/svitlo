@@ -210,10 +210,16 @@ export function materializePracticeSection(config: Source, options: Options): Re
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      renderBlockerTodo('Transfer reviewed practice Section notes (' + sectionNotes.join(', ') + ') into the owning Lesson methodology and verify the transfer before removing this marker.'),
+      renderBlockerTodo(
+        'Transfer reviewed practice Section notes (' +
+          sectionNotes.join(', ') +
+          ') into the owning Lesson methodology and verify the transfer before removing this marker.',
+      ),
     );
   if (options.production?.pending === true)
-    blocker.push(renderBlockerTodo('Implement, validate and review the practice Section production before removing this marker.'));
+    blocker.push(
+      renderBlockerTodo('Implement, validate and review the practice Section production before removing this marker.'),
+    );
   if (blocker.length)
     diagnostics.push({
       path: (directory || 'practice') + '/index.ts',

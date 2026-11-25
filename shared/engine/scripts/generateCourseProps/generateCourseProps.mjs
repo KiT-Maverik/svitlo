@@ -112,7 +112,7 @@ export function assertNoLegacyCourseOverrides(exports, source) {
   if (Object.hasOwn(exports, 'authoredCourseOverrides')) {
     throw new Error(
       'Legacy authoredCourseOverrides export is not supported; migrate each Lesson patch to placeLesson at its placement: ' +
-      source,
+        source,
     );
   }
 }

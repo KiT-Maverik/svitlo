@@ -270,14 +270,23 @@ function reuseOptions() {
 }
 test('existing Lesson preserves source-authored plain Config patch and placement', () => {
   const result = materializeCourseStage5(patchedSource(), reuseOptions());
-  assert.equal(result.files.some(file => file.path.endsWith('authoredCourseOverrides.ts')), false);
-  assert.equal(result.files.some(file => file.path === root + '/content/directLesson/index.ts'), false);
+  assert.equal(
+    result.files.some(file => file.path.endsWith('authoredCourseOverrides.ts')),
+    false,
+  );
+  assert.equal(
+    result.files.some(file => file.path === root + '/content/directLesson/index.ts'),
+    false,
+  );
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /import \{ actualLesson as child_directLesson \} from "#lessonsData\//);
   assert.match(main.content, /"directLesson": placeLesson\(child_directLesson, \{/);
   assert.match(main.content, /"allowSkipping": false/);
   assert.doesNotMatch(main.content, /authoredCourseOverrides/);
-  assert.equal(result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath, root + '/index.ts');
+  assert.equal(
+    result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath,
+    root + '/index.ts',
+  );
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
 test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
@@ -295,10 +304,19 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   input.config.content.order.push('secondLesson');
   const result = materializeCourseStage5(input, reuseOptions());
   const references = result.inventory.lessons.filter(row => row.id === reusedLessonId);
-  assert.deepEqual(references.map(row => row.kind), ['overridden', 'reused']);
-  assert.deepEqual(references.map(row => row.placementSourcePath), [root + '/index.ts', root + '/index.ts']);
+  assert.deepEqual(
+    references.map(row => row.kind),
+    ['overridden', 'reused'],
+  );
+  assert.deepEqual(
+    references.map(row => row.placementSourcePath),
+    [root + '/index.ts', root + '/index.ts'],
+  );
   assert.equal(references[0].sourcePath, references[1].sourcePath);
-  assert.equal(result.files.some(file => file.path === root + '/content/secondLesson/index.ts'), false);
+  assert.equal(
+    result.files.some(file => file.path === root + '/content/secondLesson/index.ts'),
+    false,
+  );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
   assert.match(index, /"directLesson": placeLesson\(child_directLesson, \{/);
   assert.match(index, /"secondLesson": child_secondLesson/);
@@ -317,7 +335,9 @@ test('existing Lesson refuses stale, absent or non-equivalent raw Build provenan
 
 test('verified built sparse Lesson override round-trips through real Lesson and Course Build APIs', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
-  const { defineLesson, defineCourse, placeLesson } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const { defineLesson, defineCourse, placeLesson } = createRequire(import.meta.url)(
+    path.join(engineRoot, 'dist/build.js'),
+  );
   const realLesson = defineLesson({
     id: reusedLessonId,
     slug: 'independentLesson',
@@ -353,9 +373,14 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   reviewed.config.content.items.reused.production.sourcePatch = raw;
   const opts = options();
   const plan = materializeCourseStage5(reviewed, opts);
-  assert.equal(plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')), false);
-  assert.match(plan.files.find(file => file.path === root + '/index.ts').content,
-    /"reused": placeLesson\(child_reused, \{/);
+  assert.equal(
+    plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')),
+    false,
+  );
+  assert.match(
+    plan.files.find(file => file.path === root + '/index.ts').content,
+    /"reused": placeLesson\(child_reused, \{/,
+  );
   const actualCourse = defineCourse({
     id: rootId,
     type: 'course',

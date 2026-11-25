@@ -205,7 +205,11 @@ export function materializeQuestTask(config: Source, options: Options): Result {
   includeChild(files, seen, diagnostics, { ...child, diagnostics: [] }, childDir, node.config.slug);
   const blockers =
     options.production?.pending === true || node.production?.pending === true
-      ? [renderBlockerTodo('Implement, register and independently review the referenced Quest Task Scene before removing this marker.')]
+      ? [
+          renderBlockerTodo(
+            'Implement, register and independently review the referenced Quest Task Scene before removing this marker.',
+          ),
+        ]
       : [];
   if (blockers.length)
     diagnostics.push({ path: destination(dir), code: 'pending-quest-task', message: blockers[0], severity: 'warning' });

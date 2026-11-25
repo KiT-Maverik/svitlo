@@ -199,8 +199,10 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.ok(paths.includes('content/moduleOne/chapterOne/episodeOne/index.ts'));
   assert.ok(paths.includes('content/directEpisode/index.ts'));
   assert.ok(!paths.includes('content/directLesson/index.ts'));
-  assert.match(first.files.find(f => f.path === 'index.ts').content,
-    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//);
+  assert.match(
+    first.files.find(f => f.path === 'index.ts').content,
+    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//,
+  );
   const method = first.files.find(f => f.path === 'methodology.md');
   assert.match(method.content, /## Entry conditions/);
   const main = first.files.find(f => f.path === 'index.ts').content;
@@ -244,11 +246,12 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.ok(handoff);
   assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content,
-    /"newLesson": defineLessonStub\(\{ id:/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": defineLessonStub\(\{ id:/);
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
-  assert.doesNotMatch(result.files.find(f => f.path === 'index.ts').content,
-    /TODO \(BLOCKER\): Finish and independently materialize pending Lesson/);
+  assert.doesNotMatch(
+    result.files.find(f => f.path === 'index.ts').content,
+    /TODO \(BLOCKER\): Finish and independently materialize pending Lesson/,
+  );
   assert.equal(reused[2].assessment.quizSectionRequired, true);
   assert.equal(reused[2].reviewedMethodology, 'Reviewed comprehensive independent methodology');
   assert.equal(reused[2].language, 'uk');
@@ -270,8 +273,7 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   assert.doesNotMatch(handoff, /defineEpisode/);
   assert.ok(!result.files.some(f => f.path === 'content/directEpisode/index.ts'));
   assert.equal(result.pendingEpisodes.length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content,
-    /"directEpisode": defineEpisodeStub\(\{ id:/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /"directEpisode": defineEpisodeStub\(\{ id:/);
   syntax(result.files);
   assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();

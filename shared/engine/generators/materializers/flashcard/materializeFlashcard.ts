@@ -1,4 +1,3 @@
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
@@ -13,6 +12,7 @@ import {
   type SourceDiagnostic,
   type SourceFile,
 } from '../flashcardSide/materializeFlashcardSide';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type FlashcardSource = Omit<Flashcard_Config, 'content'> & {
   content: { front: FlashcardSideSource; back: FlashcardSideSource; hint?: FlashcardSideSource };

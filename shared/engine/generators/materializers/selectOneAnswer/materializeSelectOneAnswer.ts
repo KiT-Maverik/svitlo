@@ -1,4 +1,3 @@
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 /**
  * Create-only staged SelectOneAnswer source emission.
  * This is NOT a Props publisher or a YAML/Configurator adapter.
@@ -6,6 +5,7 @@ import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
  */
 import type { Question_SelectOneAnswer_Config } from '../../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };

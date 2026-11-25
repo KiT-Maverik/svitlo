@@ -39,7 +39,11 @@ const todo = (production, ctx, language) => {
   if (!Array.isArray(langs) || new Set(langs).size !== langs.length || !langs.includes(language))
     throw Error('plannedLanguages: invalid language scope');
   return langs.length > 1
-    ? renderBlockerTodo('Restore reviewed languages: ' + JSON.stringify(langs) + ' after verified translations and independent review; remove this marker once complete.') + '\n'
+    ? renderBlockerTodo(
+        'Restore reviewed languages: ' +
+          JSON.stringify(langs) +
+          ' after verified translations and independent review; remove this marker once complete.',
+      ) + '\n'
     : '';
 };
 const exportName = slug =>

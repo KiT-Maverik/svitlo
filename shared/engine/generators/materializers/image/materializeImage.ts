@@ -7,8 +7,8 @@ import { isDeepStrictEqual } from 'node:util';
 
 import { image_Config_Schema, type ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
-import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 export type ImageDraftConfig = Pick<ContentBlock_Image_Config, 'id' | 'slug' | 'type'> & {
   params?: Partial<ContentBlock_Image_Config['params']>;

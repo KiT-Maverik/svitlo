@@ -142,9 +142,7 @@ it('shows a reserved Lesson as Not implemented without loading a standalone titl
     locale: { title: 'Not implemented' },
     section: [],
   });
-  const topics = flattenCourseTopics(
-    coursePropsToTopics(preview, 'uk', 'en', { 'lesson-2': 'Refraction' }),
-  );
+  const topics = flattenCourseTopics(coursePropsToTopics(preview, 'uk', 'en', { 'lesson-2': 'Refraction' }));
   expect(topics.map(item => item.title)).toEqual(['Not implemented', 'Refraction']);
   expect(topics[0]?.href).toBe('/uk/course/course-id/lesson/en/lesson-1');
 });

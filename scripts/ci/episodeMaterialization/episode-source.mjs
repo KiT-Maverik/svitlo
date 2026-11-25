@@ -1,7 +1,10 @@
 /** Inert Episode draft parsing and deterministic restoration of one reserved parent slot. */
 import { isDeepStrictEqual } from 'node:util';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
-import { replaceReservedParentSlot, readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
+import {
+  replaceReservedParentSlot,
+  readGeneratedCourseHandoff,
+} from '../directMaterialization/reserved-parent-slot.mjs';
 
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;

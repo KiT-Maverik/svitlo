@@ -25,31 +25,48 @@ function git(root, ...args) {
 }
 const normalize = value => value.replaceAll('\\', '/');
 function isAuthoredSource(file) {
-  return extensions.test(file) &&
+  return (
+    extensions.test(file) &&
     !/\.((?:spec|test|typecheck|stories))\.[cm]?[jt]sx?$/.test(file) &&
     !file.startsWith('shared/engine/configurators/courses/defineCourseChildStubs/') &&
     !file.startsWith('scripts/ci/checkStubImports/') &&
     !file.includes('/node_modules/') &&
-    !file.includes('/dist/');
+    !file.includes('/dist/')
+  );
 }
 
 /** Git's zero-context unified diff locates every newly introduced source line. */
 export function addedLines(root, base, head) {
   if (!sha.test(base) || !sha.test(head)) throw new Error('Require exact base/head commit SHA');
-  const patch = git(root, 'diff', '--no-ext-diff', '--no-color', '--find-renames', '--unified=0',
-    '--diff-filter=ACMR', base + '...' + head, '--');
+  const patch = git(
+    root,
+    'diff',
+    '--no-ext-diff',
+    '--no-color',
+    '--find-renames',
+    '--unified=0',
+    '--diff-filter=ACMR',
+    base + '...' + head,
+    '--',
+  );
   const result = new Map();
   let file = null;
   let line = 0;
   for (const text of patch.split('\n')) {
-    if (text.startsWith('diff --git ')) { file = null; continue; }
+    if (text.startsWith('diff --git ')) {
+      file = null;
+      continue;
+    }
     if (text.startsWith('+++ ')) {
       const match = /^\+\+\+ (?:b\/|"b\/)(.*?)(?:"|)$/.exec(text);
       file = match && isAuthoredSource(match[1]) ? match[1] : null;
       continue;
     }
     const hunk = /^@@ -\d+(?:,\d+)? \+(\d+)(?:,\d+)? @@/.exec(text);
-    if (hunk) { line = Number(hunk[1]); continue; }
+    if (hunk) {
+      line = Number(hunk[1]);
+      continue;
+    }
     if (text.startsWith('+') && !text.startsWith('+++ ')) {
       if (file) {
         if (!result.has(file)) result.set(file, new Set());
@@ -91,7 +108,10 @@ function options(root) {
 export function scanReferences(root, lines) {
   const files = [...lines.keys()].filter(file => fs.existsSync(path.join(root, file)));
   if (files.length === 0) return [];
-  const program = ts.createProgram(files.map(file => path.join(root, file)), options(root));
+  const program = ts.createProgram(
+    files.map(file => path.join(root, file)),
+    options(root),
+  );
   const checker = program.getTypeChecker();
   const findings = [];
   for (const file of files) {
@@ -156,11 +176,18 @@ export function main(args, root = path.resolve(fileURLToPath(new URL('../../..',
   for (const entry of findings) {
     console.error('::error file=' + annotation(entry.file) + ',line=' + entry.line + '::' + annotation(entry.text));
   }
-  if (findings.length) throw new Error(findings.length + ' new Course stub import(s) or use(s) are forbidden on protected branches');
-  console.log('Course stub source guard: no newly added stub imports or uses (' + lines.size + ' changed source files).');
+  if (findings.length)
+    throw new Error(findings.length + ' new Course stub import(s) or use(s) are forbidden on protected branches');
+  console.log(
+    'Course stub source guard: no newly added stub imports or uses (' + lines.size + ' changed source files).',
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try { main(process.argv.slice(2)); }
-  catch (error) { console.error(error.message); process.exitCode = 1; }
+  try {
+    main(process.argv.slice(2));
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
 }

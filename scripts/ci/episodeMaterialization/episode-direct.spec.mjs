@@ -65,12 +65,15 @@ const meta = {
 const parent =
   "import { defineCourse, defineEpisodeStub, defineLessonStub } from '@svitlo/engine/build';\n" +
   'const content = { items: { ' +
-    '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
-    '"episodeOne": defineEpisodeStub({ id: ' + JSON.stringify(episodeId) + ', slug: "episodeOne" }), ' +
-    '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
+  '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
+  '"episodeOne": defineEpisodeStub({ id: ' +
+  JSON.stringify(episodeId) +
+  ', slug: "episodeOne" }), ' +
+  '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
   '}, order: ["before", "episodeOne", "after"] };\n' +
-  'export const demo = defineCourse({ id: ' + JSON.stringify(courseId) +
-    ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
+  'export const demo = defineCourse({ id: ' +
+  JSON.stringify(courseId) +
+  ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
 test('trusted Episode composition only rewrites the allocated Course slot, never arbitrary parent content', () => {
   const worker = {
     episodeId,
@@ -87,7 +90,10 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
     combined.files.find(x => x.path === meta.parentPath).content,
     /'episodeOne': child_episodeOne|"episodeOne": child_episodeOne/,
   );
-  assert.match(combined.files.find(x => x.path === meta.parentPath).content, /order: \["before", "episodeOne", "after"\]/);
+  assert.match(
+    combined.files.find(x => x.path === meta.parentPath).content,
+    /order: \["before", "episodeOne", "after"\]/,
+  );
   assert.match(combined.files.find(x => x.path === meta.parentPath).content, /defineLessonStub/);
   const manifest = buildEpisodeManifest(meta, combined);
   assert.equal(manifest.sourceExportName, worker.exportName);

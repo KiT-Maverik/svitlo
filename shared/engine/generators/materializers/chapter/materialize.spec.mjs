@@ -198,8 +198,10 @@ test('Chapter preserves one direct Episode and an existing Lesson placement', ()
   const result = materializeChapter(value, ctx());
   assert.ok(result.files.some(file => file.path === 'episodeOne/sections/opening/index.ts'));
   assert.ok(!result.files.some(file => file.path === 'extraLesson/index.ts'));
-  assert.match(result.files.find(file => file.path === 'index.ts').content,
-    /import \{ independentLesson as child_extraLesson \} from "#lessonsData\//);
+  assert.match(
+    result.files.find(file => file.path === 'index.ts').content,
+    /import \{ independentLesson as child_extraLesson \} from "#lessonsData\//,
+  );
   assert.match(result.files.find(file => file.path === 'index.ts').content, /defineChapter</);
   assert.equal(result.id, IDs.chapter);
   syntax(result.files);
