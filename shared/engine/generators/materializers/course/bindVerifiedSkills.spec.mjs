@@ -63,8 +63,8 @@ test('uses readable aliases only when Skill names collide with imports or each o
       ? { ...approve(request), exportName: 'testExplainLightTravel' }
       : approve(request),
   });
-  assert.match(source.source, /testExplainLightTravel_2\\.id/);
-  assert.match(source.source, /testExplainLightTravel_3\\.id/);
+  assert.match(source.source, /testExplainLightTravel_2\.id/);
+  assert.match(source.source, /testExplainLightTravel_3\.id/);
   assert.equal(source.imports.length, 2);
   assert(source.imports.every(line => line.includes(' as testExplainLightTravel_')));
   const again = bindVerifiedSkills({ outcomes: { skills: [first, second] } }, {
