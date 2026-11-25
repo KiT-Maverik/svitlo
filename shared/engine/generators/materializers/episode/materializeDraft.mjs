@@ -57,9 +57,9 @@ export function materializeEpisodeDraft(input, context) {
           ) +
           '\n' +
           "import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';\n\n" +
-          'export const episodeStage1 = ' +
+          'export default ' +
           JSON.stringify(handoff, null, 2) +
-          ' as const satisfies EpisodeWorkflowStage1Handoff;\n',
+          ' satisfies EpisodeWorkflowStage1Handoff;\n',
       },
     ],
     diagnostics: [

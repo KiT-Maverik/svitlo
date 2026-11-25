@@ -99,7 +99,7 @@ export function materializeQuestionBankDraft(
       content:
         "import type { QuestionBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
         '// Stage 1 editorial source. NOT a publishable bank or Quiz Section.\n' +
-        'export const questionBank = ' +
+        'export default ' +
         authoredBankLiteral(input) +
         ' satisfies QuestionBankWorkflowStage1;\n',
     },
