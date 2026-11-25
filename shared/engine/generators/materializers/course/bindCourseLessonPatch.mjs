@@ -47,7 +47,7 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
         const rendered = renderAddedSection(reference.source, { directory, slug: key });
         if (
           !record(rendered) ||
-          rendered.exportName !== key ||
+          typeof rendered.exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(rendered.exportName) ||
           !Array.isArray(rendered.files) ||
           !rendered.files.length ||
           !rendered.files.some(file => file.path === directory + '/index.ts' && file.kind === 'typescript') ||
