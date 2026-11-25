@@ -100,6 +100,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   const sectionBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + sectionRelative);
   const input = {
     config: {
+      type: 'course',
       content: {
         items: {
           reused: reuse(expectedBlob),
