@@ -12,7 +12,11 @@ import { defineLesson } from '../../../configurators/lessons/defineLesson/define
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import { assertLessonStage6ReleaseReady, materializeWorkflowSection, materializeLessonStage6 } from './materializeStage6';
+import {
+  assertLessonStage6ReleaseReady,
+  materializeLessonStage6,
+  materializeWorkflowSection,
+} from './materializeStage6';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
@@ -229,10 +233,7 @@ function assertSemanticModules(plan: ReturnType<typeof materializeLessonStage6>)
 test('Stage 6 imports only Skills from the owning textbook #skillsData alias', () => {
   const result = produce();
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
-  assert.match(
-    root,
-    /import \{ identify2dShapes \} from "#skillsData\/geometry\/figures\/identify2dShapes"/,
-  );
+  assert.match(root, /import \{ identify2dShapes \} from "#skillsData\/geometry\/figures\/identify2dShapes"/);
   assert.match(root, /"skills": \[identify2dShapes\.id\]/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Import the actual Skill/);
   const bad = stage2Source.replace(
@@ -1118,7 +1119,6 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
   assert(plan.files.every(file => !file.path.endsWith('/sceneLoader.ts')));
 });
 
-
 test('shared Section renderer preserves direct and nested Scene sources and pending executable scaffolds', () => {
   const original = valid().config.section.items.introduction;
   const scene = (suffix: string, slug: string) => ({
@@ -1164,15 +1164,12 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
       },
     },
   };
-  const result = materializeWorkflowSection(
-    section as unknown as Parameters<typeof materializeWorkflowSection>[0],
-    {
-      directory: 'shadowPractice/sections/exhibitionNotes',
-      documentLanguage: 'en',
-      languagesImport: '#coursesData/1/12345678-1234-4234-8234-123456789001/constants',
-      sceneOutputRoot: 'content/math/scenes',
-    },
-  );
+  const result = materializeWorkflowSection(section as unknown as Parameters<typeof materializeWorkflowSection>[0], {
+    directory: 'shadowPractice/sections/exhibitionNotes',
+    documentLanguage: 'en',
+    languagesImport: '#coursesData/1/12345678-1234-4234-8234-123456789001/constants',
+    sceneOutputRoot: 'content/math/scenes',
+  });
   const direct = result.files.find(file => file.path.endsWith('/shadowScene/index.ts'));
   const nested = result.files.find(file => file.path.endsWith('/nestedScene/index.ts'));
   for (const source of [direct, nested]) {
@@ -1191,5 +1188,4 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
   assert.equal(result.sceneScaffolds.length, 12);
   assert(result.sceneScaffolds.every(file => /TODO \(BLOCKER\):/.test(file.content)));
   assert(result.files.every(file => !file.path.includes('/scenes/')));
-
 });

@@ -382,8 +382,15 @@ export function materializeCourseStage5(input, options = {}) {
             renderBlockerTodo(
               'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
             ),
-            'export const ' + placementSlug + ' = placeLesson(' + lesson.exportName + ', ' + patchSource +
-              ' satisfies Parameters<typeof ' + lesson.exportName + '.build.overrides>[0]);',
+            'export const ' +
+              placementSlug +
+              ' = placeLesson(' +
+              lesson.exportName +
+              ', ' +
+              patchSource +
+              ' satisfies Parameters<typeof ' +
+              lesson.exportName +
+              '.build.overrides>[0]);',
             '',
           ].join('\n'),
         },
@@ -518,19 +525,23 @@ export function materializeCourseStage5(input, options = {}) {
   // The trusted Course publisher separately restricts these UUID destinations.
   const sceneRoot = textbookRoot + '/scenes/';
   for (const file of sceneScaffolds) {
-    const parts = typeof file?.path === 'string' && file.path.startsWith(sceneRoot)
-      ? file.path.slice(sceneRoot.length).split('/')
-      : [];
+    const parts =
+      typeof file?.path === 'string' && file.path.startsWith(sceneRoot)
+        ? file.path.slice(sceneRoot.length).split('/')
+        : [];
     const [bucket, id, filename] = parts;
     if (
       parts.length !== 3 ||
       !/^[0-9a-f]$/.test(bucket) ||
       !uuid.test(id ?? '') ||
       bucket !== id.at(-1) ||
-      !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(filename ?? '') ||
+      !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(
+        filename ?? '',
+      ) ||
       !['typescript', 'code'].includes(file.kind) ||
       typeof file.content !== 'string'
-    ) throw Error('Unsafe generated Scene output: ' + String(file?.path));
+    )
+      throw Error('Unsafe generated Scene output: ' + String(file?.path));
   }
   const files = [
     ...materialized.files.map(file =>

@@ -192,7 +192,10 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.doesNotMatch(chapterContent, /#skillsData\/sampleSkill|sampleSkill\.id|outcomes|prerequisites/);
-  assert.match(first.files.find(f => f.path === root + '/moduleOne/chapterOne/methodology.md').content, /Intended learning outcomes/);
+  assert.match(
+    first.files.find(f => f.path === root + '/moduleOne/chapterOne/methodology.md').content,
+    /Intended learning outcomes/,
+  );
   assert.match(chapterContent, /lessonOne/);
   assert.match(chapterContent, /episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
@@ -729,7 +732,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   };
   const scene = (id, slug) => ({
     config: {
-      id, type: 'scene', slug, params: {},
+      id,
+      type: 'scene',
+      slug,
+      params: {},
       locale: { value: { instruction: { uk: 'Порівняй тіні або прочитай опис.' } } },
     },
     production: {
@@ -746,7 +752,9 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   authoredSection.config.content.items.sceneCarousel = {
     config: {
       id: '663572e7-bd85-4516-86e2-3de07d209e34',
-      type: 'carousel', slug: 'sceneCarousel', params: { showArrows: true },
+      type: 'carousel',
+      slug: 'sceneCarousel',
+      params: { showArrows: true },
       locale: { title: { uk: 'Порівняй сцени' } },
       slides: { items: { nestedScene: scene(nestedSceneId, 'nestedScene') }, order: ['nestedScene'] },
     },

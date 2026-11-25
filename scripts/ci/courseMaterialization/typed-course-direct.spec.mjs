@@ -89,8 +89,12 @@ test('Course publisher accepts only complete UUID Scene scaffold groups', () => 
   const base = 'content/playground/scenes/' + sceneId.at(-1) + '/' + sceneId + '/';
   const name = 'DirectScene';
   const filenames = [
-    'index.ts', name + '.tsx', name + '.module.css',
-    name + '.constants.ts', name + '.stories.tsx', name + '.unit.spec.tsx',
+    'index.ts',
+    name + '.tsx',
+    name + '.module.css',
+    name + '.constants.ts',
+    name + '.stories.tsx',
+    name + '.unit.spec.tsx',
   ];
   const scenes = filenames.map(filename => ({
     path: base + filename,

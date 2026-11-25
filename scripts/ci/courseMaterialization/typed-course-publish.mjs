@@ -71,7 +71,9 @@ function allowedOutput(filename, meta) {
       /^[0-9a-f]$/.test(bucket) &&
       UUID.test(id ?? '') &&
       bucket === id.at(-1) &&
-      /^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(leaf ?? '')
+      /^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(
+        leaf ?? '',
+      )
     );
   }
   const lesson = filename.match(
@@ -97,8 +99,12 @@ function assertSceneScaffoldInventory(meta, entries) {
     if (main.length !== 1) throw Error('Incomplete or ambiguous Course Scene scaffold: ' + directory);
     const component = main[0].slice(0, -'.tsx'.length);
     const expected = [
-      'index.ts', component + '.tsx', component + '.module.css',
-      component + '.constants.ts', component + '.stories.tsx', component + '.unit.spec.tsx',
+      'index.ts',
+      component + '.tsx',
+      component + '.module.css',
+      component + '.constants.ts',
+      component + '.stories.tsx',
+      component + '.unit.spec.tsx',
     ];
     if (filenames.size !== expected.length || expected.some(name => !filenames.has(name)))
       throw Error('Incomplete or mixed Course Scene scaffold: ' + directory);

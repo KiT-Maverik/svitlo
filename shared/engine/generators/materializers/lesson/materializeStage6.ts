@@ -419,11 +419,7 @@ export function materializeWorkflowSection(
   });
   return {
     ...rendered,
-    sceneScaffolds: materializeSceneScaffolds(
-      normalizer.scenes,
-      options.sceneOutputRoot,
-      options.documentLanguage,
-    ),
+    sceneScaffolds: materializeSceneScaffolds(normalizer.scenes, options.sceneOutputRoot, options.documentLanguage),
   };
 }
 

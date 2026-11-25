@@ -251,7 +251,8 @@ export function runIsolatedCourseDependencies(
       throw Error(
         'Isolated trusted Course dependency failed (' +
           (result.error ? 'launch error' : 'exit ' + result.status) +
-          ')' + (detail ? ': ' + detail : ''),
+          ')' +
+          (detail ? ': ' + detail : ''),
       );
     }
     let plan;
