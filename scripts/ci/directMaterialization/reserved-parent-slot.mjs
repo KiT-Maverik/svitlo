@@ -67,6 +67,7 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
       entries.some(entry => !keys.includes(entry.key)))
     throw Error('Integrated Lesson parent items/order mismatch');
   const item = entries.find(entry => entry.key === slug)?.value;
+  if (!item) throw Error('Upstream Lesson is not integrated into its reviewed Course slot');
   const alias = 'child_' + slug;
   const direct = ts.isIdentifier(item) && item.text === alias;
   const placed = ts.isCallExpression(item) &&
