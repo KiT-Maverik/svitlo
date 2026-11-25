@@ -104,8 +104,6 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - working-directory: trusted
         run: npm run package:build --workspace @svitlo/engine
-      - name: Pull pinned isolated Episode worker
-        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
       - env:
           COURSE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           EPISODE_META_B64: ${{ needs.resolve.outputs.meta }}
