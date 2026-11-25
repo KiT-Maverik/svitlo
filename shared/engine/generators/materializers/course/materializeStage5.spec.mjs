@@ -191,9 +191,8 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(rootContent, /directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
-  assert.match(chapterContent, /#skillsData\/sampleSkill/);
-  assert.match(chapterContent, /import \{ sampleSkill \} from/);
-  assert.match(chapterContent, /sampleSkill\.id/);
+  assert.doesNotMatch(chapterContent, /#skillsData\/sampleSkill|sampleSkill\.id|outcomes|prerequisites/);
+  assert.match(first.files.find(f => f.path === root + '/moduleOne/chapterOne/methodology.md').content, /Intended learning outcomes/);
   assert.match(chapterContent, /lessonOne/);
   assert.match(chapterContent, /episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
@@ -202,7 +201,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(constants, /export type Languages = typeof languages/);
 });
 
-test('parent indices preserve literal content slugs without a structural content folder', () => {
+test('parent source identifiers refuse reserved local collisions rather than inventing aliases', () => {
   const input = source();
   const module = input.config.content.items.moduleOne;
   module.config.slug = 'content';
@@ -215,12 +214,11 @@ test('parent indices preserve literal content slugs without a structural content
   delete module.config.content.items.chapterOne;
   module.config.content.order = ['content'];
 
-  const plan = materializeCourseStage5(input, options());
-  const [nested] = plan.inventory.lessons.filter(row => row.slug === 'lessonOne');
-  assert.equal(nested.placementSourcePath, root + '/content/content/index.ts');
-  const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
-  assert.equal(direct.placementSourcePath, root + '/index.ts');
-  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('lessonOne'));
+  assert.throws(
+    () => materializeCourseStage5(input, options()),
+    /generated identifier collision "content"/,
+    'a parent slug must not shadow the generated content local',
+  );
 });
 
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {

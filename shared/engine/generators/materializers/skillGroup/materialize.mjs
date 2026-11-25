@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -99,6 +100,7 @@ export function materializeSkillGroup(input, context = {}) {
     dir = context.directory ?? '';
   const { id, slug } = identity(config, context, dir, 'skillGroup'),
     language = source(context);
+  const claim = createSourceIdentifierRegistry('skillGroup', ['defineSkillGroup', 'SupportedLanguages', 'languages', 'skills', exportName(slug)]);
   const files = [],
     imports = [],
     diagnostics = [],
@@ -138,9 +140,9 @@ export function materializeSkillGroup(input, context = {}) {
       throw Error(dir + '.skills.' + key + ': immutable child UUID required');
     if (identities.has(actualId)) throw Error(dir + '.skills.' + key + ': duplicate UUID');
     identities.add(actualId);
-    const alias = 'child_skill_' + key;
-    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./' + key + '";');
-    skills[key] = alias;
+    const name = claim(child.exportName, 'skills.' + key);
+    imports.push('import { ' + name + ' } from "./' + key + '";');
+    skills[key] = name;
     files.push(...child.files);
     diagnostics.push(...(child.diagnostics ?? []));
   }
@@ -161,7 +163,7 @@ export function materializeSkillGroup(input, context = {}) {
   const map = obj =>
     '{ ' +
     Object.entries(obj)
-      .map(([key, alias]) => JSON.stringify(key) + ': ' + alias)
+      .map(([key, name]) => renderSourceItem(key, name))
       .join(', ') +
     ' }';
   const result =

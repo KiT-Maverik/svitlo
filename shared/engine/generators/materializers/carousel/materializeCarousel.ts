@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
 import type { SceneSource } from '../scene/materializeScene';
@@ -123,6 +124,7 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   const files: CarouselFile[] = [];
   const diagnostics: CarouselDiagnostic[] = [];
   const imports: string[] = [];
+  const claim = createSourceIdentifierRegistry('carousel', ['defineCarousel', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
   const entries: string[] = [];
   const emitted = new Set<string>();
   for (const key of slides.order) {
@@ -133,11 +135,9 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('Carousel.slides.items.' + key + ': child materializer returned no valid export');
     }
-    const alias = 'slide_' + key;
-    imports.push(
-      'import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./slides/' + key) + ';',
-    );
-    entries.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
+    const name = claim(result.exportName, 'slides.items.' + key);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./slides/' + key) + ';');
+    entries.push('    ' + renderSourceItem(key, name) + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(childDirectory + '/')) {
         throw new Error(

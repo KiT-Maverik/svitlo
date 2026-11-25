@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { FlashcardsSection_Config } from '../../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
@@ -112,7 +113,11 @@ function render(value: unknown, depth = 0): string {
   return (
     '{\n' +
     keys
-      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .map(key => {
+        const child = value[key];
+        const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
+        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+      })
       .join('\n') +
     '\n' +
     '  '.repeat(depth) +
@@ -172,6 +177,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
   const items: Record<string, Reference> = {};
+  const claim = createSourceIdentifierRegistry('flashcardsSection', ['defineFlashcardsSection', 'languages', 'content', exportName(config.slug)]);
   const seenFiles = new Set<string>();
   const add = (file: GeneratedFile): void => {
     outputPath(file.path);
@@ -188,17 +194,15 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
       languagesImport: childLanguagesImport(options.languagesImport, 1),
       ...(node.production ? { production: node.production } : {}),
     });
-    if (child.exportName !== exportName(key))
-      throw new Error('flashcards.content.items.' + key + ': incorrect child export');
     for (const file of child.files) {
       if (!file.path.startsWith(childDirectory + '/'))
         throw new Error('flashcards: child output escaped ownership: ' + file.path);
       add(file);
     }
     diagnostics.push(...child.diagnostics);
-    const alias = 'child_content_items_' + key;
-    items[key] = imported(alias);
-    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
+    const name = claim(child.exportName, 'content.items.' + key);
+    items[key] = imported(name);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
   }
   const { content: _ignored, ...rest } = config;
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };

@@ -107,7 +107,8 @@ test('Episode imports shared concrete Section renderer; no Section implementatio
   assert.ok(r.files.some(file => file.path === 'sections/opening/index.ts'));
   assert.ok(r.files.some(file => file.path === 'specification.md'));
   const source = r.files.find(file => file.path === 'index.ts').content;
-  assert.match(source, /from "\.\/sections\/opening"/);
+  assert.match(source, /import \{ opening \} from "\.\/sections\/opening"/);
+  assert.doesNotMatch(source, /child_section_/);
   assert.match(source, /defineEpisode<"episodeOne", typeof languages, typeof section.items>/);
   syntax(r.files);
   assert.deepEqual(r, materializeEpisode({ config: value, production: { specification: 'Narrative script' } }, ctx()));

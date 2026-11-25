@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderPendingChildStub, renderPendingChildImport } from './renderPendingChildStub.mjs';
 import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
@@ -159,6 +160,7 @@ export function materializeCourse(input, context = {}) {
   const planned = meta?.languages?.planned ?? config.params?.languages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.production.languages: missing source language or invalid plan');
+  const claim = createSourceIdentifierRegistry('course', ['defineCourse', 'Languages', 'content', exportName(slug), 'languages']);
   const imports = [],
     inlineImports = new Set(),
     items = {},
@@ -352,12 +354,14 @@ export function materializeCourse(input, context = {}) {
     if (stage1Lesson || stage1Episode || pendingAssessment) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
+      claim(key, 'pending '+raw.type+' in content.items.'+key);
       imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location: './' }));
       items[key] = key;
     } else {
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
+        claim(child.sourceExportName, 'reused Lesson content.items.' + key);
         imports.push('import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';');
         if (child.extraImports !== undefined) {
           if (!Array.isArray(child.extraImports) || child.extraImports.some(line => typeof line !== 'string'))
@@ -365,10 +369,12 @@ export function materializeCourse(input, context = {}) {
           imports.push(...child.extraImports);
         }
         if (child.patchSource !== undefined) {
+          if (!inlineImports.has('placeLesson')) claim('placeLesson', 'Build helper for content.items.' + key);
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + child.sourceExportName + ', ' + child.patchSource + ')';
         } else items[key] = child.sourceExportName;
       } else {
+        claim(child.exportName, 'content.items.' + key);
         imports.push('import { ' + child.exportName + ' } from "./' + key + '";');
         items[key] = child.exportName;
       }
@@ -416,6 +422,11 @@ export function materializeCourse(input, context = {}) {
     directory: dir,
     includeLanguages: true,
   });
+  for (const declaration of bound.imports) {
+    const match = /^import \{ ([A-Za-z_$][A-Za-z0-9_$]*) \} from /.exec(declaration);
+    if (!match) throw Error(dir + ': unsupported trusted Skill import syntax');
+    claim(match[1], 'verified Skill import ' + declaration);
+  }
   const paramsSource = bound.source;
   const languagesModule = '#coursesData/' + id.at(-1).toLowerCase() + '/' + id.toLowerCase() + '/constants';
   const result =

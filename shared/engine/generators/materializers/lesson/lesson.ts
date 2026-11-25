@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
@@ -121,7 +122,11 @@ function render(value: unknown, depth = 0): string {
   return (
     '{\n' +
     entries
-      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .map(key => {
+        const child = value[key];
+        const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
+        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+      })
       .join('\n') +
     '\n' +
     '  '.repeat(depth) +
@@ -280,6 +285,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     files.push(file);
   };
   const items: Record<string, Reference> = {};
+  const claim = createSourceIdentifierRegistry('lesson', ['defineLesson', 'languages', 'Languages', 'section', exported(config.slug)]);
   let hasQuest = false;
   for (const key of Object.keys(config.section.items).sort()) {
     const node = sourceNode(config.section.items[key]);
@@ -308,11 +314,9 @@ export function materializeLesson(config: Source, options: Options): Result {
     // Quest has a Build source contract but is not a Lesson runtime Section.
     // Keep its own modules and diagnostic without importing it into defineLesson.
     if (node.config.type === 'quest') continue;
-    const alias = 'child_section_items_' + key;
-    items[key] = imported(alias);
-    imports.push(
-      'import { ' + child.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./sections/' + key) + ';',
-    );
+    const name = claim(child.exportName, 'section.items.' + key);
+    items[key] = imported(name);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./sections/' + key) + ';');
   }
   const blockers: string[] = [];
   const skillImports: string[] = [];
@@ -338,9 +342,9 @@ export function materializeLesson(config: Source, options: Options): Result {
       !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path)
     )
       throw new Error('lesson.skills: unverified or cross-textbook Skill import');
-    const alias = 'skill_ref_' + index;
-    skillImports.push('import { ' + skill.exported + ' as ' + alias + ' } from ' + JSON.stringify(skill.path) + ';');
-    return imported(alias + '.id');
+    const name = claim(skill.exported, 'skills.' + index);
+    skillImports.push('import { ' + name + ' } from ' + JSON.stringify(skill.path) + ';');
+    return imported(name + '.id');
   });
 
   const sourceLanguages = [

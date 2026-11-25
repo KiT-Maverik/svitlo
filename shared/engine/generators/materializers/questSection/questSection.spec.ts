@@ -43,6 +43,14 @@ test('Quest Section: independent start maps, no invented order, Build-only block
     'generated TS must parse without errors',
   );
   assert.match(src, /defineQuestSection<"mission", typeof stages, typeof tasks, typeof languages>/);
+  assert.match(src, /import \{ stages \} from "\.\/stages"/);
+  assert.match(src, /import \{ tasks \} from "\.\/tasks"/);
+  for (const category of ['stages', 'tasks'] as const) {
+    const map = first.files.find(file => file.path === 'sections/mission/' + category + '.ts')?.content ?? '';
+    assert.match(map, /import \{ start \} from "\.\/(stages|tasks)\/start"/);
+    assert.match(map, /export const (stages|tasks) = \{\s*start,?\s*\}/);
+    assert.doesNotMatch(map, / as child_/);
+  }
   assert.match(src, /TODO \(BLOCKER\).*Build-only/);
   assert.doesNotMatch(src, /"order"/);
   assert.match(src, /"en": "Mission"/);

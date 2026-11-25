@@ -3,6 +3,7 @@
  * There is deliberately no side UUID or slug; parent supplies front/back/hint.
  * This materializer delegates each concrete block to its owning materializer.
  */
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 
@@ -98,6 +99,7 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
   const diagnostics: SourceDiagnostic[] = [];
   const imports: string[] = [];
   const entries: string[] = [];
+  const claim = createSourceIdentifierRegistry('flashcardSide', ['defineFlashcardSide', 'Languages', 'items', context.role]);
   for (const key of source.order) {
     const node = source.items[key];
     if (!record(node)) fail('items.' + key, 'plain ContentBlock Config required');
@@ -124,8 +126,9 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
     }
     if (!output.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
       fail('items.' + key, 'missing delegated ContentBlock index.ts');
-    imports.push('import { ' + output.exportName + ' as child_' + key + ' } from ' + JSON.stringify('./' + key) + ';');
-    entries.push('  ' + key + ': child_' + key + ',');
+    const name = claim(output.exportName, 'items.' + key);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
+    entries.push('  ' + renderSourceItem(key, name) + ',');
     files.push(...output.files);
     diagnostics.push(...(output.diagnostics ?? []));
   }

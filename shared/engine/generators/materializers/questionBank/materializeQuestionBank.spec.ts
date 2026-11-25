@@ -146,6 +146,8 @@ test('Reviewed Stage 3 materializes all Question source members and canonical in
   assert(!paths.some(path => path.startsWith('questions/') && path.includes('reviewed-stage3')));
   const exported = result.files.find(file => file.path === 'questions/selectOneAnswer/index.ts')?.content ?? '';
   assert.match(exported, /export \{ promptOne \} from "\.\/promptOne"/);
+  assert.match(registry, /import \{ promptOne \} from "\.\/selectOneAnswer"/);
+  assert.doesNotMatch(registry, /question_select| as question_/);
   for (const file of result.files.filter(file => file.kind === 'typescript')) {
     const parsed = ts.transpileModule(file.content, {
       fileName: file.path,

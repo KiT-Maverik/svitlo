@@ -2,6 +2,7 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { questionTypes } from '../../../configurators/questions/question.constants';
 import {
   questionBankWorkflowStage1_Schema,
@@ -209,6 +210,7 @@ function planQuestionBank(
   const files: BankSourceFile[] = [];
   const diagnostics: BankSourceDiagnostic[] = [];
   const rootImports: string[] = [];
+  const claimRoot = createSourceIdentifierRegistry('Question Bank', ['questions', 'Languages']);
   const rootEntries: string[] = [];
   const seenIds = new Set<string>();
   let count = 0;
@@ -220,6 +222,7 @@ function planQuestionBank(
     }
     const slugs = Object.keys(members);
     const kindImports: string[] = [];
+    const claimKind = createSourceIdentifierRegistry('Question Bank kind ' + kind, ['Languages']);
     const entries: string[] = [];
     for (const slug of slugs) {
       if (!/^[a-z][A-Za-z0-9]*$/.test(slug)) throw new Error('Invalid Question slug ' + slug);
@@ -235,17 +238,11 @@ function planQuestionBank(
       const output = renderQuestion(kind, { config, production }, source, authorization.blocks, ownerImport);
       files.push(...output.files);
       diagnostics.push(...(output.diagnostics ?? []));
-      kindImports.push(
-        'export { ' +
-          output.exportName +
-          (output.exportName !== slug ? ' as ' + slug : '') +
-          ' } from ' +
-          JSON.stringify('./' + slug) +
-          ';',
-      );
-      const alias = 'question_' + kind + '_' + slug;
-      rootImports.push('import { ' + slug + ' as ' + alias + ' } from ' + JSON.stringify('./' + kind) + ';');
-      entries.push('    ' + JSON.stringify(slug) + ': ' + alias + ',');
+      const name = claimKind(output.exportName, kind + '/' + slug);
+      claimRoot(name, kind + '/' + slug);
+      kindImports.push('export { ' + name + ' } from ' + JSON.stringify('./' + slug) + ';');
+      rootImports.push('import { ' + name + ' } from ' + JSON.stringify('./' + kind) + ';');
+      entries.push('    ' + renderSourceItem(slug, name) + ',');
       count++;
     }
     files.push({

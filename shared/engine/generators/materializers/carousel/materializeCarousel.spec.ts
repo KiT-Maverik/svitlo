@@ -63,10 +63,10 @@ test('Carousel delegates Image/Scene children in authored order without manufact
   assert.equal(actual.exportName, 'gallery');
   const code = actual.files.at(-1)!.content;
   assert.match(code, /defineCarousel<"gallery", typeof slides.items, typeof languages>/);
-  assert.match(code, /import \{ interactive as slide_interactive \}/);
-  assert.match(code, /import \{ diagram as slide_diagram \}/);
-  assert.ok(code.indexOf('"interactive": slide_interactive') < code.indexOf('"diagram": slide_diagram'));
-  assert.doesNotMatch(code, /CarouselSlide|Gallery/);
+  assert.match(code, /import \{ interactive \}/);
+  assert.match(code, /import \{ diagram \}/);
+  assert.ok(code.indexOf('interactive,') < code.indexOf('diagram,'));
+  assert.doesNotMatch(code, /slide_|CarouselSlide|Gallery/);
   assert.match(code, /"uk": "Галерея"/);
   assert.deepEqual(actual, materializeCarousel(carousel(), context().renderer));
   assert.equal(syntaxErrorCount(code), 0);
@@ -80,7 +80,7 @@ test('Carousel omits explicitly disabled draft children, but requires exact acti
   };
   const actual = materializeCarousel(disabled, context().renderer);
   assert.equal(actual.files.length, 2);
-  assert.doesNotMatch(actual.files.at(-1)!.content, /slide_diagram/);
+  assert.doesNotMatch(actual.files.at(-1)!.content, /\bdiagram\b/);
   assert.throws(
     () =>
       materializeCarousel({ ...draft, slides: { ...draft.slides, order: ['diagram', 'diagram'] } }, context().renderer),
