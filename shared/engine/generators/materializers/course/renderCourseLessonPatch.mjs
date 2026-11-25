@@ -49,14 +49,14 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
         for (const [blockKey, blockPatch] of Object.entries(content.items)) {
           clean(blockKey, 'section.content.items');
           if (!record(blockPatch)) continue;
-          const path = directory + '/sections/' + sectionKey + '/content/' + blockKey + '/index.ts';
+          const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
           files.push({
             path,
             kind: 'typescript',
             content: 'export const contentBlockOverride = ' + literal(blockPatch) + ';\n',
           });
           childImports.push('import { contentBlockOverride as block_' + blockKey +
-            ' } from "./content/' + blockKey + '";');
+            ' } from "./' + blockKey + '";');
           childRefs.set(keyPath(['content', 'items', blockKey]), 'block_' + blockKey);
         }
       }
