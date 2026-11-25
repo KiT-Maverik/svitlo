@@ -1,4 +1,5 @@
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { LessonWorkflowStage2Section } from './lessonWorkflow.types';
 
 /**
  * Inert Course-authored reference to a published Section. The trusted runner
@@ -11,6 +12,12 @@ export type CourseLessonSectionReference = {
   sectionId: string;
   sourceSha: string;
   exportName: string;
+};
+
+/** A reviewed, Course-owned new Section: no executable Configurator in the inert draft. */
+export type CourseLessonNewSection = {
+  $create: 'course-section';
+  source: LessonWorkflowStage2Section;
 };
 
 /**
@@ -33,6 +40,7 @@ type ExcludeExistingKeys<Lesson extends Lesson_Configurator> =
 
 export type CourseLessonSourcePatch<Lesson extends Lesson_Configurator> = Omit<ConcretePatch<Lesson>, 'section'> & {
   section?: Omit<NonNullable<ConcretePatch<Lesson>['section']>, 'additionalItems'> & {
-    additionalItems?: Record<string, CourseLessonSectionReference> & ExcludeExistingKeys<Lesson>;
+    additionalItems?: Record<string, CourseLessonSectionReference | CourseLessonNewSection> &
+      ExcludeExistingKeys<Lesson>;
   };
 };

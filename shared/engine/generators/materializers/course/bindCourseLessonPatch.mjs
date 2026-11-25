@@ -14,10 +14,11 @@ const sectionRefKeys = new Set(['$ref', 'lessonId', 'sectionId', 'sourceSha', 'e
  *
  * Never evaluate a candidate import or accept code from the authored draft.
  */
-export function bindCourseLessonPatch(raw, { resolveAddedSection, placementPath }) {
+export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSection, placementPath }) {
   if (!record(raw) || !Object.keys(raw).length) throw Error('Lesson sourcePatch must be a nonempty object');
   const aliases = new Map();
   const imports = [];
+  const createdSections = {};
   const additions = raw.section?.additionalItems;
   let patch = raw;
   if (additions !== undefined) {
@@ -28,6 +29,45 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, placementPath 
       throw Error(placementPath + ': section.additionalItems must be a plain reference map');
     const bound = {};
     for (const [key, reference] of Object.entries(additions)) {
+      // A Course-owned Section is inert editorial source, not an imported
+      // candidate executable. Only the trusted concrete Section dispatcher
+      // may turn it into a Configurator source module beneath this placement.
+      if (record(reference) && reference.$create === 'course-section') {
+        if (
+          !slug.test(key) ||
+          forbidden.has(key) ||
+          Object.keys(reference).sort().join(',') !== '$create,source' ||
+          !record(reference.source?.config) ||
+          reference.source.config.slug !== key ||
+          !uuid.test(reference.source.config.id ?? '') ||
+          typeof renderAddedSection !== 'function'
+        )
+          throw Error(placementPath + ': invalid or untrusted Course-owned Section at ' + key);
+        const directory = placementPath + '/sections/' + key;
+        const rendered = renderAddedSection(reference.source, { directory, slug: key });
+        if (
+          !record(rendered) ||
+          typeof rendered.exportName !== 'string' ||
+          !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(rendered.exportName) ||
+          !Array.isArray(rendered.files) ||
+          !rendered.files.length ||
+          !rendered.files.some(file => file.path === directory + '/index.ts' && file.kind === 'typescript') ||
+          rendered.files.some(
+            file =>
+              !record(file) ||
+              typeof file.path !== 'string' ||
+              !file.path.startsWith(directory + '/') ||
+              !['typescript', 'markdown', 'specification', 'code'].includes(file.kind) ||
+              typeof file.content !== 'string',
+          )
+        )
+          throw Error(placementPath + ': invalid trusted Section materializer result at ' + key);
+        const alias = 'added_section_' + placementPath.replace(/[^A-Za-z0-9_]/g, '_') + '_' + key;
+        aliases.set(key, alias);
+        createdSections[key] = rendered;
+        Object.defineProperty(bound, key, { value: null, enumerable: true, writable: true, configurable: true });
+        continue;
+      }
       if (
         !slug.test(key) ||
         forbidden.has(key) ||
@@ -113,5 +153,5 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, placementPath 
       '}'
     );
   };
-  return { patch, patchSource: render(raw), imports };
+  return { patch, patchSource: render(raw), imports, aliases: Object.fromEntries(aliases), createdSections };
 }

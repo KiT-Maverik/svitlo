@@ -2,7 +2,12 @@ import { createHash } from 'node:crypto';
 
 import { lesson_Config_Schema } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from '../../../types/workflow/lessonAssessment.types';
-import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import {
+  lessonWorkflowSection_Schema,
+  lessonWorkflowStage2_Schema,
+  type LessonWorkflowStage2,
+  type LessonWorkflowStage2Section,
+} from '../../../types/workflow/lessonWorkflow.types';
 import { workflowLanguages_Schema } from '../../../types/workflow/workflowLanguages.schemas';
 import { materializeAudio } from '../audio/materializeAudio';
 import { materializeCarousel } from '../carousel/materializeCarousel';
@@ -226,69 +231,8 @@ function normalizeStage2(input: LessonWorkflowStage2) {
   return { sections, metadata, scenes };
 }
 
-/**
- * One explicit Lesson Stage 6.1 composition, not a universal kind registry.
- * Concrete materializers own rendering/diagnostics for their real Config
- * kinds. Required assessment Sections are verified in materializeLesson.
- */
-export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
-  return planLessonStage6(input, options);
-}
-
-function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
-  if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
-    throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
-  const config = input.config;
-  const source = options?.source;
-  const match = source?.sourcePath?.match(
-    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
-  );
-  if (
-    !source ||
-    config.type !== 'lesson' ||
-    !uuid.test(config.id) ||
-    typeof config.slug !== 'string' ||
-    !safeSlug.test(config.slug) ||
-    !match ||
-    match[3] !== config.id ||
-    match[2] !== config.id.slice(-1).toLowerCase() ||
-    !sha.test(source.sourceBlobSha) ||
-    !sha.test(source.sourceCommitSha) ||
-    typeof options.sourceText !== 'string' ||
-    gitBlobSha(options.sourceText) !== source.sourceBlobSha ||
-    typeof options.verifySourceInput !== 'function' ||
-    options.verifySourceInput(input, source, options.sourceText) !== true
-  )
-    throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
-
-  const languagePlan = workflowLanguages_Schema.safeParse(input.production.languages);
-  if (!languagePlan.success) throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
-  const { document: documentLanguage, planned } = languagePlan.data;
-  if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
-  const params = {
-    ...config.params,
-    languages: [...planned],
-    sections: {
-      allowNavigation: true,
-      allowSkipping: true,
-      showIndexes: true,
-      ...config.params?.sections,
-    },
-  };
-  const parsed = lesson_Config_Schema.shape.params.safeParse(params);
-  if (!parsed.success)
-    throw new Error('Lesson Stage 6: incomplete or invalid Lesson Config params: ' + parsed.error.message);
-  if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
-    throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
-  const assessment = input.production.assessment;
-  if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
-    throw new Error('Lesson Stage 6: four independent assessment decisions are required');
-  const { sections, metadata, scenes } = normalizeStage2(input);
-  // Validate the actual editorial input before calling any source renderer.
-  // Keep the original object for source fidelity; parsing is not a new authored representation.
-  const validated = lessonWorkflowStage2_Schema.safeParse(input);
-  if (!validated.success) throw new Error('Invalid Lesson Stage 2 input: ' + validated.error.message);
-
+/** Shared real Section/ContentBlock source dispatch for Lesson and Course-owned additions. */
+function createSectionSourceRenderer(metadata: Map<string, Record<string, unknown>>, documentLanguage: string) {
   function block(config: ChildConfig, context: RenderOptions): Result {
     const production = context.production ?? metadata.get(config.id);
     const opts = { ...context, ...(production ? { production } : {}) };
@@ -413,6 +357,104 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
         throw new Error('Lesson Stage 6: unsupported Section kind ' + config.type);
     }
   }
+
+  return section;
+}
+
+/** Materialize a reviewed new Course-local Section using Lesson's concrete renderers.
+ * This emits authoring TS only; it never mutates the original standalone Lesson.
+ */
+export function materializeCourseOwnedLessonSection(
+  value: LessonWorkflowStage2Section,
+  options: { directory: string; documentLanguage: string; languagesImport: string },
+): Result {
+  const checked = lessonWorkflowSection_Schema.parse(value);
+  const name = checked.config.slug;
+  const virtual = {
+    config: {
+      id: '00000000-0000-4000-8000-000000000000',
+      section: { items: { [name]: checked }, order: [name] },
+    },
+  } as unknown as LessonWorkflowStage2;
+  const { sections, metadata, scenes } = normalizeStage2(virtual);
+  // A Scene requires its independent package-level implementation/registry; this
+  // Course-local Section scaffold cannot silently create or activate one.
+  if (scenes.length)
+    throw new Error(options.directory + ': Course-owned Section Scenes need separate source production');
+  const entry = sections.items[name] as { config: ChildConfig };
+  const section = createSectionSourceRenderer(metadata, options.documentLanguage);
+  return section(entry.config, {
+    directory: options.directory,
+    documentLanguage: options.documentLanguage,
+    languagesImport: options.languagesImport,
+    production: metadata.get(entry.config.id),
+  });
+}
+
+/**
+ * One explicit Lesson Stage 6.1 composition, not a universal kind registry.
+ * Concrete materializers own rendering/diagnostics for their real Config
+ * kinds. Required assessment Sections are verified in materializeLesson.
+ */
+export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
+  return planLessonStage6(input, options);
+}
+
+function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
+  if (!isRecord(input) || !isRecord(input.config) || !isRecord(input.production))
+    throw new Error('Lesson Stage 6 requires the canonical Stage 2 envelope');
+  const config = input.config;
+  const source = options?.source;
+  const match = source?.sourcePath?.match(
+    /^content\/([a-z][a-z0-9-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})\/draft\.ts$/,
+  );
+  if (
+    !source ||
+    config.type !== 'lesson' ||
+    !uuid.test(config.id) ||
+    typeof config.slug !== 'string' ||
+    !safeSlug.test(config.slug) ||
+    !match ||
+    match[3] !== config.id ||
+    match[2] !== config.id.slice(-1).toLowerCase() ||
+    !sha.test(source.sourceBlobSha) ||
+    !sha.test(source.sourceCommitSha) ||
+    typeof options.sourceText !== 'string' ||
+    gitBlobSha(options.sourceText) !== source.sourceBlobSha ||
+    typeof options.verifySourceInput !== 'function' ||
+    options.verifySourceInput(input, source, options.sourceText) !== true
+  )
+    throw new Error('Lesson Stage 6: untrusted source or stale source snapshot');
+
+  const languagePlan = workflowLanguages_Schema.safeParse(input.production.languages);
+  if (!languagePlan.success) throw new Error('Lesson Stage 6: invalid reviewed document/planned languages');
+  const { document: documentLanguage, planned } = languagePlan.data;
+  if (config.params?.languages !== undefined) throw new Error('Lesson Stage 2 must not contain final params.languages');
+  const params = {
+    ...config.params,
+    languages: [...planned],
+    sections: {
+      allowNavigation: true,
+      allowSkipping: true,
+      showIndexes: true,
+      ...config.params?.sections,
+    },
+  };
+  const parsed = lesson_Config_Schema.shape.params.safeParse(params);
+  if (!parsed.success)
+    throw new Error('Lesson Stage 6: incomplete or invalid Lesson Config params: ' + parsed.error.message);
+  if (!lesson_Config_Schema.shape.locale.safeParse(config.locale).success)
+    throw new Error('Lesson Stage 6: invalid source-language Lesson title/locale');
+  const assessment = input.production.assessment;
+  if (!lessonProductionAssessmentRequirements_Schema.safeParse(assessment).success)
+    throw new Error('Lesson Stage 6: four independent assessment decisions are required');
+  const { sections, metadata, scenes } = normalizeStage2(input);
+  // Validate the actual editorial input before calling any source renderer.
+  // Keep the original object for source fidelity; parsing is not a new authored representation.
+  const validated = lessonWorkflowStage2_Schema.safeParse(input);
+  if (!validated.success) throw new Error('Invalid Lesson Stage 2 input: ' + validated.error.message);
+
+  const section = createSectionSourceRenderer(metadata, documentLanguage);
 
   const skillReferences =
     options.trustedSkillReferences === undefined

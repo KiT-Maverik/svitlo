@@ -196,18 +196,51 @@ function assertCourseInventory(manifest, meta, entries) {
           throw Error('Course reused Lesson inventory does not match generated direct reference');
         const parent = parentSource(row);
         const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
-        const quoted = JSON.stringify(expectedImport);
-        const normalized = parent.replaceAll("'" + expectedImport + "'", quoted);
-        const expectedLine = 'import { ' + row.sourceExportName + ' as child_' + row.slug + ' } from ' + quoted + ';';
-        const expectedPlacement =
-          JSON.stringify(row.slug) +
-          ': ' +
-          (row.kind === 'overridden' ? 'placeLesson(child_' + row.slug + ', ' : 'child_' + row.slug);
-        if (
-          normalized.split('\n').filter(line => line === expectedLine).length !== 1 ||
-          !parent.includes(expectedPlacement)
-        )
-          throw Error('Course Lesson direct import or placement-local Config patch missing');
+        const alias = 'child_' + row.slug;
+        const placement = JSON.stringify(row.slug) + ': ' + alias;
+        // Pure reuse links the verified standalone Lesson directly. An
+        // overridden placement instead links a Course-owned adapter, whose
+        // exact original Lesson import and placeLesson invocation must both
+        // be sealed at the owned placement/index.ts path.
+        if (row.kind === 'reused') {
+          const line =
+            'import { ' + row.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(expectedImport) + ';';
+          const normalized = parent.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
+          if (
+            row.overrideSourcePath !== undefined ||
+            normalized.split('\n').filter(item => item === line).length !== 1 ||
+            !parent.includes(placement)
+          )
+            throw Error('Course reused Lesson direct import or placement missing');
+        } else {
+          const ownedPath = row.placementPath + '/index.ts';
+          const relative = './' + row.slug;
+          const line = 'import { ' + row.slug + ' as ' + alias + ' } from ' + JSON.stringify(relative) + ';';
+          const normalized = parent.replaceAll("'" + relative + "'", JSON.stringify(relative));
+          const file = entries.get(ownedPath);
+          if (
+            row.overrideSourcePath !== ownedPath ||
+            file?.kind !== 'typescript' ||
+            normalized.split('\n').filter(item => item === line).length !== 1 ||
+            !parent.includes(placement)
+          )
+            throw Error('Course Lesson override placement module missing or displaced');
+          const source = Buffer.from(file.data, 'base64').toString('utf8');
+          const originalLine =
+            'import { ' + row.sourceExportName + ' as originalLesson } from ' + JSON.stringify(expectedImport) + ';';
+          const imported = source.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
+          if (
+            imported.split('\n').filter(item => item === originalLine).length !== 1 ||
+            !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
+            !source.includes(
+              '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
+                'export const ' +
+                row.slug +
+                ' = placeLesson(originalLesson, ',
+            )
+          )
+            throw Error('Course Lesson override placement module lacks verified original or Build patch');
+        }
       } else throw Error('Invalid Course Lesson kind');
     } else if (row.type === 'episode') {
       if (
