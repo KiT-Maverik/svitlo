@@ -76,7 +76,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
     for (const [sectionKey] of Object.entries(section.additionalItems)) {
       clean(sectionKey, 'section.additionalItems');
       const alias = aliases[sectionKey];
-      if (typeof alias !== 'string' || !slug.test(alias))
+      if (typeof alias !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(alias))
         throw Error('Missing trusted added Section binding: ' + sectionKey);
       const dependency = binding.imports.find(line => line.includes(' as ' + alias + ' } from '));
       if (!dependency) throw Error('Missing trusted Section import: ' + sectionKey);
