@@ -5,6 +5,7 @@ import { chapter_Config_Schema } from '../../configurators/courses/defineChapter
 import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import { lesson_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
@@ -15,7 +16,7 @@ const rationale = z.string().min(1);
  * Build API, not duplicated in this editorial Stage schema.
  */
 const plainConfig_Schema = z.record(z.string(), z.json());
-const sourcePatch_Schema = z.custom<Parameters<Lesson_Configurator['build']['overrides']>[0]>(
+const sourcePatch_Schema = z.custom<CourseLessonSourcePatch<Lesson_Configurator>>(
   value => plainConfig_Schema.safeParse(value).success,
 );
 const uid = z.uuid();
