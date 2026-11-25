@@ -61,7 +61,7 @@ test('historical multiline methodology remains a literal without interpolation',
 test('sole immutable const and type-only imports and type queries are inert', () => {
   const value = [
     "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
-    "import { type Lesson_Configurator } from '@svitlo/engine/build';",
+    "import type { Lesson_Configurator } from '@svitlo/engine/build';",
     'const draft = { config: {',
     '  sourcePatch: ({ locale: { en: "safe" } } as Parameters<typeof import("./lesson").lesson.build.overrides>[0])',
     '}, production: {} } satisfies LessonWorkflowStage2;',
@@ -111,6 +111,7 @@ test('reject runtime imports, extra statements/exports and noncompliant root con
   const invalid = [
     'import "./unsafe";\n' + good,
     'import { unsafe } from "./unsafe";\n' + good,
+    'import { type MaybeInert } from "./unsafe";\n' + good,
     'import * as unsafe from "./unsafe";\n' + good,
     'import unsafe = require("./unsafe");\n' + good,
     'const other = true;\n' + good,
