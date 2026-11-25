@@ -171,6 +171,16 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const tree = new Map([...contents].map(([name]) => [name, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) }]));
   const reader = { blob: (_entry, filename) => contents.get(filename) };
   assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
+  const directChapter = courseRoot + '/content/directChapter/index.ts';
+  const chapterSeed = {
+    ...seed,
+    production: { ...seed.production, lessonDependencies: ['content/directChapter/newLesson'] },
+  };
+  contents.set(directChapter, parent([{ slug: 'newLesson', id: lessonId }]).replaceAll('defineCourse', 'defineChapter'));
+  tree.set(directChapter, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) });
+  assert.equal(checkAssessmentBanks(meta, chapterSeed, [questionId], reader, tree), true);
+  contents.set(directChapter, contents.get(directChapter).replaceAll('defineChapter', 'defineCourse'));
+  assert.throws(() => checkAssessmentBanks(meta, chapterSeed, [questionId], reader, tree), /owner/);
   // A sibling import must never replace the approved dependency's bank.
   const unrelated = '44444444-4444-4444-8444-444444444444';
   contents.set(
