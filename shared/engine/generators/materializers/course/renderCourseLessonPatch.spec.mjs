@@ -4,6 +4,10 @@ import test from 'node:test';
 import { renderCourseLessonPatch } from './renderCourseLessonPatch.mjs';
 
 const directory = 'exhibitionPractice/shadowPractice';
+const sourceLesson = {
+  importPath: '#lessonsData/1/11111111-1111-4111-8111-111111111111/index',
+  exportName: 'standaloneLesson',
+};
 
 test('Course-owned Lesson override emits distinct Section and ContentBlock fragment modules', () => {
   const rawPatch = {
@@ -26,8 +30,8 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
     },
   };
   const before = JSON.stringify(rawPatch);
-  const first = renderCourseLessonPatch({ directory, rawPatch, binding: { imports: [], aliases: {} } });
-  const second = renderCourseLessonPatch({ directory, rawPatch, binding: { imports: [], aliases: {} } });
+  const first = renderCourseLessonPatch({ sourceLesson, directory, rawPatch, binding: { imports: [], aliases: {} } });
+  const second = renderCourseLessonPatch({ sourceLesson, directory, rawPatch, binding: { imports: [], aliases: {} } });
   assert.deepEqual(first, second, 'rendering must be deterministic');
   assert.equal(JSON.stringify(rawPatch), before, 'authored patch must remain immutable');
   assert.deepEqual(
@@ -35,6 +39,10 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
     [directory + '/sections/content/p1/index.ts', directory + '/sections/content/index.ts'],
   );
   assert.match(first.files[0].content, /section_content is literal user text/);
+  assert.match(first.files[0].content, /satisfies BlockPatch/);
+  assert.match(first.files[0].content, /NonNullable<SectionPatch\["content"\]>/);
+  assert.match(first.files[1].content, /satisfies SectionPatch/);
+  assert.match(first.files[1].content, /typeof standaloneLesson\.build\.overrides/);
   assert.match(first.files[1].content, /import \{ p1 \} from "\.\/p1"/);
   assert.match(first.files[1].content, /"p1": p1/);
   assert.match(first.files[1].content, /"p2": false/);
@@ -56,7 +64,7 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
     aliases: { extra: exportName },
     imports: ['import { extra } from "#lessonsData/1/example/sections/extra";'],
   };
-  const result = renderCourseLessonPatch({ directory, rawPatch, binding });
+  const result = renderCourseLessonPatch({ sourceLesson, directory, rawPatch, binding });
   assert.deepEqual(
     result.files.map(file => file.path),
     [directory + '/sections/extra/index.ts'],
@@ -68,7 +76,7 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
 });
 
 test('metadata-only patches stay in their placement index without fake children', () => {
-  const result = renderCourseLessonPatch({
+  const result = renderCourseLessonPatch({ sourceLesson,
     directory: 'shadowPractice',
     rawPatch: { params: { sections: { allowNavigation: false } } },
     binding: { imports: [], aliases: {} },
@@ -79,9 +87,13 @@ test('metadata-only patches stay in their placement index without fake children'
 });
 
 test('unsafe placement paths and unverified references fail closed', () => {
+  assert.throws(() => renderCourseLessonPatch({
+    sourceLesson: { ...sourceLesson, importPath: '../other-lesson' }, directory, rawPatch: {},
+    binding: { imports: [] },
+  }), /Verified standalone Lesson import/);
   assert.throws(
     () =>
-      renderCourseLessonPatch({
+      renderCourseLessonPatch({ sourceLesson,
         directory: '../escape',
         rawPatch: {},
         binding: { imports: [] },
@@ -90,7 +102,7 @@ test('unsafe placement paths and unverified references fail closed', () => {
   );
   assert.throws(
     () =>
-      renderCourseLessonPatch({
+      renderCourseLessonPatch({ sourceLesson,
         directory,
         rawPatch: { section: { items: JSON.parse('{"__proto__":{}}') } },
         binding: { imports: [] },
@@ -99,7 +111,7 @@ test('unsafe placement paths and unverified references fail closed', () => {
   );
   assert.throws(
     () =>
-      renderCourseLessonPatch({
+      renderCourseLessonPatch({ sourceLesson,
         directory,
         rawPatch: { section: { additionalItems: { extra: { $ref: 'lesson-section' } } } },
         binding: { imports: [], aliases: { extra: 'forgedReference' } },
