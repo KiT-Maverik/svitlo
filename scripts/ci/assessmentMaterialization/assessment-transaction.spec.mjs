@@ -24,6 +24,7 @@ const meta = {
   sourceBlobSha: 'b'.repeat(40),
   head: 'c'.repeat(40),
   parentBlobSha: 'd'.repeat(40),
+  stubBlobSha: 'e'.repeat(40),
 };
 const seed = {
   config: { id: assessmentId, type: 'assessment', slug: 'finalReview', locale: { title: { uk: 'Перевірка' } } },
@@ -140,11 +141,15 @@ test('one source transaction permits only the exact parent and new Assessment ch
   const tree = new Map([
     [meta.sourcePath, { type: 'blob', mode: '100644', sha: meta.sourceBlobSha }],
     [meta.parentPath, { type: 'blob', mode: '100644', sha: meta.parentBlobSha }],
+    [meta.sourcePath.replace('draft.ts', 'stub.ts'), { type: 'blob', mode: '100644', sha: meta.stubBlobSha }],
   ]);
   assert.equal(checkAssessmentTargets(meta, files, tree), true);
   const manifest = buildAssessmentManifest(meta, { ...plan, files, diagnostics: [] });
   assert.equal(manifest.entries.length, 3);
-  assert.ok(assessmentCommitTree(manifest).some(e => e.path === meta.sourcePath && e.sha === null));
+  assert.deepEqual(
+    assessmentCommitTree(manifest).filter(e => e.sha === null).map(e => e.path),
+    [meta.sourcePath, meta.sourcePath.replace('draft.ts', 'stub.ts')],
+  );
   assert.throws(() =>
     checkAssessmentTargets(
       meta,
