@@ -265,22 +265,26 @@ export function readTypedReport() {
   return JSON.parse(bytes.toString('utf8'));
 }
 
-async function analyze(root, meta) {
-  await fresh(meta);
+export async function analyze(root, meta) {
+  // Resolve already authorized the actor and sealed the exact PR HEAD/source.
+  // Analysis is intentionally credential-free: the publisher reauthorizes the
+  // live actor/branch immediately before the single non-force Git transaction.
+  if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
+    throw Error('Lesson analysis must not receive GitHub credentials');
   const tracked = indexed(root, meta.identity.pkg);
   const original = sourceBytes(root, meta);
   if (!tracked.has(meta.identity.source)) throw Error('Stage 2 must be committed in the pinned PR');
   if (tracked.has(meta.identity.folder + '/index.ts')) throw Error('Lesson Stage 6 already materialized; no overwrite');
-  const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
-  const plan = runIsolatedMaterialization({
-    trustedRoot: ROOT,
-    candidateRoot: root,
-    textbook: meta.identity.pkg,
-    operation: 'lesson-stage6',
-    source: {
-      sourcePath: meta.identity.source,
-      sourceBlobSha: meta.sourceBlob,
-      sourceCommitSha: meta.head,
+  const { executeTrustedDraft } = await import('../directMaterialization/trusted-draft.mjs');
+  const source = { sourcePath: meta.identity.source, sourceBlobSha: meta.sourceBlob, sourceCommitSha: meta.head };
+  const sourceText = original.toString('utf8');
+  const { plan } = executeTrustedDraft({
+    operation: 'lesson-stage6', source, sourceText, trustedRoot: ROOT,
+    options: {
+      source, sourceText,
+      verifySourceInput: (_input, pinned, text) =>
+        pinned.sourcePath === source.sourcePath && pinned.sourceBlobSha === source.sourceBlobSha &&
+        pinned.sourceCommitSha === source.sourceCommitSha && text === sourceText,
     },
   });
   const manifest = typedManifest(plan, meta, original, tracked, root);

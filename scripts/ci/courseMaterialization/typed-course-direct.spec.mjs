@@ -337,3 +337,54 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   });
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });
+
+
+test('Course publisher accepts all three generated inert default-export seeds under sealed SHA256', () => {
+  const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
+  const { defineLesson } = createRequire(import.meta.url)(build);
+  const course = courseStage3(
+    defineLesson(independentLessonConfig()),
+    defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+  );
+  course.config.content.items.finalReview = {
+    config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+    production: {
+      purpose: 'Measure transfer',
+      lessonDependencies: ['content/newLesson', 'content/reused'],
+    },
+  };
+  course.config.content.order.push('finalReview');
+  const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
+  const pinned = {
+    ...meta,
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
+    head: 'b'.repeat(40),
+    courseId,
+    textbookRoot: 'content/math',
+  };
+  const plan = materializeCourseStage5(course, {
+    textbookRoot: 'content/math',
+    source: { sourcePath, sourceBlobSha: pinned.sourceBlobSha },
+    verifySource: () => true,
+  });
+  const sealed = buildTypedCourseManifest(pinned, plan);
+  assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
+  const revised = structuredClone(sealed);
+  const kinds = new Set();
+  for (const entry of revised.entries) {
+    const text = Buffer.from(entry.data, 'base64').toString('utf8');
+    const match = text.match(/export const (lessonSeed|episodeStage1|assessmentSeed) = /);
+    if (!match) continue;
+    kinds.add(match[1]);
+    const next = text
+      .replace('export const ' + match[1] + ' = ', 'export default ')
+      .replace(/ as const satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/,
+        ' satisfies $1;');
+    assert.notEqual(next, text);
+    entry.data = Buffer.from(next).toString('base64');
+    entry.sha256 = createHash('sha256').update(next).digest('hex');
+  }
+  assert.deepEqual([...kinds].sort(), ['assessmentSeed', 'episodeStage1', 'lessonSeed']);
+  assert.equal(verifyTypedCourseManifest(revised, pinned), plan.files.length);
+});
