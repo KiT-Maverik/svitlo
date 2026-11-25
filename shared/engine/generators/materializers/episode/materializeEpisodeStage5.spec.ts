@@ -8,7 +8,7 @@ import { materializeEpisodeStage5 } from './materializeEpisodeStage5';
 
 const id = (suffix: string) => 'e1100000-0000-4000-8000-0000000000' + suffix;
 const source = {
-  sourcePath: 'content/playground/data/courses/1/' + id('01') + '/content/transition/draft.ts',
+  sourcePath: 'content/playground/data/courses/1/' + id('01') + '/transition/draft.ts',
   sourceBlobSha: 'a'.repeat(40),
   sourceCommitSha: 'b'.repeat(40),
 };
@@ -68,7 +68,7 @@ const reviewed = (): EpisodeWorkflowStage2 =>
 
 test('Episode Stage 5 owns one typed constants module and nested descendants use its alias', () => {
   const plan = materializeEpisodeStage5(reviewed(), { source });
-  const target = 'content/transition/';
+  const target = 'transition/';
   const file = (path: string) => plan.files.find(item => item.path === target + path)?.content;
   // The owning Course root supplies the *only* language tuple; an Episode must
   // not emit its own constants.ts or languages.ts once restored into that Course.
