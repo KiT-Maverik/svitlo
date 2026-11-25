@@ -7,6 +7,7 @@ import { materializeLessonDraft } from './lessonDraft.mjs';
 import { buildPlacementInventory } from './placementInventory.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 import { materializeAssessmentPlaceholder } from './materializeAssessmentPlaceholder.mjs';
+import { bindCourseLessonPatch } from './bindCourseLessonPatch.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
@@ -290,6 +291,7 @@ export function materializeCourseStage5(input, options = {}) {
     if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
     const hasPatch = production.sourcePatch !== undefined;
     let patchSource;
+    let extraImports = [];
     if (hasPatch) {
       const rawPatch = production.sourcePatch;
       if (!record(rawPatch) || !Object.keys(rawPatch).length || !production.overrideRationale?.trim())
@@ -300,9 +302,16 @@ export function materializeCourseStage5(input, options = {}) {
       const patchLanguages = planned.filter(code => lesson.languages.includes(code));
       if (!patchLanguages.includes(sourceLanguage))
         throw new Error(context.directory + ': Lesson source locale is outside reviewed publication scope');
-      patchSource = JSON.stringify(rawPatch, null, 2);
+      // Convert only approved declarative additions to genuine Section
+      // Configurators before invoking the unchanged nested Lesson Build.
+      const binding = bindCourseLessonPatch(rawPatch, {
+        placementPath: context.directory,
+        resolveAddedSection: options.resolveAddedSection,
+      });
+      patchSource = binding.patchSource;
+      extraImports = binding.imports;
       try {
-        const built = lesson.configurator.build.overrides(rawPatch, { languages: patchLanguages });
+        const built = lesson.configurator.build.overrides(binding.patch, { languages: patchLanguages });
         if (built.id !== existing.id)
           throw new Error('Lesson Build override changed the independently owned Lesson identity');
       } catch (error) {
@@ -336,6 +345,7 @@ export function materializeCourseStage5(input, options = {}) {
       sourceExportName: lesson.exportName,
       importPath: lesson.importPath,
       ...(patchSource === undefined ? {} : { patchSource }),
+      extraImports,
       files: [],
       diagnostics: [],
     };
