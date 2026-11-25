@@ -168,8 +168,8 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.deepEqual(first.files, second.files);
   const paths = first.files.map(file => file.path);
   assert.ok(paths.includes(root + '/index.ts'));
-  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/index.ts'));
-  assert.ok(paths.includes(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts'));
+  assert.ok(paths.includes(root + '/moduleOne/chapterOne/index.ts'));
+  assert.ok(paths.includes(root + '/moduleOne/chapterOne/episodeOne/draft.ts'));
   assert.ok(paths.includes(root + '/methodology.md'));
   assert.ok(paths.includes(root + '/constants.ts'));
   assert.ok(!paths.includes(root + '/languages.ts'));
@@ -187,12 +187,12 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
     /TODO \(BLOCKER\): Course Stage 5 source is not publication approval/,
   );
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
-  const chapterContent = first.files.find(f => f.path === root + '/content/moduleOne/chapterOne/index.ts').content;
+  const chapterContent = first.files.find(f => f.path === root + '/moduleOne/chapterOne/index.ts').content;
   assert.match(rootContent, /"directLesson": child_directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.match(chapterContent, /#skillsData\/sampleSkill/);
-  assert.match(chapterContent, /sampleSkill as skill_/);
+  assert.match(chapterContent, /import \\{ sampleSkill \\} from/);
   assert.match(chapterContent, /skill_[0-9a-f_]+\.id/);
   assert.match(chapterContent, /"lessonOne": child_lessonOne/);
   assert.match(chapterContent, /"episodeOne": child_episodeOne/);
@@ -217,7 +217,7 @@ test('parent indices distinguish the root content prefix from a unit named conte
 
   const plan = materializeCourseStage5(input, options());
   const [nested] = plan.inventory.lessons.filter(row => row.slug === 'lessonOne');
-  assert.equal(nested.placementSourcePath, root + '/content/content/content/index.ts');
+  assert.equal(nested.placementSourcePath, root + '/content/index.ts');
   const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
   assert.equal(direct.placementSourcePath, root + '/index.ts');
   assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('child_lessonOne'));
@@ -305,7 +305,7 @@ test('existing Lesson preserves source-authored plain Config patch and placement
     false,
   );
   assert.equal(
-    result.files.some(file => file.path === root + '/content/directLesson/index.ts'),
+    result.files.some(file => file.path === root + '/directLesson/index.ts'),
     false,
   );
   const main = result.files.find(file => file.path === root + '/index.ts');
@@ -344,7 +344,7 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   );
   assert.equal(references[0].sourcePath, references[1].sourcePath);
   assert.equal(
-    result.files.some(file => file.path === root + '/content/secondLesson/index.ts'),
+    result.files.some(file => file.path === root + '/secondLesson/index.ts'),
     false,
   );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
@@ -541,11 +541,11 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     },
   };
   chapterContent.order.push('reused');
-  chapterContent.items.chapterReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
   chapterContent.order.push('chapterReview');
-  module.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  module.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
   module.order.push('moduleReview');
-  top.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
+  top.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
   top.order.push('finalReview');
   const plan = materializeCourseStage5(input, reuseOptions());
   assert.equal(plan.inventory.episodes.length, 4);
@@ -588,11 +588,11 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
   const moduleContent = rootContent.items.moduleOne.config.content;
   const chapterContent = moduleContent.items.chapterOne.config.content;
 
-  chapterContent.items.chapterReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
   chapterContent.order.push('chapterReview');
-  moduleContent.items.moduleReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne');
+  moduleContent.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
   moduleContent.order.push('moduleReview');
-  rootContent.items.finalReview = assessmentSlot('content/moduleOne/chapterOne/lessonOne', 'content/directLesson');
+  rootContent.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
   rootContent.order.push('finalReview');
 
   const result = materializeCourseStage5(input, options());
@@ -603,14 +603,14 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
   );
   const paths = result.inventory.assessments.map(row => row.sourcePath);
   assert.deepEqual(paths, [
-    root + '/content/moduleOne/chapterOne/content/chapterReview/draft.ts',
-    root + '/content/moduleOne/content/moduleReview/draft.ts',
-    root + '/content/finalReview/draft.ts',
+    root + '/moduleOne/chapterOne/chapterReview/draft.ts',
+    root + '/moduleOne/moduleReview/draft.ts',
+    root + '/finalReview/draft.ts',
   ]);
   for (const row of result.inventory.assessments) {
     assert.equal(
       row.id,
-      deriveCourseEntityId(rootId, 'assessment', row.placementPath.slice((root + '/content/').length)),
+      deriveCourseEntityId(rootId, 'assessment', (row.placementPath.includes('/') ? row.placementPath.slice((root + '/').length).split('/').slice(0, -1).join('/') + '/content/' + row.slug : row.slug)),
     );
     assert.equal(row.status, 'pending-assessment-design');
     const seed = result.files.find(file => file.path === row.sourcePath);
@@ -628,7 +628,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
-    assert.ok(row.lessonDependencies.every(path => path.startsWith('content/')));
+    assert.ok(row.lessonDependencies.every(path => !path.startsWith('content/')));
   }
   assert.deepEqual(result.inventory, materializeCourseStage5(input, options()).inventory);
 });
@@ -636,22 +636,22 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
 test('Course Assessment placement rejects missing, forward, repeated and ambiguous Lesson dependencies', () => {
   const base = source();
   const content = base.config.content;
-  content.items.finalReview = assessmentSlot('content/missingLesson');
+  content.items.finalReview = assessmentSlot('missingLesson');
   content.order.push('finalReview');
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
-  content.items.finalReview = assessmentSlot('content/directLesson', 'content/directLesson');
+  content.items.finalReview = assessmentSlot('directLesson', 'directLesson');
   assert.throws(() => materializeCourseStage5(base, options()), /duplicat/i);
 
-  content.items.finalReview = assessmentSlot('content/directLesson');
+  content.items.finalReview = assessmentSlot('directLesson');
   content.order.unshift(content.order.pop());
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
   const another = source();
-  another.config.content.items.finalReview = assessmentSlot('content/directLesson');
+  another.config.content.items.finalReview = assessmentSlot('directLesson');
   another.config.content.order.push('finalReview');
   another.config.content.items.moduleOne.config.content.items.chapterOne.config.content.items.chapterReview =
-    assessmentSlot('content/directLesson');
+    assessmentSlot('directLesson');
   const chapter = another.config.content.items.moduleOne.config.content.items.chapterOne.config.content;
   chapter.order.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
@@ -776,7 +776,7 @@ test('Course Stage 5 normalizes reviewed English workflow fields and preserves o
     config: { type: 'assessment', locale: { title: 'Check knowledge' } },
     production: {
       purpose: 'Check understanding of the first Lesson',
-      lessonDependencies: ['content/moduleOne/chapterOne/lessonOne'],
+      lessonDependencies: ['moduleOne/chapterOne/lessonOne'],
     },
   };
   chapter.config.content.order.push('chapterReview');
@@ -792,19 +792,19 @@ test('Course Stage 5 normalizes reviewed English workflow fields and preserves o
   for (const phrase of ['Observe our world', 'Start here', 'Learn to observe'])
     assert.ok(index.includes('"en": "' + phrase + '"'));
   assert.ok(!index.includes('"uk": "Observe our world"'));
-  assert.match(file(root + '/content/moduleOne/index.ts'), /"en": "Module"/);
-  const child = file(root + '/content/moduleOne/chapterOne/index.ts');
+  assert.match(file(root + '/moduleOne/index.ts'), /"en": "Module"/);
+  const child = file(root + '/moduleOne/chapterOne/index.ts');
   assert.match(child, /"en": "Chapter"/);
   assert.match(child, /"uk": "Розділ"/);
   const seeds = result.files.filter(item => item.path.includes('/data/lessons/'));
   assert.equal(seeds.length, 2);
   assert.ok(seeds.some(seed => seed.content.includes('"en": "First Lesson"')));
   assert.ok(seeds.some(seed => seed.content.includes('"uk": "Урок"')));
-  const assessmentSeed = result.files.find(item => item.path.endsWith('/content/chapterReview/draft.ts'));
+  const assessmentSeed = result.files.find(item => item.path.endsWith('/chapterReview/draft.ts'));
   assert.ok(assessmentSeed);
   assert.match(assessmentSeed.content, /"en": "Check knowledge"/);
   assert.doesNotMatch(assessmentSeed.content, /"uk": "Check knowledge"/);
-  const episodeHandoff = file(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts');
+  const episodeHandoff = file(root + '/moduleOne/chapterOne/episodeOne/draft.ts');
   assert.match(episodeHandoff, /"document": "en"/);
   assert.doesNotMatch(episodeHandoff, /"locale": \{/);
   const constants = file(root + '/constants.ts');
