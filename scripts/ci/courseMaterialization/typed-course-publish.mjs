@@ -197,8 +197,7 @@ function assertCourseInventory(manifest, meta, entries) {
         const parent = parentSource(row);
         const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
         const exportedName = row.kind === 'reused' ? row.sourceExportName : row.slug;
-        const placement =
-          exportedName === row.slug ? row.slug : JSON.stringify(row.slug) + ': ' + exportedName;
+        const placement = exportedName === row.slug ? row.slug : JSON.stringify(row.slug) + ': ' + exportedName;
         // Pure reuse links the verified standalone Lesson directly. An
         // overridden placement instead links a Course-owned adapter, whose
         // exact original Lesson import and placeLesson invocation must both
@@ -235,7 +234,9 @@ function assertCourseInventory(manifest, meta, entries) {
               '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
                 'export const ' +
                 row.slug +
-                ' = placeLesson(' + row.sourceExportName + ', ',
+                ' = placeLesson(' +
+                row.sourceExportName +
+                ', ',
             )
           )
             throw Error('Course Lesson override placement module lacks verified original or Build patch');

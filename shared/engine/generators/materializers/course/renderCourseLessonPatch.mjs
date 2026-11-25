@@ -113,8 +113,12 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
       files.push({
         path: directory + '/sections/' + sectionKey + '/index.ts',
         kind: 'typescript',
-        content: dependency + '\n' +
-          (sectionKey === exportName ? 'export { ' + exportName + ' };\n' : 'export const ' + sectionKey + ' = ' + exportName + ';\n'),
+        content:
+          dependency +
+          '\n' +
+          (sectionKey === exportName
+            ? 'export { ' + exportName + ' };\n'
+            : 'export const ' + sectionKey + ' = ' + exportName + ';\n'),
       });
       imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
       rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), sectionKey);

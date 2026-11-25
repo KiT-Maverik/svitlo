@@ -16,10 +16,7 @@ const source =
   importLine +
   'const content = { items: { before, review }, order: ["before", "review"] };\n' +
   'export const moduleOne = defineModule({ content });\n';
-const validSource = source.replace(
-  'const content',
-  'import { before } from "./before";\nconst content',
-);
+const validSource = source.replace('const content', 'import { before } from "./before";\nconst content');
 const allocation = {
   kind: 'assessment',
   id,

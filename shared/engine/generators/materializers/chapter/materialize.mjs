@@ -328,9 +328,7 @@ export function materializeChapter(input, context = {}) {
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
-        imports.push(
-          'import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';',
-        );
+        imports.push('import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';');
         if (child.patchSource !== undefined) {
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + child.sourceExportName + ', ' + child.patchSource + ')';

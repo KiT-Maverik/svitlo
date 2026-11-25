@@ -277,7 +277,10 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.match(result.files.find(f => f.path === 'index.ts').content, /newLesson/);
-  assert.match(result.files.find(f => f.path === 'newLesson/stub.ts').content, /export const newLesson = defineLessonStub/);
+  assert.match(
+    result.files.find(f => f.path === 'newLesson/stub.ts').content,
+    /export const newLesson = defineLessonStub/,
+  );
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
   assert.doesNotMatch(
     result.files.find(f => f.path === 'index.ts').content,

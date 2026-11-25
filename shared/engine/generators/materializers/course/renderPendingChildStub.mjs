@@ -40,7 +40,9 @@ export function renderPendingChildStub({ directory, kind, id, slug }) {
       api +
       " } from '@svitlo/engine/build';\n" +
       renderBlockerTodo(instructions[kind]) +
-      '\nexport const ' + slug + ' = ' +
+      '\nexport const ' +
+      slug +
+      ' = ' +
       api +
       '({ id: ' +
       JSON.stringify(id) +
@@ -62,7 +64,9 @@ export function renderPendingChildImport({ kind, slug, location }) {
         kind +
         ' stub imported until the child Configurator, resources, Scenes, banks, translations and TypeScript/preview checks are verified for Course integration; then the Coding Agent replaces this import with the canonical real Configurator import and deletes only this child stub.ts. Materialization alone never activates the child.',
     ) +
-    '\nimport { ' + slug + ' } from ' +
+    '\nimport { ' +
+    slug +
+    ' } from ' +
     JSON.stringify(location + slug + '/stub') +
     ';'
   );

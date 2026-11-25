@@ -581,8 +581,7 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     assert.ok(parent.content.includes('/' + row.slug + '/stub'));
     const lines = parent.content.split('\n');
     const imported = lines.findIndex(
-      line =>
-        line.includes('import { ' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
+      line => line.includes('import { ' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
     );
     assert.ok(imported > 0, row.placementPath);
     assert.match(lines[imported - 1], /^\/\/ TODO \(BLOCKER\): Keep this pending /);

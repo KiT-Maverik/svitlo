@@ -21,7 +21,9 @@ const stubSource = ({ kind, id, slug }) =>
   api(kind) +
   " } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete the child, replace its parent import, then delete this stub.\n' +
-  'export const ' + slug + ' = ' +
+  'export const ' +
+  slug +
+  ' = ' +
   api(kind) +
   '({ id: ' +
   JSON.stringify(id) +
@@ -39,7 +41,9 @@ function parent(kind, depth, directChapter = false) {
     'import { ' +
     owner +
     ", defineLessonStub } from '@svitlo/engine/build';\n" +
-    'import { ' + slug + ' } from "' +
+    'import { ' +
+    slug +
+    ' } from "' +
     prefix +
     slug +
     '/stub";\n' +

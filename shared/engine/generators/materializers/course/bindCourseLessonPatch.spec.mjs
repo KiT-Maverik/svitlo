@@ -44,10 +44,7 @@ test('inert Section reference binds to approved Configurator without mutating re
   assert.match(result.patchSource, /"allowSkipping": false/);
   assert.match(result.patchSource, /"intro": false/);
   assert.match(result.patchSource, /"order": \["practice"\]/);
-  assert.match(
-    result.patchSource,
-    /"additionalItems": \{"practice": practice\}/,
-  );
+  assert.match(result.patchSource, /"additionalItems": \{"practice": practice\}/);
   assert.equal(result.imports.length, 1);
   assert.match(result.imports[0], /#lessonsData\/1\/1368c1c9-2fd8-4007-b2c8-6bbfd98d5111\/sections\/practice/);
   assert.equal(result.patchSource.includes('"$ref"'), false);
