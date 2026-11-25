@@ -32,7 +32,7 @@ test('all six kinds enforce the selected final-stage type and canonical schema',
   for (const kind of Object.keys(stageNames) as DeclarativeDraftEntityKind[]) {
     assert.deepEqual(Object.keys(parseInertDraftSyntax(draft(kind), kind) as object), ['config', 'production']);
     rejects(draft(kind), kind === 'course' ? 'lesson' : 'course');
-    assert.throws(() => readDeclarativeDraft(draft(kind), kind), /Declarative draft schema at \\d+:\\d+:/);
+    assert.throws(() => readDeclarativeDraft(draft(kind), kind), /Declarative draft schema at \d+:\d+:/);
   }
 });
 
@@ -157,4 +157,86 @@ test('schema errors use the operation-specific validator and are deterministic',
   };
   assert.match(getMessage(), /Declarative draft schema/);
   assert.equal(getMessage(), getMessage());
+});
+
+
+test('canonical Course Stage3 validates the decoded plain object and rejects unknown nested keys', () => {
+  const valid = {
+    config: {
+      id: 'ddbb8f45-c824-4f19-9f8c-25869dc6142b',
+      type: 'course',
+      slug: 'pilot',
+      content: { items: {}, order: [] },
+    },
+    production: {
+      languages: { document: 'en', planned: ['en'] },
+      methodology: {
+        purpose: 'Astronomy', audience: 'Learners', approach: 'Observation',
+        depth: 'Introductory', accessibility: 'Screen reader support',
+        scope: 'Solar system', entryConditions: 'None', sourceNotes: 'Reviewed',
+      },
+      outcomes: { explanation: 'Identify the concepts' },
+      prerequisites: { explanation: 'None' },
+      standardsAlignment: [],
+      openDecisions: {},
+    },
+  };
+  const parsed = readDeclarativeDraft(draft('course', JSON.stringify(valid)), 'course');
+  assert.equal(parsed.config.slug, 'pilot');
+  assert.deepEqual(JSON.parse(JSON.stringify(parsed)), valid);
+  assert.throws(
+    () => readDeclarativeDraft(
+      draft('course', JSON.stringify({ ...valid, config: { ...valid.config, params: { rogue: true } } })),
+      'course',
+    ),
+    /Declarative draft schema at \d+:\d+:/,
+  );
+});
+
+test('canonical Lesson Stage2 validates inert source with all required assessment decisions', () => {
+  const valid = {
+    config: {
+      id: 'f9270410-238c-42f8-8686-76cb40f2d967',
+      type: 'lesson',
+      slug: 'pilotLesson',
+      locale: { title: 'Welcome — Привіт' },
+      params: { quizRequiredForCompletion: false },
+      skills: ['6a5d75dc-aad8-4750-a465-b992975228e1'],
+      section: { items: {}, order: [] },
+      events: {},
+    },
+    production: {
+      languages: { document: 'en', planned: ['en'] },
+      methodology: 'Learning by doing',
+      objective: 'Understand the topic',
+      depth: 'Introduction',
+      sequenceReason: 'From simple to complex',
+      assessmentEvidence: 'Independent evidence',
+      assessment: {
+        questionBankRequired: false,
+        flashcardBankRequired: false,
+        quizSectionRequired: false,
+        flashcardsSectionRequired: false,
+      },
+    },
+  };
+  const parsed = readDeclarativeDraft(draft('lesson', JSON.stringify(valid)), 'lesson');
+  assert.equal(parsed.config.slug, 'pilotLesson');
+  assert.deepEqual(JSON.parse(JSON.stringify(parsed)), valid);
+});
+
+test('schema diagnostics point to the source path and reject wrong root kind', () => {
+  const text = [
+    'import type { CourseWorkflowStage3 } from "@svitlo/engine/build";',
+    'export default {',
+    '  config: { type: "course", id: "invalid", slug: "pilot", content: { items: {}, order: [] } },',
+    '  production: {},',
+    '} satisfies CourseWorkflowStage3;',
+  ].join('\n');
+  assert.throws(
+    () => readDeclarativeDraft(text, 'course'),
+    error => error instanceof DeclarativeDraftError &&
+      error.code === 'schema' && error.line === 3 && error.column > 1,
+  );
+  rejects(draft('lesson'), 'course');
 });
