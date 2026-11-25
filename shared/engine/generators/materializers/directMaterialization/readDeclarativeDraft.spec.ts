@@ -144,6 +144,8 @@ test('reject syntax errors, interpolation, excess depth and source size', () => 
   rejects('export default { config: {}, production: } satisfies LessonWorkflowStage2;');
   rejects('export default { config: {}, production: {');
   rejects(draft('lesson', '{ config: { value: ' + '[ '.repeat(110) + '1' + ' ]'.repeat(110) + ' }, production: {} }'));
+  rejects(draft('lesson', '{ config: { value: ' + '('.repeat(110) + '1' + ')'.repeat(110) + ' }, production: {} }'));
+  rejects(draft('lesson', '('.repeat(110) + '{ config: {}, production: {} }' + ')'.repeat(110)));
   assert.throws(
     () => parseInertDraftSyntax('x'.repeat(4 * 1024 * 1024 + 1), 'course'),
     /Source must be a string/,
