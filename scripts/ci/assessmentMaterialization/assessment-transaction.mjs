@@ -99,9 +99,18 @@ export function parseAssessmentSeed(source) {
     !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(seed.production.languages.document ?? '') ||
     !Array.isArray(seed.production.languages.planned) ||
     !seed.production.languages.planned.includes(seed.production.languages.document) ||
+    seed.production.languages.planned.some(code => typeof code !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(code)) ||
     new Set(seed.production.languages.planned).size !== seed.production.languages.planned.length
   )
     throw Error('Invalid pinned Assessment seed identity and planning data');
+  const title = seed.config.locale?.title;
+  const language = seed.production.languages.document;
+  if (
+    !((typeof title === 'string' && title.trim()) ||
+      (title && typeof title === 'object' && !Array.isArray(title) &&
+        typeof title[language] === 'string' && title[language].trim()))
+  )
+    throw Error('Pinned Assessment seed lacks the approved Course source-language title');
   return seed;
 }
 
