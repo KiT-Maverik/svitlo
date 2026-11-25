@@ -74,7 +74,7 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
     /Invalid pinned Assessment seed/,
   );
   assert.throws(
-    () => parseAssessmentSeed(source.replace('"content\\/newLesson"', '"content\\/foreign"')),
+    () => parseAssessmentSeed(source.replace('"content/newLesson"', '"content/../foreign"')),
     /Invalid pinned Assessment seed/,
   );
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
