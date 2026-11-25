@@ -20,10 +20,10 @@ const addedSection = (sourceSha = sha, ownerLessonId = id) => ({
   sourceSha,
   exportName: 'practice',
 });
-const withSection = (sourceSha = sha, ownerLessonId = id) => ({
+const withSection = (sourceSha = sha, ownerLessonId = id, lessonSourceSha = sha) => ({
   config: { type: 'lesson', slug: 'first' },
   production: {
-    ...reuse().production,
+    ...reuse(lessonSourceSha).production,
     sourcePatch: {
       section: { additionalItems: { practice: addedSection(sourceSha, ownerLessonId) }, order: ['practice'] },
     },
@@ -138,7 +138,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
 
   calls.length = 0;
   const withAdded = {
-    config: { content: { items: { reused: withSection(sectionBlob) }, order: ['reused'] } },
+    config: { content: { items: { reused: withSection(sectionBlob, id, expectedBlob) }, order: ['reused'] } },
   };
   const withAddedResult = runIsolatedCourseDependencies({ ...request, input: withAdded }, fakeSpawn);
   assert.equal(withAddedResult.publishable, false);
@@ -159,7 +159,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
         {
           ...request,
           input: {
-            config: { content: { items: { reused: withSection('c'.repeat(40)) } } },
+            config: { content: { items: { reused: withSection('c'.repeat(40), id, expectedBlob) } } },
           },
         },
         fakeSpawn,
@@ -176,7 +176,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
           ...request,
           input: {
             config: {
-              content: { items: { reused: withSection(sectionBlob, '33333333-3333-4333-8333-333333333333') } },
+              content: { items: { reused: withSection(sectionBlob, '33333333-3333-4333-8333-333333333333', expectedBlob) } },
             },
           },
         },
