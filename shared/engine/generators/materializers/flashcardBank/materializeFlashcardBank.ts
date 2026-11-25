@@ -196,6 +196,8 @@ export function materializeFlashcardBank(
 ): BankSourceResult {
   const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
   if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+  // Pin the exact trusted Reader value, not Zod's reconstructed output.
+  assertPinnedBankInput(input, authorization.source);
   return planFlashcardBank(parsed.data, authorization);
 }
 
@@ -204,7 +206,6 @@ function planFlashcardBank(
   authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
   validateStage1(input, authorization);
-  assertPinnedBankInput(input, authorization.source);
   const inventory = input.config.flashcards;
   assertBankOrder(inventory.items, inventory.order, 'Flashcard inventory', true);
   assertUniqueBankEntityIds(inventory);
