@@ -49,13 +49,9 @@ function literal(value, path = [], references = new Map()) {
  *   {imports:string[], aliases:Record<string,string>}}} args
  */
 export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
-  if (
-    !directory ||
-    directory.split('/').some(part => !slug.test(part) || reserved.has(part)) ||
-    !record(rawPatch) ||
-    !record(binding) ||
-    !Array.isArray(binding.imports)
-  )
+  if (typeof directory !== 'string' || !directory) throw Error('Unsafe or missing Course Lesson placement source');
+  for (const part of directory.split('/')) clean(part, 'placement');
+  if (!record(rawPatch) || !record(binding) || !Array.isArray(binding.imports))
     throw Error('Unsafe or missing Course Lesson placement source');
   const imports = [];
   const files = [];
