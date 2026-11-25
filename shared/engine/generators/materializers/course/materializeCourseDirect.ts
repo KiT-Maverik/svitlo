@@ -14,7 +14,7 @@ export function materializeCourse(input: CourseWorkflowStage3, options: CourseSt
     // Trust boundary: only compiled default-branch Lesson concrete renderers
     // generate newly authored Course-owned Section and ContentBlock source.
     renderAddedSection: (section, context) =>
-      materializeCourseOwnedLessonSection(section, {
+      materializeWorkflowSection(section, {
         directory: context.directory,
         documentLanguage,
         languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/constants',
