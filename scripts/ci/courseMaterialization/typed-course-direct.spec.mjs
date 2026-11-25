@@ -200,7 +200,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     edit(manifest);
     assert.throws(
       () => verifyTypedCourseManifest(manifest, pinned),
-      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import|Unsafe|placement|parent/i,
+      /inventory|handoff|seed|duplicate|Unregistered|missing|invalid|Malformed|Episode|reference|canonical import|Unsafe|placement|parent|stub|alias|syntax|Unexpected/i,
     );
   };
   const seed = complete.inventory.lessons.find(x => x.kind === 'new').sourcePath;
@@ -231,7 +231,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   });
   mutate(m => {
     const row = m.inventory.lessons.find(item => item.kind === 'new');
-    const file = m.entries.find(item => item.path === row.placementSourcePath);
+    const file = m.entries.find(item => item.path === row.stubSourcePath);
     const content = Buffer.from(file.data, 'base64').toString('utf8');
     const replacement = content.replace(
       'defineLessonStub({ id: "' + row.id + '"',
@@ -247,6 +247,37 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     file.path = m.sourcePath.replace('/draft.ts', '/content/spurious/constants.ts');
   });
 
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    m.entries = m.entries.filter(file => file.path !== row.stubSourcePath);
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    m.inventory.lessons.find(item => item.kind === 'new').stubSourcePath = row.sourcePath;
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    const file = m.entries.find(item => item.path === row.stubSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const altered = source + 'process.exit(1);\n';
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    const file = m.entries.find(item => item.path === row.placementSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const altered = source.replace('stub as child_' + row.slug, 'stub as wrong_' + row.slug);
+    assert.notEqual(source, altered);
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'new');
+    const file = structuredClone(m.entries.find(entry => entry.path === row.stubSourcePath));
+    file.path = m.sourcePath.replace('/draft.ts', '/content/foreign/stub.ts');
+    m.entries.push(file);
+  });
   mutate(m => {
     m.pendingEpisodes = [m.pendingEpisodes[0], m.pendingEpisodes[0]];
   });
@@ -289,7 +320,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   );
 });
 
-test('trusted Course manifest seals Assessment seed, inline parent and upstream Lesson inventory', () => {
+test('trusted Course manifest seals Assessment seed, imported stub and upstream Lesson inventory', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
   const firstLesson = defineLesson(independentLessonConfig());
@@ -322,7 +353,7 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
   assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
-  assert.match(plan.files.find(f => f.path === row.placementSourcePath).content, /defineAssessmentStub\(\{/);
+  assert.match(plan.files.find(f => f.path === row.stubSourcePath).content, /defineAssessmentStub\(\{/);
   const sealed = buildTypedCourseManifest(pinned, plan);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
   const mutate = patch => {
