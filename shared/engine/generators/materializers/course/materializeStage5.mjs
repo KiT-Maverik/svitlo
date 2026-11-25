@@ -294,6 +294,7 @@ export function materializeCourseStage5(input, options = {}) {
     let patchSource;
     let extraImports = [];
     let placementFiles = [];
+    let placementDiagnostics = [];
     if (hasPatch) {
       const rawPatch = production.sourcePatch;
       if (!record(rawPatch) || !Object.keys(rawPatch).length || !production.overrideRationale?.trim())
@@ -309,7 +310,26 @@ export function materializeCourseStage5(input, options = {}) {
       const binding = bindCourseLessonPatch(rawPatch, {
         placementPath: context.directory,
         resolveAddedSection: options.resolveAddedSection,
+        renderAddedSection: options.renderAddedSection,
       });
+      const created = Object.keys(binding.createdSections);
+      if (created.length) {
+        // The complete placement order is checked against immutable original
+        // keys and both kinds of additions before any source is emitted.
+        const originals = Object.keys(lesson.configurator.section.items);
+        const disabled = Object.entries(rawPatch.section?.items ?? {})
+          .filter(([, value]) => value === false)
+          .map(([key]) => key);
+        const expected = [...originals.filter(key => !disabled.includes(key)),
+          ...Object.keys(rawPatch.section?.additionalItems ?? {})];
+        const order = rawPatch.section?.order;
+        if (!Array.isArray(order) || order.length !== expected.length ||
+            new Set(order).size !== expected.length ||
+            order.some(key => !expected.includes(key)))
+          throw Error(context.directory + ': Course-owned Section order must include all and only active Sections');
+      }
+      placementDiagnostics = Object.values(binding.createdSections)
+        .flatMap(section => section.diagnostics ?? []);
       const layout = renderCourseLessonPatch({ directory: context.directory, rawPatch, binding });
       patchSource = layout.patchSource;
       extraImports = layout.imports;
@@ -331,7 +351,25 @@ export function materializeCourseStage5(input, options = {}) {
         },
       ];
       try {
-        const built = lesson.configurator.build.overrides(binding.patch, { languages: patchLanguages });
+        // A newly authored Section does not exist as an executable Build
+        // Configurator yet. Validate the exact existing-source portion through
+        // the genuine Build API; the new Section subtree is independently Zod-
+        // validated and rendered by trusted concrete Section/Block materializers.
+        // Publication remains blocked until the generated sources are compiled.
+        let checkedPatch = binding.patch;
+        if (created.length) {
+          const external = { ...binding.patch.section.additionalItems };
+          for (const key of created) delete external[key];
+          checkedPatch = {
+            ...binding.patch,
+            section: {
+              ...binding.patch.section,
+              additionalItems: external,
+              order: binding.patch.section.order.filter(key => !created.includes(key)),
+            },
+          };
+        }
+        const built = lesson.configurator.build.overrides(checkedPatch, { languages: patchLanguages });
         if (built.id !== existing.id)
           throw new Error('Lesson Build override changed the independently owned Lesson identity');
       } catch (error) {
@@ -366,7 +404,7 @@ export function materializeCourseStage5(input, options = {}) {
       sourceExportName: hasPatch ? 'placedLesson' : lesson.exportName,
       importPath: hasPatch ? './' + placementSlug : lesson.importPath,
       files: placementFiles,
-      diagnostics: [],
+      diagnostics: placementDiagnostics,
     };
   };
 
