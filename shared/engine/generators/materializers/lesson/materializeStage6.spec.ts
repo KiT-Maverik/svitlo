@@ -12,7 +12,7 @@ import { defineLesson } from '../../../configurators/lessons/defineLesson/define
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import { assertLessonStage6ReleaseReady, materializeLessonStage6 } from './materializeStage6';
+import { assertLessonStage6ReleaseReady, materializeCourseOwnedLessonSection, materializeLessonStage6 } from './materializeStage6';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
@@ -1116,4 +1116,73 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
     0,
   );
   assert(plan.files.every(file => !file.path.endsWith('/sceneLoader.ts')));
+});
+
+
+test('Course-owned Sections preserve blocked direct and nested Scene sources without registering executable Scenes', () => {
+  const original = valid().config.section.items.introduction;
+  const scene = (suffix: string, slug: string) => ({
+    config: {
+      id: id(suffix),
+      type: 'scene' as const,
+      slug,
+      params: {},
+      locale: { value: { instruction: { en: 'Observe the shadow or read its description.' } } },
+    },
+    production: {
+      purpose: 'Exercise an accessible shadow interaction',
+      specification: 'Implement and test a keyboard-operable light and shadow interaction.',
+      accessibility: 'Include readable feedback and a nonvisual alternative.',
+      offline: 'The verified interaction must work without a network.',
+      readiness: 'production-pending' as const,
+    },
+  });
+  const section = {
+    ...original,
+    config: {
+      ...original.config,
+      content: {
+        items: {
+          ...original.config.content.items,
+          shadowScene: scene('95', 'shadowScene'),
+          shadowCarousel: {
+            config: {
+              id: id('96'),
+              type: 'carousel' as const,
+              slug: 'shadowCarousel',
+              params: { showArrows: true },
+              locale: { title: { en: 'Compare shadows' } },
+              slides: {
+                items: { nestedScene: scene('97', 'nestedScene') },
+                order: ['nestedScene'],
+              },
+            },
+            production: { purpose: 'Exercise nested Scene materialization' },
+          },
+        },
+        order: ['prompt', 'shadowScene', 'shadowCarousel'],
+      },
+    },
+  };
+  const result = materializeCourseOwnedLessonSection(
+    section as unknown as Parameters<typeof materializeCourseOwnedLessonSection>[0],
+    {
+      directory: 'shadowPractice/sections/exhibitionNotes',
+      documentLanguage: 'en',
+      languagesImport: '#coursesData/1/12345678-1234-4234-8234-123456789001/constants',
+    },
+  );
+  const direct = result.files.find(file => file.path.endsWith('/shadowScene/index.ts'));
+  const nested = result.files.find(file => file.path.endsWith('/nestedScene/index.ts'));
+  for (const source of [direct, nested]) {
+    assert.ok(source, 'both direct and nested Scenes must emit their own Configurator sources');
+    assert.match(source.content, /defineScene/);
+    assert.match(source.content, /TODO \(BLOCKER\): Implement and register Scene/);
+    assert.match(source.content, /keyboard-operable light and shadow interaction/);
+  }
+  assert.ok(result.diagnostics.filter(d => d.code === 'pending-scene').length >= 2);
+  assert.ok(
+    result.files.every(file => !file.path.endsWith('.tsx') && !file.path.endsWith('.module.css')),
+    'Course Stage 5 must not silently create executable Scene sources or register them',
+  );
 });
