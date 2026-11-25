@@ -3,9 +3,10 @@ import test from 'node:test';
 import { composeEpisodeDirectPlan } from './episode-source.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
+import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { buildEpisodeManifest, episodeCommitTree, checkEpisodeTargets } from './episode-transaction.mjs';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
-const episodeId = '663572e7-bd85-4516-86e2-3de07d209e04';
+const episodeId = deriveCourseEntityId(courseId, 'episode', 'episodeOne');
 const courseRoot = 'content/playground/data/courses/3/' + courseId;
 const placement = 'content/episodeOne';
 const handoff = {
@@ -13,7 +14,6 @@ const handoff = {
   production: {
     focus: 'Narrative change',
     purpose: 'Review the sequence',
-    placement: { courseId, path: placement, orderPath: [0], reviewedCourseSourceBlobSha: 'a'.repeat(40) },
     languages: { document: 'uk', planned: ['uk'] },
   },
 };
@@ -62,21 +62,18 @@ const meta = {
   sourceBlobSha: 'b'.repeat(40),
   head: 'c'.repeat(40),
 };
-const marker =
-  '// TODO (BLOCKER): Episode Stage 1 handoffs are not completed Episode Configurators. Do not publish.\n' +
-  '// Reviewed original content order: ["episodeOne"]\n' +
-  '// Pending Episode handoffs: ' +
-  JSON.stringify([
-    {
-      path: placement,
-      slug: 'episodeOne',
-      episodeId,
-      handoffPath: placement + '/draft.ts',
-      orderIndex: 0,
-    },
-  ]) +
-  '\n';
-const parent = 'const content = { items:{},order:[] };\n' + marker;
+const parent =
+  "import { defineCourse, defineEpisodeStub, defineLessonStub } from '@svitlo/engine/build';\n" +
+  'const content = { items: { ' +
+  '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
+  '"episodeOne": defineEpisodeStub({ id: ' +
+  JSON.stringify(episodeId) +
+  ', slug: "episodeOne" }), ' +
+  '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
+  '}, order: ["before", "episodeOne", "after"] };\n' +
+  'export const demo = defineCourse({ id: ' +
+  JSON.stringify(courseId) +
+  ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
 test('trusted Episode composition only rewrites the allocated Course slot, never arbitrary parent content', () => {
   const worker = {
     episodeId,
@@ -93,7 +90,11 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
     combined.files.find(x => x.path === meta.parentPath).content,
     /'episodeOne': child_episodeOne|"episodeOne": child_episodeOne/,
   );
-  assert.doesNotMatch(combined.files.find(x => x.path === meta.parentPath).content, /Pending Episode handoffs/);
+  assert.match(
+    combined.files.find(x => x.path === meta.parentPath).content,
+    /order: \["before", "episodeOne", "after"\]/,
+  );
+  assert.match(combined.files.find(x => x.path === meta.parentPath).content, /defineLessonStub/);
   const manifest = buildEpisodeManifest(meta, combined);
   assert.equal(manifest.sourceExportName, worker.exportName);
   const generatedParent = combined.files.find(file => file.path === meta.parentPath).content;
@@ -207,7 +208,7 @@ test('canonical Course-generated Episode handoff is JSON in an exact TypeScript 
     '// prettier-ignore\nexport const episodeStage1 = ',
   );
   assert.deepEqual(parseEpisodeHandoff(guarded), handoff);
-  assert.throws(() => parseEpisodeHandoff(guarded.replace('// prettier-ignore', '// unreviewed-comment')));
+  assert.deepEqual(parseEpisodeHandoff(guarded.replace('// prettier-ignore', '// editorial context')), handoff);
   assert.throws(() => parseEpisodeHandoff(original.replace('as const satisfies', 'as never satisfies')));
   assert.throws(() => parseEpisodeHandoff(original + 'process.exit(1);'));
 });

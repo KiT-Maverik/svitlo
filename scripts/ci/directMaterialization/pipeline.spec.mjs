@@ -9,8 +9,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { runIsolatedMaterialization, workerImage } from './run-isolated.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
+import { materializeCourseStage5 } from '../../../shared/engine/generators/materializers/course/materializeStage5.mjs';
 import { buildTypedCourseManifest } from '../courseMaterialization/typed-course-direct.mjs';
 import { verifyTypedCourseManifest } from '../courseMaterialization/typed-course-publish.mjs';
 import {
@@ -27,6 +29,11 @@ import {
   flashcardStage3,
 } from './fixtures/worker-inputs.mjs';
 
+const require = createRequire(import.meta.url);
+const { defineLesson, materializeLessonStage6 } = require('../../../shared/engine/dist/build.js');
+const {
+  courseWorkflowStage3_Schema,
+} = require('../../../shared/engine/dist/types/workflow/courseWorkflowFinal.schemas.js');
 const trustedRoot = fileURLToPath(new URL('../../..', import.meta.url));
 const textbook = 'content/math';
 const courseRoot = textbook + '/data/courses/3/' + courseId;
@@ -175,6 +182,39 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
         },
       });
     };
+    // The fixtures are repository-owned, not candidate-controlled code. Validate
+    // their real Build objects before testing the untrusted-source worker so a
+    // schema/materializer regression is actionable without leaking sandbox logs.
+    const trustedCourseFixture = courseStage3(
+      defineLesson(independentLessonConfig()),
+      defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+    );
+    const checkedCourse = courseWorkflowStage3_Schema.safeParse(trustedCourseFixture);
+    assert.equal(checkedCourse.success, true, checkedCourse.error?.message);
+    assert.equal(
+      materializeCourseStage5(trustedCourseFixture, {
+        textbookRoot: textbook,
+        source: {
+          sourcePath: paths.course,
+          sourceBlobSha: git(candidateRoot, 'rev-parse', 'HEAD:' + paths.course),
+        },
+        verifySource: () => true,
+      }).publishable,
+      false,
+    );
+
+    const lessonSourceText = fs.readFileSync(path.join(candidateRoot, paths.lesson), 'utf8');
+    const trustedLessonPlan = materializeLessonStage6(lessonStage2(), {
+      source: {
+        sourcePath: paths.lesson,
+        sourceBlobSha: git(candidateRoot, 'rev-parse', 'HEAD:' + paths.lesson),
+        sourceCommitSha: head,
+      },
+      sourceText: lessonSourceText,
+      verifySourceInput: () => true,
+    });
+    assert.equal(trustedLessonPlan.publishable, false);
+
     const coursePlan = invoke('course-stage5', paths.course);
     assert.equal(coursePlan.publishable, false);
     assert.equal(coursePlan.inventory.lessons.length, 3);
@@ -185,7 +225,17 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
     );
     assert(coursePlan.files.some(f => f.path.startsWith(textbook + '/data/lessons/') && f.path.endsWith('/draft.ts')));
     assert(coursePlan.files.some(f => f.path === courseRoot + '/content/episodeOne/draft.ts'));
-    assert(coursePlan.files.some(f => f.path === courseRoot + '/authoredCourseOverrides.ts'));
+    // Course placements import independent Lessons directly; a sparse patch
+    // belongs to its own placement, never to a Course-wide overrides sidecar.
+    assert(!coursePlan.files.some(f => f.path.endsWith('/authoredCourseOverrides.ts')));
+    const courseIndex = coursePlan.files.find(f => f.path === courseRoot + '/index.ts')?.content;
+    assert(courseIndex, 'Course Stage 5 must emit its canonical index.ts');
+    assert(courseIndex.includes('import { independentLesson as child_reused }'));
+    assert(courseIndex.includes('import { overriddenLesson as child_overridden }'));
+    assert(courseIndex.includes('"reused": child_reused'));
+    assert(courseIndex.includes('"overridden": placeLesson(child_overridden, {'));
+    assert(courseIndex.includes('"allowSkipping": false'));
+    assert.equal(courseIndex.split('placeLesson(').length - 1, 1);
     const meta = {
       version: 2,
       operation: 'typed-course-stage5',

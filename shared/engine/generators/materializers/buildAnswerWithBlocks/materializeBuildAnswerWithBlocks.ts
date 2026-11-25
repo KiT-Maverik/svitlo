@@ -5,6 +5,7 @@
  */
 import type { Question_BuildAnswerWithBlocks_Config } from '../../../configurators/questions/defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -297,7 +298,7 @@ export function materializeBuildAnswerWithBlocks(
         : []),
       ...imports.sort(),
       '',
-      ...blockers.map(reason => '// TODO (BLOCKER): ' + reason),
+      ...blockers.map(renderBlockerTodo),
       nested +
         'export const ' +
         exportedName +

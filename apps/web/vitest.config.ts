@@ -6,6 +6,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // Vitest has no Next.js server-only virtual module; preserve the
+      // production import while replacing it with an inert test boundary.
+      'server-only': fileURLToPath(new URL('./src/testing/server-only.mock.ts', import.meta.url)),
     },
   },
   test: {

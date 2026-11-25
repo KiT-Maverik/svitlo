@@ -88,7 +88,11 @@ test('youtube: composed nested source paths and Course language handoff', () => 
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
-  assert.match(nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '', /Reviewed source brief/);
+  const nestedSource = nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '';
+  assert.match(nestedSource, /Reviewed source brief/);
+  assert.match(nestedSource, /\/\*\n \* TODO \(BLOCKER\): Verify external video access, rights, captions/);
+  assert.match(nestedSource, /\n \* specification: Reviewed source brief\n \*\//);
+  assert.doesNotMatch(nestedSource, /\/\/ Reviewed external-video context/);
   assert.match(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content ?? '',
     /TODO \(BLOCKER\): Verify external video/,

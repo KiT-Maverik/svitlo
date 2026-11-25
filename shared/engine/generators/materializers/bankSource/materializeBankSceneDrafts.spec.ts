@@ -45,7 +45,7 @@ test('Question Bank reuses the canonical six-file source-only Scene scaffold', (
   );
   assert(output.every(file => file.content.includes('TODO (BLOCKER)')));
   const implementation = output[1].content;
-  assert.match(implementation, /\/\/ \*\//);
+  assert.match(implementation, /\* \* \/\n \* export const malicious = true;\n \*\//);
   assert.doesNotMatch(implementation, /^export const malicious = true;/m);
   assert.deepEqual(output, materializeBankSceneDrafts(bank(scene()), 'uk', evidence({})));
 });

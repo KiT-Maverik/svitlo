@@ -6,6 +6,10 @@ import test from 'node:test';
 import {
   defineChapter,
   defineCourse,
+  placeLesson,
+  defineLessonStub,
+  defineEpisodeStub,
+  defineAssessmentStub,
   defineLesson,
   defineModule,
   defineEpisode,
@@ -172,50 +176,12 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   });
 });
 
-test('Lesson base and locale override Props are stored at the same tree position in separate files', () => {
-  const { course, authoredPatch, getPatchCalls } = fixture();
-  const files = renderCourseFiles(course, { overrides: authoredPatch });
-  assert.equal(getPatchCalls(), 1);
-  const base = JSON.parse(files.get('base.json'));
-  const lessonRef = base.content.items.myModule.content.items.myChapter.content.items.myLesson;
-  assert.deepEqual(lessonRef, {
-    id: ids.lesson,
-    type: 'lesson',
-    overrides: { params: { sections: { allowSkipping: false } } },
-  });
-  const uk = JSON.parse(files.get('uk.json'));
-  const assembled = mergeCourseProps(base, uk);
-  assert.deepEqual(assembled.content.items.myModule.content.items.myChapter.content.items.myLesson, {
-    id: ids.lesson,
-    type: 'lesson',
-    overrides: {
-      params: { sections: { allowSkipping: false } },
-      locale: { title: 'Спеціальний урок' },
-    },
-  });
-  assert(!files.has('en.json'));
-  assert(!files.get('base.json').includes('Спеціальний урок'));
-  assert(![...files.values()].join('').includes('standalone-section'));
-});
-
-test('invariant child removal wins over a translated pre-override Course array', () => {
+test('Course publisher rejects a legacy root patch rather than ignoring its adaptations', () => {
   const { course } = fixture();
-  const disable = {
-    content: {
-      items: { myModule: false },
-      order: [],
-    },
-  };
-  course.build.overrides = value => {
-    assert.deepEqual(value, disable);
-    return { base: { content: [] }, locale: undefined };
-  };
-  const files = renderCourseFiles(course, { overrides: disable });
-  const base = JSON.parse(files.get('base.json'));
-  assert.deepEqual(base.content, { items: {}, order: [] });
-  const uk = JSON.parse(files.get('uk.json'));
-  assert.equal(Object.hasOwn(uk, 'content'), false, 'old localized child must not reappear');
-  assert.deepEqual(mergeCourseProps(base, uk).content, { items: {}, order: [] });
+  assert.throws(
+    () => renderCourseFiles(course, { overrides: { content: {} } }),
+    /Unsupported Course publication options.*placeLesson/,
+  );
 });
 
 test('deterministic publication, check mode, stale file cleanup and unrelated assets', () => {
@@ -347,7 +313,10 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
     type: 'chapter',
     params: {},
     locale: { title: 'Chapter' },
-    content: { items: { chapterUse: lesson }, order: ['chapterUse'] },
+    content: {
+      items: { chapterUse: placeLesson(lesson, { locale: { title: { uk: 'Розділ курсу' } } }) },
+      order: ['chapterUse'],
+    },
   });
   const module = defineModule({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d33',
@@ -363,25 +332,12 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
     type: 'course',
     params: { languages },
     locale: { title: 'Course', description: 'Course-specific nested and direct reuse' },
-    content: { items: { contextualModule: module, directUse: lesson }, order: ['contextualModule', 'directUse'] },
-  });
-  const overrides = {
     content: {
-      items: {
-        contextualModule: {
-          content: {
-            items: {
-              contextualChapter: {
-                content: { items: { chapterUse: { locale: { title: { uk: 'Розділ курсу' } } } } },
-              },
-            },
-          },
-        },
-        directUse: { locale: { title: 'Course direct title' } },
-      },
+      items: { contextualModule: module, directUse: placeLesson(lesson, { locale: { title: 'Course direct title' } }) },
+      order: ['contextualModule', 'directUse'],
     },
-  };
-  const files = renderCourseFiles(course, { overrides });
+  });
+  const files = renderCourseFiles(course);
   const base = JSON.parse(files.get('base.json'));
   const uk = JSON.parse(files.get('uk.json'));
   const chapterLesson = base.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse;
@@ -496,10 +452,12 @@ test('real Episode Configurators publish at all four levels with localized order
     type: 'course',
     params: { languages },
     locale: { title: 'Course', description: 'Story course' },
-    content: { items: { start, module, chapter, repeated: lesson }, order: ['start', 'module', 'chapter', 'repeated'] },
+    content: {
+      items: { start, module, chapter, repeated: placeLesson(lesson, { locale: { title: { uk: 'Контекст' } } }) },
+      order: ['start', 'module', 'chapter', 'repeated'],
+    },
   });
-  const overrides = { content: { items: { repeated: { locale: { title: { uk: 'Контекст' } } } } } };
-  const files = renderCourseFiles(course, { overrides });
+  const files = renderCourseFiles(course);
   const base = JSON.parse(files.get('base.json')),
     uk = JSON.parse(files.get('uk.json'));
   const assembled = assembleCourseTree(base, uk, course.id, 'uk');
@@ -537,4 +495,192 @@ test('real Episode Configurators publish at all four levels with localized order
     content: { items: { unsupported }, order: ['unsupported'] },
   });
   assert.throws(() => renderCourseFiles(bad), /unsupported Episode events/i);
+});
+
+test('real placement-local Lesson patch publishes only sparse overrides at each placement without Course-root patch', () => {
+  const languages = ['en', 'uk'];
+  const lesson = defineLesson({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d21',
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Original', uk: 'Оригінал' } },
+    section: { items: {}, order: [] },
+  });
+  const raw = {
+    params: { sections: { allowSkipping: false } },
+    locale: { title: { uk: 'Тіньова практика' } },
+  };
+  const placement = placeLesson(lesson, raw);
+  const chapter = defineChapter({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d22',
+    slug: 'unit',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Unit' },
+    content: { items: { shadow: placement }, order: ['shadow'] },
+  });
+  const module = defineModule({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d23',
+    slug: 'group',
+    type: 'module',
+    params: {},
+    locale: { title: 'Group' },
+    content: { items: { unit: chapter }, order: ['unit'] },
+  });
+  const course = defineCourse({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d24',
+    slug: 'course',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Inline Lesson patches' },
+    content: { items: { group: module, original: lesson }, order: ['group', 'original'] },
+  });
+  const files = renderCourseFiles(course);
+  const base = JSON.parse(files.get('base.json'));
+  const nested = base.content.items.group.content.items.unit.content.items.shadow;
+  assert.deepEqual(nested, {
+    id: lesson.id,
+    type: 'lesson',
+    overrides: { params: { sections: { allowSkipping: false } } },
+  });
+  assert.deepEqual(base.content.items.original, { id: lesson.id, type: 'lesson' });
+  const uk = JSON.parse(files.get('uk.json'));
+  const assembled = mergeCourseProps(base, uk);
+  assert.equal(
+    assembled.content.items.group.content.items.unit.content.items.shadow.overrides.locale.title,
+    'Тіньова практика',
+  );
+  assert.equal(Object.hasOwn(assembled.content.items.original, 'overrides'), false);
+  assert.equal(lesson.build.props({ languages }).base.params.sections.allowSkipping, true);
+  assert.deepEqual(lesson.build.overrides(raw, { languages }).base, placement.build.overrides({}, { languages }).base);
+  assert(![...files.values()].join('').includes('"section"'));
+  assert(![...files.values()].join('').includes('"skills"'));
+  assert.throws(() => renderCourseFiles(course, { languages: ['pl'] }), /does not support publication language/);
+  const tampered = placeLesson(lesson, {});
+  tampered.placement.source = { ...lesson, id: 'e775647f-203d-481a-a1c7-4d331c779d99' };
+  const invalid = defineCourse({
+    id: 'e775647f-203d-481a-a1c7-4d331c779d25',
+    slug: 'invalidCourse',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Identity check' },
+    content: { items: { shadow: tampered }, order: ['shadow'] },
+  });
+  assert.throws(() => renderCourseFiles(invalid), /Mismatched immutable Lesson placement identity/);
+});
+
+test('strict Course publication rejects every reserved draft stub even when Build preview succeeds', () => {
+  const makers = [defineLessonStub, defineEpisodeStub, defineAssessmentStub];
+  for (const [index, maker] of makers.entries()) {
+    const slot = maker({ id: 'b275647f-203d-481a-a1c7-4d331c779d' + String(index + 1).padStart(2, '0'), slug: 'slot' });
+    const course = defineCourse({
+      id: 'b275647f-203d-481a-a1c7-4d331c779d40',
+      slug: 'courseStub',
+      type: 'course',
+      params: { languages: ['en'] },
+      locale: { title: 'Preview', description: 'Draft only' },
+      content: { items: { slot }, order: ['slot'] },
+    });
+    assert.equal(course.build.props({ languages: ['en'] }).base.content[0].draft, true);
+    assert.throws(() => renderCourseFiles(course, { languages: ['en'] }), /draft stub cannot be published/i);
+  }
+});
+
+test('Draft Course publisher and runtime preserve nested stub previews, order and reused Lesson patches', () => {
+  const languages = ['en', 'uk'];
+  const id = n => 'b275647f-203d-481a-a1c7-4d331c779d' + String(n).padStart(2, '0');
+  const existing = defineLesson({
+    id: id(50),
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Existing Lesson' },
+    section: { items: {}, order: [] },
+  });
+  const plannedLesson = defineLessonStub({ id: id(51), slug: 'plannedLesson' });
+  const plannedEpisode = defineEpisodeStub({ id: id(52), slug: 'plannedEpisode' });
+  const plannedAssessment = defineAssessmentStub({ id: id(53), slug: 'plannedAssessment' });
+  const chapter = defineChapter({
+    id: id(54),
+    type: 'chapter',
+    slug: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { plannedAssessment }, order: ['plannedAssessment'] },
+  });
+  const module = defineModule({
+    id: id(55),
+    type: 'module',
+    slug: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: {
+      items: {
+        plannedEpisode,
+        chapter,
+        adapted: placeLesson(existing, { params: { sections: { allowSkipping: false } } }),
+      },
+      order: ['plannedEpisode', 'adapted', 'chapter'],
+    },
+  });
+  const course = defineCourse({
+    id: id(56),
+    type: 'course',
+    slug: 'draftCourse',
+    params: { languages },
+    locale: { title: 'Draft Course', description: 'Preview only' },
+    content: {
+      items: { existing, module, plannedLesson },
+      order: ['existing', 'module', 'plannedLesson'],
+    },
+  });
+  assert.throws(() => renderCourseFiles(course), /draft stub cannot be published/i);
+  assert.throws(() => renderCourseFiles(course, { mode: 'invalid' }), /mode/i);
+  const files = renderCourseFiles(course, { languages, mode: 'draft' });
+  const base = JSON.parse(files.get('base.json'));
+  const uk = files.has('uk.json') ? JSON.parse(files.get('uk.json')) : undefined;
+  assert.deepEqual(base.content.order, ['existing', 'module', 'plannedLesson']);
+  assert.deepEqual(base.content.items.module.content.order, ['plannedEpisode', 'adapted', 'chapter']);
+  assert.deepEqual(base.content.items.module.content.items.chapter.content.order, ['plannedAssessment']);
+  assert.deepEqual(base.content.items.existing, { type: 'lesson', id: existing.id });
+  assert.deepEqual(base.content.items.module.content.items.adapted, {
+    type: 'lesson',
+    id: existing.id,
+    overrides: { params: { sections: { allowSkipping: false } } },
+  });
+  for (const [node, original] of [
+    [base.content.items.plannedLesson, plannedLesson],
+    [base.content.items.module.content.items.plannedEpisode, plannedEpisode],
+    [base.content.items.module.content.items.chapter.content.items.plannedAssessment, plannedAssessment],
+  ]) {
+    assert.equal(node.id, original.id);
+    assert.equal(node.slug, original.slug);
+    assert.equal(node.draft, true);
+    assert.equal(node.locale.title, 'Not implemented');
+    assert.equal(node.section[0].content[0].locale.value, 'Not implemented');
+    assert.equal(Object.hasOwn(node, 'questions'), false);
+    assert.equal(Object.hasOwn(node, 'events'), false);
+  }
+  assert.throws(() => assembleCourseTree(base, uk, course.id, 'uk'), /draft stub cannot be assembled/i);
+  const assembled = assembleCourseTree(base, uk, course.id, 'uk', 'draft');
+  assert.deepEqual(
+    courseActivities(assembled).map(item => item.placement),
+    ['existing', 'module/plannedEpisode', 'module/adapted', 'module/chapter/plannedAssessment', 'plannedLesson'],
+  );
+  assert.equal(findCourseEpisode(assembled, plannedEpisode.id)?.draft, true);
+  assert.deepEqual(assembleCourseTree(base, uk, course.id, 'uk', 'draft'), assembled);
+  const tampered = structuredClone(base);
+  tampered.content.items.plannedLesson.section = [];
+  assert.throws(() => assembleCourseTree(tampered, uk, course.id, 'uk', 'draft'), /draft|preview|section/i);
 });

@@ -82,9 +82,10 @@ export async function loadPublishedCourseTree(
   courseId: string,
   language: LanguageCode,
   coursesRoot = path.join(process.cwd(), 'public/data/courses'),
+  mode: 'production' | 'draft' = 'production',
 ): Promise<LocalizedCourse> {
   const id = resolveEntityPath(courseId).split('/')[1];
   const code = languageCode_Schema.parse(language);
   const resource = await readPublication(path.join(coursesRoot, id), code);
-  return assembleCourseTree(resource.base, resource.locale?.[code], id, code);
+  return assembleCourseTree(resource.base, resource.locale?.[code], id, code, mode);
 }

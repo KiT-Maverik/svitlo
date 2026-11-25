@@ -74,18 +74,39 @@ function assertJson(value, label, ancestors = new Set()) {
   }
 }
 
-/** Walk the authored Course tree to associate sparse Lesson patches with IDs. */
-function findLessonPatches(course, overrides, languages) {
+/** Walk the authored Course tree to associate placement-local Lesson patches with IDs. */
+function findLessonPatches(course, languages, mode) {
   const visited = new Set();
   const lessons = new Map();
 
-  function visit(entity, change, location) {
+  function visit(entity, location) {
     if (!entity || typeof entity.id !== 'string' || !uuid.test(entity.id)) {
       throw new Error('Invalid Course entity identity at ' + location);
     }
+    if (entity.draft === true) {
+      if (mode !== 'draft' || !['lesson', 'episode', 'assessment'].includes(entity.type))
+        throw new Error('Course draft stub cannot be published at ' + location);
+      if (entity.slug !== location.split('/').at(-1))
+        throw new Error('Mismatched Course stub placement at ' + location);
+      return; // Draft-only full preview Props are not standalone Lesson references.
+    }
     if (entity.type === 'lesson') {
-      if (change === false) throw new Error('Disabled Lesson reached at ' + location);
-      const patch = change === undefined ? undefined : entity.build.overrides(change, { languages });
+      // A placed Lesson carries its own authored Config patch. The original
+      // Lesson's Build API publishes sparse Props for this placement alone.
+      const isPlacement = own(entity, 'placement');
+      if (
+        isPlacement &&
+        (!isObject(entity.placement) ||
+          entity.placement.source?.id !== entity.id ||
+          entity.placement.source?.slug !== entity.slug ||
+          entity.placement.source?.type !== 'lesson')
+      ) {
+        throw new Error('Mismatched immutable Lesson placement identity at ' + location);
+      }
+      const patch = isPlacement ? entity.build.overrides({}, { languages }) : undefined;
+      if (patch?.id !== undefined && patch.id !== entity.id) {
+        throw new Error('Mismatched sparse Lesson override identity at ' + location);
+      }
       lessons.set(location, patch);
       return;
     }
@@ -101,15 +122,12 @@ function findLessonPatches(course, overrides, languages) {
     if (!collection || !isObject(collection.items) || !Array.isArray(collection.order)) {
       throw new Error('Invalid Course collection at ' + location);
     }
-    const changes = change?.content?.items ?? {};
-    const additions = change?.content?.additionalItems ?? {};
-    const items = { ...collection.items, ...additions };
-    const order = change?.content?.order ?? collection.order;
-    const expected = Object.keys(items).filter(key => changes[key] !== false);
+    const items = collection.items;
+    const order = collection.order;
     if (
-      order.length !== expected.length ||
+      order.length !== Object.keys(items).length ||
       new Set(order).size !== order.length ||
-      expected.some(key => !order.includes(key))
+      Object.keys(items).some(key => !order.includes(key))
     ) {
       throw new Error('Invalid Course child order at ' + location);
     }
@@ -118,17 +136,26 @@ function findLessonPatches(course, overrides, languages) {
       if (!child || (child.slug !== key && child.type !== 'lesson')) {
         throw new Error('Invalid Course child ' + location + '/' + key);
       }
-      visit(child, own(changes, key) ? changes[key] : undefined, location + '/' + key);
+      visit(child, location + '/' + key);
     }
   }
 
-  visit(course, overrides, course.slug);
+  visit(course, course.slug);
   return lessons;
 }
 
-function compactEntity(value, lessonPatches, language, location) {
+function compactEntity(value, lessonPatches, language, location, mode) {
   if (!isObject(value) || typeof value.id !== 'string') {
     throw new Error('Invalid resolved Course Props entity');
+  }
+  if (value.draft === true) {
+    if (mode !== 'draft' || !['lesson', 'episode', 'assessment'].includes(value.type))
+      throw new Error('Course draft stub cannot be published at ' + location);
+    if (value.slug !== location.split('/').at(-1) || !uuid.test(value.id))
+      throw new Error('Invalid Course draft stub identity at ' + location);
+    // Draft explicitly retains the genuine Not implemented section and its
+    // stable preview IDs. Never make an incomplete Lesson a resource reference.
+    return clone(value);
   }
   if (value.type === 'lesson') {
     if (!lessonPatches.has(location)) throw new Error('Unregistered Course Lesson at ' + location + ': ' + value.id);
@@ -159,7 +186,7 @@ function compactEntity(value, lessonPatches, language, location) {
       throw new Error('Course child must have a valid slug in ' + value.id);
     }
     if (own(items, child.slug)) throw new Error('Duplicate Course child slug: ' + child.slug);
-    items[child.slug] = compactEntity(child, lessonPatches, language, location + '/' + child.slug);
+    items[child.slug] = compactEntity(child, lessonPatches, language, location + '/' + child.slug, mode);
     order.push(child.slug);
   }
   return {
@@ -173,10 +200,15 @@ function assertSameCourseStructure(base, localized, location = 'course') {
   if (!isObject(base) || !isObject(localized) || base.id !== localized.id || base.type !== localized.type) {
     throw new Error('Localized Course identity mismatch at ' + location);
   }
-  if (base.type === 'episode') {
+  if (base.draft !== localized.draft) throw new Error('Localized Course draft status mismatch at ' + location);
+  if (base.type === 'episode' || (base.draft === true && base.type !== 'lesson')) {
     const identity = section => [section.id, section.type, section.slug];
     if (JSON.stringify(base.section.map(identity)) !== JSON.stringify(localized.section.map(identity)))
       throw new Error('Localized Episode Section identity mismatch at ' + location);
+  }
+  if (base.draft === true && base.type === 'lesson') {
+    if (base.slug !== localized.slug || JSON.stringify(base.section) !== JSON.stringify(localized.section))
+      throw new Error('Localized Course Lesson preview identity mismatch at ' + location);
   }
   if (!base.content && !localized.content) return;
   if (!isObject(base.content) || !isObject(localized.content)) {
@@ -197,16 +229,22 @@ function assertSameCourseStructure(base, localized, location = 'course') {
 }
 
 /**
- * Produce one base file and sparse per-language files, all from one Course context.
+ * Produce base and sparse per-language Course files from inline placements.
  *
- * `overrides` is the same typed authoring patch accepted by
- * `course.build.overrides(patch, { languages })`. When omitted, the Course
- * references standalone Lessons without any Course-specific changes.
+ * Course-level authored override exports are deliberately unsupported: each
+ * reusable Lesson adaptation must be declared at its immediate placement.
  */
 export function renderCourseFiles(
   course,
-  { languages = course?.config?.base?.params?.languages, overrides, projectMedia } = {},
+  { languages = course?.config?.base?.params?.languages, projectMedia, mode = 'production', ...unknownOptions } = {},
 ) {
+  if (Object.keys(unknownOptions).length) {
+    throw new Error(
+      'Unsupported Course publication options: ' +
+        Object.keys(unknownOptions).join(', ') +
+        '; attach Lesson patches with placeLesson at their placement',
+    );
+  }
   if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
   }
@@ -218,40 +256,35 @@ export function renderCourseFiles(
   ) {
     throw new Error('Expected distinct, nonempty Course publication languages');
   }
+  if (!['production', 'draft'].includes(mode)) throw new Error('Invalid Course publication mode');
   const scope = { languages };
   // Course Configurator Build owns authoring, nested overrides and Props validation.
   const resource = course.build.props(scope);
-  const patch = overrides === undefined ? undefined : course.build.overrides(overrides, scope);
-  const lessonPatches = findLessonPatches(course, overrides, languages);
+  const lessonPatches = findLessonPatches(course, languages, mode);
   assertJson(resource.base, 'Course resource base');
-  if (patch?.base !== undefined) assertJson(patch.base, 'Course override base');
   for (const language of languages) {
     if (resource.locale?.[language] !== undefined) assertJson(resource.locale[language], 'Course resource ' + language);
-    if (patch?.locale?.[language] !== undefined) assertJson(patch.locale[language], 'Course override ' + language);
     const lessonPatch = [...lessonPatches.values()];
     for (const entry of lessonPatch) {
       if (entry?.base !== undefined) assertJson(entry.base, 'Lesson override base');
       if (entry?.locale?.[language] !== undefined) assertJson(entry.locale[language], 'Lesson override ' + language);
     }
   }
-  const baseResolved = mergeCourseProps(resource.base, patch?.base);
-  const baseRaw = compactEntity(baseResolved, lessonPatches, undefined, course.slug);
+  const baseRaw = compactEntity(resource.base, lessonPatches, undefined, course.slug, mode);
   const base = projectMedia ? projectMedia(baseRaw, 'base') : baseRaw;
   assertJson(base, 'Course base ' + course.id);
 
   const files = new Map([['base.json', JSON.stringify(base, null, 2) + '\n']]);
   for (const language of languages) {
-    const resolved = mergeCourseProps(
-      mergeCourseProps(mergeCourseProps(resource.base, resource.locale?.[language]), patch?.base),
-      patch?.locale?.[language],
-    );
-    const localizedRaw = compactEntity(resolved, lessonPatches, language, course.slug);
+    const resolved = mergeCourseProps(resource.base, resource.locale?.[language]);
+    const localizedRaw = compactEntity(resolved, lessonPatches, language, course.slug, mode);
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
     // Validate fully localized Episode Props after media projection, including nested blocks.
     const containsEpisode = node =>
       node.type === 'episode' || Object.values(node.content?.items ?? {}).some(containsEpisode);
-    if (containsEpisode(localized)) assembleCourseTree(base, difference(base, localized), course.id, language);
+    if (mode === 'draft' || containsEpisode(localized))
+      assembleCourseTree(base, difference(base, localized), course.id, language, mode);
     const delta = difference(base, localized);
     if (delta !== undefined) {
       assertJson(delta, 'Course locale ' + language);
@@ -265,14 +298,24 @@ export function renderCourseFiles(
  * Write only this Course's generated directory. No unrelated textbook assets
  * are modified. Check mode is read-only and verifies stale/unexpected files.
  */
-export function publishCourse(course, { packageRoot, outputRoot, languages, overrides, check = false } = {}) {
+export function publishCourse(
+  course,
+  { packageRoot, outputRoot, languages, mode = 'production', check = false, ...unknownOptions } = {},
+) {
+  if (Object.keys(unknownOptions).length) {
+    throw new Error(
+      'Unsupported Course publication options: ' +
+        Object.keys(unknownOptions).join(', ') +
+        '; attach Lesson patches with placeLesson at their placement',
+    );
+  }
   if (
     (typeof outputRoot !== 'string' || !outputRoot.trim()) &&
     (typeof packageRoot !== 'string' || !packageRoot.trim())
   ) {
     throw new Error('packageRoot or outputRoot (Course resources parent directory) is required');
   }
-  const files = renderCourseFiles(course, { languages, overrides });
+  const files = renderCourseFiles(course, { languages, mode });
   const root = outputRoot ? path.resolve(outputRoot) : path.join(path.resolve(packageRoot), 'generated', 'courses');
   const destination = path.join(root, course.id);
   assertSafeDirectoryPath(destination);

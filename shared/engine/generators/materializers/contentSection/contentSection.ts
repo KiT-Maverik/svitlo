@@ -1,4 +1,5 @@
 import type { Content_Section_Config } from '../../../configurators/sections/defineContentSection/defineContentSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * defineContentSection source materializer (not a Props/JSON publisher).
@@ -209,12 +210,16 @@ export function materializeContentSection(config: Source, options: Options): Res
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed content Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo(
+        'Transfer reviewed content Section notes (' +
+          sectionNotes.join(', ') +
+          ') into the owning Lesson methodology and verify the transfer before removing this marker.',
+      ),
     );
   if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Complete reviewed content Section production.');
+    blocker.push(
+      renderBlockerTodo('Implement, validate and review the content Section production before removing this marker.'),
+    );
   if (blocker.length)
     diagnostics.push({
       path: (directory || 'content') + '/index.ts',

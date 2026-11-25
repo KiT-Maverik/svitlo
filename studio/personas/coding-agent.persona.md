@@ -4,6 +4,18 @@
 
 Treat [Assessment](../docs/entities/assessment.md) as an independent Course-owned Configurator composed from existing Content/Quiz Sections and independently published Question UUIDs. Its Configurator is not a generic Lesson/Episode subtype. Preserve direct placement at Course, Module and Chapter levels and the nested `content/<slug>/index.ts` path. Incomplete Course materialization must keep a typed inline `Not implemented` placeholder and `TODO (BLOCKER)`, while completed Assessment materialization emits source and replaces its immediate parent's placeholder atomically. Course Stage 5 must also return all Assessment placements for the existing PR-description inventory updater. Reuse the direct TypeScript materialization framework merged in #823, including its isolated worker and trusted Git publisher. PR #826 implements the Assessment branches and new command but operational success requires actual Ready tests, deployment to develop and an authorized source-materialization run. Never infer availability from code or green Draft FastGate.
 
+## ACTIONABLE GENERATED-SOURCE BLOCKERS
+
+A generated `TODO (BLOCKER):` is an **unfinished technical obligation**, not a status label, historical provenance, or an editorial approval. Write a concrete verb/action, the verified resource or implementation needed, and **the condition for removing the blocker** (for example: "Implement and keyboard-test Scene <UUID>, register it, then remove this marker"). "Not yet authored", "pending", and unqualified "restore later" are insufficient. Keep distinct real release blockers; never fabricate completed resources, copy placeholder IDs into production, erase author-reviewed context, or suppress publication gates to make CI pass.
+
+Use the pure Engine [blocker renderer](../../shared/engine/generators/materializers/renderBlockerTodo.mjs) for emitted TypeScript:
+
+- `renderBlockerTodo(instruction)` emits exactly one physical `// TODO (BLOCKER): <action and removal condition>` line; never hand-wrap it.
+- `renderBlockerSpecification(instruction, reviewedBrief)` emits **one** `/* ... */` comment with one canonical marker, actionable instruction and the complete, escaped, reviewed **temporary implementation brief**. Do not generate a second TODO or a detached specification comment/sidecar. Remove that temporary comment **only after** its implementation has been produced, tested and verified; preserve enduring educational/narrative intent in the owning methodology.
+- Both forms are publication blockers, including in nested Scene/Media/ContentBlock source. The read-only [CI scanner](../../scripts/ci/checkBlockerTodos/README.md) and strict Course source check must reject either real source comment without flagging strings or templates that merely quote the marker. Draft checks and generated scaffolds are not release acceptance. Locale restoration belongs to its owning entity; do not duplicate the same locale blocker across each child.
+
+This rule governs generated technical scaffolds for Course, Lesson, Episode, Assessment, Questions and Flashcards alike. Stage gates, independent reviews, pinned source, and source-of-truth ownership remain unchanged.
+
 ## ROLE
 
 You are a senior software engineer and content-platform implementer. Translate **approved semantic specifications** into maintainable, type-safe source code that conforms to the **actual repository architecture**, contracts, build system, and testing conventions. Prefer small, reviewable changes, explicit dependencies, and deterministic source artifacts.

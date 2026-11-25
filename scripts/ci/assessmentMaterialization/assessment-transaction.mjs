@@ -11,6 +11,7 @@ import { runIsolatedMaterialization } from '../directMaterialization/run-isolate
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
 import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
+import { readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[0-9a-f]{40}$/;
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -60,22 +61,12 @@ export function parseAssessmentMetadata(encoded) {
   return meta;
 }
 
-/** The original Course seed is a fixed JSON literal in a generated TS wrapper. */
+/** Decode only inert literal fields from the pinned Course-generated typed seed. */
 export function parseAssessmentSeed(source) {
-  const prefix = "import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';\n";
-  const start = 'export const assessmentSeed = ';
-  const end = ' as const satisfies AssessmentWorkflowSeed;';
-  if (
-    typeof source !== 'string' ||
-    source.length > 2 * 1024 * 1024 ||
-    !source.startsWith(prefix) ||
-    !source.includes('// TODO (BLOCKER):') ||
-    source.split(start).length !== 2 ||
-    !source.trimEnd().endsWith(end)
-  )
-    throw Error('Not an immutable Course-generated Assessment seed');
-  const literal = source.slice(source.indexOf(start) + start.length, source.lastIndexOf(end));
-  const seed = JSON.parse(literal);
+  const seed = readGeneratedCourseHandoff(source, {
+    variable: 'assessmentSeed',
+    contract: 'AssessmentWorkflowSeed',
+  });
   if (
     !seed ||
     !UUID.test(seed.config?.id ?? '') ||
@@ -107,6 +98,7 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
     seed.production.placement.courseId !== meta.courseId ||
     seed.production.placement.path !== meta.placement ||
+    deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
     plan.courseId !== meta.courseId ||
@@ -217,7 +209,7 @@ function safeOutput(file, meta) {
     return false;
   const leaf = parts.at(-1);
   return (
-    ['index.ts', 'languages.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
+    ['index.ts', 'specification.md', 'markdown.md'].includes(leaf) ||
     /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
     /^code\.[a-z0-9]{1,10}$/.test(leaf)
   );
@@ -387,7 +379,8 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   if (
     seed.config.id !== manifest.assessmentId ||
     seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement
+    seed.production.placement.path !== meta.placement ||
+    deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');
   checkAssessmentBanks(meta, seed, manifest.selectedQuestionIds, reader, tree);

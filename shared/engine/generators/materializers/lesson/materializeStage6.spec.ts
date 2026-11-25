@@ -718,11 +718,15 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const plan = materializeLessonStage6(fixture, options);
   assert.deepEqual(plan, materializeLessonStage6(fixture, options));
   const lessonRoot = plan.files.find(file => file.path === folder + 'index.ts')?.content ?? '';
-  assert.match(lessonRoot, /TODO \(BLOCKER\): Quest is Build-only/);
+  assert.match(lessonRoot, /TODO \(BLOCKER\): Implement and verify Quest runtime support or remove the Quest/);
   assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
   assert.match(lessonRoot, /"order": \["introduction"\]/);
   assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
-  assert(plan.diagnostics.some(item => item.code === 'pending-lesson' && item.message.includes('Quest is Build-only')));
+  assert(
+    plan.diagnostics.some(
+      item => item.code === 'pending-lesson' && item.message.includes('Implement and verify Quest runtime support'),
+    ),
+  );
   const pending = plan.diagnostics.filter(item => item.code === 'pending-media');
   assert.equal(pending.length, 14);
   assert.deepEqual(
@@ -756,7 +760,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
       plan.files.find(file => file.path === folder + 'sections/introduction/' + path + '/index.ts')?.content ?? '';
     assert.match(
       source,
-      /TODO \(BLOCKER\): Supply a verified YouTube URL before publication\.\n"00000000-0000-0000-0000-000000000000"/,
+      /TODO \(BLOCKER\): Supply and verify the YouTube URL, access and captions before publication\.\n"00000000-0000-0000-0000-000000000000"/,
     );
   }
   const carouselSlide = plan.files.find(file => file.path.endsWith('/carousel/slides/slide/index.ts'))?.content ?? '';
@@ -774,10 +778,16 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   ]) {
     const path = folder + suffix;
     const module = plan.files.find(file => file.path === path + '/index.ts')?.content ?? '';
-    assert(module.includes('// TODO (BLOCKER): Remove the temporary ' + kind + ' specification'));
-    assert(module.includes('/**\n * # purpose'));
-    assert(module.includes(' * # specification'));
-    assert(module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'));
+    assert(
+      module.includes('/*\n * TODO (BLOCKER): Remove the temporary ' + kind + ' specification'),
+      path + ': expected a single actionable multiline specification TODO in ' + module.slice(-600),
+    );
+    assert(module.includes(' * # purpose'), path + ': missing reviewed purpose in ' + module.slice(-600));
+    assert(module.includes(' * # specification'), path + ': missing reviewed specification in ' + module.slice(-600));
+    assert(
+      module.indexOf(');') < module.indexOf('Remove the temporary ' + kind + ' specification'),
+      path + ': temporary brief must follow the generated Configurator',
+    );
     assert(!plan.files.some(file => file.path === path + '/specification.md'));
   }
 
@@ -827,12 +837,6 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     production: {
       focus: 'Reviewed transition',
       purpose: 'Continue the narrative',
-      placement: {
-        courseId: id('34'),
-        path: 'content/transition',
-        orderPath: [0],
-        reviewedCourseSourceBlobSha: 'a'.repeat(40),
-      },
       languages: lesson.production.languages,
       scenario: {
         audience: 'Beginners',
@@ -848,6 +852,14 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
     },
   };
   assert.equal(episodeWorkflowStage2_Schema.safeParse(episode).success, true);
+  // Course-owned Git evidence must not leak back into the authored Episode protocol.
+  assert.equal(
+    episodeWorkflowStage2_Schema.safeParse({
+      ...episode,
+      production: { ...episode.production, placement: { courseId: id('34'), path: 'content/transition' } },
+    }).success,
+    false,
+  );
   assert.equal(
     episodeWorkflowStage2_Schema.safeParse({
       ...episode,
@@ -925,7 +937,8 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert.match(sceneConfig, /defineScene<[\s\S]*TODO \(BLOCKER\): Remove the temporary Scene specification/);
   assert.match(sceneConfig, /\* \/\n \* export const injected = true;/);
   const tsx = result.files.find(file => file.path === root + 'ChooseShape.tsx')!.content;
-  assert.match(tsx, /\/\/ \*\/\n\/\/ export const injected = true;/);
+  assert.match(tsx, /\* \* \/\n \* export const injected = true;\n \*\//);
+  assert.doesNotMatch(tsx, /^\s*export const injected = true;/m);
   assert.match(tsx, /TODO \(BLOCKER\)/);
   assert(result.diagnostics.some(diag => diag.code === 'pending-scene'));
   assert.throws(() => assertLessonStage6ReleaseReady(result), /publication blocked/);

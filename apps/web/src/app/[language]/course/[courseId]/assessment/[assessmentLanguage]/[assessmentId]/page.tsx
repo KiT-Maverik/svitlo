@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRuntime } from '@svitlo/engine/runtime';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
@@ -30,6 +30,15 @@ async function Content({ params }: Props) {
   }
   const assessment = findCourseAssessment(course, assessmentId);
   if (!assessment) notFound();
+  if ('draft' in assessment && assessment.draft === true) {
+    return (
+      <main aria-label="Draft Assessment preview">
+        <h1>Not implemented</h1>
+        <p>This Assessment has a reserved place in the Course but has not been produced.</p>
+        <a href={'/' + language + '/course/' + courseId}>Back to Course</a>
+      </main>
+    );
+  }
   const [messages, titles] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
     loadCourseLessonTitles(course, content.language),
@@ -42,7 +51,7 @@ async function Content({ params }: Props) {
   const next = flat[position + 1];
   return (
     <WebAssessment
-      response={assessment}
+      response={validateAssessmentRuntime(assessment, content.language)}
       language={content.language}
       href={href}
       courseHref={courseHref}

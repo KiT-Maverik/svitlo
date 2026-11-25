@@ -5,7 +5,7 @@ import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.util
  * value; the generator must not reassemble or reinterpret its nested content.
  */
 export type LessonPropsPublication = {
-  base: { id: string; type?: string };
+  base: { id: string; type?: string; draft?: boolean };
   locale?: object | undefined;
 };
 
@@ -72,6 +72,7 @@ export function renderLessonPropsFiles(entries: readonly LessonPublicationEntry[
     if (!publication || !publication.base || publication.base.type !== 'lesson') {
       throw new Error('Expected built Lesson Props at: ' + source);
     }
+    if (publication.base.draft === true) throw new Error('Draft Lesson stub cannot be published: ' + source);
     const relative = resolveEntityPath(publication.base.id);
     const id = relative.split('/')[1];
     const previous = owners.get(id);

@@ -7,6 +7,7 @@ import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
 import type { Section_Configurator, Section_Props } from '../../sections/section.types';
 
@@ -52,14 +53,40 @@ const sectionResolved = z
     type: z.enum(sectionTypes),
   })
   .catchall(z.unknown());
-export const lesson_Props_Schema = identity
+export const lesson_Completed_Props_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: localizationSwitch.props }),
     section: z.array(sectionResolved),
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
-export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section'> & {
+/** Explicit draft preview; it cannot pass the completed Lesson schema. */
+export const lesson_Draft_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: localizationSwitch.props }),
+    draft: z.literal(true),
+    section: z.array(contentSection_Props_Schema).nonempty(),
+  })
+  .strict()
+  .refine(
+    value =>
+      value.section.some(
+        section =>
+          section.params.disabled !== true &&
+          section.content.some(
+            block =>
+              block.type === 'text' &&
+              typeof block.locale === 'object' &&
+              block.locale !== null &&
+              'value' in block.locale &&
+              block.locale.value === 'Not implemented',
+          ),
+      ),
+    'Lesson draft needs the Not implemented Text ContentBlock',
+  );
+export const lesson_Props_Schema = z.union([lesson_Completed_Props_Schema, lesson_Draft_Props_Schema]);
+export type Lesson_Draft_Props = z.infer<typeof lesson_Draft_Props_Schema>;
+export type Lesson_Props = Omit<z.infer<typeof lesson_Completed_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
 export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
@@ -126,6 +153,7 @@ export const lessonConfigurator_Schema = z.custom<{
     typeof value === 'object' &&
     'type' in value &&
     value.type === 'lesson' &&
+    !('draft' in value && value.draft === true) &&
     'id' in value &&
     typeof value.id === 'string' &&
     'slug' in value &&

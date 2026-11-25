@@ -1,4 +1,5 @@
 import type { CodingTaskSection_Config } from '../../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /**
  * defineCodingTaskSection source materializer (not a Props/JSON publisher).
@@ -209,12 +210,18 @@ export function materializeCodingTaskSection(config: Source, options: Options): 
   );
   if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
     blocker.push(
-      '// TODO (BLOCKER): Transfer reviewed codingTask Section notes (' +
-        sectionNotes.join(', ') +
-        ') into Lesson methodology; do not discard reviewed source metadata.',
+      renderBlockerTodo(
+        'Transfer reviewed codingTask Section notes (' +
+          sectionNotes.join(', ') +
+          ') into the owning Lesson methodology; remove this marker after verifying the transfer.',
+      ),
     );
   if (options.production?.pending === true)
-    blocker.push('// TODO (BLOCKER): Complete reviewed codingTask Section production.');
+    blocker.push(
+      renderBlockerTodo(
+        'Implement and review the codingTask Section production, verify usable runtime interactions, then remove this marker.',
+      ),
+    );
   if (blocker.length)
     diagnostics.push({
       path: (directory || 'codingTask') + '/index.ts',

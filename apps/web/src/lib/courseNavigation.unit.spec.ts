@@ -128,3 +128,21 @@ it('links a nested Assessment from the Course outline and activity navigation', 
   });
   expect(flattenCourseTopics(outline).map(item => item.type)).toEqual(['lesson', 'assessment', 'lesson']);
 });
+
+it('shows a reserved Lesson as Not implemented without loading a standalone title', () => {
+  const preview = structuredClone(course);
+  const laboratory = preview.content.items.laboratory;
+  if (laboratory.type !== 'module') throw Error('Expected Module');
+  const fundamentals = laboratory.content.items.fundamentals;
+  if (fundamentals.type !== 'chapter') throw Error('Expected Chapter');
+  const pending = fundamentals.content.items.reflection;
+  Object.assign(pending, {
+    slug: 'reflection',
+    draft: true,
+    locale: { title: 'Not implemented' },
+    section: [],
+  });
+  const topics = flattenCourseTopics(coursePropsToTopics(preview, 'uk', 'en', { 'lesson-2': 'Refraction' }));
+  expect(topics.map(item => item.title)).toEqual(['Not implemented', 'Refraction']);
+  expect(topics[0]?.href).toBe('/uk/course/course-id/lesson/en/lesson-1');
+});

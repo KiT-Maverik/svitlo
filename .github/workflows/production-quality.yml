@@ -113,6 +113,13 @@ jobs:
         if: always()
         run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
 
+  generators:
+    name: Production / Engine generators
+    needs: policy
+    # Reuse the authoritative generator suite, including pinned Docker-worker
+    # round trips. Root npm test does not cover its CI-only security regressions.
+    uses: ./.github/workflows/engine-generators.yml
+
   components:
     name: Production / extra component tests
     needs: policy
@@ -222,7 +229,7 @@ jobs:
 
   verify:
     name: Production Quality / verify
-    needs: [reuse, policy, repository, types, unit, components, lint, packages, apps]
+    needs: [reuse, policy, repository, types, unit, generators, components, lint, packages, apps]
     # On Draft the required context must not masquerade as a validated release.
     # On Ready the final status exists even when one prerequisite fails or skips.
     if: >-
@@ -246,7 +253,7 @@ jobs:
             console.log('Prior successful Production Quality / verify on the exact PR merge commit was verified.');
             process.exit(0);
           }
-          const required = ['policy', 'repository', 'types', 'unit', 'components', 'lint', 'packages', 'apps'];
+          const required = ['policy', 'repository', 'types', 'unit', 'generators', 'components', 'lint', 'packages', 'apps'];
           let failures = 0;
           for (const name of required) {
             const status = needs[name]?.result ?? 'missing';

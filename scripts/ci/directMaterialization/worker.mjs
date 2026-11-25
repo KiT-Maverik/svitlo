@@ -11,6 +11,42 @@ const require = createRequire(import.meta.url);
 const {
   executeMaterializerEntrypoint,
 } = require('./shared/engine/dist/generators/materializers/directMaterialization/directMaterialization.js');
+// Classify worker failures using fixed exit codes, never candidate-controlled
+// error text or stdout/stderr. This keeps the untrusted execution boundary intact.
+process.on('uncaughtException', error => {
+  const message = String(error?.message ?? '');
+  const code = /Cannot find module|Cannot resolve|ERR_MODULE_NOT_FOUND|MODULE_NOT_FOUND/.test(message)
+    ? 71
+    : /Entrypoint must|Materializer requires|Nested materializer/.test(message)
+      ? 72
+      : /untrusted source|stale source snapshot|source blob mismatch/.test(message)
+        ? 73
+        : /Lesson Stage 6|Invalid Lesson Stage 2|lesson\./.test(message)
+          ? 74
+          : /EACCES|EPERM|EROFS|ENOENT/.test(message)
+            ? 75
+            : /Unexpected token|SyntaxError|syntax errors/.test(message)
+              ? 76
+              : /Unsupported materializer request/.test(message)
+                ? 79
+                : /Invalid candidate UTF-8/.test(message)
+                  ? 80
+                  : /Stage 6:/.test(message)
+                    ? 81
+                    : /Cannot materialize|incomplete or invalid|invalid source|Section|Text Config/.test(message)
+                      ? 82
+                      : String(error?.stack ?? '').includes('/work/shared/engine/dist/generators/materializers/lesson/')
+                        ? 83
+                        : String(error?.stack ?? '').includes('node_modules/jiti') ||
+                            String(error?.stack ?? '').includes('node_modules/typescript')
+                          ? 84
+                          : String(error?.stack ?? '').includes('/work/worker.mjs')
+                            ? 85
+                            : error instanceof TypeError
+                              ? 77
+                              : 78;
+  process.exit(code);
+});
 const { operation, source } = JSON.parse(fs.readFileSync(0, 'utf8'));
 const sha = /^[a-f0-9]{40}$/i;
 const name = '[a-z][a-z0-9-]*';

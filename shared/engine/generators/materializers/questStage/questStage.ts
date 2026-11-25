@@ -1,4 +1,5 @@
 import type { Stage_Config } from '../../../configurators/sections/defineQuestSection/defineStage/defineStage.schemas';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 /** Quest Stage source: media children own their own files, never fabricated URLs. */
 /**
@@ -120,8 +121,10 @@ function reviewedNotes(production: Record<string, unknown> | undefined): string[
   const entries = Object.entries(production ?? {}).filter(([key]) => !['pending', 'documentLanguage'].includes(key));
   if (!entries.length) return [];
   return [
-    '// TODO (BLOCKER): Integrate these reviewed Quest child notes into the owning methodology/narrative before removing them.',
-    ...entries.map(([key, value]) => '// Reviewed ' + key + ': ' + JSON.stringify(value)),
+    renderBlockerSpecification(
+      'Integrate reviewed Quest child notes into the owning methodology or narrative, verify the transfer, then remove this temporary brief.',
+      entries.map(([key, value]) => 'Reviewed ' + key + ': ' + JSON.stringify(value)).join('\n'),
+    ),
   ];
 }
 function verifyChild(
@@ -252,7 +255,9 @@ export function materializeQuestStage(config: Source, options: Options): Result 
   const blockers: string[] = [];
   if (options.production?.pending === true)
     blockers.push(
-      '// TODO (BLOCKER): Complete and approve Quest Stage media, accessibility alternatives and caption timings.',
+      renderBlockerTodo(
+        'Implement and verify reviewed Quest Stage media, accessibility alternatives and caption timings; remove after approval.',
+      ),
     );
   if (blockers.length)
     diagnostics.push({

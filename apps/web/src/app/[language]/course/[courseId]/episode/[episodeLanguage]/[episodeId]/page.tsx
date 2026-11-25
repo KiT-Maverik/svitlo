@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode, validateEpisodeRuntime } from '@svitlo/engine/runtime';
 
 import WebEpisode from '@/components/pages/Episode/Episode';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
@@ -23,6 +23,15 @@ async function Content({ params }: Props) {
   }
   const episode = findCourseEpisode(course, episodeId);
   if (!episode) notFound();
+  if ('draft' in episode && episode.draft === true) {
+    return (
+      <main aria-label="Draft Episode preview">
+        <h1>Not implemented</h1>
+        <p>This Episode has a reserved place in the Course but has not been produced.</p>
+        <a href={'/' + language + '/course/' + courseId}>Back to Course</a>
+      </main>
+    );
+  }
   const [messages, titles] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
     loadCourseLessonTitles(course, content.language),
@@ -35,7 +44,7 @@ async function Content({ params }: Props) {
   const next = flat[position + 1];
   return (
     <WebEpisode
-      response={episode}
+      response={validateEpisodeRuntime(episode, content.language)}
       language={content.language}
       href={href}
       courseHref={courseHref}

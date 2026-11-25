@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -79,7 +80,10 @@ export function materializeAssessmentPlaceholder(node, context) {
   const sourcePath = directory + '/draft.ts';
   const source =
     "import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';\n" +
-    '// TODO (BLOCKER): Complete independently authorized Assessment Stage 1, then Stage 2 and review.\n' +
+    renderBlockerTodo(
+      'Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.',
+    ) +
+    '\n' +
     'export const assessmentSeed = ' +
     JSON.stringify(seed, null, 2) +
     ' as const satisfies AssessmentWorkflowSeed;\n';

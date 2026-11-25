@@ -54,3 +54,52 @@ Every active Engine configurator, including flat ContentBlocks, `CarouselSlide`,
 Nested Course/Module/Chapter and SkillGroup/SkillDomain overrides validate both the sparse authored patch and the final Props for **each** requested language. Final validation uses `resource.base → resource.locale[language] → override.base → override.locale[language]`; localized arrays are replaced atomically, and no fully resolved values are inserted into the sparse patch. The same rule applies to other nested Build lifecycles. Cross-level regression tests cover localization boundaries, additions/removals, and independent Build calls.
 
 Question configurators reuse the shared publication language options and helpers; ContentBlocks use first-class typed options, not the earlier Question-specific compatibility adapter. Generators serialize the completed data without inferring languages from authored locale dictionaries.
+
+## Placement-local reuse of an existing Lesson
+
+Use `placeLesson` from `@svitlo/engine/build` directly inside the owning
+Course, Module or Chapter `content.items` map. The first argument is the
+**original imported `defineLesson` Configurator**, not its `build.props()`
+result. The second argument is a **plain authored Config override** suitable
+for the original Lesson's `build.overrides(rawPatch, { languages })`:
+
+```ts
+import { defineChapter, placeLesson } from '@svitlo/engine/build';
+import { howLightMoves } from '../../lessons/howLightMoves';
+
+const chapter = defineChapter({
+  id: chapterId,
+  type: 'chapter',
+  slug: 'lightPractice',
+  params: {},
+  locale: { title: 'Light practice' },
+  content: {
+    items: {
+      original: howLightMoves,
+      shadowPractice: placeLesson(howLightMoves, {
+        params: { sections: { allowSkipping: false } },
+        locale: { title: { uk: 'Вправи з тінями' } },
+      }),
+    },
+    order: ['original', 'shadowPractice'],
+  },
+});
+```
+
+The two placements preserve the **same source Lesson UUID** but have distinct
+contextual keys; `howLightMoves` remains unchanged. `placeLesson` delegates
+the plain patch to the real Lesson Build API at each stateless Build call, so
+invalid identity/unknown fields and unsupported publication languages fail
+closed. The Course Build still resolves complete Props hierarchies; the compact
+Course publisher instead stores only the Lesson ID and sparse validated
+override Props at each placement (per-language changes stay in locale JSON).
+Do not pass built `{ id, base, locale }` override results as authored Config,
+or author a separate Course-root patch tree. Section additions requiring
+Configurator instances are not plain JSON patches and do not belong in this
+placement-local helper.
+
+## Reserved Course child previews
+
+`defineLessonStub({ id, slug })`, `defineEpisodeStub({ id, slug })` and `defineAssessmentStub({ id, slug })` are build-only draft placement previews, not finished entities. They preserve the reviewed immutable UUID, camelCase slug and parent `content.order`; each renders a genuine ContentSection with a Text ContentBlock displaying `Not implemented`. Only the original Course source language need be selected for a preview; the displayed text is invariant and no Questions, Quiz, banks, Episode events or finished Lesson methodology is invented. `defineAssessmentStub` reuses the existing `defineAssessmentDraft` preview contract.
+
+Each Configurator and published preview carries `draft: true`; completed Configurators carry a distinct `draft: false` type brand. The draft-only Props schemas are separate from completed Props schemas. Stub overrides always throw. The strict Course/Lesson publishers reject drafts independently of the required, symbol-aware FastGate CI guard that blocks newly introduced stub imports/usages from production-authored source on Ready PRs. These placeholders must be replaced with separately reviewed completed Configurators before production publication; a successful preview Build never certifies release readiness.

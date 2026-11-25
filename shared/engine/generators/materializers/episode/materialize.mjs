@@ -1,3 +1,4 @@
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeEpisodeDraft } from './materializeDraft.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
@@ -39,7 +40,13 @@ const todo = (production, ctx, language) => {
   const langs = production?.plannedLanguages ?? ctx.plannedLanguages ?? [language];
   if (!Array.isArray(langs) || new Set(langs).size !== langs.length || !langs.includes(language))
     throw Error('plannedLanguages: invalid language scope');
-  return langs.length > 1 ? '// TODO (BLOCKER): Restore reviewed languages: ' + JSON.stringify(langs) + '\n' : '';
+  return langs.length > 1
+    ? renderBlockerTodo(
+        'Restore reviewed languages: ' +
+          JSON.stringify(langs) +
+          ' after verified translations and independent review; remove this marker once complete.',
+      ) + '\n'
+    : '';
 };
 const exportName = slug =>
   [

@@ -7,8 +7,13 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
 
 - `policy` checks the source before any npm installation and discovers all
   apps that implement `app:build`. Only that job publishes the app matrix.
-- `repository`, `types`, `unit`, `components`, `lint`, `packages`, and
+- `repository`, `types`, `unit`, `generators`, `components`, `lint`, `packages`, and
   per-app `apps` jobs depend on `policy` and run independently.
+- `generators` calls the authoritative reusable Engine generators workflow
+  instead of copying a partial selection of its tests. This includes the
+  Docker-isolated, SHA-pinned five-materializer round trip, CI-only security
+  regressions, and generator CLI tests that root `npm test` does not cover.
+  A failed or skipped reusable workflow blocks `Production Quality / verify`.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics
