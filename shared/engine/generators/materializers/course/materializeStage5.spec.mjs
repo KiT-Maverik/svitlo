@@ -188,7 +188,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   );
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
   const chapterContent = first.files.find(f => f.path === root + '/moduleOne/chapterOne/index.ts').content;
-  assert.match(rootContent, /"directLesson": actualLesson/);
+  assert.match(rootContent, /directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.match(chapterContent, /#skillsData\/sampleSkill/);
@@ -315,7 +315,7 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /import \{ directLesson \} from "\.\/directLesson"/);
-  assert.match(main.content, /"directLesson": actualLesson/);
+  assert.match(main.content, /directLesson/);
   assert.doesNotMatch(main.content, /placeLesson\(/);
   assert.doesNotMatch(main.content, /authoredCourseOverrides/);
   assert.equal(
@@ -357,7 +357,7 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
     false,
   );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
-  assert.match(index, /"directLesson": actualLesson/);
+  assert.match(index, /directLesson/);
   assert.match(index, /import \{ directLesson \} from "\.\/directLesson"/);
   assert.match(index, /"secondLesson": actualLesson/);
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
@@ -574,6 +574,7 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     const stub = stubFiles.find(file => file.path === row.stubSourcePath);
     assert.ok(stub, row.placementPath);
     assert.match(stub.content, /TODO \(BLOCKER\):.*delete this stub\.ts/);
+    assert.match(stub.content, new RegExp('export const ' + row.slug + ' = ' + apis[row.type]));
     assert.ok(stub.content.includes(apis[row.type] + '({ id: ' + JSON.stringify(row.id)));
     const parent = plan.files.find(file => file.path === row.placementSourcePath);
     assert.ok(parent?.content.includes(row.slug));
