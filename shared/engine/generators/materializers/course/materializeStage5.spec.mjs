@@ -193,7 +193,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.match(chapterContent, /#skillsData\/sampleSkill/);
   assert.match(chapterContent, /import \\{ sampleSkill \\} from/);
-  assert.match(chapterContent, /skill_[0-9a-f_]+\.id/);
+  assert.match(chapterContent, /sampleSkill\.id/);
   assert.match(chapterContent, /"lessonOne": child_lessonOne/);
   assert.match(chapterContent, /"episodeOne": child_episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
@@ -217,7 +217,7 @@ test('parent indices distinguish the root content prefix from a unit named conte
 
   const plan = materializeCourseStage5(input, options());
   const [nested] = plan.inventory.lessons.filter(row => row.slug === 'lessonOne');
-  assert.equal(nested.placementSourcePath, root + '/content/index.ts');
+  assert.equal(nested.placementSourcePath, root + '/content/content/index.ts');
   const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
   assert.equal(direct.placementSourcePath, root + '/index.ts');
   assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('child_lessonOne'));
@@ -610,7 +610,13 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
   for (const row of result.inventory.assessments) {
     assert.equal(
       row.id,
-      deriveCourseEntityId(rootId, 'assessment', (row.placementPath.includes('/') ? row.placementPath.slice((root + '/').length).split('/').slice(0, -1).join('/') + '/content/' + row.slug : row.slug)),
+      deriveCourseEntityId(
+        rootId,
+        'assessment',
+        row.placementPath === root + '/' + row.slug
+          ? row.slug
+          : row.placementPath.slice((root + '/').length).split('/').slice(0, -1).join('/') + '/content/' + row.slug,
+      ),
     );
     assert.equal(row.status, 'pending-assessment-design');
     const seed = result.files.find(file => file.path === row.sourcePath);
