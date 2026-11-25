@@ -179,7 +179,8 @@ export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tr
     // #lessonsData string in the parent or a guessed allocated UUID.
     const segments = dep.split('/');
     if (![2, 3, 4].includes(segments.length)) throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
-    const ownerKind = ['course', 'module', 'chapter'][segments.length - 2];
+    // A direct Course child can be either a Module or a Chapter.
+    const ownerKind = ['course', ['module', 'chapter'], 'chapter'][segments.length - 2];
     const parentPath =
       meta.courseRoot + '/' + (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
     const parent = tree.get(parentPath);
