@@ -26,7 +26,7 @@ const publishedDirectory = `public/data/pages/lessons/${relative}`;
 
 ## Lesson convention
 
-**Typed authoring:** Course Stage 5 creates a new Lesson's UUID-addressed `draft.ts satisfies LessonWorkflowStage1` with only reviewed methodology/assessment intent, not an implemented `defineLesson`, Sections or a Lesson PR. The authorized standalone workflow advances that same typed source. Historical `lesson.yaml` and `lesson.identity.json` may remain untouched source provenance for separately authorized migrations, not supported new-production inputs.
+**Typed authoring:** Course Stage 5 creates a new Lesson's UUID-addressed `draft.ts satisfies CourseWorkflowLessonSeed` with only reviewed methodology/assessment intent, not an implemented `defineLesson`, Sections or a Lesson PR. The authorized standalone workflow advances that same typed source. Historical `lesson.yaml` and `lesson.identity.json` may remain untouched source provenance for separately authorized migrations, not supported new-production inputs.
 
 ```text
 content/<book>/data/lessons/<last-hex-digit>/<uuid>/

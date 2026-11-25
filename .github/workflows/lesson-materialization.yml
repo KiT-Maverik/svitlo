@@ -82,12 +82,9 @@ jobs:
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
           node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
-      - name: Pull pinned isolated worker image
-        run: docker pull node:26.13.1-bookworm-slim@sha256:5df79989ed685e09f0a98019db4cebfb22fb9df1a53c0161664a011f7ff6b0f1
-      - name: Execute pinned Lesson entrypoint in isolated worker
+      - name: Execute pinned Lesson entrypoint in isolated worker without GitHub credentials
         id: analysis
         env:
-          GH_TOKEN: ${{ github.token }}
           LESSON_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           LESSON_TYPED_META_B64: ${{ needs.typed-resolve.outputs.meta }}
           LESSON_TYPED_CANDIDATE: candidate

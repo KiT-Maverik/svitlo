@@ -219,37 +219,52 @@ export function readGeneratedCourseHandoff(source, { variable, contract }) {
     !ts.isStringLiteral(imported.moduleSpecifier) ||
     imported.moduleSpecifier.text !== '@svitlo/engine/build' ||
     !imported.importClause?.namedBindings ||
+    imported.importClause.name ||
+    imported.attributes ||
     !ts.isNamedImports(imported.importClause.namedBindings) ||
     imported.importClause.namedBindings.elements.length !== 1 ||
     imported.importClause.namedBindings.elements[0].name.text !== contract ||
+    imported.importClause.namedBindings.elements[0].propertyName ||
     (!imported.importClause.isTypeOnly && !imported.importClause.namedBindings.elements[0].isTypeOnly)
   )
     throw Error('Course handoff has an unexpected authoring contract import');
+  // Generated Course seeds may use the historical named const export or the
+  // inert single-default-export contract. Both must be literal typed data,
+  // never an executable statement or an imported candidate module.
+  let typed;
+  if (ts.isVariableStatement(exported)) {
+    if (
+      !(ts.getCombinedModifierFlags(exported) & ts.ModifierFlags.Export) ||
+      !(exported.declarationList.flags & ts.NodeFlags.Const) ||
+      exported.declarationList.declarations.length !== 1 ||
+      name(exported.declarationList.declarations[0].name) !== variable
+    )
+      throw Error('Course handoff must export its one canonical immutable data object');
+    typed = exported.declarationList.declarations[0].initializer;
+  } else if (ts.isExportAssignment(exported) && !exported.isExportEquals) {
+    typed = exported.expression;
+  } else {
+    throw Error('Course handoff must export one named or default typed data object');
+  }
+  while (typed && ts.isParenthesizedExpression(typed)) typed = typed.expression;
   if (
-    !ts.isVariableStatement(exported) ||
-    !(ts.getCombinedModifierFlags(exported) & ts.ModifierFlags.Export) ||
-    !(exported.declarationList.flags & ts.NodeFlags.Const) ||
-    exported.declarationList.declarations.length !== 1 ||
-    name(exported.declarationList.declarations[0].name) !== variable
-  )
-    throw Error('Course handoff must export its one canonical immutable data object');
-  let initializer = exported.declarationList.declarations[0].initializer;
-  while (initializer && ts.isParenthesizedExpression(initializer)) initializer = initializer.expression;
-  if (
-    !initializer ||
-    !ts.isSatisfiesExpression(initializer) ||
-    !ts.isTypeReferenceNode(initializer.type) ||
-    name(initializer.type.typeName) !== contract
+    !typed ||
+    !ts.isSatisfiesExpression(typed) ||
+    !ts.isTypeReferenceNode(typed.type) ||
+    name(typed.type.typeName) !== contract ||
+    typed.type.typeArguments?.length
   )
     throw Error('Course handoff must satisfy the exact typed seed contract');
-  const assertion = initializer.expression;
-  if (
-    !ts.isAsExpression(assertion) ||
-    !ts.isTypeReferenceNode(assertion.type) ||
-    name(assertion.type.typeName) !== 'const'
-  )
+  let literal = typed.expression;
+  if (ts.isAsExpression(literal)) {
+    if (!ts.isTypeReferenceNode(literal.type) || name(literal.type.typeName) !== 'const')
+      throw Error('Course handoff must use an immutable as const data assertion');
+    literal = literal.expression;
+  } else if (ts.isVariableStatement(exported)) {
+    // Historical named seed output required the literal's as const assertion.
     throw Error('Course handoff must use an immutable as const data assertion');
-  const literal = unwrap(assertion.expression);
+  }
+  literal = unwrap(literal);
   if (!ts.isObjectLiteralExpression(literal)) throw Error('Course handoff must be a literal data object');
   const decode = node => {
     node = unwrap(node);

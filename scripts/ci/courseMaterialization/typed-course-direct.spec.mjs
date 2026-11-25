@@ -36,6 +36,20 @@ const meta = {
   reviewVerdict: 'accepted',
 };
 const index = sourcePath.replace('/draft.ts', '/index.ts');
+
+/** Author input stays inert; only this trusted test resolver supplies real Lessons. */
+function approvedCourseOptions(sourcePath, sourceBlobSha, lessons) {
+  return {
+    textbookRoot: 'content/math',
+    source: { sourcePath, sourceBlobSha },
+    verifySource: () => true,
+    resolveExistingLesson(request) {
+      const configurator = lessons.find(lesson => lesson.id === request.id);
+      if (!configurator) throw Error('Unapproved fixture Lesson ' + request.id);
+      return { ...request, approved: true, configurator };
+    },
+  };
+}
 const plan = {
   sourcePath,
   sourceBlobSha: meta.sourceBlobSha,
@@ -144,10 +158,9 @@ test('existing Lesson commit revision preserves trailing source newline and reje
 test('actual Course source plan binds every generated Lesson seed and Episode handoff to the trusted manifest', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
-  const actual = courseStage3(
-    defineLesson(independentLessonConfig()),
-    defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
-  );
+  const firstLesson = defineLesson(independentLessonConfig());
+  const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
+  const actual = courseStage3();
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
     version: 2,
@@ -162,11 +175,10 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     sourcePath,
     sourceBlobSha: 'a'.repeat(40),
   };
-  const plan = materializeCourseStage5(actual, {
-    textbookRoot: 'content/math',
-    source: { sourcePath, sourceBlobSha: pinned.sourceBlobSha },
-    verifySource: () => true,
-  });
+  const plan = materializeCourseStage5(
+    actual,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
   assert.equal(plan.inventory.lessons.length, 3);
   assert.equal(plan.inventory.episodes.length, 1);
   const complete = buildTypedCourseManifest(pinned, plan);
@@ -280,10 +292,9 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
 test('trusted Course manifest seals Assessment seed, inline parent and upstream Lesson inventory', () => {
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
-  const actual = courseStage3(
-    defineLesson(independentLessonConfig()),
-    defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
-  );
+  const firstLesson = defineLesson(independentLessonConfig());
+  const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
+  const actual = courseStage3();
   actual.config.content.items.finalReview = {
     config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
     production: {
@@ -304,11 +315,10 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
     sourcePath,
     sourceBlobSha: 'a'.repeat(40),
   };
-  const plan = materializeCourseStage5(actual, {
-    textbookRoot: 'content/math',
-    source: { sourcePath, sourceBlobSha: pinned.sourceBlobSha },
-    verifySource: () => true,
-  });
+  const plan = materializeCourseStage5(
+    actual,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
   assert.equal(plan.inventory.assessments.length, 1);
   const [row] = plan.inventory.assessments;
   assert.deepEqual(row.lessonDependencies, ['content/newLesson', 'content/reused']);
@@ -335,5 +345,53 @@ test('trusted Course manifest seals Assessment seed, inline parent and upstream 
   mutate(m => {
     m.inventory.assessments.push(structuredClone(m.inventory.assessments[0]));
   });
+  assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
+});
+
+test('Course publisher accepts all three generated inert default-export seeds under sealed SHA256', () => {
+  const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
+  const { defineLesson } = createRequire(import.meta.url)(build);
+  const firstLesson = defineLesson(independentLessonConfig());
+  const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
+  const course = courseStage3();
+  course.config.content.items.finalReview = {
+    config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+    production: {
+      purpose: 'Measure transfer',
+      lessonDependencies: ['content/newLesson', 'content/reused'],
+    },
+  };
+  course.config.content.order.push('finalReview');
+  const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
+  const pinned = {
+    ...meta,
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
+    head: 'b'.repeat(40),
+    courseId,
+    textbookRoot: 'content/math',
+  };
+  const plan = materializeCourseStage5(
+    course,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [firstLesson, overriddenLesson]),
+  );
+  const sealed = buildTypedCourseManifest(pinned, plan);
+  assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
+  const found = new Set();
+  for (const entry of sealed.entries) {
+    const emitted = Buffer.from(entry.data, 'base64').toString('utf8');
+    const contract = emitted.match(
+      /export default [\s\S]* satisfies (CourseWorkflowLessonSeed|EpisodeWorkflowStage1Handoff|AssessmentWorkflowSeed);/,
+    );
+    if (!contract) continue;
+    found.add(contract[1]);
+    assert.doesNotMatch(emitted, /export const (?:lessonSeed|episodeStage1|assessmentSeed) = /);
+    assert.doesNotMatch(emitted, /materialize(?:Lesson|Episode|Assessment)\(/);
+  }
+  assert.deepEqual([...found].sort(), [
+    'AssessmentWorkflowSeed',
+    'CourseWorkflowLessonSeed',
+    'EpisodeWorkflowStage1Handoff',
+  ]);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });

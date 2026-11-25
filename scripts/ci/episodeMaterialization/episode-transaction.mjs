@@ -11,7 +11,7 @@ import { discoverEpisodeDraft, inspectEpisode } from './episode-gate.mjs';
 import { verifyReservedEpisodeParent } from './episode-parent-verify.mjs';
 import { parseEpisodeHandoff } from './episode-source.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
-import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
+import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs';
 import { pinnedGitReader as gitReader } from '../directMaterialization/pinned-git.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
@@ -199,7 +199,7 @@ export function episodeCommitTree(manifest) {
   ];
 }
 
-export async function prepareEpisode(meta, root, execute = runIsolatedMaterialization) {
+export async function prepareEpisode(meta, root, execute = executeTrustedDraft) {
   const { parseEpisodeHandoff, composeEpisodeDirectPlan } = await import('./episode-source.mjs');
   const reader = gitReader(root);
   if (
@@ -227,16 +227,13 @@ export async function prepareEpisode(meta, root, execute = runIsolatedMaterializ
   const source = reader.blob(tree.get(meta.sourcePath), meta.sourcePath);
   const parent = reader.blob(tree.get(meta.parentPath), meta.parentPath);
   const handoff = parseEpisodeHandoff(original);
+  const pinned = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlobSha, sourceCommitSha: meta.head };
   const worker = execute({
     trustedRoot: path.resolve(import.meta.dirname, '../../..'),
-    candidateRoot: root,
-    textbook: meta.textbookRoot,
     operation: 'episode-stage5',
-    source: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlobSha,
-      sourceCommitSha: meta.head,
-    },
+    source: pinned,
+    sourceText: source,
+    options: { source: pinned },
   });
   const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, worker?.plan);
   checkEpisodeTargets(meta, plan.files, tree);

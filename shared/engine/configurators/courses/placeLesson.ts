@@ -51,6 +51,52 @@ const assertPlain = (value: unknown, trail = 'patch', seen = new Set<object>()):
   seen.delete(value);
 };
 
+/**
+ * Only trusted completed Build modules provide actual added Section Configurators.
+ * Authored Course drafts remain inert descriptors and never carry functions.
+ * Clone metadata but preserve verified Configurators as opaque Build children.
+ */
+const snapshotPatch = <Patch>(patch: Patch): Patch => {
+  if (!isObject(patch)) throw new Error('Lesson placement patch must be a plain Config object');
+  const section = patch.section;
+  const additions = isObject(section) ? section.additionalItems : undefined;
+  if (additions === undefined) {
+    assertPlain(patch);
+    return structuredClone(patch);
+  }
+  if (!isObject(additions))
+    throw new Error('Lesson placement section.additionalItems must be a Section Configurator map');
+  const placeholders: Record<string, null> = Object.create(null);
+  for (const [key, child] of Object.entries(additions)) {
+    if (
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+      ['constructor', '__proto__', 'prototype'].includes(key) ||
+      !isObject(child) ||
+      child.slug !== key ||
+      typeof child.id !== 'string' ||
+      typeof child.type !== 'string' ||
+      !isObject(child.config) ||
+      !isObject(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type ||
+      !isObject(child.build) ||
+      typeof child.build.props !== 'function' ||
+      typeof child.build.overrides !== 'function'
+    )
+      throw new Error('Lesson placement requires a verified Section Configurator at section.additionalItems.' + key);
+    placeholders[key] = null;
+  }
+  const sanitized = {
+    ...patch,
+    section: { ...(section as Record<string, unknown>), additionalItems: placeholders },
+  };
+  assertPlain(sanitized);
+  const cloned = structuredClone(sanitized);
+  Object.assign(cloned.section.additionalItems, additions);
+  return cloned as Patch;
+};
+
 const merge = (base: Record<string, unknown>, patch: Record<string, unknown>) =>
   mergeForValidation<Record<string, unknown>>(base, patch);
 
@@ -80,13 +126,33 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
     throw new Error('placeLesson requires an original defineLesson Configurator');
   }
   if (!isObject(patch)) throw new Error('Lesson placement patch must be a plain Config object');
-  assertPlain(patch);
-  const authored = structuredClone(patch);
+  const authored = snapshotPatch(patch);
 
   const composed = (additional: unknown) => {
     if (!isObject(additional)) throw new Error('Lesson placement override must be a plain Config object');
-    assertPlain(additional);
-    return merge(authored as Record<string, unknown>, additional);
+    const safeAdditional = snapshotPatch(additional);
+    // Never recursively merge opaque Configurator methods.
+    const hidden = (value: Record<string, unknown>): Record<string, unknown> => {
+      const section = value.section;
+      if (!isObject(section) || !isObject(section.additionalItems)) return value;
+      return {
+        ...value,
+        section: {
+          ...section,
+          additionalItems: Object.fromEntries(Object.keys(section.additionalItems).map(key => [key, null])),
+        },
+      };
+    };
+    const merged = merge(hidden(authored as Record<string, unknown>), hidden(safeAdditional));
+    const previous = isObject((authored as Record<string, unknown>).section)
+      ? ((authored as Record<string, unknown>).section as Record<string, unknown>).additionalItems
+      : undefined;
+    const next = isObject(safeAdditional.section) ? safeAdditional.section.additionalItems : undefined;
+    if (isObject(previous) || isObject(next)) {
+      const mergedSection = merged.section as Record<string, unknown>;
+      mergedSection.additionalItems = { ...(isObject(previous) ? previous : {}), ...(isObject(next) ? next : {}) };
+    }
+    return merged;
   };
 
   const build = {
@@ -121,7 +187,7 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
     ...source,
     // Expose a separate inspection snapshot so external mutations cannot change
     // this placement's closed-over authored patch between Build calls.
-    placement: { source, patch: structuredClone(authored) },
+    placement: { source, patch: snapshotPatch(authored) },
     build,
   } as PlacedLesson<Lesson>;
 }

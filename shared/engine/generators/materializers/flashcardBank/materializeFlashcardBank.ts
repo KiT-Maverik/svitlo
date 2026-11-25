@@ -37,7 +37,6 @@ import {
 } from '../bankSource/lessonLanguageOwnership';
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
 
 export type FlashcardBankDraftAuthorization = {
@@ -111,7 +110,7 @@ export function materializeFlashcardBankDraft(
       content:
         "import type { FlashcardBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
         '// Stage 1 editorial source. NOT a Card, Side or Flashcards Section.\n' +
-        'export const flashcardBank = ' +
+        'export default ' +
         authoredBankLiteral(input) +
         ' satisfies FlashcardBankWorkflowStage1;\n',
     },
@@ -193,18 +192,11 @@ function checkSides(card: Card, slug: string): void {
  */
 export function materializeFlashcardBank(
   input: FlashcardBankWorkflowStage3,
-  authorization?: FlashcardBankFinalAuthorization,
+  authorization: FlashcardBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer(
-    'flashcards-stage5',
-    authorization,
-    approved => {
-      const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
-      if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
-      return planFlashcardBank(input, approved);
-    },
-    input,
-  );
+  const parsed = flashcardBankWorkflowStage3_Schema.safeParse(input);
+  if (!parsed.success) throw new Error('Invalid reviewed flashcardBank Stage 3 input: ' + parsed.error.message);
+  return planFlashcardBank(parsed.data, authorization);
 }
 
 function planFlashcardBank(

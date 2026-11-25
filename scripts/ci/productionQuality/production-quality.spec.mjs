@@ -98,7 +98,9 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.ok(workflow.includes('  generators:\n    name: Production / Engine generators\n    needs: policy'));
   assert.ok(workflow.includes('uses: ./.github/workflows/engine-generators.yml'));
   assert.ok(engineGeneratorsWorkflow.includes('  workflow_call:'));
-  assert.ok(engineGeneratorsWorkflow.includes('node --test scripts/ci/directMaterialization/pipeline.spec.mjs'));
+  assert.ok(engineGeneratorsWorkflow.includes('scripts/ci/directMaterialization/trusted-draft.spec.mjs'));
+  assert.ok(engineGeneratorsWorkflow.includes('scripts/ci/directMaterialization/course-dependency-isolation.spec.mjs'));
+  assert.ok(!engineGeneratorsWorkflow.includes('scripts/ci/directMaterialization/pipeline.spec.mjs'));
   const required = ['policy', 'repository', 'types', 'unit', 'generators', 'components', 'lint', 'packages', 'apps'];
   assert.ok(workflow.includes('needs: [reuse, ' + required.join(', ') + ']'));
   for (const name of required) {

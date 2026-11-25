@@ -1,0 +1,35 @@
+# Declarative editorial source migration inventory
+
+**Status:** #857 target architecture; verify actual default-branch runner and source SHA before using a materialization command. All six rows have one Git-authored progressively typed inert `draft.ts` with `import type` and a single `export default { ... } satisfies FinalStageType;`. Intermediate seeds use their own earlier Stage contract; they do **not** satisfy final materialization Zod until their authorized author completes the entity. Completed generated `index.ts` remains executable Engine Build code.
+
+| Entity         | Canonical Skill / index                                                                                                                         | Final reviewed `satisfies` type | Exact Draft PR command and runbook                                                            | Source output                                                                                                                  | Review and release boundary                                                                                        |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Course         | [Create Course Flow](../../skills/course-workflow/create-course-flow.skill.md), [index](../../skills/course-workflow/README.md)                 | `CourseWorkflowStage3`          | `/course materialize`; [runbook](../../../scripts/ci/courseMaterialization/README.md)         | Course/Module/Chapter `index.ts`, derived methodology, Lesson/Episode/Assessment blocked seeds                                 | Stage 4 independent corrective review; separate Stage 5 authorization; Stage 10 human integrated QA                |
+| Lesson         | [Create Lesson Flow](../../skills/lesson-workflow/create-lesson-flow.skill.md), [index](../../skills/lesson-workflow/README.md)                 | `LessonWorkflowStage2`          | `/lesson materialize`; [runbook](../../../scripts/ci/lessonMaterialization/README.md)         | Lesson `index.ts`, Sections, Blocks, six-file Scene drafts, derived methodology                                                | Independent Stage 3, reviews 4–5; resources 6.2, Scenes 6.3, independent banks 7/8, translations 9/10              |
+| Episode        | [Create Episode Flow](../../skills/episode-workflow/create-episode-flow.skill.md), [index](../../skills/episode-workflow/README.md)             | `EpisodeWorkflowStage2`         | `/episode materialize`; [runbook](../../../scripts/ci/episodeMaterialization/README.md)       | Episode Sections/Blocks/Scene drafts + one reserved parent Course slot restoration                                             | Independent Stage 3, experience review 4; human Stage 9 Media Generation and Stage 10 QA                           |
+| Question Bank  | [Create Questions Flow](../../skills/lesson-workflow/create-questions-flow.skill.md), [Lesson index](../../skills/lesson-workflow/README.md)    | `QuestionBankWorkflowStage3`    | `/questions materialize`; [runbook](../../../scripts/ci/bankMaterialization/README.md)        | Lesson-owned `questions/index.ts` and concrete Question kinds                                                                  | Independent Stage 4; no Lesson Quiz Section auto-mutation; Stage 6/7 integration and translation                   |
+| Flashcard Bank | [Create Flashcards Flow](../../skills/lesson-workflow/create-flashcards-flow.skill.md), [Lesson index](../../skills/lesson-workflow/README.md)  | `FlashcardBankWorkflowStage3`   | `/flashcards materialize`; [runbook](../../../scripts/ci/bankMaterialization/README.md)       | Lesson-owned `flashcards/index.ts`, Cards and Sides                                                                            | Independent Stage 4, Question-first or documented Questions N/A; Section selection and Stages 6/7 stay independent |
+| Assessment     | [Create Assessment Flow](../../skills/assessment-workflow/create-assessment-flow.skill.md), [index](../../skills/assessment-workflow/README.md) | `AssessmentWorkflowStage2`      | `/assessment materialize`; [runbook](../../../scripts/ci/assessmentMaterialization/README.md) | Nested Course/Module/Chapter `content/<slug>/index.ts`, Sections, exactly one enabled Quiz, one parent placeholder restoration | Independent Stage 3; Stage 8 human QA and Course Stage 10 human integrated QA                                      |
+
+## Authored source shapes
+
+A completed reviewed entity uses the **exact** current final Stage type and complete contract-specific fields; the following is a syntactic outline, **not** a compilable content fixture:
+
+```ts
+import type { LessonWorkflowStage2 } from '@svitlo/engine/build';
+
+export default {
+  // Fully reviewed literal config and production trees, without computed values.
+} satisfies LessonWorkflowStage2;
+```
+
+For Course placements reusing a Lesson, persist the **verified UUID** as `production.existing: { id: '<verified uuid>' }`. For an adaptation, author the inline plain `sourcePatch` with `satisfies Parameters<typeof importedLesson.build.overrides>[0]` and a type-only import of the actual trusted Lesson export. **Agent B's nested override fixture must prove the exact accepted generics** (including existing child `section.items`, `additionalItems`, `order` and locale). Do not claim the outline is a passing contextual typecheck.
+
+## Retired executable-draft instructions
+
+- No `materializeCourse(reviewedCourse)`, `materializeLessonStage6(reviewedLesson)`, `materializeEpisodeStage5(reviewedEpisode)`, `materializeQuestionBank`, `materializeFlashcardBank` or `materializeAssessment` invoked in authored drafts.
+- No value-imported Lesson/Question Configurator inside an author-edited `draft.ts`, authored `build.overrides()`, module spreads, method calls, Jiti source execution or YAML/JSON shadow source.
+- No Quest Stage/Task root command: Quest is a **nested Lesson content** materializer. Assessment is the sixth independent command.
+- The Stage type and `satisfies` are not code-execution guards. The shared static Reader rejects unsupported AST before canonical final Zod validation; entity-specific trusted gates verify authorization, ownership and dependencies, and the privileged publisher accepts only sealed, create-only output.
+
+**Verification:** Run changed generator/scaffolder suites, shared Reader malicious-input/Stage tests, contextual Course override typecheck, CI transaction/parent restoration tests, Engine build/typecheck and relevant documentation links. Also verify the exact deployed Actions run and output commit. Never claim those checks passed solely from reviewing this inventory.

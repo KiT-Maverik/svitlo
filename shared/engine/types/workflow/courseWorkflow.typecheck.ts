@@ -361,28 +361,39 @@ const existingConfig = {
 
 const existingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match, assessment },
+  production: {
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    matching: match,
+    assessment,
+    sourceExportName: 'independentLesson',
+  },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const patch = importedLesson.build.overrides({ params: { sections: { allowSkipping: false } } }, { languages: ['uk'] });
+const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies Parameters<
+  typeof importedLesson.build.overrides
+>[0];
 const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
     kind: 'existing',
-    existing: patch,
+    existing: { id: importedLesson.id },
     matching: match,
     assessment,
+    sourceExportName: 'independentLesson',
+    sourcePatch: rawPatch,
     overrideRationale: 'Course progression requires this navigation constraint',
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const typedReference: CourseWorkflowStage3ExistingLessonReference = patch;
+const typedReference: CourseWorkflowStage3ExistingLessonReference = { id: importedLesson.id };
 const typedIdReference: CourseWorkflowStage3ExistingLessonReference = { id: importedLesson.id };
-const partialReference: CourseWorkflowStage3ExistingLessonReference = {
+const forbiddenBuiltReference: CourseWorkflowStage3ExistingLessonReference = {
   id: importedLesson.id,
+  // @ts-expect-error A Course draft must never contain pre-built Props.
   base: { params: { sections: { allowSkipping: false } } },
 };
-const patchId: Lesson_Config['id'] = patch.id;
+const patchId: Lesson_Config['id'] = importedLesson.id;
 
 const resolvedChapter = {
   ...chapter,
@@ -463,7 +474,7 @@ const existingConfigWithId: CourseWorkflowStage3ExistingLessonConfig = {
 const missingExistingReference: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Existing Lesson placement requires an object with an id.
-  production: { kind: 'existing', matching: match, assessment },
+  production: { kind: 'existing', matching: match, assessment, sourceExportName: 'independentLesson' },
 };
 
 const existingAsString: CourseWorkflowStage3ExistingLesson = {
@@ -472,6 +483,7 @@ const existingAsString: CourseWorkflowStage3ExistingLesson = {
     kind: 'existing',
     matching: match,
     assessment,
+    sourceExportName: 'independentLesson',
     // @ts-expect-error A string alone is not a valid existing Lesson reference.
     existing: importedLesson.id,
   },
@@ -480,7 +492,12 @@ const existingAsString: CourseWorkflowStage3ExistingLesson = {
 const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Reuse needs verified matching evidence.
-  production: { kind: 'existing', existing: { id: importedLesson.id }, assessment },
+  production: {
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    assessment,
+    sourceExportName: 'independentLesson',
+  },
 };
 
 /** A single structural object shape does not impose a two-branch rationale union.
@@ -488,7 +505,14 @@ const existingMissingMatch: CourseWorkflowStage3ExistingLesson = {
  */
 const patchedForReview: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
-  production: { kind: 'existing', matching: match, assessment, existing: patch },
+  production: {
+    kind: 'existing',
+    matching: match,
+    assessment,
+    existing: { id: importedLesson.id },
+    sourceExportName: 'independentLesson',
+    sourcePatch: rawPatch,
+  },
 };
 
 const rationaleForEditorialReview: CourseWorkflowStage3ExistingLesson = {
@@ -498,6 +522,7 @@ const rationaleForEditorialReview: CourseWorkflowStage3ExistingLesson = {
     matching: match,
     existing: { id: importedLesson.id },
     assessment,
+    sourceExportName: 'independentLesson',
     overrideRationale: 'The methodology reviewer should reject an unwarranted rationale',
   },
 };
@@ -508,9 +533,10 @@ const rawOverridesAreInvalid: CourseWorkflowStage3ExistingLesson = {
     kind: 'existing',
     matching: match,
     assessment,
-    // @ts-expect-error Raw params patches are not validated {id,base,locale} results.
+    sourceExportName: 'independentLesson',
+    // @ts-expect-error Existing Lesson references contain only the owning UUID.
     existing: { params: { sections: { allowSkipping: false } } },
-    overrideRationale: 'Use validated Build output',
+    overrideRationale: 'Use a separately authored sourcePatch',
   },
 };
 
@@ -520,7 +546,8 @@ const patchWithoutId: CourseWorkflowStage3ExistingLesson = {
     kind: 'existing',
     matching: match,
     assessment,
-    // @ts-expect-error A built override reference must include the owning Lesson id.
+    sourceExportName: 'independentLesson',
+    // @ts-expect-error A reference must include the owning Lesson id.
     existing: { base: {}, locale: undefined },
     overrideRationale: 'Required identity',
   },
@@ -549,8 +576,9 @@ const obsoleteThirdVariant: CourseWorkflowStage3LessonSlot = {
   production: {
     // @ts-expect-error The old third discriminator no longer exists.
     kind: 'existingWithOverrides',
-    existing: patch,
+    existing: { id: importedLesson.id },
     matching: match,
+    sourceExportName: 'independentLesson',
   },
 };
 
@@ -566,6 +594,7 @@ const missingReferenceId: CourseWorkflowStage3ExistingLesson = {
     kind: 'existing',
     matching: match,
     assessment,
+    sourceExportName: 'independentLesson',
     // @ts-expect-error Even with a patch, the reference requires an id.
     existing: { base: {}, locale: undefined },
   },
@@ -579,11 +608,11 @@ void newConfig;
 void newLesson;
 void existingConfig;
 void existingLesson;
-void patch;
+void rawPatch;
 void existingWithOverrides;
 void typedReference;
 void typedIdReference;
-void partialReference;
+void forbiddenBuiltReference;
 void patchId;
 void resolvedChapter;
 void resolvedModule;
@@ -622,6 +651,11 @@ void missingAssessmentChoice;
 const existingWithoutAssessment: CourseWorkflowStage3ExistingLesson = {
   config: existingConfig,
   // @ts-expect-error Every reused placement needs explicit assessment decisions.
-  production: { kind: 'existing', existing: { id: importedLesson.id }, matching: match },
+  production: {
+    kind: 'existing',
+    existing: { id: importedLesson.id },
+    matching: match,
+    sourceExportName: 'independentLesson',
+  },
 };
 void existingWithoutAssessment;

@@ -23,7 +23,7 @@ Final materialization requires exact Stage 3 editor bytes and their Git commit/b
 
 ## Safe Stage 3 → bank index transition
 
-The editor occupies `<bank>/draft.ts` through Stages 1–3. The final atomic transaction deletes that exact reviewed draft, creates `<bank>/index.ts` and all complete member modules, and creates the source-only language tuple at the Lesson root. The approved parent Git commit and blob preserve the exact original bytes. A consumed draft cannot be materialized again; existing outputs are never clobbered.
+The editor occupies `<bank>/draft.ts` through Stages 1–3. The final atomic transaction deletes that exact reviewed draft, creates `<bank>/index.ts` and all complete member modules, without changing the verified Lesson's source-language tuple. The approved parent Git commit and blob preserve the exact original bytes. A consumed draft cannot be materialized again; existing outputs are never clobbered.
 
 Keep the Question Bank root free of extra files. Canonical layout: `questions/<questionType>/<questionSlug>.ts`, `questions/<questionType>/index.ts` re-exporting each leaf, `questions/index.ts` importing through those indexes and exporting the complete `questions` bank. The existing static assessment review adapter rejects unregistered root files, flattened Question modules and nested Question entrypoints. Flashcards use individual `flashcards/<slug>.ts` and `flashcards/index.ts` for all Cards; Sides remain owned by each Card.
 

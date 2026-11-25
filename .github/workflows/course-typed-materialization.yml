@@ -108,11 +108,12 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Check out trusted materializers from default branch
+      - name: Check out trusted materializers and immutable default-branch Lesson history
         uses: actions/checkout@v5
         with:
           ref: ${{ github.sha }}
           path: trusted
+          fetch-depth: 0
           persist-credentials: false
       - name: Check out pinned PR as inert data, never a workflow or script source
         uses: actions/checkout@v5
@@ -178,6 +179,9 @@ jobs:
           node-version: '26'
           cache: npm
           cache-dependency-path: trusted/package-lock.json
+      - name: Install trusted TypeScript parser for static Course handoff verification
+        working-directory: trusted
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Download exact read-only job manifest
         uses: actions/download-artifact@v7
         with:

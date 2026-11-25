@@ -12,7 +12,6 @@ import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpoi
 import { materializeCode } from '../code/materializeCode';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
 import { materializeContentSection } from '../contentSection/contentSection';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
 import { materializeImage } from '../image/materializeImage';
 import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
@@ -28,7 +27,11 @@ import { materializeText } from '../text/materializeText';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
 import { assertLessonSourceReleaseReady, materializeLesson, type ChildConfig, type Result } from './lesson';
-import { preserveAssessmentReferences, reviewedSkillReferences } from './preserveAssessmentReferences';
+import {
+  preserveAssessmentReferences,
+  reviewedSkillReferences,
+  type TrustedBankSelection,
+} from './preserveAssessmentReferences';
 
 /** Pinned source metadata for a trusted caller; editorial state is not input. */
 export type LessonStage6Source = {
@@ -46,6 +49,16 @@ export type LessonStage6Options = {
     source: Readonly<LessonStage6Source>,
     sourceText: string,
   ) => boolean;
+  /** Per-Skill attestation from the runner's authorized immutable taxonomy. */
+  trustedSkillReferences?: readonly (Readonly<{
+    approved: true;
+    id: string;
+    path: string;
+    exported: string;
+    sourceSha: string;
+  }> | null)[];
+  /** Per-selected UUID bank references approved independently of draft syntax. */
+  trustedBankSelections?: readonly TrustedBankSelection[];
 };
 export type LessonStage6Plan = {
   lessonId: string;
@@ -218,8 +231,8 @@ function normalizeStage2(input: LessonWorkflowStage2) {
  * Concrete materializers own rendering/diagnostics for their real Config
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
-export function materializeLessonStage6(input: LessonWorkflowStage2, options?: LessonStage6Options): LessonStage6Plan {
-  return invokeMaterializer('lesson-stage6', options, execution => planLessonStage6(input, execution));
+export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
+  return planLessonStage6(input, options);
 }
 
 function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
@@ -401,6 +414,23 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     }
   }
 
+  const skillReferences =
+    options.trustedSkillReferences === undefined
+      ? reviewedSkillReferences(options.sourceText, source.sourcePath, input)
+      : options.trustedSkillReferences.map((skill, index) => {
+          if (!skill) return null;
+          if (
+            skill.approved !== true ||
+            skill.id !== config.skills[index] ||
+            !sha.test(skill.sourceSha) ||
+            !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(skill.path) ||
+            !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(skill.exported)
+          )
+            throw Error('Lesson Stage 6: unapproved or mismatched trusted Skill dependency');
+          return { id: skill.id, path: skill.path, exported: skill.exported };
+        });
+  if (skillReferences.length !== config.skills.length)
+    throw Error('Lesson Stage 6: trusted Skill inventory length mismatch');
   const result = materializeLesson(
     {
       ...config,
@@ -410,7 +440,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     {
       documentLanguage,
       production: input.production as unknown as Record<string, unknown> & { assessment: typeof assessment },
-      skillReferences: reviewedSkillReferences(options.sourceText, source.sourcePath, input),
+      skillReferences,
       renderSection: section,
     },
   );
@@ -420,6 +450,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     source.sourcePath,
     input,
     result.files.map(file => ({ ...file, path: root + file.path })),
+    options.trustedBankSelections,
   );
   // The nested defineScene sources stay within Lesson ownership. Executable
   // Scene drafts belong to the textbook's independent UUID-scoped scene tree.

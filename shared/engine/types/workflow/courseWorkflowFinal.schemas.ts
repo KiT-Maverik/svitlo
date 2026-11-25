@@ -5,26 +5,18 @@ import { chapter_Config_Schema } from '../../configurators/courses/defineChapter
 import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
 import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
-import {
-  lesson_Config_Schema,
-  lessonConfigurator_Schema,
-} from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import { lesson_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 const rationale = z.string().min(1);
-/** Sparse built Lesson values and their original Build patch must be JSON-safe
- * plain Config structures. The imported Configurator itself is checked by
- * Engine's existing Lesson Build boundary.
+/** The reader accepts only inert JSON-safe authored Config patches. Exact
+ * nested Configurator validation is delegated to the trusted real Lesson
+ * Build API, not duplicated in this editorial Stage schema.
  */
 const plainConfig_Schema = z.record(z.string(), z.json());
-const sparseBase_Schema = z.custom<ReturnType<Lesson_Configurator['build']['overrides']>['base']>(
-  value => plainConfig_Schema.safeParse(value).success,
-);
-const sparseLocale_Schema = z.custom<ReturnType<Lesson_Configurator['build']['overrides']>['locale']>(
-  value => plainConfig_Schema.safeParse(value).success,
-);
-const sourcePatch_Schema = z.custom<Parameters<Lesson_Configurator['build']['overrides']>[0]>(
+const sourcePatch_Schema = z.custom<CourseLessonSourcePatch<Lesson_Configurator>>(
   value => plainConfig_Schema.safeParse(value).success,
 );
 const uid = z.uuid();
@@ -89,11 +81,7 @@ const existingLesson = z.strictObject({
   config: placement,
   production: z.strictObject({
     kind: z.literal('existing'),
-    existing: z.strictObject({
-      id: uid,
-      base: sparseBase_Schema.optional(),
-      locale: sparseLocale_Schema.optional(),
-    }),
+    existing: z.strictObject({ id: uid }),
     matching: z.strictObject({
       methodologySourcePath: rationale,
       sourceSha: z.string().regex(/^[a-f0-9]{40}$/i),
@@ -102,13 +90,8 @@ const existingLesson = z.strictObject({
     }),
     assessment,
     overrideRationale: z.string().optional(),
-    /** The exact imported standalone Lesson Configurator, never a copied Props object. */
-    source: z.custom<Lesson_Configurator>(value => lessonConfigurator_Schema.safeParse(value).success).optional(),
-    sourceExportName: z
-      .string()
-      .regex(/^[A-Za-z][A-Za-z0-9]*$/)
-      .optional(),
-    /** Actual authored sparse Config patch, not a reconstructed built Props patch. */
+    /** Inert, canonical Lesson named export; resolved only by trusted code. */
+    sourceExportName: z.string().regex(/^[A-Za-z][A-Za-z0-9]*$/),
     sourcePatch: sourcePatch_Schema.optional(),
   }),
 });

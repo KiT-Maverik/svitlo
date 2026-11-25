@@ -38,7 +38,6 @@ import {
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
 import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
@@ -99,7 +98,7 @@ export function materializeQuestionBankDraft(
       content:
         "import type { QuestionBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
         '// Stage 1 editorial source. NOT a publishable bank or Quiz Section.\n' +
-        'export const questionBank = ' +
+        'export default ' +
         authoredBankLiteral(input) +
         ' satisfies QuestionBankWorkflowStage1;\n',
     },
@@ -171,18 +170,11 @@ function renderQuestion(
  */
 export function materializeQuestionBank(
   input: QuestionBankWorkflowStage3,
-  authorization?: QuestionBankFinalAuthorization,
+  authorization: QuestionBankFinalAuthorization,
 ): BankSourceResult {
-  return invokeMaterializer(
-    'questions-stage5',
-    authorization,
-    approved => {
-      const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
-      if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
-      return planQuestionBank(input, approved);
-    },
-    input,
-  );
+  const parsed = questionBankWorkflowStage3_Schema.safeParse(input);
+  if (!parsed.success) throw new Error('Invalid reviewed questionBank Stage 3 input: ' + parsed.error.message);
+  return planQuestionBank(parsed.data, authorization);
 }
 
 function planQuestionBank(

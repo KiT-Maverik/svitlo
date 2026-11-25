@@ -59,9 +59,10 @@ const lesson = (slug, tag, lessonId = IDs.lesson) => ({
   config: { type: 'lesson', slug, skills: [skillId] },
   production: {
     kind: 'existing',
-    existing: { id: lessonId, base: { locale: { title: tag } }, locale: { uk: { locale: { title: tag } } } },
+    existing: { id: lessonId },
     matching,
     assessment,
+    sourcePatch: { locale: { title: { uk: tag } } },
     overrideRationale: 'Adapt title to Course sequence',
   },
 });
@@ -141,6 +142,7 @@ const lessonBridge = (node, ctx) => {
     lessonId: ctx.lessonId,
     kind: ctx.kind,
     existing: ctx.existing,
+    sourcePatch: ctx.production.sourcePatch,
     assessment: ctx.production.assessment,
     reviewedMethodology: ctx.production.methodology,
     language: ctx.sourceLanguage,
@@ -154,7 +156,7 @@ const lessonBridge = (node, ctx) => {
           path: 'content/book/data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/draft.ts',
           kind: 'typescript',
           content:
-            '// Future CourseWorkflowLessonSeed authored source; no runtime Configurator\\nexport const lessonSeed = {};\\n',
+            '// Future CourseWorkflowLessonSeed authored source; no runtime Configurator\\nexport default {} satisfies CourseWorkflowLessonSeed;\\n',
         },
       ],
     };
@@ -237,7 +239,8 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   const result = materializeCourse(src, ctx());
   assert.equal(reused.filter(c => c.kind === 'existing').length, 2);
   assert.equal(reused[0].existing.id, reused[1].existing.id);
-  assert.notDeepEqual(reused[0].existing.base, reused[1].existing.base);
+  assert.deepEqual(reused[0].existing, reused[1].existing);
+  assert.notDeepEqual(reused[0].sourcePatch, reused[1].sourcePatch);
   assert.notEqual(reused[0].location, reused[1].location);
   assert.equal(result.placements.length, 3);
   assert.equal(result.placements.find(p => p.kind === 'new').lessonId, '80d31f41-75ac-4210-9a6d-7b4c75ad698e');
@@ -299,7 +302,7 @@ test('the same imported Lesson must keep a verified ID, not an unvalidated raw p
     id: IDs.lesson,
     params: { sections: { allowSkipping: false } },
   };
-  assert.throws(() => materializeCourse(patch, ctx()), /not raw patches/);
+  assert.throws(() => materializeCourse(patch, ctx()), /expected only/);
 });
 test('refuses traversal in requested source directory', () => {
   assert.throws(
