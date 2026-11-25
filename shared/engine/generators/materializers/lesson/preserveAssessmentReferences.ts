@@ -2,6 +2,8 @@ import { posix } from 'node:path';
 
 import ts from 'typescript';
 
+import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+
 import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
 import type { Result } from './lesson';
 
@@ -207,8 +209,10 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
 function applySelection(source: string, filePath: string, selection: Selection): string {
   if (selection.references.length === 0) {
     return (
-      '// TODO (BLOCKER): Replace provisional ' + selection.field +
-      ' UUIDs with verified imported Question/Flashcard Configurator references before publication.\n' + source
+      renderBlockerTodo(
+        'Replace provisional ' + selection.field +
+          ' UUIDs with verified imported Question/Flashcard Configurator references before publication.',
+      ) + '\n' + source
     );
   }
   const file = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
