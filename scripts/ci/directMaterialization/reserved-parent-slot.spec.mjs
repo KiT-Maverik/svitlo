@@ -91,10 +91,15 @@ for (const kind of ['lesson', 'episode', 'assessment']) {
       assert.match(source, new RegExp(allocation.slug + '/stub'));
       assert.throws(() => verifyPendingCourseParent(source, { ...allocation, id: ids.sibling }));
       assert.throws(() => verifyPendingCourseParent(source, { ...allocation, placement: 'content/different' }));
-      assert.throws(() => verifyPendingCourseParent(source.replace(
-        'order: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]',
-        'order: ["before", "after"]',
-      ), allocation));
+      assert.throws(() =>
+        verifyPendingCourseParent(
+          source.replace(
+            'order: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]',
+            'order: ["before", "after"]',
+          ),
+          allocation,
+        ),
+      );
     });
   }
 }
@@ -137,7 +142,8 @@ test('read-only reservation rejects foreign, executable, aliased or malformed st
     source.replace('order: ["before", "story", "after"]', 'order: ["after", "story", "after"]'),
     source + '\nprocess.exit(1);',
     source.replace('const content', 'const also = child_story;\nconst content'),
-  ]) assert.throws(() => verifyPendingCourseParent(changed, allocation));
+  ])
+    assert.throws(() => verifyPendingCourseParent(changed, allocation));
 });
 
 test('typed Course seed survives normal TS formatting without parsing comments', () => {
@@ -187,9 +193,14 @@ test('mixed Course child stubs remain reserved independently with unchanged orde
   ];
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    slots.map(slot => 'import { stub as child_' + slot.slug + ' } from "./content/' + slot.slug + '/stub";\n').join('') +
-    'const content = { items: {' + slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
-    '}, order: ' + JSON.stringify(slots.map(slot => slot.slug)) + ' };\n' +
+    slots
+      .map(slot => 'import { stub as child_' + slot.slug + ' } from "./content/' + slot.slug + '/stub";\n')
+      .join('') +
+    'const content = { items: {' +
+    slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
+    '}, order: ' +
+    JSON.stringify(slots.map(slot => slot.slug)) +
+    ' };\n' +
     'export const owner = defineCourse({ content });\n';
   for (const slot of slots)
     assert.equal(verifyPendingCourseParent(source, { ...slot, stubSource: stubSource(slot) }), true);
@@ -292,7 +303,9 @@ test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent i
         lessonId,
       );
     } else {
-      assert.throws(() => resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind: ['module', 'chapter'] }));
+      assert.throws(() =>
+        resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind: ['module', 'chapter'] }),
+      );
     }
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'newLesson', ownerKind }), lessonId);
     assert.equal(resolveIntegratedCourseLesson(source, { slug: 'other', ownerKind }), siblingId);

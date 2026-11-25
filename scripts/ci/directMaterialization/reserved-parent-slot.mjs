@@ -142,7 +142,10 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
         statement.importClause?.namedBindings &&
         ts.isNamedImports(statement.importClause.namedBindings) &&
         statement.importClause.namedBindings.elements.some(
-          element => !element.isTypeOnly && !element.propertyName && element.name.text === unwrap(parents[0].initializer).expression.text,
+          element =>
+            !element.isTypeOnly &&
+            !element.propertyName &&
+            element.name.text === unwrap(parents[0].initializer).expression.text,
         ),
     )
   )
@@ -326,11 +329,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   // constrains the legal owners but cannot distinguish the two at level one.
   const ownerDepth = depth - (kind === 'assessment' && depth > 2 ? 3 : 2);
   const allowedOwners =
-    ownerDepth === 0
-      ? ['defineCourse']
-      : ownerDepth === 1
-        ? ['defineModule', 'defineChapter']
-        : ['defineChapter'];
+    ownerDepth === 0 ? ['defineCourse'] : ownerDepth === 1 ? ['defineModule', 'defineChapter'] : ['defineChapter'];
   const parents = ast.statements
     .filter(ts.isVariableStatement)
     .flatMap(statement => [...statement.declarationList.declarations])
