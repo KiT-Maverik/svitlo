@@ -87,23 +87,17 @@ export function workflowOrdered_Schema<Child extends z.ZodType>(child: Child) {
 
 /** Production notes do not become Config or runtime Props fields. */
 const nodeProduction_Schema = z.strictObject({
-  purpose: z.string(),
+  purpose: z.string().optional(),
   pedagogicalIntent: z.string().optional(),
   specification: z.string().optional(),
   prompt: z.string().optional(),
   script: z.string().optional(),
   storyboard: z.string().optional(),
-  accessibility: z.string().optional(),
-  offline: z.string().optional(),
-  weakDeviceAlternative: z.string().optional(),
-  readiness: z.enum(['source-ready', 'production-pending', 'platform-pending']).optional(),
 });
 export type LessonWorkflowNodeProduction = z.infer<typeof nodeProduction_Schema>;
 
 const resourceProduction_Schema = nodeProduction_Schema.extend({
-  specification: z.string(),
-  accessibility: z.string(),
-  offline: z.string(),
+  specification: z.string().trim().min(1),
 });
 export type LessonWorkflowResourceProduction = z.infer<typeof resourceProduction_Schema>;
 
@@ -139,7 +133,13 @@ const subtitlesSource_Schema = subtitles_Config_Schema.extend({
 });
 
 const textNode_Schema = node(text_Config_Schema);
-const imageNode_Schema = resource(imageSource_Schema);
+/** An Image is not producible from a generic purpose; Stage 2 must author a generation prompt. */
+const imageNode_Schema = z.strictObject({
+  config: imageSource_Schema,
+  production: nodeProduction_Schema.extend({
+    prompt: z.string().trim().min(80, 'Image requires a concrete generation prompt with visual detail'),
+  }),
+});
 const videoNode_Schema = resource(videoSource_Schema);
 const audioNode_Schema = resource(audioSource_Schema);
 const subtitlesNode_Schema = resource(subtitlesSource_Schema);
