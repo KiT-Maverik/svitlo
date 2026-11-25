@@ -91,6 +91,7 @@ export async function inspectAssessment(number, parentNumber, expected) {
   const sourceBlobSha = await resource(identity.sourcePath, pr.head.sha);
   const handoffBlobSha = await resource(identity.sourcePath, parent.head.sha);
   const parentBlobSha = await resource(identity.parentPath, parent.head.sha);
+  const stubBlobSha = await resource(identity.sourcePath.replace(/draft\.ts$/, 'stub.ts'), parent.head.sha);
   const again = await github('pulls/' + number);
   const parentAgain = await github('pulls/' + parentNumber);
   if (
@@ -121,6 +122,7 @@ export async function inspectAssessment(number, parentNumber, expected) {
     sourceBlobSha,
     handoffBlobSha,
     parentBlobSha,
+    stubBlobSha,
   };
 }
 async function main() {
