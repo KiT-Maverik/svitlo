@@ -101,6 +101,18 @@ const options = () => ({
     sourceBlobSha: sha,
   },
   verifySource: () => true,
+  resolveSkill: ({ id }) => ({
+    approved: true, id,
+    slug: 'sampleSkill', exportName: 'sampleSkill',
+    importPath: '#skillsData/sampleSkill',
+    sourcePath: 'content/playground/data/skills/sampleSkill.ts',
+    sourceSha: sha,
+    configurator: {
+      id, slug: 'sampleSkill', type: 'skill',
+      config: { base: { id, slug: 'sampleSkill' } },
+      build: { props() {} },
+    },
+  }),
 });
 
 test('historical UUID namespace uses full placement and remains deterministic on retry', () => {
@@ -174,6 +186,10 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   const chapterContent = first.files.find(f => f.path === root + '/content/moduleOne/chapterOne/index.ts').content;
   assert.match(rootContent, /"directLesson": child_directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
+  assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
+  assert.match(chapterContent, /#skillsData\/sampleSkill/);
+  assert.match(chapterContent, /sampleSkill as skill_/);
+  assert.match(chapterContent, /skill_[0-9a-f_]+\.id/);
   assert.match(chapterContent, /"lessonOne": child_lessonOne/);
   assert.match(chapterContent, /"episodeOne": child_episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);

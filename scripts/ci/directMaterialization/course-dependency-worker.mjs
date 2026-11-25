@@ -8,13 +8,15 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { createJiti } from 'jiti';
 
-const { input, source, textbookRoot, references, sections } = JSON.parse(fs.readFileSync(0, 'utf8'));
+const { input, source, textbookRoot, references, sections, skills } = JSON.parse(fs.readFileSync(0, 'utf8'));
 if (
   !/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot) ||
   !Array.isArray(references) ||
   references.length > 250 ||
   !Array.isArray(sections) ||
   sections.length > 250 ||
+  !Array.isArray(skills) ||
+  skills.length > 250 ||
   !source ||
   !input
 )
@@ -22,6 +24,49 @@ if (
 const { materializeCourse } = createRequire(import.meta.url)('/work/shared/engine/dist/build.js');
 const jiti = createJiti(import.meta.url, { fsCache: false });
 const loaded = new Map();
+const loadedSkills = new Map();
+if (skills.length) {
+  // Use the same actual SkillDomain/SkillGroup Configurator graph as textbook
+  // Skills publication. No draft value is ever interpreted as a Skill.
+  const taxonomy = await jiti.import(path.join('/work', textbookRoot, 'data/skills/index.ts'));
+  const registered = new Map();
+  const register = item => {
+    if (!item || item.type !== 'skill' || typeof item.id !== 'string' ||
+        item.config?.base?.id !== item.id || item.config?.base?.slug !== item.slug ||
+        typeof item.build?.props !== 'function')
+      throw Error('Invalid trusted Skill registry member');
+    if (registered.has(item.id)) throw Error('Duplicate Skill in trusted taxonomy ' + item.id);
+    registered.set(item.id, item);
+  };
+  for (const domain of Object.values(taxonomy)) {
+    if (!domain || domain.type !== 'skillDomain' || !domain.id || !domain.build?.props)
+      throw Error('Invalid trusted SkillDomain export');
+    for (const skill of Object.values(domain.skills ?? {})) register(skill);
+    for (const group of Object.values(domain.groups ?? {})) {
+      if (!group || group.type !== 'skillGroup' || !group.id || !group.build?.props)
+        throw Error('Invalid trusted SkillGroup');
+      for (const skill of Object.values(group.skills ?? {})) register(skill);
+    }
+  }
+  for (const binding of skills) {
+    if (!/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(binding.id ?? '') ||
+        !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.exportName ?? '') ||
+        !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.slug ?? '') ||
+        !/^[a-f0-9]{40}$/.test(binding.sourceSha ?? '') ||
+        !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(binding.importPath ?? '') ||
+        binding.sourcePath !== textbookRoot + '/data/skills/' + binding.importPath.slice('#skillsData/'.length) + '.ts')
+      throw Error('Untrusted Skill source binding');
+    const module = await jiti.import('/work/' + binding.sourcePath);
+    const skill = module[binding.exportName];
+    const catalogued = registered.get(binding.id);
+    if (!skill || skill.type !== 'skill' || skill.id !== binding.id ||
+        skill.slug !== binding.slug || skill.config?.base?.id !== binding.id ||
+        skill.config?.base?.slug !== binding.slug || !catalogued ||
+        catalogued.slug !== skill.slug)
+      throw Error('Skill binding does not match trusted taxonomy registry');
+    loadedSkills.set(binding.id, { ...binding, configurator: skill });
+  }
+}
 for (const reference of references) {
   const { id, sourceSha, exportName } = reference;
   if (
@@ -85,6 +130,11 @@ const plan = materializeCourse(input, {
   source: { sourcePath: source.sourcePath, sourceBlobSha: source.sourceBlobSha },
   verifySource: ({ source: pinned, textbookRoot: pkg }) =>
     pinned.sourcePath === source.sourcePath && pinned.sourceBlobSha === source.sourceBlobSha && pkg === textbookRoot,
+  resolveSkill({ id }) {
+    const binding = loadedSkills.get(id);
+    if (!binding) throw Error('Unapproved Course Skill dependency ' + id);
+    return { ...binding, approved: true };
+  },
   resolveExistingLesson(request) {
     const { id, sourceSha, exportName, importPath } = request;
     if (importPath !== '#lessonsData/' + id.at(-1) + '/' + id + '/index') throw Error('Lesson import path mismatch');

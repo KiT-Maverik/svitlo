@@ -177,6 +177,20 @@ const deriveId = (kind, placement) => {
 };
 const ctx = () => ({
   sourceLanguage: 'uk',
+  textbookRoot: 'content/playground',
+  courseId: IDs.course,
+  resolveSkill: ({ id }) => ({
+    approved: true, id,
+    slug: 'testExplainLightTravel', exportName: 'testExplainLightTravel',
+    importPath: '#skillsData/testLight/testLightPropagation/testExplainLightTravel',
+    sourcePath: 'content/playground/data/skills/testLight/testLightPropagation/testExplainLightTravel.ts',
+    sourceSha: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    configurator: {
+      id, slug: 'testExplainLightTravel', type: 'skill',
+      config: { base: { id, slug: 'testExplainLightTravel' } },
+      build: { props() {} },
+    },
+  }),
   deriveId,
   materializeCourse,
   materializeModule,
@@ -209,8 +223,14 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.match(method.content, /## Entry conditions/);
   const main = first.files.find(f => f.path === 'index.ts').content;
   assert.match(main, /defineCourse<"rootCourse", typeof content.items, Languages>/);
-  assert.match(main, /import \{ languages \} from "\.\/constants"/);
-  assert.match(main, /import type \{ Languages \} from "\.\/constants"/);
+  assert.match(main, /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/);
+  const unit = first.files.find(f => f.path === 'content/moduleOne/index.ts').content;
+  const chapter = first.files.find(f => f.path === 'content/moduleOne/chapterOne/index.ts').content;
+  assert.match(unit, /import type \{ Languages \} from "#coursesData\//);
+  assert.match(chapter, /import type \{ Languages \} from "#coursesData\//);
+  assert.doesNotMatch(unit, /import \{ languages \}/);
+  assert.match(unit, /skill_[0-9a-f_]+\.id/);
+  assert.match(chapter, /skill_[0-9a-f_]+\.id/);
   assert.doesNotMatch(main, /const languages =|Restore reviewed languages/);
   assert.equal(first.placements.length, 1);
   syntax(first.files);
