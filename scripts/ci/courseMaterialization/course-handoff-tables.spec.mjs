@@ -6,7 +6,7 @@ const id = '663572e7-bd85-4516-86e2-3de07d209e03';
 const lesson = {
   type: 'lesson',
   id,
-  placementPath: 'content/book/data/courses/3/' + id + '/content/module/lesson',
+  placementPath: 'content/book/data/courses/3/' + id + '/module/lesson',
   orderPath: [0, 0],
   kind: 'new',
   sourcePath: 'content/book/data/lessons/3/' + id + '/draft.ts',
@@ -15,8 +15,8 @@ const lesson = {
 const episode = {
   ...lesson,
   type: 'episode',
-  placementPath: 'content/book/data/courses/3/' + id + '/content/episode',
-  sourcePath: 'content/book/data/courses/3/' + id + '/content/episode/draft.ts',
+  placementPath: 'content/book/data/courses/3/' + id + '/episode',
+  sourcePath: 'content/book/data/courses/3/' + id + '/episode/draft.ts',
   orderPath: [1],
   status: 'pending-episode-scenario',
 };
@@ -68,12 +68,12 @@ const assessment = {
   ...lesson,
   type: 'assessment',
   id: 'a73572e7-bd85-4516-86e2-3de07d209e03',
-  placementPath: 'content/book/data/courses/3/' + id + '/content/module/content/finalAssessment',
-  sourcePath: 'content/book/data/courses/3/' + id + '/content/module/content/finalAssessment/draft.ts',
+  placementPath: 'content/book/data/courses/3/' + id + '/module/finalAssessment',
+  sourcePath: 'content/book/data/courses/3/' + id + '/module/finalAssessment/draft.ts',
   orderPath: [0, 2],
   kind: 'new',
   status: 'pending-assessment-design',
-  lessonDependencies: ['content/module/lesson', 'content/otherLesson'],
+  lessonDependencies: ['module/lesson', 'otherLesson'],
 };
 test('Assessment table includes nested placement, dependencies, status and preserved manual review', () => {
   const initial = reconcileCourseHandoffTables('## Workflow\n- [ ] 7. Design Assessments', {
