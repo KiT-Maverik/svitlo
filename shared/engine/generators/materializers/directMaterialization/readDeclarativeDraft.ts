@@ -10,22 +10,49 @@ import {
 } from '../../../types/workflow/bankWorkflowFinal.schemas';
 import { assessmentWorkflowStage2_Schema } from '../../../types/workflow/assessmentWorkflow.types';
 
+import type { CourseWorkflowStage3 } from '../../../types/workflow/courseWorkflow.types';
+import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import type { EpisodeWorkflowStage2 } from '../../../types/workflow/episodeWorkflow.types';
+import type { QuestionBankWorkflowStage3 } from '../../../types/workflow/questionBankWorkflow.types';
+import type { FlashcardBankWorkflowStage3 } from '../../../types/workflow/flashcardBankWorkflow.types';
+import type { AssessmentWorkflowStage2 } from '../../../types/workflow/assessmentWorkflow.types';
+
+
 /**
  * A parse-only boundary for untrusted, pinned authoring bytes. No source file,
  * dependency or Configurator is imported, compiled, resolved or executed here.
  * The trusted caller owns source path, blob/commit hashes and authorization.
  */
-const finalStages = {
+type FinalStageValues = {
+  course: CourseWorkflowStage3;
+  lesson: LessonWorkflowStage2;
+  episode: EpisodeWorkflowStage2;
+  questions: QuestionBankWorkflowStage3;
+  flashcards: FlashcardBankWorkflowStage3;
+  assessment: AssessmentWorkflowStage2;
+};
+type StageNames = {
+  course: 'CourseWorkflowStage3';
+  lesson: 'LessonWorkflowStage2';
+  episode: 'EpisodeWorkflowStage2';
+  questions: 'QuestionBankWorkflowStage3';
+  flashcards: 'FlashcardBankWorkflowStage3';
+  assessment: 'AssessmentWorkflowStage2';
+};
+export type DeclarativeDraftEntityKind = keyof FinalStageValues;
+export type DeclarativeDraftValue<K extends DeclarativeDraftEntityKind> = FinalStageValues[K];
+
+/** Explicit annotations keep emitted declarations finite even for large Stage schemas. */
+const finalStages: {
+  [K in DeclarativeDraftEntityKind]: { name: StageNames[K]; schema: z.ZodType<FinalStageValues[K]> }
+} = {
   course: { name: 'CourseWorkflowStage3', schema: courseWorkflowStage3_Schema },
   lesson: { name: 'LessonWorkflowStage2', schema: lessonWorkflowStage2_Schema },
   episode: { name: 'EpisodeWorkflowStage2', schema: episodeWorkflowStage2_Schema },
   questions: { name: 'QuestionBankWorkflowStage3', schema: questionBankWorkflowStage3_Schema },
   flashcards: { name: 'FlashcardBankWorkflowStage3', schema: flashcardBankWorkflowStage3_Schema },
   assessment: { name: 'AssessmentWorkflowStage2', schema: assessmentWorkflowStage2_Schema },
-} as const;
-
-export type DeclarativeDraftEntityKind = keyof typeof finalStages;
-export type DeclarativeDraftValue<K extends DeclarativeDraftEntityKind> = z.output<(typeof finalStages)[K]['schema']>;
+};
 type DraftValue = null | boolean | number | string | DraftValue[] | { [key: string]: DraftValue };
 type ParseContext = {
   source: ts.SourceFile;
