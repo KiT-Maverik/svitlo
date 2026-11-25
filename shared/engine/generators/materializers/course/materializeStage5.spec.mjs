@@ -785,7 +785,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
   const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
   assert.match(wrapper ?? '', /import \{ practice \} from "\.\/sections\/practice"/);
-  assert.match(wrapper ?? '', /"additionalItems": \{"practice": practice\}/);
+  assert.match(wrapper ?? '', /"additionalItems": \{practice\}/);
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
@@ -895,7 +895,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
   assert.match(index, /import \{ reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"additionalItems": \{"practice": practice\}/);
+  assert.match(wrapper, /"additionalItems": \{practice\}/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
