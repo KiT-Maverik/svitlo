@@ -139,7 +139,7 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   assert(paths.includes(folder + 'constants.ts'));
   assert(!paths.includes(folder + 'languages.ts'));
   assert(!paths.includes(folder + 'sections/introduction/specification.md'));
-  assert(paths.includes(folder + 'sections/introduction/prompt/specification.md'));
+  assert(!paths.includes(folder + 'sections/introduction/prompt/specification.md'));
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
   assert.match(root, /defineLesson<"basics"/);
   assert.match(root, /"order": \["introduction"\]/);
@@ -663,8 +663,6 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const resource = (purpose: string) => ({
     purpose,
     specification: 'Produce the reviewed learning resource',
-    accessibility: 'Provide equivalent accessible content',
-    offline: 'Provide an offline learning path',
   });
   const image = (slug: string, number: string, fileName?: string) => ({
     config: {
@@ -674,7 +672,10 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
       params: { width: 640, height: 480 },
       locale: { alt: { en: 'An accessible diagram', uk: 'Український опис' }, ...(fileName ? { fileName } : {}) },
     },
-    production: resource('Explain the diagram'),
+    production: {
+      ...resource('Explain the diagram'),
+      prompt: 'Draw a clean educational schematic with one yellow desk lamp on the left, an opaque blue cube at center, and a clearly outlined shadow on a neutral screen at right; mark the straight light rays.',
+    },
   });
   const video = (slug: string, number: string, fileName?: string) => ({
     config: {
@@ -1026,8 +1027,6 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
     production: {
       purpose: 'Review the selected shape',
       specification: 'Review the selected color and shape.\n*/\nexport const injected = true;',
-      accessibility: 'Use typed source-locale feedback and keyboard equivalents',
-      offline: 'No remote services',
     },
   };
   collection.order.push('chooseShape');
@@ -1089,8 +1088,6 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
       production: {
         purpose: 'Verify the reviewed behavior',
         specification: 'Approved interaction for ' + slug,
-        accessibility: 'Keyboard and touch parity',
-        offline: 'Works offline',
       },
     };
     collection.order.push(slug);
@@ -1132,9 +1129,6 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
     production: {
       purpose: 'Exercise an accessible shadow interaction',
       specification: 'Implement and test a keyboard-operable light and shadow interaction.',
-      accessibility: 'Include readable feedback and a nonvisual alternative.',
-      offline: 'The verified interaction must work without a network.',
-      readiness: 'production-pending' as const,
     },
   });
   const section = {
