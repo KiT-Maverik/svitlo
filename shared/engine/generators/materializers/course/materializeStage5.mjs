@@ -8,6 +8,7 @@ import { buildPlacementInventory } from './placementInventory.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 import { materializeAssessmentPlaceholder } from './materializeAssessmentPlaceholder.mjs';
 import { bindCourseLessonPatch } from './bindCourseLessonPatch.mjs';
+import { renderCourseLessonPatch } from './renderCourseLessonPatch.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
@@ -309,22 +310,26 @@ export function materializeCourseStage5(input, options = {}) {
         placementPath: context.directory,
         resolveAddedSection: options.resolveAddedSection,
       });
-      patchSource = binding.patchSource;
-      extraImports = binding.imports;
-      // The Course owns this adaptation, not the canonical standalone Lesson.
-      // Keep the entire placement wrapper under its Course/Module/Chapter slot.
-      placementFiles = [{
-        path: context.directory + '/index.ts',
-        kind: 'typescript',
-        content: [
-          "import { placeLesson } from '@svitlo/engine/build';",
-          'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
-          ...extraImports,
-          '',
-          'export const placedLesson = placeLesson(originalLesson, ' + patchSource + ');',
-          '',
-        ].join('\n'),
-      }];
+      const layout = renderCourseLessonPatch({ directory: context.directory, rawPatch, binding });
+      patchSource = layout.patchSource;
+      extraImports = layout.imports;
+      // All Course-specific fragments belong under the placement, never in
+      // standalone Lesson source or the owning Course/Module/Chapter index.ts.
+      placementFiles = [
+        ...layout.files,
+        {
+          path: context.directory + '/index.ts',
+          kind: 'typescript',
+          content: [
+            "import { placeLesson } from '@svitlo/engine/build';",
+            'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
+            ...extraImports,
+            '',
+            'export const placedLesson = placeLesson(originalLesson, ' + patchSource + ');',
+            '',
+          ].join('\n'),
+        },
+      ];
       try {
         const built = lesson.configurator.build.overrides(binding.patch, { languages: patchLanguages });
         if (built.id !== existing.id)
