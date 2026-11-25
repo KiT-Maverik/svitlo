@@ -5,16 +5,26 @@ import { bindVerifiedSkills } from './bindVerifiedSkills.mjs';
 const first = '00000000-0000-4000-8000-000000000015';
 const second = '00000000-0000-4000-8000-000000000008';
 const sha = 'a'.repeat(40);
-const names = new Map([[first, 'testExplainLightTravel'], [second, 'testRecognizeCircle']]);
-const paths = new Map([[first, 'testLight/testLightPropagation/testExplainLightTravel'],
-                       [second, 'testShapes/testRoundShapes/testRecognizeCircle']]);
+const names = new Map([
+  [first, 'testExplainLightTravel'],
+  [second, 'testRecognizeCircle'],
+]);
+const paths = new Map([
+  [first, 'testLight/testLightPropagation/testExplainLightTravel'],
+  [second, 'testShapes/testRoundShapes/testRecognizeCircle'],
+]);
 const approve = ({ id }) => ({
-  approved: true, id, slug: names.get(id), exportName: names.get(id),
+  approved: true,
+  id,
+  slug: names.get(id),
+  exportName: names.get(id),
   importPath: '#skillsData/' + paths.get(id),
   sourcePath: 'content/playground/data/skills/' + paths.get(id) + '.ts',
   sourceSha: sha,
   configurator: {
-    id, slug: names.get(id), type: 'skill',
+    id,
+    slug: names.get(id),
+    type: 'skill',
     config: { base: { id, slug: names.get(id) } },
     build: { props() {} },
   },
@@ -25,8 +35,11 @@ test('binds actual Skill IDs while retaining exact target order and unrelated ta
   const params = {
     age: { min: 6, max: 10 },
     outcomes: { skills: [first, second], skillGroups: ['00000000-0000-4000-8000-000000000016'] },
-    prerequisites: { skills: [second], skillDomains: ['00000000-0000-4000-8000-000000000014'],
-      courses: ['aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'] },
+    prerequisites: {
+      skills: [second],
+      skillDomains: ['00000000-0000-4000-8000-000000000014'],
+      courses: ['aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'],
+    },
   };
   const result = bindVerifiedSkills(params, { ...ctx, includeLanguages: true });
   const a = 'skill_' + first.replaceAll('-', '_') + '.id';
@@ -55,9 +68,14 @@ test('fails closed for unknown, unapproved, stale, spoofed or wrong-type Skill d
     x => ({ ...x, configurator: { ...x.configurator, id: second } }),
     x => ({ ...x, sourcePath: 'content/math/data/skills/testSkill.ts' }),
   ]) {
-    assert.throws(() => bindVerifiedSkills(params, {
-      ...ctx, resolveSkill: request => alter(approve(request)),
-    }), /unapproved|mismatched/);
+    assert.throws(
+      () =>
+        bindVerifiedSkills(params, {
+          ...ctx,
+          resolveSkill: request => alter(approve(request)),
+        }),
+      /unapproved|mismatched/,
+    );
   }
   assert.throws(() => bindVerifiedSkills({ outcomes: { skills: ['not-a-uuid'] } }, ctx), /invalid Skill UUID/);
 });

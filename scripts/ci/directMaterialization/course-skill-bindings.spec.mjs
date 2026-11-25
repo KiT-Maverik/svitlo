@@ -32,8 +32,11 @@ test('Course dependency inventory is deterministic and bound to semantic target 
   assert.throws(() => courseSkillReferences(input(['not-a-uuid'])), /invalid Skill UUID/);
   const nested = input();
   nested.config.content.items.moduleOne.config.content.items.chapterOne = {
-    config: { type: 'chapter', params: { prerequisites: { skills: ['cccccccc-cccc-4ccc-8ccc-cccccccccccc'] } },
-      content: { items: {}, order: [] } },
+    config: {
+      type: 'chapter',
+      params: { prerequisites: { skills: ['cccccccc-cccc-4ccc-8ccc-cccccccccccc'] } },
+      content: { items: {}, order: [] },
+    },
     production: { outcomes: { skills: [] }, prerequisites: { skills: [] } },
   };
   nested.config.content.items.moduleOne.config.content.order.push('chapterOne');
@@ -64,9 +67,13 @@ test('Skill resolution rejects candidate drift, missing IDs, and duplicate trust
   const leaf = folder + '/test/domainSkill.ts';
   fs.mkdirSync(path.join(trusted, folder, 'test'), { recursive: true });
   fs.writeFileSync(path.join(trusted, folder, 'index.ts'), 'export const registry = true;\n');
-  fs.writeFileSync(path.join(trusted, leaf),
+  fs.writeFileSync(
+    path.join(trusted, leaf),
     "import { defineSkill } from '@svitlo/engine/build';\n" +
-    "export const domainSkill = defineSkill({ id: '" + a + "', slug: 'domainSkill' });\n");
+      "export const domainSkill = defineSkill({ id: '" +
+      a +
+      "', slug: 'domainSkill' });\n",
+  );
   git(trusted, 'add', '.');
   git(trusted, 'commit', '-qm', 'Canonical Skills');
   git(root, 'clone', '-q', trusted, candidate);
@@ -81,9 +88,13 @@ test('Skill resolution rejects candidate drift, missing IDs, and duplicate trust
   git(candidate, 'add', '.');
   git(candidate, 'commit', '-qm', 'Spoof Skill');
   assert.throws(() => resolveTrustedCourseSkills(refs, textbook, candidate, trusted), /differs from the trusted/);
-  fs.writeFileSync(path.join(trusted, folder, 'test/another.ts'),
+  fs.writeFileSync(
+    path.join(trusted, folder, 'test/another.ts'),
     "import { defineSkill } from '@svitlo/engine/build';\n" +
-    "export const another = defineSkill({ id: '" + a + "', slug: 'another' });\n");
+      "export const another = defineSkill({ id: '" +
+      a +
+      "', slug: 'another' });\n",
+  );
   git(trusted, 'add', '.');
   git(trusted, 'commit', '-qm', 'Duplicate trusted Skill');
   assert.throws(() => resolveTrustedCourseSkills(refs, textbook, trusted, trusted), /duplicate trusted Skill UUID/);

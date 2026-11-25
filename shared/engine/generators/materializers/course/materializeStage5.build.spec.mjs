@@ -170,7 +170,9 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
         sourcePath: 'content/playground/data/skills/' + modulePath + '.ts',
         sourceSha: 'a'.repeat(40),
         configurator: {
-          type: 'skill', id: skillId, slug,
+          type: 'skill',
+          id: skillId,
+          slug,
           config: { base: { id: skillId, slug } },
           build: { props() {} },
         },
@@ -195,8 +197,14 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
     assert.match(authored, /#coursesData\/3\//);
   }
   const rootSource = source.files.find(file => file.path === root + '/index.ts').content;
-  assert.equal((rootSource.match(/from "#skillsData\/testShapes\/testRoundShapes\/testRecognizeCircle"/g) ?? []).length, 1);
-  assert.match(rootSource, /"skills": \[skill_00000000_0000_4000_8000_000000000015\.id, skill_00000000_0000_4000_8000_000000000008\.id\]/);
+  assert.equal(
+    (rootSource.match(/from "#skillsData\/testShapes\/testRoundShapes\/testRecognizeCircle"/g) ?? []).length,
+    1,
+  );
+  assert.match(
+    rootSource,
+    /"skills": \[skill_00000000_0000_4000_8000_000000000015\.id, skill_00000000_0000_4000_8000_000000000008\.id\]/,
+  );
   const errors = diagnostics(source.files);
   assert.deepEqual(
     errors.map(error => {

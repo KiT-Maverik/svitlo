@@ -1,4 +1,3 @@
-import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { createHash } from 'node:crypto';
 
 import {
@@ -14,6 +13,7 @@ import { materializeCode } from '../code/materializeCode';
 import { materializeContentSection } from '../contentSection/contentSection';
 import { materializeImage } from '../image/materializeImage';
 import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { materializeQuizSection } from '../quizSection/quizSection';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeScene } from '../scene/materializeScene';

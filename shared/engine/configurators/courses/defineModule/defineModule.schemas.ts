@@ -5,7 +5,6 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
-import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema } from '../courseSkillTargets.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import {
@@ -27,6 +26,7 @@ import {
   type Lesson_Draft_Props,
   type Lesson_Props,
 } from '../../lessons/defineLesson/defineLesson.schemas';
+import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema } from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
 import type {

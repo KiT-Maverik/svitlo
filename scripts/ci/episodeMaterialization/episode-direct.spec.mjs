@@ -66,7 +66,8 @@ const stubSource =
   "import { defineEpisodeStub } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete Episode source then remove this stub in its trusted transaction.\n' +
   'export const stub = defineEpisodeStub({ id: ' +
-  JSON.stringify(episodeId) + ', slug: "episodeOne" });\n';
+  JSON.stringify(episodeId) +
+  ', slug: "episodeOne" });\n';
 const parent =
   "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
   'import { stub as child_episodeOne } from "./content/episodeOne/stub";\n' +
@@ -125,11 +126,16 @@ test('trusted Episode composition only rewrites the allocated Course slot, never
         episodeId,
         orderIndex: 0,
         exportName: worker.exportName,
-      stubSource,
+        stubSource,
       }),
     );
 
-  assert.deepEqual(episodeCommitTree(manifest).slice(-2).map(x => x.sha), [null, null]);
+  assert.deepEqual(
+    episodeCommitTree(manifest)
+      .slice(-2)
+      .map(x => x.sha),
+    [null, null],
+  );
   assert.throws(
     () => composeEpisodeDirectPlan(handoff, reviewed, meta, parent, stubSource, { ...worker, episodeId: courseId }),
     /invalid source plan/,
@@ -160,7 +166,12 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
     component + '.stories.tsx',
     component + '.unit.spec.tsx',
   ];
-  const scoped = { ...meta, textbookRoot: 'content/playground', parentBlobSha: 'd'.repeat(40), stubBlobSha: 'e'.repeat(40) };
+  const scoped = {
+    ...meta,
+    textbookRoot: 'content/playground',
+    parentBlobSha: 'd'.repeat(40),
+    stubBlobSha: 'e'.repeat(40),
+  };
   const worker = {
     episodeId,
     exportName: 'episodeOne',

@@ -36,9 +36,16 @@ export function renderPendingChildStub({ directory, kind, id, slug }) {
     path: directory + '/stub.ts',
     kind: 'typescript',
     content:
-      "import { " + api + " } from '@svitlo/engine/build';\n" +
+      'import { ' +
+      api +
+      " } from '@svitlo/engine/build';\n" +
       renderBlockerTodo(instructions[kind]) +
-      '\nexport const stub = ' + api +
-      '({ id: ' + JSON.stringify(id) + ', slug: ' + JSON.stringify(slug) + ' });\n',
+      '\nexport const stub = ' +
+      api +
+      '({ id: ' +
+      JSON.stringify(id) +
+      ', slug: ' +
+      JSON.stringify(slug) +
+      ' });\n',
   };
 }

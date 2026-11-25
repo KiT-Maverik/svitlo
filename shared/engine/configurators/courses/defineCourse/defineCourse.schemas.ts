@@ -27,7 +27,11 @@ import {
   type Lesson_Draft_Props,
   type Lesson_Props,
 } from '../../lessons/defineLesson/defineLesson.schemas';
-import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema, uniqueSkillTargetIds_Schema } from '../courseSkillTargets.schemas';
+import {
+  coursePrerequisiteTargets_Schema,
+  courseSkillTargets_Schema,
+  uniqueSkillTargetIds_Schema,
+} from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
 import type {

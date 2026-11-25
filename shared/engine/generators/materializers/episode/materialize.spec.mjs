@@ -197,8 +197,10 @@ test('Episode title is source-language keyed without inventing a planned transla
   const input = ep();
   input.params.languages = ['en', 'uk'];
   input.locale.title = 'Story';
-  const result = materializeEpisode({ config: input, production: { specification: 'Reviewed narrative' } },
-    { ...ctx(), sourceLanguage: 'en' });
+  const result = materializeEpisode(
+    { config: input, production: { specification: 'Reviewed narrative' } },
+    { ...ctx(), sourceLanguage: 'en' },
+  );
   const source = result.files.find(file => file.path === 'index.ts').content;
   assert.match(source, /"en": "Story"/);
   assert.doesNotMatch(source, /"uk": "Story"/);

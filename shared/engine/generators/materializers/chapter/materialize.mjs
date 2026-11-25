@@ -373,7 +373,12 @@ export function materializeChapter(input, context = {}) {
     fields.locale = { ...fields.locale };
     for (const field of ['title']) {
       if (fields.locale[field] !== undefined)
-        fields.locale[field] = normalizeWorkflowLocalized(fields.locale[field], lang, dir + '.locale.' + field, planned);
+        fields.locale[field] = normalizeWorkflowLocalized(
+          fields.locale[field],
+          lang,
+          dir + '.locale.' + field,
+          planned,
+        );
     }
   }
   const orderSource = JSON.stringify(order);
@@ -389,8 +394,11 @@ export function materializeChapter(input, context = {}) {
   const params = config.params ?? {};
   if (!record(params)) throw Error(dir + '.params: Config params object required');
   for (const field of ['outcomes', 'prerequisites']) {
-    if (params[field] !== undefined && meta?.[field] !== undefined &&
-        JSON.stringify(params[field]) !== JSON.stringify(meta[field]))
+    if (
+      params[field] !== undefined &&
+      meta?.[field] !== undefined &&
+      JSON.stringify(params[field]) !== JSON.stringify(meta[field])
+    )
       throw Error(dir + ': conflicting config/production Skill ' + field + ' targets');
   }
   const unitParams = {

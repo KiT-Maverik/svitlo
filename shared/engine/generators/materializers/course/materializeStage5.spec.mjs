@@ -102,13 +102,17 @@ const options = () => ({
   },
   verifySource: () => true,
   resolveSkill: ({ id }) => ({
-    approved: true, id,
-    slug: 'sampleSkill', exportName: 'sampleSkill',
+    approved: true,
+    id,
+    slug: 'sampleSkill',
+    exportName: 'sampleSkill',
     importPath: '#skillsData/sampleSkill',
     sourcePath: 'content/playground/data/skills/sampleSkill.ts',
     sourceSha: sha,
     configurator: {
-      id, slug: 'sampleSkill', type: 'skill',
+      id,
+      slug: 'sampleSkill',
+      type: 'skill',
       config: { base: { id, slug: 'sampleSkill' } },
       build: { props() {} },
     },
@@ -547,8 +551,9 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
   assert.equal(plan.inventory.episodes.length, 4);
   assert.equal(plan.inventory.assessments.length, 3);
   assert.equal(plan.inventory.lessons.filter(row => row.kind === 'new').length, 2);
-  const rows = [...plan.inventory.episodes, ...plan.inventory.assessments, ...plan.inventory.lessons]
-    .filter(row => row.status.startsWith('pending'));
+  const rows = [...plan.inventory.episodes, ...plan.inventory.assessments, ...plan.inventory.lessons].filter(row =>
+    row.status.startsWith('pending'),
+  );
   assert.equal(rows.length, 9);
   const stubFiles = plan.files.filter(file => file.path.endsWith('/stub.ts'));
   assert.equal(stubFiles.length, 9);
@@ -806,14 +811,15 @@ test('Course Stage 5 normalizes reviewed English workflow fields and preserves o
 test('Course Build rejects a missing requested translation without changing intentionally invariant Configurator text', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
   const { defineCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
-  const create = locale => defineCourse({
-    id: rootId,
-    type: 'course',
-    slug: 'localizationTest',
-    params: { languages: ['en', 'uk'] },
-    locale,
-    content: { items: {}, order: [] },
-  });
+  const create = locale =>
+    defineCourse({
+      id: rootId,
+      type: 'course',
+      slug: 'localizationTest',
+      params: { languages: ['en', 'uk'] },
+      locale,
+      content: { items: {}, order: [] },
+    });
   const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
   const english = incomplete.build.props({ languages: ['en'] });
   assert.equal(english.locale.en.locale.title, 'Sky');

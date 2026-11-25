@@ -16,8 +16,15 @@ test('reviewed bilingual dictionaries remain sparse and unchanged', () => {
 });
 
 test('invalid or unreviewed locale data fails closed rather than fabricating a translation', () => {
-  for (const value of [{ uk: 'Небо' }, { en: '' }, { en: 'Sky', uk: '' },
-    { en: 'Sky', uk: 'Небо', fr: 'Ciel' }, {}, null, []]) {
+  for (const value of [
+    { uk: 'Небо' },
+    { en: '' },
+    { en: 'Sky', uk: '' },
+    { en: 'Sky', uk: 'Небо', fr: 'Ciel' },
+    {},
+    null,
+    [],
+  ]) {
     assert.throws(() => normalizeWorkflowLocalized(value, 'en', 'title', ['en', 'uk']), /locale/);
   }
   assert.throws(() => normalizeWorkflowLocalized('Sky', 'en', 'title', ['uk']), /scope/);

@@ -8,16 +8,21 @@ const second = 'a73572e7-bd85-4516-86e2-3de07d209e04';
 const stubSource = (slug, uuid) =>
   "import { defineAssessmentStub } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete the Assessment then atomically delete this stub.\n' +
-  'export const stub = defineAssessmentStub({ id: ' + JSON.stringify(uuid) +
-  ', slug: ' + JSON.stringify(slug) + ' });\n';
-const stubImport = slug =>
-  'import { stub as child_' + slug + ' } from "./content/' + slug + '/stub";\n';
+  'export const stub = defineAssessmentStub({ id: ' +
+  JSON.stringify(uuid) +
+  ', slug: ' +
+  JSON.stringify(slug) +
+  ' });\n';
+const stubImport = slug => 'import { stub as child_' + slug + ' } from "./content/' + slug + '/stub";\n';
 const slot = slug => JSON.stringify(slug) + ': child_' + slug;
 const parent = (slugs, order) =>
   "import { defineModule } from '@svitlo/engine/build';\n" +
   slugs.map(stubImport).join('') +
-  'const content = { items: { ' + slugs.map(slot).join(', ') +
-  ' }, order: ' + JSON.stringify(order) + ' };\n' +
+  'const content = { items: { ' +
+  slugs.map(slot).join(', ') +
+  ' }, order: ' +
+  JSON.stringify(order) +
+  ' };\n' +
   'export const moduleOne = defineModule({ content });\n';
 const placement = (slug = 'review', uuid = id) => ({
   id: uuid,
@@ -46,10 +51,18 @@ test('restores exactly one owned Assessment, preserving sibling imported stubs a
 test('rejects swapped identity, malformed stub, spoofed parent and replay', () => {
   const original = parent(['review'], ['review']);
   const updated = restoreAssessmentPlacement(original, placement());
-  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /Reserved child stub missing from actual parent order\/items/);
-  assert.throws(() => restoreAssessmentPlacement(original, {
-    ...placement(), id: second,
-  }), /UUID\/slug/);
+  assert.throws(
+    () => restoreAssessmentPlacement(original, placement('other')),
+    /Reserved child stub missing from actual parent order\/items/,
+  );
+  assert.throws(
+    () =>
+      restoreAssessmentPlacement(original, {
+        ...placement(),
+        id: second,
+      }),
+    /UUID\/slug/,
+  );
   assert.throws(() => restoreAssessmentPlacement(updated, placement()), /stub import/);
   assert.throws(
     () => restoreAssessmentPlacement(original, { ...placement(), stubSource: stubSource('review', second) }),

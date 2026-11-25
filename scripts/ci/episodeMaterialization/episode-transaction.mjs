@@ -242,7 +242,14 @@ export async function prepareEpisode(meta, root, execute = executeTrustedDraft) 
     sourceText: source,
     options: { source: pinned },
   });
-  const plan = composeEpisodeDirectPlan(handoff, worker?.input, meta, parent, reader.blob(tree.get(stubPath(meta)), stubPath(meta)), worker?.plan);
+  const plan = composeEpisodeDirectPlan(
+    handoff,
+    worker?.input,
+    meta,
+    parent,
+    reader.blob(tree.get(stubPath(meta)), stubPath(meta)),
+    worker?.plan,
+  );
   checkEpisodeTargets(meta, plan.files, tree);
   return buildEpisodeManifest(meta, plan);
 }

@@ -181,21 +181,22 @@ export function analyzeDirectCourse(meta, candidateRoot, trustedRoot) {
       textbookRoot === meta.textbookRoot,
   };
   const skillReferences = courseSkillReferences(input);
-  const plan = references.length || skillReferences.length
-    ? runIsolatedCourseDependencies({
-        input,
-        source,
-        textbookRoot: meta.textbookRoot,
-        candidateRoot: root,
-        trustedRoot,
-      })
-    : renderTrustedDraft({
-        operation: 'course-stage5',
-        source,
-        input,
-        renderers: engine,
-        options,
-      });
+  const plan =
+    references.length || skillReferences.length
+      ? runIsolatedCourseDependencies({
+          input,
+          source,
+          textbookRoot: meta.textbookRoot,
+          candidateRoot: root,
+          trustedRoot,
+        })
+      : renderTrustedDraft({
+          operation: 'course-stage5',
+          source,
+          input,
+          renderers: engine,
+          options,
+        });
   verifyCourseDependencies(meta, root, trustedRoot, plan);
   return buildTypedCourseManifest(meta, plan);
 }

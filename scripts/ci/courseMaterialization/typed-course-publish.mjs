@@ -13,7 +13,10 @@ import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs'
 import { manifestDigest } from './course-handoff-publish.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
-import { readGeneratedCourseHandoff, verifyPendingCourseParent } from '../directMaterialization/reserved-parent-slot.mjs';
+import {
+  readGeneratedCourseHandoff,
+  verifyPendingCourseParent,
+} from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -44,7 +47,15 @@ function allowedOutput(filename, meta) {
     if (parts.length > 12 || ['workflow.stage3.ts'].includes(leaf)) return false;
     return (
       ((leaf !== 'constants.ts' || parts.length === 1) &&
-        ['index.ts', 'draft.ts', 'stub.ts', 'constants.ts', 'methodology.md', 'specification.md', 'markdown.md'].includes(leaf)) ||
+        [
+          'index.ts',
+          'draft.ts',
+          'stub.ts',
+          'constants.ts',
+          'methodology.md',
+          'specification.md',
+          'markdown.md',
+        ].includes(leaf)) ||
       /^[a-z]{2}(?:-[A-Z]{2})?\.md$/.test(leaf) ||
       /^code\.[a-z0-9]{1,10}$/.test(leaf)
     );
@@ -112,11 +123,7 @@ function assertCourseInventory(manifest, meta, entries) {
   }
   function requireStub(row) {
     const expected = row.placementPath + '/stub.ts';
-    if (
-      row.stubSourcePath !== expected ||
-      !stubs.delete(expected) ||
-      entries.get(expected)?.kind !== 'typescript'
-    )
+    if (row.stubSourcePath !== expected || !stubs.delete(expected) || entries.get(expected)?.kind !== 'typescript')
       throw Error('Missing, duplicated or displaced owned Course child stub: ' + row.placementPath);
     const stubSource = Buffer.from(entries.get(expected).data, 'base64').toString('utf8');
     const parent = parentSource(row);

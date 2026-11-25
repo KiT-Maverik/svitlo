@@ -31,9 +31,14 @@ if (skills.length) {
   const taxonomy = await jiti.import(path.join('/work', textbookRoot, 'data/skills/index.ts'));
   const registered = new Map();
   const register = item => {
-    if (!item || item.type !== 'skill' || typeof item.id !== 'string' ||
-        item.config?.base?.id !== item.id || item.config?.base?.slug !== item.slug ||
-        typeof item.build?.props !== 'function')
+    if (
+      !item ||
+      item.type !== 'skill' ||
+      typeof item.id !== 'string' ||
+      item.config?.base?.id !== item.id ||
+      item.config?.base?.slug !== item.slug ||
+      typeof item.build?.props !== 'function'
+    )
       throw Error('Invalid trusted Skill registry member');
     if (registered.has(item.id)) throw Error('Duplicate Skill in trusted taxonomy ' + item.id);
     registered.set(item.id, item);
@@ -49,20 +54,28 @@ if (skills.length) {
     }
   }
   for (const binding of skills) {
-    if (!/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(binding.id ?? '') ||
-        !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.exportName ?? '') ||
-        !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.slug ?? '') ||
-        !/^[a-f0-9]{40}$/.test(binding.sourceSha ?? '') ||
-        !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(binding.importPath ?? '') ||
-        binding.sourcePath !== textbookRoot + '/data/skills/' + binding.importPath.slice('#skillsData/'.length) + '.ts')
+    if (
+      !/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(binding.id ?? '') ||
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.exportName ?? '') ||
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(binding.slug ?? '') ||
+      !/^[a-f0-9]{40}$/.test(binding.sourceSha ?? '') ||
+      !/^#skillsData\/(?:[A-Za-z][A-Za-z0-9]*\/)*[A-Za-z][A-Za-z0-9]*$/.test(binding.importPath ?? '') ||
+      binding.sourcePath !== textbookRoot + '/data/skills/' + binding.importPath.slice('#skillsData/'.length) + '.ts'
+    )
       throw Error('Untrusted Skill source binding');
     const module = await jiti.import('/work/' + binding.sourcePath);
     const skill = module[binding.exportName];
     const catalogued = registered.get(binding.id);
-    if (!skill || skill.type !== 'skill' || skill.id !== binding.id ||
-        skill.slug !== binding.slug || skill.config?.base?.id !== binding.id ||
-        skill.config?.base?.slug !== binding.slug || !catalogued ||
-        catalogued.slug !== skill.slug)
+    if (
+      !skill ||
+      skill.type !== 'skill' ||
+      skill.id !== binding.id ||
+      skill.slug !== binding.slug ||
+      skill.config?.base?.id !== binding.id ||
+      skill.config?.base?.slug !== binding.slug ||
+      !catalogued ||
+      catalogued.slug !== skill.slug
+    )
       throw Error('Skill binding does not match trusted taxonomy registry');
     loadedSkills.set(binding.id, { ...binding, configurator: skill });
   }

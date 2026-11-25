@@ -34,7 +34,9 @@ const reuse = (sourceSha = sha) => ({
   production: { kind: 'existing', existing: { id }, matching: { sourceSha }, sourceExportName: 'realLesson' },
 });
 test('Course default-branch Lesson dependency inventory is deterministic, de-duplicated and bounded', () => {
-  const input = { config: { type: 'course', content: { items: { first: reuse(), second: reuse() }, order: ['first', 'second'] } } };
+  const input = {
+    config: { type: 'course', content: { items: { first: reuse(), second: reuse() }, order: ['first', 'second'] } },
+  };
   assert.deepEqual(courseLessonReferences(input), [{ id, sourceSha: sha, exportName: 'realLesson' }]);
   assert.deepEqual(courseLessonReferences({ config: { type: 'course', content: { items: {}, order: [] } } }), []);
 });
@@ -139,7 +141,10 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
 
   calls.length = 0;
   const withAdded = {
-    config: { type: 'course', content: { items: { reused: withSection(sectionBlob, id, expectedBlob) }, order: ['reused'] } },
+    config: {
+      type: 'course',
+      content: { items: { reused: withSection(sectionBlob, id, expectedBlob) }, order: ['reused'] },
+    },
   };
   const withAddedResult = runIsolatedCourseDependencies({ ...request, input: withAdded }, fakeSpawn);
   assert.equal(withAddedResult.publishable, false);
@@ -200,7 +205,9 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
       runIsolatedCourseDependencies(
         {
           ...request,
-          input: { config: { type: 'course', content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } } },
+          input: {
+            config: { type: 'course', content: { items: { reused: reuse('c'.repeat(40)) }, order: ['reused'] } },
+          },
         },
         fakeSpawn,
       ),

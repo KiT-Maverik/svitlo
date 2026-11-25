@@ -67,11 +67,23 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
   assert.deepEqual(parseAssessmentSeed(source), seed);
   assert.deepEqual(parseAssessmentSeed(source.replace('// TODO (BLOCKER):', '// editorial:')), seed);
   assert.throws(
-    () => parseAssessmentSeed(source.replace('"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"', '"placement": {"path": "content/foreign"}, "reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"')),
+    () =>
+      parseAssessmentSeed(
+        source.replace(
+          '"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
+          '"placement": {"path": "content/foreign"}, "reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
+        ),
+      ),
     /Invalid pinned Assessment seed/,
   );
   assert.throws(
-    () => parseAssessmentSeed(source.replace('"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"', '"reviewedCourseSourceBlobSha": "bad"')),
+    () =>
+      parseAssessmentSeed(
+        source.replace(
+          '"reviewedCourseSourceBlobSha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"',
+          '"reviewedCourseSourceBlobSha": "bad"',
+        ),
+      ),
     /Invalid pinned Assessment seed/,
   );
   assert.throws(
@@ -97,7 +109,16 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
     () => verifyAssessmentDesign(seed, { ...input, config: { ...input.config, slug: 'foreign' } }, meta, plan),
     /immutable Course handoff/,
   );
-  assert.throws(() => verifyAssessmentDesign(seed, { ...input, production: { ...input.production, reviewedCourseSourceBlobSha: 'f'.repeat(40) } }, meta, plan), /immutable/);
+  assert.throws(
+    () =>
+      verifyAssessmentDesign(
+        seed,
+        { ...input, production: { ...input.production, reviewedCourseSourceBlobSha: 'f'.repeat(40) } },
+        meta,
+        plan,
+      ),
+    /immutable/,
+  );
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
   assert.throws(() =>
     verifyAssessmentDesign(
@@ -173,7 +194,9 @@ test('one source transaction permits only the exact parent and new Assessment ch
   const manifest = buildAssessmentManifest(meta, { ...plan, files, diagnostics: [] });
   assert.equal(manifest.entries.length, 3);
   assert.deepEqual(
-    assessmentCommitTree(manifest).filter(e => e.sha === null).map(e => e.path),
+    assessmentCommitTree(manifest)
+      .filter(e => e.sha === null)
+      .map(e => e.path),
     [meta.sourcePath, meta.sourcePath.replace('draft.ts', 'stub.ts')],
   );
   assert.throws(() =>

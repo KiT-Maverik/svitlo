@@ -16,9 +16,17 @@ const ids = {
 
 const api = kind => 'define' + kind[0].toUpperCase() + kind.slice(1) + 'Stub';
 const stubSource = ({ kind, id, slug }) =>
-  'import { ' + api(kind) + " } from '@svitlo/engine/build';\n" +
+  'import { ' +
+  api(kind) +
+  " } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete the child, replace its parent import, then delete this stub.\n' +
-  'export const stub = ' + api(kind) + '({ id: ' + JSON.stringify(id) + ', slug: ' + JSON.stringify(slug) + ' });\n';
+  'export const stub = ' +
+  api(kind) +
+  '({ id: ' +
+  JSON.stringify(id) +
+  ', slug: ' +
+  JSON.stringify(slug) +
+  ' });\n';
 
 function parent(kind, depth) {
   const slug = kind === 'episode' ? 'story' : 'review';
@@ -36,19 +44,41 @@ function parent(kind, depth) {
   const id = ids[kind];
   const prefix = depth === 0 || kind === 'assessment' ? './content/' : './';
   const source =
-    'import { ' + owner + ", defineLessonStub } from '@svitlo/engine/build';\n" +
-    'import { stub as child_' + slug + ' } from "' + prefix + slug + '/stub";\n' +
+    'import { ' +
+    owner +
+    ", defineLessonStub } from '@svitlo/engine/build';\n" +
+    'import { stub as child_' +
+    slug +
+    ' } from "' +
+    prefix +
+    slug +
+    '/stub";\n' +
     'const content = {\n' +
     '  items: { before: defineLessonStub({ id: ' +
     JSON.stringify(ids.sibling) +
     ', slug: "before" }),\n' +
-    '    ' + JSON.stringify(slug) + ': child_' + slug + ',\n' +
+    '    ' +
+    JSON.stringify(slug) +
+    ': child_' +
+    slug +
+    ',\n' +
     '    after: defineLessonStub({ id: "44444444-4444-4444-8444-444444444444", slug: "after" }) },\n' +
-    '  order: ["before", ' + JSON.stringify(slug) + ', "after"],\n' +
+    '  order: ["before", ' +
+    JSON.stringify(slug) +
+    ', "after"],\n' +
     '};\n' +
-    'export const parent = ' + owner +
+    'export const parent = ' +
+    owner +
     '({ id: "55555555-5555-4555-8555-555555555555", type: "course", slug: "parent", content });\n';
-  return { source, kind, id, slug, placement, exportName: 'config_' + slug, stubSource: stubSource({kind,id,slug}) };
+  return {
+    source,
+    kind,
+    id,
+    slug,
+    placement,
+    exportName: 'config_' + slug,
+    stubSource: stubSource({ kind, id, slug }),
+  };
 }
 
 for (const kind of ['episode', 'assessment']) {
@@ -65,14 +95,24 @@ for (const kind of ['episode', 'assessment']) {
       assert.match(result.content, new RegExp('config_' + allocation.slug + ' as child_' + allocation.slug));
       assert.equal(verifyReservedParentSlot(source, result.content, allocation), true);
       assert.throws(() => replaceReservedParentSlot(result.content, allocation), /stub import|reserved/i);
-      assert.throws(() => verifyReservedParentSlot(source, result.content + '// extra', allocation), /exact authorized/);
+      assert.throws(
+        () => verifyReservedParentSlot(source, result.content + '// extra', allocation),
+        /exact authorized/,
+      );
       assert.throws(() => replaceReservedParentSlot(source, { ...allocation, id: ids.sibling }), /UUID\/slug/);
       assert.throws(
         () => replaceReservedParentSlot(source, { ...allocation, placement: 'content/different' }),
         /identity/,
       );
       assert.throws(
-        () => replaceReservedParentSlot(source.replace('order: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]', 'order: ["before", "after"]'), allocation),
+        () =>
+          replaceReservedParentSlot(
+            source.replace(
+              'order: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]',
+              'order: ["before", "after"]',
+            ),
+            allocation,
+          ),
         /incomplete|missing|ambiguous/,
       );
     });
@@ -96,8 +136,14 @@ test('rejects foreign, executable, aliased, spoofed or malformed stub and parent
     assert.throws(() => verifyOwnedCourseStub(candidate, allocation));
     assert.throws(() => replaceReservedParentSlot(source, { ...allocation, stubSource: candidate }));
   }
-  const fakeComment = source.replace('const content', '// TODO (BLOCKER): story is approved, order ["story"]\nconst content');
-  assert.equal(verifyReservedParentSlot(fakeComment, replaceReservedParentSlot(fakeComment, allocation).content, allocation), true);
+  const fakeComment = source.replace(
+    'const content',
+    '// TODO (BLOCKER): story is approved, order ["story"]\nconst content',
+  );
+  assert.equal(
+    verifyReservedParentSlot(fakeComment, replaceReservedParentSlot(fakeComment, allocation).content, allocation),
+    true,
+  );
   const invalidParents = [
     source.replace('child_story', 'other_story'),
     source.replace('stub as child_story', 'stub as other_story'),
@@ -155,21 +201,33 @@ test('restores mixed pending Episode/Assessment slots independently with immutab
     { kind: 'episode', slug: 'firstStory', id: ids.episode, placement: 'content/firstStory' },
     { kind: 'assessment', slug: 'firstReview', id: ids.assessment, placement: 'content/firstReview' },
     { kind: 'episode', slug: 'secondStory', id: ids.sibling, placement: 'content/secondStory' },
-    { kind: 'assessment', slug: 'secondReview', id: '44444444-4444-4444-8444-444444444444', placement: 'content/secondReview' },
+    {
+      kind: 'assessment',
+      slug: 'secondReview',
+      id: '44444444-4444-4444-8444-444444444444',
+      placement: 'content/secondReview',
+    },
   ];
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    slots.map(slot => 'import { stub as child_' + slot.slug + ' } from "./content/' + slot.slug + '/stub";\n').join('') +
+    slots
+      .map(slot => 'import { stub as child_' + slot.slug + ' } from "./content/' + slot.slug + '/stub";\n')
+      .join('') +
     'const content = { items: {' +
     slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
-    '}, order: ' + JSON.stringify(slots.map(slot => slot.slug)) + ' };\n' +
+    '}, order: ' +
+    JSON.stringify(slots.map(slot => slot.slug)) +
+    ' };\n' +
     'export const owner = defineCourse({ id: "55555555-5555-4555-8555-555555555555", type: "course", slug: "owner", content });\n';
   let current = source;
   for (const [index, slot] of slots.entries()) {
     const allocation = { ...slot, exportName: 'config_' + slot.slug, stubSource: stubSource(slot) };
     const update = replaceReservedParentSlot(current, allocation);
     assert.equal(update.orderIndex, index);
-    assert.deepEqual(update.order, slots.map(item => item.slug));
+    assert.deepEqual(
+      update.order,
+      slots.map(item => item.slug),
+    );
     assert.equal(verifyReservedParentSlot(current, update.content, allocation), true);
     current = update.content;
     for (const restored of slots.slice(0, index + 1))
@@ -178,10 +236,19 @@ test('restores mixed pending Episode/Assessment slots independently with immutab
       assert.match(current, new RegExp('from "\\./content/' + pending.slug + '/stub"'));
   }
   assert.doesNotMatch(current, /\/stub"/);
-  assert.deepEqual(slots.map(slot => current.includes('child_' + slot.slug)), [true, true, true, true]);
-  assert.throws(() => replaceReservedParentSlot(current, {
-    ...slots[0], exportName: 'config_firstStory', stubSource: stubSource(slots[0]),
-  }), /stub import|reserved/i);
+  assert.deepEqual(
+    slots.map(slot => current.includes('child_' + slot.slug)),
+    [true, true, true, true],
+  );
+  assert.throws(
+    () =>
+      replaceReservedParentSlot(current, {
+        ...slots[0],
+        exportName: 'config_firstStory',
+        stubSource: stubSource(slots[0]),
+      }),
+    /stub import|reserved/i,
+  );
 });
 
 test('generated handoff AST rejects nonliteral code and duplicate/prototype fields', () => {

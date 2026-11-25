@@ -410,7 +410,12 @@ export function materializeCourse(input, context = {}) {
     fields.locale = { ...fields.locale };
     for (const field of ['title', 'description', 'prerequisitesText', 'outcomesText']) {
       if (fields.locale[field] !== undefined)
-        fields.locale[field] = normalizeWorkflowLocalized(fields.locale[field], lang, dir + '.locale.' + field, planned);
+        fields.locale[field] = normalizeWorkflowLocalized(
+          fields.locale[field],
+          lang,
+          dir + '.locale.' + field,
+          planned,
+        );
     }
   }
   const orderSource = JSON.stringify(order);

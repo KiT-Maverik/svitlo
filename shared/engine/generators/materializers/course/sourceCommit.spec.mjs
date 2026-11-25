@@ -135,25 +135,35 @@ test('pending stub allowlist is exact to reviewed inventory, not merely inside C
     /missing, unexpected or foreign stub/,
   );
   assert.doesNotThrow(() =>
-    preflightCourseSourceCommit({
-      ...plan,
-      files: [...plan.files, file],
-      inventory: { ...plan.inventory, lessons: [row] },
-    }, options),
+    preflightCourseSourceCommit(
+      {
+        ...plan,
+        files: [...plan.files, file],
+        inventory: { ...plan.inventory, lessons: [row] },
+      },
+      options,
+    ),
   );
   assert.throws(() =>
-    preflightCourseSourceCommit({
-      ...plan,
-      files: [...plan.files, { ...file, path: root + '/content/foreign/stub.ts' }],
-      inventory: { ...plan.inventory, lessons: [row] },
-    }, options),
+    preflightCourseSourceCommit(
+      {
+        ...plan,
+        files: [...plan.files, { ...file, path: root + '/content/foreign/stub.ts' }],
+        inventory: { ...plan.inventory, lessons: [row] },
+      },
+      options,
+    ),
   );
-  assert.throws(() =>
-    preflightCourseSourceCommit({
-      ...plan,
-      inventory: { ...plan.inventory, lessons: [row, row] },
-      files: [...plan.files, file],
-    }, options),
+  assert.throws(
+    () =>
+      preflightCourseSourceCommit(
+        {
+          ...plan,
+          inventory: { ...plan.inventory, lessons: [row, row] },
+          files: [...plan.files, file],
+        },
+        options,
+      ),
     /duplicate/i,
   );
 });

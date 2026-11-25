@@ -15,7 +15,11 @@ const NAME = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const git = (root, ...args) =>
   execFileSync('git', ['-C', root, ...args], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }).trimEnd();
-const gitBlob = value => createHash('sha1').update('blob ' + value.length + '\0').update(value).digest('hex');
+const gitBlob = value =>
+  createHash('sha1')
+    .update('blob ' + value.length + '\0')
+    .update(value)
+    .digest('hex');
 
 /** Visit only Course/Module/Chapter semantic targets, never Lesson seeds or editorial prose. */
 export function courseSkillReferences(input) {
@@ -26,9 +30,12 @@ export function courseSkillReferences(input) {
     if (!record(value)) throw Error(location + ': invalid Skill targets');
     const ids = value.skills;
     if (ids === undefined) return;
-    if (!Array.isArray(ids) || ids.length > 250 ||
-        ids.some(id => typeof id !== 'string' || !UUID.test(id)) ||
-        new Set(ids.map(id => id.toLowerCase())).size !== ids.length)
+    if (
+      !Array.isArray(ids) ||
+      ids.length > 250 ||
+      ids.some(id => typeof id !== 'string' || !UUID.test(id)) ||
+      new Set(ids.map(id => id.toLowerCase())).size !== ids.length
+    )
       throw Error(location + ': invalid or duplicate Skill UUID list');
     for (const id of ids) found.add(id);
   }
@@ -57,10 +64,9 @@ export function courseSkillReferences(input) {
 }
 function textField(ts, config, name) {
   if (!ts.isObjectLiteralExpression(config)) return null;
-  const field = config.properties.find(x =>
-    ts.isPropertyAssignment(x) &&
-    (ts.isIdentifier(x.name) || ts.isStringLiteral(x.name)) &&
-    x.name.text === name);
+  const field = config.properties.find(
+    x => ts.isPropertyAssignment(x) && (ts.isIdentifier(x.name) || ts.isStringLiteral(x.name)) && x.name.text === name,
+  );
   return field && ts.isStringLiteral(field.initializer) ? field.initializer.text : null;
 }
 function extractSkillExports(filename, content) {
@@ -69,21 +75,36 @@ function extractSkillExports(filename, content) {
   const ts = createRequire(import.meta.url)('typescript');
   const parsed = ts.createSourceFile(filename, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if (parsed.parseDiagnostics.length) throw Error('Invalid trusted Skill TypeScript: ' + filename);
-  const hasDefineSkillImport = parsed.statements.some(x =>
-    ts.isImportDeclaration(x) && ts.isStringLiteral(x.moduleSpecifier) &&
-    x.moduleSpecifier.text === '@svitlo/engine/build' &&
-    x.importClause?.namedBindings && ts.isNamedImports(x.importClause.namedBindings) &&
-    x.importClause.namedBindings.elements.some(el =>
-      el.name.text === 'defineSkill' && !el.propertyName && !el.isTypeOnly));
+  const hasDefineSkillImport = parsed.statements.some(
+    x =>
+      ts.isImportDeclaration(x) &&
+      ts.isStringLiteral(x.moduleSpecifier) &&
+      x.moduleSpecifier.text === '@svitlo/engine/build' &&
+      x.importClause?.namedBindings &&
+      ts.isNamedImports(x.importClause.namedBindings) &&
+      x.importClause.namedBindings.elements.some(
+        el => el.name.text === 'defineSkill' && !el.propertyName && !el.isTypeOnly,
+      ),
+  );
   const result = [];
   for (const item of parsed.statements) {
     if (!ts.isVariableStatement(item) || !item.modifiers?.some(x => x.kind === ts.SyntaxKind.ExportKeyword)) continue;
     for (const dec of item.declarationList.declarations) {
       const init = dec.initializer;
-      if (!init || !ts.isCallExpression(init) || !ts.isIdentifier(init.expression) ||
-          init.expression.text !== 'defineSkill') continue;
-      if (!hasDefineSkillImport || !ts.isIdentifier(dec.name) || !NAME.test(dec.name.text) ||
-          init.arguments.length !== 1) throw Error('Unsafe trusted Skill declaration in ' + filename);
+      if (
+        !init ||
+        !ts.isCallExpression(init) ||
+        !ts.isIdentifier(init.expression) ||
+        init.expression.text !== 'defineSkill'
+      )
+        continue;
+      if (
+        !hasDefineSkillImport ||
+        !ts.isIdentifier(dec.name) ||
+        !NAME.test(dec.name.text) ||
+        init.arguments.length !== 1
+      )
+        throw Error('Unsafe trusted Skill declaration in ' + filename);
       const id = textField(ts, init.arguments[0], 'id');
       const slug = textField(ts, init.arguments[0], 'slug');
       if (!UUID.test(id ?? '') || !NAME.test(slug ?? '') || slug !== dec.name.text)
@@ -101,8 +122,11 @@ function checkedTree(root, folder) {
   const entries = [];
   for (const row of lines) {
     const match = /^100644 blob ([a-f0-9]{40})\t(.+)$/.exec(row);
-    if (!match || !match[2].startsWith(folder + '/') ||
-        match[2].split('/').some(part => part === '.' || part === '..' || part === ''))
+    if (
+      !match ||
+      !match[2].startsWith(folder + '/') ||
+      match[2].split('/').some(part => part === '.' || part === '..' || part === '')
+    )
       throw Error('Non-regular or unsafe textbook Skill source in trusted Git tree');
     entries.push({ sha: match[1], path: match[2] });
   }
@@ -126,8 +150,15 @@ export function resolveTrustedCourseSkills(input, textbookRoot, candidateRoot, t
   const catalog = new Map();
   for (const entry of tree.entries) {
     const rel = entry.path.slice(folder.length + 1);
-    if (!rel.endsWith('.ts') || rel.endsWith('/index.ts') || rel === 'index.ts' ||
-        rel === '_review.ts' || rel.endsWith('.d.ts') || rel.endsWith('.spec.ts')) continue;
+    if (
+      !rel.endsWith('.ts') ||
+      rel.endsWith('/index.ts') ||
+      rel === 'index.ts' ||
+      rel === '_review.ts' ||
+      rel.endsWith('.d.ts') ||
+      rel.endsWith('.spec.ts')
+    )
+      continue;
     const suffix = rel.slice(0, -3);
     if (!suffix.split('/').every(part => NAME.test(part))) continue;
     let parent = trusted;
@@ -137,9 +168,12 @@ export function resolveTrustedCourseSkills(input, textbookRoot, candidateRoot, t
     }
     const source = fs.readFileSync(parent);
     total += source.length;
-    if (total > 24 * 1024 * 1024 || source.length > 2 * 1024 * 1024 ||
-        gitBlob(source) !== entry.sha ||
-        !Buffer.from(source.toString('utf8'), 'utf8').equals(source))
+    if (
+      total > 24 * 1024 * 1024 ||
+      source.length > 2 * 1024 * 1024 ||
+      gitBlob(source) !== entry.sha ||
+      !Buffer.from(source.toString('utf8'), 'utf8').equals(source)
+    )
       throw Error('Malformed, oversized or changed trusted Skill source');
     for (const item of extractSkillExports(entry.path, source.toString('utf8'))) {
       if (catalog.has(item.id)) throw Error('Ambiguous duplicate trusted Skill UUID ' + item.id);

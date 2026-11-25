@@ -128,13 +128,15 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
     !plan.inventory ||
     !['lessons', 'episodes', 'assessments'].every(key => Array.isArray(plan.inventory[key])) ||
     Object.keys(plan.inventory).some(key => !['lessons', 'episodes', 'assessments'].includes(key))
-  ) throw new Error('Course Stage 5 requires an exact ordered placement inventory');
+  )
+    throw new Error('Course Stage 5 requires an exact ordered placement inventory');
   const pendingStubs = new Map();
   const seenPlacements = new Set();
   for (const type of ['lessons', 'episodes', 'assessments']) {
     for (const row of plan.inventory[type]) {
       if (
-        !row || typeof row !== 'object' ||
+        !row ||
+        typeof row !== 'object' ||
         !uuid.test(row.id ?? '') ||
         typeof row.status !== 'string' ||
         !valid(row.placementPath) ||
@@ -143,7 +145,8 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
         typeof row.placementSourcePath !== 'string' ||
         !row.placementSourcePath.startsWith(rootPrefix) ||
         !row.placementSourcePath.endsWith('/index.ts')
-      ) throw new Error('Unsafe or duplicate Course placement inventory row');
+      )
+        throw new Error('Unsafe or duplicate Course placement inventory row');
       seenPlacements.add(row.placementPath);
       if (row.status.startsWith('pending')) {
         const stub = row.placementPath + '/stub.ts';
@@ -159,9 +162,11 @@ export function preflightCourseSourceCommit(plan, { repoRoot } = {}) {
   if (
     actualStubs.length !== pendingStubs.size ||
     actualStubs.some(file => !pendingStubs.has(file.path)) ||
-    [...pendingStubs.values()].some(row =>
-      !plan.files.some(file => file.path === row.placementSourcePath && file.kind === 'typescript'))
-  ) throw new Error('Course Stage 5 manifest contains missing, unexpected or foreign stub.ts');
+    [...pendingStubs.values()].some(
+      row => !plan.files.some(file => file.path === row.placementSourcePath && file.kind === 'typescript'),
+    )
+  )
+    throw new Error('Course Stage 5 manifest contains missing, unexpected or foreign stub.ts');
 
   const root = path.resolve(repoRoot ?? '');
   assertSafeDirectoryPath(root);

@@ -180,13 +180,17 @@ const ctx = () => ({
   textbookRoot: 'content/playground',
   courseId: IDs.course,
   resolveSkill: ({ id }) => ({
-    approved: true, id,
-    slug: 'testExplainLightTravel', exportName: 'testExplainLightTravel',
+    approved: true,
+    id,
+    slug: 'testExplainLightTravel',
+    exportName: 'testExplainLightTravel',
     importPath: '#skillsData/testLight/testLightPropagation/testExplainLightTravel',
     sourcePath: 'content/playground/data/skills/testLight/testLightPropagation/testExplainLightTravel.ts',
     sourceSha: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     configurator: {
-      id, slug: 'testExplainLightTravel', type: 'skill',
+      id,
+      slug: 'testExplainLightTravel',
+      type: 'skill',
       config: { base: { id, slug: 'testExplainLightTravel' } },
       build: { props() {} },
     },
@@ -223,7 +227,10 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.match(method.content, /## Entry conditions/);
   const main = first.files.find(f => f.path === 'index.ts').content;
   assert.match(main, /defineCourse<"rootCourse", typeof content.items, Languages>/);
-  assert.match(main, /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/);
+  assert.match(
+    main,
+    /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/,
+  );
   const unit = first.files.find(f => f.path === 'content/moduleOne/index.ts').content;
   const chapter = first.files.find(f => f.path === 'content/moduleOne/chapterOne/index.ts').content;
   assert.match(unit, /import type \{ Languages \} from "#coursesData\//);
@@ -270,7 +277,10 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
   assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": child_newLesson/);
-  assert.match(result.files.find(f => f.path === 'content/newLesson/stub.ts').content, /export const stub = defineLessonStub/);
+  assert.match(
+    result.files.find(f => f.path === 'content/newLesson/stub.ts').content,
+    /export const stub = defineLessonStub/,
+  );
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
   assert.doesNotMatch(
     result.files.find(f => f.path === 'index.ts').content,

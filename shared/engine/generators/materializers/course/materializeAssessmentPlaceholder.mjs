@@ -70,7 +70,12 @@ export function materializeAssessmentPlaceholder(node, context) {
       slug: reservedSlug,
       locale: {
         ...config.locale,
-        title: normalizeWorkflowLocalized(title, context.sourceLanguage, directory + '.locale.title', context.plannedLanguages),
+        title: normalizeWorkflowLocalized(
+          title,
+          context.sourceLanguage,
+          directory + '.locale.title',
+          context.plannedLanguages,
+        ),
       },
     },
     production: {
