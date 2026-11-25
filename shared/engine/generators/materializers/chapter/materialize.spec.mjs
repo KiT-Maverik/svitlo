@@ -173,6 +173,20 @@ const deriveId = (kind, placement) => {
 };
 const ctx = () => ({
   sourceLanguage: 'uk',
+  textbookRoot: 'content/playground',
+  courseId: IDs.course,
+  resolveSkill: ({ id }) => ({
+    approved: true, id,
+    slug: 'testExplainLightTravel', exportName: 'testExplainLightTravel',
+    importPath: '#skillsData/testLight/testLightPropagation/testExplainLightTravel',
+    sourcePath: 'content/playground/data/skills/testLight/testLightPropagation/testExplainLightTravel.ts',
+    sourceSha: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    configurator: {
+      id, slug: 'testExplainLightTravel', type: 'skill',
+      config: { base: { id, slug: 'testExplainLightTravel' } },
+      build: { props() {} },
+    },
+  }),
   deriveId,
   materializeCourse,
   materializeModule,

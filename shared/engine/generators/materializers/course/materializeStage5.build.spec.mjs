@@ -109,7 +109,11 @@ function diagnostics(files) {
     incremental: false,
     composite: false,
     baseUrl: engineRoot,
-    paths: { ...parsed.options.paths, '@svitlo/engine/build': ['build.ts'] },
+    paths: {
+      ...parsed.options.paths,
+      '@svitlo/engine/build': ['build.ts'],
+      '#coursesData/*': ['temp/stage5-course-build/content/playground/data/courses/3/' + id + '/constants.ts'],
+    },
   };
   const virtual = new Map(
     files.filter(f => f.kind === 'typescript').map(file => [path.resolve(virtualRoot, file.path), file.content]),
