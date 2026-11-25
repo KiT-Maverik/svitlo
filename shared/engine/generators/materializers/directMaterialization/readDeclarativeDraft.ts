@@ -96,12 +96,15 @@ function fail(
   throw new DeclarativeDraftError(code, line + 1, character + 1, message);
 }
 
-function withoutTypeWrappers(node: ts.Expression): ts.Expression {
-  if (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) || ts.isSatisfiesExpression(node) ||
-      ts.isTypeAssertionExpression(node)) {
-    return withoutTypeWrappers(node.expression);
+function withoutTypeWrappers(context: ParseContext, node: ts.Expression): ts.Expression {
+  let current = node;
+  let count = 0;
+  while (ts.isParenthesizedExpression(current) || ts.isAsExpression(current) ||
+         ts.isSatisfiesExpression(current) || ts.isTypeAssertionExpression(current)) {
+    if (++count > MAX_DEPTH) fail(context, current, 'limit', 'Too many parentheses or type assertions');
+    current = current.expression;
   }
-  return node;
+  return current;
 }
 
 function decode(
@@ -115,7 +118,7 @@ function decode(
     fail(context, expression, 'limit', 'Draft exceeds the maximum node count or nesting depth');
   }
 
-  const node = withoutTypeWrappers(expression);
+  const node = withoutTypeWrappers(context, expression);
   context.positions.set(JSON.stringify(path), node.getStart(context.source));
 
   if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
@@ -189,7 +192,12 @@ function parseWithPositions(
     throw new DeclarativeDraftError('structure', 1, 1, 'Unsupported draft entity kind');
   }
   const contract = finalStages[expectedEntityKind];
-  const source = ts.createSourceFile('draft.ts', sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  let source: ts.SourceFile;
+  try {
+    source = ts.createSourceFile('draft.ts', sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  } catch {
+    throw new DeclarativeDraftError('syntax', 1, 1, 'Unable to parse TypeScript source');
+  }
   const context: ParseContext = { source, visited: 0, positions: new Map() };
   const diagnostics = (source as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics ?? [];
   if (diagnostics.length > 0) {
@@ -219,7 +227,7 @@ function parseWithPositions(
   if (!assignment) fail(context, source.endOfFileToken, 'structure', 'Exactly one default export is required');
 
   let root: ts.Expression;
-  const exported = withoutParentheses(assignment.expression);
+  const exported = withoutParentheses(context, assignment.expression);
   if (declaration) {
     if (!ts.isIdentifier(exported) || exported.text !== 'draft') {
       fail(context, assignment, 'structure', 'Default export must reference the sole const draft');
@@ -229,14 +237,14 @@ function parseWithPositions(
     root = exported;
   }
 
-  const typedRoot = withoutParentheses(root);
+  const typedRoot = withoutParentheses(context, root);
   if (!ts.isSatisfiesExpression(typedRoot) || !ts.isTypeReferenceNode(typedRoot.type) ||
       !ts.isIdentifier(typedRoot.type.typeName) ||
       typedRoot.type.typeName.text !== contract.name ||
       typedRoot.type.typeArguments?.length) {
     fail(context, typedRoot, 'structure', 'Root object must satisfy ' + contract.name);
   }
-  const literal = withoutTypeWrappers(typedRoot.expression);
+  const literal = withoutTypeWrappers(context, typedRoot.expression);
   if (!ts.isObjectLiteralExpression(literal)) {
     fail(context, literal, 'structure', 'Final-stage draft must be an object literal');
   }
@@ -251,8 +259,14 @@ export function parseInertDraftSyntax(
   return parseWithPositions(sourceText, expectedEntityKind).value;
 }
 
-function withoutParentheses(node: ts.Expression): ts.Expression {
-  return ts.isParenthesizedExpression(node) ? withoutParentheses(node.expression) : node;
+function withoutParentheses(context: ParseContext, node: ts.Expression): ts.Expression {
+  let current = node;
+  let count = 0;
+  while (ts.isParenthesizedExpression(current)) {
+    if (++count > MAX_DEPTH) fail(context, current, 'limit', 'Too many parentheses');
+    current = current.expression;
+  }
+  return current;
 }
 
 /** Checks for schema-stripped unknown fields (including nested non-strict Zod objects). */
