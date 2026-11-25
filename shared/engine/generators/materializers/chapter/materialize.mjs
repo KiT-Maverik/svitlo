@@ -1,3 +1,5 @@
+import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
+
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -389,23 +391,29 @@ export function materializeChapter(input, context = {}) {
     .join('\n');
   const params = config.params ?? {};
   if (!record(params)) throw Error(dir + '.params: Config params object required');
-  const paramFields = Object.entries(params)
-    .filter(([key]) => key !== 'languages')
-    .map(([key, value]) => JSON.stringify(key) + ': ' + JSON.stringify(value) + ',')
-    .join(' ');
-  const paramsSource = '{ ' + paramFields + '' + ' }';
-  const languagesModule = dir ? '../'.repeat(dir.split('/').length) + 'constants' : './constants';
+  const unitParams = {
+    ...params,
+    ...(meta?.outcomes === undefined ? {} : { outcomes: meta.outcomes }),
+    ...(meta?.prerequisites === undefined ? {} : { prerequisites: meta.prerequisites }),
+  };
+  const bound = bindVerifiedSkills(unitParams, {
+    resolveSkill: context.resolveSkill,
+    textbookRoot: context.textbookRoot,
+    directory: dir,
+  });
+  const paramsSource = bound.source;
+  const courseId = context.courseId;
+  if (typeof courseId !== 'string' || !uuid.test(courseId))
+    throw Error(dir + ': reviewed Course UUID required for canonical languages import');
+  const languagesModule = '#coursesData/' + courseId.at(-1).toLowerCase() + '/' + courseId.toLowerCase() + '/constants';
   const result =
     'import { ' +
     ['defineChapter', ...inlineImports].join(', ') +
     " } from '@svitlo/engine/build';\n" +
-    'import { languages } from ' +
-    JSON.stringify(languagesModule) +
-    ';\n' +
     'import type { Languages } from ' +
     JSON.stringify(languagesModule) +
     ';\n' +
-    imports.join('\n') +
+    [...bound.imports, ...imports].join('\n') +
     '\n\n' +
     'const content = { items: ' +
     itemsSource +

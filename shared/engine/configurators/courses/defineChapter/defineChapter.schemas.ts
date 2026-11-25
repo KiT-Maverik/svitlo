@@ -5,6 +5,7 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema } from '../courseSkillTargets.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import {
@@ -34,6 +35,8 @@ import type {
 
 const params = paramsBase_Schema.shape.params.extend({
   iconKey: z.string().optional(),
+  outcomes: courseSkillTargets_Schema.optional(),
+  prerequisites: coursePrerequisiteTargets_Schema.optional(),
 });
 const identity = identityBase_Schema.extend({
   type: z.literal('chapter'),

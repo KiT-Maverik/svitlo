@@ -27,6 +27,7 @@ import {
   type Lesson_Draft_Props,
   type Lesson_Props,
 } from '../../lessons/defineLesson/defineLesson.schemas';
+import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema, uniqueSkillTargetIds_Schema } from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
 import type {
@@ -39,16 +40,6 @@ import { module_Props_Schema, type Module_Props } from '../defineModule/defineMo
 
 /** Course audience and educational-standard references describe scope, never certification. */
 
-const uniqueIds_Schema = z
-  .array(z.uuid())
-  .refine(values => new Set(values.map(value => value.toLowerCase())).size === values.length, 'IDs must be unique');
-
-const targetSkills_Schema = z.strictObject({
-  skills: uniqueIds_Schema.optional(),
-  skillGroups: uniqueIds_Schema.optional(),
-  skillDomains: uniqueIds_Schema.optional(),
-});
-
 const params = paramsBase_Schema.shape.params.extend({
   languages: z
     .array(languageCode_Schema)
@@ -56,20 +47,13 @@ const params = paramsBase_Schema.shape.params.extend({
     .refine(values => new Set(values).size === values.length, 'Course languages must be unique'),
   scenarioMode: z.enum(['none', 'story']).optional(),
   /** Skills actually intended to be taught; distinct from entry requirements. */
-  outcomes: targetSkills_Schema.optional(),
+  outcomes: courseSkillTargets_Schema.optional(),
   /** Optional jurisdiction-dependent target learners; no assumed universal grade. */
   age: ageRange_Schema.optional(),
   grade: gradeRange_Schema.optional(),
   /** References to reviewed EducationStandard UUIDs; no automatic compliance claim. */
-  educationStandards: uniqueIds_Schema.optional(),
-  prerequisites: z
-    .object({
-      skills: z.array(z.uuid()).optional(),
-      skillGroups: z.array(z.uuid()).optional(),
-      skillDomains: z.array(z.uuid()).optional(),
-      courses: z.array(z.uuid()).optional(),
-    })
-    .optional(),
+  educationStandards: uniqueSkillTargetIds_Schema.optional(),
+  prerequisites: coursePrerequisiteTargets_Schema.optional(),
 });
 const identity = identityBase_Schema.extend({
   type: z.literal('course'),
