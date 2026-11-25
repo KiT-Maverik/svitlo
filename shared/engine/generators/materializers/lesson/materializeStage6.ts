@@ -12,7 +12,6 @@ import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpoi
 import { materializeCode } from '../code/materializeCode';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
 import { materializeContentSection } from '../contentSection/contentSection';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeFlashcardsSection } from '../flashcardsSection/flashcardsSection';
 import { materializeImage } from '../image/materializeImage';
 import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
@@ -218,8 +217,8 @@ function normalizeStage2(input: LessonWorkflowStage2) {
  * Concrete materializers own rendering/diagnostics for their real Config
  * kinds. Required assessment Sections are verified in materializeLesson.
  */
-export function materializeLessonStage6(input: LessonWorkflowStage2, options?: LessonStage6Options): LessonStage6Plan {
-  return invokeMaterializer('lesson-stage6', options, execution => planLessonStage6(input, execution));
+export function materializeLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
+  return planLessonStage6(input, options);
 }
 
 function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Options): LessonStage6Plan {
