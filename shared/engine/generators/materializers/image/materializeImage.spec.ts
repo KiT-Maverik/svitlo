@@ -103,6 +103,23 @@ test('image: composed nested source paths and Course language handoff', () => {
   assert.throws(() => materializeImage(valid(), { ...options, directory }), /explicit root languages module/);
 });
 
+test('image: a generic specification is not a generation prompt', () => {
+  assert.throws(
+    () => materializeImage(valid(), {
+      ...options,
+      production: { specification: 'Produce an illustration' },
+    }),
+    /Image requires a concrete generation prompt/,
+  );
+  assert.throws(
+    () => materializeImage(valid(), {
+      ...options,
+      production: { prompt: 'Draw a picture' },
+    }),
+    /Image requires a concrete generation prompt/,
+  );
+});
+
 test('image: pending asset is a typed Nil UUID placeholder, not a fabricated file', () => {
   const result = materializeImage(
     { ...valid(), locale: { alt: { uk: 'Українська схема' } } },
