@@ -8,7 +8,7 @@ const stubSource =
   "import { defineAssessmentStub } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Coding Agent integrates after validating the completed Assessment.\n' +
   'export const stub = defineAssessmentStub({ id: ' + JSON.stringify(id) + ', slug: "review" });\n';
-const importLine = 'import { stub as child_review } from "./content/review/stub";\n';
+const importLine = 'import { stub as child_review } from "./review/stub";\n';
 const source =
   "import { defineModule } from '@svitlo/engine/build';\n" +
   importLine +
@@ -16,7 +16,7 @@ const source =
   'export const moduleOne = defineModule({ content });\n';
 const validSource = source.replace('const content', 'import { before as child_before } from "./before";\nconst content');
 const allocation = {
-  kind: 'assessment', id, slug, placement: 'content/moduleOne/content/review', stubSource,
+  kind: 'assessment', id, slug, placement: 'moduleOne/review', stubSource,
 };
 
 test('Assessment preserves an exact pending Course slot without mutating parent', () => {
