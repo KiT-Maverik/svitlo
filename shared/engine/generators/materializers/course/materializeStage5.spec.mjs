@@ -307,10 +307,14 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   const wrapper = result.files.find(file => file.path === root + '/directLesson/index.ts');
   assert.ok(wrapper, 'overridden Lesson must own its Course-local module');
   assert.match(wrapper.content, /import \{ actualLesson as originalLesson \} from "#lessonsData\//);
-  assert.match(wrapper.content, /export const placedLesson = placeLesson\(originalLesson, \{/);
+  assert.match(wrapper.content, /export const directLesson = placeLesson\(originalLesson, \{/);
+  assert.match(
+    wrapper.content,
+    /\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\nexport const directLesson = placeLesson\(originalLesson, \{/,
+  );
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
-  assert.match(main.content, /import \{ placedLesson as child_directLesson \} from "\.\/directLesson"/);
+  assert.match(main.content, /import \{ directLesson as child_directLesson \} from "\.\/directLesson"/);
   assert.match(main.content, /"directLesson": child_directLesson/);
   assert.doesNotMatch(main.content, /placeLesson\(/);
   assert.doesNotMatch(main.content, /authoredCourseOverrides/);
@@ -354,7 +358,7 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
   assert.match(index, /"directLesson": child_directLesson/);
-  assert.match(index, /import \{ placedLesson as child_directLesson \} from "\.\/directLesson"/);
+  assert.match(index, /import \{ directLesson as child_directLesson \} from "\.\/directLesson"/);
   assert.match(index, /"secondLesson": child_secondLesson/);
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
@@ -848,7 +852,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
   const index = plan.files.find(file => file.path === root + '/index.ts').content;
   const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts').content;
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts').content;
-  assert.match(index, /import \{ placedLesson as child_reused \} from "\.\/reused"/);
+  assert.match(index, /import \{ reused as child_reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ sectionAddition as added_section_reused_practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
   assert.match(wrapper, /"additionalItems": \{"practice": added_section_reused_practice\}/);
