@@ -185,7 +185,17 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
     );
     assert(coursePlan.files.some(f => f.path.startsWith(textbook + '/data/lessons/') && f.path.endsWith('/draft.ts')));
     assert(coursePlan.files.some(f => f.path === courseRoot + '/content/episodeOne/draft.ts'));
-    assert(coursePlan.files.some(f => f.path === courseRoot + '/authoredCourseOverrides.ts'));
+    // Course placements import independent Lessons directly; a sparse patch
+    // belongs to its own placement, never to a Course-wide overrides sidecar.
+    assert(!coursePlan.files.some(f => f.path.endsWith('/authoredCourseOverrides.ts')));
+    const courseIndex = coursePlan.files.find(f => f.path === courseRoot + '/index.ts')?.content;
+    assert(courseIndex, 'Course Stage 5 must emit its canonical index.ts');
+    assert.match(courseIndex, /import \\{ independentLesson as child_reused \\}/);
+    assert.match(courseIndex, /import \\{ overriddenLesson as child_overridden \\}/);
+    assert.match(courseIndex, /"reused": child_reused/);
+    assert.match(courseIndex, /"overridden": placeLesson\\(child_overridden, \\{/);
+    assert.match(courseIndex, /"allowSkipping": false/);
+    assert.equal((courseIndex.match(/placeLesson\\(/g) ?? []).length, 1);
     const meta = {
       version: 2,
       operation: 'typed-course-stage5',
