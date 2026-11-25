@@ -125,5 +125,5 @@ test('Assessment Stage 4 keeps authored locale maps and marks English-only title
   assert.doesNotMatch(source, /"title":"Knowledge check"/);
   assert.doesNotMatch(source, /"uk":"Knowledge check"/);
   assert.equal(result.publishable, false);
-  assert.ok(result.diagnostics.some(d => d.code === 'pending-locales'));
+  assert.match(source, /Complete and independently review all planned Assessment localizations/);
 });

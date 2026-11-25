@@ -728,3 +728,26 @@ test('Course Stage 5 normalizes reviewed English workflow fields and preserves o
   assert.match(constants, /export const languages = \["en"\]/);
   assert.ok(result.diagnostics.some(d => d.code === 'pending-locales'));
 });
+
+test('Course Build rejects a missing requested translation without changing intentionally invariant Configurator text', () => {
+  const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const { defineCourse } = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const create = locale => defineCourse({
+    id: rootId,
+    type: 'course',
+    slug: 'localizationTest',
+    params: { languages: ['en', 'uk'] },
+    locale,
+    content: { items: {}, order: [] },
+  });
+  const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
+  const english = incomplete.build.props({ languages: ['en'] });
+  assert.equal(english.locale.en.locale.title, 'Sky');
+  assert.equal(english.locale.uk, undefined);
+  assert.throws(() => incomplete.build.props({ languages: ['en', 'uk'] }));
+  const invariant = create({ title: 'H₂O', description: 'Non-translatable label' });
+  const both = invariant.build.props({ languages: ['en', 'uk'] });
+  assert.equal(both.base.locale.title, 'H₂O');
+  assert.equal(both.base.locale.description, 'Non-translatable label');
+  assert.equal(both.locale, undefined);
+});
