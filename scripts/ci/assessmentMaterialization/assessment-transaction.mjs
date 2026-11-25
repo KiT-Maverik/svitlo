@@ -171,7 +171,7 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
 export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tree) {
   const found = new Set();
   for (const dep of seed.production.lessonDependencies) {
-    if (typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep))
+    if (typeof dep !== 'string' || !/^[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/.test(dep))
       throw Error('Assessment must name resolved Course Lesson placement paths');
     // Course Lesson placements are references in their immediate parent's
     // content.items/order. Neither new nor reused Lessons own a Course-local
