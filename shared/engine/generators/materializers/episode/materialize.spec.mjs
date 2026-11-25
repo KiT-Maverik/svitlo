@@ -174,7 +174,9 @@ test('provisional Episode emits only an allocated typed draft with reviewed Cour
   );
   const draft = result.files[0].content;
   assert.match(draft, /TODO \(BLOCKER\)/);
-  assert.match(draft, /satisfies EpisodeWorkflowStage1Handoff/);\n  assert.match(draft, /export default \{/);\n  assert.doesNotMatch(draft, /export const episodeStage1|materializeEpisodeStage5\(/);
+  assert.match(draft, /satisfies EpisodeWorkflowStage1Handoff/);
+  assert.match(draft, /export default \{/);
+  assert.doesNotMatch(draft, /export const episodeStage1|materializeEpisodeStage5\(/);
   assert.match(draft, /Learning context/);
   assert.match(draft, /Narrative transition/);
   assert.doesNotMatch(draft, /defineEpisode|Not implemented/);
