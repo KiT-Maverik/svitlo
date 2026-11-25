@@ -893,25 +893,20 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
   );
 });
 
-test('direct Lesson invocation returns the same source plan using runner-owned metadata', async () => {
-  const { executeMaterializerEntrypoint } = await import('../directMaterialization/directMaterialization');
+test('Lesson Stage 6 plans validated inert input only with explicit trusted source metadata', () => {
   const input = valid() as unknown as LessonWorkflowStage2;
-  const sourceText =
-    "import { materializeLessonStage6 } from '@svitlo/engine/build';\n" +
-    'materializeLessonStage6(' +
-    JSON.stringify(input) +
-    ');\n';
+  const sourceText = 'export default ' + JSON.stringify(input) + ' satisfies LessonWorkflowStage2;\n';
   const directOptions = {
     ...options,
     sourceText,
     source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
   };
   const expected = materializeLessonStage6(input, directOptions);
-  const actual = await executeMaterializerEntrypoint('lesson-stage6', directOptions, async () => {
-    materializeLessonStage6(input);
-  });
-  assert.deepEqual(actual, expected);
-  assert.throws(() => materializeLessonStage6(input), /isolated execution context/);
+  assert.deepEqual(materializeLessonStage6(input, directOptions), expected);
+  assert.throws(
+    () => materializeLessonStage6(input, undefined as unknown as typeof directOptions),
+    /untrusted source|stale source snapshot/,
+  );
 });
 
 test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Config in one sealed output', () => {
