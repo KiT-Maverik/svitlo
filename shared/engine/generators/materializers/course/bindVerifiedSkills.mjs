@@ -14,6 +14,8 @@ export function bindVerifiedSkills(
   { resolveSkill, textbookRoot, directory = '', includeLanguages = false, reservedNames = [] } = {},
 ) {
   if (!record(params)) throw Error(directory + ': expected Course params object');
+  if (!Array.isArray(reservedNames) || reservedNames.some(value => typeof value !== 'string'))
+    throw Error(directory + ': invalid generated import reservation');
   const imports = new Map();
   const aliases = new Map();
   const reserved = new Set(['content', 'languages', 'Languages', ...reservedNames]);
@@ -48,8 +50,8 @@ export function bindVerifiedSkills(
     let alias = aliases.get(id);
     if (!alias) {
       alias = binding.exportName;
-      let suffix = 2;
-      while (reserved.has(alias) || imports.has(alias)) alias = binding.exportName + '_' + suffix++;
+      let collisionIndex = 2;
+      while (reserved.has(alias) || imports.has(alias)) alias = binding.exportName + '_' + collisionIndex++;
       aliases.set(id, alias);
     }
     const entry = { exportName: binding.exportName, importPath: binding.importPath, sourceSha: binding.sourceSha };
