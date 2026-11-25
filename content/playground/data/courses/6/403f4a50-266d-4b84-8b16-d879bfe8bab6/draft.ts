@@ -198,13 +198,375 @@ export default {
                                         },
                                       },
                                     },
+                                    shadowMarkdown: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94713",
+                                        "type": "markdown",
+                                        "slug": "shadowMarkdown",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "en": "**Observe:** an opaque object blocks light. Describe the change in its shadow."
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise the Markdown ContentBlock."
+                                      }
+                                    },
+                                    shadowCode: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94714",
+                                        "type": "code",
+                                        "slug": "shadowCode",
+                                        "params": {
+                                          "language": "typescript",
+                                          "codeAsText": "const blocksLight = true;\nconst shadowAppears = blocksLight;"
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "A simple shadow model"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Code with authored invariant codeAsText."
+                                      }
+                                    },
+                                    shadowDiagram: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94715",
+                                        "type": "image",
+                                        "slug": "shadowDiagram",
+                                        "params": {
+                                          "width": 640,
+                                          "height": 360
+                                        },
+                                        "locale": {
+                                          "alt": {
+                                            "en": "A lamp casts a shadow from an opaque object."
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise the Image materializer.",
+                                        "specification": "Produce an original, accessible lamp-and-shadow diagram.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowVideo: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94716",
+                                        "type": "video",
+                                        "slug": "shadowVideo",
+                                        "params": {},
+                                        "locale": {
+                                          "label": {
+                                            "en": "Lamp and shadow demonstration"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Video without pretending media exists.",
+                                        "specification": "Produce a short captioned video with an equivalent text explanation.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowYoutube: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94717",
+                                        "type": "youtube",
+                                        "slug": "shadowYoutube",
+                                        "params": {
+                                          "mode": "link"
+                                        },
+                                        "locale": {
+                                          "label": {
+                                            "en": "Optional external video about shadows"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise YouTube without fabricating a link.",
+                                        "specification": "Verify a genuinely suitable captioned video and supply its URL only after review.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowAudio: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94718",
+                                        "type": "audio",
+                                        "slug": "shadowAudio",
+                                        "params": {},
+                                        "locale": {
+                                          "title": {
+                                            "en": "Narrated shadow observation"
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Audio with pending recording.",
+                                        "specification": "Record and transcribe the observed light-object-shadow relationship.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowSubtitles: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94719",
+                                        "type": "subtitles",
+                                        "slug": "shadowSubtitles",
+                                        "params": {},
+                                        "locale": {}
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Subtitles with a pending caption asset.",
+                                        "specification": "Author WebVTT captions aligned to the finished video or audio.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowScene: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471a",
+                                        "type": "scene",
+                                        "slug": "shadowScene",
+                                        "params": {},
+                                        "locale": {
+                                          "value": {
+                                            "instruction": {
+                                              "en": "Move the lamp or read the equivalent shadow explanation."
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise the Scene materializer.",
+                                        "specification": "Implement a keyboard-operable Scene with textual shadow feedback and reduced motion.",
+                                        "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                        "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                        "readiness": "production-pending"
+                                      }
+                                    },
+                                    shadowCarousel: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471b",
+                                        "type": "carousel",
+                                        "slug": "shadowCarousel",
+                                        "params": {
+                                          "showArrows": true,
+                                          "showIndicators": true
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "Two views of the shadow"
+                                          }
+                                        },
+                                        "slides": {
+                                          "items": {
+                                            "lampSlide": {
+                                              "config": {
+                                                "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471c",
+                                                "type": "image",
+                                                "slug": "lampSlide",
+                                                "params": {
+                                                  "width": 640,
+                                                  "height": 360
+                                                },
+                                                "locale": {
+                                                  "alt": {
+                                                    "en": "A lamp casts a shadow from an opaque object."
+                                                  }
+                                                }
+                                              },
+                                              "production": {
+                                                "purpose": "Exercise the Image materializer.",
+                                                "specification": "Produce an original, accessible lamp-and-shadow diagram.",
+                                                "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                                "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                                "readiness": "production-pending"
+                                              }
+                                            },
+                                            "interactiveSlide": {
+                                              "config": {
+                                                "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471d",
+                                                "type": "scene",
+                                                "slug": "interactiveSlide",
+                                                "params": {},
+                                                "locale": {
+                                                  "value": {
+                                                    "instruction": {
+                                                      "en": "Move the lamp or read the equivalent shadow explanation."
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "production": {
+                                                "purpose": "Exercise the Scene materializer.",
+                                                "specification": "Implement a keyboard-operable Scene with textual shadow feedback and reduced motion.",
+                                                "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                                "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                                "readiness": "production-pending"
+                                              }
+                                            }
+                                          },
+                                          "order": [
+                                            "lampSlide",
+                                            "interactiveSlide"
+                                          ]
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Carousel with Image and Scene slides."
+                                      }
+                                    },
+                                    shadowCheckpoint: {
+                                      "config": {
+                                        "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471e",
+                                        "type": "checkpoint",
+                                        "slug": "shadowCheckpoint",
+                                        "params": {
+                                          "requireCompletion": false,
+                                          "showIndices": true
+                                        },
+                                        "locale": {
+                                          "title": {
+                                            "en": "Check the shadow observation"
+                                          }
+                                        },
+                                        "content": {
+                                          "items": {
+                                            "firstObservation": {
+                                              "config": {
+                                                "id": "e6073d92-4b8c-4c6f-8920-6ab25ca9471f",
+                                                "type": "checkpointItem",
+                                                "slug": "firstObservation",
+                                                "check": true,
+                                                "question": {
+                                                  "config": {
+                                                    "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94720",
+                                                    "type": "text",
+                                                    "slug": "question",
+                                                    "params": {},
+                                                    "locale": {
+                                                      "value": {
+                                                        "en": "What changes when a lamp moves closer to an opaque object?"
+                                                      }
+                                                    }
+                                                  },
+                                                  "production": {
+                                                    "purpose": "Pose a reflective Checkpoint question."
+                                                  }
+                                                },
+                                                "answer": {
+                                                  "config": {
+                                                    "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94721",
+                                                    "type": "checkpointAnswer",
+                                                    "slug": "answer",
+                                                    "content": {
+                                                      "items": {
+                                                        "explanation": {
+                                                          "config": {
+                                                            "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94722",
+                                                            "type": "text",
+                                                            "slug": "explanation",
+                                                            "params": {},
+                                                            "locale": {
+                                                              "value": {
+                                                                "en": "The shadow can change size and position as the lamp, object and surface change relative positions."
+                                                              }
+                                                            }
+                                                          },
+                                                          "production": {
+                                                            "purpose": "Give readable Checkpoint answer feedback."
+                                                          }
+                                                        },
+                                                        "answerCarousel": {
+                                                          "config": {
+                                                            "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94723",
+                                                            "type": "carousel",
+                                                            "slug": "answerCarousel",
+                                                            "params": {
+                                                              "showArrows": true
+                                                            },
+                                                            "locale": {
+                                                              "title": {
+                                                                "en": "Compare two light positions"
+                                                              }
+                                                            },
+                                                            "slides": {
+                                                              "items": {
+                                                                "answerDiagram": {
+                                                                  "config": {
+                                                                    "id": "e6073d92-4b8c-4c6f-8920-6ab25ca94724",
+                                                                    "type": "image",
+                                                                    "slug": "answerDiagram",
+                                                                    "params": {
+                                                                      "width": 640,
+                                                                      "height": 360
+                                                                    },
+                                                                    "locale": {
+                                                                      "alt": {
+                                                                        "en": "A lamp casts a shadow from an opaque object."
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  "production": {
+                                                                    "purpose": "Exercise the Image materializer.",
+                                                                    "specification": "Produce an original, accessible lamp-and-shadow diagram.",
+                                                                    "accessibility": "Provide equivalent readable text and accessible control/focus; do not rely on color or audio alone.",
+                                                                    "offline": "The final verified asset or interaction must work offline; it is not yet produced.",
+                                                                    "readiness": "production-pending"
+                                                                  }
+                                                                }
+                                                              },
+                                                              "order": [
+                                                                "answerDiagram"
+                                                              ]
+                                                            }
+                                                          },
+                                                          "production": {
+                                                            "purpose": "Exercise Carousel nested within the Checkpoint answer."
+                                                          }
+                                                        }
+                                                      },
+                                                      "order": [
+                                                        "explanation",
+                                                        "answerCarousel"
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "production": {
+                                                "purpose": "Check an unscored qualitative understanding of the light-shadow relation."
+                                              }
+                                            }
+                                          },
+                                          "order": [
+                                            "firstObservation"
+                                          ]
+                                        }
+                                      },
+                                      "production": {
+                                        "purpose": "Exercise Checkpoint with nested question/answer and answer Carousel."
+                                      }
+                                    },
                                   },
-                                  order: ['shadowObservation'],
+                                  order: ['shadowObservation', 'shadowMarkdown', 'shadowCode', 'shadowDiagram', 'shadowVideo', 'shadowYoutube', 'shadowAudio', 'shadowSubtitles', 'shadowScene', 'shadowCarousel', 'shadowCheckpoint'],
                                 },
                               },
                               production: {
                                 purpose:
-                                  'Provide a Course-owned exhibition observation without modifying the standalone light Lesson.',
+                                  'Exercise all 11 ContentBlock kinds in one new Course-owned Section, including nested Carousel slides and Checkpoint answer content. All unavailable media/Scenes remain explicit production tasks; the canonical Lesson stays unchanged.',
                               },
                             },
                           },
@@ -228,7 +590,7 @@ export default {
                       flashcardsSectionRequired: false,
                     },
                     overrideRationale:
-                      'Disable section skipping, adapt the existing practice Section and its Text task, and add a Course-owned exhibitionNotes Section containing a new Text block. The canonical Lesson identity, Skills, Quiz requirement and banks remain unchanged. This fixture tests both existing-item and newly materialized nested override source without editing the standalone Lesson.',
+                      'Disable section skipping, adapt the existing practice Section and its Text task, and add a Course-owned exhibitionNotes Section covering Text, Markdown, Code, Image, Video, YouTube, Audio, Subtitles, Scene, Carousel and Checkpoint with nested children. The canonical Lesson identity, Skills, Quiz requirement and banks remain unchanged. This fixture tests both existing-item and newly materialized nested override source without editing the standalone Lesson.',
                   },
                 },
                 combinedObservations: {
