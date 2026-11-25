@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { courseLessonReferences, runIsolatedCourseDependencies } from './course-dependency-isolation.mjs';
+import {
+  courseLessonReferences,
+  courseAddedSectionReferences,
+  runIsolatedCourseDependencies,
+} from './course-dependency-isolation.mjs';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -8,6 +12,20 @@ import { execFileSync } from 'node:child_process';
 
 const id = '11111111-1111-4111-8111-111111111111';
 const sha = 'a'.repeat(40);
+const sectionId = '22222222-2222-4222-8222-222222222222';
+const addedSection = (sourceSha = sha, ownerLessonId = id) => ({
+  $ref: 'lesson-section', lessonId: ownerLessonId, sectionId,
+  sourceSha, exportName: 'practice',
+});
+const withSection = (sourceSha = sha, ownerLessonId = id) => ({
+  config: { type: 'lesson', slug: 'first' },
+  production: {
+    ...reuse().production,
+    sourcePatch: {
+      section: { additionalItems: { practice: addedSection(sourceSha, ownerLessonId) }, order: ['practice'] },
+    },
+  },
+});
 const reuse = (sourceSha = sha) => ({
   config: { type: 'lesson', slug: 'first' },
   production: { kind: 'existing', existing: { id }, matching: { sourceSha }, sourceExportName: 'realLesson' },
@@ -17,6 +35,21 @@ test('Course default-branch Lesson dependency inventory is deterministic, de-dup
   assert.deepEqual(courseLessonReferences(input), [{ id, sourceSha: sha, exportName: 'realLesson' }]);
   assert.deepEqual(courseLessonReferences({ config: { content: { items: {}, order: [] } } }), []);
 });
+test('Course declarative added Section references are deduplicated and fail closed', () => {
+  const value = { config: { content: { items: { first: withSection(), second: withSection() } } } };
+  assert.deepEqual(courseAddedSectionReferences(value), [{
+    id: sectionId, ownerLessonId: id, sourceSha: sha, slug: 'practice', exportName: 'practice',
+  }]);
+  const forged = withSection();
+  forged.production.sourcePatch.section.additionalItems.practice.exportName = '../unsafe';
+  assert.throws(() => courseAddedSectionReferences({ config: { content: { items: { forged } } } }),
+    /Invalid Course additional Section reference/);
+  const unowned = withSection();
+  unowned.production.sourcePatch.section.additionalItems.practice.lessonId = '../../../owner';
+  assert.throws(() => courseAddedSectionReferences({ config: { content: { items: { unowned } } } }),
+    /Invalid Course additional Section reference/);
+});
+
 test('Course dependencies reject executable-path and source-SHA ambiguity before Docker', () => {
   for (const invalid of [
     reuse('x'.repeat(40)),
@@ -40,6 +73,10 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   const file = path.join(trustedRoot, relative);
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, 'export const realLesson = { id: "' + id + '" };\n');
+  const sectionRelative = 'content/math/data/lessons/1/' + id + '/sections/practice/index.ts';
+  const sectionFile = path.join(trustedRoot, sectionRelative);
+  fs.mkdirSync(path.dirname(sectionFile), { recursive: true });
+  fs.writeFileSync(sectionFile, 'export const practice = { id: "' + sectionId + '" };\n');
   const support = ['node_modules', 'shared/engine/dist'];
   for (const directory of support) fs.mkdirSync(path.join(trustedRoot, directory), { recursive: true });
   fs.writeFileSync(path.join(trustedRoot, 'shared/engine/package.json'), '{"name":"@svitlo/engine"}\n');
@@ -47,6 +84,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   git(trustedRoot, 'commit', '-qm', 'Trusted Lesson');
   git(root, 'clone', '-q', trustedRoot, candidateRoot);
   const expectedBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + relative);
+  const sectionBlob = git(trustedRoot, 'rev-parse', 'HEAD:' + sectionRelative);
   const input = { config: { content: { items: {
     reused: reuse(expectedBlob),
   }, order: ['reused'] } } };
@@ -55,8 +93,8 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
     sourceBlobSha: 'b'.repeat(40), sourceCommitSha: git(candidateRoot, 'rev-parse', 'HEAD'),
   };
   const calls = [];
-  const fakeSpawn = (binary, args) => {
-    calls.push({ binary, args });
+  const fakeSpawn = (binary, args, options) => {
+    calls.push({ binary, args, options });
     return binary === 'docker' && args[0] === 'run'
       ? { status: 0, stdout: '{"publishable":false,"files":[]}' }
       : { status: 0 };
@@ -76,6 +114,35 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   assert(mounts.some(value => value.includes('source=' + path.join(trustedRoot, 'content/math'))));
   assert(!calls[0].args.some(value => /GH_TOKEN|GITHUB_TOKEN/.test(value)));
   assert.equal(calls[1].args[0], 'rm');
+
+  calls.length = 0;
+  const withAdded = {
+    config: { content: { items: { reused: withSection(sectionBlob) }, order: ['reused'] } },
+  };
+  const withAddedResult = runIsolatedCourseDependencies({ ...request, input: withAdded }, fakeSpawn);
+  assert.equal(withAddedResult.publishable, false);
+  assert.deepEqual(JSON.parse(calls[0].options.input).sections, [{
+    id: sectionId, ownerLessonId: id, sourceSha: sectionBlob, slug: 'practice', exportName: 'practice',
+  }]);
+
+  calls.length = 0;
+  assert.throws(() => runIsolatedCourseDependencies({
+    ...request,
+    input: {
+      config: { content: { items: { reused: withSection('c'.repeat(40)) } } },
+    },
+  }, fakeSpawn), /Section|fatal|git/i);
+  assert.equal(calls.length, 0, 'untrusted Section revision never launches Docker');
+
+  calls.length = 0;
+  assert.throws(() => runIsolatedCourseDependencies({
+    ...request,
+    input: {
+      config: { content: { items: { reused: withSection(sectionBlob,
+        '33333333-3333-4333-8333-333333333333') } } } },
+    },
+  }, fakeSpawn), /Section|fatal|git/i);
+  assert.equal(calls.length, 0, 'wrong Section owner never launches Docker');
 
   calls.length = 0;
   assert.throws(() => runIsolatedCourseDependencies({
