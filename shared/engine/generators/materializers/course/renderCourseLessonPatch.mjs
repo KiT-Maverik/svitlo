@@ -72,6 +72,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
   createSourceIdentifierRegistry('Course Lesson source', ['LessonPatch'])(sourceLesson.exportName, 'verified Lesson');
   const imports = [];
   const files = [];
+  const sceneScaffolds = [];
   const rootRefs = new Map();
   const section = rawPatch.section;
   if (record(section) && record(section.items)) {
@@ -133,6 +134,11 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
         if (!Array.isArray(created.files) || typeof created.exportName !== 'string')
           throw Error('Invalid generated Course-owned Section: ' + sectionKey);
         files.push(...created.files);
+        if (created.sceneScaffolds !== undefined) {
+          if (!Array.isArray(created.sceneScaffolds))
+            throw Error('Invalid Scene scaffold list for Section: ' + sectionKey);
+          sceneScaffolds.push(...created.sceneScaffolds);
+        }
         imports.push('import { ' + created.exportName + ' } from "./sections/' + sectionKey + '";');
         rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), created.exportName);
         continue;
@@ -155,6 +161,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
   }
   return {
     files,
+    sceneScaffolds,
     imports,
     patchSource: literal(rawPatch, [], rootRefs),
   };
