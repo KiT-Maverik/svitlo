@@ -106,6 +106,8 @@ test('Question Bank Stage 1 creates exactly one type-annotated editable source',
     ['questions/draft.ts'],
   );
   assert.match(result.files[0].content, /satisfies QuestionBankWorkflowStage1/);
+  assert.match(result.files[0].content, /export default \{/);
+  assert.doesNotMatch(result.files[0].content, /export const questionBank|materializeQuestionBank\(/);
   assert.match(result.files[0].content, /ownerLessonId/);
   assert.doesNotMatch(result.files[0].content, /defineSelectOneAnswer|defineQuizSection/);
   assert.deepEqual(result, materializeQuestionBankDraft(handoff() as never, draftAuth));

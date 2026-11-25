@@ -13,6 +13,7 @@ import { inspectTypedCourse, parseTypedMetadata } from './typed-course-gate.mjs'
 import { manifestDigest } from './course-handoff-publish.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { checkedSource, verifyCourseDependencies } from './typed-course-direct.mjs';
+import { readGeneratedCourseHandoff } from '../directMaterialization/reserved-parent-slot.mjs';
 
 const SHA = /^[a-f0-9]{40}$/;
 const UUID_PATTERN = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
@@ -84,20 +85,14 @@ function assertCourseInventory(manifest, meta, entries) {
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
   const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
-  function outputLiteral(filename, symbol, marker) {
+  function outputLiteral(filename, variable, contract) {
     const entry = entries.get(filename);
     if (entry?.kind !== 'typescript') throw Error('Missing canonical Course source handoff: ' + filename);
     const source = Buffer.from(entry.data, 'base64').toString('utf8');
-    const head = 'export const ' + symbol + ' = ';
-    const begin = source.indexOf(head);
-    const end = source.indexOf(marker, begin + head.length);
-    if (begin < 0 || end < 0 || source.indexOf(head, begin + head.length) !== -1)
-      throw Error('Malformed generated handoff: ' + filename);
-    try {
-      return JSON.parse(source.slice(begin + head.length, end));
-    } catch {
-      throw Error('Invalid JSON seed handoff: ' + filename);
-    }
+    // Parse only the generated literal AST. Never extract JSON substrings or
+    // evaluate a handoff: both named legacy and inert default exports are
+    // subject to the same allowlist and exact TypeScript seed contract.
+    return readGeneratedCourseHandoff(source, { variable, contract });
   }
   /** A placement source belongs to the immediate Course/Module/Chapter parent,
    * never to a shadow Lesson re-export or draft handoff. */
@@ -173,7 +168,7 @@ function assertCourseInventory(manifest, meta, entries) {
           !seeds.delete(draft)
         )
           throw Error('Course Lesson inventory does not match a unique generated seed');
-        const source = outputLiteral(draft, 'lessonSeed', ' as const satisfies CourseWorkflowLessonSeed;');
+        const source = outputLiteral(draft, 'lessonSeed', 'CourseWorkflowLessonSeed');
         if (
           source?.config?.id !== row.id ||
           source.config.slug !== row.slug ||
@@ -220,7 +215,7 @@ function assertCourseInventory(manifest, meta, entries) {
         throw Error('Episode inventory source missing or displaced');
       if (row.status === 'pending-episode-scenario') {
         if (!episodes.delete(filename)) throw Error('Duplicate Episode handoff');
-        const source = outputLiteral(filename, 'episodeStage1', ' as const satisfies EpisodeWorkflowStage1Handoff;');
+        const source = outputLiteral(filename, 'episodeStage1', 'EpisodeWorkflowStage1Handoff');
         // Ownership, source SHA and original position belong to this sealed
         // Course manifest and parent stub, not duplicated Episode narrative.
         const production = source?.production;
@@ -258,7 +253,7 @@ function assertCourseInventory(manifest, meta, entries) {
         row.lessonDependencies.some(value => typeof value !== 'string' || !value.startsWith('content/'))
       )
         throw Error('Invalid Course Assessment pending seed or inline parent placement');
-      const seed = outputLiteral(draft, 'assessmentSeed', ' as const satisfies AssessmentWorkflowSeed;');
+      const seed = outputLiteral(draft, 'assessmentSeed', 'AssessmentWorkflowSeed');
       if (
         seed?.config?.id !== row.id ||
         seed.config.slug !== row.slug ||

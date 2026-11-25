@@ -262,16 +262,8 @@ export function materializeCourse(input, context = {}) {
             throw Error(childFolder + '.production.matching: verified methodology and source revision required');
           if (Object.keys(raw).some(field => !['type', 'slug', 'skills'].includes(field)))
             throw Error(childFolder + '.config: reused Lesson cannot duplicate independent Config');
-          if (
-            Object.keys(existing).some(field => !['id', 'base', 'locale'].includes(field)) ||
-            (existing.base !== undefined && !record(existing.base)) ||
-            (existing.locale !== undefined && !record(existing.locale)) ||
-            (record(existing.base) &&
-              ['id', 'slug', 'type', 'skills'].some(field => Object.hasOwn(existing.base, field)))
-          )
-            throw Error(childFolder + '.production.existing: expected {id,base?,locale?}, not raw patches');
-          if (record(existing.locale) && Object.keys(existing.locale).some(code => !planned.includes(code)))
-            throw Error(childFolder + '.production.existing.locale: outside reviewed Course languages');
+          if (Object.keys(existing).some(field => field !== 'id'))
+            throw Error(childFolder + '.production.existing: expected only {id}, not built overrides');
         } else {
           if (
             raw.locale === undefined ||
@@ -390,6 +382,11 @@ export function materializeCourse(input, context = {}) {
         imports.push(
           'import { ' + child.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(child.importPath) + ';',
         );
+        if (child.extraImports !== undefined) {
+          if (!Array.isArray(child.extraImports) || child.extraImports.some(line => typeof line !== 'string'))
+            throw Error(childFolder + ': invalid trusted additional Section imports');
+          imports.push(...child.extraImports);
+        }
         if (child.patchSource !== undefined) {
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + alias + ', ' + child.patchSource + ')';

@@ -11,7 +11,6 @@ import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeChec
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeCode } from '../code/materializeCode';
 import { materializeContentSection } from '../contentSection/contentSection';
-import { invokeMaterializer } from '../directMaterialization/directMaterialization';
 import { materializeImage } from '../image/materializeImage';
 import { materializeMarkdown } from '../markdown/materializeMarkdown';
 import { materializeQuizSection } from '../quizSection/quizSection';
@@ -449,7 +448,7 @@ function plan(
 /** One reviewed direct TypeScript invocation, without an alternate parser or generator. */
 export function materializeAssessment(
   input: AssessmentWorkflowStage2,
-  options?: AssessmentMaterializationOptions,
+  options: AssessmentMaterializationOptions,
 ): AssessmentMaterializationPlan {
-  return invokeMaterializer('assessment-stage4', options, resolved => plan(input, resolved), input);
+  return plan(input, options);
 }

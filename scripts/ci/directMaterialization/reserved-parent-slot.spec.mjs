@@ -237,3 +237,45 @@ test('generated handoff AST rejects nonliteral code and duplicate/prototype fiel
   assert.throws(() => check(valid.replace("planned: ['en']", 'planned: [...injected]')), /executable TypeScript/);
   assert.throws(() => check(valid.replace('as const satisfies', 'satisfies')), /immutable as const/);
 });
+
+test('Course handoff reader accepts inert default-export seeds for all three child entities', () => {
+  for (const contract of ['CourseWorkflowLessonSeed', 'EpisodeWorkflowStage1Handoff', 'AssessmentWorkflowSeed']) {
+    const body =
+      '{ config: { id: "' +
+      ids.episode +
+      '", slug: "story" }, production: { ' +
+      'purpose: "Plan", languages: { document: "uk", planned: ["uk", "en"] } } }';
+    const prefix = 'import type { ' + contract + " } from '@svitlo/engine/build';\n";
+    const opts = { variable: 'oldSeed', contract };
+    const legacy = prefix + 'export const oldSeed = ' + body + ' as const satisfies ' + contract + ';';
+    const declarative = prefix + 'export default ' + body + ' satisfies ' + contract + ';';
+    const typedConst = prefix + 'export default (' + body + ' as const) satisfies ' + contract + ';';
+    const actual = readGeneratedCourseHandoff(legacy, opts);
+    assert.deepEqual(readGeneratedCourseHandoff(declarative, opts), actual);
+    assert.deepEqual(readGeneratedCourseHandoff(typedConst, opts), actual);
+    assert.equal(actual.config.id, ids.episode);
+    assert.deepEqual(actual.production.languages.planned, ['uk', 'en']);
+  }
+});
+
+test('Course seed AST reader rejects executable default exports and forged manifest content', () => {
+  const contract = 'EpisodeWorkflowStage1Handoff';
+  const header = 'import type { ' + contract + " } from '@svitlo/engine/build';\n";
+  const opts = { variable: 'episodeStage1', contract };
+  const literal = '{ config: { id: "' + ids.episode + '" }, production: { purpose: "story" } }';
+  const valid = header + 'export default ' + literal + ' satisfies ' + contract + ';';
+  assert.equal(readGeneratedCourseHandoff(valid, opts).config.id, ids.episode);
+  for (const candidate of [
+    valid + '\nprocess.exit(1);',
+    valid.replace('purpose: "story"', 'purpose: require("fs").readFileSync("/tmp/x")'),
+    valid.replace('purpose: "story"', 'purpose: import("./untrusted")'),
+    valid.replace('purpose: "story"', 'purpose: "safe", purpose: "forged"'),
+    valid.replace('purpose: "story"', 'purpose: "safe", __proto__: { admin: true }'),
+    valid.replace('config: {', 'config: { ["dynamic"]: 1,'),
+    valid.replace('export default', 'export const episodeStage1 ='),
+    valid.replace('import type', 'import'),
+    valid.replace('satisfies ' + contract, 'satisfies WrongStage'),
+  ]) {
+    assert.throws(() => readGeneratedCourseHandoff(candidate, opts));
+  }
+});

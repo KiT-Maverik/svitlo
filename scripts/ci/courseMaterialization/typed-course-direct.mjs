@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-/** Source-pinned Course Stage 5 analysis. No candidate AST decoder, custom
- * renderer bundle, semantic TypeScript checker or privileged Git writer here.
+/** Source-pinned Course Stage 5 analysis. Candidate draft is inert TS data;
+ * only trusted Engine and (if necessary) isolated default-branch dependencies run.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +8,11 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { gitBlob } from './course-gate.mjs';
 import { parseTypedMetadata } from './typed-course-gate.mjs';
-import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
+import { parseTrustedDraft, renderTrustedDraft, trustedEngine } from '../directMaterialization/trusted-draft.mjs';
+import {
+  courseLessonReferences,
+  runIsolatedCourseDependencies,
+} from '../directMaterialization/course-dependency-isolation.mjs';
 
 const sha = /^[a-f0-9]{40}$/i;
 const safePath = value =>
@@ -154,18 +158,42 @@ export function buildTypedCourseManifest(meta, plan) {
   };
 }
 export function analyzeDirectCourse(meta, candidateRoot, trustedRoot) {
-  const { root } = checkedSource(meta, candidateRoot);
-  const plan = runIsolatedMaterialization({
-    trustedRoot,
-    candidateRoot: root,
-    textbook: meta.textbookRoot,
+  const { root, source: sourceText } = checkedSource(meta, candidateRoot);
+  const source = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlobSha, sourceCommitSha: meta.head };
+  const engine = trustedEngine(trustedRoot);
+  const input = parseTrustedDraft({
     operation: 'course-stage5',
-    source: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlobSha,
-      sourceCommitSha: meta.head,
-    },
+    source,
+    sourceText,
+    read: engine.readDeclarativeDraft,
   });
+  // Only a reused Lesson can require executing a Configurator module. Never
+  // import candidate code here: execute trusted default-branch dependencies
+  // with no network, no credentials and read-only mounts in the narrow worker.
+  const references = courseLessonReferences(input);
+  const options = {
+    textbookRoot: meta.textbookRoot,
+    source: { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlobSha },
+    verifySource: ({ source: pinned, textbookRoot }) =>
+      pinned.sourcePath === meta.sourcePath &&
+      pinned.sourceBlobSha === meta.sourceBlobSha &&
+      textbookRoot === meta.textbookRoot,
+  };
+  const plan = references.length
+    ? runIsolatedCourseDependencies({
+        input,
+        source,
+        textbookRoot: meta.textbookRoot,
+        candidateRoot: root,
+        trustedRoot,
+      })
+    : renderTrustedDraft({
+        operation: 'course-stage5',
+        source,
+        input,
+        renderers: engine,
+        options,
+      });
   verifyCourseDependencies(meta, root, trustedRoot, plan);
   return buildTypedCourseManifest(meta, plan);
 }

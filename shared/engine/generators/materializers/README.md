@@ -51,4 +51,4 @@ Skill modules generated within their parent Group/Domain are sibling `<slug>.ts`
 - **CI evidence:** pending latest-head Ready CI and focused Course/Episode/Lesson/Bank publisher checks must be explicitly verified before the parent PR can be considered merge-ready.
 - **Concurrent Course Assessment:** #826 owns Course/Module/Chapter architecture changes. This parent does not silently merge its unfinished work; verify compatibility with its eventual integration.
 
-Generated TypeScript remains **nonpublishable** by default. No source generator can bypass the isolated worker, SHA pinning, sealed manifest, create-only collision protection or authorized Git publisher.
+Generated TypeScript remains **nonpublishable** by default. Under the #857 **declarative target**, the shared trusted Reader parses the pinned authored draft **without execution**; canonical Stage Zod and real source generation run only in trusted code. Source generators still enforce SHA pinning, dependency trust, sealed manifest, create-only collision protection and an authorized Git publisher. Legacy isolated-worker isolation remains required until its secure replacement is integrated and verified.

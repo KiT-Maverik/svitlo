@@ -2,8 +2,8 @@
 /**
  * Typed Question/Flashcard Stage 5 source materialization.
  *
- * analyze: verify a pinned checkout, execute exactly one direct authored
- * materializer in the credential-free worker, independently check source
+ * analyze: verify a pinned checkout, statically parse its inert draft,
+ * invoke only trusted Engine functions, independently check source
  * ownership and media/Scene evidence, then attest the bounded file manifest.
  *
  * publish: no npm/Engine/candidate code execution; reauthorize and reconstruct
@@ -380,20 +380,35 @@ async function analyze(meta) {
   if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)
     throw Error('Candidate execution must not receive GitHub credentials');
   const { root, source: pinnedSource } = verifyCandidate(meta);
-  const { runIsolatedMaterialization } = await import('../directMaterialization/run-isolated.mjs');
-  const result = runIsolatedMaterialization({
-    trustedRoot,
-    candidateRoot: root,
-    textbook: meta.identity.pkg,
-    operation: meta.bank === 'questions' ? 'questions-stage5' : 'flashcards-stage5',
-    source: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlob,
-      sourceCommitSha: meta.head,
-      lessonConstantsBlobSha: meta.lessonConstantsBlob,
-    },
+  const { parseTrustedDraft, renderTrustedDraft, trustedEngine } =
+    await import('../directMaterialization/trusted-draft.mjs');
+  const operation = meta.bank === 'questions' ? 'questions-stage5' : 'flashcards-stage5';
+  const source = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlob, sourceCommitSha: meta.head };
+  const engine = trustedEngine(trustedRoot);
+  const input = parseTrustedDraft({
+    operation,
+    source,
+    sourceText: pinnedSource,
+    read: engine.readDeclarativeDraft,
   });
-  const { plan, input } = result ?? {};
+  // The trusted evidence gate runs BEFORE rendering. No candidate source,
+  // Lesson, Scene or media module is imported or executed to establish trust.
+  const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
+  const blocks = resolveReviewedBankBlockEvidence({
+    root,
+    meta,
+    input,
+    git,
+    ts: require('typescript'),
+  });
+  const approval = authorizations(meta, input, root, blocks);
+  const plan = renderTrustedDraft({
+    operation,
+    source,
+    input,
+    options: approval,
+    renderers: engine,
+  });
   if (
     !plan ||
     plan.publishable !== false ||
@@ -404,19 +419,8 @@ async function analyze(meta) {
     plan.transition.sourceDraftBlobSha !== meta.sourceBlob ||
     plan.transition.expectedHeadSha !== meta.head
   )
-    throw Error('Isolated Bank did not return the approved source transition');
+    throw Error('Trusted Bank did not return the approved source transition');
 
-  // A direct invocation can inspect arbitrary imported code; the manifest
-  // alone cannot prove it produced the bytes. Verify its declared ownership,
-  // reference commits, and every real media/Scene asset against the pinned Git tree.
-  const { resolveReviewedBankBlockEvidence } = await import('./bank-typed-block-evidence.mjs');
-  const blocks = resolveReviewedBankBlockEvidence({
-    root,
-    meta,
-    input,
-    git,
-    ts: require('typescript'),
-  });
   const { materializeBankSceneDrafts } = require(
     path.join(trustedRoot, 'shared/engine/dist/generators/materializers/bankSource/materializeBankSceneDrafts.js'),
   );
@@ -427,7 +431,6 @@ async function analyze(meta) {
     throw Error('Worker Bank Scene draft bytes, identities or complete six-file plan differ from reviewed source');
   if (expectedSceneDrafts.length !== blocks.newSceneIds.size * 6)
     throw Error('Every new reviewed Bank Scene must have exactly one complete six-file draft');
-  const approval = authorizations(meta, input, root, blocks);
   if (approval.source.content !== pinnedSource || approval.source.blobSha !== meta.sourceBlob)
     throw Error('Bank input differs from pinned reviewed source');
   const files = [
@@ -460,7 +463,7 @@ async function analyze(meta) {
   fs.mkdirSync(path.dirname(location), { recursive: true });
   fs.writeFileSync(location, JSON.stringify(reportData) + '\\n', { flag: 'wx' });
   report(
-    'Isolated reviewed ' +
+    'Trusted reviewed ' +
       meta.bank +
       ' Stage 5 planned ' +
       files.length +
