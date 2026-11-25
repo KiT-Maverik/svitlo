@@ -6,6 +6,7 @@ import type { Course_Config } from '../../configurators/courses/defineCourse/def
 import type { Module_Config } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Episode_Config } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { courseWorkflowStage3_Schema } from './courseWorkflowFinal.schemas';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
@@ -263,7 +264,7 @@ export type CourseWorkflowStage3ExistingLesson = {
      * concrete draft, derive its exact type from a type-only Lesson import:
      * Parameters<typeof actualLesson.build.overrides>[0].
      */
-    sourcePatch?: Parameters<Lesson_Configurator['build']['overrides']>[0];
+    sourcePatch?: CourseLessonSourcePatch<Lesson_Configurator>;
     /** Editorial explanation of Course-local changes, when there are any.
      * The Course Workflow Skill/review enforces justification for real patches.
      */
