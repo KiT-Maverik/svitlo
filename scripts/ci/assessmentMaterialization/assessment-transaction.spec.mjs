@@ -141,10 +141,22 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
 
 test('trusted transaction checks real upstream Lesson and Question Bank source files', () => {
   const lessonId = deriveCourseEntityId(courseId, 'lesson', 'newLesson');
-  const bank = 'content/math/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/questions/';
+  const lessonRoot = 'content/math/data/lessons/' + lessonId.at(-1) + '/' + lessonId + '/';
+  const bank = lessonRoot + 'questions/';
+  const courseParent = courseRoot + '/index.ts';
+  const parent = lessonImports =>
+    'import { defineCourse } from "@svitlo/engine/build";\\n' +
+    lessonImports.map(({ slug, id }) =>
+      'import { lesson as child_' + slug + ' } from "#lessonsData/' +
+      id.at(-1) + '/' + id + '/index";\\n').join('') +
+    'const content = { items: { ' +
+    lessonImports.map(({ slug }) => JSON.stringify(slug) + ': child_' + slug).join(', ') +
+    ' }, order: ' + JSON.stringify(lessonImports.map(({ slug }) => slug)) + ' };\\n' +
+    'export const demo = defineCourse({ content });\\n';
   const contents = new Map([
-    [courseRoot + '/content/newLesson/index.ts', 'export const newLesson = defineLesson({});'],
-    [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\nexport const questions = {};'],
+    [courseParent, parent([{ slug: 'newLesson', id: lessonId }])],
+    [lessonRoot + 'index.ts', 'export const lesson = defineLesson({});'],
+    [bank + 'index.ts', 'import { prompt } from "./selectOneAnswer";\\nexport const questions = {};'],
     [bank + 'selectOneAnswer/index.ts', 'export { prompt } from "./prompt";'],
     [
       bank + 'selectOneAnswer/prompt.ts',
@@ -154,6 +166,22 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const tree = new Map([...contents].map(([name]) => [name, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) }]));
   const reader = { blob: (_entry, filename) => contents.get(filename) };
   assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
+  // A sibling import must never replace the approved dependency's bank.
+  const unrelated = '44444444-4444-4444-8444-444444444444';
+  contents.set(courseParent, parent([
+    { slug: 'otherLesson', id: unrelated },
+    { slug: 'newLesson', id: lessonId },
+  ]));
+  assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
+  contents.set(courseParent, parent([{ slug: 'otherLesson', id: unrelated }]));
+  assert.throws(() => checkAssessmentBanks(meta, seed, [questionId], reader, tree), /integrated/);
+  contents.set(courseParent, parent([{ slug: 'newLesson', id: lessonId }]));
+  contents.set(courseParent, contents.get(courseParent).replace(
+    '"newLesson": child_newLesson', '"newLesson": unverified',
+  ));
+  assert.throws(() => checkAssessmentBanks(meta, seed, [questionId], reader, tree), /integrated/);
+  contents.set(courseParent, parent([{ slug: 'newLesson', id: lessonId }]));
+
   assert.throws(
     () => checkAssessmentBanks(meta, seed, ['99999999-9999-4999-8999-999999999999'], reader, tree),
     /absent/,
