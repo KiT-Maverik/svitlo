@@ -11,6 +11,7 @@ export function restoreAssessmentPlacement(source, { id, slug, placement, export
     slug,
     placement,
     exportName,
+    stubSource,
   }).content;
 }
 
