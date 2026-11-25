@@ -29,11 +29,13 @@ function singleProperty(object, key) {
  * infer a bank owner from an arbitrary sibling import.
  */
 export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
+  const ownerKinds = Array.isArray(ownerKind) ? ownerKind : [ownerKind];
   if (
     typeof source !== 'string' ||
     source.length > 4 * 1024 * 1024 ||
     !safe(slug) ||
-    !['course', 'module', 'chapter'].includes(ownerKind)
+    !ownerKinds.length ||
+    ownerKinds.some(kind => !['course', 'module', 'chapter'].includes(kind))
   )
     throw Error('Invalid Course Lesson parent or placement');
   const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
@@ -117,13 +119,13 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   };
   ts.forEachChild(ast, visit);
   if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson alias reference');
-  const definition = 'define' + ownerKind[0].toUpperCase() + ownerKind.slice(1);
+  const definitions = ownerKinds.map(kind => 'define' + kind[0].toUpperCase() + kind.slice(1));
   const parents = declarations.filter(declaration => {
     const call = unwrap(declaration.initializer);
     return (
       ts.isCallExpression(call) &&
       ts.isIdentifier(call.expression) &&
-      call.expression.text === definition &&
+      definitions.includes(call.expression.text) &&
       call.arguments.length === 1 &&
       ts.isObjectLiteralExpression(unwrap(call.arguments[0])) &&
       unwrap(call.arguments[0]).properties.some(
@@ -140,7 +142,7 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
         statement.importClause?.namedBindings &&
         ts.isNamedImports(statement.importClause.namedBindings) &&
         statement.importClause.namedBindings.elements.some(
-          element => !element.isTypeOnly && !element.propertyName && element.name.text === definition,
+          element => !element.isTypeOnly && !element.propertyName && element.name.text === unwrap(parents[0].initializer).expression.text,
         ),
     )
   )
