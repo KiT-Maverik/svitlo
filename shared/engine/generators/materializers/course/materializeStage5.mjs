@@ -357,7 +357,12 @@ export function materializeCourseStage5(input, options = {}) {
           throw Error(context.directory + ': Course-owned Section order must include all and only active Sections');
       }
       placementDiagnostics = Object.values(binding.createdSections).flatMap(section => section.diagnostics ?? []);
-      const layout = renderCourseLessonPatch({ directory: context.directory, rawPatch, binding });
+      const layout = renderCourseLessonPatch({
+        directory: context.directory,
+        rawPatch,
+        binding,
+        sourceLesson: { importPath: lesson.importPath, exportName: lesson.exportName },
+      });
       patchSource = layout.patchSource;
       extraImports = layout.imports;
       // All Course-specific fragments belong under the placement, never in
@@ -375,7 +380,8 @@ export function materializeCourseStage5(input, options = {}) {
             renderBlockerTodo(
               'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
             ),
-            'export const ' + placementSlug + ' = placeLesson(' + lesson.exportName + ', ' + patchSource + ');',
+            'export const ' + placementSlug + ' = placeLesson(' + lesson.exportName + ', ' + patchSource +
+              ' satisfies Parameters<typeof ' + lesson.exportName + '.build.overrides>[0]);',
             '',
           ].join('\n'),
         },

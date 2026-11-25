@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeEpisodeDraft } from './materializeDraft.mjs';
@@ -120,6 +121,7 @@ export function materializeEpisode(input, context = {}) {
   const planned = config.params?.languages ?? meta?.plannedLanguages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.params.languages: invalid source scope');
+  const claim = createSourceIdentifierRegistry('episode', ['defineEpisode', 'languages', 'section', exportName(slug)]);
   const imports = [],
     items = {},
     files = [],
@@ -170,9 +172,9 @@ export function materializeEpisode(input, context = {}) {
     if (typeof childId !== 'string' || !uuid.test(childId)) throw Error(location + ': Section UUID missing');
     if (seenIds.has(childId)) throw Error(location + ': duplicate Section UUID');
     seenIds.add(childId);
-    const alias = 'child_section_' + key;
-    imports.push('import { ' + child.exportName + ' as ' + alias + ' } from "./sections/' + key + '";');
-    items[key] = alias;
+    const name = claim(child.exportName, 'section.items.' + key);
+    imports.push('import { ' + name + ' } from "./sections/' + key + '";');
+    items[key] = name;
     files.push(...child.files);
     diagnostics.push(...(child.diagnostics ?? []));
   }
@@ -197,7 +199,7 @@ export function materializeEpisode(input, context = {}) {
   const sectionMap =
     '{ ' +
     Object.entries(items)
-      .map(([key, alias]) => JSON.stringify(key) + ': ' + alias)
+      .map(([key, name]) => renderSourceItem(key, name))
       .join(', ') +
     ' }';
   const result =

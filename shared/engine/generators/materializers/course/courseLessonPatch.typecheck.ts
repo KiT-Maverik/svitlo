@@ -31,7 +31,7 @@ const practice = defineContentSection<'practice', { paragraph: typeof paragraph 
   locale: { title: 'Practice', navigationLabel: '2' },
   content: { items: { paragraph }, order: ['paragraph'] },
 });
-const lesson = defineLesson({
+export const lesson = defineLesson({
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
   type: 'lesson',
   slug: 'reusableLesson',

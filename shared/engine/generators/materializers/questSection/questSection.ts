@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
@@ -98,7 +99,11 @@ function render(value: unknown, depth = 0): string {
   return (
     '{\n' +
     entries
-      .map(key => '  '.repeat(depth + 1) + JSON.stringify(key) + ': ' + render(value[key], depth + 1) + ',')
+      .map(key => {
+        const child = value[key];
+        const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
+        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+      })
       .join('\n') +
     '\n' +
     '  '.repeat(depth) +
@@ -187,9 +192,12 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   if (!localeKey.test(options.documentLanguage)) throw new Error('quest: invalid documentLanguage');
   const files: GeneratedFile[] = [],
     diagnostics: Diagnostic[] = [];
-  const seen = new Set<string>(),
-    imports: string[] = [];
+  const seen = new Set<string>();
   const values: Record<string, unknown> = {};
+  // Both Quest maps require "start". Independent modules preserve canonical
+  // child names without aliases or a collision between the two maps.
+  const mapImports: Record<'stages' | 'tasks', string[]> = { stages: [], tasks: [] };
+  createSourceIdentifierRegistry('questSection', ['defineQuestSection', 'languages', 'stages', 'tasks', exported(config.slug)]);
   const identities = new Set<string>([config.id]);
   for (const category of ['stages', 'tasks'] as const) {
     const source = config[category];
@@ -198,6 +206,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     if (Object.hasOwn(source, 'order'))
       throw new Error('quest.' + category + ': order is prohibited; Quest branches via Actions');
     const rendered: Record<string, Reference> = {};
+    const claim = createSourceIdentifierRegistry('questSection ' + category, [category]);
     const ids = new Set<string>();
     for (const key of Object.keys(source).sort()) {
       part(key, 'quest.' + category + '.' + key);
@@ -214,19 +223,18 @@ export function materializeQuestSection(config: Source, options: Options): Resul
         ...(raw.production ? { production: raw.production } : {}),
       });
       includeChild(files, seen, diagnostics, child, childDir, key);
-      const alias = 'child_' + category + '_' + key;
-      rendered[key] = imported(alias);
-      imports.push(
-        'import { ' +
-          child.exportName +
-          ' as ' +
-          alias +
-          ' } from ' +
-          JSON.stringify('./' + category + '/' + key) +
-          ';',
-      );
+      const name = claim(child.exportName, category + '.' + key);
+      rendered[key] = imported(name);
+      mapImports[category].push('import { ' + name + ' } from ' + JSON.stringify('./' + category + '/' + key) + ';');
     }
     values[category] = rendered;
+  }
+  for (const category of ['stages', 'tasks'] as const) {
+    addOwn(files, seen, {
+      path: destination(dir, category + '.ts'),
+      kind: 'typescript',
+      content: [...mapImports[category], '', 'export const ' + category + ' = ' + render(values[category]) + ';', ''].join('\n'),
+    });
   }
   const { stages: _ignoredStages, tasks: _ignoredTasks, ...metadata } = config;
   const own = {
@@ -260,12 +268,11 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   const source = [
     "import { defineQuestSection } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(options.languagesImport) + ';',
-    ...imports,
+    'import { stages } from "./stages";',
+    'import { tasks } from "./tasks";',
     '',
     blocker,
     ...(methodologyBlocker ? [methodologyBlocker] : []),
-    'const stages = ' + render(values.stages) + ';',
-    'const tasks = ' + render(values.tasks) + ';',
     'export const ' +
       exported(config.slug) +
       ' = defineQuestSection<' +

@@ -30,6 +30,8 @@ A Course selects and orders reusable instructional Lessons, retains historical a
 
 ## Course teaching outcomes and referenced educational standards
 
+**Owner boundary:** only Course Config/Props has `params.outcomes/prerequisites`. Module/Chapter Stage 2/3 `production.outcomes/prerequisites` are educational methodology: verify Skill UUIDs and write them to `methodology.md`; do not add Skill imports or targets to `defineModule/defineChapter` `params` or runtime Props. Legacy `config.params.outcomes/prerequisites` inputs are rejected explicitly, with migration to reviewed `production` required.
+
 Current Engine Course Config/Props support optional `params.outcomes` with
 `skills`, `skillGroups`, `skillDomains` UUID arrays. This describes
 **intended competencies to teach**; existing `params.prerequisites`

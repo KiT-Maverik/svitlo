@@ -3,6 +3,7 @@
  * This is NOT a Props publisher or a YAML/Configurator adapter.
  * Child blocks belong to their concrete materializers (Agents C/D).
  */
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Question_SelectOneAnswer_Config } from '../../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
@@ -214,6 +215,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
   const files: OutputFile[] = [];
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
+  const claim = createSourceIdentifierRegistry('selectOneAnswer', ['defineSelectOneAnswer', 'Languages', 'content', exportedName]);
   const blockers: string[] = [];
   if (node.production?.pending === true)
     blockers.push('Independent Question Bank review and content completion required.');
@@ -252,20 +254,17 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
       }
       if (!out.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
         fail(location, 'missing delegated ContentBlock index.ts');
-      const alias = 'child_' + parts.join('_');
-      if (!validIdentifier.test(alias)) fail(location, 'invalid import name');
+      const childName = claim(out.exportName, location);
       imports.push(
         'import { ' +
           out.exportName +
-          ' as ' +
-          alias +
           ' } from ' +
           JSON.stringify('./' + name + '/' + childPath) +
           ';',
       );
       files.push(...out.files);
       diagnostics.push(...(out.diagnostics ?? []));
-      return alias;
+      return childName;
     }
     if (collectionPaths.has(location)) assertCollection(value, location);
     if (location === 'locale' || false) value = sourceLocale(value, context.languages.document, location);
@@ -275,13 +274,13 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
     if (Array.isArray(value))
       return '[' + value.map((item, index) => render(item, [...parts, String(index)], depth + 1)).join(', ') + ']';
     if (!isRecord(value)) fail(location, 'unsupported opaque source expression; preserve through parent');
-    const entries = Object.entries(value).map(
-      ([key, item]) =>
-        '  '.repeat(depth + 1) +
-        (validIdentifier.test(key) && key !== '__proto__' ? key : JSON.stringify(key)) +
-        ': ' +
-        render(item, [...parts, key], depth + 1),
-    );
+    const entries = Object.entries(value).map(([key, item]) => {
+      const path = [...parts, key];
+      const rendered = render(item, path, depth + 1);
+      const keySource = validIdentifier.test(key) && key !== '__proto__' ? key : JSON.stringify(key);
+      const isChild = childPatterns.some(pattern => matches(pattern, path));
+      return '  '.repeat(depth + 1) + (isChild && rendered === key ? keySource : keySource + ': ' + rendered);
+    });
     return entries.length ? '{\n' + entries.join(',\n') + '\n' + '  '.repeat(depth) + '}' : '{}';
   };
   const nested = 'const content = ' + render(config.content, ['content']) + ';\n\n';

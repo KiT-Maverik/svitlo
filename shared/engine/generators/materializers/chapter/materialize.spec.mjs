@@ -221,6 +221,7 @@ test('Chapter preserves one direct Episode and an existing Lesson placement', ()
     /import \{ independentLesson \} from "#lessonsData\//,
   );
   assert.match(result.files.find(file => file.path === 'index.ts').content, /defineChapter</);
+  assert.doesNotMatch(result.files.find(file => file.path === 'index.ts').content, /child_|skill_ref_/);
   assert.equal(result.id, IDs.chapter);
   syntax(result.files);
 });
@@ -235,4 +236,22 @@ test('Chapter refuses unsafe source directory', () => {
     () => materializeChapter(ch(), { sourceLanguage: 'uk', directory: '../unsafe' }),
     /unsafe generated directory/,
   );
+});
+
+test('Chapter excludes production-only Skill targets and rejects legacy config params', () => {
+  const result = materializeChapter(ch(), ctx());
+  const index = result.files.find(file => file.path === 'index.ts').content;
+  assert.doesNotMatch(index, /outcomes|prerequisites|skillsData/);
+  assert.match(result.files.find(file => file.path === 'methodology.md').content, /Intended learning outcomes/);
+  for (const field of ['outcomes', 'prerequisites']) {
+    const value = ch();
+    value.config.params = { [field]: { skills: [skillId] } };
+    assert.throws(() => materializeChapter(value, ctx()), new RegExp('config\\.params\\.' + field));
+  }
+});
+
+test('Chapter rejects a child canonical import that collides with generated locals', () => {
+  const node = ch();
+  node.config.slug = 'content';
+  assert.throws(() => materializeChapter(node, ctx()), /generated identifier collision.*content/);
 });

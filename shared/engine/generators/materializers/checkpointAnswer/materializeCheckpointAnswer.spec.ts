@@ -51,8 +51,8 @@ test('CheckpointAnswer delegates each ContentBlock and preserves order, imports 
   assert.deepEqual(requests, ['text:first/answer/second', 'text:first/answer/first']);
   const code = result.files.at(-1)!.content;
   assert.match(code, /defineCheckpointAnswer<"answer", typeof content.items, typeof languages>/);
-  assert.match(code, /"second": answer_second/);
-  assert.ok(code.indexOf('"second": answer_second') < code.indexOf('"first": answer_first'));
+  assert.match(code, /\bsecond,/);
+  assert.ok(code.indexOf('second,') < code.indexOf('first,'));
   assert.doesNotMatch(code, /"en": "Text"/);
   assert.equal(result.files.length, 3);
   assert.deepEqual(result, materializeCheckpointAnswer(answer(), context().renderer));
@@ -67,7 +67,7 @@ test('CheckpointAnswer excludes disabled draft entries without reviving them in 
   };
   const result = materializeCheckpointAnswer(revised, context().renderer);
   assert.equal(result.files.length, 2);
-  assert.doesNotMatch(result.files.at(-1)!.content, /answer_first/);
+  assert.doesNotMatch(result.files.at(-1)!.content, /\bfirst\b/);
   assert.throws(
     () =>
       materializeCheckpointAnswer(

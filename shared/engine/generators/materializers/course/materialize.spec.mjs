@@ -236,8 +236,9 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.match(unit, /import type \{ Languages \} from "#coursesData\//);
   assert.match(chapter, /import type \{ Languages \} from "#coursesData\//);
   assert.doesNotMatch(unit, /import \{ languages \}/);
-  assert.match(unit, /testExplainLightTravel\.id/);
-  assert.match(chapter, /testExplainLightTravel\.id/);
+  assert.doesNotMatch(unit, /testExplainLightTravel|skillsData|outcomes|prerequisites/);
+  assert.doesNotMatch(chapter, /testExplainLightTravel|skillsData|outcomes|prerequisites/);
+  assert.doesNotMatch(main, /testExplainLightTravel|skillsData/);
   assert.doesNotMatch(main, /const languages =|Restore reviewed languages/);
   assert.equal(first.placements.length, 1);
   syntax(first.files);
@@ -394,4 +395,21 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
   const noAssessment = course();
   delete noAssessment.config.content.items.directLesson.production.assessment;
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);
+});
+
+test('Course fails closed when a child import shadows generated content', () => {
+  const node = course();
+  node.config.content.items.content = lesson('content', 'Текст');
+  node.config.content.order.push('content');
+  assert.throws(() => materializeCourse(node, ctx()), /generated identifier collision.*content/);
+});
+
+test('Course-level Skill targets remain genuine Config fields with trusted Skill.id imports', () => {
+  const node = course();
+  node.config.params.outcomes = { skills: [skillId] };
+  node.config.params.prerequisites = { skills: [skillId] };
+  const source = materializeCourse(node, ctx()).files.find(file => file.path === 'index.ts').content;
+  assert.match(source, /import \{ testExplainLightTravel \} from "#skillsData\//);
+  assert.match(source, /testExplainLightTravel\.id/);
+  assert.match(source, /outcomes|prerequisites/);
 });

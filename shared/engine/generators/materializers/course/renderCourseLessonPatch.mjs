@@ -1,3 +1,5 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
+
 /**
  * Materialize placement-local Config override fragments as owned TypeScript.
  * No Configurator is recreated here. Existing Section/ContentBlock changes
@@ -8,6 +10,15 @@ const record = value => value !== null && typeof value === 'object' && !Array.is
 const slug = /^[A-Za-z][A-Za-z0-9]*$/;
 const reserved = new Set(['__proto__', 'prototype', 'constructor']);
 const keyPath = path => JSON.stringify(path);
+const lessonImportPattern = /^#lessonsData\/[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index$/i;
+const lessonTypes = sourceLesson => [
+  'import type { ' + sourceLesson.exportName + ' } from ' + JSON.stringify(sourceLesson.importPath) + ';',
+  'type LessonPatch = Parameters<typeof ' + sourceLesson.exportName + '.build.overrides>[0];',
+];
+const sectionType = key =>
+  'type SectionPatch = Exclude<NonNullable<NonNullable<LessonPatch["section"]>["items"]>[' + JSON.stringify(key) + '], undefined | false>;';
+const blockType = key =>
+  'type BlockPatch = Exclude<NonNullable<NonNullable<SectionPatch["content"]>["items"]>[' + JSON.stringify(key) + '], undefined | false>';
 const clean = (value, where) => {
   if (!slug.test(value) || reserved.has(value)) throw Error(where + ': invalid Course-owned override path');
 };
@@ -46,13 +57,19 @@ function literal(value, path = [], references = new Map()) {
  * Configurators or creating a second authoring format.
  *
  * @param {{directory:string, rawPatch:Record<string,unknown>, binding:
- *   {imports:string[], aliases:Record<string,string>}}} args
+ *   {imports:string[], aliases:Record<string,string>}, sourceLesson:{importPath:string,exportName:string}}} args
  */
-export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
+export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLesson }) {
   if (typeof directory !== 'string' || !directory) throw Error('Unsafe or missing Course Lesson placement source');
   for (const part of directory.split('/')) clean(part, 'placement');
   if (!record(rawPatch) || !record(binding) || !Array.isArray(binding.imports))
     throw Error('Unsafe or missing Course Lesson placement source');
+  if (
+    !record(sourceLesson) ||
+    !lessonImportPattern.test(sourceLesson.importPath ?? '') ||
+    typeof sourceLesson.exportName !== 'string'
+  ) throw Error('Verified standalone Lesson import required to typecheck Course-owned fragments');
+  createSourceIdentifierRegistry('Course Lesson source', ['LessonPatch'])(sourceLesson.exportName, 'verified Lesson');
   const imports = [];
   const files = [];
   const rootRefs = new Map();
@@ -63,16 +80,26 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
       if (!record(sectionPatch)) continue; // disabled entries stay false in parent
       const childRefs = new Map();
       const childImports = [];
+      const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [sourceLesson.exportName, 'LessonPatch', 'SectionPatch', sectionKey]);
       const content = sectionPatch.content;
       if (record(content) && record(content.items)) {
         for (const [blockKey, blockPatch] of Object.entries(content.items)) {
           clean(blockKey, 'section.content.items');
           if (!record(blockPatch)) continue;
           const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
+          createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [sourceLesson.exportName, 'LessonPatch', 'SectionPatch', 'BlockPatch'])(blockKey, path);
+          childNames(blockKey, path);
           files.push({
             path,
             kind: 'typescript',
-            content: 'export const ' + blockKey + ' = ' + literal(blockPatch) + ';\n',
+            content: [
+              ...lessonTypes(sourceLesson),
+              sectionType(sectionKey),
+              blockType(blockKey) + ';',
+              '',
+              'export const ' + blockKey + ' = ' + literal(blockPatch) + ' satisfies BlockPatch;',
+              '',
+            ].join('\n'),
           });
           childImports.push('import { ' + blockKey + ' } from "./' + blockKey + '";');
           childRefs.set(keyPath(['content', 'items', blockKey]), blockKey);
@@ -82,9 +109,11 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
         path: directory + '/sections/' + sectionKey + '/index.ts',
         kind: 'typescript',
         content: [
+          ...lessonTypes(sourceLesson),
           ...childImports,
+          sectionType(sectionKey),
           '',
-          'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ';',
+          'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ' satisfies SectionPatch;',
           '',
         ].join('\n'),
       });

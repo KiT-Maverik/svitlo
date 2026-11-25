@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
@@ -139,6 +140,7 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   const files: AnswerFile[] = [];
   const diagnostics: AnswerDiagnostic[] = [];
   const imports: string[] = [];
+  const claim = createSourceIdentifierRegistry('checkpointAnswer', ['defineCheckpointAnswer', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
   const items: string[] = [];
   const paths = new Set<string>();
   for (const key of config.content.order) {
@@ -149,9 +151,9 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
       throw new Error('CheckpointAnswer.content.items.' + key + ': invalid delegate export');
     }
-    const alias = 'answer_' + key;
-    imports.push('import { ' + result.exportName + ' as ' + alias + ' } from ' + JSON.stringify('./' + key) + ';');
-    items.push('    ' + JSON.stringify(key) + ': ' + alias + ',');
+    const name = claim(result.exportName, 'content.items.' + key);
+    imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
+    items.push('    ' + renderSourceItem(key, name) + ',');
     for (const file of result.files) {
       if (!file.path.startsWith(target + '/')) {
         throw new Error(
