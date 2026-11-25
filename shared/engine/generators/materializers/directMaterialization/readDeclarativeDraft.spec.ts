@@ -32,6 +32,10 @@ test('all six kinds enforce the selected final-stage type and canonical schema',
   for (const kind of Object.keys(stageNames) as DeclarativeDraftEntityKind[]) {
     assert.deepEqual(Object.keys(parseInertDraftSyntax(draft(kind), kind) as object), ['config', 'production']);
     rejects(draft(kind), kind === 'course' ? 'lesson' : 'course');
+    assert.throws(
+      () => parseInertDraftSyntax(draft(kind), '__proto__' as DeclarativeDraftEntityKind),
+      /Unsupported draft entity kind/,
+    );
     assert.throws(() => readDeclarativeDraft(draft(kind), kind), /Declarative draft schema at \d+:\d+:/);
   }
 });
