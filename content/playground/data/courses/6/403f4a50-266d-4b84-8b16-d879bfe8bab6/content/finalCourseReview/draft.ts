@@ -1,5 +1,5 @@
 import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';
-// TODO (BLOCKER): Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.
+// TODO (BLOCKER): Complete production workflow.
 export const assessmentSeed = {
   "config": {
     "id": "742d5112-2221-520d-a348-3f987d4d25dc",
@@ -17,7 +17,9 @@ export const assessmentSeed = {
       "content/exhibitionPractice/combinedObservations/combinedPractice"
     ],
     "placement": {
+      // agent note: not needed? can be derived from pr
       "courseId": "403f4a50-266d-4b84-8b16-d879bfe8bab6",
+      // agent note: not needed? can be derived from pr
       "path": "content/finalCourseReview",
       "orderPath": [
         4

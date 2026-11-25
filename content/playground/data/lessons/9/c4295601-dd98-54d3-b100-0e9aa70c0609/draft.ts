@@ -1,4 +1,4 @@
-// TODO (BLOCKER): Complete the separately authorized Lesson Stage 1 from this Course seed, obtain its required review, and replace this seed with approved Lesson authoring before removing the marker.
+// TODO (BLOCKER): complete production workflow
 import type { CourseWorkflowLessonSeed } from '@svitlo/engine/build';
 
 // prettier-ignore

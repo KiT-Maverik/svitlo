@@ -1,5 +1,6 @@
-import type { AssessmentWorkflowSeed } from '@svitlo/engine/build';
-// TODO (BLOCKER): Complete the separately authorized Assessment Stage 1 and Stage 2, obtain independent review, then replace this typed seed with the reviewed Assessment source and delete this marker.
+// TODO (BLOCKER): Complete production workflow.
+import {AssessmentWorkflowSeed} from "@svitlo/engine/build";
+
 export const assessmentSeed = {
   "config": {
     "id": "7da9f9a0-3108-5fff-b670-2fe6cac2cb6d",
@@ -33,3 +34,5 @@ export const assessmentSeed = {
     }
   }
 } as const satisfies AssessmentWorkflowSeed;
+
+// agent not: why no draft were generated?

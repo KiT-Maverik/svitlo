@@ -1,4 +1,4 @@
-// TODO (BLOCKER): Author and independently review the Episode Stage 1 scenario before materializing the completed Episode; remove this draft blocker only after the approved handoff is consumed.
+// TODO (BLOCKER): Complete production workflow.
 import type { EpisodeWorkflowStage1Handoff } from '@svitlo/engine/build';
 
 export const episodeStage1 = {
