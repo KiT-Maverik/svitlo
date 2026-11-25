@@ -276,7 +276,14 @@ test('Course preview accepts a real draft Assessment Text block but rejects fake
     /Course draft stub cannot be assembled for production/,
   );
   assert.throws(
-    () => assembleCourseTree({ ...draftCourse, content: collection({ draft }, ['draft']) }, undefined, id(1), 'en', 'draft'),
+    () =>
+      assembleCourseTree(
+        { ...draftCourse, content: collection({ draft }, ['draft']) },
+        undefined,
+        id(1),
+        'en',
+        'draft',
+      ),
     /Invalid Course stub placement/,
   );
   const found = findCourseAssessment(course, id(120));
