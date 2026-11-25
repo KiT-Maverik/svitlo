@@ -25,14 +25,16 @@ export type CourseLessonSectionReference = {
 type ConcretePatch<Lesson extends Lesson_Configurator> = Parameters<Lesson['build']['overrides']>[0];
 type ExistingItemKeys<Lesson extends Lesson_Configurator> =
   keyof NonNullable<NonNullable<ConcretePatch<Lesson>['section']>['items']>;
+type ExcludeExistingKeys<Lesson extends Lesson_Configurator> =
+  string extends ExistingItemKeys<Lesson>
+    ? {} // Generic Lesson: no known key set; real Build checks duplicates.
+    : { [Key in ExistingItemKeys<Lesson>]?: never };
 
 export type CourseLessonSourcePatch<Lesson extends Lesson_Configurator> = Omit<
   ConcretePatch<Lesson>,
   'section'
 > & {
   section?: Omit<NonNullable<ConcretePatch<Lesson>['section']>, 'additionalItems'> & {
-    additionalItems?: Record<string, CourseLessonSectionReference> & {
-      [Key in ExistingItemKeys<Lesson>]?: never;
-    };
+    additionalItems?: Record<string, CourseLessonSectionReference> & ExcludeExistingKeys<Lesson>;
   };
 };
