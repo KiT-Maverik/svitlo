@@ -100,13 +100,14 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
  * content.items[slug] and leave the parent's original content.order unchanged.
  * Neither TODO comments nor authored placement arrays establish ownership.
  */
-export function restoreEpisodePlacement(parent, placement, exportName) {
+export function restoreEpisodePlacement(parent, stubSource, placement, exportName) {
   return replaceReservedParentSlot(parent, {
     kind: 'episode',
     id: placement.episodeId,
     slug: placement.slug,
     placement: placement.path,
     exportName,
+    stubSource,
   }).content;
 }
 
@@ -114,7 +115,7 @@ export function restoreEpisodePlacement(parent, placement, exportName) {
  * source change. The already-reviewed Episode entrypoint is executed ONLY by
  * the credential-free worker, not by this trusted composition helper.
  */
-export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, output) {
+export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, stubSource, output) {
   verifyEpisodeHandoff(handoff, reviewed, meta);
   if (
     !output ||
@@ -143,6 +144,7 @@ export function composeEpisodeDirectPlan(handoff, reviewed, meta, parentSource, 
   if (!files.some(file => file.path === rootIndex)) throw Error('Direct Episode did not emit its allocated root index');
   const parent = restoreEpisodePlacement(
     parentSource,
+    stubSource,
     {
       path: meta.placement,
       slug: handoff.config.slug,
