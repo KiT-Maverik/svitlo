@@ -179,6 +179,7 @@ export function materializeCourseStage5(input, options = {}) {
   }
 
   const renderedPlacements = new Map();
+  const sceneScaffolds = [];
   const recordPlacement = (directory, row) => {
     if (renderedPlacements.has(directory)) throw Error('Duplicate Course inventory placement: ' + directory);
     renderedPlacements.set(directory, row);
@@ -363,6 +364,7 @@ export function materializeCourseStage5(input, options = {}) {
         binding,
         sourceLesson: { importPath: lesson.importPath, exportName: lesson.exportName },
       });
+      sceneScaffolds.push(...layout.sceneScaffolds);
       patchSource = layout.patchSource;
       extraImports = layout.imports;
       // All Course-specific fragments belong under the placement, never in
@@ -380,8 +382,15 @@ export function materializeCourseStage5(input, options = {}) {
             renderBlockerTodo(
               'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
             ),
-            'export const ' + placementSlug + ' = placeLesson(' + lesson.exportName + ', ' + patchSource +
-              ' satisfies Parameters<typeof ' + lesson.exportName + '.build.overrides>[0]);',
+            'export const ' +
+              placementSlug +
+              ' = placeLesson(' +
+              lesson.exportName +
+              ', ' +
+              patchSource +
+              ' satisfies Parameters<typeof ' +
+              lesson.exportName +
+              '.build.overrides>[0]);',
             '',
           ].join('\n'),
         },
@@ -512,10 +521,33 @@ export function materializeCourseStage5(input, options = {}) {
     },
   };
   const materialized = materializeCourse(input, context);
+  // Preserve the shared Section renderer's textbook-rooted Scene sources.
+  // The trusted Course publisher separately restricts these UUID destinations.
+  const sceneRoot = textbookRoot + '/scenes/';
+  for (const file of sceneScaffolds) {
+    const parts =
+      typeof file?.path === 'string' && file.path.startsWith(sceneRoot)
+        ? file.path.slice(sceneRoot.length).split('/')
+        : [];
+    const [bucket, id, filename] = parts;
+    if (
+      parts.length !== 3 ||
+      !/^[0-9a-f]$/.test(bucket) ||
+      !uuid.test(id ?? '') ||
+      bucket !== id.at(-1) ||
+      !/^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(
+        filename ?? '',
+      ) ||
+      !['typescript', 'code'].includes(file.kind) ||
+      typeof file.content !== 'string'
+    )
+      throw Error('Unsafe generated Scene output: ' + String(file?.path));
+  }
   const files = [
     ...materialized.files.map(file =>
       file.path.startsWith(textbookRoot + '/data/lessons/') ? file : { ...file, path: root + '/' + file.path },
     ),
+    ...sceneScaffolds,
   ];
   const rootIndex = files.find(file => file.path === materializedPath);
   if (!rootIndex || rootIndex.kind !== 'typescript')
