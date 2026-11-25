@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import ts from 'typescript';
+import { createRequire } from 'node:module';
 
 const UUID = /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i;
 const NAME = /^[A-Za-z][A-Za-z0-9]*$/;
@@ -62,6 +62,9 @@ function textField(config, name) {
   return field && ts.isStringLiteral(field.initializer) ? field.initializer.text : null;
 }
 function extractSkillExports(filename, content) {
+  // The zero-dependency publisher imports this module only for Git verification;
+  // load TypeScript solely inside the trusted, dependency-installed analyzer.
+  const ts = createRequire(import.meta.url)('typescript');
   const parsed = ts.createSourceFile(filename, content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if (parsed.parseDiagnostics.length) throw Error('Invalid trusted Skill TypeScript: ' + filename);
   const hasDefineSkillImport = parsed.statements.some(x =>
