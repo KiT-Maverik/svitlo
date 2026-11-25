@@ -139,7 +139,7 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
     ...request,
     input: {
       config: { content: { items: { reused: withSection(sectionBlob,
-        '33333333-3333-4333-8333-333333333333') } } } },
+        '33333333-3333-4333-8333-333333333333') } } },
     },
   }, fakeSpawn), /Section|fatal|git/i);
   assert.equal(calls.length, 0, 'wrong Section owner never launches Docker');
