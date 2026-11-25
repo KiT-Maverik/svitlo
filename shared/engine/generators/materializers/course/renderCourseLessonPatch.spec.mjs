@@ -80,7 +80,8 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
 });
 
 test('metadata-only patches stay in their placement index without fake children', () => {
-  const result = renderCourseLessonPatch({ sourceLesson,
+  const result = renderCourseLessonPatch({
+    sourceLesson,
     directory: 'shadowPractice',
     rawPatch: { params: { sections: { allowNavigation: false } } },
     binding: { imports: [], aliases: {} },
@@ -91,22 +92,24 @@ test('metadata-only patches stay in their placement index without fake children'
 });
 
 test('unsafe placement paths and unverified references fail closed', () => {
-  assert.throws(() => renderCourseLessonPatch({
-    sourceLesson: { ...sourceLesson, importPath: '../other-lesson' }, directory, rawPatch: {},
-    binding: { imports: [] },
-  }), /Verified standalone Lesson import/);
   assert.throws(
     () =>
-      renderCourseLessonPatch({ sourceLesson,
-        directory: '../escape',
+      renderCourseLessonPatch({
+        sourceLesson: { ...sourceLesson, importPath: '../other-lesson' },
+        directory,
         rawPatch: {},
         binding: { imports: [] },
       }),
+    /Verified standalone Lesson import/,
+  );
+  assert.throws(
+    () => renderCourseLessonPatch({ sourceLesson, directory: '../escape', rawPatch: {}, binding: { imports: [] } }),
     /invalid Course-owned override path/,
   );
   assert.throws(
     () =>
-      renderCourseLessonPatch({ sourceLesson,
+      renderCourseLessonPatch({
+        sourceLesson,
         directory,
         rawPatch: { section: { items: JSON.parse('{"__proto__":{}}') } },
         binding: { imports: [] },
@@ -115,7 +118,8 @@ test('unsafe placement paths and unverified references fail closed', () => {
   );
   assert.throws(
     () =>
-      renderCourseLessonPatch({ sourceLesson,
+      renderCourseLessonPatch({
+        sourceLesson,
         directory,
         rawPatch: { section: { additionalItems: { extra: { $ref: 'lesson-section' } } } },
         binding: { imports: [], aliases: { extra: 'forgedReference' } },
@@ -123,7 +127,6 @@ test('unsafe placement paths and unverified references fail closed', () => {
     /Missing trusted Section import/,
   );
 });
-
 
 /**
  * Compile source files as ordinary TypeScript modules. The imported Lesson is
@@ -143,17 +146,19 @@ function compileFragments(rawPatch) {
     sourceLesson,
     binding: { imports: [], aliases: {} },
   });
-  const files = [...built.files, {
-    path: directory + '/index.ts',
-    kind: 'typescript',
-    content: [
-      'import type { lesson } from ' + JSON.stringify(sourceLesson.importPath) + ';',
-      ...built.imports,
-      'export const placement = ' + built.patchSource +
-        ' satisfies Parameters<typeof lesson.build.overrides>[0];',
-      '',
-    ].join('\n'),
-  }];
+  const files = [
+    ...built.files,
+    {
+      path: directory + '/index.ts',
+      kind: 'typescript',
+      content: [
+        'import type { lesson } from ' + JSON.stringify(sourceLesson.importPath) + ';',
+        ...built.imports,
+        'export const placement = ' + built.patchSource + ' satisfies Parameters<typeof lesson.build.overrides>[0];',
+        '',
+      ].join('\n'),
+    },
+  ];
   const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
   const root = path.join(sourceRoot, 'temp', 'course-lesson-patch-typecheck');
   const tsconfig = ts.readConfigFile(path.join(sourceRoot, 'tsconfig.json'), ts.sys.readFile);
@@ -183,8 +188,7 @@ function compileFragments(rawPatch) {
   host.fileExists = file => virtual.has(normalized(file)) || oldExists(file);
   host.readFile = file => virtual.get(normalized(file)) ?? oldRead(file);
   host.directoryExists = dir =>
-    [...virtual.keys()].some(file => file.startsWith(normalized(dir) + path.sep)) ||
-    oldDirectory?.(dir) || false;
+    [...virtual.keys()].some(file => file.startsWith(normalized(dir) + path.sep)) || oldDirectory?.(dir) || false;
   host.getSourceFile = (file, language, onError, createNew) =>
     virtual.has(normalized(file))
       ? ts.createSourceFile(file, virtual.get(normalized(file)), language, true)
@@ -227,8 +231,14 @@ test('generated fragments fail TypeScript on invalid field types and missing con
   });
   const fragmentErrors = errors.filter(diagnostic => diagnostic.path.includes('typedPlacement/sections/'));
   assert.ok(fragmentErrors.length >= 2, JSON.stringify(errors, null, 2));
-  assert.ok(fragmentErrors.some(diagnostic => diagnostic.message.includes('number')), JSON.stringify(errors, null, 2));
-  assert.ok(fragmentErrors.some(diagnostic => diagnostic.message.includes('fieldRemovedFromSection')), JSON.stringify(errors, null, 2));
+  assert.ok(
+    fragmentErrors.some(diagnostic => diagnostic.message.includes('number')),
+    JSON.stringify(errors, null, 2),
+  );
+  assert.ok(
+    fragmentErrors.some(diagnostic => diagnostic.message.includes('fieldRemovedFromSection')),
+    JSON.stringify(errors, null, 2),
+  );
 });
 
 test('generated fragments fail TypeScript for renamed nested keys and invalid locales', () => {
@@ -247,12 +257,17 @@ test('generated fragments fail TypeScript for renamed nested keys and invalid lo
   });
   const fragmentErrors = errors.filter(diagnostic => diagnostic.path.includes('typedPlacement/sections/'));
   assert.ok(fragmentErrors.length > 0, JSON.stringify(errors, null, 2));
-  assert.ok(fragmentErrors.some(diagnostic => /renamedParagraph/.test(diagnostic.message)), JSON.stringify(errors, null, 2));
+  assert.ok(
+    fragmentErrors.some(diagnostic => /renamedParagraph/.test(diagnostic.message)),
+    JSON.stringify(errors, null, 2),
+  );
   // The locale is constrained through the original paragraph's Languages type.
   const invalidLocale = compileFragments(typed({ locale: { value: { xx: 'No locale' } } }));
   assert.ok(
-    invalidLocale.some(diagnostic => diagnostic.path.includes('typedPlacement/sections/intro/paragraph/') &&
-      diagnostic.message.includes('xx')),
+    invalidLocale.some(
+      diagnostic =>
+        diagnostic.path.includes('typedPlacement/sections/intro/paragraph/') && diagnostic.message.includes('xx'),
+    ),
     JSON.stringify(invalidLocale, null, 2),
   );
 });
