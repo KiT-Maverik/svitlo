@@ -75,9 +75,7 @@ export function parseAssessmentSeed(source) {
     !seed.production?.purpose ||
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
-    !Array.isArray(seed.production.placement?.orderPath) ||
-    !seed.production.placement.orderPath.length ||
-    !SHA.test(seed.production.placement.reviewedCourseSourceBlobSha ?? '') ||
+    !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
     !Array.isArray(seed.production.languages?.planned)
   )
     throw Error('Invalid pinned Assessment seed identity and planning data');
@@ -94,10 +92,8 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     input.config.type !== 'assessment' ||
     input.production?.purpose !== seed.production.purpose ||
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
-    JSON.stringify(input.production.placement) !== JSON.stringify(seed.production.placement) ||
+    input.production.reviewedCourseSourceBlobSha !== seed.production.reviewedCourseSourceBlobSha ||
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
@@ -383,8 +379,6 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');
