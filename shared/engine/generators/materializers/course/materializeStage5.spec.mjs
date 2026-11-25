@@ -646,6 +646,15 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
   assert.deepEqual(result.inventory, materializeCourseStage5(input, options()).inventory);
 });
 
+test('legacy Course draft dependencies normalize to flat published Lesson placements', () => {
+  const input = source();
+  input.config.content.items.finalReview = assessmentSlot('content/directLesson');
+  input.config.content.order.push('finalReview');
+  const result = materializeCourseStage5(input, options());
+  assert.deepEqual(result.inventory.assessments[0].lessonDependencies, ['directLesson']);
+  assert.equal(result.inventory.assessments[0].sourcePath, root + '/finalReview/draft.ts');
+});
+
 test('Course Assessment placement rejects missing, forward, repeated and ambiguous Lesson dependencies', () => {
   const base = source();
   const content = base.config.content;
