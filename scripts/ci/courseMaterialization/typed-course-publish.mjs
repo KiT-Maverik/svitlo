@@ -234,7 +234,9 @@ function assertCourseInventory(manifest, meta, entries) {
             !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
             !source.includes(
               '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
-                'export const ' + row.slug + ' = placeLesson(originalLesson, ',
+                'export const ' +
+                row.slug +
+                ' = placeLesson(originalLesson, ',
             )
           )
             throw Error('Course Lesson override placement module lacks verified original or Build patch');
