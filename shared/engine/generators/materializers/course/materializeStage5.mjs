@@ -292,6 +292,7 @@ export function materializeCourseStage5(input, options = {}) {
     const hasPatch = production.sourcePatch !== undefined;
     let patchSource;
     let extraImports = [];
+    let placementFiles = [];
     if (hasPatch) {
       const rawPatch = production.sourcePatch;
       if (!record(rawPatch) || !Object.keys(rawPatch).length || !production.overrideRationale?.trim())
@@ -310,6 +311,20 @@ export function materializeCourseStage5(input, options = {}) {
       });
       patchSource = binding.patchSource;
       extraImports = binding.imports;
+      // The Course owns this adaptation, not the canonical standalone Lesson.
+      // Keep the entire placement wrapper under its Course/Module/Chapter slot.
+      placementFiles = [{
+        path: context.directory + '/index.ts',
+        kind: 'typescript',
+        content: [
+          "import { placeLesson } from '@svitlo/engine/build';",
+          'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
+          ...extraImports,
+          '',
+          'export const placedLesson = placeLesson(originalLesson, ' + patchSource + ');',
+          '',
+        ].join('\n'),
+      }];
       try {
         const built = lesson.configurator.build.overrides(binding.patch, { languages: patchLanguages });
         if (built.id !== existing.id)
@@ -335,6 +350,7 @@ export function materializeCourseStage5(input, options = {}) {
         existing.id.toLowerCase() +
         '/index.ts',
       placementSourcePath: parentIndex(context.directory, 'lesson'),
+      ...(hasPatch ? { overrideSourcePath: root + '/' + context.directory + '/index.ts' } : {}),
       sourceSha: lesson.sourceSha,
       sourceExportName: lesson.exportName,
     });
@@ -342,11 +358,9 @@ export function materializeCourseStage5(input, options = {}) {
       id: existing.id,
       lessonId: existing.id,
       exportName: placementSlug,
-      sourceExportName: lesson.exportName,
-      importPath: lesson.importPath,
-      ...(patchSource === undefined ? {} : { patchSource }),
-      extraImports,
-      files: [],
+      sourceExportName: hasPatch ? 'placedLesson' : lesson.exportName,
+      importPath: hasPatch ? './' + placementSlug : lesson.importPath,
+      files: placementFiles,
       diagnostics: [],
     };
   };
