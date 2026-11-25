@@ -72,8 +72,7 @@ export function materializeEpisodeStage5(
   options: EpisodeStage5Options,
 ): EpisodeStage5Plan {
   const source = options;
-  {
-      const checked = episodeWorkflowStage2_Schema.safeParse(input);
+  const checked = episodeWorkflowStage2_Schema.safeParse(input);
       if (!checked.success) throw new Error('Invalid reviewed Episode input: ' + checked.error.message);
       // Technical ownership comes from the sealed Git source path, never an
       // editable repetition of courseId/path/orderPath in Episode narrative.
@@ -146,5 +145,4 @@ export function materializeEpisodeStage5(
         diagnostics: result.diagnostics ?? [],
         publishable: false,
       };
-  }
 }
