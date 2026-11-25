@@ -30,7 +30,7 @@ import {
 } from './fixtures/worker-inputs.mjs';
 
 const require = createRequire(import.meta.url);
-const { defineLesson } = require('../../../shared/engine/dist/build.js');
+const { defineLesson, materializeLessonStage6 } = require('../../../shared/engine/dist/build.js');
 const {
   courseWorkflowStage3_Schema,
 } = require('../../../shared/engine/dist/types/workflow/courseWorkflowFinal.schemas.js');
@@ -202,6 +202,18 @@ test('all five entrypoints execute once from a separate clean Git candidate agai
       }).publishable,
       false,
     );
+
+    const lessonSourceText = fs.readFileSync(path.join(candidateRoot, paths.lesson), 'utf8');
+    const trustedLessonPlan = materializeLessonStage6(lessonStage2(), {
+      source: {
+        sourcePath: paths.lesson,
+        sourceBlobSha: git(candidateRoot, 'rev-parse', 'HEAD:' + paths.lesson),
+        sourceCommitSha: head,
+      },
+      sourceText: lessonSourceText,
+      verifySourceInput: () => true,
+    });
+    assert.equal(trustedLessonPlan.publishable, false);
 
     const coursePlan = invoke('course-stage5', paths.course);
     assert.equal(coursePlan.publishable, false);
