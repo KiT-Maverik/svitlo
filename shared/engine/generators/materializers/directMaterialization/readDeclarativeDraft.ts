@@ -152,10 +152,10 @@ function isTypeOnlyImport(statement: ts.ImportDeclaration): boolean {
  * Only a final-stage satisfies expression may be exported, either directly or
  * through one immutable local const. Type positions are never interpreted.
  */
-export function parseInertDraftSyntax(
+function parseWithPositions(
   sourceText: string,
   expectedEntityKind: DeclarativeDraftEntityKind,
-): DraftValue {
+): { value: DraftValue; source: ts.SourceFile; positions: Map<string, number> } {
   if (typeof sourceText !== 'string' || sourceText.length > MAX_SOURCE_LENGTH) {
     throw new DeclarativeDraftError('limit', 1, 1, 'Source must be a string of at most 4 MiB');
   }
@@ -212,7 +212,15 @@ export function parseInertDraftSyntax(
   if (!ts.isObjectLiteralExpression(literal)) {
     fail(context, literal, 'structure', 'Final-stage draft must be an object literal');
   }
-  return decode(context, literal, [], 0);
+  return { value: decode(context, literal, [], 0), source, positions: context.positions };
+}
+
+/** Syntax-only parser for security tests; materialization must use readDeclarativeDraft. */
+export function parseInertDraftSyntax(
+  sourceText: string,
+  expectedEntityKind: DeclarativeDraftEntityKind,
+): DraftValue {
+  return parseWithPositions(sourceText, expectedEntityKind).value;
 }
 
 function withoutParentheses(node: ts.Expression): ts.Expression {
@@ -246,15 +254,22 @@ export function readDeclarativeDraft(
   sourceText: string,
   expectedEntityKind: DeclarativeDraftEntityKind,
 ) {
-  const original = parseInertDraftSyntax(sourceText, expectedEntityKind);
+  const { value: original, source, positions } = parseWithPositions(sourceText, expectedEntityKind);
   const parsed = finalStages[expectedEntityKind].schema.safeParse(original);
   if (!parsed.success) {
     const issue = parsed.error.issues[0];
     const path = issue.path.map(part => String(part)).join('.');
+    const keys = issue.path.map(part => typeof part === 'symbol' ? String(part) : part);
+    let offset = positions.get('[]') ?? 0;
+    for (let count = keys.length; count >= 0; count--) {
+      const found = positions.get(JSON.stringify(keys.slice(0, count)));
+      if (found !== undefined) { offset = found; break; }
+    }
+    const { line, character } = source.getLineAndCharacterOfPosition(offset);
     throw new DeclarativeDraftError(
       'schema',
-      1,
-      1,
+      line + 1,
+      character + 1,
       (path || '<root>') + ': ' + issue.message,
     );
   }
