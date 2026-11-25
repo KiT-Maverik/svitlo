@@ -727,6 +727,32 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       },
     },
   };
+  const scene = (id, slug) => ({
+    config: {
+      id, type: 'scene', slug, params: {},
+      locale: { value: { instruction: { uk: 'Порівняй тіні або прочитай опис.' } } },
+    },
+    production: {
+      purpose: 'Verify shared nested Scene materialization',
+      specification: 'Implement and keyboard-test the source-language shadow scene.',
+      accessibility: 'Provide equivalent text and focus management.',
+      offline: 'Fully operable offline.',
+      readiness: 'production-pending',
+    },
+  });
+  const directSceneId = '663572e7-bd85-4516-86e2-3de07d209e32';
+  const nestedSceneId = '663572e7-bd85-4516-86e2-3de07d209e33';
+  authoredSection.config.content.items.directScene = scene(directSceneId, 'directScene');
+  authoredSection.config.content.items.sceneCarousel = {
+    config: {
+      id: '663572e7-bd85-4516-86e2-3de07d209e34',
+      type: 'carousel', slug: 'sceneCarousel', params: { showArrows: true },
+      locale: { title: { uk: 'Порівняй сцени' } },
+      slides: { items: { nestedScene: scene(nestedSceneId, 'nestedScene') }, order: ['nestedScene'] },
+    },
+    production: { purpose: 'Verify a nested Carousel Scene' },
+  };
+  authoredSection.config.content.order.push('directScene', 'sceneCarousel');
   const reviewed = source();
   reviewed.config.content.items = {
     reused: {
@@ -758,6 +784,17 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
+  for (const sceneId of [directSceneId, nestedSceneId]) {
+    const prefix = 'content/playground/scenes/' + sceneId.at(-1) + '/' + sceneId + '/';
+    const sources = plan.files.filter(file => file.path.startsWith(prefix));
+    assert.equal(sources.length, 6, 'shared Section must plan all six pending Scene files');
+    assert(sources.some(file => file.path === prefix + 'index.ts'));
+    assert(sources.some(file => file.path.endsWith('.tsx')));
+    assert(sources.every(file => file.content.includes('TODO (BLOCKER):')));
+  }
+  assert.ok(plan.diagnostics.filter(d => d.code === 'pending-scene').length >= 2);
+  assert.ok(plan.files.some(file => file.path.endsWith('/directScene/index.ts')));
+  assert.ok(plan.files.some(file => file.path.endsWith('/nestedScene/index.ts')));
   assert.ok(
     plan.files.every(file => !file.path.startsWith('content/playground/data/lessons/')),
     'new Section cannot mutate standalone Lesson',
