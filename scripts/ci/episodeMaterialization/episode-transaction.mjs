@@ -294,7 +294,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   if (
     handoff.config.id !== manifest.episodeId ||
     handoff.config.slug !== meta.placement.split('/').at(-1) ||
-    deriveCourseEntityId(meta.courseId, 'episode', meta.placement.slice('content/'.length)) !== handoff.config.id
+    deriveCourseEntityId(meta.courseId, 'episode', meta.placement) !== handoff.config.id
   )
     throw Error('Episode output identity differs from Course-reserved UUID/placement');
   let total = 0;
