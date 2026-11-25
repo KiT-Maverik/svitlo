@@ -173,9 +173,7 @@ function plan(
   if (
     config.id !== config.id.toLowerCase() ||
     config.slug !== placement.split('/').at(-1) ||
-    production.placement.courseId !== courseId ||
-    production.placement.path !== placement ||
-    production.placement.reviewedCourseSourceBlobSha.length !== 40 ||
+    !sha.test(production.reviewedCourseSourceBlobSha ?? '') ||
     !planned.includes(document)
   )
     throw Error('Assessment: Course-owned UUID/placement/source language mismatch');

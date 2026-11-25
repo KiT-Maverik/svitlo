@@ -61,7 +61,17 @@ export function parseAssessmentMetadata(encoded) {
   return meta;
 }
 
-/** Decode only inert literal fields from the pinned Course-generated typed seed. */
+/** Decode only the minimal, exact Course-generated seed shape from a pinned Git
+ * blob. Editorial "placement" or arbitrary extra metadata is never authority.
+ */
+function exactKeys(value, keys) {
+  return value !== null &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every(key => Object.hasOwn(value, key));
+}
+
 export function parseAssessmentSeed(source) {
   const seed = readGeneratedCourseHandoff(source, {
     variable: 'assessmentSeed',
@@ -69,18 +79,38 @@ export function parseAssessmentSeed(source) {
   });
   if (
     !seed ||
+    !exactKeys(seed, ['config', 'production']) ||
+    !exactKeys(seed.config, ['id', 'type', 'slug', 'locale']) ||
+    !exactKeys(seed.production, ['purpose', 'lessonDependencies', 'reviewedCourseSourceBlobSha', 'languages']) ||
     !UUID.test(seed.config?.id ?? '') ||
-    seed.config?.type !== 'assessment' ||
-    typeof seed.config.slug !== 'string' ||
-    !seed.production?.purpose ||
+    seed.config.type !== 'assessment' ||
+    !/^[A-Za-z][A-Za-z0-9]*$/.test(seed.config.slug ?? '') ||
+    !seed.config.locale ||
+    typeof seed.production.purpose !== 'string' ||
+    !seed.production.purpose.trim() ||
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
-    !Array.isArray(seed.production.placement?.orderPath) ||
-    !seed.production.placement.orderPath.length ||
-    !SHA.test(seed.production.placement.reviewedCourseSourceBlobSha ?? '') ||
-    !Array.isArray(seed.production.languages?.planned)
+    seed.production.lessonDependencies.some(dep =>
+      typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep)
+    ) ||
+    new Set(seed.production.lessonDependencies).size !== seed.production.lessonDependencies.length ||
+    !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
+    !exactKeys(seed.production.languages, ['document', 'planned']) ||
+    !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(seed.production.languages.document ?? '') ||
+    !Array.isArray(seed.production.languages.planned) ||
+    !seed.production.languages.planned.includes(seed.production.languages.document) ||
+    seed.production.languages.planned.some(code => typeof code !== 'string' || !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(code)) ||
+    new Set(seed.production.languages.planned).size !== seed.production.languages.planned.length
   )
     throw Error('Invalid pinned Assessment seed identity and planning data');
+  const title = seed.config.locale?.title;
+  const language = seed.production.languages.document;
+  if (
+    !((typeof title === 'string' && title.trim()) ||
+      (title && typeof title === 'object' && !Array.isArray(title) &&
+        typeof title[language] === 'string' && title[language].trim()))
+  )
+    throw Error('Pinned Assessment seed lacks the approved Course source-language title');
   return seed;
 }
 
@@ -94,10 +124,8 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     input.config.type !== 'assessment' ||
     input.production?.purpose !== seed.production.purpose ||
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
-    JSON.stringify(input.production.placement) !== JSON.stringify(seed.production.placement) ||
+    input.production.reviewedCourseSourceBlobSha !== seed.production.reviewedCourseSourceBlobSha ||
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
@@ -383,8 +411,6 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
-    seed.production.placement.courseId !== meta.courseId ||
-    seed.production.placement.path !== meta.placement ||
     deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');

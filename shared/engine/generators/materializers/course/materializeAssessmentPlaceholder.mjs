@@ -63,12 +63,6 @@ export function materializeAssessmentPlaceholder(node, context) {
     throw Error(directory + ': Assessment title is missing reviewed source language');
   const id = context.deriveId('assessment', directory);
   if (!uuid.test(id)) throw Error(directory + ': invalid allocated Assessment UUID');
-  const placement = {
-    courseId: context.courseId,
-    path: directory,
-    orderPath: [...context.orderPath],
-    reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
-  };
   const seed = {
     config: {
       id,
@@ -82,7 +76,7 @@ export function materializeAssessmentPlaceholder(node, context) {
     production: {
       purpose: production.purpose,
       lessonDependencies: [...production.lessonDependencies],
-      placement,
+      reviewedCourseSourceBlobSha: context.reviewedCourseSourceBlobSha,
       languages: { document: context.sourceLanguage, planned: [...context.plannedLanguages] },
     },
   };

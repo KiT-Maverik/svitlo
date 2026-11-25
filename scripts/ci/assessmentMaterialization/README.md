@@ -1,6 +1,6 @@
 # Trusted Assessment Stage 4 materialization
 
-**Migration target #857; deployment and real Actions success unverified.** The Course Stage 2 Methodologist inserts zero or more ordered Assessment slots (no required flag). Course Stage 5 allocates a stable UUID, an inert `AssessmentWorkflowSeed` at the nested `content/<slug>/draft.ts` path, and a blocked, previewable `defineAssessmentStub` in its immediate Course/Module/Chapter parent. That seed is not Stage 1 completion, and Assessment has no own Question Bank.
+**Migration target #857; deployment and real Actions success unverified.** The Course Stage 2 Methodologist inserts zero or more ordered Assessment slots (no required flag). Course Stage 5 allocates a stable UUID, an inert `AssessmentWorkflowSeed` at the nested `content/<slug>/draft.ts` path, and a blocked, previewable `defineAssessmentStub` in its immediate Course/Module/Chapter parent. That seed is not Stage 1 completion, and Assessment has no own Question Bank. The seed does **not** duplicate the Course UUID, slot path or order path in author-edited `production.placement`: trusted pinned Git identity and immediate-parent `items/order` own them. `production.reviewedCourseSourceBlobSha` remains immutable across author stages as a conservative provenance field until independently authenticated Course materialization history makes it redundant. A source SHA copied from an editable field alone is never authorization.
 
 ## Source, authorization and handoff
 

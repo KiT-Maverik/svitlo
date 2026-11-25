@@ -47,12 +47,7 @@ const fixture = (): AssessmentWorkflowStage2 =>
       design: 'Use a reviewed upstream Question',
       specification: 'Record learner evidence',
       lessonDependencies: ['content/chapter/lesson'],
-      placement: {
-        courseId,
-        path: 'content/chapter/assessment',
-        orderPath: [0, 1],
-        reviewedCourseSourceBlobSha: 'a'.repeat(40),
-      },
+      reviewedCourseSourceBlobSha: 'a'.repeat(40),
       languages: { document: 'uk', planned: ['uk'] },
     },
   }) as AssessmentWorkflowStage2;
@@ -105,9 +100,9 @@ test('Assessment Stage 4 rejects stale data and altered parent placement', () =>
       }),
     /untrusted or stale/,
   );
-  const differentCourse = structuredClone(input);
-  differentCourse.production.placement.courseId = assessmentId;
-  assert.throws(() => materializeAssessment(differentCourse, opts), /mismatch/);
+  const foreignPlacement = structuredClone(input);
+  foreignPlacement.config.slug = 'foreign';
+  assert.throws(() => materializeAssessment(foreignPlacement, opts), /mismatch/);
   const noQuestions = structuredClone(input);
   noQuestions.config.quiz.config.params.selection = { mode: 'all', questionIds: [] };
   assert.throws(() => materializeAssessment(noQuestions, opts), /Invalid reviewed Assessment/);
