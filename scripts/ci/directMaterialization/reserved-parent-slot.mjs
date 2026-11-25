@@ -166,7 +166,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
         ts.isObjectLiteralExpression(unwrap(init.arguments[0])) &&
         unwrap(init.arguments[0]).properties.some(property =>
           ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content');
-    }));
+    });
   if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
   const statements = ast.statements.filter(ts.isVariableStatement);
   if (
