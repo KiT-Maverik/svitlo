@@ -84,6 +84,35 @@ test('direct Course manifest binds reviewed source to deterministic authored out
   );
 });
 
+test('Course publisher accepts only complete UUID Scene scaffold groups', () => {
+  const sceneId = '663572e7-bd85-4516-86e2-3de07d209e32';
+  const base = 'content/playground/scenes/' + sceneId.at(-1) + '/' + sceneId + '/';
+  const name = 'DirectScene';
+  const filenames = [
+    'index.ts', name + '.tsx', name + '.module.css',
+    name + '.constants.ts', name + '.stories.tsx', name + '.unit.spec.tsx',
+  ];
+  const scenes = filenames.map(filename => ({
+    path: base + filename,
+    kind: filename.endsWith('.css') ? 'code' : 'typescript',
+    content: '// TODO (BLOCKER): Verify Scene ' + sceneId + ' before removal.\n',
+  }));
+  const full = buildTypedCourseManifest(meta, { ...plan, files: [...plan.files, ...scenes] });
+  assert.doesNotThrow(() => verifyTypedCourseManifest(full, meta));
+  const partial = buildTypedCourseManifest(meta, { ...plan, files: [...plan.files, ...scenes.slice(0, 5)] });
+  assert.throws(() => verifyTypedCourseManifest(partial, meta), /Incomplete or mixed Course Scene scaffold/);
+  const wrongBucket = buildTypedCourseManifest(meta, {
+    ...plan,
+    files: [...plan.files, { ...scenes[0], path: base.replace('/2/', '/0/') }],
+  });
+  assert.throws(() => verifyTypedCourseManifest(wrongBucket, meta), /Unsafe, duplicated or malformed/);
+  const unrelated = buildTypedCourseManifest(meta, {
+    ...plan,
+    files: [...plan.files, { ...scenes[0], path: 'content/playground/scenes/2/other/index.ts' }],
+  });
+  assert.throws(() => verifyTypedCourseManifest(unrelated, meta), /Unsafe, duplicated or malformed/);
+});
+
 test('Course publisher writes the canonical manifest digest into its commit proof', () => {
   const manifest = buildTypedCourseManifest(meta, plan);
   const { digest, message } = buildCourseCommitMetadata(meta, manifest);
