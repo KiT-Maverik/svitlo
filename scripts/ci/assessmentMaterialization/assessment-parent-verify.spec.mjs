@@ -46,7 +46,7 @@ test('restores exactly one owned Assessment, preserving sibling imported stubs a
 test('rejects swapped identity, malformed stub, spoofed parent and replay', () => {
   const original = parent(['review'], ['review']);
   const updated = restoreAssessmentPlacement(original, placement());
-  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /identity/);
+  assert.throws(() => restoreAssessmentPlacement(original, placement('other')), /Reserved child stub missing from actual parent order\/items/);
   assert.throws(() => restoreAssessmentPlacement(original, {
     ...placement(), id: second,
   }), /UUID\/slug/);
