@@ -111,7 +111,7 @@ export function materializeFlashcardBankDraft(
       content:
         "import type { FlashcardBankWorkflowStage1 } from '@svitlo/engine/build';\n\n" +
         '// Stage 1 editorial source. NOT a Card, Side or Flashcards Section.\n' +
-        'export const flashcardBank = ' +
+        'export default ' +
         authoredBankLiteral(input) +
         ' satisfies FlashcardBankWorkflowStage1;\n',
     },
