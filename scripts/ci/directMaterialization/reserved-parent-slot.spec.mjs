@@ -32,18 +32,9 @@ const stubSource = ({ kind, id, slug }) =>
 function parent(kind, depth, directChapter = false) {
   const slug = kind === 'episode' ? 'story' : kind === 'lesson' ? 'lessonOne' : 'review';
   const owner = depth === 0 ? 'defineCourse' : depth === 1 && !directChapter ? 'defineModule' : 'defineChapter';
-  const placement =
-    depth === 0
-      ? 'content/' + slug
-      : kind !== 'assessment'
-        ? depth === 1
-          ? 'content/moduleOne/' + slug
-          : 'content/moduleOne/chapterOne/' + slug
-        : depth === 1
-          ? 'content/moduleOne/content/' + slug
-          : 'content/moduleOne/chapterOne/content/' + slug;
+  const placement = depth === 0 ? slug : depth === 1 ? 'moduleOne/' + slug : 'moduleOne/chapterOne/' + slug;
   const id = ids[kind];
-  const prefix = depth === 0 || kind === 'assessment' ? './content/' : './';
+  const prefix = './';
   const source =
     'import { ' +
     owner +
@@ -90,7 +81,7 @@ for (const kind of ['lesson', 'episode', 'assessment']) {
       assert.equal(verifyPendingCourseParent(source, allocation), true);
       assert.match(source, new RegExp(allocation.slug + '/stub'));
       assert.throws(() => verifyPendingCourseParent(source, { ...allocation, id: ids.sibling }));
-      assert.throws(() => verifyPendingCourseParent(source, { ...allocation, placement: 'content/different' }));
+      assert.throws(() => verifyPendingCourseParent(source, { ...allocation, placement: 'different' }));
       assert.throws(() =>
         verifyPendingCourseParent(
           source.replace(
@@ -136,7 +127,7 @@ test('read-only reservation rejects foreign, executable, aliased or malformed st
   for (const changed of [
     source.replace('child_story', 'other_story'),
     source.replace('stub as child_story', 'stub as other_story'),
-    source.replace('from "./content/story/stub"', 'from "./content/foreign/stub"'),
+    source.replace('from "./story/stub"', 'from "./content/foreign/stub"'),
     source.replace('defineCourse', 'defineChapter'),
     source.replace('const content', 'const changed'),
     source.replace('order: ["before", "story", "after"]', 'order: ["after", "story", "after"]'),
@@ -187,15 +178,13 @@ test('typed Course seed survives normal TS formatting without parsing comments',
 
 test('mixed Course child stubs remain reserved independently with unchanged order', () => {
   const slots = [
-    { kind: 'episode', slug: 'firstStory', id: ids.episode, placement: 'content/firstStory' },
-    { kind: 'assessment', slug: 'firstReview', id: ids.assessment, placement: 'content/firstReview' },
-    { kind: 'episode', slug: 'secondStory', id: ids.sibling, placement: 'content/secondStory' },
+    { kind: 'episode', slug: 'firstStory', id: ids.episode, placement: 'firstStory' },
+    { kind: 'assessment', slug: 'firstReview', id: ids.assessment, placement: 'firstReview' },
+    { kind: 'episode', slug: 'secondStory', id: ids.sibling, placement: 'secondStory' },
   ];
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    slots
-      .map(slot => 'import { stub as child_' + slot.slug + ' } from "./content/' + slot.slug + '/stub";\n')
-      .join('') +
+    slots.map(slot => 'import { stub as child_' + slot.slug + ' } from "./' + slot.slug + '/stub";\n').join('') +
     'const content = { items: {' +
     slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
     '}, order: ' +

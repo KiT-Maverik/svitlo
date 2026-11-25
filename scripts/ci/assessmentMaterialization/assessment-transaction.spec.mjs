@@ -18,9 +18,9 @@ const meta = {
   courseId,
   courseRoot,
   textbookRoot: 'content/math',
-  placement: 'content/finalReview',
+  placement: 'finalReview',
   parentPath: courseRoot + '/index.ts',
-  sourcePath: courseRoot + '/content/finalReview/draft.ts',
+  sourcePath: courseRoot + '/finalReview/draft.ts',
   sourceBlobSha: 'b'.repeat(40),
   head: 'c'.repeat(40),
   parentBlobSha: 'd'.repeat(40),
@@ -30,7 +30,7 @@ const seed = {
   config: { id: assessmentId, type: 'assessment', slug: 'finalReview', locale: { title: { uk: 'Перевірка' } } },
   production: {
     purpose: 'Check evidence after an upstream Lesson',
-    lessonDependencies: ['content/newLesson'],
+    lessonDependencies: ['newLesson'],
     reviewedCourseSourceBlobSha: 'a'.repeat(40),
     languages: { document: 'uk', planned: ['uk'] },
   },
@@ -87,7 +87,7 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
     /Invalid pinned Assessment seed/,
   );
   assert.throws(
-    () => parseAssessmentSeed(source.replace('"content/newLesson"', '"content/../foreign"')),
+    () => parseAssessmentSeed(source.replace('"newLesson"', '"../foreign"')),
     /Invalid pinned Assessment seed/,
   );
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
@@ -98,7 +98,7 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
     /immutable Course handoff/,
   );
   assert.throws(
-    () => verifyAssessmentDesign(seed, input, { ...meta, placement: 'content/foreign' }, plan),
+    () => verifyAssessmentDesign(seed, input, { ...meta, placement: 'foreign' }, plan),
     /immutable Course handoff/,
   );
   assert.throws(
@@ -125,7 +125,7 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
       seed,
       {
         ...input,
-        production: { ...input.production, lessonDependencies: ['content/other'] },
+        production: { ...input.production, lessonDependencies: ['other'] },
       },
       meta,
       plan,
@@ -171,10 +171,10 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
   const tree = new Map([...contents].map(([name]) => [name, { type: 'blob', mode: '100644', sha: 'a'.repeat(40) }]));
   const reader = { blob: (_entry, filename) => contents.get(filename) };
   assert.equal(checkAssessmentBanks(meta, seed, [questionId], reader, tree), true);
-  const directChapter = courseRoot + '/content/directChapter/index.ts';
+  const directChapter = courseRoot + '/directChapter/index.ts';
   const chapterSeed = {
     ...seed,
-    production: { ...seed.production, lessonDependencies: ['content/directChapter/newLesson'] },
+    production: { ...seed.production, lessonDependencies: ['directChapter/newLesson'] },
   };
   contents.set(
     directChapter,
@@ -256,7 +256,7 @@ test('Assessment source transaction generates only owned files and retains paren
   assert.throws(() =>
     checkAssessmentTargets(
       meta,
-      [...files, { path: courseRoot + '/content/other/index.ts', kind: 'typescript', content: 'bad' }],
+      [...files, { path: courseRoot + '/other/index.ts', kind: 'typescript', content: 'bad' }],
       tree,
     ),
   );

@@ -8,6 +8,10 @@ Nine independent kinds have their own implementations/tests: `course`, `module`,
 
 **#857 target:** The author-edited Course Stage 1–3 source is a single inert default-exported typed object. The shared trusted Draft Reader parses exact pinned bytes without executing source; it validates the final `CourseWorkflowStage3` Zod schema before passing plain data to the trusted `materializeCourse`/Stage 5 orchestrator. The independently reviewed Course draft must not invoke `materializeCourse()` itself. All genuine Lesson dependency imports and Build overrides belong to separately trusted materializer code, not the authored `draft.ts`. See [Stage 5 orchestration](./STAGE5.md) and [Course runbook](../../../../../scripts/ci/courseMaterialization/README.md) for target details and current deployment caveats.
 
+## Source layout
+
+Course-owned source modules use a flat path per actual semantic owner: `<course-uuid>/index.ts`, `<course-uuid>/<module>/index.ts`, `<course-uuid>/<module>/<chapter>/index.ts`, with direct Lesson/Episode/Assessment child stubs or handoffs in `<owner>/<child-slug>/`. No structural `content/` path segment is emitted at any owner level. The `content.items/order` Configurator property remains unchanged. Skill imports use the verified canonical export name by default; a readable alias is emitted only for actual local identifier collisions. Keep previously allocated UUIDs stable when changing the physical layout; existing materialized trees are not silently rewritten.
+
 ## Lesson placements and safe source transition
 
 - **New Lesson:** derive a deterministic immutable UUID from the Course root and full placement path, persist it, and emit **only** a new `CourseWorkflowLessonSeed` `draft.ts` under the Lesson's UUID directory. Preserve proposal methodology, Skill references, evidence and all four assessment booleans; derive seed language context from the Course root. It is not Lesson Stage 1. Do not emit `defineLesson`, Sections, Quiz/Flashcards placeholders, a bank or any imaginary content; the Course remains blocked until independent Lesson production.

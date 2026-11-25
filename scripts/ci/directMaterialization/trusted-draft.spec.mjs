@@ -8,10 +8,10 @@ const base = 'content/math/data/';
 const cases = [
   ['course-stage5', 'course', 'materializeCourse', base + 'courses/1/' + uuid + '/draft.ts'],
   ['lesson-stage6', 'lesson', 'materializeLessonStage6', base + 'lessons/1/' + uuid + '/draft.ts'],
-  ['episode-stage5', 'episode', 'materializeEpisodeStage5', base + 'courses/1/' + uuid + '/content/story/draft.ts'],
+  ['episode-stage5', 'episode', 'materializeEpisodeStage5', base + 'courses/1/' + uuid + '/story/draft.ts'],
   ['questions-stage5', 'questions', 'materializeQuestionBank', base + 'lessons/1/' + uuid + '/questions/draft.ts'],
   ['flashcards-stage5', 'flashcards', 'materializeFlashcardBank', base + 'lessons/1/' + uuid + '/flashcards/draft.ts'],
-  ['assessment-stage4', 'assessment', 'materializeAssessment', base + 'courses/1/' + uuid + '/content/review/draft.ts'],
+  ['assessment-stage4', 'assessment', 'materializeAssessment', base + 'courses/1/' + uuid + '/review/draft.ts'],
 ];
 const textSource = 'export default { config: {}, production: {} } satisfies Stage;\n';
 const gitBlob = data =>

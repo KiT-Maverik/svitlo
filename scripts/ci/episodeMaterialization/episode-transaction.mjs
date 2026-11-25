@@ -125,8 +125,7 @@ export function checkEpisodeTargets(meta, files, tree) {
       group.push({ leaf: scene.leaf, kind: file.kind });
       sceneGroups.set(scene.id, group);
     }
-    if (tree.has(file.path))
-      throw Error('Episode target would overwrite existing authored source: ' + file.path);
+    if (tree.has(file.path)) throw Error('Episode target would overwrite existing authored source: ' + file.path);
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++) {
       const ancestor = segments.slice(0, depth).join('/');
@@ -294,7 +293,7 @@ export function verifyDirectEpisodeManifest(meta, manifest, root) {
   if (
     handoff.config.id !== manifest.episodeId ||
     handoff.config.slug !== meta.placement.split('/').at(-1) ||
-    deriveCourseEntityId(meta.courseId, 'episode', meta.placement.slice('content/'.length)) !== handoff.config.id
+    deriveCourseEntityId(meta.courseId, 'episode', meta.placement) !== handoff.config.id
   )
     throw Error('Episode output identity differs from Course-reserved UUID/placement');
   let total = 0;
@@ -348,7 +347,11 @@ async function main() {
     const manifest = await prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    report('Read-only Episode plan: ' + manifest.entries.length + ' Episode-owned files; the Course parent and stub remain unchanged.');
+    report(
+      'Read-only Episode plan: ' +
+        manifest.entries.length +
+        ' Episode-owned files; the Course parent and stub remain unchanged.',
+    );
     return;
   }
   await requireActor(meta.actor);

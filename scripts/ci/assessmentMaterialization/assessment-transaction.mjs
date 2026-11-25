@@ -98,7 +98,7 @@ export function parseAssessmentSeed(source) {
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
     seed.production.lessonDependencies.some(
-      dep => typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep),
+      dep => typeof dep !== 'string' || !/^[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/.test(dep),
     ) ||
     new Set(seed.production.lessonDependencies).size !== seed.production.lessonDependencies.length ||
     !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
@@ -138,7 +138,13 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
     input.production.reviewedCourseSourceBlobSha !== seed.production.reviewedCourseSourceBlobSha ||
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
-    deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id ||
+    deriveCourseEntityId(
+      meta.courseId,
+      'assessment',
+      meta.placement.includes('/')
+        ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1)
+        : meta.placement,
+    ) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
     plan.courseId !== meta.courseId ||
@@ -171,18 +177,18 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
 export function checkAssessmentBanks(meta, seed, selectedQuestionIds, reader, tree) {
   const found = new Set();
   for (const dep of seed.production.lessonDependencies) {
-    if (typeof dep !== 'string' || !/^content(?:\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep))
+    if (typeof dep !== 'string' || !/^[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/.test(dep))
       throw Error('Assessment must name resolved Course Lesson placement paths');
     // Course Lesson placements are references in their immediate parent's
     // content.items/order. Neither new nor reused Lessons own a Course-local
     // content/<lesson>/index.ts. Resolve the exact pinned import, not the first
     // #lessonsData string in the parent or a guessed allocated UUID.
     const segments = dep.split('/');
-    if (![2, 3, 4].includes(segments.length)) throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
+    if (![1, 2, 3].includes(segments.length)) throw Error('Unsupported upstream Course Lesson placement depth: ' + dep);
     // A direct Course child can be either a Module or a Chapter.
-    const ownerKind = ['course', ['module', 'chapter'], 'chapter'][segments.length - 2];
+    const ownerKind = ['course', ['module', 'chapter'], 'chapter'][segments.length - 1];
     const parentPath =
-      meta.courseRoot + '/' + (segments.length === 2 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
+      meta.courseRoot + '/' + (segments.length === 1 ? '' : segments.slice(0, -1).join('/') + '/') + 'index.ts';
     const parent = tree.get(parentPath);
     if (!ordinary(parent)) throw Error('Upstream Lesson has not been integrated into the Course: ' + dep);
     const owner = resolveIntegratedCourseLesson(reader.blob(parent, parentPath), {
@@ -433,7 +439,13 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
-    deriveCourseEntityId(meta.courseId, 'assessment', meta.placement.slice('content/'.length)) !== seed.config.id
+    deriveCourseEntityId(
+      meta.courseId,
+      'assessment',
+      meta.placement.includes('/')
+        ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1)
+        : meta.placement,
+    ) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');
   checkAssessmentBanks(meta, seed, manifest.selectedQuestionIds, reader, tree);

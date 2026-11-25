@@ -242,13 +242,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
     throw Error('Invalid pending Course stub or placement identity');
   const parts = placement.split('/');
   const depth = parts.length;
-  if (
-    parts[0] !== 'content' ||
-    parts.some(part => !safe(part)) ||
-    (kind === 'assessment' && ![2, 4, 5].includes(depth)) ||
-    (kind !== 'assessment' && ![2, 3, 4].includes(depth)) ||
-    (kind === 'assessment' && depth > 2 && parts.at(-2) !== 'content')
-  )
+  if (parts.some(part => !safe(part)) || ![1, 2, 3].includes(depth))
     throw Error('Invalid pending Course parent ownership');
   verifyOwnedCourseStub(stubSource, { kind, id, slug });
   const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
@@ -258,7 +252,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   )
     throw Error('Unexpected generated parent syntax');
   const imported = ast.statements.filter(ts.isImportDeclaration);
-  const prefix = depth === 2 || kind === 'assessment' ? './content/' : './';
+  const prefix = './';
   const stubImport = prefix + slug + '/stub';
   const found = imported.filter(
     statement => ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === stubImport,
@@ -327,7 +321,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   if (references !== 2) throw Error('Course pending stub alias has ambiguous references');
   // A Chapter may belong directly to a Course or to a Module. Path depth
   // constrains the legal owners but cannot distinguish the two at level one.
-  const ownerDepth = depth - (kind === 'assessment' && depth > 2 ? 3 : 2);
+  const ownerDepth = depth - 1;
   const allowedOwners =
     ownerDepth === 0 ? ['defineCourse'] : ownerDepth === 1 ? ['defineModule', 'defineChapter'] : ['defineChapter'];
   const parents = ast.statements

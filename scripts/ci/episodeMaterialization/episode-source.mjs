@@ -51,7 +51,7 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
     Object.keys(a).some(key => !['id', 'slug', 'type'].includes(key)) ||
     meta.placement?.split('/').at(-1) !== a.slug ||
     meta.sourcePath !== meta.courseRoot + '/' + meta.placement + '/draft.ts' ||
-    deriveCourseEntityId(meta.courseId, 'episode', meta.placement.slice('content/'.length)) !== a.id ||
+    deriveCourseEntityId(meta.courseId, 'episode', meta.placement) !== a.id ||
     !nonempty(p.focus) ||
     !nonempty(p.purpose) ||
     !['focus', 'purpose', 'languages'].every(key => same(p[key], q[key]))

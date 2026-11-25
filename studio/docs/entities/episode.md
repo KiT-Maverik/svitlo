@@ -10,7 +10,7 @@ An **Episode** carries Course-specific plot, character interactions, missions or
 - Use an **Episode** when the primary purpose is a story event, dialogue, mission, choice or scenario transition tied to a particular Course.
 - Where both are needed, keep teaching material in the Lesson and story context in an Episode or Course. Do not duplicate a Lesson to embed a dialogue.
 
-Episodes belong in their owning Course's authoring directory, at the reviewed slot, e.g. `data/courses/<bucket>/<course-id>/content/<module>/<chapter>/<episode-slug>/` (omit absent Module/Chapter levels). They are not intended to be standalone or shared across Courses.
+Episodes belong in their owning Course's authoring directory, at the reviewed slot, e.g. `data/courses/<bucket>/<course-id>/<module>/<chapter>/<episode-slug>/` (omit absent Module/Chapter levels). They are not intended to be standalone or shared across Courses.
 
 ## Independent Engine Build API
 

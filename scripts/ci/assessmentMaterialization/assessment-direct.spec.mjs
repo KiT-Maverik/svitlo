@@ -12,7 +12,7 @@ const courseId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const assessmentId = 'a73572e7-bd85-4516-86e2-3de07d209e03';
 const sectionId = 'b775647f-203d-481a-a1c7-4d331c000201';
 const questionId = '12345678-1234-4234-8234-123456789010';
-const placement = 'content/moduleOne/content/moduleReview';
+const placement = 'moduleOne/moduleReview';
 const sourcePath = 'content/math/data/courses/3/' + courseId + '/' + placement + '/draft.ts';
 const sourceText = 'materializeAssessment(input);\n';
 const sourceBlobSha = createHash('sha1')
@@ -75,7 +75,7 @@ const reviewed = () => ({
   },
   production: {
     purpose: 'Collect evidence after upstream lessons',
-    lessonDependencies: ['content/moduleOne/lessonOne'],
+    lessonDependencies: ['moduleOne/lessonOne'],
     reviewedCourseSourceBlobSha: 'a'.repeat(40),
     languages: { document: 'uk', planned: ['uk', 'en'] },
     design: 'One accessible Quiz draws on an independently owned Lesson bank',
@@ -164,11 +164,9 @@ test('Assessment materializer escapes reserved TypeScript slug exports', () => {
     ...options,
     source: {
       ...options.source,
-      sourcePath: 'content/math/data/courses/3/' + courseId + '/content/moduleOne/content/for/draft.ts',
+      sourcePath: 'content/math/data/courses/3/' + courseId + '/moduleOne/for/draft.ts',
     },
   });
-  const generated = plan.files.find(
-    file => file.path.endsWith('/index.ts') && file.path === 'content/moduleOne/content/for/index.ts',
-  );
+  const generated = plan.files.find(file => file.path.endsWith('/index.ts') && file.path === 'moduleOne/for/index.ts');
   assert.match(generated.content, /export const config_for = defineAssessment/);
 });
