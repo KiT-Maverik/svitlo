@@ -166,12 +166,9 @@ function decode(
 }
 
 function isTypeOnlyImport(statement: ts.ImportDeclaration): boolean {
-  const clause = statement.importClause;
-  if (!clause || statement.attributes) return false;
-  if (clause.isTypeOnly) return true;
-  if (clause.name || !clause.namedBindings || !ts.isNamedImports(clause.namedBindings)) return false;
-  return clause.namedBindings.elements.length > 0 &&
-    clause.namedBindings.elements.every(element => element.isTypeOnly);
+  // With verbatimModuleSyntax, `import { type X }` emits `import {} from ...`.
+  // Such an import can run a dependency's top-level code. Require `import type`.
+  return statement.importClause?.isTypeOnly === true && !statement.attributes;
 }
 
 /**
