@@ -3,6 +3,8 @@
  */
 export function buildPlacementInventory(input, rendered, root, files) {
   const entries = new Set(files.map(file => file.path));
+  const stubPaths = new Set(files.filter(file => file.path.endsWith('/stub.ts')).map(file => file.path));
+  const expectedStubs = new Set();
   const lessons = [],
     episodes = [],
     assessments = [],
@@ -26,6 +28,18 @@ export function buildPlacementInventory(input, rendered, root, files) {
         throw Error('Course inventory placement source is not in generated plan: ' + path);
       if (result.status.startsWith('pending') && !entries.has(result.sourcePath))
         throw Error('Course inventory pending source is not in generated plan: ' + path);
+      const pending = result.status.startsWith('pending');
+      const stubPath = root + '/' + path + '/stub.ts';
+      if (pending) {
+        if (result.stubSourcePath !== stubPath || !stubPaths.has(stubPath) || expectedStubs.has(stubPath))
+          throw Error('Course inventory has a missing, foreign or duplicate owned stub: ' + path);
+        const stub = files.find(file => file.path === stubPath);
+        if (stub.kind !== 'typescript' || typeof stub.content !== 'string')
+          throw Error('Course inventory contains a non-TypeScript stub: ' + path);
+        expectedStubs.add(stubPath);
+      } else if (result.stubSourcePath !== undefined || stubPaths.has(stubPath)) {
+        throw Error('Completed Course placement must not carry a pending stub: ' + path);
+      }
       const row = { ...result, placementPath: root + '/' + path, orderPath: order };
       if (type === 'lesson') lessons.push(row);
       else if (type === 'episode') episodes.push(row);
@@ -35,5 +49,6 @@ export function buildPlacementInventory(input, rendered, root, files) {
   }
   visit(input, '', []);
   if (seen.size !== rendered.size) throw Error('Unreviewed rendered Course placement');
+  if (expectedStubs.size !== stubPaths.size) throw Error('Course plan contains an unowned stub.ts');
   return { lessons, episodes, assessments };
 }
