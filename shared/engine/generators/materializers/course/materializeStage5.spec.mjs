@@ -759,6 +759,9 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   const invalid = structuredClone(reviewed);
   invalid.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug = 'other';
   assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
+  const collision = structuredClone(reviewed);
+  collision.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.id = original.id;
+  assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
 
 test('Course additionalItems binds only verified Sections and retains real nested Lesson Build semantics', () => {
