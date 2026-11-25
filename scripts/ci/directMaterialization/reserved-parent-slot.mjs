@@ -219,9 +219,12 @@ export function readGeneratedCourseHandoff(source, { variable, contract }) {
     !ts.isStringLiteral(imported.moduleSpecifier) ||
     imported.moduleSpecifier.text !== '@svitlo/engine/build' ||
     !imported.importClause?.namedBindings ||
+    imported.importClause.name ||
+    imported.attributes ||
     !ts.isNamedImports(imported.importClause.namedBindings) ||
     imported.importClause.namedBindings.elements.length !== 1 ||
     imported.importClause.namedBindings.elements[0].name.text !== contract ||
+    imported.importClause.namedBindings.elements[0].propertyName ||
     (!imported.importClause.isTypeOnly && !imported.importClause.namedBindings.elements[0].isTypeOnly)
   )
     throw Error('Course handoff has an unexpected authoring contract import');
