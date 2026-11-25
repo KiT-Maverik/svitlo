@@ -203,8 +203,8 @@ function assertCourseInventory(manifest, meta, entries) {
         // exact original Lesson import and placeLesson invocation must both
         // be sealed at the owned placement/index.ts path.
         if (row.kind === 'reused') {
-          const line = 'import { ' + row.sourceExportName + ' as ' + alias +
-            ' } from ' + JSON.stringify(expectedImport) + ';';
+          const line =
+            'import { ' + row.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(expectedImport) + ';';
           const normalized = parent.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
           if (
             row.overrideSourcePath !== undefined ||
@@ -226,8 +226,8 @@ function assertCourseInventory(manifest, meta, entries) {
           )
             throw Error('Course Lesson override placement module missing or displaced');
           const source = Buffer.from(file.data, 'base64').toString('utf8');
-          const originalLine = 'import { ' + row.sourceExportName + ' as originalLesson } from ' +
-            JSON.stringify(expectedImport) + ';';
+          const originalLine =
+            'import { ' + row.sourceExportName + ' as originalLesson } from ' + JSON.stringify(expectedImport) + ';';
           const imported = source.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
           if (
             imported.split('\n').filter(item => item === originalLine).length !== 1 ||

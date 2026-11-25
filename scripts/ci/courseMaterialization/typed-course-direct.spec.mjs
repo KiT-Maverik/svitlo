@@ -197,7 +197,10 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
   assert.equal(verifyTypedCourseManifest(formattedReference, pinned), plan.files.length);
   const overridden = complete.inventory.lessons.find(row => row.kind === 'overridden');
   assert.equal(overridden.overrideSourcePath, overridden.placementPath + '/index.ts');
-  assert.equal(complete.entries.some(entry => entry.path === overridden.overrideSourcePath), true);
+  assert.equal(
+    complete.entries.some(entry => entry.path === overridden.overrideSourcePath),
+    true,
+  );
   const mutate = edit => {
     const manifest = structuredClone(complete);
     edit(manifest);
@@ -322,7 +325,7 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     file.data = Buffer.from(altered).toString('base64');
     file.sha256 = createHash('sha256').update(altered).digest('hex');
   });
-    mutate(m => {
+  mutate(m => {
     const row = m.inventory.lessons.find(item => item.kind === 'reused');
     const file = m.entries.find(item => item.path === row.placementSourcePath);
     const source = Buffer.from(file.data, 'base64').toString('utf8');
