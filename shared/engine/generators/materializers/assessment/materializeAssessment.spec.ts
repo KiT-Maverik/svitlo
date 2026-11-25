@@ -112,3 +112,18 @@ test('Assessment Stage 4 rejects stale data and altered parent placement', () =>
   noQuestions.config.quiz.config.params.selection = { mode: 'all', questionIds: [] };
   assert.throws(() => materializeAssessment(noQuestions, opts), /Invalid reviewed Assessment/);
 });
+
+test('Assessment Stage 4 keeps authored locale maps and marks English-only titles as translated fields', () => {
+  const en = fixture();
+  en.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  en.config.locale.title = 'Knowledge check';
+  en.config.quiz.config.locale.title = { en: 'Questions', uk: 'Запитання' };
+  const text = 'export default ' + JSON.stringify(en) + ' satisfies AssessmentWorkflowStage2;\n';
+  const result = materializeAssessment(en, options(text));
+  const source = result.files.find(file => file.path.endsWith('/assessment/index.ts'))?.content ?? '';
+  assert.match(source, /"title":\{"en":"Knowledge check"\}/);
+  assert.doesNotMatch(source, /"title":"Knowledge check"/);
+  assert.doesNotMatch(source, /"uk":"Knowledge check"/);
+  assert.equal(result.publishable, false);
+  assert.ok(result.diagnostics.some(d => d.code === 'pending-locales'));
+});

@@ -669,3 +669,62 @@ test('Course additionalItems binds only verified Sections and retains real neste
   };
   assert.throws(() => materializeCourseStage5(reviewed, denied), /unapproved/);
 });
+
+test('Course Stage 5 normalizes reviewed English workflow fields and preserves only authored translations', () => {
+  const input = source();
+  input.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  input.config.locale = {
+    title: { en: 'Sky', uk: 'Небо' },
+    description: 'Observe our world',
+    prerequisitesText: 'Start here',
+    outcomesText: 'Learn to observe',
+  };
+  const module = input.config.content.items.moduleOne;
+  module.config.locale.title = 'Module';
+  const chapter = module.config.content.items.chapterOne;
+  chapter.config.locale.title = { en: 'Chapter', uk: 'Розділ' };
+  chapter.config.content.items.lessonOne.config.locale.title = 'First Lesson';
+  input.config.content.items.directLesson.config.locale.title = { en: 'Lesson', uk: 'Урок' };
+  chapter.config.content.items.chapterReview = {
+    config: { type: 'assessment', locale: { title: 'Check knowledge' } },
+    production: {
+      purpose: 'Check understanding of the first Lesson',
+      lessonDependencies: ['content/moduleOne/chapterOne/lessonOne'],
+    },
+  };
+  chapter.config.content.order.push('chapterReview');
+  const result = materializeCourseStage5(input, options());
+  const file = suffix => {
+    const found = result.files.find(item => item.path === suffix);
+    assert.ok(found, suffix);
+    return found.content;
+  };
+  const index = file(root + '/index.ts');
+  assert.match(index, /"en": "Sky"/);
+  assert.match(index, /"uk": "Небо"/);
+  for (const phrase of ['Observe our world', 'Start here', 'Learn to observe'])
+    assert.ok(index.includes('"en": "' + phrase + '"'));
+  assert.ok(!index.includes('"uk": "Observe our world"'));
+  assert.match(file(root + '/content/moduleOne/index.ts'), /"en": "Module"/);
+  const child = file(root + '/content/moduleOne/chapterOne/index.ts');
+  assert.match(child, /"en": "Chapter"/);
+  assert.match(child, /"uk": "Розділ"/);
+  const seeds = result.files.filter(item => item.path.includes('/data/lessons/'));
+  assert.equal(seeds.length, 2);
+  assert.ok(seeds.some(seed => seed.content.includes('"en": "First Lesson"')));
+  assert.ok(seeds.some(seed => seed.content.includes('"uk": "Урок"')));
+  const assessmentSeed = result.files.find(item => item.path.endsWith('/content/chapterReview/draft.ts'));
+  assert.ok(assessmentSeed);
+  assert.match(assessmentSeed.content, /"en": "Check knowledge"/);
+  assert.doesNotMatch(assessmentSeed.content, /"uk": "Check knowledge"/);
+  const episodeHandoff = file(root + '/content/moduleOne/chapterOne/episodeOne/draft.ts');
+  assert.match(episodeHandoff, /"document": "en"/);
+  assert.doesNotMatch(episodeHandoff, /"locale": \{/);
+  const constants = file(root + '/constants.ts');
+  assert.equal((constants.match(/export const languages =/g) ?? []).length, 1);
+  assert.match(constants, /Planned languages \(INACTIVE/);
+  assert.match(constants, /REPLACE the tuple in the single existing export const languages/);
+  assert.match(constants, /\["en","uk"\]/);
+  assert.match(constants, /export const languages = \["en"\]/);
+  assert.ok(result.diagnostics.some(d => d.code === 'pending-locales'));
+});
