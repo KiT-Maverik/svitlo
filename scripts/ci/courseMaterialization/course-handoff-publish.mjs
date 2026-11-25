@@ -142,8 +142,7 @@ export async function reconcileCommittedPR(manifest, proof, request = getPR) {
   if (next === body) return false;
   const latest = await request(route);
   requirePR(latest.pr, proof);
-  if ((latest.pr.body ?? '') !== body)
-    throw Error('Concurrent Course PR description edit; retry metadata only');
+  if ((latest.pr.body ?? '') !== body) throw Error('Concurrent Course PR description edit; retry metadata only');
   const written = await request(route, 'PATCH', { body: next });
   requirePR(written.pr, proof);
   if (written.pr.body !== next) throw Error('Course PR description update did not preserve exact intended content');

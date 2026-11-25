@@ -168,7 +168,10 @@ test('reconcile is idempotent and preserves owner notes; stale or edited PR is u
 });
 
 test('metadata-only reconciliation tolerates missing or changing ETags and unrelated PR timestamps', async () => {
-  for (const etags of [[null, null], ['revision-one', 'revision-two']]) {
+  for (const etags of [
+    [null, null],
+    ['revision-one', 'revision-two'],
+  ]) {
     const ok = fake();
     let reads = 0;
     const request = async (...args) => {
