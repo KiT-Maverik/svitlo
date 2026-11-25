@@ -304,19 +304,21 @@ test('existing Lesson preserves source-authored plain Config patch and placement
     result.files.some(file => file.path.endsWith('authoredCourseOverrides.ts')),
     false,
   );
-  assert.equal(
-    result.files.some(file => file.path === root + '/directLesson/index.ts'),
-    false,
-  );
+  const wrapper = result.files.find(file => file.path === root + '/directLesson/index.ts');
+  assert.ok(wrapper, 'overridden Lesson must own its Course-local module');
+  assert.match(wrapper.content, /import \{ actualLesson as originalLesson \} from "#lessonsData\//);
+  assert.match(wrapper.content, /export const placedLesson = placeLesson\(originalLesson, \{/);
+  assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
-  assert.match(main.content, /import \{ actualLesson as child_directLesson \} from "#lessonsData\//);
-  assert.match(main.content, /"directLesson": placeLesson\(child_directLesson, \{/);
-  assert.match(main.content, /"allowSkipping": false/);
+  assert.match(main.content, /import \{ placedLesson as child_directLesson \} from "\.\/directLesson"/);
+  assert.match(main.content, /"directLesson": child_directLesson/);
+  assert.doesNotMatch(main.content, /placeLesson\(/);
   assert.doesNotMatch(main.content, /authoredCourseOverrides/);
   assert.equal(
     result.inventory.lessons.find(row => row.slug === 'directLesson').placementSourcePath,
     root + '/index.ts',
   );
+  assert.equal(result.inventory.lessons.find(row => row.slug === 'directLesson').overrideSourcePath, root + '/directLesson/index.ts');
   assert.equal(result.placements.find(p => p.slug === 'directLesson').lessonId, reusedLessonId);
 });
 test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
@@ -348,7 +350,8 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
     false,
   );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
-  assert.match(index, /"directLesson": placeLesson\(child_directLesson, \{/);
+  assert.match(index, /"directLesson": child_directLesson/);
+  assert.match(index, /import \{ placedLesson as child_directLesson \} from "\.\/directLesson"/);
   assert.match(index, /"secondLesson": child_secondLesson/);
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
@@ -415,10 +418,8 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')),
     false,
   );
-  assert.match(
-    plan.files.find(file => file.path === root + '/index.ts').content,
-    /"reused": placeLesson\(child_reused, \{/,
-  );
+  assert.match(plan.files.find(file => file.path === root + '/index.ts').content, /"reused": child_reused/);
+  assert.match(plan.files.find(file => file.path === root + '/reused/index.ts').content, /placeLesson\(originalLesson, \{/);
   const actualCourse = defineCourse({
     id: rootId,
     type: 'course',
@@ -753,9 +754,11 @@ test('Course additionalItems binds only verified Sections and retains real neste
   };
   const plan = materializeCourseStage5(reviewed, opts);
   const index = plan.files.find(file => file.path === root + '/index.ts').content;
-  assert.match(index, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
-  assert.match(index, /"additionalItems": \{"practice": added_section_reused_practice\}/);
-  assert.doesNotMatch(index, /"\$ref":/);
+  const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts').content;
+  assert.match(index, /import \{ placedLesson as child_reused \} from "\.\/reused"/);
+  assert.match(wrapper, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
+  assert.match(wrapper, /"additionalItems": \{"practice": added_section_reused_practice\}/);
+  assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
   const built = original.build.overrides(bound, { languages: ['uk'] });
