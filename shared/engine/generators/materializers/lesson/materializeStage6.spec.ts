@@ -12,7 +12,7 @@ import { defineLesson } from '../../../configurators/lessons/defineLesson/define
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
 import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
-import { assertLessonStage6ReleaseReady, materializeCourseOwnedLessonSection, materializeLessonStage6 } from './materializeStage6';
+import { assertLessonStage6ReleaseReady, materializeWorkflowSection, materializeLessonStage6 } from './materializeStage6';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const folder = 'content/math/data/lessons/1/' + id('01') + '/';
@@ -1119,7 +1119,7 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
 });
 
 
-test('Course-owned Sections preserve blocked direct and nested Scene sources without registering executable Scenes', () => {
+test('shared Section renderer preserves direct and nested Scene sources and pending executable scaffolds', () => {
   const original = valid().config.section.items.introduction;
   const scene = (suffix: string, slug: string) => ({
     config: {
@@ -1164,12 +1164,13 @@ test('Course-owned Sections preserve blocked direct and nested Scene sources wit
       },
     },
   };
-  const result = materializeCourseOwnedLessonSection(
-    section as unknown as Parameters<typeof materializeCourseOwnedLessonSection>[0],
+  const result = materializeWorkflowSection(
+    section as unknown as Parameters<typeof materializeWorkflowSection>[0],
     {
       directory: 'shadowPractice/sections/exhibitionNotes',
       documentLanguage: 'en',
       languagesImport: '#coursesData/1/12345678-1234-4234-8234-123456789001/constants',
+      sceneOutputRoot: 'content/math/scenes',
     },
   );
   const direct = result.files.find(file => file.path.endsWith('/shadowScene/index.ts'));
@@ -1181,8 +1182,14 @@ test('Course-owned Sections preserve blocked direct and nested Scene sources wit
     assert.match(source.content, /keyboard-operable light and shadow interaction/);
   }
   assert.ok(result.diagnostics.filter(d => d.code === 'pending-scene').length >= 2);
-  assert.ok(
-    result.files.every(file => !file.path.endsWith('.tsx') && !file.path.endsWith('.module.css')),
-    'Course Stage 5 must not silently create executable Scene sources or register them',
-  );
+  const scaffoldPaths = result.sceneScaffolds.map(file => file.path);
+  for (const suffix of ['95', '97']) {
+    const directory = 'content/math/scenes/' + id(suffix).at(-1) + '/' + id(suffix);
+    assert(scaffoldPaths.includes(directory + '/index.ts'));
+    assert(scaffoldPaths.some(p => p.startsWith(directory) && p.endsWith('.tsx')));
+  }
+  assert.equal(result.sceneScaffolds.length, 12);
+  assert(result.sceneScaffolds.every(file => /TODO \(BLOCKER\):/.test(file.content)));
+  assert(result.files.every(file => !file.path.includes('/scenes/')));
+
 });
