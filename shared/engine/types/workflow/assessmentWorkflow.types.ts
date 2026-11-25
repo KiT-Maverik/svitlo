@@ -15,7 +15,7 @@ const reviewedText = z
 const dependency = z
   .string()
   .regex(
-    /^content(?:\/[A-Za-z][A-Za-z0-9]*)+$|^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i,
+    /^[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$|^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i,
     'Assessment dependencies must identify Course Lesson placements or existing Lesson UUIDs',
   );
 
