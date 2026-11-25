@@ -680,6 +680,87 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
+test('new Course-owned Section and Text block materialize below an overridden Lesson', () => {
+  const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const { defineLesson, materializeCourse } = createRequire(import.meta.url)(
+    path.join(engineRoot, 'dist/build.js'),
+  );
+  const original = defineLesson({
+    id: reusedLessonId,
+    type: 'lesson',
+    slug: 'independentLesson',
+    skills: [skill],
+    params: {
+      languages: ['uk'],
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { uk: 'Оригінальний урок' } },
+    section: { items: {}, order: [] },
+  });
+  const authoredSection = {
+    config: {
+      id: '663572e7-bd85-4516-86e2-3de07d209e31',
+      type: 'content',
+      slug: 'practice',
+      params: {},
+      locale: { title: { uk: 'Власна практика' }, navigationLabel: '1' },
+      content: {
+        items: {
+          message: {
+            config: {
+              id: '663572e7-bd85-4516-86e2-3de07d209e30',
+              type: 'text',
+              slug: 'message',
+              params: {},
+              locale: { value: { uk: 'Тільки для цього курсу' } },
+            },
+          },
+        },
+        order: ['message'],
+      },
+    },
+  };
+  const reviewed = source();
+  reviewed.config.content.items = {
+    reused: {
+      config: { type: 'lesson', slug: 'reused', skills: [skill] },
+      production: {
+        kind: 'existing',
+        existing: { id: original.id },
+        matching,
+        assessment,
+        sourceExportName: 'independentLesson',
+        sourcePatch: {
+          section: {
+            additionalItems: { practice: { $create: 'course-section', source: authoredSection } },
+            order: ['practice'],
+          },
+        },
+        overrideRationale: 'Course-specific extra practice is required',
+      },
+    },
+  };
+  reviewed.config.content.order = ['reused'];
+  const opts = reuseOptions(original);
+  const plan = materializeCourse(reviewed, opts);
+  const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts')?.content;
+  const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
+  const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
+  assert.match(wrapper ?? '', /import \\{ practice as added_section_reused_practice \\} from "\\.\\/sections\\/practice"/);
+  assert.match(wrapper ?? '', /"additionalItems": \\{"practice": added_section_reused_practice\\}/);
+  assert.match(section ?? '', /defineContentSection/);
+  assert.match(block ?? '', /defineText/);
+  assert.match(block ?? '', /Тільки для цього курсу/);
+  assert.ok(plan.files.every(file =>
+    !file.path.startsWith('content/playground/data/lessons/')), 'new Section cannot mutate standalone Lesson');
+  assert.equal(plan.inventory.lessons[0].overrideSourcePath, root + '/reused/index.ts');
+  assert.deepEqual(plan.files, materializeCourse(reviewed, opts).files);
+  const invalid = structuredClone(reviewed);
+  invalid.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug = 'other';
+  assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
+});
+
 test('Course additionalItems binds only verified Sections and retains real nested Lesson Build semantics', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
   const { defineLesson, defineCourse, defineContentSection, defineText, placeLesson } = createRequire(import.meta.url)(
