@@ -60,6 +60,20 @@ function allowedOutput(filename, meta) {
       /^code\.[a-z0-9]{1,10}$/.test(leaf)
     );
   }
+  // The same textbook-level UUID Scene scaffolds emitted by Lesson Stage 6.
+  // Keep this independent of any arbitrary Course path or Scene filename.
+  const scenePrefix = meta.textbookRoot + '/scenes/';
+  if (filename.startsWith(scenePrefix)) {
+    const parts = filename.slice(scenePrefix.length).split('/');
+    const [bucket, id, leaf] = parts;
+    return (
+      parts.length === 3 &&
+      /^[0-9a-f]$/.test(bucket) &&
+      UUID.test(id ?? '') &&
+      bucket === id.at(-1) &&
+      /^(?:index\.ts|[A-Z][A-Za-z0-9]*(?:\.tsx|\.constants\.ts|\.module\.css|\.stories\.tsx|\.unit\.spec\.tsx))$/.test(leaf ?? '')
+    );
+  }
   const lesson = filename.match(
     new RegExp('^' + meta.textbookRoot + '/data/lessons/([a-f0-9])/(' + UUID_PATTERN + ')/draft\\.ts$'),
   );
