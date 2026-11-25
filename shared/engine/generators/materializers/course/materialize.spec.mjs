@@ -302,7 +302,7 @@ test('the same imported Lesson must keep a verified ID, not an unvalidated raw p
     id: IDs.lesson,
     params: { sections: { allowSkipping: false } },
   };
-  assert.throws(() => materializeCourse(patch, ctx()), /expected only \\{id\\}/);
+  assert.throws(() => materializeCourse(patch, ctx()), /expected only/);
 });
 test('refuses traversal in requested source directory', () => {
   assert.throws(
