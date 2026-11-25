@@ -426,3 +426,66 @@ test('Course publisher accepts all three generated inert default-export seeds un
   ]);
   assert.equal(verifyTypedCourseManifest(sealed, pinned), plan.files.length);
 });
+
+test('trusted publisher accepts all pending stub kinds in a direct Course Chapter', () => {
+  const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
+  const { defineLesson } = createRequire(import.meta.url)(build);
+  const course = courseStage3();
+  const { newLesson, episodeOne, reused, overridden } = course.config.content.items;
+  course.config.content = {
+    items: {
+      directChapter: {
+        config: {
+          type: 'chapter',
+          slug: 'directChapter',
+          locale: { title: { uk: 'Розділ' } },
+          content: {
+            items: {
+              newLesson,
+              episodeOne,
+              chapterReview: {
+                config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+                production: {
+                  purpose: 'Measure transfer',
+                  lessonDependencies: ['content/directChapter/newLesson'],
+                },
+              },
+            },
+            order: ['newLesson', 'episodeOne', 'chapterReview'],
+          },
+        },
+        production: {
+          methodology: 'Observe and reflect',
+          outcomes: { skills: [] },
+          prerequisites: { skills: [] },
+          depth: 'Introductory',
+          sequenceReason: 'Prepare later practice',
+        },
+      },
+      reused,
+      overridden,
+    },
+    order: ['directChapter', 'reused', 'overridden'],
+  };
+  const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
+  const pinned = {
+    ...meta,
+    courseId,
+    textbookRoot: 'content/math',
+    sourcePath,
+    sourceBlobSha: 'a'.repeat(40),
+  };
+  const plan = materializeCourseStage5(
+    course,
+    approvedCourseOptions(sourcePath, pinned.sourceBlobSha, [
+      defineLesson(independentLessonConfig()),
+      defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson')),
+    ]),
+  );
+  const rows = [...plan.inventory.lessons, ...plan.inventory.episodes, ...plan.inventory.assessments].filter(
+    row => row.stubSourcePath,
+  );
+  assert.equal(rows.length, 3);
+  assert.ok(rows.every(row => row.placementSourcePath.endsWith('/content/directChapter/index.ts')));
+  assert.equal(verifyTypedCourseManifest(buildTypedCourseManifest(pinned, plan), pinned), plan.files.length);
+});

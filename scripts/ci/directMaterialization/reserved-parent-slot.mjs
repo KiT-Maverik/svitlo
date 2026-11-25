@@ -29,11 +29,13 @@ function singleProperty(object, key) {
  * infer a bank owner from an arbitrary sibling import.
  */
 export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
+  const ownerKinds = Array.isArray(ownerKind) ? ownerKind : [ownerKind];
   if (
     typeof source !== 'string' ||
     source.length > 4 * 1024 * 1024 ||
     !safe(slug) ||
-    !['course', 'module', 'chapter'].includes(ownerKind)
+    !ownerKinds.length ||
+    ownerKinds.some(kind => !['course', 'module', 'chapter'].includes(kind))
   )
     throw Error('Invalid Course Lesson parent or placement');
   const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
@@ -117,13 +119,13 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   };
   ts.forEachChild(ast, visit);
   if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson alias reference');
-  const definition = 'define' + ownerKind[0].toUpperCase() + ownerKind.slice(1);
+  const definitions = ownerKinds.map(kind => 'define' + kind[0].toUpperCase() + kind.slice(1));
   const parents = declarations.filter(declaration => {
     const call = unwrap(declaration.initializer);
     return (
       ts.isCallExpression(call) &&
       ts.isIdentifier(call.expression) &&
-      call.expression.text === definition &&
+      definitions.includes(call.expression.text) &&
       call.arguments.length === 1 &&
       ts.isObjectLiteralExpression(unwrap(call.arguments[0])) &&
       unwrap(call.arguments[0]).properties.some(
@@ -140,7 +142,10 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
         statement.importClause?.namedBindings &&
         ts.isNamedImports(statement.importClause.namedBindings) &&
         statement.importClause.namedBindings.elements.some(
-          element => !element.isTypeOnly && !element.propertyName && element.name.text === definition,
+          element =>
+            !element.isTypeOnly &&
+            !element.propertyName &&
+            element.name.text === unwrap(parents[0].initializer).expression.text,
         ),
     )
   )
@@ -320,16 +325,11 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   };
   ts.forEachChild(ast, visit);
   if (references !== 2) throw Error('Course pending stub alias has ambiguous references');
-  const owner =
-    depth === 2
-      ? 'defineCourse'
-      : kind === 'assessment'
-        ? depth === 4
-          ? 'defineModule'
-          : 'defineChapter'
-        : depth === 3
-          ? 'defineModule'
-          : 'defineChapter';
+  // A Chapter may belong directly to a Course or to a Module. Path depth
+  // constrains the legal owners but cannot distinguish the two at level one.
+  const ownerDepth = depth - (kind === 'assessment' && depth > 2 ? 3 : 2);
+  const allowedOwners =
+    ownerDepth === 0 ? ['defineCourse'] : ownerDepth === 1 ? ['defineModule', 'defineChapter'] : ['defineChapter'];
   const parents = ast.statements
     .filter(ts.isVariableStatement)
     .flatMap(statement => [...statement.declarationList.declarations])
@@ -338,7 +338,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
       return (
         ts.isCallExpression(init) &&
         ts.isIdentifier(init.expression) &&
-        init.expression.text === owner &&
+        allowedOwners.includes(init.expression.text) &&
         init.arguments.length === 1 &&
         ts.isObjectLiteralExpression(unwrap(init.arguments[0])) &&
         unwrap(init.arguments[0]).properties.some(
@@ -347,6 +347,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
       );
     });
   if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
+  const owner = unwrap(parents[0].initializer).expression.text;
   const statements = ast.statements.filter(ts.isVariableStatement);
   if (
     statements.length !== 2 ||
