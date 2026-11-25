@@ -250,14 +250,9 @@ function patchedSource() {
     config: { type: 'lesson', slug: 'directLesson', skills: [skill] },
     production: {
       kind: 'existing',
-      existing: {
-        id: reusedLessonId,
-        base: { locale: { title: 'Adapted' } },
-        locale: { uk: { locale: { title: 'Adapted' } } },
-      },
+      existing: { id: reusedLessonId },
       matching,
       assessment,
-      source: fakeLesson(),
       sourceExportName: 'actualLesson',
       sourcePatch: { params: { sections: { allowSkipping: false } } },
       overrideRationale: 'Reviewed course-local title and exercise',
@@ -265,8 +260,23 @@ function patchedSource() {
   };
   return course;
 }
-function reuseOptions() {
-  return options();
+function reuseOptions(configurator = fakeLesson()) {
+  return {
+    ...options(),
+    resolveExistingLesson(request) {
+      assert.equal(request.id, reusedLessonId);
+      assert.equal(request.sourceSha, matching.sourceSha);
+      assert.equal(request.importPath, '#lessonsData/1/' + reusedLessonId + '/index');
+      return {
+        approved: true,
+        id: request.id,
+        sourceSha: request.sourceSha,
+        importPath: request.importPath,
+        exportName: request.exportName,
+        configurator,
+      };
+    },
+  };
 }
 test('existing Lesson preserves source-authored plain Config patch and placement', () => {
   const result = materializeCourseStage5(patchedSource(), reuseOptions());
@@ -324,13 +334,22 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
 });
 
-test('existing Lesson refuses stale, absent or non-equivalent raw Build provenance', () => {
-  const stale = patchedSource();
-  delete stale.config.content.items.directLesson.production.sourcePatch;
-  assert.throws(() => materializeCourseStage5(stale, reuseOptions()), /raw|patch/i);
-  const incompatible = patchedSource();
-  incompatible.config.content.items.directLesson.production.existing.base.locale.title = 'Different';
-  assert.throws(() => materializeCourseStage5(incompatible, reuseOptions()), /does not reproduce/);
+test('Course Lesson reuse requires an approved pinned dependency, never built author Props', () => {
+  assert.throws(() => materializeCourseStage5(patchedSource(), options()), /trusted dependency resolver/);
+  const noPatch = patchedSource();
+  delete noPatch.config.content.items.directLesson.production.sourcePatch;
+  assert.throws(() => materializeCourseStage5(noPatch, reuseOptions()), /rationale without/);
+  const prebuilt = patchedSource();
+  prebuilt.config.content.items.directLesson.production.existing.base = { locale: { title: 'Injected' } };
+  assert.throws(() => materializeCourseStage5(prebuilt, reuseOptions()), /expected only \{id\}/);
+  const stale = reuseOptions();
+  const resolve = stale.resolveExistingLesson;
+  stale.resolveExistingLesson = request => ({ ...resolve(request), sourceSha: '0'.repeat(40) });
+  assert.throws(() => materializeCourseStage5(patchedSource(), stale), /unapproved|stale/);
+  const denied = reuseOptions();
+  const resolveDenied = denied.resolveExistingLesson;
+  denied.resolveExistingLesson = request => ({ ...resolveDenied(request), approved: false });
+  assert.throws(() => materializeCourseStage5(patchedSource(), denied), /unapproved/);
 });
 
 test('verified built sparse Lesson override round-trips through real Lesson and Course Build APIs', () => {
@@ -360,18 +379,17 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
-        existing: built,
+        existing: { id: realLesson.id },
         matching,
         assessment,
+        sourceExportName: 'independentLesson',
+        sourcePatch: raw,
         overrideRationale: 'Verified Course-local navigation accommodation',
       },
     },
   };
   reviewed.config.content.order = ['reused'];
-  reviewed.config.content.items.reused.production.source = realLesson;
-  reviewed.config.content.items.reused.production.sourceExportName = 'independentLesson';
-  reviewed.config.content.items.reused.production.sourcePatch = raw;
-  const opts = options();
+  const opts = reuseOptions(realLesson);
   const plan = materializeCourseStage5(reviewed, opts);
   assert.equal(
     plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')),
