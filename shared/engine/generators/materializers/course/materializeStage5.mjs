@@ -305,6 +305,28 @@ export function materializeCourseStage5(input, options = {}) {
       const patchLanguages = planned.filter(code => lesson.languages.includes(code));
       if (!patchLanguages.includes(sourceLanguage))
         throw new Error(context.directory + ': Lesson source locale is outside reviewed publication scope');
+      // UUIDs authored in Course-owned Section/Block trees must be unique
+      // across the entire Course, including its derived child allocations.
+      // The concrete Section renderer independently validates the node schema.
+      for (const candidate of Object.values(rawPatch.section?.additionalItems ?? {})) {
+        if (candidate?.$create !== 'course-section') continue;
+        const walk = (value, depth = 0) => {
+          if (depth > 80) throw Error(context.directory + ': oversized Course-owned Section tree');
+          if (Array.isArray(value)) {
+            for (const item of value) walk(item, depth + 1);
+            return;
+          }
+          if (!record(value)) return;
+          if (record(value.config) && typeof value.config.id === 'string') {
+            const id = value.config.id.toLowerCase();
+            if (!uuid.test(id) || newIds.has(id) || knownExistingIds.has(id))
+              throw Error(context.directory + ': duplicate/invalid Course-owned Section or Block UUID ' + id);
+            newIds.add(id);
+          }
+          for (const child of Object.values(value)) walk(child, depth + 1);
+        };
+        walk(candidate.source);
+      }
       // Convert only approved declarative additions to genuine Section
       // Configurators before invoking the unchanged nested Lesson Build.
       const binding = bindCourseLessonPatch(rawPatch, {
