@@ -57,7 +57,7 @@ jobs:
         with:
           node-version: '26'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs scripts/ci/directMaterialization/materialization-workflow-security.spec.mjs
 
   ci-policy:
     name: Required check reuse and Draft policy
