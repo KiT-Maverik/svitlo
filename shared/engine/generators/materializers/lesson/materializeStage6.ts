@@ -376,11 +376,12 @@ export function materializeCourseOwnedLessonSection(
       section: { items: { [name]: checked }, order: [name] },
     },
   } as unknown as LessonWorkflowStage2;
-  const { sections, metadata, scenes } = normalizeStage2(virtual);
-  // A Scene requires its independent package-level implementation/registry; this
-  // Course-local Section scaffold cannot silently create or activate one.
-  if (scenes.length)
-    throw new Error(options.directory + ': Course-owned Section Scenes need separate source production');
+  const { sections, metadata } = normalizeStage2(virtual);
+  // Reuse the ordinary Scene ContentBlock renderer even for nested Carousel or
+  // Checkpoint children. It preserves the reviewed brief in a blocked defineScene
+  // source; this handoff neither creates an executable Scene nor registers it.
+  // Independently producing and verifying executable Scene resources remains
+  // mandatory before publication.
   const entry = sections.items[name] as { config: ChildConfig };
   const section = createSectionSourceRenderer(metadata, options.documentLanguage);
   return section(entry.config, {
