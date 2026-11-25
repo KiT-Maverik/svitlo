@@ -125,10 +125,10 @@ function node(value: unknown, at: string): Node {
  * Every original node's production remains attached to its stable UUID.
  * Never create a Section, Block, media value, Question or Flashcard ID.
  */
-function normalizeStage2(input: LessonWorkflowStage2) {
+function createStage2Normalizer(initialIds: readonly string[]) {
   const metadata = new Map<string, Record<string, unknown>>();
   const scenes: { id: string; slug: string; specification?: string }[] = [];
-  const seen = new Set<string>([input.config.id]);
+  const seen = new Set<string>(initialIds);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
     if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
       throw new Error(location + ': expected authored { items, order }');
@@ -227,11 +227,19 @@ function normalizeStage2(input: LessonWorkflowStage2) {
     }
     return normalized;
   }
-  const sections = ordered(input.config.section, 'lesson.section', true);
-  return { sections, metadata, scenes };
+  return { unwrap, ordered, metadata, scenes };
 }
 
-/** Shared real Section/ContentBlock source dispatch for Lesson and Course-owned additions. */
+function normalizeStage2(input: LessonWorkflowStage2) {
+  const normalizer = createStage2Normalizer([input.config.id]);
+  return {
+    sections: normalizer.ordered(input.config.section, 'lesson.section', true),
+    metadata: normalizer.metadata,
+    scenes: normalizer.scenes,
+  };
+}
+
+/** Shared real Section/ContentBlock source dispatch for all authoring workflows. */
 function createSectionSourceRenderer(metadata: Map<string, Record<string, unknown>>, documentLanguage: string) {
   function block(config: ChildConfig, context: RenderOptions): Result {
     const production = context.production ?? metadata.get(config.id);
@@ -361,35 +369,62 @@ function createSectionSourceRenderer(metadata: Map<string, Record<string, unknow
   return section;
 }
 
-/** Materialize a reviewed new Course-local Section using Lesson's concrete renderers.
- * This emits authoring TS only; it never mutates the original standalone Lesson.
+/** Render pending executable Scene drafts at their UUID-addressed textbook paths.
+ * Both standalone Lessons and embedded Sections use this same source renderer.
+ * This never registers a Scene or marks its implementation complete.
  */
-export function materializeCourseOwnedLessonSection(
+function materializeSceneScaffolds(
+  scenes: readonly { id: string; slug: string; specification?: string }[],
+  sceneOutputRoot: string,
+  documentLanguage: string,
+): Result['files'] {
+  if (!/^content\/[a-z][a-z0-9-]*\/scenes$/.test(sceneOutputRoot))
+    throw new Error('Invalid UUID-addressed textbook Scene output root');
+  const files: Result['files'] = [];
+  for (const scene of scenes) {
+    const directory = sceneOutputRoot + '/' + scene.id.at(-1) + '/' + scene.id + '/';
+    for (const [name, content] of renderSceneFiles({ ...scene, documentLanguage })) {
+      files.push({
+        path: directory + name,
+        kind: name.endsWith('.css') ? 'code' : 'typescript',
+        content,
+      });
+    }
+  }
+  return files;
+}
+
+/** Materialize any reviewed Section with the ordinary Section/ContentBlock
+ * dispatcher. The caller owns destination paths; the Section's type and nested
+ * types never depend on whether its parent is a Course, Lesson or Episode.
+ */
+export function materializeWorkflowSection(
   value: LessonWorkflowStage2Section,
-  options: { directory: string; documentLanguage: string; languagesImport: string },
-): Result {
+  options: {
+    directory: string;
+    documentLanguage: string;
+    languagesImport: string;
+    sceneOutputRoot: string;
+  },
+): Result & { sceneScaffolds: Result['files'] } {
   const checked = lessonWorkflowSection_Schema.parse(value);
-  const name = checked.config.slug;
-  const virtual = {
-    config: {
-      id: '00000000-0000-4000-8000-000000000000',
-      section: { items: { [name]: checked }, order: [name] },
-    },
-  } as unknown as LessonWorkflowStage2;
-  const { sections, metadata } = normalizeStage2(virtual);
-  // Reuse the ordinary Scene ContentBlock renderer even for nested Carousel or
-  // Checkpoint children. It preserves the reviewed brief in a blocked defineScene
-  // source; this handoff neither creates an executable Scene nor registers it.
-  // Independently producing and verifying executable Scene resources remains
-  // mandatory before publication.
-  const entry = sections.items[name] as { config: ChildConfig };
-  const section = createSectionSourceRenderer(metadata, options.documentLanguage);
-  return section(entry.config, {
+  const normalizer = createStage2Normalizer([]);
+  const config = normalizer.unwrap(checked, 'section') as ChildConfig;
+  const renderSection = createSectionSourceRenderer(normalizer.metadata, options.documentLanguage);
+  const rendered = renderSection(config, {
     directory: options.directory,
     documentLanguage: options.documentLanguage,
     languagesImport: options.languagesImport,
-    production: metadata.get(entry.config.id),
+    production: normalizer.metadata.get(config.id),
   });
+  return {
+    ...rendered,
+    sceneScaffolds: materializeSceneScaffolds(
+      normalizer.scenes,
+      options.sceneOutputRoot,
+      options.documentLanguage,
+    ),
+  };
 }
 
 /**
@@ -498,16 +533,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
   // The nested defineScene sources stay within Lesson ownership. Executable
   // Scene drafts belong to the textbook's independent UUID-scoped scene tree.
   // Stage 6.1 includes both in ONE attested source plan and Git transaction.
-  for (const scene of scenes) {
-    const directory = 'content/' + match[1] + '/scenes/' + scene.id.at(-1) + '/' + scene.id + '/';
-    for (const [name, content] of renderSceneFiles({ ...scene, documentLanguage })) {
-      files.push({
-        path: directory + name,
-        kind: name.endsWith('.css') ? 'code' : 'typescript',
-        content,
-      });
-    }
-  }
+  files.push(...materializeSceneScaffolds(scenes, 'content/' + match[1] + '/scenes', documentLanguage));
   return {
     lessonId: config.id,
     sourcePath: source.sourcePath,
