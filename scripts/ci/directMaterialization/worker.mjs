@@ -37,8 +37,8 @@ process.on('uncaughtException', error => {
                       ? 82
                       : String(error?.stack ?? '').includes('/work/shared/engine/dist/generators/materializers/lesson/')
                         ? 83
-                        : (String(error?.stack ?? '').includes('node_modules/jiti') ||
-                            String(error?.stack ?? '').includes('node_modules/typescript'))
+                        : String(error?.stack ?? '').includes('node_modules/jiti') ||
+                            String(error?.stack ?? '').includes('node_modules/typescript')
                           ? 84
                           : String(error?.stack ?? '').includes('/work/worker.mjs')
                             ? 85
