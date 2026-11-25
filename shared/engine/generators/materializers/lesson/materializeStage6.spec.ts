@@ -1095,7 +1095,7 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
         source: { ...reviewed, sourceBlobSha: blobSha(sourceText) },
         verifySourceInput: () => true,
       }),
-    /reviewed production\.specification/,
+    /Invalid Lesson Stage 2 input/,
   );
 });
 
