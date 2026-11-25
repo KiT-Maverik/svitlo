@@ -80,6 +80,31 @@ function allowedOutput(filename, meta) {
   return !!lesson && lesson[1] === lesson[2].at(-1);
 }
 
+/** Require the exact six-file Scene scaffold set under each immutable UUID.
+ * The publisher never executes or regenerates these bytes.
+ */
+function assertSceneScaffoldInventory(meta, entries) {
+  const prefix = meta.textbookRoot + '/scenes/';
+  const grouped = new Map();
+  for (const file of entries.keys()) {
+    if (!file.startsWith(prefix)) continue;
+    const directory = path.posix.dirname(file);
+    if (!grouped.has(directory)) grouped.set(directory, new Set());
+    grouped.get(directory).add(path.posix.basename(file));
+  }
+  for (const [directory, filenames] of grouped) {
+    const main = [...filenames].filter(name => /^[A-Z][A-Za-z0-9]*\.tsx$/.test(name));
+    if (main.length !== 1) throw Error('Incomplete or ambiguous Course Scene scaffold: ' + directory);
+    const component = main[0].slice(0, -'.tsx'.length);
+    const expected = [
+      'index.ts', component + '.tsx', component + '.module.css',
+      component + '.constants.ts', component + '.stories.tsx', component + '.unit.spec.tsx',
+    ];
+    if (filenames.size !== expected.length || expected.some(name => !filenames.has(name)))
+      throw Error('Incomplete or mixed Course Scene scaffold: ' + directory);
+  }
+}
+
 /** Bind generated Course-owned handoffs one-to-one to the sealed inventory.
  * This examines only fixed, JSON-literal outputs from trusted seed generators.
  * It never reads or parses candidate entrypoint TypeScript, or regenerates it.
@@ -398,6 +423,7 @@ export function verifyTypedCourseManifest(manifest, meta) {
   if (seen.has(meta.sourcePath) || !seen.has(manifest.materializedPath))
     throw Error('Typed Course plan must consume draft.ts and create index.ts');
   assertCourseInventory(manifest, meta, entries);
+  assertSceneScaffoldInventory(meta, entries);
   return manifest.entries.length;
 }
 
