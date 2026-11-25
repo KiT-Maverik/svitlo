@@ -428,7 +428,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   assert.match(plan.files.find(file => file.path === root + '/index.ts').content, /reused/);
   assert.match(
     plan.files.find(file => file.path === root + '/reused/index.ts').content,
-    /placeLesson\(actualLesson, \{/,
+    /placeLesson\(independentLesson, \{/,
   );
   const actualCourse = defineCourse({
     id: rootId,
