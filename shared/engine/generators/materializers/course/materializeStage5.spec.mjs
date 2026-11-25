@@ -192,7 +192,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.match(chapterContent, /#skillsData\/sampleSkill/);
-  assert.match(chapterContent, /import \\{ sampleSkill \\} from/);
+  assert.match(chapterContent, /import \{ sampleSkill \} from/);
   assert.match(chapterContent, /sampleSkill\.id/);
   assert.match(chapterContent, /"lessonOne": child_lessonOne/);
   assert.match(chapterContent, /"episodeOne": child_episodeOne/);
