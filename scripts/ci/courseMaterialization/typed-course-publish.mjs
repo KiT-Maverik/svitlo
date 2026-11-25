@@ -215,7 +215,7 @@ function assertCourseInventory(manifest, meta, entries) {
         } else {
           const ownedPath = row.placementPath + '/index.ts';
           const relative = './' + row.slug;
-          const line = 'import { placedLesson as ' + alias + ' } from ' + JSON.stringify(relative) + ';';
+          const line = 'import { ' + row.slug + ' as ' + alias + ' } from ' + JSON.stringify(relative) + ';';
           const normalized = parent.replaceAll("'" + relative + "'", JSON.stringify(relative));
           const file = entries.get(ownedPath);
           if (
@@ -232,7 +232,10 @@ function assertCourseInventory(manifest, meta, entries) {
           if (
             imported.split('\n').filter(item => item === originalLine).length !== 1 ||
             !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
-            !source.includes('export const placedLesson = placeLesson(originalLesson, ')
+            !source.includes(
+              '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
+                'export const ' + row.slug + ' = placeLesson(originalLesson, ',
+            )
           )
             throw Error('Course Lesson override placement module lacks verified original or Build patch');
         }
