@@ -172,10 +172,10 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   );
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
   const chapterContent = first.files.find(f => f.path === root + '/content/moduleOne/chapterOne/index.ts').content;
-  assert.match(rootContent, /"directLesson": defineLessonStub\(\{ id: "/);
+  assert.match(rootContent, /"directLesson": child_directLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
-  assert.match(chapterContent, /"lessonOne": defineLessonStub\(\{ id: "/);
-  assert.match(chapterContent, /"episodeOne": defineEpisodeStub\(\{ id: "/);
+  assert.match(chapterContent, /"lessonOne": child_lessonOne/);
+  assert.match(chapterContent, /"episodeOne": child_episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
   assert.doesNotMatch(rootContent, /Reviewed original content order|Pending handoffs|const languages =/);
   const constants = first.files.find(f => f.path === root + '/constants.ts').content;
@@ -200,7 +200,7 @@ test('parent indices distinguish the root content prefix from a unit named conte
   assert.equal(nested.placementSourcePath, root + '/content/content/content/index.ts');
   const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
   assert.equal(direct.placementSourcePath, root + '/index.ts');
-  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('defineLessonStub'));
+  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('child_lessonOne'));
 });
 
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
@@ -535,8 +535,10 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(seed?.content.includes('satisfies AssessmentWorkflowSeed'));
     assert.match(seed?.content ?? '', /export default \{/);
     assert.doesNotMatch(seed?.content ?? '', /export const assessmentSeed|materializeAssessment\(/);
-    assert.ok(parent?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
-    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': defineAssessmentStub'));
+    const stub = result.files.find(file => file.path === row.stubSourcePath);
+    assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
+    assert.ok(stub?.content.includes('TODO (BLOCKER): Complete the independently reviewed Assessment'));
+    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
     assert.ok(parent?.content.includes('order: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
