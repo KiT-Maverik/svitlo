@@ -82,7 +82,7 @@ function assertCourseInventory(manifest, meta, entries) {
   const episodes = new Set(
     [...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/draft.ts')),
   );
-  const stubs = new Set([...entries.keys()].filter(p => p.startsWith(root + '/content/') && p.endsWith('/stub.ts')));
+  const stubs = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/stub.ts')));
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
   const isSlug = s => typeof s === 'string' && /^[A-Za-z][A-Za-z0-9]*$/.test(s);
