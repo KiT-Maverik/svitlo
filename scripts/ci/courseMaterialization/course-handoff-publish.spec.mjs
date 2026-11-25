@@ -167,6 +167,25 @@ test('reconcile is idempotent and preserves owner notes; stale or edited PR is u
   }
 });
 
+test('metadata-only reconciliation tolerates missing or changing ETags and unrelated PR timestamps', async () => {
+  for (const etags of [[null, null], ['revision-one', 'revision-two']]) {
+    const ok = fake();
+    let reads = 0;
+    const request = async (...args) => {
+      const result = await ok.request(...args);
+      if (args[1] === 'PATCH') return result;
+      const index = Math.min(reads++, 1);
+      return {
+        pr: { ...result.pr, updated_at: index === 0 ? 'original' : 'unrelated-metadata-change' },
+        etag: etags[index],
+      };
+    };
+    assert.equal(await reconcileCommittedPR(manifest, proof, request), true);
+    assert.equal(ok.writes, 1);
+    assert.match(ok.body, /Owner notes/);
+  }
+});
+
 test('requires exact consumed draft deletion, parent source identity and generated index', async () => {
   await assert.rejects(
     verifyCommittedInventory(manifest, proof, async route =>
