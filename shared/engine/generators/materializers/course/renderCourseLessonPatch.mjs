@@ -78,6 +78,16 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
       const alias = aliases[sectionKey];
       if (typeof alias !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(alias))
         throw Error('Missing trusted added Section binding: ' + sectionKey);
+      const created = binding.createdSections?.[sectionKey];
+      if (created) {
+        if (!Array.isArray(created.files) || typeof created.exportName !== 'string')
+          throw Error('Invalid generated Course-owned Section: ' + sectionKey);
+        files.push(...created.files);
+        imports.push('import { ' + created.exportName + ' as ' + alias +
+          ' } from "./sections/' + sectionKey + '";');
+        rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), alias);
+        continue;
+      }
       const dependency = binding.imports.find(line => line.includes(' as ' + alias + ' } from '));
       if (!dependency) throw Error('Missing trusted Section import: ' + sectionKey);
       files.push({
