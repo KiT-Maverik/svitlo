@@ -11,10 +11,12 @@ const record = value => value !== null && typeof value === 'object' && !Array.is
 /** Authoritative mapping is supplied by a trusted, source-revision-checked dependency resolver. */
 export function bindVerifiedSkills(
   params,
-  { resolveSkill, textbookRoot, directory = '', includeLanguages = false } = {},
+  { resolveSkill, textbookRoot, directory = '', includeLanguages = false, reservedNames = [] } = {},
 ) {
   if (!record(params)) throw Error(directory + ': expected Course params object');
   const imports = new Map();
+  const aliases = new Map();
+  const reserved = new Set(['content', 'languages', 'Languages', ...reservedNames]);
   const resolve = id => {
     if (typeof id !== 'string' || !uuid.test(id)) throw Error(directory + ': invalid Skill UUID');
     if (typeof resolveSkill !== 'function') throw Error(directory + ': trusted Skill resolver required');
@@ -43,7 +45,13 @@ export function bindVerifiedSkills(
       typeof item.build?.props !== 'function'
     )
       throw Error(directory + ': unapproved, stale or mismatched Skill binding ' + id);
-    const alias = 'skill_' + id.toLowerCase().replaceAll('-', '_');
+    let alias = aliases.get(id);
+    if (!alias) {
+      alias = binding.exportName;
+      let suffix = 2;
+      while (reserved.has(alias) || imports.has(alias)) alias = binding.exportName + '_' + suffix++;
+      aliases.set(id, alias);
+    }
     const entry = { exportName: binding.exportName, importPath: binding.importPath, sourceSha: binding.sourceSha };
     const existing = imports.get(alias);
     if (existing && JSON.stringify(existing) !== JSON.stringify(entry))
@@ -81,7 +89,7 @@ export function bindVerifiedSkills(
       .sort(([a], [b]) => a.localeCompare(b))
       .map(
         ([alias, ref]) =>
-          'import { ' + ref.exportName + ' as ' + alias + ' } from ' + JSON.stringify(ref.importPath) + ';',
+          'import { ' + ref.exportName + (ref.exportName === alias ? '' : ' as ' + alias) + ' } from ' + JSON.stringify(ref.importPath) + ';',
       ),
   };
 }
