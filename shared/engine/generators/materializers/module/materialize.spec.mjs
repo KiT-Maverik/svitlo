@@ -222,7 +222,9 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
-  assert.match(main, /params: \{ "outcomes": \{ "skills": \[testExplainLightTravel\.id\] \}/);
+  assert.doesNotMatch(main, /outcomes|prerequisites|#skillsData\\//);
+  assert.match(main, /params: \\{\\}/);
+  assert.match(out.files.find(file => file.path === 'methodology.md').content, /Intended learning outcomes/);
   assert.equal(out.id, IDs.module);
   syntax(out.files);
 });
@@ -237,4 +239,12 @@ test('Module refuses unsafe source directory', () => {
     () => materializeModule(mod(), { sourceLanguage: 'uk', directory: '../unsafe' }),
     /unsafe generated directory/,
   );
+});
+
+test('Module rejects legacy Skill targets in config.params rather than dropping authored data', () => {
+  for (const field of ['outcomes', 'prerequisites']) {
+    const value = mod();
+    value.config.params = { [field]: { skills: [skillId] } };
+    assert.throws(() => materializeModule(value, ctx()), new RegExp('config\\.params\\.' + field));
+  }
 });

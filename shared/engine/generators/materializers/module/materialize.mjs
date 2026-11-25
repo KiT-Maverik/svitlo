@@ -376,25 +376,20 @@ export function materializeModule(input, context = {}) {
     .join('\n');
   const params = config.params ?? {};
   if (!record(params)) throw Error(dir + '.params: Config params object required');
+  // Unit Skill targets are editorial methodology, not completed Config/Props.
   for (const field of ['outcomes', 'prerequisites']) {
-    if (
-      params[field] !== undefined &&
-      meta?.[field] !== undefined &&
-      JSON.stringify(params[field]) !== JSON.stringify(meta[field])
-    )
-      throw Error(dir + ': conflicting config/production Skill ' + field + ' targets');
+    if (Object.hasOwn(params, field))
+      throw Error(dir + '.config.params.' + field + ': move unit Skill targets to production.' + field);
   }
-  const unitParams = {
-    ...params,
-    ...(meta?.outcomes === undefined ? {} : { outcomes: meta.outcomes }),
-    ...(meta?.prerequisites === undefined ? {} : { prerequisites: meta.prerequisites }),
-  };
-  const bound = bindVerifiedSkills(unitParams, {
-    resolveSkill: context.resolveSkill,
-    textbookRoot: context.textbookRoot,
-    directory: dir,
-  });
-  const paramsSource = bound.source;
+  // Verify factual IDs against trusted Skill references, but do not generate imports.
+  if (meta && (meta.outcomes !== undefined || meta.prerequisites !== undefined)) {
+    bindVerifiedSkills({ outcomes: meta.outcomes, prerequisites: meta.prerequisites }, {
+      resolveSkill: context.resolveSkill,
+      textbookRoot: context.textbookRoot,
+      directory: dir,
+    });
+  }
+  const paramsSource = JSON.stringify(params);
   const courseId = context.courseId;
   if (typeof courseId !== 'string' || !uuid.test(courseId))
     throw Error(dir + ': reviewed Course UUID required for canonical languages import');
@@ -406,7 +401,7 @@ export function materializeModule(input, context = {}) {
     'import type { Languages } from ' +
     JSON.stringify(languagesModule) +
     ';\n' +
-    [...bound.imports, ...imports].join('\n') +
+    imports.join('\n') +
     '\n\n' +
     'const content = { items: ' +
     itemsSource +

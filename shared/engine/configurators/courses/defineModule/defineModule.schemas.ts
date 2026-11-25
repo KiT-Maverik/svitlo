@@ -26,7 +26,6 @@ import {
   type Lesson_Draft_Props,
   type Lesson_Props,
 } from '../../lessons/defineLesson/defineLesson.schemas';
-import { coursePrerequisiteTargets_Schema, courseSkillTargets_Schema } from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
 import type {
@@ -35,10 +34,9 @@ import type {
   Lesson_Stub_Configurator,
 } from '../defineCourseChildStubs/defineCourseChildStubs';
 
-const params = paramsBase_Schema.shape.params.extend({
+const params = z.strictObject({
+  ...paramsBase_Schema.shape.params.shape,
   iconKey: z.string().optional(),
-  outcomes: courseSkillTargets_Schema.optional(),
-  prerequisites: coursePrerequisiteTargets_Schema.optional(),
 });
 const identity = identityBase_Schema.extend({
   type: z.literal('module'),
