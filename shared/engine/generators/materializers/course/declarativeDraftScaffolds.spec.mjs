@@ -26,7 +26,7 @@ function assertInertSeed(content, contract) {
   assert(ts.isImportDeclaration(imported));
   assert.equal(imported.importClause?.isTypeOnly, true);
   assert(ts.isExportAssignment(exported));
-  assert.equal(exported.isExportEquals, false);
+  assert.notEqual(exported.isExportEquals, true, 'Expected default export, not export =');
   assert(ts.isSatisfiesExpression(exported.expression));
   assert.equal(exported.expression.type.getText(source), contract);
   const value = exported.expression.expression;
