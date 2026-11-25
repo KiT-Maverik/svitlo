@@ -26,7 +26,9 @@ See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
 ## Production boundary
 
-A provisional Course Episode placement is narrative intent, not a completed Episode. The Course Stage 5 materializer emits a blocked typed draft and a preview-only Episode stub at the reserved ordered placement, not a completed Configurator; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
+A provisional Course Episode placement is narrative intent, not a completed Episode. The Course Stage 5 materializer emits an inert typed Episode `draft.ts` plus a distinct `<placement>/stub.ts` that exports its preview-only `defineEpisodeStub` Configurator, imported by the immediate parent at the reserved ordered placement; this is not approval of the Episode's scenario, Sections, media, localization, or learner experience. Each of these must be completed and verified before publication.
+
+Trusted Episode Stage 5 checks the pinned Course-owned `stub.ts` and parent AST, then atomically deletes both `draft.ts` and `stub.ts` while replacing only the exact imported parent slot; sibling order remains unchanged. A Course seed or stub does not authorize Episode authoring or QA.
 
 The [Episode workflow](../../skills/episode-workflow/create-episode-flow.skill.md) defines the required ten-stage production procedure, with separate independent content and translation reviews and human-owned Media Generation and QA. Its authoring contract requires a Course-owned `draft.ts` handoff, distinct from runnable `index.ts`; the [trusted Episode Stage 5 workflow](../../../scripts/ci/episodeMaterialization/README.md) must be deployed and verified before Episode content may be materialized. A draft handoff is not a completed scenario.
 
