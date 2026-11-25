@@ -114,6 +114,18 @@ test('Assessment direct materializer emits valid nested Section sources and bloc
   );
 });
 
+test('Assessment Stage 2 rejects duplicative authored placement metadata', () => {
+  const input = reviewed();
+  assert.equal(Object.hasOwn(input.production, 'placement'), false);
+  input.production.placement = {
+    courseId,
+    path: placement,
+    orderPath: [0, 2],
+    reviewedCourseSourceBlobSha: 'a'.repeat(40),
+  };
+  assert.equal(assessmentWorkflowStage2_Schema.safeParse(input).success, false);
+});
+
 test('Assessment Stage 2 cannot materialize missing Quiz, provisional Questions or stale draft', () => {
   const withoutQuiz = reviewed();
   delete withoutQuiz.config.quiz;
