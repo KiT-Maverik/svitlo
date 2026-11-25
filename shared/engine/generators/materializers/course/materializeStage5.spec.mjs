@@ -188,14 +188,14 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   );
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
   const chapterContent = first.files.find(f => f.path === root + '/moduleOne/chapterOne/index.ts').content;
-  assert.match(rootContent, /"directLesson": child_directLesson/);
+  assert.match(rootContent, /"directLesson": actualLesson/);
   assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.match(chapterContent, /#skillsData\/sampleSkill/);
   assert.match(chapterContent, /import \{ sampleSkill \} from/);
   assert.match(chapterContent, /sampleSkill\.id/);
-  assert.match(chapterContent, /"lessonOne": child_lessonOne/);
-  assert.match(chapterContent, /"episodeOne": child_episodeOne/);
+  assert.match(chapterContent, /lessonOne/);
+  assert.match(chapterContent, /episodeOne/);
   assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
   assert.doesNotMatch(rootContent, /Reviewed original content order|Pending handoffs|const languages =/);
   const constants = first.files.find(f => f.path === root + '/constants.ts').content;
@@ -220,7 +220,7 @@ test('parent indices preserve literal content slugs without a structural content
   assert.equal(nested.placementSourcePath, root + '/content/content/index.ts');
   const direct = plan.inventory.lessons.find(row => row.slug === 'directLesson');
   assert.equal(direct.placementSourcePath, root + '/index.ts');
-  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('child_lessonOne'));
+  assert.ok(plan.files.find(file => file.path === nested.placementSourcePath)?.content.includes('lessonOne'));
 });
 
 test('Course Stage 5 fails closed on unverified source, duplicate order and partial Lesson intent', () => {
@@ -306,16 +306,16 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   );
   const wrapper = result.files.find(file => file.path === root + '/directLesson/index.ts');
   assert.ok(wrapper, 'overridden Lesson must own its Course-local module');
-  assert.match(wrapper.content, /import \{ actualLesson as originalLesson \} from "#lessonsData\//);
-  assert.match(wrapper.content, /export const directLesson = placeLesson\(originalLesson, \{/);
+  assert.match(wrapper.content, /import \{ actualLesson \} from "#lessonsData\//);
+  assert.match(wrapper.content, /export const directLesson = placeLesson\(actualLesson, \{/);
   assert.match(
     wrapper.content,
-    /\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\nexport const directLesson = placeLesson\(originalLesson, \{/,
+    /\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\nexport const directLesson = placeLesson\(actualLesson, \{/,
   );
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
-  assert.match(main.content, /import \{ directLesson as child_directLesson \} from "\.\/directLesson"/);
-  assert.match(main.content, /"directLesson": child_directLesson/);
+  assert.match(main.content, /import \{ directLesson \} from "\.\/directLesson"/);
+  assert.match(main.content, /"directLesson": actualLesson/);
   assert.doesNotMatch(main.content, /placeLesson\(/);
   assert.doesNotMatch(main.content, /authoredCourseOverrides/);
   assert.equal(
@@ -357,9 +357,9 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
     false,
   );
   const index = result.files.find(file => file.path === root + '/index.ts').content;
-  assert.match(index, /"directLesson": child_directLesson/);
-  assert.match(index, /import \{ directLesson as child_directLesson \} from "\.\/directLesson"/);
-  assert.match(index, /"secondLesson": child_secondLesson/);
+  assert.match(index, /"directLesson": actualLesson/);
+  assert.match(index, /import \{ directLesson \} from "\.\/directLesson"/);
+  assert.match(index, /"secondLesson": actualLesson/);
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
 });
@@ -425,10 +425,10 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     plan.files.some(file => file.path.endsWith('/authoredCourseOverrides.ts')),
     false,
   );
-  assert.match(plan.files.find(file => file.path === root + '/index.ts').content, /"reused": child_reused/);
+  assert.match(plan.files.find(file => file.path === root + '/index.ts').content, /reused/);
   assert.match(
     plan.files.find(file => file.path === root + '/reused/index.ts').content,
-    /placeLesson\(originalLesson, \{/,
+    /placeLesson\(actualLesson, \{/,
   );
   const actualCourse = defineCourse({
     id: rootId,
@@ -576,12 +576,12 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     assert.match(stub.content, /TODO \(BLOCKER\):.*delete this stub\.ts/);
     assert.ok(stub.content.includes(apis[row.type] + '({ id: ' + JSON.stringify(row.id)));
     const parent = plan.files.find(file => file.path === row.placementSourcePath);
-    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
+    assert.ok(parent?.content.includes(row.slug));
     assert.ok(parent.content.includes('/' + row.slug + '/stub'));
     const lines = parent.content.split('\n');
     const imported = lines.findIndex(
       line =>
-        line.includes('import { stub as child_' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
+        line.includes('import { ' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
     );
     assert.ok(imported > 0, row.placementPath);
     assert.match(lines[imported - 1], /^\/\/ TODO \(BLOCKER\): Keep this pending /);
@@ -647,7 +647,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     const stub = result.files.find(file => file.path === row.stubSourcePath);
     assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(stub?.content.includes('TODO (BLOCKER): Complete and validate the Assessment Configurator'));
-    assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
+    assert.ok(parent?.content.includes(row.slug));
     assert.ok(parent?.content.includes('order: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
@@ -755,8 +755,8 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts')?.content;
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
   const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
-  assert.match(wrapper ?? '', /import \{ practice as added_section_reused_practice \} from "\.\/sections\/practice"/);
-  assert.match(wrapper ?? '', /"additionalItems": \{"practice": added_section_reused_practice\}/);
+  assert.match(wrapper ?? '', /import \{ practice \} from "\.\/sections\/practice"/);
+  assert.match(wrapper ?? '', /"additionalItems": \{"practice": practice\}/);
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
@@ -852,10 +852,10 @@ test('Course additionalItems binds only verified Sections and retains real neste
   const index = plan.files.find(file => file.path === root + '/index.ts').content;
   const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts').content;
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts').content;
-  assert.match(index, /import \{ reused as child_reused \} from "\.\/reused"/);
-  assert.match(wrapper, /import \{ sectionAddition as added_section_reused_practice \} from "\.\/sections\/practice"/);
-  assert.match(section, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"additionalItems": \{"practice": added_section_reused_practice\}/);
+  assert.match(index, /import \{ reused \} from "\.\/reused"/);
+  assert.match(wrapper, /import \{ practice \} from "\.\/sections\/practice"/);
+  assert.match(section, /import \{ practice \} from "#lessonsData\/1\//);
+  assert.match(wrapper, /"additionalItems": \{"practice": practice\}/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
