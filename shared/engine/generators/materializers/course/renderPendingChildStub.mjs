@@ -9,7 +9,7 @@ const apis = Object.freeze({
 });
 const instructions = Object.freeze({
   lesson:
-    'Complete the independently authorized Lesson workflow, verify the completed UUID-addressed Lesson and its Course integration, then replace this Lesson placement with that verified Configurator import and delete stub.ts with this marker. Lesson Stage 6 alone does not authorize parent mutation.',
+    'Complete the independently authorized Lesson workflow, verify the completed UUID-addressed Lesson and its Course integration, then replace this Lesson placement with that verified Configurator import and delete this stub.ts with its blocker marker. Lesson Stage 6 alone does not authorize parent mutation.',
   episode:
     'Complete the independently reviewed Episode and its trusted Stage 5 materialization, atomically replace the reserved parent import with the completed Episode and delete this stub.ts and marker.',
   assessment:
