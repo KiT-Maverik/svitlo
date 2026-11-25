@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 import ts from 'typescript';
 
@@ -105,4 +107,30 @@ test('Course-created Assessment seed has inert literal dependencies and no fake 
   assert.deepEqual(literal.production.placement.orderPath, [1]);
   assert(!output.files[0].content.includes('questionIds'));
   assert.match(output.placeholderSource, /defineAssessmentDraft/);
+});
+
+test('canonical authoring examples never contain executable materializer calls', () => {
+  const root = fileURLToPath(new URL('../../../../../', import.meta.url));
+  const paths = [
+    'course-workflow/create-course-flow.skill.md',
+    'lesson-workflow/create-lesson-flow.skill.md',
+    'episode-workflow/create-episode-flow.skill.md',
+    'lesson-workflow/create-questions-flow.skill.md',
+    'lesson-workflow/create-flashcards-flow.skill.md',
+    'assessment-workflow/create-assessment-flow.skill.md',
+  ];
+  for (const name of paths) {
+    const markdown = readFileSync(root + 'studio/skills/' + name, 'utf8');
+    assert.match(markdown, /draft\.ts/);
+    const snippets = markdown.split('```ts\n').slice(1).map(code => code.split('\n```')[0]);
+    for (const code of snippets) {
+      assert.doesNotMatch(code, /^\s*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)\s*\(/m, name);
+      assert.doesNotMatch(code, /import\s*\{[^}]*materialize(?:Course|LessonStage6|EpisodeStage5|QuestionBank|FlashcardBank|Assessment)/, name);
+      if (!code.includes('export default')) continue;
+      const file = ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+      assert.equal(file.parseDiagnostics.length, 0, name);
+      assert.equal(file.statements.filter(ts.isExportAssignment).length, 1, name);
+      assert(file.statements.every(node => (ts.isImportDeclaration(node) && node.importClause?.isTypeOnly) || ts.isExportAssignment(node)), name);
+    }
+  }
 });
