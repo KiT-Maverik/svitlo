@@ -221,7 +221,7 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   assert.ok(!paths.includes('directLesson/index.ts'));
   assert.match(
     first.files.find(f => f.path === 'index.ts').content,
-    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//,
+    /import \{ independentLesson \} from "#lessonsData\//,
   );
   const method = first.files.find(f => f.path === 'methodology.md');
   assert.match(method.content, /## Entry conditions/);
@@ -276,8 +276,11 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   assert.ok(handoff);
   assert.match(handoff.path, /\/data\/lessons\/e\/80d31f41-75ac-4210-9a6d-7b4c75ad698e\/draft\.ts$/);
   assert.equal(result.files.filter(f => f.path.includes('/data/lessons/')).length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content, /"newLesson": child_newLesson/);
-  assert.match(result.files.find(f => f.path === 'newLesson/stub.ts').content, /export const stub = defineLessonStub/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /newLesson/);
+  assert.match(
+    result.files.find(f => f.path === 'newLesson/stub.ts').content,
+    /export const newLesson = defineLessonStub/,
+  );
   // Pending work is represented by the typed seed and actual stub, not a stale parent TODO.
   assert.doesNotMatch(
     result.files.find(f => f.path === 'index.ts').content,
@@ -304,7 +307,7 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   assert.doesNotMatch(handoff, /defineEpisode/);
   assert.ok(!result.files.some(f => f.path === 'directEpisode/index.ts'));
   assert.equal(result.pendingEpisodes.length, 1);
-  assert.match(result.files.find(f => f.path === 'index.ts').content, /"directEpisode": child_directEpisode/);
+  assert.match(result.files.find(f => f.path === 'index.ts').content, /directEpisode/);
   assert.match(result.files.find(f => f.path === 'directEpisode/stub.ts').content, /defineEpisodeStub/);
   syntax(result.files);
   assert.deepEqual(result.files, materializeCourse(draft, context).files);

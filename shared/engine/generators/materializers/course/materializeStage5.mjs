@@ -369,13 +369,13 @@ export function materializeCourseStage5(input, options = {}) {
           kind: 'typescript',
           content: [
             "import { placeLesson } from '@svitlo/engine/build';",
-            'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
+            'import { ' + lesson.exportName + ' } from ' + JSON.stringify(lesson.importPath) + ';',
             ...extraImports,
             '',
             renderBlockerTodo(
               'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
             ),
-            'export const ' + placementSlug + ' = placeLesson(originalLesson, ' + patchSource + ');',
+            'export const ' + placementSlug + ' = placeLesson(' + lesson.exportName + ', ' + patchSource + ');',
             '',
           ].join('\n'),
         },

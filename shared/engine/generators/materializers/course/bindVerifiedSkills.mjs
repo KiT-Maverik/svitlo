@@ -11,14 +11,10 @@ const record = value => value !== null && typeof value === 'object' && !Array.is
 /** Authoritative mapping is supplied by a trusted, source-revision-checked dependency resolver. */
 export function bindVerifiedSkills(
   params,
-  { resolveSkill, textbookRoot, directory = '', includeLanguages = false, reservedNames = [] } = {},
+  { resolveSkill, textbookRoot, directory = '', includeLanguages = false } = {},
 ) {
   if (!record(params)) throw Error(directory + ': expected Course params object');
-  if (!Array.isArray(reservedNames) || reservedNames.some(value => typeof value !== 'string'))
-    throw Error(directory + ': invalid generated import reservation');
   const imports = new Map();
-  const aliases = new Map();
-  const reserved = new Set(['content', 'languages', 'Languages', ...reservedNames]);
   const resolve = id => {
     if (typeof id !== 'string' || !uuid.test(id)) throw Error(directory + ': invalid Skill UUID');
     if (typeof resolveSkill !== 'function') throw Error(directory + ': trusted Skill resolver required');
@@ -47,19 +43,13 @@ export function bindVerifiedSkills(
       typeof item.build?.props !== 'function'
     )
       throw Error(directory + ': unapproved, stale or mismatched Skill binding ' + id);
-    let alias = aliases.get(id);
-    if (!alias) {
-      alias = binding.exportName;
-      let collisionIndex = 2;
-      while (reserved.has(alias) || imports.has(alias)) alias = binding.exportName + '_' + collisionIndex++;
-      aliases.set(id, alias);
-    }
     const entry = { exportName: binding.exportName, importPath: binding.importPath, sourceSha: binding.sourceSha };
-    const existing = imports.get(alias);
-    if (existing && JSON.stringify(existing) !== JSON.stringify(entry))
-      throw Error(directory + ': conflicting Skill alias ' + alias);
-    imports.set(alias, entry);
-    return alias + '.id';
+    const key = binding.importPath + '::' + binding.exportName;
+    const previous = imports.get(key);
+    if (previous && JSON.stringify(previous) !== JSON.stringify(entry))
+      throw Error(directory + ': inconsistent verified Skill import ' + binding.exportName);
+    imports.set(key, entry);
+    return binding.exportName + '.id';
   };
   const fields = Object.entries(params)
     .filter(([key]) => key !== 'languages')
@@ -87,16 +77,8 @@ export function bindVerifiedSkills(
   if (includeLanguages) fields.push('languages');
   return {
     source: '{ ' + fields.join(', ') + (fields.length ? ',' : '') + ' }',
-    imports: [...imports]
-      .sort(([a], [b]) => a.localeCompare(b))
-      .map(
-        ([alias, ref]) =>
-          'import { ' +
-          ref.exportName +
-          (ref.exportName === alias ? '' : ' as ' + alias) +
-          ' } from ' +
-          JSON.stringify(ref.importPath) +
-          ';',
-      ),
+    imports: [...imports.values()]
+      .sort((a, b) => a.importPath.localeCompare(b.importPath))
+      .map(ref => 'import { ' + ref.exportName + ' } from ' + JSON.stringify(ref.importPath) + ';'),
   };
 }

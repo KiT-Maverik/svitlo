@@ -21,7 +21,9 @@ const stubSource = ({ kind, id, slug }) =>
   api(kind) +
   " } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete the child, replace its parent import, then delete this stub.\n' +
-  'export const stub = ' +
+  'export const ' +
+  slug +
+  ' = ' +
   api(kind) +
   '({ id: ' +
   JSON.stringify(id) +
@@ -39,7 +41,7 @@ function parent(kind, depth, directChapter = false) {
     'import { ' +
     owner +
     ", defineLessonStub } from '@svitlo/engine/build';\n" +
-    'import { stub as child_' +
+    'import { ' +
     slug +
     ' } from "' +
     prefix +
@@ -50,8 +52,6 @@ function parent(kind, depth, directChapter = false) {
     JSON.stringify(ids.sibling) +
     ', slug: "before" }),\n' +
     '    ' +
-    JSON.stringify(slug) +
-    ': child_' +
     slug +
     ',\n' +
     '    after: defineLessonStub({ id: "44444444-4444-4444-8444-444444444444", slug: "after" }) },\n' +
@@ -68,7 +68,7 @@ function parent(kind, depth, directChapter = false) {
     id,
     slug,
     placement: directChapter ? placement.replace('moduleOne', 'directChapter') : placement,
-    exportName: 'config_' + slug,
+    exportName: slug,
     stubSource: stubSource({ kind, id, slug }),
   };
 }
@@ -112,8 +112,8 @@ test('read-only reservation rejects foreign, executable, aliased or malformed st
     stub.replace('defineEpisodeStub', 'defineAssessmentStub'),
     stub.replace(JSON.stringify(ids.episode), JSON.stringify(ids.sibling)),
     stub.replace('slug: "story"', 'slug: "other"'),
-    stub.replace('export const stub = ', 'export const wrong = '),
-    stub.replace('export const stub = ', 'export { stub };\nconst stub = '),
+    stub.replace('export const story = ', 'export const wrong = '),
+    stub.replace('export const story = ', 'export { story };\nconst story = '),
     stub.replace('import { defineEpisodeStub }', 'import { defineEpisodeStub as unsafe }'),
     stub.replace(' });', ', extra: evil() });'),
     stub + '\nprocess.exit(1);',
@@ -125,14 +125,14 @@ test('read-only reservation rejects foreign, executable, aliased or malformed st
   const annotated = source.replace('const content', '// TODO (BLOCKER): human review is editorial only\nconst content');
   assert.equal(verifyPendingCourseParent(annotated, allocation), true);
   for (const changed of [
-    source.replace('child_story', 'other_story'),
-    source.replace('stub as child_story', 'stub as other_story'),
+    source.replace('import { story }', 'import { other_story }'),
+    source.replace('story,\n', 'other_story,\n'),
     source.replace('from "./story/stub"', 'from "./content/foreign/stub"'),
     source.replace('defineCourse', 'defineChapter'),
     source.replace('const content', 'const changed'),
     source.replace('order: ["before", "story", "after"]', 'order: ["after", "story", "after"]'),
     source + '\nprocess.exit(1);',
-    source.replace('const content', 'const also = child_story;\nconst content'),
+    source.replace('const content', 'const also = story;\nconst content'),
   ])
     assert.throws(() => verifyPendingCourseParent(changed, allocation));
 });
@@ -184,9 +184,9 @@ test('mixed Course child stubs remain reserved independently with unchanged orde
   ];
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    slots.map(slot => 'import { stub as child_' + slot.slug + ' } from "./' + slot.slug + '/stub";\n').join('') +
+    slots.map(slot => 'import { ' + slot.slug + ' } from "./' + slot.slug + '/stub";\n').join('') +
     'const content = { items: {' +
-    slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
+    slots.map(slot => slot.slug).join(', ') +
     '}, order: ' +
     JSON.stringify(slots.map(slot => slot.slug)) +
     ' };\n' +
@@ -275,10 +275,10 @@ test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent i
     return (
       [
         'import { ' + definition + (overridden ? ', placeLesson' : '') + ' } from "@svitlo/engine/build";',
-        'import { sibling as child_other } from "#lessonsData/' + siblingId.at(-1) + '/' + siblingId + '/index";',
-        'import { lesson as child_newLesson } from "#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index";',
-        'const content = { items: { "other": child_other, "newLesson": ' +
-          (overridden ? 'placeLesson(child_newLesson, {})' : 'child_newLesson') +
+        'import { sibling } from "#lessonsData/' + siblingId.at(-1) + '/' + siblingId + '/index";',
+        'import { lesson } from "#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index";',
+        'const content = { items: { "other": sibling, "newLesson": ' +
+          (overridden ? 'placeLesson(lesson, {})' : 'lesson') +
           ' }, order: ["other", "newLesson"] };',
         'export const owner = ' + definition + '({ content });',
       ].join('\n') + '\n'
@@ -317,7 +317,7 @@ test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent i
     );
     assert.throws(
       () =>
-        resolveIntegratedCourseLesson(source.replace('"newLesson": child_newLesson', '"newLesson": child_other'), {
+        resolveIntegratedCourseLesson(source.replace('"newLesson": lesson', '"newLesson": sibling'), {
           slug: 'newLesson',
           ownerKind,
         }),
