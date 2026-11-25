@@ -222,7 +222,7 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);
-  assert.match(main, /params: \{ "outcomes": \{ "skills": \[testExplainLightTravel\\.id\] \}/);
+  assert.match(main, /params: \{ "outcomes": \{ "skills": \[testExplainLightTravel\.id\] \}/);
   assert.equal(out.id, IDs.module);
   syntax(out.files);
 });
