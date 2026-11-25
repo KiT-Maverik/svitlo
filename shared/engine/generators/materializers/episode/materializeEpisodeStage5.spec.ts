@@ -81,7 +81,7 @@ test('Episode Stage 5 owns one typed constants module and nested descendants use
   assert.match(root, /Episode media generation at Stage 9/);
   assert.match(root, /human QA acceptance for Episode Stage 10/);
   const section = file('sections/introduction/index.ts') ?? '';
-  assert.match(section, /#coursesData\/1\/e1100000-0000-4000-8000-000000000001\/content\/transition\/constants/);
+  assert.match(section, /#coursesData\/1\/e1100000-0000-4000-8000-000000000001\/constants/);
   assert.equal(plan.publishable, false);
   assert.deepEqual(plan, materializeEpisodeStage5(reviewed(), { source }));
   for (const entry of plan.files.filter(file => file.kind === 'typescript')) {
