@@ -2,6 +2,7 @@ import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const SAFE = /^[A-Za-z][A-Za-z0-9]*$/;
+const safe = value => SAFE.test(value) && !['constructor', 'prototype', '__proto__'].includes(value);
 const apis = Object.freeze({
   lesson: 'defineLessonStub',
   episode: 'defineEpisodeStub',
@@ -25,9 +26,9 @@ export function renderPendingChildStub({ directory, kind, id, slug }) {
   if (
     !api ||
     !UUID.test(id ?? '') ||
-    !SAFE.test(slug ?? '') ||
+    !safe(slug ?? '') ||
     typeof directory !== 'string' ||
-    directory.split('/').some(part => !SAFE.test(part)) ||
+    directory.split('/').some(part => !safe(part)) ||
     directory.split('/').at(-1) !== slug
   )
     throw Error('Invalid pending Course child stub ownership or identity');
