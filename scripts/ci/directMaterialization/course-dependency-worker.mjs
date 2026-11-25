@@ -8,7 +8,6 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { createJiti } from 'jiti';
 
-process.on('uncaughtException', () => process.exit(73));
 const { input, source, textbookRoot, references } = JSON.parse(fs.readFileSync(0, 'utf8'));
 if (!/^content\/[a-z][a-z0-9-]*$/.test(textbookRoot) || !Array.isArray(references) ||
     references.length > 250 || !source || !input)
