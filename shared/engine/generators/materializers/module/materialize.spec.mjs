@@ -218,7 +218,7 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
   assert.ok(!out.files.some(file => file.path === 'directLesson/index.ts'));
   assert.match(
     out.files.find(file => file.path === 'index.ts').content,
-    /import \{ independentLesson as child_directLesson \} from "#lessonsData\//,
+    /import \{ independentLesson \} from "#lessonsData\//,
   );
   const main = out.files.find(file => file.path === 'index.ts').content;
   assert.match(main, /defineModule</);

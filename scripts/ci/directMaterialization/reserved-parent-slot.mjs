@@ -60,6 +60,8 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   if (!ts.isObjectLiteralExpression(items) || !ts.isArrayLiteralExpression(order))
     throw Error('Integrated Lesson parent items/order must be literal');
   const entries = items.properties.map(property => {
+    if (ts.isShorthandPropertyAssignment(property) && safe(property.name.text))
+      return { key: property.name.text, value: property.name };
     if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
       throw Error('Unexpected integrated Lesson item syntax');
     return { key: name(property.name), value: unwrap(property.initializer) };
@@ -78,16 +80,16 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
     throw Error('Integrated Lesson parent items/order mismatch');
   const item = entries.find(entry => entry.key === slug)?.value;
   if (!item) throw Error('Upstream Lesson is not integrated into its reviewed Course slot');
-  const alias = 'child_' + slug;
-  const direct = ts.isIdentifier(item) && item.text === alias;
+  const direct = ts.isIdentifier(item);
   const placed =
     ts.isCallExpression(item) &&
     ts.isIdentifier(item.expression) &&
     item.expression.text === 'placeLesson' &&
     item.arguments.length === 2 &&
-    ts.isIdentifier(unwrap(item.arguments[0])) &&
-    unwrap(item.arguments[0]).text === alias;
+    ts.isIdentifier(unwrap(item.arguments[0]));
   if (!direct && !placed) throw Error('Upstream Lesson is not integrated into its reviewed Course slot');
+  const localName = direct ? item.text : unwrap(item.arguments[0]).text;
+  if (!identifier(localName)) throw Error('Invalid integrated Lesson identifier');
   const owned = imports.filter(statement => {
     const clause = statement.importClause;
     return (
@@ -95,7 +97,7 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
       !clause.isTypeOnly &&
       clause.namedBindings &&
       ts.isNamedImports(clause.namedBindings) &&
-      clause.namedBindings.elements.some(element => !element.isTypeOnly && element.name.text === alias)
+      clause.namedBindings.elements.some(element => !element.isTypeOnly && element.name.text === localName)
     );
   });
   if (
@@ -110,15 +112,15 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   const match =
     ts.isStringLiteral(specifier) &&
     /^#lessonsData\/([a-f0-9])\/([a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12})\/index$/.exec(specifier.text);
-  if (!binding.propertyName || !identifier(binding.propertyName.text) || !match || match[1] !== match[2].at(-1))
+  if (!identifier(binding.propertyName?.text ?? binding.name.text) || !match || match[1] !== match[2].at(-1))
     throw Error('Upstream Lesson import must bind a canonical verified Lesson UUID');
   const occurrences = { count: 0 };
   const visit = node => {
-    if (ts.isIdentifier(node) && node.text === alias) occurrences.count++;
+    if (ts.isIdentifier(node) && node.text === localName) occurrences.count++;
     ts.forEachChild(node, visit);
   };
   ts.forEachChild(ast, visit);
-  if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson alias reference');
+  if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson import reference');
   const definitions = ownerKinds.map(kind => 'define' + kind[0].toUpperCase() + kind.slice(1));
   const parents = declarations.filter(declaration => {
     const call = unwrap(declaration.initializer);
@@ -198,9 +200,9 @@ export function verifyOwnedCourseStub(source, { kind, id, slug }) {
     !(exported.declarationList.flags & ts.NodeFlags.Const) ||
     exported.declarationList.declarations.length !== 1 ||
     !ts.isIdentifier(exported.declarationList.declarations[0].name) ||
-    exported.declarationList.declarations[0].name.text !== 'stub'
+    exported.declarationList.declarations[0].name.text !== slug
   )
-    throw Error('Owned Course stub must export exactly const stub');
+    throw Error('Owned Course stub must export its placement slug');
   const call = unwrap(exported.declarationList.declarations[0].initializer);
   if (
     !ts.isCallExpression(call) ||
@@ -268,10 +270,10 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
     !ts.isNamedImports(clause.namedBindings) ||
     clause.namedBindings.elements.length !== 1 ||
     clause.namedBindings.elements[0].isTypeOnly ||
-    clause.namedBindings.elements[0].propertyName?.text !== 'stub' ||
-    clause.namedBindings.elements[0].name.text !== 'child_' + slug
+    clause.namedBindings.elements[0].propertyName ||
+    clause.namedBindings.elements[0].name.text !== slug
   )
-    throw Error('Unexpected imported Course stub alias/export');
+    throw Error('Unexpected imported Course stub export');
   if (
     imported.some(
       statement =>
@@ -294,6 +296,8 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   if (!ts.isObjectLiteralExpression(itemNode) || !ts.isArrayLiteralExpression(orderNode))
     throw Error('Parent items/order must be literals');
   const items = itemNode.properties.map(property => {
+    if (ts.isShorthandPropertyAssignment(property) && safe(property.name.text))
+      return { key: property.name.text, value: property.name };
     if (!ts.isPropertyAssignment(property) || !safe(name(property.name))) throw Error('Unexpected parent item syntax');
     return { key: name(property.name), value: unwrap(property.initializer) };
   });
@@ -310,15 +314,15 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   )
     throw Error('Incomplete or duplicate immediate parent order');
   const owned = items.find(item => item.key === slug);
-  if (!owned || !ts.isIdentifier(owned.value) || owned.value.text !== 'child_' + slug)
-    throw Error('Course pending child slot does not use its approved stub alias');
+  if (!owned || !ts.isIdentifier(owned.value) || owned.value.text !== slug)
+    throw Error('Course pending child slot does not use its approved stub export');
   let references = 0;
   const visit = node => {
-    if (ts.isIdentifier(node) && node.text === 'child_' + slug) references++;
+    if (ts.isIdentifier(node) && node.text === slug) references++;
     ts.forEachChild(node, visit);
   };
   ts.forEachChild(ast, visit);
-  if (references !== 2) throw Error('Course pending stub alias has ambiguous references');
+  if (references !== 2) throw Error('Course pending stub export has ambiguous references');
   // A Chapter may belong directly to a Course or to a Module. Path depth
   // constrains the legal owners but cannot distinguish the two at level one.
   const ownerDepth = depth - 1;

@@ -35,17 +35,17 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
     [directory + '/sections/content/p1/index.ts', directory + '/sections/content/index.ts'],
   );
   assert.match(first.files[0].content, /section_content is literal user text/);
-  assert.match(first.files[1].content, /import \{ contentBlockOverride as block_p1 \} from "\.\/p1"/);
-  assert.match(first.files[1].content, /"p1": block_p1/);
+  assert.match(first.files[1].content, /import \{ p1 \} from "\.\/p1"/);
+  assert.match(first.files[1].content, /"p1": p1/);
   assert.match(first.files[1].content, /"p2": false/);
-  assert.match(first.patchSource, /"content": section_content/);
+  assert.match(first.patchSource, /"content": content/);
   assert.match(first.patchSource, /"practice": false/);
   assert.doesNotMatch(first.patchSource, /section_content is literal user text/);
-  assert.deepEqual(first.imports, ['import { sectionOverride as section_content } from "./sections/content";']);
+  assert.deepEqual(first.imports, ['import { content } from "./sections/content";']);
 });
 
 test('additional trusted Sections are referenced through the Course-owned Section tree', () => {
-  const alias = 'added_section_exhibitionPractice_shadowPractice_extra';
+  const exportName = 'extra';
   const rawPatch = {
     section: {
       additionalItems: { extra: { $ref: 'lesson-section' } },
@@ -53,18 +53,18 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
     },
   };
   const binding = {
-    aliases: { extra: alias },
-    imports: ['import { extra as ' + alias + ' } from "#lessonsData/1/example/sections/extra";'],
+    aliases: { extra: exportName },
+    imports: ['import { extra } from "#lessonsData/1/example/sections/extra";'],
   };
   const result = renderCourseLessonPatch({ directory, rawPatch, binding });
   assert.deepEqual(
     result.files.map(file => file.path),
     [directory + '/sections/extra/index.ts'],
   );
-  assert.match(result.files[0].content, /export const sectionAddition = added_section_/);
-  assert.match(result.patchSource, new RegExp('"extra": ' + alias));
+  assert.match(result.files[0].content, /export \{ extra \}/);
+  assert.match(result.patchSource, new RegExp('"extra": ' + exportName));
   assert.doesNotMatch(result.patchSource, /"\$ref"/);
-  assert.deepEqual(result.imports, ['import { sectionAddition as ' + alias + ' } from "./sections/extra";']);
+  assert.deepEqual(result.imports, ['import { extra } from "./sections/extra";']);
 });
 
 test('metadata-only patches stay in their placement index without fake children', () => {

@@ -55,25 +55,24 @@ test('binds actual Skill IDs while retaining exact target order and unrelated ta
   assert(result.imports.some(i => i.includes('#skillsData/testShapes/testRoundShapes/testRecognizeCircle')));
 });
 
-test('uses readable aliases only when Skill names collide with imports or each other', () => {
+test('preserves Skill source export names even when they collide; TypeScript owns diagnostics', () => {
   const source = bindVerifiedSkills(
     { outcomes: { skills: [first, second] } },
     {
       ...ctx,
-      reservedNames: ['testExplainLightTravel'],
       resolveSkill: request =>
         request.id === second ? { ...approve(request), exportName: 'testExplainLightTravel' } : approve(request),
     },
   );
-  assert.match(source.source, /testExplainLightTravel_2\.id/);
-  assert.match(source.source, /testExplainLightTravel_3\.id/);
+  assert.match(source.source, /testExplainLightTravel\.id/);
+  assert.doesNotMatch(source.source, /testExplainLightTravel_[23]\.id/);
   assert.equal(source.imports.length, 2);
-  assert(source.imports.every(line => line.includes(' as testExplainLightTravel_')));
+  assert(source.imports.every(line => line.includes('import { testExplainLightTravel } from ')));
+  assert(source.imports.every(line => !line.includes(' as ')));
   const again = bindVerifiedSkills(
     { outcomes: { skills: [first, second] } },
     {
       ...ctx,
-      reservedNames: ['testExplainLightTravel'],
       resolveSkill: request =>
         request.id === second ? { ...approve(request), exportName: 'testExplainLightTravel' } : approve(request),
     },

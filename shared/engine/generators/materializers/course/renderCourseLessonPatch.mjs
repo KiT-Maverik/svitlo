@@ -72,10 +72,10 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
           files.push({
             path,
             kind: 'typescript',
-            content: 'export const contentBlockOverride = ' + literal(blockPatch) + ';\n',
+            content: 'export const ' + blockKey + ' = ' + literal(blockPatch) + ';\n',
           });
-          childImports.push('import { contentBlockOverride as block_' + blockKey + ' } from "./' + blockKey + '";');
-          childRefs.set(keyPath(['content', 'items', blockKey]), 'block_' + blockKey);
+          childImports.push('import { ' + blockKey + ' } from "./' + blockKey + '";');
+          childRefs.set(keyPath(['content', 'items', blockKey]), blockKey);
         }
       }
       files.push({
@@ -84,39 +84,44 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding }) {
         content: [
           ...childImports,
           '',
-          'export const sectionOverride = ' + literal(sectionPatch, [], childRefs) + ';',
+          'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ';',
           '',
         ].join('\n'),
       });
-      imports.push('import { sectionOverride as section_' + sectionKey + ' } from "./sections/' + sectionKey + '";');
-      rootRefs.set(keyPath(['section', 'items', sectionKey]), 'section_' + sectionKey);
+      imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
+      rootRefs.set(keyPath(['section', 'items', sectionKey]), sectionKey);
     }
   }
   if (record(section) && record(section.additionalItems)) {
     const aliases = binding.aliases ?? {};
     for (const [sectionKey] of Object.entries(section.additionalItems)) {
       clean(sectionKey, 'section.additionalItems');
-      const alias = aliases[sectionKey];
-      if (typeof alias !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(alias))
+      const exportName = aliases[sectionKey];
+      if (typeof exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName))
         throw Error('Missing trusted added Section binding: ' + sectionKey);
       const created = binding.createdSections?.[sectionKey];
       if (created) {
         if (!Array.isArray(created.files) || typeof created.exportName !== 'string')
           throw Error('Invalid generated Course-owned Section: ' + sectionKey);
         files.push(...created.files);
-        imports.push('import { ' + created.exportName + ' as ' + alias + ' } from "./sections/' + sectionKey + '";');
-        rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), alias);
+        imports.push('import { ' + created.exportName + ' } from "./sections/' + sectionKey + '";');
+        rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), created.exportName);
         continue;
       }
-      const dependency = binding.imports.find(line => line.includes(' as ' + alias + ' } from '));
+      const dependency = binding.imports.find(line => line.includes('import { ' + exportName + ' } from '));
       if (!dependency) throw Error('Missing trusted Section import: ' + sectionKey);
       files.push({
         path: directory + '/sections/' + sectionKey + '/index.ts',
         kind: 'typescript',
-        content: dependency + '\nexport const sectionAddition = ' + alias + ';\n',
+        content:
+          dependency +
+          '\n' +
+          (sectionKey === exportName
+            ? 'export { ' + exportName + ' };\n'
+            : 'export const ' + sectionKey + ' = ' + exportName + ';\n'),
       });
-      imports.push('import { sectionAddition as ' + alias + ' } from "./sections/' + sectionKey + '";');
-      rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), alias);
+      imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
+      rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), sectionKey);
     }
   }
   return {

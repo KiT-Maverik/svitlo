@@ -44,10 +44,7 @@ test('inert Section reference binds to approved Configurator without mutating re
   assert.match(result.patchSource, /"allowSkipping": false/);
   assert.match(result.patchSource, /"intro": false/);
   assert.match(result.patchSource, /"order": \["practice"\]/);
-  assert.match(
-    result.patchSource,
-    /"additionalItems": \{"practice": added_section_content_chapter_practice_practice\}/,
-  );
+  assert.match(result.patchSource, /"additionalItems": \{"practice": practice\}/);
   assert.equal(result.imports.length, 1);
   assert.match(result.imports[0], /#lessonsData\/1\/1368c1c9-2fd8-4007-b2c8-6bbfd98d5111\/sections\/practice/);
   assert.equal(result.patchSource.includes('"$ref"'), false);
@@ -57,11 +54,12 @@ test('inert Section reference binds to approved Configurator without mutating re
   );
 });
 
-test('each Course placement has distinct aliases and independent patch bindings', () => {
+test('Course placements keep the verified Section export name rather than inventing aliases', () => {
   const first = bindCourseLessonPatch(patch(), { resolveAddedSection, placementPath: 'content/first' });
   const second = bindCourseLessonPatch(patch(), { resolveAddedSection, placementPath: 'content/second' });
-  assert.notEqual(first.imports[0], second.imports[0]);
-  assert.notEqual(first.patchSource, second.patchSource);
+  assert.equal(first.imports[0], second.imports[0]);
+  assert.equal(first.patchSource, second.patchSource);
+  assert.equal(first.aliases.practice, 'practice');
   assert.equal(first.patch.section.additionalItems.practice, second.patch.section.additionalItems.practice);
 });
 

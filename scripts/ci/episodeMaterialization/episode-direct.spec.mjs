@@ -65,15 +65,15 @@ const meta = {
 const stubSource =
   "import { defineEpisodeStub } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Complete and validate Episode resources, then have the Coding Agent integrate the Configurator and delete this stub.\n' +
-  'export const stub = defineEpisodeStub({ id: ' +
+  'export const episodeOne = defineEpisodeStub({ id: ' +
   JSON.stringify(episodeId) +
   ', slug: "episodeOne" });\n';
 const parent =
   "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
-  'import { stub as child_episodeOne } from "./episodeOne/stub";\n' +
+  'import { episodeOne } from "./episodeOne/stub";\n' +
   'const content = { items: { ' +
   '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
-  '"episodeOne": child_episodeOne, ' +
+  'episodeOne, ' +
   '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
   '}, order: ["before", "episodeOne", "after"] };\n' +
   'export const demo = defineCourse({ id: ' +
@@ -122,11 +122,11 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
       .map(entry => entry.path),
     [meta.sourcePath],
   );
-  assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/episodeOne\/stub";/);
+  assert.match(parent, /import \{ episodeOne \} from "\.\/episodeOne\/stub";/);
   assert.match(stubSource, new RegExp(episodeId));
   for (const changed of [
-    parent.replace('stub as child_episodeOne', 'stub as child_other'),
-    parent.replace('"episodeOne": child_episodeOne', '"episodeOne": unreviewed'),
+    parent.replace('import { episodeOne }', 'import { other }'),
+    parent.replace('episodeOne', 'episodeOne: unreviewed'),
     parent.replace('order: ["before", "episodeOne", "after"]', 'order: ["before", "after"]'),
   ])
     assert.throws(() => composeEpisodeDirectPlan(handoff, reviewed, meta, changed, stubSource, worker));
