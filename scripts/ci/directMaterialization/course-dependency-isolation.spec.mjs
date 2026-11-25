@@ -139,6 +139,16 @@ test('Course isolated loader mounts only trusted default-branch dependency code'
   assert(!calls[0].args.some(value => /GH_TOKEN|GITHUB_TOKEN/.test(value)));
   assert.equal(calls[1].args[0], 'rm');
 
+  const failedWorker = (binary, args) =>
+    binary === 'docker' && args[0] === 'run'
+      ? { status: 1, stderr: 'Invalid nested Scene schema at practice' }
+      : { status: 0 };
+  assert.throws(
+    () => runIsolatedCourseDependencies(request, failedWorker),
+    /Invalid nested Scene schema at practice/,
+    'tokenless worker failures should identify the underlying validation error',
+  );
+
   calls.length = 0;
   const withAdded = {
     config: {

@@ -241,10 +241,20 @@ export function runIsolatedCourseDependencies(
       timeout: 120000,
       maxBuffer: 36 * 1024 * 1024,
     });
-    if (result.error || result.status !== 0)
+    if (result.error || result.status !== 0) {
+      // Worker logs contain no GitHub credentials. Preserve a bounded diagnostic
+      // so a source validation error is distinguishable from a Docker failure.
+      const detail = String(result.error?.message ?? result.stderr ?? '')
+        .slice(-2000)
+        .replace(/[\x00-\x1f\x7f]/g, ' ')
+        .trim();
       throw Error(
-        'Isolated trusted Course dependency failed (' + (result.error ? 'launch error' : 'exit ' + result.status) + ')',
+        'Isolated trusted Course dependency failed (' +
+          (result.error ? 'launch error' : 'exit ' + result.status) +
+          ')' +
+          (detail ? ': ' + detail : ''),
       );
+    }
     let plan;
     try {
       plan = JSON.parse(result.stdout);

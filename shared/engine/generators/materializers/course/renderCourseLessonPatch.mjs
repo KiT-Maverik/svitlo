@@ -16,9 +16,13 @@ const lessonTypes = sourceLesson => [
   'type LessonPatch = Parameters<typeof ' + sourceLesson.exportName + '.build.overrides>[0];',
 ];
 const sectionType = key =>
-  'type SectionPatch = Exclude<NonNullable<NonNullable<LessonPatch["section"]>["items"]>[' + JSON.stringify(key) + '], undefined | false>;';
+  'type SectionPatch = Exclude<NonNullable<NonNullable<LessonPatch["section"]>["items"]>[' +
+  JSON.stringify(key) +
+  '], undefined | false>;';
 const blockType = key =>
-  'type BlockPatch = Exclude<NonNullable<NonNullable<SectionPatch["content"]>["items"]>[' + JSON.stringify(key) + '], undefined | false>';
+  'type BlockPatch = Exclude<NonNullable<NonNullable<SectionPatch["content"]>["items"]>[' +
+  JSON.stringify(key) +
+  '], undefined | false>';
 const clean = (value, where) => {
   if (!slug.test(value) || reserved.has(value)) throw Error(where + ': invalid Course-owned override path');
 };
@@ -68,10 +72,12 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
     !record(sourceLesson) ||
     !lessonImportPattern.test(sourceLesson.importPath ?? '') ||
     typeof sourceLesson.exportName !== 'string'
-  ) throw Error('Verified standalone Lesson import required to typecheck Course-owned fragments');
+  )
+    throw Error('Verified standalone Lesson import required to typecheck Course-owned fragments');
   createSourceIdentifierRegistry('Course Lesson source', ['LessonPatch'])(sourceLesson.exportName, 'verified Lesson');
   const imports = [];
   const files = [];
+  const sceneScaffolds = [];
   const rootRefs = new Map();
   const section = rawPatch.section;
   if (record(section) && record(section.items)) {
@@ -80,14 +86,24 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
       if (!record(sectionPatch)) continue; // disabled entries stay false in parent
       const childRefs = new Map();
       const childImports = [];
-      const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [sourceLesson.exportName, 'LessonPatch', 'SectionPatch', sectionKey]);
+      const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [
+        sourceLesson.exportName,
+        'LessonPatch',
+        'SectionPatch',
+        sectionKey,
+      ]);
       const content = sectionPatch.content;
       if (record(content) && record(content.items)) {
         for (const [blockKey, blockPatch] of Object.entries(content.items)) {
           clean(blockKey, 'section.content.items');
           if (!record(blockPatch)) continue;
           const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
-          createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [sourceLesson.exportName, 'LessonPatch', 'SectionPatch', 'BlockPatch'])(blockKey, path);
+          createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [
+            sourceLesson.exportName,
+            'LessonPatch',
+            'SectionPatch',
+            'BlockPatch',
+          ])(blockKey, path);
           childNames(blockKey, path);
           files.push({
             path,
@@ -133,6 +149,11 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
         if (!Array.isArray(created.files) || typeof created.exportName !== 'string')
           throw Error('Invalid generated Course-owned Section: ' + sectionKey);
         files.push(...created.files);
+        if (created.sceneScaffolds !== undefined) {
+          if (!Array.isArray(created.sceneScaffolds))
+            throw Error('Invalid Scene scaffold list for Section: ' + sectionKey);
+          sceneScaffolds.push(...created.sceneScaffolds);
+        }
         imports.push('import { ' + created.exportName + ' } from "./sections/' + sectionKey + '";');
         rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), created.exportName);
         continue;
@@ -155,6 +176,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
   }
   return {
     files,
+    sceneScaffolds,
     imports,
     patchSource: literal(rawPatch, [], rootRefs),
   };
