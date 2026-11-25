@@ -1,5 +1,0 @@
-export * from './languages.schemas';
-export * from './locale.schemas';
-export * from './disabilities.schemas';
-export * from './misc.schemas';
-export * from './media.schemas';

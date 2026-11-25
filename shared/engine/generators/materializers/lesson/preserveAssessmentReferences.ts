@@ -51,6 +51,12 @@ function at(object: ts.Expression, keys: string[]): ts.Expression | undefined {
 function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
   const candidates: ts.Expression[] = [];
   for (const statement of file.statements) {
+    // The canonical inert draft may export its Stage object directly rather
+    // than using an executable materializer call or intermediate const.
+    if (ts.isExportAssignment(statement)) {
+      const root = unwrap(statement.expression);
+      if (at(root, ['config', 'section', 'items']) && at(root, ['production'])) candidates.push(root);
+    }
     if (ts.isExpressionStatement(statement) && ts.isCallExpression(statement.expression)) {
       const call = statement.expression;
       if (
@@ -119,6 +125,7 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     throw new Error('Stage 6: reviewed Stage 2 TypeScript has syntax errors');
   const root = findReviewedLesson(file);
   const imports = importedBindings(file);
+  const inertDefaultExport = file.statements.some(statement => ts.isExportAssignment(statement) && !statement.isExportEquals);
   const selected: Selection[] = [];
   for (const key of input.config.section.order) {
     const node = input.config.section.items[key];
@@ -143,6 +150,16 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     if (elements.length !== ids.length)
       throw new Error('Stage 6: reviewed ' + key + '.' + field + ' does not match evaluated Config');
     const generatedPath = posix.join(posix.dirname(sourcePath), 'sections', key, 'index.ts');
+    // In declarative drafts, UUID selections are inert reviewable data, not
+    // executable references. Emit the selected IDs but keep an explicit
+    // publication blocker until the Section owner integrates actual approved
+    // bank Configurator references. Legacy executable drafts retain the
+    // stricter imported-expression handling during the CI migration.
+    if (inertDefaultExport && elements.every((value, i) => ts.isStringLiteral(unwrap(value as ts.Expression)) &&
+        (unwrap(value as ts.Expression) as ts.StringLiteral).text === ids[i])) {
+      selected.push({ sectionKey: key, kind, field, ids, references: [] });
+      continue;
+    }
     const references = elements.map((value, i) => {
       const expression = unwrap(value as ts.Expression);
       if (!ts.isPropertyAccessExpression(expression) || expression.name.text !== 'id')
@@ -188,6 +205,12 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
   return selected;
 }
 function applySelection(source: string, filePath: string, selection: Selection): string {
+  if (selection.references.length === 0) {
+    return (
+      '// TODO (BLOCKER): Replace provisional ' + selection.field +
+      ' UUIDs with verified imported Question/Flashcard Configurator references before publication.\n' + source
+    );
+  }
   const file = ts.createSourceFile(filePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   if ((file as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] }).parseDiagnostics.length)
     throw new Error('Stage 6: malformed rendered Section TypeScript');

@@ -485,6 +485,23 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       }),
     /requires imported Question/,
   );
+  const inert = [
+    "import type { LessonWorkflowStage2 } from '@svitlo/engine/build';",
+    'export default ' + JSON.stringify(input, null, 2) + ' satisfies LessonWorkflowStage2;',
+    '',
+  ].join('\n');
+  const inertPlan = materializeLessonStage6(input, {
+    ...options,
+    sourceText: inert,
+    source: { ...reviewed, sourceBlobSha: blobSha(inert) },
+  });
+  for (const [name, expectedId] of [['reviewQuiz', id('07')], ['reviewCards', id('08')]] as const) {
+    const sectionSource = inertPlan.files.find(file => file.path === folder + 'sections/' + name + '/index.ts')?.content ?? '';
+    assert.match(sectionSource, /TODO \(BLOCKER\): Replace provisional/);
+    assert.match(sectionSource, new RegExp(expectedId));
+  }
+  assert.throws(() => assertLessonStage6ReleaseReady(inertPlan), /publication blocked/);
+
   const unbound = sourceFor(input).sourceText.replace('reviewQuestion.id', 'notImported.id');
   assert.throws(
     () =>

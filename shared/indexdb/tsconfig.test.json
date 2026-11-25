@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.build.json",
-  "compilerOptions": {
-    "outDir": "./.test-build",
-    "types": ["node"]
-  },
-  "include": ["*.ts", "controllers/**/*.ts", "schemas/**/*.ts", "utils/**/*.ts"],
-  "exclude": ["node_modules", "dist", ".test-build", "**/*.e2e.spec.ts"]
-}
