@@ -1,3 +1,4 @@
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { renderPendingChildStub, renderPendingChildImport } from '../course/renderPendingChildStub.mjs';
 import { bindVerifiedSkills } from '../course/bindVerifiedSkills.mjs';
@@ -130,6 +131,7 @@ export function materializeChapter(input, context = {}) {
   const planned = context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.params.languages: source language missing or duplicate');
+  const claim = createSourceIdentifierRegistry('chapter', ['defineChapter', 'Languages', 'content', exportName(slug)]]);
   const imports = [],
     inlineImports = new Set(),
     items = {},
@@ -322,18 +324,22 @@ export function materializeChapter(input, context = {}) {
     if (stage1Lesson || stage1Episode || pendingAssessment) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
+      claim(key, 'pending '+raw.type+' in content.items.'+key);
       imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location: './' }));
       items[key] = key;
     } else {
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
+        claim(child.sourceExportName, 'reused Lesson content.items.' + key);
         imports.push('import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';');
         if (child.patchSource !== undefined) {
+          if (!inlineImports.has('placeLesson')) claim('placeLesson', 'Build helper for content.items.' + key);
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + child.sourceExportName + ', ' + child.patchSource + ')';
         } else items[key] = child.sourceExportName;
       } else {
+        claim(child.exportName, 'content.items.' + key);
         imports.push('import { ' + child.exportName + ' } from "./' + key + '";');
         items[key] = child.exportName;
       }
