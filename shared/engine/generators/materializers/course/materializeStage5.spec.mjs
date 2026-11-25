@@ -851,7 +851,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
   assert.match(index, /import \{ placedLesson as child_reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ sectionAddition as added_section_reused_practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice as added_section_reused_practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"additionalItems": added_section_reused_practice/);
+  assert.match(wrapper, /"additionalItems": \{"practice": added_section_reused_practice\}/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
