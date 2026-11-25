@@ -78,6 +78,24 @@ test('Course-allocated seed is immutable; independent Assessment adds reviewed d
     /Invalid pinned Assessment seed/,
   );
   assert.equal(verifyAssessmentDesign(seed, input, meta, plan), true);
+  // Trusted source path, Course ID and reserved slug are independent of
+  // authored placement metadata: a foreign allocation must never pass.
+  assert.throws(
+    () => verifyAssessmentDesign(seed, input, { ...meta, courseId: assessmentId }, plan),
+    /immutable Course handoff/,
+  );
+  assert.throws(
+    () => verifyAssessmentDesign(seed, input, { ...meta, placement: 'content/foreign' }, plan),
+    /immutable Course handoff/,
+  );
+  assert.throws(
+    () => verifyAssessmentDesign(seed, { ...input, config: { ...input.config, id: courseId } }, meta, plan),
+    /immutable Course handoff/,
+  );
+  assert.throws(
+    () => verifyAssessmentDesign(seed, { ...input, config: { ...input.config, slug: 'foreign' } }, meta, plan),
+    /immutable Course handoff/,
+  );
   assert.throws(() => verifyAssessmentDesign(seed, { ...input, production: { ...input.production, reviewedCourseSourceBlobSha: 'f'.repeat(40) } }, meta, plan), /immutable/);
   assert.throws(() => parseAssessmentSeed(source.replace('AssessmentWorkflowSeed', 'ForeignSource')));
   assert.throws(() =>
