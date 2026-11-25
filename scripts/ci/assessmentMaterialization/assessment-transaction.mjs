@@ -7,7 +7,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { github, requireActor, safeBranch, report } from '../courseMaterialization/course-gate.mjs';
 import { pinnedGitReader, ordinary } from '../directMaterialization/pinned-git.mjs';
-import { runIsolatedMaterialization } from '../directMaterialization/run-isolated.mjs';
+import { executeTrustedDraft } from '../directMaterialization/trusted-draft.mjs';
 import { deriveCourseEntityId } from '../../../shared/engine/generators/materializers/course/deriveCourseEntityId.mjs';
 import { inspectAssessment, discoverAssessmentDraft } from './assessment-gate.mjs';
 import { restoreAssessmentPlacement, verifyAssessmentParentPatch } from './assessment-parent-verify.mjs';
@@ -291,7 +291,7 @@ export function assessmentCommitTree(manifest) {
   ];
 }
 
-export async function prepareAssessment(meta, root, execute = runIsolatedMaterialization) {
+export async function prepareAssessment(meta, root, execute = executeTrustedDraft) {
   const reader = pinnedGitReader(root);
   if (
     reader.git('rev-parse', 'HEAD').trim() !== meta.head ||
@@ -312,15 +312,20 @@ export async function prepareAssessment(meta, root, execute = runIsolatedMateria
   )
     throw Error('Assessment parent and allocated seed changed after review');
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
+  const pinned = { sourcePath: meta.sourcePath, sourceBlobSha: meta.sourceBlobSha, sourceCommitSha: meta.head };
   const worker = execute({
     trustedRoot: path.resolve(import.meta.dirname, '../../..'),
-    candidateRoot: root,
-    textbook: meta.textbookRoot,
     operation: 'assessment-stage4',
-    source: {
-      sourcePath: meta.sourcePath,
-      sourceBlobSha: meta.sourceBlobSha,
-      sourceCommitSha: meta.head,
+    source: pinned,
+    sourceText: reader.blob(tree.get(meta.sourcePath), meta.sourcePath),
+    options: {
+      source: pinned,
+      sourceText: reader.blob(tree.get(meta.sourcePath), meta.sourcePath),
+      verifySourceInput: (_input, actual, text) =>
+        actual.sourcePath === pinned.sourcePath &&
+        actual.sourceBlobSha === pinned.sourceBlobSha &&
+        actual.sourceCommitSha === pinned.sourceCommitSha &&
+        text === reader.blob(tree.get(meta.sourcePath), meta.sourcePath),
     },
   });
   verifyAssessmentDesign(seed, worker?.input, meta, worker?.plan);
