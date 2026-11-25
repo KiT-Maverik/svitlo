@@ -196,15 +196,15 @@ function assertCourseInventory(manifest, meta, entries) {
           throw Error('Course reused Lesson inventory does not match generated direct reference');
         const parent = parentSource(row);
         const expectedImport = '#lessonsData/' + row.id.at(-1) + '/' + row.id + '/index';
-        const alias = 'child_' + row.slug;
-        const placement = JSON.stringify(row.slug) + ': ' + alias;
+        const exportedName = row.kind === 'reused' ? row.sourceExportName : row.slug;
+        const placement =
+          exportedName === row.slug ? row.slug : JSON.stringify(row.slug) + ': ' + exportedName;
         // Pure reuse links the verified standalone Lesson directly. An
         // overridden placement instead links a Course-owned adapter, whose
         // exact original Lesson import and placeLesson invocation must both
         // be sealed at the owned placement/index.ts path.
         if (row.kind === 'reused') {
-          const line =
-            'import { ' + row.sourceExportName + ' as ' + alias + ' } from ' + JSON.stringify(expectedImport) + ';';
+          const line = 'import { ' + row.sourceExportName + ' } from ' + JSON.stringify(expectedImport) + ';';
           const normalized = parent.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
           if (
             row.overrideSourcePath !== undefined ||
@@ -215,7 +215,7 @@ function assertCourseInventory(manifest, meta, entries) {
         } else {
           const ownedPath = row.placementPath + '/index.ts';
           const relative = './' + row.slug;
-          const line = 'import { ' + row.slug + ' as ' + alias + ' } from ' + JSON.stringify(relative) + ';';
+          const line = 'import { ' + row.slug + ' } from ' + JSON.stringify(relative) + ';';
           const normalized = parent.replaceAll("'" + relative + "'", JSON.stringify(relative));
           const file = entries.get(ownedPath);
           if (
@@ -226,8 +226,7 @@ function assertCourseInventory(manifest, meta, entries) {
           )
             throw Error('Course Lesson override placement module missing or displaced');
           const source = Buffer.from(file.data, 'base64').toString('utf8');
-          const originalLine =
-            'import { ' + row.sourceExportName + ' as originalLesson } from ' + JSON.stringify(expectedImport) + ';';
+          const originalLine = 'import { ' + row.sourceExportName + ' } from ' + JSON.stringify(expectedImport) + ';';
           const imported = source.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
           if (
             imported.split('\n').filter(item => item === originalLine).length !== 1 ||
@@ -236,7 +235,7 @@ function assertCourseInventory(manifest, meta, entries) {
               '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
                 'export const ' +
                 row.slug +
-                ' = placeLesson(originalLesson, ',
+                ' = placeLesson(' + row.sourceExportName + ', ',
             )
           )
             throw Error('Course Lesson override placement module lacks verified original or Build patch');
