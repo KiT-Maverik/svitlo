@@ -91,7 +91,12 @@ export function bindVerifiedSkills(
       .sort(([a], [b]) => a.localeCompare(b))
       .map(
         ([alias, ref]) =>
-          'import { ' + ref.exportName + (ref.exportName === alias ? '' : ' as ' + alias) + ' } from ' + JSON.stringify(ref.importPath) + ';',
+          'import { ' +
+          ref.exportName +
+          (ref.exportName === alias ? '' : ' as ' + alias) +
+          ' } from ' +
+          JSON.stringify(ref.importPath) +
+          ';',
       ),
   };
 }

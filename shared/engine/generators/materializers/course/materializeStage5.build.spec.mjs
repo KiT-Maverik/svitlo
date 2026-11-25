@@ -201,10 +201,7 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
     (rootSource.match(/from "#skillsData\/testShapes\/testRoundShapes\/testRecognizeCircle"/g) ?? []).length,
     1,
   );
-  assert.match(
-    rootSource,
-    /"skills": \[testExplainLightTravel\.id, testRecognizeCircle\.id\]/,
-  );
+  assert.match(rootSource, /"skills": \[testExplainLightTravel\.id, testRecognizeCircle\.id\]/);
   const errors = diagnostics(source.files);
   assert.deepEqual(
     errors.map(error => {

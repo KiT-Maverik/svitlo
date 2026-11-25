@@ -32,8 +32,7 @@ const stubSource = ({ kind, id, slug }) =>
 function parent(kind, depth, directChapter = false) {
   const slug = kind === 'episode' ? 'story' : kind === 'lesson' ? 'lessonOne' : 'review';
   const owner = depth === 0 ? 'defineCourse' : depth === 1 && !directChapter ? 'defineModule' : 'defineChapter';
-  const placement =
-    depth === 0 ? slug : depth === 1 ? 'moduleOne/' + slug : 'moduleOne/chapterOne/' + slug;
+  const placement = depth === 0 ? slug : depth === 1 ? 'moduleOne/' + slug : 'moduleOne/chapterOne/' + slug;
   const id = ids[kind];
   const prefix = './';
   const source =
@@ -185,9 +184,7 @@ test('mixed Course child stubs remain reserved independently with unchanged orde
   ];
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
-    slots
-      .map(slot => 'import { stub as child_' + slot.slug + ' } from "./' + slot.slug + '/stub";\n')
-      .join('') +
+    slots.map(slot => 'import { stub as child_' + slot.slug + ' } from "./' + slot.slug + '/stub";\n').join('') +
     'const content = { items: {' +
     slots.map(slot => JSON.stringify(slot.slug) + ': child_' + slot.slug).join(', ') +
     '}, order: ' +

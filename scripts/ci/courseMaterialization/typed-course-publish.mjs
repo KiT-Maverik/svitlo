@@ -90,9 +90,7 @@ function assertCourseInventory(manifest, meta, entries) {
   const seeds = new Set(
     [...entries.keys()].filter(p => p.startsWith(meta.textbookRoot + '/data/lessons/') && p.endsWith('/draft.ts')),
   );
-  const episodes = new Set(
-    [...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/draft.ts')),
-  );
+  const episodes = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/draft.ts')));
   const stubs = new Set([...entries.keys()].filter(p => p.startsWith(root + '/') && p.endsWith('/stub.ts')));
   const pendingLessons = new Map(),
     pendingEpisodes = new Map();
@@ -159,9 +157,10 @@ function assertCourseInventory(manifest, meta, entries) {
     seenOrder.add(order);
     const rel = row.placementPath.slice(root.length + 1);
     // Preserve the historic UUID namespace independently of physical layout.
-    const allocationPath = row.type === 'assessment' && rel.includes('/')
-      ? rel.split('/').slice(0, -1).join('/') + '/content/' + row.slug
-      : rel;
+    const allocationPath =
+      row.type === 'assessment' && rel.includes('/')
+        ? rel.split('/').slice(0, -1).join('/') + '/content/' + row.slug
+        : rel;
     if (row.type === 'lesson') {
       const lessonRoot = meta.textbookRoot + '/data/lessons/' + row.id.at(-1) + '/' + row.id;
       if (row.kind === 'new') {

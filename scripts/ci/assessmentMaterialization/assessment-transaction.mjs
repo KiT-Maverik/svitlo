@@ -138,7 +138,13 @@ export function verifyAssessmentDesign(seed, input, meta, plan) {
     JSON.stringify(input.production.lessonDependencies) !== JSON.stringify(seed.production.lessonDependencies) ||
     input.production.reviewedCourseSourceBlobSha !== seed.production.reviewedCourseSourceBlobSha ||
     JSON.stringify(input.production.languages) !== JSON.stringify(seed.production.languages) ||
-    deriveCourseEntityId(meta.courseId, 'assessment', (meta.placement.includes('/') ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1) : meta.placement)) !== seed.config.id ||
+    deriveCourseEntityId(
+      meta.courseId,
+      'assessment',
+      meta.placement.includes('/')
+        ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1)
+        : meta.placement,
+    ) !== seed.config.id ||
     seed.config.slug !== meta.placement.split('/').at(-1) ||
     plan.assessmentId !== seed.config.id ||
     plan.courseId !== meta.courseId ||
@@ -433,7 +439,13 @@ export function verifyDirectAssessmentManifest(meta, manifest, root) {
   const seed = parseAssessmentSeed(reader.blob(baseline.get(meta.sourcePath), meta.sourcePath));
   if (
     seed.config.id !== manifest.assessmentId ||
-    deriveCourseEntityId(meta.courseId, 'assessment', (meta.placement.includes('/') ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1) : meta.placement)) !== seed.config.id
+    deriveCourseEntityId(
+      meta.courseId,
+      'assessment',
+      meta.placement.includes('/')
+        ? meta.placement.split('/').slice(0, -1).join('/') + '/content/' + meta.placement.split('/').at(-1)
+        : meta.placement,
+    ) !== seed.config.id
   )
     throw Error('Assessment manifest identity differs from reviewed Course seed');
   checkAssessmentBanks(meta, seed, manifest.selectedQuestionIds, reader, tree);

@@ -167,8 +167,6 @@ test('Assessment materializer escapes reserved TypeScript slug exports', () => {
       sourcePath: 'content/math/data/courses/3/' + courseId + '/moduleOne/for/draft.ts',
     },
   });
-  const generated = plan.files.find(
-    file => file.path.endsWith('/index.ts') && file.path === 'moduleOne/for/index.ts',
-  );
+  const generated = plan.files.find(file => file.path.endsWith('/index.ts') && file.path === 'moduleOne/for/index.ts');
   assert.match(generated.content, /export const config_for = defineAssessment/);
 });

@@ -125,9 +125,10 @@ export function materializeCourseStage5(input, options = {}) {
   };
   const deriveId = (kind, directory) => {
     if (!directory) throw new Error('Unexpected Course child placement: ' + directory);
-    const relative = kind === 'assessment' && directory.includes('/')
-      ? directory.split('/').slice(0, -1).join('/') + '/content/' + directory.split('/').at(-1)
-      : directory;
+    const relative =
+      kind === 'assessment' && directory.includes('/')
+        ? directory.split('/').slice(0, -1).join('/') + '/content/' + directory.split('/').at(-1)
+        : directory;
     const id = deriveCourseEntityId(rootId, kind, relative);
     if (newIds.has(id) || knownExistingIds.has(id))
       throw new Error('Duplicate/reserved generated UUID at ' + directory);

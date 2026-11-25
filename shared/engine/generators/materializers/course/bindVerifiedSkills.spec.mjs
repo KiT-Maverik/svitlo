@@ -56,24 +56,28 @@ test('binds actual Skill IDs while retaining exact target order and unrelated ta
 });
 
 test('uses readable aliases only when Skill names collide with imports or each other', () => {
-  const source = bindVerifiedSkills({ outcomes: { skills: [first, second] } }, {
-    ...ctx,
-    reservedNames: ['testExplainLightTravel'],
-    resolveSkill: request => request.id === second
-      ? { ...approve(request), exportName: 'testExplainLightTravel' }
-      : approve(request),
-  });
+  const source = bindVerifiedSkills(
+    { outcomes: { skills: [first, second] } },
+    {
+      ...ctx,
+      reservedNames: ['testExplainLightTravel'],
+      resolveSkill: request =>
+        request.id === second ? { ...approve(request), exportName: 'testExplainLightTravel' } : approve(request),
+    },
+  );
   assert.match(source.source, /testExplainLightTravel_2\.id/);
   assert.match(source.source, /testExplainLightTravel_3\.id/);
   assert.equal(source.imports.length, 2);
   assert(source.imports.every(line => line.includes(' as testExplainLightTravel_')));
-  const again = bindVerifiedSkills({ outcomes: { skills: [first, second] } }, {
-    ...ctx,
-    reservedNames: ['testExplainLightTravel'],
-    resolveSkill: request => request.id === second
-      ? { ...approve(request), exportName: 'testExplainLightTravel' }
-      : approve(request),
-  });
+  const again = bindVerifiedSkills(
+    { outcomes: { skills: [first, second] } },
+    {
+      ...ctx,
+      reservedNames: ['testExplainLightTravel'],
+      resolveSkill: request =>
+        request.id === second ? { ...approve(request), exportName: 'testExplainLightTravel' } : approve(request),
+    },
+  );
   assert.deepEqual(again, source);
 });
 

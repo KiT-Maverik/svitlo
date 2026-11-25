@@ -125,8 +125,7 @@ export function checkEpisodeTargets(meta, files, tree) {
       group.push({ leaf: scene.leaf, kind: file.kind });
       sceneGroups.set(scene.id, group);
     }
-    if (tree.has(file.path))
-      throw Error('Episode target would overwrite existing authored source: ' + file.path);
+    if (tree.has(file.path)) throw Error('Episode target would overwrite existing authored source: ' + file.path);
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++) {
       const ancestor = segments.slice(0, depth).join('/');
@@ -348,7 +347,11 @@ async function main() {
     const manifest = await prepareEpisode(meta, process.env.EPISODE_HEAD_ROOT);
     fs.mkdirSync(path.dirname(filename), { recursive: true });
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    report('Read-only Episode plan: ' + manifest.entries.length + ' Episode-owned files; the Course parent and stub remain unchanged.');
+    report(
+      'Read-only Episode plan: ' +
+        manifest.entries.length +
+        ' Episode-owned files; the Course parent and stub remain unchanged.',
+    );
     return;
   }
   await requireActor(meta.actor);

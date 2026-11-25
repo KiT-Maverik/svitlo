@@ -90,22 +90,38 @@ test('Episode source discovery preserves direct and nested owners without struct
     assert.equal(result.parentPath, courseRoot + '/' + parent);
   }
   for (const path of ['../../episodeOne', 'light/reflection/deep/episodeOne', 'constructor/episodeOne']) {
-    assert.throws(() => discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]));
+    assert.throws(() =>
+      discoverEpisodeDraft([{ filename: courseRoot + '/' + path + '/draft.ts', status: 'modified' }]),
+    );
   }
 });
 
 test('trusted Episode plan creates only owned source and retains Course parent/stub', () => {
   const worker = {
-    episodeId, exportName: 'episodeOne', publishable: false, diagnostics: [],
+    episodeId,
+    exportName: 'episodeOne',
+    publishable: false,
+    diagnostics: [],
     files: [{ path: placement + '/index.ts', kind: 'typescript', content: 'export const episodeOne = 1;\n' }],
   };
   const combined = composeEpisodeDirectPlan(handoff, reviewed, meta, parent, stubSource, worker);
   assert.equal(combined.episodeId, episodeId);
   assert.equal(combined.sourceExportName, 'episodeOne');
-  assert.deepEqual(combined.files.map(file => file.path), [courseRoot + '/' + placement + '/index.ts']);
+  assert.deepEqual(
+    combined.files.map(file => file.path),
+    [courseRoot + '/' + placement + '/index.ts'],
+  );
   const manifest = buildEpisodeManifest(meta, combined);
-  assert.deepEqual(manifest.entries.map(file => file.path), [courseRoot + '/' + placement + '/index.ts']);
-  assert.deepEqual(episodeCommitTree(manifest).filter(entry => entry.sha === null).map(entry => entry.path), [meta.sourcePath]);
+  assert.deepEqual(
+    manifest.entries.map(file => file.path),
+    [courseRoot + '/' + placement + '/index.ts'],
+  );
+  assert.deepEqual(
+    episodeCommitTree(manifest)
+      .filter(entry => entry.sha === null)
+      .map(entry => entry.path),
+    [meta.sourcePath],
+  );
   assert.match(parent, /import \{ stub as child_episodeOne \} from "\.\/episodeOne\/stub";/);
   assert.match(stubSource, new RegExp(episodeId));
   for (const changed of [
@@ -119,7 +135,15 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
     /invalid source plan/,
   );
   assert.throws(
-    () => composeEpisodeDirectPlan(handoff, { ...reviewed, config: { ...reviewed.config, id: courseId } }, meta, parent, stubSource, worker),
+    () =>
+      composeEpisodeDirectPlan(
+        handoff,
+        { ...reviewed, config: { ...reviewed.config, id: courseId } },
+        meta,
+        parent,
+        stubSource,
+        worker,
+      ),
     /preserve/,
   );
 });

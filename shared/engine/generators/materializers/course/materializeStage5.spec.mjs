@@ -568,8 +568,9 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
     assert.ok(parent?.content.includes(JSON.stringify(row.slug) + ': child_' + row.slug));
     assert.ok(parent.content.includes('/' + row.slug + '/stub'));
     const lines = parent.content.split('\n');
-    const imported = lines.findIndex(line =>
-      line.includes('import { stub as child_' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
+    const imported = lines.findIndex(
+      line =>
+        line.includes('import { stub as child_' + row.slug + ' } from ') && line.includes('/' + row.slug + '/stub'),
     );
     assert.ok(imported > 0, row.placementPath);
     assert.match(lines[imported - 1], /^\/\/ TODO \(BLOCKER\): Keep this pending /);
@@ -615,7 +616,13 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
         'assessment',
         row.placementPath === root + '/' + row.slug
           ? row.slug
-          : row.placementPath.slice((root + '/').length).split('/').slice(0, -1).join('/') + '/content/' + row.slug,
+          : row.placementPath
+              .slice((root + '/').length)
+              .split('/')
+              .slice(0, -1)
+              .join('/') +
+              '/content/' +
+              row.slug,
       ),
     );
     assert.equal(row.status, 'pending-assessment-design');

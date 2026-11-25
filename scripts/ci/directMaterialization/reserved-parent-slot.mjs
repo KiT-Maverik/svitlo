@@ -242,9 +242,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
     throw Error('Invalid pending Course stub or placement identity');
   const parts = placement.split('/');
   const depth = parts.length;
-  if (
-    parts.some(part => !safe(part)) || ![1, 2, 3].includes(depth)
-  )
+  if (parts.some(part => !safe(part)) || ![1, 2, 3].includes(depth))
     throw Error('Invalid pending Course parent ownership');
   verifyOwnedCourseStub(stubSource, { kind, id, slug });
   const ast = ts.createSourceFile('parent.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
