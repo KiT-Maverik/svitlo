@@ -8,6 +8,7 @@ import { buildPlacementInventory } from './placementInventory.mjs';
 import { deriveCourseEntityId } from './deriveCourseEntityId.mjs';
 import { materializeAssessmentPlaceholder } from './materializeAssessmentPlaceholder.mjs';
 import { bindCourseLessonPatch } from './bindCourseLessonPatch.mjs';
+import { renderCourseLessonPatch } from './renderCourseLessonPatch.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const sha = /^[0-9a-f]{40}$/i;
@@ -289,9 +290,12 @@ export function materializeCourseStage5(input, options = {}) {
     }
     knownExistingIds.add(existing.id);
     if (newIds.has(existing.id)) throw new Error('Course generated/imported UUID collision');
+    const placementSlug = node.config.slug;
     const hasPatch = production.sourcePatch !== undefined;
     let patchSource;
     let extraImports = [];
+    let placementFiles = [];
+    let placementDiagnostics = [];
     if (hasPatch) {
       const rawPatch = production.sourcePatch;
       if (!record(rawPatch) || !Object.keys(rawPatch).length || !production.overrideRationale?.trim())
@@ -302,16 +306,100 @@ export function materializeCourseStage5(input, options = {}) {
       const patchLanguages = planned.filter(code => lesson.languages.includes(code));
       if (!patchLanguages.includes(sourceLanguage))
         throw new Error(context.directory + ': Lesson source locale is outside reviewed publication scope');
+      // UUIDs authored in Course-owned Section/Block trees must be unique
+      // across the entire Course, including its derived child allocations.
+      // The concrete Section renderer independently validates the node schema.
+      for (const candidate of Object.values(rawPatch.section?.additionalItems ?? {})) {
+        if (candidate?.$create !== 'course-section') continue;
+        const walk = (value, depth = 0) => {
+          if (depth > 80) throw Error(context.directory + ': oversized Course-owned Section tree');
+          if (Array.isArray(value)) {
+            for (const item of value) walk(item, depth + 1);
+            return;
+          }
+          if (!record(value)) return;
+          if (record(value.config) && typeof value.config.id === 'string') {
+            const id = value.config.id.toLowerCase();
+            if (!uuid.test(id) || newIds.has(id) || knownExistingIds.has(id))
+              throw Error(context.directory + ': duplicate/invalid Course-owned Section or Block UUID ' + id);
+            newIds.add(id);
+          }
+          for (const child of Object.values(value)) walk(child, depth + 1);
+        };
+        walk(candidate.source);
+      }
       // Convert only approved declarative additions to genuine Section
       // Configurators before invoking the unchanged nested Lesson Build.
       const binding = bindCourseLessonPatch(rawPatch, {
         placementPath: context.directory,
         resolveAddedSection: options.resolveAddedSection,
+        renderAddedSection: options.renderAddedSection,
       });
-      patchSource = binding.patchSource;
-      extraImports = binding.imports;
+      const created = Object.keys(binding.createdSections);
+      if (created.length) {
+        // The complete placement order is checked against immutable original
+        // keys and both kinds of additions before any source is emitted.
+        const originals = Object.keys(lesson.configurator.section.items);
+        const disabled = Object.entries(rawPatch.section?.items ?? {})
+          .filter(([, value]) => value === false)
+          .map(([key]) => key);
+        const expected = [
+          ...originals.filter(key => !disabled.includes(key)),
+          ...Object.keys(rawPatch.section?.additionalItems ?? {}),
+        ];
+        const order = rawPatch.section?.order;
+        if (
+          !Array.isArray(order) ||
+          order.length !== expected.length ||
+          new Set(order).size !== expected.length ||
+          order.some(key => !expected.includes(key))
+        )
+          throw Error(context.directory + ': Course-owned Section order must include all and only active Sections');
+      }
+      placementDiagnostics = Object.values(binding.createdSections).flatMap(section => section.diagnostics ?? []);
+      const layout = renderCourseLessonPatch({ directory: context.directory, rawPatch, binding });
+      patchSource = layout.patchSource;
+      extraImports = layout.imports;
+      // All Course-specific fragments belong under the placement, never in
+      // standalone Lesson source or the owning Course/Module/Chapter index.ts.
+      placementFiles = [
+        ...layout.files,
+        {
+          path: context.directory + '/index.ts',
+          kind: 'typescript',
+          content: [
+            "import { placeLesson } from '@svitlo/engine/build';",
+            'import { ' + lesson.exportName + ' as originalLesson } from ' + JSON.stringify(lesson.importPath) + ';',
+            ...extraImports,
+            '',
+            renderBlockerTodo(
+              'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
+            ),
+            'export const ' + placementSlug + ' = placeLesson(originalLesson, ' + patchSource + ');',
+            '',
+          ].join('\n'),
+        },
+      ];
       try {
-        const built = lesson.configurator.build.overrides(binding.patch, { languages: patchLanguages });
+        // A newly authored Section does not exist as an executable Build
+        // Configurator yet. Validate the exact existing-source portion through
+        // the genuine Build API; the new Section subtree is independently Zod-
+        // validated and rendered by trusted concrete Section/Block materializers.
+        // Publication remains blocked until the generated sources are compiled.
+        let checkedPatch = binding.patch;
+        if (created.length) {
+          const external = { ...binding.patch.section.additionalItems };
+          for (const key of created) delete external[key];
+          checkedPatch = {
+            ...binding.patch,
+            section: {
+              ...binding.patch.section,
+              additionalItems: external,
+              order: binding.patch.section.order.filter(key => !created.includes(key)),
+            },
+          };
+        }
+        const built = lesson.configurator.build.overrides(checkedPatch, { languages: patchLanguages });
         if (built.id !== existing.id)
           throw new Error('Lesson Build override changed the independently owned Lesson identity');
       } catch (error) {
@@ -320,7 +408,6 @@ export function materializeCourseStage5(input, options = {}) {
     } else if (production.overrideRationale !== undefined) {
       throw new Error(context.directory + ': override rationale without a Course-local patch');
     }
-    const placementSlug = node.config.slug;
     recordPlacement(context.directory, {
       type: 'lesson',
       id: existing.id,
@@ -335,6 +422,7 @@ export function materializeCourseStage5(input, options = {}) {
         existing.id.toLowerCase() +
         '/index.ts',
       placementSourcePath: parentIndex(context.directory, 'lesson'),
+      ...(hasPatch ? { overrideSourcePath: root + '/' + context.directory + '/index.ts' } : {}),
       sourceSha: lesson.sourceSha,
       sourceExportName: lesson.exportName,
     });
@@ -342,12 +430,10 @@ export function materializeCourseStage5(input, options = {}) {
       id: existing.id,
       lessonId: existing.id,
       exportName: placementSlug,
-      sourceExportName: lesson.exportName,
-      importPath: lesson.importPath,
-      ...(patchSource === undefined ? {} : { patchSource }),
-      extraImports,
-      files: [],
-      diagnostics: [],
+      sourceExportName: hasPatch ? placementSlug : lesson.exportName,
+      importPath: hasPatch ? './' + placementSlug : lesson.importPath,
+      files: placementFiles,
+      diagnostics: placementDiagnostics,
     };
   };
 
