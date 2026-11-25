@@ -28,5 +28,5 @@ test('rejects an invented/moved Assessment source and unrelated concurrent diff'
   assert.throws(() => discoverAssessmentDraft([{ ...draft('review'), status: 'added' }]));
   assert.throws(() => discoverAssessmentDraft([draft('moduleOne/chapterOne/extra/review')]));
   assert.throws(() => discoverAssessmentDraft([draft('constructor')]));
-  assert.throws(() => discoverAssessmentDraft([draft('lessonOne/questions')]));
+  assert.throws(() => discoverAssessmentDraft([draft('lessonOne/questions/review/extra')]));
 });
