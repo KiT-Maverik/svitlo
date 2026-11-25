@@ -7,18 +7,18 @@ const slug = 'review';
 const stubSource =
   "import { defineAssessmentStub } from '@svitlo/engine/build';\n" +
   '// TODO (BLOCKER): Coding Agent integrates after validating the completed Assessment.\n' +
-  'export const stub = defineAssessmentStub({ id: ' +
+  'export const review = defineAssessmentStub({ id: ' +
   JSON.stringify(id) +
   ', slug: "review" });\n';
-const importLine = 'import { stub as child_review } from "./review/stub";\n';
+const importLine = 'import { review } from "./review/stub";\n';
 const source =
   "import { defineModule } from '@svitlo/engine/build';\n" +
   importLine +
-  'const content = { items: { "before": child_before, "review": child_review }, order: ["before", "review"] };\n' +
+  'const content = { items: { before, review }, order: ["before", "review"] };\n' +
   'export const moduleOne = defineModule({ content });\n';
 const validSource = source.replace(
   'const content',
-  'import { before as child_before } from "./before";\nconst content',
+  'import { before } from "./before";\nconst content',
 );
 const allocation = {
   kind: 'assessment',
@@ -48,8 +48,8 @@ test('Assessment read-only validation rejects foreign parent/UUID/stub and malfo
     }),
   );
   for (const edited of [
-    validSource.replace('stub as child_review', 'stub as child_foreign'),
-    validSource.replace('"review": child_review', '"review": child_before'),
+    validSource.replace('import { review }', 'import { foreign }'),
+    validSource.replace('review', 'review: before'),
     validSource.replace('["before", "review"]', '["review", "review"]'),
     validSource.replace('const content', 'const unexpected = 1;\nconst content'),
   ])
