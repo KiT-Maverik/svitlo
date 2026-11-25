@@ -458,7 +458,12 @@ test('inventory follows all four Episode nesting levels and retains repeated Les
   nested.items.reused = {
     ...top.items.directLesson,
     config: { ...top.items.directLesson.config, slug: 'reused' },
-    production: { ...top.items.directLesson.production, existing: { id: reusedLessonId } },
+    production: {
+      ...top.items.directLesson.production,
+      existing: { id: reusedLessonId },
+      sourcePatch: undefined,
+      overrideRationale: undefined,
+    },
   };
   nested.order.push('reused');
   const result = materializeCourseStage5(input, reuseOptions());
