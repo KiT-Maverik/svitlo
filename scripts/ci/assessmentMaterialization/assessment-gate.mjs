@@ -8,7 +8,7 @@ const UUID = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
 const pathPattern = new RegExp(
   '^(content/[a-z][a-z0-9-]*/data/courses/([a-f0-9])/(' +
     UUID +
-    '))/(content/(?:[A-Za-z][A-Za-z0-9]*/){0,4}[A-Za-z][A-Za-z0-9]*)/draft\\.ts$',
+    '))/((?:[A-Za-z][A-Za-z0-9]*/){0,2}[A-Za-z][A-Za-z0-9]*)/draft\\.ts$',
 );
 const bad = new Set(['constructor', 'prototype', '__proto__']);
 export function discoverAssessmentDraft(files) {
@@ -21,15 +21,13 @@ export function discoverAssessmentDraft(files) {
     !match ||
     match[2] !== match[3].at(-1) ||
     parts.some(s => bad.has(s)) ||
-    ![2, 4, 5].includes(parts.length) ||
-    parts[0] !== 'content' ||
-    (parts.length > 2 && parts.at(-2) !== 'content')
+    ![1, 2, 3].includes(parts.length)
   )
     throw Error('Invalid canonical Course-owned Assessment draft path');
   const courseRoot = match[1],
     placement = match[4];
   const parentPath =
-    parts.length === 2 ? courseRoot + '/index.ts' : courseRoot + '/' + parts.slice(0, -2).join('/') + '/index.ts';
+    parts.length === 1 ? courseRoot + '/index.ts' : courseRoot + '/' + parts.slice(0, -1).join('/') + '/index.ts';
   return {
     sourcePath,
     courseRoot,
