@@ -320,16 +320,15 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   };
   ts.forEachChild(ast, visit);
   if (references !== 2) throw Error('Course pending stub alias has ambiguous references');
-  const owner =
-    depth === 2
-      ? 'defineCourse'
-      : kind === 'assessment'
-        ? depth === 4
-          ? 'defineModule'
-          : 'defineChapter'
-        : depth === 3
-          ? 'defineModule'
-          : 'defineChapter';
+  // A Chapter may belong directly to a Course or to a Module. Path depth
+  // constrains the legal owners but cannot distinguish the two at level one.
+  const ownerDepth = depth - (kind === 'assessment' && depth > 2 ? 3 : 2);
+  const allowedOwners =
+    ownerDepth === 0
+      ? ['defineCourse']
+      : ownerDepth === 1
+        ? ['defineModule', 'defineChapter']
+        : ['defineChapter'];
   const parents = ast.statements
     .filter(ts.isVariableStatement)
     .flatMap(statement => [...statement.declarationList.declarations])
@@ -338,7 +337,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
       return (
         ts.isCallExpression(init) &&
         ts.isIdentifier(init.expression) &&
-        init.expression.text === owner &&
+        allowedOwners.includes(init.expression.text) &&
         init.arguments.length === 1 &&
         ts.isObjectLiteralExpression(unwrap(init.arguments[0])) &&
         unwrap(init.arguments[0]).properties.some(
@@ -347,6 +346,7 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
       );
     });
   if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
+  const owner = unwrap(parents[0].initializer).expression.text;
   const statements = ast.statements.filter(ts.isVariableStatement);
   if (
     statements.length !== 2 ||
