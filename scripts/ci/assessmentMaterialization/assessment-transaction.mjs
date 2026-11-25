@@ -61,7 +61,17 @@ export function parseAssessmentMetadata(encoded) {
   return meta;
 }
 
-/** Decode only inert literal fields from the pinned Course-generated typed seed. */
+/** Decode only the minimal, exact Course-generated seed shape from a pinned Git
+ * blob. Editorial "placement" or arbitrary extra metadata is never authority.
+ */
+function exactKeys(value, keys) {
+  return value !== null &&
+    typeof value === 'object' &&
+    !Array.isArray(value) &&
+    Object.keys(value).length === keys.length &&
+    keys.every(key => Object.hasOwn(value, key));
+}
+
 export function parseAssessmentSeed(source) {
   const seed = readGeneratedCourseHandoff(source, {
     variable: 'assessmentSeed',
@@ -69,14 +79,27 @@ export function parseAssessmentSeed(source) {
   });
   if (
     !seed ||
+    !exactKeys(seed, ['config', 'production']) ||
+    !exactKeys(seed.config, ['id', 'type', 'slug', 'locale']) ||
+    !exactKeys(seed.production, ['purpose', 'lessonDependencies', 'reviewedCourseSourceBlobSha', 'languages']) ||
     !UUID.test(seed.config?.id ?? '') ||
-    seed.config?.type !== 'assessment' ||
-    typeof seed.config.slug !== 'string' ||
-    !seed.production?.purpose ||
+    seed.config.type !== 'assessment' ||
+    !/^[A-Za-z][A-Za-z0-9]*$/.test(seed.config.slug ?? '') ||
+    !seed.config.locale ||
+    typeof seed.production.purpose !== 'string' ||
+    !seed.production.purpose.trim() ||
     !Array.isArray(seed.production.lessonDependencies) ||
     !seed.production.lessonDependencies.length ||
+    seed.production.lessonDependencies.some(dep =>
+      typeof dep !== 'string' || !/^content(?:\\/[A-Za-z][A-Za-z0-9]*)+$/.test(dep)
+    ) ||
+    new Set(seed.production.lessonDependencies).size !== seed.production.lessonDependencies.length ||
     !SHA.test(seed.production.reviewedCourseSourceBlobSha ?? '') ||
-    !Array.isArray(seed.production.languages?.planned)
+    !exactKeys(seed.production.languages, ['document', 'planned']) ||
+    !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(seed.production.languages.document ?? '') ||
+    !Array.isArray(seed.production.languages.planned) ||
+    !seed.production.languages.planned.includes(seed.production.languages.document) ||
+    new Set(seed.production.languages.planned).size !== seed.production.languages.planned.length
   )
     throw Error('Invalid pinned Assessment seed identity and planning data');
   return seed;
