@@ -1,4 +1,5 @@
 import * as ts from 'typescript';
+import type { z } from 'zod';
 
 import { courseWorkflowStage3_Schema } from '../../../types/workflow/courseWorkflowFinal.schemas';
 import { lessonWorkflowStage2_Schema } from '../../../types/workflow/lessonWorkflow.types';
@@ -24,6 +25,7 @@ const finalStages = {
 } as const;
 
 export type DeclarativeDraftEntityKind = keyof typeof finalStages;
+export type DeclarativeDraftValue<K extends DeclarativeDraftEntityKind> = z.output<(typeof finalStages)[K]['schema']>;
 type DraftValue = null | boolean | number | string | DraftValue[] | { [key: string]: DraftValue };
 type ParseContext = {
   source: ts.SourceFile;
@@ -250,10 +252,10 @@ function rejectStrippedFields(original: DraftValue, parsed: unknown, path: strin
  * Validate with the single canonical final-stage Zod schema chosen by the
  * trusted operation, never by a property in authored data.
  */
-export function readDeclarativeDraft(
+export function readDeclarativeDraft<K extends DeclarativeDraftEntityKind>(
   sourceText: string,
-  expectedEntityKind: DeclarativeDraftEntityKind,
-) {
+  expectedEntityKind: K,
+): DeclarativeDraftValue<K> {
   const { value: original, source, positions } = parseWithPositions(sourceText, expectedEntityKind);
   const parsed = finalStages[expectedEntityKind].schema.safeParse(original);
   if (!parsed.success) {
@@ -278,5 +280,5 @@ export function readDeclarativeDraft(
   } catch (error) {
     throw new DeclarativeDraftError('schema', 1, 1, (error as Error).message);
   }
-  return parsed.data;
+  return parsed.data as DeclarativeDraftValue<K>;
 }
