@@ -33,7 +33,10 @@ test('Carousel retains reviewed nested Scene production specification', () => {
   };
   const result = render(carousel);
   const sceneSource = result.files.find(file => file.path.endsWith('/slides/visual/index.ts'))?.content ?? '';
-  assert.match(sceneSource, /defineScene<[\s\S]*\);\n\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/);
+  assert.match(
+    sceneSource,
+    /defineScene<[\s\S]*\);\n\/\*\n \* TODO \(BLOCKER\): Remove the temporary Scene specification/,
+  );
   assert.equal((sceneSource.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
   assert.match(sceneSource, /# specification[\s\S]*# Reviewed nested Scene/);
   assert(!result.files.some(file => file.path.endsWith('/slides/visual/specification.md')));
