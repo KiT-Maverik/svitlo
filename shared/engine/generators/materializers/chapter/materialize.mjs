@@ -131,7 +131,7 @@ export function materializeChapter(input, context = {}) {
   const planned = context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.params.languages: source language missing or duplicate');
-  const claim = createSourceIdentifierRegistry('chapter', ['defineChapter', 'Languages', 'content', exportName(slug)]]);
+  const claim = createSourceIdentifierRegistry('chapter', ['defineChapter', 'Languages', 'content', exportName(slug)]);
   const imports = [],
     inlineImports = new Set(),
     items = {},

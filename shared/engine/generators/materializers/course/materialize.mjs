@@ -160,7 +160,7 @@ export function materializeCourse(input, context = {}) {
   const planned = meta?.languages?.planned ?? config.params?.languages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.production.languages: missing source language or invalid plan');
-  const claim = createSourceIdentifierRegistry('course', ['defineCourse', 'Languages', 'content', exportName(slug)], 'languages']);
+  const claim = createSourceIdentifierRegistry('course', ['defineCourse', 'Languages', 'content', exportName(slug), 'languages']);
   const imports = [],
     inlineImports = new Set(),
     items = {},
