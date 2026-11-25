@@ -190,10 +190,10 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   // one Episode handoff and two separately owned pending child stub modules.
   assert.equal(source.files.filter(file => file.kind === 'typescript').length, 8);
   assert.equal(source.files.filter(file => file.path.endsWith('/stub.ts')).length, 2);
-  for (const pathSuffix of ['/index.ts', '/content/moduleOne/index.ts', '/content/moduleOne/chapterOne/index.ts']) {
+  for (const pathSuffix of ['/index.ts', '/moduleOne/index.ts', '/moduleOne/chapterOne/index.ts']) {
     const authored = source.files.find(file => file.path === root + pathSuffix).content;
     assert.match(authored, /#skillsData\/test/);
-    assert.match(authored, /skill_[0-9a-f_]+\.id/);
+    assert.match(authored, /testRecognizeCircle\\.id/);
     assert.match(authored, /#coursesData\/3\//);
   }
   const rootSource = source.files.find(file => file.path === root + '/index.ts').content;
