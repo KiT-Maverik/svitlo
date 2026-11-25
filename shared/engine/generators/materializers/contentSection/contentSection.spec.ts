@@ -46,7 +46,7 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
   assert.match(root, /import \{ prompt \} from "\.\/prompt"/);
-  assert.match(root, /"items": \{ prompt \}/);
+  assert.match(root, /"items": \{\s*prompt,?\s*\}/);
   assert.doesNotMatch(root, /child_content_items_/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,

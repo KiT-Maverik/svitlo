@@ -446,7 +446,7 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
   assert.match(root, /"skills": \[testRecognizeRed\.id, testRecognizeBlue\.id\]/);
   assert.doesNotMatch(root, /skill_ref_|child_section_items_/);
   assert.match(root, /import \{ introduction \} from "\.\/sections\/introduction"/);
-  assert.match(root, /"items": \{ introduction \}/);
+  assert.match(root, /"items": \{\s*introduction,?\s*\}/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
   const unknown = materializeLesson(
