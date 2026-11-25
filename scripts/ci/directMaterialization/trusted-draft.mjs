@@ -11,7 +11,7 @@ import path from 'node:path';
 const SHA = /^[a-f0-9]{40}$/;
 const book = 'content/[a-z][a-z0-9-]*/data/';
 const id = '[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}';
-const nested = 'content/(?:[A-Za-z][A-Za-z0-9]*/)*[A-Za-z][A-Za-z0-9]*';
+// Course-owned Episodes and Assessments use up to three semantic placement slugs.\nconst nested = '(?:[A-Za-z][A-Za-z0-9]*/){0,2}[A-Za-z][A-Za-z0-9]*';
 const contract = Object.freeze({
   'course-stage5': ['course', 'materializeCourse', book + 'courses/[a-f0-9]/' + id],
   'lesson-stage6': ['lesson', 'materializeLessonStage6', book + 'lessons/[a-f0-9]/' + id],
