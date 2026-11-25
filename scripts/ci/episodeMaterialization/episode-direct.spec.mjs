@@ -175,7 +175,7 @@ test('Episode Scene six-file drafts stay in textbook Scene tree with create-only
       })),
     ],
   };
-  const plan = composeEpisodeDirectPlan(handoff, reviewed, scoped, parent, worker);
+  const plan = composeEpisodeDirectPlan(handoff, reviewed, scoped, parent, stubSource, worker);
   const tree = new Map([
     [scoped.sourcePath, { type: 'blob', mode: '100644', sha: scoped.sourceBlobSha }],
     [scoped.parentPath, { type: 'blob', mode: '100644', sha: scoped.parentBlobSha }],
