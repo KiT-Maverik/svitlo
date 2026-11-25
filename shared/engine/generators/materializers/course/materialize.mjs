@@ -1,3 +1,4 @@
+import { renderPendingChildStub } from './renderPendingChildStub.mjs';
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const slugPattern = /^[A-Za-z][A-Za-z0-9]*$/;
 const record = x => x !== null && typeof x === 'object' && !Array.isArray(x);
@@ -370,10 +371,12 @@ export function materializeCourse(input, context = {}) {
     }
 
     if (stage1Lesson || stage1Episode || pendingAssessment) {
-      const stub = stage1Lesson ? 'defineLessonStub' : stage1Episode ? 'defineEpisodeStub' : 'defineAssessmentStub';
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
-      inlineImports.add(stub);
-      items[key] = stub + '({ id: ' + JSON.stringify(refId) + ', slug: ' + JSON.stringify(key) + ' })';
+      files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
+      const alias = 'child_' + key;
+      const location = raw.type === 'assessment' || !dir ? './content/' : './';
+      imports.push('import { stub as ' + alias + ' } from ' + JSON.stringify(location + key + '/stub') + ';');
+      items[key] = alias;
     } else {
       const alias = 'child_' + key;
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
