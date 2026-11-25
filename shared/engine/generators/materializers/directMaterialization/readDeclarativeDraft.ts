@@ -185,8 +185,10 @@ function parseWithPositions(
   if (typeof sourceText !== 'string' || sourceText.length > MAX_SOURCE_LENGTH) {
     throw new DeclarativeDraftError('limit', 1, 1, 'Source must be a string of at most 4 MiB');
   }
-  const contract = finalStages[expectedEntityKind] as (typeof finalStages)[DeclarativeDraftEntityKind] | undefined;
-  if (!contract) throw new DeclarativeDraftError('structure', 1, 1, 'Unsupported draft entity kind');
+  if (!Object.hasOwn(finalStages, expectedEntityKind)) {
+    throw new DeclarativeDraftError('structure', 1, 1, 'Unsupported draft entity kind');
+  }
+  const contract = finalStages[expectedEntityKind];
   const source = ts.createSourceFile('draft.ts', sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   const context: ParseContext = { source, visited: 0, positions: new Map() };
   const diagnostics = (source as ts.SourceFile & { parseDiagnostics?: readonly ts.Diagnostic[] }).parseDiagnostics ?? [];
