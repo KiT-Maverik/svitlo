@@ -253,7 +253,10 @@ test('Module rejects legacy Skill targets in config.params rather than dropping 
 
 test('Module rejects a child canonical import that collides with generated locals', () => {
   const node = mod();
-  node.config.content.items.content = ch('content');
-  node.config.content.order.push('content');
+  const child = node.config.content.items.chapterOne;
+  child.config.slug = 'content';
+  delete node.config.content.items.chapterOne;
+  node.config.content.items.content = child;
+  node.config.content.order = ['content'];
   assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*content/);
 });

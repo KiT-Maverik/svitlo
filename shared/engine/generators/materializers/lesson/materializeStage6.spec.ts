@@ -231,9 +231,9 @@ test('Stage 6 imports only Skills from the owning textbook #skillsData alias', (
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
   assert.match(
     root,
-    /import \{ identify2dShapes as skill_ref_0 \} from "#skillsData\/geometry\/figures\/identify2dShapes"/,
+    /import \{ identify2dShapes \} from "#skillsData\/geometry\/figures\/identify2dShapes"/,
   );
-  assert.match(root, /"skills": \[skill_ref_0\.id\]/);
+  assert.match(root, /"skills": \[identify2dShapes\.id\]/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Import the actual Skill/);
   const bad = stage2Source.replace(
     '#skillsData/geometry/figures/identify2dShapes',
@@ -557,7 +557,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   const trustedLesson = trustedPlan.files.find(file => file.path === folder + 'index.ts')!.content;
   const trustedQuiz = trustedPlan.files.find(file => file.path === folder + 'sections/reviewQuiz/index.ts')!.content;
   const trustedCards = trustedPlan.files.find(file => file.path === folder + 'sections/reviewCards/index.ts')!.content;
-  assert.match(trustedLesson, /import \{ identify2dShapes as skill_ref_0 \}/);
+  assert.match(trustedLesson, /import \{ identify2dShapes \}/);
   assert.match(trustedQuiz, /#lessonsData\/1\/.+\/questions\/selectOneAnswer\/reviewQuestion/);
   assert.match(trustedCards, /#lessonsData\/1\/.+\/flashcards\/reviewCard/);
   assert.match(trustedQuiz, /\[stage6_ref_0.id\]/);
