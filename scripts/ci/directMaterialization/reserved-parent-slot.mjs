@@ -168,6 +168,16 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
           ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content');
     }));
   if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
+  const statements = ast.statements.filter(ts.isVariableStatement);
+  if (
+    statements.length !== 2 ||
+    statements.some(statement =>
+      statement.declarationList.declarations.length !== 1 ||
+      !(statement.declarationList.flags & ts.NodeFlags.Const)) ||
+    !parents.every(declaration =>
+      statements.some(statement => statement.declarationList.declarations[0] === declaration))
+  ) throw Error('Unexpected executable or extra parent variable declaration');
+
   const builds = imported.filter(statement =>
     ts.isStringLiteral(statement.moduleSpecifier) &&
     statement.moduleSpecifier.text === '@svitlo/engine/build');
@@ -290,6 +300,14 @@ export function replaceReservedParentSlot(source, { kind, id, slug, placement, e
       );
     }));
   if (parents.length !== 1) throw Error('Unexpected immediate Course/Module/Chapter parent Configurator');
+  const declarations = ast.statements.filter(ts.isVariableStatement);
+  if (
+    declarations.length !== 2 ||
+    declarations.some(statement =>
+      statement.declarationList.declarations.length !== 1 ||
+      !(statement.declarationList.flags & ts.NodeFlags.Const))
+  ) throw Error('Unexpected executable or additional immediate parent declaration');
+
   const engineImports = imports.filter(statement =>
     ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === '@svitlo/engine/build');
   if (!engineImports.some(statement =>
