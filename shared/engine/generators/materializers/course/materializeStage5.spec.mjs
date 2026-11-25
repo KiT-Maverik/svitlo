@@ -751,3 +751,17 @@ test('Course Build rejects a missing requested translation without changing inte
   assert.equal(both.base.locale.description, 'Non-translatable label');
   assert.equal(both.locale, undefined);
 });
+
+test('Course root scalar English title and description materialize as sparse localized fields', () => {
+  const input = source();
+  input.production.languages = { document: 'en', planned: ['en', 'uk'] };
+  input.config.locale = { title: 'Sky', description: 'Explore the sky' };
+  input.config.content = { items: {}, order: [] };
+  const plan = materializeCourseStage5(input, options());
+  const rootSource = plan.files.find(file => file.path === root + '/index.ts')?.content ?? '';
+  assert.match(rootSource, /"title": \{\s*"en": "Sky"/);
+  assert.match(rootSource, /"description": \{\s*"en": "Explore the sky"/);
+  assert.doesNotMatch(rootSource, /"uk": "Sky"/);
+  assert.doesNotMatch(rootSource, /"uk": "Explore the sky"/);
+  assert.ok(plan.diagnostics.some(d => d.code === 'pending-locales'));
+});
