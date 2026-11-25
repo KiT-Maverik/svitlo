@@ -193,7 +193,7 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   for (const pathSuffix of ['/index.ts', '/moduleOne/index.ts', '/moduleOne/chapterOne/index.ts']) {
     const authored = source.files.find(file => file.path === root + pathSuffix).content;
     assert.match(authored, /#skillsData\/test/);
-    assert.match(authored, /testRecognizeCircle\\.id/);
+    assert.match(authored, /testRecognizeCircle\.id/);
     assert.match(authored, /#coursesData\/3\//);
   }
   const rootSource = source.files.find(file => file.path === root + '/index.ts').content;
