@@ -80,14 +80,14 @@ test('image: composed nested source paths and Course language handoff', () => {
     ...options,
     directory,
     languagesImport: '../../../../../languages',
-    production: { specification: 'Reviewed source brief' },
+    production: { prompt: 'Generate an original, accurately proportioned vector diagram showing a yellow light source at left, opaque cube center, and a gray cast shadow on the right screen, using clear rays and no decorative objects.' },
   });
   assert(nested.files.every(file => file.path.startsWith(directory + '/')));
   assert(nested.files.some(file => file.path === directory + '/index.ts'));
   assert(!nested.files.some(file => file.path.endsWith('/specification.md')));
   const inline = nested.files.find(file => file.path === directory + '/index.ts')?.content ?? '';
   assert.match(inline, /TODO \(BLOCKER\): Remove the temporary Image specification/);
-  assert.match(inline, /\* # specification[\s\S]*\* Reviewed source brief/);
+  assert.match(inline, /\* # prompt[\s\S]*\* Generate an original, accurately proportioned vector diagram/);
   assert(inline.indexOf(');') < inline.indexOf('Remove the temporary Image specification'));
   assert(nested.diagnostics.some(item => item.code === 'pending-temporary-specification'));
   const parsed = ts.transpileModule(inline, {
