@@ -285,7 +285,7 @@ export function checkAssessmentTargets(meta, files, tree) {
     )
       throw Error('Assessment generated an unsafe or duplicate file path');
     seen.add(file.path);
-    if (tree.has(file.path)
+    if (tree.has(file.path))
       throw Error('Assessment would overwrite existing authored source');
     const segments = file.path.split('/');
     for (let depth = 1; depth < segments.length; depth++)
