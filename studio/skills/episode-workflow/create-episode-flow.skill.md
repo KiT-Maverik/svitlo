@@ -10,6 +10,8 @@
 
 Start only when the owner authorizes the exact Episode placement and parent Course PR. Read the verified Course Stage 5 committed inventory and original reviewed plan; resolve the immutable Episode UUID, verified Git-owned Course/Module/Chapter parent and actual ordered stub slot, source language, planned locales and exact reviewed Git source reference. The authored Episode brief preserves focus/purpose and languages but never duplicates the trusted Course UUID, filesystem placement, orderPath or source blob SHA. Review preceding/following placements and relevant entry/exit dependencies. Do not duplicate the Course plan or invent an Episode UUID, alter independently owned Lessons, or start Episode PRs automatically.
 
+The allocated Course Episode has a distinct `<placement>/stub.ts` preview module, imported at the exact immediate-parent `content.items` slot. Its independently authored `draft.ts` is never imported into the parent. The trusted Episode Stage 5 gate pins and validates the stub SHA and parent AST, then deletes **both** stub and consumed draft when the completed Episode import is atomically restored without reordering siblings.
+
 Reuse an existing Episode PR for that identity and parent; otherwise open one Draft PR targeting the verified immediate owning Course branch, with the textbook scope, `work: episode` and `pr: agent-subtask`. The path-specific Episode source is `draft.ts` until materialization, then `index.ts` and its owned modules. Keep `config` and `production` separate. Do not edit an editorial draft as a runtime Configurator, use YAML, or put Lesson Skills/Question Banks/Flashcard Banks in Episode ownership. Changes needed to the parent composition must be limited to the exact reserved placement.
 
 ## Canonical stages
