@@ -2,6 +2,7 @@ import { existsSync, readdirSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const dist = join(root, 'dist');
@@ -14,7 +15,10 @@ function run(command, args) {
   }
 }
 
-run('tsc', ['-p', 'tsconfig.build.json']);
+// Invoke the installed TypeScript CLI through Node, not the platform-dependent
+// npm .bin wrapper: spawnSync('tsc') cannot resolve tsc.cmd on Windows.
+const require = createRequire(import.meta.url);
+run(process.execPath, [require.resolve('typescript/bin/tsc'), '-p', 'tsconfig.build.json']);
 
 // Source dictionaries are build-time data. Publish their declarations for
 // import type consumers, without shipping the full translations as JS.
