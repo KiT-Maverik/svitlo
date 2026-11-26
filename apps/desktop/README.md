@@ -26,7 +26,7 @@ After npm ci at the monorepo root:
     npm run test:smoke --workspace @svitlo/desktop
     npm run app:pack --workspace @svitlo/desktop
 
-Use package:win, package:mac or package:linux on the corresponding build OS.
+Use `app:pack:win`, `app:pack:mac` or `app:pack:linux` on the corresponding build OS (via `npm run <script> --workspace @svitlo/desktop`).
 Only targets actually tested on that OS should be described as verified.
 
 predev and prebuild compile `@svitlo/playground` into its own `dist/` once,
