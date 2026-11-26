@@ -5,7 +5,7 @@
  */
 import { isDeepStrictEqual } from 'node:util';
 
-import { image_Config_Schema, type ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage';
+import { image_Config_Schema, type ContentBlock_Image_Config } from '../../../configurators/contentBlocks/primitive/defineImage';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
