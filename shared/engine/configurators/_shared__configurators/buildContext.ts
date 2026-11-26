@@ -49,7 +49,7 @@ export const requireBuildContext = (): BuildContext => {
  * retained; validation, sparse overrides and entity-specific resolution stay local.
  */
 export const scopeBuild = <Build extends object>(build: Build): Build => {
-  const wrapped: Record<string, unknown> = { ...build };
+  const wrapped = { ...build } as Record<string, unknown>;
   for (const method of ['props', 'overrides'] as const) {
     const original = (build as Record<string, unknown>)[method];
     if (typeof original !== 'function') continue;
@@ -60,13 +60,14 @@ export const scopeBuild = <Build extends object>(build: Build): Build => {
   return wrapped as Build;
 };
 
-/** Compose an existing child in the caller's exact scope, without passing fields down. */
-export const buildChildProps = <Resource>(child: {
-  readonly build: { props: (options: never) => Resource };
-}): Resource => child.build.props(requireBuildContext() as never);
+/** Compose a child without requiring a common return type across distinct unions. */
+export const buildChildProps = <
+  Child extends { readonly build: { readonly props: (options: never) => unknown } },
+>(child: Child): ReturnType<Child['build']['props']> =>
+  child.build.props(requireBuildContext() as never) as ReturnType<Child['build']['props']>;
 
-/** Compose sparse child changes in the same scope; never mutate the shared child. */
-export const buildChildOverrides = <Resource>(
-  child: { readonly build: { overrides: (patch: never, options: never) => Resource } },
-  patch: unknown,
-): Resource => child.build.overrides(patch as never, requireBuildContext() as never);
+/** Compose sparse child changes in the same scope without mutating the source. */
+export const buildChildOverrides = <
+  Child extends { readonly build: { readonly overrides: (patch: never, options: never) => unknown } },
+>(child: Child, patch: unknown): ReturnType<Child['build']['overrides']> =>
+  child.build.overrides(patch as never, requireBuildContext() as never) as ReturnType<Child['build']['overrides']>;

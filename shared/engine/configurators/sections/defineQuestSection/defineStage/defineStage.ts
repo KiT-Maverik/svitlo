@@ -51,7 +51,7 @@ export const defineStage = <
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...authoredMetadata, content });
-    const output = nestQuestPublication({ id, slug, type }, projectQuestTree(content, languages), 'content');
+    const output = nestQuestPublication({ id, slug, type }, projectQuestTree(content), 'content');
     validateQuestPublication(stage_Props_Schema, output, languages);
     return output;
   };
@@ -65,7 +65,7 @@ export const defineStage = <
       Object.keys(patch).some(key => key !== 'content')
     )
       throw new Error('Invalid QuestStage overrides');
-    const output = nestQuestPublication({}, projectQuestTree(content, languages, patch.content ?? {}), 'content');
+    const output = nestQuestPublication({}, projectQuestTree(content, patch.content ?? {}), 'content');
     validateQuestPublication(stage_Props_Schema, props(options), languages, output);
     return output;
   };

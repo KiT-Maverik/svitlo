@@ -24,7 +24,7 @@ export const defineTask = <
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     validate(authored);
-    const output = nestQuestPublication({ id, slug, type }, projectQuestTree({ scene }, languages), 'unused');
+    const output = nestQuestPublication({ id, slug, type }, projectQuestTree({ scene }), 'unused');
     const normalized = {
       base: { id, slug, type, scene: (output.base.unused as Record<string, unknown>).scene },
       locale: output.locale
@@ -41,7 +41,7 @@ export const defineTask = <
     validate(authored);
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) || Object.keys(patch).some(key => key !== 'scene'))
       throw new Error('Invalid QuestTask overrides');
-    const output = projectQuestTree({ scene }, languages, patch);
+    const output = projectQuestTree({ scene }, patch);
     validateQuestPublication(task_Props_Schema, props(options), languages, output);
     return output;
   };
