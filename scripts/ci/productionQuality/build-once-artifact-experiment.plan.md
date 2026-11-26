@@ -15,7 +15,7 @@ Follow root `AGENTS.md`/`README.md`, applicable Studio rules/personas and packag
 - `.github/workflows/production-quality.yml`, its contract tests `scripts/ci/productionQuality/production-quality.spec.mjs` and `scripts/ci/productionQuality/README.md`;
 - `scripts/ci/packageBuildReuse/{README.md,package-build-reuse.mjs}` and its tests;
 - `scripts/runWorkspaceScript/{README.md,run-workspace-script.mjs}`, `shared/engine/package.json`, `shared/ui-kit/package.json`, and relevant test/TypeScript configs;
-- [CI architecture audit, 27 Nov 2026](https://github.com/KiT-Maverik/svitlo/blob/develop/scripts/ci/productionQuality/README.md) only for general runbook context; the task evidence is listed below.
+- The independent CI architecture audit dated 27 Nov 2026 is available as the project handoff document; use the code and run links below for verifiable implementation details.
 
 **Existing policy conflict:** Studio currently bans cross-runner sharing of compiled `dist` as a blanket rule. This user-authorized, isolated experiment is intended to test that restriction, **not** silently repeal CI policy or alter protected release semantics. Keep the change opt-in and describe the measured outcome; propose a separate owner-reviewed policy update if successful.
 
