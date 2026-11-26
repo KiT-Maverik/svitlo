@@ -1,2 +1,2 @@
-export * from './defineText';
-export * from './defineText.schemas';
+/** Compatibility re-export: canonical primitive module. */
+export * from '../primitive/defineText/index.ts';
