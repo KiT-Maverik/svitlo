@@ -1,4 +1,4 @@
-import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/defineScene/defineScene.schemas';
+import type { ContentBlock_Scene_Config } from '../../../configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
