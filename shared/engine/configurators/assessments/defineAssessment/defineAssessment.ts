@@ -1,3 +1,4 @@
+import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -169,17 +170,16 @@ export const defineAssessment = <
   const buildSections = (
     items: Record<string, Assessment_Section_Configurator>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
       if (!child) throw new Error('Unknown Assessment Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
-      const resource = build.props({ languages, mode });
+      const resource = buildChildProps({ build });
       const patch = Object.hasOwn(patches, key)
-        ? build.overrides(patches[key] as never, { languages, mode })
+        ? buildChildOverrides({ build }, patches[key] as never)
         : undefined;
       return { resource, patch };
     });

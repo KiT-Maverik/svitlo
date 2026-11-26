@@ -1,3 +1,4 @@
+import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -214,10 +215,9 @@ export const defineCourse = <
   const buildContent = (
     items: Record<string, Course_Child>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const ids = new Set<string>();
     for (const key of order) {
       const child = items[key];
@@ -231,9 +231,9 @@ export const defineCourse = <
       if (!build || typeof build.props !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
-      const resource = build.props({ languages, mode });
+      const resource = buildChildProps({ build });
       const patch = Object.hasOwn(patches, key)
-        ? build.overrides(patches[key] as never, { languages, mode })
+        ? buildChildOverrides({ build }, patches[key] as never)
         : undefined;
       return { key, resource, patch };
     });
@@ -297,7 +297,7 @@ export const defineCourse = <
       }
     }
     const own = splitOwnLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder, languages, {}, options.mode);
+    const children = buildContent(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
@@ -419,7 +419,7 @@ export const defineCourse = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Course_Child] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, languages, childPatches, options.mode);
+        const built = buildContent(enabled, order, childPatches);
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           // Keep the atomic child array as a runtime publication fragment; validate it through Props.
