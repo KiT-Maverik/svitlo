@@ -49,6 +49,17 @@ test('heavy PR suites run on Ready transition and can run manually on Draft bran
     const yaml = workflow(file);
     assert.match(yaml, /types: \[opened, reopened, synchronize, ready_for_review\]/, file);
     assert.match(yaml, /\n  workflow_dispatch:/, file);
+    if (file === 'engine-generators.yml') {
+      assert.ok(
+        yaml.includes(
+          "  generator-tests:\n    # Full host/browser/generator suites only at review boundary or explicitly on demand.\n" +
+            "    if: >-\n      inputs.ci_mode != 'build-once-engine' &&\n" +
+            "      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)",
+        ),
+        'Engine generators must retain Ready/manual coverage outside the explicitly selected experiment',
+      );
+      continue;
+    }
     assert.ok(
       yaml.includes(
         '  ' +
