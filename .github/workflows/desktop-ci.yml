@@ -31,8 +31,29 @@ jobs:
         with:
           node-version: '26'
           cache: npm
-      - name: Resolve the v27 candidate from npm without install scripts
-        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Regenerate Electron override lockfile using npm 12's workspace override fix
+        run: |
+          cp package-lock.json /tmp/svitlo-prior-package-lock.json
+          # Node 26 bundles npm 11, which can ignore nested overrides reached
+          # through workspace links. npm 12 includes the Arborist fix #9671.
+          # Only this temporary lockfile-generation step uses npm 12.
+          npx --yes npm@12.2.3 install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Ensure Storybook dependency versions are unchanged
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const prior = JSON.parse(readFileSync('/tmp/svitlo-prior-package-lock.json', 'utf8')).packages;
+          const next = JSON.parse(readFileSync('package-lock.json', 'utf8')).packages;
+          const isStorybook = path =>
+            path.includes('/node_modules/@storybook/') ||
+            path.includes('/node_modules/@joshwooding/') ||
+            path.startsWith('shared/ui-kit/node_modules/');
+          const paths = new Set([...Object.keys(prior), ...Object.keys(next)].filter(isStorybook));
+          const changed = [...paths].filter(path => prior[path]?.version !== next[path]?.version)
+            .map(path => path + ': ' + prior[path]?.version + ' -> ' + next[path]?.version);
+          if (changed.length) throw new Error('Unrelated Storybook/UI Kit lockfile changes: ' + changed.join(', '));
+          console.log('Storybook/UI Kit package versions unchanged:', paths.size, 'entries');
+          NODE
       - name: Verify npm lockfile produces a clean installation
         run: npm ci --no-audit --no-fund
       - name: Check locked Electron dependency chains
@@ -42,7 +63,8 @@ jobs:
           const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
           const pkg = lock.packages['node_modules/electron-builder'];
           if (pkg?.version !== '27.0.0-alpha.15') throw new Error('Unexpected resolved Electron Builder version');
-          const matcher = lock.packages['node_modules/app-builder-lib/node_modules/minimatch'];
+          const matcher = lock.packages['node_modules/app-builder-lib/node_modules/minimatch']
+            ?? lock.packages['node_modules/minimatch'];
           if (matcher?.version !== '11.0.9') throw new Error('app-builder-lib must use patched minimatch@11.0.9; got: ' + matcher?.version);
           const forbidden = Object.entries(lock.packages)
             .filter(([path, value]) =>
