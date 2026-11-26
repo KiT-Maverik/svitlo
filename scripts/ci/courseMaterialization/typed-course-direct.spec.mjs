@@ -366,10 +366,21 @@ test('actual Course source plan binds every generated Lesson seed and Episode ha
     const file = m.entries.find(item => item.path === row.overrideSourcePath);
     const source = Buffer.from(file.data, 'base64').toString('utf8');
     const altered = source.replace(
-      /\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\n/,
+      /\/\*\n \* TODO \(BLOCKER\): Implement, test and verify this entire Course-owned Lesson placement override[\s\S]*?\n \*\//,
       '',
     );
-    assert.notEqual(altered, source, 'resources blocker must be adjacent to the placement export');
+    assert.notEqual(altered, source, 'the reviewed override specification must follow the placement export');
+    file.data = Buffer.from(altered).toString('base64');
+    file.sha256 = createHash('sha256').update(altered).digest('hex');
+  });
+  mutate(m => {
+    const row = m.inventory.lessons.find(item => item.kind === 'overridden');
+    const file = m.entries.find(item => item.path === row.overrideSourcePath);
+    const source = Buffer.from(file.data, 'base64').toString('utf8');
+    const footer = source.match(/\/\*\n \* TODO \(BLOCKER\):[\s\S]*?\n \*\//)?.[0];
+    assert.ok(footer, 'generated placement must have exactly one trailing reviewed specification');
+    const altered = footer + '\n' + source.replace(footer, '');
+    assert.notEqual(altered, source, 'comment moved above the export must be rejected');
     file.data = Buffer.from(altered).toString('base64');
     file.sha256 = createHash('sha256').update(altered).digest('hex');
   });

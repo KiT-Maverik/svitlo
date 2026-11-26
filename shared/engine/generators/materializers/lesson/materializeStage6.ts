@@ -87,6 +87,8 @@ type RenderOptions = {
   documentLanguage: string;
   languagesImport: string;
   production?: Record<string, unknown>;
+  /** A Course placement preserves Section notes in its own override footer. */
+  noteOwnership?: 'course-lesson-placement';
 };
 
 function gitBlobSha(source: string): string {
@@ -405,6 +407,7 @@ export function materializeWorkflowSection(
     documentLanguage: string;
     languagesImport: string;
     sceneOutputRoot: string;
+    noteOwnership?: 'course-lesson-placement';
   },
 ): Result & { sceneScaffolds: Result['files'] } {
   const checked = lessonWorkflowSection_Schema.parse(value);
@@ -416,6 +419,7 @@ export function materializeWorkflowSection(
     documentLanguage: options.documentLanguage,
     languagesImport: options.languagesImport,
     production: normalizer.metadata.get(config.id),
+    ...(options.noteOwnership ? { noteOwnership: options.noteOwnership } : {}),
   });
   return {
     ...rendered,
