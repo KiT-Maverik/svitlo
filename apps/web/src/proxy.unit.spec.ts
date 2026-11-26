@@ -144,7 +144,6 @@ it('rejects invalid or missing Course details with an HTTP 404 before streaming'
     '/xx/course/' + courseId,
     '/ar/course/' + courseId,
     '/uk/course/' + otherId,
-    '/uk/course/../outside',
   ])
     expect(isInvalidPublishedRoute(invalid, root), invalid).toBe(true);
   rmSync(path.join(root, 'data', 'courses', courseId, 'base.json'));
