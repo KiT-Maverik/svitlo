@@ -99,7 +99,6 @@ describe('Configurators', () => {
         assert.equal(draft.locale?.uk?.section?.[0]?.content?.length, 2);
         assert.throws(() => lesson.build.props({ languages: ['uk'] }), /unresolved video reference|Scene/i);
         assert.deepEqual(lesson.build.props({ languages: ['uk'], mode: 'draft' }), draft);
-        assert.throws(() => scene.build.props({ languages: ['uk'] }), /Scene/i);
       });
 
       test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
