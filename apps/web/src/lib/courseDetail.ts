@@ -2,9 +2,9 @@ import 'server-only';
 
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
-import { coursePropsToTopics } from './courseNavigation';
+import { assertCourseTocMatchesTree, courseTocToTopics } from './courseNavigation';
 import { toCoursePreview } from './coursePreview';
-import { loadCourseLessonTitles, loadExistingCourseWithFallback } from './courseResources';
+import { loadCourseToc, loadExistingCourseWithFallback } from './courseResources';
 
 /**
  * Direct UUID-addressed detail loading. Unlike the listing route, it never enumerates
@@ -18,10 +18,11 @@ export async function loadCourseDetail(courseId: string, language: string) {
   if (!detail) return null;
   const { course: published, contentLanguage } = detail;
 
-  const titles = await loadCourseLessonTitles(published, contentLanguage);
+  const toc = await loadCourseToc(published.id, contentLanguage);
+  assertCourseTocMatchesTree(published, toc);
   return {
     course: toCoursePreview(published),
-    outline: coursePropsToTopics(published, interfaceLocale.language, contentLanguage, titles),
+    outline: courseTocToTopics(toc, interfaceLocale.language, contentLanguage),
     interfaceLanguage: interfaceLocale.language,
     contentLanguage,
   };

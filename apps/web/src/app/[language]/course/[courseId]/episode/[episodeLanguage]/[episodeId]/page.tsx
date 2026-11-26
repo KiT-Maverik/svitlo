@@ -5,8 +5,8 @@ import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode, validateEpisodeRuntime } from '@svitlo/engine/runtime';
 
 import WebEpisode from '@/components/pages/Episode/Episode';
-import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
-import { loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
+import { assertCourseTocMatchesTree, courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = { params: Promise<{ language: string; courseId: string; episodeLanguage: string; episodeId: string }> };
 
@@ -28,13 +28,14 @@ async function Content({ params }: Props) {
       </main>
     );
   }
-  const [messages, titles] = await Promise.all([
+  const [messages, toc] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
-    loadCourseLessonTitles(course, content.language),
+    loadCourseToc(course.id, content.language),
   ]);
+  assertCourseTocMatchesTree(course, toc);
   const courseHref = '/' + language + '/course/' + courseId;
   const href = courseHref + '/episode/' + episodeLanguage + '/' + episodeId;
-  const topics = coursePropsToTopics(course, language, episodeLanguage, titles);
+  const topics = courseTocToTopics(toc, language, episodeLanguage);
   const flat = flattenCourseTopics(topics);
   const position = flat.findIndex(topic => topic.href === href);
   const next = flat[position + 1];

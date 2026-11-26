@@ -5,8 +5,8 @@ import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRuntime } from '@svitlo/engine/runtime';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
-import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
-import { loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
+import { assertCourseTocMatchesTree, courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{
@@ -35,13 +35,14 @@ async function Content({ params }: Props) {
       </main>
     );
   }
-  const [messages, titles] = await Promise.all([
+  const [messages, toc] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
-    loadCourseLessonTitles(course, content.language),
+    loadCourseToc(course.id, content.language),
   ]);
+  assertCourseTocMatchesTree(course, toc);
   const courseHref = '/' + language + '/course/' + courseId;
   const href = courseHref + '/assessment/' + assessmentLanguage + '/' + assessmentId;
-  const topics = coursePropsToTopics(course, language, assessmentLanguage, titles);
+  const topics = courseTocToTopics(toc, language, assessmentLanguage);
   const flat = flattenCourseTopics(topics);
   const position = flat.findIndex(topic => topic.href === href);
   const next = flat[position + 1];

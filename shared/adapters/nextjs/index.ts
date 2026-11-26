@@ -4,6 +4,7 @@ export { loadPublishedLessonProps } from './publishedLessonProps';
 export {
   loadPublishedCourseLessonProps,
   loadPublishedCourseTree,
+  loadPublishedCourseToc,
   loadPublishedCourseTreeWithFallback,
   PublishedResourceError,
   CourseLanguageUnavailableError,

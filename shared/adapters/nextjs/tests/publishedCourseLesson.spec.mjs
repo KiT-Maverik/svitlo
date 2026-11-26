@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
 
-import { loadPublishedCourseLessonProps } from '../dist/publishedCourseLesson.js';
+import { loadPublishedCourseLessonProps, loadPublishedCourseToc } from '../dist/publishedCourseLesson.js';
 
 const lessonId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const courseId = '663572e7-bd85-4516-86e2-3de07d209e04';
@@ -109,4 +109,64 @@ test('rejects invalid language and unsafe IDs before reading files', async t => 
   await assert.rejects(loadPublishedCourseLessonProps(courseId, lessonId, '../outside', roots));
   await assert.rejects(loadPublishedCourseLessonProps('../outside', lessonId, 'uk', roots));
   await assert.rejects(loadPublishedCourseLessonProps(courseId, '../outside', 'uk', roots));
+});
+
+test('reads derived Course navigation without reading unrelated Lesson or Course resources', async t => {
+  const roots = await setup(t);
+  const toc = path.join(roots.courseDir, 'toc');
+  await mkdir(toc, { recursive: true });
+  const base = {
+    id: courseId,
+    type: 'course',
+    languages: ['en', 'uk'],
+    label: 'Course',
+    content: {
+      order: ['sampleLesson'],
+      items: { sampleLesson: { id: lessonId, type: 'lesson', label: 'Lesson' } },
+    },
+  };
+  await Promise.all([
+    writeFile(path.join(toc, 'base.json'), JSON.stringify(base)),
+    writeFile(
+      path.join(toc, 'uk.json'),
+      JSON.stringify({
+        label: 'Курс',
+        content: { items: { sampleLesson: { label: 'Урок' } } },
+      }),
+    ),
+  ]);
+  await Promise.all([
+    rm(roots.lessonDir, { recursive: true, force: true }),
+    rm(path.join(roots.courseDir, 'base.json')),
+    rm(path.join(roots.courseDir, 'uk.json'), { force: true }),
+  ]);
+  const localized = await loadPublishedCourseToc(courseId, 'uk', roots.coursesRoot);
+  assert.equal(localized.label, 'Курс');
+  assert.equal(localized.content.items.sampleLesson.label, 'Урок');
+  await assert.rejects(loadPublishedCourseToc(courseId, 'pl', roots.coursesRoot), /requested language mismatch/);
+  await assert.rejects(loadPublishedCourseToc('../escape', 'uk', roots.coursesRoot));
+});
+
+test('Course TOC loader enforces draft-only preview and detects corrupt locale JSON', async t => {
+  const roots = await setup(t);
+  const toc = path.join(roots.courseDir, 'toc');
+  await mkdir(toc, { recursive: true });
+  const base = {
+    id: courseId,
+    type: 'course',
+    languages: ['en', 'uk'],
+    label: 'Course',
+    content: {
+      order: ['stub'],
+      items: { stub: { id: lessonId, type: 'lesson', label: 'Not implemented', draft: true } },
+    },
+  };
+  await writeFile(path.join(toc, 'base.json'), JSON.stringify(base));
+  await assert.rejects(loadPublishedCourseToc(courseId, 'en', roots.coursesRoot), /Draft TOC/);
+  assert.equal(
+    (await loadPublishedCourseToc(courseId, 'en', roots.coursesRoot, 'draft')).content.items.stub.draft,
+    true,
+  );
+  await writeFile(path.join(toc, 'uk.json'), '{broken');
+  await assert.rejects(loadPublishedCourseToc(courseId, 'uk', roots.coursesRoot, 'draft'), /Invalid published JSON/);
 });

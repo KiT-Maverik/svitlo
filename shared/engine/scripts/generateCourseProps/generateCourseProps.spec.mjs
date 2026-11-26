@@ -21,15 +21,19 @@ test('Course batch publisher atomically replaces owned output and cleans stale r
     [id + '/base.json', '{"type":"course"}\n'],
     [id + '/uk.json', '{"locale":{"title":"Курс"}}\n'],
   ]);
+  files.set(id + '/toc/base.json', '{"type":"toc"}\n');
+  files.set(id + '/toc/uk.json', '{"label":"Курс"}\n');
   try {
     publish(root, files);
-    assert.deepEqual([...readCurrent(root)], [...files]);
+    assert.deepEqual([...readCurrent(root)].sort(), [...files].sort());
     fs.writeFileSync(path.join(root, id, 'stale.json'), '{}');
+    fs.writeFileSync(path.join(root, id, 'toc', 'stale.json'), '{}');
     fs.writeFileSync(path.join(home, 'unrelated.txt'), 'preserve');
     publish(root, files);
-    assert.deepEqual([...readCurrent(root)], [...files]);
+    assert.deepEqual([...readCurrent(root)].sort(), [...files].sort());
     assert.equal(fs.readFileSync(path.join(home, 'unrelated.txt'), 'utf8'), 'preserve');
     assert.equal(fs.existsSync(path.join(root, id, 'stale.json')), false);
+    assert.equal(fs.existsSync(path.join(root, id, 'toc', 'stale.json')), false);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }

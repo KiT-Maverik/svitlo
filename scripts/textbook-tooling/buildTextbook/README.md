@@ -61,3 +61,13 @@ textbook-style browser/ESM bundling. It does not generate or publish drafts.
 ## Independent assessment resource publication
 
 When authored Lesson directories contain a `questions/index.ts` or `flashcards/index.ts`, the textbook build runs the Engine's independent `generateAssessmentResources` pipeline with `--kind all --write`. It copies the metadata-only manifest and individual localized Question/Flashcard JSON into `dist/static/data/questions/<bucket>/<questionId>/` and `dist/static/data/flashcards/<bucket>/<flashcardId>/`; a single textbook-scoped `dist/static/data/assessments/manifest.json` indexes all UUIDs. Every resource is included in `dist/manifest.json`, so the existing portable publish CLI can install/remove it without additional host paths. No resource is generated for a textbook without authored banks; copied paths are checked for collisions. **Production now also validates actual generated Section references** with `verifyAssessmentSelections`: every explicit Quiz candidate Question UUID and Flashcards Section Flashcard UUID must resolve via the textbook manifest, matching kind, generated `base.json`, effective Lesson languages and complete real locale files. A selected Question may originate from another Lesson; its `ownerLessonId` is provenance, not a selection restriction. Missing manifests or selected bank files fail the production build before the distribution is replaced. See [the post-generation reference check](../verifyAssessmentSelections/README.md). It does not certify independent pedagogical or translation approvals. Historical Lesson YAML requires separately authorized, non-destructive migration to the typed editorial source; this build does not perform that migration.
+
+## Derived Course navigation
+
+The existing Course Props generator also creates `generated/courses/<uuid>/toc/base.json`
+and sparse `toc/<language>.json` fragments. `build.mjs` copies the complete generated
+Course tree into `dist/static/data/courses` and lists every TOC file in
+`dist/manifest.json`; the portable Publish CLI transfers and removes stale
+manifest-owned TOC paths exactly as other Course JSON. Web hosts read this derived
+navigation resource without loading each standalone Lesson. It is not an authored
+entity or a second generation workflow.
