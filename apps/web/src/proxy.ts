@@ -1,4 +1,4 @@
-import { readFileSync, statSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import type { NextRequest } from 'next/server';
@@ -44,19 +44,30 @@ function lessonExists(publicRoot: string, id: string, language: string): boolean
  * streaming begins. Do not parse or enumerate Course resources here; a corrupt
  * requested publication must reach the normal loader and fail visibly.
  */
-function missingDirectCourseBase(publicRoot: string, courseId: string): boolean {
+function invalidDirectCourseBase(publicRoot: string, courseId: string, language: string): boolean {
   let canonicalId: string;
   try {
     canonicalId = resolveEntityPath(courseId).split('/')[1];
   } catch {
     return true;
   }
+  let source: string;
   try {
-    return !statSync(path.join(publicRoot, 'data', 'courses', canonicalId, 'base.json')).isFile();
+    source = readFileSync(path.join(publicRoot, 'data', 'courses', canonicalId, 'base.json'), 'utf8');
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') return true;
     throw error;
   }
+  // Only a validly declared language exclusion is a 404. Invalid JSON/schema
+  // must pass through to the Course loader instead of being masked as missing.
+  let base: unknown;
+  try {
+    base = JSON.parse(source);
+  } catch {
+    return false;
+  }
+  if (!record(base) || base.id !== canonicalId || base.type !== 'course' || !record(base.params)) return false;
+  return Array.isArray(base.params.languages) && !base.params.languages.includes(language);
 }
 
 function courseContainsEpisode(node: unknown, episodeId: string, language: string): boolean {
@@ -119,7 +130,7 @@ export function isInvalidPublishedRoute(pathname: string, publicRoot: string): b
   }
 
   if (parts[1] === 'course' && parts.length === 3) {
-    return !codes.has(language) || missingDirectCourseBase(publicRoot, parts[2]);
+    return !codes.has(language) || invalidDirectCourseBase(publicRoot, parts[2], language);
   }
   if (parts[1] === 'course' && parts[3] === 'episode') {
     if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
