@@ -5,7 +5,7 @@
  */
 import { isDeepStrictEqual } from 'node:util';
 
-import { video_Config_Schema, type ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo';
+import { video_Config_Schema, type ContentBlock_Video_Config } from '../../../configurators/contentBlocks/primitive/defineVideo';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
