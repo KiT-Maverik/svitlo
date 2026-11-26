@@ -23,6 +23,7 @@
     "app:pack:mac": "npm run app:build && electron-builder --mac --publish never",
     "app:pack:linux": "npm run app:build && electron-builder --linux --publish never",
     "test:packaged": "playwright test tests/electron.packaged.spec.mjs",
+    "test:installers": "node --test tests/installer-artifacts.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
     "code:lint:fix": "eslint . --fix"
