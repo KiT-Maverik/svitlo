@@ -486,6 +486,70 @@ describe('Configurators', () => {
         );
       });
 
+      test('F4: required Quiz checks do not build unused zh translations in an English publication', () => {
+        const text = defineText<'englishOnly', ['en', 'zh']>({
+          id: id('b1'),
+          slug: 'englishOnly',
+          type: 'text',
+          params: {},
+          // Incomplete editorial locale is valid source, not valid requested zh publication.
+          locale: { value: { en: 'English content' } as never },
+        });
+        const english = defineContentSection<'english', { englishOnly: typeof text }, ['en', 'zh']>({
+          id: id('b2'),
+          slug: 'english',
+          type: 'content',
+          params: {},
+          locale: { title: 'English', navigationLabel: '1' },
+          content: { items: { englishOnly: text }, order: ['englishOnly'] },
+        });
+        const quiz = defineQuizSection<'review', {}, ['en', 'zh']>({
+          id: id('b3'),
+          slug: 'review',
+          type: 'quiz',
+          params: {
+            selection: { mode: 'all', questionIds: [id('64')] },
+            layout: { mode: 'stack' },
+            feedbackMode: 'after-completion',
+            interaction: {
+              retries: 0,
+              showErrors: true,
+              showCorrectAnswers: false,
+              allowExplanations: false,
+              allowDeferring: false,
+              allowQuestionNavigation: false,
+              skippable: false,
+            },
+            results: { visibility: 'after-review', showScore: true },
+          },
+          locale: { title: 'Review', navigationLabel: 'Quiz' },
+          content: { items: {}, order: [] },
+        });
+        const lesson = defineLesson({
+          id: id('b4'),
+          slug: 'englishScopeLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            languages: ['en', 'zh'] as const,
+            quizRequiredForCompletion: true,
+            sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+          },
+          locale: { title: 'English scope' },
+          section: { items: { english, review: quiz }, order: ['english', 'review'] },
+        });
+        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'], mode: 'draft' }));
+        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'], mode: 'draft' }));
+        assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'] }));
+        assert.throws(() => lesson.build.props({ languages: ['en', 'zh'] }), /Invalid publication/);
+        assert.throws(() => lesson.build.overrides({}, { languages: ['en', 'zh'] }), /Invalid publication/);
+        assert.throws(
+          () => lesson.build.overrides({ section: { items: { review: false }, order: ['english'] } }, { languages: ['en'] }),
+          /at least one enabled Quiz/,
+        );
+      });
+
       test('quizRequiredForCompletion demands an enabled Quiz when authored and after Section overrides', () => {
         const lessonInput = {
           id: id('07'),
