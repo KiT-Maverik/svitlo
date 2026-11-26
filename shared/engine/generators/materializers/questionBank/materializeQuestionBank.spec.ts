@@ -265,7 +265,27 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
   const source = planned.files.find(file => file.path.endsWith('question/pendingDiagram/index.ts'))?.content ?? '';
   assert.match(source, /TODO \(BLOCKER\)/);
   assert.match(source, /00000000-0000-0000-0000-000000000000.webp/);
+  assert.match(source, /# prompt[\\s\\S]*lamp on the left/);
   assert(planned.diagnostics.some(diagnostic => diagnostic.code === 'pending-media'));
+
+  // Keep the published Stage 3 boundary as strict as the concrete Image renderer.
+  const shortPrompt = structuredClone(input);
+  const pending = shortPrompt.config.questions.selectOneAnswer.promptOne.config.content.question.items
+    .pendingDiagram as typeof image;
+  pending.production.prompt = 'Draw a diagram';
+  assert.throws(
+    () => materializeQuestionBank(shortPrompt as never, finalAuth(shortPrompt)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
+
+  const nonImage = completeBank();
+  Object.assign(nonImage.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
+    production: { prompt: image.production.prompt },
+  });
+  assert.throws(
+    () => materializeQuestionBank(nonImage as never, finalAuth(nonImage)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
 });
 
 test('Stage 5 refuses forged media paths rather than emitting a TODO', () => {
