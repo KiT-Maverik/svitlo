@@ -238,10 +238,7 @@ test('draft Course preview assembles completed Lesson with sibling Episode, Asse
   assert.equal(assembled.id, lessonId);
   assert.equal(assembled.locale.title, 'Український урок');
   assert.deepEqual(input, snapshot, 'preview must not mutate Course publications');
-  assert.throws(
-    () => assembleCourseLesson({ ...input, mode: 'production' }),
-    /Course draft stub cannot be assembled/,
-  );
+  assert.throws(() => assembleCourseLesson({ ...input, mode: 'production' }), /Course draft stub cannot be assembled/);
 });
 
 test('draft preview cannot assemble a selected unfinished Lesson or malformed draft siblings', () => {
