@@ -75,7 +75,9 @@ test('CI packages the existing Desktop build while standalone packaging remains 
   const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts;
   const workflow = readFileSync(resolve(root, '../../.github/workflows/desktop-ci.yml'), 'utf8');
   assert.equal(scripts['app:pack'], 'npm run app:build && npm run app:pack:prepared');
-  assert.equal(scripts['app:pack:prepared'], 'electron-builder --dir --publish never');
+  assert.equal(scripts['app:pack:prepared'], 'electron-forge package');
+  assert.equal(scripts['app:pack:make:prepared'], 'electron-forge make');
+  assert.equal(scripts['app:pack:linux'], 'npm run app:build && npm run app:pack:make:prepared');
   assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);

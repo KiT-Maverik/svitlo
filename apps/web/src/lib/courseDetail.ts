@@ -1,0 +1,29 @@
+import 'server-only';
+
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+
+import { assertCourseTocMatchesTree, courseTocToTopics } from './courseNavigation';
+import { toCoursePreview } from './coursePreview';
+import { loadCourseToc, loadExistingCourseWithFallback } from './courseResources';
+
+/**
+ * Direct UUID-addressed detail loading. Unlike the listing route, it never enumerates
+ * other Courses. Keep the assembled Course for both the preview and navigation.
+ */
+export async function loadCourseDetail(courseId: string, language: string) {
+  const interfaceLocale = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
+  if (!interfaceLocale) return null;
+
+  const detail = await loadExistingCourseWithFallback(courseId, interfaceLocale.language);
+  if (!detail) return null;
+  const { course: published, contentLanguage } = detail;
+
+  const toc = await loadCourseToc(published.id, contentLanguage);
+  assertCourseTocMatchesTree(published, toc);
+  return {
+    course: toCoursePreview(published),
+    outline: courseTocToTopics(toc, interfaceLocale.language, contentLanguage),
+    interfaceLanguage: interfaceLocale.language,
+    contentLanguage,
+  };
+}

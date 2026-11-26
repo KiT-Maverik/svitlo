@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import { z } from 'zod';
 
+import { chapter_Config_Schema, chapter_Props_Schema } from './defineChapter/defineChapter.schemas';
 import { course_Config_Schema } from './defineCourse/defineCourse.schemas';
 import { module_Config_Schema, module_Props_Schema } from './defineModule/defineModule.schemas';
-import { chapter_Config_Schema, chapter_Props_Schema } from './defineChapter/defineChapter.schemas';
 
 test('Module/Chapter Config and Props reject production-only Skill targets', () => {
   for (const [entity, schema] of [

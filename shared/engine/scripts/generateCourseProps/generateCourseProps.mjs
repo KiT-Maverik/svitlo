@@ -168,7 +168,7 @@ export function publish(root, files) {
   let backedUp = false;
   try {
     for (const [relative, body] of files) {
-      if (!/^[0-9a-f-]{36}[/](?:base|[a-z]{2,8})[.]json$/.test(relative)) {
+      if (!/^[0-9a-f-]{36}[/](?:toc[/])?(?:base|[a-z]{2,8})[.]json$/.test(relative)) {
         throw new Error('Invalid generated Course path: ' + relative);
       }
       const destination = path.join(staging, relative);

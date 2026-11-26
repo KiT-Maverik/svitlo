@@ -384,6 +384,53 @@ if (id === 'web-fixture-alpha') {
       locale: course(lang).locale,
       content: course(lang).content,
     });
+  // The Web contract fixture is synthetic rather than Engine-authored. Keep its
+  // published TOC derived from its finished Course trees and the published
+  // fixture Lesson's selected language; never hardcode a second navigation tree.
+  function derivedToc(courseData, lang) {
+    const toContent = content => ({
+      order: [...content.order],
+      items: Object.fromEntries(content.order.map(key => [key, project(content.items[key])])),
+    });
+    const project = node => {
+      const value = {
+        id: node.id,
+        type: node.type,
+        label: node.type === 'lesson' ? (node.overrides?.locale?.title ?? translations[lang][0]) : node.locale.title,
+      };
+      return node.type === 'module' || node.type === 'chapter' ? { ...value, content: toContent(node.content) } : value;
+    };
+    return {
+      id: courseData.id,
+      type: 'course',
+      languages,
+      label: courseData.locale.title,
+      content: toContent(courseData.content),
+    };
+  }
+  const isRecord = item => item !== null && typeof item === 'object' && !Array.isArray(item);
+  function sparseDifference(base, localized) {
+    if (JSON.stringify(base) === JSON.stringify(localized)) return undefined;
+    if (!isRecord(base) || !isRecord(localized)) return structuredClone(localized);
+    const patch = {};
+    for (const [key, value] of Object.entries(localized)) {
+      const delta = sparseDifference(base[key], value);
+      if (delta !== undefined) patch[key] = delta;
+    }
+    return Object.keys(patch).length ? patch : undefined;
+  }
+  for (const [courseId, source] of [
+    [STORY, story],
+    [COURSE, course],
+  ]) {
+    const baseToc = derivedToc(source('en'), 'en');
+    const prefix = 'data/courses/' + courseId + '/toc/';
+    publish(prefix + 'base.json', baseToc);
+    for (const lang of languages) {
+      const delta = sparseDifference(baseToc, derivedToc(source(lang), lang));
+      if (delta !== undefined) publish(prefix + lang + '.json', delta);
+    }
+  }
   function domain(lang) {
     const t = translations[lang];
     return {

@@ -18,6 +18,7 @@ import {
 } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { stageTextbookAssets } from './stageTextbookAssets.mjs';
@@ -186,7 +187,16 @@ try {
     writeFileSync(join(dist, 'styles.css'), css.map(name => '@import "./' + name + '";').join('\n') + '\n');
   }
 
-  run('npx', ['tsc', '-p', packageDirectory + '/tsconfig.declarations.json', '--outDir', join(dist, '.declarations')]);
+  // Invoke the workspace TypeScript CLI through Node so Windows does not
+  // depend on spawning the platform-specific npx.cmd / tsc.cmd wrapper.
+  const require = createRequire(join(root, 'package.json'));
+  run(process.execPath, [
+    require.resolve('typescript/bin/tsc'),
+    '-p',
+    packageDirectory + '/tsconfig.declarations.json',
+    '--outDir',
+    join(dist, '.declarations'),
+  ]);
   for (const [from, to] of [
     ['textbook.d.ts', 'textbook/index.d.ts'],
     ...(hasScenes

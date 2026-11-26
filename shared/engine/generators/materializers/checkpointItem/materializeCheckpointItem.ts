@@ -1,7 +1,7 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_CheckpointItem_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
-import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_CheckpointItem_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import type { CheckpointAnswerSource } from '../checkpointAnswer/materializeCheckpointAnswer';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CheckpointItemSource = Omit<ContentBlock_CheckpointItem_Config, 'question' | 'answer'> & {
   question: ContentBlock_Text_Config;
@@ -127,7 +127,11 @@ export function materializeCheckpointItem(
       exportName +
       ' = defineCheckpointItem<' +
       JSON.stringify(config.slug) +
-      ', typeof ' + answer.exportName + ', typeof ' + question.exportName + ', typeof languages>({',
+      ', typeof ' +
+      answer.exportName +
+      ', typeof ' +
+      question.exportName +
+      ', typeof languages>({',
     '  id: ' + JSON.stringify(config.id) + ',',
     '  slug: ' + JSON.stringify(config.slug) + ',',
     "  type: 'checkpointItem',",

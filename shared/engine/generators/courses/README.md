@@ -23,8 +23,14 @@ publishCourse(course, {
 });
 ```
 
-Output is `<textbook>/generated/courses/<course-uuid>/base.json` and
+Output includes `<textbook>/generated/courses/<course-uuid>/base.json` and
 `<language>.json` only for languages that actually change the published Props.
+The same Course directory also owns `toc/base.json` and sparse `toc/<language>.json`
+navigation files. TOC is derived directly from completed, placement-effective Course
+Build Props before the full Lesson bodies are removed from compact Course publication.
+Its keyed ordered tree stores IDs, kinds, effective title labels, Course languages and
+draft flags; no Lesson sections, authored registry or host URLs. The Engine runtime
+assembler validates labels, immutable hierarchy and production draft rejection.
 When `outputRoot` is provided, the files are instead written directly to
 `<outputRoot>/<course-uuid>/` (for example, `generated/courses/`). This directory is a generated output, not
 an authored resource or a runtime import.

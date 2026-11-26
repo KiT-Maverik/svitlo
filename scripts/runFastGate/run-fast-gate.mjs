@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /** Typecheck changed workspaces and consumers of changed public contracts only. */
+import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
-import { changedFiles } from '../ci/prDiff/changed-files.mjs';
-import { changedPublicContracts } from './public-contract-impact.mjs';
 import { fileURLToPath } from 'node:url';
+import { changedFiles } from '../ci/prDiff/changed-files.mjs';
+import { partitionBuildMutatingHosts, runParallelTypechecks } from '../runWorkspaceScript/typecheck-scheduler.mjs';
+import { changedPublicContracts } from './public-contract-impact.mjs';
+
+export { partitionBuildMutatingHosts };
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 function assert(ok, message) {
@@ -41,36 +44,6 @@ function execAsync(command, args, environment = process.env) {
         : reject(new Error('FastGate command failed: ' + command + ' ' + args.join(' ') + ' (exit ' + code + ')')),
     );
   });
-}
-/** Keep npm host preparation that rewrites shared dist/ out of the parallel lane. */
-export function partitionBuildMutatingHosts(targets) {
-  const mutatingHosts = new Set(['@svitlo/web', '@svitlo/mobile']);
-  return {
-    parallel: targets.filter(name => !mutatingHosts.has(name)),
-    sequential: targets.filter(name => mutatingHosts.has(name)),
-  };
-}
-
-async function runParallel(targets, action) {
-  const configured = Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2);
-  assert(
-    Number.isInteger(configured) && configured >= 1 && configured <= 8,
-    'SVITLO_FASTGATE_PARALLELISM must be an integer from 1 to 8',
-  );
-  let index = 0;
-  const failures = [];
-  async function worker() {
-    while (index < targets.length) {
-      const name = targets[index++];
-      try {
-        await action(name);
-      } catch (error) {
-        failures.push(name + ': ' + error.message);
-      }
-    }
-  }
-  await Promise.all(Array.from({ length: Math.min(configured, targets.length) }, () => worker()));
-  if (failures.length) throw new Error('FastGate failed workspaces:\\n' + failures.join('\\n'));
 }
 function expandWorkspaces() {
   const result = [];
@@ -228,7 +201,10 @@ async function runGate(changed, base, head, { changedOnly = false } = {}) {
         : process.env;
     await execAsync('npm', ['run', 'code:check:types', '--workspace', name], environment);
   }
-  await runParallel(parallel, checkWorkspace);
+  await runParallelTypechecks(parallel, checkWorkspace, {
+    parallelism: Number(process.env.SVITLO_FASTGATE_PARALLELISM || 2),
+    context: 'FastGate',
+  });
   for (const name of sequential) await checkWorkspace(name);
 }
 

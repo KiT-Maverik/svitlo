@@ -50,3 +50,30 @@ const enMessages: CourseMessages = {
 export function getCourseMessages(language: string): CourseMessages {
   return language === 'uk' ? ukMessages : enMessages;
 }
+
+/** The language notice follows the host's existing Ukrainian/English Course UI localization. */
+export function getCourseLanguageFallbackNotice(interfaceLanguage: string, requested: string, actual: string): string {
+  const names = new Intl.DisplayNames([interfaceLanguage], { type: 'language' });
+  const original = names.of(requested) ?? requested;
+  const selected = names.of(actual) ?? actual;
+  return interfaceLanguage === 'uk'
+    ? `Курс поки що недоступний мовою «${original}». Показуємо доступну версію мовою «${selected}».`
+    : `This course is not available in ${original}. Showing the available ${selected} version instead.`;
+}
+
+/** Course publication failures are distinct from missing Courses (404). */
+export function getCourseLoadFailureMessages(language: string) {
+  return language === 'uk'
+    ? {
+        title: 'Не вдалося завантажити курс',
+        description: 'Виникла помилка під час завантаження курсу. Спробуйте ще раз.',
+        retry: 'Спробувати ще раз',
+        back: 'Усі курси',
+      }
+    : {
+        title: 'Unable to load this course',
+        description: 'An error occurred while loading this course. Please try again.',
+        retry: 'Try again',
+        back: 'All courses',
+      };
+}

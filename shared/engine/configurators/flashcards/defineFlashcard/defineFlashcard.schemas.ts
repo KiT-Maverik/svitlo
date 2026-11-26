@@ -8,9 +8,12 @@ import { disability_Schema } from '../../../schemas/disabilities.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import {
   localizationSwitch as contentBlockLocalizationSwitch,
-  contentBlockResolved_Schema,
+  primitiveContentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import type {
+  ContentBlock_Primitive_Configurator,
+  ContentBlock_Primitive_Props,
+} from '../../contentBlocks/contentBlock.types';
 import {
   flashcardSide_Config_Schema,
   type FlashcardSide_Overrides,
@@ -100,7 +103,7 @@ export const flashcard_Config_Schema = identityBase_Schema
   .strict();
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
-const resolvedBlocks = z.array(contentBlockResolved_Schema);
+const resolvedBlocks = z.array(primitiveContentBlockResolved_Schema);
 export const flashcard_Props_Schema = identityBase_Schema.extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
@@ -116,7 +119,11 @@ export const flashcard_Props_Schema = identityBase_Schema.extend({
   }),
 });
 export type Flashcard_Props = Omit<z.infer<typeof flashcard_Props_Schema>, 'content'> & {
-  content: { front: ContentBlock_Props[]; back: ContentBlock_Props[]; hint?: ContentBlock_Props[] };
+  content: {
+    front: ContentBlock_Primitive_Props[];
+    back: ContentBlock_Primitive_Props[];
+    hint?: ContentBlock_Primitive_Props[];
+  };
 };
 
 export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> & {
@@ -124,9 +131,9 @@ export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> 
     flags: DeepPartial<Flashcard_Flag_Props>[];
   };
   content: {
-    front: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
-    back: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
-    hint?: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
+    front: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
+    back: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
+    hint?: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
   };
 };
 
@@ -155,13 +162,13 @@ export type Flashcard_Named_Overrides<
 };
 
 export type Flashcard_Overrides<
-  Front extends Record<string, ContentBlock_Configurator>,
-  Back extends Record<string, ContentBlock_Configurator>,
-  Hint extends Record<string, ContentBlock_Configurator>,
+  Front extends Record<string, ContentBlock_Primitive_Configurator>,
+  Back extends Record<string, ContentBlock_Primitive_Configurator>,
+  Hint extends Record<string, ContentBlock_Primitive_Configurator>,
   Relationships extends Record<string, Flashcard_Relationship>,
-  AddedFront extends Record<string, ContentBlock_Configurator> = {},
-  AddedBack extends Record<string, ContentBlock_Configurator> = {},
-  AddedHint extends Record<string, ContentBlock_Configurator> = {},
+  AddedFront extends Record<string, ContentBlock_Primitive_Configurator> = {},
+  AddedBack extends Record<string, ContentBlock_Primitive_Configurator> = {},
+  AddedHint extends Record<string, ContentBlock_Primitive_Configurator> = {},
   AddedRelationships extends Record<string, Flashcard_Relationship> = {},
 > = {
   parameters?: Flashcard_Metadata_Overrides & {

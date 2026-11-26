@@ -5,7 +5,7 @@
  * compact status or bounded failures. Never wrap structured stdout producers.
  */
 import { spawn } from 'node:child_process';
-import { appendFileSync } from 'node:fs';
+import { appendFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
 export function failureExcerpt(output, limit = 12000) {
@@ -17,6 +17,26 @@ export function failureExcerpt(output, limit = 12000) {
     .slice(0, 4000);
   const tail = lines.slice(-65).join('\n').slice(-8000);
   return (errors ? errors + '\n...\n' + tail : tail).slice(0, limit);
+}
+
+/** Windows npm is a .cmd shim; invoke its JavaScript CLI directly without a shell. */
+export function resolveSpawnCommand(command, args, options = {}) {
+  const platform = options.platform ?? process.platform;
+  if (platform !== 'win32' || command !== 'npm') return { command, args };
+  const node = options.node ?? process.execPath;
+  const candidates = [
+    options.npmCli ?? process.env.npm_execpath,
+    path.win32.join(path.win32.dirname(node), 'node_modules', 'npm', 'bin', 'npm-cli.js'),
+  ];
+  const cli = candidates.find(candidate => candidate && existsSync(candidate));
+  if (!cli) {
+    throw new Error('Cannot locate npm-cli.js beside Node on Windows; refusing a shell fallback');
+  }
+  return { command: node, args: [cli, ...args] };
+}
+
+export function isDirectCliInvocation(argv1 = process.argv[1]) {
+  return typeof argv1 === 'string' && path.win32.basename(argv1) === 'quiet-run.mjs';
 }
 
 export function run(argv = process.argv.slice(2)) {
@@ -50,7 +70,8 @@ export function run(argv = process.argv.slice(2)) {
   const diagnostics = [];
   let pending = '';
   const actionable = /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i;
-  const child = spawn(command, args, {
+  const spawnCommand = resolveSpawnCommand(command, args);
+  const child = spawn(spawnCommand.command, spawnCommand.args, {
     stdio: verbose ? 'inherit' : ['inherit', 'pipe', 'pipe'],
     shell: false,
     env: process.env,
@@ -100,7 +121,7 @@ export function run(argv = process.argv.slice(2)) {
   });
 }
 
-if (process.argv[1]?.endsWith('/quiet-run.mjs')) {
+if (isDirectCliInvocation()) {
   try {
     run();
   } catch (error) {

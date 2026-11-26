@@ -4,8 +4,8 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { contentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import { localizationSwitch, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -44,5 +44,5 @@ export const answerWithNumber_Props_Schema = questionBase.extend({
   content: questionCommonContent_Props_Schema,
 });
 export type Question_AnswerWithNumber_Props = Omit<z.infer<typeof answerWithNumber_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Props>;
+  content: QuestionPublishedContent<ContentBlock_Primitive_Props>;
 };

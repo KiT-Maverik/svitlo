@@ -131,6 +131,9 @@ test('Quick Settings toggles actual theme colors and persists', async ({ page })
   await expect(html).toHaveAttribute('data-dark', '');
   await expect.poll(background).not.toBe(initial);
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
+  // The color-scheme script restores <html> before React hydrates the switch.
+  // Require the switch to reflect the persisted dark mode before toggling back.
+  await expect(toggle).toBeChecked();
   await toggle.click();
   await expect(toggle).not.toBeChecked();
   await expect(html).toHaveAttribute('data-light', '');

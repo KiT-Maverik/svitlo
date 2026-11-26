@@ -193,7 +193,7 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const main = result.files.find(file => file.path === 'flashcards/index.ts')?.content ?? '';
-  assert(main.indexOf('"beta"') < main.indexOf('"alpha"'), 'preserve the complete reviewed order');
+  assert.match(main, /export const flashcards = \{\n  beta,\n  alpha,\n\};/);
   const alpha = result.files.find(file => file.path === 'flashcards/alpha.ts')?.content ?? '';
   const beta = result.files.find(file => file.path === 'flashcards/beta.ts')?.content ?? '';
   assert.match(alpha, /relationshipId: "reviewedConnection"/);
@@ -239,6 +239,28 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
     () => materializeFlashcardBank(badOrder as never, finalAuthorization(badOrder)),
     /order must enumerate/,
   );
+});
+
+test('Flashcard Bank rejects both Composite child kinds before source emission', () => {
+  for (const type of ['carousel', 'checkpoint']) {
+    const source = completed();
+    Object.assign(source.config.flashcards.items.alpha.config.content.front.items, {
+      invalid: {
+        config: {
+          id: id(type === 'carousel' ? 471 : 472),
+          slug: 'invalid',
+          type,
+          params: {},
+          locale: {},
+        },
+      },
+    });
+    source.config.flashcards.items.alpha.config.content.front.order.push('invalid');
+    assert.throws(
+      () => materializeFlashcardBank(source as never, finalAuthorization(source)),
+      /Invalid reviewed flashcardBank Stage 3 input/,
+    );
+  }
 });
 
 test('Flashcard source materialization does not gate on editorial bank-required status', () => {

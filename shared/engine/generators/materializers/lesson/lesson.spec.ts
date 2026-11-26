@@ -435,10 +435,7 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
     renderSection: (child, opts) => renderSection(child as ContentSource, { ...opts, renderContentBlock }),
   });
   const root = result.files.find(file => file.path === 'index.ts')?.content ?? '';
-  assert.match(
-    root,
-    /import \{ testRecognizeRed \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/,
-  );
+  assert.match(root, /import \{ testRecognizeRed \} from "#skillsData\/testColors\/testWarmColors\/testRecognizeRed"/);
   assert.match(
     root,
     /import \{ testRecognizeBlue \} from "#skillsData\/testColors\/testCoolColors\/testRecognizeBlue"/,
