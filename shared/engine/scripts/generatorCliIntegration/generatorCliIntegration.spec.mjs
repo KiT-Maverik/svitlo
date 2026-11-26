@@ -94,7 +94,6 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
   }
 });
 
-
 test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube and Scene children', () => {
   const name = 'generator-draft-media-' + randomUUID().slice(0, 8);
   const pkg = path.join(repo, 'content', name);
@@ -106,7 +105,15 @@ test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube 
   const run = (draft, action) =>
     spawnSync(
       'npm',
-      ['run', 'content:generate:lesson-props', '--', '--package', 'content/' + name, ...(draft ? ['--draft'] : []), action],
+      [
+        'run',
+        'content:generate:lesson-props',
+        '--',
+        '--package',
+        'content/' + name,
+        ...(draft ? ['--draft'] : []),
+        action,
+      ],
       { cwd: repo, encoding: 'utf8', env: process.env },
     );
 
@@ -134,11 +141,15 @@ test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube 
         }) +
         ');',
       'const media = defineContentSection({' +
-        'id: ' + JSON.stringify(sectionId) + ', slug: "media", type: "content", params: {}, ' +
+        'id: ' +
+        JSON.stringify(sectionId) +
+        ', slug: "media", type: "content", params: {}, ' +
         'locale: { title: "Media", navigationLabel: "Media" }, ' +
         'content: { items: { video, scene }, order: ["video", "scene"] } });',
       'export const lesson = defineLesson({' +
-        'id: ' + JSON.stringify(lessonId) + ', slug: "mediaLesson", type: "lesson", skills: [], ' +
+        'id: ' +
+        JSON.stringify(lessonId) +
+        ', slug: "mediaLesson", type: "lesson", skills: [], ' +
         'params: { languages: ["en"], quizRequiredForCompletion: false, ' +
         'sections: { allowNavigation: true, allowSkipping: true, showIndexes: false } }, ' +
         'locale: { title: "Draft Lesson" }, ' +
@@ -156,7 +167,10 @@ test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube 
 
     const production = run(false, '--preflight');
     assert.notEqual(production.status, 0, 'production cannot publish unresolved YouTube/Scene references');
-    assert.match(production.stdout + '\n' + production.stderr, /unresolved video reference|Failed to build Lesson Props/);
+    assert.match(
+      production.stdout + '\n' + production.stderr,
+      /unresolved video reference|Failed to build Lesson Props/,
+    );
     assert.equal(fs.readFileSync(output, 'utf8'), bytes, 'failed production preflight must not replace draft files');
   } finally {
     fs.rmSync(pkg, { recursive: true, force: true });

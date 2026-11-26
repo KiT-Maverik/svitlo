@@ -3,9 +3,7 @@
   "compilerOptions": {
     "outDir": "./.test-build",
     "declaration": false,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "include": [
     "configurators/contentBlocks/assembly.spec.ts",
@@ -24,9 +22,5 @@
     "configurators/contentBlocks/defineSubtitles/**/*.spec.ts",
     "configurators/courses/defineCourse/courseHierarchy.spec.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".test-build"
-  ]
+  "exclude": ["node_modules", "dist", ".test-build"]
 }
