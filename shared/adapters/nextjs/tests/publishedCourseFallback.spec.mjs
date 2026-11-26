@@ -66,3 +66,16 @@ test('explicit activity language loader reports unsupported Course locale throug
     error instanceof CourseLanguageUnavailableError && error.code === 'course-language-unavailable',
   );
 });
+
+test('does not mask a corrupt Course identity as an unavailable content locale', async t => {
+  const { root, course } = await setup(t, ['uk']);
+  await writeFile(path.join(course, 'base.json'), JSON.stringify({
+    id: '11111111-1111-4111-8111-000000000114',
+    type: 'course',
+    params: { languages: ['uk'] },
+    locale: { title: 'Corrupt' },
+    content: { order: [], items: {} },
+  }));
+  await assert.rejects(loadPublishedCourseTree(id, 'pl', root), /Published Course identity mismatch/);
+  await assert.rejects(loadPublishedCourseTreeWithFallback(id, 'pl', root), /Published Course identity mismatch/);
+});
