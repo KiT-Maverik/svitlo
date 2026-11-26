@@ -201,7 +201,10 @@ jobs:
           npm run package:build --workspace @svitlo/engine
           echo "- Producer Engine package:build: $(($(date +%s) - start))s (1 invocation)" >> "$GITHUB_STEP_SUMMARY"
       - name: Validate compiled exports and measure artifact contents
-        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs inspect
+        run: |
+          start=$(date +%s)
+          node scripts/ci/productionQuality/engine-artifact-guard.mjs inspect
+          echo "- Producer export validation: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
       - name: Mark upload start
         run: echo "ARTIFACT_UPLOAD_STARTED=$(date +%s)" >> "$GITHUB_ENV"
       - name: Upload complete Engine dist for this run
