@@ -183,14 +183,15 @@ export const defineCheckpoint = <
     order: readonly string[],
     languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
+    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props({ languages });
+      const resource = child.build.props({ languages, mode });
       const patch = Object.hasOwn(patches, key)
         ? (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ItemOverride)(
             patches[key] as never,
-            { languages },
+            { languages, mode },
           )
         : undefined;
       return { resource, patch };
@@ -235,7 +236,7 @@ export const defineCheckpoint = <
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const built = buildContent(initialItems, initialOrder, languages);
+    const built = buildContent(initialItems, initialOrder, languages, {}, options.mode);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(built.locales)) {
       (files[language as LanguageCode] ??= {}).content = entries;
@@ -351,7 +352,7 @@ export const defineCheckpoint = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, CheckpointItem] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, languages, childPatches);
+        const built = buildContent(enabled, order, languages, childPatches, options.mode);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCode] ??= {}).content = entries;
