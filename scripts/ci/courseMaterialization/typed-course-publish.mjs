@@ -295,7 +295,9 @@ function assertCourseInventory(manifest, meta, entries) {
             !remainder.endsWith('*/') ||
             source.split('TODO (BLOCKER):').length !== 2
           )
-            throw Error('Course Lesson override placement module lacks verified original, typed Build patch or trailing specification');
+            throw Error(
+              'Course Lesson override placement module lacks verified original, typed Build patch or trailing specification',
+            );
         }
       } else throw Error('Invalid Course Lesson kind');
     } else if (row.type === 'episode') {
