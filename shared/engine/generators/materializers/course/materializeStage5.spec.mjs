@@ -309,10 +309,9 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.ok(wrapper, 'overridden Lesson must own its Course-local module');
   assert.match(wrapper.content, /import \{ actualLesson \} from "#lessonsData\//);
   assert.match(wrapper.content, /export const directLesson = placeLesson\(actualLesson, \{/);
-  assert.match(
-    wrapper.content,
-    /\/\/ TODO \(BLOCKER\): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker\.\nexport const directLesson = placeLesson\(actualLesson, \{/,
-  );
+  assert.match(wrapper.content, /export const directLesson = placeLesson\([\s\S]*\);\s*\/\*\n \* TODO \(BLOCKER\):/);
+  assert.match(wrapper.content, /Reviewed course-local title and exercise/);
+  assert.equal((wrapper.content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /import \{ directLesson \} from "\.\/directLesson"/);
@@ -708,6 +707,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
     section: { items: {}, order: [] },
   });
   const authoredSection = {
+    production: {
+      purpose:
+        'Course-only exhibition practice.\nKeep the complete reviewer note even with */ and multiline formatting.',
+    },
     config: {
       id: '663572e7-bd85-4516-86e2-3de07d209e31',
       type: 'content',
@@ -789,6 +792,16 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
+  assert.match(wrapper ?? '', /export const reused = placeLesson\([\s\S]*\);\s*\/\*\n \* TODO \(BLOCKER\):/);
+  assert.equal((wrapper?.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+  assert.match(wrapper ?? '', /Course-specific extra practice is required/);
+  assert.match(wrapper ?? '', /Course-only exhibition practice/);
+  assert.match(wrapper ?? '', /Keep the complete reviewer note even with \* \/ and multiline formatting/);
+  assert.doesNotMatch(section ?? '', /Transfer reviewed .* Section notes/);
+  assert.doesNotMatch(
+    plan.files.filter(file => file.path.endsWith('/methodology.md')).map(file => file.content).join('\n'),
+    /Course-only exhibition practice/,
+  );
   for (const sceneId of [directSceneId, nestedSceneId]) {
     const prefix = 'content/playground/scenes/' + sceneId.at(-1) + '/' + sceneId + '/';
     const sources = plan.files.filter(file => file.path.startsWith(prefix));
