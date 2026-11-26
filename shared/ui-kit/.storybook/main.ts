@@ -30,6 +30,13 @@ const config = {
       : Object.entries(existing).map(([find, replacement]) => ({ find, replacement }));
     return {
       ...viteConfig,
+      // The Engine publishes CommonJS. Linked workspaces bypass Vite's default
+      // dependency prebundling; explicitly prebundle the runtime so named
+      // imports work in browser ESM during Storybook development.
+      optimizeDeps: {
+        ...viteConfig.optimizeDeps,
+        include: [...new Set([...(viteConfig.optimizeDeps?.include ?? []), '@svitlo/engine/runtime'])],
+      },
       resolve: {
         ...viteConfig.resolve,
         alias: [...sourceAlias, ...preserved],
