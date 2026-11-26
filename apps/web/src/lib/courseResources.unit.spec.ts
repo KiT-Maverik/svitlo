@@ -10,16 +10,31 @@ import {
   loadCourseLessonTitles,
   loadCourseTree,
   loadExistingCourseTree,
+  loadExistingCourseWithFallback,
 } from './courseResources';
 
-const adapter = vi.hoisted(() => ({
-  lesson: vi.fn(),
-  course: vi.fn(),
-}));
+const adapter = vi.hoisted(() => {
+  class PublishedResourceError extends Error {
+    constructor(readonly code: string, readonly resourcePath: string) {
+      super('Published resource error');
+    }
+  }
+  class CourseLanguageUnavailableError extends Error {}
+  return {
+    lesson: vi.fn(),
+    course: vi.fn(),
+    fallback: vi.fn(),
+    PublishedResourceError,
+    CourseLanguageUnavailableError,
+  };
+});
 vi.mock('server-only', () => ({}));
 vi.mock('@svitlo/adapter-nextjs', () => ({
   loadPublishedCourseLessonProps: adapter.lesson,
   loadPublishedCourseTree: adapter.course,
+  loadPublishedCourseTreeWithFallback: adapter.fallback,
+  PublishedResourceError: adapter.PublishedResourceError,
+  CourseLanguageUnavailableError: adapter.CourseLanguageUnavailableError,
 }));
 
 const courseId = '99999999-9999-4999-8999-999999999999';
@@ -68,43 +83,47 @@ it('does not fetch standalone Lesson Props for a reserved Draft Course placement
 
 it('only enables Draft assembly in the development host, never in production', async () => {
   adapter.course.mockResolvedValue(mixed);
+  adapter.fallback.mockResolvedValue({ course: mixed, contentLanguage: 'en' });
   vi.stubEnv('NODE_ENV', 'development');
   await loadCourseTree(courseId, 'en');
+  await loadExistingCourseWithFallback(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'draft');
+  expect(adapter.fallback).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'draft');
 
   vi.stubEnv('NODE_ENV', 'production');
   await loadCourseTree(courseId, 'en');
+  await loadExistingCourseWithFallback(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
+  expect(adapter.fallback).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
 });
 
-it('validates direct Course IDs and only attempts the requested publication', async () => {
+it('validates direct Course IDs and reads only the requested publication', async () => {
   adapter.course.mockResolvedValue(mixed);
+  adapter.fallback.mockResolvedValue({ course: mixed, contentLanguage: 'en' });
   expect(await loadExistingCourseTree(courseId, 'en')).toBe(mixed);
+  expect(await loadExistingCourseWithFallback(courseId, 'en')).toEqual({ course: mixed, contentLanguage: 'en' });
   expect(adapter.course).toHaveBeenCalledTimes(1);
-  expect(adapter.course).toHaveBeenCalledWith(courseId, 'en', undefined, 'production');
+  expect(adapter.fallback).toHaveBeenCalledTimes(1);
   await expect(loadExistingCourseTree('../outside', 'en')).resolves.toBeNull();
-  await expect(loadExistingCourseTree('not-a-uuid', 'en')).resolves.toBeNull();
+  await expect(loadExistingCourseWithFallback('not-a-uuid', 'en')).resolves.toBeNull();
   expect(adapter.course).toHaveBeenCalledTimes(1);
+  expect(adapter.fallback).toHaveBeenCalledTimes(1);
 });
 
-it('returns not-found only when the requested Course base is absent', async () => {
+it('returns not-found only on structured missing-base or unavailable explicit activity language', async () => {
   const base = join(process.cwd(), 'public/data/courses', courseId, 'base.json');
-  const notFound = new Error('Cannot read published resource: ' + base, {
-    cause: Object.assign(new Error('missing'), { code: 'ENOENT' }),
-  });
-  adapter.course.mockRejectedValueOnce(notFound);
+  adapter.course.mockRejectedValueOnce(new adapter.PublishedResourceError('missing', base));
+  await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
+  adapter.course.mockRejectedValueOnce(new adapter.CourseLanguageUnavailableError('unsupported'));
   await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
 
-  adapter.course.mockRejectedValueOnce(new Error('Course does not support language en'));
-  await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
+  adapter.course.mockRejectedValueOnce(new adapter.PublishedResourceError('invalid-json', base));
+  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Published resource error');
+  adapter.course.mockRejectedValueOnce(new adapter.PublishedResourceError('missing', base + '/other'));
+  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Published resource error');
 
-  adapter.course.mockRejectedValueOnce(new Error('Invalid published JSON: ' + base));
-  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Invalid published JSON');
-
-  adapter.course.mockRejectedValueOnce(
-    new Error('Cannot read published resource: ' + base, {
-      cause: Object.assign(new Error('permission denied'), { code: 'EACCES' }),
-    }),
-  );
-  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Cannot read published resource');
+  adapter.fallback.mockRejectedValueOnce(new adapter.PublishedResourceError('missing', base));
+  await expect(loadExistingCourseWithFallback(courseId, 'en')).resolves.toBeNull();
+  adapter.fallback.mockRejectedValueOnce(new adapter.PublishedResourceError('read-failed', base));
+  await expect(loadExistingCourseWithFallback(courseId, 'en')).rejects.toThrow('Published resource error');
 });
