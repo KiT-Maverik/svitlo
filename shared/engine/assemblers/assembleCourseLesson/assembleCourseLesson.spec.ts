@@ -204,3 +204,59 @@ test('production Lesson assembly rejects draft stubs even when another completed
   (standaloneDraft.lesson.base as unknown as Record<string, unknown>).draft = true;
   assert.throws(() => assembleCourseLesson(standaloneDraft), /Standalone Lesson draft/);
 });
+
+test('draft Course preview assembles completed Lesson with sibling Episode, Assessment and Lesson stubs', () => {
+  const input = createInput();
+  input.mode = 'draft';
+  const laboratory = input.course.base.content.items.laboratory as unknown as {
+    content: { items: Record<string, unknown>; order: string[] };
+  };
+  const unfinishedLesson = '123e4567-e89b-42d3-a456-426614174071';
+  laboratory.content.items.pendingLesson = {
+    id: unfinishedLesson,
+    slug: 'pendingLesson',
+    type: 'lesson',
+    draft: true,
+  };
+  laboratory.content.order.unshift('pendingLesson');
+  const root = input.course.base.content as unknown as { items: Record<string, unknown>; order: string[] };
+  root.items.openingMission = {
+    id: '123e4567-e89b-42d3-a456-426614174072',
+    slug: 'openingMission',
+    type: 'episode',
+    draft: true,
+  };
+  root.items.finalAssessment = {
+    id: '123e4567-e89b-42d3-a456-426614174073',
+    slug: 'finalAssessment',
+    type: 'assessment',
+    draft: true,
+  };
+  root.order = ['openingMission', 'laboratory', 'finalAssessment'];
+  const snapshot = structuredClone(input);
+  const assembled = assembleCourseLesson(input);
+  assert.equal(assembled.id, lessonId);
+  assert.equal(assembled.locale.title, 'Український урок');
+  assert.deepEqual(input, snapshot, 'preview must not mutate Course publications');
+  assert.throws(
+    () => assembleCourseLesson({ ...input, mode: 'production' }),
+    /Course draft stub cannot be assembled/,
+  );
+});
+
+test('draft preview cannot assemble a selected unfinished Lesson or malformed draft siblings', () => {
+  const input = createInput();
+  input.mode = 'draft';
+  const laboratory = input.course.base.content.items.laboratory as unknown as {
+    content: { items: Record<string, unknown>; order: string[] };
+  };
+  laboratory.content.items.demo = { id: lessonId, slug: 'demo', type: 'lesson', draft: true };
+  assert.throws(() => assembleCourseLesson(input), /Selected Course draft Lesson cannot be assembled/);
+
+  const malformed = createInput();
+  malformed.mode = 'draft';
+  const parent = malformed.course.base.content as unknown as { items: Record<string, unknown>; order: string[] };
+  parent.items.invalid = { id: '123e4567-e89b-42d3-a456-426614174074', type: 'episode', draft: false };
+  parent.order.push('invalid');
+  assert.throws(() => assembleCourseLesson(malformed), /Course draft stub cannot be assembled/);
+});

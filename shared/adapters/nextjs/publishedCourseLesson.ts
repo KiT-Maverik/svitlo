@@ -63,6 +63,8 @@ export type CourseLessonPublicationRoots = {
   lessonsRoot?: string;
   coursesRoot?: string;
   placement?: string;
+  /** Match Course tree preview mode; omitted defaults to production fail-closed. */
+  mode?: 'production' | 'draft';
 };
 
 async function readPublishedJson(filename: string, optional: boolean): Promise<unknown | undefined> {
@@ -120,6 +122,7 @@ export async function loadPublishedCourseLessonProps(
     courseId,
     lessonId,
     placement: roots.placement,
+    mode: roots.mode,
     language: selectedLanguage,
     lesson: lesson as unknown as PublishedLessonPropsResource,
     course: course as unknown as PublishedCoursePropsFiles,

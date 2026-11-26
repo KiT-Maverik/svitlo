@@ -170,3 +170,31 @@ test('Course TOC loader enforces draft-only preview and detects corrupt locale J
   await writeFile(path.join(toc, 'uk.json'), '{broken');
   await assert.rejects(loadPublishedCourseToc(courseId, 'uk', roots.coursesRoot, 'draft'), /Invalid published JSON/);
 });
+
+test('draft Course preview loads completed Lesson with unfinished Episode, but production fails closed', async t => {
+  const roots = await setup(t);
+  const current = course();
+  const openingMission = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e05',
+    slug: 'openingMission',
+    type: 'episode',
+    draft: true,
+  };
+  await writeFile(
+    path.join(roots.courseDir, 'base.json'),
+    JSON.stringify({
+      ...current,
+      content: {
+        items: { openingMission, ...current.content.items },
+        order: ['openingMission', 'sampleLesson'],
+      },
+    }),
+  );
+
+  await assert.rejects(
+    loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots),
+    /Course draft stub cannot be assembled/,
+  );
+  const result = await loadPublishedCourseLessonProps(courseId, lessonId, 'uk', { ...roots, mode: 'draft' });
+  assert.equal(result.locale.title, 'Назва програми');
+});
