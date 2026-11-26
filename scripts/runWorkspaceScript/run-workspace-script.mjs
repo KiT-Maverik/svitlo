@@ -169,9 +169,15 @@ async function executeTypechecks(plan) {
     throw Error('SVITLO_TYPECHECK_PARALLELISM must be an integer from 1 to 8');
   }
   console.log(
-    'Typecheck phases: ' + builds.length + ' dependency builds (sequential), ' +
-      parallel.length + ' independent checks (concurrency ' + parallelism + '), ' +
-      sequential.length + ' dist-mutating host checks (sequential)',
+    'Typecheck phases: ' +
+      builds.length +
+      ' dependency builds (sequential), ' +
+      parallel.length +
+      ' independent checks (concurrency ' +
+      parallelism +
+      '), ' +
+      sequential.length +
+      ' dist-mutating host checks (sequential)',
   );
   for (const step of builds) runStepSync(step);
   await runParallelTypechecks(parallel, runTypecheckAsync, { parallelism, context: 'Production TypeScript' });

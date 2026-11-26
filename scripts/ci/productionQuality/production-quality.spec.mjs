@@ -135,7 +135,8 @@ test('production typecheck retains exhaustive canonical root command', () => {
   assert.match(workflow, /name: Typecheck all eligible workspaces/);
   assert.match(workflow, /npm run code:check:types/);
   const rootRunner = readFileSync(
-    new URL('../../runWorkspaceScript/run-workspace-script.mjs', import.meta.url), 'utf8',
+    new URL('../../runWorkspaceScript/run-workspace-script.mjs', import.meta.url),
+    'utf8',
   );
   assert.match(rootRunner, /if \(operation === 'code:check:types'\) return executeTypechecks/);
   assert.match(rootRunner, /runParallelTypechecks\(parallel, runTypecheckAsync/);

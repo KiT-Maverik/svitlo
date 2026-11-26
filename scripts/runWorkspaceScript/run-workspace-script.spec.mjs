@@ -2,7 +2,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { discoverWorkspaces, planWorkspaceOperation, planTypecheckPhases, environmentForWorkspace } from './run-workspace-script.mjs';
+import {
+  discoverWorkspaces,
+  planWorkspaceOperation,
+  planTypecheckPhases,
+  environmentForWorkspace,
+} from './run-workspace-script.mjs';
 
 const ws = (name, path, scripts, deps = []) => ({
   name,
@@ -218,10 +223,14 @@ test('typecheck phase planner fails closed on missing or duplicate checks', () =
     /every selected workspace/,
   );
   assert.throws(
-    () => planTypecheckPhases({
-      selected: ['a', 'b'],
-      steps: [{ name: 'a', script: 'code:check:types' }, { name: 'a', script: 'code:check:types' }],
-    }),
+    () =>
+      planTypecheckPhases({
+        selected: ['a', 'b'],
+        steps: [
+          { name: 'a', script: 'code:check:types' },
+          { name: 'a', script: 'code:check:types' },
+        ],
+      }),
     /every selected workspace/,
   );
 });
