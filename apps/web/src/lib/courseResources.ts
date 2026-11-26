@@ -2,7 +2,13 @@ import 'server-only';
 
 import { join } from 'node:path';
 
-import { loadPublishedCourseLessonProps, loadPublishedCourseTree } from '@svitlo/adapter-nextjs';
+import {
+  CourseLanguageUnavailableError,
+  PublishedResourceError,
+  loadPublishedCourseLessonProps,
+  loadPublishedCourseTree,
+  loadPublishedCourseTreeWithFallback,
+} from '@svitlo/adapter-nextjs';
 import { courseActivities, resolveEntityPath, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
 
 export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } from '@svitlo/engine/runtime';
@@ -10,29 +16,51 @@ export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } fro
 export const loadCourseTree = (id: string, language: LanguageCode) =>
   loadPublishedCourseTree(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
 
-/**
- * Direct-route publication access. A malformed UUID or missing requested Course
- * base is a 404; a damaged or inaccessible published resource is not.
- */
-export async function loadExistingCourseTree(id: string, language: LanguageCode): Promise<LocalizedCourse | null> {
-  let courseId: string;
+/** Only a missing base for the requested Course is a 404. */
+function missingRequestedBase(error: unknown, id: string): boolean {
+  return (
+    error instanceof PublishedResourceError &&
+    error.code === 'missing' &&
+    error.resourcePath === join(process.cwd(), 'public/data/courses', id, 'base.json')
+  );
+}
+
+function canonicalCourseId(id: string): string | null {
   try {
-    courseId = resolveEntityPath(id).split('/')[1];
+    return resolveEntityPath(id).split('/')[1];
   } catch {
     return null;
   }
+}
+
+/** Direct activity routes preserve their explicit content language. */
+export async function loadExistingCourseTree(id: string, language: LanguageCode): Promise<LocalizedCourse | null> {
+  const courseId = canonicalCourseId(id);
+  if (!courseId) return null;
   try {
     return await loadCourseTree(courseId, language);
   } catch (error) {
-    const expectedBase = join(process.cwd(), 'public/data/courses', courseId, 'base.json');
-    const cause = error instanceof Error ? (error as Error & { cause?: NodeJS.ErrnoException }).cause : undefined;
-    if (error instanceof Error && error.message === 'Course does not support language ' + language) return null;
-    if (
-      error instanceof Error &&
-      error.message === 'Cannot read published resource: ' + expectedBase &&
-      cause?.code === 'ENOENT'
-    )
-      return null;
+    if (missingRequestedBase(error, courseId) || error instanceof CourseLanguageUnavailableError) return null;
+    throw error;
+  }
+}
+
+/** Course overview retains the interface locale while selecting an available content locale. */
+export async function loadExistingCourseWithFallback(
+  id: string,
+  language: LanguageCode,
+): Promise<{ course: LocalizedCourse; contentLanguage: LanguageCode } | null> {
+  const courseId = canonicalCourseId(id);
+  if (!courseId) return null;
+  try {
+    return await loadPublishedCourseTreeWithFallback(
+      courseId,
+      language,
+      undefined,
+      process.env.NODE_ENV === 'development' ? 'draft' : 'production',
+    );
+  } catch (error) {
+    if (missingRequestedBase(error, courseId)) return null;
     throw error;
   }
 }
