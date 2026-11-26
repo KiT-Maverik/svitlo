@@ -4,12 +4,25 @@ const courseId = '11111111-1111-4111-8111-000000000113';
 const lessonId = '11111111-1111-4111-8111-00000000011c';
 
 test('selected content package publishes Course and Lesson Engine Props, not legacy resources', async ({ request }) => {
-  const [courseResource, lessonResource] = await Promise.all([
+  const [courseResource, lessonResource, tocResource, localizedTocResource] = await Promise.all([
     request.get('/data/courses/' + courseId + '/base.json'),
     request.get('/data/lessons/c/' + lessonId + '/base.json'),
+    request.get('/data/courses/' + courseId + '/toc/base.json'),
+    request.get('/data/courses/' + courseId + '/toc/uk.json'),
   ]);
   expect(courseResource.ok()).toBe(true);
   expect(lessonResource.ok()).toBe(true);
+  expect(tocResource.ok()).toBe(true);
+  expect(localizedTocResource.ok()).toBe(true);
+  const toc = await tocResource.json();
+  const localizedToc = await localizedTocResource.json();
+  expect(toc.type).toBe('course');
+  expect(toc.content.order).toEqual(['fixtureModule']);
+  expect(toc.content.items.fixtureModule.content.items.fixtureChapter.content.items.fixtureLesson).toMatchObject({
+    type: 'lesson', id: lessonId,
+  });
+  expect(localizedToc.content.items.fixtureModule).toHaveProperty('label', 'Контрольний модуль');
+  expect(JSON.stringify(toc)).not.toContain('"section"');
   const published = await courseResource.json();
   expect(published.type).toBe('course');
   expect(published.content.order).toEqual(['fixtureModule']);
