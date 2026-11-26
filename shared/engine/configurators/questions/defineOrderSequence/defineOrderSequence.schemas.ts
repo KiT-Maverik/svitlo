@@ -4,8 +4,8 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import { primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -40,8 +40,8 @@ export const orderSequence_Override_Config_Schema: z.ZodType<Question_OrderSeque
 export const orderSequence_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
-  content: questionCommonContent_Props_Schema.extend({ sequence: z.array(contentBlockResolved_Schema).min(1) }),
+  content: questionCommonContent_Props_Schema.extend({ sequence: z.array(primitiveContentBlockResolved_Schema).min(1) }),
 });
 export type Question_OrderSequence_Props = Omit<z.infer<typeof orderSequence_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Props> & { sequence: ContentBlock_Props[] };
+  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & { sequence: ContentBlock_Primitive_Props[] };
 };

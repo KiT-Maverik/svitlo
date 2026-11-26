@@ -4,8 +4,8 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { contentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import { primitiveContentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -46,16 +46,16 @@ export const buildAnswerWithBlocks_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema.extend({
-    correctSequence: z.array(contentBlockResolved_Schema).min(1),
-    distractors: z.array(contentBlockResolved_Schema),
+    correctSequence: z.array(primitiveContentBlockResolved_Schema).min(1),
+    distractors: z.array(primitiveContentBlockResolved_Schema),
   }),
 });
 export type Question_BuildAnswerWithBlocks_Props = Omit<
   z.infer<typeof buildAnswerWithBlocks_Props_Schema>,
   'content'
 > & {
-  content: QuestionPublishedContent<ContentBlock_Props> & {
-    correctSequence: ContentBlock_Props[];
-    distractors: ContentBlock_Props[];
+  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
+    correctSequence: ContentBlock_Primitive_Props[];
+    distractors: ContentBlock_Primitive_Props[];
   };
 };

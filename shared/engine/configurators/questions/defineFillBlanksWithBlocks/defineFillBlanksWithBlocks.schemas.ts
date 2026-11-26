@@ -4,8 +4,8 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { contentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import { primitiveContentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -24,7 +24,7 @@ export const fillBlanksWithBlocks_Config_Schema = questionBase.extend({
   ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
   content: questionCommonContent_Config_Schema.extend({
     slots: z.object({
-      items: z.record(z.string(), z.object({ correctAnswer: z.custom<ContentBlock_Configurator>() })),
+      items: z.record(z.string(), z.object({ correctAnswer: z.custom<ContentBlock_Primitive_Configurator>() })),
       order: z.array(z.string()),
     }),
     distractors: questionBlockCollection_Config_Schema,
@@ -49,13 +49,13 @@ export const fillBlanksWithBlocks_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
   content: questionCommonContent_Props_Schema.extend({
-    slots: z.array(z.object({ selector: z.string(), correctAnswer: contentBlockResolved_Schema })),
-    distractors: z.array(contentBlockResolved_Schema),
+    slots: z.array(z.object({ selector: z.string(), correctAnswer: primitiveContentBlockResolved_Schema })),
+    distractors: z.array(primitiveContentBlockResolved_Schema),
   }),
 });
 export type Question_FillBlanksWithBlocks_Props = Omit<z.infer<typeof fillBlanksWithBlocks_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Props> & {
-    slots: { selector: string; correctAnswer: ContentBlock_Props }[];
-    distractors: ContentBlock_Props[];
+  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
+    slots: { selector: string; correctAnswer: ContentBlock_Primitive_Props }[];
+    distractors: ContentBlock_Primitive_Props[];
   };
 };
