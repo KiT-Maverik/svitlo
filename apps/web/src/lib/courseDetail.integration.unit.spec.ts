@@ -54,7 +54,18 @@ it('loads a real requested publication despite unrelated empty and malformed UUI
 it('distinguishes missing, unsupported-locale, and corrupt requested Course resources', async () => {
   await expect(loadCourseDetail(courseId, 'en')).resolves.toBeNull();
   published(courseId, fixture(['uk']));
-  await expect(loadCourseDetail(courseId, 'en')).resolves.toBeNull();
+  await expect(loadCourseDetail(courseId, 'en')).resolves.toMatchObject({
+    course: { id: courseId, title: 'Selected Course' },
+    contentLanguage: 'uk',
+    interfaceLanguage: 'en',
+  });
   writeFileSync(join(courses, courseId, 'base.json'), '{broken requested');
+  await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow('Invalid published JSON');
+});
+
+it('does not use an alternate Course locale when the declared requested translation is corrupt', async () => {
+  published(courseId, fixture(['en', 'uk']));
+  writeFileSync(join(courses, courseId, 'en.json'), '{broken requested translation');
+  writeFileSync(join(courses, courseId, 'uk.json'), JSON.stringify({ locale: { title: 'Valid alternative' } }));
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow('Invalid published JSON');
 });
