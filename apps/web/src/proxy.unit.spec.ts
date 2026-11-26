@@ -67,6 +67,7 @@ describe('HTTP status preflight for streamed educational routes', () => {
     expect(isInvalidPublishedRoute('/uk/lesson/' + lessonId, root)).toBe(false);
     expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/en/' + lessonId, root)).toBe(false);
     expect(isInvalidPublishedRoute('/uk/courses', root)).toBe(false);
+    expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(false);
   });
 
   it('returns a real 404 for unsupported language codes and unknown Lessons', () => {
@@ -121,4 +122,31 @@ it('admits only canonical localized Episode routes for actual Course members', (
     '/uk/course/' + courseId + '/episode/' + episodeId,
   ])
     expect(isInvalidPublishedRoute(route, root), route).toBe(true);
+});
+
+it('preflights direct Course URLs without reading unrelated or corrupt Course content', () => {
+  const root = fixture();
+  const orphan = path.join(root, 'data', 'courses', otherId);
+  mkdirSync(orphan, { recursive: true });
+  expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(false);
+  writeFileSync(path.join(orphan, 'base.json'), '{malformed unrelated publication');
+  expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(false);
+
+  // Malformed requested JSON must be handled by the Course loader, not masked as a 404.
+  writeFileSync(path.join(root, 'data', 'courses', courseId, 'base.json'), '{malformed requested publication');
+  expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(false);
+});
+
+it('rejects invalid or missing Course details with an HTTP 404 before streaming', () => {
+  const root = fixture();
+  for (const invalid of ['/uk/course/not-a-uuid', '/xx/course/' + courseId, '/uk/course/' + otherId])
+    expect(isInvalidPublishedRoute(invalid, root), invalid).toBe(true);
+  rmSync(path.join(root, 'data', 'courses', courseId, 'base.json'));
+  expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(true);
+});
+
+it('allows a supported interface language whose Course content locale is not declared', () => {
+  const root = fixture();
+  expect(isInvalidPublishedRoute('/pl/course/' + courseId, root)).toBe(false);
+  expect(isInvalidPublishedRoute('/ar/course/' + courseId, root)).toBe(false);
 });

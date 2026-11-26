@@ -6,7 +6,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRu
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
-import { loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
+import { loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{
@@ -22,12 +22,8 @@ async function Content({ params }: Props) {
   const ui = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   const content = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === assessmentLanguage);
   if (!ui || !content) notFound();
-  let course;
-  try {
-    course = await loadCourseTree(courseId, content.language);
-  } catch {
-    notFound();
-  }
+  const course = await loadExistingCourseTree(courseId, content.language);
+  if (!course) notFound();
   const assessment = findCourseAssessment(course, assessmentId);
   if (!assessment) notFound();
   if ('draft' in assessment && assessment.draft === true) {

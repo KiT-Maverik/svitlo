@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { webRoot } from './resolve-selected-textbook.mjs';
@@ -19,6 +19,10 @@ function runSelection(name) {
 }
 
 test('production preparation switches two independent packages and cleans stale publications', () => {
+  const fixtureCourse = join(publicRoot, 'data/courses/11111111-1111-4111-8111-000000000113');
+  const orphanCourse = join(publicRoot, 'data/courses/11111111-1111-4111-8111-000000000114');
+  const hostNote = join(publicRoot, 'textbooks/web-fixture-alpha/host-owned-note.txt');
+  const orphanNote = join(orphanCourse, 'unowned.txt');
   try {
     // Both selections invoke the real workspace build, compiled exports,
     // portable Publish CLI, generated bindings, and host locale staging.
@@ -35,10 +39,21 @@ test('production preparation switches two independent packages and cleans stale 
     assert.equal(en.locale.title, 'Controlled Lesson');
     assert.equal(en.section[0].content[2].locale.value, 'Controlled interactive scene');
 
+    // Host-owned and unrelated files must survive an ownership-based switch.
+    mkdirSync(orphanCourse, { recursive: true });
+    writeFileSync(orphanNote, 'host-controlled');
+    writeFileSync(hostNote, 'host-controlled');
+
     runSelection('web-fixture-beta');
     assert(!existsSync(join(publicRoot, 'data/lessons/c', lesson, 'base.json')));
     assert(!existsSync(join(publicRoot, 'data/skills/base.json')));
-    assert(!existsSync(join(publicRoot, 'data/courses/11111111-1111-4111-8111-000000000113/base.json')));
+    assert(!existsSync(join(fixtureCourse, 'base.json')));
+    assert(!existsSync(fixtureCourse), 'obsolete Course UUID folder must be pruned once empty');
+    assert(!existsSync(join(publicRoot, 'data/lessons/c', lesson)), 'obsolete Lesson UUID folder must be pruned');
+    assert(existsSync(join(publicRoot, 'data/courses')), 'shared Course collection root must remain');
+    assert(existsSync(join(publicRoot, 'data/lessons')), 'shared Lesson collection root must remain');
+    assert(existsSync(orphanNote), 'unowned Course resource must not be removed');
+    assert(existsSync(hostNote), 'nonempty former textbook directory must not be removed');
     assert(!existsSync(join(publicRoot, 'data/questions/a/11111111-1111-4111-8111-00000000012a/base.json')));
     assert(!existsSync(join(publicRoot, 'textbooks/web-fixture-alpha/marker.txt')));
     assert(existsSync(join(publicRoot, 'textbooks/web-fixture-beta/marker.txt')));
@@ -50,6 +65,9 @@ test('production preparation switches two independent packages and cleans stale 
     assert(existsSync(join(publicRoot, 'data/uiKit/components/uk.json')));
     assert(!existsSync(join(publicRoot, '.svitlo/publish-web-fixture-alpha.json')));
   } finally {
+    rmSync(hostNote, { force: true });
+    rmSync(orphanNote, { force: true });
+    if (existsSync(orphanCourse)) rmdirSync(orphanCourse);
     // Leave the alpha fixture selected for the existing Web build/E2E job.
     runSelection('web-fixture-alpha');
     assert(!existsSync(join(publicRoot, 'textbooks/web-fixture-beta/marker.txt')));

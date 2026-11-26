@@ -8,6 +8,7 @@ import {
   existsSync,
   readFileSync,
   rmSync,
+  rmdirSync,
   mkdirSync,
   writeFileSync,
   readdirSync,
@@ -52,6 +53,34 @@ function safeFile(root, name) {
     if (existsSync(cursor) && lstatSync(cursor).isSymbolicLink()) fail('symlink in published resource path: ' + cursor);
   }
   return target;
+}
+/**
+ * Only directories formerly containing a manifest-owned file may be pruned.
+ * Stop before the resource-category root (or the shared textbooks root);
+ * never recursively traverse unrelated or authored directories.
+ */
+function pruneEmptyOwnedParents(name, file) {
+  const parts = name.split('/');
+  const boundaryParts =
+    parts[0] === 'data'
+      ? parts[1] === 'pages'
+        ? parts.slice(0, 3)
+        : parts.slice(0, 2)
+      : parts[0] === 'textbooks'
+        ? ['textbooks']
+        : ['generated', 'skills'];
+  const boundary = resolve(outputRoot, ...boundaryParts);
+  let directory = dirname(file);
+  while (directory.startsWith(boundary + sep)) {
+    if (existsSync(directory) && lstatSync(directory).isSymbolicLink()) fail('symlink in cleanup path: ' + directory);
+    try {
+      rmdirSync(directory);
+    } catch (error) {
+      if (error.code === 'ENOTEMPTY' || error.code === 'EEXIST' || error.code === 'ENOENT') break;
+      throw error;
+    }
+    directory = dirname(directory);
+  }
 }
 function manifestFiles(file, identity) {
   let manifest;
@@ -154,7 +183,11 @@ try {
   const current = new Set(names);
   for (const { file, files } of previous) {
     for (const name of files) {
-      if (!current.has(name)) rmSync(safeFile(outputRoot, name), { force: true });
+      if (!current.has(name)) {
+        const obsolete = safeFile(outputRoot, name);
+        rmSync(obsolete, { force: true });
+        pruneEmptyOwnedParents(name, obsolete);
+      }
     }
     rmSync(join(ownedRoot, file));
   }
