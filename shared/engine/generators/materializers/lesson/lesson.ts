@@ -1,7 +1,7 @@
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Lesson_Config } from '../../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { LessonProductionAssessmentRequirements } from '../../../types/workflow/lessonAssessment.types';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 /**
  * Standalone Lesson source materializer. Accepts ordinary authored Config data,
@@ -125,7 +125,9 @@ function render(value: unknown, depth = 0): string {
       .map(key => {
         const child = value[key];
         const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
-        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+        return (
+          '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ','
+        );
       })
       .join('\n') +
     '\n' +
@@ -285,7 +287,13 @@ export function materializeLesson(config: Source, options: Options): Result {
     files.push(file);
   };
   const items: Record<string, Reference> = {};
-  const claim = createSourceIdentifierRegistry('lesson', ['defineLesson', 'languages', 'Languages', 'section', exported(config.slug)]);
+  const claim = createSourceIdentifierRegistry('lesson', [
+    'defineLesson',
+    'languages',
+    'Languages',
+    'section',
+    exported(config.slug),
+  ]);
   let hasQuest = false;
   for (const key of Object.keys(config.section.items).sort()) {
     const node = sourceNode(config.section.items[key]);

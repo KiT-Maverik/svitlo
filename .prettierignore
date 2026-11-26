@@ -6,6 +6,7 @@ build/
 dist/
 coverage/
 .test-build/
+temp/
 test-results/
 playwright-report/
 storybook-static/

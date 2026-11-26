@@ -43,7 +43,8 @@ test('answerWithNumber: deterministic modular source, nested imports, source loc
   assert.ok(main);
   assert.match(main.content, /defineAnswerWithNumber</);
   assert.match(main.content, /TODO \(BLOCKER\)/);
-  assert.match(main.content, /child_content_question_items_prompt/);
+  assert.match(main.content, /import \{ prompt \} from "\.\/sampleQuestion\/question\/prompt";/);
+  assert.match(main.content, /question:\s*\{\s*items:\s*\{\s*prompt\s*\}/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
   assert(!a.files.some(file => file.path.includes('/items/')));

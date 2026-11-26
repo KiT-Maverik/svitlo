@@ -193,7 +193,7 @@ test('Reviewed Stage 3 retains all Cards, both Sides, original order and both UU
   assert.equal(result.transition.materializedPath, 'flashcards/index.ts');
   assert(!result.files.some(file => file.path.includes('reviewed-stage3') || file.path.endsWith('/draft.ts')));
   const main = result.files.find(file => file.path === 'flashcards/index.ts')?.content ?? '';
-  assert(main.indexOf('"beta"') < main.indexOf('"alpha"'), 'preserve the complete reviewed order');
+  assert.match(main, /export const flashcards = \{\n  beta,\n  alpha,\n\};/);
   const alpha = result.files.find(file => file.path === 'flashcards/alpha.ts')?.content ?? '';
   const beta = result.files.find(file => file.path === 'flashcards/beta.ts')?.content ?? '';
   assert.match(alpha, /relationshipId: "reviewedConnection"/);

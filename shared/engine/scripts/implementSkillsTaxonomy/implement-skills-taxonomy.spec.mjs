@@ -254,7 +254,7 @@ test('create emits entity-owned IDs, direct imports and only allowed indexes', (
     assert.match(source(f, 'music/index.ts'), /hearRhythm/);
     assert.equal(fs.existsSync(path.join(data(f), 'index.ids.ts')), false);
     assert.equal(fs.existsSync(path.join(data(f), 'index.ts')), true);
-    assert.equal(fs.existsSync(path.join(f.pkg, 'Data')), false);
+    assert.equal(fs.readdirSync(f.pkg).includes('Data'), false);
     assert.equal(fs.existsSync(path.join(data(f), 'geometry/index.ts')), true);
     assert.equal(fs.existsSync(path.join(data(f), 'geometry/angles/index.ts')), true);
     assert.match(fs.readFileSync(f.md, 'utf8'), /Status: implemented/);

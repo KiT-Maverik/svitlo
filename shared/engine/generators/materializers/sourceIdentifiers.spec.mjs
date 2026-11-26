@@ -12,7 +12,10 @@ test('canonical import names and explicit map bindings', () => {
 test('colliding, reserved and invalid import names fail closed with provenance', () => {
   const claim = createSourceIdentifierRegistry('content', ['content', 'languages']);
   claim('lessonIntro', 'first block');
-  assert.throws(() => claim('lessonIntro', 'second block'), /generated identifier collision.*first block.*second block/);
+  assert.throws(
+    () => claim('lessonIntro', 'second block'),
+    /generated identifier collision.*first block.*second block/,
+  );
   assert.throws(() => claim('content', 'child'), /generated identifier collision/);
   assert.throws(() => claim('class', 'child'), /reserved generated identifier/);
   assert.throws(() => claim('not-valid', 'child'), /invalid or reserved/);

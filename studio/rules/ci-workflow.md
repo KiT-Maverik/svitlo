@@ -161,6 +161,12 @@ validated. The app matrix disables GitHub Actions fail-fast to retain
 independent failures. All expensive checks remain required for release,
 although their completion order is no longer sequential.
 
+Within the root TypeScript worker, dependency builds remain sequential and
+SHA-verified before bounded concurrent workspace typechecks; Web and Mobile
+checks stay sequential because their pre-hooks can rewrite shared dist.
+Production TypeScript checks use `SVITLO_TYPECHECK_PARALLELISM=4` by default
+(range 1–8), while FastGate retains its separate existing parallelism setting.
+
 Each runner installs its own pinned dependencies and prepares only the
 required local build outputs. `SVITLO_CI_PACKAGE_BUILD_STATE` remains
 **strictly local to a job**. The root workspace aggregator, Engine/adapter

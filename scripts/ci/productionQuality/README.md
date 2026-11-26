@@ -62,3 +62,28 @@ node --test scripts/ci/releaseSource/check-release-source.spec.mjs
 
 Then run an actual Ready `develop → main` promotion to verify matrix jobs,
 app bundles, browser suites and the required gate in GitHub Actions.
+
+## Root TypeScript checks within the TypeScript worker
+
+The root `npm run code:check:types` remains exhaustive over every workspace
+that implements the canonical script. It first builds its complete dependency
+closure **sequentially in topological order** so the job-local, SHA-verified
+`SVITLO_CI_PACKAGE_BUILD_STATE` is never concurrently modified. It then
+runs independent TypeScript checks through the same bounded worker pool as
+FastGate (default `SVITLO_TYPECHECK_PARALLELISM=4`, supported values 1–8).
+`@svitlo/web` and `@svitlo/mobile` run **after** that pool, one at a time,
+because their npm pre-hooks can rewrite shared compiled outputs. Every check
+retains its actual npm lifecycle; failures are aggregated without dropping
+remaining independent workspaces. Other root operations remain sequential.
+
+The shared scheduler and exhaustive phase planner have focused Node tests:
+
+```sh
+node --test scripts/runWorkspaceScript/typecheck-scheduler.spec.mjs scripts/runWorkspaceScript/run-workspace-script.spec.mjs scripts/runFastGate/run-fast-gate.spec.mjs
+```
+
+The baseline Production Quality run
+[45883885605](https://github.com/KiT-Maverik/svitlo/actions/runs/45883885605)
+spent 219.9s in root `code:check:types` (109.6s inside package builds).
+This is a baseline, **not** a measured post-change speedup. Compare an actual
+full run at the same source scope before claiming improvement.

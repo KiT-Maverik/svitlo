@@ -2,7 +2,6 @@
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
  */
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
@@ -14,6 +13,7 @@ import {
   type SourceFile,
 } from '../flashcardSide/materializeFlashcardSide';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 export type FlashcardSource = Omit<Flashcard_Config, 'content'> & {
   content: { front: FlashcardSideSource; back: FlashcardSideSource; hint?: FlashcardSideSource };
@@ -198,7 +198,14 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
   const files: SourceFile[] = [];
   const diagnostics: SourceDiagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('Flashcard', ['defineFlashcard', 'content', 'parameters', 'Flashcard_Config', 'Languages', exportedName]);
+  const claim = createSourceIdentifierRegistry('Flashcard', [
+    'defineFlashcard',
+    'content',
+    'parameters',
+    'Flashcard_Config',
+    'Languages',
+    exportedName,
+  ]);
   for (const role of ['front', 'back', 'hint'] as const) {
     const source = config.content[role];
     if (source === undefined) continue;

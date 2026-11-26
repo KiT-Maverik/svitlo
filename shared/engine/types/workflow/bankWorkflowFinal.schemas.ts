@@ -117,10 +117,26 @@ type QuestionPrimitiveSource = (typeof questionPrimitiveSources)[ContentBlock_Pr
 const simpleBlock_Schema = z.union(
   Object.values(questionPrimitiveSources) as [QuestionPrimitiveSource, ...QuestionPrimitiveSource[]],
 );
-const simpleBlockNode_Schema = blockNode(simpleBlock_Schema);
+// Only Image Block production can carry a visual-generation prompt. Keep the
+// canonical non-Image production schema strict; missing Image assets are
+// permitted only as blocked source scaffolds, never fabricated publications.
+const { image, ...nonImageSources } = questionPrimitiveSources;
+const nonImageBlock_Schema = z.union(
+  Object.values(nonImageSources) as [
+    (typeof nonImageSources)[keyof typeof nonImageSources],
+    ...(typeof nonImageSources)[keyof typeof nonImageSources][],
+  ],
+);
+const simpleBlockNode_Schema = z.union([
+  z.strictObject({
+    config: image,
+    production: questionBankWorkflowBlockProduction_Schema.extend({ prompt: z.string().min(80) }).optional(),
+  }),
+  blockNode(nonImageBlock_Schema),
+]);
 /** Questions accept leaf blocks only; legacy composite source helpers are not valid Question children. */
 export const questionBankWorkflowBlockConfig_Schema = simpleBlock_Schema;
-export const questionBankWorkflowBlockNode_Schema = blockNode(questionBankWorkflowBlockConfig_Schema);
+export const questionBankWorkflowBlockNode_Schema = simpleBlockNode_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
 const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
 const blocks_Schema: z.ZodType<{

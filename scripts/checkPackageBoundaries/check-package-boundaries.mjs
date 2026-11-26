@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve, relative, sep } from 'node:path';
+import { isAllowedEngineImport } from './engine-import-policy.mjs';
 
 const root = process.cwd();
 const readJson = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
@@ -230,17 +231,7 @@ for (const file of engineSources) {
   const imports = [...content.matchAll(/\b(?:from\s*|import\s*\(\s*)['"]([^'"]+)['"]/g)];
   for (const match of imports) {
     assert(
-      match[1].startsWith('.') ||
-        match[1].startsWith('#') ||
-        match[1] === 'zod' ||
-        (relative(root, file).startsWith('shared/engine/utils/generators/') &&
-          (match[1].startsWith('node:') || match[1] === 'esbuild')) ||
-        ((relative(root, file).startsWith(
-          'shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/',
-        ) ||
-          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/primitive/defineCode/') ||
-          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/primitive/defineMarkdown/')) &&
-          match[1].startsWith('node:')),
+      isAllowedEngineImport(relative(root, file), match[1]),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }

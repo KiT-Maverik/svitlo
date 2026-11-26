@@ -1,6 +1,6 @@
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Task_Config } from '../../../configurators/sections/defineQuestSection/defineTask/defineTask.schemas';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 /** Quest Task owns exactly one Scene; interactive Scene implementation belongs to its own agent. */
 /**
@@ -102,7 +102,9 @@ function render(value: unknown, depth = 0): string {
       .map(key => {
         const child = value[key];
         const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
-        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+        return (
+          '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ','
+        );
       })
       .join('\n') +
     '\n' +
@@ -208,7 +210,10 @@ export function materializeQuestTask(config: Source, options: Options): Result {
     diagnostics: Diagnostic[] = [...child.diagnostics];
   const seen = new Set<string>();
   includeChild(files, seen, diagnostics, { ...child, diagnostics: [] }, childDir, node.config.slug);
-  createSourceIdentifierRegistry('questTask', ['defineTask', 'languages', exported(config.slug)])(child.exportName, 'scene');
+  createSourceIdentifierRegistry('questTask', ['defineTask', 'languages', exported(config.slug)])(
+    child.exportName,
+    'scene',
+  );
   const blockers =
     options.production?.pending === true || node.production?.pending === true
       ? [
