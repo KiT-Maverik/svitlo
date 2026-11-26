@@ -4,9 +4,8 @@ import { disability_Schema, type LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
-import { primitiveContentBlockTypes } from '../contentBlocks/contentBlock.constants';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../contentBlocks';
-import { primitiveContentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
+import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
 import type { OrderedBlocks } from './_shared__questions/collections.utils';
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 import type { Question_Type } from './question.constants';
@@ -24,11 +23,7 @@ export const createQuestionBaseSchema = <const Type extends Question_Type>(type:
 /** Authoring collections are slug maps, never positional arrays. */
 export const questionBlockCollection_Config_Schema = z.object({
   // Child Config validation belongs to the child; Question.validate checks its collection.
-  items: z.record(z.string(), z.custom<ContentBlock_Primitive_Configurator>(
-    value => value !== null && typeof value === 'object' && 'type' in value &&
-      primitiveContentBlockTypes.some(type => type === value.type),
-    { message: 'Question content accepts only Primitive ContentBlocks' },
-  )),
+  items: z.record(z.string(), primitiveContentBlockConfigurator_Schema),
   order: z.array(z.string()),
 });
 

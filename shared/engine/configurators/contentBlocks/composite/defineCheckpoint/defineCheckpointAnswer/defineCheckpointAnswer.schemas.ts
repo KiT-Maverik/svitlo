@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { identityBase_Schema } from '../../../../_shared__configurators/common.schemas';
+import { primitiveContentBlockConfigurator_Schema } from '../../../contentBlock.schemas';
 import type {
   ContentBlock_Audio_Configurator,
   ContentBlock_Audio_Props,
@@ -86,7 +87,10 @@ export type Checkpoint_Allowed_PropsBase =
 const answerBase = identityBase_Schema.extend({ type: z.literal('checkpointAnswer') });
 export const checkpointAnswer_Config_Schema = answerBase.extend({
   content: z.object({
-    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>()),
+    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>(
+      value => primitiveContentBlockConfigurator_Schema.safeParse(value).success,
+      { message: 'CheckpointAnswer accepts only Primitive ContentBlocks' },
+    )),
     order: z.array(z.string()),
   }),
 });

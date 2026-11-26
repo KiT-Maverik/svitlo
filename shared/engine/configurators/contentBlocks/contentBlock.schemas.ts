@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
 
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
+import type { ContentBlock_Primitive_Configurator } from './contentBlock.types';
 import {
   contentBlockTypes,
   primitiveContentBlockTypes,
@@ -37,3 +38,13 @@ export const contentBlockResolved_Schema = z
 export const primitiveContentBlockResolved_Schema = contentBlockResolved_Schema.extend({
   type: z.enum(primitiveContentBlockTypes),
 });
+
+/** Shared authoring guard: each parent still validates collection identity/order. */
+export const primitiveContentBlockConfigurator_Schema = z.custom<ContentBlock_Primitive_Configurator>(
+  value =>
+    value !== null &&
+    typeof value === 'object' &&
+    'type' in value &&
+    primitiveContentBlockTypes.some(type => type === value.type),
+  { message: 'Expected Primitive ContentBlock Configurator' },
+);

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
+import { primitiveContentBlockConfigurator_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks/contentBlock.types';
 import type { FlashcardSide_Configurator } from './defineFlashcardSide';
 
@@ -11,10 +11,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 
 /** A side is a structural ContentBlock collection, not a UUID-bearing entity. */
 export const flashcardSide_Config_Schema = z.strictObject({
-  items: z.record(z.string(), z.custom<Block>(
-    value => isRecord(value) && primitiveContentBlockTypes.some(type => type === value.type),
-    { message: 'Flashcard sides accept only Primitive ContentBlocks' },
-  )),
+  items: z.record(z.string(), primitiveContentBlockConfigurator_Schema),
   order: z.array(z.string()),
 });
 export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;

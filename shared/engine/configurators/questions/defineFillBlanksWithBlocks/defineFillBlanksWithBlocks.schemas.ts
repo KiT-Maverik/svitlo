@@ -4,7 +4,7 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { primitiveContentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
@@ -24,7 +24,7 @@ export const fillBlanksWithBlocks_Config_Schema = questionBase.extend({
   ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
   content: questionCommonContent_Config_Schema.extend({
     slots: z.object({
-      items: z.record(z.string(), z.object({ correctAnswer: z.custom<ContentBlock_Primitive_Configurator>() })),
+      items: z.record(z.string(), z.object({ correctAnswer: primitiveContentBlockConfigurator_Schema })),
       order: z.array(z.string()),
     }),
     distractors: questionBlockCollection_Config_Schema,
