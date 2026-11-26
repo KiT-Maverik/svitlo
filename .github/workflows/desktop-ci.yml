@@ -14,9 +14,72 @@ concurrency:
   group: desktop-ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 jobs:
+  # Temporary migration-only manual workflow for PR #882. Remove after the generated
+  # root package-lock.json has been committed and the regular Desktop CI is green.
+  refresh-electron-lockfile:
+    if: github.event_name == 'workflow_dispatch' && github.ref_name == 'maintenance/electron-toolchain'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: maintenance/electron-toolchain
+          persist-credentials: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Resolve the v27 candidate from npm without install scripts
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Verify npm lockfile produces a clean installation
+        run: npm ci --no-audit --no-fund
+      - name: Check locked Electron dependency chains
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const lock = JSON.parse(readFileSync('package-lock.json', 'utf8'));
+          const pkg = lock.packages['node_modules/electron-builder'];
+          if (pkg?.version !== '27.0.0-alpha.15') throw new Error('Unexpected resolved Electron Builder version');
+          const forbidden = Object.entries(lock.packages)
+            .filter(([path, value]) =>
+              (path.endsWith('/node_modules/inflight') && value.version === '1.0.6') ||
+              (path.endsWith('/node_modules/boolean') && value.version === '3.2.0') ||
+              (path.endsWith('/node_modules/glob') && value.version?.startsWith('7.')) ||
+              (path.endsWith('/node_modules/rimraf') && value.version?.startsWith('2.')))
+            .map(([path, value]) => path + '@' + value.version);
+          if (forbidden.length) throw new Error('Unresolved legacy dependencies: ' + forbidden.join(', '));
+          console.log('Electron Builder:', pkg.version, '; no legacy inflight/boolean/glob7/rimraf2');
+          NODE
+      - name: Check production audit (must be zero)
+        run: npm audit --omit=dev
+      - name: Report full audit and Electron package paths
+        run: |
+          npm audit --json > /tmp/svitlo-npm-audit.json || audit_status=$?
+          node --input-type=module <<'NODE'
+          import { readFileSync } from 'node:fs';
+          const audit = JSON.parse(readFileSync('/tmp/svitlo-npm-audit.json', 'utf8'));
+          console.log('Full npm audit:', JSON.stringify(audit.metadata?.vulnerabilities ?? {}));
+          console.log('Advisories:', Object.keys(audit.vulnerabilities ?? {}).join(', '));
+          NODE
+          npm explain electron-builder
+      - name: Commit npm-generated lockfile on the exact PR branch
+        run: |
+          test "$GITHUB_REF" = 'refs/heads/maintenance/electron-toolchain'
+          git diff --check
+          git add package-lock.json
+          if git diff --cached --quiet; then
+            echo 'Root lockfile already matches package manifest'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Regenerate Desktop packaging lockfile with npm'
+            git push origin HEAD:refs/heads/maintenance/electron-toolchain
+          fi
   desktop:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    if: (github.event_name == 'workflow_dispatch' && github.ref_name != 'maintenance/electron-toolchain') || (github.event_name == 'pull_request' && !github.event.pull_request.draft)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
