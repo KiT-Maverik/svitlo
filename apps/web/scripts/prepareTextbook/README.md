@@ -21,6 +21,13 @@ is a required Web dependency or an implicit selection.
 
 ## Published resources and runtime selection
 
+Web textbook publication outputs under `apps/web/public/.svitlo/` and
+`apps/web/public/textbooks/` are generated at preparation time and **must not
+be committed**. Keep original textbook media in the owning `content/<book>/`
+package. Tracking published files causes selection switches to dirty the Git
+worktree, disabling the Production Quality helper's verified package-build reuse.
+The integration suite checks this invariant after each fixture switch in CI.
+
 Publication cleanup is manifest-owned: switching the selected package removes its obsolete owned files and prunes **only now-empty directories on those removed paths**, stopping at the generated collection boundary (for example `public/data/courses` or `public/textbooks`). Files not listed by the manifest, nonempty directories, other resource roots, and authored sources are untouched. A one-time whole-tree migration sweep is **not needed**.
 
 The **runtime Course catalog does not read publication ownership manifests**. It enumerates `public/data/courses/<uuid>/base.json` resources, ignoring genuinely empty leftover UUID directories and rejecting nonempty folders with missing bases, malformed JSON, or invalid resource identity/languages. This means runtime cannot identify an otherwise valid but accidentally retained publication from an earlier textbook without a separate runtime registry; such files must instead be removed by the existing publication/ownership cleanup. A missing `base.json` inside a truly empty old UUID directory is intentionally not treated as corruption when no ownership record is available at runtime.
