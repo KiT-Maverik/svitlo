@@ -16,6 +16,7 @@ import {
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/assessmentResources';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -389,7 +390,7 @@ export const defineQuizSection = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<QuizSection_Locale<'config'>> } => ({

@@ -14,6 +14,7 @@ import {
   resolvePublicationLanguages,
   selectPublicationLocales,
   splitLocalizedFields,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   questSection_Config_Schema,
@@ -145,7 +146,7 @@ export const defineQuestSection = <
     stages,
     tasks,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: { id, slug, type, params: structuredClone(metadata.params), locale: onlyStrings(metadata.locale) },
       locales: () => ({ locale: onlyLocales(metadata.locale) }),

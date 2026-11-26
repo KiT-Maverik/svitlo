@@ -16,6 +16,7 @@ import {
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
@@ -327,7 +328,7 @@ export const definePracticeSection = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<PracticeSection_Locale<'config'>> } => ({

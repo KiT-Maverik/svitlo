@@ -7,6 +7,7 @@ import {
   resolvePublicationLanguages,
   selectPublicationLocales,
   splitLocalizedFields,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
 
@@ -82,7 +83,7 @@ export function defineSkill<
     slug,
     type: 'skill' as const,
     validate,
-    build: { props },
+    build: scopeBuild({ props }),
     config: {
       base: {
         id: id as Skill_Config['id'],

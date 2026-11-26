@@ -1,7 +1,9 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { resolvePublicationLanguages } from '../../../_shared__configurators';
+import { resolvePublicationLanguages 
+  scopeBuild,
+} from '../../../_shared__configurators';
 import type { ContentBlock_Audio_Overrides } from '../../../contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_Image_Overrides } from '../../../contentBlocks/defineImage/defineImage.schemas';
 import type { ContentBlock_Subtitles_Overrides } from '../../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
@@ -75,7 +77,7 @@ export const defineStage = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: { id, slug, type },
       locales: () => ({}),

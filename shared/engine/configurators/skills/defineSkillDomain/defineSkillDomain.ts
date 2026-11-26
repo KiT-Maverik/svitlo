@@ -14,6 +14,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
 import { skillGroup_Props_Schema, type SkillGroup_Configurator, type SkillGroup_Props } from '../defineSkillGroup';
@@ -202,7 +203,7 @@ export function defineSkillDomain<
     skills,
     groups,
     validate,
-    build: { props },
+    build: scopeBuild({ props }),
     config: {
       base: { id, slug, ...splitOwn({ title: authored.title, description: authored.description }).base },
       validate,
