@@ -40,6 +40,25 @@ test('generates stable, statically analyzable and lazy Scene imports', async t =
   assert.equal(readFileSync(loader, 'utf8'), source);
 });
 
+test('Windows CRLF checkout passes without rewriting the generated registry', async t => {
+  const { root, loader, add } = fixture(t);
+  await syncSceneRegistry(root, '--write', '@svitlo/example');
+  const lf = readFileSync(loader, 'utf8');
+  const crlf = lf.replace(/\n/g, '\r\n');
+  writeFileSync(loader, crlf);
+
+  assert.equal(await syncSceneRegistry(root, '--check', '@svitlo/example'), 2);
+  assert.equal(readFileSync(loader, 'utf8'), crlf, 'checking must not rewrite the Windows checkout');
+
+  // Genuine source changes remain invalid even when the file uses CRLF.
+  add('c', gamma);
+  await assert.rejects(
+    syncSceneRegistry(root, '--check', '@svitlo/example'),
+    /Stale Scene registry/,
+  );
+  assert.equal(readFileSync(loader, 'utf8'), crlf);
+});
+
 test('stale generated registry fails check without being rewritten', async t => {
   const { root, loader, add } = fixture(t);
   await syncSceneRegistry(root, '--write', '@svitlo/example');
