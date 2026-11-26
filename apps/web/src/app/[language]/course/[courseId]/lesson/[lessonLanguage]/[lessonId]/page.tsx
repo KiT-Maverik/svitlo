@@ -6,7 +6,7 @@ import { courseActivities, DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/ru
 
 import WebLesson from '@/components/pages/Lesson/Lesson';
 import { coursePropsToTopics } from '@/lib/courseNavigation';
-import { courseHasLesson, loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
+import { courseHasLesson, loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }>;
@@ -19,12 +19,8 @@ async function Content({ params, searchParams }: Props) {
   const lessonDescriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === lessonLanguage);
   if (!descriptor || !lessonDescriptor) notFound();
 
-  let course;
-  try {
-    course = await loadCourseTree(courseId, lessonDescriptor.language);
-  } catch {
-    notFound();
-  }
+  const course = await loadExistingCourseTree(courseId, lessonDescriptor.language);
+  if (!course) notFound();
   if (!courseHasLesson(course, lessonId)) notFound();
   const candidates = courseActivities(course).filter(({ node }) => node.type === 'lesson' && node.id === lessonId);
   const placement = (await searchParams).placement;

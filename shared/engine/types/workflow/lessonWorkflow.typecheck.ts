@@ -1,4 +1,4 @@
-import type { ContentBlock_Text_Configurator } from '../../configurators/contentBlocks/defineText/defineText';
+import type { ContentBlock_Text_Configurator } from '../../configurators/contentBlocks/primitive/defineText/defineText';
 import type {
   LessonWorkflowStage1,
   LessonWorkflowStage1Config,

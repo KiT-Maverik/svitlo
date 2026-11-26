@@ -3,11 +3,15 @@
  * There is deliberately no side UUID or slug; parent supplies front/back/hint.
  * This materializer delegates each concrete block to its owning materializer.
  */
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
+import {
+  primitiveContentBlockTypes,
+  type ContentBlock_Primitive_Type,
+} from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
-export type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
+export type PlainBlock = { id: string; slug: string; type: ContentBlock_Primitive_Type } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
 export type FlashcardSideSource = Omit<FlashcardSide_Config, 'items'> & {
   items: Record<string, BlockNode>;
@@ -35,19 +39,7 @@ const validSlug = /^[a-z][A-Za-z0-9]*$/;
 const validUUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const validLocale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const identifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
-const allowed = new Set([
-  'text',
-  'markdown',
-  'code',
-  'image',
-  'video',
-  'youtube',
-  'audio',
-  'subtitles',
-  'scene',
-  'carousel',
-  'checkpoint',
-]);
+const allowed: ReadonlySet<string> = new Set(primitiveContentBlockTypes);
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 function fail(location: string, message: string): never {
   throw new Error('flashcardSide ' + location + ': ' + message);
@@ -99,7 +91,12 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
   const diagnostics: SourceDiagnostic[] = [];
   const imports: string[] = [];
   const entries: string[] = [];
-  const claim = createSourceIdentifierRegistry('flashcardSide', ['defineFlashcardSide', 'Languages', 'items', context.role]);
+  const claim = createSourceIdentifierRegistry('flashcardSide', [
+    'defineFlashcardSide',
+    'Languages',
+    'items',
+    context.role,
+  ]);
   for (const key of source.order) {
     const node = source.items[key];
     if (!record(node)) fail('items.' + key, 'plain ContentBlock Config required');

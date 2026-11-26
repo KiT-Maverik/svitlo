@@ -1,8 +1,13 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import { discoverWorkspaces, planWorkspaceOperation, environmentForWorkspace } from './run-workspace-script.mjs';
 import { readFileSync } from 'node:fs';
+import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import {
+  discoverWorkspaces,
+  planWorkspaceOperation,
+  planTypecheckPhases,
+  environmentForWorkspace,
+} from './run-workspace-script.mjs';
 
 const ws = (name, path, scripts, deps = []) => ({
   name,
@@ -196,5 +201,36 @@ test('only Web receives the explicitly selected test content; no hidden release 
     environmentForWorkspace('@svitlo/web', { SVITLO_TEXTBOOK: 'math', SVITLO_WEB_TEST_SELECTION: 'web-fixture-alpha' })
       .SVITLO_TEXTBOOK,
     'math',
+  );
+});
+
+test('full root typechecks build prerequisites once before checking every eligible workspace', () => {
+  const packages = discoverWorkspaces();
+  const plan = planWorkspaceOperation(packages, 'code:check:types');
+  const phases = planTypecheckPhases(plan);
+  const checked = [...phases.parallel, ...phases.sequential];
+  assert.deepEqual(checked.slice().sort(), plan.selected.slice().sort());
+  assert.equal(new Set(checked).size, checked.length);
+  assert.ok(phases.builds.length > 0, 'prerequisite builds must not be skipped');
+  assert.equal(new Set(phases.builds.map(step => step.name)).size, phases.builds.length);
+  assert.deepEqual(phases.sequential.slice().sort(), ['@svitlo/mobile', '@svitlo/web']);
+  for (const step of phases.builds) assert.equal(step.script, 'package:build');
+});
+
+test('typecheck phase planner fails closed on missing or duplicate checks', () => {
+  assert.throws(
+    () => planTypecheckPhases({ selected: ['a', 'b'], steps: [{ name: 'a', script: 'code:check:types' }] }),
+    /every selected workspace/,
+  );
+  assert.throws(
+    () =>
+      planTypecheckPhases({
+        selected: ['a', 'b'],
+        steps: [
+          { name: 'a', script: 'code:check:types' },
+          { name: 'a', script: 'code:check:types' },
+        ],
+      }),
+    /every selected workspace/,
   );
 });

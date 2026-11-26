@@ -4,7 +4,7 @@ import type { LanguageScope, PublicationLanguageOptions } from '#types';
 import { buildChildProps, resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
-import { defineText } from '../../contentBlocks/defineText';
+import { defineText } from '../../contentBlocks/primitive/defineText';
 import { episode_Draft_Props_Schema } from '../../episodes/defineEpisode';
 import { lesson_Draft_Props_Schema } from '../../lessons/defineLesson';
 import { defineContentSection } from '../../sections/defineContentSection';

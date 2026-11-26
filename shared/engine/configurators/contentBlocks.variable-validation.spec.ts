@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { code_Config_Schema, code_Props_Schema, defineCode, defineText } from './contentBlocks';
-import type { ContentBlock_Code_Config } from './contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Text_Config } from './contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Code_Config } from './contentBlocks/primitive/defineCode/defineCode.schemas';
+import type { ContentBlock_Text_Config } from './contentBlocks/primitive/defineText/defineText.schemas';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {

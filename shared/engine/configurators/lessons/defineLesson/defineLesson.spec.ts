@@ -2,9 +2,9 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
-import { defineScene } from '../../contentBlocks/defineScene/defineScene';
-import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineYoutube } from '../../contentBlocks/defineYoutube/defineYoutube';
+import { defineScene } from '../../contentBlocks/primitive/defineScene/defineScene';
+import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
+import { defineYoutube } from '../../contentBlocks/primitive/defineYoutube/defineYoutube';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';

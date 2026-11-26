@@ -1,6 +1,6 @@
 import type { ChildrenSupporting, ChildSupporting } from '#types';
 
-import { defineText } from '../contentBlocks/defineText/defineText';
+import { defineText } from '../contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../lessons/defineLesson/defineLesson';
 import { defineContentSection } from './defineContentSection/defineContentSection';
 

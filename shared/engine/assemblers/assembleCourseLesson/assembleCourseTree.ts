@@ -4,17 +4,17 @@ import {
   type Assessment_Draft_Props,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { audio_Props_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { carousel_Props_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-import { code_Props_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import { image_Props_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import { markdown_Props_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import { scene_Props_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
-import { subtitles_Props_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { text_Props_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import { video_Props_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import { youtube_Props_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+import { carousel_Props_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
+import { audio_Props_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
+import { code_Props_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import { image_Props_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import { markdown_Props_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import { scene_Props_Schema } from '../../configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
+import { subtitles_Props_Schema } from '../../configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
+import { text_Props_Schema } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
+import { video_Props_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
+import { youtube_Props_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 import {
   episode_Draft_Props_Schema,
   episode_Props_Schema,

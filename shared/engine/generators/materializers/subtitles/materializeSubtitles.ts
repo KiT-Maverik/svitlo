@@ -8,7 +8,7 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   subtitles_Config_Schema,
   type ContentBlock_Subtitles_Config,
-} from '../../../configurators/contentBlocks/defineSubtitles';
+} from '../../../configurators/contentBlocks/primitive/defineSubtitles';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';

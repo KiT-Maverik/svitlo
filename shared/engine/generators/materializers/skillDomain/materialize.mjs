@@ -100,7 +100,14 @@ export function materializeSkillDomain(input, context = {}) {
     dir = context.directory ?? '';
   const { id, slug } = identity(config, context, dir, 'skillDomain'),
     language = source(context);
-  const claim = createSourceIdentifierRegistry('skillDomain', ['defineSkillDomain', 'SupportedLanguages', 'languages', 'groups', 'skills', exportName(slug)]);
+  const claim = createSourceIdentifierRegistry('skillDomain', [
+    'defineSkillDomain',
+    'SupportedLanguages',
+    'languages',
+    'groups',
+    'skills',
+    exportName(slug),
+  ]);
   const files = [],
     imports = [],
     diagnostics = [],

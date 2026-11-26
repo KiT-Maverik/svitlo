@@ -1,10 +1,10 @@
 import type { LanguageCode } from '#schemas';
 
 import { validateOrderedKeys } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { assertEnabledBlock, cloneJson, isRecord, resolveChild, validateBlock } from './collections.utils';
 
-type Block = ContentBlock_Configurator;
+type Block = ContentBlock_Primitive_Configurator;
 type Entry = Record<string, unknown>;
 type NestedCollection = { items: Record<string, Entry>; order: string[] };
 type NestedPatch = {
