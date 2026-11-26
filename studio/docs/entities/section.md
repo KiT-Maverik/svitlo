@@ -14,7 +14,7 @@ See [Content Section schemas](../../../shared/engine/configurators/sections/defi
 
 ## Layout and knowledge checkpoints
 
-General Section ContentBlocks render in one vertical column. A Scene can have its own internal layout. A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
+General Section ContentBlocks render in one vertical column and may be Primitive or Composite. A Scene can have its own internal layout. A Carousel contains only Image/Scene; a CheckpointAnswer contains only Primitive ContentBlocks. Question and Flashcard-owned content is separately Primitive-only (Section-owned Quiz/Flashcards screen content is not the bank content). A Knowledge Checkpoint is a reflective prompt, not a scored Quiz.
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
 
