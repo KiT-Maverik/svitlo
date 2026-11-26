@@ -52,10 +52,7 @@ test('Windows CRLF checkout passes without rewriting the generated registry', as
 
   // Genuine source changes remain invalid even when the file uses CRLF.
   add('c', gamma);
-  await assert.rejects(
-    syncSceneRegistry(root, '--check', '@svitlo/example'),
-    /Stale Scene registry/,
-  );
+  await assert.rejects(syncSceneRegistry(root, '--check', '@svitlo/example'), /Stale Scene registry/);
   assert.equal(readFileSync(loader, 'utf8'), crlf);
 });
 
