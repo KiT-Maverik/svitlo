@@ -34,18 +34,27 @@ for (const [event, expected] of [
 
 test('obsolete events exit without Update.exe and failures propagate', () => {
   let exitCode;
-  assert.equal(handleSquirrelStartup({
-    platform: 'win32',
-    args: ['app', '--squirrel-obsolete'],
-    run: () => { throw Error('must not run'); },
-    exit: code => { exitCode = code; },
-  }), true);
+  assert.equal(
+    handleSquirrelStartup({
+      platform: 'win32',
+      args: ['app', '--squirrel-obsolete'],
+      run: () => {
+        throw Error('must not run');
+      },
+      exit: code => {
+        exitCode = code;
+      },
+    }),
+    true,
+  );
   assert.equal(exitCode, 0);
   handleSquirrelStartup({
     platform: 'win32',
     args: ['app', '--squirrel-install'],
     run: () => ({ status: 1 }),
-    exit: code => { exitCode = code; },
+    exit: code => {
+      exitCode = code;
+    },
   });
   assert.equal(exitCode, 1);
 });
