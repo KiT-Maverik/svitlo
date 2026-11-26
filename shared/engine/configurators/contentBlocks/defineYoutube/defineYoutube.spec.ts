@@ -53,10 +53,7 @@ describe('Configurators', () => {
         assert.throws(() => pending.build.props({ ...scope, mode: 'production' }), /unresolved video reference/);
 
         const ready = defineYoutube<'watch', ['en', 'uk']>(config());
-        const patch = ready.build.overrides(
-          { locale: { href: UNRESOLVED_YOUTUBE_HREF } },
-          { ...scope, mode: 'draft' },
-        );
+        const patch = ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, { ...scope, mode: 'draft' });
         assert.deepEqual(patch.base, { locale: { href: UNRESOLVED_YOUTUBE_HREF } });
         assert.throws(
           () => ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, scope),

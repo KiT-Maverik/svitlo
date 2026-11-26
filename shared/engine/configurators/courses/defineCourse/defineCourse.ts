@@ -231,7 +231,9 @@ export const defineCourse = <
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = build.props({ languages, mode });
-      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages, mode }) : undefined;
+      const patch = Object.hasOwn(patches, key)
+        ? build.overrides(patches[key] as never, { languages, mode })
+        : undefined;
       return { key, resource, patch };
     });
     // Course placement keys may alias standalone Lessons, without editing their immutable source identity.

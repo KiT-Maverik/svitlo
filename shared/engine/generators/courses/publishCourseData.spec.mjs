@@ -19,7 +19,13 @@ import {
   defineImage,
   defineYoutube,
 } from '@svitlo/engine/build';
-import { assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode, UNRESOLVED_YOUTUBE_HREF } from '@svitlo/engine/runtime';
+import {
+  assembleCourseTree,
+  assembleCourseLesson,
+  courseActivities,
+  findCourseEpisode,
+  UNRESOLVED_YOUTUBE_HREF,
+} from '@svitlo/engine/runtime';
 import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
@@ -749,7 +755,10 @@ test('Course-owned additional Section keeps pending YouTube in draft preview but
   const files = renderCourseFiles(course, { mode: 'draft' });
   const base = JSON.parse(files.get('base.json'));
   const patch = base.content.items.module.content.items.chapter.content.items.adapted.overrides;
-  assert.deepEqual(patch.section.map(item => item.slug), ['addedSection']);
+  assert.deepEqual(
+    patch.section.map(item => item.slug),
+    ['addedSection'],
+  );
   assert.equal(patch.section[0].content[0].locale.href, UNRESOLVED_YOUTUBE_HREF);
   assert.equal(patch.section[0].content[0].locale.label, 'Video not implemented');
   assert.deepEqual(lesson.build.props({ languages }).base.section, []);

@@ -378,17 +378,21 @@ export function defineLesson<
         addLocalizedArray(files, 'section', built.locales);
       }
       // Recheck parent collection, identity and cross-child invariants after changes.
-      validate({
-        ...own,
-        section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-      }, options);
+      validate(
+        {
+          ...own,
+          section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
+        },
+        options,
+      );
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (
         own.params.quizRequiredForCompletion &&
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order, languages, {}, options.mode).bases as Lesson_PropsBase['section']),
+            : (buildOrdered(sections.active, sections.order, languages, {}, options.mode)
+                .bases as Lesson_PropsBase['section']),
         )
       ) {
         throw new Error('Lesson requires at least one enabled Quiz section');

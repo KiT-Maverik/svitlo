@@ -143,7 +143,9 @@ export const defineEpisode = <
       if (!child) throw new Error('Unknown Episode Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
       const resource = build.props({ languages, mode });
-      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages, mode }) : undefined;
+      const patch = Object.hasOwn(patches, key)
+        ? build.overrides(patches[key] as never, { languages, mode })
+        : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
