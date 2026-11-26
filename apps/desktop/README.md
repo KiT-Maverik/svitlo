@@ -31,12 +31,12 @@ Forge 8 uses the prebuilt artifacts in `dist-main/` and `dist-renderer/`; it doe
     npm run app:pack:prepared --workspace @svitlo/desktop  # already built: unpacked out/
     npm run app:pack:make:prepared --workspace @svitlo/desktop  # already built: make artifacts
     npm run app:pack:win --workspace @svitlo/desktop    # Windows: Squirrel Setup.exe + .nupkg
-    npm run app:pack:mac --workspace @svitlo/desktop    # macOS: DMG
+    npm run app:pack:mac --workspace @svitlo/desktop    # macOS: zipped .app
     npm run app:pack:linux --workspace @svitlo/desktop  # Linux: deb
 
 Run OS-specific commands on the corresponding host. Forge outputs are in `apps/desktop/out/` (ignored by Git). Linux also has a separate unpacked executable smoke test. A generated installer is **not** proof an installer was actually installed on a test machine.
 
-**Distribution differences:** Windows Squirrel is per-user and not a drop-in replacement for NSIS; Linux deb requires a Debian-compatible package manager and is not a portable AppImage. DMG still provides a macOS disk image, but unsigned/unnotarized builds are not ready for public trusted distribution. The workflow does not add credential-based signing, auto-updates, or a publisher. Squirrel lifecycle shortcuts are handled before the application opens its window.
+**Distribution differences:** Windows Squirrel is per-user and not a drop-in replacement for NSIS; Linux deb requires a Debian-compatible package manager and is not a portable AppImage. macOS ZIP contains a standalone .app to drag into Applications; it is **not** a DMG or installer and must be manually extracted. It avoids the known high-severity, build-time `image-size` advisory chain carried by Forge's DMG maker (through `electron-installer-dmg -> appdmg -> image-size@0.7.4`). Unsigned/unnotarized builds are not ready for trusted public distribution. The workflow does not add credential-based signing, auto-updates, or a publisher. Squirrel lifecycle shortcuts are handled before the application opens its window.
 
 The compiled bundles require no runtime Node.js packages; Forge packages only `dist-main/`, `dist-renderer/` and `package.json` as ASAR. The dedicated artifact verifier checks maker outputs and size but does not execute an installer.
 

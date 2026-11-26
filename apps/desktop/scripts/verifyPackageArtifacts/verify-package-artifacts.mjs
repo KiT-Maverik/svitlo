@@ -28,7 +28,7 @@ if (target === 'unpacked') {
     .map(item => join(item.parentPath, item.name));
   const formats = {
     win32: [/Setup\.exe$/i, /-full\.nupkg$/i, /[\\/]RELEASES$/],
-    darwin: [/\.dmg$/i],
+    darwin: [/\.zip$/i],
     linux: [/\.deb$/i],
   };
   for (const pattern of formats[target]) {
