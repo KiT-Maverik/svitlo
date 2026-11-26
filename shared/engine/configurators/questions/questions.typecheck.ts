@@ -1,4 +1,4 @@
-import { defineText } from '../contentBlocks/defineText';
+import { defineText } from '../contentBlocks/primitive/defineText';
 import {
   defineAnswerWithNumber,
   defineAnswerWithText,
