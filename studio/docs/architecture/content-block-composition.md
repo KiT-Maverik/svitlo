@@ -4,7 +4,7 @@
 
 ## Canonical categories
 
-- **Primitive (9):** `text`, `markdown`, `code`, `image`, `audio`, `video`, `youtube`, `subtitles`, `scene`. *Primitive means leaf in the authored Configurator tree, not static or visually simple.* A Scene remains a Primitive despite executable interactive behavior.
+- **Primitive (9):** `text`, `markdown`, `code`, `image`, `audio`, `video`, `youtube`, `subtitles`, `scene`. _Primitive means leaf in the authored Configurator tree, not static or visually simple._ A Scene remains a Primitive despite executable interactive behavior.
 - **Composite (2):** `carousel`, `checkpoint`. These own an authored child tree and are not accepted within Composite parents.
 - **Not renderable ContentBlocks:** `checkpointItem`, `checkpointAnswer`. They are structural children of Checkpoint and CheckpointItem respectively; they are not added to the 11 `contentBlockTypes`.
 
@@ -12,18 +12,18 @@ The exact canonical constants are `primitiveContentBlockTypes`, `compositeConten
 
 ## Parent-owned allowed-child matrix
 
-| Owning parent / role | Permitted authored children | Constraints |
-| --- | --- | --- |
-| Ordinary Content/Practice/CodingTask/LearningFlow Section content | Primitive + Composite | Preserve each Section's existing narrower rules and ordered `items/order` |
-| Quiz and Flashcards **Section-owned screen** content | Primitive + Composite | Not equivalent to Question/Flashcard Bank-owned content; preserve screen and completion rules |
-| Carousel `slides` | Image or Scene | Only two slide kinds, exact order and locale semantics; never a Composite slide |
-| Checkpoint `content` | CheckpointItem | Structural, not renderable ContentBlock; never a directly nested Checkpoint |
-| CheckpointItem `question` | One non-disableable Text | Its `answer` is one identified CheckpointAnswer |
-| CheckpointAnswer `content` | Primitive | No Carousel or Checkpoint; require valid enabled, nonempty ordered children |
-| Question `question`, `hint`, `explanation` | Primitive | Across all nine Question variants; retain nonempty question prompt |
-| Question options, ordered answers, match pair `left/right`, fill-block slot `correctAnswer` | Primitive | Preserve each Question kind's stricter answer/slot semantics; text-only fill slots are not arbitrary ContentBlocks |
-| Flashcard Side `front`, `back`, `hint` | Primitive | Front/back required; hint optional; preserve sided roles and retrieval semantics |
-| Quest Stage/Task | Role-specific Video, Audio, Image, Subtitles, Scene | Fixed Quest contract, **not** a generic ContentBlock collection; Quest runtime remains build-only |
+| Owning parent / role                                                                        | Permitted authored children                         | Constraints                                                                                                        |
+| ------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Ordinary Content/Practice/CodingTask/LearningFlow Section content                           | Primitive + Composite                               | Preserve each Section's existing narrower rules and ordered `items/order`                                          |
+| Quiz and Flashcards **Section-owned screen** content                                        | Primitive + Composite                               | Not equivalent to Question/Flashcard Bank-owned content; preserve screen and completion rules                      |
+| Carousel `slides`                                                                           | Image or Scene                                      | Only two slide kinds, exact order and locale semantics; never a Composite slide                                    |
+| Checkpoint `content`                                                                        | CheckpointItem                                      | Structural, not renderable ContentBlock; never a directly nested Checkpoint                                        |
+| CheckpointItem `question`                                                                   | One non-disableable Text                            | Its `answer` is one identified CheckpointAnswer                                                                    |
+| CheckpointAnswer `content`                                                                  | Primitive                                           | No Carousel or Checkpoint; require valid enabled, nonempty ordered children                                        |
+| Question `question`, `hint`, `explanation`                                                  | Primitive                                           | Across all nine Question variants; retain nonempty question prompt                                                 |
+| Question options, ordered answers, match pair `left/right`, fill-block slot `correctAnswer` | Primitive                                           | Preserve each Question kind's stricter answer/slot semantics; text-only fill slots are not arbitrary ContentBlocks |
+| Flashcard Side `front`, `back`, `hint`                                                      | Primitive                                           | Front/back required; hint optional; preserve sided roles and retrieval semantics                                   |
+| Quest Stage/Task                                                                            | Role-specific Video, Audio, Image, Subtitles, Scene | Fixed Quest contract, **not** a generic ContentBlock collection; Quest runtime remains build-only                  |
 
 **Scene policy:** existing Configurator, Question and Flashcard contracts permit Scene as a Primitive. Whether Scene should have an additional contextual prohibition in Question/Flashcard Banks is **an owner decision, not implemented by this work**. Do not silently narrow it without approval.
 

@@ -1,4 +1,9 @@
 import type {
+  ContentBlock_Composite_Type,
+  ContentBlock_Primitive_Type,
+  ContentBlock_Type,
+} from './contentBlock.constants';
+import type {
   ContentBlock_Composite_Config,
   ContentBlock_Composite_Configurator,
   ContentBlock_Composite_Props,
@@ -9,10 +14,8 @@ import type {
   ContentBlock_Primitive_Props,
   ContentBlock_Props,
 } from './index';
-import type { ContentBlock_Composite_Type, ContentBlock_Primitive_Type, ContentBlock_Type } from './contentBlock.constants';
 
-type Equal<A, B> =
-  (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false;
+type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Require<T extends true> = T;
 
 export type ContentBlockCategoryTypingChecks = [

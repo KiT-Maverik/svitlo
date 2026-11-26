@@ -2,12 +2,12 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import {
-  contentBlockTypes,
   compositeContentBlockTypes,
-  primitiveContentBlockTypes,
+  contentBlockResolved_Schema,
+  contentBlockTypes,
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
-  contentBlockResolved_Schema,
+  primitiveContentBlockTypes,
 } from './index';
 
 test('all 11 renderable ContentBlock kinds occur in exactly one category', () => {
@@ -30,9 +30,13 @@ test('resolved Primitive schema rejects both Composite discriminants', () => {
       params: {},
     };
     assert.equal(contentBlockResolved_Schema.safeParse(props).success, true);
-    assert.equal(primitiveContentBlockResolved_Schema.safeParse(props).success,
-      primitiveContentBlockTypes.some(kind => kind === type));
-    assert.equal(primitiveContentBlockConfigurator_Schema.safeParse(props).success,
-      primitiveContentBlockTypes.some(kind => kind === type));
+    assert.equal(
+      primitiveContentBlockResolved_Schema.safeParse(props).success,
+      primitiveContentBlockTypes.some(kind => kind === type),
+    );
+    assert.equal(
+      primitiveContentBlockConfigurator_Schema.safeParse(props).success,
+      primitiveContentBlockTypes.some(kind => kind === type),
+    );
   }
 });

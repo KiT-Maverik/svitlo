@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineCarousel } from '../../contentBlocks/defineCarousel';
 import { defineImage } from '../../contentBlocks/defineImage';
+import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineFlashcardSide } from './defineFlashcardSide';
 import { flashcardSideConfigurator_Schema } from './defineFlashcardSide.schemas';
 
@@ -111,18 +111,23 @@ describe('Configurators', () => {
           locale: {},
           slides: { items: { image }, order: ['image'] },
         });
-        assert.throws(() =>
-          defineFlashcardSide({
-            items: { carousel },
-            order: ['carousel'],
-          } as never).build.props({ languages: ['en'] }),
+        assert.throws(
+          () =>
+            defineFlashcardSide({
+              items: { carousel },
+              order: ['carousel'],
+            } as never).build.props({ languages: ['en'] }),
           /Primitive ContentBlocks|Invalid|type/,
         );
-        assert.throws(() =>
-          side.build.overrides({
-            additionalItems: { carousel },
-            order: ['first', 'carousel'],
-          } as never, { languages: ['en'] }),
+        assert.throws(
+          () =>
+            side.build.overrides(
+              {
+                additionalItems: { carousel },
+                order: ['first', 'carousel'],
+              } as never,
+              { languages: ['en'] },
+            ),
           /Primitive ContentBlocks|Invalid|type/,
         );
       });

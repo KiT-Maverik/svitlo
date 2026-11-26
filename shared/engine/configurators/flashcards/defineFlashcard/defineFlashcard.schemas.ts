@@ -119,7 +119,11 @@ export const flashcard_Props_Schema = identityBase_Schema.extend({
   }),
 });
 export type Flashcard_Props = Omit<z.infer<typeof flashcard_Props_Schema>, 'content'> & {
-  content: { front: ContentBlock_Primitive_Props[]; back: ContentBlock_Primitive_Props[]; hint?: ContentBlock_Primitive_Props[] };
+  content: {
+    front: ContentBlock_Primitive_Props[];
+    back: ContentBlock_Primitive_Props[];
+    hint?: ContentBlock_Primitive_Props[];
+  };
 };
 
 export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> & {

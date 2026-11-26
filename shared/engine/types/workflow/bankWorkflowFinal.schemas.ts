@@ -136,8 +136,7 @@ export const questionBankWorkflowCheckpointAnswerConfig_Schema = checkpointAnswe
 export const questionBankWorkflowCheckpointItemConfig_Schema = checkpointItemSource_Schema;
 export const questionBankWorkflowCheckpointConfig_Schema = checkpointSource_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
-const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> =
-  simpleBlockNode_Schema;
+const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
 const blocks_Schema: z.ZodType<{
   items: Record<string, z.infer<typeof questionBankWorkflowBlockNode_Schema>>;
   order: string[];

@@ -5,7 +5,10 @@ import type { ChildrenSupporting, DeepPartial } from '#types';
 
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../contentBlocks';
-import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
+import {
+  primitiveContentBlockConfigurator_Schema,
+  primitiveContentBlockResolved_Schema,
+} from '../contentBlocks/contentBlock.schemas';
 import type { OrderedBlocks } from './_shared__questions/collections.utils';
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 import type { Question_Type } from './question.constants';

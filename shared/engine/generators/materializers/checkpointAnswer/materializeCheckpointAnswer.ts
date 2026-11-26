@@ -1,4 +1,3 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
@@ -9,6 +8,7 @@ import type { ContentBlock_Text_Config } from '../../../configurators/contentBlo
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
 import type { SceneSource } from '../scene/materializeScene';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config
@@ -41,17 +41,7 @@ const reserved = new Set(
     ' ',
   ),
 );
-const allowed = new Set([
-  'audio',
-  'code',
-  'image',
-  'markdown',
-  'scene',
-  'subtitles',
-  'text',
-  'video',
-  'youtube',
-]);
+const allowed = new Set(['audio', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube']);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function directory(value: string): string {
@@ -137,7 +127,12 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   const files: AnswerFile[] = [];
   const diagnostics: AnswerDiagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('checkpointAnswer', ['defineCheckpointAnswer', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
+  const claim = createSourceIdentifierRegistry('checkpointAnswer', [
+    'defineCheckpointAnswer',
+    'languages',
+    'content',
+    reserved.has(config.slug) ? 'config_' + config.slug : config.slug,
+  ]);
   const items: string[] = [];
   const paths = new Set<string>();
   for (const key of config.content.order) {

@@ -4,7 +4,10 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import {
+  primitiveContentBlockConfigurator_Schema,
+  primitiveContentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
@@ -49,7 +52,10 @@ export const matchBlocks_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Props_Schema.extend({
-    pairs: z.record(z.string(), z.object({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema })),
+    pairs: z.record(
+      z.string(),
+      z.object({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema }),
+    ),
   }),
 });
 export type Question_MatchBlocks_Props = Omit<z.infer<typeof matchBlocks_Props_Schema>, 'content'> & {

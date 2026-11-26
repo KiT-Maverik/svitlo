@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { defineText } from '../../defineText';
 import { defineCarousel } from '../../defineCarousel';
 import { defineImage } from '../../defineImage';
+import { defineText } from '../../defineText';
 import { checkpointAnswer_Config_Schema, checkpointAnswer_Props_Schema, defineCheckpointAnswer } from './index';
 
 describe('Configurators', () => {
@@ -89,23 +89,32 @@ describe('Configurators', () => {
           } as never).build.props({ languages: ['en'] }),
         );
         assert.throws(() =>
-          answer.build.overrides({
-            content: { additionalItems: { carousel }, order: ['second', 'first', 'carousel'] },
-          } as never, { languages: ['en'] }),
+          answer.build.overrides(
+            {
+              content: { additionalItems: { carousel }, order: ['second', 'first', 'carousel'] },
+            } as never,
+            { languages: ['en'] },
+          ),
         );
-        assert.equal(checkpointAnswer_Props_Schema.safeParse({
-          id: answer.id,
-          slug: answer.slug,
-          type: 'checkpointAnswer',
-          content: [{ id: carousel.id, slug: carousel.slug, type: carousel.type }],
-        }).success, false);
+        assert.equal(
+          checkpointAnswer_Props_Schema.safeParse({
+            id: answer.id,
+            slug: answer.slug,
+            type: 'checkpointAnswer',
+            content: [{ id: carousel.id, slug: carousel.slug, type: carousel.type }],
+          }).success,
+          false,
+        );
         // Unchanged leaf child is still allowed.
-        assert.equal(checkpointAnswer_Config_Schema.safeParse({
-          id: answer.id,
-          slug: answer.slug,
-          type: answer.type,
-          content: { items: { first }, order: ['first'] },
-        }).success, true);
+        assert.equal(
+          checkpointAnswer_Config_Schema.safeParse({
+            id: answer.id,
+            slug: answer.slug,
+            type: answer.type,
+            content: { items: { first }, order: ['first'] },
+          }).success,
+          true,
+        );
       });
 
       test('publishes data-only ordered Props and separate locale fragments', () => {

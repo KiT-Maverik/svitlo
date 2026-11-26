@@ -4,7 +4,11 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema, localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import {
+  localizationSwitch,
+  primitiveContentBlockConfigurator_Schema,
+  primitiveContentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,

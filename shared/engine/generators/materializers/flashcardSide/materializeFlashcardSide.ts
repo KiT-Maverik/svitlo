@@ -3,10 +3,13 @@
  * There is deliberately no side UUID or slug; parent supplies front/back/hint.
  * This materializer delegates each concrete block to its owning materializer.
  */
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import { primitiveContentBlockTypes, type ContentBlock_Primitive_Type } from '../../../configurators/contentBlocks/contentBlock.constants';
+import {
+  primitiveContentBlockTypes,
+  type ContentBlock_Primitive_Type,
+} from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type PlainBlock = { id: string; slug: string; type: ContentBlock_Primitive_Type } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -88,7 +91,12 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
   const diagnostics: SourceDiagnostic[] = [];
   const imports: string[] = [];
   const entries: string[] = [];
-  const claim = createSourceIdentifierRegistry('flashcardSide', ['defineFlashcardSide', 'Languages', 'items', context.role]);
+  const claim = createSourceIdentifierRegistry('flashcardSide', [
+    'defineFlashcardSide',
+    'Languages',
+    'items',
+    context.role,
+  ]);
   for (const key of source.order) {
     const node = source.items[key];
     if (!record(node)) fail('items.' + key, 'plain ContentBlock Config required');

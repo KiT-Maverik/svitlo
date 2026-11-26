@@ -108,10 +108,14 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
     locale: {},
   };
   assert.throws(
-    () => materializeCheckpointAnswer({
-      ...source,
-      content: { items: { gallery: carousel as never }, order: ['gallery'] },
-    }, context().renderer),
+    () =>
+      materializeCheckpointAnswer(
+        {
+          ...source,
+          content: { items: { gallery: carousel as never }, order: ['gallery'] },
+        },
+        context().renderer,
+      ),
     /invalid kind/,
   );
   assert.throws(

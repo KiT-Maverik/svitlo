@@ -40,7 +40,9 @@ export const orderSequence_Override_Config_Schema: z.ZodType<Question_OrderSeque
 export const orderSequence_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
-  content: questionCommonContent_Props_Schema.extend({ sequence: z.array(primitiveContentBlockResolved_Schema).min(1) }),
+  content: questionCommonContent_Props_Schema.extend({
+    sequence: z.array(primitiveContentBlockResolved_Schema).min(1),
+  }),
 });
 export type Question_OrderSequence_Props = Omit<z.infer<typeof orderSequence_Props_Schema>, 'content'> & {
   content: QuestionPublishedContent<ContentBlock_Primitive_Props> & { sequence: ContentBlock_Primitive_Props[] };

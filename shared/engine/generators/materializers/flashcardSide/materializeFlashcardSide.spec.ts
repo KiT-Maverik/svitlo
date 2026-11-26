@@ -26,10 +26,14 @@ const context = {
 test('FlashcardSide rejects Carousel and Checkpoint before delegating source generation', () => {
   for (const type of ['carousel', 'checkpoint']) {
     assert.throws(
-      () => materializeFlashcardSide(
-        { items: { nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type } } }, order: ['nested'] },
-        context,
-      ),
+      () =>
+        materializeFlashcardSide(
+          {
+            items: { nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type } } },
+            order: ['nested'],
+          },
+          context,
+        ),
       /unsupported/,
     );
   }
