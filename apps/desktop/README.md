@@ -89,14 +89,21 @@ audit before accepting the migration; unrelated Storybook and ESLint
 deprecations are outside PR #882. Node.js 22.12.0 or newer is required by
 Builder 27. See https://www.electron.build/docs/migration/v26-to-v27/ .
 
-The root `package.json` temporarily scopes `minimatch@11.0.9` to
-`app-builder-lib` only. This targets GHSA-g3hv-75wg-m249 without changing
-Storybook dependencies or globally forcing other `minimatch` consumers.
-Electron Builder upstream has already merged the matching v27 source fix in
-[PR #10539](https://github.com/electron-userland/electron-builder/pull/10539),
-including FileMatcher tests, but `27.0.0-alpha.15` still locks the older
-range. This scoped override is a **temporary candidate** pending clean npm
-resolution, full audit and real Linux/Windows/macOS packaging verification;
-remove it when a tested released upstream Builder version incorporates the
-same fix. Do not change the `brace-expansion` dependency range independently:
-`minimatch@11` requires its matching newer API.
+Electron Builder's `27.0.0-alpha.15` still resolves the vulnerable
+`minimatch@10.2.6` in `app-builder-lib` (GHSA-g3hv-75wg-m249).
+The upstream fix is merged in
+[PR #10539](https://github.com/electron-userland/electron-builder/pull/10539)
+but is not included in this published alpha. A scoped root npm override
+(`app-builder-lib -> minimatch@11.0.9`) was tested with npm 11 and npm 12.
+Both left the transitive lockfile entry at `10.2.6`; it has therefore
+been removed instead of claiming the vulnerability is fixed. The
+Electron-related npm audit findings remain open until a published upstream
+release or a separately validated compatible patch resolves them.
+The standalone Storybook findings are handled outside this PR.
+
+The temporary npm lockfile refresh job has also been removed. An explicit
+manual dispatch of `Electron Desktop quality` on
+`maintenance/electron-toolchain` now runs real Desktop builds, offline
+smoke tests and platform installer artifact checks. These checks validate
+packaging, not the unresolved audit advisory. Do not mark the security
+criteria complete solely because the build passes.
