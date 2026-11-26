@@ -1,6 +1,4 @@
-import { courseActivities } from '@svitlo/engine/runtime';
-
-import type { LocalizedCourse, LocalizedCourseNode } from './courseResources';
+import type { CourseToc, CourseTocContent, CourseTocNode } from '@svitlo/engine/runtime';
 
 export type CourseNavigationTopic = {
   id: string;
@@ -10,27 +8,39 @@ export type CourseNavigationTopic = {
   children?: readonly CourseNavigationTopic[];
 };
 
-export function coursePropsToTopics(
-  course: LocalizedCourse,
+/** Derive host URLs from the validated, localized Course TOC and current route context. */
+export function courseTocToTopics(
+  toc: CourseToc,
   interfaceLanguage: string,
   lessonLanguage: string = interfaceLanguage,
-  lessonTitles: Readonly<Record<string, string>>,
 ): CourseNavigationTopic[] {
-  const root = '/' + interfaceLanguage + '/course/' + course.id;
+  const root = '/' + interfaceLanguage + '/course/' + toc.id;
   const counts = new Map<string, number>();
-  for (const { node } of courseActivities(course))
-    if (node.type === 'lesson') counts.set(node.id, (counts.get(node.id) ?? 0) + 1);
-  function convert(node: LocalizedCourseNode, slot: string): CourseNavigationTopic {
-    const isDraft = 'draft' in node && node.draft === true;
+  function count(content: CourseTocContent): void {
+    for (const key of content.order) {
+      const node = content.items[key];
+      if (node.type === 'lesson') counts.set(node.id, (counts.get(node.id) ?? 0) + 1);
+      else if (node.type === 'module' || node.type === 'chapter') count(node.content);
+    }
+  }
+  count(toc.content);
+
+  function convert(node: CourseTocNode, placement: string): CourseNavigationTopic {
+    if (node.type === 'module' || node.type === 'chapter') {
+      return {
+        id: node.id,
+        title: node.label,
+        type: node.type,
+        children: node.content.order.map(key => convert(node.content.items[key], placement + '/' + key)),
+      };
+    }
     if (node.type === 'lesson') {
-      const title = isDraft ? 'Not implemented' : (lessonTitles['placement:' + slot] ?? lessonTitles[node.id]);
-      if (!title) throw Error('Missing localized Lesson title in Course ' + course.id + ': ' + node.id);
       const repeated = (counts.get(node.id) ?? 0) > 1;
       return {
-        id: repeated ? slot : node.id,
-        title,
+        id: repeated ? placement : node.id,
+        title: node.label,
         type: 'lesson',
-        ...(!isDraft
+        ...(!node.draft
           ? {
               href:
                 root +
@@ -38,34 +48,21 @@ export function coursePropsToTopics(
                 lessonLanguage +
                 '/' +
                 node.id +
-                (repeated ? '?placement=' + encodeURIComponent(slot) : ''),
+                (repeated ? '?placement=' + encodeURIComponent(placement) : ''),
             }
           : {}),
       };
     }
-    if (node.type === 'episode')
-      return {
-        id: node.id,
-        title: node.locale.title,
-        type: 'episode',
-        ...(!isDraft ? { href: root + '/episode/' + lessonLanguage + '/' + node.id } : {}),
-      };
-    if (node.type === 'assessment')
-      return {
-        id: node.id,
-        title: node.locale.title,
-        type: 'assessment',
-        ...(!isDraft ? { href: root + '/assessment/' + lessonLanguage + '/' + node.id } : {}),
-      };
     return {
       id: node.id,
-      title: node.locale.title,
+      title: node.label,
       type: node.type,
-      children: node.content.order.map(key => convert(node.content.items[key], slot + '/' + key)),
+      ...(!node.draft ? { href: root + '/' + node.type + '/' + lessonLanguage + '/' + node.id } : {}),
     };
   }
-  return course.content.order.map(key => convert(course.content.items[key], key));
+  return toc.content.order.map(key => convert(toc.content.items[key], key));
 }
+
 export function flattenCourseTopics(topics: readonly CourseNavigationTopic[]): CourseNavigationTopic[] {
   return topics.flatMap(topic => (topic.href ? [topic] : flattenCourseTopics(topic.children ?? [])));
 }

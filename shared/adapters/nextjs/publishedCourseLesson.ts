@@ -3,12 +3,14 @@ import path from 'node:path';
 
 import {
   assembleCourseLesson,
+  assembleCourseToc,
   assembleCourseTree,
   languageCode_Schema,
   resolveEntityPath,
   type LanguageCode,
   type Lesson_Props,
   type LocalizedCourse,
+  type CourseToc,
   type PublishedCoursePropsFiles,
   type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
@@ -88,4 +90,17 @@ export async function loadPublishedCourseTree(
   const code = languageCode_Schema.parse(language);
   const resource = await readPublication(path.join(coursesRoot, id), code);
   return assembleCourseTree(resource.base, resource.locale?.[code], id, code, mode);
+}
+
+/** Load only the derived Course navigation resource. Never load full Lesson Props for sidebar labels. */
+export async function loadPublishedCourseToc(
+  courseId: string,
+  language: LanguageCode,
+  coursesRoot = path.join(process.cwd(), 'public/data/courses'),
+  mode: 'production' | 'draft' = 'production',
+): Promise<CourseToc> {
+  const id = resolveEntityPath(courseId).split('/')[1];
+  const code = languageCode_Schema.parse(language);
+  const resource = await readPublication(path.join(coursesRoot, id, 'toc'), code);
+  return assembleCourseToc(resource.base, resource.locale?.[code], id, code, mode);
 }
