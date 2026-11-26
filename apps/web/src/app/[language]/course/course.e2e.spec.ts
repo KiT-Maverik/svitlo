@@ -204,7 +204,8 @@ test('Corrupt TOC for a requested Course displays the localized error boundary',
     await writeFile(join(directory, 'toc/base.json'), '{corrupt published TOC');
     const response = await page.goto('/en/course/' + id);
     expect(response?.status()).not.toBe(404);
-    const error = page.getByRole('alert');
+    const error = page.getByTestId('course-load-error');
+    await expect(error).toHaveAttribute('role', 'alert');
     await expect(error).toBeVisible();
     await expect(error).toContainText('Unable to load this course');
     await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
