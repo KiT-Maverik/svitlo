@@ -1,4 +1,4 @@
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -21,10 +21,7 @@ function directory(id: string) {
   return path;
 }
 function base(id: string, languages: string[] = ['en', 'uk']) {
-  writeFileSync(
-    join(directory(id), 'base.json'),
-    JSON.stringify({ id, type: 'course', params: { languages } }),
-  );
+  writeFileSync(join(directory(id), 'base.json'), JSON.stringify({ id, type: 'course', params: { languages } }));
 }
 function owned(id: string) {
   const root = join(temporary, 'public/.svitlo');

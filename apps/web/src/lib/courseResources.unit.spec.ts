@@ -4,7 +4,13 @@ import { afterEach, expect, it, vi } from 'vitest';
 
 import type { LocalizedCourse } from '@svitlo/engine/runtime';
 
-import { courseHasLesson, courseLessonIds, loadCourseLessonTitles, loadCourseTree, loadExistingCourseTree } from './courseResources';
+import {
+  courseHasLesson,
+  courseLessonIds,
+  loadCourseLessonTitles,
+  loadCourseTree,
+  loadExistingCourseTree,
+} from './courseResources';
 
 const adapter = vi.hoisted(() => ({
   lesson: vi.fn(),

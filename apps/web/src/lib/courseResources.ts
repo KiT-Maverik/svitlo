@@ -10,7 +10,6 @@ export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } fro
 export const loadCourseTree = (id: string, language: LanguageCode) =>
   loadPublishedCourseTree(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
 
-
 /**
  * Direct-route publication access. A malformed UUID or missing requested Course
  * base is a 404; a damaged or inaccessible published resource is not.
