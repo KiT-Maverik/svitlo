@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "./.test-build",
     "declaration": false,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "configurators/contentBlocks/assembly.spec.ts",
@@ -16,7 +18,13 @@
     "configurators/contentBlocks/_shared__contentBlocks/validateReplacementVariables/**/*.spec.ts",
     "configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/**/*.spec.ts",
     "configurators/_shared__configurators/validateOrderedKeys/**/*.spec.ts",
-    "configurators/_shared__configurators/validateSluggedConfiguratorMap/**/*.spec.ts"
+    "configurators/_shared__configurators/validateSluggedConfiguratorMap/**/*.spec.ts",
+    "configurators/_shared__configurators/buildContext.spec.ts",
+    "configurators/lessons/defineLesson/defineLesson.spec.ts"
   ],
-  "exclude": ["node_modules", "dist", ".test-build"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".test-build"
+  ]
 }
