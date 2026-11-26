@@ -38,24 +38,27 @@ on:
       - '.github/workflows/engine-generators.yml'
   workflow_dispatch:
     inputs:
-      build_once_engine_artifact:
-        description: 'Experiment: build Engine once and test two independent artifact consumers'
+      ci_mode:
+        description: 'Run normal generator checks, or the manual Engine build-once experiment'
         required: false
-        type: boolean
-        default: false
+        type: choice
+        options:
+          - standard
+          - build-once-engine
+        default: standard
   workflow_call:
 
 permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}${{ inputs.build_once_engine_artifact && '-experiment' || '' }}
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}${{ inputs.ci_mode == 'build-once-engine' && '-experiment' || '' }}
   cancel-in-progress: true
 
 jobs:
   publisher-isolation:
     name: Publisher isolation / no npm dependencies
-    if: ${{ !inputs.build_once_engine_artifact }}
+    if: ${{ inputs.ci_mode != 'build-once-engine' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -72,7 +75,7 @@ jobs:
 
   ci-policy:
     name: Required check reuse and Draft policy
-    if: ${{ !inputs.build_once_engine_artifact }}
+    if: ${{ inputs.ci_mode != 'build-once-engine' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -87,7 +90,7 @@ jobs:
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
     if: >-
-      !inputs.build_once_engine_artifact &&
+      inputs.ci_mode != 'build-once-engine' &&
       (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -176,7 +179,7 @@ jobs:
   # No required Production Quality job/status or regular generator work is changed.
   experiment-engine-producer:
     name: Experiment / Engine build producer
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'build-once-engine' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -214,7 +217,7 @@ jobs:
 
   experiment-consumer-types:
     name: Experiment / UI Kit TypeScript consumer
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'build-once-engine' }}
     needs: experiment-engine-producer
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -256,7 +259,7 @@ jobs:
 
   experiment-consumer-tests:
     name: Experiment / Engine unit test consumer
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'build-once-engine' }}
     needs: experiment-engine-producer
     runs-on: ubuntu-latest
     timeout-minutes: 25
