@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
+import { UNRESOLVED_RESOURCE_UUID } from '@svitlo/engine/runtime';
 import type {
   ContentBlock_Checkpoint_Props,
   ContentBlock_Markdown_Props,
@@ -151,6 +152,23 @@ describe('ContentBlockRenderer', () => {
     expect(link).toHaveAttribute('lang', 'uk-UA');
     expect(link).toHaveAttribute('dir', 'ltr');
     expect(questionBlockLabel(captions)).toBe('uk.vtt');
+  });
+
+  it('does not publish a clickable caption link for an unresolved subtitles asset', () => {
+    render(
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[{
+          id: 'pending-captions',
+          slug: 'pendingCaptions',
+          type: 'subtitles',
+          params: {},
+          locale: { fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.vtt' },
+        }]}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
+    expect(screen.queryByRole('link')).toBeNull();
   });
 
   it('does not dispatch quiz entries as content blocks', () => {

@@ -74,7 +74,7 @@ function renderBlock(
     case 'carousel':
       return <Carousel {...response} messages={messages} sceneRegistry={sceneRegistry} />;
     case 'subtitles':
-      return <Subtitles {...response} />;
+      return <Subtitles {...response} unavailableMessage={messages.learningLayout.preparingLessonError} />;
     default:
       return assertNever(response);
   }

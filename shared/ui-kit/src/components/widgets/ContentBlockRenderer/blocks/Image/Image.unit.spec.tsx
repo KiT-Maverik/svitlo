@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -49,6 +49,19 @@ describe('Image content block', () => {
     );
     expect(screen.getByTestId('injected-image')).toHaveAttribute('src', '/diagram.png');
     expect(wasUnoptimized).toBe(false);
+  });
+
+  it('shows unavailable pending image without issuing an asset request or offering retry', () => {
+    const { container } = render(
+      <Image
+        messages={enUiKitMessages.image}
+        {...response}
+        locale={{ ...response.locale, src: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.png' }}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('Зображення не знайдено');
+    expect(container.querySelector('img')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Повторити' })).toBeNull();
   });
 
   it('renders a responsive native image with authored intrinsic dimensions', () => {

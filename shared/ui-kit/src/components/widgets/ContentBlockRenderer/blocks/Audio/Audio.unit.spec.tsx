@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
@@ -45,6 +45,19 @@ afterEach(() => {
 });
 
 describe('Audio content block', () => {
+  it('does not mount a player for an explicitly pending audio recording', () => {
+    const { container } = render(
+      <Audio
+        messages={enUiKitMessages.audio}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.mp3' }}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('Аудіо не знайдено');
+    expect(container.querySelector('audio')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Повторити' })).toBeNull();
+  });
+
   it('renders the player and caption, then offers a retry if the file fails offline', () => {
     setOnline(false);
     const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} />);
