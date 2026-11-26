@@ -36,6 +36,10 @@ export default {
       config: { name: 'Svitlo', authors: 'Svitlo', description: 'Offline-capable Svitlo textbooks' },
     },
     { name: '@electron-forge/maker-zip', platforms: ['darwin'] },
-    { name: '@electron-forge/maker-deb', platforms: ['linux'], config: { options: { maintainer: 'Svitlo' } } },
+    {
+      name: '@electron-forge/maker-deb',
+      platforms: ['linux'],
+      config: { options: { name: 'svitlo', bin: 'svitlo', maintainer: 'Svitlo', section: 'education' } },
+    },
   ],
 };

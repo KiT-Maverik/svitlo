@@ -47,3 +47,9 @@ test('Forge packages only precompiled assets, never source or node_modules', () 
     ['@electron-forge/maker-squirrel', '@electron-forge/maker-zip', '@electron-forge/maker-deb'],
   );
 });
+
+test('Debian maker uses a valid package name and the packaged executable, not the scoped workspace name', () => {
+  const maker = config.makers.find(maker => maker.name === '@electron-forge/maker-deb');
+  assert.equal(maker.config.options.name, 'svitlo');
+  assert.equal(maker.config.options.bin, config.packagerConfig.executableName);
+});
