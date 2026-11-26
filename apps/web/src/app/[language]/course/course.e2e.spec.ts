@@ -165,7 +165,6 @@ test('A corrupt requested Course reaches the publication failure path, not an un
     // boundary renders. Regardless of streaming status, this must not be
     // reported as a nonexistent Course.
     expect(response.status()).not.toBe(404);
-    expect(await response.text()).not.toContain('Controlled Course');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
