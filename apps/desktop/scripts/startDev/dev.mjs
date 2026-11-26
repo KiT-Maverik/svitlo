@@ -4,10 +4,12 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 
+import { getDevCommands } from './launch-commands.mjs';
+
 const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
-const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const { vite: viteCommand, electron: electronCommand } = getDevCommands();
 const url = 'http://127.0.0.1:5173';
-const vite = spawn(npm, ['exec', '--', 'vite', '--host', '127.0.0.1', '--port', '5173', '--strictPort'], {
+const vite = spawn(viteCommand.executable, viteCommand.args, {
   cwd: root,
   stdio: 'inherit',
 });
@@ -36,7 +38,7 @@ try {
   if (!ready) throw new Error('Vite did not start on 127.0.0.1:5173');
   const env = { ...process.env, SVITLO_DESKTOP_DEV_URL: url };
   delete env.ELECTRON_RUN_AS_NODE;
-  electron = spawn(npm, ['exec', '--', 'electron', '.'], { cwd: root, env, stdio: 'inherit' });
+  electron = spawn(electronCommand.executable, electronCommand.args, { cwd: root, env, stdio: 'inherit' });
   await new Promise(resolveExit => electron.once('exit', resolveExit));
 } finally {
   stop();
