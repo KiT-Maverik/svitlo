@@ -1,7 +1,7 @@
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
