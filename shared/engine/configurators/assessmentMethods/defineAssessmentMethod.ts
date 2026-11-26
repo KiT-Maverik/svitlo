@@ -6,6 +6,7 @@ import {
   resolvePublicationLanguages,
   selectPublicationLocales,
   splitLocalizedFields,
+  scopeBuild,
 } from '../_shared__configurators';
 import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import {
@@ -79,7 +80,7 @@ export function defineAssessmentMethod<
     id,
     slug,
     type: 'assessmentMethod' as const,
-    build: { props },
+    build: scopeBuild({ props }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

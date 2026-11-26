@@ -19,6 +19,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   carousel_Config_Schema,
@@ -365,7 +366,7 @@ export const defineCarousel = <
     type,
     slides,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

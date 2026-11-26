@@ -17,6 +17,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   checkpoint_Config_Schema,
@@ -376,7 +377,7 @@ export const defineCheckpoint = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({

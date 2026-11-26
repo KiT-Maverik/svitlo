@@ -17,6 +17,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   assessment_Config_Schema,
@@ -365,7 +366,7 @@ export const defineAssessment = <
     quiz,
     after,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: configBase,
       locales: (): { locale: DeepPartial<Assessment_Config['locale']> } => ({

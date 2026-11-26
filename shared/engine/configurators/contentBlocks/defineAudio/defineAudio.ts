@@ -10,6 +10,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   audio_Config_Schema,
@@ -133,7 +134,7 @@ export const defineAudio = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Audio_Locale<'config'>> } => ({

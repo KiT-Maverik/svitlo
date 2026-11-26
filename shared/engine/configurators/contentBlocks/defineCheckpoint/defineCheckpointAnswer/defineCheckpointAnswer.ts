@@ -7,6 +7,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import { contentBlockTypes } from '../../contentBlock.constants';
@@ -258,7 +259,7 @@ export const defineCheckpointAnswer = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: { base, locales: () => ({ locale: {} }), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

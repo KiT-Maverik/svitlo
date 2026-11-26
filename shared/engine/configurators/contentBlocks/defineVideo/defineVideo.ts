@@ -10,6 +10,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   video_Config_Schema,
@@ -137,7 +138,7 @@ export const defineVideo = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({

@@ -10,6 +10,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   subtitles_Config_Schema,
@@ -76,7 +77,7 @@ export const defineSubtitles = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: { id, slug, type, params: structuredClone(authored.params), locale: onlyStrings(authored.locale) },
       locales: () => ({ locale: onlyLocales(authored.locale) }),

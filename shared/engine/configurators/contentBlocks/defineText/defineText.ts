@@ -6,6 +6,7 @@ import {
   resolvePublicationLanguages,
   selectPublicationLocales,
   validateRequestedPublication,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   text_Config_Schema,
@@ -172,7 +173,7 @@ export const defineText = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     // Transitional compatibility for parents not migrated to assembly yet.
     config: {
       base,

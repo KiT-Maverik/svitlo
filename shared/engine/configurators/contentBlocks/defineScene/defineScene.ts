@@ -10,6 +10,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
+  scopeBuild,
 } from '../../_shared__configurators';
 import {
   scene_Config_Schema,
@@ -146,7 +147,7 @@ export const defineScene = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Scene_Locale<'config'>> } => ({
