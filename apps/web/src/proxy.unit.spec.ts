@@ -142,6 +142,7 @@ it('rejects invalid or missing Course details with an HTTP 404 before streaming'
   for (const invalid of [
     '/uk/course/not-a-uuid',
     '/xx/course/' + courseId,
+    '/ar/course/' + courseId,
     '/uk/course/' + otherId,
     '/uk/course/../outside',
   ])
