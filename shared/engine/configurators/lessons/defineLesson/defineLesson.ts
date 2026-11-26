@@ -8,10 +8,14 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -106,7 +110,7 @@ const hasEnabledQuiz = (sections: readonly { type: string; params?: { disabled?:
   sections.some(section => section.type === 'quiz' && section.params?.disabled !== true);
 
 /** Validate ownership/identity only; children handle their own schemas and semantics. */
-const validate = (config: Lesson_Config, options?: PublicationLanguageOptions): void => {
+const validate = (config: Lesson_Config): void => {
   if (Object.hasOwn(config, 'programId')) {
     throw new Error('Lesson must not declare programId; Course ownership is defined by authoring composition');
   }
@@ -130,13 +134,15 @@ const validate = (config: Lesson_Config, options?: PublicationLanguageOptions): 
       throw new Error('Invalid Lesson section Build API or identity: ' + key);
     }
   }
+  // A required Quiz is a structural invariant; localized Section publication
+  // must not run here, since the active Build may request only one language.
   if (
     config.params.quizRequiredForCompletion &&
-    !hasEnabledQuiz(
-      config.section.order.map(
-        key => config.section.items[key].build.props({ languages: config.params.languages, mode: options?.mode }).base,
-      ),
-    )
+    !config.section.order.some(key => {
+      const child = config.section.items[key];
+      const params = child.config.base.params;
+      return child.type === 'quiz' && (!isRecord(params) || params.disabled !== true);
+    })
   ) {
     throw new Error('Lesson requires at least one enabled Quiz section');
   }
@@ -188,17 +194,14 @@ export function defineLesson<
   const buildOrdered = (
     items: Record<string, unknown>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
-      const resource = child.build.props({ languages, mode });
-      const patch = Object.hasOwn(changes, key)
-        ? child.build.overrides(changes[key] as never, { languages, mode })
-        : undefined;
+      const resource = buildChildProps(child);
+      const patch = Object.hasOwn(changes, key) ? buildChildOverrides(child, changes[key] as never) : undefined;
       return { resource, patch };
     });
     const bases = entries.map(({ resource, patch }) =>
@@ -231,7 +234,7 @@ export function defineLesson<
   };
   const props = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } }, options);
+    validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
     const own = copyAuthored();
     for (const code of languages) {
       if (!own.params.languages.includes(code))
@@ -242,7 +245,7 @@ export function defineLesson<
     for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
       files[code as LanguageCode] = { locale: fields as LocaleBody['locale'] };
     }
-    const sections = buildOrdered(initialSections, sectionOrder, languages, {}, options.mode);
+    const sections = buildOrdered(initialSections, sectionOrder);
     addLocalizedArray(files, 'section', sections.locales);
     const result = structuredClone({
       base: {
@@ -333,7 +336,7 @@ export function defineLesson<
   ): Publication<OverrideBase> & Pick<Lesson_Config, 'id'> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } }, options);
+      validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
       for (const code of languages) {
         if (!authored.params.languages.includes(code))
           throw new Error('Lesson does not support publication language: ' + code);
@@ -373,26 +376,22 @@ export function defineLesson<
         sectionTypes,
       );
       if (sections.changed) {
-        const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges, options.mode);
+        const built = buildOrdered(sections.active, sections.order, sections.childChanges);
         output.base.section = built.bases as Lesson_PropsBase['section'];
         addLocalizedArray(files, 'section', built.locales);
       }
       // Recheck parent collection, identity and cross-child invariants after changes.
-      validate(
-        {
-          ...own,
-          section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-        },
-        options,
-      );
+      validate({
+        ...own,
+        section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
+      });
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (
         own.params.quizRequiredForCompletion &&
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order, languages, {}, options.mode)
-                .bases as Lesson_PropsBase['section']),
+            : (buildOrdered(sections.active, sections.order).bases as Lesson_PropsBase['section']),
         )
       ) {
         throw new Error('Lesson requires at least one enabled Quiz section');
@@ -417,7 +416,7 @@ export function defineLesson<
     draft: false as const,
     section,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<Lesson_Config['locale']> } => ({

@@ -2,8 +2,12 @@ import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
@@ -107,29 +111,21 @@ export const defineCheckpointAnswer = <
   const content = { items: { ...initialItems }, order: [...initialOrder] };
   const base = { id, slug, type } as const;
 
-  const buildChild = (child: Checkpoint_Allowed_Configurator, options: PublicationLanguageOptions): ChildPublication =>
-    child.build.props(options) as unknown as ChildPublication;
-  const buildChildPatch = (
-    child: Checkpoint_Allowed_Configurator,
-    patch: unknown,
-    options: PublicationLanguageOptions,
-  ): ChildPatchPublication =>
-    (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(
-      patch as never,
-      options,
-    );
+  const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
+    buildChildProps(child) as unknown as ChildPublication;
+  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
+    buildChildOverrides(child, patch as never) as unknown as ChildPatchPublication;
 
   const buildContent = (
     items: Record<string, Checkpoint_Allowed_Configurator>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const original = buildChild(child, { languages, mode });
-      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key], { languages, mode }) : undefined;
+      const original = buildChild(child);
+      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key]) : undefined;
       return { original, patch };
     });
     const bases = entries.map(({ original, patch }) =>
@@ -157,7 +153,7 @@ export const defineCheckpointAnswer = <
   const props = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
-    const built = buildContent(initialItems, initialOrder, languages, {}, options.mode);
+    const built = buildContent(initialItems, initialOrder);
     const output = {
       base: { id, slug, type, content: built.bases },
       locale: Object.keys(built.locales).length ? built.locales : undefined,
@@ -235,7 +231,7 @@ export const defineCheckpointAnswer = <
             (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
           ),
         );
-        const built = buildContent(active, order, languages, childPatches, options.mode);
+        const built = buildContent(active, order, childPatches);
         output.base.content = built.bases;
         output.locale = Object.keys(built.locales).length ? built.locales : undefined;
       }
@@ -258,7 +254,7 @@ export const defineCheckpointAnswer = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: { base, locales: () => ({ locale: {} }), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

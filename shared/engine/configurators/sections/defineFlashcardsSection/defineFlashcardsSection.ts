@@ -8,10 +8,14 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -149,17 +153,14 @@ export const defineFlashcardsSection = <
   const buildContent = (
     items: Record<string, Block>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props({ languages }) as unknown as ChildResource;
+      const resource = buildChildProps(child) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(
-            patches[key] as never,
-            { languages },
-          )
+        ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
         : undefined;
       return { resource, patch };
     });
@@ -191,7 +192,7 @@ export const defineFlashcardsSection = <
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder, languages);
+    const children = buildContent(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locales)) {
       (files[language as LanguageCode] ??= {}).content = entries;
@@ -299,7 +300,7 @@ export const defineFlashcardsSection = <
       // Parent semantic invariants (notably Quiz screen references) must use the active collection.
       validate({ ...candidate, content: { items: enabled, order: [...order] } });
       if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
-        const built = buildContent(enabled, order, languages, childPatches);
+        const built = buildContent(enabled, order, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCode] ??= {}).content = entries;
@@ -326,7 +327,7 @@ export const defineFlashcardsSection = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<FlashcardsSection_Locale<'config'>> } => ({

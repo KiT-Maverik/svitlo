@@ -98,7 +98,7 @@ export async function render(packageDirectory, mode) {
     }
     let publication;
     try {
-      publication = lesson.build.props({ languages });
+      publication = lesson.build.props({ languages, mode });
     } catch (error) {
       throw new Error('Failed to build Lesson Props: ' + source, { cause: error });
     }

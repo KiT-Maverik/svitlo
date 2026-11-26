@@ -8,9 +8,12 @@ import type {
 } from '#types';
 
 import {
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
@@ -144,11 +147,11 @@ export function defineSkillDomain<
   const buildChildren = <Props extends Skill_Props | SkillGroup_Props>(
     items: Record<string, Child>,
     parse: (value: unknown) => Props,
-    languages: readonly LanguageCode[],
   ) => {
+    const { languages } = requireBuildContext();
     const entries = Object.keys(items)
       .sort()
-      .map(key => items[key].build.props({ languages }));
+      .map(key => buildChildProps(items[key]));
     const base = entries.map(resource => resource.base) as DeepPartial<Props>[];
     const locale: Partial<Record<LanguageCode, Props[]>> = {};
     for (const language of languages) {
@@ -177,13 +180,13 @@ export function defineSkillDomain<
     const files = selectPublicationLocales(own.locale, languages) ?? {};
     const base: DeepPartial<SkillDomain_Props> & { id: string; slug: string } = { id, slug, ...own.base };
     if (skills) {
-      const built = buildChildren(initialSkills, value => skill_Props_Schema.parse(value), languages);
+      const built = buildChildren(initialSkills, value => skill_Props_Schema.parse(value));
       base.skills = built.base;
       for (const [language, values] of Object.entries(built.locale))
         (files[language as LanguageCode] ??= {}).skills = values;
     }
     if (groups) {
-      const built = buildChildren(initialGroups, value => skillGroup_Props_Schema.parse(value), languages);
+      const built = buildChildren(initialGroups, value => skillGroup_Props_Schema.parse(value));
       base.groups = built.base;
       for (const [language, values] of Object.entries(built.locale))
         (files[language as LanguageCode] ??= {}).groups = values;
@@ -202,7 +205,7 @@ export function defineSkillDomain<
     skills,
     groups,
     validate,
-    build: { props },
+    build: scopeBuild({ props }),
     config: {
       base: { id, slug, ...splitOwn({ title: authored.title, description: authored.description }).base },
       validate,
