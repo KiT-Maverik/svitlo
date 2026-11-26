@@ -49,6 +49,9 @@
     "shared/adapters/*"
   ],
   "overrides": {
-    "katex": "0.19.1"
+    "katex": "0.19.1",
+    "@storybook/react-vite": {
+      "@joshwooding/vite-plugin-react-docgen-typescript": "0.9.1"
+    }
   }
 }

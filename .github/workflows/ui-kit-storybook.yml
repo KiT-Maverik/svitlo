@@ -25,4 +25,69 @@ jobs:
           node-version: 26
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/ui-kit
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run storybook:build --workspace @svitlo/ui-kit
+      - name: Verify story inventory, generated docs and shared flags
+        run: |
+          test -s shared/ui-kit/storybook-static/flags/ua.svg
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const entries = Object.values(JSON.parse(fs.readFileSync('shared/ui-kit/storybook-static/index.json', 'utf8')).entries);
+          const published = new Set(entries.filter(entry => entry.type === 'story').map(entry => entry.importPath));
+          function countStories(dir) {
+            return fs.readdirSync(dir, { withFileTypes: true }).reduce((count, entry) => {
+              const name = path.join(dir, entry.name);
+              return count + (entry.isDirectory() ? countStories(name) : entry.name.endsWith('.stories.tsx') ? 1 : 0);
+            }, 0);
+          }
+          const sources = countStories('shared/ui-kit/src');
+          if (published.size !== sources || sources === 0) throw new Error('Story inventory mismatch: ' + published.size + ' published vs ' + sources + ' source files');
+          if (!entries.some(entry => entry.type === 'docs')) throw new Error('Storybook autodocs entries missing');
+          console.log('Story files: ' + sources + '; docs entries: ' + entries.filter(entry => entry.type === 'docs').length);
+          NODE
+      - name: Install Chromium for browser preview smoke
+        run: npx playwright install --with-deps chromium
+      - name: Verify actual stories, Docs, Controls and shared flags in Chromium
+        run: |
+          npm run storybook:start --workspace @svitlo/ui-kit -- --ci > /tmp/svitlo-storybook.log 2>&1 &
+          storybook_pid=$!
+          trap 'kill $storybook_pid 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 45); do
+            if curl --silent --fail http://127.0.0.1:6006/index.json -o /tmp/svitlo-storybook-index.json 2>/dev/null; then break; fi
+            if ! kill -0 "$storybook_pid" 2>/dev/null; then cat /tmp/svitlo-storybook.log; exit 1; fi
+            sleep 2
+          done
+          test -s /tmp/svitlo-storybook-index.json || { cat /tmp/svitlo-storybook.log; exit 1; }
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const fs = require('node:fs');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+              const entries = Object.values(JSON.parse(fs.readFileSync('/tmp/svitlo-storybook-index.json', 'utf8')).entries);
+              for (const title of ['Course/Card', 'Content blocks/Markdown', 'Content blocks/Carousel', 'Questions/Select one answer']) {
+                const story = entries.find(entry => entry.type === 'story' && entry.title === title);
+                if (!story) throw new Error('Missing Storybook story: ' + title);
+                await page.goto('http://127.0.0.1:6006/iframe.html?id=' + encodeURIComponent(story.id) + '&viewMode=story', { waitUntil: 'networkidle' });
+                const root = page.locator('#storybook-root');
+                await root.waitFor({ state: 'visible', timeout: 20000 });
+                const rendered = await root.evaluate(el => ({ children: el.querySelectorAll('*').length, text: el.textContent.trim().length }));
+                if (rendered.children < 2 || rendered.text === 0) throw new Error('Empty story preview: ' + title);
+                console.log('Rendered ' + title);
+              }
+              const doc = entries.find(entry => entry.type === 'docs');
+              if (!doc) throw new Error('No Storybook docs entry');
+              await page.goto('http://127.0.0.1:6006/iframe.html?id=' + encodeURIComponent(doc.id) + '&viewMode=docs', { waitUntil: 'networkidle' });
+              await page.locator('.sbdocs').first().waitFor({ state: 'visible', timeout: 20000 });
+              const card = entries.find(entry => entry.type === 'story' && entry.title === 'Course/Card');
+              await page.goto('http://127.0.0.1:6006/?path=/story/' + card.id, { waitUntil: 'domcontentloaded' });
+              await page.getByRole('tab', { name: /Controls/i }).first().waitFor({ state: 'visible', timeout: 20000 });
+              await page.goto('http://127.0.0.1:6006/flags/ua.svg', { waitUntil: 'load' });
+              if (!(await page.content()).includes('<svg')) throw new Error('Missing shared flag SVG');
+              console.log('Docs, Controls and shared flags rendered in Chromium');
+            } finally { await browser.close(); }
+          })().catch(error => { console.error(error); process.exitCode = 1; });
+          NODE
