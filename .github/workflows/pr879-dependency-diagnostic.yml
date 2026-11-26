@@ -97,10 +97,10 @@ jobs:
           authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" push --quiet origin "HEAD:refs/heads/$PR_SOURCE_BRANCH"
 
-  types-and-lint:
-    name: Package builds, types and lint
+  ui-kit-regression:
+    name: UI Kit math rendering, Storybook and Web components
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v5
         with:
@@ -111,90 +111,49 @@ jobs:
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
-      - name: Check all TypeScript workspaces
-        env:
-          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
-
-  components-and-storybook:
-    name: Unit/component tests and UI Kit Storybook
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v5
-        with:
-          node-version: '26'
-          cache: npm
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
-      - name: Workspace unit tests
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
-      - name: Full UI Kit component tests, including math renderer safety
+      - name: UI Kit components, including Markdown and KaTeX security tests
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/ui-kit
-      - name: UI Kit Storybook build
+      - name: Build UI Kit Storybook
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run storybook:build --workspace @svitlo/ui-kit
-      - name: Web and Playground components
+      - name: Web and Playground component regression suites
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
         run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/productionQuality/run-selected-components.mjs
 
-  web-and-platform:
-    name: Web and Platform builds and Web smoke
+  reproduce-develop-engine:
+    name: Reproduce unchanged Engine test failure on develop
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
         with:
+          ref: f9f5fd661871f2de00b1f3fe3a37a30e0bffebd1
           persist-credentials: false
       - uses: actions/setup-node@v5
         with:
           node-version: '26'
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
-      - name: Build Web using the compiled Math textbook
-        env:
-          SVITLO_TEXTBOOK: math
-          SVITLO_MEDIA_MODE: draft
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/web
-      - name: Build Platform
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/platform
-      - name: Smoke Web dev HTTP endpoint
-        env:
-          SVITLO_TEXTBOOK: math
-          SVITLO_MEDIA_MODE: draft
+      - name: Run the same Engine test suite on the unmodified develop base
         shell: bash
         run: |
-          set -euo pipefail
-          npm run app:start:dev --workspace @svitlo/web >/tmp/pr879-web.log 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-          passed=false
-          for attempt in $(seq 1 90); do
-            if curl --silent --show-error --fail --max-time 3 http://127.0.0.1:3000/ -o /tmp/pr879-home.html 2>/dev/null; then
-              passed=true
-              break
-            fi
-            if ! kill -0 "$server_pid" 2>/dev/null; then
-              tail -n 60 /tmp/pr879-web.log
-              exit 1
-            fi
-            sleep 2
-          done
-          if [ "$passed" != true ]; then
-            tail -n 60 /tmp/pr879-web.log
+          set +e
+          npm run test --workspace @svitlo/engine > /tmp/pr879-base-engine.log 2>&1
+          result=$?
+          set -e
+          if [[ $result -ne 0 ]] && grep -qF 'child_content_question_items_prompt' /tmp/pr879-base-engine.log; then
+            echo "Verified: unchanged develop Engine test fails at the same materializer assertion."
+            grep -n -C 3 'child_content_question_items_prompt' /tmp/pr879-base-engine.log | tail -n 50
+          else
+            echo "Baseline does not reproduce the PR failure (exit: $result)"
+            tail -n 120 /tmp/pr879-base-engine.log
             exit 1
           fi
-          echo "Math Web route returned HTTP 2xx"
 
-  native-hosts:
-    name: Electron and Capacitor compatibility
+  eslint10-compatibility:
+    name: Probe ESLint 10 peer resolution without force/overrides
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v5
         with:
@@ -204,11 +163,41 @@ jobs:
           node-version: '26'
           cache: npm
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - name: Build Electron host
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
-      - name: Build Capacitor host
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
-      - name: Check native unit suites
+      - name: Attempt nonpersistent ESLint 10 manifest migration
+        shell: bash
         run: |
-          node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/desktop
-          node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/mobile
+          node <<'NODE'
+          const fs = require('node:fs');
+          const lock = JSON.parse(fs.readFileSync('package-lock.json', 'utf8'));
+          const touched = [];
+          for (const [path, entry] of Object.entries(lock.packages)) {
+            if (!entry.devDependencies?.eslint || path.includes('node_modules')) continue;
+            const manifestPath = path ? path + '/package.json' : 'package.json';
+            const pkg = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+            if (!pkg.devDependencies?.eslint) continue;
+            pkg.devDependencies.eslint = '^10.15.0';
+            if (pkg.devDependencies['@eslint/js']) pkg.devDependencies['@eslint/js'] = '^10.0.0';
+            fs.writeFileSync(manifestPath, JSON.stringify(pkg, null, 2) + '\n');
+            touched.push(manifestPath);
+          }
+          console.log('Testing manifests, no changes will be pushed:', touched.join(', '));
+          NODE
+          set +e
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund > /tmp/pr879-eslint10.log 2>&1
+          result=$?
+          set -e
+          if [[ $result -ne 0 ]]; then
+            echo "ESLint 10 upgrade cannot resolve all existing npm peers (exit $result)."
+            tail -n 110 /tmp/pr879-eslint10.log
+            exit 0
+          fi
+          echo "ESLint 10 lockfile resolution succeeded; verify locked ESLint versions."
+          node <<'NODE'
+          const fs = require('node:fs');
+          const tree = JSON.parse(fs.readFileSync('package-lock.json', 'utf8')).packages;
+          const rows = Object.entries(tree)
+            .filter(([path]) => path === 'node_modules/eslint' || path.endsWith('/node_modules/eslint'))
+            .map(([path, obj]) => path + ': ' + obj.version);
+          console.log(rows.join('\n'));
+          if (rows.some(row => row.includes(': 9.'))) process.exitCode = 1;
+          NODE
