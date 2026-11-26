@@ -13,17 +13,18 @@ const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-
 const root = () => join(process.cwd(), 'public/data/courses');
 
 /** The selected publisher's ownership manifest distinguishes missing owned resources from orphan folders. */
-async function ownedCourseBases(): Promise<Set<string>> {
+async function ownedCourseBases(): Promise<{ ids: Set<string>; hasManifest: boolean }> {
   const owned = new Set<string>();
   const directory = join(process.cwd(), 'public/.svitlo');
   let files;
   try {
     files = await readdir(directory);
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return owned;
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return { ids: owned, hasManifest: false };
     throw error;
   }
-  for (const name of files.filter(file => /^publish-[a-z][a-z0-9-]*\.json$/.test(file))) {
+  const manifests = files.filter(file => /^publish-[a-z][a-z0-9-]*\.json$/.test(file));
+  for (const name of manifests) {
     const manifest = JSON.parse(await readFile(join(directory, name), 'utf8')) as {
       version?: number;
       textbook?: string;
@@ -42,11 +43,11 @@ async function ownedCourseBases(): Promise<Set<string>> {
       if (match && uuid.test(match[1])) owned.add(match[1]);
     }
   }
-  return owned;
+  return { ids: owned, hasManifest: manifests.length > 0 };
 }
 
 export async function loadPublishedCourseCatalog(language: LanguageCode): Promise<CoursePreview[]> {
-  const owned = await ownedCourseBases();
+  const { ids: owned, hasManifest } = await ownedCourseBases();
   let entries;
   try {
     entries = await readdir(root(), { withFileTypes: true });
@@ -61,6 +62,8 @@ export async function loadPublishedCourseCatalog(language: LanguageCode): Promis
 
   const previews: CoursePreview[] = [];
   for (const entry of directories.sort((a, b) => a.name.localeCompare(b.name))) {
+    // Once selection published an ownership manifest, ignore unowned prior-package files.
+    if (hasManifest && !owned.has(entry.name)) continue;
     const directory = join(root(), entry.name);
     const resources = await readdir(directory, { withFileTypes: true });
     if (!resources.some(resource => resource.name === 'base.json' && resource.isFile())) {
