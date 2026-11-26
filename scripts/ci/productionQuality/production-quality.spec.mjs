@@ -165,23 +165,23 @@ function generatorJob(id) {
 }
 
 test('manual build-once experiment is opt-in without changing reusable production generator gates', () => {
-  assert.match(engineGeneratorsWorkflow, /workflow_dispatch:\s*\n\s*inputs:\s*\n\s*build_once_engine_artifact:/);
-  assert.match(engineGeneratorsWorkflow, /build_once_engine_artifact:[\s\S]*?type: boolean\s*\n\s*default: false/);
+  assert.match(engineGeneratorsWorkflow, /workflow_dispatch:\s*\n\s*inputs:\s*\n\s*ci_mode:/);
+  assert.match(engineGeneratorsWorkflow, /ci_mode:[\s\S]*?type: choice[\s\S]*?default: standard/);
   assert.match(engineGeneratorsWorkflow, /workflow_call:/);
-  assert.match(engineGeneratorsWorkflow, /inputs\.build_once_engine_artifact && '-experiment'/);
+  assert.match(engineGeneratorsWorkflow, /inputs\.ci_mode == 'build-once-engine' && '-experiment'/);
 
   for (const id of ['publisher-isolation', 'ci-policy', 'generator-tests']) {
-    assert.match(generatorJob(id), /!inputs\.build_once_engine_artifact/);
+    assert.match(generatorJob(id), /inputs\.ci_mode != 'build-once-engine'/);
   }
   for (const id of ['experiment-engine-producer', 'experiment-consumer-types', 'experiment-consumer-tests']) {
-    assert.match(generatorJob(id), /github\.event_name == 'workflow_dispatch' && inputs\.build_once_engine_artifact/);
+    assert.match(generatorJob(id), /github\.event_name == 'workflow_dispatch' && inputs\.ci_mode == 'build-once-engine'/);
     assert.match(generatorJob(id), /actions\/checkout@v5/);
     assert.match(generatorJob(id), /persist-credentials: false/);
     assert.match(generatorJob(id), /node-version: '26'/);
     assert.match(generatorJob(id), /cache: npm/);
     assert.match(generatorJob(id), /npm ci --no-audit --no-fund/);
   }
-  assert.doesNotMatch(workflow, /experiment-engine-|build_once_engine_artifact/);
+  assert.doesNotMatch(workflow, /experiment-engine-|ci_mode/);
   assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
 });
 
