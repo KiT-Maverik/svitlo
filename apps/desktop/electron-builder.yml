@@ -1,6 +1,5 @@
 appId: org.svitlo.desktop
 productName: Svitlo
-asar: true
 nativeModules:
   npmRebuild: false
 directories:
