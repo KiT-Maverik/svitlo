@@ -64,6 +64,12 @@ jobs:
           console.log('Advisories:', Object.keys(audit.vulnerabilities ?? {}).join(', '));
           NODE
           npm explain electron-builder
+      - name: Preserve generated lockfile for diagnosing failed pushes
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-v27-npm-lockfile
+          path: package-lock.json
+          retention-days: 1
       - name: Commit npm-generated lockfile on the exact PR branch
         run: |
           test "$GITHUB_REF" = 'refs/heads/maintenance/electron-toolchain'
