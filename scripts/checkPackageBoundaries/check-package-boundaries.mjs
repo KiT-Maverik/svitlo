@@ -238,8 +238,8 @@ for (const file of engineSources) {
         ((relative(root, file).startsWith(
           'shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/',
         ) ||
-          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/defineCode/') ||
-          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/defineMarkdown/')) &&
+          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/primitive/defineCode/') ||
+          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/primitive/defineMarkdown/')) &&
           match[1].startsWith('node:')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
