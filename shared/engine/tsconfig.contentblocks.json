@@ -20,7 +20,8 @@
     "configurators/_shared__configurators/validateOrderedKeys/**/*.spec.ts",
     "configurators/_shared__configurators/validateSluggedConfiguratorMap/**/*.spec.ts",
     "configurators/_shared__configurators/buildContext.spec.ts",
-    "configurators/lessons/defineLesson/defineLesson.spec.ts"
+    "configurators/lessons/defineLesson/defineLesson.spec.ts",
+    "configurators/contentBlocks/defineSubtitles/**/*.spec.ts"
   ],
   "exclude": [
     "node_modules",
