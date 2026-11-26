@@ -111,7 +111,42 @@ test('Direct Course URLs reject malformed or absent IDs and unsupported interfac
     '/en/course/not-a-uuid',
     '/en/course/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3',
     '/unsupported/course/' + courseId,
-    '/ja/course/' + courseId,
   ])
     expect((await request.get(route)).status()).toBe(404);
+});
+
+test('Course detail falls back to a published content language and keeps interface navigation', async ({ page }) => {
+  await page.goto('/pl/course/' + courseId);
+  const notice = page.getByTestId('course-language-notice');
+  await expect(notice).toHaveAttribute('role', 'status');
+  await expect(notice).toContainText('Showing the available');
+  await expect(page.getByRole('heading', { name: 'Контрольний курс', level: 1 })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
+    'href',
+    '/pl/course/' + courseId + '/lesson/uk/' + lessonId,
+  );
+  await page.getByRole('link', { name: /Контрольний урок/ }).click();
+  await expect(page).toHaveURL('/pl/course/' + courseId + '/lesson/uk/' + lessonId);
+});
+
+test('Course detail keeps its requested language without displaying a fallback notice', async ({ page }) => {
+  await page.goto('/uk/course/' + courseId);
+  await expect(page.getByTestId('course-language-notice')).toHaveCount(0);
+});
+
+test('Course detail ignores unrelated empty and corrupt UUID directories', async ({ page }) => {
+  const { mkdir, writeFile, rm } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const sibling = '11111111-1111-4111-8111-0000000002fe';
+  const directory = join(process.cwd(), 'public/data/courses', sibling);
+  await mkdir(directory, { recursive: true });
+  try {
+    await page.goto('/en/course/' + courseId);
+    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
+    await writeFile(join(directory, 'base.json'), '{corrupt unrelated publication');
+    await page.reload();
+    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
