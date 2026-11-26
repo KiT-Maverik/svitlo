@@ -80,3 +80,4 @@ apps/web/src/generated/
 
 # Web composition is generated from an explicit build selection
 apps/web/public/.svitlo/
+apps/web/public/textbooks/
