@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { defineCarousel } from '../../contentBlocks/defineCarousel';
-import { defineImage } from '../../contentBlocks/defineImage';
-import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineCarousel } from '../../contentBlocks/composite/defineCarousel';
+import { defineImage } from '../../contentBlocks/primitive/defineImage';
+import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineFlashcardSide } from './defineFlashcardSide';
 import { flashcardSideConfigurator_Schema } from './defineFlashcardSide.schemas';
 
