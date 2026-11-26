@@ -86,8 +86,7 @@ function renderPlacementOverrideSpecification(production, patch) {
   for (const [sectionKey, entry] of Object.entries(patch.section?.additionalItems ?? {}).sort(([a], [b]) =>
     a.localeCompare(b),
   )) {
-    if (entry?.$create === 'course-section')
-      visit(entry.source, 'section.additionalItems.' + sectionKey + '.source');
+    if (entry?.$create === 'course-section') visit(entry.source, 'section.additionalItems.' + sectionKey + '.source');
   }
   return notes.join('\n\n');
 }

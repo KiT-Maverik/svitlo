@@ -1,6 +1,6 @@
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { CodingTaskSection_Config } from '../../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 /**
  * defineCodingTaskSection source materializer (not a Props/JSON publisher).
@@ -118,7 +118,9 @@ function render(value: unknown, depth = 0): string {
       .map(key => {
         const child = value[key];
         const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
-        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+        return (
+          '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ','
+        );
       })
       .join('\n') +
     '\n' +
@@ -179,7 +181,12 @@ export function materializeCodingTaskSection(config: Source, options: Options): 
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
   const items: Record<string, Reference> = {};
-  const claim = createSourceIdentifierRegistry('codingTaskSection', ['defineCodingTaskSection', 'languages', 'content', exportName(config.slug)]);
+  const claim = createSourceIdentifierRegistry('codingTaskSection', [
+    'defineCodingTaskSection',
+    'languages',
+    'content',
+    exportName(config.slug),
+  ]);
   const seenFiles = new Set<string>();
   const add = (file: GeneratedFile): void => {
     outputPath(file.path);
@@ -214,7 +221,11 @@ export function materializeCodingTaskSection(config: Source, options: Options): 
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
-  if (sectionNotes.length && options.production?.methodologyIntegrated !== true && options.noteOwnership !== 'course-lesson-placement')
+  if (
+    sectionNotes.length &&
+    options.production?.methodologyIntegrated !== true &&
+    options.noteOwnership !== 'course-lesson-placement'
+  )
     blocker.push(
       renderBlockerTodo(
         'Transfer reviewed codingTask Section notes (' +

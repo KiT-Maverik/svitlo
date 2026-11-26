@@ -312,7 +312,10 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.match(wrapper.content, /export const directLesson = placeLesson\([\s\S]*\);\s*\/\*\n \* TODO \(BLOCKER\):/);
   assert.match(wrapper.content, /Reviewed course-local title and exercise/);
   assert.equal((wrapper.content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
-  assert.ok(wrapper.content.indexOf('/*\n * TODO (BLOCKER):') > wrapper.content.indexOf('export const directLesson = placeLesson('));
+  assert.ok(
+    wrapper.content.indexOf('/*\n * TODO (BLOCKER):') >
+      wrapper.content.indexOf('export const directLesson = placeLesson('),
+  );
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /import \{ directLesson \} from "\.\/directLesson"/);
@@ -364,7 +367,6 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
 });
-
 
 test('repeated placements of one Lesson keep distinct reviewed override footers', () => {
   const input = patchedSource();
@@ -884,7 +886,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal((wrapper?.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
   assert.match(wrapper ?? '', /Course-specific extra practice is required/);
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
-  assert.match(wrapper ?? '', /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/);
+  assert.match(
+    wrapper ?? '',
+    /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
+  );
   assert.match(wrapper ?? '', /production\.pedagogicalIntent:\n \* Keep this Text rationale only with this placement/);
   assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
   assert.match(wrapper ?? '', /Verify a nested Carousel Scene/);
@@ -896,7 +901,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(wrapper ?? '', /Keep the complete reviewer note even with \* \/ and multiline formatting/);
   assert.doesNotMatch(section ?? '', /Transfer reviewed .* Section notes/);
   assert.doesNotMatch(
-    plan.files.filter(file => file.path.endsWith('/methodology.md')).map(file => file.content).join('\n'),
+    plan.files
+      .filter(file => file.path.endsWith('/methodology.md'))
+      .map(file => file.content)
+      .join('\n'),
     /Course-only exhibition practice/,
   );
   for (const sceneId of [directSceneId, nestedSceneId]) {

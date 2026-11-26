@@ -1,6 +1,6 @@
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { QuestSection_Config } from '../../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 /** Build-only Quest source. No false Lesson/Episode runtime or Stage playback support. */
 /**
@@ -102,7 +102,9 @@ function render(value: unknown, depth = 0): string {
       .map(key => {
         const child = value[key];
         const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
-        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+        return (
+          '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ','
+        );
       })
       .join('\n') +
     '\n' +
@@ -199,7 +201,13 @@ export function materializeQuestSection(config: Source, options: Options): Resul
   // Both Quest maps require "start". Independent modules preserve canonical
   // child names without aliases or a collision between the two maps.
   const mapImports: Record<'stages' | 'tasks', string[]> = { stages: [], tasks: [] };
-  createSourceIdentifierRegistry('questSection', ['defineQuestSection', 'languages', 'stages', 'tasks', exported(config.slug)]);
+  createSourceIdentifierRegistry('questSection', [
+    'defineQuestSection',
+    'languages',
+    'stages',
+    'tasks',
+    exported(config.slug),
+  ]);
   const identities = new Set<string>([config.id]);
   for (const category of ['stages', 'tasks'] as const) {
     const source = config[category];
@@ -235,7 +243,12 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     addOwn(files, seen, {
       path: destination(dir, category + '.ts'),
       kind: 'typescript',
-      content: [...mapImports[category], '', 'export const ' + category + ' = ' + render(values[category]) + ';', ''].join('\n'),
+      content: [
+        ...mapImports[category],
+        '',
+        'export const ' + category + ' = ' + render(values[category]) + ';',
+        '',
+      ].join('\n'),
     });
   }
   const { stages: _ignoredStages, tasks: _ignoredTasks, ...metadata } = config;
@@ -252,7 +265,9 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
   const methodologyBlocker =
-    sectionNotes.length && options.production?.methodologyIntegrated !== true && options.noteOwnership !== 'course-lesson-placement'
+    sectionNotes.length &&
+    options.production?.methodologyIntegrated !== true &&
+    options.noteOwnership !== 'course-lesson-placement'
       ? renderBlockerTodo(
           'Transfer reviewed Quest Section notes (' +
             sectionNotes.join(', ') +

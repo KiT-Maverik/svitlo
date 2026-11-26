@@ -117,17 +117,19 @@ test('content: verifies canonical child export, permits explicit differing map k
   const code = alternative.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
   assert.match(code, /import \{ actualPrompt \} from "\.\/prompt"/);
   assert.match(code, /"prompt": actualPrompt/);
-  assert.throws(() =>
-    materializeContentSection(input() as Parameters<typeof materializeContentSection>[0], {
-      documentLanguage: 'en',
-      directory: 'sections/introduction',
-      languagesImport: '../../languages',
-      renderContentBlock: (child, options) => ({
-        ...renderContentBlock(child, options),
-        exportName: 'content',
+  assert.throws(
+    () =>
+      materializeContentSection(input() as Parameters<typeof materializeContentSection>[0], {
+        documentLanguage: 'en',
+        directory: 'sections/introduction',
+        languagesImport: '../../languages',
+        renderContentBlock: (child, options) => ({
+          ...renderContentBlock(child, options),
+          exportName: 'content',
+        }),
       }),
-    }),
-  /generated identifier collision.*content/);
+    /generated identifier collision.*content/,
+  );
 });
 
 test('content: Course placement owns the notes but does not suppress pending Section work', () => {
