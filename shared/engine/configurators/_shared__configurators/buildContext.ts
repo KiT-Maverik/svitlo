@@ -74,5 +74,5 @@ export const buildChildProps = <Resource>(
 /** Compose sparse child changes in the same scope; never mutate the shared child. */
 export const buildChildOverrides = <Resource>(
   child: { readonly build: { overrides: (patch: never, options: never) => Resource } },
-  patch: never,
-): Resource => child.build.overrides(patch, requireBuildContext() as never);
+  patch: unknown,
+): Resource => child.build.overrides(patch as never, requireBuildContext() as never);

@@ -1,3 +1,4 @@
+import { buildChildProps } from '../../_shared__configurators';
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
@@ -81,7 +82,7 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
   };
   const props = (options: PublicationLanguageOptions<AllLanguageCodes>) => {
     const languages = resolvePublicationLanguages(options);
-    const child = section.build.props({ languages });
+    const child = buildChildProps(section);
     const base = {
       id,
       slug,

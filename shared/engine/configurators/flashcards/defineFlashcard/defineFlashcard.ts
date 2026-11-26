@@ -1,3 +1,4 @@
+import { buildChildProps, buildChildOverrides } from '../../_shared__configurators';
 import { z } from 'zod';
 
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
@@ -257,8 +258,7 @@ export function defineFlashcard<
 
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
-    languages: readonly LanguageCode[],
-  ): SidePublication => (side.build.props as (options: PublicationLanguageOptions) => SidePublication)({ languages });
+  ): SidePublication => buildChildProps(side) as SidePublication;
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.map(flag => splitLocalizedFields(flag));
@@ -292,9 +292,9 @@ export function defineFlashcard<
     validate({ ...copyAuthored(), content: initialContent });
     const source = copyAuthored();
     const files: Files = {};
-    const front = buildSide(initialContent.front, languages);
-    const back = buildSide(initialContent.back, languages);
-    const hint = initialContent.hint && buildSide(initialContent.hint, languages);
+    const front = buildSide(initialContent.front);
+    const back = buildSide(initialContent.back);
+    const hint = initialContent.hint && buildSide(initialContent.hint);
     const flags = buildFlags(source.parameters.flags, languages);
     const { flags: authoredFlags, relationships: authoredRelationships, ...publishedParameters } = source.parameters;
     void authoredFlags;
@@ -430,9 +430,7 @@ export function defineFlashcard<
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
         const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
-        const built = (
-          current.build.overrides as (patch: never, options: PublicationLanguageOptions) => SidePublication
-        )(change as never, { languages });
+        const built = buildChildOverrides(current, change as never) as SidePublication;
         if (side !== 'hint' && built.base.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }

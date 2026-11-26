@@ -1,3 +1,4 @@
+import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import { z } from 'zod';
 
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
@@ -98,17 +99,14 @@ export function defineFlashcardSide<
   const buildContent = (
     active: Record<string, Block>,
     sorted: readonly string[],
-    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
   ): SidePublication => {
+    const { languages } = requireBuildContext();
     const entries = sorted.map(key => {
       const child = active[key];
-      const resource = child.build.props({ languages }) as unknown as BlockResource;
+      const resource = buildChildProps(child) as unknown as BlockResource;
       const patch = Object.hasOwn(changes, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => BlockPatch)(
-            changes[key] as never,
-            { languages },
-          )
+        ? (buildChildOverrides(child, changes[key] as never) as unknown as BlockPatch)
         : undefined;
       return { resource, patch };
     });
@@ -138,7 +136,7 @@ export function defineFlashcardSide<
   const props = (options: PublicationLanguageOptions<Languages>): SidePublication => {
     const languages = resolvePublicationLanguages(options);
     validateSide({ items: initialItems, order: initialOrder });
-    const result = structuredClone(buildContent(initialItems, initialOrder, languages));
+    const result = structuredClone(buildContent(initialItems, initialOrder));
     validatePublication(result, languages);
     return result;
   };
@@ -184,7 +182,7 @@ export function defineFlashcardSide<
       Object.entries(enabled).filter((entry): entry is [string, Block] => entry[1] !== false),
     );
     validateSide({ items: active, order: [...nextOrder] });
-    const result = structuredClone(buildContent(active, nextOrder, languages, childPatches));
+    const result = structuredClone(buildContent(active, nextOrder, childPatches));
     validatePublication(props(options), languages, result);
     return result;
   };
