@@ -167,7 +167,7 @@ export type LessonWorkflowStage2Carousel = z.infer<typeof carouselNode_Schema>;
 
 const checkpointAnswerNode_Schema = node(
   checkpointAnswer_Config_Schema.extend({
-    content: workflowOrdered_Schema(z.union([simpleBlock_Schema, carouselNode_Schema])),
+    content: workflowOrdered_Schema(simpleBlock_Schema),
   }),
 );
 export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof checkpointAnswerNode_Schema>;

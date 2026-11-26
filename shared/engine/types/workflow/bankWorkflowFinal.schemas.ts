@@ -128,22 +128,16 @@ const checkpointItemSource_Schema = checkpointItem_Config_Schema.extend({
 const checkpointSource_Schema = checkpoint_Config_Schema.extend({
   content: workflowOrdered_Schema(blockNode(checkpointItemSource_Schema)),
 });
-export const questionBankWorkflowBlockConfig_Schema = z.union([
-  simpleBlock_Schema,
-  carouselSource_Schema,
-  checkpointSource_Schema,
-]);
+/** Questions accept leaf blocks only; legacy composite source helpers are not valid Question children. */
+export const questionBankWorkflowBlockConfig_Schema = simpleBlock_Schema;
 export const questionBankWorkflowBlockNode_Schema = blockNode(questionBankWorkflowBlockConfig_Schema);
 export const questionBankWorkflowCarouselConfig_Schema = carouselSource_Schema;
 export const questionBankWorkflowCheckpointAnswerConfig_Schema = checkpointAnswerSource_Schema;
 export const questionBankWorkflowCheckpointItemConfig_Schema = checkpointItemSource_Schema;
 export const questionBankWorkflowCheckpointConfig_Schema = checkpointSource_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
-const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = z.union([
-  simpleBlockNode_Schema,
-  carouselNode_Schema,
-  blockNode(checkpointSource_Schema),
-]);
+const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> =
+  simpleBlockNode_Schema;
 const blocks_Schema: z.ZodType<{
   items: Record<string, z.infer<typeof questionBankWorkflowBlockNode_Schema>>;
   order: string[];
@@ -339,37 +333,7 @@ const sceneSource_Schema = scene_Config_Schema.omit({ params: true, locale: true
   params: scene_Config_Schema.shape.params.optional(),
   locale: scene_Config_Schema.shape.locale.partial().optional(),
 });
-const flashcardCarousel_Schema = carousel_Config_Schema.extend({
-  slides: workflowOrdered_Schema(z.union([image_Config_Schema, sceneSource_Schema, z.literal(false)])),
-});
-const flashcardAnswer_Schema = checkpointAnswer_Config_Schema.extend({
-  content: workflowOrdered_Schema(
-    z.union([
-      text_Config_Schema,
-      markdown_Config_Schema,
-      code_Config_Schema,
-      image_Config_Schema,
-      video_Config_Schema,
-      youtube_Config_Schema,
-      audio_Config_Schema,
-      subtitles_Config_Schema,
-      sceneSource_Schema,
-      flashcardCarousel_Schema,
-      z.literal(false),
-    ]),
-  ),
-});
-const flashcardCheckpoint_Schema = checkpoint_Config_Schema.extend({
-  content: workflowOrdered_Schema(
-    z.union([
-      checkpointItem_Config_Schema.extend({
-        question: text_Config_Schema,
-        answer: flashcardAnswer_Schema,
-      }),
-      z.literal(false),
-    ]),
-  ),
-});
+/** Composite block sources are intentionally excluded from Flashcard sides. */
 const flashcardBlock_Schema = z.union([
   text_Config_Schema,
   markdown_Config_Schema,
@@ -380,8 +344,6 @@ const flashcardBlock_Schema = z.union([
   subtitles_Config_Schema,
   youtube_Config_Schema,
   scene_Config_Schema,
-  flashcardCarousel_Schema,
-  flashcardCheckpoint_Schema,
 ]);
 const flashcardBlockNode_Schema = z.union([
   flashcardBlock_Schema,

@@ -18,8 +18,6 @@ import type {
 import type { FlashcardSide_Config } from '../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { FlashcardsSection_Config } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
-import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
-import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
 import type { flashcardBankWorkflowStage3_Schema } from './bankWorkflowFinal.schemas';
 import type { CourseWorkflowStage1Languages } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
@@ -60,12 +58,8 @@ export type FlashcardBankWorkflowStage1 = {
   production: FlashcardBankWorkflowStage1Production;
 };
 
-/** Use real Engine Config/Zod shapes for leaf ContentBlocks and the actual
- * #779 composite materializer input types for Carousel/Checkpoint.
- * Carousel/Checkpoint Config schemas require built child Configurators;
- * a staged source MUST instead contain plain, ordered nested Config objects
- * which their concrete source renderers understand. No alternate schema,
- * fabricated QuestionField shape, Props or executable child instances.
+/** Flashcard sides admit only leaf ContentBlocks; their source uses the actual
+ * primitive Config/Zod contracts, never nested Carousel or Checkpoint sources.
  */
 export type FlashcardBankWorkflowContentBlockConfig =
   | ContentBlock_Text_Config
@@ -76,8 +70,6 @@ export type FlashcardBankWorkflowContentBlockConfig =
   | ContentBlock_Audio_Config
   | ContentBlock_Subtitles_Config
   | ContentBlock_Youtube_Config
-  | CarouselSource
-  | CheckpointSource
   | ContentBlock_Scene_Config;
 
 /** A nested node may retain materialization-only notes without putting

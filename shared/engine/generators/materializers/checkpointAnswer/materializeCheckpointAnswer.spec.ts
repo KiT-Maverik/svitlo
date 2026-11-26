@@ -78,7 +78,7 @@ test('CheckpointAnswer excludes disabled draft entries without reviving them in 
   );
 });
 
-test('CheckpointAnswer rejects nested Checkpoint, duplicate UUIDs and unsafe destinations', () => {
+test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe destinations', () => {
   const source = answer();
   const forbidden = {
     id: id(5),
@@ -97,6 +97,21 @@ test('CheckpointAnswer rejects nested Checkpoint, duplicate UUIDs and unsafe des
         },
         context().renderer,
       ),
+    /invalid kind/,
+  );
+  const carousel = {
+    id: id(6),
+    slug: 'gallery',
+    type: 'carousel' as never,
+    slides: { items: {}, order: [] },
+    params: {},
+    locale: {},
+  };
+  assert.throws(
+    () => materializeCheckpointAnswer({
+      ...source,
+      content: { items: { gallery: carousel as never }, order: ['gallery'] },
+    }, context().renderer),
     /invalid kind/,
   );
   assert.throws(

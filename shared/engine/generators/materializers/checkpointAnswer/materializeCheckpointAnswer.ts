@@ -8,12 +8,10 @@ import type { ContentBlock_Subtitles_Config } from '../../../configurators/conte
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
 import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
 import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
-import type { CarouselSource } from '../carousel/materializeCarousel';
 import type { SceneSource } from '../scene/materializeScene';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config
-  | CarouselSource
   | ContentBlock_Code_Config
   | ContentBlock_Image_Config
   | ContentBlock_Markdown_Config
@@ -45,7 +43,6 @@ const reserved = new Set(
 );
 const allowed = new Set([
   'audio',
-  'carousel',
   'code',
   'image',
   'markdown',
@@ -91,7 +88,7 @@ function literal(value: unknown, path: string, level = 0): string {
         '}'
     : '{}';
 }
-/** Emit CheckpointAnswer and delegate every allowed ContentBlock, including nested composites. */
+/** Emit CheckpointAnswer and delegate only primitive ContentBlocks. */
 export function materializeCheckpointAnswer(config: CheckpointAnswerSource, context: AnswerContext): AnswerResult {
   if (
     !record(config) ||

@@ -227,10 +227,11 @@ const checkpointSource: CheckpointSource = {
   content: { items: { item: checkpointItemSource }, order: ['item'] },
 };
 const compositeSide: FlashcardBankWorkflowSideSource = {
+  // @ts-expect-error Composite Carousel and Checkpoint must never be Flashcard children.
   items: { gallery: carouselSource, checkpoint: checkpointSource },
   order: ['gallery', 'checkpoint'],
 };
-const compatibleCompositeSide: FlashcardSideSource = compositeSide;
+const compatibleCompositeSide: FlashcardSideSource = compositeSide as never;
 const expandedRelation: Flashcard_Relationship = {
   relationshipId: edge.relationshipId,
   type: edge.type,

@@ -4,6 +4,7 @@
  * This materializer delegates each concrete block to its owning materializer.
  */
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
+import { primitiveContentBlockTypes } from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 
@@ -35,19 +36,7 @@ const validSlug = /^[a-z][A-Za-z0-9]*$/;
 const validUUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const validLocale = /^[a-z]{2}(?:-[A-Z]{2})?$/;
 const identifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
-const allowed = new Set([
-  'text',
-  'markdown',
-  'code',
-  'image',
-  'video',
-  'youtube',
-  'audio',
-  'subtitles',
-  'scene',
-  'carousel',
-  'checkpoint',
-]);
+const allowed: ReadonlySet<string> = new Set(primitiveContentBlockTypes);
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 function fail(location: string, message: string): never {
   throw new Error('flashcardSide ' + location + ': ' + message);
