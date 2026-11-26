@@ -20,5 +20,6 @@ export {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
   primitiveContentBlockResolved_Schema,
+  compositeContentBlockResolved_Schema,
   primitiveContentBlockConfigurator_Schema,
 } from './contentBlock.schemas';

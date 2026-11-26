@@ -4,10 +4,6 @@ import type {
   questionBankWorkflowBlockConfig_Schema,
   questionBankWorkflowBlockNode_Schema,
   questionBankWorkflowBlockProduction_Schema,
-  questionBankWorkflowCarouselConfig_Schema,
-  questionBankWorkflowCheckpointAnswerConfig_Schema,
-  questionBankWorkflowCheckpointConfig_Schema,
-  questionBankWorkflowCheckpointItemConfig_Schema,
   questionBankWorkflowQuestionConfig_Schemas,
   questionBankWorkflowQuestionKinds_Schema,
   questionBankWorkflowQuestionNode_Schema,
@@ -32,13 +28,6 @@ export type QuestionBankWorkflowBlockConfig = z.infer<typeof questionBankWorkflo
 export type QuestionBankWorkflowBlockNode<
   Config extends QuestionBankWorkflowBlockConfig = QuestionBankWorkflowBlockConfig,
 > = Omit<z.infer<typeof questionBankWorkflowBlockNode_Schema>, 'config'> & { config: Config };
-export type QuestionBankWorkflowCarouselConfig = z.infer<typeof questionBankWorkflowCarouselConfig_Schema>;
-export type QuestionBankWorkflowCheckpointAnswerConfig = z.infer<
-  typeof questionBankWorkflowCheckpointAnswerConfig_Schema
->;
-export type QuestionBankWorkflowCheckpointItemConfig = z.infer<typeof questionBankWorkflowCheckpointItemConfig_Schema>;
-export type QuestionBankWorkflowCheckpointConfig = z.infer<typeof questionBankWorkflowCheckpointConfig_Schema>;
-
 export type QuestionBankWorkflowQuestionProduction = z.infer<typeof questionBankWorkflowQuestionProduction_Schema>;
 export type QuestionBankWorkflowQuestionConfig = z.infer<
   (typeof questionBankWorkflowQuestionConfig_Schemas)[keyof typeof questionBankWorkflowQuestionConfig_Schemas]

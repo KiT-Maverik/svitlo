@@ -1,3 +1,4 @@
+import { primitiveContentBlockTypes } from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
@@ -30,7 +31,7 @@ export type AnswerContext = {
   directory: string;
   documentLanguage: string;
   languagesImport: string;
-  /** Direct child materializer (Text, Carousel, Scene, etc.), never a generic serializer. */
+  /** Direct Primitive child materializer, never a generic serializer. */
   renderChild: (config: CheckpointAnswerBlockSource, directory: string) => AnswerResult;
 };
 const slug = /^[a-z][a-zA-Z0-9]*$/;
@@ -41,7 +42,7 @@ const reserved = new Set(
     ' ',
   ),
 );
-const allowed = new Set(['audio', 'code', 'image', 'markdown', 'scene', 'subtitles', 'text', 'video', 'youtube']);
+const allowed: ReadonlySet<string> = new Set(primitiveContentBlockTypes);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function directory(value: string): string {

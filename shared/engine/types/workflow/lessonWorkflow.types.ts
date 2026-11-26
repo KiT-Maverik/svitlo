@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
 import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
 import { carousel_Config_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
 import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
@@ -145,17 +146,21 @@ const audioNode_Schema = resource(audioSource_Schema);
 const subtitlesNode_Schema = resource(subtitlesSource_Schema);
 const sceneNode_Schema = resource(scene_Config_Schema);
 
-const simpleBlock_Schema = z.union([
-  textNode_Schema,
-  node(markdown_Config_Schema),
-  node(code_Config_Schema),
-  imageNode_Schema,
-  videoNode_Schema,
-  resource(youtubeSource_Schema),
-  audioNode_Schema,
-  subtitlesNode_Schema,
-  sceneNode_Schema,
-]);
+const lessonPrimitiveSources = {
+  text: textNode_Schema,
+  markdown: node(markdown_Config_Schema),
+  code: node(code_Config_Schema),
+  image: imageNode_Schema,
+  video: videoNode_Schema,
+  youtube: resource(youtubeSource_Schema),
+  audio: audioNode_Schema,
+  subtitles: subtitlesNode_Schema,
+  scene: sceneNode_Schema,
+} as const satisfies Record<ContentBlock_Primitive_Type, z.ZodType>;
+type LessonPrimitiveSource = (typeof lessonPrimitiveSources)[ContentBlock_Primitive_Type];
+const simpleBlock_Schema = z.union(
+  Object.values(lessonPrimitiveSources) as [LessonPrimitiveSource, ...LessonPrimitiveSource[]],
+);
 export type LessonWorkflowStage2SimpleBlock = z.infer<typeof simpleBlock_Schema>;
 
 const carouselNode_Schema = node(
@@ -165,7 +170,8 @@ const carouselNode_Schema = node(
 );
 export type LessonWorkflowStage2Carousel = z.infer<typeof carouselNode_Schema>;
 
-const checkpointAnswerNode_Schema = node(
+/** Editorial Checkpoint Answer uses the exhaustively classified Primitive nodes. */
+export const lessonWorkflowCheckpointAnswerSource_Schema = node(
   checkpointAnswer_Config_Schema.extend({
     content: workflowOrdered_Schema(simpleBlock_Schema),
   }),
@@ -175,7 +181,7 @@ export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof checkpointAnsw
 const checkpointItemNode_Schema = node(
   checkpointItem_Config_Schema.extend({
     question: textNode_Schema,
-    answer: checkpointAnswerNode_Schema,
+    answer: lessonWorkflowCheckpointAnswerSource_Schema,
   }),
 );
 export type LessonWorkflowStage2CheckpointItem = z.infer<typeof checkpointItemNode_Schema>;

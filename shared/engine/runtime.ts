@@ -9,6 +9,8 @@ export * from './configurators/contentBlocks/_shared__contentBlocks/text.schemas
 export {
   createContentBlockBaseSchema,
   contentBlockResolved_Schema,
+  primitiveContentBlockResolved_Schema,
+  compositeContentBlockResolved_Schema,
   localizationSwitch as contentBlockLocalizationSwitch,
 } from './configurators/contentBlocks/contentBlock.schemas';
 export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
@@ -56,7 +58,16 @@ export * from './configurators/skills/defineSkillGroup/defineSkillGroup.schemas'
 export * from './configurators/contentBlocks/contentBlock.constants';
 export * from './configurators/questions/question.constants';
 export * from './configurators/sections/section.constants';
-export type { ContentBlock_Props, ContentBlock_Configurator } from './configurators/contentBlocks/contentBlock.types';
+/** Type-only runtime contracts: never expose build factories or Configurator guards here. */
+export type {
+  ContentBlock_Props,
+  ContentBlock_Configurator,
+  ContentBlock_Primitive_Props,
+  ContentBlock_Composite_Props,
+  ContentBlock_Primitive_PropsBase,
+  ContentBlock_Composite_PropsBase,
+  ContentBlock_PropsBase,
+} from './configurators/contentBlocks/contentBlock.types';
 export type { Section_Props, Section_Configurator } from './configurators/sections/section.types';
 export type { Question_Configurator } from './configurators/questions/question.types';
 export type { ResolveLocale } from './types';

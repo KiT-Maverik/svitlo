@@ -3,6 +3,7 @@ import { test } from 'node:test';
 
 import ts from 'typescript';
 
+import { lessonWorkflowCheckpointAnswerSource_Schema } from '../../../types/workflow/lessonWorkflow.types';
 import { materializeCheckpointAnswer, type CheckpointAnswerBlockSource } from './materializeCheckpointAnswer';
 
 const id = (n: number) => '20000000-0000-4000-8000-' + String(n).padStart(12, '0');
@@ -44,6 +45,33 @@ function context() {
     },
   };
 }
+
+test('Stage 2 Checkpoint Answer follows Primitive-only source policy', () => {
+  const valid = {
+    config: {
+      ...answer(),
+      content: { items: { first: { config: textBlock('first', 2) } }, order: ['first'] },
+    },
+  };
+  assert.equal(lessonWorkflowCheckpointAnswerSource_Schema.safeParse(valid).success, true);
+
+  for (const kind of ['carousel', 'checkpoint']) {
+    const invalid = {
+      config: {
+        ...answer(),
+        content: {
+          items: { first: { config: { id: id(4), slug: 'first', type: kind, params: {}, locale: {} } } },
+          order: ['first'],
+        },
+      },
+    };
+    assert.equal(
+      lessonWorkflowCheckpointAnswerSource_Schema.safeParse(invalid).success,
+      false,
+      'Reject ' + kind + ' at the Stage 2 source boundary',
+    );
+  }
+});
 
 test('CheckpointAnswer delegates each ContentBlock and preserves order, imports and identity', () => {
   const { renderer, requests } = context();

@@ -1,10 +1,7 @@
 import { z } from 'zod';
 
+import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
 import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { carousel_Config_Schema } from '../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
 import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
 import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
@@ -102,39 +99,28 @@ const questionSceneSource_Schema = scene_Config_Schema.omit({ params: true, loca
   params: scene_Config_Schema.shape.params.optional(),
   locale: scene_Config_Schema.shape.locale.partial().optional(),
 });
-const simpleBlock_Schema = z.union([
-  text_Config_Schema,
-  markdown_Config_Schema,
-  code_Config_Schema,
-  imageSource_Schema,
-  videoSource_Schema,
-  youtubeSource_Schema,
-  audioSource_Schema,
-  subtitlesSource_Schema,
-  questionSceneSource_Schema,
-]);
-const carouselSource_Schema = carousel_Config_Schema.extend({
-  slides: workflowOrdered_Schema(z.union([blockNode(imageSource_Schema), blockNode(questionSceneSource_Schema)])),
-});
+/** Exhaustive against the shared Primitive classification. Each entry may adapt
+ * only editorial resource fields; accepted kinds cannot diverge from Engine.
+ */
+const questionPrimitiveSources = {
+  text: text_Config_Schema,
+  markdown: markdown_Config_Schema,
+  code: code_Config_Schema,
+  image: imageSource_Schema,
+  video: videoSource_Schema,
+  youtube: youtubeSource_Schema,
+  audio: audioSource_Schema,
+  subtitles: subtitlesSource_Schema,
+  scene: questionSceneSource_Schema,
+} as const satisfies Record<ContentBlock_Primitive_Type, z.ZodType>;
+type QuestionPrimitiveSource = (typeof questionPrimitiveSources)[ContentBlock_Primitive_Type];
+const simpleBlock_Schema = z.union(
+  Object.values(questionPrimitiveSources) as [QuestionPrimitiveSource, ...QuestionPrimitiveSource[]],
+);
 const simpleBlockNode_Schema = blockNode(simpleBlock_Schema);
-const carouselNode_Schema = blockNode(carouselSource_Schema);
-const checkpointAnswerSource_Schema = checkpointAnswer_Config_Schema.extend({
-  content: workflowOrdered_Schema(z.union([simpleBlockNode_Schema, carouselNode_Schema])),
-});
-const checkpointItemSource_Schema = checkpointItem_Config_Schema.extend({
-  question: blockNode(text_Config_Schema),
-  answer: blockNode(checkpointAnswerSource_Schema),
-});
-const checkpointSource_Schema = checkpoint_Config_Schema.extend({
-  content: workflowOrdered_Schema(blockNode(checkpointItemSource_Schema)),
-});
 /** Questions accept leaf blocks only; legacy composite source helpers are not valid Question children. */
 export const questionBankWorkflowBlockConfig_Schema = simpleBlock_Schema;
 export const questionBankWorkflowBlockNode_Schema = blockNode(questionBankWorkflowBlockConfig_Schema);
-export const questionBankWorkflowCarouselConfig_Schema = carouselSource_Schema;
-export const questionBankWorkflowCheckpointAnswerConfig_Schema = checkpointAnswerSource_Schema;
-export const questionBankWorkflowCheckpointItemConfig_Schema = checkpointItemSource_Schema;
-export const questionBankWorkflowCheckpointConfig_Schema = checkpointSource_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
 const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
 const blocks_Schema: z.ZodType<{
@@ -325,25 +311,23 @@ const lesson_Schema = z.strictObject({
   languages: workflowLanguages_Schema,
   assessment: lessonProductionAssessmentRequirements_Schema,
 });
-/** Flashcard sides own plain authored ContentBlock Configs. Composite blocks
- * retain the materializer's source collection shape rather than a Configurator.
- */
-const sceneSource_Schema = scene_Config_Schema.omit({ params: true, locale: true }).extend({
-  params: scene_Config_Schema.shape.params.optional(),
-  locale: scene_Config_Schema.shape.locale.partial().optional(),
-});
+/** Flashcard sides own authored Primitive Configs only. */
 /** Composite block sources are intentionally excluded from Flashcard sides. */
-const flashcardBlock_Schema = z.union([
-  text_Config_Schema,
-  markdown_Config_Schema,
-  code_Config_Schema,
-  image_Config_Schema,
-  video_Config_Schema,
-  audio_Config_Schema,
-  subtitles_Config_Schema,
-  youtube_Config_Schema,
-  scene_Config_Schema,
-]);
+const flashcardPrimitiveSources = {
+  text: text_Config_Schema,
+  markdown: markdown_Config_Schema,
+  code: code_Config_Schema,
+  image: image_Config_Schema,
+  video: video_Config_Schema,
+  youtube: youtube_Config_Schema,
+  audio: audio_Config_Schema,
+  subtitles: subtitles_Config_Schema,
+  scene: scene_Config_Schema,
+} as const satisfies Record<ContentBlock_Primitive_Type, z.ZodType>;
+type FlashcardPrimitiveSource = (typeof flashcardPrimitiveSources)[ContentBlock_Primitive_Type];
+const flashcardBlock_Schema = z.union(
+  Object.values(flashcardPrimitiveSources) as [FlashcardPrimitiveSource, ...FlashcardPrimitiveSource[]],
+);
 const flashcardBlockNode_Schema = z.union([
   flashcardBlock_Schema,
   z.strictObject({
