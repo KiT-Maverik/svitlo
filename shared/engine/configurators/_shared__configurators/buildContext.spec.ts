@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { describe } from 'node:test';
 
 import {
   buildChildOverrides,
@@ -9,6 +9,9 @@ import {
   scopeBuild,
 } from './buildContext';
 
+describe('Configurators', () => {
+  describe('Build', () => {
+    describe('Build Context', () => {
 test('Build Context defaults to production and freezes an independently copied language selection', () => {
   const languages: ('en' | 'uk')[] = ['en'];
   const seen = runWithBuildContext({ languages }, context => {
@@ -59,8 +62,10 @@ test('Child helpers use the active immutable context and public Build signatures
   assert.deepEqual(result.patch, { languages: ['uk'], mode: 'draft' });
   assert.deepEqual(calls, ['draft']);
   assert.deepEqual(child.build.props({ languages: ['en'] }), { languages: ['en'], mode: 'production' });
-  // @ts-expect-error Published Build entrypoint still requires languages.
-  child.build.props();
+  if (false) {
+    // @ts-expect-error Published Build entrypoint still requires languages.
+    child.build.props();
+  }
 });
 
 test('Nested different explicit options restore outer scope after success and thrown errors', () => {
@@ -105,4 +110,8 @@ test('Async operations, rejection and interleaved draft/production scopes remain
   ]);
   assert.deepEqual(seen, ['draft', 'production']);
   assert.throws(() => requireBuildContext(), /No active Build Context/);
+});
+
+    });
+  });
 });

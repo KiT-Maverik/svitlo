@@ -186,7 +186,7 @@ export const defineEpisode = <
     validate({ ...copyAuthored(), section: { items: initialSections, order: initialOrder } });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
-    const children = buildSections(initialSections, initialOrder, languages, {}, options.mode);
+    const children = buildSections(initialSections, initialOrder);
     const files = selectPublicationLocales(translated.files, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).section = values;
@@ -282,7 +282,7 @@ export const defineEpisode = <
           section: { items: enabled, order: [...order] },
         });
         if (Object.keys(changes).length || Object.keys(additions).length || patch.section.order !== undefined) {
-          const sections = buildSections(enabled, order, languages, childPatches, options.mode);
+          const sections = buildSections(enabled, order, childPatches);
           output.base.section = sections.base;
           for (const [language, values] of Object.entries(sections.locale)) {
             (files[language as LanguageCode] ??= {}).section = values;

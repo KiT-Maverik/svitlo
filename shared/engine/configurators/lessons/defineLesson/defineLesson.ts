@@ -1,3 +1,4 @@
+import { runWithBuildContext, requireBuildContext, buildChildProps, buildChildOverrides } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -134,8 +135,8 @@ const validate = (config: Lesson_Config, options?: PublicationLanguageOptions): 
   if (
     config.params.quizRequiredForCompletion &&
     !hasEnabledQuiz(
-      config.section.order.map(
-        key => config.section.items[key].build.props({ languages: config.params.languages, mode: options?.mode }).base,
+      runWithBuildContext(options ?? { languages: config.params.languages }, () =>
+        config.section.order.map(key => buildChildProps(config.section.items[key]).base),
       ),
     )
   ) {
@@ -189,16 +190,15 @@ export function defineLesson<
   const buildOrdered = (
     items: Record<string, unknown>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
-      const resource = child.build.props({ languages, mode });
+      const resource = buildChildProps(child);
       const patch = Object.hasOwn(changes, key)
-        ? child.build.overrides(changes[key] as never, { languages, mode })
+        ? buildChildOverrides(child, changes[key] as never)
         : undefined;
       return { resource, patch };
     });
@@ -243,7 +243,7 @@ export function defineLesson<
     for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
       files[code as LanguageCode] = { locale: fields as LocaleBody['locale'] };
     }
-    const sections = buildOrdered(initialSections, sectionOrder, languages, {}, options.mode);
+    const sections = buildOrdered(initialSections, sectionOrder);
     addLocalizedArray(files, 'section', sections.locales);
     const result = structuredClone({
       base: {
@@ -374,7 +374,7 @@ export function defineLesson<
         sectionTypes,
       );
       if (sections.changed) {
-        const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges, options.mode);
+        const built = buildOrdered(sections.active, sections.order, sections.childChanges);
         output.base.section = built.bases as Lesson_PropsBase['section'];
         addLocalizedArray(files, 'section', built.locales);
       }
@@ -392,7 +392,7 @@ export function defineLesson<
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order, languages, {}, options.mode)
+            : (buildOrdered(sections.active, sections.order)
                 .bases as Lesson_PropsBase['section']),
         )
       ) {

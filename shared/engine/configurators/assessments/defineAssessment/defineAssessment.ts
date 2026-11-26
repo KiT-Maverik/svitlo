@@ -220,7 +220,7 @@ export const defineAssessment = <
     validate({ ...copyAuthored(), before, quiz, after });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
-    const children = buildSections(initialSections, initialOrder, languages, {}, options.mode);
+    const children = buildSections(initialSections, initialOrder);
     const files = selectPublicationLocales(translated.files, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).section = values;
@@ -340,7 +340,7 @@ export const defineAssessment = <
         const sections = composeSections(edited);
         const keys = [...Object.keys(sections.items)];
         if (keys.length !== new Set(keys).size) throw new Error('Assessment Section slug collision');
-        const resolved = buildSections(sections.items, sections.order, languages, childPatches, options.mode);
+        const resolved = buildSections(sections.items, sections.order, childPatches);
         output.base.section = resolved.base;
         for (const [language, values] of Object.entries(resolved.locale))
           (files[language as LanguageCode] ??= {}).section = values;
