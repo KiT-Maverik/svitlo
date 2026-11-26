@@ -130,3 +130,14 @@ test('PR comment command dispatches the unchanged full production workflow', () 
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /name: Production Quality \/ verify/);
 });
+
+test('production typecheck retains exhaustive canonical root command', () => {
+  assert.match(workflow, /name: Typecheck all eligible workspaces/);
+  assert.match(workflow, /npm run code:check:types/);
+  const rootRunner = readFileSync(
+    new URL('../../runWorkspaceScript/run-workspace-script.mjs', import.meta.url), 'utf8',
+  );
+  assert.match(rootRunner, /if \(operation === 'code:check:types'\) return executeTypechecks/);
+  assert.match(rootRunner, /runParallelTypechecks\(parallel, runTypecheckAsync/);
+  assert.match(rootRunner, /for \(const step of builds\) runStepSync\(step\)/);
+});

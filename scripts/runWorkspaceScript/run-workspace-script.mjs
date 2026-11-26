@@ -2,7 +2,8 @@
 /** Dependency-aware npm workspace aggregation. Never implicitly select one app. */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { partitionBuildMutatingHosts, runParallelTypechecks } from './typecheck-scheduler.mjs';
 import { fileURLToPath } from 'node:url';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -108,6 +109,75 @@ export function environmentForWorkspace(name, environment = process.env) {
   return environment;
 }
 
+/**
+ * Build all prerequisites on the single job-local cache writer before running
+ * independent checks. The canonical workspace plan still selects every
+ * eligible package and preserves its topological build ordering.
+ */
+export function planTypecheckPhases(plan) {
+  const builds = plan.steps.filter(step => step.script === 'package:build');
+  const checks = plan.steps.filter(step => step.script === 'code:check:types').map(step => step.name);
+  if (
+    checks.length !== plan.selected.length ||
+    new Set(checks).size !== checks.length ||
+    plan.selected.some(name => !checks.includes(name))
+  ) {
+    throw Error('Typecheck plan does not cover every selected workspace exactly once');
+  }
+  return { builds, ...partitionBuildMutatingHosts(checks) };
+}
+
+function runStepSync({ name, script }) {
+  console.log('\n▶ ' + name + ' / ' + script);
+  const reuse = script === 'package:build' && Boolean(process.env.SVITLO_CI_PACKAGE_BUILD_STATE);
+  const command = reuse ? process.execPath : 'npm';
+  const args = reuse
+    ? ['scripts/ci/packageBuildReuse/package-build-reuse.mjs', name]
+    : ['run', script, '--workspace', name];
+  const result = spawnSync(command, args, {
+    cwd: repo,
+    env: environmentForWorkspace(name),
+    stdio: 'inherit',
+    shell: !reuse && process.platform === 'win32',
+  });
+  if (result.error || result.status !== 0) {
+    throw Error(name + ' / ' + script + ' failed' + (result.error ? ': ' + result.error.message : ''));
+  }
+}
+
+function runTypecheckAsync(name) {
+  console.log('\n▶ ' + name + ' / code:check:types');
+  return new Promise((resolveCheck, rejectCheck) => {
+    const child = spawn('npm', ['run', 'code:check:types', '--workspace', name], {
+      cwd: repo,
+      env: environmentForWorkspace(name),
+      stdio: 'inherit',
+      shell: process.platform === 'win32',
+    });
+    child.once('error', rejectCheck);
+    child.once('close', (code, signal) => {
+      if (code === 0) resolveCheck();
+      else rejectCheck(Error(name + ' / code:check:types failed (' + (signal || 'exit ' + code) + ')'));
+    });
+  });
+}
+
+async function executeTypechecks(plan) {
+  const { builds, parallel, sequential } = planTypecheckPhases(plan);
+  const parallelism = Number(process.env.SVITLO_TYPECHECK_PARALLELISM ?? 4);
+  if (!Number.isInteger(parallelism) || parallelism < 1 || parallelism > 8) {
+    throw Error('SVITLO_TYPECHECK_PARALLELISM must be an integer from 1 to 8');
+  }
+  console.log(
+    'Typecheck phases: ' + builds.length + ' dependency builds (sequential), ' +
+      parallel.length + ' independent checks (concurrency ' + parallelism + '), ' +
+      sequential.length + ' dist-mutating host checks (sequential)',
+  );
+  for (const step of builds) runStepSync(step);
+  await runParallelTypechecks(parallel, runTypecheckAsync, { parallelism, context: 'Production TypeScript' });
+  for (const name of sequential) await runTypecheckAsync(name);
+}
+
 export function execute(operation, { onlyWorkspaces } = {}) {
   if (!/^[a-z][a-z0-9-]*(?::[a-z][a-z0-9-]*)*$/.test(operation)) {
     throw Error('Invalid script name: ' + operation);
@@ -116,32 +186,15 @@ export function execute(operation, { onlyWorkspaces } = {}) {
   // CI callers importing this function; dependency builds remain topological.
   const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation, { onlyWorkspaces });
   console.log('Running ' + operation + ' in ' + selected.length + ' eligible workspaces: ' + selected.join(', '));
-  for (const { name, script } of steps) {
-    console.log('\n▶ ' + name + ' / ' + script);
-    // Production Quality shares verified package outputs between separate root operations.
-    // Without its job-local state, preserve the exact canonical npm command.
-    const reuse = script === 'package:build' && Boolean(process.env.SVITLO_CI_PACKAGE_BUILD_STATE);
-    const command = reuse ? process.execPath : 'npm';
-    const args = reuse
-      ? ['scripts/ci/packageBuildReuse/package-build-reuse.mjs', name]
-      : ['run', script, '--workspace', name];
-    const result = spawnSync(command, args, {
-      cwd: repo,
-      env: environmentForWorkspace(name),
-      stdio: 'inherit',
-      shell: !reuse && process.platform === 'win32',
-    });
-    if (result.error || result.status !== 0) {
-      throw Error(name + ' / ' + script + ' failed' + (result.error ? ': ' + result.error.message : ''));
-    }
-  }
+  if (operation === 'code:check:types') return executeTypechecks({ selected, steps });
+  for (const step of steps) runStepSync(step);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     if (process.argv.length !== 3)
       throw Error('Usage: node scripts/runWorkspaceScript/run-workspace-script.mjs <canonical-script>');
-    execute(process.argv[2]);
+    await execute(process.argv[2]);
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;
