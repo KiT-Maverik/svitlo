@@ -8,11 +8,17 @@ Run these commands at the repository root after npm ci:
 
     npm run app:start:dev --workspace @svitlo/mobile
     SVITLO_TEXTBOOK=playground npm run app:build --workspace @svitlo/mobile
+    npm run app:start --workspace @svitlo/mobile
     npm run app:check:bundle --workspace @svitlo/mobile
     npm run code:check:types --workspace @svitlo/mobile
     npm run code:lint:check --workspace @svitlo/mobile
     npm run test --workspace @svitlo/mobile
     npm run test:e2e --workspace @svitlo/mobile
+
+Playwright E2E runs against the **existing production `dist/`** through the
+read-only `app:start` server (port 5174). Run `app:build` before `test:e2e`;
+E2E no longer invokes `app:start:dev` or rebuilds the textbook. Development
+watch/preview remains available via `app:start:dev` on port 5173.
 
 Android and iOS source projects are **already committed**. To update their bundled WebView assets:
 

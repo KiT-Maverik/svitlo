@@ -208,6 +208,9 @@ jobs:
         run: echo 'SVITLO_TEXTBOOK=web-fixture-alpha' >> "$GITHUB_ENV"
       - name: Build application and all needed workspace dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace "$APP_WORKSPACE"
+      - name: Validate compiled Mobile offline bundle
+        if: matrix.workspace == '@svitlo/mobile'
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:check:bundle --workspace "$APP_WORKSPACE"
       - name: Validate compiled application resources
         if: matrix.integration
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace "$APP_WORKSPACE"
