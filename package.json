@@ -49,9 +49,6 @@
     "shared/adapters/*"
   ],
   "overrides": {
-    "katex": "0.19.1",
-    "app-builder-lib": {
-      "minimatch": "11.0.9"
-    }
+    "katex": "0.19.1"
   }
 }
