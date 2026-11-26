@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
+import { defineScene } from '../../contentBlocks/defineScene/defineScene';
+import { defineYoutube } from '../../contentBlocks/defineYoutube/defineYoutube';
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
@@ -46,6 +49,54 @@ describe('Configurators', () => {
           locale: { title: { en: 'Example', uk: 'Приклад' } },
           section: { items: { intro: section }, order: ['intro'] },
         });
+
+      test('Draft Lesson carries unresolved YouTube and Scene through nested Section and restores strict publication', () => {
+        const video = defineYoutube<'pendingVideo', ['en', 'uk']>({
+          id: id('a1'),
+          slug: 'pendingVideo',
+          type: 'youtube',
+          params: { mode: 'link' },
+          locale: {
+            href: UNRESOLVED_YOUTUBE_HREF,
+            label: { en: 'Watch', uk: 'Переглянути' },
+          },
+        });
+        const scene = defineScene<'pendingScene', ['en', 'uk']>({
+          id: id('a2'),
+          slug: 'pendingScene',
+          type: 'scene',
+          params: {},
+          locale: { value: { en: 'Explore', uk: 'Досліджуй' } },
+        });
+        const media = defineContentSection<'media', { pendingVideo: typeof video; pendingScene: typeof scene }, ['en', 'uk']>({
+          id: id('a3'),
+          slug: 'media',
+          type: 'content',
+          params: {},
+          locale: { title: 'Media', navigationLabel: '1' },
+          content: { items: { pendingVideo: video, pendingScene: scene }, order: ['pendingVideo', 'pendingScene'] },
+        });
+        const lesson = defineLesson({
+          id: id('a4'),
+          slug: 'mediaLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            quizRequiredForCompletion: false,
+            languages: ['en', 'uk'] as const,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
+          },
+          locale: { title: 'Draft media' },
+          section: { items: { media }, order: ['media'] },
+        });
+        const draft = lesson.build.props({ languages: ['uk'], mode: 'draft' });
+        assert.match(JSON.stringify(draft.base), new RegExp(UNRESOLVED_YOUTUBE_HREF));
+        assert.equal(draft.locale?.en, undefined);
+        assert.equal(draft.locale?.uk?.section?.[0]?.content?.length, 2);
+        assert.throws(() => lesson.build.props({ languages: ['uk'] }), /unresolved video reference|Scene/i);
+        assert.deepEqual(lesson.build.props({ languages: ['uk'], mode: 'draft' }), draft);
+        assert.throws(() => scene.build.props({ languages: ['uk'] }), /Scene/i);
+      });
 
       test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
         const lesson = makeLesson();
