@@ -3,11 +3,10 @@ import { test } from 'node:test';
 
 import {
   compositeContentBlockResolved_Schema as publicComposite_Schema,
-  primitiveContentBlockResolved_Schema as publicPrimitive_Schema,
   compositeContentBlockTypes as publicCompositeTypes,
+  primitiveContentBlockResolved_Schema as publicPrimitive_Schema,
   primitiveContentBlockTypes as publicPrimitiveTypes,
 } from '../../runtime';
-
 import {
   compositeContentBlockTypes,
   contentBlockResolved_Schema,

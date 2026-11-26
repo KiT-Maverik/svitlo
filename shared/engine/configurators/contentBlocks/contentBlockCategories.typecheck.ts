@@ -1,8 +1,7 @@
 import type {
-  ContentBlock_Primitive_Props as PublicPrimitive_Props,
   ContentBlock_Composite_Props as PublicComposite_Props,
+  ContentBlock_Primitive_Props as PublicPrimitive_Props,
 } from '../../runtime';
-
 import type {
   ContentBlock_Composite_Type,
   ContentBlock_Primitive_Type,
