@@ -2,9 +2,9 @@ import 'server-only';
 
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
-import { coursePropsToTopics } from './courseNavigation';
+import { courseTocToTopics } from './courseNavigation';
 import { toCoursePreview } from './coursePreview';
-import { loadCourseLessonTitles, loadExistingCourseWithFallback } from './courseResources';
+import { loadCourseToc, loadExistingCourseWithFallback } from './courseResources';
 
 /**
  * Direct UUID-addressed detail loading. Unlike the listing route, it never enumerates
