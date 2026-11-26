@@ -10,7 +10,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { assembleCourseTree } from '@svitlo/engine/runtime';
+import { assembleCourseToc, assembleCourseTree } from '@svitlo/engine/runtime';
 import { assertSafeDirectoryPath } from '../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -228,6 +228,44 @@ function assertSameCourseStructure(base, localized, location = 'course') {
   }
 }
 
+
+/** Project labels from the effective validated Build result, before full Lesson Props are compacted.
+ * The Course Build API already applied placement-local Lesson patches and per-language overrides.
+ * No alternate authoring registry, secondary Lesson load or UI routing is involved.
+ */
+function projectToc(value) {
+  if (!isObject(value) || !uuid.test(value.id)) throw Error('Invalid resolved TOC identity');
+  const title = value.locale?.title;
+  if (title !== undefined && (typeof title !== 'string' || !title.trim()))
+    throw Error('Invalid resolved Course TOC title: ' + value.id);
+  const result = {
+    id: value.id,
+    type: value.type,
+    ...(title !== undefined ? { label: title } : {}),
+  };
+  if (value.draft === true) {
+    if (!['lesson', 'episode', 'assessment'].includes(value.type)) throw Error('Invalid draft Course TOC type');
+    return { ...result, draft: true };
+  }
+  if (['lesson', 'episode', 'assessment'].includes(value.type)) return result;
+  if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content))
+    throw Error('Invalid resolved Course TOC hierarchy: ' + value.id);
+  const items = {};
+  const order = [];
+  for (const child of value.content) {
+    if (!isObject(child) || typeof child.slug !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(child.slug))
+      throw Error('Invalid Course TOC placement in ' + value.id);
+    if (own(items, child.slug)) throw Error('Duplicate Course TOC slot: ' + child.slug);
+    items[child.slug] = projectToc(child);
+    order.push(child.slug);
+  }
+  return {
+    ...result,
+    ...(value.type === 'course' ? { languages: [...value.params.languages] } : {}),
+    content: { items, order },
+  };
+}
+
 /**
  * Produce base and sparse per-language Course files from inline placements.
  *
@@ -270,6 +308,9 @@ export function renderCourseFiles(
       if (entry?.locale?.[language] !== undefined) assertJson(entry.locale[language], 'Lesson override ' + language);
     }
   }
+  const tocBase = projectToc(resource.base);
+  assertJson(tocBase, 'Course TOC base ' + course.id);
+  const tocLocales = new Map();
   const baseRaw = compactEntity(resource.base, lessonPatches, undefined, course.slug, mode);
   const base = projectMedia ? projectMedia(baseRaw, 'base') : baseRaw;
   assertJson(base, 'Course base ' + course.id);
@@ -277,6 +318,15 @@ export function renderCourseFiles(
   const files = new Map([['base.json', JSON.stringify(base, null, 2) + '\n']]);
   for (const language of languages) {
     const resolved = mergeCourseProps(resource.base, resource.locale?.[language]);
+    const tocLocalized = projectToc(resolved);
+    const tocDelta = difference(tocBase, tocLocalized);
+    // Validate completed selected-language labels, structure and draft gates
+    // against the browser-safe Engine contract before publishing a single file.
+    assembleCourseToc(tocBase, tocDelta, course.id, language, mode);
+    if (tocDelta !== undefined) {
+      assertJson(tocDelta, 'Course TOC locale ' + language);
+      tocLocales.set('toc/' + language + '.json', JSON.stringify(tocDelta, null, 2) + '\n');
+    }
     const localizedRaw = compactEntity(resolved, lessonPatches, language, course.slug, mode);
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
@@ -291,6 +341,8 @@ export function renderCourseFiles(
       files.set(language + '.json', JSON.stringify(delta, null, 2) + '\n');
     }
   }
+  files.set('toc/base.json', JSON.stringify(tocBase, null, 2) + '\n');
+  for (const [file, body] of tocLocales) files.set(file, body);
   return files;
 }
 
@@ -321,15 +373,24 @@ export function publishCourse(
   assertSafeDirectoryPath(destination);
 
   if (check) {
-    const existing = fs.existsSync(destination) ? fs.readdirSync(destination).sort() : [];
-    const expected = [...files.keys()].sort();
-    if (JSON.stringify(existing) !== JSON.stringify(expected)) {
-      throw new Error('Course publication file mismatch at ' + destination);
-    }
-    for (const [name, expectedText] of files) {
-      if (fs.readFileSync(path.join(destination, name), 'utf8') !== expectedText) {
-        throw new Error('Stale Course publication: ' + path.join(destination, name));
+    const existing = new Map();
+    function inspect(folder, prefix = '') {
+      if (!fs.existsSync(folder)) return;
+      assertSafeDirectoryPath(folder);
+      for (const item of fs.readdirSync(folder, { withFileTypes: true })) {
+        const relative = prefix ? prefix + '/' + item.name : item.name;
+        const file = path.join(folder, item.name);
+        if (item.isDirectory()) inspect(file, relative);
+        else if (item.isFile()) existing.set(relative, fs.readFileSync(file, 'utf8'));
+        else throw Error('Unsafe Course publication entry: ' + relative);
       }
+    }
+    inspect(destination);
+    const expected = [...files.keys()].sort();
+    if (JSON.stringify([...existing.keys()].sort()) !== JSON.stringify(expected))
+      throw new Error('Course publication file mismatch at ' + destination);
+    for (const [name, expectedText] of files) {
+      if (existing.get(name) !== expectedText) throw new Error('Stale Course publication: ' + path.join(destination, name));
     }
     return { directory: destination, files: [...files.keys()] };
   }
@@ -340,7 +401,13 @@ export function publishCourse(
   let movedPrevious = false;
   let published = false;
   try {
-    for (const [name, value] of files) fs.writeFileSync(path.join(staging, name), value, 'utf8');
+    for (const [name, value] of files) {
+      if (!/^(?:toc\/)?(?:base|[a-z]{2,8})\.json$/.test(name))
+        throw Error('Unexpected Course publication path: ' + name);
+      const file = path.join(staging, name);
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, value, 'utf8');
+    }
     if (fs.existsSync(destination)) {
       fs.renameSync(destination, backup);
       movedPrevious = true;
