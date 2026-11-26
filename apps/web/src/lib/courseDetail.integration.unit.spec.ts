@@ -126,3 +126,14 @@ it('rejects a TOC published for a different Course UUID or a missing selected la
   }));
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/TOC ID or requested language mismatch/);
 });
+
+it('reports a valid but stale TOC hierarchy as a publication error', async () => {
+  published(courseId, fixture(['en']));
+  writeFileSync(join(courses, courseId, 'toc/base.json'), JSON.stringify({
+    id: courseId, type: 'course', languages: ['en'], label: 'Course',
+    content: { order: ['stale'], items: {
+      stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
+    } },
+  }));
+  await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);
+});

@@ -5,7 +5,7 @@ import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode, validateEpisodeRuntime } from '@svitlo/engine/runtime';
 
 import WebEpisode from '@/components/pages/Episode/Episode';
-import { courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { assertCourseTocMatchesTree, courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
 import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = { params: Promise<{ language: string; courseId: string; episodeLanguage: string; episodeId: string }> };
@@ -32,6 +32,7 @@ async function Content({ params }: Props) {
     loadPublishedUiKitMessages(ui.locale),
     loadCourseToc(course.id, content.language),
   ]);
+  assertCourseTocMatchesTree(course, toc);
   const courseHref = '/' + language + '/course/' + courseId;
   const href = courseHref + '/episode/' + episodeLanguage + '/' + episodeId;
   const topics = courseTocToTopics(toc, language, episodeLanguage);

@@ -5,7 +5,7 @@ import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRuntime } from '@svitlo/engine/runtime';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
-import { courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { assertCourseTocMatchesTree, courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
 import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
@@ -39,6 +39,7 @@ async function Content({ params }: Props) {
     loadPublishedUiKitMessages(ui.locale),
     loadCourseToc(course.id, content.language),
   ]);
+  assertCourseTocMatchesTree(course, toc);
   const courseHref = '/' + language + '/course/' + courseId;
   const href = courseHref + '/assessment/' + assessmentLanguage + '/' + assessmentId;
   const topics = courseTocToTopics(toc, language, assessmentLanguage);

@@ -2,7 +2,7 @@ import 'server-only';
 
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
-import { courseTocToTopics } from './courseNavigation';
+import { assertCourseTocMatchesTree, courseTocToTopics } from './courseNavigation';
 import { toCoursePreview } from './coursePreview';
 import { loadCourseToc, loadExistingCourseWithFallback } from './courseResources';
 

@@ -93,3 +93,14 @@ it('keeps the requested interface language while routing activities through sele
   expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/11111111-1111-4111-8111-00000000011c');
   expect(resources.toc).toHaveBeenCalledWith(courseId, 'uk');
 });
+
+it('rejects a stale TOC hierarchy instead of displaying incorrect Course navigation', async () => {
+  resources.toc.mockResolvedValueOnce({
+    id: courseId, type: 'course', languages: ['en', 'uk'], label: 'Course',
+    content: {
+      order: ['stale'],
+      items: { stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' } },
+    },
+  });
+  await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);
+});

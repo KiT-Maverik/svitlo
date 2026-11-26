@@ -5,7 +5,7 @@ import { loadPublishedCourseLessonProps, loadPublishedUiKitMessages } from '@svi
 import { courseActivities, DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
 import WebLesson from '@/components/pages/Lesson/Lesson';
-import { courseTocToTopics } from '@/lib/courseNavigation';
+import { assertCourseTocMatchesTree, courseTocToTopics } from '@/lib/courseNavigation';
 import { courseHasLesson, loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
@@ -48,6 +48,7 @@ async function Content({ params, searchParams }: Props) {
     loadCourseToc(course.id, lessonDescriptor.language),
   ]);
 
+  assertCourseTocMatchesTree(course, toc);
   const href =
     '/' +
     language +

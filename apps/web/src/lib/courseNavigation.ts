@@ -1,4 +1,4 @@
-import type { CourseToc, CourseTocContent, CourseTocNode } from '@svitlo/engine/runtime';
+import type { CourseToc, CourseTocContent, CourseTocNode, LocalizedCourse, LocalizedCourseContent } from '@svitlo/engine/runtime';
 
 export type CourseNavigationTopic = {
   id: string;
@@ -67,4 +67,36 @@ export function courseTocToTopics(
 
 export function flattenCourseTopics(topics: readonly CourseNavigationTopic[]): CourseNavigationTopic[] {
   return topics.flatMap(topic => (topic.href ? [topic] : flattenCourseTopics(topic.children ?? [])));
+}
+
+/**
+ * Detect stale or mismatched publication pairs without additional filesystem reads.
+ * Locale labels may differ, but Course placement identity and order cannot.
+ */
+export function assertCourseTocMatchesTree(course: LocalizedCourse, toc: CourseToc): void {
+  if (
+    course.id !== toc.id ||
+    JSON.stringify(course.params.languages) !== JSON.stringify(toc.languages)
+  ) throw new Error('Published Course/TOC identity or language mismatch');
+
+  function verify(actual: LocalizedCourseContent, derived: CourseTocContent, path: string): void {
+    if (JSON.stringify(actual.order) !== JSON.stringify(derived.order))
+      throw new Error('Published Course/TOC order mismatch at ' + path);
+    for (const key of actual.order) {
+      const a = actual.items[key];
+      const b = derived.items[key];
+      if (
+        !a ||
+        !b ||
+        a.id !== b.id ||
+        a.type !== b.type ||
+        ('draft' in a ? a.draft : undefined) !== ('draft' in b ? b.draft : undefined)
+      ) throw new Error('Published Course/TOC placement mismatch at ' + path + '/' + key);
+      if (a.type === 'module' || a.type === 'chapter') {
+        if (b.type !== a.type) throw new Error('Published Course/TOC hierarchy mismatch');
+        verify(a.content, b.content, path + '/' + key);
+      }
+    }
+  }
+  verify(course.content, toc.content, course.id);
 }
