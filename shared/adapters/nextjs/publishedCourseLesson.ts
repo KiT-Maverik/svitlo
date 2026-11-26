@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import {
@@ -13,6 +13,49 @@ import {
   type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
 
+export class PublishedResourceError extends Error {
+  readonly code: 'missing' | 'read-failed' | 'invalid-json';
+  readonly resourcePath: string;
+
+  constructor(code: 'missing' | 'read-failed' | 'invalid-json', resourcePath: string, cause: unknown) {
+    const message =
+      code === 'invalid-json'
+        ? 'Invalid published JSON: ' + resourcePath
+        : 'Cannot read published resource: ' + resourcePath;
+    super(message, { cause });
+    this.name = 'PublishedResourceError';
+    this.code = code;
+    this.resourcePath = resourcePath;
+  }
+}
+
+/** A valid Course exists, but it does not declare the requested language. */
+export class CourseLanguageUnavailableError extends Error {
+  readonly code = 'course-language-unavailable';
+  constructor(
+    readonly courseId: string,
+    readonly language: LanguageCode,
+  ) {
+    super('Course does not support language ' + language);
+    this.name = 'CourseLanguageUnavailableError';
+  }
+}
+
+const record = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+
+function courseLanguages(base: unknown, id: string): LanguageCode[] {
+  if (!record(base) || base.id !== id || base.type !== 'course')
+    throw new Error('Published Course identity mismatch: ' + id);
+  if (!record(base.params) || !Array.isArray(base.params.languages))
+    throw new Error('Invalid published Course languages: ' + id);
+  const languages: LanguageCode[] = [];
+  for (const language of base.params.languages) languages.push(languageCode_Schema.parse(language));
+  if (languages.length === 0 || new Set(languages).size !== languages.length)
+    throw new Error('Invalid published Course languages: ' + id);
+  return languages;
+}
+
 /** Host-owned publication roots. The generator can choose different directories. */
 export type CourseLessonPublicationRoots = {
   lessonsRoot?: string;
@@ -26,12 +69,16 @@ async function readPublishedJson(filename: string, optional: boolean): Promise<u
     source = await readFile(filename, 'utf8');
   } catch (error) {
     if (optional && (error as NodeJS.ErrnoException).code === 'ENOENT') return undefined;
-    throw new Error('Cannot read published resource: ' + filename, { cause: error });
+    throw new PublishedResourceError(
+      (error as NodeJS.ErrnoException).code === 'ENOENT' ? 'missing' : 'read-failed',
+      filename,
+      error,
+    );
   }
   try {
     return JSON.parse(source) as unknown;
   } catch (error) {
-    throw new Error('Invalid published JSON: ' + filename, { cause: error });
+    throw new PublishedResourceError('invalid-json', filename, error);
   }
 }
 
@@ -87,5 +134,40 @@ export async function loadPublishedCourseTree(
   const id = resolveEntityPath(courseId).split('/')[1];
   const code = languageCode_Schema.parse(language);
   const resource = await readPublication(path.join(coursesRoot, id), code);
+  if (!courseLanguages(resource.base, id).includes(code)) throw new CourseLanguageUnavailableError(id, code);
   return assembleCourseTree(resource.base, resource.locale?.[code], id, code, mode);
+}
+
+/**
+ * Resolve a Course detail's requested content language without catalog enumeration.
+ * Published sparse locales may legitimately omit a patch; when the requested
+ * language is *not declared*, prefer the first declared language with a published
+ * locale file, then the first declared language as the deterministic base-only
+ * fallback. Preserve declared-language errors instead of retrying another locale.
+ */
+export async function loadPublishedCourseTreeWithFallback(
+  courseId: string,
+  requestedLanguage: LanguageCode,
+  coursesRoot = path.join(process.cwd(), 'public/data/courses'),
+  mode: 'production' | 'draft' = 'production',
+): Promise<{ course: LocalizedCourse; contentLanguage: LanguageCode }> {
+  const id = resolveEntityPath(courseId).split('/')[1];
+  const requested = languageCode_Schema.parse(requestedLanguage);
+  const directory = path.join(coursesRoot, id);
+  const base = await readPublishedJson(path.join(directory, 'base.json'), false);
+  const languages = courseLanguages(base, id);
+  let contentLanguage = requested;
+  if (!languages.includes(requested)) {
+    const entries = await readdir(directory, { withFileTypes: true });
+    const localeFiles = new Set(entries.filter(entry => entry.isFile()).map(entry => entry.name));
+    contentLanguage = languages.find(language => localeFiles.has(language + '.json')) ?? languages[0];
+    // If a concrete locale file was selected, its disappearance is publication
+    // corruption, not a reason to silently substitute unlocalized base text.
+    const chosen = contentLanguage + '.json';
+    const locale = await readPublishedJson(path.join(directory, chosen), !localeFiles.has(chosen));
+    return { course: assembleCourseTree(base, locale, id, contentLanguage, mode), contentLanguage };
+  }
+  const locale = await readPublishedJson(path.join(directory, contentLanguage + '.json'), true);
+  const course = assembleCourseTree(base, locale, id, contentLanguage, mode);
+  return { course, contentLanguage };
 }

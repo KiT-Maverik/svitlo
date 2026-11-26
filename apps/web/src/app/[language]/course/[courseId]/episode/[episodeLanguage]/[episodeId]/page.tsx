@@ -6,7 +6,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES, findCourseEpisode, validateEpisodeRuntime 
 
 import WebEpisode from '@/components/pages/Episode/Episode';
 import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
-import { loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
+import { loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = { params: Promise<{ language: string; courseId: string; episodeLanguage: string; episodeId: string }> };
 
@@ -15,12 +15,8 @@ async function Content({ params }: Props) {
   const ui = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   const content = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === episodeLanguage);
   if (!ui || !content) notFound();
-  let course;
-  try {
-    course = await loadCourseTree(courseId, content.language);
-  } catch {
-    notFound();
-  }
+  const course = await loadExistingCourseTree(courseId, content.language);
+  if (!course) notFound();
   const episode = findCourseEpisode(course, episodeId);
   if (!episode) notFound();
   if ('draft' in episode && episode.draft === true) {

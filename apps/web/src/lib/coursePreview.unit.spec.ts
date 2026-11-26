@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getCourseMessages } from './courseMessages';
+import { getCourseLanguageFallbackNotice, getCourseMessages } from './courseMessages';
 import { toCoursePreview } from './coursePreview';
 import type { LocalizedCourse } from './courseResources';
 
@@ -54,4 +54,10 @@ it('does not count a Course-owned Assessment as a Lesson or Module', () => {
   };
   courseModule.content.order.push('review');
   expect(toCoursePreview(withAssessment)).toMatchObject({ lessons: 1, modules: 1 });
+});
+
+it('localizes an accessible Course fallback explanation with both language names', () => {
+  expect(getCourseLanguageFallbackNotice('uk', 'uk', 'en')).toContain('англійськ');
+  expect(getCourseLanguageFallbackNotice('en', 'pl', 'uk')).toContain('Showing the available');
+  expect(getCourseLanguageFallbackNotice('en', 'pl', 'uk')).toContain('Ukrainian');
 });
