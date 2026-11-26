@@ -28,7 +28,6 @@ After npm ci at the monorepo root:
 
 Forge 8 Vite Plugin builds the Electron main bundle and React renderer using Vite 8 / Rolldown.\n`app:build` calls `electron-forge package` once (including the Vite builds);\n`app:pack:make:prepared` then runs `electron-forge make --from-package` on those\nalready-packaged artifacts without rebuilding Vite.
 
-    npm run app:pack:prepared --workspace @svitlo/desktop  # already built: unpacked out/
     npm run app:pack:make:prepared --workspace @svitlo/desktop  # already packaged: make artifacts
     npm run app:pack:win --workspace @svitlo/desktop    # Windows: Squirrel Setup.exe + .nupkg
     npm run app:pack:mac --workspace @svitlo/desktop    # macOS: zipped .app
@@ -44,8 +43,9 @@ The `preapp:start:dev` and `preapp:build` hooks compile `@svitlo/playground` int
 then invoke the textbook's public `svitlo-playground publish` CLI to stage
 already-built book JSON and media in `apps/desktop/public`. UI Kit locales and
 flags remain independently host-staged. Vite bundles the compiled Scene registry,
-lazy chunks and published CSS into `dist-renderer`, while the Electron main
-process is bundled into `dist-main/main.cjs`. Desktop never imports authored
+lazy chunks and published CSS into `.vite/renderer/main_window`, while the Electron
+main process is bundled into `.vite/build/main.cjs`. Forge manages the dev server
+and hot restarts main when its bundle changes. Desktop never imports authored
 `*.data.ts` at runtime or needs `apps/web`.
 
 ## Security and offline boundaries

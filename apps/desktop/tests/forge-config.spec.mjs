@@ -15,7 +15,7 @@ test('Forge packages only precompiled assets, never source or node_modules', () 
     '/package.json',
     '/.vite/build/main.cjs',
     '/.vite/renderer/main_window/assets/scene.js',
-    '\\dist-renderer\\index.html',
+    '\\.vite\\renderer\\main_window\\index.html',
   ]) {
     assert.equal(ignore(path), false, path);
   }
