@@ -6,12 +6,12 @@ import { loadCourseDetail } from './courseDetail';
 
 const resources = vi.hoisted(() => ({
   fallback: vi.fn(),
-  titles: vi.fn(),
+  toc: vi.fn(),
 }));
 vi.mock('server-only', () => ({}));
 vi.mock('./courseResources', () => ({
   loadExistingCourseWithFallback: resources.fallback,
-  loadCourseLessonTitles: resources.titles,
+  loadCourseToc: resources.toc,
 }));
 
 const courseId = '11111111-1111-4111-8111-000000000113';
@@ -26,7 +26,13 @@ const course = {
 
 beforeEach(() => {
   resources.fallback.mockResolvedValue({ course, contentLanguage: 'en' });
-  resources.titles.mockResolvedValue({});
+  resources.toc.mockResolvedValue({
+    id: courseId,
+    type: 'course',
+    languages: ['en', 'uk'],
+    label: 'Selected fixture Course',
+    content: { order: [], items: {} },
+  });
 });
 afterEach(() => vi.clearAllMocks());
 
@@ -40,8 +46,8 @@ it('loads only the requested Course once, deriving both preview and outline from
   });
   expect(resources.fallback).toHaveBeenCalledTimes(1);
   expect(resources.fallback).toHaveBeenCalledWith(courseId, 'en');
-  expect(resources.titles).toHaveBeenCalledTimes(1);
-  expect(resources.titles).toHaveBeenCalledWith(course, 'en');
+  expect(resources.toc).toHaveBeenCalledTimes(1);
+  expect(resources.toc).toHaveBeenCalledWith(courseId, 'en');
 });
 
 it('never enumerates unrelated orphan or malformed Course publications on a direct request', async () => {
@@ -69,12 +75,21 @@ it('keeps the requested interface language while routing activities through sele
   fallbackCourse.content.items.lesson = { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson' };
   fallbackCourse.content.order = ['lesson'];
   resources.fallback.mockResolvedValueOnce({ course: fallbackCourse, contentLanguage: 'uk' });
-  resources.titles.mockResolvedValueOnce({
-    '11111111-1111-4111-8111-00000000011c': 'Контрольний урок',
+  resources.toc.mockResolvedValueOnce({
+    id: courseId,
+    type: 'course',
+    languages: ['en', 'uk'],
+    label: 'Контрольний курс',
+    content: {
+      order: ['lesson'],
+      items: {
+        lesson: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Контрольний урок' },
+      },
+    },
   });
   const detail = await loadCourseDetail(courseId, 'en');
   expect(detail?.interfaceLanguage).toBe('en');
   expect(detail?.contentLanguage).toBe('uk');
   expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/11111111-1111-4111-8111-00000000011c');
-  expect(resources.titles).toHaveBeenCalledWith(fallbackCourse, 'uk');
+  expect(resources.toc).toHaveBeenCalledWith(courseId, 'uk');
 });

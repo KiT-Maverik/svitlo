@@ -7,7 +7,7 @@ import type { LocalizedCourse } from '@svitlo/engine/runtime';
 import {
   courseHasLesson,
   courseLessonIds,
-  loadCourseLessonTitles,
+  loadCourseToc,
   loadCourseTree,
   loadExistingCourseTree,
   loadExistingCourseWithFallback,
@@ -25,6 +25,7 @@ const adapter = vi.hoisted(() => {
   class CourseLanguageUnavailableError extends Error {}
   return {
     lesson: vi.fn(),
+    toc: vi.fn(),
     course: vi.fn(),
     fallback: vi.fn(),
     PublishedResourceError,
@@ -34,6 +35,7 @@ const adapter = vi.hoisted(() => {
 vi.mock('server-only', () => ({}));
 vi.mock('@svitlo/adapter-nextjs', () => ({
   loadPublishedCourseLessonProps: adapter.lesson,
+  loadPublishedCourseToc: adapter.toc,
   loadPublishedCourseTree: adapter.course,
   loadPublishedCourseTreeWithFallback: adapter.fallback,
   PublishedResourceError: adapter.PublishedResourceError,
@@ -70,18 +72,15 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 
-it('does not fetch standalone Lesson Props for a reserved Draft Course placement', async () => {
-  adapter.lesson.mockResolvedValue({ locale: { title: 'Reviewed Lesson' } });
+it('reads one TOC rather than standalone Lesson Props for navigation', async () => {
+  const expected = { id: courseId, content: { items: {}, order: [] } };
+  adapter.toc.mockResolvedValue(expected);
   expect(courseHasLesson(mixed, pendingId)).toBe(true);
   expect(courseLessonIds(mixed)).toEqual([completeId]);
-
-  const titles = await loadCourseLessonTitles(mixed, 'en');
-  expect(titles).toEqual({
-    [completeId]: 'Reviewed Lesson',
-    'placement:complete': 'Reviewed Lesson',
-  });
-  expect(adapter.lesson).toHaveBeenCalledTimes(1);
-  expect(adapter.lesson).toHaveBeenCalledWith(courseId, completeId, 'en', { placement: 'complete' });
+  expect(await loadCourseToc(courseId, 'en')).toBe(expected);
+  expect(adapter.toc).toHaveBeenCalledTimes(1);
+  expect(adapter.toc).toHaveBeenCalledWith(courseId, 'en', undefined, 'production');
+  expect(adapter.lesson).not.toHaveBeenCalled();
 });
 
 it('only enables Draft assembly in the development host, never in production', async () => {
@@ -89,14 +88,17 @@ it('only enables Draft assembly in the development host, never in production', a
   adapter.fallback.mockResolvedValue({ course: mixed, contentLanguage: 'en' });
   vi.stubEnv('NODE_ENV', 'development');
   await loadCourseTree(courseId, 'en');
+  await loadCourseToc(courseId, 'en');
   await loadExistingCourseWithFallback(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'draft');
+  expect(adapter.toc).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'draft');
   expect(adapter.fallback).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'draft');
 
   vi.stubEnv('NODE_ENV', 'production');
   await loadCourseTree(courseId, 'en');
   await loadExistingCourseWithFallback(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
+  expect(adapter.toc).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
   expect(adapter.fallback).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
 });
 
