@@ -94,3 +94,14 @@ it('does not silently omit structurally invalid published Course bases', async (
 it('returns an empty catalog when no Course publication root or ownership exists', async () => {
   await expect(loadPublishedCourseCatalog('en')).resolves.toEqual([]);
 });
+
+it('does not display or parse unowned prior-textbook Course files when an ownership manifest exists', async () => {
+  base(selectedId);
+  owned(selectedId);
+  base(orphanId);
+  writeFileSync(join(directory(orphanId), 'base.json'), '{broken stale publication');
+  const catalog = await loadPublishedCourseCatalog('en');
+  expect(catalog.map(course => course.id)).toEqual([selectedId]);
+  expect(resources.tree).toHaveBeenCalledTimes(1);
+  expect(resources.tree).not.toHaveBeenCalledWith(orphanId, 'en');
+});
