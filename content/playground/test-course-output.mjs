@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { assembleCourseLesson } from '@svitlo/engine/runtime';
+import { assembleCourseLesson, assembleCourseToc } from '@svitlo/engine/runtime';
 
 const root = process.cwd();
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -89,4 +89,20 @@ test('new Lesson and Course files are in the package manifest', () => {
   assert(files.includes('data/lessons/' + lessonId.slice(-1) + '/' + lessonId + '/base.json'));
   assert(files.some(name => name.startsWith('data/courses/' + courseId + '/') && name.endsWith('.json')));
   assert(files.some(name => name.startsWith('data/skills/') && name.endsWith('.json')));
+});
+
+test('compiled manifest carries sparse localized Course TOC for portable hosts', () => {
+  const path = 'data/courses/' + courseId + '/toc/';
+  assert(files.includes(path + 'base.json'));
+  const base = read('data', 'courses', courseId, 'toc', 'base.json');
+  const localized = optional('data', 'courses', courseId, 'toc', 'uk.json');
+  assert.equal(files.includes(path + 'uk.json'), localized !== undefined);
+  const resolved = assembleCourseToc(base, localized, courseId, 'uk');
+  assert.equal(resolved.id, courseId);
+  assert.equal(resolved.content.items.lightLaboratory.type, 'module');
+  assert.equal(resolved.content.items.lightLaboratory.content.items.lightFoundations.type, 'chapter');
+  const lessonNode = resolved.content.items.lightLaboratory.content.items.lightFoundations.content.items.lightDiscovery;
+  assert.equal(lessonNode.id, lessonId);
+  assert.equal(typeof lessonNode.label, 'string');
+  assert(!JSON.stringify(base).includes('"section"'));
 });

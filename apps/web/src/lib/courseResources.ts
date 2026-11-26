@@ -4,7 +4,7 @@ import { join } from 'node:path';
 
 import {
   CourseLanguageUnavailableError,
-  loadPublishedCourseLessonProps,
+  loadPublishedCourseToc,
   loadPublishedCourseTree,
   loadPublishedCourseTreeWithFallback,
   PublishedResourceError,
@@ -73,19 +73,6 @@ export function courseLessonIds(course: LocalizedCourse): string[] {
     .filter(({ node }) => node.type === 'lesson' && !('draft' in node && node.draft === true))
     .map(({ node }) => node.id);
 }
-export async function loadCourseLessonTitles(course: LocalizedCourse, language: LanguageCode) {
-  const pairs = await Promise.all(
-    courseActivities(course)
-      .filter(({ node }) => node.type === 'lesson' && !('draft' in node && node.draft === true))
-      .map(async ({ node, placement }) => {
-        const lesson = await loadPublishedCourseLessonProps(course.id, node.id, language, { placement });
-        return { id: node.id, placement, title: lesson.locale.title };
-      }),
-  );
-  return Object.fromEntries(
-    pairs.flatMap(({ id, placement, title }) => [
-      [id, title],
-      ['placement:' + placement, title],
-    ]),
-  ) as Record<string, string>;
-}
+/** Read only the derived TOC, using the same strict draft gate as Course Props. */
+export const loadCourseToc = (id: string, language: LanguageCode) =>
+  loadPublishedCourseToc(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
