@@ -100,7 +100,10 @@ test('Desktop bundle assertions execute after production builds, not in root npm
   const scripts = JSON.parse(
     readFileSync(new URL('../../../apps/desktop/package.json', import.meta.url), 'utf8'),
   ).scripts;
-  assert.match(scripts.test, /^node --test tests\/engine-runtime-imports\.spec\.mjs(?: tests\/[a-z0-9-]+\.spec\.mjs)*$/);
+  assert.match(
+    scripts.test,
+    /^node --test tests\/engine-runtime-imports\.spec\.mjs(?: tests\/[a-z0-9-]+\.spec\.mjs)*$/,
+  );
   assert.doesNotMatch(scripts.test, /packaged-content|electron\.packaged|electron\.smoke/);
   assert.equal(scripts['test:integration'], 'node --test tests/packaged-content.spec.mjs');
 

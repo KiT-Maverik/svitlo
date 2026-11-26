@@ -79,11 +79,12 @@ test('on Windows npm uses the installed JS CLI directly, never a command shell',
 
 test('missing Windows npm CLI fails loudly instead of skipping npm or invoking a shell', () => {
   assert.throws(
-    () => resolveSpawnCommand('npm', ['ci'], {
-      platform: 'win32',
-      node: 'Z:\\missing\\node.exe',
-      npmCli: 'Z:\\missing\\npm-cli.js',
-    }),
+    () =>
+      resolveSpawnCommand('npm', ['ci'], {
+        platform: 'win32',
+        node: 'Z:\\missing\\node.exe',
+        npmCli: 'Z:\\missing\\npm-cli.js',
+      }),
     /Cannot locate npm-cli.js/,
   );
 });

@@ -11,7 +11,12 @@ test('Forge packages only precompiled assets, never source or node_modules', () 
   const ignore = config.packagerConfig.ignore;
   assert.equal(ignore(''), false, 'Packager must copy the application root');
   assert.equal(ignore('/'), false, 'Packager may represent the source root as /');
-  for (const path of ['/package.json', '/dist-main/main.cjs', '/dist-renderer/assets/scene.js', '\\dist-renderer\\index.html']) {
+  for (const path of [
+    '/package.json',
+    '/dist-main/main.cjs',
+    '/dist-renderer/assets/scene.js',
+    '\\dist-renderer\\index.html',
+  ]) {
     assert.equal(ignore(path), false, path);
   }
   assert.equal(ignore('/node_modules/react/index.js'), true);
