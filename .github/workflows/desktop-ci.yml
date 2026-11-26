@@ -38,6 +38,14 @@ jobs:
           # through workspace links. npm 12 includes the Arborist fix #9671.
           # Only this temporary lockfile-generation step uses npm 12.
           npx --yes npm@12.2.3 install --package-lock-only --ignore-scripts --no-audit --no-fund
+          # A previous npm 11 lock can remain stale even after install.
+          # Retry only the impacted transitive package instead of updating
+          # all workspaces or broadly overriding minimatch.
+          if node -e "const l=require('./package-lock.json'); const p=l.packages; process.exit((p['node_modules/app-builder-lib/node_modules/minimatch'] ?? p['node_modules/minimatch'])?.version === '11.0.9' ? 0 : 1)"; then
+            echo 'Patched scoped minimatch already resolved'
+          else
+            npx --yes npm@12.2.3 update app-builder-lib --package-lock-only --ignore-scripts --no-audit --no-fund
+          fi
       - name: Ensure Storybook dependency versions are unchanged
         run: |
           node --input-type=module <<'NODE'
