@@ -73,7 +73,7 @@ test('selectOneAnswer: deterministic modular source, nested imports, source loca
 });
 test('selectOneAnswer: rejects duplicate child bindings instead of silently aliasing imports', () => {
   const question = fixture();
-  question.config.content.hint = collection({ prompt: block('prompt', 8) });
+  Object.assign(question.config.content, { hint: collection({ prompt: block('prompt', 8) }) });
   assert.throws(
     () => materializeSelectOneAnswer(question as never, context),
     /generated identifier collision.*content.question.items.prompt.*content.hint.items.prompt/,
