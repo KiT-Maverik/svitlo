@@ -4,6 +4,7 @@
   "description": "Offline-capable Electron host for Svitlo textbooks",
   "private": true,
   "type": "module",
+  "author": "Svitlo",
   "scripts": {
     "app:prepare:content": "node scripts/prepareContent/prepare-content.mjs",
     "app:build:main": "node scripts/buildMain/build-main.mjs",
@@ -65,6 +66,5 @@
     "@electron-forge/maker-zip": "8.0.1"
   },
   "main": "dist-main/main.cjs",
-  "productName": "Svitlo",
-  "author": "Svitlo"
+  "productName": "Svitlo"
 }
