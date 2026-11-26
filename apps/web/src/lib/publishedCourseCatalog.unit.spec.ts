@@ -87,7 +87,10 @@ it('rejects invalid Course identity and structurally invalid published language 
   directory(selectedId);
   writeFileSync(join(directory(selectedId), 'base.json'), JSON.stringify({ id: orphanId, type: 'course' }));
   await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Invalid Course publication identity');
-  writeFileSync(join(directory(selectedId), 'base.json'), JSON.stringify({ id: selectedId, type: 'course', params: {} }));
+  writeFileSync(
+    join(directory(selectedId), 'base.json'),
+    JSON.stringify({ id: selectedId, type: 'course', params: {} }),
+  );
   await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Invalid Course publication languages');
 });
 

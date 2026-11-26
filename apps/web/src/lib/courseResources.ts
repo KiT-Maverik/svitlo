@@ -4,10 +4,10 @@ import { join } from 'node:path';
 
 import {
   CourseLanguageUnavailableError,
-  PublishedResourceError,
   loadPublishedCourseLessonProps,
   loadPublishedCourseTree,
   loadPublishedCourseTreeWithFallback,
+  PublishedResourceError,
 } from '@svitlo/adapter-nextjs';
 import { courseActivities, resolveEntityPath, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
 

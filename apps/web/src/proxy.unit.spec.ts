@@ -139,11 +139,7 @@ it('preflights direct Course URLs without reading unrelated or corrupt Course co
 
 it('rejects invalid or missing Course details with an HTTP 404 before streaming', () => {
   const root = fixture();
-  for (const invalid of [
-    '/uk/course/not-a-uuid',
-    '/xx/course/' + courseId,
-    '/uk/course/' + otherId,
-  ])
+  for (const invalid of ['/uk/course/not-a-uuid', '/xx/course/' + courseId, '/uk/course/' + otherId])
     expect(isInvalidPublishedRoute(invalid, root), invalid).toBe(true);
   rmSync(path.join(root, 'data', 'courses', courseId, 'base.json'));
   expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(true);

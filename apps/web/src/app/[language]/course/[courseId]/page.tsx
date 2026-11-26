@@ -20,7 +20,13 @@ async function Content({ params }: Props) {
           aria-live="polite"
           aria-atomic="true"
           data-testid="course-language-notice"
-          style={{ maxWidth: 1100, margin: '16px auto 0', padding: '12px 20px', border: '1px solid currentColor', borderRadius: 8 }}
+          style={{
+            maxWidth: 1100,
+            margin: '16px auto 0',
+            padding: '12px 20px',
+            border: '1px solid currentColor',
+            borderRadius: 8,
+          }}
         >
           {getCourseLanguageFallbackNotice(language, detail.interfaceLanguage, detail.contentLanguage)}
         </aside>

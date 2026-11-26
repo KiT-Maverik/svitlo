@@ -15,7 +15,10 @@ import {
 
 const adapter = vi.hoisted(() => {
   class PublishedResourceError extends Error {
-    constructor(readonly code: string, readonly resourcePath: string) {
+    constructor(
+      readonly code: string,
+      readonly resourcePath: string,
+    ) {
       super('Published resource error');
     }
   }

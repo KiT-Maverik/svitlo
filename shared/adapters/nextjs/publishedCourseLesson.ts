@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import {
@@ -13,14 +13,15 @@ import {
   type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';
 
-
 export class PublishedResourceError extends Error {
   readonly code: 'missing' | 'read-failed' | 'invalid-json';
   readonly resourcePath: string;
 
   constructor(code: 'missing' | 'read-failed' | 'invalid-json', resourcePath: string, cause: unknown) {
     const message =
-      code === 'invalid-json' ? 'Invalid published JSON: ' + resourcePath : 'Cannot read published resource: ' + resourcePath;
+      code === 'invalid-json'
+        ? 'Invalid published JSON: ' + resourcePath
+        : 'Cannot read published resource: ' + resourcePath;
     super(message, { cause });
     this.name = 'PublishedResourceError';
     this.code = code;
@@ -31,7 +32,10 @@ export class PublishedResourceError extends Error {
 /** A valid Course exists, but it does not declare the requested language. */
 export class CourseLanguageUnavailableError extends Error {
   readonly code = 'course-language-unavailable';
-  constructor(readonly courseId: string, readonly language: LanguageCode) {
+  constructor(
+    readonly courseId: string,
+    readonly language: LanguageCode,
+  ) {
     super('Course does not support language ' + language);
     this.name = 'CourseLanguageUnavailableError';
   }
@@ -65,7 +69,11 @@ async function readPublishedJson(filename: string, optional: boolean): Promise<u
     source = await readFile(filename, 'utf8');
   } catch (error) {
     if (optional && (error as NodeJS.ErrnoException).code === 'ENOENT') return undefined;
-    throw new PublishedResourceError((error as NodeJS.ErrnoException).code === 'ENOENT' ? 'missing' : 'read-failed', filename, error);
+    throw new PublishedResourceError(
+      (error as NodeJS.ErrnoException).code === 'ENOENT' ? 'missing' : 'read-failed',
+      filename,
+      error,
+    );
   }
   try {
     return JSON.parse(source) as unknown;
