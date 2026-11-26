@@ -1,7 +1,7 @@
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { resolvePublicationLanguages 
+import { resolvePublicationLanguages, 
   scopeBuild,
 } from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';

@@ -25,7 +25,7 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings 
+import { onlyLocales, onlyStrings, 
   scopeBuild,
 } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';

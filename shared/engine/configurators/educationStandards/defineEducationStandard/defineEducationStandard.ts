@@ -1,7 +1,7 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { resolvePublicationLanguages 
+import { resolvePublicationLanguages, 
   scopeBuild,
 } from '../../_shared__configurators';
 import {
