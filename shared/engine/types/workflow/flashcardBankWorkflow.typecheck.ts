@@ -235,7 +235,7 @@ const compositeSide: FlashcardBankWorkflowSideSource = {
   },
   order: ['gallery', 'checkpoint'],
 };
-// @ts-expect-error Source-only materializers must also exclude Composite children.
+// The broad legacy type accepts the structurally typed object, but the final Stage 3 schema rejects both kind discriminants.
 const incompatibleCompositeSide: FlashcardSideSource = compositeSide;
 const expandedRelation: Flashcard_Relationship = {
   relationshipId: edge.relationshipId,
@@ -339,7 +339,6 @@ void checkpointAnswerSource;
 void checkpointItemSource;
 void checkpointSource;
 void compositeSide;
-void compatibleCompositeSide;
 void materializerCard;
 void materializerLanguages;
 void emptyInventory;
