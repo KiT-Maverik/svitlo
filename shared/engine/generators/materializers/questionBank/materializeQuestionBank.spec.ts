@@ -265,7 +265,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
   const source = planned.files.find(file => file.path.endsWith('question/pendingDiagram/index.ts'))?.content ?? '';
   assert.match(source, /TODO \(BLOCKER\)/);
   assert.match(source, /00000000-0000-0000-0000-000000000000.webp/);
-  assert.match(source, /# prompt[\\s\\S]*lamp on the left/);
+  assert.match(source, /# prompt[\s\S]*lamp on the left/);
   assert(planned.diagnostics.some(diagnostic => diagnostic.code === 'pending-media'));
 
   // Keep the published Stage 3 boundary as strict as the concrete Image renderer.
