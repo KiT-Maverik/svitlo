@@ -89,6 +89,9 @@ it('returns not-found only when the requested Course base is absent', async () =
   adapter.course.mockRejectedValueOnce(notFound);
   await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
 
+  adapter.course.mockRejectedValueOnce(new Error('Course does not support language en'));
+  await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
+
   adapter.course.mockRejectedValueOnce(new Error('Invalid published JSON: ' + base));
   await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Invalid published JSON');
 
