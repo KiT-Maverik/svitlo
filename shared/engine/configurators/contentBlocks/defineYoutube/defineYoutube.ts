@@ -121,7 +121,7 @@ export const defineYoutube = <
   ): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const parsed = parseAndValidate(copyAuthored());
-    assertResolvedHref(parsed.locale.href);
+    if (options.mode !== 'draft') assertResolvedHref(parsed.locale.href);
     const result = buildYoutubeProps(parsed);
     result.locale = selectPublicationLocales(result.locale, languages);
     validateRequestedPublication(youtube_Props_Schema, result, languages);
@@ -137,7 +137,7 @@ export const defineYoutube = <
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
       const effective = youtube_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      assertResolvedHref(effective.locale.href);
+      if (options.mode !== 'draft') assertResolvedHref(effective.locale.href);
       const output = buildYoutubePatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
       validateRequestedPublication(youtube_Props_Schema, props(options), languages, output);

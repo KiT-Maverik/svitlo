@@ -3,7 +3,7 @@
 import Button from '@mui/material/Button';
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 
-import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 
 import type { Video_Locale } from '../../../../../../data/locale/video';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
@@ -28,7 +28,8 @@ export const Video = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failure, setFailure] = useState<VideoFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
-  const failureKind = failure?.source === fileLocation ? failure.kind : null;
+  const pending = fileLocation.includes(UNRESOLVED_RESOURCE_UUID);
+  const failureKind = pending ? 'unavailable' : failure?.source === fileLocation ? failure.kind : null;
 
   // Apply shared settings to the current DOM element, including after a failed source is retried.
   useEffect(() => {
@@ -70,15 +71,17 @@ export const Video = ({
   return (
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       {failureKind ? (
-        <div className={styles.placeholder} role="alert">
+        <div className={styles.placeholder} role={pending ? 'status' : 'alert'}>
           <strong>{label}</strong>
           <span>
             {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'video.fallback.' + failureKind) ??
               messages[failureKind]}
           </span>
-          <Button type="button" variant="outlined" onClick={retry}>
-            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'video.fallback.retry') ?? messages.retry}
-          </Button>
+          {!pending && (
+            <Button type="button" variant="outlined" onClick={retry}>
+              {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'video.fallback.retry') ?? messages.retry}
+            </Button>
+          )}
         </div>
       ) : (
         <video
@@ -87,7 +90,7 @@ export const Video = ({
           className={styles.video}
           controls
           src={fileLocation}
-          poster={poster}
+          poster={poster?.includes(UNRESOLVED_RESOURCE_UUID) ? undefined : poster}
           preload="metadata"
           playsInline
           aria-label={label}

@@ -3,7 +3,7 @@
 import Button from '@mui/material/Button';
 import { useEffect, useRef, useState } from 'react';
 
-import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 
 import type { Image_Locale } from '../../../../../../data/locale/image';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -24,7 +24,8 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
   const imageRef = useRef<HTMLImageElement>(null);
   const [failure, setFailure] = useState<ImageFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
-  const failureKind = failure?.source === src ? failure.kind : null;
+  const pending = src.includes(UNRESOLVED_RESOURCE_UUID);
+  const failureKind = pending ? 'unavailable' : failure?.source === src ? failure.kind : null;
   const onError = () => setFailure({ source: src, kind: navigator.onLine ? 'unavailable' : 'offline' });
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
       {failureKind ? (
         <div
           className={styles.placeholder}
-          role="alert"
+          role={pending ? 'status' : 'alert'}
           style={{ aspectRatio: fill ? aspectRatio : `${width} / ${height}` }}
         >
           {alt && <strong>{alt}</strong>}
@@ -62,9 +63,11 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
             {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'image.fallback.' + failureKind) ??
               messages[failureKind]}
           </span>
-          <Button type="button" variant="outlined" onClick={retry}>
-            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'image.fallback.retry') ?? messages.retry}
-          </Button>
+          {!pending && (
+            <Button type="button" variant="outlined" onClick={retry}>
+              {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'image.fallback.retry') ?? messages.retry}
+            </Button>
+          )}
         </div>
       ) : fill ? (
         <div className={styles.fillFrame} style={{ aspectRatio: aspectRatio }}>

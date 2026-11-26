@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { configuratorArrayToSlugMap, mergeForValidation } from '../../_shared__configurators';
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import { defineText } from '../defineText';
+import { defineYoutube } from '../defineYoutube';
 import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 import { defineCheckpointItem } from './defineCheckpointItem';
 import { checkpoint_Config_Schema, checkpoint_Props_Schema, defineCheckpoint } from './index';
@@ -162,6 +164,56 @@ describe('Configurators', () => {
         assert.equal(JSON.stringify(built).includes('"order"'), false);
         assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), original);
         assert.deepEqual(checkpoint.build.overrides(patch, { languages: ['en', 'uk'] }), built);
+      });
+
+      test('Draft mode reaches pending media inside Checkpoint Item Answer without weakening publication', () => {
+        const pendingVideo = defineYoutube({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d70',
+          slug: 'pendingVideo',
+          type: 'youtube',
+          params: { mode: 'link' },
+          locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Pending video' },
+        });
+        const answer = defineCheckpointAnswer({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d71',
+          slug: 'answer',
+          type: 'checkpointAnswer',
+          content: { items: { pendingVideo }, order: ['pendingVideo'] },
+        });
+        const question = defineText({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d72',
+          slug: 'question',
+          type: 'text',
+          params: {},
+          locale: { value: 'Where is the shadow?' },
+        });
+        const first = defineCheckpointItem({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d73',
+          slug: 'first',
+          type: 'checkpointItem',
+          question,
+          answer,
+        });
+        const checkpoint = defineCheckpoint({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d74',
+          slug: 'review',
+          type: 'checkpoint',
+          params: {},
+          locale: { title: 'Review' },
+          content: { items: { first }, order: ['first'] },
+        });
+
+        assert.throws(() => checkpoint.build.props({ languages: ['en'] }), /unresolved video reference/);
+        const preview = checkpoint.build.props({ languages: ['en'], mode: 'draft' });
+        const answerBlock = preview.base.content[0].answer[0];
+        assert.equal(answerBlock.type, 'youtube');
+        if (answerBlock.type !== 'youtube') throw new Error('Expected a YouTube answer block');
+        assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
+        assert.equal(answerBlock.locale?.label, 'Pending video');
+        assert.throws(
+          () => checkpoint.build.props({ languages: ['en'], mode: 'production' }),
+          /unresolved video reference/,
+        );
       });
 
       test('Checkpoint requires exactly all active item slugs, once each', () => {

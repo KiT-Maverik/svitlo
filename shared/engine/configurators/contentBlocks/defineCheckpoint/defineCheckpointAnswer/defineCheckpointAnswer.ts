@@ -107,16 +107,16 @@ export const defineCheckpointAnswer = <
   const content = { items: { ...initialItems }, order: [...initialOrder] };
   const base = { id, slug, type } as const;
 
-  const buildChild = (child: Checkpoint_Allowed_Configurator, languages: readonly LanguageCode[]): ChildPublication =>
-    child.build.props({ languages }) as unknown as ChildPublication;
+  const buildChild = (child: Checkpoint_Allowed_Configurator, options: PublicationLanguageOptions): ChildPublication =>
+    child.build.props(options) as unknown as ChildPublication;
   const buildChildPatch = (
     child: Checkpoint_Allowed_Configurator,
     patch: unknown,
-    languages: readonly LanguageCode[],
+    options: PublicationLanguageOptions,
   ): ChildPatchPublication =>
     (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(
       patch as never,
-      { languages },
+      options,
     );
 
   const buildContent = (
@@ -124,11 +124,12 @@ export const defineCheckpointAnswer = <
     order: readonly string[],
     languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
+    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const original = buildChild(child, languages);
-      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key], languages) : undefined;
+      const original = buildChild(child, { languages, mode });
+      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key], { languages, mode }) : undefined;
       return { original, patch };
     });
     const bases = entries.map(({ original, patch }) =>
@@ -156,7 +157,7 @@ export const defineCheckpointAnswer = <
   const props = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
-    const built = buildContent(initialItems, initialOrder, languages);
+    const built = buildContent(initialItems, initialOrder, languages, {}, options.mode);
     const output = {
       base: { id, slug, type, content: built.bases },
       locale: Object.keys(built.locales).length ? built.locales : undefined,
@@ -234,7 +235,7 @@ export const defineCheckpointAnswer = <
             (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
           ),
         );
-        const built = buildContent(active, order, languages, childPatches);
+        const built = buildContent(active, order, languages, childPatches, options.mode);
         output.base.content = built.bases;
         output.locale = Object.keys(built.locales).length ? built.locales : undefined;
       }

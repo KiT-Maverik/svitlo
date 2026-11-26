@@ -21,24 +21,26 @@ export function coursePropsToTopics(
   for (const { node } of courseActivities(course))
     if (node.type === 'lesson') counts.set(node.id, (counts.get(node.id) ?? 0) + 1);
   function convert(node: LocalizedCourseNode, slot: string): CourseNavigationTopic {
+    const isDraft = 'draft' in node && node.draft === true;
     if (node.type === 'lesson') {
-      const title =
-        'draft' in node && node.draft === true
-          ? 'Not implemented'
-          : (lessonTitles['placement:' + slot] ?? lessonTitles[node.id]);
+      const title = isDraft ? 'Not implemented' : (lessonTitles['placement:' + slot] ?? lessonTitles[node.id]);
       if (!title) throw Error('Missing localized Lesson title in Course ' + course.id + ': ' + node.id);
       const repeated = (counts.get(node.id) ?? 0) > 1;
       return {
         id: repeated ? slot : node.id,
         title,
         type: 'lesson',
-        href:
-          root +
-          '/lesson/' +
-          lessonLanguage +
-          '/' +
-          node.id +
-          (repeated ? '?placement=' + encodeURIComponent(slot) : ''),
+        ...(!isDraft
+          ? {
+              href:
+                root +
+                '/lesson/' +
+                lessonLanguage +
+                '/' +
+                node.id +
+                (repeated ? '?placement=' + encodeURIComponent(slot) : ''),
+            }
+          : {}),
       };
     }
     if (node.type === 'episode')
@@ -46,14 +48,14 @@ export function coursePropsToTopics(
         id: node.id,
         title: node.locale.title,
         type: 'episode',
-        href: root + '/episode/' + lessonLanguage + '/' + node.id,
+        ...(!isDraft ? { href: root + '/episode/' + lessonLanguage + '/' + node.id } : {}),
       };
     if (node.type === 'assessment')
       return {
         id: node.id,
         title: node.locale.title,
         type: 'assessment',
-        href: root + '/assessment/' + lessonLanguage + '/' + node.id,
+        ...(!isDraft ? { href: root + '/assessment/' + lessonLanguage + '/' + node.id } : {}),
       };
     return {
       id: node.id,

@@ -1,11 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type {
-  ContentBlock_Checkpoint_Props,
-  ContentBlock_Markdown_Props,
-  ContentBlock_Subtitles_Props,
-  ContentBlock_Text_Props,
+import {
+  UNRESOLVED_RESOURCE_UUID,
+  type ContentBlock_Checkpoint_Props,
+  type ContentBlock_Markdown_Props,
+  type ContentBlock_Subtitles_Props,
+  type ContentBlock_Text_Props,
 } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
@@ -118,6 +119,25 @@ describe('ContentBlockRenderer', () => {
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });
 
+  it('shows an accessible localized fallback for a Scene that has not been registered yet', () => {
+    render(
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[
+          {
+            id: 'not-yet-registered',
+            slug: 'pendingScene',
+            type: 'scene',
+            params: {},
+            locale: { value: { title: 'Interactive shadows' } },
+          },
+        ]}
+        sceneRegistry={() => undefined}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
+  });
+
   it('exposes a standalone WebVTT captions asset as an accessible link and question label', () => {
     const captions: ContentBlock_Subtitles_Props = {
       id: 'captions',
@@ -132,6 +152,25 @@ describe('ContentBlockRenderer', () => {
     expect(link).toHaveAttribute('lang', 'uk-UA');
     expect(link).toHaveAttribute('dir', 'ltr');
     expect(questionBlockLabel(captions)).toBe('uk.vtt');
+  });
+
+  it('does not publish a clickable caption link for an unresolved subtitles asset', () => {
+    render(
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[
+          {
+            id: 'pending-captions',
+            slug: 'pendingCaptions',
+            type: 'subtitles',
+            params: {},
+            locale: { fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.vtt' },
+          },
+        ]}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
+    expect(screen.queryByRole('link')).toBeNull();
   });
 
   it('does not dispatch quiz entries as content blocks', () => {

@@ -120,8 +120,8 @@ export const defineCheckpointItem = <
   const props = (options: PublicationLanguageOptions<Languages>): ItemPublication<ItemBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ id, type, slug, question, answer, ...(check !== undefined ? { check } : {}) });
-    const builtQuestion = question.build.props({ languages });
-    const builtAnswer = answer.build.props({ languages });
+    const builtQuestion = question.build.props({ languages, mode: options.mode });
+    const builtAnswer = answer.build.props({ languages, mode: options.mode });
     const locale: ItemFiles = {};
     for (const [language, fields] of Object.entries(builtAnswer.locale ?? {})) {
       (locale[language as LanguageCode] ??= {}).answer = fields.content;
@@ -164,7 +164,7 @@ export const defineCheckpointItem = <
         if (!isObject(patch.question)) throw new Error('Question override must be an object');
         if (isObject(patch.question.params) && Object.hasOwn(patch.question.params, 'disabled'))
           throw new Error('The mandatory Checkpoint question cannot be disabled');
-        const built = question.build.overrides(patch.question, { languages });
+        const built = question.build.overrides(patch.question, { languages, mode: options.mode });
         if (Object.keys(built.base).length) output.base.question = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {}))
           (locale[language as LanguageCode] ??= {}).question = fields;
@@ -172,7 +172,7 @@ export const defineCheckpointItem = <
       if (patch.answer !== undefined) {
         const built = (answer.build.overrides as (patch: never, options: PublicationLanguageOptions) => AnswerOverride)(
           patch.answer as never,
-          { languages },
+          { languages, mode: options.mode },
         );
         if (built.base.content) output.base.answer = built.base.content;
         for (const [language, fields] of Object.entries(built.locale ?? {}))

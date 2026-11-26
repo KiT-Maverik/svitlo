@@ -54,7 +54,13 @@ function renderBlock(
         />
       );
     case 'scene':
-      return <Scene response={response} sceneRegistry={sceneRegistry} />;
+      return (
+        <Scene
+          response={response}
+          sceneRegistry={sceneRegistry}
+          unavailableMessage={messages.learningLayout.preparingLessonError}
+        />
+      );
     case 'code':
       return <Code {...response} />;
     case 'audio':
@@ -68,7 +74,7 @@ function renderBlock(
     case 'carousel':
       return <Carousel {...response} messages={messages} sceneRegistry={sceneRegistry} />;
     case 'subtitles':
-      return <Subtitles {...response} />;
+      return <Subtitles {...response} unavailableMessage={messages.learningLayout.preparingLessonError} />;
     default:
       return assertNever(response);
   }

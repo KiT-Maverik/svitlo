@@ -8,7 +8,11 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 
-import { DEFAULT_SUPPORTED_LANGUAGES, type ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+import {
+  DEFAULT_SUPPORTED_LANGUAGES,
+  UNRESOLVED_RESOURCE_UUID,
+  type ContentBlock_Audio_Props,
+} from '@svitlo/engine/runtime';
 
 import type { Audio_Locale } from '../../../../../../data/locale/audio';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
@@ -51,7 +55,8 @@ export const Audio = ({
   const volume = mediaSettings ? mediaSettings.volume / 100 : localVolume;
   const muted = mediaSettings?.muted ?? localMuted;
   const [speed, setSpeed] = useState(1);
-  const failureKind = failure?.source === fileLocation ? failure.kind : null;
+  const pending = fileLocation.includes(UNRESOLVED_RESOURCE_UUID);
+  const failureKind = pending ? 'unavailable' : failure?.source === fileLocation ? failure.kind : null;
 
   // One shared source of truth inside a lesson; standalone players retain local settings.
   // Browser volumechange events do not write to the shared context to avoid feedback loops.
@@ -161,15 +166,17 @@ export const Audio = ({
   return (
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       {failureKind ? (
-        <div className={styles.placeholder} role="alert">
+        <div className={styles.placeholder} role={pending ? 'status' : 'alert'}>
           {resolvedTitle && <strong>{resolvedTitle}</strong>}
           <span>
             {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'audio.fallback.' + failureKind) ??
               messages[failureKind]}
           </span>
-          <Button type="button" variant="outlined" onClick={retry}>
-            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'audio.fallback.retry') ?? messages.retry}
-          </Button>
+          {!pending && (
+            <Button type="button" variant="outlined" onClick={retry}>
+              {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'audio.fallback.retry') ?? messages.retry}
+            </Button>
+          )}
         </div>
       ) : (
         <div className={styles.player}>

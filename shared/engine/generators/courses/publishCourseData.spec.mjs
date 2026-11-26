@@ -17,8 +17,15 @@ import {
   defineText,
   defineScene,
   defineImage,
+  defineYoutube,
 } from '@svitlo/engine/build';
-import { assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode } from '@svitlo/engine/runtime';
+import {
+  assembleCourseTree,
+  assembleCourseLesson,
+  courseActivities,
+  findCourseEpisode,
+  UNRESOLVED_YOUTUBE_HREF,
+} from '@svitlo/engine/runtime';
 import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
@@ -683,4 +690,77 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
   const tampered = structuredClone(base);
   tampered.content.items.plannedLesson.section = [];
   assert.throws(() => assembleCourseTree(tampered, uk, course.id, 'uk', 'draft'), /draft|preview|section/i);
+});
+
+test('Course-owned additional Section keeps pending YouTube in draft preview but refuses production', () => {
+  const languages = ['en'];
+  const id = n => 'f775647f-203d-481a-a1c7-4d331c779d' + String(n).padStart(2, '0');
+  const pendingVideo = defineYoutube({
+    id: id(1),
+    slug: 'pendingVideo',
+    type: 'youtube',
+    params: { mode: 'embed' },
+    locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Video not implemented' },
+  });
+  const addedSection = defineContentSection({
+    id: id(2),
+    slug: 'addedSection',
+    type: 'content',
+    params: {},
+    locale: { title: 'Media to produce', navigationLabel: 'Preview' },
+    content: { items: { pendingVideo }, order: ['pendingVideo'] },
+  });
+  const lesson = defineLesson({
+    id: id(3),
+    slug: 'standalone',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Reusable Lesson' },
+    section: { items: {}, order: [] },
+  });
+  const placed = placeLesson(lesson, {
+    section: { additionalItems: { addedSection }, order: ['addedSection'] },
+  });
+  const chapter = defineChapter({
+    id: id(4),
+    slug: 'chapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { adapted: placed }, order: ['adapted'] },
+  });
+  const module = defineModule({
+    id: id(5),
+    slug: 'module',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: { items: { chapter }, order: ['chapter'] },
+  });
+  const course = defineCourse({
+    id: id(6),
+    slug: 'draftWithPendingVideo',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Work in progress', description: 'Draft-only Course' },
+    content: { items: { module }, order: ['module'] },
+  });
+
+  assert.throws(() => renderCourseFiles(course), /unresolved video reference/);
+  const files = renderCourseFiles(course, { mode: 'draft' });
+  const base = JSON.parse(files.get('base.json'));
+  const patch = base.content.items.module.content.items.chapter.content.items.adapted.overrides;
+  assert.deepEqual(
+    patch.section.map(item => item.slug),
+    ['addedSection'],
+  );
+  assert.equal(patch.section[0].content[0].locale.href, UNRESOLVED_YOUTUBE_HREF);
+  assert.equal(patch.section[0].content[0].locale.label, 'Video not implemented');
+  assert.deepEqual(lesson.build.props({ languages }).base.section, []);
+  assert.deepEqual(assembleCourseTree(base, undefined, course.id, 'en', 'draft').content.order, ['module']);
 });

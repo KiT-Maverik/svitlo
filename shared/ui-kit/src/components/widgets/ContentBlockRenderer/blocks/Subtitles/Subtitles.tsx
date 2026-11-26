@@ -1,6 +1,6 @@
 'use client';
 
-import type { ContentBlock_Subtitles_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Subtitles_Props } from '@svitlo/engine/runtime';
 
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { localizedAttributes, subtitlesResourceLabel } from '../../utils';
@@ -11,8 +11,18 @@ import { localizedAttributes, subtitlesResourceLabel } from '../../utils';
  * of silently dropping the block. A future paired-player contract can attach
  * it as a <track> without losing the authored captions resource.
  */
-export function Subtitles({ locale: { fileLocation } }: ContentBlock_Subtitles_Props) {
+export function Subtitles({
+  locale: { fileLocation },
+  unavailableMessage,
+}: ContentBlock_Subtitles_Props & { unavailableMessage?: string }) {
   const language = useContentLanguage();
+  if (fileLocation.includes(UNRESOLVED_RESOURCE_UUID)) {
+    return (
+      <span {...localizedAttributes({ locale: { code: language } })} role="status">
+        {unavailableMessage ?? 'Captions are unavailable'}
+      </span>
+    );
+  }
   return (
     <a {...localizedAttributes({ locale: { code: language } })} href={fileLocation}>
       {subtitlesResourceLabel(fileLocation)}
