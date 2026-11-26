@@ -26,10 +26,10 @@ import {
 } from '../../../_shared__configurators';
 import {
   carousel_Config_Schema,
-  carouselSlideTypes,
   carousel_Override_Config_Schema,
   carousel_Props_Schema,
   carousel_Slide_Props_Schema,
+  carouselSlideTypes,
   type Carousel_Metadata_Overrides,
   type ContentBlock_Carousel_Config,
   type ContentBlock_Carousel_Locale,
