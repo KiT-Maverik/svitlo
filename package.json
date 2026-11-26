@@ -47,5 +47,8 @@
     "content/languages/*",
     "shared/*",
     "shared/adapters/*"
-  ]
+  ],
+  "overrides": {
+    "katex": "0.19.1"
+  }
 }

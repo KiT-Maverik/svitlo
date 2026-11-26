@@ -6,7 +6,7 @@ on:
     branches: [maintenance/dependency-cleanup]
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: pr879-dependency-diagnostic-${{ github.ref }}
@@ -25,7 +25,9 @@ jobs:
         with:
           node-version: '26'
           cache: npm
-      - name: Clean install from the committed npm lockfile
+      - name: Regenerate lockfile using npm, without executing install hooks
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Clean install from the regenerated npm lockfile
         run: npm ci --no-audit --no-fund
       - name: Capture full and production audits
         shell: bash
@@ -73,3 +75,24 @@ jobs:
           done
       - name: Verify install-script policy remains restrictive
         run: npm config get allow-scripts || true
+      - name: Verify repository package boundaries
+        run: npm run repo:check:packages
+      - name: Commit npm-generated lockfile to this PR branch only
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_SOURCE_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_EVENT_NAME" = "push"
+          test "$PR_SOURCE_BRANCH" = "maintenance/dependency-cleanup"
+          if git diff --quiet --exit-code -- package-lock.json; then
+            echo "npm lockfile unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- package-lock.json
+          git commit -m "fix: synchronize npm lockfile for security remediation"
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" push --quiet origin "HEAD:refs/heads/$PR_SOURCE_BRANCH"
