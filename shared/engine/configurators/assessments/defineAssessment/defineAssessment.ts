@@ -8,10 +8,14 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -168,18 +172,15 @@ export const defineAssessment = <
   const buildSections = (
     items: Record<string, Assessment_Section_Configurator>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
       if (!child) throw new Error('Unknown Assessment Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
-      const resource = build.props({ languages, mode });
-      const patch = Object.hasOwn(patches, key)
-        ? build.overrides(patches[key] as never, { languages, mode })
-        : undefined;
+      const resource = buildChildProps({ build });
+      const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
@@ -219,7 +220,7 @@ export const defineAssessment = <
     validate({ ...copyAuthored(), before, quiz, after });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
-    const children = buildSections(initialSections, initialOrder, languages, {}, options.mode);
+    const children = buildSections(initialSections, initialOrder);
     const files = selectPublicationLocales(translated.files, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).section = values;
@@ -339,7 +340,7 @@ export const defineAssessment = <
         const sections = composeSections(edited);
         const keys = [...Object.keys(sections.items)];
         if (keys.length !== new Set(keys).size) throw new Error('Assessment Section slug collision');
-        const resolved = buildSections(sections.items, sections.order, languages, childPatches, options.mode);
+        const resolved = buildSections(sections.items, sections.order, childPatches);
         output.base.section = resolved.base;
         for (const [language, values] of Object.entries(resolved.locale))
           (files[language as LanguageCode] ??= {}).section = values;
@@ -365,7 +366,7 @@ export const defineAssessment = <
     quiz,
     after,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: configBase,
       locales: (): { locale: DeepPartial<Assessment_Config['locale']> } => ({

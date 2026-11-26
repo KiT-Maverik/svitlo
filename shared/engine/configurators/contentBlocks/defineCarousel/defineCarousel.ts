@@ -10,10 +10,14 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -133,22 +137,18 @@ export const defineCarousel = <
   const buildSlides = (
     items: Record<string, Slide>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ): {
     base: ContentBlock_Carousel_SlideProps[] | undefined;
     locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
   } => {
+    const { languages } = requireBuildContext();
     const entries = order
       .map(key => {
         const slide = items[key];
-        const resource = slide.build.props({ languages, mode });
+        const resource = buildChildProps(slide);
         const patch = Object.hasOwn(patches, key)
-          ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
-              patches[key] as never,
-              { languages, mode },
-            )
+          ? (buildChildOverrides(slide, patches[key] as never) as unknown as SlidePatch)
           : undefined;
         return { resource, patch };
       })
@@ -206,7 +206,7 @@ export const defineCarousel = <
     validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const built = buildSlides(initialItems, initialOrder, languages, {}, options.mode);
+    const built = buildSlides(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
 
     for (const [language, entries] of Object.entries(built.locale)) {
@@ -331,7 +331,7 @@ export const defineCarousel = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Slide] => entry[1] !== false),
         );
-        const built = buildSlides(enabled, order, languages, childPatches, options.mode);
+        const built = buildSlides(enabled, order, childPatches);
         if (built.base) output.base.locale = { ...output.base.locale, slides: built.base };
         for (const [language, entries] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
@@ -365,7 +365,7 @@ export const defineCarousel = <
     type,
     slides,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

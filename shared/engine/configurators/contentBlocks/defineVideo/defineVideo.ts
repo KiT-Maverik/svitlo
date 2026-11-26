@@ -7,6 +7,7 @@ import {
   onlyLocales,
   onlyStrings,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
@@ -137,7 +138,7 @@ export const defineVideo = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({

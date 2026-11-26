@@ -4,8 +4,12 @@ import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
@@ -97,17 +101,14 @@ export function defineFlashcardSide<
   const buildContent = (
     active: Record<string, Block>,
     sorted: readonly string[],
-    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
   ): SidePublication => {
+    const { languages } = requireBuildContext();
     const entries = sorted.map(key => {
       const child = active[key];
-      const resource = child.build.props({ languages }) as unknown as BlockResource;
+      const resource = buildChildProps(child) as unknown as BlockResource;
       const patch = Object.hasOwn(changes, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => BlockPatch)(
-            changes[key] as never,
-            { languages },
-          )
+        ? (buildChildOverrides(child, changes[key] as never) as unknown as BlockPatch)
         : undefined;
       return { resource, patch };
     });
@@ -137,7 +138,7 @@ export function defineFlashcardSide<
   const props = (options: PublicationLanguageOptions<Languages>): SidePublication => {
     const languages = resolvePublicationLanguages(options);
     validateSide({ items: initialItems, order: initialOrder });
-    const result = structuredClone(buildContent(initialItems, initialOrder, languages));
+    const result = structuredClone(buildContent(initialItems, initialOrder));
     validatePublication(result, languages);
     return result;
   };
@@ -183,7 +184,7 @@ export function defineFlashcardSide<
       Object.entries(enabled).filter((entry): entry is [string, Block] => entry[1] !== false),
     );
     validateSide({ items: active, order: [...nextOrder] });
-    const result = structuredClone(buildContent(active, nextOrder, languages, childPatches));
+    const result = structuredClone(buildContent(active, nextOrder, childPatches));
     validatePublication(props(options), languages, result);
     return result;
   };
@@ -193,7 +194,7 @@ export function defineFlashcardSide<
     items,
     order,
     validate: (required = false) => validateSide({ items: initialItems, order: initialOrder }, required),
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

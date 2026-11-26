@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.6.3",
-    "@storybook/nextjs-vite": "^10.6.3",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.8",
@@ -30,11 +29,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "jsdom": "^27.4.0",
-    "next": "16.4.6",
     "storybook": "^10.6.3",
     "typescript": "^5",
     "vitest": "^5.1.1",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "@storybook/react-vite": "10.6.8"
   },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",

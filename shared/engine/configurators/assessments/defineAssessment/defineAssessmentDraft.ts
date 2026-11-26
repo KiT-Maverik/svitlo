@@ -8,9 +8,11 @@ import type {
 } from '#types';
 
 import {
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
@@ -65,7 +67,7 @@ export const defineAssessmentDraft = <
     if (languages.some(language => !own.params.languages.includes(language)))
       throw new Error('Assessment draft does not support the requested language');
     validate();
-    const section = preview.build.props({ languages });
+    const section = buildChildProps(preview);
     const split = splitLocalizedFields(own.locale);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
@@ -105,7 +107,7 @@ export const defineAssessmentDraft = <
     draft: true as const,
     preview,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: {
         id,

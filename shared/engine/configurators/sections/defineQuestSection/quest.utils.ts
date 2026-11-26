@@ -1,7 +1,13 @@
 import { camelCase_Schema, type LanguageCode } from '#schemas';
 import type { DeepPartial } from '#types';
 
-import { mergeForValidation, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  buildChildOverrides,
+  buildChildProps,
+  mergeForValidation,
+  requireBuildContext,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 
 export type QuestPublication = {
   base: Record<string, unknown>;
@@ -53,18 +59,10 @@ export function assertQuestMap(value: unknown, kind: string, path: string): void
 }
 
 /** Compose keyed nested Build resources, preserving sparse per-language leaves and null audio slots. */
-export function projectQuestTree(node: unknown, languages: readonly LanguageCode[], patch?: unknown): QuestPublication {
+export function projectQuestTree(node: unknown, patch?: unknown): QuestPublication {
+  const { languages } = requireBuildContext();
   if (buildable(node)) {
-    const result =
-      patch === undefined
-        ? (node.build.props as (options: { languages: readonly LanguageCode[] }) => QuestPublication)({ languages })
-        : (
-            node.build.overrides as (
-              input: unknown,
-              options: { languages: readonly LanguageCode[] },
-            ) => QuestPublication
-          )(patch, { languages });
-    return result;
+    return patch === undefined ? buildChildProps(node) : buildChildOverrides(node, patch);
   }
   if (node === null) {
     if (patch !== undefined) throw new Error('Cannot override an absent Quest media track');
@@ -78,7 +76,7 @@ export function projectQuestTree(node: unknown, languages: readonly LanguageCode
   for (const key of keys) {
     if (!Object.hasOwn(node, key)) throw new Error('Unknown Quest child: ' + key);
     const childPatch = patch === undefined ? undefined : (patch as Record<string, unknown>)[key];
-    const child = projectQuestTree(node[key], languages, childPatch);
+    const child = projectQuestTree(node[key], childPatch);
     base[key] = child.base;
     for (const [language, part] of Object.entries(child.locale ?? {})) {
       (locales[language as LanguageCode] ??= {})[key] = part;
