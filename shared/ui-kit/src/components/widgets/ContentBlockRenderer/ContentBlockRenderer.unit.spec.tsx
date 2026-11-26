@@ -118,6 +118,23 @@ describe('ContentBlockRenderer', () => {
     expect(screen.getByRole('img', { name: 'Diagram' })).toBeVisible();
   });
 
+  it('shows an accessible localized fallback for a Scene that has not been registered yet', () => {
+    render(
+      <ContentBlockRenderer
+        messages={enUiKitMessages}
+        blocks={[{
+          id: 'not-yet-registered',
+          slug: 'pendingScene',
+          type: 'scene',
+          params: {},
+          locale: { value: { title: 'Interactive shadows' } },
+        }]}
+        sceneRegistry={() => undefined}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
+  });
+
   it('exposes a standalone WebVTT captions asset as an accessible link and question label', () => {
     const captions: ContentBlock_Subtitles_Props = {
       id: 'captions',

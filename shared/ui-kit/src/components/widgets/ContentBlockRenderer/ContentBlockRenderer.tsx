@@ -54,7 +54,13 @@ function renderBlock(
         />
       );
     case 'scene':
-      return <Scene response={response} sceneRegistry={sceneRegistry} />;
+      return (
+        <Scene
+          response={response}
+          sceneRegistry={sceneRegistry}
+          unavailableMessage={messages.learningLayout.preparingLessonError}
+        />
+      );
     case 'code':
       return <Code {...response} />;
     case 'audio':
