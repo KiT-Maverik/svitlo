@@ -1,2 +1,2 @@
-export * from './defineCode';
-export * from './defineCode.schemas';
+/** Compatibility re-export. */
+export * from '../primitive/defineCode/index.ts';
