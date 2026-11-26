@@ -8,7 +8,7 @@ import type {
   PublicationLanguageOptions,
 } from '#types';
 
-import { resolvePublicationLanguages, validateRequestedPublication 
+import { resolvePublicationLanguages, validateRequestedPublication, 
   scopeBuild,
 } from '../../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
