@@ -28,7 +28,9 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings 
+  scopeBuild,
+} from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -229,7 +231,7 @@ export const defineMatchBlocks = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

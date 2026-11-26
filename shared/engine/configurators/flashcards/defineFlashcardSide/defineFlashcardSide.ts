@@ -8,6 +8,7 @@ import {
   resolvePublicationLanguages,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
@@ -193,7 +194,7 @@ export function defineFlashcardSide<
     items,
     order,
     validate: (required = false) => validateSide({ items: initialItems, order: initialOrder }, required),
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

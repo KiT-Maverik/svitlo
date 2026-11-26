@@ -1,7 +1,9 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { resolvePublicationLanguages } from '../../_shared__configurators';
+import { resolvePublicationLanguages 
+  scopeBuild,
+} from '../../_shared__configurators';
 import {
   educationStandard_Config_Schema,
   educationStandard_Props_Schema,
@@ -62,6 +64,6 @@ export function defineEducationStandard<const Slug extends string>(
     return { base, locale };
   };
 
-  const result = { id, slug, type: 'educationStandard' as const, build: { props } } as const;
+  const result = { id, slug, type: 'educationStandard' as const, build: scopeBuild({ props }) } as const;
   return result as typeof result & LanguageScope<AllLanguageCodes>;
 }

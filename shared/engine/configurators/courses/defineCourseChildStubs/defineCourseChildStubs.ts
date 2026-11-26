@@ -1,7 +1,9 @@
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { resolvePublicationLanguages } from '../../_shared__configurators';
+import { resolvePublicationLanguages 
+  scopeBuild,
+} from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
 import { defineText } from '../../contentBlocks/defineText';
@@ -103,7 +105,7 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
     draft: true as const,
     preview: section,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: { id, slug, type, params, locale: { title: 'Not implemented' } },
       locales: () => ({ locale: {} }),

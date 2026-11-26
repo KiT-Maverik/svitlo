@@ -17,6 +17,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -307,7 +308,7 @@ export const defineEpisode = <
     draft: false as const,
     section,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: configBase,
       locales: (): { locale: DeepPartial<Episode_Config['locale']> } => ({

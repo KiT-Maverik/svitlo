@@ -16,6 +16,7 @@ import {
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -417,7 +418,7 @@ export function defineLesson<
     draft: false as const,
     section,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<Lesson_Config['locale']> } => ({

@@ -16,6 +16,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
+  scopeBuild,
 } from '../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
@@ -457,7 +458,7 @@ export function defineFlashcard<
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: () => ({

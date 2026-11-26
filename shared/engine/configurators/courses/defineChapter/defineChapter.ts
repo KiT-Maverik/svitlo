@@ -17,6 +17,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  scopeBuild,
 } from '../../_shared__configurators';
 import { assessment_Props_Schema } from '../../assessments/defineAssessment';
 import { episode_Props_Schema } from '../../episodes/defineEpisode';
@@ -419,7 +420,7 @@ export const defineChapter = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<Chapter_Locale<'config'>> } => ({
