@@ -1,2 +1,2 @@
-export * from './defineYoutube';
-export * from './defineYoutube.schemas';
+/** Compatibility re-export. */
+export * from '../primitive/defineYoutube/index.ts';

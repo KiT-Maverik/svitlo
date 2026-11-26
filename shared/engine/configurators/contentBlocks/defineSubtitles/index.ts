@@ -1,2 +1,2 @@
-export * from './defineSubtitles';
-export * from './defineSubtitles.schemas';
+/** Compatibility re-export. */
+export * from '../primitive/defineSubtitles/index.ts';
