@@ -37,18 +37,25 @@ on:
       - 'package.json'
       - '.github/workflows/engine-generators.yml'
   workflow_dispatch:
+    inputs:
+      build_once_engine_artifact:
+        description: 'Experiment: build Engine once and test two independent artifact consumers'
+        required: false
+        type: boolean
+        default: false
   workflow_call:
 
 permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}${{ inputs.build_once_engine_artifact && '-experiment' || '' }}
   cancel-in-progress: true
 
 jobs:
   publisher-isolation:
     name: Publisher isolation / no npm dependencies
+    if: ${{ !inputs.build_once_engine_artifact }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -65,6 +72,7 @@ jobs:
 
   ci-policy:
     name: Required check reuse and Draft policy
+    if: ${{ !inputs.build_once_engine_artifact }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -78,7 +86,9 @@ jobs:
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    if: >-
+      !inputs.build_once_engine_artifact &&
+      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -160,3 +170,128 @@ jobs:
             shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
             package.json shared/engine/package.json
+
+  # Manual-only experiment. Existing workflow is already registered on develop,
+  # so dispatch against this feature ref selects these branch-defined jobs.
+  # No required Production Quality job/status or regular generator work is changed.
+  experiment-engine-producer:
+    name: Experiment / Engine build producer
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies
+        run: |
+          start=$(date +%s)
+          npm ci --no-audit --no-fund
+          echo "- Producer npm ci: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Compile Engine exactly once
+        run: |
+          start=$(date +%s)
+          npm run package:build --workspace @svitlo/engine
+          echo "- Producer Engine package:build: $(($(date +%s) - start))s (1 invocation)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Validate compiled exports and measure artifact contents
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs inspect
+      - name: Mark upload start
+        run: echo "ARTIFACT_UPLOAD_STARTED=$(date +%s)" >> "$GITHUB_ENV"
+      - name: Upload complete Engine dist for this run
+        uses: actions/upload-artifact@v6
+        with:
+          name: experiment-engine-dist-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/engine/dist/
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
+      - name: Report upload duration
+        run: echo "- Producer artifact upload: $(($(date +%s) - ARTIFACT_UPLOAD_STARTED))s" >> "$GITHUB_STEP_SUMMARY"
+
+  experiment-consumer-types:
+    name: Experiment / UI Kit TypeScript consumer
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    needs: experiment-engine-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies independently
+        run: |
+          start=$(date +%s)
+          npm ci --no-audit --no-fund
+          echo "- TypeScript consumer npm ci: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Require Engine dist to be absent before download
+        run: test ! -e shared/engine/dist
+      - name: Mark download start
+        run: echo "ARTIFACT_DOWNLOAD_STARTED=$(date +%s)" >> "$GITHUB_ENV"
+      - name: Download producer artifact into Engine public-export location
+        uses: actions/download-artifact@v6
+        with:
+          name: experiment-engine-dist-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/engine/dist/
+      - name: Verify download and snapshot complete dist tree
+        id: artifact
+        run: |
+          echo "- TypeScript consumer artifact download: $(($(date +%s) - ARTIFACT_DOWNLOAD_STARTED))s" >> "$GITHUB_STEP_SUMMARY"
+          node scripts/ci/productionQuality/engine-artifact-guard.mjs snapshot "$RUNNER_TEMP/engine-dist-before.json"
+      - name: Typecheck the compiled Engine consumer
+        run: |
+          start=$(date +%s)
+          npm run code:check:types --workspace @svitlo/ui-kit
+          echo "- UI Kit TypeScript check: $(($(date +%s) - start))s (0 Engine package:build invocations)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Reject any consumer Engine dist rewrite
+        if: ${{ !cancelled() && steps.artifact.outcome == 'success' }}
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs verify "$RUNNER_TEMP/engine-dist-before.json"
+
+  experiment-consumer-tests:
+    name: Experiment / Engine unit test consumer
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build_once_engine_artifact }}
+    needs: experiment-engine-producer
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies independently
+        run: |
+          start=$(date +%s)
+          npm ci --no-audit --no-fund
+          echo "- Unit consumer npm ci: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Require Engine dist to be absent before download
+        run: test ! -e shared/engine/dist
+      - name: Mark download start
+        run: echo "ARTIFACT_DOWNLOAD_STARTED=$(date +%s)" >> "$GITHUB_ENV"
+      - name: Download producer artifact into Engine public-export location
+        uses: actions/download-artifact@v6
+        with:
+          name: experiment-engine-dist-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/engine/dist/
+      - name: Verify download and snapshot complete dist tree
+        id: artifact
+        run: |
+          echo "- Unit consumer artifact download: $(($(date +%s) - ARTIFACT_DOWNLOAD_STARTED))s" >> "$GITHUB_STEP_SUMMARY"
+          node scripts/ci/productionQuality/engine-artifact-guard.mjs snapshot "$RUNNER_TEMP/engine-dist-before.json"
+      - name: Run complete Engine unit suite without rebuild-triggering pretest
+        run: |
+          start=$(date +%s)
+          npm --ignore-scripts run test --workspace @svitlo/engine
+          echo "- Engine test script: $(($(date +%s) - start))s (0 Engine package:build invocations)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Reject any consumer Engine dist rewrite
+        if: ${{ !cancelled() && steps.artifact.outcome == 'success' }}
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs verify "$RUNNER_TEMP/engine-dist-before.json"
