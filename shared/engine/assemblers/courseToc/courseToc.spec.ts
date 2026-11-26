@@ -40,7 +40,13 @@ test('assembles a sparse locale on a stable ordered hierarchy with repeated Less
 test('fails closed on missing locale labels, changed identities, unsafe keys, and unsupported languages', () => {
   assert.throws(() => assembleCourseToc(base, undefined, id(1), 'en'), /Missing localized/);
   assert.throws(
-    () => assembleCourseToc(base, { ...uk, content: { items: { again: { id: id(5) } } } }, id(1), 'uk'),
+    () =>
+      assembleCourseToc(
+        base,
+        { ...uk, content: { items: { ...uk.content.items, again: { id: id(5) } } } },
+        id(1),
+        'uk',
+      ),
     /identity changed/,
   );
   assert.throws(() => assembleCourseToc(base, uk, id(1), 'pl'), /requested language/);
