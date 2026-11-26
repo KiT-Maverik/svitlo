@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
-import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+import { defineText } from '../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineSelectOneAnswer } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 

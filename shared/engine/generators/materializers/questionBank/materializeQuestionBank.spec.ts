@@ -178,6 +178,27 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
   );
 });
 
+test('Question Bank rejects Composite children in Stage 3 authored source, including unsafe casts', () => {
+  const source = completeBank();
+  Object.assign(source.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+    gallery: {
+      config: {
+        id: id(47),
+        slug: 'gallery',
+        type: 'carousel',
+        params: {},
+        locale: {},
+        slides: { items: {}, order: [] },
+      },
+    },
+  });
+  source.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('gallery');
+  assert.throws(
+    () => materializeQuestionBank(source as never, finalAuth(source)),
+    /Invalid reviewed questionBank Stage 3 input/,
+  );
+});
+
 test('Question Bank Stage 3 permits minimal local Quiz intent without redundant prose fields', () => {
   const input = completeBank();
   input.production.quiz = {

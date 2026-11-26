@@ -4,8 +4,11 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import {
+  primitiveContentBlockConfigurator_Schema,
+  primitiveContentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -26,7 +29,7 @@ export const matchBlocks_Config_Schema = questionBase.extend({
     pairs: z.object({
       items: z.record(
         z.string(),
-        z.object({ left: z.custom<ContentBlock_Configurator>(), right: z.custom<ContentBlock_Configurator>() }),
+        z.object({ left: primitiveContentBlockConfigurator_Schema, right: primitiveContentBlockConfigurator_Schema }),
       ),
       order: z.array(z.string()),
     }),
@@ -49,11 +52,14 @@ export const matchBlocks_Props_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Props_Schema.extend({
-    pairs: z.record(z.string(), z.object({ left: contentBlockResolved_Schema, right: contentBlockResolved_Schema })),
+    pairs: z.record(
+      z.string(),
+      z.object({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema }),
+    ),
   }),
 });
 export type Question_MatchBlocks_Props = Omit<z.infer<typeof matchBlocks_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Props> & {
-    pairs: Record<string, { left: ContentBlock_Props; right: ContentBlock_Props }>;
+  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
+    pairs: Record<string, { left: ContentBlock_Primitive_Props; right: ContentBlock_Primitive_Props }>;
   };
 };

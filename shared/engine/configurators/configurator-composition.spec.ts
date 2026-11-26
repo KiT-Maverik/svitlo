@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
-import { defineText } from './contentBlocks/defineText';
+import { defineText } from './contentBlocks/primitive/defineText';
 import { defineLesson } from './lessons/defineLesson';
 import { defineContentSection } from './sections/defineContentSection';
 import { defineSkill, defineSkillDomain, defineSkillGroup } from './skills';

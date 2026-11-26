@@ -1,16 +1,17 @@
 import { z } from 'zod';
 
-import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
+import { primitiveContentBlockConfigurator_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks/contentBlock.types';
 import type { FlashcardSide_Configurator } from './defineFlashcardSide';
 
-type Block = ContentBlock_Configurator;
+type Block = ContentBlock_Primitive_Configurator;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /** A side is a structural ContentBlock collection, not a UUID-bearing entity. */
 export const flashcardSide_Config_Schema = z.strictObject({
-  items: z.record(z.string(), z.custom<Block>()),
+  items: z.record(z.string(), primitiveContentBlockConfigurator_Schema),
   order: z.array(z.string()),
 });
 export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;

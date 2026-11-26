@@ -1,7 +1,7 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
 import type { SceneSource } from '../scene/materializeScene';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CarouselSlideSource = ContentBlock_Image_Config | SceneSource;
 export type CarouselSource = Omit<ContentBlock_Carousel_Config, 'slides'> & {
@@ -124,7 +124,12 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   const files: CarouselFile[] = [];
   const diagnostics: CarouselDiagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('carousel', ['defineCarousel', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
+  const claim = createSourceIdentifierRegistry('carousel', [
+    'defineCarousel',
+    'languages',
+    'content',
+    reserved.has(config.slug) ? 'config_' + config.slug : config.slug,
+  ]);
   const entries: string[] = [];
   const emitted = new Set<string>();
   for (const key of slides.order) {

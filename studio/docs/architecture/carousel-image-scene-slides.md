@@ -1,7 +1,7 @@
 # Carousel Image/Scene slides in typed Lesson source
 
 **Current contract:** `defineCarousel` accepts `defineImage` and `defineScene` children
-in `slides: { items, order }`. The former `defineCarouselSlide` configurator
+in `slides: { items, order }`. Carousel is **Composite**: it cannot be nested under a CheckpointAnswer, Question or Flashcard side. A regular Section may hold a Carousel beside a Checkpoint. The former `defineCarouselSlide` configurator
 and colocated binary media are retired. See the
 [typed Carousel source materializer](../../../shared/engine/generators/materializers/carousel/README.md)
 and [textbook asset packaging guide](../../../scripts/textbook-tooling/buildTextbook/README.md)

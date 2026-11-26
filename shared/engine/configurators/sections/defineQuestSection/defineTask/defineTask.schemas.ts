@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 import { identityBase_Schema } from '../../../_shared__configurators/common.schemas';
-import type { ContentBlock_Scene_Configurator } from '../../../contentBlocks/defineScene';
-import { scene_Props_Schema } from '../../../contentBlocks/defineScene/defineScene.schemas';
+import type { ContentBlock_Scene_Configurator } from '../../../contentBlocks/primitive/defineScene';
+import { scene_Props_Schema } from '../../../contentBlocks/primitive/defineScene/defineScene.schemas';
 
 const kind = identityBase_Schema.extend({ type: z.literal('questTask') });
 export const task_Config_Schema = kind

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { defineText } from '../contentBlocks/defineText';
+import { defineText } from '../contentBlocks/primitive/defineText';
 import {
   answerWithNumber_Config_Schema,
   defineAnswerWithNumber,

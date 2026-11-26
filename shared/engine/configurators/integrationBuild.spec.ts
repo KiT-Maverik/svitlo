@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { mergeForValidation } from './_shared__configurators';
-import { defineText } from './contentBlocks/defineText';
+import { defineText } from './contentBlocks/primitive/defineText';
 import { defineChapter } from './courses/defineChapter';
 import { course_Props_Schema, defineCourse } from './courses/defineCourse';
 import { defineModule } from './courses/defineModule';

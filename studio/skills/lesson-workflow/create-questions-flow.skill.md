@@ -134,8 +134,14 @@ to this Question source. The owning Lesson supplies Skill context;
 
 Use real immutable Question/Block UUIDs, source-locale prompts, correct
 answer keys, meaningful distractors and `{items,order}` collections.
-Nested ContentBlocks/Carousel slides/Checkpoint children have plain typed
-Config nodes rather than constructed Configurators. The Stage 2 and Stage 3
+Question-owned content, explanations, answer choices, distractors, matching
+pairs, sequences and block-filled slots must contain **Primitive ContentBlocks
+only** (Text, Markdown, Code, Image, Audio, Video, YouTube, Subtitles, Scene).
+Carousel and Checkpoint remain legal in ordinary Lesson Sections but are invalid
+inside Question Banks, including `additionalItems` and final typed Stage 3
+source. Plain typed Config nodes—not live Configurators—are authored under
+the ordered Question collections. Scene remains eligible unless a separate
+owner-approved restriction changes that policy. The Stage 2 and Stage 3
 types derive from `shared/engine/types/workflow/bankWorkflowFinal.schemas.ts`
 and the real nine Config/Zod contracts, with no parallel workflow type map.
 

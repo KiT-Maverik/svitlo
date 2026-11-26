@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineCarousel } from '../../contentBlocks/composite/defineCarousel';
+import { defineImage } from '../../contentBlocks/primitive/defineImage';
+import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineFlashcardSide } from './defineFlashcardSide';
 import { flashcardSideConfigurator_Schema } from './defineFlashcardSide.schemas';
 
@@ -90,6 +92,43 @@ describe('Configurators', () => {
             items: { first: first.config.base } as never,
             order: ['first'],
           }).build.props({ languages: ['en'] }),
+        );
+      });
+
+      test('rejects Composite ContentBlocks in authored sides and override additions', () => {
+        const image = defineImage({
+          id: '409a419f-5a01-46e0-aee6-4f66db492303',
+          slug: 'image',
+          type: 'image',
+          params: { fill: true, aspectRatio: 1.5 },
+          locale: { fileName: 'https://example.com/image.png', alt: 'Image' },
+        });
+        const carousel = defineCarousel({
+          id: '409a419f-5a01-46e0-aee6-4f66db492304',
+          slug: 'carousel',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          slides: { items: { image }, order: ['image'] },
+        });
+        assert.throws(
+          () =>
+            defineFlashcardSide({
+              items: { carousel },
+              order: ['carousel'],
+            } as never).build.props({ languages: ['en'] }),
+          /Primitive ContentBlocks|Invalid|type/,
+        );
+        assert.throws(
+          () =>
+            side.build.overrides(
+              {
+                additionalItems: { carousel },
+                order: ['first', 'carousel'],
+              } as never,
+              { languages: ['en'] },
+            ),
+          /Primitive ContentBlocks|Invalid|type/,
         );
       });
 

@@ -4,8 +4,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 
-import { defineImage } from '../../configurators/contentBlocks/defineImage/defineImage';
-import { defineText } from '../../configurators/contentBlocks/defineText/defineText';
+import { defineImage } from '../../configurators/contentBlocks/primitive/defineImage/defineImage';
+import { defineText } from '../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../configurators/sections/defineContentSection';
 import { assertMediaPublicationReady, projectTextbookMedia, type MediaDiagnostic } from './projectTextbookMedia.utils';

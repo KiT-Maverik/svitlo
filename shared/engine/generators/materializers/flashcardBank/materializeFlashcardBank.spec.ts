@@ -241,6 +241,28 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
   );
 });
 
+test('Flashcard Bank rejects both Composite child kinds before source emission', () => {
+  for (const type of ['carousel', 'checkpoint']) {
+    const source = completed();
+    Object.assign(source.config.flashcards.items.alpha.config.content.front.items, {
+      invalid: {
+        config: {
+          id: id(type === 'carousel' ? 471 : 472),
+          slug: 'invalid',
+          type,
+          params: {},
+          locale: {},
+        },
+      },
+    });
+    source.config.flashcards.items.alpha.config.content.front.order.push('invalid');
+    assert.throws(
+      () => materializeFlashcardBank(source as never, finalAuthorization(source)),
+      /Invalid reviewed flashcardBank Stage 3 input/,
+    );
+  }
+});
+
 test('Flashcard source materialization does not gate on editorial bank-required status', () => {
   const notRequired = handoff();
   notRequired.production.lesson.assessment.flashcardBankRequired = false;
