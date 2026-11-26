@@ -41,7 +41,9 @@ const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 function courseLanguages(base: unknown, id: string): LanguageCode[] {
-  if (!record(base) || !record(base.params) || !Array.isArray(base.params.languages))
+  if (!record(base) || base.id !== id || base.type !== 'course')
+    throw new Error('Published Course identity mismatch: ' + id);
+  if (!record(base.params) || !Array.isArray(base.params.languages))
     throw new Error('Invalid published Course languages: ' + id);
   const languages: LanguageCode[] = [];
   for (const language of base.params.languages) languages.push(languageCode_Schema.parse(language));
@@ -151,6 +153,11 @@ export async function loadPublishedCourseTreeWithFallback(
     const entries = await readdir(directory, { withFileTypes: true });
     const localeFiles = new Set(entries.filter(entry => entry.isFile()).map(entry => entry.name));
     contentLanguage = languages.find(language => localeFiles.has(language + '.json')) ?? languages[0];
+    // If a concrete locale file was selected, its disappearance is publication
+    // corruption, not a reason to silently substitute unlocalized base text.
+    const chosen = contentLanguage + '.json';
+    const locale = await readPublishedJson(path.join(directory, chosen), !localeFiles.has(chosen));
+    return { course: assembleCourseTree(base, locale, id, contentLanguage, mode), contentLanguage };
   }
   const locale = await readPublishedJson(path.join(directory, contentLanguage + '.json'), true);
   const course = assembleCourseTree(base, locale, id, contentLanguage, mode);
