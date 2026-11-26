@@ -18,10 +18,11 @@ export async function loadCourseDetail(courseId: string, language: string) {
   if (!detail) return null;
   const { course: published, contentLanguage } = detail;
 
-  const titles = await loadCourseLessonTitles(published, contentLanguage);
+  const toc = await loadCourseToc(published.id, contentLanguage);
+  assertCourseTocMatchesTree(published, toc);
   return {
     course: toCoursePreview(published),
-    outline: coursePropsToTopics(published, interfaceLocale.language, contentLanguage, titles),
+    outline: courseTocToTopics(toc, interfaceLocale.language, contentLanguage),
     interfaceLanguage: interfaceLocale.language,
     contentLanguage,
   };
