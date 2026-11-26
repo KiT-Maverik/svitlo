@@ -72,8 +72,9 @@ adding an independent installer/maker pipeline. The Vite renderer, esbuild
 main process and secure `svitlo://app` boundary are unchanged.
 
 The v27 configuration nests `files` under `fileOptions` and `npmRebuild`
-under `nativeModules`; the existing Linux packaged smoke test expects
-unpacked results at `release/linux-unpacked/` and verifies this in CI. The
+under `nativeModules`. ASAR packaging is enabled by default in v27, so the
+obsolete `asar: true` key has been removed. The Linux packaged smoke test
+expects unpacked results at `release/linux-unpacked/`. The
 `app:pack:prepared` command builds **unpacked only** and does not verify
 the AppImage, DMG or NSIS installers. For the installers use the appropriate
 `app:pack:<platform>` workspace script on a runner of that platform and
@@ -87,3 +88,15 @@ Verify their **actual absence** from the new npm lockfile and the full npm
 audit before accepting the migration; unrelated Storybook and ESLint
 deprecations are outside PR #882. Node.js 22.12.0 or newer is required by
 Builder 27. See https://www.electron.build/docs/migration/v26-to-v27/ .
+
+The root `package.json` temporarily scopes `minimatch@11.0.9` to
+`app-builder-lib` only. This targets GHSA-g3hv-75wg-m249 without changing
+Storybook dependencies or globally forcing other `minimatch` consumers.
+Electron Builder upstream has already merged the matching v27 source fix in
+[PR #10539](https://github.com/electron-userland/electron-builder/pull/10539),
+including FileMatcher tests, but `27.0.0-alpha.15` still locks the older
+range. This scoped override is a **temporary candidate** pending clean npm
+resolution, full audit and real Linux/Windows/macOS packaging verification;
+remove it when a tested released upstream Builder version incorporates the
+same fix. Do not change the `brace-expansion` dependency range independently:
+`minimatch@11` requires its matching newer API.
