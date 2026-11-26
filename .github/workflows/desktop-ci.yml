@@ -110,3 +110,30 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:prepared --workspace @svitlo/desktop
       - name: Start the packaged Linux executable without network
         run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop
+  installers:
+    # Packaging distributions is expensive; run on Ready, not on Draft commits.
+    if: github.event_name == 'pull_request' && !github.event.pull_request.draft
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+          - os: windows-latest
+            platform: win
+          - os: macos-latest
+            platform: mac
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install npm workspaces with restricted scripts
+        run: npm ci --no-audit --no-fund
+      - name: Build the actual target installer
+        run: npm run app:pack:${{ matrix.platform }} --workspace @svitlo/desktop
+      - name: Verify installer artifact was produced
+        run: npm run test:installers --workspace @svitlo/desktop
