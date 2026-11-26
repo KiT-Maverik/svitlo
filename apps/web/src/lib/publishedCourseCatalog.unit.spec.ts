@@ -23,7 +23,7 @@ function directory(id: string) {
 function base(id: string, languages: string[] = ['en', 'uk']) {
   writeFileSync(join(directory(id), 'base.json'), JSON.stringify({ id, type: 'course', params: { languages } }));
 }
-function owned(id: string) {
+function legacyManifest(id: string) {
   const root = join(temporary, 'public/.svitlo');
   mkdirSync(root, { recursive: true });
   writeFileSync(
@@ -50,10 +50,9 @@ afterEach(() => {
   rmSync(temporary, { recursive: true, force: true });
 });
 
-it('ignores empty orphan UUID directories and enumerates only actual selected publications', async () => {
+it('ignores genuinely empty UUID directories and enumerates valid published Courses', async () => {
   directory(orphanId);
   base(selectedId);
-  owned(selectedId);
   const catalog = await loadPublishedCourseCatalog('en');
   expect(catalog).toHaveLength(1);
   expect(catalog[0]).toMatchObject({ id: selectedId, title: 'Published ' + selectedId });
@@ -61,7 +60,7 @@ it('ignores empty orphan UUID directories and enumerates only actual selected pu
   expect(resources.tree).toHaveBeenCalledWith(selectedId, 'en');
 });
 
-it('respects Course language filtering without assembling unrelated locales', async () => {
+it('respects language filtering without assembling a Course in a non-declared locale', async () => {
   base(selectedId, ['uk']);
   directory(orphanId);
   expect(await loadPublishedCourseCatalog('en')).toEqual([]);
@@ -78,30 +77,36 @@ it('rejects malformed published bases and incomplete localized publications', as
   await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Missing Course publication base');
 });
 
-it('surfaces owned missing bases, including absent directories and empty leftovers', async () => {
-  owned(selectedId);
-  await expect(loadPublishedCourseCatalog('en')).rejects.toThrow();
+it('surfaces incomplete nonempty directories even without a base resource', async () => {
   directory(selectedId);
+  writeFileSync(join(directory(selectedId), 'unowned.txt'), 'not empty');
   await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Missing Course publication base');
 });
 
-it('does not silently omit structurally invalid published Course bases', async () => {
+it('rejects invalid Course identity and structurally invalid published language lists', async () => {
   directory(selectedId);
-  writeFileSync(join(directory(selectedId), 'base.json'), JSON.stringify({ params: {} }));
+  writeFileSync(join(directory(selectedId), 'base.json'), JSON.stringify({ id: orphanId, type: 'course' }));
+  await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Invalid Course publication identity');
+  writeFileSync(join(directory(selectedId), 'base.json'), JSON.stringify({ id: selectedId, type: 'course', params: {} }));
   await expect(loadPublishedCourseCatalog('en')).rejects.toThrow('Invalid Course publication languages');
 });
 
-it('returns an empty catalog when no Course publication root or ownership exists', async () => {
-  await expect(loadPublishedCourseCatalog('en')).resolves.toEqual([]);
+it('returns an empty catalog when the Course publication directory does not exist', async () => {
+  expect(await loadPublishedCourseCatalog('en')).toEqual([]);
 });
 
-it('does not display or parse unowned prior-textbook Course files when an ownership manifest exists', async () => {
+it('never reads build-time ownership manifests at runtime', async () => {
   base(selectedId);
-  owned(selectedId);
-  base(orphanId);
-  writeFileSync(join(directory(orphanId), 'base.json'), '{broken stale publication');
-  const catalog = await loadPublishedCourseCatalog('en');
-  expect(catalog.map(course => course.id)).toEqual([selectedId]);
-  expect(resources.tree).toHaveBeenCalledTimes(1);
-  expect(resources.tree).not.toHaveBeenCalledWith(orphanId, 'en');
+  legacyManifest(orphanId);
+  expect((await loadPublishedCourseCatalog('en')).map(course => course.id)).toEqual([selectedId]);
+  // Deliberately malformed manifest must have no effect on the runtime catalog.
+  writeFileSync(join(temporary, 'public/.svitlo/publish-web-fixture-alpha.json'), '{not json');
+  expect((await loadPublishedCourseCatalog('en')).map(course => course.id)).toEqual([selectedId]);
+});
+
+it('surfaces stale-but-present malformed Course files without an ownership registry', async () => {
+  base(selectedId);
+  writeFileSync(join(directory(orphanId), 'base.json'), '{old broken publication');
+  legacyManifest(selectedId);
+  await expect(loadPublishedCourseCatalog('en')).rejects.toThrow();
 });
