@@ -129,3 +129,25 @@ test('content: verifies canonical child export, permits explicit differing map k
     }),
   /generated identifier collision.*content/);
 });
+
+test('content: Course placement owns the notes but does not suppress pending Section work', () => {
+  const config = input() as Parameters<typeof materializeContentSection>[0];
+  const args = {
+    documentLanguage: 'en',
+    directory: 'sections/introduction',
+    languagesImport: '../../languages',
+    production: { purpose: 'Reviewed Course-only purpose', pending: true },
+    renderContentBlock,
+  };
+  const ordinary = materializeContentSection(config, args);
+  const ordinarySource = ordinary.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
+  assert.match(ordinarySource, /Transfer reviewed content Section notes/);
+  assert.match(ordinarySource, /Implement, validate and review the content Section production/);
+
+  const placement = materializeContentSection(config, { ...args, noteOwnership: 'course-lesson-placement' });
+  const placementSource = placement.files.find(file => file.path === 'sections/introduction/index.ts')!.content;
+  assert.doesNotMatch(placementSource, /Transfer reviewed content Section notes/);
+  assert.match(placementSource, /Implement, validate and review the content Section production/);
+  assert.ok(placement.diagnostics.some(item => item.code === 'pending-content'));
+  assert.ok(placement.diagnostics.every(item => !item.message.includes('Transfer reviewed')));
+});

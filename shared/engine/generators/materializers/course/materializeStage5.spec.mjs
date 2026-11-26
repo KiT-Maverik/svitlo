@@ -312,6 +312,7 @@ test('existing Lesson preserves source-authored plain Config patch and placement
   assert.match(wrapper.content, /export const directLesson = placeLesson\([\s\S]*\);\s*\/\*\n \* TODO \(BLOCKER\):/);
   assert.match(wrapper.content, /Reviewed course-local title and exercise/);
   assert.equal((wrapper.content.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+  assert.ok(wrapper.content.indexOf('/*\n * TODO (BLOCKER):') > wrapper.content.indexOf('export const directLesson = placeLesson('));
   assert.match(wrapper.content, /"allowSkipping": false/);
   const main = result.files.find(file => file.path === root + '/index.ts');
   assert.match(main.content, /import \{ directLesson \} from "\.\/directLesson"/);
@@ -361,6 +362,33 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   assert.match(index, /import \{ directLesson \} from "\.\/directLesson"/);
   assert.match(index, /"secondLesson": actualLesson/);
   assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
+  assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
+});
+
+
+test('repeated placements of one Lesson keep distinct reviewed override footers', () => {
+  const input = patchedSource();
+  const first = input.config.content.items.directLesson;
+  input.config.content.items.secondLesson = {
+    config: { ...first.config, slug: 'secondLesson' },
+    production: {
+      ...first.production,
+      sourcePatch: { params: { sections: { allowSkipping: false } } },
+      overrideRationale: 'Only the second placement gets this separately reviewed intention.',
+    },
+  };
+  input.config.content.order.push('secondLesson');
+  const before = structuredClone(input);
+  const result = materializeCourseStage5(input, reuseOptions());
+  const firstSource = result.files.find(file => file.path === root + '/directLesson/index.ts')?.content ?? '';
+  const secondSource = result.files.find(file => file.path === root + '/secondLesson/index.ts')?.content ?? '';
+  assert.match(firstSource, /Reviewed course-local title and exercise/);
+  assert.doesNotMatch(firstSource, /Only the second placement/);
+  assert.match(secondSource, /Only the second placement gets this separately reviewed intention/);
+  assert.doesNotMatch(secondSource, /Reviewed course-local title and exercise/);
+  assert.equal((firstSource.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+  assert.equal((secondSource.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
+  assert.deepEqual(input, before, 'Course source must not be changed by rendering');
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
 });
 
@@ -727,6 +755,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
               params: {},
               locale: { value: { uk: 'Тільки для цього курсу' } },
             },
+            production: {
+              purpose: 'Explain the Course-only evidence with a real example.',
+              pedagogicalIntent: 'Keep this Text rationale only with this placement.',
+            },
           },
         },
         order: ['message'],
@@ -760,7 +792,63 @@ test('new Course-owned Section and Text block materialize below an overridden Le
     },
     production: { purpose: 'Verify a nested Carousel Scene' },
   };
-  authoredSection.config.content.order.push('directScene', 'sceneCarousel');
+  authoredSection.config.content.items.checkpoint = {
+    production: { purpose: 'Use the nested Checkpoint to verify transfer.' },
+    config: {
+      id: '663572e7-bd85-4516-86e2-3de07d209e35',
+      type: 'checkpoint',
+      slug: 'checkpoint',
+      params: { requireCompletion: true },
+      locale: { title: 'Check' },
+      content: {
+        items: {
+          first: {
+            production: { pedagogicalIntent: 'Prompt a learner to explain the observation.' },
+            config: {
+              id: '663572e7-bd85-4516-86e2-3de07d209e36',
+              type: 'checkpointItem',
+              slug: 'first',
+              check: true,
+              question: {
+                config: {
+                  id: '663572e7-bd85-4516-86e2-3de07d209e37',
+                  type: 'text',
+                  slug: 'question',
+                  params: {},
+                  locale: { value: { uk: 'Що змінилося?' } },
+                },
+                production: { purpose: 'Ask learners to name the shadow change.' },
+              },
+              answer: {
+                config: {
+                  id: '663572e7-bd85-4516-86e2-3de07d209e38',
+                  type: 'checkpointAnswer',
+                  slug: 'answer',
+                  content: {
+                    items: {
+                      explanation: {
+                        config: {
+                          id: '663572e7-bd85-4516-86e2-3de07d209e39',
+                          type: 'text',
+                          slug: 'explanation',
+                          params: {},
+                          locale: { value: { uk: 'Тінь стала іншою.' } },
+                        },
+                        production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
+                      },
+                    },
+                    order: ['explanation'],
+                  },
+                },
+              },
+            },
+          },
+        },
+        order: ['first'],
+      },
+    },
+  };
+  authoredSection.config.content.order.push('directScene', 'sceneCarousel', 'checkpoint');
   const reviewed = source();
   reviewed.config.content.items = {
     reused: {
@@ -796,6 +884,15 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal((wrapper?.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
   assert.match(wrapper ?? '', /Course-specific extra practice is required/);
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
+  assert.match(wrapper ?? '', /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/);
+  assert.match(wrapper ?? '', /production\.pedagogicalIntent:\nKeep this Text rationale only with this placement/);
+  assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
+  assert.match(wrapper ?? '', /Verify a nested Carousel Scene/);
+  assert.match(wrapper ?? '', /Use the nested Checkpoint to verify transfer/);
+  assert.match(wrapper ?? '', /Prompt a learner to explain the observation/);
+  assert.match(wrapper ?? '', /Ask learners to name the shadow change/);
+  assert.match(wrapper ?? '', /Explain the evidence without memorized phrases/);
+  assert.doesNotMatch(wrapper ?? '', /Implement and keyboard-test the source-language shadow scene/);
   assert.match(wrapper ?? '', /Keep the complete reviewer note even with \* \/ and multiline formatting/);
   assert.doesNotMatch(section ?? '', /Transfer reviewed .* Section notes/);
   assert.doesNotMatch(
@@ -812,6 +909,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   }
   assert.ok(plan.diagnostics.filter(d => d.code === 'pending-scene').length >= 2);
   assert.ok(plan.files.some(file => file.path.endsWith('/directScene/index.ts')));
+  assert.ok(plan.files.some(file => file.path.endsWith('/checkpoint/index.ts')));
   assert.ok(plan.files.some(file => file.path.endsWith('/nestedScene/index.ts')));
   assert.ok(
     plan.files.every(file => !file.path.startsWith('content/playground/data/lessons/')),
