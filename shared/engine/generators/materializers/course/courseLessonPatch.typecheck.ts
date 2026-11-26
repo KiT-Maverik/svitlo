@@ -3,7 +3,7 @@
  * A concrete `typeof lesson` must constrain nested sparse overrides exactly
  * as the original stateless Lesson Build API does.
  */
-import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
+import { defineText } from '../../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import type { CourseLessonSourcePatch } from '../../../types/workflow/courseLessonSourcePatch.types';
