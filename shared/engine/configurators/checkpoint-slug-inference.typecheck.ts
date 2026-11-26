@@ -1,6 +1,6 @@
 import { configuratorArrayToSlugMap } from './_shared__configurators';
-import { defineCheckpoint, defineCheckpointAnswer, defineCheckpointItem } from './contentBlocks/defineCheckpoint';
-import { defineText } from './contentBlocks/defineText';
+import { defineCheckpoint, defineCheckpointAnswer, defineCheckpointItem } from './contentBlocks/composite/defineCheckpoint';
+import { defineText } from './contentBlocks/primitive/defineText';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
@@ -106,7 +106,7 @@ item.build.overrides(
   { languages: ['en', 'uk'] },
 );
 
-const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
+const notQuestion: import('./contentBlocks/composite/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
   type: 'checkpointItem',
   slug: 'invalid',
