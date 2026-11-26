@@ -11,3 +11,5 @@ For noisy content builds wrap the entire `build-changed-content.mjs` CLI only wh
 For AI diagnosis, follow [Agent CI failure triage](../../../studio/rules/ci-workflow.md#agent-ci-failure-triage-low-token-default): current PR head and required checks → failing job → failing step/annotations → bounded relevant excerpt. Do not download successful job logs by default. A normal GitHub job rerun cannot set a new `SVITLO_CI_VERBOSE` value; use a supported manual diagnostic invocation or a controlled local reproduction when detailed output is necessary.
 
 Tests for the existing runner: `node --test scripts/ci/quietRun/quiet-run.spec.mjs`.
+
+On Windows the runner starts the installed `npm-cli.js` with `process.execPath`, avoiding a `.cmd` shell invocation and preserving argument boundaries. CLI entrypoint detection accepts Windows and POSIX path separators; failures to locate npm are fatal rather than silent passes. Both are covered by unit tests.
