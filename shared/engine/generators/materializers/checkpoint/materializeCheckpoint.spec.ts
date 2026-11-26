@@ -3,7 +3,6 @@ import { test } from 'node:test';
 
 import ts from 'typescript';
 
-import { materializeCarousel } from '../carousel/materializeCarousel';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeScene } from '../scene/materializeScene';
@@ -25,26 +24,14 @@ const example = () => {
     params: {},
     locale: { value: { title: { uk: 'Практика', en: 'Practice' } } },
   };
-  const image = {
-    id: id(7),
-    slug: 'diagram',
-    type: 'image' as const,
-    params: { fill: true, aspectRatio: 1.5 },
-    locale: { fileName: 'verified.webp', alt: 'Diagram' },
-  };
-  const carousel = {
-    id: id(5),
-    slug: 'slides',
-    type: 'carousel' as const,
-    params: {},
-    locale: {},
-    slides: { items: { diagram: image, practiceScene: scene }, order: ['diagram', 'practiceScene'] },
-  };
   const answer = {
     id: id(4),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: { items: { slides: carousel, explanation: text('explanation', 8) }, order: ['slides', 'explanation'] },
+    content: {
+      items: { practiceScene: scene, explanation: text('explanation', 8) },
+      order: ['practiceScene', 'explanation'],
+    },
   };
   const item = {
     id: id(2),
@@ -87,29 +74,12 @@ function materializeTree() {
             documentLanguage: 'uk',
             languagesImport: '../../../../languages',
             renderChild: (child, childDir) => {
-              if (child.type === 'carousel') {
-                return materializeCarousel(child, {
-                  directory: childDir,
-                  documentLanguage: 'uk',
-                  languagesImport: '../../../../../languages',
-                  renderChild: (slide, slideDir) =>
-                    slide.type === 'scene'
-                      ? materializeScene(slide, {
-                          directory: slideDir,
-                          documentLanguage: 'uk',
-                          languagesImport: '../../../../../../languages',
-                          registered: false,
-                          production: { specification: '# Scene specification\n\nApproved prompt.\n' },
-                        })
-                      : primitive(slide, slideDir),
-                });
-              }
               return child.type === 'scene'
                 ? materializeScene(child, {
                     directory: childDir,
                     documentLanguage: 'uk',
                     languagesImport: '../../../../../languages',
-                    production: { specification: 'Reviewed scene.' },
+                    production: { specification: '# Scene specification\n\nApproved prompt.\n' },
                     registered: false,
                   })
                 : primitive(child, childDir);
@@ -119,7 +89,7 @@ function materializeTree() {
   });
 }
 
-test('Checkpoint recursively materializes Item → Text + Answer → Carousel → Image/Scene', () => {
+test('Checkpoint materializes Item → Text + Answer → Primitive Scene/Text', () => {
   const result = materializeTree();
   assert.deepEqual(result, materializeTree());
   const paths = result.files.map(file => file.path);
@@ -127,14 +97,12 @@ test('Checkpoint recursively materializes Item → Text + Answer → Carousel �
     'first/index.ts',
     'first/question/index.ts',
     'first/answer/index.ts',
-    'first/answer/slides/index.ts',
-    'first/answer/slides/slides/practiceScene/index.ts',
+    'first/answer/practiceScene/index.ts',
+    'first/answer/explanation/index.ts',
     'index.ts',
   ])
     assert.ok(paths.includes('sections/review/' + suffix), 'missing ' + suffix);
-  const sceneSource = result.files.find(
-    file => file.path === 'sections/review/first/answer/slides/slides/practiceScene/index.ts',
-  );
+  const sceneSource = result.files.find(file => file.path === 'sections/review/first/answer/practiceScene/index.ts');
   assert.ok(sceneSource, 'nested Scene Config source must be emitted');
   assert.match(sceneSource.content, /# Scene specification/);
   assert.match(sceneSource.content, /Approved prompt\./);

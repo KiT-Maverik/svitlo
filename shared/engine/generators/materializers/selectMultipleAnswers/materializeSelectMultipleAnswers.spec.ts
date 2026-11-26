@@ -51,7 +51,8 @@ test('selectMultipleAnswers: deterministic modular source, nested imports, sourc
   assert.ok(main);
   assert.match(main.content, /defineSelectMultipleAnswers</);
   assert.match(main.content, /TODO \(BLOCKER\)/);
-  assert.match(main.content, /child_content_question_items_prompt/);
+  assert.match(main.content, /import \\{ prompt \\} from "\\\.\\/sampleQuestion\\/question\\/prompt";/);
+  assert.match(main.content, /question:\\s*\\{\\s*items:\\s*\\{\\s*prompt\\s*\\}/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
   assert(!a.files.some(file => file.path.includes('/items/')));
@@ -67,6 +68,14 @@ test('selectMultipleAnswers: deterministic modular source, nested imports, sourc
       [],
     );
   }
+});
+test('selectMultipleAnswers: rejects duplicate child bindings instead of aliasing imports', () => {
+  const question = fixture();
+  Object.assign(question.config.content, { hint: collection({ prompt: block('prompt', 8) }) });
+  assert.throws(
+    () => materializeSelectMultipleAnswers(question as never, context),
+    /generated identifier collision.*content.question.items.prompt.*content.hint.items.prompt/,
+  );
 });
 test('selectMultipleAnswers: rejects delegated ContentBlock writing outside its semantic role', () => {
   assert.throws(

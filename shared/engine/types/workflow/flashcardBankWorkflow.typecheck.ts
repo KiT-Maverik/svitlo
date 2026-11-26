@@ -1,7 +1,7 @@
-import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Code_Config } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import type { ContentBlock_Image_Config } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Text_Config } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import type { Flashcard_Relationship } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { CarouselSource } from '../../generators/materializers/carousel/materializeCarousel';
 import type { CheckpointSource } from '../../generators/materializers/checkpoint/materializeCheckpoint';
@@ -227,10 +227,16 @@ const checkpointSource: CheckpointSource = {
   content: { items: { item: checkpointItemSource }, order: ['item'] },
 };
 const compositeSide: FlashcardBankWorkflowSideSource = {
-  items: { gallery: carouselSource, checkpoint: checkpointSource },
+  items: {
+    // @ts-expect-error Carousel is not an eligible Flashcard Side child.
+    gallery: carouselSource,
+    // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
+    checkpoint: checkpointSource,
+  },
   order: ['gallery', 'checkpoint'],
 };
-const compatibleCompositeSide: FlashcardSideSource = compositeSide;
+// The broad legacy type accepts the structurally typed object, but the final Stage 3 schema rejects both kind discriminants.
+const incompatibleCompositeSide: FlashcardSideSource = compositeSide;
 const expandedRelation: Flashcard_Relationship = {
   relationshipId: edge.relationshipId,
   type: edge.type,
@@ -328,11 +334,11 @@ const badReferenceBlock: ContentBlock_Text_Config = {
 
 void materializerSide;
 void carouselSource;
+void incompatibleCompositeSide;
 void checkpointAnswerSource;
 void checkpointItemSource;
 void checkpointSource;
 void compositeSide;
-void compatibleCompositeSide;
 void materializerCard;
 void materializerLanguages;
 void emptyInventory;

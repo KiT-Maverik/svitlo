@@ -2,8 +2,8 @@
 const buildContextPath = 'shared/engine/configurators/_shared__configurators/buildContext.ts';
 const localAssetPaths = [
   'shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/',
-  'shared/engine/configurators/contentBlocks/defineCode/',
-  'shared/engine/configurators/contentBlocks/defineMarkdown/',
+  'shared/engine/configurators/contentBlocks/primitive/defineCode/',
+  'shared/engine/configurators/contentBlocks/primitive/defineMarkdown/',
 ];
 
 /** The sole Build Context Node exception is the exact AsyncLocalStorage owner. */

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineContentSection } from '../defineContentSection/defineContentSection';
 import { defineQuizSection } from './defineQuizSection';
 import { quizSection_Config_Schema } from './defineQuizSection.schemas';

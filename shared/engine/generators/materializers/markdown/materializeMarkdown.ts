@@ -9,7 +9,7 @@ import { validateReplacementVariables } from '../../../configurators/contentBloc
 import {
   markdown_Config_Schema,
   type ContentBlock_Markdown_Config,
-} from '../../../configurators/contentBlocks/defineMarkdown';
+} from '../../../configurators/contentBlocks/primitive/defineMarkdown';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type MarkdownDraftConfig = Pick<ContentBlock_Markdown_Config, 'id' | 'slug' | 'type'> & {

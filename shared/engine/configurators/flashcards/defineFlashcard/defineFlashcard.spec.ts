@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineFlashcardSide } from '../defineFlashcardSide';
 import { defineFlashcard } from './defineFlashcard';
 import {

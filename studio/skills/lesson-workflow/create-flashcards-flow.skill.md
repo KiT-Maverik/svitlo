@@ -35,6 +35,15 @@ Create only the **minimal bank-owned typed Stage 1 source**, `export default { p
 
 Advance **the same object** to `FlashcardBankWorkflowStage2`: preserve all Stage 1 `production`, add `production.design` audits and a complete source-language `config.flashcards: { items, order }` with named Card nodes containing real immutable Card UUID/slug, `parameters.tags`, optional disability restrictions, **`parameters.flags: Flashcard_Flag_Config[]`**, and `content.front/back/hint` as real ordered `FlashcardSide` ContentBlock Config collections. Use real immutable ContentBlock IDs. No Side UUID/slug. Only source-language values are authored at this stage, while `production.lesson.languages.planned` retains the full intended translation scope; do not fake other locales.
 
+Each `front/back/hint` Flashcard Side contains **Primitive ContentBlocks only**:
+Text, Markdown, Code, Image, Audio, Video, YouTube, Subtitles or Scene. Carousel
+and Checkpoint are **not** valid Side entries, even though the ordinary
+Flashcards **Section-owned screen** may hold Composite blocks. Preserve real
+ordering, authored IDs, reuse evidence and locales; never flatten/remove a
+previously approved composite without owner review. Scene's eligibility is
+unchanged pending any separate owner decision. See the
+[composition matrix](../../docs/architecture/content-block-composition.md).
+
 Use [Create Lesson Flashcards](./create-lesson-flashcards.skill.md) for the complete atomicity, concise answer, bidirectional recall, typed Text/Code/Markdown variables, lists, acronym connector-letter mapping, custom flags, source references, accessible media and per-direction disability guidance. Ensure Card `parameters.relationships` is **not** manually authored. Instead, author each semantic relation **once** in bank `config.relationships: { items, order }` as `{relationshipId,type,source,target}` with real card slug endpoints and one of nine exact Engine relationship types. At Stage 5 the source-to-endpoint projection preserves `relationshipId`, uses the _other Card's UUID_ and generates `peer` for symmetric or `source/target` for directed links; no duplicates, self-relations or reversed semantics.
 
 To reuse Question fields, pin the exact Question export/field/locale/source SHA as editorial `production.questionReuse` **without** placing fake `kind: questionField` nodes into Config. A materializer may emit a direct verified typed import when implemented. Until then, that card is **blocked**, not silently copied or fabricated. New Flashcard-owned ContentBlocks get their own UUIDs; intentional reuse of an existing Question-owned Configurator retains that existing identity only after collision/ownership review. Do not invent asset paths, missing-media values, or translations.

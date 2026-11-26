@@ -1,19 +1,18 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
-import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
-import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
-import type { CarouselSource } from '../carousel/materializeCarousel';
+import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
+import { primitiveContentBlockTypes } from '../../../configurators/contentBlocks/contentBlock.constants';
+import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
+import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import type { ContentBlock_Subtitles_Config } from '../../../configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
+import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
+import type { ContentBlock_Video_Config } from '../../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
+import type { ContentBlock_Youtube_Config } from '../../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 import type { SceneSource } from '../scene/materializeScene';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CheckpointAnswerBlockSource =
   | ContentBlock_Audio_Config
-  | CarouselSource
   | ContentBlock_Code_Config
   | ContentBlock_Image_Config
   | ContentBlock_Markdown_Config
@@ -32,7 +31,7 @@ export type AnswerContext = {
   directory: string;
   documentLanguage: string;
   languagesImport: string;
-  /** Direct child materializer (Text, Carousel, Scene, etc.), never a generic serializer. */
+  /** Direct Primitive child materializer, never a generic serializer. */
   renderChild: (config: CheckpointAnswerBlockSource, directory: string) => AnswerResult;
 };
 const slug = /^[a-z][a-zA-Z0-9]*$/;
@@ -43,18 +42,7 @@ const reserved = new Set(
     ' ',
   ),
 );
-const allowed = new Set([
-  'audio',
-  'carousel',
-  'code',
-  'image',
-  'markdown',
-  'scene',
-  'subtitles',
-  'text',
-  'video',
-  'youtube',
-]);
+const allowed: ReadonlySet<string> = new Set(primitiveContentBlockTypes);
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function directory(value: string): string {
@@ -91,7 +79,7 @@ function literal(value: unknown, path: string, level = 0): string {
         '}'
     : '{}';
 }
-/** Emit CheckpointAnswer and delegate every allowed ContentBlock, including nested composites. */
+/** Emit CheckpointAnswer and delegate only primitive ContentBlocks. */
 export function materializeCheckpointAnswer(config: CheckpointAnswerSource, context: AnswerContext): AnswerResult {
   if (
     !record(config) ||
@@ -140,7 +128,12 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   const files: AnswerFile[] = [];
   const diagnostics: AnswerDiagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('checkpointAnswer', ['defineCheckpointAnswer', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
+  const claim = createSourceIdentifierRegistry('checkpointAnswer', [
+    'defineCheckpointAnswer',
+    'languages',
+    'content',
+    reserved.has(config.slug) ? 'config_' + config.slug : config.slug,
+  ]);
   const items: string[] = [];
   const paths = new Set<string>();
   for (const key of config.content.order) {

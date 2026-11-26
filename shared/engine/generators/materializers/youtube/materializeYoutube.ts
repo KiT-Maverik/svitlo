@@ -8,7 +8,7 @@ import { isDeepStrictEqual } from 'node:util';
 import {
   youtube_Config_Schema,
   type ContentBlock_Youtube_Config,
-} from '../../../configurators/contentBlocks/defineYoutube';
+} from '../../../configurators/contentBlocks/primitive/defineYoutube';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 

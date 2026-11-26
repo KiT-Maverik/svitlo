@@ -1,4 +1,3 @@
-/** Verify repository package contracts and allowed direct imports; runtime bundling is checked separately. */
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve, relative, sep } from 'node:path';
 import { isAllowedEngineImport } from './engine-import-policy.mjs';

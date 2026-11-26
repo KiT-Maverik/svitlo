@@ -7,7 +7,7 @@ import vm from 'node:vm';
 
 import ts from 'typescript';
 
-import { defineText } from '../../../configurators/contentBlocks/defineText/defineText';
+import { defineText } from '../../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';

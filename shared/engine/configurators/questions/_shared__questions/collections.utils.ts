@@ -2,20 +2,19 @@ import type { LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
 import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
-import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
-import { audio_Props_Schema } from '../../contentBlocks/defineAudio';
-import { carousel_Props_Schema } from '../../contentBlocks/defineCarousel';
-import { checkpoint_Props_Schema } from '../../contentBlocks/defineCheckpoint';
-import { code_Props_Schema } from '../../contentBlocks/defineCode';
-import { image_Props_Schema } from '../../contentBlocks/defineImage';
-import { markdown_Props_Schema } from '../../contentBlocks/defineMarkdown';
-import { scene_Props_Schema } from '../../contentBlocks/defineScene';
-import { text_Props_Schema } from '../../contentBlocks/defineText';
-import { video_Props_Schema } from '../../contentBlocks/defineVideo';
-import { youtube_Props_Schema } from '../../contentBlocks/defineYoutube';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
+import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
+import { audio_Props_Schema } from '../../contentBlocks/primitive/defineAudio';
+import { code_Props_Schema } from '../../contentBlocks/primitive/defineCode';
+import { image_Props_Schema } from '../../contentBlocks/primitive/defineImage';
+import { markdown_Props_Schema } from '../../contentBlocks/primitive/defineMarkdown';
+import { scene_Props_Schema } from '../../contentBlocks/primitive/defineScene';
+import { subtitles_Props_Schema } from '../../contentBlocks/primitive/defineSubtitles';
+import { text_Props_Schema } from '../../contentBlocks/primitive/defineText';
+import { video_Props_Schema } from '../../contentBlocks/primitive/defineVideo';
+import { youtube_Props_Schema } from '../../contentBlocks/primitive/defineYoutube';
 
-type Block = ContentBlock_Configurator;
+type Block = ContentBlock_Primitive_Configurator;
 type Fragment = Record<string, unknown>;
 type Files<T> = Partial<Record<LanguageCode, T>>;
 type BlockResource = { base: Fragment; locale: Files<Fragment> | undefined };
@@ -93,7 +92,7 @@ export const snapshotCommonContent = <C extends QuestionCommonContent>(value: C)
   }) as C;
 
 export function validateBlock(child: unknown, key: string): asserts child is Block {
-  const errors = validateSluggedConfiguratorMap({ [key]: child }, contentBlockTypes, {
+  const errors = validateSluggedConfiguratorMap({ [key]: child }, primitiveContentBlockTypes, {
     path: 'items',
     itemLabel: 'ContentBlock',
   });
@@ -145,9 +144,8 @@ const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
   video: video_Props_Schema,
   audio: audio_Props_Schema,
   youtube: youtube_Props_Schema,
-  carousel: carousel_Props_Schema,
-  checkpoint: checkpoint_Props_Schema,
   scene: scene_Props_Schema,
+  subtitles: subtitles_Props_Schema,
 };
 const validateChildPublication = (value: Fragment, language: LanguageCode): void => {
   const schema = propsSchemas[value.type as string];

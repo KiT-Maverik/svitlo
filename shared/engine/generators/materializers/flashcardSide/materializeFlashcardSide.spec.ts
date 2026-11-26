@@ -6,7 +6,7 @@ import ts from 'typescript';
 import { materializeFlashcardSide } from './materializeFlashcardSide';
 
 const block = (slug: string, n: number) => ({
-  config: { id: 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0'), slug, type: 'text' },
+  config: { id: 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0'), slug, type: 'text' as const },
 });
 const context = {
   directory: 'flashcards/cardOne/content/front',
@@ -23,6 +23,24 @@ const context = {
     ],
   }),
 };
+test('FlashcardSide rejects Carousel and Checkpoint before delegating source generation', () => {
+  for (const type of ['carousel', 'checkpoint']) {
+    assert.throws(
+      () =>
+        materializeFlashcardSide(
+          {
+            items: {
+              nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type: type as never } },
+            },
+            order: ['nested'],
+          },
+          context,
+        ),
+      /unsupported/,
+    );
+  }
+});
+
 test('FlashcardSide: correct child module paths, original order, no invented UUID, syntax', () => {
   const source = { items: { second: block('second', 2), first: block('first', 1) }, order: ['first', 'second'] };
   const output = materializeFlashcardSide(source, context);

@@ -44,11 +44,11 @@ test('existing isolated build-only exceptions stay unchanged', () => {
   assert.equal(isAllowedEngineImport('shared/engine/utils/generators/compile.ts', 'node:fs'), true);
   assert.equal(isAllowedEngineImport('shared/engine/utils/generators/compile.ts', 'esbuild'), true);
   assert.equal(
-    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineCode/helpers.ts', 'node:fs'),
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/primitive/defineCode/helpers.ts', 'node:fs'),
     true,
   );
   assert.equal(
-    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineMarkdown/check.ts', 'node:path'),
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/primitive/defineMarkdown/check.ts', 'node:path'),
     true,
   );
   assert.equal(
@@ -59,7 +59,7 @@ test('existing isolated build-only exceptions stay unchanged', () => {
     true,
   );
   assert.equal(
-    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs'),
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/primitive/defineText/defineText.ts', 'node:fs'),
     false,
   );
 });
@@ -73,8 +73,8 @@ test('Windows-relative paths preserve the exact same Engine import policy', () =
     ['shared/engine/configurators/_shared__configurators/buildContextCopy.ts', 'node:async_hooks', false],
     ['shared/engine/runtime.ts', 'node:async_hooks', false],
     ['shared/engine/utils/generators/compile.ts', 'node:fs', true],
-    ['shared/engine/configurators/contentBlocks/defineCode/helpers.ts', 'node:fs', true],
-    ['shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs', false],
+    ['shared/engine/configurators/contentBlocks/primitive/defineCode/helpers.ts', 'node:fs', true],
+    ['shared/engine/configurators/contentBlocks/primitive/defineText/defineText.ts', 'node:fs', false],
   ];
   for (const [path, specifier, expected] of cases) {
     const windowsPath = win32.relative(root, win32.join(root, path));
