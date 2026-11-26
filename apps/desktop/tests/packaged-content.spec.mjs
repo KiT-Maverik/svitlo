@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { allLanguageCodes } from '@svitlo/engine/runtime';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const renderer = join(root, 'dist-renderer');
+const renderer = join(root, '.vite/renderer/main_window');
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const resources = join(renderer, 'data/lessons/c', id);
 
@@ -15,7 +15,7 @@ test('renderer has no Next.js server or external entrypoint', () => {
   assert.match(html, /Content-Security-Policy/);
   assert.match(html, /script-src/);
   assert.doesNotMatch(html, /https?:\/\/(?:localhost|127\.0\.0\.1)/);
-  assert.ok(existsSync(join(root, 'dist-main/main.cjs')));
+  assert.ok(existsSync(join(root, '.vite/build/main.cjs')));
 });
 test('build bundles the complete Lesson Props base and sparse selected locale', () => {
   const baseFile = join(resources, 'base.json');
@@ -71,12 +71,12 @@ test('statically registered Scene modules are emitted as local JavaScript chunks
   assert.ok(javascript.some(name => name.startsWith('2abe959c-0908-4779-afbb-b2da6c1aa4d4-')));
 });
 
-test('CI packages the existing Desktop build while standalone packaging remains self-contained', () => {
+test('Forge packages once and CI uses the already-built package for makers', () => {
   const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts;
   const workflow = readFileSync(resolve(root, '../../.github/workflows/desktop-ci.yml'), 'utf8');
-  assert.equal(scripts['app:pack'], 'npm run app:build && npm run app:pack:prepared');
-  assert.equal(scripts['app:pack:prepared'], 'electron-forge package');
-  assert.equal(scripts['app:pack:make:prepared'], 'electron-forge make');
+  assert.equal(scripts['app:build'], 'electron-forge package');
+  assert.equal(scripts['app:pack'], 'npm run app:build');
+  assert.equal(scripts['app:pack:make:prepared'], 'electron-forge make --from-package');
   assert.equal(scripts['app:pack:linux'], 'npm run app:build && npm run app:pack:make:prepared');
   assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);

@@ -1,18 +1,17 @@
 import { defineConfig } from 'vite';
 
-/** Vite builds a standalone React DOM bundle with all statically registered Scene chunks. */
+/** Forge Vite bundles the offline React renderer and all statically registered Scene chunks. */
 export default defineConfig(({ command }) => ({
   base: '/',
   publicDir: 'public',
+  // Keep the fixed loopback origin enforced by adapter-electron in development.
+  server: { host: '127.0.0.1', port: 5173, strictPort: true },
+  resolve: { preserveSymlinks: false },
   build: {
-    outDir: 'dist-renderer',
+    // Forge owns the output directory: .vite/renderer/main_window.
     emptyOutDir: true,
     target: 'es2022',
     modulePreload: true,
-    // Workspace symlinks resolve to shared/*/dist outside node_modules.
-    // The existing Engine/Contracts/UI Kit build produces CommonJS, so
-    // Rollup must transform those paths instead of assuming ESM exports.
-    commonjsOptions: { include: [/node_modules/, /shared[\\/](?:engine|contracts|ui-kit)[\\/]dist/] },
   },
   plugins: [
     {

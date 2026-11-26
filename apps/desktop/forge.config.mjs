@@ -2,10 +2,10 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const desktopRoot = dirname(fileURLToPath(import.meta.url));
-const payload = new Set(['dist-main', 'dist-renderer', 'package.json']);
+const payload = new Set(['.vite', 'package.json']);
 
-// Desktop's esbuild main and Vite renderer have no runtime Node dependencies.
-// Copy only these compiled artifacts; never ship workspace sources or build tooling.
+// Forge Vite Plugin builds main and renderer into .vite/ before packaging.
+// Copy only those bundles and the manifest: no workspace sources or node_modules.
 function ignoreUnpublishedFile(path) {
   // Electron Packager calls the predicate with an empty root string, followed
   // by root-relative paths such as "/package.json" or absolute source paths.
@@ -28,7 +28,17 @@ export default {
     prune: false,
     ignore: ignoreUnpublishedFile,
   },
-  // Do not insert a second Vite/webpack pipeline; app:build runs beforehand.
+  // Forge owns Vite dev, main/renderer builds and package-time bundling.
+  plugins: [
+    {
+      name: '@electron-forge/plugin-vite',
+      config: {
+        hotRestart: true,
+        build: [{ entry: 'electron/main.ts', config: 'vite.main.config.ts' }],
+        renderer: [{ name: 'main_window', config: 'vite.renderer.config.ts' }],
+      },
+    },
+  ],
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
