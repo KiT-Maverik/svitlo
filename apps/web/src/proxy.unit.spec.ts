@@ -142,10 +142,15 @@ it('rejects invalid or missing Course details with an HTTP 404 before streaming'
   for (const invalid of [
     '/uk/course/not-a-uuid',
     '/xx/course/' + courseId,
-    '/ar/course/' + courseId,
     '/uk/course/' + otherId,
   ])
     expect(isInvalidPublishedRoute(invalid, root), invalid).toBe(true);
   rmSync(path.join(root, 'data', 'courses', courseId, 'base.json'));
   expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(true);
+});
+
+it('allows a supported interface language whose Course content locale is not declared', () => {
+  const root = fixture();
+  expect(isInvalidPublishedRoute('/pl/course/' + courseId, root)).toBe(false);
+  expect(isInvalidPublishedRoute('/ar/course/' + courseId, root)).toBe(false);
 });
