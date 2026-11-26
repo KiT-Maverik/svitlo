@@ -184,7 +184,7 @@ test('A corrupt requested Course reaches the publication failure path, not an un
   }
 });
 
-test('Corrupt TOC for a requested Course surfaces a publication failure, not a 404', async ({ request }) => {
+test('Corrupt TOC for a requested Course displays the localized error boundary', async ({ page }) => {
   const { mkdir, writeFile, rm } = await import('node:fs/promises');
   const { join } = await import('node:path');
   const id = '11111111-1111-4111-8111-0000000002fc';
@@ -202,8 +202,14 @@ test('Corrupt TOC for a requested Course surfaces a publication failure, not a 4
       }),
     );
     await writeFile(join(directory, 'toc/base.json'), '{corrupt published TOC');
-    const response = await request.get('/en/course/' + id);
-    expect(response.status()).not.toBe(404);
+    const response = await page.goto('/en/course/' + id);
+    expect(response?.status()).not.toBe(404);
+    const error = page.getByRole('alert');
+    await expect(error).toBeVisible();
+    await expect(error).toContainText('Unable to load this course');
+    await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'All courses' })).toHaveAttribute('href', '/en/courses');
+    await expect(page.getByRole('heading', { name: 'Valid Course' })).toHaveCount(0);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

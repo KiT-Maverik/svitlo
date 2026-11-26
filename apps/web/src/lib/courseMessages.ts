@@ -60,3 +60,20 @@ export function getCourseLanguageFallbackNotice(interfaceLanguage: string, reque
     ? `Курс поки що недоступний мовою «${original}». Показуємо доступну версію мовою «${selected}».`
     : `This course is not available in ${original}. Showing the available ${selected} version instead.`;
 }
+
+/** Course publication failures are distinct from missing Courses (404). */
+export function getCourseLoadFailureMessages(language: string) {
+  return language === 'uk'
+    ? {
+        title: 'Не вдалося завантажити курс',
+        description: 'Виникла помилка під час завантаження курсу. Спробуйте ще раз.',
+        retry: 'Спробувати ще раз',
+        back: 'Усі курси',
+      }
+    : {
+        title: 'Unable to load this course',
+        description: 'An error occurred while loading this course. Please try again.',
+        retry: 'Try again',
+        back: 'All courses',
+      };
+}

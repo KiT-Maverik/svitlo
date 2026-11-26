@@ -7,6 +7,7 @@ on:
     types: [opened, reopened, synchronize, ready_for_review]
     paths:
       - 'shared/engine/generators/**'
+      - 'shared/engine/assemblers/courseToc/**'
       - 'scripts/ci/courseMaterialization/**'
       - 'scripts/ci/bankMaterialization/**'
       - 'scripts/ci/lessonMaterialization/**'
@@ -105,6 +106,7 @@ jobs:
             shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
             shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
             shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js \
+            shared/engine/.test-build/assemblers/courseToc/*.spec.js \
             shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs \
             shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
