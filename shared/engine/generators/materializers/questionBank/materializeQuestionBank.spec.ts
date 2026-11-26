@@ -246,7 +246,10 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
       params: { width: 640, height: 480 },
       locale: { alt: { uk: 'Схема для пояснення' } },
     },
-    production: { specification: 'Create a diagram for this question' },
+    production: {
+      prompt:
+        'Create an original high-contrast educational diagram of a lamp on the left, a cube in the middle, and the resulting shadow on a screen to the right. Show the direction of light using clear arrows, without decorative objects.',
+    },
   };
   Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
     pendingDiagram: image,
