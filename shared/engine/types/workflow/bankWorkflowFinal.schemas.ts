@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
-import { audio_Config_Schema } from '../../configurators/contentBlocks/defineAudio/defineAudio.schemas';
-import { code_Config_Schema } from '../../configurators/contentBlocks/defineCode/defineCode.schemas';
-import { image_Config_Schema } from '../../configurators/contentBlocks/defineImage/defineImage.schemas';
-import { markdown_Config_Schema } from '../../configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-import { scene_Config_Schema } from '../../configurators/contentBlocks/defineScene/defineScene.schemas';
-import { subtitles_Config_Schema } from '../../configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { text_Config_Schema } from '../../configurators/contentBlocks/defineText/defineText.schemas';
-import { video_Config_Schema } from '../../configurators/contentBlocks/defineVideo/defineVideo.schemas';
-import { youtube_Config_Schema } from '../../configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+import { audio_Config_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
+import { code_Config_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import { image_Config_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import { markdown_Config_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import { scene_Config_Schema } from '../../configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
+import { subtitles_Config_Schema } from '../../configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
+import { text_Config_Schema } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
+import { video_Config_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
+import { youtube_Config_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 import {
   flashcard_Config_Schema,
   flashcardRelationshipTypes,
