@@ -22,7 +22,13 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { mergeForValidation, onlyLocales, onlyStrings, validateOrderedKeys } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  scopeBuild,
+  validateOrderedKeys,
+} from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -309,7 +315,7 @@ export const defineFillBlanksWithText = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base: {
         id,

@@ -140,7 +140,7 @@ export async function render(packageDirectory, kind, mediaMode = 'production') {
             lessonId,
             kind: selectedKind,
             languages,
-            publication: projectTextbookMedia(item.build.props({ languages }), {
+            publication: projectTextbookMedia(item.build.props({ languages, mode: mediaMode }), {
               textbookRoot: packageDirectory,
               textbookId,
               source: path.relative(root, source) + '#' + item.slug,

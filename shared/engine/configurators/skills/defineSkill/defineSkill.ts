@@ -5,6 +5,7 @@ import {
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../../_shared__configurators';
@@ -82,7 +83,7 @@ export function defineSkill<
     slug,
     type: 'skill' as const,
     validate,
-    build: { props },
+    build: scopeBuild({ props }),
     config: {
       base: {
         id: id as Skill_Config['id'],

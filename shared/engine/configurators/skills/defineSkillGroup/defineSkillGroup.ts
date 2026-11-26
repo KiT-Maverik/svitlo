@@ -8,9 +8,12 @@ import type {
 } from '#types';
 
 import {
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
@@ -117,10 +120,11 @@ export function defineSkillGroup<
     };
   };
 
-  const buildSkills = (items: Record<string, Skill>, languages: readonly LanguageCode[]) => {
+  const buildSkills = (items: Record<string, Skill>) => {
+    const { languages } = requireBuildContext();
     const entries = Object.keys(items)
       .sort()
-      .map(key => items[key].build.props({ languages }));
+      .map(key => buildChildProps(items[key]));
     const base = entries.map(resource => resource.base) as DeepPartial<Skill_Props>[];
     const locale: Partial<Record<LanguageCode, Skill_Props[]>> = {};
     for (const language of languages) {
@@ -140,7 +144,7 @@ export function defineSkillGroup<
     validate({ ...copyAuthored(), skills: initialSkills });
     const current = copyAuthored();
     const own = splitOwn({ name: current.name, description: current.description });
-    const children = buildSkills(initialSkills, languages);
+    const children = buildSkills(initialSkills);
     const files = selectPublicationLocales(own.locale, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).skills = values;
@@ -161,7 +165,7 @@ export function defineSkillGroup<
     type: 'skillGroup' as const,
     skills,
     validate,
-    build: { props },
+    build: scopeBuild({ props }),
     config: {
       base: { id, slug, ...splitOwn({ name: authored.name, description: authored.description }).base },
       validate,
