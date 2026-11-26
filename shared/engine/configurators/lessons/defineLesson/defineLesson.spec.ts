@@ -3,8 +3,8 @@ import test, { describe } from 'node:test';
 
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import { defineScene } from '../../contentBlocks/defineScene/defineScene';
-import { defineYoutube } from '../../contentBlocks/defineYoutube/defineYoutube';
 import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineYoutube } from '../../contentBlocks/defineYoutube/defineYoutube';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
@@ -68,7 +68,11 @@ describe('Configurators', () => {
           params: {},
           locale: { value: { en: 'Explore', uk: 'Досліджуй' } },
         });
-        const media = defineContentSection<'media', { pendingVideo: typeof video; pendingScene: typeof scene }, ['en', 'uk']>({
+        const media = defineContentSection<
+          'media',
+          { pendingVideo: typeof video; pendingScene: typeof scene },
+          ['en', 'uk']
+        >({
           id: id('a3'),
           slug: 'media',
           type: 'content',

@@ -1,7 +1,13 @@
 import { camelCase_Schema, type LanguageCode } from '#schemas';
 import type { DeepPartial } from '#types';
 
-import { buildChildOverrides, buildChildProps, requireBuildContext, mergeForValidation, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  buildChildOverrides,
+  buildChildProps,
+  mergeForValidation,
+  requireBuildContext,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 
 export type QuestPublication = {
   base: Record<string, unknown>;
@@ -56,9 +62,7 @@ export function assertQuestMap(value: unknown, kind: string, path: string): void
 export function projectQuestTree(node: unknown, patch?: unknown): QuestPublication {
   const { languages } = requireBuildContext();
   if (buildable(node)) {
-    return patch === undefined
-      ? buildChildProps(node)
-      : buildChildOverrides(node, patch);
+    return patch === undefined ? buildChildProps(node) : buildChildOverrides(node, patch);
   }
   if (node === null) {
     if (patch !== undefined) throw new Error('Cannot override an absent Quest media track');

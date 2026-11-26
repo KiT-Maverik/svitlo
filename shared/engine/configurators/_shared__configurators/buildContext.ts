@@ -1,4 +1,5 @@
 import { AsyncLocalStorage } from 'node:async_hooks';
+
 import type { LanguageCode } from '#schemas';
 import type { PublicationLanguageOptions } from '#types';
 
@@ -6,9 +7,7 @@ import { resolvePublicationLanguages } from './publicationLanguages.utils';
 
 export type BuildMode = 'production' | 'draft';
 
-export type BuildContext<
-  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
-> = Readonly<{
+export type BuildContext<Languages extends readonly LanguageCode[] = readonly LanguageCode[]> = Readonly<{
   languages: PublicationLanguageOptions<Languages>['languages'];
   mode: BuildMode;
 }>;
@@ -17,10 +16,7 @@ export type BuildContext<
 const buildScope = new AsyncLocalStorage<BuildContext>();
 
 /** The caller owns a fresh, immutable scope. Omitted mode is always strict production. */
-export const runWithBuildContext = <
-  Languages extends readonly LanguageCode[],
-  Result,
->(
+export const runWithBuildContext = <Languages extends readonly LanguageCode[], Result>(
   options: PublicationLanguageOptions<Languages>,
   operation: (context: BuildContext<Languages>) => Result,
 ): Result => {
@@ -59,18 +55,15 @@ export const scopeBuild = <Build extends object>(build: Build): Build => {
     if (typeof original !== 'function') continue;
     const invoke = original as (...args: unknown[]) => unknown;
     wrapped[method] = (...args: unknown[]) =>
-      runWithBuildContext(
-        args[method === 'props' ? 0 : 1] as PublicationLanguageOptions,
-        () => invoke(...args),
-      );
+      runWithBuildContext(args[method === 'props' ? 0 : 1] as PublicationLanguageOptions, () => invoke(...args));
   }
   return wrapped as Build;
 };
 
 /** Compose an existing child in the caller's exact scope, without passing fields down. */
-export const buildChildProps = <Resource>(
-  child: { readonly build: { props: (options: never) => Resource } },
-): Resource => child.build.props(requireBuildContext() as never);
+export const buildChildProps = <Resource>(child: {
+  readonly build: { props: (options: never) => Resource };
+}): Resource => child.build.props(requireBuildContext() as never);
 
 /** Compose sparse child changes in the same scope; never mutate the shared child. */
 export const buildChildOverrides = <Resource>(

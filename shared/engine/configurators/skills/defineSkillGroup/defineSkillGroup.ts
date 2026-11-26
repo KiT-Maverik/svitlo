@@ -1,4 +1,3 @@
-import { buildChildProps, requireBuildContext } from '../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -9,13 +8,15 @@ import type {
 } from '#types';
 
 import {
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
 import {

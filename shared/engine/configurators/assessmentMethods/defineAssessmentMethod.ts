@@ -4,9 +4,9 @@ import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLan
 import {
   mergeForValidation,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
-  scopeBuild,
 } from '../_shared__configurators';
 import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import {

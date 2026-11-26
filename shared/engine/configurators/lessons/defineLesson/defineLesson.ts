@@ -1,4 +1,3 @@
-import { runWithBuildContext, requireBuildContext, buildChildProps, buildChildOverrides } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -9,15 +8,19 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  runWithBuildContext,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -197,9 +200,7 @@ export function defineLesson<
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
       const resource = buildChildProps(child);
-      const patch = Object.hasOwn(changes, key)
-        ? buildChildOverrides(child, changes[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(changes, key) ? buildChildOverrides(child, changes[key] as never) : undefined;
       return { resource, patch };
     });
     const bases = entries.map(({ resource, patch }) =>
@@ -392,8 +393,7 @@ export function defineLesson<
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order)
-                .bases as Lesson_PropsBase['section']),
+            : (buildOrdered(sections.active, sections.order).bases as Lesson_PropsBase['section']),
         )
       ) {
         throw new Error('Lesson requires at least one enabled Quiz section');

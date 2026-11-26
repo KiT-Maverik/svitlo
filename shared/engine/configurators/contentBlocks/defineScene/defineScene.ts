@@ -7,10 +7,10 @@ import {
   onlyLocales,
   onlyStrings,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
-  scopeBuild,
 } from '../../_shared__configurators';
 import {
   scene_Config_Schema,

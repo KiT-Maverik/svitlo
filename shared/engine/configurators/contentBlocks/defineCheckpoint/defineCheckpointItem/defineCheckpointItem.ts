@@ -1,4 +1,3 @@
-import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -8,8 +7,13 @@ import type {
   PublicationLanguageOptions,
 } from '#types';
 
-import { resolvePublicationLanguages, validateRequestedPublication, 
+import {
+  buildChildOverrides,
+  buildChildProps,
+  requireBuildContext,
+  resolvePublicationLanguages,
   scopeBuild,
+  validateRequestedPublication,
 } from '../../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import type {
@@ -173,7 +177,7 @@ export const defineCheckpointItem = <
           (locale[language as LanguageCode] ??= {}).question = fields;
       }
       if (patch.answer !== undefined) {
-        const built = (buildChildOverrides(answer, patch.answer as never) as unknown as AnswerOverride);
+        const built = buildChildOverrides(answer, patch.answer as never) as unknown as AnswerOverride;
         if (built.base.content) output.base.answer = built.base.content;
         for (const [language, fields] of Object.entries(built.locale ?? {}))
           (locale[language as LanguageCode] ??= {}).answer = fields.content;

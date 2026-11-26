@@ -1,10 +1,7 @@
-import { buildChildProps } from '../../_shared__configurators';
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { resolvePublicationLanguages, 
-  scopeBuild,
-} from '../../_shared__configurators';
+import { buildChildProps, resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
 import { defineText } from '../../contentBlocks/defineText';

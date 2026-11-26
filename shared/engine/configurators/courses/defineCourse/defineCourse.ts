@@ -1,4 +1,3 @@
-import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -9,16 +8,19 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { assessment_Props_Schema } from '../../assessments/defineAssessment';
 import { episode_Props_Schema } from '../../episodes/defineEpisode';
@@ -232,9 +234,7 @@ export const defineCourse = <
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildProps({ build });
-      const patch = Object.hasOwn(patches, key)
-        ? buildChildOverrides({ build }, patches[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { key, resource, patch };
     });
     // Course placement keys may alias standalone Lessons, without editing their immutable source identity.

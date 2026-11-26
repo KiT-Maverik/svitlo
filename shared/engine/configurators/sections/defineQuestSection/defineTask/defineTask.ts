@@ -1,9 +1,7 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { resolvePublicationLanguages, 
-  scopeBuild,
-} from '../../../_shared__configurators';
+import { resolvePublicationLanguages, scopeBuild } from '../../../_shared__configurators';
 import type { ContentBlock_Scene_Overrides } from '../../../contentBlocks/defineScene/defineScene.schemas';
 import { assertQuestChild, nestQuestPublication, projectQuestTree, validateQuestPublication } from '../quest.utils';
 import { task_Config_Schema, task_Props_Schema, type Task_Config } from './defineTask.schemas';

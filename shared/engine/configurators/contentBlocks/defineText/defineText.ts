@@ -4,9 +4,9 @@ import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLangua
 import {
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   validateRequestedPublication,
-  scopeBuild,
 } from '../../_shared__configurators';
 import {
   text_Config_Schema,

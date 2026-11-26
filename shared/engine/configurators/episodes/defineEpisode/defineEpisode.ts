@@ -1,4 +1,3 @@
-import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -9,16 +8,19 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -144,9 +146,7 @@ export const defineEpisode = <
       if (!child) throw new Error('Unknown Episode Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
       const resource = buildChildProps({ build });
-      const patch = Object.hasOwn(patches, key)
-        ? buildChildOverrides({ build }, patches[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>

@@ -1,15 +1,17 @@
-import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../_shared__configurators';
 import { z } from 'zod';
 
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';

@@ -5,9 +5,9 @@ import {
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
-  scopeBuild,
 } from '../../_shared__configurators';
 import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
 

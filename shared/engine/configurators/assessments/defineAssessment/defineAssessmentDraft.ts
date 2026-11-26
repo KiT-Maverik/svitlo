@@ -1,4 +1,3 @@
-import { scopeBuild, buildChildProps } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -9,9 +8,11 @@ import type {
 } from '#types';
 
 import {
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,

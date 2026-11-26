@@ -22,8 +22,12 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { mergeForValidation, onlyLocales, onlyStrings, validateOrderedKeys, 
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
   scopeBuild,
+  validateOrderedKeys,
 } from '../../_shared__configurators';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';

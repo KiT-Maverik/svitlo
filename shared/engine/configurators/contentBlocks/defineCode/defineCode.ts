@@ -9,10 +9,10 @@ import {
   onlyLocales,
   onlyStrings,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateRequestedPublication,
-  scopeBuild,
 } from '../../_shared__configurators';
 import {
   code_Config_Schema,

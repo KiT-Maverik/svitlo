@@ -1,4 +1,3 @@
-import { buildChildProps, buildChildOverrides } from '../../_shared__configurators';
 import { z } from 'zod';
 
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
@@ -11,13 +10,15 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  scopeBuild,
 } from '../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { ContentBlock_Configurator } from '../../contentBlocks';

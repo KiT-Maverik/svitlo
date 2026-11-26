@@ -12,9 +12,9 @@ import {
   onlyLocales,
   onlyStrings,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
-  scopeBuild,
 } from '../../_shared__configurators';
 import {
   questSection_Config_Schema,

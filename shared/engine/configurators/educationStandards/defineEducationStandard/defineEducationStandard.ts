@@ -1,9 +1,7 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { resolvePublicationLanguages, 
-  scopeBuild,
-} from '../../_shared__configurators';
+import { resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
 import {
   educationStandard_Config_Schema,
   educationStandard_Props_Schema,

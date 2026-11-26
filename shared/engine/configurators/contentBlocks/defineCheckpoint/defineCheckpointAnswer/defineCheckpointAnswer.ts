@@ -1,14 +1,16 @@
-import { buildChildProps, buildChildOverrides, requireBuildContext } from '../../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
-  scopeBuild,
 } from '../../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import { contentBlockTypes } from '../../contentBlock.constants';
@@ -111,10 +113,8 @@ export const defineCheckpointAnswer = <
 
   const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
     buildChildProps(child) as unknown as ChildPublication;
-  const buildChildPatch = (
-    child: Checkpoint_Allowed_Configurator,
-    patch: unknown,
-  ): ChildPatchPublication => buildChildOverrides(child, patch as never) as unknown as ChildPatchPublication;
+  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
+    buildChildOverrides(child, patch as never) as unknown as ChildPatchPublication;
 
   const buildContent = (
     items: Record<string, Checkpoint_Allowed_Configurator>,
