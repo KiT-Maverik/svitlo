@@ -96,3 +96,119 @@ jobs:
           git commit -m "fix: synchronize npm lockfile for security remediation"
           authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
           git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" push --quiet origin "HEAD:refs/heads/$PR_SOURCE_BRANCH"
+
+  types-and-lint:
+    name: Package builds, types and lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
+      - name: Check all TypeScript workspaces
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check
+
+  components-and-storybook:
+    name: Unit/component tests and UI Kit Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
+      - name: Workspace unit tests
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
+      - name: Full UI Kit component tests, including math renderer safety
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components --workspace @svitlo/ui-kit
+      - name: UI Kit Storybook build
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run storybook:build --workspace @svitlo/ui-kit
+      - name: Web and Playground components
+        env:
+          SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/productionQuality/run-selected-components.mjs
+
+  web-and-platform:
+    name: Web and Platform builds and Web smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
+      - name: Build Web using the compiled Math textbook
+        env:
+          SVITLO_TEXTBOOK: math
+          SVITLO_MEDIA_MODE: draft
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/web
+      - name: Build Platform
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/platform
+      - name: Smoke Web dev HTTP endpoint
+        env:
+          SVITLO_TEXTBOOK: math
+          SVITLO_MEDIA_MODE: draft
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run app:start:dev --workspace @svitlo/web >/tmp/pr879-web.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          passed=false
+          for attempt in $(seq 1 90); do
+            if curl --silent --show-error --fail --max-time 3 http://127.0.0.1:3000/ -o /tmp/pr879-home.html 2>/dev/null; then
+              passed=true
+              break
+            fi
+            if ! kill -0 "$server_pid" 2>/dev/null; then
+              tail -n 60 /tmp/pr879-web.log
+              exit 1
+            fi
+            sleep 2
+          done
+          if [ "$passed" != true ]; then
+            tail -n 60 /tmp/pr879-web.log
+            exit 1
+          fi
+          echo "Math Web route returned HTTP 2xx"
+
+  native-hosts:
+    name: Electron and Capacitor compatibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Build Electron host
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
+      - name: Build Capacitor host
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile
+      - name: Check native unit suites
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/desktop
+          node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/mobile
