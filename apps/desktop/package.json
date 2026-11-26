@@ -14,18 +14,19 @@
     "app:start": "electron .",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "code:lint:check": "eslint .",
-    "test": "node --test tests/engine-runtime-imports.spec.mjs",
+    "test": "node --test tests/engine-runtime-imports.spec.mjs tests/forge-config.spec.mjs tests/squirrel.spec.mjs",
     "test:integration": "node --test tests/packaged-content.spec.mjs",
     "test:smoke": "playwright test tests/electron.smoke.spec.mjs",
     "app:pack": "npm run app:build && npm run app:pack:prepared",
-    "app:pack:prepared": "electron-builder --dir --publish never",
-    "app:pack:win": "npm run app:build && electron-builder --win --publish never",
-    "app:pack:mac": "npm run app:build && electron-builder --mac --publish never",
-    "app:pack:linux": "npm run app:build && electron-builder --linux --publish never",
+    "app:pack:prepared": "electron-forge package",
+    "app:pack:win": "npm run app:build && npm run app:pack:make:prepared",
+    "app:pack:mac": "npm run app:build && npm run app:pack:make:prepared",
+    "app:pack:linux": "npm run app:build && npm run app:pack:make:prepared",
     "test:packaged": "playwright test tests/electron.packaged.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
-    "code:lint:fix": "eslint . --fix"
+    "code:lint:fix": "eslint . --fix",
+    "app:pack:make:prepared": "electron-forge make"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -51,14 +52,19 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "electron": "45.2.2",
-    "electron-builder": "26.18.0",
     "esbuild": "^0.28.2",
     "eslint": "^9",
     "typescript": "^5",
     "vite": "^7.3.7",
     "@eslint/js": "^9.39.5",
     "typescript-eslint": "^8.72.3",
-    "playwright": "^1.64.1"
+    "playwright": "^1.64.1",
+    "@electron-forge/cli": "8.0.1",
+    "@electron-forge/maker-squirrel": "8.0.1",
+    "@electron-forge/maker-dmg": "8.0.1",
+    "@electron-forge/maker-deb": "8.0.1"
   },
-  "main": "dist-main/main.cjs"
+  "main": "dist-main/main.cjs",
+  "productName": "Svitlo",
+  "author": "Svitlo"
 }

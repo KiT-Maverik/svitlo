@@ -15,10 +15,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   desktop:
-    # Full host/browser/generator suites only at review boundary or explicitly on demand.
     if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -37,13 +36,62 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/adapter-electron
       - name: Lint Desktop
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check --workspace @svitlo/desktop
-      - name: Validate Electron source import boundaries
+      - name: Validate Electron source import boundaries and Forge hooks
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/desktop
-      - name: Validate packaged resources
+      - name: Validate published resources
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace @svitlo/desktop
-      - name: Run Electron smoke test under virtual display
+      - name: Run Electron smoke under virtual display
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
-      - name: Package for Linux
+      - name: Create Forge unpacked Linux build
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:prepared --workspace @svitlo/desktop
-      - name: Start the packaged Linux executable without network
+      - name: Verify unpacked executable
+        run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs unpacked
+      - name: Start packaged Linux executable offline
         run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop
+      - name: Install Debian maker requirements
+        run: sudo apt-get update && sudo apt-get install -y fakeroot dpkg
+      - name: Make Debian distribution
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:make:prepared --workspace @svitlo/desktop
+      - name: Verify Debian artifact
+        run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svitlo-forge-linux-deb
+          path: apps/desktop/out/make/**/*
+          if-no-files-found: error
+          retention-days: 1
+
+  native-installers:
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win32
+          - os: macos-15
+            platform: darwin
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Clean install
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Build Desktop from published content
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
+      - name: Check Desktop types
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/desktop
+      - name: Forge make (includes package)
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:make:prepared --workspace @svitlo/desktop
+      - name: Verify native maker artifacts
+        run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs ${{ matrix.platform }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svitlo-forge-${{ matrix.platform }}
+          path: apps/desktop/out/make/**/*
+          if-no-files-found: error
+          retention-days: 1

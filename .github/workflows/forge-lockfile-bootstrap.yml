@@ -1,0 +1,49 @@
+name: Forge lockfile bootstrap (temporary PR #887)
+on:
+  pull_request:
+    types: [synchronize]
+    paths: ['apps/desktop/package.json']
+permissions:
+  contents: read
+jobs:
+  refresh-lock:
+    if: ${{ github.event.pull_request.number == 887 && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'maintenance/electron-forge-toolchain' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+      - name: Re-resolve npm workspaces without dependency scripts
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Confirm reproducible clean installation
+        run: npm ci --no-audit --no-fund
+      - name: Record resolved packaging dependencies
+        run: |
+          npm ls @electron-forge/cli @electron-forge/maker-squirrel @electron-forge/maker-dmg @electron-forge/maker-deb --workspace @svitlo/desktop --depth=0
+          node -e "const p=require('./package-lock.json');if(Object.keys(p.packages).some(k=>k.includes('app-builder-lib')||k.includes('electron-builder')))process.exit(1);console.log('Resolved lockfile entries:',Object.keys(p.packages).length)"
+      - name: Create restricted repository App token for lockfile commit
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.PR_FORMATTER_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PR_FORMATTER_APP_PRIVATE_KEY }}
+          permission-contents: write
+      - name: Commit npm-generated lockfile to the existing PR branch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git add package-lock.json
+          git diff --cached --exit-code && { echo "::error::Lockfile did not change"; exit 1; } || true
+          git config user.name "svitlo-lockfile[bot]"
+          git config user.email "svitlo-lockfile[bot]@users.noreply.github.com"
+          git commit -m "Re-resolve Desktop dependencies for Electron Forge"
+          authorization=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c "http.https://github.com/.extraheader=AUTHORIZATION: basic $authorization" push origin "HEAD:refs/heads/$HEAD_REF"

@@ -1,5 +1,7 @@
 import { join } from 'node:path';
 
+import { handleSquirrelStartup } from './squirrel.mjs';
+
 import { app, BrowserWindow } from 'electron';
 
 import { installPackagedResources, lockDownSession, openDesktopWindow } from '@svitlo/adapter-electron';
@@ -8,7 +10,9 @@ import { installPackagedResources, lockDownSession, openDesktopWindow } from '@s
 const rendererRoot = join(app.getAppPath(), 'dist-renderer');
 const devUrl = !app.isPackaged ? process.env.SVITLO_DESKTOP_DEV_URL : undefined;
 
-app.whenReady().then(() => {
+if (process.platform === 'win32') app.setAppUserModelId('com.squirrel.Svitlo.Svitlo');
+
+if (!handleSquirrelStartup({ exit: code => app.exit(code) })) app.whenReady().then(() => {
   installPackagedResources(rendererRoot);
   lockDownSession();
   openDesktopWindow(devUrl);
