@@ -157,3 +157,66 @@ test('Mobile E2E serves the already-built production bundle and checks offline r
   );
   assert.match(mobile.scripts.test, /scripts\/serveBuilt\/\*\.test\.mjs/);
 });
+
+function generatorJob(id) {
+  const pieces = engineGeneratorsWorkflow.split('\n  ' + id + ':\n');
+  assert.equal(pieces.length, 2, 'expected exactly one generator job: ' + id);
+  return pieces[1].split(/\n  [a-z][a-z0-9-]*:\n/)[0];
+}
+
+test('manual build-once experiment is opt-in without changing reusable production generator gates', () => {
+  assert.match(engineGeneratorsWorkflow, /workflow_dispatch:\s*\n\s*inputs:\s*\n\s*build_once_engine_artifact:/);
+  assert.match(engineGeneratorsWorkflow, /build_once_engine_artifact:[\s\S]*?type: boolean\s*\n\s*default: false/);
+  assert.match(engineGeneratorsWorkflow, /workflow_call:/);
+  assert.match(engineGeneratorsWorkflow, /inputs\.build_once_engine_artifact && '-experiment'/);
+
+  for (const id of ['publisher-isolation', 'ci-policy', 'generator-tests']) {
+    assert.match(generatorJob(id), /!inputs\.build_once_engine_artifact/);
+  }
+  for (const id of ['experiment-engine-producer', 'experiment-consumer-types', 'experiment-consumer-tests']) {
+    assert.match(generatorJob(id), /github\.event_name == 'workflow_dispatch' && inputs\.build_once_engine_artifact/);
+    assert.match(generatorJob(id), /actions\/checkout@v5/);
+    assert.match(generatorJob(id), /persist-credentials: false/);
+    assert.match(generatorJob(id), /node-version: '26'/);
+    assert.match(generatorJob(id), /cache: npm/);
+    assert.match(generatorJob(id), /npm ci --no-audit --no-fund/);
+  }
+  assert.doesNotMatch(workflow, /experiment-engine-|build_once_engine_artifact/);
+  assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
+});
+
+test('one producer and two independent consumers exchange a same-run artifact without rebuilding Engine', () => {
+  const producer = generatorJob('experiment-engine-producer');
+  const types = generatorJob('experiment-consumer-types');
+  const unit = generatorJob('experiment-consumer-tests');
+  const artifactName = 'experiment-engine-dist-${{ github.run_id }}-${{ github.run_attempt }}';
+
+  assert.equal((producer.match(/npm run package:build --workspace @svitlo\/engine/g) || []).length, 1);
+  assert.match(producer, /engine-artifact-guard\.mjs inspect/);
+  assert.match(producer, /actions\/upload-artifact@v6/);
+  assert.match(producer, /if-no-files-found: error/);
+  assert.match(producer, /include-hidden-files: true/);
+  assert.ok(producer.includes(artifactName));
+
+  for (const consumer of [types, unit]) {
+    assert.match(consumer, /needs: experiment-engine-producer/);
+    assert.match(consumer, /test ! -e shared\/engine\/dist/);
+    assert.match(consumer, /actions\/download-artifact@v6/);
+    assert.match(consumer, /path: shared\/engine\/dist\//);
+    assert.ok(consumer.includes(artifactName));
+    assert.match(consumer, /engine-artifact-guard\.mjs snapshot/);
+    assert.match(consumer, /engine-artifact-guard\.mjs verify/);
+    assert.match(consumer, /steps\.artifact\.outcome == 'success'/);
+    assert.doesNotMatch(consumer, /npm run package:build --workspace @svitlo\/engine/);
+    assert.doesNotMatch(consumer, /SVITLO_CI_PACKAGE_BUILD_STATE/);
+  }
+
+  assert.match(types, /npm run code:check:types --workspace @svitlo\/ui-kit/);
+  assert.match(unit, /npm --ignore-scripts run test --workspace @svitlo\/engine/);
+  const engine = JSON.parse(readFileSync(new URL('../../../shared/engine/package.json', import.meta.url), 'utf8'));
+  const uiKit = JSON.parse(readFileSync(new URL('../../../shared/ui-kit/package.json', import.meta.url), 'utf8'));
+  assert.match(engine.scripts.pretest, /package-build-reuse\.mjs/);
+  assert.match(engine.scripts.test, /tsc -p tsconfig\.test\.json && node --test/);
+  assert.equal(uiKit.scripts['precode:check:types'], undefined);
+  assert.match(uiKit.scripts['code:check:types'], /tsc -p tsconfig\.json --noEmit/);
+});
