@@ -93,3 +93,72 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
     fs.rmSync(pkg, { recursive: true, force: true });
   }
 });
+
+
+test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube and Scene children', () => {
+  const name = 'generator-draft-media-' + randomUUID().slice(0, 8);
+  const pkg = path.join(repo, 'content', name);
+  const lessonId = randomUUID();
+  const videoId = randomUUID();
+  const sceneId = randomUUID();
+  const sectionId = randomUUID();
+  const lessonFolder = path.join(pkg, 'data', 'lessons', lessonId.slice(-1), lessonId);
+  const run = (draft, action) =>
+    spawnSync(
+      'npm',
+      ['run', 'content:generate:lesson-props', '--', '--package', 'content/' + name, ...(draft ? ['--draft'] : []), action],
+      { cwd: repo, encoding: 'utf8', env: process.env },
+    );
+
+  try {
+    fs.mkdirSync(lessonFolder, { recursive: true });
+    fs.writeFileSync(path.join(pkg, 'package.json'), JSON.stringify({ name: '@svitlo/' + name, private: true }));
+    const source = [
+      "import { defineContentSection, defineScene, defineYoutube, defineLesson } from '@svitlo/engine/build';",
+      'const video = defineYoutube(' +
+        JSON.stringify({
+          id: videoId,
+          slug: 'video',
+          type: 'youtube',
+          params: { mode: 'link' },
+          locale: { href: '00000000-0000-0000-0000-000000000000', label: 'Unfinished video' },
+        }) +
+        ');',
+      'const scene = defineScene(' +
+        JSON.stringify({
+          id: sceneId,
+          slug: 'scene',
+          type: 'scene',
+          params: {},
+          locale: { value: { en: 'Unfinished scene' } },
+        }) +
+        ');',
+      'const media = defineContentSection({' +
+        'id: ' + JSON.stringify(sectionId) + ', slug: "media", type: "content", params: {}, ' +
+        'locale: { title: "Media", navigationLabel: "Media" }, ' +
+        'content: { items: { video, scene }, order: ["video", "scene"] } });',
+      'export const lesson = defineLesson({' +
+        'id: ' + JSON.stringify(lessonId) + ', slug: "mediaLesson", type: "lesson", skills: [], ' +
+        'params: { languages: ["en"], quizRequiredForCompletion: false, ' +
+        'sections: { allowNavigation: true, allowSkipping: true, showIndexes: false } }, ' +
+        'locale: { title: "Draft Lesson" }, ' +
+        'section: { items: { media }, order: ["media"] } });',
+    ].join('\n');
+    fs.writeFileSync(path.join(lessonFolder, 'index.ts'), source);
+
+    const draft = run(true, '--write');
+    assert.equal(draft.status, 0, draft.stdout + '\n' + draft.stderr);
+    const output = path.join(pkg, 'generated', 'lessons', lessonId.slice(-1), lessonId, 'base.json');
+    const bytes = fs.readFileSync(output, 'utf8');
+    assert.match(bytes, /"type":\s*"youtube"/);
+    assert.match(bytes, /"type":\s*"scene"/);
+    assert.match(bytes, /00000000-0000-0000-0000-000000000000/);
+
+    const production = run(false, '--preflight');
+    assert.notEqual(production.status, 0, 'production cannot publish unresolved YouTube/Scene references');
+    assert.match(production.stdout + '\n' + production.stderr, /unresolved video reference|Failed to build Lesson Props/);
+    assert.equal(fs.readFileSync(output, 'utf8'), bytes, 'failed production preflight must not replace draft files');
+  } finally {
+    fs.rmSync(pkg, { recursive: true, force: true });
+  }
+});
