@@ -96,8 +96,8 @@ export const defineQuestSection = <
     validate({ ...metadata, stages, tasks });
     const own = ownLocale(metadata.locale);
     const root = { id, slug, type, params: metadata.params, ...own.base };
-    const withStages = nestQuestPublication(root, projectQuestTree(stages, languages), 'stages');
-    const withTasks = nestQuestPublication({}, projectQuestTree(tasks, languages), 'tasks');
+    const withStages = nestQuestPublication(root, projectQuestTree(stages), 'stages');
+    const withTasks = nestQuestPublication({}, projectQuestTree(tasks), 'tasks');
     const output = mergeQuestPatches(withStages, withTasks);
     output.locale = mergeQuestPatches(output, {
       base: {},
@@ -130,11 +130,11 @@ export const defineQuestSection = <
     const stagePatch =
       patch.stages === undefined
         ? { base: {}, locale: undefined }
-        : nestQuestPublication({}, projectQuestTree(stages, languages, patch.stages), 'stages');
+        : nestQuestPublication({}, projectQuestTree(stages, patch.stages), 'stages');
     const taskPatch =
       patch.tasks === undefined
         ? { base: {}, locale: undefined }
-        : nestQuestPublication({}, projectQuestTree(tasks, languages, patch.tasks), 'tasks');
+        : nestQuestPublication({}, projectQuestTree(tasks, patch.tasks), 'tasks');
     const output = mergeQuestPatches(mergeQuestPatches(root, stagePatch), taskPatch);
     validateQuestPublication(questSection_Props_Schema, props(options), languages, output);
     return output;

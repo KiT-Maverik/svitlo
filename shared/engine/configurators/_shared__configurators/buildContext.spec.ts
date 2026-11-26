@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
+import type { PublicationLanguageOptions } from '#types';
 
 import {
   buildChildOverrides,
@@ -30,7 +31,7 @@ test('Build Context defaults to production and freezes an independently copied l
 test('Build Context rejects invalid languages and modes before invoking a builder', () => {
   let called = false;
   const action = () => { called = true; };
-  assert.throws(() => runWithBuildContext({ languages: [] }, action), /nonempty languages/);
+  assert.throws(() => runWithBuildContext({ languages: [] } as unknown as PublicationLanguageOptions, action), /nonempty languages/);
   assert.throws(() => runWithBuildContext({ languages: ['en', 'en'] }, action), /must be unique/);
   assert.throws(
     () => runWithBuildContext({ languages: ['en'], mode: 'invalid' as 'draft' }, action),
