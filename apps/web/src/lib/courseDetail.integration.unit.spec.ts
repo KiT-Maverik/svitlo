@@ -21,10 +21,16 @@ function published(id: string, source: unknown) {
     const record = source as ReturnType<typeof fixture>;
     const tocDir = join(directory, 'toc');
     mkdirSync(tocDir, { recursive: true });
-    writeFileSync(join(tocDir, 'base.json'), JSON.stringify({
-      id, type: 'course', languages: record.params.languages, label: record.locale.title,
-      content: { items: {}, order: [] },
-    }));
+    writeFileSync(
+      join(tocDir, 'base.json'),
+      JSON.stringify({
+        id,
+        type: 'course',
+        languages: record.params.languages,
+        label: record.locale.title,
+        content: { items: {}, order: [] },
+      }),
+    );
   }
 }
 function fixture(languages: string[] = ['en']) {
@@ -87,14 +93,23 @@ it('uses the selected content language for the TOC and UI-language activity link
   };
   published(courseId, data);
   const toc = join(courses, courseId, 'toc');
-  writeFileSync(join(toc, 'base.json'), JSON.stringify({
-    id: courseId, type: 'course', languages: ['uk'], label: 'Invariant title',
-    content: { order: ['first'], items: { first: { type: 'lesson', id: lessonId, label: 'Invariant Lesson' } } },
-  }));
-  writeFileSync(join(toc, 'uk.json'), JSON.stringify({
-    label: 'Український курс',
-    content: { items: { first: { label: 'Контрольний урок' } } },
-  }));
+  writeFileSync(
+    join(toc, 'base.json'),
+    JSON.stringify({
+      id: courseId,
+      type: 'course',
+      languages: ['uk'],
+      label: 'Invariant title',
+      content: { order: ['first'], items: { first: { type: 'lesson', id: lessonId, label: 'Invariant Lesson' } } },
+    }),
+  );
+  writeFileSync(
+    join(toc, 'uk.json'),
+    JSON.stringify({
+      label: 'Український курс',
+      content: { items: { first: { label: 'Контрольний урок' } } },
+    }),
+  );
   const detail = await loadCourseDetail(courseId, 'en');
   expect(detail?.contentLanguage).toBe('uk');
   expect(detail?.interfaceLanguage).toBe('en');
@@ -115,25 +130,46 @@ it('reports missing and malformed requested TOC as publication errors, never as 
 it('rejects a TOC published for a different Course UUID or a missing selected language', async () => {
   published(courseId, fixture(['en']));
   const file = join(courses, courseId, 'toc/base.json');
-  writeFileSync(file, JSON.stringify({
-    id: unrelatedId, type: 'course', languages: ['en'], label: 'Wrong Course',
-    content: { items: {}, order: [] },
-  }));
+  writeFileSync(
+    file,
+    JSON.stringify({
+      id: unrelatedId,
+      type: 'course',
+      languages: ['en'],
+      label: 'Wrong Course',
+      content: { items: {}, order: [] },
+    }),
+  );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/TOC ID or requested language mismatch/);
-  writeFileSync(file, JSON.stringify({
-    id: courseId, type: 'course', languages: ['uk'], label: 'Wrong languages',
-    content: { items: {}, order: [] },
-  }));
+  writeFileSync(
+    file,
+    JSON.stringify({
+      id: courseId,
+      type: 'course',
+      languages: ['uk'],
+      label: 'Wrong languages',
+      content: { items: {}, order: [] },
+    }),
+  );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/TOC ID or requested language mismatch/);
 });
 
 it('reports a valid but stale TOC hierarchy as a publication error', async () => {
   published(courseId, fixture(['en']));
-  writeFileSync(join(courses, courseId, 'toc/base.json'), JSON.stringify({
-    id: courseId, type: 'course', languages: ['en'], label: 'Course',
-    content: { order: ['stale'], items: {
-      stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
-    } },
-  }));
+  writeFileSync(
+    join(courses, courseId, 'toc/base.json'),
+    JSON.stringify({
+      id: courseId,
+      type: 'course',
+      languages: ['en'],
+      label: 'Course',
+      content: {
+        order: ['stale'],
+        items: {
+          stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
+        },
+      },
+    }),
+  );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);
 });

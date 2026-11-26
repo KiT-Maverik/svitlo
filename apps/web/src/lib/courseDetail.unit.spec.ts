@@ -96,7 +96,10 @@ it('keeps the requested interface language while routing activities through sele
 
 it('rejects a stale TOC hierarchy instead of displaying incorrect Course navigation', async () => {
   resources.toc.mockResolvedValueOnce({
-    id: courseId, type: 'course', languages: ['en', 'uk'], label: 'Course',
+    id: courseId,
+    type: 'course',
+    languages: ['en', 'uk'],
+    label: 'Course',
     content: {
       order: ['stale'],
       items: { stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' } },
