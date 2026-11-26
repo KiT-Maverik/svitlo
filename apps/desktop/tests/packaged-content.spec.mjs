@@ -80,7 +80,7 @@ test('Forge packages once and CI uses the already-built package for makers', () 
   assert.equal(scripts['app:pack:linux'], 'npm run app:build && npm run app:pack:make:prepared');
   assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);
-  assert.match(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);
-  assert.doesNotMatch(workflow, /npm run app:pack --workspace @svitlo\/desktop/);
+  assert.doesNotMatch(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);
+  assert.match(workflow, /npm run app:pack:make:prepared --workspace @svitlo\/desktop/);
   assert.match(workflow, /test:packaged --workspace @svitlo\/desktop/);
 });

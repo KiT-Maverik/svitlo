@@ -26,7 +26,10 @@ After npm ci at the monorepo root:
     npm run test:smoke --workspace @svitlo/desktop
     npm run app:pack --workspace @svitlo/desktop
 
-Forge 8 Vite Plugin builds the Electron main bundle and React renderer using Vite 8 / Rolldown.\n`app:build` calls `electron-forge package` once (including the Vite builds);\n`app:pack:make:prepared` then runs `electron-forge make --from-package` on those\nalready-packaged artifacts without rebuilding Vite.
+Forge 8 Vite Plugin builds the Electron main bundle and React renderer using Vite 8 / Rolldown.
+`app:build` calls `electron-forge package` once (including the Vite builds);
+`app:pack:make:prepared` then runs `electron-forge make --from-package` on those
+already-packaged artifacts without rebuilding Vite.
 
     npm run app:pack:make:prepared --workspace @svitlo/desktop  # already packaged: make artifacts
     npm run app:pack:win --workspace @svitlo/desktop    # Windows: Squirrel Setup.exe + .nupkg
