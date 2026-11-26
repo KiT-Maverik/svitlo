@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   desktop:
+    # Full host/browser/generator suites only at review boundary or explicitly on demand.
     if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 40
