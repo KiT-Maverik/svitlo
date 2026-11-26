@@ -1,2 +1,2 @@
-export * from './defineCarousel';
-export * from './defineCarousel.schemas';
+/** Compatibility re-export. */
+export * from '../composite/defineCarousel/index.ts';

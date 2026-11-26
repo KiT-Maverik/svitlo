@@ -1,4 +1,2 @@
-export * from './defineCheckpoint';
-export * from './defineCheckpoint.schemas';
-export * from './defineCheckpointItem';
-export * from './defineCheckpointAnswer';
+/** Compatibility re-export. */
+export * from '../composite/defineCheckpoint/index.ts';
