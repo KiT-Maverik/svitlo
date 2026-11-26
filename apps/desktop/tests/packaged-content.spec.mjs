@@ -76,6 +76,18 @@ test('CI packages the existing Desktop build while standalone packaging remains 
   const workflow = readFileSync(resolve(root, '../../.github/workflows/desktop-ci.yml'), 'utf8');
   assert.equal(scripts['app:pack'], 'npm run app:build && npm run app:pack:prepared');
   assert.equal(scripts['app:pack:prepared'], 'electron-builder --dir --publish never');
+  const manifest = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
+  assert.equal(manifest.devDependencies['electron-builder'], '27.0.0-alpha.15');
+  const config = readFileSync(join(root, 'electron-builder.yml'), 'utf8');
+  // v27 removed the old top-level files and npmRebuild configuration keys.
+  assert.match(config, /^nativeModules:\\n  npmRebuild: false$/m);
+  assert.match(config, /^fileOptions:\\n  files:$/m);
+  assert.match(config, /^    - dist-main\/\*\*\/\*$/m);
+  assert.match(config, /^    - dist-renderer\/\*\*\/\*$/m);
+  assert.match(config, /^    - package.json$/m);
+  assert.match(config, /^    - nsis$/m);
+  assert.match(config, /^    - dmg$/m);
+  assert.match(config, /^    - AppImage$/m);
   assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);
   assert.match(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);
