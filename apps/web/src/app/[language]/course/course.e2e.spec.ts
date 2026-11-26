@@ -111,6 +111,7 @@ test('Direct Course URLs reject malformed or absent IDs and unsupported interfac
     '/en/course/not-a-uuid',
     '/en/course/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3',
     '/unsupported/course/' + courseId,
+    '/ja/course/' + courseId,
   ])
     expect((await request.get(route)).status()).toBe(404);
 });
