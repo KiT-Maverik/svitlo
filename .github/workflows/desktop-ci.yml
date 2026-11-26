@@ -71,7 +71,7 @@ jobs:
           npm explain electron-builder
           npm explain minimatch
       - name: Preserve generated lockfile for diagnosing failed pushes
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: desktop-v27-npm-lockfile
           path: package-lock.json
