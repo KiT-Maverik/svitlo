@@ -885,7 +885,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(wrapper ?? '', /Course-specific extra practice is required/);
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
   assert.match(wrapper ?? '', /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/);
-  assert.match(wrapper ?? '', /production\.pedagogicalIntent:\nKeep this Text rationale only with this placement/);
+  assert.match(wrapper ?? '', /production\.pedagogicalIntent:\n \* Keep this Text rationale only with this placement/);
   assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
   assert.match(wrapper ?? '', /Verify a nested Carousel Scene/);
   assert.match(wrapper ?? '', /Use the nested Checkpoint to verify transfer/);
