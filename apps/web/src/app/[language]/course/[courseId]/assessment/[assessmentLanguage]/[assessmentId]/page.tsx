@@ -5,8 +5,8 @@ import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import { DEFAULT_SUPPORTED_LANGUAGES, findCourseAssessment, validateAssessmentRuntime } from '@svitlo/engine/runtime';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
-import { courseTocToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
-import { loadCourseToc, loadCourseTree } from '@/lib/courseResources';
+import { coursePropsToTopics, flattenCourseTopics } from '@/lib/courseNavigation';
+import { loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{
@@ -22,12 +22,8 @@ async function Content({ params }: Props) {
   const ui = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   const content = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === assessmentLanguage);
   if (!ui || !content) notFound();
-  let course;
-  try {
-    course = await loadCourseTree(courseId, content.language);
-  } catch {
-    notFound();
-  }
+  const course = await loadExistingCourseTree(courseId, content.language);
+  if (!course) notFound();
   const assessment = findCourseAssessment(course, assessmentId);
   if (!assessment) notFound();
   if ('draft' in assessment && assessment.draft === true) {
@@ -39,13 +35,13 @@ async function Content({ params }: Props) {
       </main>
     );
   }
-  const [messages, toc] = await Promise.all([
+  const [messages, titles] = await Promise.all([
     loadPublishedUiKitMessages(ui.locale),
-    loadCourseToc(courseId, content.language),
+    loadCourseLessonTitles(course, content.language),
   ]);
   const courseHref = '/' + language + '/course/' + courseId;
   const href = courseHref + '/assessment/' + assessmentLanguage + '/' + assessmentId;
-  const topics = courseTocToTopics(toc, language, assessmentLanguage);
+  const topics = coursePropsToTopics(course, language, assessmentLanguage, titles);
   const flat = flattenCourseTopics(topics);
   const position = flat.findIndex(topic => topic.href === href);
   const next = flat[position + 1];

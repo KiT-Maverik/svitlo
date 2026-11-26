@@ -4,7 +4,9 @@ export { loadPublishedLessonProps } from './publishedLessonProps';
 export {
   loadPublishedCourseLessonProps,
   loadPublishedCourseTree,
-  loadPublishedCourseToc,
+  loadPublishedCourseTreeWithFallback,
+  PublishedResourceError,
+  CourseLanguageUnavailableError,
 } from './publishedCourseLesson';
 export type { CourseLessonPublicationRoots } from './publishedCourseLesson';
 export type { LoadPublishedLessonPropsOptions } from './publishedLessonProps';

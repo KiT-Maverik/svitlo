@@ -5,8 +5,8 @@ import { loadPublishedCourseLessonProps, loadPublishedUiKitMessages } from '@svi
 import { courseActivities, DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
 import WebLesson from '@/components/pages/Lesson/Lesson';
-import { courseTocToTopics } from '@/lib/courseNavigation';
-import { courseHasLesson, loadCourseToc, loadCourseTree } from '@/lib/courseResources';
+import { coursePropsToTopics } from '@/lib/courseNavigation';
+import { courseHasLesson, loadCourseLessonTitles, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }>;
@@ -19,12 +19,8 @@ async function Content({ params, searchParams }: Props) {
   const lessonDescriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === lessonLanguage);
   if (!descriptor || !lessonDescriptor) notFound();
 
-  let course;
-  try {
-    course = await loadCourseTree(courseId, lessonDescriptor.language);
-  } catch {
-    notFound();
-  }
+  const course = await loadExistingCourseTree(courseId, lessonDescriptor.language);
+  if (!course) notFound();
   if (!courseHasLesson(course, lessonId)) notFound();
   const candidates = courseActivities(course).filter(({ node }) => node.type === 'lesson' && node.id === lessonId);
   const placement = (await searchParams).placement;
@@ -46,10 +42,10 @@ async function Content({ params, searchParams }: Props) {
     );
   }
 
-  const [response, messages, toc] = await Promise.all([
+  const [response, messages, titles] = await Promise.all([
     loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language, { placement }),
     loadPublishedUiKitMessages(descriptor.locale),
-    loadCourseToc(courseId, lessonDescriptor.language),
+    loadCourseLessonTitles(course, lessonDescriptor.language),
   ]);
 
   const href =
@@ -69,7 +65,7 @@ async function Content({ params, searchParams }: Props) {
       lessonLocale={lessonDescriptor.locale}
       href={href}
       messages={messages}
-      topics={courseTocToTopics(toc, language, lessonLanguage)}
+      topics={coursePropsToTopics(course, language, lessonLanguage, titles)}
     />
   );
 }
