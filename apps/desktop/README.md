@@ -72,8 +72,8 @@ adding an independent installer/maker pipeline. The Vite renderer, esbuild
 main process and secure `svitlo://app` boundary are unchanged.
 
 The v27 configuration nests `files` under `fileOptions` and `npmRebuild`
-under `nativeModules`; it continues to write unpacked results to
-`release/linux-unpacked/` for the Linux packaged smoke test. The
+under `nativeModules`; the existing Linux packaged smoke test expects
+unpacked results at `release/linux-unpacked/` and verifies this in CI. The
 `app:pack:prepared` command builds **unpacked only** and does not verify
 the AppImage, DMG or NSIS installers. For the installers use the appropriate
 `app:pack:<platform>` workspace script on a runner of that platform and
