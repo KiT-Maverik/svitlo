@@ -80,8 +80,8 @@ test('CI packages the existing Desktop build while standalone packaging remains 
   assert.equal(manifest.devDependencies['electron-builder'], '27.0.0-alpha.15');
   const config = readFileSync(join(root, 'electron-builder.yml'), 'utf8');
   // v27 removed the old top-level files and npmRebuild configuration keys.
-  assert.match(config, /^nativeModules:\\n  npmRebuild: false$/m);
-  assert.match(config, /^fileOptions:\\n  files:$/m);
+  assert.match(config, /^nativeModules:\n  npmRebuild: false$/m);
+  assert.match(config, /^fileOptions:\n  files:$/m);
   assert.match(config, /^    - dist-main\/\*\*\/\*$/m);
   assert.match(config, /^    - dist-renderer\/\*\*\/\*$/m);
   assert.match(config, /^    - package.json$/m);
