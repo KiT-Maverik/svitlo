@@ -151,6 +151,9 @@ test('Mobile E2E serves the already-built production bundle and checks offline r
   assert.match(playwright, /command: 'npm run app:start --workspace @svitlo\/mobile'/);
   assert.doesNotMatch(playwright, /app:start:dev/);
   assert.match(playwright, /reuseExistingServer: false/);
-  assert.match(workflow, /name: Validate compiled Mobile offline bundle\s*\n\s*if: matrix\.workspace == '@svitlo\/mobile'\s*\n\s*run: .*npm run app:check:bundle --workspace/);
+  assert.match(
+    workflow,
+    /name: Validate compiled Mobile offline bundle\s*\n\s*if: matrix\.workspace == '@svitlo\/mobile'\s*\n\s*run: .*npm run app:check:bundle --workspace/,
+  );
   assert.match(mobile.scripts.test, /scripts\/serveBuilt\/\*\.test\.mjs/);
 });

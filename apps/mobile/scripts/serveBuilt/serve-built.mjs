@@ -91,7 +91,9 @@ export async function startBuiltMobileServer({ dist = defaultDist, host = '127.0
       if (request.method === 'HEAD') {
         response.end();
       } else {
-        createReadStream(selected).on('error', () => response.destroy()).pipe(response);
+        createReadStream(selected)
+          .on('error', () => response.destroy())
+          .pipe(response);
       }
     })().catch(error => {
       console.error('Mobile bundle preview request failed:', error);
