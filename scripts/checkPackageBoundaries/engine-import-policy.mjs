@@ -8,6 +8,7 @@ const localAssetPaths = [
 
 /** The sole Build Context Node exception is the exact AsyncLocalStorage owner. */
 export function isAllowedEngineImport(sourcePath, specifier) {
+  sourcePath = sourcePath.replaceAll('\\', '/');
   if (specifier.startsWith('.') || specifier.startsWith('#') || specifier === 'zod') return true;
   if (sourcePath === buildContextPath) return specifier === 'node:async_hooks';
   if (sourcePath.startsWith('shared/engine/utils/generators/'))

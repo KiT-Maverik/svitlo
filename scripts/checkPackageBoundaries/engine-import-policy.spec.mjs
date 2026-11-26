@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { win32 } from 'node:path';
 import test from 'node:test';
 import { isAllowedEngineImport } from './engine-import-policy.mjs';
 
@@ -61,4 +62,23 @@ test('existing isolated build-only exceptions stay unchanged', () => {
     isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs'),
     false,
   );
+});
+
+test('Windows-relative paths preserve the exact same Engine import policy', () => {
+  const root = 'C:/repository';
+  const cases = [
+    [buildContext, 'node:async_hooks', true],
+    [buildContext, 'node:fs', false],
+    [buildContext, '@svitlo/ui-kit', false],
+    ['shared/engine/configurators/_shared__configurators/buildContextCopy.ts', 'node:async_hooks', false],
+    ['shared/engine/runtime.ts', 'node:async_hooks', false],
+    ['shared/engine/utils/generators/compile.ts', 'node:fs', true],
+    ['shared/engine/configurators/contentBlocks/defineCode/helpers.ts', 'node:fs', true],
+    ['shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs', false],
+  ];
+  for (const [path, specifier, expected] of cases) {
+    const windowsPath = win32.relative(root, win32.join(root, path));
+    assert.equal(isAllowedEngineImport(windowsPath, specifier), expected, windowsPath + ' -> ' + specifier);
+    assert.equal(isAllowedEngineImport(path, specifier), expected, path + ' -> ' + specifier);
+  }
 });
