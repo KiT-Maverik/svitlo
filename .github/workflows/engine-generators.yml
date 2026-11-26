@@ -213,7 +213,8 @@ jobs:
           include-hidden-files: true
           retention-days: 1
       - name: Report upload duration
-        run: echo "- Producer artifact upload: $(($(date +%s) - ARTIFACT_UPLOAD_STARTED))s" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "- Producer artifact upload: $(($(date +%s) - ARTIFACT_UPLOAD_STARTED))s" >> "$GITHUB_STEP_SUMMARY"
 
   experiment-consumer-types:
     name: Experiment / UI Kit TypeScript consumer
