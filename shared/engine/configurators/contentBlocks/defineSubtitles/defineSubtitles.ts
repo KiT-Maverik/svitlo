@@ -1,2 +1,2 @@
-/** Compatibility re-export. */
-export * from '../primitive/defineSubtitles/defineSubtitles.ts';
+/** Compatibility re-export; canonical implementation lives in primitive/. */
+export * from '../primitive/defineSubtitles/defineSubtitles';

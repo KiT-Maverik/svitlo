@@ -1,2 +1,2 @@
-/** Compatibility re-export. */
-export * from '../primitive/defineScene/defineScene.schemas.ts';
+/** Compatibility re-export; canonical implementation lives in primitive/. */
+export * from '../primitive/defineScene/defineScene.schemas';

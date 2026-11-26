@@ -1,2 +1,2 @@
-/** Compatibility re-export. */
-export * from '../primitive/defineVideo/defineVideo.schemas.ts';
+/** Compatibility re-export; canonical implementation lives in primitive/. */
+export * from '../primitive/defineVideo/defineVideo.schemas';

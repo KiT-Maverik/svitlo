@@ -1,2 +1,2 @@
-/** Compatibility re-export: canonical primitive module. */
-export * from '../primitive/defineText/index.ts';
+/** Compatibility re-export; canonical implementation lives in primitive/. */
+export * from '../primitive/defineText/index';

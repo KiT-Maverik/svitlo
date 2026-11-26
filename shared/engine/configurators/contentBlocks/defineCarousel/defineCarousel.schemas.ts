@@ -1,2 +1,2 @@
-/** Compatibility re-export. */
-export * from '../composite/defineCarousel/defineCarousel.schemas.ts';
+/** Compatibility re-export; canonical implementation lives in composite/. */
+export * from '../composite/defineCarousel/defineCarousel.schemas';
