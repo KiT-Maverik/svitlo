@@ -1,8 +1,10 @@
+import { join } from 'node:path';
+
 import { afterEach, expect, it, vi } from 'vitest';
 
 import type { LocalizedCourse } from '@svitlo/engine/runtime';
 
-import { courseHasLesson, courseLessonIds, loadCourseLessonTitles, loadCourseTree } from './courseResources';
+import { courseHasLesson, courseLessonIds, loadCourseLessonTitles, loadCourseTree, loadExistingCourseTree } from './courseResources';
 
 const adapter = vi.hoisted(() => ({
   lesson: vi.fn(),
@@ -67,4 +69,33 @@ it('only enables Draft assembly in the development host, never in production', a
   vi.stubEnv('NODE_ENV', 'production');
   await loadCourseTree(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
+});
+
+it('validates direct Course IDs and only attempts the requested publication', async () => {
+  adapter.course.mockResolvedValue(mixed);
+  expect(await loadExistingCourseTree(courseId, 'en')).toBe(mixed);
+  expect(adapter.course).toHaveBeenCalledTimes(1);
+  expect(adapter.course).toHaveBeenCalledWith(courseId, 'en', undefined, 'production');
+  await expect(loadExistingCourseTree('../outside', 'en')).resolves.toBeNull();
+  await expect(loadExistingCourseTree('not-a-uuid', 'en')).resolves.toBeNull();
+  expect(adapter.course).toHaveBeenCalledTimes(1);
+});
+
+it('returns not-found only when the requested Course base is absent', async () => {
+  const base = join(process.cwd(), 'public/data/courses', courseId, 'base.json');
+  const notFound = new Error('Cannot read published resource: ' + base, {
+    cause: Object.assign(new Error('missing'), { code: 'ENOENT' }),
+  });
+  adapter.course.mockRejectedValueOnce(notFound);
+  await expect(loadExistingCourseTree(courseId, 'en')).resolves.toBeNull();
+
+  adapter.course.mockRejectedValueOnce(new Error('Invalid published JSON: ' + base));
+  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Invalid published JSON');
+
+  adapter.course.mockRejectedValueOnce(
+    new Error('Cannot read published resource: ' + base, {
+      cause: Object.assign(new Error('permission denied'), { code: 'EACCES' }),
+    }),
+  );
+  await expect(loadExistingCourseTree(courseId, 'en')).rejects.toThrow('Cannot read published resource');
 });
