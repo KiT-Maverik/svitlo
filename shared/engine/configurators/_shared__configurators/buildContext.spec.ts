@@ -55,6 +55,7 @@ test('Child helpers use the active immutable context and public Build signatures
     }),
   };
   assert.throws(() => buildChildProps(child), /No active Build Context/);
+  assert.throws(() => (child.build.props as (options?: unknown) => unknown)(), /nonempty languages/);
   const result = runWithBuildContext({ languages: ['uk'], mode: 'draft' }, () => ({
     child: buildChildProps(child),
     patch: buildChildOverrides(child, { title: 'test' }),

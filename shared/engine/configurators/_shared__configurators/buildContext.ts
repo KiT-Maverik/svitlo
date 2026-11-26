@@ -25,7 +25,8 @@ export const runWithBuildContext = <
   operation: (context: BuildContext<Languages>) => Result,
 ): Result => {
   // Internal child calls reuse this exact context rather than opening a new operation.
-  if (options === buildScope.getStore()) {
+  const active = buildScope.getStore();
+  if (active && options === active) {
     return operation(options as BuildContext<Languages>);
   }
 
