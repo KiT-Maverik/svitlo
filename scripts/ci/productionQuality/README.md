@@ -87,3 +87,86 @@ The baseline Production Quality run
 spent 219.9s in root `code:check:types` (109.6s inside package builds).
 This is a baseline, **not** a measured post-change speedup. Compare an actual
 full run at the same source scope before claiming improvement.
+
+## Opt-in Engine build-once artifact proof of concept (PR #895)
+
+This is **experimental, manually dispatched diagnostics**, not Production
+Quality or an approved general cross-runner build cache. It deliberately
+tests the current Studio prohibition on sharing `dist/` across runners
+without changing that repository-wide rule or any required check. The
+existing `.github/workflows/engine-generators.yml` is registered on the
+default `develop` branch; its new `workflow_dispatch` choice
+`ci_mode=build-once-engine` selects only three experiment jobs:
+
+1. `Experiment / Engine build producer`: checkout, independent `npm ci`,
+   one canonical Engine `package:build`, compiled-export validation, and
+   `actions/upload-artifact@v6` of all `shared/engine/dist/` files.
+2. `Experiment / UI Kit TypeScript consumer`: own checkout and `npm ci`,
+   verified absent Engine dist before download, same-run artifact download
+   and full `@svitlo/ui-kit` `code:check:types` without Engine build.
+3. `Experiment / Engine unit test consumer`: own checkout and `npm ci`,
+   same-run artifact download, and the actual Engine `test` script with
+   `npm --ignore-scripts run test --workspace @svitlo/engine`. That option
+   **still runs the explicitly requested `test` script** while suppressing
+   the `pretest` lifecycle hook that otherwise rebuilds Engine. The script
+   compiles its own independent `.test-build/` test output, not `dist/`.
+
+The two consumers start only after the producer succeeds; they can run
+concurrently. Both snapshot the complete downloaded Engine file tree before
+their checks and reject any added, missing, modified, or rewritten
+`dist/` file afterward (SHA-256, size and mtime). Missing or malformed
+compiled exports fail **before** testing. The transfer is per run and per
+attempt; it never uploads `node_modules`, shares a mutable build-reuse state,
+or copies artifacts from another workflow run. Native job statuses and logs
+remain distinct. Producer upload and consumer download are timed in step
+summaries; reported size is uncompressed bytes.
+
+### Manual invocation
+
+Select the **experiment branch** explicitly. The workflow itself is already
+registered on default; a *new* standalone workflow added solely on a feature
+branch would not be dispatchable.
+
+```sh
+gh workflow run engine-generators.yml \
+  --ref ci/build-once-engine-artifact-experiment \
+  -f ci_mode=build-once-engine
+gh run list --workflow engine-generators.yml \
+  --branch ci/build-once-engine-artifact-experiment \
+  --event workflow_dispatch --limit 5
+gh run view <run-id> --json jobs,createdAt,updatedAt,headSha
+```
+
+The ordinary `ci_mode=standard` (and calls from Production Quality) keep
+the existing generator jobs. The choice-based mode is intentionally **not**
+a boolean input. Confirm the dispatched run's **head SHA**, three experiment
+job outcomes, and native timing logs before saying the proof of concept
+succeeded. GitHub's Actions UI may render the default-branch input form
+until the branch version is registered; CLI/API with an explicit `--ref` and
+choice value is the preferred experimental entrypoint. Do not dispatch
+`production-quality.yml` just to run this experiment.
+
+### Evidence and next decision
+
+Record, for the **same run**: producer install, build, export validation and
+upload durations; both consumer installs, download durations and check durations;
+uncompressed artifact size; number of Engine builds (expected **one** across
+all three jobs); total experiment wall-clock from earliest job start to latest
+completion; and sum of the **three** job durations in seconds from the Actions
+jobs API. Do not confuse summed job-seconds with billed runner-minutes. Include
+source SHA, runner OS/Node version, and cache profile. Prior run
+[45900076927](https://github.com/KiT-Maverik/svitlo/actions/runs/45900076927)
+is historical repeated-build context, **not** a matching-SHA A/B benchmark.
+A meaningful speed/cost comparison requires a controlled equivalent baseline.
+
+Static and failure-path checks (no npm install required):
+
+```sh
+node --test scripts/ci/productionQuality/production-quality.spec.mjs \
+  scripts/ci/productionQuality/engine-artifact-guard.spec.mjs
+```
+
+To roll back the PoC, remove the three `experiment-*` jobs, the
+`ci_mode` dispatch option and their guards from
+`engine-generators.yml`, plus this experiment-only guard/test and docs.
+No normal production or release workflow changes are necessary.
