@@ -27,6 +27,7 @@ export async function loadExistingCourseTree(id: string, language: LanguageCode)
   } catch (error) {
     const expectedBase = join(process.cwd(), 'public/data/courses', courseId, 'base.json');
     const cause = error instanceof Error ? (error as Error & { cause?: NodeJS.ErrnoException }).cause : undefined;
+    if (error instanceof Error && error.message === 'Course does not support language ' + language) return null;
     if (
       error instanceof Error &&
       error.message === 'Cannot read published resource: ' + expectedBase &&
