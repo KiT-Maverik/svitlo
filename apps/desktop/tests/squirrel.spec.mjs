@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { handleSquirrelStartup } from '../electron/squirrel.mjs';
+import { handleSquirrelStartup } from '../electron/squirrel.ts';
 
 test('ordinary launches and non-Windows platforms do not trigger installer hooks', () => {
   assert.equal(handleSquirrelStartup({ platform: 'linux', args: ['app', '--squirrel-install'] }), false);

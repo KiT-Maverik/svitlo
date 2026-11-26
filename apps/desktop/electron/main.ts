@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 
-import { handleSquirrelStartup } from './squirrel.mjs';
+import { handleSquirrelStartup } from './squirrel.js';
 
 import { app, BrowserWindow } from 'electron';
 

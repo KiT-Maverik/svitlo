@@ -26,6 +26,60 @@ jobs:
           cache: npm
       - name: Install workspaces
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Record production and full npm audit without masking advisory findings
+        shell: bash
+        run: |
+          mkdir -p packaging-audit
+          set +e
+          npm audit --omit=dev --json > packaging-audit/production.json
+          production_status=$?
+          npm audit --json > packaging-audit/full.json
+          full_status=$?
+          set -e
+          echo "production npm audit exit: $production_status; full npm audit exit: $full_status"
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            for (const kind of ["production", "full"]) {
+              const data = JSON.parse(readFileSync("packaging-audit/" + kind + ".json", "utf8"));
+              if (!data.metadata?.vulnerabilities) throw Error(kind + " audit did not return advisory metadata");
+              console.log(kind + " vulnerabilities: " + JSON.stringify(data.metadata.vulnerabilities));
+              for (const [name, advisory] of Object.entries(data.vulnerabilities ?? {})) {
+                console.log(kind + " " + name + " (" + advisory.severity + "): " +
+                  JSON.stringify(advisory.via.map(v => typeof v === "string" ? v : v.name)));
+              }
+            }
+          '
+          if (( production_status > 1 || full_status > 1 )); then
+            echo "::error::npm audit failed to query advisories"; exit 1
+          fi
+      - name: Report resolved packaging graph
+        shell: bash
+        run: |
+          node --input-type=module -e '
+            import { readFileSync } from "node:fs";
+            const lock = JSON.parse(readFileSync("package-lock.json", "utf8"));
+            const entries = Object.keys(lock.packages);
+            console.log("Resolved lockfile package entries: " + entries.length);
+            for (const key of ["electron-builder", "app-builder-lib", "inflight", "glob", "rimraf", "boolean"]) {
+              const found = entries.filter(entry => entry.endsWith("/" + key));
+              console.log(key + ": " + found.map(entry => lock.packages[entry].version).join(", "));
+              if (["electron-builder", "app-builder-lib"].includes(key) && found.length) process.exitCode = 1;
+            }
+          '
+          for name in inflight glob rimraf @electron/get; do
+            if npm ls "$name" --all --parseable > /dev/null 2>&1; then
+              echo "Dependency provenance for $name"
+              npm explain "$name"
+            else
+              echo "$name not present in installed dependency graph"
+            fi
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: svitlo-forge-npm-audits
+          path: packaging-audit/*.json
+          if-no-files-found: error
+          retention-days: 1
       - name: Build adapter and renderer
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
       - name: Typecheck adapter and Desktop

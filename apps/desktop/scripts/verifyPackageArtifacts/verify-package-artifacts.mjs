@@ -27,9 +27,9 @@ if (target === 'unpacked') {
     .filter(item => item.isFile())
     .map(item => join(item.parentPath, item.name));
   const formats = {
-    win32: [/Setup\\.exe$/i, /-full\\.nupkg$/i, /[\\/]RELEASES$/],
-    darwin: [/\\.dmg$/i],
-    linux: [/\\.deb$/i],
+    win32: [/Setup\.exe$/i, /-full\.nupkg$/i, /[\\/]RELEASES$/],
+    darwin: [/\.dmg$/i],
+    linux: [/\.deb$/i],
   };
   for (const pattern of formats[target]) {
     const matches = files.filter(path => pattern.test(path));

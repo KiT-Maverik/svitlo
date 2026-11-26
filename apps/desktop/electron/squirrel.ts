@@ -9,13 +9,21 @@ const supportedEvents = new Set([
 ]);
 
 /** Process Squirrel lifecycle before opening a BrowserWindow. All effects are injectable for tests. */
+interface SquirrelOptions {
+  platform?: NodeJS.Platform;
+  args?: readonly string[];
+  executablePath?: string;
+  run?: typeof spawnSync;
+  exit: (code: number) => void;
+}
+
 export function handleSquirrelStartup({
   platform = process.platform,
   args = process.argv,
   executablePath = process.execPath,
   run = spawnSync,
   exit,
-} = {}) {
+}: SquirrelOptions): boolean {
   if (platform !== 'win32' || !supportedEvents.has(args[1])) return false;
 
   if (args[1] === '--squirrel-obsolete') {
