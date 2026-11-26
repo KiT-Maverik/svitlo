@@ -20,8 +20,14 @@ const checkpointItemBase = identityBase_Schema.extend({
   check: z.literal(true).optional(),
 });
 export const checkpointItem_Config_Schema = checkpointItemBase.extend({
-  question: z.custom<ContentBlock_Text_Configurator>(value => value !== undefined && value !== null),
-  answer: z.custom<ContentBlock_CheckpointAnswer_Configurator>(value => value !== undefined && value !== null),
+  question: z.custom<ContentBlock_Text_Configurator>(
+    value => value !== null && typeof value === 'object' && 'type' in value && value.type === 'text',
+    { message: 'CheckpointItem question must be a Text configurator' },
+  ),
+  answer: z.custom<ContentBlock_CheckpointAnswer_Configurator>(
+    value => value !== null && typeof value === 'object' && 'type' in value && value.type === 'checkpointAnswer',
+    { message: 'CheckpointItem answer must be a CheckpointAnswer configurator' },
+  ),
 });
 export type ContentBlock_CheckpointItem_Config = z.infer<typeof checkpointItem_Config_Schema>;
 

@@ -15,6 +15,17 @@ export type ContentBlock_Carousel_SlideConfigurator = ConfiguratorChild<
   ContentBlock_Image_Configurator | ContentBlock_Scene_Configurator
 >;
 
+/** Carousel's narrower child policy; shared by direct Zod and Build validation. */
+export const carouselSlideTypes = ['image', 'scene'] as const;
+const carouselSlideConfigurator_Schema = z.custom<ContentBlock_Carousel_SlideConfigurator>(
+  value =>
+    value !== null &&
+    typeof value === 'object' &&
+    'type' in value &&
+    carouselSlideTypes.some(type => type === value.type),
+  { message: 'Carousel slides accept only Image or Scene configurators' },
+);
+
 /** Carousel children retain the complete, type-discriminated ContentBlock Props contract. */
 export const carousel_Slide_Props_Schema = z.discriminatedUnion('type', [image_Props_Schema, scene_Props_Schema]);
 export type ContentBlock_Carousel_SlideProps = z.infer<typeof carousel_Slide_Props_Schema>;
@@ -49,7 +60,7 @@ export type ContentBlock_Carousel_Locale<Mode extends 'config' | 'props'> = Mode
 export const carousel_Config_Schema = carouselBase.extend({
   ...addUnifiedLocale(configLocale),
   slides: z.object({
-    items: z.record(z.string(), z.custom<ContentBlock_Carousel_SlideConfigurator>()),
+    items: z.record(z.string(), carouselSlideConfigurator_Schema),
     order: z.array(z.string()),
   }),
 });

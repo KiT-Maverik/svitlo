@@ -25,7 +25,7 @@ The optional **supported-language tuple is type-only**. For example, `defineText
 
 ## ContentBlock composition
 
-The canonical files are in `contentBlocks/primitive/` (Text, Markdown, Code, Image, Audio, Video, YouTube, Subtitles, Scene) and `contentBlocks/composite/` (Carousel, Checkpoint). Old `define*/` paths are source-compatible re-export shells, not independent implementations. The common ContentBlock union and Config/Props remain unchanged; structural Item/Answer are not ContentBlocks. Carousel permits Image/Scene slides only; CheckpointAnswer, Question members and Flashcard sides permit Primitive children only. See [the Studio parent/child matrix](../../studio/docs/architecture/content-block-composition.md).
+The canonical files are in `contentBlocks/primitive/` (Text, Markdown, Code, Image, Audio, Video, YouTube, Subtitles, Scene) and `contentBlocks/composite/` (Carousel, Checkpoint). Old `contentBlocks/define*/` paths have been removed; use the grouped paths or public Engine entrypoints. The common ContentBlock union and Config/Props remain unchanged; structural Item/Answer are not ContentBlocks. Carousel permits Image/Scene slides only; CheckpointAnswer, Question members and Flashcard sides permit Primitive children only. See [the Studio parent/child matrix](../../studio/docs/architecture/content-block-composition.md).
 
 ## Flashcard side configurators and unordered Lesson bank
 

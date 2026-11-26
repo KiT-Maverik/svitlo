@@ -4,7 +4,7 @@ import { describe, test } from 'node:test';
 import { defineImage } from '../../primitive/defineImage';
 import { defineScene } from '../../primitive/defineScene';
 import { defineText } from '../../primitive/defineText';
-import { carousel_Props_Schema, defineCarousel } from './index';
+import { carousel_Config_Schema, carousel_Props_Schema, defineCarousel } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -44,6 +44,48 @@ describe('Configurators', () => {
         });
         return { first, second, carousel };
       };
+
+      test('direct Carousel Config Zod rejects non-slide kinds while retaining Image and Scene', () => {
+        const { first } = example();
+        const activity = defineScene({
+          id: ids[4],
+          slug: 'activity',
+          type: 'scene',
+          params: {},
+          locale: { value: { instruction: 'Choose' } },
+        });
+        const base = {
+          id: ids[0],
+          slug: 'gallery',
+          type: 'carousel',
+          params: {},
+          locale: {},
+        };
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            slides: { items: { first, activity }, order: ['first', 'activity'] },
+          }).success,
+          true,
+        );
+        const text = defineText({ id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' } });
+        for (const forbidden of [
+          text,
+          { id: ids[3], slug: 'invalid', type: 'carousel' },
+          { id: ids[3], slug: 'invalid', type: 'checkpoint' },
+          false,
+          null,
+        ]) {
+          assert.equal(
+            carousel_Config_Schema.safeParse({
+              ...base,
+              slides: { items: { invalid: forbidden }, order: ['invalid'] },
+            }).success,
+            false,
+            'Reject non-Image/Scene slide at direct Zod boundary',
+          );
+        }
+      });
 
       test('publishes complete, ordered Image Props with their stable identity', () => {
         const { carousel } = example();
@@ -205,7 +247,7 @@ describe('Configurators', () => {
               locale: {},
               slides: { items: { text: text as never }, order: ['text'] },
             }).build.props({ languages: ['en'] }),
-          /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel slides|must be/i,
+          /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel (?:slides|Config)|must be/i,
         );
       });
 

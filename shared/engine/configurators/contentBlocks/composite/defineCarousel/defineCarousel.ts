@@ -26,6 +26,7 @@ import {
 } from '../../../_shared__configurators';
 import {
   carousel_Config_Schema,
+  carouselSlideTypes,
   carousel_Override_Config_Schema,
   carousel_Props_Schema,
   carousel_Slide_Props_Schema,
@@ -62,7 +63,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
   });
   if (isRecord(config.slides) && isRecord(config.slides.items)) {
     issues.push(
-      ...validateSluggedConfiguratorMap(config.slides.items, ['image', 'scene'], {
+      ...validateSluggedConfiguratorMap(config.slides.items, carouselSlideTypes, {
         path: 'slides.items',
         itemLabel: 'Carousel slide',
       }),
@@ -281,7 +282,7 @@ export const defineCarousel = <
       const additions = patch.slides?.additionalItems ?? {};
       if (!isRecord(additions)) throw new Error('slides.additionalItems must be a slug-keyed configurator map');
 
-      const addedIssues = validateSluggedConfiguratorMap(additions, ['image', 'scene'], {
+      const addedIssues = validateSluggedConfiguratorMap(additions, carouselSlideTypes, {
         path: 'slides.additionalItems',
         itemLabel: 'Carousel slide',
       });

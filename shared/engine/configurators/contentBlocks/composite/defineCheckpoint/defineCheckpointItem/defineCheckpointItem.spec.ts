@@ -46,6 +46,23 @@ describe('Configurators', () => {
         return { question, first, second, answer, item };
       };
 
+      test('direct CheckpointItem Config schema restricts both structural child roles', () => {
+        const { item, question, answer } = example();
+        const valid = {
+          id: item.id,
+          slug: item.slug,
+          type: 'checkpointItem',
+          check: true,
+          question,
+          answer,
+        };
+        assert.equal(checkpointItem_Config_Schema.safeParse(valid).success, true);
+        for (const invalid of [null, { type: 'image' }, { type: 'carousel' }]) {
+          assert.equal(checkpointItem_Config_Schema.safeParse({ ...valid, question: invalid }).success, false);
+          assert.equal(checkpointItem_Config_Schema.safeParse({ ...valid, answer: invalid }).success, false);
+        }
+      });
+
       test('CheckpointItem builds sorted Props without items, order, or configurators', () => {
         const { item } = example();
         const built = item.build.props({ languages: ['en', 'uk'] });

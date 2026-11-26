@@ -96,6 +96,33 @@ describe('Configurators', () => {
         assert.equal(checkpoint_Props_Schema.safeParse({ ...result.base, content: [] }).success, false);
       });
 
+      test('direct Checkpoint Config Zod rejects non-Item child kinds', () => {
+        const { checkpoint, first } = example();
+        const input = {
+          id: checkpoint.id,
+          slug: checkpoint.slug,
+          type: 'checkpoint',
+          params: {},
+          locale: { title: 'Review' },
+          content: { items: { first }, order: ['first'] },
+        };
+        assert.equal(checkpoint_Config_Schema.safeParse(input).success, true);
+        for (const invalid of [
+          { id: ids[5], slug: 'first', type: 'carousel' },
+          { id: ids[5], slug: 'first', type: 'text' },
+          null,
+        ]) {
+          assert.equal(
+            checkpoint_Config_Schema.safeParse({
+              ...input,
+              content: { items: { first: invalid }, order: ['first'] },
+            }).success,
+            false,
+            'Reject non-CheckpointItem at the direct Config schema',
+          );
+        }
+      });
+
       test('Checkpoint publishes only validated, sparse metadata overrides', () => {
         const { checkpoint } = example();
         const before = checkpoint.build.props({ languages: ['en', 'uk'] });

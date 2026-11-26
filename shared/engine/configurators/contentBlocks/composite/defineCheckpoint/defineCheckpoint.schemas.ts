@@ -48,7 +48,13 @@ export const checkpoint_Config_Schema = checkpointBase.extend({
   content: z.object({
     // The parent validate() owns child kind, identity, Build API and order checks.
     // Do not reuse the renderable ContentBlock guard: checkpointItem is not a UI block type.
-    items: z.record(z.string(), z.custom<ContentBlock_CheckpointItem_Configurator>()),
+    items: z.record(
+      z.string(),
+      z.custom<ContentBlock_CheckpointItem_Configurator>(
+        value => value !== null && typeof value === 'object' && 'type' in value && value.type === 'checkpointItem',
+        { message: 'Checkpoint content must contain CheckpointItem configurators' },
+      ),
+    ),
     order: z.array(z.string()),
   }),
 });
