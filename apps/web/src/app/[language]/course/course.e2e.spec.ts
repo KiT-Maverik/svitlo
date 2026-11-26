@@ -151,3 +151,22 @@ test('Course detail ignores unrelated empty and corrupt UUID directories', async
     await rm(directory, { recursive: true, force: true });
   }
 });
+
+test('A corrupt requested Course reaches the publication failure path, not an unrelated 404', async ({ request }) => {
+  const { mkdir, writeFile, rm } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const invalidId = '11111111-1111-4111-8111-0000000002fd';
+  const directory = join(process.cwd(), 'public/data/courses', invalidId);
+  await mkdir(directory, { recursive: true });
+  try {
+    await writeFile(join(directory, 'base.json'), '{malformed requested Course');
+    const response = await request.get('/en/course/' + invalidId);
+    // Next 16's streamed shell can commit HTTP 200 before the server error
+    // boundary renders. Regardless of streaming status, this must not be
+    // reported as a nonexistent Course.
+    expect(response.status()).not.toBe(404);
+    expect(await response.text()).not.toContain('Controlled Course');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
