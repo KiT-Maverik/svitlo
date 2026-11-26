@@ -1,9 +1,9 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
 import type { NextRequest } from 'next/server';
 
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, resolveEntityPath } from '@svitlo/engine/runtime';
 
 /**
  * Only reject URLs that can be proved invalid before the App Router streams its
@@ -37,6 +37,29 @@ function lessonExists(publicRoot: string, id: string, language: string): boolean
   const filename = path.join(publicRoot, 'data', 'lessons', normalized.slice(-1), normalized, 'base.json');
   const lesson = readPublicationBase(filename);
   return !!lesson && lesson.type === 'lesson' && lesson.id === normalized && supportsLanguage(lesson, language);
+}
+
+/**
+ * Course detail pages stream under Suspense: reject only impossible URLs before
+ * streaming begins. Do not parse or enumerate Course resources here; a corrupt
+ * requested publication must reach the normal loader and fail visibly.
+ */
+function invalidDirectCourseBase(publicRoot: string, courseId: string): boolean {
+  let canonicalId: string;
+  try {
+    canonicalId = resolveEntityPath(courseId).split('/')[1];
+  } catch {
+    return true;
+  }
+  try {
+    // A missing base is a 404. A damaged or inaccessible existing resource must
+    // reach the adapter's typed error path, not be treated as unsupported locale.
+    statSync(path.join(publicRoot, 'data', 'courses', canonicalId, 'base.json'));
+    return false;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return true;
+    throw error;
+  }
 }
 
 function courseContainsEpisode(node: unknown, episodeId: string, language: string): boolean {
@@ -98,6 +121,9 @@ export function isInvalidPublishedRoute(pathname: string, publicRoot: string): b
     return true;
   }
 
+  if (parts[1] === 'course' && parts.length === 3) {
+    return !codes.has(language) || invalidDirectCourseBase(publicRoot, parts[2]);
+  }
   if (parts[1] === 'course' && parts[3] === 'episode') {
     if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
     return !courseIncludesEpisode(publicRoot, parts[2], parts[5], parts[4]);
@@ -133,6 +159,7 @@ export const config = {
     '/topics/:path*',
     '/lesson/:path*',
     '/:language/lesson/:path*',
+    '/:language/course/:courseId',
     '/:language/course/:courseId/lesson/:path*',
     '/:language/course/:courseId/episode/:path*',
   ],

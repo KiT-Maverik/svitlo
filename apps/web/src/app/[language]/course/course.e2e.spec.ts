@@ -105,3 +105,67 @@ test('Episode host renders localized media and registered Scene, then follows re
   await page.goto('/uk/course/' + story + '/lesson/uk/' + lessonId + '?placement=finalLesson');
   await expect(page.getByRole('heading', { name: 'Контрольний урок 2', level: 1 })).toBeVisible();
 });
+
+test('Direct Course URLs reject malformed or absent IDs and unsupported interface languages', async ({ request }) => {
+  for (const route of [
+    '/en/course/not-a-uuid',
+    '/en/course/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3',
+    '/unsupported/course/' + courseId,
+  ])
+    expect((await request.get(route)).status()).toBe(404);
+});
+
+test('Course detail falls back to a published content language and keeps interface navigation', async ({ page }) => {
+  await page.goto('/pl/course/' + courseId);
+  await expect(page).toHaveURL('/pl/course/' + courseId);
+  const notice = page.getByTestId('course-language-notice');
+  await expect(notice).toHaveAttribute('role', 'status');
+  await expect(notice).toContainText('Showing the available');
+  await expect(page.getByRole('heading', { name: 'Контрольний курс', level: 1 })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
+    'href',
+    '/pl/course/' + courseId + '/lesson/uk/' + lessonId,
+  );
+  await page.getByRole('link', { name: /Контрольний урок/ }).click();
+  await expect(page).toHaveURL('/pl/course/' + courseId + '/lesson/uk/' + lessonId);
+});
+
+test('Course detail keeps its requested language without displaying a fallback notice', async ({ page }) => {
+  await page.goto('/uk/course/' + courseId);
+  await expect(page.getByTestId('course-language-notice')).toHaveCount(0);
+});
+
+test('Course detail ignores unrelated empty and corrupt UUID directories', async ({ page }) => {
+  const { mkdir, writeFile, rm } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const sibling = '11111111-1111-4111-8111-0000000002fe';
+  const directory = join(process.cwd(), 'public/data/courses', sibling);
+  await mkdir(directory, { recursive: true });
+  try {
+    await page.goto('/en/course/' + courseId);
+    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
+    await writeFile(join(directory, 'base.json'), '{corrupt unrelated publication');
+    await page.reload();
+    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test('A corrupt requested Course reaches the publication failure path, not an unrelated 404', async ({ request }) => {
+  const { mkdir, writeFile, rm } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const invalidId = '11111111-1111-4111-8111-0000000002fd';
+  const directory = join(process.cwd(), 'public/data/courses', invalidId);
+  await mkdir(directory, { recursive: true });
+  try {
+    await writeFile(join(directory, 'base.json'), '{malformed requested Course');
+    const response = await request.get('/en/course/' + invalidId);
+    // Next 16's streamed shell can commit HTTP 200 before the server error
+    // boundary renders. Regardless of streaming status, this must not be
+    // reported as a nonexistent Course.
+    expect(response.status()).not.toBe(404);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
