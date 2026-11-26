@@ -53,6 +53,8 @@ export type ChildrenSupporting<Required extends readonly LanguageCode[], Childre
  * is required at authoring time by RequireLanguages. Explicit [] allows none.
  */
 export type PublicationLanguageOptions<Languages extends readonly LanguageCode[] = readonly LanguageCode[]> = {
+  /** Explicit opt-in for previewing unfinished resources; production remains the default. */
+  readonly mode?: 'production' | 'draft';
   readonly languages: readonly (Languages extends readonly []
     ? never
     : Languages extends readonly [LanguageCode, ...LanguageCode[]]

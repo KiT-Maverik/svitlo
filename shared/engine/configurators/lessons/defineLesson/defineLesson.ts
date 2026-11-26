@@ -106,7 +106,7 @@ const hasEnabledQuiz = (sections: readonly { type: string; params?: { disabled?:
   sections.some(section => section.type === 'quiz' && section.params?.disabled !== true);
 
 /** Validate ownership/identity only; children handle their own schemas and semantics. */
-const validate = (config: Lesson_Config): void => {
+const validate = (config: Lesson_Config, options?: PublicationLanguageOptions): void => {
   if (Object.hasOwn(config, 'programId')) {
     throw new Error('Lesson must not declare programId; Course ownership is defined by authoring composition');
   }
@@ -134,7 +134,7 @@ const validate = (config: Lesson_Config): void => {
     config.params.quizRequiredForCompletion &&
     !hasEnabledQuiz(
       config.section.order.map(
-        key => config.section.items[key].build.props({ languages: config.params.languages }).base,
+        key => config.section.items[key].build.props({ languages: config.params.languages, mode: options?.mode }).base,
       ),
     )
   ) {
@@ -190,13 +190,14 @@ export function defineLesson<
     order: readonly string[],
     languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
+    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
-      const resource = child.build.props({ languages });
+      const resource = child.build.props({ languages, mode });
       const patch = Object.hasOwn(changes, key)
-        ? child.build.overrides(changes[key] as never, { languages })
+        ? child.build.overrides(changes[key] as never, { languages, mode })
         : undefined;
       return { resource, patch };
     });
@@ -230,7 +231,7 @@ export function defineLesson<
   };
   const props = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
+    validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } }, options);
     const own = copyAuthored();
     for (const code of languages) {
       if (!own.params.languages.includes(code))
@@ -241,7 +242,7 @@ export function defineLesson<
     for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
       files[code as LanguageCode] = { locale: fields as LocaleBody['locale'] };
     }
-    const sections = buildOrdered(initialSections, sectionOrder, languages);
+    const sections = buildOrdered(initialSections, sectionOrder, languages, {}, options.mode);
     addLocalizedArray(files, 'section', sections.locales);
     const result = structuredClone({
       base: {
@@ -332,7 +333,7 @@ export function defineLesson<
   ): Publication<OverrideBase> & Pick<Lesson_Config, 'id'> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
+      validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } }, options);
       for (const code of languages) {
         if (!authored.params.languages.includes(code))
           throw new Error('Lesson does not support publication language: ' + code);
@@ -372,7 +373,7 @@ export function defineLesson<
         sectionTypes,
       );
       if (sections.changed) {
-        const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges);
+        const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges, options.mode);
         output.base.section = built.bases as Lesson_PropsBase['section'];
         addLocalizedArray(files, 'section', built.locales);
       }
@@ -380,14 +381,14 @@ export function defineLesson<
       validate({
         ...own,
         section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-      });
+      }, options);
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (
         own.params.quizRequiredForCompletion &&
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order, languages).bases as Lesson_PropsBase['section']),
+            : (buildOrdered(sections.active, sections.order, languages, {}, options.mode).bases as Lesson_PropsBase['section']),
         )
       ) {
         throw new Error('Lesson requires at least one enabled Quiz section');

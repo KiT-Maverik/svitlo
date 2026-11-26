@@ -103,7 +103,7 @@ function findLessonPatches(course, languages, mode) {
       ) {
         throw new Error('Mismatched immutable Lesson placement identity at ' + location);
       }
-      const patch = isPlacement ? entity.build.overrides({}, { languages }) : undefined;
+      const patch = isPlacement ? entity.build.overrides({}, { languages, mode }) : undefined;
       if (patch?.id !== undefined && patch.id !== entity.id) {
         throw new Error('Mismatched sparse Lesson override identity at ' + location);
       }
@@ -257,7 +257,7 @@ export function renderCourseFiles(
     throw new Error('Expected distinct, nonempty Course publication languages');
   }
   if (!['production', 'draft'].includes(mode)) throw new Error('Invalid Course publication mode');
-  const scope = { languages };
+  const scope = { languages, mode };
   // Course Configurator Build owns authoring, nested overrides and Props validation.
   const resource = course.build.props(scope);
   const lessonPatches = findLessonPatches(course, languages, mode);
