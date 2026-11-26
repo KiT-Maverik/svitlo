@@ -1,4 +1,5 @@
 import type { ConfiguratorChild } from '../../types/configuratorChild';
+import type { ContentBlock_Composite_Type, ContentBlock_Primitive_Type } from './contentBlock.constants';
 import type { ContentBlock_Audio_Configurator, ContentBlock_Audio_Props } from './defineAudio';
 import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props } from './defineCarousel';
 import type { ContentBlock_Checkpoint_Configurator, ContentBlock_Checkpoint_Props } from './defineCheckpoint';
@@ -37,3 +38,15 @@ export type ContentBlock_Props =
   | ContentBlock_Carousel_Props
   | ContentBlock_Checkpoint_Props
   | ContentBlock_Scene_Props;
+
+/** Categories are derived from discriminants, never authored or published fields. */
+export type ContentBlock_Primitive_Configurator = Extract<
+  ContentBlock_Configurator,
+  { type: ContentBlock_Primitive_Type }
+>;
+export type ContentBlock_Composite_Configurator = Extract<
+  ContentBlock_Configurator,
+  { type: ContentBlock_Composite_Type }
+>;
+export type ContentBlock_Primitive_Props = Extract<ContentBlock_Props, { type: ContentBlock_Primitive_Type }>;
+export type ContentBlock_Composite_Props = Extract<ContentBlock_Props, { type: ContentBlock_Composite_Type }>;

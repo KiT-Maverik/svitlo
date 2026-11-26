@@ -9,7 +9,7 @@ import {
   validateSluggedConfiguratorMap,
 } from '../../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
-import { contentBlockTypes } from '../../contentBlock.constants';
+import { primitiveContentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointAnswer_Config_Schema,
   checkpointAnswer_Props_Schema,
@@ -32,7 +32,7 @@ export class CheckpointAnswerValidationError extends Error {
   }
 }
 
-const allowedTypes = contentBlockTypes.filter(type => type !== 'checkpoint');
+const allowedTypes = primitiveContentBlockTypes;
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 

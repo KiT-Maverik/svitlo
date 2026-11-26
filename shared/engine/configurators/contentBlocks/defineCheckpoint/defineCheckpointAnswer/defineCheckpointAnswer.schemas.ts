@@ -8,12 +8,6 @@ import type {
 } from '../../defineAudio';
 import { audio_Props_Schema } from '../../defineAudio/defineAudio.schemas';
 import type {
-  ContentBlock_Carousel_Configurator,
-  ContentBlock_Carousel_Props,
-  ContentBlock_Carousel_PropsBase,
-} from '../../defineCarousel';
-import { carousel_Props_Schema } from '../../defineCarousel/defineCarousel.schemas';
-import type {
   ContentBlock_Code_Configurator,
   ContentBlock_Code_Props,
   ContentBlock_Code_PropsBase,
@@ -60,7 +54,6 @@ import { youtube_Props_Schema } from '../../defineYoutube/defineYoutube.schemas'
 
 export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Audio_Configurator
-  | ContentBlock_Carousel_Configurator
   | ContentBlock_Code_Configurator
   | ContentBlock_Image_Configurator
   | ContentBlock_Markdown_Configurator
@@ -71,7 +64,6 @@ export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Youtube_Configurator;
 export type Checkpoint_Allowed_Props =
   | ContentBlock_Audio_Props
-  | ContentBlock_Carousel_Props
   | ContentBlock_Code_Props
   | ContentBlock_Image_Props
   | ContentBlock_Markdown_Props
@@ -82,7 +74,6 @@ export type Checkpoint_Allowed_Props =
   | ContentBlock_Youtube_Props;
 export type Checkpoint_Allowed_PropsBase =
   | ContentBlock_Audio_PropsBase
-  | ContentBlock_Carousel_PropsBase
   | ContentBlock_Code_PropsBase
   | ContentBlock_Image_PropsBase
   | ContentBlock_Markdown_PropsBase
@@ -102,7 +93,6 @@ export const checkpointAnswer_Config_Schema = answerBase.extend({
 export type ContentBlock_CheckpointAnswer_Config = z.infer<typeof checkpointAnswer_Config_Schema>;
 export const checkpointAnswer_Child_Props_Schema = z.discriminatedUnion('type', [
   audio_Props_Schema,
-  carousel_Props_Schema,
   code_Props_Schema,
   image_Props_Schema,
   markdown_Props_Schema,

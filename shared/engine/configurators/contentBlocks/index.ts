@@ -20,9 +20,17 @@ export * from './defineCheckpoint';
 
 export * from './defineScene';
 
-export type { ContentBlock_Configurator, ContentBlock_Props } from './contentBlock.types';
+export type {
+  ContentBlock_Configurator,
+  ContentBlock_Props,
+  ContentBlock_Primitive_Configurator,
+  ContentBlock_Primitive_Props,
+  ContentBlock_Composite_Configurator,
+  ContentBlock_Composite_Props,
+} from './contentBlock.types';
 export * from './contentBlock.constants';
 export {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
+  primitiveContentBlockResolved_Schema,
 } from './contentBlock.schemas';

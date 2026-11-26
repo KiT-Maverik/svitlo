@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { defineText } from '../../defineText';
+import { defineCarousel } from '../../defineCarousel';
+import { defineImage } from '../../defineImage';
 import { checkpointAnswer_Config_Schema, checkpointAnswer_Props_Schema, defineCheckpointAnswer } from './index';
 
 describe('Configurators', () => {
@@ -59,6 +61,51 @@ describe('Configurators', () => {
             } as never).build.props({ languages: ['en'] }),
           );
         }
+      });
+
+      test('rejects composite Carousel children at Config, override and resolved Props boundaries', () => {
+        const { answer, first } = create();
+        const image = defineImage({
+          id: id('76'),
+          slug: 'image',
+          type: 'image',
+          params: { fill: true, aspectRatio: 1.5 },
+          locale: { fileName: 'https://example.com/image.png', alt: 'An image' },
+        });
+        const carousel = defineCarousel({
+          id: id('77'),
+          slug: 'carousel',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          slides: { items: { image }, order: ['image'] },
+        });
+        assert.throws(() =>
+          defineCheckpointAnswer({
+            id: id('78'),
+            slug: 'invalid',
+            type: 'checkpointAnswer',
+            content: { items: { carousel }, order: ['carousel'] },
+          } as never).build.props({ languages: ['en'] }),
+        );
+        assert.throws(() =>
+          answer.build.overrides({
+            content: { additionalItems: { carousel }, order: ['second', 'first', 'carousel'] },
+          } as never, { languages: ['en'] }),
+        );
+        assert.equal(checkpointAnswer_Props_Schema.safeParse({
+          id: answer.id,
+          slug: answer.slug,
+          type: 'checkpointAnswer',
+          content: [{ id: carousel.id, slug: carousel.slug, type: carousel.type }],
+        }).success, false);
+        // Unchanged leaf child is still allowed.
+        assert.equal(checkpointAnswer_Config_Schema.safeParse({
+          id: answer.id,
+          slug: answer.slug,
+          type: answer.type,
+          content: { items: { first }, order: ['first'] },
+        }).success, true);
       });
 
       test('publishes data-only ordered Props and separate locale fragments', () => {
