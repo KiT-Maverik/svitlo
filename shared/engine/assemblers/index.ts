@@ -11,3 +11,6 @@ export { createAssessmentResourceLoader } from './assessmentResources/createAsse
 export type { ReadAssessmentFiles } from './assessmentResources/createAssessmentResourceLoader';
 
 export * from './assembleCourseLesson/assembleCourseTree';
+
+export { assembleCourseToc } from './courseToc/courseToc';
+export type { CourseToc, CourseTocNode, CourseTocContent } from './courseToc/courseToc';
