@@ -1,14 +1,16 @@
 appId: org.svitlo.desktop
 productName: Svitlo
 asar: true
-npmRebuild: false
+nativeModules:
+  npmRebuild: false
 directories:
   output: release
-files:
-  - dist-main/**/*
-  - dist-renderer/**/*
-  - package.json
-  - '!**/*.map'
+fileOptions:
+  files:
+    - dist-main/**/*
+    - dist-renderer/**/*
+    - package.json
+    - '!**/*.map'
 linux:
   executableName: svitlo
   target:
