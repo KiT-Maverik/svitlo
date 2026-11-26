@@ -57,7 +57,9 @@ export function courseTocToTopics(
       id: node.id,
       title: node.label,
       type: node.type,
-      ...(!node.draft ? { href: root + '/' + node.type + '/' + lessonLanguage + '/' + node.id } : {}),
+      ...(!('draft' in node && node.draft === true)
+        ? { href: root + '/' + node.type + '/' + lessonLanguage + '/' + node.id }
+        : {}),
     };
   }
   return toc.content.order.map(key => convert(toc.content.items[key], key));
