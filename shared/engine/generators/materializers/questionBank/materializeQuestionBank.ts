@@ -2,7 +2,6 @@
  * Explicit Question Bank Stage 1 and reviewed Stage 3 source operations.
  * Never materializes a Quiz Section, publishes Props, or fabricates a Question.
  */
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { questionTypes } from '../../../configurators/questions/question.constants';
 import {
   questionBankWorkflowStage1_Schema,
@@ -45,6 +44,7 @@ import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
 import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
 import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
 import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 const kinds = questionTypes;
 type Kind = (typeof kinds)[number];

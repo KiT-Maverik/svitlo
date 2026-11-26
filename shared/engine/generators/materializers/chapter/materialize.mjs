@@ -324,7 +324,7 @@ export function materializeChapter(input, context = {}) {
     if (stage1Lesson || stage1Episode || pendingAssessment) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
-      claim(key, 'pending '+raw.type+' in content.items.'+key);
+      claim(key, 'pending ' + raw.type + ' in content.items.' + key);
       imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location: './' }));
       items[key] = key;
     } else {
@@ -384,11 +384,14 @@ export function materializeChapter(input, context = {}) {
   }
   // Verify factual IDs against trusted Skill references, but do not generate imports.
   if (meta && (meta.outcomes !== undefined || meta.prerequisites !== undefined)) {
-    bindVerifiedSkills({ outcomes: meta.outcomes, prerequisites: meta.prerequisites }, {
-      resolveSkill: context.resolveSkill,
-      textbookRoot: context.textbookRoot,
-      directory: dir,
-    });
+    bindVerifiedSkills(
+      { outcomes: meta.outcomes, prerequisites: meta.prerequisites },
+      {
+        resolveSkill: context.resolveSkill,
+        textbookRoot: context.textbookRoot,
+        directory: dir,
+      },
+    );
   }
   const paramsSource = JSON.stringify(params);
   const courseId = context.courseId;

@@ -49,7 +49,7 @@ test('CheckpointItem delegates its enabled Text question and identified Answer i
   assert.match(code, /defineCheckpointItem<"first", typeof answer, typeof prompt, typeof languages>/);
   assert.match(code, /import \{ prompt \} from "\.\/question"/);
   assert.match(code, /import \{ answer \} from "\.\/answer"/);
-  assert.match(code, /question: prompt/);
+  assert.match(code, /"question": prompt/);
   assert.doesNotMatch(code, / as question| as answer|child_/);
   assert.match(code, /check: true/);
   assert.equal(syntaxErrorCount(code), 0);

@@ -100,7 +100,13 @@ export function materializeSkillGroup(input, context = {}) {
     dir = context.directory ?? '';
   const { id, slug } = identity(config, context, dir, 'skillGroup'),
     language = source(context);
-  const claim = createSourceIdentifierRegistry('skillGroup', ['defineSkillGroup', 'SupportedLanguages', 'languages', 'skills', exportName(slug)]);
+  const claim = createSourceIdentifierRegistry('skillGroup', [
+    'defineSkillGroup',
+    'SupportedLanguages',
+    'languages',
+    'skills',
+    exportName(slug),
+  ]);
   const files = [],
     imports = [],
     diagnostics = [],

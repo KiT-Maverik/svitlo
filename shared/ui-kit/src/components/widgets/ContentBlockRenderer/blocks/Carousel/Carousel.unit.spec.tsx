@@ -162,7 +162,9 @@ describe('carousel content block', () => {
         ],
       },
     };
-    expect(() => show(mixed)).toThrow(/Unregistered scene id: unregistered/);
+    show(mixed);
+    expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
+    expect(screen.queryByText('Preview')).not.toBeInTheDocument();
   });
 
   it('requests fullscreen through the DOM API when available', () => {

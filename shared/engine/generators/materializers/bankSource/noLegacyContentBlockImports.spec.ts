@@ -37,6 +37,7 @@ test('repository source imports do not refer to deleted ContentBlock directories
     'node_modules',
     '.git',
     'dist',
+    'dist-main',
     '.test-build',
     '.next',
     '.cache',
