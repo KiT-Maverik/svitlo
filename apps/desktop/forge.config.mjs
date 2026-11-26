@@ -9,7 +9,7 @@ const payload = new Set(['dist-main', 'dist-renderer', 'package.json']);
 function ignoreUnpublishedFile(path) {
   // Electron Packager calls the predicate with an empty root string, followed
   // by root-relative paths such as "/package.json" or absolute source paths.
-  if (!path) return false;
+  if (!path || path === '/' || path === '\\') return false;
   const source = path.replaceAll('\\', '/');
   const root = desktopRoot.replaceAll('\\', '/');
   const relativePath = source.startsWith(root + '/') ? source.slice(root.length + 1) : source.replace(/^\/+/, '');
