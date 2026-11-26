@@ -3,9 +3,9 @@ import test, { describe } from 'node:test';
 
 import { mergeForValidation } from '../../_shared__configurators';
 import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineLesson } from '../../lessons/defineLesson';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
-import { defineLesson } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
 import { placeLesson } from '../placeLesson';
@@ -524,7 +524,6 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);
 });
 
-
 test('F4: English Course placement composes a multilingual required-Quiz Lesson with an English-only additional Section', () => {
   const bilingual = ['en', 'zh'] as const;
   const english = ['en'] as const;
@@ -610,17 +609,16 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     assert.equal(patch.locale?.zh, undefined);
   }
 
-  assert.deepEqual(lesson.build.props({ languages: ['en'] }).base.section.map(section => section.slug), [
-    'intro',
-    'quiz',
-  ]);
+  assert.deepEqual(
+    lesson.build.props({ languages: ['en'] }).base.section.map(section => section.slug),
+    ['intro', 'quiz'],
+  );
   assert.throws(() => lesson.build.props({ languages: ['zh'] }), /Invalid publication/);
   assert.throws(
     () =>
-      placement.build.overrides(
-        { section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never,
-        { languages: ['en'] },
-      ),
+      placement.build.overrides({ section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never, {
+        languages: ['en'],
+      }),
     /at least one enabled Quiz/,
   );
 });

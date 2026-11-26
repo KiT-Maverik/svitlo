@@ -69,13 +69,16 @@ export const scopeBuild = <Build extends object>(build: Build): Build => {
 };
 
 /** Compose a child without requiring a common return type across distinct unions. */
-export const buildChildProps = <
-  Child extends { readonly build: { readonly props: (options: never) => unknown } },
->(child: Child): ReturnType<Child['build']['props']> =>
+export const buildChildProps = <Child extends { readonly build: { readonly props: (options: never) => unknown } }>(
+  child: Child,
+): ReturnType<Child['build']['props']> =>
   child.build.props(requireBuildContext() as never) as ReturnType<Child['build']['props']>;
 
 /** Compose sparse child changes in the same scope without mutating the source. */
 export const buildChildOverrides = <
   Child extends { readonly build: { readonly overrides: (patch: never, options: never) => unknown } },
->(child: Child, patch: unknown): ReturnType<Child['build']['overrides']> =>
+>(
+  child: Child,
+  patch: unknown,
+): ReturnType<Child['build']['overrides']> =>
   child.build.overrides(patch as never, requireBuildContext() as never) as ReturnType<Child['build']['overrides']>;

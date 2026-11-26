@@ -381,12 +381,10 @@ export function defineLesson<
         addLocalizedArray(files, 'section', built.locales);
       }
       // Recheck parent collection, identity and cross-child invariants after changes.
-      validate(
-        {
-          ...own,
-          section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
-        },
-      );
+      validate({
+        ...own,
+        section: { items: sections.active as Record<string, Section_Configurator>, order: [...sections.order] },
+      });
       // Child overrides can disable a Quiz without removing its configurator from the map.
       if (
         own.params.quizRequiredForCompletion &&

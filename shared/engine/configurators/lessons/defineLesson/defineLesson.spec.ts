@@ -544,7 +544,11 @@ describe('Configurators', () => {
         assert.throws(() => lesson.build.props({ languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(() => lesson.build.overrides({}, { languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(
-          () => lesson.build.overrides({ section: { items: { review: false }, order: ['english'] } }, { languages: ['en'] }),
+          () =>
+            lesson.build.overrides(
+              { section: { items: { review: false }, order: ['english'] } },
+              { languages: ['en'] },
+            ),
           /at least one enabled Quiz/,
         );
       });
