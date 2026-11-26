@@ -28,7 +28,7 @@ import {
   type ResolvableBlockPatch,
 } from '../_shared__questions';
 import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectOneAnswer_Config_Schema,
@@ -60,7 +60,7 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
 type ContentShape = Question_SelectOneAnswer_Config['content'];
 export type Question_SelectOneAnswer_Overrides<
   Content extends ContentShape = ContentShape,
-  Added extends Record<string, ContentBlock_Configurator> = {},
+  Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_SelectOneAnswer_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -195,7 +195,7 @@ export const defineSelectOneAnswer = <
     return resource;
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+  const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_SelectOneAnswer_Props> => {

@@ -1,8 +1,8 @@
-import { defineAudio } from '../../contentBlocks/defineAudio';
-import { defineImage } from '../../contentBlocks/defineImage';
-import { defineScene } from '../../contentBlocks/defineScene';
-import { defineSubtitles } from '../../contentBlocks/defineSubtitles';
-import { defineVideo } from '../../contentBlocks/defineVideo';
+import { defineAudio } from '../../contentBlocks/primitive/defineAudio';
+import { defineImage } from '../../contentBlocks/primitive/defineImage';
+import { defineScene } from '../../contentBlocks/primitive/defineScene';
+import { defineSubtitles } from '../../contentBlocks/primitive/defineSubtitles';
+import { defineVideo } from '../../contentBlocks/primitive/defineVideo';
 import { defineQuestSection } from './defineQuestSection';
 import { defineStage } from './defineStage';
 import { defineTask } from './defineTask';

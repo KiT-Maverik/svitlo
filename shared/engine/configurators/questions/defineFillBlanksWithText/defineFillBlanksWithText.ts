@@ -29,7 +29,7 @@ import {
   scopeBuild,
   validateOrderedKeys,
 } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
@@ -59,7 +59,7 @@ type SlotsOverride<
 };
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
-  Added extends Record<string, ContentBlock_Configurator> = {},
+  Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedSlots extends Record<string, Slot> = {},
 > = Question_FillBlanksWithText_MetadataOverrides & {
@@ -247,7 +247,7 @@ export const defineFillBlanksWithText = <
   };
 
   const overrides = <
-    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
     const AddedSlots extends Record<string, Slot> = {},
   >(
     patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,

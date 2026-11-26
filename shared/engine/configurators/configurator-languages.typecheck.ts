@@ -1,4 +1,4 @@
-import { defineText } from './contentBlocks/defineText';
+import { defineText } from './contentBlocks/primitive/defineText';
 import { defineContentSection } from './sections/defineContentSection';
 import { defineSkill, defineSkillGroup } from './skills';
 
