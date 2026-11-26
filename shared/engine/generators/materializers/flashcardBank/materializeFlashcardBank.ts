@@ -2,7 +2,6 @@
  * Explicit Lesson-owned Flashcard Bank Stage 1/Stage 5 source operations.
  * A bank is NOT a Card; the existing materializeFlashcard() retains that role.
  */
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type {
   Flashcard_Relationship,
   Flashcard_Relationship_Type,
@@ -39,6 +38,7 @@ import {
 import { materializeAssessmentBlock, type AssessmentBlockEvidence } from '../bankSource/materializeAssessmentBlock';
 import { materializeBankSceneDrafts } from '../bankSource/materializeBankSceneDrafts';
 import { materializeFlashcard } from '../flashcard/materializeFlashcard';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type FlashcardBankDraftAuthorization = {
   authorized: true;

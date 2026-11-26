@@ -1,4 +1,3 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { createHash } from 'node:crypto';
 
 import {
@@ -18,6 +17,7 @@ import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 import { materializeQuizSection } from '../quizSection/quizSection';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeScene } from '../scene/materializeScene';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 import { materializeText } from '../text/materializeText';
 import { materializeVideo } from '../video/materializeVideo';
@@ -346,7 +346,13 @@ function plan(
   };
   const imports: string[] = [];
   const sectionNames: Record<string, string> = {};
-  const claim = createSourceIdentifierRegistry('assessment', ['defineAssessment', 'languages', 'before', 'after', exportName(config.slug)]);
+  const claim = createSourceIdentifierRegistry('assessment', [
+    'defineAssessment',
+    'languages',
+    'before',
+    'after',
+    exportName(config.slug),
+  ]);
   for (const key of sectionOrder) {
     const wrapped = sections[key];
     if (!wrapped) throw Error('Assessment: missing ordered Section ' + key);
@@ -400,7 +406,9 @@ function plan(
       exportName(config.slug) +
       ' = defineAssessment<' +
       JSON.stringify(config.slug) +
-      ', typeof languages, typeof before.items, typeof ' + sectionNames[quizKey] + ', typeof after.items>({',
+      ', typeof languages, typeof before.items, typeof ' +
+      sectionNames[quizKey] +
+      ', typeof after.items>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
     '  locale: ' + JSON.stringify(reviewedLocale) + ',',

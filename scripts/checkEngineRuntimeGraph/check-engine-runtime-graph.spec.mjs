@@ -59,3 +59,23 @@ test('accepts Props schemas but rejects corresponding authoring factories', asyn
   });
   await assert.rejects(checkEngineRuntimeGraph(factoryEntry), /Build-time modules reached from Engine runtime/);
 });
+
+test('rejects Build Context even if the Node import is removed or hidden', async t => {
+  const entry = createFixture(t, {
+    'runtime.ts': "export { value } from './configurators/_shared__configurators/buildContext';\n",
+    'configurators/_shared__configurators/buildContext.ts': "export const value = 'build-only';\n",
+  });
+  await assert.rejects(checkEngineRuntimeGraph(entry), /Build-time modules reached from Engine runtime/);
+});
+
+test('rejects node:async_hooks transitively in a runtime barrel', async t => {
+  const entry = createFixture(t, {
+    'runtime.ts': "export { value } from './barrel';\n",
+    'barrel.ts': "export { value } from './authoring';\n",
+    'authoring.ts': "import { AsyncLocalStorage } from 'node:async_hooks';\nexport const value = AsyncLocalStorage;\n",
+  });
+  await assert.rejects(
+    checkEngineRuntimeGraph(entry),
+    /Node-only imports in Engine runtime browser bundle|Could not resolve "node:async_hooks"/,
+  );
+});

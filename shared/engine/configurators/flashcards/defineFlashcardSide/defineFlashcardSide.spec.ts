@@ -117,7 +117,7 @@ describe('Configurators', () => {
               items: { carousel },
               order: ['carousel'],
             } as never).build.props({ languages: ['en'] }),
-          /Primitive ContentBlocks|Invalid|type/,
+          /Primitive ContentBlock Configurator/,
         );
         assert.throws(
           () =>
@@ -128,7 +128,7 @@ describe('Configurators', () => {
               } as never,
               { languages: ['en'] },
             ),
-          /Primitive ContentBlocks|Invalid|type/,
+          /Primitive ContentBlock Configurator/,
         );
       });
 

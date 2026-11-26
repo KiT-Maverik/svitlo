@@ -3,10 +3,10 @@
  * This is NOT a Props publisher or a YAML/Configurator adapter.
  * Child blocks belong to their concrete materializers (Agents C/D).
  */
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Question_SelectMultipleAnswers_Config } from '../../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
@@ -221,7 +221,12 @@ export function materializeSelectMultipleAnswers(
   const files: OutputFile[] = [];
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('selectMultipleAnswers', ['defineSelectMultipleAnswers', 'Languages', 'content', exportedName]);
+  const claim = createSourceIdentifierRegistry('selectMultipleAnswers', [
+    'defineSelectMultipleAnswers',
+    'Languages',
+    'content',
+    exportedName,
+  ]);
   const blockers: string[] = [];
   if (node.production?.pending === true)
     blockers.push('Independent Question Bank review and content completion required.');
@@ -261,13 +266,7 @@ export function materializeSelectMultipleAnswers(
       if (!out.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
         fail(location, 'missing delegated ContentBlock index.ts');
       const childName = claim(out.exportName, location);
-      imports.push(
-        'import { ' +
-          out.exportName +
-          ' } from ' +
-          JSON.stringify('./' + name + '/' + childPath) +
-          ';',
-      );
+      imports.push('import { ' + out.exportName + ' } from ' + JSON.stringify('./' + name + '/' + childPath) + ';');
       files.push(...out.files);
       diagnostics.push(...(out.diagnostics ?? []));
       return childName;

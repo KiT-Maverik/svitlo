@@ -25,12 +25,13 @@ export async function checkEngineRuntimeGraph(entry = defaultEntry) {
       /(?:^|[/\\])(?:generators|configurators_old)(?:[/\\])/.test(input) ||
       /[/\\]define[A-Z][A-Za-z0-9]*\.(?:ts|js)$/.test(input) ||
       /\.data\.(?:ts|js)$/.test(input) ||
-      /[/\\]validateLocalAssets(?:[/\\]|\.)/.test(input),
+      /[/\\]validateLocalAssets(?:[/\\]|\.)/.test(input) ||
+      /[/\\]_shared__configurators[/\\]buildContext\.(?:ts|js)$/.test(input),
   );
   if (forbidden.length) throw new Error('Build-time modules reached from Engine runtime:\n' + forbidden.join('\n'));
 
   const emitted = result.outputFiles.map(file => file.text).join('\n');
-  if (/\b(?:node:fs|node:path|node:url)\b/.test(emitted))
+  if (/\b(?:node:fs|node:path|node:url|node:async_hooks)\b/.test(emitted))
     throw new Error('Node-only imports in Engine runtime browser bundle');
 
   const forbiddenEngineImports = Object.values(result.metafile.outputs)
