@@ -37,7 +37,7 @@ unsupported Build API instead of being silently skipped.
 
 All IDs are checked for uniqueness across textbook Lesson source directories,
 including editorial-only drafts, before any output is written. It then builds
-all Lessons with their configured publication languages, checks their source
+all Lessons with their configured publication languages and the CLI's explicit draft/production mode, checks their source
 IDs and Props IDs match the folder UUID, and serializes the complete batch.
 Repeated regeneration of the **same** Lesson is permitted; duplicate source
 IDs are not. The output tree is swapped atomically, removing stale JSON. The
