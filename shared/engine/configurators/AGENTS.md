@@ -5,7 +5,7 @@
 ## ContentBlock composition (PR #884)
 
 - **Primitive** (a leaf in the authored ContentBlock tree): Text, Markdown, Code, Image, Audio, Video, YouTube, Subtitles, Scene. **Composite:** Carousel, Checkpoint. CheckpointItem and CheckpointAnswer are internal structural configurators, not renderable ContentBlocks.
-- Canonical implementations are grouped under `contentBlocks/primitive/` and `contentBlocks/composite/`; historical `contentBlocks/define*/` paths are compatibility re-exports. Keep public factories and discriminants stable. Categories never become Config/Props fields.
+- Canonical implementations are grouped under `contentBlocks/primitive/` and `contentBlocks/composite/`; historical `contentBlocks/define*/` paths have been removed. Use canonical grouped paths or public Engine barrels. Keep public factories and discriminants stable. Categories never become Config/Props fields.
 - Regular Section-owned content accepts both groups, subject to its existing additional constraints. Carousel slides accept **Image/Scene only**; Checkpoint owns Items; each Item owns one Text question and a CheckpointAnswer of **Primitive-only** children. Question-owned blocks (including options, hints, feedback, pairs and slots) and Flashcard sides are **Primitive-only**. Do not prohibit Scene solely because it is interactive; any new Scene policy requires an owner decision.
 - Parents enforce their exact allowed types at Config, additionalItems/overrides, effective Props and editorial/materialization boundaries; no Draft relaxation, recursive container factory, or second category field. See [composition contract](../../../studio/docs/architecture/content-block-composition.md).
 
