@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { configuratorArrayToSlugMap, mergeForValidation } from '../../_shared__configurators';
-import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
-import { defineText } from '../defineText';
-import { defineYoutube } from '../defineYoutube';
+import { configuratorArrayToSlugMap, mergeForValidation } from '../../../_shared__configurators';
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../../schemas/media.schemas';
+import { defineText } from '../../primitive/defineText';
+import { defineYoutube } from '../../primitive/defineYoutube';
 import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 import { defineCheckpointItem } from './defineCheckpointItem';
 import { checkpoint_Config_Schema, checkpoint_Props_Schema, defineCheckpoint } from './index';

@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { defineImage } from '../defineImage';
-import { defineScene } from '../defineScene';
-import { defineText } from '../defineText';
+import { defineImage } from '../../primitive/defineImage';
+import { defineScene } from '../../primitive/defineScene';
+import { defineText } from '../../primitive/defineText';
 import { carousel_Props_Schema, defineCarousel } from './index';
 
 describe('Configurators', () => {

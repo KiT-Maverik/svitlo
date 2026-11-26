@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { configuratorArrayToSlugMap } from '../../../_shared__configurators';
-import { defineText } from '../../defineText';
+import { configuratorArrayToSlugMap } from '../../../../_shared__configurators';
+import { defineText } from '../../../primitive/defineText';
 import { defineCheckpointAnswer } from '../defineCheckpointAnswer';
 import { checkpointItem_Config_Schema, checkpointItem_Props_Schema, defineCheckpointItem } from './index';
 

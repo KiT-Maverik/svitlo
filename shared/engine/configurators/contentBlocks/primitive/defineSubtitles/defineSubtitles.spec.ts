@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { contentBlockTypes } from '../contentBlock.constants';
+import { contentBlockTypes } from '../../contentBlock.constants';
 import { defineSubtitles } from './defineSubtitles';
 
 const scope = { languages: ['uk'] as const };
