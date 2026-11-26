@@ -272,19 +272,32 @@ function assertCourseInventory(manifest, meta, entries) {
           const source = Buffer.from(file.data, 'base64').toString('utf8');
           const originalLine = 'import { ' + row.sourceExportName + ' } from ' + JSON.stringify(expectedImport) + ';';
           const imported = source.replaceAll("'" + expectedImport + "'", JSON.stringify(expectedImport));
+          // The reviewed Course-only implementation brief follows the
+          // complete typed placement export. Keep the ownership/Build check
+          // independent of any comment content, and require exactly one
+          // colocated, removable blocker at the end of this owned module.
+          const placementCall = 'export const ' + row.slug + ' = placeLesson(' + row.sourceExportName + ', ';
+          const checkedPatch = ' satisfies Parameters<typeof ' + row.sourceExportName + '.build.overrides>[0]);';
+          const placementStart = source.indexOf(placementCall);
+          const patchEnd = placementStart < 0 ? -1 : source.indexOf(checkedPatch, placementStart);
+          const remainder = patchEnd < 0 ? '' : source.slice(patchEnd + checkedPatch.length).trim();
+          const footer =
+            '/*\n' +
+            ' * TODO (BLOCKER): Implement, test and verify this entire Course-owned Lesson placement override and its resources; delete this temporary specification only after the whole override is complete.';
           if (
             imported.split('\n').filter(item => item === originalLine).length !== 1 ||
             !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
-            !source.includes(
-              '// TODO (BLOCKER): Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.\n' +
-                'export const ' +
-                row.slug +
-                ' = placeLesson(' +
-                row.sourceExportName +
-                ', ',
-            )
+            placementStart < 0 ||
+            patchEnd < 0 ||
+            source.indexOf(placementCall, placementStart + placementCall.length) !== -1 ||
+            !remainder.startsWith(footer) ||
+            !remainder.includes(' * Course Lesson placement override rationale:') ||
+            !remainder.endsWith('*/') ||
+            source.split('TODO (BLOCKER):').length !== 2
           )
-            throw Error('Course Lesson override placement module lacks verified original or Build patch');
+            throw Error(
+              'Course Lesson override placement module lacks verified original, typed Build patch or trailing specification',
+            );
         }
       } else throw Error('Invalid Course Lesson kind');
     } else if (row.type === 'episode') {

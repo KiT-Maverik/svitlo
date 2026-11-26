@@ -1,6 +1,6 @@
-import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 import type { Content_Section_Config } from '../../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 /**
  * defineContentSection source materializer (not a Props/JSON publisher).
@@ -33,6 +33,8 @@ export type Options = {
   directory?: string;
   languagesImport: string;
   production?: Record<string, unknown>;
+  /** Internal owner of Section editorial notes; never implies completed methodology. */
+  noteOwnership?: 'course-lesson-placement';
   renderContentBlock: (
     config: ChildConfig,
     options: {
@@ -116,7 +118,9 @@ function render(value: unknown, depth = 0): string {
       .map(key => {
         const child = value[key];
         const name = isObject(child) && reference in child ? String(child[reference]) : undefined;
-        return '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ',';
+        return (
+          '  '.repeat(depth + 1) + (name === key ? key : JSON.stringify(key) + ': ' + render(child, depth + 1)) + ','
+        );
       })
       .join('\n') +
     '\n' +
@@ -177,7 +181,12 @@ export function materializeContentSection(config: Source, options: Options): Res
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
   const items: Record<string, Reference> = {};
-  const claim = createSourceIdentifierRegistry('contentSection', ['defineContentSection', 'languages', 'content', exportName(config.slug)]);
+  const claim = createSourceIdentifierRegistry('contentSection', [
+    'defineContentSection',
+    'languages',
+    'content',
+    exportName(config.slug),
+  ]);
   const seenFiles = new Set<string>();
   const add = (file: GeneratedFile): void => {
     outputPath(file.path);
@@ -212,7 +221,11 @@ export function materializeContentSection(config: Source, options: Options): Res
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
-  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+  if (
+    sectionNotes.length &&
+    options.production?.methodologyIntegrated !== true &&
+    options.noteOwnership !== 'course-lesson-placement'
+  )
     blocker.push(
       renderBlockerTodo(
         'Transfer reviewed content Section notes (' +
