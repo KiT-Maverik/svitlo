@@ -8,10 +8,14 @@ import type {
 } from '#types';
 
 import {
+  buildChildOverrides,
+  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
+  requireBuildContext,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -181,18 +185,14 @@ export const defineCheckpoint = <
   const buildContent = (
     items: Record<string, CheckpointItem>,
     order: readonly string[],
-    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
-    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
+    const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props({ languages, mode });
+      const resource = buildChildProps(child);
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ItemOverride)(
-            patches[key] as never,
-            { languages, mode },
-          )
+        ? (buildChildOverrides(child, patches[key] as never) as unknown as ItemOverride)
         : undefined;
       return { resource, patch };
     });
@@ -236,7 +236,7 @@ export const defineCheckpoint = <
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const built = buildContent(initialItems, initialOrder, languages, {}, options.mode);
+    const built = buildContent(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(built.locales)) {
       (files[language as LanguageCode] ??= {}).content = entries;
@@ -352,7 +352,7 @@ export const defineCheckpoint = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, CheckpointItem] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, languages, childPatches, options.mode);
+        const built = buildContent(enabled, order, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCode] ??= {}).content = entries;
@@ -376,7 +376,7 @@ export const defineCheckpoint = <
     type,
     content,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({

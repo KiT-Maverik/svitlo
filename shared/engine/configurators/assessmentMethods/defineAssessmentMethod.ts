@@ -4,6 +4,7 @@ import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLan
 import {
   mergeForValidation,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../_shared__configurators';
@@ -79,7 +80,7 @@ export function defineAssessmentMethod<
     id,
     slug,
     type: 'assessmentMethod' as const,
-    build: { props },
+    build: scopeBuild({ props }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

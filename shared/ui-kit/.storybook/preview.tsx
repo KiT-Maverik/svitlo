@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import type { Preview } from '@storybook/nextjs-vite';
+import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {
   decorators: [

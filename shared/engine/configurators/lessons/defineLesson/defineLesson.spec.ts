@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
+import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
+import { defineScene } from '../../contentBlocks/defineScene/defineScene';
 import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineYoutube } from '../../contentBlocks/defineYoutube/defineYoutube';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
@@ -46,6 +49,57 @@ describe('Configurators', () => {
           locale: { title: { en: 'Example', uk: 'Приклад' } },
           section: { items: { intro: section }, order: ['intro'] },
         });
+
+      test('Draft Lesson carries unresolved YouTube and Scene through nested Section and restores strict publication', () => {
+        const video = defineYoutube<'pendingVideo', ['en', 'uk']>({
+          id: id('a1'),
+          slug: 'pendingVideo',
+          type: 'youtube',
+          params: { mode: 'link' },
+          locale: {
+            href: UNRESOLVED_YOUTUBE_HREF,
+            label: { en: 'Watch', uk: 'Переглянути' },
+          },
+        });
+        const scene = defineScene<'pendingScene', ['en', 'uk']>({
+          id: id('a2'),
+          slug: 'pendingScene',
+          type: 'scene',
+          params: {},
+          locale: { value: { en: 'Explore', uk: 'Досліджуй' } },
+        });
+        const media = defineContentSection<
+          'media',
+          { pendingVideo: typeof video; pendingScene: typeof scene },
+          ['en', 'uk']
+        >({
+          id: id('a3'),
+          slug: 'media',
+          type: 'content',
+          params: {},
+          locale: { title: 'Media', navigationLabel: '1' },
+          content: { items: { pendingVideo: video, pendingScene: scene }, order: ['pendingVideo', 'pendingScene'] },
+        });
+        const lesson = defineLesson({
+          id: id('a4'),
+          slug: 'mediaLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            quizRequiredForCompletion: false,
+            languages: ['en', 'uk'] as const,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
+          },
+          locale: { title: 'Draft media' },
+          section: { items: { media }, order: ['media'] },
+        });
+        const draft = lesson.build.props({ languages: ['uk'], mode: 'draft' });
+        assert.match(JSON.stringify(draft.base), new RegExp(UNRESOLVED_YOUTUBE_HREF));
+        assert.equal(draft.locale?.en, undefined);
+        assert.equal(draft.locale?.uk?.section?.[0]?.content?.length, 2);
+        assert.throws(() => lesson.build.props({ languages: ['uk'] }), /unresolved video reference|Scene/i);
+        assert.deepEqual(lesson.build.props({ languages: ['uk'], mode: 'draft' }), draft);
+      });
 
       test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
         const lesson = makeLesson();
@@ -428,6 +482,74 @@ describe('Configurators', () => {
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
             }).build.props({ languages: ['en'] }),
           /matching .* configurator/,
+        );
+      });
+
+      test('F4: required Quiz checks do not build unused zh translations in an English publication', () => {
+        const text = defineText<'englishOnly', ['en', 'zh']>({
+          id: id('b1'),
+          slug: 'englishOnly',
+          type: 'text',
+          params: {},
+          // Incomplete editorial locale is valid source, not valid requested zh publication.
+          locale: { value: { en: 'English content' } as never },
+        });
+        const english = defineContentSection<'english', { englishOnly: typeof text }, ['en', 'zh']>({
+          id: id('b2'),
+          slug: 'english',
+          type: 'content',
+          params: {},
+          locale: { title: 'English', navigationLabel: '1' },
+          content: { items: { englishOnly: text }, order: ['englishOnly'] },
+        });
+        const quiz = defineQuizSection<'review', {}, ['en', 'zh']>({
+          id: id('b3'),
+          slug: 'review',
+          type: 'quiz',
+          params: {
+            selection: { mode: 'all', questionIds: [id('64')] },
+            layout: { mode: 'stack' },
+            feedbackMode: 'after-completion',
+            interaction: {
+              retries: 0,
+              showErrors: true,
+              showCorrectAnswers: false,
+              allowExplanations: false,
+              allowDeferring: false,
+              allowQuestionNavigation: false,
+              skippable: false,
+            },
+            results: { visibility: 'after-review', showScore: true },
+          },
+          locale: { title: 'Review', navigationLabel: 'Quiz' },
+          content: { items: {}, order: [] },
+        });
+        const lesson = defineLesson({
+          id: id('b4'),
+          slug: 'englishScopeLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            languages: ['en', 'zh'] as const,
+            quizRequiredForCompletion: true,
+            sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+          },
+          locale: { title: 'English scope' },
+          section: { items: { english, review: quiz }, order: ['english', 'review'] },
+        });
+        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'], mode: 'draft' }));
+        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'], mode: 'draft' }));
+        assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'] }));
+        assert.throws(() => lesson.build.props({ languages: ['en', 'zh'] }), /Invalid publication/);
+        assert.throws(() => lesson.build.overrides({}, { languages: ['en', 'zh'] }), /Invalid publication/);
+        assert.throws(
+          () =>
+            lesson.build.overrides(
+              { section: { items: { review: false }, order: ['english'] } },
+              { languages: ['en'] },
+            ),
+          /at least one enabled Quiz/,
         );
       });
 

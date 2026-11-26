@@ -4,6 +4,7 @@ import type { ConfigWithLanguages, DeepPartial, LanguageScope, PublicationLangua
 import {
   onlyLocales,
   resolvePublicationLanguages,
+  scopeBuild,
   selectPublicationLocales,
   validateRequestedPublication,
 } from '../../_shared__configurators';
@@ -172,7 +173,7 @@ export const defineText = <
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: scopeBuild({ props, overrides }),
     // Transitional compatibility for parents not migrated to assembly yet.
     config: {
       base,
