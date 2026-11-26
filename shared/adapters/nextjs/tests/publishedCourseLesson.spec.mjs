@@ -127,10 +127,13 @@ test('reads derived Course navigation without reading unrelated Lesson or Course
   };
   await Promise.all([
     writeFile(path.join(toc, 'base.json'), JSON.stringify(base)),
-    writeFile(path.join(toc, 'uk.json'), JSON.stringify({
-      label: 'Курс',
-      content: { items: { sampleLesson: { label: 'Урок' } } },
-    })),
+    writeFile(
+      path.join(toc, 'uk.json'),
+      JSON.stringify({
+        label: 'Курс',
+        content: { items: { sampleLesson: { label: 'Урок' } } },
+      }),
+    ),
   ]);
   await Promise.all([
     rm(roots.lessonDir, { recursive: true, force: true }),
@@ -160,7 +163,10 @@ test('Course TOC loader enforces draft-only preview and detects corrupt locale J
   };
   await writeFile(path.join(toc, 'base.json'), JSON.stringify(base));
   await assert.rejects(loadPublishedCourseToc(courseId, 'en', roots.coursesRoot), /Draft TOC/);
-  assert.equal((await loadPublishedCourseToc(courseId, 'en', roots.coursesRoot, 'draft')).content.items.stub.draft, true);
+  assert.equal(
+    (await loadPublishedCourseToc(courseId, 'en', roots.coursesRoot, 'draft')).content.items.stub.draft,
+    true,
+  );
   await writeFile(path.join(toc, 'uk.json'), '{broken');
   await assert.rejects(loadPublishedCourseToc(courseId, 'uk', roots.coursesRoot, 'draft'), /Invalid published JSON/);
 });

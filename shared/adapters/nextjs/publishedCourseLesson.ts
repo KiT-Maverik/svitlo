@@ -7,10 +7,10 @@ import {
   assembleCourseTree,
   languageCode_Schema,
   resolveEntityPath,
+  type CourseToc,
   type LanguageCode,
   type Lesson_Props,
   type LocalizedCourse,
-  type CourseToc,
   type PublishedCoursePropsFiles,
   type PublishedLessonPropsResource,
 } from '@svitlo/engine/runtime';

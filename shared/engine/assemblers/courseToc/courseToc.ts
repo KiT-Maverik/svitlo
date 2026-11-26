@@ -17,8 +17,7 @@ export type CourseToc = {
 
 const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
 const slot = /^[a-z][a-zA-Z0-9]*$/;
-const record = (v: unknown): v is Record<string, unknown> =>
-  v !== null && typeof v === 'object' && !Array.isArray(v);
+const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 const rootSchema = z.strictObject({
   id: z.uuid(),
   type: z.literal('course'),
@@ -42,7 +41,11 @@ function safeJson(value: unknown, seen = new Set<object>()): void {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
   if (typeof value === 'number' && Number.isFinite(value)) return;
   if (typeof value !== 'object' || value === null || seen.has(value)) throw Error('Invalid TOC JSON value');
-  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)
+  if (
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) !== Object.prototype &&
+    Object.getPrototypeOf(value) !== null
+  )
     throw Error('Invalid TOC JSON object');
   seen.add(value);
   for (const [key, child] of Object.entries(value)) {
@@ -67,7 +70,10 @@ function validateTree(value: unknown, complete: boolean, mode: 'draft' | 'produc
   const seen = new Set([root.id]);
   function visit(input: unknown, parent: 'course' | 'module' | 'chapter', at: string): void {
     const content = contentSchema.parse(input);
-    if (content.order.length !== Object.keys(content.items).length || new Set(content.order).size !== content.order.length)
+    if (
+      content.order.length !== Object.keys(content.items).length ||
+      new Set(content.order).size !== content.order.length
+    )
       throw Error('Invalid Course TOC order at ' + at);
     for (const key of content.order) {
       if (!slot.test(key) || !Object.hasOwn(content.items, key)) throw Error('Invalid Course TOC slot at ' + at);
@@ -100,12 +106,20 @@ function assertSameStructure(base: CourseToc, selected: CourseToc): void {
     base.id !== selected.id ||
     base.type !== selected.type ||
     JSON.stringify(base.languages) !== JSON.stringify(selected.languages)
-  ) throw Error('Localized Course TOC root identity changed');
+  )
+    throw Error('Localized Course TOC root identity changed');
   function walk(a: CourseTocContent, b: CourseTocContent): void {
     if (JSON.stringify(a.order) !== JSON.stringify(b.order)) throw Error('Localized Course TOC order changed');
     for (const key of a.order) {
-      const x = a.items[key], y = b.items[key];
-      if (!x || !y || x.id !== y.id || x.type !== y.type || ('draft' in x ? x.draft : undefined) !== ('draft' in y ? y.draft : undefined))
+      const x = a.items[key],
+        y = b.items[key];
+      if (
+        !x ||
+        !y ||
+        x.id !== y.id ||
+        x.type !== y.type ||
+        ('draft' in x ? x.draft : undefined) !== ('draft' in y ? y.draft : undefined)
+      )
         throw Error('Localized Course TOC identity changed at ' + key);
       if ('content' in x && 'content' in y) walk(x.content, y.content);
       else if ('content' in x || 'content' in y) throw Error('Localized Course TOC hierarchy changed');

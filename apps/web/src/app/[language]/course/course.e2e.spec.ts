@@ -19,7 +19,8 @@ test('selected content package publishes Course and Lesson Engine Props, not leg
   expect(toc.type).toBe('course');
   expect(toc.content.order).toEqual(['fixtureModule']);
   expect(toc.content.items.fixtureModule.content.items.fixtureChapter.content.items.fixtureLesson).toMatchObject({
-    type: 'lesson', id: lessonId,
+    type: 'lesson',
+    id: lessonId,
   });
   expect(localizedToc.content.items.fixtureModule).toHaveProperty('label', 'Контрольний модуль');
   expect(JSON.stringify(toc)).not.toContain('"section"');

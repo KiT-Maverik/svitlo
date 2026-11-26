@@ -398,9 +398,7 @@ if (id === 'web-fixture-alpha') {
         type: node.type,
         label: node.type === 'lesson' ? (node.overrides?.locale?.title ?? translations[lang][0]) : node.locale.title,
       };
-      return node.type === 'module' || node.type === 'chapter'
-        ? { ...value, content: toContent(node.content) }
-        : value;
+      return node.type === 'module' || node.type === 'chapter' ? { ...value, content: toContent(node.content) } : value;
     };
     return {
       id: courseData.id,
@@ -421,7 +419,10 @@ if (id === 'web-fixture-alpha') {
     }
     return Object.keys(patch).length ? patch : undefined;
   }
-  for (const [courseId, source] of [[STORY, story], [COURSE, course]]) {
+  for (const [courseId, source] of [
+    [STORY, story],
+    [COURSE, course],
+  ]) {
     const baseToc = derivedToc(source('en'), 'en');
     const prefix = 'data/courses/' + courseId + '/toc/';
     publish(prefix + 'base.json', baseToc);

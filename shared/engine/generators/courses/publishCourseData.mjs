@@ -228,7 +228,6 @@ function assertSameCourseStructure(base, localized, location = 'course') {
   }
 }
 
-
 /** Project labels from the effective validated Build result, before full Lesson Props are compacted.
  * The Course Build API already applied placement-local Lesson patches and per-language overrides.
  * No alternate authoring registry, secondary Lesson load or UI routing is involved.
@@ -390,7 +389,8 @@ export function publishCourse(
     if (JSON.stringify([...existing.keys()].sort()) !== JSON.stringify(expected))
       throw new Error('Course publication file mismatch at ' + destination);
     for (const [name, expectedText] of files) {
-      if (existing.get(name) !== expectedText) throw new Error('Stale Course publication: ' + path.join(destination, name));
+      if (existing.get(name) !== expectedText)
+        throw new Error('Stale Course publication: ' + path.join(destination, name));
     }
     return { directory: destination, files: [...files.keys()] };
   }

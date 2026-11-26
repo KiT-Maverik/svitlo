@@ -375,7 +375,6 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   assert.equal(localizedToc.content.items.directUse.label, 'Course direct title');
   assert.equal(tocBase.content.items.directUse.label, 'Course direct title');
   assert(!files.get('toc/base.json').includes('"section"'));
-
 });
 
 test('real Episode Configurators publish at all four levels with localized ordered blocks and repeated Lesson overrides', () => {
