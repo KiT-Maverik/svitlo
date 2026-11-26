@@ -200,6 +200,7 @@ export const defineChapter = <
     order: readonly string[],
     languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
+    mode: PublicationLanguageOptions['mode'] = 'production',
   ) => {
     const ids = new Set<string>();
     for (const key of order) {
@@ -214,8 +215,10 @@ export const defineChapter = <
       if (!build || typeof build.props !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
-      const resource = build.props({ languages });
-      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages }) : undefined;
+      const resource = build.props({ languages, mode });
+      const patch = Object.hasOwn(patches, key)
+        ? build.overrides(patches[key] as never, { languages, mode })
+        : undefined;
       return { key, resource, patch };
     });
     // Course placement keys may alias standalone Lessons, without editing their immutable source identity.
@@ -273,7 +276,7 @@ export const defineChapter = <
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder, languages);
+    const children = buildContent(initialItems, initialOrder, languages, {}, options.mode);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
@@ -390,7 +393,7 @@ export const defineChapter = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Chapter_Child] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, languages, childPatches);
+        const built = buildContent(enabled, order, languages, childPatches, options.mode);
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           // Keep the atomic child array as a runtime publication fragment; validate it through Props.

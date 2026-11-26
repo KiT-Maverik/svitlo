@@ -196,7 +196,11 @@ export function Carousel({
     if (slide.type === 'scene') {
       return (
         <div className={styles.scene}>
-          <Scene response={slide} sceneRegistry={sceneRegistry} />
+          <Scene
+            response={slide}
+            sceneRegistry={sceneRegistry}
+            unavailableMessage={messages.learningLayout.preparingLessonError}
+          />
         </div>
       );
     }

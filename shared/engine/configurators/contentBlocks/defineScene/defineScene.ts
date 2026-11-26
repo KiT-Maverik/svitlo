@@ -28,9 +28,12 @@ type SceneOverridePropsBase = {
   locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
 };
 
-const parseAndValidate = (config: ContentBlock_Scene_Config): ContentBlock_Scene_Config => {
+const parseAndValidate = (
+  config: ContentBlock_Scene_Config,
+  mode: PublicationLanguageOptions['mode'] = 'production',
+): ContentBlock_Scene_Config => {
   const parsed = scene_Config_Schema.parse(config);
-  validateSceneEntry(parsed.id);
+  if (mode !== 'draft') validateSceneEntry(parsed.id);
   return parsed;
 };
 const validate = (config: ContentBlock_Scene_Config): void => {
@@ -113,7 +116,7 @@ export const defineScene = <
     options: PublicationLanguageOptions<Languages>,
   ): ScenePropsPublication<ContentBlock_Scene_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildSceneProps(parseAndValidate(copyAuthored()));
+    const result = buildSceneProps(parseAndValidate(copyAuthored(), options.mode));
     result.locale = selectPublicationLocales(result.locale, languages);
     validateRequestedPublication(scene_Props_Schema, result, languages);
     return result;
@@ -127,7 +130,7 @@ export const defineScene = <
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);
       const effective = scene_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
-      validate(effective);
+      parseAndValidate(effective, options.mode);
       const output = buildScenePatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
       validateRequestedPublication(scene_Props_Schema, props(options), languages, output);

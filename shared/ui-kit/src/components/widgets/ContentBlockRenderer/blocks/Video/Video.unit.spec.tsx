@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Video } from './Video';
@@ -44,6 +44,30 @@ afterEach(() => {
 });
 
 describe('Video content block', () => {
+  it('does not mount a player or offer retry for a pending video resource', () => {
+    const { container } = render(
+      <Video
+        messages={enUiKitMessages.video}
+        {...response}
+        locale={{ ...response.locale, fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.mp4' }}
+      />,
+    );
+    expect(screen.getByRole('status')).toHaveTextContent('Відео не знайдено');
+    expect(container.querySelector('video')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Повторити' })).toBeNull();
+  });
+
+  it('does not request an unresolved poster when the video source is available', () => {
+    const { container } = render(
+      <Video
+        messages={enUiKitMessages.video}
+        {...response}
+        locale={{ ...response.locale, poster: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.png' }}
+      />,
+    );
+    expect(container.querySelector('video')).not.toHaveAttribute('poster');
+  });
+
   it('keeps a potentially cached video available while offline, then shows a fallback if loading fails', () => {
     setOnline(false);
     const { container } = render(<Video messages={enUiKitMessages.video} {...response} />);

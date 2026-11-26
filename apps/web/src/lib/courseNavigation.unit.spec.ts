@@ -142,7 +142,41 @@ it('shows a reserved Lesson as Not implemented without loading a standalone titl
     locale: { title: 'Not implemented' },
     section: [],
   });
-  const topics = flattenCourseTopics(coursePropsToTopics(preview, 'uk', 'en', { 'lesson-2': 'Refraction' }));
-  expect(topics.map(item => item.title)).toEqual(['Not implemented', 'Refraction']);
-  expect(topics[0]?.href).toBe('/uk/course/course-id/lesson/en/lesson-1');
+  const outline = coursePropsToTopics(preview, 'uk', 'en', { 'lesson-2': 'Refraction' });
+  const placeholder = outline[0]?.children?.[0]?.children?.[0];
+  expect(placeholder).toMatchObject({ type: 'lesson', title: 'Not implemented' });
+  expect(placeholder?.href).toBeUndefined();
+  const playable = flattenCourseTopics(outline);
+  expect(playable.map(item => item.title)).toEqual(['Refraction']);
+  expect(playable[0]?.href).toBe('/uk/course/course-id/lesson/en/lesson-2');
+});
+
+it('shows unfinished Episodes and Assessments in the outline without broken navigation links', () => {
+  const preview = structuredClone(course);
+  preview.content.items.story = {
+    id: 'episode-stub',
+    slug: 'story',
+    type: 'episode',
+    params: { languages: ['en'] },
+    locale: { title: 'Not implemented' },
+    section: [],
+  };
+  preview.content.items.review = {
+    id: 'assessment-stub',
+    slug: 'review',
+    type: 'assessment',
+    params: { languages: ['en'] },
+    locale: { title: 'Not implemented' },
+    section: [],
+  };
+  Object.assign(preview.content.items.story, { draft: true });
+  Object.assign(preview.content.items.review, { draft: true });
+  preview.content.order.unshift('story', 'review');
+
+  const outline = coursePropsToTopics(preview, 'uk', 'en', titles);
+  expect(outline.slice(0, 2)).toEqual([
+    { id: 'episode-stub', type: 'episode', title: 'Not implemented' },
+    { id: 'assessment-stub', type: 'assessment', title: 'Not implemented' },
+  ]);
+  expect(flattenCourseTopics(outline).map(item => item.type)).toEqual(['lesson', 'lesson']);
 });
