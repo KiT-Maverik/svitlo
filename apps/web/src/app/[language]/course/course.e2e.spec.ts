@@ -117,6 +117,7 @@ test('Direct Course URLs reject malformed or absent IDs and unsupported interfac
 
 test('Course detail falls back to a published content language and keeps interface navigation', async ({ page }) => {
   await page.goto('/pl/course/' + courseId);
+  await expect(page).toHaveURL('/pl/course/' + courseId);
   const notice = page.getByTestId('course-language-notice');
   await expect(notice).toHaveAttribute('role', 'status');
   await expect(notice).toContainText('Showing the available');
