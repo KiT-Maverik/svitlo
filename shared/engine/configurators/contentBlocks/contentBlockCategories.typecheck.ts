@@ -1,4 +1,9 @@
 import type {
+  ContentBlock_Primitive_Props as PublicPrimitive_Props,
+  ContentBlock_Composite_Props as PublicComposite_Props,
+} from '../../runtime';
+
+import type {
   ContentBlock_Composite_Type,
   ContentBlock_Primitive_Type,
   ContentBlock_Type,
@@ -28,6 +33,8 @@ export type ContentBlockCategoryTypingChecks = [
   Require<Equal<ContentBlock_Primitive_Props['type'], ContentBlock_Primitive_Type>>,
   Require<Equal<ContentBlock_Composite_Props['type'], ContentBlock_Composite_Type>>,
   Require<Equal<ContentBlock_Props['type'], ContentBlock_Type>>,
+  Require<Equal<PublicPrimitive_Props['type'], ContentBlock_Primitive_Type>>,
+  Require<Equal<PublicComposite_Props['type'], ContentBlock_Composite_Type>>,
 ];
 
 declare const composite: ContentBlock_Composite_Config;
