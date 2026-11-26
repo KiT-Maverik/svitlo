@@ -18,7 +18,7 @@ import {
   validateOrderedKeys,
 } from '../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineFlashcardSide/defineFlashcardSide';
 import { flashcardSideConfigurator_Schema } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 import {
@@ -34,7 +34,7 @@ import {
   type Flashcard_Relationship,
 } from './defineFlashcard.schemas';
 
-type Block = ContentBlock_Configurator;
+type Block = ContentBlock_Primitive_Configurator;
 type Side = 'front' | 'back' | 'hint';
 type SidePublication = {
   base: Flashcard_PropsBase['content']['front'];

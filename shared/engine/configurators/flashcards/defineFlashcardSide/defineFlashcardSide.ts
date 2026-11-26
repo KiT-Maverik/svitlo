@@ -9,15 +9,15 @@ import {
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
-import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import { primitiveContentBlockTypes, type ContentBlock_Primitive_Configurator } from '../../contentBlocks';
+import { primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import {
   flashcardSide_Config_Schema,
   type FlashcardSide_Config,
   type FlashcardSide_Overrides,
 } from './defineFlashcardSide.schemas';
 
-type Block = ContentBlock_Configurator;
+type Block = ContentBlock_Primitive_Configurator;
 type BlockResource = {
   base: Record<string, unknown>;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
@@ -36,7 +36,7 @@ const validateSide = (config: FlashcardSide_Config, requireNonEmpty = false): vo
   flashcardSide_Config_Schema.parse(config);
   const issues = [
     ...validateOrderedKeys(config, { path: 'Flashcard side', requireNonEmpty }),
-    ...validateSluggedConfiguratorMap(config.items, contentBlockTypes, {
+    ...validateSluggedConfiguratorMap(config.items, primitiveContentBlockTypes, {
       path: 'Flashcard side.items',
       itemLabel: 'Flashcard ContentBlock',
     }),
@@ -67,7 +67,7 @@ const validatePublication = (
   for (const language of languages) {
     const effective = patch ? (patch.locale?.[language] ?? patch.base) : (resource.locale?.[language] ?? resource.base);
     try {
-      z.array(contentBlockResolved_Schema).parse(effective);
+      z.array(primitiveContentBlockResolved_Schema).parse(effective);
     } catch (error) {
       throw new Error(
         'Invalid Flashcard side Props for language ' +
