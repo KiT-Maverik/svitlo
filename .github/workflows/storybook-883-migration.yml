@@ -75,3 +75,49 @@ jobs:
           test -s /tmp/svitlo-storybook-index.json || { cat /tmp/svitlo-storybook-dev.log; exit 1; }
           curl --silent --show-error --fail http://127.0.0.1:6006/flags/ua.svg -o /tmp/svitlo-flag.svg
           node -e 'const i = require("/tmp/svitlo-storybook-index.json"); const e = Object.values(i.entries); for (const title of ["Course/Card", "Content blocks/Markdown", "Content blocks/Carousel", "Questions/Select one answer"]) if (!e.some(x => x.title === title && x.type === "story")) throw new Error("Missing live story: " + title); if (!e.some(x => x.type === "docs")) throw new Error("Missing docs"); console.log("Representative course, content and question stories and docs served")'
+      - name: Install Chromium for Storybook browser smoke
+        run: npx playwright install --with-deps chromium
+      - name: Storybook browser rendering, docs and controls smoke
+        run: |
+          npm run storybook:start --workspace @svitlo/ui-kit -- --ci > /tmp/svitlo-storybook-browser.log 2>&1 &
+          storybook_pid=$!
+          trap 'kill $storybook_pid 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 45); do
+            if curl --silent --fail http://127.0.0.1:6006/index.json -o /tmp/svitlo-browser-index.json 2>/dev/null; then break; fi
+            if ! kill -0 "$storybook_pid" 2>/dev/null; then cat /tmp/svitlo-storybook-browser.log; exit 1; fi
+            sleep 2
+          done
+          test -s /tmp/svitlo-browser-index.json || { cat /tmp/svitlo-storybook-browser.log; exit 1; }
+          node <<'NODE'
+          const { chromium } = require('playwright');
+          const fs = require('node:fs');
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+              const entries = Object.values(JSON.parse(fs.readFileSync('/tmp/svitlo-browser-index.json', 'utf8')).entries);
+              for (const title of ['Course/Card', 'Content blocks/Markdown', 'Content blocks/Carousel', 'Questions/Select one answer']) {
+                const story = entries.find(e => e.type === 'story' && e.title === title);
+                if (!story) throw new Error('Missing story in browser smoke: ' + title);
+                await page.goto('http://127.0.0.1:6006/iframe.html?id=' + encodeURIComponent(story.id) + '&viewMode=story', { waitUntil: 'networkidle' });
+                const root = page.locator('#storybook-root');
+                await root.waitFor({ state: 'visible', timeout: 20000 });
+                const rendered = await root.evaluate(el => ({ children: el.querySelectorAll('*').length, text: el.textContent.trim().length }));
+                if (rendered.children < 2 || rendered.text === 0) throw new Error('Story rendered empty: ' + title + ' ' + JSON.stringify(rendered));
+                console.log('Browser-rendered story ' + title + ': ' + JSON.stringify(rendered));
+              }
+              const doc = entries.find(e => e.type === 'docs');
+              if (!doc) throw new Error('Missing docs entry');
+              await page.goto('http://127.0.0.1:6006/iframe.html?id=' + encodeURIComponent(doc.id) + '&viewMode=docs', { waitUntil: 'networkidle' });
+              await page.locator('.sbdocs').first().waitFor({ state: 'visible', timeout: 20000 });
+              console.log('Browser-rendered Storybook docs: ' + doc.id);
+              const story = entries.find(e => e.type === 'story' && e.title === 'Course/Card');
+              await page.goto('http://127.0.0.1:6006/?path=/story/' + story.id, { waitUntil: 'domcontentloaded' });
+              await page.getByRole('tab', { name: /Controls/i }).first().waitFor({ state: 'visible', timeout: 20000 });
+              console.log('Browser-visible Storybook Controls panel');
+              await page.goto('http://127.0.0.1:6006/flags/ua.svg', { waitUntil: 'load' });
+              if (!(await page.content()).includes('<svg')) throw new Error('Flag SVG missing from browser');
+              console.log('Browser-loaded flag SVG');
+            } finally { await browser.close(); }
+          })().catch(e => { console.error(e); process.exitCode = 1; });
+          NODE
