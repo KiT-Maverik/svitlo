@@ -54,8 +54,16 @@ export const scopeBuild = <Build extends object>(build: Build): Build => {
     const original = (build as Record<string, unknown>)[method];
     if (typeof original !== 'function') continue;
     const invoke = original as (...args: unknown[]) => unknown;
-    wrapped[method] = (...args: unknown[]) =>
-      runWithBuildContext(args[method === 'props' ? 0 : 1] as PublicationLanguageOptions, () => invoke(...args));
+    wrapped[method] = (...args: unknown[]) => {
+      const optionsIndex = method === 'props' ? 0 : 1;
+      return runWithBuildContext(args[optionsIndex] as PublicationLanguageOptions, context => {
+        // Public implementations and inner direct calls use the same normalized,
+        // immutable options object as every composed child.
+        const normalizedArgs = [...args];
+        normalizedArgs[optionsIndex] = context;
+        return invoke(...normalizedArgs);
+      });
+    };
   }
   return wrapped as Build;
 };

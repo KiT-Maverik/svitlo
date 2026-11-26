@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { mergeForValidation } from '../../_shared__configurators';
+import { defineText } from '../../contentBlocks/defineText/defineText';
+import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
+import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
@@ -519,4 +522,105 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     /Invalid Lesson overrides/,
   );
   assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);
+});
+
+
+test('F4: English Course placement composes a multilingual required-Quiz Lesson with an English-only additional Section', () => {
+  const bilingual = ['en', 'zh'] as const;
+  const english = ['en'] as const;
+  const missingTranslation = defineText<'missingTranslation', typeof bilingual>({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d21',
+    slug: 'missingTranslation',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'English source' } as never },
+  });
+  const intro = defineContentSection<'intro', { missingTranslation: typeof missingTranslation }, typeof bilingual>({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d22',
+    slug: 'intro',
+    type: 'content',
+    params: {},
+    locale: { title: 'Introduction', navigationLabel: 'Intro' },
+    content: { items: { missingTranslation }, order: ['missingTranslation'] },
+  });
+  const quiz = defineQuizSection<'quiz', {}, typeof bilingual>({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d23',
+    slug: 'quiz',
+    type: 'quiz',
+    params: {
+      selection: { mode: 'all', questionIds: ['f775647f-203d-481a-a1c7-4d331c779d24'] },
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
+      interaction: {
+        retries: 0,
+        showErrors: true,
+        showCorrectAnswers: false,
+        allowExplanations: false,
+        allowDeferring: false,
+        allowQuestionNavigation: false,
+        skippable: false,
+      },
+      results: { visibility: 'after-review', showScore: true },
+    },
+    locale: { title: 'Check', navigationLabel: 'Quiz' },
+    content: { items: {}, order: [] },
+  });
+  const lesson = defineLesson({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d25',
+    slug: 'sourceLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages: bilingual,
+      quizRequiredForCompletion: true,
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+    },
+    locale: { title: 'Standalone' },
+    section: { items: { intro, quiz }, order: ['intro', 'quiz'] },
+  });
+  const exhibitionNotes = defineContentSection<'exhibitionNotes', {}, typeof english>({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d26',
+    slug: 'exhibitionNotes',
+    type: 'content',
+    params: {},
+    locale: { title: { en: 'English-only notes' }, navigationLabel: 'Notes' },
+    content: { items: {}, order: [] },
+  });
+  const placement = placeLesson(lesson, {
+    section: { additionalItems: { exhibitionNotes }, order: ['intro', 'quiz', 'exhibitionNotes'] },
+  } as never);
+  const course = defineCourse<'englishCourse', { placement: typeof placement }, typeof english>({
+    id: 'f775647f-203d-481a-a1c7-4d331c779d27',
+    slug: 'englishCourse',
+    type: 'course',
+    params: { languages: english },
+    locale: { title: 'Course', description: 'English preview' },
+    content: { items: { placement }, order: ['placement'] },
+  });
+
+  for (const mode of ['draft', 'production'] as const) {
+    const result = course.build.props({ languages: ['en'], mode });
+    assert.match(JSON.stringify(result), /English-only notes/);
+    assert.equal(result.locale?.zh, undefined);
+    const patch = course.build.overrides(
+      { content: { items: { placement: { locale: { title: 'Placed Lesson' } } } } },
+      { languages: ['en'], mode },
+    );
+    assert.match(JSON.stringify(patch), /Placed Lesson/);
+    assert.equal(patch.locale?.zh, undefined);
+  }
+
+  assert.deepEqual(lesson.build.props({ languages: ['en'] }).base.section.map(section => section.slug), [
+    'intro',
+    'quiz',
+  ]);
+  assert.throws(() => lesson.build.props({ languages: ['zh'] }), /Invalid publication/);
+  assert.throws(
+    () =>
+      placement.build.overrides(
+        { section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never,
+        { languages: ['en'] },
+      ),
+    /at least one enabled Quiz/,
+  );
 });

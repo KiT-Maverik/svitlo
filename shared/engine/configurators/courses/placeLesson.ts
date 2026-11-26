@@ -1,6 +1,6 @@
 import type { LanguageCode } from '#schemas';
 
-import { mergeForValidation } from '../_shared__configurators';
+import { buildChildOverrides, buildChildProps, mergeForValidation, scopeBuild } from '../_shared__configurators';
 import type { Lesson_Configurator } from '../lessons/defineLesson';
 
 type LessonPatch<Lesson extends Lesson_Configurator> = Parameters<Lesson['build']['overrides']>[0];
@@ -155,11 +155,11 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
     return merged;
   };
 
-  const build = {
+  const build = scopeBuild({
     props(options: Parameters<Lesson['build']['props']>[0]) {
-      const original = source.build.props(options as never);
+      const original = buildChildProps(source);
       // Delegate the *authored* patch to the original Lesson's full validation API.
-      const changed = source.build.overrides(authored as never, options as never);
+      const changed = buildChildOverrides(source, authored);
       const base = merge(original.base as Record<string, unknown>, changed.base as Record<string, unknown>);
       const files: Record<string, Record<string, unknown>> = {};
       for (const code of options.languages as readonly LanguageCode[]) {
@@ -178,10 +178,10 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
         locale: Object.keys(files).length ? files : undefined,
       } as ReturnType<Lesson['build']['props']>;
     },
-    overrides(additional: LessonPatch<Lesson>, options: Parameters<Lesson['build']['overrides']>[1]) {
-      return source.build.overrides(composed(additional) as never, options as never);
+    overrides(additional: LessonPatch<Lesson>, _options: Parameters<Lesson['build']['overrides']>[1]) {
+      return buildChildOverrides(source, composed(additional));
     },
-  };
+  });
 
   return {
     ...source,

@@ -82,6 +82,28 @@ describe('Configurators', () => {
         }
       });
 
+      test('Public Build implementations receive the exact immutable normalized context', () => {
+        const languages: ('en' | 'uk')[] = ['en'];
+        const build = scopeBuild({
+          props: (options: PublicationLanguageOptions) => {
+            assert.equal(options, requireBuildContext());
+            assert.equal(options.mode, 'production');
+            assert.ok(Object.isFrozen(options));
+            assert.ok(Object.isFrozen(options.languages));
+            languages.push('uk');
+            return [...options.languages];
+          },
+          overrides: (_patch: object, options: PublicationLanguageOptions) => {
+            assert.equal(options, requireBuildContext());
+            assert.equal(options.mode, 'draft');
+            return [...options.languages];
+          },
+        });
+        assert.deepEqual(build.props({ languages }), ['en']);
+        assert.deepEqual(build.overrides({}, { languages: ['uk'], mode: 'draft' }), ['uk']);
+        assert.throws(() => requireBuildContext(), /No active Build Context/);
+      });
+
       test('Nested different explicit options restore outer scope after success and thrown errors', () => {
         runWithBuildContext({ languages: ['en'], mode: 'draft' }, () => {
           const parent = requireBuildContext();
