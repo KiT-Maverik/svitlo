@@ -27,7 +27,7 @@ import {
   type ResolvableBlockPatch,
 } from '../_shared__questions';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   buildAnswerWithBlocks_Config_Schema,
@@ -54,7 +54,7 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
 type ContentShape = Question_BuildAnswerWithBlocks_Config['content'];
 export type Question_BuildAnswerWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
-  Added extends Record<string, ContentBlock_Configurator> = {},
+  Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_BuildAnswerWithBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -153,7 +153,7 @@ export const defineBuildAnswerWithBlocks = <
     return resource;
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+  const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props> => {

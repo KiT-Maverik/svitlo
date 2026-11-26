@@ -29,7 +29,7 @@ import {
   type QuestionResourcePublication,
 } from '../_shared__questions';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   matchBlocks_Config_Schema,
@@ -51,7 +51,7 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
-type Pair = { left: ContentBlock_Configurator; right: ContentBlock_Configurator };
+type Pair = { left: ContentBlock_Primitive_Configurator; right: ContentBlock_Primitive_Configurator };
 type PairsOverride<
   Content extends ContentShape,
   AddedPairs extends Record<string, Pair>,
@@ -75,7 +75,7 @@ type PairsOverride<
 };
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
-  Added extends Record<string, ContentBlock_Configurator> = {},
+  Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedPairs extends Record<string, Pair> = {},
 > = Question_MatchBlocks_MetadataOverrides & {
@@ -168,7 +168,7 @@ export const defineMatchBlocks = <
   };
 
   const overrides = <
-    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
     const AddedPairs extends Record<string, Pair> = {},
   >(
     patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,

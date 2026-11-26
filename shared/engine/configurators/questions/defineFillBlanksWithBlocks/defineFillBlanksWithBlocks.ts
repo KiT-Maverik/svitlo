@@ -30,7 +30,7 @@ import {
   type ResolvableBlockPatch,
 } from '../_shared__questions';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithBlocks_Config_Schema,
@@ -53,7 +53,7 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
 };
 
 type ContentShape = Question_FillBlanksWithBlocks_Config['content'];
-type SlotBlock = { correctAnswer: ContentBlock_Configurator };
+type SlotBlock = { correctAnswer: ContentBlock_Primitive_Configurator };
 type SlotBlocksOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, SlotBlock>,
@@ -72,7 +72,7 @@ type SlotBlocksOverride<
 };
 export type Question_FillBlanksWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
-  Added extends Record<string, ContentBlock_Configurator> = {},
+  Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedSlots extends Record<string, SlotBlock> = {},
 > = Question_FillBlanksWithBlocks_MetadataOverrides & {
@@ -181,7 +181,7 @@ export const defineFillBlanksWithBlocks = <
   };
 
   const overrides = <
-    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
     const AddedSlots extends Record<string, SlotBlock> = {},
   >(
     patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
