@@ -142,3 +142,15 @@ test('production typecheck retains exhaustive canonical root command', () => {
   assert.match(rootRunner, /runParallelTypechecks\(parallel, runTypecheckAsync/);
   assert.match(rootRunner, /for \(const step of builds\) runStepSync\(step\)/);
 });
+
+test('Mobile E2E serves the already-built production bundle and checks offline resources', () => {
+  const mobile = JSON.parse(readFileSync(new URL('../../../apps/mobile/package.json', import.meta.url), 'utf8'));
+  const playwright = readFileSync(new URL('../../../apps/mobile/playwright.config.ts', import.meta.url), 'utf8');
+  assert.equal(mobile.scripts['app:start'], 'node scripts/serveBuilt/serve-built.mjs');
+  assert.equal(mobile.scripts['preapp:start'], undefined, 'production preview must not prepare or rebuild');
+  assert.match(playwright, /command: 'npm run app:start --workspace @svitlo\/mobile'/);
+  assert.doesNotMatch(playwright, /app:start:dev/);
+  assert.match(playwright, /reuseExistingServer: false/);
+  assert.match(workflow, /name: Validate compiled Mobile offline bundle\s*\n\s*if: matrix\.workspace == '@svitlo\/mobile'\s*\n\s*run: .*npm run app:check:bundle --workspace/);
+  assert.match(mobile.scripts.test, /scripts\/serveBuilt\/\*\.test\.mjs/);
+});
