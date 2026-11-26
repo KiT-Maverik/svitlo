@@ -1,1 +1,0 @@
-**Observe:** an opaque object blocks light. Describe the change in its shadow.
