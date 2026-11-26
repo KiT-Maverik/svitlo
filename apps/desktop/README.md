@@ -60,3 +60,30 @@ The Node tests verify staged resource and Scene JS packaging after a build.
 The Electron Playwright smoke test launches the real Electron process against
 the local bundle, blocks HTTP requests and checks a lesson and reload.
 A graphical session (or Xvfb on Linux) is needed for this smoke test.
+
+## Packaging toolchain migration
+
+The packaging candidate in PR #882 is **electron-builder 27.0.0-alpha.15**.
+This is a prerelease major version, not a stable release; do not consider it
+production-approved until the pinned dependency tree, clean installation,
+packaged offline tests and target installers are verified. It retains the
+existing NSIS (Windows), DMG (macOS) and AppImage (Linux) targets without
+adding an independent installer/maker pipeline. The Vite renderer, esbuild
+main process and secure `svitlo://app` boundary are unchanged.
+
+The v27 configuration nests `files` under `fileOptions` and `npmRebuild`
+under `nativeModules`; it continues to write unpacked results to
+`release/linux-unpacked/` for the Linux packaged smoke test. The
+`app:pack:prepared` command builds **unpacked only** and does not verify
+the AppImage, DMG or NSIS installers. For the installers use the appropriate
+`app:pack:<platform>` workspace script on a runner of that platform and
+inspect the result in `release/`. No signing, notarization, auto-update or
+installer execution is implied by producing an unsigned installer.
+
+The previous Builder 26 dependency chain included `@electron/asar@3`,
+`glob@7`, `inflight@1`, `electron-winstaller -> temp -> rimraf@2` and
+Builder's older `@electron/get -> global-agent -> boolean@3` dependencies.
+Verify their **actual absence** from the new npm lockfile and the full npm
+audit before accepting the migration; unrelated Storybook and ESLint
+deprecations are outside PR #882. Node.js 22.12.0 or newer is required by
+Builder 27. See https://www.electron.build/docs/migration/v26-to-v27/ .
