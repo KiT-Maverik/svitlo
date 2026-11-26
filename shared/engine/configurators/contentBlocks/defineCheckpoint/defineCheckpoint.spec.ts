@@ -205,8 +205,11 @@ describe('Configurators', () => {
 
         assert.throws(() => checkpoint.build.props({ languages: ['en'] }), /unresolved video reference/);
         const preview = checkpoint.build.props({ languages: ['en'], mode: 'draft' });
-        assert.equal(preview.base.content[0].answer[0].locale.href, UNRESOLVED_YOUTUBE_HREF);
-        assert.equal(preview.base.content[0].answer[0].locale.label, 'Pending video');
+        const answerBlock = preview.base.content[0].answer[0];
+        assert.equal(answerBlock.type, 'youtube');
+        if (answerBlock.type !== 'youtube') throw new Error('Expected a YouTube answer block');
+        assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
+        assert.equal(answerBlock.locale?.label, 'Pending video');
         assert.throws(() => checkpoint.build.props({ languages: ['en'], mode: 'production' }), /unresolved video reference/);
       });
 
