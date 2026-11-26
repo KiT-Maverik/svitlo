@@ -13,18 +13,18 @@ export {
   compositeContentBlockResolved_Schema,
   localizationSwitch as contentBlockLocalizationSwitch,
 } from './configurators/contentBlocks/contentBlock.schemas';
-export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
-export * from './configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
-export * from './configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
-export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
-export * from './configurators/contentBlocks/defineCode/defineCode.schemas';
-export * from './configurators/contentBlocks/defineImage/defineImage.schemas';
-export * from './configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
-export * from './configurators/contentBlocks/defineScene/defineScene.schemas';
-export * from './configurators/contentBlocks/defineText/defineText.schemas';
-export * from './configurators/contentBlocks/defineVideo/defineVideo.schemas';
-export * from './configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+export * from './configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
+export * from './configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
+export * from './configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+export * from './configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
+export * from './configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+export * from './configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+export * from './configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+export * from './configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+export * from './configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
+export * from './configurators/contentBlocks/primitive/defineText/defineText.schemas';
+export * from './configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
+export * from './configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 export * from './configurators/courses/defineChapter/defineChapter.schemas';
 export * from './configurators/courses/defineCourse/defineCourse.schemas';
 export * from './configurators/courses/defineModule/defineModule.schemas';
