@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { defineCarousel } from '../../defineCarousel';
 import { defineImage } from '../../../primitive/defineImage';
 import { defineText } from '../../../primitive/defineText';
+import { defineCarousel } from '../../defineCarousel';
 import { checkpointAnswer_Config_Schema, checkpointAnswer_Props_Schema, defineCheckpointAnswer } from './index';
 
 describe('Configurators', () => {

@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
-import { audio_Config_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
 import { carousel_Config_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
 import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
 import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
+import { audio_Config_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
 import { code_Config_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
 import { image_Config_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
 import { markdown_Config_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';

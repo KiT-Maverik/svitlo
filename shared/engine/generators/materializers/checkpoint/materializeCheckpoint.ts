@@ -1,6 +1,6 @@
-import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 import type { ContentBlock_Checkpoint_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
 import type { CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CheckpointSource = Omit<ContentBlock_Checkpoint_Config, 'content'> & {
   content: { items: Record<string, CheckpointItemSource | false>; order: string[] };
@@ -119,7 +119,12 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   const files: CheckpointFile[] = [];
   const diagnostics: CheckpointDiagnostic[] = [];
   const imports: string[] = [];
-  const claim = createSourceIdentifierRegistry('checkpoint', ['defineCheckpoint', 'languages', 'content', reserved.has(config.slug) ? 'config_' + config.slug : config.slug]);
+  const claim = createSourceIdentifierRegistry('checkpoint', [
+    'defineCheckpoint',
+    'languages',
+    'content',
+    reserved.has(config.slug) ? 'config_' + config.slug : config.slug,
+  ]);
   const entries: string[] = [];
   const paths = new Set<string>();
   for (const key of config.content.order) {

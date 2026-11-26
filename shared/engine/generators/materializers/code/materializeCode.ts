@@ -6,7 +6,10 @@
 import { isDeepStrictEqual } from 'node:util';
 
 import { validateReplacementVariables } from '../../../configurators/contentBlocks/_shared__contentBlocks';
-import { code_Config_Schema, type ContentBlock_Code_Config } from '../../../configurators/contentBlocks/primitive/defineCode';
+import {
+  code_Config_Schema,
+  type ContentBlock_Code_Config,
+} from '../../../configurators/contentBlocks/primitive/defineCode';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
 export type CodeDraftConfig = Pick<ContentBlock_Code_Config, 'id' | 'slug' | 'type'> & {

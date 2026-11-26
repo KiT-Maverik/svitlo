@@ -5,7 +5,10 @@
  */
 import { isDeepStrictEqual } from 'node:util';
 
-import { audio_Config_Schema, type ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/primitive/defineAudio';
+import {
+  audio_Config_Schema,
+  type ContentBlock_Audio_Config,
+} from '../../../configurators/contentBlocks/primitive/defineAudio';
 import { UNRESOLVED_RESOURCE_UUID } from '../../../schemas/media.schemas';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';

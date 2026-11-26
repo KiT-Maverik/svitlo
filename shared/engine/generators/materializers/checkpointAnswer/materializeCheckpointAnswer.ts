@@ -1,6 +1,6 @@
+import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import { primitiveContentBlockTypes } from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { ContentBlock_Audio_Config } from '../../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
-import type { ContentBlock_CheckpointAnswer_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import type { ContentBlock_Code_Config } from '../../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
 import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
 import type { ContentBlock_Markdown_Config } from '../../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';

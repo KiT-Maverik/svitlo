@@ -4,9 +4,9 @@ import {
   type Assessment_Draft_Props,
   type Assessment_Props,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { audio_Props_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
 import { carousel_Props_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
 import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
+import { audio_Props_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
 import { code_Props_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
 import { image_Props_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
 import { markdown_Props_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';

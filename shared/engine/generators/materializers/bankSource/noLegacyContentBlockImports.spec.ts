@@ -1,27 +1,49 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { test } from 'node:test';
 
 /** A repository-wide guard against resurrecting retired ContentBlock import paths. */
 test('repository source imports do not refer to deleted ContentBlock directories', () => {
   let root = process.cwd();
-  while (!existsSync(path.join(root, 'AGENTS.md')) || !existsSync(path.join(root, 'shared', 'engine', 'package.json'))) {
+  while (
+    !existsSync(path.join(root, 'AGENTS.md')) ||
+    !existsSync(path.join(root, 'shared', 'engine', 'package.json'))
+  ) {
     const parent = path.dirname(root);
     if (parent === root) throw new Error('Repository root not found');
     root = parent;
   }
 
   const kinds = [
-    'Text', 'Markdown', 'Code', 'Image', 'Audio', 'Video', 'Youtube',
-    'Subtitles', 'Scene', 'Carousel', 'Checkpoint',
+    'Text',
+    'Markdown',
+    'Code',
+    'Image',
+    'Audio',
+    'Video',
+    'Youtube',
+    'Subtitles',
+    'Scene',
+    'Carousel',
+    'Checkpoint',
   ] as const;
   const oldRoot = path.join(root, 'shared', 'engine', 'configurators', 'contentBlocks');
   for (const kind of kinds) {
     assert.equal(existsSync(path.join(oldRoot, 'define' + kind)), false, 'Obsolete ContentBlock directory: ' + kind);
   }
 
-  const ignore = new Set(['node_modules', '.git', 'dist', '.test-build', '.next', '.cache', 'temp', 'coverage', '.coverage-engine']);
+  const ignore = new Set([
+    'node_modules',
+    '.git',
+    'dist',
+    '.test-build',
+    '.next',
+    '.cache',
+    'temp',
+    'coverage',
+    '.coverage-engine',
+  ]);
   const sourceExtensions = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.json', '.md', '.yml', '.yaml']);
   const deepPath = new RegExp('contentBlocks/' + 'define(?:' + kinds.join('|') + ')(?:\\/|\\b)', 'g');
   const importPattern = /(?:\bfrom\s*|\bimport\s*\(|\brequire\s*\()\s*['"]([^'"]+)['"]/g;
@@ -44,8 +66,13 @@ test('repository source imports do not refer to deleted ContentBlock directories
         const specifier = match[1];
         if (!specifier.startsWith('.')) continue;
         const target = path.resolve(path.dirname(file), specifier);
-        if (kinds.some(kind => target === path.join(oldRoot, 'define' + kind)
-          || target.startsWith(path.join(oldRoot, 'define' + kind) + path.sep))) {
+        if (
+          kinds.some(
+            kind =>
+              target === path.join(oldRoot, 'define' + kind) ||
+              target.startsWith(path.join(oldRoot, 'define' + kind) + path.sep),
+          )
+        ) {
           failures.push(rel + ': ' + specifier);
         }
       }

@@ -5,7 +5,10 @@
  */
 import { isDeepStrictEqual } from 'node:util';
 
-import { text_Config_Schema, type ContentBlock_Text_Config } from '../../../configurators/contentBlocks/primitive/defineText';
+import {
+  text_Config_Schema,
+  type ContentBlock_Text_Config,
+} from '../../../configurators/contentBlocks/primitive/defineText';
 import { validateTextVariables } from '../../../configurators/contentBlocks/primitive/defineText/defineText.utils';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 
