@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
 import type { ContentBlock_Carousel_SlideProps, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';

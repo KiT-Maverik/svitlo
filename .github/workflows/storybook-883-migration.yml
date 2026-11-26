@@ -1,0 +1,56 @@
+name: Storybook dependency migration diagnostics (temporary)
+
+on:
+  push:
+    branches: [maintenance/storybook-toolchain]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate-and-verify:
+    if: github.repository == 'KiT-Maverik/svitlo' && github.ref == 'refs/heads/maintenance/storybook-toolchain'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 26
+          cache: npm
+      - name: Regenerate reproducible lockfile
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Regenerate Storybook dependency lockfile"
+            git push origin HEAD:maintenance/storybook-toolchain
+          fi
+      - name: Clean install and vulnerability inventory
+        run: |
+          npm ci --no-audit --no-fund
+          npm audit --json > /tmp/storybook-audit.json || true
+          npm audit --omit=dev --json > /tmp/storybook-production-audit.json || true
+          node -e 'const a = require("/tmp/storybook-audit.json"); const p = require("/tmp/storybook-production-audit.json"); console.log("full audit", a.metadata?.vulnerabilities); console.log("production audit", p.metadata?.vulnerabilities); if ((p.metadata?.vulnerabilities?.total ?? -1) !== 0 || (a.metadata?.vulnerabilities?.total ?? 100) > 6) process.exit(1)'
+          if npm ls tsconfck --all; then
+            echo "Deprecated tsconfck remains in dependency tree"
+            exit 1
+          fi
+          npm explain @joshwooding/vite-plugin-react-docgen-typescript
+          npm explain minimatch
+      - name: UI Kit build, types, locale and component verification
+        run: |
+          npm run package:build --workspace @svitlo/engine
+          npm run package:build --workspace @svitlo/ui-kit
+          npm run code:check:types --workspace @svitlo/ui-kit
+          npm run test:locales --workspace @svitlo/ui-kit
+          npm run test:components --workspace @svitlo/ui-kit
+      - name: Storybook static build and asset/docs verification
+        run: |
+          npm run storybook:build --workspace @svitlo/ui-kit
+          test -s shared/ui-kit/storybook-static/flags/ua.svg
+          node -e 'const fs = require("node:fs"); const index = JSON.parse(fs.readFileSync("shared/ui-kit/storybook-static/index.json", "utf8")); const entries = Object.values(index.entries); const files = new Set(entries.filter(e => e.type === "story").map(e => e.importPath)); if (files.size !== 21 || !entries.some(e => e.type === "docs")) throw new Error("Storybook story/docs inventory regression: " + files.size); console.log("Story files: " + files.size)'
