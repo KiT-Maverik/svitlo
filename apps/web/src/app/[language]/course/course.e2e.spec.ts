@@ -105,3 +105,12 @@ test('Episode host renders localized media and registered Scene, then follows re
   await page.goto('/uk/course/' + story + '/lesson/uk/' + lessonId + '?placement=finalLesson');
   await expect(page.getByRole('heading', { name: 'Контрольний урок 2', level: 1 })).toBeVisible();
 });
+
+test('Direct Course URLs reject malformed or absent IDs and unsupported interface languages', async ({ request }) => {
+  for (const route of [
+    '/en/course/not-a-uuid',
+    '/en/course/aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3',
+    '/unsupported/course/' + courseId,
+  ])
+    expect((await request.get(route)).status()).toBe(404);
+});
