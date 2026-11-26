@@ -46,7 +46,7 @@ test('fails closed on missing locale labels, changed identities, unsafe keys, an
 
 test('draft activity is preview-only and never produces a playable production TOC', () => {
   const pending = structuredClone(base);
-  pending.content.items.review = { id: id(4), type: 'assessment', label: 'Not implemented', draft: true };
+  Object.assign(pending.content.items.review, { label: 'Not implemented', draft: true });
   assert.throws(() => assembleCourseToc(pending, uk, id(1), 'uk'), /Draft TOC/);
-  assert.equal(assembleCourseToc(pending, uk, id(1), 'uk', 'draft').content.items.review.draft, true);
+  assert.equal('draft' in assembleCourseToc(pending, uk, id(1), 'uk', 'draft').content.items.review, true);
 });

@@ -105,7 +105,7 @@ function assertSameStructure(base: CourseToc, selected: CourseToc): void {
     if (JSON.stringify(a.order) !== JSON.stringify(b.order)) throw Error('Localized Course TOC order changed');
     for (const key of a.order) {
       const x = a.items[key], y = b.items[key];
-      if (!x || !y || x.id !== y.id || x.type !== y.type || x.draft !== y.draft)
+      if (!x || !y || x.id !== y.id || x.type !== y.type || ('draft' in x ? x.draft : undefined) !== ('draft' in y ? y.draft : undefined))
         throw Error('Localized Course TOC identity changed at ' + key);
       if ('content' in x && 'content' in y) walk(x.content, y.content);
       else if ('content' in x || 'content' in y) throw Error('Localized Course TOC hierarchy changed');

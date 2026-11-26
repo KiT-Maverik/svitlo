@@ -162,7 +162,7 @@ function fixture() {
 test('one compact Course base contains complete Course/Module/Chapter Props but no standalone Lesson data', () => {
   const { course } = fixture();
   const files = renderCourseFiles(course);
-  assert.deepEqual([...files.keys()], ['base.json', 'uk.json']);
+  assert.deepEqual([...files.keys()], ['base.json', 'uk.json', 'toc/base.json', 'toc/uk.json']);
   const base = JSON.parse(files.get('base.json'));
   const chapter = base.content.items.myModule.content.items.myChapter;
   assert.equal(chapter.locale.title, 'Chapter');
@@ -170,7 +170,7 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   assert.equal(base.content.items.myModule.locale.title, 'Module');
   assert(![...files.values()].join('').includes('secret-standalone-skill'));
   assert(![...files.values()].join('').includes('standalone-section'));
-  assert(![...files.values()].join('').includes('Standalone title'));
+  assert(!files.get('base.json').includes('Standalone title'));
   const uk = JSON.parse(files.get('uk.json'));
   const assembled = mergeCourseProps(base, uk);
   assert.equal(assembled.locale.title, 'Курс');
@@ -198,7 +198,7 @@ test('deterministic publication, check mode, stale file cleanup and unrelated as
     const first = publishCourse(course, { packageRoot: home });
     const destination = path.join(home, 'generated/courses', ids.course);
     assert.equal(first.directory, destination);
-    assert.deepEqual(first.files, ['base.json', 'uk.json']);
+    assert.deepEqual(first.files, ['base.json', 'uk.json', 'toc/base.json', 'toc/uk.json']);
     publishCourse(course, { packageRoot: home, check: true });
     const before = fs.readFileSync(path.join(destination, 'base.json'), 'utf8');
     fs.writeFileSync(path.join(destination, 'stale.json'), '{}');
@@ -223,7 +223,7 @@ test('publishes directly to a caller-owned compiled Course output root', () => {
     const result = publishCourse(course, { outputRoot });
     assert.equal(result.directory, path.join(outputRoot, ids.course));
     publishCourse(course, { outputRoot, check: true });
-    assert.deepEqual(fs.readdirSync(result.directory).sort(), ['base.json', 'uk.json']);
+    assert.deepEqual(fs.readdirSync(result.directory).sort(), ['base.json', 'toc', 'uk.json']);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
@@ -364,6 +364,18 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   assert.equal(localized.content.items.directUse.overrides.locale.title, 'Course direct title');
   assert.equal(lesson.slug, 'independentLesson');
   assert.equal(lesson.build.props({ languages }).base.slug, 'independentLesson');
+  const tocBase = JSON.parse(files.get('toc/base.json'));
+  const tocUk = JSON.parse(files.get('toc/uk.json'));
+  const localizedToc = mergeCourseProps(tocBase, tocUk);
+  assert.deepEqual(localizedToc.content.order, ['contextualModule', 'directUse']);
+  assert.equal(
+    localizedToc.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.label,
+    'Розділ курсу',
+  );
+  assert.equal(localizedToc.content.items.directUse.label, 'Course direct title');
+  assert.equal(tocBase.content.items.directUse.label, 'Course direct title');
+  assert(!files.get('toc/base.json').includes('"section"'));
+
 });
 
 test('real Episode Configurators publish at all four levels with localized ordered blocks and repeated Lesson overrides', () => {
@@ -660,6 +672,11 @@ test('Draft Course publisher and runtime preserve nested stub previews, order an
   assert.deepEqual(base.content.order, ['existing', 'module', 'plannedLesson']);
   assert.deepEqual(base.content.items.module.content.order, ['plannedEpisode', 'adapted', 'chapter']);
   assert.deepEqual(base.content.items.module.content.items.chapter.content.order, ['plannedAssessment']);
+  const toc = JSON.parse(files.get('toc/base.json'));
+  assert.equal(toc.content.items.plannedLesson.draft, true);
+  assert.equal(toc.content.items.module.content.items.plannedEpisode.draft, true);
+  assert.equal(toc.content.items.module.content.items.chapter.content.items.plannedAssessment.draft, true);
+
   assert.deepEqual(base.content.items.existing, { type: 'lesson', id: existing.id });
   assert.deepEqual(base.content.items.module.content.items.adapted, {
     type: 'lesson',
