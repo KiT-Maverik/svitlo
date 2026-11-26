@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /** Dependency-aware npm workspace aggregation. Never implicitly select one app. */
+import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
-import { partitionBuildMutatingHosts, runParallelTypechecks } from './typecheck-scheduler.mjs';
 import { fileURLToPath } from 'node:url';
+import { partitionBuildMutatingHosts, runParallelTypechecks } from './typecheck-scheduler.mjs';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const readJson = file => JSON.parse(readFileSync(file, 'utf8'));

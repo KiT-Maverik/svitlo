@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
-import { test } from 'node:test';
-import { discoverWorkspaces, planWorkspaceOperation, planTypecheckPhases, environmentForWorkspace } from './run-workspace-script.mjs';
 import { readFileSync } from 'node:fs';
+import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { discoverWorkspaces, planWorkspaceOperation, planTypecheckPhases, environmentForWorkspace } from './run-workspace-script.mjs';
 
 const ws = (name, path, scripts, deps = []) => ({
   name,

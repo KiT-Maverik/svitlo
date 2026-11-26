@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 /** Typecheck changed workspaces and consumers of changed public contracts only. */
+import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
-import { changedFiles } from '../ci/prDiff/changed-files.mjs';
-import { changedPublicContracts } from './public-contract-impact.mjs';
-import { partitionBuildMutatingHosts, runParallelTypechecks } from '../runWorkspaceScript/typecheck-scheduler.mjs';
-export { partitionBuildMutatingHosts };
 import { fileURLToPath } from 'node:url';
+import { changedFiles } from '../ci/prDiff/changed-files.mjs';
+import { partitionBuildMutatingHosts, runParallelTypechecks } from '../runWorkspaceScript/typecheck-scheduler.mjs';
+import { changedPublicContracts } from './public-contract-impact.mjs';
+
+export { partitionBuildMutatingHosts };
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 function assert(ok, message) {
