@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { UNRESOLVED_RESOURCE_UUID } from '@svitlo/engine/runtime';
-import type {
-  ContentBlock_Checkpoint_Props,
-  ContentBlock_Markdown_Props,
-  ContentBlock_Subtitles_Props,
-  ContentBlock_Text_Props,
+import {
+  UNRESOLVED_RESOURCE_UUID,
+  type ContentBlock_Checkpoint_Props,
+  type ContentBlock_Markdown_Props,
+  type ContentBlock_Subtitles_Props,
+  type ContentBlock_Text_Props,
 } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
@@ -158,13 +158,15 @@ describe('ContentBlockRenderer', () => {
     render(
       <ContentBlockRenderer
         messages={enUiKitMessages}
-        blocks={[{
-          id: 'pending-captions',
-          slug: 'pendingCaptions',
-          type: 'subtitles',
-          params: {},
-          locale: { fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.vtt' },
-        }]}
+        blocks={[
+          {
+            id: 'pending-captions',
+            slug: 'pendingCaptions',
+            type: 'subtitles',
+            params: {},
+            locale: { fileLocation: '/assets/' + UNRESOLVED_RESOURCE_UUID + '.vtt' },
+          },
+        ]}
       />,
     );
     expect(screen.getByRole('status')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);

@@ -8,7 +8,11 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 
-import { DEFAULT_SUPPORTED_LANGUAGES, UNRESOLVED_RESOURCE_UUID, type ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+import {
+  DEFAULT_SUPPORTED_LANGUAGES,
+  UNRESOLVED_RESOURCE_UUID,
+  type ContentBlock_Audio_Props,
+} from '@svitlo/engine/runtime';
 
 import type { Audio_Locale } from '../../../../../../data/locale/audio';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
