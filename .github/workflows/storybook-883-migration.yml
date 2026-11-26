@@ -95,13 +95,17 @@ jobs:
             const browser = await chromium.launch({ headless: true });
             try {
               const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+              page.on('pageerror', error => console.error('BROWSER PAGE ERROR: ' + (error.stack ?? error.message)));
+              page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') console.log('BROWSER CONSOLE ' + message.type() + ': ' + message.text()); });
+              page.on('response', response => { if (response.status() >= 400) console.log('BROWSER HTTP ERROR ' + response.status() + ' ' + response.url()); });
               const entries = Object.values(JSON.parse(fs.readFileSync('/tmp/svitlo-browser-index.json', 'utf8')).entries);
               for (const title of ['Course/Card', 'Content blocks/Markdown', 'Content blocks/Carousel', 'Questions/Select one answer']) {
                 const story = entries.find(e => e.type === 'story' && e.title === title);
                 if (!story) throw new Error('Missing story in browser smoke: ' + title);
                 await page.goto('http://127.0.0.1:6006/iframe.html?id=' + encodeURIComponent(story.id) + '&viewMode=story', { waitUntil: 'networkidle' });
                 const root = page.locator('#storybook-root');
-                await root.waitFor({ state: 'visible', timeout: 20000 });
+                console.log('BROWSER PREVIEW DIAGNOSTICS', title, 'URL', page.url(), 'BODY', (await page.locator('body').innerText()).slice(0, 1500), 'ROOT', (await root.evaluate(el => el.outerHTML)).slice(0, 600));
+                await root.waitFor({ state: 'visible', timeout: 6000 });
                 const rendered = await root.evaluate(el => ({ children: el.querySelectorAll('*').length, text: el.textContent.trim().length }));
                 if (rendered.children < 2 || rendered.text === 0) throw new Error('Story rendered empty: ' + title + ' ' + JSON.stringify(rendered));
                 console.log('Browser-rendered story ' + title + ': ' + JSON.stringify(rendered));
