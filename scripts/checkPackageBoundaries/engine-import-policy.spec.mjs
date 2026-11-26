@@ -11,7 +11,8 @@ test('only the Build Context owner can import node:async_hooks', () => {
     'shared/engine/configurators/_shared__configurators/common.schemas.ts',
     'shared/engine/configurators/_shared__configurators/buildContextCopy.ts',
     'shared/engine/configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.ts',
-  ]) assert.equal(isAllowedEngineImport(path, 'node:async_hooks'), false, path);
+  ])
+    assert.equal(isAllowedEngineImport(path, 'node:async_hooks'), false, path);
   assert.equal(isAllowedEngineImport(buildContext, 'node:fs'), false);
   assert.equal(isAllowedEngineImport(buildContext, 'esbuild'), false);
 });
@@ -22,7 +23,15 @@ test('runtime-facing and configurator sources cannot gain external dependencies'
     'shared/engine/configurators/_shared__configurators/common.schemas.ts',
     'shared/engine/configurators/lessons/defineLesson/defineLesson.ts',
   ]) {
-    for (const specifier of ['node:fs', 'node:path', 'node:async_hooks', '@svitlo/ui-kit', '@svitlo/web', 'react', 'next']) {
+    for (const specifier of [
+      'node:fs',
+      'node:path',
+      'node:async_hooks',
+      '@svitlo/ui-kit',
+      '@svitlo/web',
+      'react',
+      'next',
+    ]) {
       assert.equal(isAllowedEngineImport(source, specifier), false, source + ' -> ' + specifier);
     }
     for (const specifier of ['./local', '#schemas', 'zod'])
@@ -33,8 +42,23 @@ test('runtime-facing and configurator sources cannot gain external dependencies'
 test('existing isolated build-only exceptions stay unchanged', () => {
   assert.equal(isAllowedEngineImport('shared/engine/utils/generators/compile.ts', 'node:fs'), true);
   assert.equal(isAllowedEngineImport('shared/engine/utils/generators/compile.ts', 'esbuild'), true);
-  assert.equal(isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineCode/helpers.ts', 'node:fs'), true);
-  assert.equal(isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineMarkdown/check.ts', 'node:path'), true);
-  assert.equal(isAllowedEngineImport('shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/check.ts', 'node:fs'), true);
-  assert.equal(isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs'), false);
+  assert.equal(
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineCode/helpers.ts', 'node:fs'),
+    true,
+  );
+  assert.equal(
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineMarkdown/check.ts', 'node:path'),
+    true,
+  );
+  assert.equal(
+    isAllowedEngineImport(
+      'shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/check.ts',
+      'node:fs',
+    ),
+    true,
+  );
+  assert.equal(
+    isAllowedEngineImport('shared/engine/configurators/contentBlocks/defineText/defineText.ts', 'node:fs'),
+    false,
+  );
 });
