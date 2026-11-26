@@ -4,11 +4,11 @@
  * This materializer delegates each concrete block to its owning materializer.
  */
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import { primitiveContentBlockTypes } from '../../../configurators/contentBlocks/contentBlock.constants';
+import { primitiveContentBlockTypes, type ContentBlock_Primitive_Type } from '../../../configurators/contentBlocks/contentBlock.constants';
 import type { FlashcardSide_Config } from '../../../configurators/flashcards/defineFlashcardSide/defineFlashcardSide.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 
-export type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
+export type PlainBlock = { id: string; slug: string; type: ContentBlock_Primitive_Type } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
 export type FlashcardSideSource = Omit<FlashcardSide_Config, 'items'> & {
   items: Record<string, BlockNode>;

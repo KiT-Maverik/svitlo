@@ -5,7 +5,7 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { primitiveContentBlockConfigurator_Schema, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,

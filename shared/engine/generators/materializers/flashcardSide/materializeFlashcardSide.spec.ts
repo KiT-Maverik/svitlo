@@ -6,7 +6,7 @@ import ts from 'typescript';
 import { materializeFlashcardSide } from './materializeFlashcardSide';
 
 const block = (slug: string, n: number) => ({
-  config: { id: 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0'), slug, type: 'text' },
+  config: { id: 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0'), slug, type: 'text' as const },
 });
 const context = {
   directory: 'flashcards/cardOne/content/front',

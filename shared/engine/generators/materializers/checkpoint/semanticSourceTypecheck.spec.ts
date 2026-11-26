@@ -6,7 +6,6 @@ import { test } from 'node:test';
 import ts from 'typescript';
 
 import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
-import { materializeCarousel } from '../carousel/materializeCarousel';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeScene } from '../scene/materializeScene';
@@ -61,21 +60,13 @@ function renderText(config: ContentBlock_Text_Config, directory: string) {
   };
 }
 
-test('emitted Checkpoint → Item → Answer → Carousel → Scene modules typecheck against the real Engine build API', () => {
+test('emitted Checkpoint → Item → Answer → Scene modules typecheck against the real Engine build API', () => {
   const scene = {
     id: id(6),
     slug: 'interactive',
     type: 'scene' as const,
     params: {},
     locale: { value: { uk: 'Reviewed interactive prompt' } },
-  };
-  const carousel = {
-    id: id(5),
-    slug: 'examples',
-    type: 'carousel' as const,
-    params: {},
-    locale: { title: { uk: 'Приклади' } },
-    slides: { items: { interactive: scene }, order: ['interactive'] },
   };
   const question = {
     id: id(3),
@@ -95,7 +86,7 @@ test('emitted Checkpoint → Item → Answer → Carousel → Scene modules type
     id: id(4),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: { items: { examples: carousel, explanation }, order: ['examples', 'explanation'] },
+    content: { items: { interactive: scene, explanation }, order: ['interactive', 'explanation'] },
   };
   const item = {
     id: id(2),
@@ -131,23 +122,13 @@ test('emitted Checkpoint → Item → Answer → Carousel → Scene modules type
             languagesImport: languageImport(answerDir),
             renderChild: (block, blockDir) => {
               if (block.type === 'text') return renderText(block, blockDir);
-              if (block.type !== 'carousel') {
-                throw new Error('Unexpected answer child kind: ' + block.type);
-              }
-              return materializeCarousel(block, {
+              if (block.type !== 'scene') throw new Error('Unexpected answer child kind: ' + block.type);
+              return materializeScene(block, {
                 directory: blockDir,
                 documentLanguage: 'uk',
                 languagesImport: languageImport(blockDir),
-                renderChild: (slide, slideDir) => {
-                  if (slide.type !== 'scene') throw new Error('Expected the concrete Scene child');
-                  return materializeScene(slide, {
-                    directory: slideDir,
-                    documentLanguage: 'uk',
-                    languagesImport: languageImport(slideDir),
-                    registered: true,
-                    production: { specification: '# Reviewed interactive specification\n' },
-                  });
-                },
+                registered: true,
+                production: { specification: '# Reviewed interactive specification\n' },
               });
             },
           }),
@@ -155,7 +136,7 @@ test('emitted Checkpoint → Item → Answer → Carousel → Scene modules type
   });
 
   const generated = result.files.filter(file => file.kind === 'typescript');
-  assert.equal(generated.length, 7, 'each nested Configurator has its own source module');
+  assert.equal(generated.length, 6, 'each nested Configurator has its own source module');
   assert.deepEqual(
     result.diagnostics.map(diagnostic => diagnostic.code),
     ['pending-temporary-specification'],

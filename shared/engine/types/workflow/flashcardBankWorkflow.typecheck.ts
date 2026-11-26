@@ -227,11 +227,16 @@ const checkpointSource: CheckpointSource = {
   content: { items: { item: checkpointItemSource }, order: ['item'] },
 };
 const compositeSide: FlashcardBankWorkflowSideSource = {
-  // @ts-expect-error Composite Carousel and Checkpoint must never be Flashcard children.
-  items: { gallery: carouselSource, checkpoint: checkpointSource },
+  items: {
+    // @ts-expect-error Carousel is not an eligible Flashcard Side child.
+    gallery: carouselSource,
+    // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
+    checkpoint: checkpointSource,
+  },
   order: ['gallery', 'checkpoint'],
 };
-const compatibleCompositeSide: FlashcardSideSource = compositeSide as never;
+// @ts-expect-error Source-only materializers must also exclude Composite children.
+const incompatibleCompositeSide: FlashcardSideSource = compositeSide;
 const expandedRelation: Flashcard_Relationship = {
   relationshipId: edge.relationshipId,
   type: edge.type,
@@ -329,6 +334,7 @@ const badReferenceBlock: ContentBlock_Text_Config = {
 
 void materializerSide;
 void carouselSource;
+void incompatibleCompositeSide;
 void checkpointAnswerSource;
 void checkpointItemSource;
 void checkpointSource;
