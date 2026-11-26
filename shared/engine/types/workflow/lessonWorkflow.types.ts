@@ -176,7 +176,7 @@ export const lessonWorkflowCheckpointAnswerSource_Schema = node(
     content: workflowOrdered_Schema(simpleBlock_Schema),
   }),
 );
-export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof checkpointAnswerNode_Schema>;
+export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof lessonWorkflowCheckpointAnswerSource_Schema>;
 
 const checkpointItemNode_Schema = node(
   checkpointItem_Config_Schema.extend({
