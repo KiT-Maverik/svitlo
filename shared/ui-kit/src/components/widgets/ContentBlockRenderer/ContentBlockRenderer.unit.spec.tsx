@@ -122,13 +122,15 @@ describe('ContentBlockRenderer', () => {
     render(
       <ContentBlockRenderer
         messages={enUiKitMessages}
-        blocks={[{
-          id: 'not-yet-registered',
-          slug: 'pendingScene',
-          type: 'scene',
-          params: {},
-          locale: { value: { title: 'Interactive shadows' } },
-        }]}
+        blocks={[
+          {
+            id: 'not-yet-registered',
+            slug: 'pendingScene',
+            type: 'scene',
+            params: {},
+            locale: { value: { title: 'Interactive shadows' } },
+          },
+        ]}
         sceneRegistry={() => undefined}
       />,
     );

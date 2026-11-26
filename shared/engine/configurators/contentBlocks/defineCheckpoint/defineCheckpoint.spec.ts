@@ -210,7 +210,10 @@ describe('Configurators', () => {
         if (answerBlock.type !== 'youtube') throw new Error('Expected a YouTube answer block');
         assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
         assert.equal(answerBlock.locale?.label, 'Pending video');
-        assert.throws(() => checkpoint.build.props({ languages: ['en'], mode: 'production' }), /unresolved video reference/);
+        assert.throws(
+          () => checkpoint.build.props({ languages: ['en'], mode: 'production' }),
+          /unresolved video reference/,
+        );
       });
 
       test('Checkpoint requires exactly all active item slugs, once each', () => {
