@@ -165,6 +165,8 @@ export type Options = {
   directory?: string;
   languagesImport: string;
   production?: Record<string, unknown>;
+  /** Internal owner of Section editorial notes; never implies completed methodology. */
+  noteOwnership?: 'course-lesson-placement';
   renderStage: (
     config: ChildConfig,
     options: {
@@ -250,7 +252,7 @@ export function materializeQuestSection(config: Source, options: Options): Resul
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
   const methodologyBlocker =
-    sectionNotes.length && options.production?.methodologyIntegrated !== true
+    sectionNotes.length && options.production?.methodologyIntegrated !== true && options.noteOwnership !== 'course-lesson-placement'
       ? renderBlockerTodo(
           'Transfer reviewed Quest Section notes (' +
             sectionNotes.join(', ') +

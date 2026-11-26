@@ -33,6 +33,8 @@ export type Options = {
   directory?: string;
   languagesImport: string;
   production?: Record<string, unknown>;
+  /** Internal owner of Section editorial notes; never implies completed methodology. */
+  noteOwnership?: 'course-lesson-placement';
   renderContentBlock: (
     config: ChildConfig,
     options: {
@@ -213,7 +215,7 @@ export function materializeQuizSection(config: Source, options: Options): Result
   const sectionNotes = Object.keys(options.production ?? {}).filter(
     key => !['pending', 'documentLanguage', 'methodologyIntegrated'].includes(key),
   );
-  if (sectionNotes.length && options.production?.methodologyIntegrated !== true)
+  if (sectionNotes.length && options.production?.methodologyIntegrated !== true && options.noteOwnership !== 'course-lesson-placement')
     blocker.push(
       renderBlockerTodo(
         'Transfer reviewed quiz Section notes (' +
