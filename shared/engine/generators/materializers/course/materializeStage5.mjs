@@ -1,4 +1,4 @@
-import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
+import { renderBlockerSpecification, renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import { materializeCourse } from './materialize.mjs';
 import { materializeModule } from '../module/materialize.mjs';
 import { materializeChapter } from '../chapter/materialize.mjs';
@@ -42,6 +42,56 @@ const serialize = value => {
     throw new Error('Course override must be JSON-safe Config patch, not a Configurator or built Props');
   for (const child of Object.values(value)) serialize(child);
 };
+
+/**
+ * A Course Lesson override belongs to one placement, not the reusable Lesson
+ * or durable Course methodology. Keep complete reviewed editorial context
+ * after consuming the pinned Stage 3 draft. Each note names its owning path,
+ * kind and UUID. Media implementation briefs stay with their own resources.
+ */
+function renderPlacementOverrideSpecification(production, patch) {
+  const notes = ['Course Lesson placement override rationale:', production.overrideRationale];
+  const nonEditorial = new Set(['pending', 'documentLanguage', 'methodologyIntegrated', 'runtimeStatus']);
+  const resourceBriefFields = new Set(['specification', 'prompt', 'script', 'storyboard']);
+  const resourceKinds = new Set(['image', 'video', 'audio', 'subtitles', 'scene', 'youtube']);
+  const visit = (value, path, depth = 0) => {
+    if (depth > 80) throw new Error('Course override editorial tree exceeds safe nesting depth');
+    if (Array.isArray(value)) {
+      for (let i = 0; i < value.length; i++) visit(value[i], path + '[' + i + ']', depth + 1);
+      return;
+    }
+    if (!record(value)) return;
+    if (record(value.config) && typeof value.config.type === 'string') {
+      const kind = value.config.type;
+      const identity = kind + ' ' + value.config.id;
+      if (record(value.production)) {
+        for (const [field, note] of Object.entries(value.production).sort(([a], [b]) => a.localeCompare(b))) {
+          if (
+            nonEditorial.has(field) ||
+            (resourceKinds.has(kind) && resourceBriefFields.has(field)) ||
+            typeof note !== 'string' ||
+            !note.trim()
+          )
+            continue;
+          notes.push(path + ' (' + identity + ') production.' + field + ':\n' + note);
+        }
+      }
+      visit(value.config, path + '.config', depth + 1);
+      return;
+    }
+    for (const [key, child] of Object.entries(value).sort(([a], [b]) => a.localeCompare(b))) {
+      if (key !== 'production') visit(child, path + '.' + key, depth + 1);
+    }
+  };
+  for (const [sectionKey, entry] of Object.entries(patch.section?.additionalItems ?? {}).sort(([a], [b]) =>
+    a.localeCompare(b),
+  )) {
+    if (entry?.$create === 'course-section')
+      visit(entry.source, 'section.additionalItems.' + sectionKey + '.source');
+  }
+  return notes.join('\n\n');
+}
+
 /**
  * Plan reviewed Course Stage 5 authored sources. The atomic writer consumes
  * draft.ts and creates index.ts; exact reviewed bytes remain in Git history.
@@ -379,9 +429,6 @@ export function materializeCourseStage5(input, options = {}) {
             'import { ' + lesson.exportName + ' } from ' + JSON.stringify(lesson.importPath) + ';',
             ...extraImports,
             '',
-            renderBlockerTodo(
-              'Implement and verify the Course-owned resources and overrides for this Lesson placement before removing this marker.',
-            ),
             'export const ' +
               placementSlug +
               ' = placeLesson(' +
@@ -391,6 +438,11 @@ export function materializeCourseStage5(input, options = {}) {
               ' satisfies Parameters<typeof ' +
               lesson.exportName +
               '.build.overrides>[0]);',
+            '',
+            renderBlockerSpecification(
+              'Implement, test and verify this entire Course-owned Lesson placement override and its resources; delete this temporary specification only after the whole override is complete.',
+              renderPlacementOverrideSpecification(production, rawPatch),
+            ),
             '',
           ].join('\n'),
         },

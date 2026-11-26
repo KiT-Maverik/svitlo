@@ -19,6 +19,7 @@ export function materializeCourse(input: CourseWorkflowStage3, options: CourseSt
         documentLanguage,
         languagesImport: '#coursesData/' + rootId.at(-1) + '/' + rootId + '/constants',
         sceneOutputRoot: options.textbookRoot + '/scenes',
+        noteOwnership: 'course-lesson-placement',
       }),
   });
 }
