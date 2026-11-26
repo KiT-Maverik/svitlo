@@ -28,7 +28,10 @@ const example = () => {
     id: id(4),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: { items: { practiceScene: scene, explanation: text('explanation', 8) }, order: ['practiceScene', 'explanation'] },
+    content: {
+      items: { practiceScene: scene, explanation: text('explanation', 8) },
+      order: ['practiceScene', 'explanation'],
+    },
   };
   const item = {
     id: id(2),
@@ -99,9 +102,7 @@ test('Checkpoint materializes Item → Text + Answer → Primitive Scene/Text', 
     'index.ts',
   ])
     assert.ok(paths.includes('sections/review/' + suffix), 'missing ' + suffix);
-  const sceneSource = result.files.find(
-    file => file.path === 'sections/review/first/answer/practiceScene/index.ts',
-  );
+  const sceneSource = result.files.find(file => file.path === 'sections/review/first/answer/practiceScene/index.ts');
   assert.ok(sceneSource, 'nested Scene Config source must be emitted');
   assert.match(sceneSource.content, /# Scene specification/);
   assert.match(sceneSource.content, /Approved prompt\./);

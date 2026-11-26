@@ -29,7 +29,9 @@ test('FlashcardSide rejects Carousel and Checkpoint before delegating source gen
       () =>
         materializeFlashcardSide(
           {
-            items: { nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type: type as never } } },
+            items: {
+              nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type: type as never } },
+            },
             order: ['nested'],
           },
           context,
