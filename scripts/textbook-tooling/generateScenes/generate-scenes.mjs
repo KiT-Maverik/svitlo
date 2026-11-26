@@ -61,7 +61,10 @@ export async function syncSceneRegistry(root, mode, packageName = 'the selected 
   const formatted = await format(output, { ...(await resolveConfig(target)), filepath: target });
   if (mode === '--write') writeFileSync(target, formatted);
   else if (mode === '--check') {
-    if (readFileSync(target, 'utf8') !== formatted)
+    // Git for Windows may check out tracked text with CRLF. Compare logical
+    // source content against the canonical LF output without rewriting the file.
+    const checkedOut = readFileSync(target, 'utf8').replace(/\r\n/g, '\n');
+    if (checkedOut !== formatted)
       throw new Error('Stale Scene registry; run npm run content:generate:scenes --workspace ' + packageName);
   } else throw new Error('Usage: generate-scenes.mjs --write|--check');
 
