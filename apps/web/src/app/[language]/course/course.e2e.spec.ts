@@ -183,3 +183,22 @@ test('A corrupt requested Course reaches the publication failure path, not an un
     await rm(directory, { recursive: true, force: true });
   }
 });
+
+test('Corrupt TOC for a requested Course surfaces a publication failure, not a 404', async ({ request }) => {
+  const { mkdir, writeFile, rm } = await import('node:fs/promises');
+  const { join } = await import('node:path');
+  const id = '11111111-1111-4111-8111-0000000002fc';
+  const directory = join(process.cwd(), 'public/data/courses', id);
+  await mkdir(join(directory, 'toc'), { recursive: true });
+  try {
+    await writeFile(join(directory, 'base.json'), JSON.stringify({
+      id, type: 'course', params: { languages: ['en'] },
+      locale: { title: 'Valid Course' }, content: { items: {}, order: [] },
+    }));
+    await writeFile(join(directory, 'toc/base.json'), '{corrupt published TOC');
+    const response = await request.get('/en/course/' + id);
+    expect(response.status()).not.toBe(404);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});

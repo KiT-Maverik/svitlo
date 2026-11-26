@@ -96,6 +96,7 @@ it('only enables Draft assembly in the development host, never in production', a
 
   vi.stubEnv('NODE_ENV', 'production');
   await loadCourseTree(courseId, 'en');
+  await loadCourseToc(courseId, 'en');
   await loadExistingCourseWithFallback(courseId, 'en');
   expect(adapter.course).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
   expect(adapter.toc).toHaveBeenLastCalledWith(courseId, 'en', undefined, 'production');
