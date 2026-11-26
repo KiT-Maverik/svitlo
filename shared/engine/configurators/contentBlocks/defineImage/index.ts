@@ -1,2 +1,2 @@
-export * from './defineImage';
-export * from './defineImage.schemas';
+/** Compatibility re-export. */
+export * from '../primitive/defineImage/index.ts';

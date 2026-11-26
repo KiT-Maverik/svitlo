@@ -1,2 +1,2 @@
-export * from './defineVideo';
-export * from './defineVideo.schemas';
+/** Compatibility re-export. */
+export * from '../primitive/defineVideo/index.ts';
