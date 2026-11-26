@@ -1,6 +1,6 @@
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
-import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/defineImage/defineImage.schemas';
+import type { ContentBlock_Carousel_Config } from '../../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+import type { ContentBlock_Image_Config } from '../../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
 import type { SceneSource } from '../scene/materializeScene';
 
 export type CarouselSlideSource = ContentBlock_Image_Config | SceneSource;

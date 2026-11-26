@@ -1,6 +1,6 @@
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_CheckpointItem_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
-import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_CheckpointItem_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import type { CheckpointAnswerSource } from '../checkpointAnswer/materializeCheckpointAnswer';
 
 export type CheckpointItemSource = Omit<ContentBlock_CheckpointItem_Config, 'question' | 'answer'> & {

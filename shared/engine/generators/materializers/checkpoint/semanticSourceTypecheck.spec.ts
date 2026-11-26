@@ -5,7 +5,7 @@ import { test } from 'node:test';
 
 import ts from 'typescript';
 
-import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/defineText/defineText.schemas';
+import type { ContentBlock_Text_Config } from '../../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import { materializeCheckpointAnswer } from '../checkpointAnswer/materializeCheckpointAnswer';
 import { materializeCheckpointItem } from '../checkpointItem/materializeCheckpointItem';
 import { materializeScene } from '../scene/materializeScene';

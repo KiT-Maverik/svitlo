@@ -1,5 +1,5 @@
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
-import type { ContentBlock_Checkpoint_Config } from '../../../configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+import type { ContentBlock_Checkpoint_Config } from '../../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
 import type { CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
 
 export type CheckpointSource = Omit<ContentBlock_Checkpoint_Config, 'content'> & {
