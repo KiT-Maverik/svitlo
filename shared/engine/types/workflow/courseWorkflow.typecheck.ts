@@ -28,6 +28,7 @@ import type {
   CourseWorkflowStage3NewLessonConfig,
 } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 
 const config = {
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -359,9 +360,7 @@ const existingLesson = {
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies Parameters<
-  typeof importedLesson.build.overrides
->[0];
+const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies CourseLessonSourcePatch<typeof importedLesson>;
 const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
