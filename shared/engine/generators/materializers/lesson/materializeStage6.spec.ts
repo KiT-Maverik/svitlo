@@ -38,9 +38,8 @@ const valid = () => ({
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Basics' } },
-    section: {
-      items: {
-        introduction: {
+    children: ['introduction'],
+    introduction: {
           config: {
             type: 'content' as const,
             id: id('02'),
@@ -65,9 +64,6 @@ const valid = () => ({
           },
           production: { purpose: 'First concept', specification: 'Reviewed sequence' },
         },
-      },
-      order: ['introduction'],
-    },
   },
   production: {
     languages: { document: 'en', planned: ['en'] },
@@ -118,8 +114,8 @@ function produce(value = valid(), config = options) {
 }
 test('Image authoring requires a substantive generation prompt and rejects policy boilerplate', () => {
   const input = structuredClone(valid()) as unknown as Record<string, any>;
-  const section = input.config.section.items.introduction.config.content;
-  section.items.diagram = {
+  const section = input.config.introduction.config;
+  section.diagram = {
     config: {
       id: id('90'),
       slug: 'diagram',
@@ -129,16 +125,16 @@ test('Image authoring requires a substantive generation prompt and rejects polic
     },
     production: { specification: 'A lamp and cube' },
   };
-  section.order.push('diagram');
+  section.children.push('diagram');
   assert.equal(
     lessonWorkflowStage2_Schema.safeParse(input).success,
     false,
     'generic intent is not a generation prompt',
   );
-  section.items.diagram.production.prompt =
+  section.diagram.production.prompt =
     'Create a diagram with a lamp at the left, one opaque blue cube in the center, a gray screen to the right, and a clearly defined cast shadow behind the cube, with light rays correctly aligned.';
   assert.equal(lessonWorkflowStage2_Schema.safeParse(input).success, true);
-  section.items.diagram.production.offline = 'Generic offline-ready declaration';
+  section.diagram.production.offline = 'Generic offline-ready declaration';
   assert.equal(
     lessonWorkflowStage2_Schema.safeParse(input).success,
     false,
@@ -409,7 +405,7 @@ test('four independent assessment decisions, enabled required Sections and compl
 });
 test('authored enabled Quiz and Flashcards Sections pass separate source materializers', () => {
   const input = structuredClone(valid()) as unknown as LessonWorkflowStage2;
-  input.config.section.items.reviewQuiz = {
+  input.config.reviewQuiz = {
     config: {
       type: 'quiz',
       id: id('05'),
@@ -430,22 +426,22 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
         results: { visibility: 'immediate', showScore: true },
       },
       locale: { title: 'Quiz', navigationLabel: 'Q' },
-      content: { items: {}, order: [] },
+      children: [],
     },
     production: { purpose: 'Reviewed assessment' },
-  } as LessonWorkflowStage2['config']['section']['items'][string];
-  input.config.section.items.reviewCards = {
+  } as LessonWorkflowStage2SectionNode;
+  input.config.reviewCards = {
     config: {
       type: 'flashcards',
       id: id('06'),
       slug: 'reviewCards',
       params: { selection: { flashcardIds: [id('08')] } },
       locale: { title: 'Cards', navigationLabel: 'C' },
-      content: { items: {}, order: [] },
+      children: [],
     },
     production: { purpose: 'Reviewed recall practice' },
-  } as LessonWorkflowStage2['config']['section']['items'][string];
-  input.config.section.order.push('reviewQuiz', 'reviewCards');
+  } as LessonWorkflowStage2SectionNode;
+  input.config.children.push('reviewQuiz', 'reviewCards');
   input.config.params = {
     ...input.config.params,
     quizRequiredForCompletion: true,
@@ -493,7 +489,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
   );
   assert.doesNotThrow(() => assertLessonStage6ReleaseReady(plan));
   const provisional = structuredClone(input);
-  const quiz = provisional.config.section.items.reviewQuiz as unknown as {
+  const quiz = provisional.config.reviewQuiz as unknown as {
     config: { params: { selection: { questionIds: string[] } } };
   };
   quiz.config.params.selection.questionIds = ['feedc0de-1234-4234-8234-123456789007'];
@@ -672,13 +668,13 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
 
 test('duplicate UUID, wrong slug, invalid order and unsanctioned identity are rejected', () => {
   const duplicate = valid();
-  duplicate.config.section.items.introduction.config.id = id('01');
+  duplicate.config.introduction.config.id = id('01');
   assert.throws(() => produce(duplicate), /duplicate authored UUID/);
   const invalidSlug = valid();
-  invalidSlug.config.section.items.introduction.config.slug = '../escape';
+  invalidSlug.config.introduction.config.slug = '../escape';
   assert.throws(() => produce(invalidSlug), /invalid authored entity identity/);
   const ordering = valid();
-  ordering.config.section.order = ['unknown'];
+  ordering.config.children = ['unknown'];
   assert.throws(() => produce(ordering), /every authored child must be ordered once/);
 });
 test('planned translations and missing Scene remain explicit nonpublishable blockers', () => {
@@ -741,15 +737,14 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
     config: {
       ...base.config,
       skills: [verifiedMathSkillId],
-      section: {
-        items: {
-          introduction: {
-            ...base.config.section.items.introduction,
+      children: ['introduction', 'quest'],
+    introduction: {
+            ...base.config.introduction,
             config: {
-              ...base.config.section.items.introduction.config,
+              ...base.config.introduction.config,
               content: {
                 items: {
-                  prompt: base.config.section.items.introduction.config.content.items.prompt,
+                  prompt: base.config.introduction.config.prompt,
                   image: image('image', '09'),
                   video: video('video', '10'),
                   audio: audio('audio', '11'),
@@ -858,9 +853,6 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
             },
             production: { ...resource('Guide practice'), runtimeStatus: 'unimplemented' },
           },
-        },
-        order: ['introduction', 'quest'],
-      },
     },
     production: { ...base.production, languages: { document: 'en', planned: ['en'] } },
   };
@@ -948,10 +940,10 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
 
   const resolved = structuredClone(fixture);
-  const blocks = resolved.config.section.items.introduction;
+  const blocks = resolved.config.introduction;
   if (blocks.config.type !== 'content') throw new Error('Expected content Section');
   for (const slug of ['link', 'embed']) {
-    const block = blocks.config.content.items[slug];
+    const block = blocks.config[slug];
     if (block.config.type !== 'youtube') throw new Error('Expected YouTube block');
     block.config.locale.href =
       slug === 'link'
@@ -973,7 +965,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
 test('final Lesson schema rejects invalid nested input before rendering', () => {
   assert.equal(lessonWorkflowStage2_Schema.safeParse(valid()).success, true);
   const invalid = valid();
-  const { config } = invalid.config.section.items.introduction.config.content.items.prompt;
+  const { config } = invalid.config.introduction.config.prompt;
   const broken = { ...config, locale: { value: 123 } };
   Object.assign(config, broken);
   assert.equal(lessonWorkflowStage2_Schema.safeParse(invalid).success, false);
@@ -988,7 +980,7 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
       id: id('33'),
       slug: 'transition',
       locale: lesson.config.locale,
-      section: lesson.config.section,
+      section: lesson.config,
     },
     production: {
       focus: 'Reviewed transition',
@@ -1051,8 +1043,8 @@ test('Lesson Stage 6 plans validated inert input only with explicit trusted sour
 test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Config in one sealed output', () => {
   const input = valid() as unknown as Record<string, { [key: string]: any }>;
   const sceneId = id('05');
-  const collection = input.config.section.items.introduction.config.content;
-  collection.items.chooseShape = {
+  const collection = input.config.introduction.config;
+  collection.chooseShape = {
     config: {
       id: sceneId,
       slug: 'chooseShape',
@@ -1065,7 +1057,7 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
       specification: 'Review the selected color and shape.\n*/\nexport const injected = true;',
     },
   };
-  collection.order.push('chooseShape');
+  collection.children.push('chooseShape');
   const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
   const result = produce(input as unknown as ReturnType<typeof valid>, {
     sourceText,
@@ -1092,7 +1084,7 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
   assert(result.diagnostics.some(diag => diag.code === 'pending-scene'));
   assert.throws(() => assertLessonStage6ReleaseReady(result), /publication blocked/);
   const withoutSpec = structuredClone(input);
-  withoutSpec.config.section.items.introduction.config.content.items.chooseShape.production.specification = '';
+  withoutSpec.config.introduction.config.chooseShape.production.specification = '';
   assert.throws(
     () =>
       produce(withoutSpec as ReturnType<typeof valid>, {
@@ -1106,14 +1098,14 @@ test('Lesson Stage 6 plans an executable Scene draft alongside its canonical Con
 
 test('four reviewed Scene nodes retain their UUIDs and emit four isolated executable scaffold directories', () => {
   const input = valid() as unknown as Record<string, any>;
-  const collection = input.config.section.items.introduction.config.content;
+  const collection = input.config.introduction.config;
   for (const [suffix, slug] of [
     ['05', 'chooseShape'],
     ['06', 'chooseColor'],
     ['07', 'resetSelection'],
     ['08', 'explorePatterns'],
   ]) {
-    collection.items[slug] = {
+    collection[slug] = {
       config: {
         id: id(suffix),
         slug,
@@ -1126,7 +1118,7 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
         specification: 'Approved interaction for ' + slug,
       },
     };
-    collection.order.push(slug);
+    collection.children.push(slug);
   }
   const sourceText = 'export const stage2 = ' + JSON.stringify(input) + ';';
   const plan = produce(input as unknown as ReturnType<typeof valid>, {
@@ -1153,7 +1145,7 @@ test('four reviewed Scene nodes retain their UUIDs and emit four isolated execut
 });
 
 test('shared Section renderer preserves direct and nested Scene sources and pending executable scaffolds', () => {
-  const original = valid().config.section.items.introduction;
+  const original = valid().config.introduction;
   const scene = (suffix: string, slug: string) => ({
     config: {
       id: id(suffix),
@@ -1171,9 +1163,8 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
     ...original,
     config: {
       ...original.config,
-      content: {
-        items: {
-          ...original.config.content.items,
+      children: ['prompt', 'shadowScene', 'shadowCarousel'],
+    ...original.config,
           shadowScene: scene('95', 'shadowScene'),
           shadowCarousel: {
             config: {
@@ -1189,9 +1180,6 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
             },
             production: { purpose: 'Exercise nested Scene materialization' },
           },
-        },
-        order: ['prompt', 'shadowScene', 'shadowCarousel'],
-      },
     },
   };
   const result = materializeWorkflowSection(section as unknown as Parameters<typeof materializeWorkflowSection>[0], {
