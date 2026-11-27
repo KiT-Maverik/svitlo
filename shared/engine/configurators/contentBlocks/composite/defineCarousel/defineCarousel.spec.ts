@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
+import { mergeForValidation } from '../../../_shared__configurators';
 import { defineImage } from '../../primitive/defineImage';
 import { defineScene } from '../../primitive/defineScene';
 import { defineText } from '../../primitive/defineText';
@@ -9,7 +10,7 @@ import { carousel_Config_Schema, carousel_Data_Schema, defineCarousel } from './
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineCarousel', () => {
-      const ids = Array.from({ length: 6 }, (_, index) => 'b775647f-203d-481a-a1c7-4d331c779d7' + index);
+      const ids = Array.from({ length: 8 }, (_, index) => 'b775647f-203d-481a-a1c7-4d331c779d7' + index);
       const scope = { languages: ['en', 'uk'] as const };
       const image = <const Slug extends string>(
         slug: Slug,
@@ -33,26 +34,35 @@ describe('Configurators', () => {
           fileName: { en: 'https://example.com/en-a.png', uk: 'https://example.com/uk-a.png' },
           alt: 'First',
         });
-        const second = image('second', ids[2], { fileName: 'https://example.com/b.png', alt: 'Second' });
-        const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
+        const second = image('second', ids[2], {
+          fileName: 'https://example.com/b.png',
+          alt: 'Second',
+        });
+        const carousel = defineCarousel<
+          'gallery',
+          { first: typeof first; second: typeof second },
+          ['en', 'uk']
+        >({
           id: ids[0],
           slug: 'gallery',
           type: 'carousel',
-          params: { loop: true },
+          params: { loop: true, startIndex: 1, allowSwipe: true },
           locale: { title: 'Gallery' },
-          slides: { items: { first, second }, order: ['second', 'first'] },
+          children: ['second', 'first'],
+          first,
+          second,
         });
         return { first, second, carousel };
       };
 
-      test('direct Carousel Config Zod rejects non-slide kinds while retaining Image and Scene', () => {
+      test('direct Zod Config accepts only slug-addressed Image and Scene slides', () => {
         const { first } = example();
         const activity = defineScene({
-          id: ids[4],
+          id: ids[3],
           slug: 'activity',
           type: 'scene',
           params: {},
-          locale: { value: { instruction: 'Choose' } },
+          locale: { value: 'Choose' },
         });
         const base = {
           id: ids[0],
@@ -61,247 +71,207 @@ describe('Configurators', () => {
           params: {},
           locale: {},
         };
-        assert.equal(
-          carousel_Config_Schema.safeParse({
-            ...base,
-            slides: { items: { first, activity }, order: ['first', 'activity'] },
-          }).success,
-          true,
-        );
+        assert.equal(carousel_Config_Schema.safeParse({
+          ...base, children: ['first', 'activity'], first, activity,
+        }).success, true);
+
         const text = defineText({ id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' } });
         for (const forbidden of [
           text,
-          { id: ids[3], slug: 'invalid', type: 'carousel' },
-          { id: ids[3], slug: 'invalid', type: 'checkpoint' },
+          { id: ids[4], slug: 'invalid', type: 'carousel' },
+          { id: ids[4], slug: 'invalid', type: 'checkpoint' },
           false,
           null,
         ]) {
-          assert.equal(
-            carousel_Config_Schema.safeParse({
-              ...base,
-              slides: { items: { invalid: forbidden }, order: ['invalid'] },
-            }).success,
-            false,
-            'Reject non-Image/Scene slide at direct Zod boundary',
-          );
+          assert.equal(carousel_Config_Schema.safeParse({
+            ...base, children: ['invalid'], invalid: forbidden,
+          }).success, false);
         }
+        assert.equal(carousel_Config_Schema.safeParse({
+          ...base, children: ['first'], first, slides: { items: { first }, order: ['first'] },
+        }).success, false, 'Legacy parallel slide collection must be rejected');
       });
 
-      test('publishes complete, ordered Image Props with their stable identity', () => {
+      test('publishes direct, ordered, sparse Data with immutable slide identities', () => {
         const { carousel } = example();
         const resource = carousel.build.data(scope);
-        assert.equal(resource.base.locale?.slides, undefined);
-        const en = resource.locale?.en?.locale.slides;
+        assert.deepEqual(resource.base.children, ['second', 'first']);
+        assert.deepEqual(resource.base.params, { loop: true, startIndex: 1, allowSwipe: true });
         assert.deepEqual(
-          en?.map(slide => (slide ? [slide.id, slide.slug, slide.type] : undefined)),
-          [
-            [ids[2], 'second', 'image'],
-            [ids[1], 'first', 'image'],
-          ],
+          ['id', 'slug', 'type'].map(key => (resource.base.second as Record<string, unknown>)[key]),
+          [ids[2], 'second', 'image'],
         );
-        assert.deepEqual(
-          en?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
-          [
-            { src: 'https://example.com/b.png', alt: 'Second' },
-            { src: 'https://example.com/en-a.png', alt: 'First' },
-          ],
-        );
-        assert.deepEqual(
-          resource.locale?.uk?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale?.src : undefined)),
-          ['https://example.com/b.png', 'https://example.com/uk-a.png'],
-        );
-        assert.equal(
-          resource.locale?.en?.locale.slides?.[0]?.type === 'image'
-            ? resource.locale.en.locale.slides[0]?.params?.fill
-            : undefined,
-          true,
-        );
-        assert.equal(JSON.stringify(resource).includes('"additionalItems"'), false);
+        assert.equal((resource.base.first as Record<string, unknown>).id, ids[1]);
+        assert.deepEqual(resource.locale?.en?.first, {
+          locale: { src: 'https://example.com/en-a.png' },
+        });
+        assert.deepEqual(resource.locale?.uk?.first, {
+          locale: { src: 'https://example.com/uk-a.png' },
+        });
+        assert.equal(resource.locale?.en?.second, undefined, 'Invariant child is not duplicated');
+        assert.equal(JSON.stringify(resource).includes('"slides"'), false);
+        assert.equal(JSON.stringify(resource).includes('"items"'), false);
         assert.equal(JSON.stringify(resource).includes('"order"'), false);
         assert.equal(
-          carousel_Data_Schema.safeParse({
-            ...resource.base,
-            locale: { ...resource.base.locale, ...resource.locale?.uk?.locale },
-          }).success,
+          carousel_Data_Schema.safeParse(
+            mergeForValidation(resource.base, (resource.locale?.uk ?? {}) as never),
+          ).success,
           true,
         );
       });
 
-      test('publishes Image and Scene discriminants, including localized Scene data', () => {
-        const picture = image('picture', ids[1], { fileName: 'https://example.com/p.png', alt: 'Picture' });
+      test('preserves Scene type and recursive locale fragments', () => {
+        const picture = image('picture', ids[1], {
+          fileName: 'https://example.com/p.png',
+          alt: 'Picture',
+        });
         const activity = defineScene<'activity', ['en', 'uk']>({
-          id: ids[4],
+          id: ids[3],
           slug: 'activity',
           type: 'scene',
           params: {},
           locale: { value: { instruction: { en: 'Choose', uk: 'Обери' } } },
         });
-        const carousel = defineCarousel<'mixed', { picture: typeof picture; activity: typeof activity }, ['en', 'uk']>({
+        const carousel = defineCarousel<
+          'mixed',
+          { picture: typeof picture; activity: typeof activity },
+          ['en', 'uk']
+        >({
           id: ids[0],
           slug: 'mixed',
           type: 'carousel',
           params: {},
           locale: { title: { en: 'Explore', uk: 'Досліди' } },
-          slides: { items: { picture, activity }, order: ['picture', 'activity'] },
+          children: ['picture', 'activity'],
+          picture,
+          activity,
         });
         const built = carousel.build.data(scope);
-        assert.deepEqual(
-          built.locale?.uk?.locale.slides?.map(slide => slide?.type),
-          ['image', 'scene'],
-        );
-        const scene = built.locale?.uk?.locale.slides?.[1];
-        assert.equal(scene?.id, ids[4]);
-        assert.equal(scene?.type, 'scene');
-        if (scene?.type === 'scene' && scene.locale && 'value' in scene.locale)
-          assert.deepEqual(scene.locale.value, { instruction: 'Обери' });
+        assert.deepEqual(built.base.children, ['picture', 'activity']);
+        assert.equal((built.base.activity as Record<string, unknown>).type, 'scene');
+        assert.deepEqual(built.locale?.uk?.activity, { locale: { value: { instruction: 'Обери' } } });
         assert.equal(
-          carousel_Data_Schema.safeParse({
-            ...built.base,
-            locale: { ...built.base.locale, ...built.locale?.uk?.locale },
-          }).success,
+          carousel_Data_Schema.safeParse(
+            mergeForValidation(built.base, (built.locale?.uk ?? {}) as never),
+          ).success,
           true,
         );
       });
 
-      test('keeps invariant children in base without redundant translated slide arrays', () => {
-        const first = image('first', ids[1], { fileName: 'https://example.com/base.png', alt: 'Base' });
-        const carousel = defineCarousel<'gallery', { first: typeof first }, ['en', 'uk']>({
-          id: ids[0],
-          slug: 'gallery',
-          type: 'carousel',
-          params: {},
-          locale: {},
-          slides: { items: { first }, order: ['first'] },
+      test('keeps invariant slides exclusively in base and does not duplicate locale files', () => {
+        const first = image('first', ids[1], {
+          fileName: 'https://example.com/base.png', alt: 'Base',
         });
-        assert.deepEqual(carousel.build.data(scope).base.locale?.slides, [
-          {
-            id: ids[1],
-            slug: 'first',
-            type: 'image',
-            params: { fill: true, aspectRatio: 1.5 },
-            locale: { src: 'https://example.com/base.png', alt: 'Base' },
-          },
-        ]);
+        const carousel = defineCarousel<'gallery', { first: typeof first }, ['en', 'uk']>({
+          id: ids[0], slug: 'gallery', type: 'carousel',
+          params: {}, locale: {}, children: ['first'], first,
+        });
+        assert.deepEqual(carousel.build.data(scope).base.children, ['first']);
+        assert.deepEqual((carousel.build.data(scope).base.first as Record<string, unknown>).locale, {
+          src: 'https://example.com/base.png', alt: 'Base',
+        });
         assert.equal(carousel.build.data(scope).locale, undefined);
         assert.deepEqual(carousel.build.overrides({}, scope), { base: {}, locale: undefined });
       });
 
-      test('adds Scenes, disables and reorders Images, and resolves sparse child patches', () => {
+      test('patches children sparsely; structural changes require explicit order', () => {
         const { carousel } = example();
         const later = defineScene<'later', ['en', 'uk']>({
-          id: ids[3],
-          slug: 'later',
-          type: 'scene',
-          params: {},
+          id: ids[4], slug: 'later', type: 'scene', params: {},
           locale: { value: { en: 'Later', uk: 'Пізніше' } },
         });
         const before = carousel.build.data(scope);
+        const nonstructural = carousel.build.overrides({
+          second: { locale: { alt: { uk: 'Другий' } } },
+        }, scope);
+        assert.equal(nonstructural.base.children, undefined);
+        assert.deepEqual(nonstructural.base.second, {});
+        assert.deepEqual(nonstructural.locale?.uk?.second, { locale: { alt: 'Другий' } });
+        assert.equal(nonstructural.locale?.en?.second, undefined);
+
         const patch = {
-          slides: {
-            items: { first: false as const, second: { locale: { alt: { uk: 'Другий' } } } },
-            additionalItems: { later },
-            order: ['later', 'second'] as ('later' | 'second')[],
-          },
+          first: false as const,
+          second: { locale: { alt: { uk: 'Другий' } } },
+          later,
+          children: ['later', 'second'] as ('later' | 'second')[],
         };
         const built = carousel.build.overrides(patch, scope);
-        assert.deepEqual(
-          built.locale?.uk?.locale.slides?.map(slide => slide?.type),
-          ['scene', 'image'],
-        );
-        const second = built.locale?.uk?.locale.slides?.[1];
-        if (second?.type === 'image' && second.locale && 'alt' in second.locale)
-          assert.equal(second.locale.alt, 'Другий');
+        assert.deepEqual(built.base.children, ['later', 'second']);
+        assert.equal(built.base.first, false, 'Removed child uses an explicit tombstone');
+        assert.equal((built.base.later as Record<string, unknown>).type, 'scene');
+        assert.deepEqual(built.locale?.uk?.later, { locale: { value: 'Пізніше' } });
+        assert.deepEqual(built.locale?.uk?.second, { locale: { alt: 'Другий' } });
         assert.deepEqual(carousel.build.data(scope), before);
         assert.deepEqual(carousel.build.overrides(patch, scope), built);
       });
 
-      test('rejects invalid map keys, ordering, unsupported child kinds and identity overrides', () => {
+      test('rejects malformed order, unsafe placements, invalid kinds and immutable identity patches', () => {
         const { carousel, first } = example();
         const invalid: [unknown, RegExp][] = [
-          [{ slides: { order: ['first'] } }, /Missing slug: second/],
-          [{ slides: { order: ['first', 'first', 'second'] } }, /Duplicate slug: first/],
-          [{ slides: { order: ['first', 'second', 'unknown'] } }, /Unknown slug: unknown/],
-          [{ slides: { items: { first: false } } }, /slides.order is required/],
-          [{ slides: { items: { first: false, second: false }, order: [] } }, /At least one active Carousel slide/],
-          [{ slides: { items: { missing: false } } }, /unknown existing Carousel slide/],
-          [{ slides: { additionalItems: { first }, order: ['first', 'second'] } }, /Duplicate Carousel slide slug/],
-          [{ slides: { additionalItems: { other: first }, order: ['first', 'second', 'other'] } }, /slug/],
-          [{ slides: { additionalItems: { other: false } } }, /Carousel slide/],
-          [{ slides: { items: { first: { locale: { typo: 'invalid' } } } } }, /Invalid Image overrides/],
-          [{ slides: { items: { first: { id: ids[3] } } } }, /Invalid Image overrides/],
-          [{ slides: { extra: 'field' } }, /Unknown Carousel slides override field/],
+          [{ children: ['first'] }, /Missing slug: second/],
+          [{ children: ['first', 'first', 'second'] }, /Duplicate slug: first|Duplicate placement slug/],
+          [{ children: ['first', 'second', 'unknown'] }, /Unknown slug: unknown|Unknown or disabled child/],
+          [{ first: false }, /children is required/],
+          [{ first: false, second: false, children: [] }, /At least one active Carousel slide|At least one item is required/],
+          [{ missing: false }, /Carousel slide|matching/],
+          [{ first: { locale: { typo: 'invalid' } } }, /Invalid Image overrides/],
+          [{ first: { id: ids[6] } }, /Invalid Image overrides/],
+          [{ first: { params: { disabled: true } } }, /children is required/],
+          [{ slides: { items: { first }, order: ['first'] } }, /Carousel slide|matching|Invalid/],
           [{ locale: { slides: [] } }, /Invalid Carousel overrides/],
-          [{ type: 'carousel' }, /Unknown Carousel override field/],
+          [{ id: ids[5] }, /Immutable Carousel override field/],
+          [{ children: ['second', 'first'], first: { slug: 'changed' } }, /Invalid Image overrides/],
+          [{ other: first, children: ['other', 'first', 'second'] }, /Carousel slide|slug/],
+          [{ constructor: first, children: ['second', 'first', 'constructor'] }, /Reserved child/],
+          [{ another: image('another', ids[1], { fileName: 'https://example.com/c.png', alt: 'C' }),
+             children: ['second', 'first', 'another'] }, /Duplicate child ID|Duplicate Carousel slide ID/],
         ];
         for (const [patch, reason] of invalid) {
           assert.throws(() => carousel.build.overrides(patch as never, scope), reason);
         }
-        const text = defineText({ id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' } });
-        assert.throws(
-          () =>
-            defineCarousel({
-              id: ids[0],
-              slug: 'bad',
-              type: 'carousel',
-              params: {},
-              locale: {},
-              slides: { items: { text: text as never }, order: ['text'] },
-            }).build.data({ languages: ['en'] }),
-          /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel (?:slides|Config)|must be/i,
-        );
+        const text = defineText({
+          id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' },
+        });
+        assert.throws(() => defineCarousel({
+          id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
+          children: ['text'], text: text as never,
+        }).build.data({ languages: ['en'] }), /Invalid Carousel slides/);
       });
 
-      test('excludes disabled Image/Scene children and rejects an empty active Carousel', () => {
+      test('disabled slides do not publish and an empty effective Carousel is invalid', () => {
         const { carousel } = example();
-        const disabled = carousel.build.overrides(
-          { slides: { items: { first: { params: { disabled: true } } } } },
-          scope,
-        );
-        assert.deepEqual(
-          disabled.locale?.en?.locale.slides?.map(slide => slide?.slug),
-          ['second'],
-        );
-        assert.deepEqual(
-          disabled.locale?.uk?.locale.slides?.map(slide => slide?.slug),
-          ['second'],
-        );
+        const disabled = carousel.build.overrides({
+          first: { params: { disabled: true } },
+          children: ['second'],
+        }, scope);
+        assert.deepEqual(disabled.base.children, ['second']);
+        assert.equal(disabled.base.first, false);
 
-        assert.throws(
-          () =>
-            carousel.build.overrides(
-              {
-                slides: {
-                  items: {
-                    first: { params: { disabled: true } },
-                    second: { params: { disabled: true } },
-                  },
-                },
-              },
-              scope,
-            ),
-          /At least one active Carousel slide/,
-        );
+        assert.throws(() => carousel.build.overrides({
+          first: { params: { disabled: true } },
+          second: { params: { disabled: true } },
+          children: [],
+        }, scope), /At least one active Carousel slide/);
+
+        const only = defineImage({
+          id: ids[4], slug: 'only', type: 'image',
+          params: { fill: true, aspectRatio: 1, disabled: true },
+          locale: { fileName: 'https://example.com/a.png', alt: 'A' },
+        });
+        const invalid = defineCarousel({
+          id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
+          children: ['only'], only,
+        });
+        assert.throws(() => invalid.build.data({ languages: ['en'] }), /At least one active Carousel slide/);
       });
 
-      test('keeps an isolated authored snapshot and enforces matching slugs', () => {
+      test('keeps the authored snapshot isolated from consumer mutation', () => {
         const { carousel, first } = example();
-        assert.throws(
-          () =>
-            defineCarousel<'invalid', { different: typeof first }, ['en', 'uk']>({
-              id: ids[0],
-              slug: 'invalid',
-              type: 'carousel',
-              params: {},
-              locale: {},
-              slides: { items: { different: first }, order: ['different'] },
-            }).build.data({ languages: ['en'] }),
-          /key does not match configurator slug/,
-        );
         const before = carousel.build.data(scope);
-        carousel.slides.order.reverse();
-        const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };
-        exposed.items.first = exposed.items.second;
+        carousel.children.reverse();
+        (carousel as unknown as { first: unknown }).first = first;
         assert.deepEqual(carousel.build.data(scope), before);
+        assert.deepEqual(carousel.build.data({ languages: ['uk'] as const }).base.children, ['second', 'first']);
       });
     });
   });
