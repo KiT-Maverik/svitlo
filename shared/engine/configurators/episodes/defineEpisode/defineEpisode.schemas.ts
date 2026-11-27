@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
+import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
-import type { Section_Configurator, Section_Data } from '../../sections/section.types';
+import type { Section_Configurator } from '../../sections/section.types';
 
 /**
  * A Course-owned narrative activity. Episode is not a Lesson subtype:
@@ -23,69 +23,69 @@ const identity = identityBase_Schema.extend({
   params: paramsBase_Schema.shape.params.extend({ languages }),
 });
 
-const sectionCollection = z.strictObject({
-  items: z.record(z.string(), z.custom<Section_Configurator>()),
-  order: z.array(z.string()),
-});
+/** Events are semantic Episode metadata, never a dynamic Section placement. */
+const withoutSemanticFields = (value: Record<string, unknown>) => {
+  const { events: _events, draft: _draft, ...placements } = value;
+  return placements;
+};
+const refineSectionPlacements = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  for (const issue of validateSlugAddressedContainer(withoutSemanticFields(value), sectionTypes)) {
+    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+};
 
-export const episode_Config_Schema = identity
+export const episode_Metadata_Config_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
-    section: sectionCollection,
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
-export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 
-const sectionResolved = z
-  .object({
-    id: z.uuid(),
-    slug: z.string().min(1),
-    type: z.enum(sectionTypes),
-  })
-  .catchall(z.unknown());
+export type Episode_Metadata_Config = z.infer<typeof episode_Metadata_Config_Schema>;
+export const episode_Config_Schema = episode_Metadata_Config_Schema
+  .extend({ children: z.array(z.string()) })
+  .catchall(z.unknown())
+  .superRefine(refineSectionPlacements);
+export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 
 export const episode_Completed_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
-    section: z.array(sectionResolved),
+    children: z.array(z.string()),
     events: z.record(z.string(), z.json()).optional(),
   })
-  .strict();
+  .catchall(z.unknown())
+  .superRefine(refineSectionPlacements);
 /** Explicit draft preview; it cannot pass the completed Episode schema. */
 export const episode_Draft_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Data_Schema).nonempty(),
+    children: z.array(z.string()).nonempty(),
     events: z.record(z.string(), z.json()).optional(),
   })
-  .strict()
-  .refine(
-    value =>
-      value.section.some(
-        section =>
-          section.params.disabled !== true &&
-          section.content.some(
-            block =>
-              block.type === 'text' &&
-              typeof block.locale === 'object' &&
-              block.locale !== null &&
-              'value' in block.locale &&
-              block.locale.value === 'Not implemented',
-          ),
-      ),
-    'Episode draft needs the Not implemented Text ContentBlock',
-  );
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    refineSectionPlacements(value, ctx);
+    const hasPlaceholder = value.children.some(key => {
+      const section = value[key] as Record<string, unknown> | undefined;
+      if (!section || !Array.isArray(section.children) || !section.params ||
+          (section.params as {disabled?: boolean}).disabled === true) return false;
+      return section.children.some(slug => {
+        const block = section[slug] as {type?: string; locale?: {value?: string}} | undefined;
+        return block?.type === 'text' && block.locale?.value === 'Not implemented';
+      });
+    });
+    if (!hasPlaceholder) ctx.addIssue({code:'custom', message:'Episode draft needs the Not implemented Text ContentBlock'});
+  });
 export const episode_Data_Schema = z.union([episode_Completed_Data_Schema, episode_Draft_Data_Schema]);
 export type Episode_Draft_Data = z.infer<typeof episode_Draft_Data_Schema>;
-export type Episode_Data = Omit<z.infer<typeof episode_Completed_Data_Schema>, 'section'> & {
-  section: Section_Data[];
-};
+export type Episode_Data = z.infer<typeof episode_Completed_Data_Schema>;
 export type Episode_DataBase = Pick<Episode_Data, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: { title?: string };
-  section: ReturnType<Section_Configurator['build']['data']>['base'][];
+  children: string[];
   events?: Record<string, unknown>;
+  [placementSlug: string]: unknown;
 };
 
 export type Episode_Metadata_Overrides = {
@@ -105,14 +105,11 @@ export type Episode_Overrides<
   Sections extends Record<string, Section_Configurator>,
   Added extends Record<string, Section_Configurator> = {},
 > = Episode_Metadata_Overrides & {
-  section?: {
-    items?: {
-      [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false;
-    };
-    additionalItems?: Added & { [Key in keyof Sections]?: never };
-    order?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
-  };
-};
+  /** Replacing order is mandatory for additional or disabled placements. */
+  children?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
+} & {
+  [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false;
+} & Added & SafePlacementMap<Added> & { [Key in keyof Sections & keyof Added]?: never };
 
 export const episodeConfigurator_Schema = z.custom<{
   readonly id: string;
