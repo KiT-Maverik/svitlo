@@ -36,7 +36,7 @@ const section = (slug, id) => ({
   slug,
   params: {},
   locale: { title: { uk: 'Розділ' } },
-  content: { items: {}, order: [] },
+  children: [],
 });
 const ep = (slug = 'episodeOne', id = IDs.episode) => ({
   config: {
@@ -45,7 +45,8 @@ const ep = (slug = 'episodeOne', id = IDs.episode) => ({
     slug,
     params: { languages: ['uk', 'en'] },
     locale: { title: { uk: 'Пригода', en: 'Journey' } },
-    section: { items: { opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5') }, order: ['opening'] },
+    children: ['opening'],
+    opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5'),
   },
   production: { focus: 'Narrative situation', purpose: 'Contextual transition' },
 });
@@ -89,7 +90,8 @@ const ch = (slug = 'chapterOne') => ({
     type: 'chapter',
     slug,
     locale: { title: { uk: 'Глава' } },
-    content: { items: { episodeOne: ep() }, order: ['episodeOne'] },
+    children: ['episodeOne'],
+    episodeOne: ep(),
   },
   production: { ...unitProduction },
 });
@@ -98,7 +100,8 @@ const mod = (slug = 'moduleOne') => ({
     type: 'module',
     slug,
     locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapterOne: ch() }, order: ['chapterOne'] },
+    children: ['chapterOne'],
+    chapterOne: ch(),
   },
   production: { ...unitProduction },
 });
@@ -109,14 +112,10 @@ const course = () => ({
     slug: 'rootCourse',
     params: { age: { min: 6, max: 10 } },
     locale: { title: { uk: 'Курс', en: 'Course' }, description: { uk: 'Про курс', en: 'Description' } },
-    content: {
-      items: {
-        moduleOne: mod(),
-        directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
-        directLesson: lesson('directLesson', 'Зміна'),
-      },
-      order: ['moduleOne', 'directEpisode', 'directLesson'],
-    },
+    children: ['moduleOne', 'directEpisode', 'directLesson'],
+    moduleOne: mod(),
+    directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
+    directLesson: lesson('directLesson', 'Зміна'),
   },
   production: {
     languages: { document: 'uk', planned: ['uk', 'en'] },
@@ -211,8 +210,8 @@ const syntax = files => {
 
 test('Chapter preserves one direct Episode and an existing Lesson placement', () => {
   const value = ch();
-  value.config.content.items.extraLesson = lesson('extraLesson', 'Урок');
-  value.config.content.order.push('extraLesson');
+  value.config.extraLesson = lesson('extraLesson', 'Урок');
+  value.config.children.push('extraLesson');
   const result = materializeChapter(value, ctx());
   assert.ok(result.files.some(file => file.path === 'episodeOne/sections/opening/index.ts'));
   assert.ok(!result.files.some(file => file.path === 'extraLesson/index.ts'));
@@ -227,8 +226,8 @@ test('Chapter preserves one direct Episode and an existing Lesson placement', ()
 });
 test('Chapter rejects a module at a forbidden nesting level', () => {
   const value = ch();
-  value.config.content.items.invalid = mod('invalid');
-  value.config.content.order.push('invalid');
+  value.config.invalid = mod('invalid');
+  value.config.children.push('invalid');
   assert.throws(() => materializeChapter(value, ctx()), /disallowed child type module/);
 });
 test('Chapter refuses unsafe source directory', () => {
