@@ -7,3 +7,12 @@ Alpha's synthetic Course resources also publish derived localized
 the same finished fixture Course trees and known localized fixture Lesson.
 They exercise the host's published-TOC path without importing authored
 Playground data or adding a separate production generator.
+
+Alpha also publishes a **test-only invalid-TOC Course** at UUID
+`11111111-1111-4111-8111-0000000002fc`: its English Course base is valid,
+but `toc/base.json` is intentionally malformed. The Course error-boundary
+browser test visits this immutable fixture. Both Playwright viewport projects
+and catalog requests can run concurrently without any test writing to or
+cleaning up `public/data/courses` while the Next.js host is serving it.
+The deliberately invalid resource is owned by the alpha Publish manifest and
+is removed by normal textbook selection cleanup.
