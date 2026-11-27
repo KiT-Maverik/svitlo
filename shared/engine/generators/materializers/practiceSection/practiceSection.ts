@@ -254,7 +254,7 @@ export function materializePracticeSection(config: Source, options: Options): Re
       name +
       ' = definePracticeSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
