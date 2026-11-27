@@ -59,11 +59,28 @@ export function verifyTurboGraph(dry, workspaces) {
   for (const task of dry.tasks) {
     check(task && typeof task.taskId === 'string' && Array.isArray(task.dependencies), 'Malformed Turbo task');
     check(!tasks.has(task.taskId), 'Duplicate Turbo task: ' + task.taskId);
-    check(expected.has(task.taskId), 'Unexpected Turbo task or root-script recursion: ' + task.taskId);
+    if (expected.has(task.taskId)) {
+      check(task.command !== '<NONEXISTENT>', 'Eligible workspace lost executable Turbo command: ' + task.taskId);
+    } else {
+      const split = task.taskId.lastIndexOf('#');
+      const owner = byName.get(task.taskId.slice(0, split));
+      const operation = task.taskId.slice(split + 1);
+      // Turbo 2.x keeps deliberately non-executable prerequisite nodes in
+      // --dry=json. They are NOT real workspaces that implement this script.
+      // Allow only its exact phantom marker for a known absent capability.
+      check(
+        Boolean(owner) &&
+          turboOperations.includes(operation) &&
+          !Object.hasOwn(owner.scripts || {}, operation) &&
+          task.command === '<NONEXISTENT>',
+        'Unexpected executable Turbo task or root-script recursion: ' + task.taskId,
+      );
+    }
     tasks.set(task.taskId, task);
   }
   for (const id of expected) check(tasks.has(id), 'Turbo silently omitted eligible workspace: ' + id);
   for (const [id, task] of tasks) {
+    if (!expected.has(id)) continue; // Checked non-executable phantom.
     const split = id.lastIndexOf('#');
     const owner = byName.get(id.slice(0, split));
     check(Boolean(owner), 'Unknown task workspace: ' + id);

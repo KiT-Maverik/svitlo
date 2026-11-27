@@ -44,9 +44,24 @@ test('missing and disabled workspaces cannot silently participate', () => {
   omitted.tasks.pop();
   assert.throws(() => verifyTurboGraph(omitted, fixtures), /silently omitted/);
   const added = graph();
-  added.tasks.push({ taskId: '@svitlo/disabled#package:build', dependencies: [] });
-  assert.throws(() => verifyTurboGraph(added, fixtures), /Unexpected Turbo task/);
+  added.tasks.push({ taskId: '@svitlo/disabled#package:build', command: 'unexpected build', dependencies: [] });
+  assert.throws(() => verifyTurboGraph(added, fixtures), /Unexpected executable Turbo task/);
   assert.throws(() => verifyTurboGraph({ tasks: [] }, []), /No npm workspaces/);
+});
+
+test('Turbo phantom dependency nodes are permitted only for truly absent scripts', () => {
+  const placeholder = graph();
+  placeholder.tasks.push({
+    taskId: '@svitlo/disabled#package:build',
+    command: '<NONEXISTENT>',
+    dependencies: [],
+  });
+  assert.deepEqual(verifyTurboGraph(placeholder, fixtures), { tasks: 5, builds: 3, lint: 2 });
+  const conflicting = graph();
+  conflicting.tasks[0].command = '<NONEXISTENT>';
+  assert.throws(() => verifyTurboGraph(conflicting, fixtures), /lost executable Turbo command/);
+  placeholder.tasks.at(-1).command = 'npm run package:build';
+  assert.throws(() => verifyTurboGraph(placeholder, fixtures), /Unexpected executable Turbo task/);
 });
 
 test('failed, lost, cyclic or dangling prerequisite edges fail closed', () => {

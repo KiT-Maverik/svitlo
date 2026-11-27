@@ -10,8 +10,9 @@ run authored content or publish results.
   package prerequisites.
 - `npm run repo:check:turbo`: require pinned root npm/Turbo/lockfile,
   then validate every eligible task exactly once. Fail closed for omitted,
-  extra or duplicate tasks, missing build edges, dangling references and
-  dependency cycles.
+  executable extra or duplicate tasks, missing build edges, dangling references
+  and dependency cycles. Turbo's non-executable `<NONEXISTENT>` nodes are
+  accepted only when the declared workspace really lacks that script.
 
 The DAG uses local-only execution and bounded concurrency. Both cache sources
 are explicitly disabled with `--cache=local:,remote:` and `cache: false`.
