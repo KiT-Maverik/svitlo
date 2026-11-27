@@ -187,6 +187,7 @@ jobs:
     timeout-minutes: 40
     env:
       TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK: 'true'
+      TURBO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -209,7 +210,7 @@ jobs:
           start=$(date +%s)
           npm_config_ignore_scripts=true npm exec --yes --package=turbo@2.11.13 -- \
             turbo run test --filter=@svitlo/engine --filter=@svitlo/ui-kit \
-            --filter=@svitlo/math --concurrency=3 --env-mode=loose --summarize
+            --filter=@svitlo/math --concurrency=3 --cache=local:rw --env-mode=loose --summarize
           echo "- Single Turbo DAG: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
       - name: Verify all three compiled package public exports
         run: |
