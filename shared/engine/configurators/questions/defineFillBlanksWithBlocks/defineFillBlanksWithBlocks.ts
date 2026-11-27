@@ -140,7 +140,7 @@ export const defineFillBlanksWithBlocks = <
     const locale: Record<string, Record<string, unknown>> = {};
     if (!patch || patch.slots !== undefined) {
       const result = resolveSlotBlocks(source.slots, languages, patch?.slots as never);
-      base.slots = result.base;
+      if (Object.keys(result.base).length) base.slots = result.base;
       for (const [language, slots] of Object.entries(result.locale)) (locale[language] ??= {}).slots = slots;
     }
     if (!patch || patch.distractors !== undefined) {
