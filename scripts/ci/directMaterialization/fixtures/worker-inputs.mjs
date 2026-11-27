@@ -126,26 +126,22 @@ export function courseStage3() {
       locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
       children: ['newLesson', 'reused', 'overridden', 'episodeOne'],
       newLesson,
-          reused: {
-            config: { type: 'lesson', slug: 'reused', skills: [skillId] },
-            production: {
-              ...baseExisting(reusedLessonId, 'independentLesson'),
-            },
-          },
-          overridden: {
-            config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
-            production: {
-              ...baseExisting(overriddenLessonId, 'overriddenLesson'),
-              sourcePatch: patch,
-              overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
-            },
-          },
-          episodeOne: {
-            config: { type: 'episode' },
-            production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
-          },
+      reused: {
+        config: { type: 'lesson', slug: 'reused', skills: [skillId] },
+        production: { ...baseExisting(reusedLessonId, 'independentLesson') },
+      },
+      overridden: {
+        config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
+        production: {
+          ...baseExisting(overriddenLessonId, 'overriddenLesson'),
+          sourcePatch: patch,
+          overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
         },
-      
+      },
+      episodeOne: {
+        config: { type: 'episode' },
+        production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
+      },
     },
     production: {
       languages: { document: 'uk', planned: ['uk'] },
