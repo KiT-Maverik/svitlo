@@ -11,7 +11,7 @@ const script = fileURLToPath(new URL('./quiet-run.mjs', import.meta.url));
 const invoke = (source, extraEnv = {}) =>
   spawnSync(process.execPath, [script, '--', process.execPath, '-e', source], {
     encoding: 'utf8',
-    env: { ...process.env, ...extraEnv, GITHUB_STEP_SUMMARY: '' },
+    env: { ...process.env, GITHUB_STEP_SUMMARY: '', ...extraEnv },
   });
 
 test('successful command emits summary without child stdout', () => {
@@ -83,6 +83,30 @@ test('wrapped commands retain file-based GitHub output protocol', t => {
   );
   assert.equal(result.status, 0);
   assert.equal(readFileSync(output, 'utf8'), 'status=ready\n');
+});
+
+test('file-based GitHub environment and summary survive quiet command execution', t => {
+  const folder = mkdtempSync(join(tmpdir(), 'svitlo-github-env-'));
+  t.after(() => rmSync(folder, { recursive: true, force: true }));
+  const envFile = join(folder, 'env');
+  const summaryFile = join(folder, 'summary');
+  const result = invoke(
+    "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'EXAMPLE=1\\n')",
+    { GITHUB_ENV: envFile, GITHUB_STEP_SUMMARY: summaryFile },
+  );
+  assert.equal(result.status, 0);
+  assert.equal(readFileSync(envFile, 'utf8'), 'EXAMPLE=1\n');
+  assert.match(readFileSync(summaryFile, 'utf8'), /PASS/);
+});
+
+test('a missing executable fails with the underlying spawn error', () => {
+  const result = spawnSync(process.execPath, [script, '--', 'svitlo-does-not-exist-123456'], {
+    encoding: 'utf8',
+    env: { ...process.env, GITHUB_STEP_SUMMARY: '' },
+  });
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /FAIL/);
+  assert.match(result.stderr, /ENOENT/);
 });
 
 test('signal-terminated commands fail and identify the signal', { skip: process.platform === 'win32' }, () => {
