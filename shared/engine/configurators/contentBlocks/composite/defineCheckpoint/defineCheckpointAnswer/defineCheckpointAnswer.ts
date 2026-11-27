@@ -334,10 +334,12 @@ export const defineCheckpointAnswer = <
  */
 type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
 export type ContentBlock_CheckpointAnswer_Configurator =
-  Omit<DefinedAnswer, 'id' | 'slug' | 'type' | 'build'> & {
+  Omit<DefinedAnswer, 'id' | 'slug' | 'type' | 'build' | 'children' | '__svitloLanguageScope'> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'checkpointAnswer';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
   readonly build: Omit<DefinedAnswer['build'], 'overrides'> & {
     overrides(
       patch: never,
