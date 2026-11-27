@@ -80,9 +80,10 @@ export function workflowChildren_Schema<Metadata extends z.ZodObject, Child exte
   return metadata.extend({ children: z.array(z.string()) }).catchall(z.unknown()).superRefine((source, ctx) => {
     const own = new Set([...Object.keys(metadata.shape), 'children']);
     const keys = Object.keys(source).filter(key => !own.has(key));
-    if (keys.length !== source.children.length ||
-        new Set(source.children).size !== source.children.length ||
-        source.children.some(key => !Object.hasOwn(source, key) || own.has(key))) {
+    const children: string[] = Array.isArray(source.children) ? source.children : [];
+    if (keys.length !== children.length ||
+        new Set(children).size !== children.length ||
+        children.some(key => !Object.hasOwn(source, key) || own.has(key))) {
       ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every authored child must be ordered once' });
     }
     for (const key of keys) {
@@ -96,7 +97,7 @@ export function workflowChildren_Schema<Metadata extends z.ZodObject, Child exte
         for (const issue of parsed.error.issues)
           ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
     }
-  });
+  }) as unknown as z.ZodType<z.output<Metadata> & { children: string[] } & Record<string, unknown>>;
 }
 
 /** Retained only for named semantic Quest groups that are explicitly unordered. */
