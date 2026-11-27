@@ -46,7 +46,7 @@ export type QuestionViewProps =
   | Presented<Question_BuildAnswerWithBlocks_Data, { correctSequence: Block[]; distractors: Block[] }>
   | Presented<Question_FillBlanksWithBlocks_Data, BlockSlots>
   | (Omit<Question_FillBlanksWithText_Data, 'locale' | 'content'> & {
-      locale: Omit<Question_FillBlanksWithText_Data['locale'], 'slots'> & { slots: TextSlots };
+      locale: Pick<Question_FillBlanksWithText_Data['locale'], 'placeholder'> & { slots: TextSlots };
       content: Common;
     });
 
