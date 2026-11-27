@@ -17,6 +17,7 @@ import {
   splitLocalizedFields,
   validateRequestedPublication,
 } from '../../_shared__configurators';
+import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
 import {
   assessment_Config_Schema,
   assessment_Draft_Data_Schema,
@@ -55,9 +56,17 @@ export const defineAssessmentDraft = <
     copyAuthored();
     if (preview.type !== 'content' || preview.config.base.params?.disabled === true)
       throw new Error('Assessment draft preview requires an enabled Content Section');
-    const source = preview.build.data({ languages: [authored.params.languages[0]] });
-    if (!source.base.content?.some(block => block.type === 'text' && block.locale?.value === 'Not implemented')) {
-      throw new Error('Assessment draft requires the Not implemented Text ContentBlock');
+    const language = authored.params.languages[0];
+    const source = preview.build.data({ languages: [language] });
+    const effective = mergeForValidation(source.base, source.locale?.[language] ?? {});
+    const hasPlaceholder = effective.children.some(key => {
+      const text = text_Data_Schema.safeParse(effective[key]);
+      return text.success &&
+        text.data.params.disabled !== true &&
+        text.data.locale.value === 'Not implemented';
+    });
+    if (!hasPlaceholder) {
+      throw new Error('Assessment draft requires an enabled Not implemented Text ContentBlock');
     }
   };
 
