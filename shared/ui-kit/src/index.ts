@@ -21,3 +21,6 @@ export type { AssessmentMethodBase, AssessmentMethodLocalized } from './utils/as
 export * from './components/episode/Episode';
 
 export { Assessment, type AssessmentProps } from './components/assessment/Assessment';
+
+export { toLessonProps, toEpisodeProps, toAssessmentProps, toContentBlockProps } from './presentation';
+export type { LessonViewProps, EpisodeViewProps, AssessmentViewProps, ContentBlockViewProps, SectionViewProps, CarouselViewProps, CheckpointViewProps, CheckpointItemViewProps } from './presentation';
