@@ -125,7 +125,11 @@ export type Chapter_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase<Items>>;
-    overrides<const Added extends Record<string, Chapter_Child> = {}>(
+    overrides(
+      patch: Chapter_Overrides<Items>,
+      options: PublicationLanguageOptions<Languages>,
+    ): ChapterPublication<ChapterOverrideBase>;
+    overrides<const Added extends Record<string, Chapter_Child>>(
       patch: Chapter_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
       options: PublicationLanguageOptions<Languages>,
     ): ChapterPublication<ChapterOverrideBase>;
@@ -135,7 +139,7 @@ export type Chapter_Configurator<
     locales: () => { locale: DeepPartial<Chapter_Locale<'config'>> };
     validate: typeof validate;
   };
-} & Readonly<Items> & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
 /** Define a Chapter with immutable ordered child configurators and stateless Build. */
 export const defineChapter = <
