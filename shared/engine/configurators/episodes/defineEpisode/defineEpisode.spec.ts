@@ -29,7 +29,7 @@ describe('Configurators', () => {
         type: 'content',
         params: {},
         locale: { title: 'Arrival', navigationLabel: '1' },
-        content: { items: { line }, order: ['line'] },
+        children: ['line'], line,
       });
       const makeEpisode = () =>
         defineEpisode({
@@ -73,7 +73,7 @@ describe('Configurators', () => {
         const result = episode.build.overrides(
           {
             locale: { title: { uk: 'Нове прибуття' } },
-            intro: { content: { items: { line: { locale: { value: { uk: 'Відчиніть двері' } } } } } },
+            intro: { line: { locale: { value: { uk: 'Відчиніть двері' } } } },
           },
           { languages: ['en', 'uk'] },
         );
@@ -92,7 +92,7 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Exit', navigationLabel: '2' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const reordered = episode.build.overrides(
           {
