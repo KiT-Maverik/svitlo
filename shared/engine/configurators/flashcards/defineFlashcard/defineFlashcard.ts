@@ -63,28 +63,41 @@ type NamedPatch = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-/** Ensure each requested language materializes a complete Flashcard, not a partial UI value. */
+/** A complete side publication replaces the ordered group, not its individual keys. */
+const mergeSideLayers = (original: Record<string, unknown>, changes: Record<string, unknown>) => {
+  const merged = mergeForValidation(original, changes);
+  if (isRecord(changes.content) && isRecord(merged.content)) {
+    for (const side of ['front', 'back', 'hint'] as const) {
+      if (Object.hasOwn(changes.content, side)) {
+        merged.content[side] = structuredClone(changes.content[side]);
+      }
+    }
+  }
+  return merged;
+};
+
+/** Ensure each selected locale can resolve every required semantic Side. */
 const validatePublication = (
   resource: Publication<unknown>,
   languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
 ): void => {
   for (const language of languages) {
-    const original = mergeForValidation(
+    const original = mergeSideLayers(
       resource.base as Record<string, unknown>,
-      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
+      (resource.locale?.[language] ?? {}) as Record<string, unknown>,
     );
     const withPatch = patch
-      ? mergeForValidation(original, patch.base as DeepPartial<Record<string, unknown>>)
+      ? mergeSideLayers(original, patch.base as Record<string, unknown>)
       : original;
     const effective = patch
-      ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
+      ? mergeSideLayers(withPatch, (patch.locale?.[language] ?? {}) as Record<string, unknown>)
       : withPatch;
     try {
       flashcard_Data_Schema.parse(effective);
     } catch (error) {
       throw new Error(
-        'Invalid Flashcard Props for language ' +
+        'Invalid Flashcard Data for language ' +
           language +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
