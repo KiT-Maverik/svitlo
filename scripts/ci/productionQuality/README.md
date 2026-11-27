@@ -31,6 +31,23 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   runs without accidentally canceling the other path or its required gate.
   This separation has a focused `production-quality.spec.mjs` regression
   test; actual simultaneous Ready main event behavior remains to be verified.
+  The Production-only targeted generator step now compares actual compiled
+  test-file paths selected by the two independent routes. Standalone Ready and
+  manual Engine generator runs retain the **entire original selection**. Only
+  the protected Production Quality caller passes
+  `only_unit_unique_generator_tests: true`: the targeted generator step
+  skips concrete files already selected by the required exhaustive root
+  Engine `npm test` job. It expands all original 35 generator selectors
+  and the current Engine npm test selectors, rejecting missing compiled
+  files, unrecognized root command shapes and empty generator-only scopes.
+  If the root command stops selecting a file, that file automatically
+  returns to the generator selection. All separate publisher, materializer,
+  formatting, bank/Lesson security and trusted command steps are unchanged.
+  The strict `Production Quality / verify` depends on both the unit and
+  generators jobs. The new npm-free fixture tests cover selection and
+  failure conditions; a current-HEAD Production Quality run is still needed
+  to verify exact compiled-file counts, case-ID parity and any actual savings.
+  This design does not share compiled output between runners.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics

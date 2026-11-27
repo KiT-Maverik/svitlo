@@ -131,6 +131,8 @@ jobs:
       # Required on main promotions: direct Engine generators skips only
       # its duplicate expensive job; this reuse must run the complete suite.
       run_full_generator_tests: true
+      # Mandatory unit job runs the exhaustive Engine npm test.
+      only_unit_unique_generator_tests: true
 
   components:
     name: Production / extra component tests

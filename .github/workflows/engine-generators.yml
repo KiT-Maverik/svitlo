@@ -50,6 +50,11 @@ on:
       run_full_generator_tests:
         type: boolean
         default: false
+      # May omit only the same concrete files already exercised by the
+      # independent required root Engine npm test in Production Quality.
+      only_unit_unique_generator_tests:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -89,7 +94,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '26'
-      - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
+      - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/productionQuality/select-generator-tests.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
       - name: Verify job-local package build reuse and passive telemetry
         run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - name: Verify direct build-command tracing and summary
@@ -135,43 +140,11 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
           node scripts/ci/quietRun/quiet-run.mjs -- npx tsc -p shared/engine/tsconfig.test.json
       - name: Run targeted generator and CLI regression tests
-        run: |
-          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
-            shared/engine/.test-build/generators/lessons/*.spec.js \
-            shared/engine/generators/courses/publishCourseData.spec.mjs \
-            shared/engine/generators/skills/publishSkillTree.spec.mjs \
-            shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
-            shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
-            shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
-            shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js \
-            shared/engine/.test-build/assemblers/courseToc/*.spec.js \
-            shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs \
-            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
-            shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
-            shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
-            shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
-            shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs \
-            shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs \
-            shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
-            shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
-            shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \
-            shared/engine/generators/materializers/course/*.spec.mjs \
-            shared/engine/generators/materializers/module/*.spec.mjs \
-            shared/engine/generators/materializers/chapter/*.spec.mjs \
-            shared/engine/generators/materializers/lesson/*.spec.mjs \
-            shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js \
-            shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
-            shared/engine/.test-build/generators/materializers/scene/*.spec.js \
-            shared/engine/.test-build/generators/materializers/episode/*.spec.js \
-            shared/engine/.test-build/generators/materializers/questStage/*.spec.js \
-            shared/engine/.test-build/generators/materializers/questTask/*.spec.js \
-            scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs \
-            shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
-            scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
-            scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
+        env:
+          # Defaults false for standalone Ready/manual; true only when
+          # explicitly invoked by the protected Production Quality workflow.
+          SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: ${{ inputs.only_unit_unique_generator_tests }}
+        run: node scripts/ci/productionQuality/select-generator-tests.mjs
 
       - name: Test typed Bank source and PR-command security
         run: |
