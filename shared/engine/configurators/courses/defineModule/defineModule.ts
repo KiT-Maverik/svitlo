@@ -68,50 +68,41 @@ const allowedChildren = ['chapter', 'lesson', 'episode', 'assessment'] as const;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+const authoredFields = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+const directChildren = (config: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !authoredFields.has(key)));
+
 const validate = (config: Module_Config): void => {
+  const items = directChildren(config);
   const parsed = module_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys(config.content, { path: 'content' }).map(issue => issue.path + ': ' + issue.message),
-    ...validateSluggedConfiguratorMap(config.content?.items, allowedChildren, {
-      path: 'content.items',
-      itemLabel: 'Module child',
-      allowAliasForTypes: ['lesson'],
-      reservedKeys: slugAddressedReservedKeys,
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.path + ': ' + issue.message),
+    ...validateSluggedConfiguratorMap(items, allowedChildren, {
+      path: 'children', itemLabel: 'Module child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
-  if (isRecord(config.content) && isRecord(config.content.items)) {
-    for (const [slug, child] of Object.entries(config.content.items)) {
-      if (
-        !isRecord(child) ||
-        !isRecord(child.build) ||
-        typeof child.build.data !== 'function' ||
-        typeof child.build.overrides !== 'function'
-      ) {
-        errors.push('content.items.' + slug + ': child must expose the stateless Build API');
-        continue;
-      }
-      if (
-        !isRecord(child.config) ||
-        !isRecord(child.config.base) ||
+  for (const [slug, child] of Object.entries(items)) {
+    if (!isRecord(child) || !isRecord(child.build) ||
+        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function') {
+      errors.push('children.' + slug + ': child must expose the stateless Build API');
+      continue;
+    }
+    if (!isRecord(child.config) || !isRecord(child.config.base) ||
         child.config.base.id !== child.id ||
         ('draft' in child && child.draft === true && child.slug !== slug) ||
         (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
-        child.config.base.type !== child.type
-      ) {
-        errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
-      }
+        child.config.base.type !== child.type) {
+      errors.push('children.' + slug + ': immutable child identity does not match its authored metadata');
     }
   }
   const seenIds = new Map<string, Record<string, unknown>>();
-  for (const child of Object.values(config.content?.items ?? {})) {
+  for (const child of Object.values(items)) {
     if (!isRecord(child) || typeof child.id !== 'string') continue;
     const previous = seenIds.get(child.id);
     if (previous && !mayReuseCompletedLesson(previous, child)) {
-      errors.push('content.items: duplicate Module child ID ' + child.id);
-    } else {
-      seenIds.set(child.id, child);
-    }
+      errors.push('children: duplicate Module child ID ' + child.id);
+    } else seenIds.set(child.id, child);
   }
   if (errors.length) throw new Error('Module validation failed: ' + errors.join('; '));
 };
@@ -128,14 +119,12 @@ export type Module_Configurator<
   readonly id: string;
   readonly slug: Slug;
   readonly type: 'module';
-  readonly content: { items: Items; order: string[] };
+  readonly children: Extract<keyof Items, string>[];
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>>;
     overrides<const Added extends Record<string, Module_Child> = {}>(
-      patch: Module_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
-      },
+      patch: Module_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
       options: PublicationLanguageOptions<Languages>,
     ): ModulePublication<ModuleOverrideBase>;
   };
@@ -144,7 +133,7 @@ export type Module_Configurator<
     locales: () => { locale: DeepPartial<Module_Locale<'config'>> };
     validate: typeof validate;
   };
-} & LanguageScope<Languages>;
+} & Readonly<Items> & LanguageScope<Languages>;
 
 /** Define a Module with immutable ordered child configurators and stateless Build. */
 export const defineModule = <
@@ -152,21 +141,20 @@ export const defineModule = <
   const Items extends Record<string, Module_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<Module_Config, 'slug' | 'content' | 'locale'> & {
+  config: Omit<Module_Config, 'slug' | 'children' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
+    children: Extract<keyof Items, string>[];
     locale: RequireLanguages<Module_Config['locale'], Languages>;
-  },
+  } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
 ): Module_Configurator<Slug, Items, Languages> => {
-  const metadataSchema = module_Config_Schema.omit({ content: true });
-  const { content: _content, ...metadataInput } = config;
-  const authored: Omit<Module_Config, 'content'> = structuredClone(metadataInput);
+  const metadataSchema = module_Config_Schema.omit({ children: true });
+  const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
+  const authored: Omit<Module_Config, 'children'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
-  const initialItems: Items = { ...config.content.items };
-  const initialOrder = [...config.content.order];
-  const content = { items: { ...initialItems }, order: [...initialOrder] };
+  const initialItems = directChildren(config) as Items;
+  const initialOrder = [...config.children];
 
   const splitOwnLocale = (value: DeepPartial<Module_Config['locale']>) => {
     const own = splitLocalizedFields(value);
@@ -251,7 +239,7 @@ export const defineModule = <
 
   const data = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+    validate({ ...copyAuthored(), children: initialOrder, ...initialItems });
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -285,20 +273,15 @@ export const defineModule = <
   };
 
   const overrides = <const Added extends Record<string, Module_Child> = {}>(
-    patch: Module_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
-    },
+    patch: Module_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): ModulePublication<ModuleOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+      validate({ ...copyAuthored(), children: initialOrder, ...initialItems });
       if (!isRecord(patch)) throw new Error('Expected Module overrides object');
-      for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'content'].includes(key)) throw new Error('Unknown Module override field: ' + key);
-      }
       const metadataPatch = module_Override_Config_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
       );
       metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const own = splitOwnLocale(metadataPatch.locale ?? {});
@@ -311,23 +294,23 @@ export const defineModule = <
       };
       const files = selectPublicationLocales(own.files, languages) ?? {};
 
-      if (patch.content !== undefined && !isRecord(patch.content)) throw new Error('content must be an object');
-      if (patch.content) {
-        for (const key of Object.keys(patch.content)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) {
-            throw new Error('Unknown Module content override field: ' + key);
-          }
-        }
+      if (patch.children !== undefined && !Array.isArray(patch.children)) {
+        throw new Error('children must be a replacement order array');
       }
-      const changes = patch.content?.items ?? {};
-      const additions = patch.content?.additionalItems ?? {};
-      if (!isRecord(changes)) throw new Error('content.items must be a slug-keyed object');
-      if (!isRecord(additions)) throw new Error('content.additionalItems must be a slug-keyed configurator map');
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Module_Child> = {};
+      for (const [key, change] of Object.entries(patch)) {
+        if (authoredFields.has(key)) {
+          if (key !== 'params' && key !== 'locale' && key !== 'children') {
+            throw new Error('Immutable Module override field: ' + key);
+          }
+          continue;
+        }
+        if (Object.hasOwn(initialItems, key)) changes[key] = change;
+        else additions[key] = change as Module_Child;
+      }
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'content.additionalItems',
-        itemLabel: 'Module child',
-        allowAliasForTypes: ['lesson'],
-        reservedKeys: slugAddressedReservedKeys,
+        path: 'children', itemLabel: 'Module child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -362,19 +345,19 @@ export const defineModule = <
           childPatches[key] = change;
         }
       }
-      if (structureChanged && patch.content?.order === undefined) {
-        throw new Error('content.order is required when adding or disabling children');
+      if (structureChanged && patch.children === undefined) {
+        throw new Error('children is required when adding or disabling placements');
       }
-      const order = patch.content?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: active, order }, { path: 'content', allowDisabled: true });
+      const order = patch.children ?? initialOrder;
+      const issues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
 
-      if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
+      if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Module_Child] => entry[1] !== false),
         );
         const built = buildContent(enabled, order, childPatches);
-        if (structureChanged || patch.content?.order !== undefined) output.base.children = [...order];
+        if (structureChanged || patch.children !== undefined) output.base.children = [...order];
         // Existing placements are sparse, additions are complete; false is a
         // deletion tombstone applied by the runtime Data assembler.
         for (const [key, change] of Object.entries(changes)) {
@@ -413,7 +396,8 @@ export const defineModule = <
     id,
     slug,
     type,
-    content,
+    children: [...initialOrder],
+    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
