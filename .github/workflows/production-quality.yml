@@ -6,12 +6,6 @@ on:
     branches: [main]
     types: [opened, reopened, synchronize, edited, ready_for_review]
   workflow_dispatch:
-    inputs:
-      unit_overlap_experiment:
-        description: 'Compare baseline (false) with bounded Engine/UI Kit unit overlap (true)'
-        required: false
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -119,12 +113,36 @@ jobs:
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - name: Test every eligible workspace
         env:
-          # Passive timing annotations: every workspace test and prerequisite build
-          # retains the canonical npm lifecycle and sequential execution.
+          # Passive timings only: the authoritative unit job always runs canonical serial npm test.
           SVITLO_CI_UNIT_TEST_TIMINGS: '1'
-          # Explicitly scoped to the Draft #925 branch and manual diagnostics;
-          # never enable for an automatic required PR/production gate.
-          SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'ci/quality-workflow-rearchitecture' && inputs.unit_overlap_experiment && '1' || '0' }}
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
+      - name: Report package build reuse
+        if: always()
+        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+
+
+  # Temporary diagnostic for Draft PR #925. This never replaces or gates the
+  # authoritative serial unit suite or Production Quality / verify.
+  unit_overlap_experiment:
+    name: Experiment / Engine and UI Kit unit overlap
+    needs: policy
+    if: github.event_name == 'workflow_dispatch' && github.ref_name == 'ci/quality-workflow-rearchitecture'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 26
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Initialize job-local package build reuse
+        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Run bounded unit overlap on the same revision as the serial control
+        env:
+          SVITLO_CI_UNIT_TEST_TIMINGS: '1'
+          SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: '1'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - name: Report package build reuse
         if: always()
