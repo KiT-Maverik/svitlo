@@ -37,7 +37,7 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   the protected Production Quality caller passes
   `only_unit_unique_generator_tests: true`: the targeted generator step
   skips concrete files already selected by the required exhaustive root
-  Engine `npm test` job. It expands all original 35 generator selectors
+  Engine `npm test` job. It expands all 34 currently active generator selectors
   and the current Engine npm test selectors, rejecting missing compiled
   files, unrecognized root command shapes and empty generator-only scopes.
   If the root command stops selecting a file, that file automatically
