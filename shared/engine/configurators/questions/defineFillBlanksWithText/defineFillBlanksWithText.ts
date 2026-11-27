@@ -52,6 +52,32 @@ type SlotMembers<Group extends { children: string[] }> = {
 type SlotChanges<Content extends ContentShape> = {
   [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<SlotMembers<Content['slots']>[Key]> | false;
 };
+/** Key-specific source validation keeps existing slot translations sparse. */
+type LiteralSlotsPatch<
+  Patch,
+  Content extends ContentShape,
+  Languages extends readonly LanguageCode[],
+> = Patch extends { content: { slots: infer Group } }
+  ? Group extends Record<string, unknown>
+    ? Exclude<keyof Patch, 'params' | 'locale' | 'content'> extends never
+      ? {
+          content: QuestionCommonPatch<Content, {}, Languages> & {
+            slots: {
+              [Key in keyof Group]:
+                Key extends 'children'
+                  ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
+                  : Key extends keyof SlotMembers<Content['slots']>
+                    ? DeepPartial<SlotMembers<Content['slots']>[Key]> | false
+                    : Group[Key] extends Slot
+                      ? Group[Key] & RequireLanguages<Group[Key], Languages>
+                      : never;
+            };
+          };
+        }
+      : never
+    : never
+  : never;
+
 type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
   Patch extends { content: { slots: infer Collection } }
     ? AddedPlacementsFromPatch<Collection, SlotMembers<Content['slots']>, Slot, 'children'>
@@ -299,7 +325,7 @@ export const defineFillBlanksWithText = <
       const Patch extends Record<string, unknown>,
       const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
     >(
-      patch: Patch & Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+      patch: Patch & Question_FillBlanksWithText_MetadataOverrides & LiteralSlotsPatch<Patch, Content, Languages>,
       options: PublicationLanguageOptions<Languages>,
     ): QuestionOverridePublication<Question_FillBlanksWithText_Data>;
     (
