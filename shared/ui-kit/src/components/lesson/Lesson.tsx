@@ -2,7 +2,8 @@
 
 import { useMemo, type ComponentType } from 'react';
 
-import type { AssessmentResourceLoader, Disability, LanguageCode, Lesson_Data } from '@svitlo/engine/runtime';
+import type { AssessmentResourceLoader, Disability, LanguageCode } from '@svitlo/engine/runtime';
+import type { LessonViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -14,7 +15,7 @@ import type { LessonEventSceneMap } from './LessonEvents';
 
 /** UI Kit accepts only complete, assembled, one-language Engine Props. */
 export type LessonProps = {
-  response: Lesson_Data;
+  response: LessonViewProps;
   language: LanguageCode;
   href: string;
   topics?: readonly Topic[];
