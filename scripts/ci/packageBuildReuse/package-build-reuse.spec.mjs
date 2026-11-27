@@ -287,10 +287,21 @@ test('unavailable optional telemetry cannot convert a valid build or failed comp
   try {
     assert.equal(runner.ensure('a'), 'built');
     assert.equal(runner.ensure('a'), 'reused');
+    rmSync(join(f.root, 'shared/a/dist'), { recursive: true, force: true });
+    const failing = createPackageBuildReuse({
+      root: f.root,
+      packages: [ws('a', 'shared/a')],
+      stateFile: f.stateFile,
+      runBuild: () => { throw new Error('real compiler failed'); },
+      sourceRevision: () => 'commit-1',
+      onBuildEvent: reporter,
+    });
+    assert.throws(() => failing.ensure('a'), /real compiler failed/);
   } finally {
     console.warn = warn;
   }
-  assert.equal(warnings.length, 2);
+  assert.equal(warnings.length, 3);
   assert.ok(warnings.every(message => message.includes('trace sink unavailable')));
   assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 1);
+  assert.equal(readBuildState(f.stateFile, f.root).stats.failed, 1);
 });
