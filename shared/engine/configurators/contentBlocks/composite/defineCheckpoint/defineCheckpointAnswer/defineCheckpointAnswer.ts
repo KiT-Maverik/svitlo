@@ -333,14 +333,22 @@ export const defineCheckpointAnswer = <
  * at the parent collection boundary, retaining the concrete direct children.
  */
 type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
-export type ContentBlock_CheckpointAnswer_Configurator =
-  Omit<DefinedAnswer, 'id' | 'slug' | 'type' | 'build' | 'children' | '__svitloLanguageScope'> & {
+/**
+ * Collection parents check a CheckpointAnswer through fixed identity and
+ * Build capabilities only. Do not project ReturnType's generic placement map:
+ * keyof Record<string, Primitive> includes lifecycle keys, making the parent
+ * boundary an impossible Record<string, never>.
+ */
+export type ContentBlock_CheckpointAnswer_Configurator = Pick<
+  DefinedAnswer, 'validate' | 'config'
+> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'checkpointAnswer';
   readonly children: readonly string[];
   readonly __svitloLanguageScope: readonly LanguageCode[];
-  readonly build: Omit<DefinedAnswer['build'], 'overrides'> & {
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedAnswer['build']['data']>;
     overrides(
       patch: never,
       options: PublicationLanguageOptions,
