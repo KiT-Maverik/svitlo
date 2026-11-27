@@ -457,7 +457,7 @@ export function defineFlashcard<
         // inventing a separate side UUID or changing the authored card.
         const current = initialContent[side] ?? defineFlashcardSide<{}, Languages>({ children: [] });
         const built = buildChildOverrides(current, change as never) as SidePublication;
-        if (side !== 'hint' && built.base.children.length === 0) {
+        if (side !== 'hint' && Array.isArray(built.base.children) && built.base.children.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }
         if (Object.keys(built.base).length) {
