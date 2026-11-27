@@ -257,7 +257,7 @@ test('Module rejects the retired content wrapper before import generation', () =
   delete node.config.chapterOne;
   node.config.content = child;
   node.config.children = ['content'];
-  assert.throws(() => materializeModule(node, ctx()), /\\.content: legacy Course hierarchy wrapper is forbidden/);
+  assert.throws(() => materializeModule(node, ctx()), /\.content: legacy Course hierarchy wrapper is forbidden/);
 });
 
 test('Module rejects a valid child import that collides with generated identifiers', () => {
