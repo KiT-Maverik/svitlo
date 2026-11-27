@@ -154,11 +154,13 @@ export function defineFlashcardSide<
         else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
         else throw new Error('Flashcard child patch must be sparse object or false: ' + key);
       } else {
-        if (!isRecord(change) || typeof change.type !== 'string' ||
-            !primitiveContentBlockTypes.some(type => type === change.type)) {
+        const candidate: unknown = change;
+        if (!isRecord(candidate)) throw new Error('Invalid Flashcard side child: ' + key);
+        const kind: unknown = candidate.type;
+        if (typeof kind !== 'string' || !primitiveContentBlockTypes.some(type => type === kind)) {
           throw new Error('New Flashcard side child must be a primitive ContentBlock Configurator: ' + key);
         }
-        active[key] = change as Block;
+        active[key] = candidate as Block;
         structural = true;
       }
     }
