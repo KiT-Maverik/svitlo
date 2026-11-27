@@ -19,14 +19,10 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateRequestedPublication,
+  validateSlugAddressedPublication,
+  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { assessment_Data_Schema } from '../../assessments/defineAssessment';
-import { episode_Data_Schema } from '../../episodes/defineEpisode';
-import { lesson_Data_Schema } from '../../lessons/defineLesson';
-import { chapter_Data_Schema } from '../defineChapter';
-import { module_Data_Schema } from '../defineModule';
 import {
   course_Config_Schema,
   course_Data_Schema,
@@ -54,12 +50,13 @@ type CoursePublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Course_Data>>> | undefined;
 };
-type CourseDataBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Course_Locale<'data'>>;
-  content: DeepPartial<Course_Child_Data>[];
-};
+  children: Extract<keyof Items, string>[];
+} & { [Key in keyof Items]: DeepPartial<Extract<Course_Child_Data, { type: Items[Key]['type'] }>> };
 type CourseOverrideBase = Course_Metadata_Overrides & {
-  content?: DeepPartial<Course_Child_Data>[];
+  children?: string[];
+  [key: string]: unknown;
 };
 type CourseConfigBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale: DeepPartial<Course_Locale<'config'>>;
@@ -78,6 +75,7 @@ const validate = (config: Course_Config): void => {
       path: 'content.items',
       itemLabel: 'Course child',
       allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
@@ -112,39 +110,6 @@ const validate = (config: Course_Config): void => {
   if (errors.length) throw new Error('Course validation failed: ' + errors.join('; '));
 };
 
-const parseChild = (value: unknown): Course_Child_Data => {
-  if (!isRecord(value)) throw new Error('Expected resolved Course child Props');
-  switch (value.type) {
-    case 'module': {
-      const parsed = module_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'chapter': {
-      const parsed = chapter_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'lesson': {
-      const parsed = lesson_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'episode': {
-      const parsed = episode_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'assessment': {
-      const parsed = assessment_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    default:
-      throw new Error('Unsupported Course child type: ' + String(value.type));
-  }
-};
-
 /**
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
@@ -160,7 +125,7 @@ export type Course_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase>;
+    data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
     overrides<const Added extends Record<string, Course_Child> = {}>(
       patch: Course_Overrides<Items, Added> & {
         content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
@@ -287,7 +252,7 @@ export const defineCourse = <
     locale: onlyStrings(authored.locale),
   };
 
-  const data = (options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -304,7 +269,7 @@ export const defineCourse = <
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
-    const result: CoursePublication<CourseDataBase> = {
+    const result: CoursePublication<CourseDataBase<Items>> = {
       base: {
         id,
         slug,
@@ -374,6 +339,7 @@ export const defineCourse = <
         path: 'content.additionalItems',
         itemLabel: 'Course child',
         allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
