@@ -306,11 +306,11 @@ describe('Configurators', () => {
         );
         assert.throws(
           () => lesson.build.overrides({ questions: {} } as never, { languages: ['en'] }),
-          /Unknown Lesson override field/,
+          /Expected a matching Lesson Section configurator at questions/,
         );
         assert.throws(
           () => lesson.build.overrides({ flashcards: {} } as never, { languages: ['en'] }),
-          /Unknown Lesson override field/,
+          /Expected a matching Lesson Section configurator at flashcards/,
         );
         assert.equal(
           lesson_Config_Schema.safeParse({ ...input, questions: {} }).success,
