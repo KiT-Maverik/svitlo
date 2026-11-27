@@ -97,6 +97,7 @@ describe('SkillsMindMap', () => {
     await screen.findByTestId('skill-node-testRed');
     fireEvent.click(screen.getByRole('button', { name: 'Список' }));
     const list = screen.getByRole('region', { name: 'Навички за доменами' });
+    expect(within(list).getByRole('button', { name: /Група: Теплі кольори/ })).toBeInTheDocument();
     expect(within(list).getByRole('progressbar')).toHaveAttribute('aria-valuenow');
     expect(within(list).queryByText('Розпізнавати червоний.')).not.toBeInTheDocument();
     expect(within(list).queryByRole('link', { name: /Прокачати навичку/ })).not.toBeInTheDocument();
