@@ -2,7 +2,7 @@
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
  */
-import type { Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import { flashcardRelationship_Schema, type Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
   materializeFlashcardSide,
@@ -108,7 +108,13 @@ function sourceValue(value: unknown, language: string, location: string): unknow
   return Object.fromEntries(keys.map(key => [key, sourceValue(value[key], language, location + '.' + key)]));
 }
 function literal(value: unknown, location: string, level = 0): string {
-  if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
+  if (typeof value === 'string') {
+    // Dynamic relationship keys have no contextual literal type in Flashcard_Config.
+    // Keep the validated discriminants narrow in emitted source generics.
+    const discriminant = /^parameters\.relationships\.[a-z][A-Za-z0-9]*\.(?:type|position)$/.test(location);
+    return JSON.stringify(value) + (discriminant ? ' as const' : '');
+  }
+  if (value === null || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
   if (Array.isArray(value))
     return '[' + value.map((entry, i) => literal(entry, location + '[' + i + ']', level + 1)).join(', ') + ']';
@@ -161,6 +167,8 @@ function validateParameters(params: FlashcardSource['parameters']): void {
         !uuid.test(relation.relatedFlashcardId as string)
       )
         fail('parameters.relationships.' + key, 'valid relationship identity and real target UUID required');
+      if (!flashcardRelationship_Schema.safeParse(relation).success)
+        fail('parameters.relationships.' + key, 'invalid relationship type, position or identity');
       if (ids.has(relation.relationshipId)) fail('parameters.relationships.' + key, 'duplicate relationshipId');
       ids.add(relation.relationshipId);
     }
