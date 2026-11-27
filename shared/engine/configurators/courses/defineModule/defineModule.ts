@@ -125,7 +125,11 @@ export type Module_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>>;
-    overrides<const Added extends Record<string, Module_Child> = {}>(
+    overrides(
+      patch: Module_Overrides<Items>,
+      options: PublicationLanguageOptions<Languages>,
+    ): ModulePublication<ModuleOverrideBase>;
+    overrides<const Added extends Record<string, Module_Child>>(
       patch: Module_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
       options: PublicationLanguageOptions<Languages>,
     ): ModulePublication<ModuleOverrideBase>;
@@ -135,7 +139,7 @@ export type Module_Configurator<
     locales: () => { locale: DeepPartial<Module_Locale<'config'>> };
     validate: typeof validate;
   };
-} & Readonly<Items> & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
 /** Define a Module with immutable ordered child configurators and stateless Build. */
 export const defineModule = <
