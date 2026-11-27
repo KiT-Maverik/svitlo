@@ -8,6 +8,13 @@ on:
     paths:
       - 'shared/ui-kit/**'
       - 'shared/engine/runtime.ts'
+      # Direct Engine sources consumed by UI Kit's authored-method and locale tests.
+      - 'shared/engine/configurators/assessmentMethods/**'
+      - 'shared/engine/configurators/educationStandards/**'
+      - 'shared/engine/configurators/questions/assessmentMethod.schemas.ts'
+      - 'shared/engine/configurators/contentBlocks/contentBlock.schemas.ts'
+      - 'shared/engine/schemas/languages.schemas.ts'
+      - 'shared/engine/utils/languages/**'
       - 'shared/engine/package.json'
       - '.github/workflows/ui-kit-tests.yml'
   workflow_dispatch:
@@ -38,6 +45,8 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       - name: Build the public Engine package needed by UI Kit
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Prove Web and UI Kit Ready trigger coverage
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/testRouting/test-routing.spec.mjs
       - name: Verify separately selected UI Kit regressions are discoverable
         working-directory: shared/ui-kit
         run: |
