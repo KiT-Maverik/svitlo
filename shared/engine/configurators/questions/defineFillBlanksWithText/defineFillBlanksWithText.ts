@@ -175,7 +175,7 @@ export const defineFillBlanksWithText = <
     if (!modifies) return { locale: {}, base: undefined };
     const affected = structural || patch.children !== undefined
       ? Object.keys(resolved.locale)
-      : Object.keys(projectSlotList(original, languages, translatedChanges, initialContent.slots.children).locale);
+      : Object.keys(projectSlotList(original, languages, translatedChanges as never, initialContent.slots.children).locale);
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
       const language = code as LanguageCode;
