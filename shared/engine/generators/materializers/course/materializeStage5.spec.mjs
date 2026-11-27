@@ -997,7 +997,7 @@ test('Course direct Section references bind only verified Sections and retain re
   assert.match(index, /import \{ reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"practice": practice/);
+  assert.match(wrapper, /,\s*(?:practice|"practice"\s*:\s*practice)\}\s+satisfies CourseLessonBoundPatch/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
   const bound = { practice: extraSection, children: ['practice'] };
