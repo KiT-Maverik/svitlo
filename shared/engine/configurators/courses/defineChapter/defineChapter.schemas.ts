@@ -46,10 +46,16 @@ export type Chapter_Child = ConfiguratorChild<
 >;
 export type Chapter_Child_Data = Lesson_Data | Episode_Data | Assessment_Data | Lesson_Draft_Data | Episode_Draft_Data;
 
-export const chapter_Config_Schema = identity.extend({
+export const chapter_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
+});
+export const chapter_Config_Schema = chapter_Metadata_Config_Schema.extend({
   children: z.array(z.string()),
-}).catchall(z.unknown());
+}).catchall(z.unknown()).superRefine((value, context) => {
+  for (const issue of validateSlugAddressedContainer(value, ['lesson', 'episode', 'assessment'])) {
+    context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+});
 export type Chapter_Config = z.infer<typeof chapter_Config_Schema>;
 
 export type Chapter_Metadata_Overrides = {
