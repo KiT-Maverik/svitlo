@@ -23,6 +23,7 @@ import {
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
   type SafePlacementMap,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -113,12 +114,17 @@ type EpisodeAuthoredInput<
 } & Sections & ChildrenSupporting<Languages, Sections> &
   SafePlacementMap<Sections> & { [Key in keyof Sections]: Key extends 'events' ? never : Sections[Key] };
 
+type EpisodeChildKeys<Input> = Exclude<keyof Input, keyof Episode_Metadata_Config | 'children'>;
+type InferredEpisodeSections<Input> = {
+  [Key in EpisodeChildKeys<Input>]: Input[Key] extends Section_Configurator ? Input[Key] : Section_Configurator;
+};
+
 /**
  * Author a Course-owned narrative Episode independently of Lesson.
  * Episode Sections are directly addressable by their placement slugs; "events"
  * retains its own semantic meaning and never becomes a child.
  */
-export const defineEpisode = <
+const defineEpisodeImpl = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Sections extends Record<string, Section_Configurator>,
@@ -237,7 +243,7 @@ export const defineEpisode = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Section_Configurator> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Section_Configurator> = {}>(
     patch: Episode_Overrides<Sections, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -340,11 +346,26 @@ export const defineEpisode = <
     }
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Episode_Overrides<Sections, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'
+      >> & ChildrenSupporting<Languages, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'
+      >>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: Episode_Overrides<Sections, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
+    ...initialSections,
     id, slug, type,
     draft: false as const,
     children: [...initialOrder],
-    ...initialSections,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -358,4 +379,40 @@ export const defineEpisode = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type Episode_Configurator = ReturnType<typeof defineEpisode>;
+export const defineEpisode: {
+  <const Input extends Omit<Episode_Metadata_Config, 'slug' | 'params' | 'locale'> & {
+    slug: string;
+    params: Omit<Episode_Config['params'], 'languages'> & {
+      languages: readonly [LanguageCode, ...LanguageCode[]];
+    };
+    locale: Episode_Config['locale'];
+    children: string[];
+  }>(
+    config: Input & EpisodeAuthoredInput<
+      Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>
+    >,
+  ): ReturnType<typeof defineEpisodeImpl<
+    Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>
+  >>;
+  <
+    const Slug extends string,
+    const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+    const Sections extends Record<string, Section_Configurator>,
+  >(
+    config: EpisodeAuthoredInput<Slug, Languages, Sections>,
+  ): ReturnType<typeof defineEpisodeImpl<Slug, Languages, Sections>>;
+} = defineEpisodeImpl;
+
+type EpisodeBaseConfigurator = ReturnType<typeof defineEpisodeImpl<
+  string, readonly [LanguageCode, ...LanguageCode[]], {}
+>>;
+export type Episode_Configurator = Omit<
+  EpisodeBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<EpisodeBaseConfigurator['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<EpisodeBaseConfigurator['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<EpisodeBaseConfigurator['build']['overrides']>;
+  };
+};
