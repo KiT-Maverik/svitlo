@@ -384,6 +384,19 @@ if (id === 'web-fixture-alpha') {
       locale: course(lang).locale,
       content: course(lang).content,
     });
+  // Immutable negative fixture: the Course tree is valid, but its published
+  // TOC is corrupt. Browser projects must never edit the running host's public
+  // directory: parallel workers and the Course catalog share that directory.
+  const ERROR_COURSE = uuid(0x2fc);
+  publish('data/courses/' + ERROR_COURSE + '/base.json', {
+    id: ERROR_COURSE,
+    type: 'course',
+    params: { languages: ['en'] },
+    locale: { title: 'Broken TOC fixture Course', description: 'Error boundary fixture' },
+    content: { items: {}, order: [] },
+  });
+  publish('data/courses/' + ERROR_COURSE + '/toc/base.json', '{invalid published TOC');
+
   // The Web contract fixture is synthetic rather than Engine-authored. Keep its
   // published TOC derived from its finished Course trees and the published
   // fixture Lesson's selected language; never hardcode a second navigation tree.
