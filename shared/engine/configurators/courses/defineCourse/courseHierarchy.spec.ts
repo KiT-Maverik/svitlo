@@ -532,7 +532,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: 'Introduction', navigationLabel: 'Intro' },
-    children: ['missingTranslation'], missingTranslation,
+    content: { items: { missingTranslation }, order: ['missingTranslation'] },
   });
   const quiz = defineQuizSection<'quiz', {}, typeof bilingual>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d23',
@@ -554,7 +554,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
       results: { visibility: 'after-review', showScore: true },
     },
     locale: { title: 'Check', navigationLabel: 'Quiz' },
-    children: [],
+    content: { items: {}, order: [] },
   });
   const lesson = defineLesson({
     id: 'f775647f-203d-481a-a1c7-4d331c779d25',
@@ -575,7 +575,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: { en: 'English-only notes' }, navigationLabel: 'Notes' },
-    children: [],
+    content: { items: {}, order: [] },
   });
   const placement = placeLesson(lesson, {
     section: { additionalItems: { exhibitionNotes }, order: ['intro', 'quiz', 'exhibitionNotes'] },
