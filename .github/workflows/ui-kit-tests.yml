@@ -41,6 +41,7 @@ jobs:
       - name: Verify separately selected UI Kit regressions are discoverable
         working-directory: shared/ui-kit
         run: |
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.unit.spec.tsx
           node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/components/widgets/questions/response/QuestionContent.unit.spec.ts
           node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/utils/assessmentMethods.spec.ts
           node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run data/definitions/assessmentMethods/assessmentMethodTaxonomy.spec.ts
