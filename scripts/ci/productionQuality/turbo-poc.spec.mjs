@@ -40,6 +40,7 @@ test('Turbo tasks match current canonical npm scripts, with explicit task prereq
   assert.ok(turbo.tasks['package:build'].outputs.includes('dist/**'));
   assert.deepEqual(turbo.tasks['code:check:types'].dependsOn, ['package:build', '^package:build']);
   assert.deepEqual(turbo.tasks.test.dependsOn, ['code:check:types']);
+  assert.equal(turbo.remoteCache.enabled, false, 'no commercial remote cache may be used');
   assert.equal(turbo.tasks.test.cache, false);
   assert.equal(turbo.tasks['code:check:types'].cache, false);
   assert.deepEqual(focus, workspaces.map(x => x.name));
@@ -187,5 +188,6 @@ test('hybrid has three native group statuses and passes Turbo cache between grou
   assert.match(groupWorkflow, /\.turbo\/cache\//);
   assert.match(groupWorkflow, /turbo run test --filter="\$WORKSPACE"/);
   assert.match(groupWorkflow, /verify-content/);
+  assert.match(groupWorkflow, /--cache=local:rw/);
   assert.doesNotMatch(groupWorkflow, /contents: write|SVITLO_CI_PACKAGE_BUILD_STATE/);
 });
