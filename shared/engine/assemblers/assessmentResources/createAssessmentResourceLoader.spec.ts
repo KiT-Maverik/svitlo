@@ -6,10 +6,15 @@ import { defineText } from '../../configurators/contentBlocks/primitive/defineTe
 import { defineSelectOneAnswer } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 
-function textValue(block: ContentBlock_Data | undefined): string {
+function textValue(input: unknown): string {
+  const block = input as ContentBlock_Data | undefined;
   assert.equal(block?.type, 'text');
   if (block?.type !== 'text') throw new Error('Expected a resolved Text block');
   return block.locale.value;
+}
+
+function flashcardSideBlock(card: { content: { front: object; back: object } }, side: 'front' | 'back') {
+  return (card.content[side] as Record<string, unknown>)[side] as ContentBlock_Data;
 }
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -146,8 +151,8 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const uk = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
   assert.equal(uk.items.length, 1);
   assert.equal(uk.items[0].id, cardId);
-  assert.equal(textValue(uk.items[0].content.front.front), 'Перед');
-  assert.equal(textValue(uk.items[0].content.back.back), 'Назад');
+  assert.equal(textValue(flashcardSideBlock(uk.items[0], 'front')), 'Перед');
+  assert.equal(textValue(flashcardSideBlock(uk.items[0], 'back')), 'Назад');
   assert.deepEqual(requests[0], [manifestUrl]);
   assert.deepEqual(requests[1], [
     'data/flashcards/' + cardId.at(-1) + '/' + cardId + '/base.json',
@@ -156,11 +161,11 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const count = requests.length;
   const second = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
   assert.equal(requests.length, count, 'No additional files for cached locale');
-  second.items[0].content.front.front.slug = 'modified';
+  flashcardSideBlock(second.items[0], 'front').slug = 'modified';
   const third = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
-  assert.equal(third.items[0].content.front.front.slug, 'front', 'Cached Props must be returned as independent snapshots');
+  assert.equal(flashcardSideBlock(third.items[0], 'front').slug, 'front', 'Cached Props must be returned as independent snapshots');
   const en = await loader.loadFlashcards({ language: 'en', ids: [cardId] });
-  assert.equal(textValue(en.items[0].content.back.back), 'Back');
+  assert.equal(textValue(flashcardSideBlock(en.items[0], 'back')), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
 });
 
