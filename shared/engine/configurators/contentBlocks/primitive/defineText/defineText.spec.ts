@@ -3,7 +3,7 @@ import test, { describe } from 'node:test';
 
 import { z } from 'zod';
 
-import { defineText, text_Data_Schema, type ContentBlock_Text_Config } from './index';
+import { defineText, text_Config_Schema, text_Data_Schema, type ContentBlock_Text_Config } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -33,10 +33,12 @@ describe('Configurators', () => {
       });
 
       test('Text publishes translated values as Props-shaped language JSON bodies', () => {
-        const text = defineText<'intro', ['en', 'uk']>({
+        const config = {
           ...identity,
           locale: { value: { en: 'Welcome', uk: 'Привіт' } },
-        });
+        };
+        assert.equal(text_Config_Schema.safeParse(config).success, true);
+        const text = defineText<'intro', ['en', 'uk']>(config);
         const output = text.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity },
