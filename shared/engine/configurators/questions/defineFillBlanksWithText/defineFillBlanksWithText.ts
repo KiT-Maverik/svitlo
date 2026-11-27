@@ -59,7 +59,8 @@ type LiteralSlotsPatch<
   Languages extends readonly LanguageCode[],
 > = Patch extends { content: { slots: infer Group } }
   ? Group extends Record<string, unknown>
-    ? Exclude<keyof Patch, 'params' | 'locale' | 'content'> extends never
+    ? [Exclude<keyof Patch, 'params' | 'locale' | 'content'> |
+       Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation' | 'slots'>] extends [never]
       ? {
           content: QuestionCommonPatch<Content, {}, Languages> & {
             slots: {
@@ -68,8 +69,10 @@ type LiteralSlotsPatch<
                   ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
                   : Key extends keyof SlotMembers<Content['slots']>
                     ? DeepPartial<Slot> | false
-                    : Group[Key] extends Slot
-                      ? Group[Key] & RequireLanguages<Group[Key], Languages>
+                    : Key extends (typeof slugAddressedReservedKeys)[number]
+                      ? never
+                      : Group[Key] extends Slot
+                        ? Group[Key] & RequireLanguages<Group[Key], Languages>
                       : never;
             };
           };
