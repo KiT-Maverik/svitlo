@@ -146,6 +146,41 @@ jobs:
           SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: ${{ inputs.only_unit_unique_generator_tests }}
         run: node scripts/ci/productionQuality/select-generator-tests.mjs
 
+      # Temporary source-pinned A/B diagnostic for PR #925 only.
+      # It does not replace or modify the canonical protected generator step.
+      - name: Experimental generator selector A/B — manual dispatch only
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          node --input-type=module <<'NODE'
+          import { spawnSync } from 'node:child_process';
+          import { planGeneratorTests } from './scripts/ci/productionQuality/select-generator-tests.mjs';
+          const full = planGeneratorTests({ uniqueOnly: false });
+          const optimized = planGeneratorTests({ uniqueOnly: true });
+          if (full.all.length !== optimized.all.length ||
+              optimized.selected.length + optimized.coveredByUnit.length !== full.all.length) {
+            throw new Error('A/B selection partition mismatch');
+          }
+          const timings = { A: [], B: [] };
+          for (const mode of ['A', 'B', 'B', 'A']) {
+            const files = mode === 'A' ? full.all : optimized.selected;
+            const start = process.hrtime.bigint();
+            const result = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...files], {
+              cwd: process.cwd(), encoding: 'utf8', maxBuffer: 16 * 1024 * 1024,
+            });
+            const seconds = Number(process.hrtime.bigint() - start) / 1e9;
+            console.log(`GENERATOR_AB mode=${mode} files=${files.length} elapsed=${seconds.toFixed(3)}s result=${result.status === 0 && !result.error ? 'success' : 'failure'}`);
+            if (result.error || result.status !== 0) {
+              console.error((result.stdout ?? '').slice(-4000));
+              console.error((result.stderr ?? '').slice(-4000));
+              throw result.error ?? new Error(`Generator A/B ${mode} failed: ${result.status}`);
+            }
+            timings[mode].push(seconds);
+          }
+          const median = values => [...values].sort((a,b) => a-b).reduce((a,b) => a+b, 0) / values.length;
+          const a = median(timings.A), b = median(timings.B);
+          console.log(`GENERATOR_AB_SUMMARY sha=${process.env.GITHUB_SHA} A_full_files=${full.all.length} B_unique_files=${optimized.selected.length} root_covered_files=${optimized.coveredByUnit.length} A_mean=${a.toFixed(3)}s B_mean=${b.toFixed(3)}s saved_step_seconds=${(a-b).toFixed(3)}s`);
+          NODE
+
       - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
