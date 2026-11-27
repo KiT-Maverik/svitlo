@@ -76,11 +76,11 @@ test('opt-in unit overlap is exhaustive, keeps every build serial, and moves npm
 
 test('unit overlap refuses changed npm lifecycle, missing suites and duplicate selections', () => {
   const packages = [
-    ws('@svitlo/engine', 'shared/engine', { test: 'engine', 'package:build': 'build' }),
+    ws('@svitlo/engine', 'shared/engine', { test: 'engine', 'package:build': 'build', pretest: 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine' }),
     ws('@svitlo/ui-kit', 'shared/ui-kit', {
       test: 'npm run test:logic && npm run test:components',
       'test:logic': 'logic',
-      'test:components': 'vitest',
+      'test:components': 'vitest run src',
     }, ['@svitlo/engine']),
   ];
   const plan = planWorkspaceOperation(packages, 'test');
@@ -88,12 +88,28 @@ test('unit overlap refuses changed npm lifecycle, missing suites and duplicate s
   assert.throws(
     () => planUnitOverlapExperiment(plan, packages.map(pkg =>
       pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, pretest: 'prepare' } } : pkg)),
-    /without npm test hooks/,
+    /reviewed Engine\/UI Kit test scripts/,
   );
   assert.throws(
     () => planUnitOverlapExperiment(plan, packages.map(pkg =>
       pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, test: 'custom' } } : pkg)),
-    /reviewed UI Kit test composition/,
+    /reviewed Engine\/UI Kit test scripts/,
+  );
+  for (const mutatedScript of [
+    { 'test:components': 'npm run generate && vitest run src' },
+    { 'pretest:components': 'node scripts/mutate-dist.mjs' },
+    { 'posttest:logic': 'node scripts/rewrite-source.mjs' },
+  ]) {
+    assert.throws(
+      () => planUnitOverlapExperiment(plan, packages.map(pkg =>
+        pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, ...mutatedScript } } : pkg)),
+      /reviewed Engine\/UI Kit test scripts/,
+    );
+  }
+  assert.throws(
+    () => planUnitOverlapExperiment(plan, packages.map(pkg =>
+      pkg.name === '@svitlo/engine' ? { ...pkg, scripts: { ...pkg.scripts, posttest: 'write dist' } } : pkg)),
+    /reviewed Engine\/UI Kit test scripts/,
   );
   assert.throws(
     () => planUnitOverlapExperiment({ ...plan, steps: plan.steps.filter(step => step.name !== '@svitlo/engine' || step.script !== 'test') }, packages),
