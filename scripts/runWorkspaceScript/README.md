@@ -35,54 +35,6 @@ not a test-case-level duration profiler and not evidence of parallel safety.
 Use the resulting source-SHA-pinned job logs to identify which workspaces
 warrant isolated investigation before considering a bounded parallelism A/B.
 
-## Explicit unit-overlap diagnostic (Draft PR #925, not adopted CI)
-
-The default root `npm test` and the authoritative Production unit job remain
-**sequential**. The established, owner-authorized `/production-quality`
-PR-comment dispatch launches the existing full workflow on the PR head; no
-workflow input or manual Actions UI selection is necessary. Only a
-`workflow_dispatch` run **on branch
-`ci/quality-workflow-rearchitecture`** adds a second, diagnostic
-`Experiment / Engine and UI Kit unit overlap` job. It runs on an isolated
-runner with the same checkout SHA, Node version, package installation, reuse
-policy and root `npm test` selection as the canonical serial `Production /
-unit tests` job. The diagnostic job alone sets
-`SVITLO_CI_UNIT_OVERLAP_EXPERIMENT=1`. It is excluded from the required
-`Production Quality / verify` dependencies and never replaces the serial
-control; manual diagnostics on other branches and automatic PR gates retain
-their original behavior. The added diagnostic job consumes extra runner
-resources and must be removed or explicitly re-approved before merging #925.
-Do not launch Production Quality without a direct owner request for the
-relevant PR/repair cycle.
-
-The opt-in mode preserves the eight selected workspace test capabilities and
-seven topologically ordered prerequisite builds. All package builds and the
-six smaller workspace tests run sequentially first. The exact current UI Kit
-`test` is `npm run test:logic && npm run test:components`, with no pretest
-or posttest hooks. The logic stage (including nested npm, typecheck and
-locale generation) runs **before** Engine integration tests, whose fixtures
-temporarily create `content/*/package.json` manifests. Only Engine
-`npm run test` and UI Kit `npm run test:components` overlap. Any change to
-the reviewed UI Kit script/hooks or selected test graph stops the experiment.
-
-The job-local Engine `pretest` remains active and must successfully reuse
-fully verified existing Engine outputs. Its build-reuse helper refuses any
-rebuild during overlap; it does not permit shared-state writes across runners
-or change the normal fail-closed verification policy. Both concurrent test
-processes must finish; any failure causes the root command to fail. Timings
-retain the opt-in validated text format, now distinguishing UI Kit logic
-from components in diagnostic mode. Do not infer parity or a speedup before
-source-pinned real tests. CPU/memory contention, temporary fixture isolation
-and final aggregate status must be checked in a matched A/B. On no-go,
-remove the temporary diagnostic job (or revert the experiment) without
-changing canonical workspace test scripts.
-
-Run source-level regressions:
-
-```sh
-node --test scripts/runWorkspaceScript/run-workspace-script.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs
-```
-
 Root `package:build` and `code:lint:check` now execute via the pinned Turbo DAG, not this runner. The remaining root commands preserve their npm lifecycle hooks. See `studio/rules/package-scripts.md` and
 `scripts/ci/productionQuality/README.md`.
 

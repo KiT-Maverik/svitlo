@@ -6,7 +6,6 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import {
   appendBuildTelemetry,
-  assertUnitOverlapBuildAllowed,
   cleanSourceRevision,
   inspectTrackedSourceChanges,
   createPackageBuildReuse,
@@ -65,15 +64,6 @@ function fixture(t, { packages = [ws('a', 'shared/a'), ws('b', 'shared/b', ['a']
     setFailure: value => (failure = value),
   };
 }
-
-test('unit-overlap build guard refuses every rebuild when enabled and leaves baseline untouched', () => {
-  assert.doesNotThrow(() => assertUnitOverlapBuildAllowed('@svitlo/engine', {}));
-  assert.doesNotThrow(() => assertUnitOverlapBuildAllowed('@svitlo/engine', { SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY: '0' }));
-  assert.throws(
-    () => assertUnitOverlapBuildAllowed('@svitlo/engine', { SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY: '1' }),
-    /forbids rebuilding shared dist: @svitlo\/engine/,
-  );
-});
 
 test('builds dependencies topologically once, then reuses verified artifacts', t => {
   const f = fixture(t);

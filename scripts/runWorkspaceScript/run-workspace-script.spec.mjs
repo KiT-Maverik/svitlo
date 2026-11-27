@@ -8,8 +8,6 @@ import {
   planTypecheckPhases,
   environmentForWorkspace,
   formatUnitWorkspaceTiming,
-  planUnitOverlapExperiment,
-  runUnitOverlapPair,
 } from './run-workspace-script.mjs';
 
 const ws = (name, path, scripts, deps = []) => ({
@@ -48,100 +46,6 @@ test('root test planning retains every eligible workspace and npm lifecycle hook
   for (const pkg of packages.filter(pkg => pkg.scripts?.pretest)) {
     assert.ok(expected.includes(pkg.name), 'Missing npm pretest owner: ' + pkg.name);
   }
-});
-
-test('opt-in overlap keeps all builds serial, UI Kit logic before Engine and all tests selected', () => {
-  const packages = discoverWorkspaces();
-  const plan = planWorkspaceOperation(packages, 'test');
-  const phases = planUnitOverlapExperiment(plan, packages);
-  assert.deepEqual(phases.builds, plan.steps.filter(step => step.script === 'package:build'));
-  assert.deepEqual(phases.serial.map(step => step.name), plan.steps
-    .filter(step => step.script === 'test' && !['@svitlo/engine', '@svitlo/ui-kit'].includes(step.name))
-    .map(step => step.name));
-  assert.deepEqual(phases.uiLogic, { name: '@svitlo/ui-kit', script: 'test:logic' });
-  assert.deepEqual(phases.overlap, [
-    { name: '@svitlo/ui-kit', script: 'test:components' },
-    { name: '@svitlo/engine', script: 'test' },
-  ]);
-  assert.deepEqual(
-    [...phases.serial, { name: '@svitlo/engine', script: 'test' }, { name: '@svitlo/ui-kit', script: 'test' }]
-      .map(step => step.name).sort(),
-    plan.selected.slice().sort(),
-  );
-  assert.equal(
-    formatUnitWorkspaceTiming('@svitlo/ui-kit', 'test:components', 1452, true),
-    'SVITLO_CI_UNIT_TIMING @svitlo/ui-kit / test:components 1.5s (success)',
-  );
-});
-
-test('unit overlap refuses changed npm lifecycle, missing suites and duplicate selections', () => {
-  const packages = [
-    ws('@svitlo/engine', 'shared/engine', {
-      test: 'engine',
-      'package:build': 'build',
-      pretest: 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine',
-    }),
-    ws('@svitlo/ui-kit', 'shared/ui-kit', {
-      test: 'npm run test:logic && npm run test:components',
-      'test:logic': 'logic',
-      'test:components': 'vitest run src',
-    }, ['@svitlo/engine']),
-  ];
-  const plan = planWorkspaceOperation(packages, 'test');
-  assert.equal(planUnitOverlapExperiment(plan, packages).overlap.length, 2);
-  assert.throws(
-    () => planUnitOverlapExperiment(plan, packages.map(pkg =>
-      pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, pretest: 'prepare' } } : pkg)),
-    /reviewed Engine\/UI Kit test scripts/,
-  );
-  assert.throws(
-    () => planUnitOverlapExperiment(plan, packages.map(pkg =>
-      pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, test: 'custom' } } : pkg)),
-    /reviewed Engine\/UI Kit test scripts/,
-  );
-  for (const mutatedScript of [
-    { 'test:components': 'npm run generate && vitest run src' },
-    { 'pretest:components': 'node scripts/mutate-dist.mjs' },
-    { 'posttest:logic': 'node scripts/rewrite-source.mjs' },
-  ]) {
-    assert.throws(
-      () => planUnitOverlapExperiment(plan, packages.map(pkg =>
-        pkg.name === '@svitlo/ui-kit' ? { ...pkg, scripts: { ...pkg.scripts, ...mutatedScript } } : pkg)),
-      /reviewed Engine\/UI Kit test scripts/,
-    );
-  }
-  assert.throws(
-    () => planUnitOverlapExperiment(plan, packages.map(pkg =>
-      pkg.name === '@svitlo/engine' ? { ...pkg, scripts: { ...pkg.scripts, posttest: 'write dist' } } : pkg)),
-    /reviewed Engine\/UI Kit test scripts/,
-  );
-  assert.throws(
-    () => planUnitOverlapExperiment({ ...plan, steps: plan.steps.filter(step => step.name !== '@svitlo/engine' || step.script !== 'test') }, packages),
-    /one complete canonical test step/,
-  );
-  assert.throws(
-    () => planUnitOverlapExperiment({ ...plan, steps: [...plan.steps, { name: '@svitlo/ui-kit', script: 'test' }] }, packages),
-    /one complete canonical test step/,
-  );
-});
-
-test('overlapped test failures wait for both workers and propagate every failure', async () => {
-  const pair = [{ name: '@svitlo/engine', script: 'test' }, { name: '@svitlo/ui-kit', script: 'test:components' }];
-  const finished = [];
-  await assert.rejects(
-    runUnitOverlapPair(pair, async step => {
-      await Promise.resolve();
-      finished.push(step.name);
-      throw Error('failure in ' + step.name);
-    }),
-    error => {
-      assert.match(error.message, /engine \/ test: failure in @svitlo\/engine/);
-      assert.match(error.message, /ui-kit \/ test:components: failure in @svitlo\/ui-kit/);
-      return true;
-    },
-  );
-  assert.deepEqual(finished, ['@svitlo/engine', '@svitlo/ui-kit']);
-  await runUnitOverlapPair(pair, async () => {});
 });
 
 test('builds dependencies in order and never builds an eligible package twice', () => {

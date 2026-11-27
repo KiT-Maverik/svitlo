@@ -137,30 +137,6 @@ test('PR comment command dispatches the unchanged full production workflow', () 
   assert.match(workflow, /name: Production Quality \/ verify/);
 });
 
-test('manual PR #925 diagnostics measure serial control and overlap on one SHA without inputs', () => {
-  const unit = workflow.split('\n  unit:\n')[1].split('\n  # Temporary diagnostic')[0];
-  const overlap = workflow.split('\n  unit_overlap_experiment:\n')[1].split('\n  generators:\n')[0];
-  assert.match(unit, /name: Production \/ unit tests/);
-  assert.match(unit, /SVITLO_CI_UNIT_TEST_TIMINGS: '1'/);
-  assert.doesNotMatch(unit, /SVITLO_CI_UNIT_OVERLAP_EXPERIMENT/);
-  assert.match(unit, /npm test/);
-  assert.match(unit, /SVITLO_CI_PACKAGE_BUILD_STATE/);
-  assert.match(overlap, /name: Experiment \/ Engine and UI Kit unit overlap/);
-  assert.match(overlap, /needs: policy/);
-  assert.match(
-    overlap,
-    /if: github\.event_name == 'workflow_dispatch' && github\.ref_name == 'ci\/quality-workflow-rearchitecture'/,
-  );
-  assert.match(overlap, /SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: '1'/);
-  assert.match(overlap, /SVITLO_CI_UNIT_TEST_TIMINGS: '1'/);
-  assert.match(overlap, /npm test/);
-  assert.match(overlap, /SVITLO_CI_PACKAGE_BUILD_STATE/);
-  assert.match(workflow, /workflow_dispatch:\n\npermissions:/);
-  assert.doesNotMatch(workflow, /inputs\.unit_overlap_experiment|unit_overlap_experiment:\s*\n\s*description:/);
-  const verify = workflow.split('\n  verify:\n')[1];
-  assert.doesNotMatch(verify, /needs: \[[^\]]*unit_overlap_experiment/);
-});
-
 test('production typecheck retains exhaustive canonical root command', () => {
   assert.match(workflow, /name: Typecheck all eligible workspaces/);
   assert.match(workflow, /npm run code:check:types/);

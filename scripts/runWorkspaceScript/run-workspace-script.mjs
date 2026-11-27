@@ -135,7 +135,7 @@ export function planTypecheckPhases(plan) {
 export function formatUnitWorkspaceTiming(name, script, durationMs, passed) {
   if (
     !/^@svitlo\/[a-z][a-z0-9-]*$/.test(name) ||
-    !['test', 'test:logic', 'test:components', 'package:build'].includes(script) ||
+    !['test', 'package:build'].includes(script) ||
     !Number.isFinite(durationMs) ||
     durationMs < 0
   ) return null;
@@ -210,129 +210,15 @@ async function executeTypechecks(plan) {
   for (const name of sequential) await runTypecheckAsync(name);
 }
 
-
-/**
- * Opt-in, Linux CI-only experiment. The UI Kit's npm test is currently the
- * exact composition test:logic && test:components without pre/posttest hooks.
- * Run the npm-heavy logic phase BEFORE Engine tests that temporarily create
- * content/* package manifests. Only the component phase may overlap Engine.
- * Fail closed if the manifest or root test selection ever changes.
- */
-export function planUnitOverlapExperiment(plan, packages) {
-  const byName = new Map(packages.map(pkg => [pkg.name, pkg]));
-  const ui = byName.get('@svitlo/ui-kit');
-  const engine = byName.get('@svitlo/engine');
-  if (
-    ui?.scripts?.test !== 'npm run test:logic && npm run test:components' ||
-    ui.scripts['test:components'] !== 'vitest run src' ||
-    ui.scripts.pretest !== undefined ||
-    ui.scripts.posttest !== undefined ||
-    ui.scripts['pretest:logic'] !== undefined ||
-    ui.scripts['posttest:logic'] !== undefined ||
-    ui.scripts['pretest:components'] !== undefined ||
-    ui.scripts['posttest:components'] !== undefined ||
-    engine?.scripts?.pretest !== 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine' ||
-    engine.scripts.posttest !== undefined
-  ) {
-    throw Error('Unit overlap requires reviewed Engine/UI Kit test scripts and lifecycle hooks');
-  }
-
-  const tests = plan.steps.filter(step => step.script === 'test');
-  const builds = plan.steps.filter(step => step.script === 'package:build');
-  if (
-    plan.steps.length !== tests.length + builds.length ||
-    tests.length !== plan.selected.length ||
-    new Set(tests.map(step => step.name)).size !== plan.selected.length ||
-    plan.selected.some(name => !tests.some(step => step.name === name)) ||
-    !tests.some(step => step.name === '@svitlo/engine') ||
-    !tests.some(step => step.name === '@svitlo/ui-kit')
-  ) throw Error('Unit overlap requires one complete canonical test step per eligible workspace');
-
-  return {
-    builds,
-    serial: tests.filter(step => !['@svitlo/engine', '@svitlo/ui-kit'].includes(step.name)),
-    uiLogic: { name: '@svitlo/ui-kit', script: 'test:logic' },
-    overlap: [
-      // Resolve the UI Kit npm workspace before Engine starts its test run,
-      // which later creates temporary content/* fixture workspaces.
-      { name: '@svitlo/ui-kit', script: 'test:components' },
-      { name: '@svitlo/engine', script: 'test' },
-    ],
-  };
-}
-
-/** Wait for both tests and aggregate failures; never turn one failure into a green job. */
-export async function runUnitOverlapPair(steps, run) {
-  const results = await Promise.allSettled(steps.map(step => run(step)));
-  const failures = results.flatMap((result, index) =>
-    result.status === 'rejected'
-      ? [steps[index].name + ' / ' + steps[index].script + ': ' + String(result.reason?.message ?? result.reason)]
-      : [],
-  );
-  if (failures.length) throw Error('Unit overlap failed:\n' + failures.join('\n'));
-}
-
-function runUnitOverlapStepAsync({ name, script }) {
-  console.log('\n▶ ' + name + ' / ' + script + ' (unit overlap)');
-  const startedAt = process.hrtime.bigint();
-  return new Promise((resolveStep, rejectStep) => {
-    const environment = environmentForWorkspace(name);
-    const child = spawn('npm', ['run', script, '--workspace', name], {
-      cwd: repo,
-      env: name === '@svitlo/engine'
-        ? { ...environment, SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY: '1' }
-        : environment,
-      stdio: 'inherit',
-      shell: process.platform === 'win32',
-    });
-    let spawnError = null;
-    child.once('error', error => { spawnError = error; });
-    child.once('close', (code, signal) => {
-      if (process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
-        const line = formatUnitWorkspaceTiming(
-          name, script, Number(process.hrtime.bigint() - startedAt) / 1_000_000,
-          !spawnError && code === 0,
-        );
-        if (line) console.log(line);
-      }
-      if (spawnError || code !== 0) {
-        rejectStep(Error(spawnError?.message || String(signal || 'exit ' + code)));
-      } else resolveStep();
-    });
-  });
-}
-
-async function executeUnitOverlapExperiment(plan, packages) {
-  if (!process.env.SVITLO_CI_PACKAGE_BUILD_STATE || process.platform !== 'linux') {
-    throw Error('Unit overlap requires Linux and an enabled job-local verified build state');
-  }
-  const phases = planUnitOverlapExperiment(plan, packages);
-  console.log(
-    'Experimental unit overlap: prerequisites and other tests serial; ' +
-      'UI Kit logic before Engine; overlap Engine and UI Kit components only.',
-  );
-  for (const step of phases.builds) runStepSync(step);
-  for (const step of phases.serial) runStepSync(step);
-  runStepSync(phases.uiLogic);
-  await runUnitOverlapPair(phases.overlap, runUnitOverlapStepAsync);
-}
-
 export function execute(operation, { onlyWorkspaces } = {}) {
   if (!/^[a-z][a-z0-9-]*(?::[a-z][a-z0-9-]*)*$/.test(operation)) {
     throw Error('Invalid script name: ' + operation);
   }
   // Root CLI remains exhaustive. An explicit selection is available only to
   // CI callers importing this function; dependency builds remain topological.
-  const packages = discoverWorkspaces();
-  const { selected, steps } = planWorkspaceOperation(packages, operation, { onlyWorkspaces });
+  const { selected, steps } = planWorkspaceOperation(discoverWorkspaces(), operation, { onlyWorkspaces });
   console.log('Running ' + operation + ' in ' + selected.length + ' eligible workspaces: ' + selected.join(', '));
   if (operation === 'code:check:types') return executeTypechecks({ selected, steps });
-  if (operation === 'test' && process.env.SVITLO_CI_UNIT_OVERLAP_EXPERIMENT === '1') {
-    return executeUnitOverlapExperiment({ selected, steps }, packages);
-  }
-  if (operation === 'test' && ![undefined, '0'].includes(process.env.SVITLO_CI_UNIT_OVERLAP_EXPERIMENT)) {
-    throw Error('SVITLO_CI_UNIT_OVERLAP_EXPERIMENT must be 0 or 1');
-  }
   for (const step of steps) runStepSync(step);
 }
 
