@@ -927,10 +927,10 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   }
 
   const resolved = structuredClone(fixture);
-  const blocks = resolved.config.introduction;
+  const blocks = resolved.config.introduction as { config: { type: string } & Record<string, unknown> };
   if (blocks.config.type !== 'content') throw new Error('Expected content Section');
   for (const slug of ['link', 'embed']) {
-    const block = blocks.config[slug];
+    const block = blocks.config[slug] as { config: { type: string; locale: { href?: string | Record<string, string> } } };
     if (block.config.type !== 'youtube') throw new Error('Expected YouTube block');
     block.config.locale.href =
       slug === 'link'
