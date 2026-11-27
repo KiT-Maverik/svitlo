@@ -184,7 +184,7 @@ const resolveNamed = (
  * Each built-in flag may appear only once; multiple custom flags are allowed.
  *
  * Relationships connect distinct Flashcards by the OTHER card's UUID in
- * `relatedFlashcardId` (not by slug). Choose a semantic relationship:
+ * `relatedFlashcardId` (not by placement key). Choose a semantic relationship:
  * - Symmetric: `reverse` (opposite recall direction), `equivalent` (same
  *   meaning), `contrast` (a distinction), `complementary` (related facts).
  * - Directed: `prerequisite` (foundation -> dependent), `partOf` (part ->
@@ -227,9 +227,9 @@ export function defineFlashcard<
       relationships?: { items: Relationships; order: string[] };
     };
     content: {
-      front: FlashcardSide_Configurator<Front, Languages> & { items: Front & ChildrenSupporting<Languages, Front> };
-      back: FlashcardSide_Configurator<Back, Languages> & { items: Back & ChildrenSupporting<Languages, Back> };
-      hint?: FlashcardSide_Configurator<Hint, Languages> & { items: Hint & ChildrenSupporting<Languages, Hint> };
+      front: FlashcardSide_Configurator<Front, Languages> & Front & ChildrenSupporting<Languages, Front>;
+      back: FlashcardSide_Configurator<Back, Languages> & Back & ChildrenSupporting<Languages, Back>;
+      hint?: FlashcardSide_Configurator<Hint, Languages> & Hint & ChildrenSupporting<Languages, Hint>;
     };
   },
 ) {
@@ -430,9 +430,9 @@ export function defineFlashcard<
         if (!isRecord(change)) throw new Error('content.' + side + ' must be an object');
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
-        const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
+        const current = initialContent[side] ?? defineFlashcardSide({ children: [] });
         const built = buildChildOverrides(current, change as never) as SidePublication;
-        if (side !== 'hint' && built.base.length === 0) {
+        if (side !== 'hint' && built.base.children.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }
         (output.base.content ??= {})[side] = built.base;
