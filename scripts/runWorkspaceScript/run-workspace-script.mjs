@@ -253,8 +253,10 @@ export function planUnitOverlapExperiment(plan, packages) {
     serial: tests.filter(step => !['@svitlo/engine', '@svitlo/ui-kit'].includes(step.name)),
     uiLogic: { name: '@svitlo/ui-kit', script: 'test:logic' },
     overlap: [
-      { name: '@svitlo/engine', script: 'test' },
+      // Resolve the UI Kit npm workspace before Engine starts its test run,
+      // which later creates temporary content/* fixture workspaces.
       { name: '@svitlo/ui-kit', script: 'test:components' },
+      { name: '@svitlo/engine', script: 'test' },
     ],
   };
 }
