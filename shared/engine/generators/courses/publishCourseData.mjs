@@ -114,7 +114,7 @@ function findLessonPatches(course, languages, mode) {
       throw new Error('Duplicate Course entity ID ' + entity.id + ' at ' + location);
     }
     visited.add(entity.id);
-    if (entity.type === 'episode') return;
+    if (entity.type === 'episode' || entity.type === 'assessment') return;
     if (!['course', 'module', 'chapter'].includes(entity.type)) {
       throw new Error('Unsupported Course entity type at ' + location + ': ' + String(entity.type));
     }
@@ -164,13 +164,7 @@ function compactEntity(value, lessonPatches, language, location, mode) {
       ...(Object.keys(effective).length ? { overrides: effective } : {}),
     };
   }
-  if (value.type === 'episode') {
-    if (!Array.isArray(value.section) || !value.section.length || Object.keys(value.events ?? {}).length)
-      throw new Error('Incomplete Episode or unsupported Episode events: ' + value.id);
-    if (value.section.some(section => !['content', 'practice', 'codingTask', 'learningFlow'].includes(section.type)))
-      throw new Error('Unsupported Episode Section: ' + value.id);
-    return clone(value);
-  }
+  if (value.type === 'episode' || value.type === 'assessment') return clone(value);
   if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.children))
     throw new Error('Invalid Course/Module/Chapter Data for ' + value.id);
   if (new Set(value.children).size !== value.children.length) throw new Error('Duplicate Course placement');
