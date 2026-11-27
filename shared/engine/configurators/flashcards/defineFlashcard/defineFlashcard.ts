@@ -70,7 +70,7 @@ const mergeSideLayers = (original: Record<string, unknown>, changes: Record<stri
   const merged = mergeForValidation(original, changes);
   if (isRecord(changes.content) && isRecord(merged.content)) {
     for (const side of ['front', 'back', 'hint'] as const) {
-      if (Object.hasOwn(changes.content, side)) {
+      if (isRecord(changes.content[side]) && Array.isArray(changes.content[side].children)) {
         merged.content[side] = structuredClone(changes.content[side]);
       }
     }
@@ -460,7 +460,9 @@ export function defineFlashcard<
         if (side !== 'hint' && built.base.children.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }
-        (output.base.content ??= {})[side] = built.base;
+        if (Object.keys(built.base).length) {
+          (output.base.content ??= {})[side] = built.base;
+        }
         addSideFiles(files, side, built);
       }
       validate({ ...candidate, content: effective });
