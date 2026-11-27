@@ -153,7 +153,8 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
     locale: { title: 'Quiz', navigationLabel: 'Q' },
     children: [],
   });
-  const lesson = defineLesson({
+  // Infer the concrete required Quiz placement rather than the empty generic map.
+  const lesson = defineLesson<'requiredLesson', ['en'], { requiredQuiz: typeof disabledQuiz }>({
     type: 'lesson',
     id: id('01'),
     slug: 'requiredLesson',
