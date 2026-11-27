@@ -22,19 +22,32 @@ export function verifyTurboConfiguration(root, lock, config) {
   check(/^npm@\d+\.\d+\.\d+$/.test(root.packageManager || ''), 'Root npm packageManager is required');
   check(root.devDependencies?.turbo === '2.11.13', 'Turbo version must be pinned');
   check(lock.packages?.['']?.devDependencies?.turbo === '2.11.13', 'Turbo lockfile root is out of sync');
-  for (const name of ['turbo', '@turbo/darwin-64', '@turbo/darwin-arm64', '@turbo/linux-64', '@turbo/linux-arm64', '@turbo/windows-64', '@turbo/windows-arm64']) {
+  for (const name of [
+    'turbo',
+    '@turbo/darwin-64',
+    '@turbo/darwin-arm64',
+    '@turbo/linux-64',
+    '@turbo/linux-arm64',
+    '@turbo/windows-64',
+    '@turbo/windows-arm64',
+  ]) {
     const item = lock.packages?.['node_modules/' + name];
-    check(item?.version === '2.11.13' && /^sha512-/.test(item.integrity || ''), 'Missing verified Turbo lock entry: ' + name);
+    check(
+      item?.version === '2.11.13' && /^sha512-/.test(item.integrity || ''),
+      'Missing verified Turbo lock entry: ' + name,
+    );
   }
   check(config.remoteCache?.enabled === false, 'Remote Turbo cache must be disabled');
   for (const operation of turboOperations) {
     const task = config.tasks?.[operation];
     check(Boolean(task), 'Missing Turbo task: ' + operation);
     check(task.cache === false, 'Unverified Turbo caching is forbidden: ' + operation);
-    check(JSON.stringify(task.dependsOn) === JSON.stringify(['^package:build']), 'Unsafe task prerequisites: ' + operation);
     check(
-      /^turbo run /.test(root.scripts?.[operation] || '') &&
-      root.scripts[operation].includes('--cache=local:,remote:'),
+      JSON.stringify(task.dependsOn) === JSON.stringify(['^package:build']),
+      'Unsafe task prerequisites: ' + operation,
+    );
+    check(
+      /^turbo run /.test(root.scripts?.[operation] || '') && root.scripts[operation].includes('--cache=local:,remote:'),
       'Root operation must use uncached Turbo: ' + operation,
     );
   }
@@ -103,7 +116,9 @@ export function verifyTurboGraph(dry, workspaces) {
     const owner = byName.get(id.slice(0, split));
     check(Boolean(owner), 'Unknown task workspace: ' + id);
     const declared = Object.keys({ ...(owner.dependencies || {}), ...(owner.devDependencies || {}) });
-    const needed = declared.filter(name => byName.get(name)?.scripts?.['package:build']).map(name => name + '#package:build');
+    const needed = declared
+      .filter(name => byName.get(name)?.scripts?.['package:build'])
+      .map(name => name + '#package:build');
     const dependencies = new Set(task.dependencies);
     for (const dependency of needed) {
       check(dependencies.has(dependency), 'Missing Turbo dependency edge: ' + id + ' -> ' + dependency);
@@ -112,7 +127,8 @@ export function verifyTurboGraph(dry, workspaces) {
       check(tasks.has(dependency), 'Dangling Turbo prerequisite: ' + id + ' -> ' + dependency);
     }
   }
-  const seen = new Set(), visiting = new Set();
+  const seen = new Set(),
+    visiting = new Set();
   function visit(id) {
     if (visiting.has(id)) throw Error('Cyclic Turbo task graph at ' + id);
     if (seen.has(id)) return;
@@ -130,7 +146,9 @@ export function verifyTurboGraph(dry, workspaces) {
 }
 
 export function verifyLiveTurboGraph() {
-  const root = readJson('package.json'), lock = readJson('package-lock.json'), config = readJson('turbo.json');
+  const root = readJson('package.json'),
+    lock = readJson('package-lock.json'),
+    config = readJson('turbo.json');
   verifyTurboConfiguration(root, lock, config);
   const binary = join(repo, 'node_modules', '.bin', process.platform === 'win32' ? 'turbo.cmd' : 'turbo');
   check(existsSync(binary), 'Run npm ci before verifying Turbo --dry=json');
@@ -140,7 +158,10 @@ export function verifyLiveTurboGraph() {
     maxBuffer: 64 * 1024 * 1024,
     shell: process.platform === 'win32',
   });
-  check(!result.error && result.status === 0, 'Turbo dry-run failed: ' + (result.stderr || result.error?.message || result.status));
+  check(
+    !result.error && result.status === 0,
+    'Turbo dry-run failed: ' + (result.stderr || result.error?.message || result.status),
+  );
   let dry;
   try {
     dry = JSON.parse(result.stdout);
@@ -156,7 +177,15 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
       throw Error('Usage: node scripts/ci/turboTaskGraph/verify-graph.mjs --live');
     }
     const outcome = verifyLiveTurboGraph();
-    console.log('Turbo task graph verified: ' + outcome.tasks + ' tasks (' + outcome.builds + ' builds, ' + outcome.lint + ' lint checks)');
+    console.log(
+      'Turbo task graph verified: ' +
+        outcome.tasks +
+        ' tasks (' +
+        outcome.builds +
+        ' builds, ' +
+        outcome.lint +
+        ' lint checks)',
+    );
   } catch (error) {
     console.error('::error::' + error.message);
     process.exitCode = 1;

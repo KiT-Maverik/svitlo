@@ -72,33 +72,38 @@ test('real Turbo fails closed on a failed prerequisite, then runs the same graph
     scripts: { 'package:build': 'node build.mjs' },
     dependencies: { [upstream]: '0.0.0' },
   });
-  writeFileSync(join(upstreamDir, 'build.mjs'), [
-    "import { writeFileSync } from 'node:fs';",
-    "writeFileSync('build-started.txt', 'yes');",
-    "if (process.env.SVITLO_TURBO_SMOKE_FAIL === '1') process.exit(23);",
-    '',
-  ].join('\n'));
-  writeFileSync(join(downstreamDir, 'build.mjs'), [
-    "import { mkdirSync, writeFileSync } from 'node:fs';",
-    "mkdirSync('dist', { recursive: true });",
-    "writeFileSync('dist/ready.js', 'export const ready = true;\\n');",
-    '',
-  ].join('\n'));
+  writeFileSync(
+    join(upstreamDir, 'build.mjs'),
+    [
+      "import { writeFileSync } from 'node:fs';",
+      "writeFileSync('build-started.txt', 'yes');",
+      "if (process.env.SVITLO_TURBO_SMOKE_FAIL === '1') process.exit(23);",
+      '',
+    ].join('\n'),
+  );
+  writeFileSync(
+    join(downstreamDir, 'build.mjs'),
+    [
+      "import { mkdirSync, writeFileSync } from 'node:fs';",
+      "mkdirSync('dist', { recursive: true });",
+      "writeFileSync('dist/ready.js', 'export const ready = true;\\n');",
+      '',
+    ].join('\n'),
+  );
 
   function run(fail) {
-    const outcome = spawnSync(turbo, [
-      'run', 'package:build',
-      '--filter=' + downstream,
-      '--concurrency=2',
-      '--cache=local:,remote:',
-    ], {
-      cwd: dir,
-      env: { ...process.env, SVITLO_TURBO_SMOKE_FAIL: fail ? '1' : '0' },
-      encoding: 'utf8',
-      timeout: 60000,
-      maxBuffer: 1024 * 1024,
-      shell: process.platform === 'win32',
-    });
+    const outcome = spawnSync(
+      turbo,
+      ['run', 'package:build', '--filter=' + downstream, '--concurrency=2', '--cache=local:,remote:'],
+      {
+        cwd: dir,
+        env: { ...process.env, SVITLO_TURBO_SMOKE_FAIL: fail ? '1' : '0' },
+        encoding: 'utf8',
+        timeout: 60000,
+        maxBuffer: 1024 * 1024,
+        shell: process.platform === 'win32',
+      },
+    );
     assert.ifError(outcome.error);
     const diagnostics = (outcome.stderr || '') + '\n' + (outcome.stdout || '');
     assert.notEqual(outcome.signal, 'SIGTERM', diagnostics.slice(-1800));
@@ -108,11 +113,16 @@ test('real Turbo fails closed on a failed prerequisite, then runs the same graph
   const failed = run(true);
   assert.notEqual(failed.outcome.status, 0, 'Turbo masked upstream failure: ' + failed.diagnostics.slice(-1800));
   assert.ok(existsSync(join(upstreamDir, 'build-started.txt')), 'Prerequisite must actually execute');
-  assert.equal(existsSync(join(downstreamDir, 'dist', 'ready.js')), false,
-    'A failed prerequisite must prevent dependent compiled artifacts and the export gate');
+  assert.equal(
+    existsSync(join(downstreamDir, 'dist', 'ready.js')),
+    false,
+    'A failed prerequisite must prevent dependent compiled artifacts and the export gate',
+  );
 
   const repaired = run(false);
   assert.equal(repaired.outcome.status, 0, 'Repaired graph must succeed: ' + repaired.diagnostics.slice(-1800));
-  assert.ok(existsSync(join(downstreamDir, 'dist', 'ready.js')),
-    'Successful prerequisites must allow downstream artifacts');
+  assert.ok(
+    existsSync(join(downstreamDir, 'dist', 'ready.js')),
+    'Successful prerequisites must allow downstream artifacts',
+  );
 });

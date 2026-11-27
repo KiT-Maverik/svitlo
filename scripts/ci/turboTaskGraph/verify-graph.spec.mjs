@@ -26,7 +26,10 @@ const graph = () => ({
   tasks: [
     { taskId: '@svitlo/engine#package:build', dependencies: [] },
     { taskId: '@svitlo/ui-kit#package:build', dependencies: ['@svitlo/engine#package:build'] },
-    { taskId: '@svitlo/math#package:build', dependencies: ['@svitlo/engine#package:build', '@svitlo/ui-kit#package:build'] },
+    {
+      taskId: '@svitlo/math#package:build',
+      dependencies: ['@svitlo/engine#package:build', '@svitlo/ui-kit#package:build'],
+    },
     { taskId: '@svitlo/ui-kit#code:lint:check', dependencies: ['@svitlo/engine#package:build'] },
     { taskId: '@svitlo/host#code:lint:check', dependencies: ['@svitlo/ui-kit#package:build'] },
   ],
@@ -131,8 +134,13 @@ test('Scene/style textbooks must declare UI Kit and Turbo must order its build',
   const build = 'node ../../scripts/textbook-tooling/buildTextbook/build.mjs';
   const engine = pkg('@svitlo/engine', { 'package:build': 'compile' });
   const uiKit = pkg('@svitlo/ui-kit', { 'package:build': 'compile' }, { '@svitlo/engine': '0.0.0' });
-  const sceneBook = pkg('@svitlo/scene-book', { 'package:build': build },
-    { '@svitlo/engine': '0.0.0' }, {}, { './scenes': { default: './dist/scenes/index.js' } });
+  const sceneBook = pkg(
+    '@svitlo/scene-book',
+    { 'package:build': build },
+    { '@svitlo/engine': '0.0.0' },
+    {},
+    { './scenes': { default: './dist/scenes/index.js' } },
+  );
   const dry = {
     tasks: [
       { taskId: '@svitlo/engine#package:build', dependencies: [] },
@@ -159,7 +167,9 @@ test('Scene/style textbooks must declare UI Kit and Turbo must order its build',
 
 test('every real Scene/style textbook declares both builder prerequisites', () => {
   const workspaces = discoverWorkspaces();
-  const builder = workspaces.filter(w => w.scripts?.['package:build']?.includes('scripts/textbook-tooling/buildTextbook/build.mjs'));
+  const builder = workspaces.filter(w =>
+    w.scripts?.['package:build']?.includes('scripts/textbook-tooling/buildTextbook/build.mjs'),
+  );
   const scenes = builder.filter(w => w.exports?.['./scenes'] || w.exports?.['./styles']);
   assert.ok(scenes.length >= 5, 'Fixture must exercise actual Scene-bearing textbooks');
   for (const book of scenes) {
