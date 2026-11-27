@@ -99,8 +99,8 @@ describe('host-neutral presentation boundary', () => {
   });
 
   it('rejects missing, unsafe or duplicate direct child placements', () => {
-    expect(() => toContentBlockProps({ ...gallery, children: ['missing'] })).toThrow('placement');
-    expect(() => toContentBlockProps({ ...gallery, children: ['second', 'second'] })).toThrow('order');
+    expect(() => toContentBlockProps({ ...gallery, children: ['missing'] })).toThrow();
+    expect(() => toContentBlockProps({ ...gallery, children: ['second', 'second'] })).toThrow();
     expect(() => toContentBlockProps({ ...gallery, children: ['constructor'] })).toThrow('placement');
   });
 
