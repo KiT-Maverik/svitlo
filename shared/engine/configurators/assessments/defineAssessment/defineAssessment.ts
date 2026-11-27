@@ -273,7 +273,7 @@ export const defineAssessment = <
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(translated.invariant).length ? { locale: translated.invariant } : {}),
         before: beforeBuilt.base,
-        quiz: quizBuilt.base,
+        quiz: quizBuilt.base as Assessment_DataBase['quiz'],
         after: afterBuilt.base,
       },
       locale: Object.keys(files).length ? files : undefined,
