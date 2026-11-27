@@ -294,10 +294,7 @@ export const defineAssessment = <
     const AddedBefore extends Record<string, Assessment_Content_Section_Configurator> = {},
     const AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
   >(
-    patch: Assessment_Overrides<PhaseChildMap<Before>, Quiz, PhaseChildMap<After>, AddedBefore, AddedAfter> & {
-      before?: AddedBefore & ChildrenSupporting<Languages, AddedBefore> & SafePlacementMap<AddedBefore>;
-      after?: AddedAfter & ChildrenSupporting<Languages, AddedAfter> & SafePlacementMap<AddedAfter>;
-    },
+    patch: Assessment_Overrides<PhaseChildMap<Before>, Quiz, PhaseChildMap<After>, AddedBefore, AddedAfter>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
