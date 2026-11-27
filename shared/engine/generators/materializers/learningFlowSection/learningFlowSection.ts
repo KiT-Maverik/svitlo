@@ -256,7 +256,7 @@ export function materializeLearningFlowSection(config: Source, options: Options)
       name +
       ' = defineLearningFlowSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
