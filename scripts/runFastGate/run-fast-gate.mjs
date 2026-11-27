@@ -112,9 +112,14 @@ export function chooseChecks(changed, workspaces, { publicChanges = [], changedO
     if (pkg) affected.add(pkg.name);
     if (pkg && file === pkg.path + '/package.json') triggers.add(pkg.name);
   }
-  // Non-develop Ready PRs typecheck only directly edited workspaces.
-  // Their dependency builds are still prepared later for TypeScript resolution.
-  if (changedOnly) return { affected };
+  // Non-develop Ready PRs ordinarily check directly edited workspaces.
+  // Root dependency and TypeScript configuration changes can affect every
+  // workspace, however: a zero-target result is unsafe even in a nested PR.
+  // Dependency builds are still prepared later for TypeScript resolution.
+  if (changedOnly) {
+    if (global || lockChange) for (const name of packages.keys()) affected.add(name);
+    return { affected };
+  }
   for (const file of publicChanges) {
     const pkg = packageFor(file, workspaces);
     if (pkg) triggers.add(pkg.name);
