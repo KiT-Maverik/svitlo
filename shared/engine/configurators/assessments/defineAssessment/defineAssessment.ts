@@ -129,6 +129,12 @@ const validate = (config: Assessment_Config): void => {
   }
 };
 
+/** Exclude the structural order field from direct, literal-key child inference. */
+type PhaseChildMap<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]:
+    Group[Key] extends Assessment_Content_Section_Configurator ? Group[Key] : never;
+};
+
 /**
  * A Course-owned Assessment selects already-authored Questions through Quiz Sections.
  * It never owns Question/Flashcard banks, Lesson Skills or Episode events.
@@ -138,19 +144,21 @@ const validate = (config: Assessment_Config): void => {
 export const defineAssessment = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
-  const Before extends Record<string, Assessment_Content_Section_Configurator> = {},
+  const Before extends { children: string[] } = { children: string[] },
   const Quiz extends Assessment_Quiz_Configurator = Assessment_Quiz_Configurator,
-  const After extends Record<string, Assessment_Content_Section_Configurator> = {},
+  const After extends { children: string[] } = { children: string[] },
 >(
   config: Omit<Assessment_Config, 'slug' | 'params' | 'locale' | 'before' | 'quiz' | 'after'> & {
     slug: Slug;
     params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Assessment_Config['locale'], Languages>;
-    before?: { children: Extract<keyof Before, string>[] } & Before &
-      ChildrenSupporting<Languages, Before> & SafePlacementMap<Before>;
+    before?: Before & { children: Extract<Exclude<keyof Before, 'children'>, string>[] } &
+      PhaseChildMap<Before> & ChildrenSupporting<Languages, PhaseChildMap<Before>> &
+      SafePlacementMap<PhaseChildMap<Before>>;
     quiz: Quiz;
-    after?: { children: Extract<keyof After, string>[] } & After &
-      ChildrenSupporting<Languages, After> & SafePlacementMap<After>;
+    after?: After & { children: Extract<Exclude<keyof After, 'children'>, string>[] } &
+      PhaseChildMap<After> & ChildrenSupporting<Languages, PhaseChildMap<After>> &
+      SafePlacementMap<PhaseChildMap<After>>;
   },
 ) => {
   const metadataSchema = assessment_Config_Schema.omit({ before: true, quiz: true, after: true });
@@ -286,7 +294,7 @@ export const defineAssessment = <
     const AddedBefore extends Record<string, Assessment_Content_Section_Configurator> = {},
     const AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
   >(
-    patch: Assessment_Overrides<Before, Quiz, After, AddedBefore, AddedAfter> & {
+    patch: Assessment_Overrides<PhaseChildMap<Before>, Quiz, PhaseChildMap<After>, AddedBefore, AddedAfter> & {
       before?: AddedBefore & ChildrenSupporting<Languages, AddedBefore> & SafePlacementMap<AddedBefore>;
       after?: AddedAfter & ChildrenSupporting<Languages, AddedAfter> & SafePlacementMap<AddedAfter>;
     },
