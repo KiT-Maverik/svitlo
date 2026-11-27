@@ -294,14 +294,14 @@ describe('Engine Props Lesson Controller', () => {
       slug: 'audioRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(95, 'Listen to a bell')], back: [text(96, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(95, 'Listen to a bell') }, back: { children: ['answer'], answer: text(96, 'A bell') } },
     };
     const alternative: Flashcard_Data = {
       id: uuid(97),
       slug: 'textRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
-      content: { front: [text(98, 'Which object rings?')], back: [text(99, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(98, 'Which object rings?') }, back: { children: ['answer'], answer: text(99, 'A bell') } },
     };
     response.section = [
       {
@@ -334,7 +334,7 @@ describe('Engine Props Lesson Controller', () => {
       slug: 'audioOnly',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(102, 'Hear this sound')], back: [text(103, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(102, 'Hear this sound') }, back: { children: ['answer'], answer: text(103, 'A bell') } },
     };
     response.section = [
       {
@@ -369,11 +369,11 @@ describe('Engine Props Lesson Controller', () => {
       params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
       locale: {},
       content: {
-        question: [text(27, 'Question about light')] as [ContentBlock_Text_Data],
+        question: { children: ['prompt'], prompt: text(27, 'Question about light') },
         answers: {
-          correct: { radiation: text(28, 'Radiation') },
-          incorrect: { sound: text(29, 'Sound') },
-          distractors: {},
+          correct: { children: ['radiation'], radiation: text(28, 'Radiation') },
+          incorrect: { children: ['sound'], sound: text(29, 'Sound') },
+          distractors: { children: [] },
         },
       },
     };
