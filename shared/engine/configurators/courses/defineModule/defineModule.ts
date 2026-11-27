@@ -27,6 +27,7 @@ import {
 } from '../../_shared__configurators';
 import {
   module_Config_Schema,
+  module_Metadata_Config_Schema,
   module_Data_Schema,
   module_Override_Config_Schema,
   type Module_Child,
@@ -147,7 +148,7 @@ export const defineModule = <
     locale: RequireLanguages<Module_Config['locale'], Languages>;
   } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
 ): Module_Configurator<Slug, Items, Languages> => {
-  const metadataSchema = module_Config_Schema.omit({ children: true });
+  const metadataSchema = module_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
   const authored: Omit<Module_Config, 'children'> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
