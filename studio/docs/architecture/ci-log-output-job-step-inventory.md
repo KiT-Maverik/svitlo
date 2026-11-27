@@ -339,3 +339,273 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 5. episode-stage5-${{ github.run_id }} — **provider**
 6. node trusted/scripts/ci/episodeMaterialization/episode-transaction.mjs publish — **direct CLI/shell**; code: `scripts/ci/episodeMaterialization/episode-transaction.mjs`
 
+### `fast-gate.yml`
+
+**Job `verify`** — needs: `—`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. Reuse successful required result on description edits — **direct CLI/shell**; code: `scripts/ci/requiredCheckReuse/required-check-reuse.mjs`
+3. Detect whether this PR needs typechecks — **protocol/diagnostics (raw)**; if: `steps.reuse.outputs.reuse != 'true'`
+4. Explain lightweight Draft validation — **direct CLI/shell**; if: `github.event_name == 'pull_request' && github.event.pull_request.draft`
+5. actions/setup-node@v5 — **provider**; if: `steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (git`
+6. Install pinned dependencies for typechecking — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`; if: `steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (git`
+7. Verify symbol-aware Course stub guard — **native Node dot**; code: `scripts/ci/checkStubImports/check-stub-imports.spec.mjs`; if: `steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (git`
+8. Reject newly introduced Course stub imports and uses — **direct CLI/shell**; code: `scripts/ci/checkStubImports/check-stub-imports.mjs`; if: `steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && gith`
+9. Typecheck changed workspaces and public API consumers — **direct CLI/shell**; code: `scripts/runFastGate/run-fast-gate.mjs`; if: `steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !g`
+10. Manually requested typechecks — **direct CLI/shell**; code: `scripts/runFastGate/run-fast-gate.mjs`; if: `github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'`
+11. 'Validated Ready scope v1 / ${{ github.event.pull_request.number }} / ${{ github.event.pull_request.head.ref }} / ${{ gi — **direct CLI/shell**; if: `success() && github.event_name == 'pull_request' && !github.event.pull_request.d`
+
+
+### `frontend-components.yml`
+
+**Job `verify`** — needs: `—`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. node scripts/ci/quietRun/quiet-run.mjs -- npm run test:components:coverage — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. node scripts/ci/quietRun/quiet-run.mjs -- npm test — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+8. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+
+
+### `get-lesson.yml`
+
+**Job `resolve`** — needs: `—`; if: `>-`.
+
+1. Authorize actor and pin same-repo PR before any checkout — **protocol/diagnostics (raw)**
+
+**Job `analyze`** — needs: `resolve`; if: `needs.resolve.outputs.valid == 'true'`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned parser dependencies safely — **direct CLI/shell**
+4. Run immutable-source static scan — **direct CLI/shell**; code: `shared/engine/scripts/queryLessons/query-lessons.mjs`
+5. Upload report only as Actions artifact — **provider**
+
+
+### `lesson-materialization.yml`
+
+**Job `typed-resolve`** — needs: `—`; if: `>-`.
+
+1. Check out immutable trusted command gate from default branch — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Authorize actor and locate pinned Lesson source — **direct CLI/shell**; code: `scripts/ci/lessonMaterialization/lesson-typed-gate.mjs`
+
+**Job `typed-analyze`** — needs: `typed-resolve`; if: `—`.
+
+1. Check out pinned trusted Engine and worker — **provider**
+2. Check out pinned Lesson commit for isolated execution — **provider**
+3. actions/setup-node@v5 — **provider**
+4. Install and build only trusted Engine code — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. Execute pinned Lesson entrypoint in isolated worker without GitHub credentials — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs`
+6. Retain source-pinned and SHA256-attested analysis evidence — **provider**
+
+**Job `typed-publish`** — needs: `[typed-resolve, typed-analyze]`; if: `needs.typed-analyze.result == 'success'`.
+
+1. Check out pinned trusted publisher with no dependencies — **provider**
+2. Check out pinned Lesson HEAD as data, never execute it — **provider**
+3. actions/setup-node@v5 — **provider**
+4. Download the exact read-only analyzer artifact — **provider**
+5. Verify source HEAD, blob and manifest before atomic commit — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs`
+
+
+### `mobile.yml`
+
+**Job `web`** — needs: `—`; if: `github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:check:bundle --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types:prepared --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check --workspace @svitlo/adapter-capacitor — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+8. node scripts/ci/quietRun/quiet-run.mjs -- npm run test --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+9. node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- playwright install chromium --with-deps — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+10. node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+
+**Job `android`** — needs: `—`; if: `github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. actions/setup-java@v5 — **provider**
+4. gradle/actions/setup-gradle@v5 — **provider**
+5. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+8. Compile debug APK without signing — **direct CLI/shell**
+
+**Job `ios`** — needs: `—`; if: `github.event_name == 'workflow_dispatch'`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync ios — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. Build simulator application without code signing — **direct CLI/shell**
+
+
+### `pr-auto-format.yml`
+
+**Job `format`** — needs: `—`; if: `—`.
+
+1. Check out PR head or explicitly dispatched branch — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned Prettier without running package scripts — **direct CLI/shell**
+4. Auto-fix changed PR files — **direct CLI/shell**; if: `>-`
+5. Independently check formatting on the latest commit — **direct CLI/shell**; if: `github.event_name == 'workflow_dispatch'`
+6. Stage formatting fixes — **protocol/diagnostics (raw)**; if: `>-`
+7. Require fork contributors to format their own PRs — **direct CLI/shell**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
+8. Create formatter GitHub App token — **provider**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
+9. Commit formatting fixes to PR source branch — **direct CLI/shell**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
+10. Re-run required checks on formatted commit — **direct CLI/shell**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
+
+
+### `pr-clear-blocked-on-merge.yml`
+
+**Job `cleanup`** — needs: `—`; if: `github.event.pull_request.merged == true`.
+
+1. Remove obsolete blocker label — **provider**
+
+
+### `pr-labeler.yml`
+
+**Job `apply`** — needs: `—`; if: `github.event.action != 'edited' || github.event.changes.base != null || github.event.changes.title != null`.
+
+1. actions/labeler@v7 — **provider**
+2. Fallback repository scope and integration role — **provider**
+
+
+### `production-quality-command.yml`
+
+**Job `dispatch`** — needs: `—`; if: `>-`.
+
+1. Resolve PR and dispatch full Production Quality — **protocol/diagnostics (raw)**
+
+
+### `production-quality.yml`
+
+**Job `reuse`** — needs: `—`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. Check prior required result — **direct CLI/shell**; code: `scripts/ci/requiredCheckReuse/required-check-reuse.mjs`
+
+**Job `policy`** — needs: `reuse`; if: `(github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft) && needs.reuse.outputs.reuse != 'tru`.
+
+1. actions/checkout@v5 — **provider**
+2. Test production source and parallel workflow contracts — **native Node dot**; code: `scripts/ci/releaseSource/check-release-source.spec.mjs`, `scripts/ci/productionQuality/production-quality.spec.mjs`, `scripts/ci/turboTaskGraph/verify-graph.spec.mjs`
+3. Reject non-develop production source — **direct CLI/shell**; code: `scripts/ci/releaseSource/check-release-source.mjs`; if: `github.event_name == 'pull_request'`
+4. Discover all applications and their E2E contracts — **direct CLI/shell**; code: `scripts/ci/productionQuality/plan-app-matrix.mjs`
+
+**Job `repository`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Verify workspace integrity and build reuse regressions — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+
+**Job `types`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Initialize job-local package build reuse — **protocol/diagnostics (raw)**
+5. Typecheck all eligible workspaces — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. Report package build reuse — **direct CLI/shell**; code: `scripts/ci/packageBuildReuse/package-build-reuse.mjs`; if: `always()`
+
+**Job `unit`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Initialize job-local package build reuse — **protocol/diagnostics (raw)**
+5. Test every eligible workspace — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. Report package build reuse — **direct CLI/shell**; code: `scripts/ci/packageBuildReuse/package-build-reuse.mjs`; if: `always()`
+
+**Job `generators`** — needs: `policy`; if: `—`; reusable: `./.github/workflows/engine-generators.yml`.
+
+No direct steps (reusable/orchestrator job).
+
+**Job `components`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Initialize job-local package build reuse — **protocol/diagnostics (raw)**
+5. Test Playground and Web without rerunning UI Kit or Math suites — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/productionQuality/run-selected-components.mjs`
+6. Report package build reuse — **direct CLI/shell**; code: `scripts/ci/packageBuildReuse/package-build-reuse.mjs`; if: `always()`
+
+**Job `lint`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Lint all eligible workspaces — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+
+**Job `packages`** — needs: `policy`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Verify Turborepo task DAG against eligible workspaces — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. Verify failed Turbo prerequisite blocks downstream builds — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/turboTaskGraph/verify-execution.spec.mjs`
+6. Build all distributable packages — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. Verify compiled public package artifacts — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+
+**Job `apps`** — needs: `policy`; if: `—`; matrix: `${{ fromJSON(needs.policy.outputs.apps) }}`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Install pinned dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. Initialize job-local package build reuse — **protocol/diagnostics (raw)**
+5. Select explicit controlled content for the universal Web host — **protocol/diagnostics (raw)**; if: `matrix.workspace == '@svitlo/web'`
+6. Build application and all needed workspace dependencies — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. Validate compiled Mobile offline bundle — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`; if: `matrix.workspace == '@svitlo/mobile'`
+8. Validate compiled application resources — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`; if: `matrix.integration`
+9. Install Chromium only for applications with E2E suites — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`; if: `matrix.e2e`
+10. Run application E2E suite — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`; if: `matrix.e2e`
+11. Report package build reuse — **direct CLI/shell**; code: `scripts/ci/packageBuildReuse/package-build-reuse.mjs`; if: `always()`
+12. production-quality-${{ matrix.slug }}-test-results — **provider**; if: `always()`
+
+**Job `verify`** — needs: `[reuse, policy, repository, types, unit, generators, components, lint, packages, apps]`; if: `>-`.
+
+1. Require every production validation suite to succeed — **direct CLI/shell**
+2. 'Validated Ready scope v1 / ${{ github.event.pull_request.number }} / ${{ github.event.pull_request.head.ref }} / ${{ gi — **direct CLI/shell**; if: `success() && github.event_name == 'pull_request' && !github.event.pull_request.d`
+
+
+### `repository-git-audit.yml`
+
+**Job `audit`** — needs: `—`; if: `>-`.
+
+1. Check out full default-branch history and refs — **provider**
+2. actions/setup-node@v5 — **provider**
+3. Verify the read-only audit collector — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/gitAudit/git-audit.spec.mjs`
+4. Analyze reachable objects and snapshot history — **direct CLI/shell**; code: `scripts/gitAudit/git-audit.mjs`
+5. Publish human-readable run summary — **protocol/diagnostics (raw)**
+6. Upload full JSON and Markdown reports — **provider**
+
+
+### `sync-labels.yml`
+
+**Job `synchronize`** — needs: `—`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. Rename legacy labels and synchronize the canonical catalogue — **provider**
+
+
+### `ui-kit-storybook.yml`
+
+**Job `storybook`** — needs: `—`; if: `—`.
+
+1. actions/checkout@v5 — **provider**
+2. actions/setup-node@v5 — **provider**
+3. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+4. node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+5. node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/ui-kit — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+6. node scripts/ci/quietRun/quiet-run.mjs -- npm run storybook:build --workspace @svitlo/ui-kit — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+7. Verify story inventory, generated docs and shared flags — **direct CLI/shell**; code: `shared/ui-kit/storybook-static/index.js`
+8. Install Chromium for browser preview smoke — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
+9. Verify actual stories, Docs, Controls and shared flags in Chromium — **direct CLI/shell**
+
