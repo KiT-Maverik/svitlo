@@ -129,11 +129,21 @@ describe('DB', { concurrency: false }, () => {
   describe('Controllers', () => {
     describe('createLessonState', () => {
       describe('Integration', () => {
-        it('should persist a new lesson run before resolving', async () => {
-          const created = await createLessonState('lesson-a');
-          assert.equal(created.status, 'new');
-          assert.ok(created.id.length > 0);
-          assert.deepEqual(await readStored('lessonStates', created.id), created);
+        it('should create distinct, independently persisted runs for the same lesson', async () => {
+          const first = await createLessonState('lesson-a');
+          const second = await createLessonState('lesson-a');
+          assert.equal(first.status, 'new');
+          assert.equal(second.status, 'new');
+          assert.notEqual(first.id, second.id);
+          assert.ok(first.id.length > 0 && second.id.length > 0);
+          assert.deepEqual(await readStored('lessonStates', first.id), first);
+          assert.deepEqual(await readStored('lessonStates', second.id), second);
+          assert.deepEqual(await getLessonState(first.id), first);
+          assert.deepEqual(await getLessonState(second.id), second);
+          assert.deepEqual(
+            (await listLessonStates('lesson-a')).map(state => state.id).sort(),
+            [first.id, second.id].sort(),
+          );
         });
 
         it('should reject an empty lesson ID without creating a record', async () => {
@@ -331,11 +341,18 @@ describe('DB', { concurrency: false }, () => {
           assert.deepEqual(await readStored('quizStates', created.id), created);
         });
 
-        it('should generate distinct IDs for separate runs of the same quiz', async () => {
+        it('should create distinct, independently persisted runs for the same quiz', async () => {
           const first = await createQuizState('quiz-a');
           const second = await createQuizState('quiz-a');
           assert.notEqual(first.id, second.id);
-          assert.equal((await listQuizStates('quiz-a')).length, 2);
+          assert.deepEqual(await readStored('quizStates', first.id), first);
+          assert.deepEqual(await readStored('quizStates', second.id), second);
+          assert.deepEqual(await getQuizState(first.id), first);
+          assert.deepEqual(await getQuizState(second.id), second);
+          assert.deepEqual(
+            (await listQuizStates('quiz-a')).map(state => state.id).sort(),
+            [first.id, second.id].sort(),
+          );
         });
 
         it('should reject an empty quiz ID without a persisted record', async () => {
