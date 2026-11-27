@@ -44,6 +44,8 @@ test('Turbo tasks match current canonical npm scripts, with explicit task prereq
   assert.equal(turbo.tasks.test.cache, false);
   assert.equal(turbo.tasks['code:check:types'].cache, false);
   assert.deepEqual(focus, workspaces.map(x => x.name));
+  const root = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
+  assert.match(root.packageManager, /^npm@\\d+\\.\\d+\\.\\d+$/, 'Turborepo requires a root npm packageManager for workspace graph detection');
 });
 
 test('dry-run graph includes nine real tasks and both runtime + development dependency edges', () => {
@@ -154,6 +156,8 @@ test('workflow preserves existing CI and exposes opt-in modes on distinct concur
   assert.match(workflow, /name: Publisher isolation \/ no npm dependencies/);
   assert.match(workflow, /name: Turbo PoC A \/ single runner/);
   assert.match(workflow, /--filter=@svitlo\/math/);
+  assert.doesNotMatch(workflow, /TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK/);
+  assert.doesNotMatch(groupWorkflow, /TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK/);
   const production = readFileSync(new URL('../../../.github/workflows/production-quality.yml', import.meta.url), 'utf8');
   assert.doesNotMatch(production, /turbo-poc|turbo-single|turbo-distributed|turbo-hybrid/);
   assert.equal(production.split('name: Production Quality / verify').length - 1, 1);
