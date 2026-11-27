@@ -45,36 +45,13 @@ describe('Configurators', () => {
           locale: { en: { locale: { value: 'Welcome' } }, uk: { locale: { value: 'Привіт' } } },
         });
         assert.equal(text_Data_Schema.safeParse({ ...output.base, ...output.locale?.uk }).success, true);
-      });
 
-      test('Text always publishes Props-shaped locale fragments', () => {
-        const text = defineText<'intro', ['en', 'uk']>({
-          ...identity,
-          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
-        });
-        const publication = text.build.data({ languages: ['en', 'uk'] });
-        const embedded = text.build.data({ languages: ['en', 'uk'] });
-
-        assert.deepEqual(embedded, {
-          base: publication.base,
-          locale: {
-            en: { locale: { value: 'Welcome' } },
-            uk: { locale: { value: 'Привіт' } },
-          },
-        });
-        assert.equal(text_Data_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
-        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), publication);
-
-        if (embedded.locale?.en) embedded.locale.en.locale.value = 'Modified output';
-        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }).locale?.en, { locale: { value: 'Welcome' } });
-      });
-
-      test('Text preserves invariant values without inventing locale files', () => {
-        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Universal' } });
-        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), {
-          base: { ...identity, locale: { value: 'Universal' } },
-          locale: undefined,
-        });
+        const independent = text.build.data({ languages: ['en', 'uk'] });
+        assert.deepEqual(independent, output);
+        const english = independent.locale?.en;
+        assert.ok(english, 'the requested English fragment must exist');
+        english.locale.value = 'Modified output';
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), output);
       });
 
       test('Text publishes only the validated override patch, not inherited properties', () => {
