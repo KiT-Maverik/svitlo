@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
+
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
@@ -8,39 +10,28 @@ import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
-import {
-  assessment_Data_Schema,
-  type Assessment_Data,
-} from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Assessment_Data } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
-import {
-  episode_Data_Schema,
-  type Episode_Data,
-  type Episode_Draft_Data,
-} from '../../episodes/defineEpisode/defineEpisode.schemas';
+import type { Episode_Data, Episode_Draft_Data } from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import {
-  lesson_Data_Schema,
-  type Lesson_Data,
-  type Lesson_Draft_Data,
-} from '../../lessons/defineLesson/defineLesson.schemas';
+import type { Lesson_Data, Lesson_Draft_Data } from '../../lessons/defineLesson/defineLesson.schemas';
 import {
   coursePrerequisiteTargets_Schema,
   courseSkillTargets_Schema,
   uniqueSkillTargetIds_Schema,
 } from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import { chapter_Data_Schema, type Chapter_Data } from '../defineChapter/defineChapter.schemas';
+import type { Chapter_Data } from '../defineChapter/defineChapter.schemas';
 import type {
   Assessment_Stub_Configurator,
   Episode_Stub_Configurator,
   Lesson_Stub_Configurator,
 } from '../defineCourseChildStubs/defineCourseChildStubs';
 import type { Module_Configurator } from '../defineModule/defineModule';
-import { module_Data_Schema, type Module_Data } from '../defineModule/defineModule.schemas';
+import type { Module_Data } from '../defineModule/defineModule.schemas';
 
 /** Course audience and educational-standard references describe scope, never certification. */
 
@@ -121,15 +112,22 @@ export type Course_Overrides<
 > = Course_Metadata_Overrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & { [Key in keyof Items]?: never };
+    additionalItems?: Added & SafePlacementMap<Added> & { [Key in keyof Items]?: never };
     order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
   };
 };
 
-export const course_Data_Schema = identity.extend({
-  ...addUnifiedLocale(locale('data')),
-  content: z.array(
-    z.union([module_Data_Schema, chapter_Data_Schema, lesson_Data_Schema, episode_Data_Schema, assessment_Data_Schema]),
-  ),
-});
+export const course_Data_Schema = identity
+  .extend({
+    ...addUnifiedLocale(locale('data')),
+    children: z.array(z.string()),
+  })
+  // Dynamic placement keys are validated at this boundary; never recursively
+  // reparse child-owned internal content or treat semantic roles as children.
+  .catchall(z.unknown())
+  .superRefine((value, context) => {
+    for (const issue of validateSlugAddressedContainer(value, ['module', 'chapter', 'lesson', 'episode', 'assessment'])) {
+      context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+  });
 export type Course_Data = z.infer<typeof course_Data_Schema>;

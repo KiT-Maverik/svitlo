@@ -1,3 +1,4 @@
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -10,6 +11,7 @@ import type {
 import {
   buildChildData,
   buildChildOverrides,
+  mayReuseCompletedLesson,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -19,14 +21,10 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateRequestedPublication,
+  validateSlugAddressedPublication,
+  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { assessment_Data_Schema } from '../../assessments/defineAssessment';
-import { episode_Data_Schema } from '../../episodes/defineEpisode';
-import { lesson_Data_Schema } from '../../lessons/defineLesson';
-import { chapter_Data_Schema } from '../defineChapter';
-import { module_Data_Schema } from '../defineModule';
 import {
   course_Config_Schema,
   course_Data_Schema,
@@ -54,12 +52,13 @@ type CoursePublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Course_Data>>> | undefined;
 };
-type CourseDataBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Course_Locale<'data'>>;
-  content: DeepPartial<Course_Child_Data>[];
-};
+  children: Extract<keyof Items, string>[];
+} & { [Key in keyof Items]: DeepPartial<Extract<Course_Child_Data, { type: Items[Key]['type'] }>> };
 type CourseOverrideBase = Course_Metadata_Overrides & {
-  content?: DeepPartial<Course_Child_Data>[];
+  children?: string[];
+  [key: string]: unknown;
 };
 type CourseConfigBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale: DeepPartial<Course_Locale<'config'>>;
@@ -78,6 +77,7 @@ const validate = (config: Course_Config): void => {
       path: 'content.items',
       itemLabel: 'Course child',
       allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
@@ -103,46 +103,17 @@ const validate = (config: Course_Config): void => {
       }
     }
   }
-  const seenIds = new Set<string>();
+  const seenIds = new Map<string, Record<string, unknown>>();
   for (const child of Object.values(config.content?.items ?? {})) {
     if (!isRecord(child) || typeof child.id !== 'string') continue;
-    if (seenIds.has(child.id)) errors.push('content.items: duplicate Course child ID ' + child.id);
-    seenIds.add(child.id);
+    const previous = seenIds.get(child.id);
+    if (previous && !mayReuseCompletedLesson(previous, child)) {
+      errors.push('content.items: duplicate Course child ID ' + child.id);
+    } else {
+      seenIds.set(child.id, child);
+    }
   }
   if (errors.length) throw new Error('Course validation failed: ' + errors.join('; '));
-};
-
-const parseChild = (value: unknown): Course_Child_Data => {
-  if (!isRecord(value)) throw new Error('Expected resolved Course child Props');
-  switch (value.type) {
-    case 'module': {
-      const parsed = module_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'chapter': {
-      const parsed = chapter_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'lesson': {
-      const parsed = lesson_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'episode': {
-      const parsed = episode_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    case 'assessment': {
-      const parsed = assessment_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
-      return structuredClone(value) as Course_Child_Data;
-    }
-    default:
-      throw new Error('Unsupported Course child type: ' + String(value.type));
-  }
 };
 
 /**
@@ -160,10 +131,10 @@ export type Course_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase>;
+    data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
     overrides<const Added extends Record<string, Course_Child> = {}>(
       patch: Course_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
       },
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
@@ -183,7 +154,7 @@ export const defineCourse = <
 >(
   config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
     locale: RequireLanguages<Course_Config['locale'], Languages>;
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   },
@@ -214,69 +185,63 @@ export const defineCourse = <
     };
   };
 
+  /** One-level, placement-keyed assembly; each child validates its own Data. */
   const buildContent = (
     items: Record<string, Course_Child>,
     order: readonly string[],
-    patches: Record<string, unknown> = {},
+    changes: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
-    const ids = new Set<string>();
-    for (const key of order) {
+    const ids = new Map<string, Course_Child>();
+    const entries = order.map(key => {
       const child = items[key];
       if (!child) throw new Error('Unknown Course child: ' + key);
-      if (ids.has(child.id)) throw new Error('Duplicate Course child ID: ' + child.id);
-      ids.add(child.id);
-    }
-    const entries = order.map(key => {
-      const raw = items[key];
-      const build = (raw as unknown as BuildChild).build;
+      const previous = ids.get(child.id);
+      if (previous && !mayReuseCompletedLesson(previous, child)) {
+        throw new Error('Duplicate Course child ID: ' + child.id);
+      }
+      ids.set(child.id, child);
+      const build = (child as unknown as BuildChild).build;
       if (!build || typeof build.data !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildData({ build });
-      const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
+      const patch = Object.hasOwn(changes, key)
+        ? buildChildOverrides({ build }, changes[key] as never)
+        : undefined;
       return { key, resource, patch };
     });
-    // Course placement keys may alias standalone Lessons, without editing their immutable source identity.
-    const embedAtPlacement = (value: Record<string, unknown>, key: string): Record<string, unknown> =>
-      value.type === 'lesson' ? { ...value, slug: key } : value;
-    // Child resources are already validated; avoid recursive generic inference on
-    // the whole nested Course/Lesson union while merging sparse published fragments.
-    const base = entries.map(({ key, resource, patch }) =>
-      embedAtPlacement(
-        mergeForValidation<Record<string, unknown>>(
-          resource.base as Record<string, unknown>,
-          (patch?.base ?? {}) as Record<string, unknown>,
-        ),
-        key,
-      ),
-    );
-    const locale: Partial<Record<LanguageCode, Course_Child_Data[]>> = {};
+    const base: Record<string, DeepPartial<Course_Child_Data>> = {};
+    const patches: Record<string, ChildResource> = {};
+    for (const { key, resource, patch } of entries) {
+      // Preserve the source Lesson slug; the surrounding key is its placement.
+      base[key] = mergeForValidation<Record<string, unknown>>(
+        resource.base as Record<string, unknown>,
+        (patch?.base ?? {}) as Record<string, unknown>,
+      ) as DeepPartial<Course_Child_Data>;
+      if (patch) patches[key] = patch;
+    }
+    const locale: Partial<Record<LanguageCode, Record<string, DeepPartial<Course_Child_Data>>>> = {};
     for (const language of languages) {
-      const resolved = entries.map(({ key, resource, patch }) => {
-        const original = mergeForValidation<Record<string, unknown>>(
+      const fragments: Record<string, DeepPartial<Course_Child_Data>> = {};
+      for (const { key, resource, patch } of entries) {
+        if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
+        const localized = mergeForValidation<Record<string, unknown>>(
           resource.base as Record<string, unknown>,
           (resource.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         const withBasePatch = mergeForValidation<Record<string, unknown>>(
-          original,
+          localized,
           (patch?.base ?? {}) as Record<string, unknown>,
         );
-        const effective = mergeForValidation<Record<string, unknown>>(
+        fragments[key] = mergeForValidation<Record<string, unknown>>(
           withBasePatch,
           (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
-        );
-        return parseChild(embedAtPlacement(effective, key));
-      });
-      if (
-        entries.some(
-          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
-        )
-      ) {
-        locale[language] = resolved;
+        ) as DeepPartial<Course_Child_Data>;
       }
+      if (Object.keys(fragments).length) locale[language] = fragments;
     }
-    return { base, locale };
+    return { base, locale, patches };
   };
 
   const base: CourseConfigBase = {
@@ -287,7 +252,7 @@ export const defineCourse = <
     locale: onlyStrings(authored.locale),
   };
 
-  const data = (options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -302,17 +267,18 @@ export const defineCourse = <
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
-      destination.content = entries;
+      Object.assign(destination, entries);
     }
-    const result: CoursePublication<CourseDataBase> = {
+    const result: CoursePublication<CourseDataBase<Items>> = {
       base: {
         id,
         slug,
         type,
         params: { ...metadata.params, languages: [...languages] },
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
-        content: children.base,
-      },
+        children: [...initialOrder],
+        ...children.base,
+      } as unknown as CourseDataBase<Items>,
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
@@ -328,7 +294,7 @@ export const defineCourse = <
 
   const overrides = <const Added extends Record<string, Course_Child> = {}>(
     patch: Course_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
     },
     options: PublicationLanguageOptions<Languages>,
   ): CoursePublication<CourseOverrideBase> => {
@@ -374,6 +340,7 @@ export const defineCourse = <
         path: 'content.additionalItems',
         itemLabel: 'Course child',
         allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -420,16 +387,32 @@ export const defineCourse = <
           Object.entries(active).filter((entry): entry is [string, Course_Child] => entry[1] !== false),
         );
         const built = buildContent(enabled, order, childPatches);
-        output.base.content = built.base;
-        for (const [language, values] of Object.entries(built.locale)) {
-          // Keep the atomic child array as a runtime publication fragment; validate it through Props.
-          const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
-          destination.content = values;
+        if (structureChanged || patch.content?.order !== undefined) output.base.children = [...order];
+        // Existing placements are sparse, additions are complete; false is a
+        // deletion tombstone applied by the runtime Data assembler.
+        for (const [key, change] of Object.entries(changes)) {
+          output.base[key] = change === false ? false : (built.patches[key]?.base ?? {});
+        }
+        for (const key of Object.keys(additions)) output.base[key] = built.base[key];
+        for (const language of languages) {
+          const fragments: Record<string, unknown> = {};
+          for (const key of Object.keys(changes)) {
+            if (changes[key] === false) continue;
+            const translated = built.patches[key]?.locale?.[language];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          for (const key of Object.keys(additions)) {
+            const translated = built.locale[language]?.[key];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          if (Object.keys(fragments).length) {
+            Object.assign((files[language] ??= {}) as Record<string, unknown>, fragments);
+          }
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       // Reject an override when its four-layer resolved Props are invalid for any requested locale.
-      validateRequestedPublication(course_Data_Schema, data(options), languages, output);
+      validateSlugAddressedPublication(course_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -453,5 +436,5 @@ export const defineCourse = <
       }),
       validate,
     },
-  } as Course_Configurator<Slug, Items, Languages>;
+  } as unknown as Course_Configurator<Slug, Items, Languages>;
 };
