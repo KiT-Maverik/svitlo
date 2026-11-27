@@ -133,7 +133,7 @@ test('Engine fixture Quiz UUID references resolve against its independent Questi
   const response = assembleLessonData(published, 'uk');
   assert.equal(Object.hasOwn(response, 'questions'), false);
   assert.equal(Object.hasOwn(response, 'flashcards'), false);
-  const quiz = response.section.find(item => item.type === 'quiz');
+  const quiz = response.children.map(key => response[key]).find(item => item.type === 'quiz');
   assert(quiz, 'fixture Lesson requires a Quiz Section');
   const candidates = selectQuizQuestionIds(quiz.params.selection, quiz.id);
   assert.deepEqual(quiz.params.selection.questionIds, [questionId]);
