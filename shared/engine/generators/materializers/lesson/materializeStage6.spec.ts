@@ -11,7 +11,7 @@ import { defineText } from '../../../configurators/contentBlocks/primitive/defin
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
-import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2, type LessonWorkflowStage2Section } from '../../../types/workflow/lessonWorkflow.types';
 import {
   assertLessonStage6ReleaseReady,
   materializeLessonStage6,
@@ -46,9 +46,8 @@ const valid = () => ({
             slug: 'introduction',
             params: {},
             locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
-            content: {
-              items: {
-                prompt: {
+            children: ['prompt'],
+    prompt: {
                   config: {
                     id: id('03'),
                     type: 'text' as const,
@@ -58,9 +57,6 @@ const valid = () => ({
                   },
                   production: { purpose: 'Introduce the source fact', specification: 'Preserve this guidance' },
                 },
-              },
-              order: ['prompt'],
-            },
           },
           production: { purpose: 'First concept', specification: 'Reviewed sequence' },
         },
@@ -742,9 +738,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
             ...base.config.introduction,
             config: {
               ...base.config.introduction.config,
-              content: {
-                items: {
-                  prompt: base.config.introduction.config.prompt,
+              children: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
+    prompt: base.config.introduction.config.prompt,
                   image: image('image', '09'),
                   video: video('video', '10'),
                   audio: audio('audio', '11'),
@@ -776,7 +771,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
                       type: 'carousel',
                       params: {},
                       locale: {},
-                      slides: { items: { slide: image('slide', '16', id('29') + '.png') }, order: ['slide'] },
+                      children: ['slide'],
+    slide: image('slide', '16', id('29') + '.png'),
                     },
                   },
                   checkpoint: {
@@ -786,9 +782,8 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
                       type: 'checkpoint',
                       params: { requireCompletion: true },
                       locale: { title: 'Check' },
-                      content: {
-                        items: {
-                          first: {
+                      children: ['first'],
+    first: {
                             config: {
                               id: id('18'),
                               slug: 'first',
@@ -809,22 +804,14 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
                                   id: id('20'),
                                   slug: 'answer',
                                   type: 'checkpointAnswer',
-                                  content: {
-                                    items: { answerImage: image('answerImage', '21') },
-                                    order: ['answerImage'],
-                                  },
+                                  children: ['answerImage'],
+    answerImage: image('answerImage', '21'),
                                 },
                               },
                             },
                           },
-                        },
-                        order: ['first'],
-                      },
                     },
                   },
-                },
-                order: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
-              },
             },
           },
           quest: {
@@ -1162,9 +1149,9 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
   const section = {
     ...original,
     config: {
-      ...original.config,
+      prompt: original.config.prompt,
       children: ['prompt', 'shadowScene', 'shadowCarousel'],
-    ...original.config,
+    prompt: original.config.prompt,
           shadowScene: scene('95', 'shadowScene'),
           shadowCarousel: {
             config: {
@@ -1173,10 +1160,8 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
               slug: 'shadowCarousel',
               params: { showArrows: true },
               locale: { title: { en: 'Compare shadows' } },
-              slides: {
-                items: { nestedScene: scene('97', 'nestedScene') },
-                order: ['nestedScene'],
-              },
+              children: ['nestedScene'],
+    nestedScene: scene('97', 'nestedScene'),
             },
             production: { purpose: 'Exercise nested Scene materialization' },
           },
