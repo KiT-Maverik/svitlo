@@ -5,7 +5,7 @@ import {
   assembleLessonData,
   type PublishedLessonDataOverride,
   type PublishedLessonDataResource,
-} from './assembleLessonProps';
+} from './assembleLessonData';
 
 const lessonId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const firstId = '663572e7-bd85-4516-86e2-3de07d209e02';
@@ -18,7 +18,7 @@ const first = {
   type: 'content' as const,
   params: {},
   locale: { title: 'Introduction', navigationLabel: '1' },
-  content: [],
+  children: [],
 };
 const second = {
   id: secondId,
@@ -26,7 +26,7 @@ const second = {
   type: 'content' as const,
   params: {},
   locale: { title: 'Practice', navigationLabel: '2' },
-  content: [],
+  children: [],
 };
 const third = {
   id: thirdId,
@@ -34,7 +34,7 @@ const third = {
   type: 'content' as const,
   params: {},
   locale: { title: 'Review', navigationLabel: '3' },
-  content: [],
+  children: [],
 };
 
 function resource(): PublishedLessonDataResource {
@@ -50,12 +50,12 @@ function resource(): PublishedLessonDataResource {
         sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
       },
       locale: { title: 'Shared title' },
-      section: [first, second],
+      children: ['intro', 'practice'], intro: first, practice: second,
     },
     locale: {
       uk: {
         locale: { title: 'Українська назва' },
-        section: [{ ...first, locale: { title: 'Перекладений вступ' } }, second],
+        intro: { locale: { title: 'Перекладений вступ' } },
       },
       en: { locale: { title: 'English title' } },
     },
@@ -70,15 +70,15 @@ test('Lesson assembler resolves only the requested language and preserves nested
   assert.equal(uk.locale.title, 'Українська назва');
   assert.equal(en.locale.title, 'English title');
   assert.deepEqual(
-    uk.section.map(item => item.slug),
+    uk.children,
     ['intro', 'practice'],
   );
-  assert.equal(uk.section[0].locale?.title, 'Перекладений вступ');
-  assert.equal(en.section[0].locale?.title, 'Introduction');
+  assert.equal((uk.intro as {locale:{title:string}}).locale.title, 'Перекладений вступ');
+  assert.equal((en.intro as {locale:{title:string}}).locale.title, 'Introduction');
   assert.equal(data.locale?.uk?.locale?.title, 'Українська назва');
 
-  uk.section[0].slug = 'changed';
-  assert.equal(assembleLessonData(data, 'uk').section[0].slug, 'intro');
+  (uk.intro as {slug:string}).slug = 'changed';
+  assert.equal((assembleLessonData(data, 'uk').intro as {slug:string}).slug, 'intro');
 });
 
 test('resource locale -> override base -> override locale is the required precedence', () => {
@@ -95,31 +95,31 @@ test('resource locale -> override base -> override locale is the required preced
 });
 
 test('removing a translated child does not resurrect it from the original locale array', () => {
-  const patch: PublishedLessonDataOverride = { base: { section: [second] } } as PublishedLessonDataOverride;
+  const patch: PublishedLessonDataOverride = { base: { children: ['practice'], intro: false } };
   const uk = assembleLessonData(resource(), 'uk', patch);
   assert.deepEqual(
-    uk.section.map(item => item.slug),
+    uk.children,
     ['practice'],
   );
-  assert.equal(uk.section[0].locale?.title, 'Practice');
+  assert.equal((uk.intro as {locale:{title:string}}).locale.title, 'Practice');
   assert.deepEqual(
-    assembleLessonData(resource(), 'en', patch).section.map(item => item.slug),
+    assembleLessonData(resource(), 'en', patch).children,
     ['practice'],
   );
 });
 
 test('reordered and newly added children remain atomic per locale', () => {
   const patch: PublishedLessonDataOverride = {
-    base: { section: [third, second, first] },
-    locale: { uk: { section: [{ ...third, locale: { title: 'Повторення' } }, second, first] } },
+    base: { children: ['review', 'practice', 'intro'], review: third },
+    locale: { uk: { review: { locale: { title: 'Повторення' } } } },
   } as PublishedLessonDataOverride;
   for (const language of ['en', 'uk'] as const) {
     assert.deepEqual(
-      assembleLessonData(resource(), language, patch).section.map(item => item.slug),
+      assembleLessonData(resource(), language, patch).children,
       ['review', 'practice', 'intro'],
     );
   }
-  assert.equal(assembleLessonData(resource(), 'uk', patch).section[0].locale?.title, 'Повторення');
+  assert.equal((assembleLessonData(resource(), 'uk', patch).review as {locale:{title:string}}).locale.title, 'Повторення');
 });
 
 test('assembler rejects identity changes, language scope changes and unsupported locales', () => {
@@ -138,15 +138,15 @@ test('assembler rejects identity changes, language scope changes and unsupported
   );
 });
 
-test('assembler validates the final Props schema and rejects incomplete translations', () => {
+test('assembler validates the final Data schema and rejects incomplete translations', () => {
   const noTitle = resource();
   delete noTitle.base.locale;
   noTitle.locale = undefined;
-  assert.throws(() => assembleLessonData(noTitle, 'uk'), /Invalid assembled Lesson Props/);
+  assert.throws(() => assembleLessonData(noTitle, 'uk'), /Invalid assembled Lesson Data/);
 
   const badSection = resource();
-  badSection.locale = { uk: { section: [{ ...first, type: 'unknown' }] } } as never;
-  assert.throws(() => assembleLessonData(badSection, 'uk'), /Invalid assembled Lesson Props/);
+  badSection.locale = { uk: { intro: { type: 'unknown' } } } as never;
+  assert.throws(() => assembleLessonData(badSection, 'uk'), /Invalid assembled Lesson Data/);
 });
 
 test('plain-object merging is safe against prototype pollution', () => {
