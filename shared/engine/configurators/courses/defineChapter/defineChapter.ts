@@ -149,7 +149,7 @@ export const defineChapter = <
 >(
   config: Omit<Chapter_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
     locale: RequireLanguages<Chapter_Config['locale'], Languages>;
   },
 ): Chapter_Configurator<Slug, Items, Languages> => {
@@ -415,5 +415,5 @@ export const defineChapter = <
       }),
       validate,
     },
-  } as Chapter_Configurator<Slug, Items, Languages>;
+  } as unknown as Chapter_Configurator<Slug, Items, Languages>;
 };
