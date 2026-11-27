@@ -33,6 +33,7 @@ import {
   type Course_Child,
   type Course_Child_Data,
   type Course_Config,
+  type Course_Metadata_Config,
   type Course_Data,
   type Course_Locale,
   type Course_Metadata_Overrides,
@@ -142,7 +143,7 @@ export const defineCourse = <
   const Items extends Record<string, Course_Child>,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
 >(
-  config: Omit<Course_Config, 'slug' | 'children' | 'params' | 'locale'> & {
+  config: Omit<Course_Metadata_Config, 'slug' | 'params' | 'locale'> & {
     slug: Slug;
     children: Extract<keyof Items, string>[];
     locale: RequireLanguages<Course_Config['locale'], Languages>;
@@ -151,7 +152,7 @@ export const defineCourse = <
 ): Course_Configurator<Slug, Items, Languages> => {
   const metadataSchema = course_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
-  const authored: Omit<Course_Config, 'children' | 'params'> & { params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] } } = structuredClone(metadataInput);
+  const authored: Omit<Course_Metadata_Config, 'params'> & { params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] } } = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
