@@ -117,11 +117,13 @@ export function run(argv = process.argv.slice(2)) {
       console.log(message);
     } else {
       console.error(message + ' (exit ' + String(code ?? signal ?? failure?.message) + ')');
-      if (!verbose)
-        console.error(
-          failureExcerpt(diagnostics.join('\n') + '\n' + output) ||
-            String(failure?.message || 'No child diagnostic output'),
-        );
+      if (!verbose) {
+        const excerpt = failureExcerpt(diagnostics.join('\n') + '\n' + output).trim();
+        // A spawn error may have no child stdout/stderr at all; always retain
+        // that first cause rather than mistaking a newline for a diagnostic.
+        const cause = failure?.message || '';
+        console.error([cause, excerpt].filter(Boolean).join('\n') || 'No child diagnostic output');
+      }
     }
     if (process.env.GITHUB_STEP_SUMMARY) {
       appendFileSync(
