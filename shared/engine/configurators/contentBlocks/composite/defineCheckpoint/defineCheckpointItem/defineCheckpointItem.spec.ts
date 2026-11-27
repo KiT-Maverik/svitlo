@@ -1,308 +1,148 @@
 import assert from 'node:assert/strict';
-import test, { describe } from 'node:test';
+import { describe, test } from 'node:test';
 
-import { configuratorArrayToSlugMap } from '../../../../_shared__configurators';
+import { mergeForValidation } from '../../../../_shared__configurators';
 import { defineText } from '../../../primitive/defineText';
 import { defineCheckpointAnswer } from '../defineCheckpointAnswer';
 import { checkpointItem_Config_Schema, checkpointItem_Data_Schema, defineCheckpointItem } from './index';
 
-describe('Configurators', () => {
-  describe('ContentBlocks', () => {
-    describe('defineCheckpointItem', () => {
-      const makeText = <const Slug extends string>(
-        id: string,
-        slug: Slug,
-        value: string | { en: string; uk: string },
-      ) => defineText<Slug, ['en', 'uk']>({ id, slug, type: 'text', params: {}, locale: { value } });
+const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
+const scope = { languages: ['en', 'uk'] as const };
+const text = <const Slug extends string>(slug: Slug, suffix: string, value: string | { en: string; uk: string }) =>
+  defineText<Slug, ['en', 'uk']>({
+    id: id(suffix), slug, type: 'text', params: {}, locale: { value },
+  });
 
-      const questionId = 'b775647f-203d-481a-a1c7-4d331c779d6a';
-      const firstId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
-      const secondId = 'b775647f-203d-481a-a1c7-4d331c779d6c';
-      const thirdId = 'b775647f-203d-481a-a1c7-4d331c779d6d';
-      const itemId = 'b775647f-203d-481a-a1c7-4d331c779d6e';
+const example = () => {
+  const question = text('question', '6a', { en: 'Question?', uk: 'Питання?' });
+  const first = text('first', '6b', 'Always visible');
+  const second = text('second', '6c', { en: 'Second', uk: 'Другий' });
+  const answer = defineCheckpointAnswer<
+    'answerContent', { first: typeof first; second: typeof second }, ['en', 'uk']
+  >({
+    id: id('6f'), slug: 'answerContent', type: 'checkpointAnswer',
+    children: ['second', 'first'], first, second,
+  });
+  const item = defineCheckpointItem<'example', typeof answer, typeof question, ['en', 'uk']>({
+    id: id('6e'), slug: 'example', type: 'checkpointItem',
+    check: true, question, answer,
+  });
+  return { item, question, answer, first, second };
+};
 
-      const example = () => {
-        const question = makeText(questionId, 'question', { en: 'Question?', uk: 'Питання?' });
-        const first = makeText(firstId, 'first', 'Always visible');
-        const second = makeText(secondId, 'second', { en: 'Second', uk: 'Другий' });
-        const answer = defineCheckpointAnswer<
-          'answerContent',
-          { first: typeof first; second: typeof second },
-          ['en', 'uk']
-        >({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
-          slug: 'answerContent',
-          type: 'checkpointAnswer',
-          content: { items: configuratorArrayToSlugMap([first, second]), order: ['second', 'first'] },
-        });
-        const item = defineCheckpointItem<'example', typeof answer, typeof question, ['en', 'uk']>({
-          id: itemId,
-          slug: 'example',
-          type: 'checkpointItem',
-          check: true,
-          question,
-          answer,
-        });
-        return { question, first, second, answer, item };
-      };
+describe('defineCheckpointItem named question/answer roles', () => {
+  test('preserves a typed Text question and one identified, addressable Answer', () => {
+    const { item, question, answer } = example();
+    const config = {
+      id: item.id, slug: item.slug, type: item.type, check: true, question, answer,
+    };
+    assert.equal(checkpointItem_Config_Schema.safeParse(config).success, true);
+    const built = item.build.data(scope);
+    assert.deepEqual(built.base.answer.children, ['second', 'first']);
+    assert.equal(built.base.answer.id, answer.id);
+    assert.equal(built.base.answer.type, 'checkpointAnswer');
+    assert.equal((built.base.answer.second as { id: string }).id, id('6c'));
+    assert.equal((built.locale?.uk?.question as { locale: { value: string } }).locale.value, 'Питання?');
+    const localized = mergeForValidation(built.base, built.locale?.uk ?? {});
+    assert.equal(checkpointItem_Data_Schema.safeParse(localized).success, true);
+    assert.equal(
+      (localized.answer.second as { locale: { value: string } }).locale.value,
+      'Другий',
+    );
+    assert.equal(JSON.stringify(built).includes('"content"'), false);
+  });
 
-      test('direct CheckpointItem Config schema restricts both structural child roles', () => {
-        const { item, question, answer } = example();
-        const valid = {
-          id: item.id,
-          slug: item.slug,
-          type: 'checkpointItem',
-          check: true,
-          question,
-          answer,
-        };
-        assert.equal(checkpointItem_Config_Schema.safeParse(valid).success, true);
-        for (const invalid of [null, { type: 'image' }, { type: 'carousel' }]) {
-          assert.equal(checkpointItem_Config_Schema.safeParse({ ...valid, question: invalid }).success, false);
-          assert.equal(checkpointItem_Config_Schema.safeParse({ ...valid, answer: invalid }).success, false);
-        }
-      });
-
-      test('CheckpointItem builds sorted Props without items, order, or configurators', () => {
-        const { item } = example();
-        const built = item.build.data({ languages: ['en', 'uk'] });
-        assert.equal('assemble' in item, false);
-        assert.deepEqual(
-          built.base.answer.map(child => child.slug),
-          ['second', 'first'],
-        );
-        assert.equal('items' in built.base.answer, false);
-        assert.equal('order' in built.base, false);
-        assert.deepEqual(built.locale?.uk?.question, { locale: { value: 'Питання?' } });
-        assert.deepEqual(
-          built.locale?.uk?.answer?.map(child => child.locale),
-          [{ value: 'Другий' }, { value: 'Always visible' }],
-        );
-        assert.deepEqual(
-          built.locale?.en?.answer?.map(child => child.locale),
-          [{ value: 'Second' }, { value: 'Always visible' }],
-        );
-        assert.deepEqual(item.build.data({ languages: ['en', 'uk'] }), built);
-        assert.equal(
-          checkpointItem_Data_Schema.safeParse({
-            ...built.base,
-            question: { ...built.base.question, ...built.locale?.uk?.question },
-            answer: built.locale?.uk?.answer,
-          }).success,
-          true,
-        );
-      });
-
-      test('CheckpointItem publishes sparse question-only overrides without touching answers', () => {
-        const { item } = example();
-        assert.deepEqual(
-          item.build.overrides(
-            {
-              question: { locale: { value: { uk: 'Оновлене питання?' } } },
-            },
-            { languages: ['en', 'uk'] },
-          ),
-          {
-            base: {},
-            locale: { uk: { question: { locale: { value: 'Оновлене питання?' } } } },
-          },
-        );
-        assert.deepEqual(item.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-        assert.deepEqual(item.build.overrides({ answer: { content: {} } }, { languages: ['en', 'uk'] }), {
-          base: {},
-          locale: undefined,
-        });
-      });
-
-      test('CheckpointItem replaces the whole answer array when an existing child changes', () => {
-        const { item } = example();
-        const built = item.build.overrides(
-          {
-            answer: {
-              content: {
-                items: {
-                  second: { locale: { value: { uk: 'Друга відповідь' } } },
-                },
-              },
-            },
-          },
-          { languages: ['en', 'uk'] },
-        );
-        assert.deepEqual(
-          built.base.answer?.map(child => child.slug),
-          ['second', 'first'],
-        );
-        assert.deepEqual(
-          built.locale?.uk?.answer?.map(child => child.locale),
-          [{ value: 'Друга відповідь' }, { value: 'Always visible' }],
-        );
-        assert.deepEqual(
-          built.locale?.en?.answer?.map(child => child.locale),
-          [{ value: 'Second' }, { value: 'Always visible' }],
-        );
-      });
-
-      test('CheckpointItem adds, disables, and reorders answers through one stateless override', () => {
-        const { item } = example();
-        const later = makeText(thirdId, 'later', { en: 'Later', uk: 'Пізніше' });
-        const change = {
-          answer: {
-            content: {
-              items: { first: false as const },
-              additionalItems: configuratorArrayToSlugMap([later]),
-              order: ['later', 'second'] as ('later' | 'second')[],
-            },
-          },
-        };
-        const original = item.build.data({ languages: ['en', 'uk'] });
-        const built = item.build.overrides(change, { languages: ['en', 'uk'] });
-        assert.deepEqual(
-          built.base.answer?.map(child => child.slug),
-          ['later', 'second'],
-        );
-        assert.deepEqual(
-          built.locale?.uk?.answer?.map(child => child.locale),
-          [{ value: 'Пізніше' }, { value: 'Другий' }],
-        );
-        assert.equal(JSON.stringify(built).includes('additionalItems'), false);
-        assert.equal(JSON.stringify(built).includes('"items"'), false);
-        assert.deepEqual(item.build.data({ languages: ['en', 'uk'] }), original);
-        assert.deepEqual(item.build.overrides(change, { languages: ['en', 'uk'] }), built);
-      });
-
-      test('CheckpointItem refuses duplicate, missing, disabled, or unordered answer entries', () => {
-        const { item, first } = example();
-        const later = makeText(thirdId, 'later', 'New');
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { additionalItems: configuratorArrayToSlugMap([later]) } },
-              },
-              { languages: ['en', 'uk'] },
-            ),
-          /content.order is required/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { items: { first: false } } },
-              },
-              { languages: ['en', 'uk'] },
-            ),
-          /content.order is required/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { order: ['first', 'first'] } },
-              },
-              { languages: ['en', 'uk'] },
-            ),
-          /Duplicate slug/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { items: { first: false, second: false }, order: [] } },
-              },
-              { languages: ['en', 'uk'] },
-            ),
-          /At least one active answer/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: {
-                  content: { additionalItems: configuratorArrayToSlugMap([first]), order: ['second', 'first'] },
-                },
-              } as never,
-              { languages: ['en', 'uk'] },
-            ),
-          /Duplicate answer slug/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { items: { unknown: false }, order: ['first', 'second'] } },
-              } as never,
-              { languages: ['en', 'uk'] },
-            ),
-          /unknown existing answer/,
-        );
-        assert.throws(
-          () =>
-            item.build.overrides(
-              {
-                answer: { content: { items: { second: { id: thirdId } } } },
-              } as never,
-              { languages: ['en', 'uk'] },
-            ),
-          /Invalid Text overrides/,
-        );
-      });
-
-      test('CheckpointItem protects identity and mandatory Text question', () => {
-        const { item } = example();
-        for (const patch of [
-          { id: thirdId },
-          { slug: 'other' },
-          { type: 'text' },
-          { check: false },
-          { answer: { content: { additionalItems: { other: false } } } },
-          { question: { params: { disabled: true } } },
-          { question: { slug: 'renamed' } },
-        ]) {
-          assert.throws(
-            () => item.build.overrides(patch as never, { languages: ['en', 'uk'] }),
-            /Invalid Checkpoint Item overrides/,
-          );
-        }
-      });
-
-      test('CheckpointItem Props schema checks concrete answer types', () => {
-        const { item } = example();
-        const built = item.build.data({ languages: ['en', 'uk'] });
-        const resolved = {
-          ...built.base,
-          question: { ...built.base.question, ...built.locale?.en?.question },
-          answer: built.locale?.en?.answer,
-        };
-        assert.equal(checkpointItem_Data_Schema.safeParse(resolved).success, true);
-        assert.equal(
-          checkpointItem_Data_Schema.safeParse({
-            ...resolved,
-            answer: [{ id: firstId, slug: 'first', type: 'checkpoint' }],
-          }).success,
-          false,
-        );
-        assert.equal(
-          checkpointItem_Data_Schema.safeParse({
-            ...resolved,
-            answer: [{ id: firstId, slug: 'first', type: 'text', locale: { value: 'Missing params' } }],
-          }).success,
-          false,
-        );
-      });
-
-      test('CheckpointItem Config schema includes nested question and answer', () => {
-        const { item } = example();
-        const config = {
-          id: item.id,
-          slug: item.slug,
-          type: item.type,
-          question: item.question,
-          answer: item.answer,
-        };
-        assert.equal(checkpointItem_Config_Schema.safeParse(config).success, true);
-        assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, question: undefined }).success, false);
-        assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, answer: undefined }).success, false);
-      });
+  test('validates both mandatory roles, their types and Question enabled state', () => {
+    const { item, question, answer } = example();
+    const config = { id: item.id, slug: item.slug, type: item.type, question, answer };
+    for (const invalid of [null, { type: 'image' }, { type: 'carousel' }]) {
+      assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, question: invalid }).success, false);
+      assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, answer: invalid }).success, false);
+    }
+    assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, question: undefined }).success, false);
+    assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, answer: undefined }).success, false);
+    const disabledQuestion = defineText({
+      id: id('70'), slug: 'question', type: 'text',
+      params: { disabled: true }, locale: { value: 'Disabled' },
     });
+    assert.throws(() => defineCheckpointItem({
+      id: id('71'), slug: 'invalidItem', type: 'checkpointItem',
+      question: disabledQuestion, answer,
+    }).build.data({ languages: ['en'] }), /Question must remain enabled/);
+  });
+
+  test('publishes isolated sparse question and nested Answer locale overrides', () => {
+    const { item } = example();
+    assert.deepEqual(item.build.overrides({}, scope), { base: {}, locale: undefined });
+    const before = item.build.data(scope);
+    const question = item.build.overrides({
+      question: { locale: { value: { uk: 'Оновлене питання?' } } },
+    }, scope);
+    assert.deepEqual(question, {
+      base: {}, locale: { uk: { question: { locale: { value: 'Оновлене питання?' } } } },
+    });
+    const answer = item.build.overrides({
+      answer: { second: { locale: { value: { uk: 'Друга відповідь' } } } },
+    }, scope);
+    assert.deepEqual(answer.base, {});
+    assert.equal(
+      ((answer.locale?.uk?.answer as Record<string, unknown>).second as { locale: { value: string } }).locale.value,
+      'Друга відповідь',
+    );
+    assert.equal(answer.locale?.en, undefined);
+    assert.deepEqual(item.build.data(scope), before);
+  });
+
+  test('nested Answer additions and removals retain its identity and independent order', () => {
+    const { item } = example();
+    const later = text('later', '6d', { en: 'Later', uk: 'Пізніше' });
+    const built = item.build.overrides({
+      answer: {
+        first: false, later, children: ['later', 'second'],
+      },
+    }, scope);
+    const patch = built.base.answer as Record<string, unknown>;
+    assert.equal(patch.first, false);
+    assert.deepEqual(patch.children, ['later', 'second']);
+    assert.equal((patch.later as { id: string }).id, later.id);
+    assert.equal(
+      ((built.locale?.uk?.answer as Record<string, unknown>).later as { locale: { value: string } }).locale.value,
+      'Пізніше',
+    );
+    assert.equal(item.build.data(scope).base.answer.children.includes('first'), true);
+  });
+
+  test('rejects identity changes, disableable question, bad roles and invalid answer order', () => {
+    const { item } = example();
+    for (const invalid of [
+      { id: id('79') },
+      { slug: 'renamed' },
+      { type: 'text' },
+      { check: false },
+      { question: { id: id('80') } },
+      { question: { slug: 'changed' } },
+      { question: { params: { disabled: true } } },
+      { answer: { id: id('81') } },
+      { answer: { first: false } },
+      { answer: { first: false, second: false, children: [] } },
+      { answer: { children: ['second', 'second', 'first'] } },
+      { answer: { other: false } },
+    ])
+      assert.throws(() => item.build.overrides(invalid as never, scope), /Invalid Checkpoint Item overrides/);
+  });
+
+  test('resolved Data rejects composite and malformed answer child roles', () => {
+    const { item } = example();
+    const built = item.build.data(scope);
+    const localized = mergeForValidation(built.base, built.locale?.uk ?? {});
+    assert.equal(checkpointItem_Data_Schema.safeParse(localized).success, true);
+    assert.equal(checkpointItem_Data_Schema.safeParse({
+      ...localized,
+      answer: { ...localized.answer, second: { id: id('6c'), slug: 'second', type: 'carousel' } },
+    }).success, false);
+    assert.equal(checkpointItem_Data_Schema.safeParse({
+      ...localized,
+      answer: { id: id('6f'), slug: 'answerContent', type: 'checkpointAnswer', children: [] },
+    }).success, false);
   });
 });
