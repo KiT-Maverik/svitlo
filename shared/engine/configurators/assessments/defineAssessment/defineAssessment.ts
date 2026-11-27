@@ -241,12 +241,12 @@ export const defineAssessment = <
   const buildPhase = (phase: Phase, patches: Record<string, unknown> = {}, sparse = false) => {
     const built = buildSections(phaseItems(phase), phase.children, patches);
     if (sparse) {
-      const base = {} as Assessment_Phase_DataBase;
-      const locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>> = {};
+      const base: Record<string, unknown> = {};
+      const locale: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
       for (const [key, published] of Object.entries(built.patches)) {
         if (Object.keys(published.base).length) base[key] = structuredClone(published.base);
         for (const [language, value] of Object.entries(published.locale ?? {})) {
-          (locale[language as LanguageCode] ??= {} as Assessment_Phase_DataBase)[key] =
+          (locale[language as LanguageCode] ??= {})[key] =
             structuredClone(value);
         }
       }
