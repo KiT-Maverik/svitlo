@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-import { primitiveContentBlockConfigurator_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks/contentBlock.types';
 import type { FlashcardSide_Configurator } from './defineFlashcardSide';
 
@@ -9,26 +8,23 @@ type Block = ContentBlock_Primitive_Configurator;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-/** A side is a structural ContentBlock collection, not a UUID-bearing entity. */
-export const flashcardSide_Config_Schema = z.strictObject({
-  items: z.record(z.string(), primitiveContentBlockConfigurator_Schema),
-  order: z.array(z.string()),
+/** A side has a semantic role in Flashcard, but no standalone identity. */
+export const flashcardSide_Config_Schema = z.looseObject({
+  children: z.array(z.string()),
 });
 export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;
 
 export type FlashcardSide_Overrides<Items extends Record<string, Block>, Added extends Record<string, Block> = {}> = {
-  items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } &
+  Added & { [Key in Extract<keyof Added, keyof Items>]?: never };
 
-/** Check a built side without pulling any authoring code into Engine runtime. */
+/** A built Side exposes its exact authored slug-addressable members. */
 export const flashcardSideConfigurator_Schema = z.custom<FlashcardSide_Configurator>(
   value =>
     isRecord(value) &&
     value.kind === 'flashcardSide' &&
-    isRecord(value.items) &&
-    Array.isArray(value.order) &&
+    Array.isArray(value.children) &&
     typeof value.validate === 'function' &&
     isRecord(value.build) &&
     typeof value.build.data === 'function' &&
