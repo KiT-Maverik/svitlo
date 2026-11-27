@@ -181,7 +181,14 @@ function saveBuildState(stateFile, state) {
 }
 
 /** Injectable runner keeps dependency, invalidation and error paths testable. */
-export function createPackageBuildReuse({ root, packages, stateFile, runBuild, sourceRevision, onBuildEvent = () => {} }) {
+export function createPackageBuildReuse({
+  root,
+  packages,
+  stateFile,
+  runBuild,
+  sourceRevision,
+  onBuildEvent = () => {},
+}) {
   if (!isAbsolute(stateFile)) throw new Error('Package-build state path must be absolute');
   const normalized = resolve(root);
   if (relative(normalized, resolve(stateFile)) === '' || !relative(normalized, resolve(stateFile)).startsWith('..')) {
