@@ -109,7 +109,7 @@ describe('Configurators', () => {
 
         assert.throws(
           () => course.build.overrides({ module: false }, { languages: ['en', 'uk'] }),
-          /order is required/,
+          /children is required/,
         );
         assert.throws(
           () => course.build.overrides({ children: ['module', 'module'] }, { languages: ['en', 'uk'] }),
@@ -155,7 +155,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             course.build.overrides(
-              { children: ['module'], module: extra },
+              { children: ['module', 'extraAlias'], extraAlias: extra } as never,
               { languages: ['en', 'uk'] },
             ),
           /Duplicate|does not match/,
@@ -414,9 +414,9 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
       moduleContext: {
             chapterContext: {
                   caseStudy: { locale: { title: { uk: 'Інша назва' } } },
-                },,
+                },
           },
-          courseReview: { locale: { title: { en: 'Course review' } } },,
+          courseReview: { locale: { title: { en: 'Course review' } } },
     },
     { languages },
   );
@@ -782,11 +782,11 @@ test('Slug-addressed Data validates placement ordering, reserved keys and immuta
     type: 'chapter',
     params: {},
     locale: { title: 'Chapter' },
-    children: ['params'], ...{ params: course as never },
+    children: ['content'], content: course as never,
   } as never);
   assert.throws(() => chapterWithReservedChild.build.data({ languages: ['en'] }), /Reserved child placement slug/);
   assert.throws(
-    () => course.build.overrides({ children: ['unit', 'children'], children: child } as never, { languages: ['en'] }),
+    () => course.build.overrides({ children: ['unit', 'content'], content: child } as never, { languages: ['en'] }),
     /Reserved child placement slug/,
   );
 });
