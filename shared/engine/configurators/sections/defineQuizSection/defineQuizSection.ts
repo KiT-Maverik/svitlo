@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -354,8 +355,9 @@ const defineQuizSectionImpl = <
    * when Parameters<> inspects a nested concrete Configurator.
    */
   const overrides: {
-    <const Added extends Record<string, Block>>(
-      patch: QuizSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & QuizSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
     (
