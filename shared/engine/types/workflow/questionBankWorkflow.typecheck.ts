@@ -163,7 +163,7 @@ const missingTextSlots: QuestionBankWorkflowFillBlanksWithTextConfig = {
   type: 'fillBlanksWithText',
   params: { assessmentMethod: 'application', restrictions: [] },
   // @ts-expect-error Slot collection is required by fillBlanksWithText.
-  content: { question: { items: { prompt }, order: ['prompt'] } },
+  content: { question: { children: ['prompt'], prompt } },
 };
 
 const localQuiz = {
