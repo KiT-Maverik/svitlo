@@ -173,6 +173,13 @@ export const defineCarousel = <
     for (const key of order) {
       const slide = items[key];
       if (!slide) throw new Error('Missing Carousel slide: ' + key);
+      // Disabled authored children are absent from Data. They must not force a
+      // translated resource to exist for an otherwise unrelated Build scope.
+      if (
+        !Object.hasOwn(changes, key) &&
+        isRecord(slide.config.base.params) &&
+        slide.config.base.params.disabled === true
+      ) continue;
       const resource = buildChildData(slide) as unknown as SlidePublication;
       const patch = Object.hasOwn(changes, key)
         ? (buildChildOverrides(slide, changes[key] as never) as unknown as SlidePublication)
@@ -304,6 +311,11 @@ export const defineCarousel = <
       const enabled: Record<string, Slide> = {};
       for (const [key, child] of Object.entries(candidates)) {
         if (child === false) continue;
+        if (
+          !Object.hasOwn(childPatches, key) &&
+          isRecord(child.config.base.params) &&
+          child.config.base.params.disabled === true
+        ) continue;
         const resource = buildChildData(child) as unknown as SlidePublication;
         const patched = childPatches[key];
         const effective = patched ? mergeForValidation(resource.base, patched.base) : resource.base;
