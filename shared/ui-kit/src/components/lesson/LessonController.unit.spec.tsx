@@ -375,8 +375,8 @@ describe('Engine Props Lesson Controller', () => {
             correct: { radiation: text(28, 'Radiation') },
             incorrect: { sound: text(29, 'Sound') },
             distractors: {},
+          },
         },
-      },
       };
       const quiz: QuizSection_Data = {
         id: uuid(24),
@@ -387,6 +387,7 @@ describe('Engine Props Lesson Controller', () => {
           selection: { mode: 'all', questionIds: [question.id] },
           layout: { mode: 'stack' },
           feedbackMode: 'immediate',
+          grading: { mode: 'points', successThreshold: 1 },
           interaction: {
             retries: 0,
             showErrors: true,
@@ -395,10 +396,10 @@ describe('Engine Props Lesson Controller', () => {
             allowDeferring: false,
             allowQuestionNavigation: false,
             skippable: false,
-        },
+          },
           results: { visibility: 'immediate', showScore: true },
           screen: {},
-      },
+        },
         locale: { title: 'Quiz', navigationLabel: 'Quiz' },
         content: [],
       };
@@ -409,7 +410,7 @@ describe('Engine Props Lesson Controller', () => {
           expect(language).toBe('en');
           expect(ids).toEqual([question.id]);
           return { items: [JSON.parse(JSON.stringify(question))] as never, fallbacks: [] };
-      },
+        },
         loadFlashcards: async () => ({ items: [], fallbacks: [] }),
       };
       showLesson(response, [], loader);
@@ -417,11 +418,12 @@ describe('Engine Props Lesson Controller', () => {
       fireEvent.click(await screen.findByRole('radio', { name: choice }));
       fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
       await waitFor(() => expect(navigationButton('next')).toBeEnabled());
-      expect(received).toContain('quizCompleted');
-      if (failed) expect(received).toContain('quizFailed');
-      else expect(received).not.toContain('quizFailed');
+      expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+      expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
       fireEvent.click(navigationButton('next'));
       expect(screen.getByText('Second section content')).toBeVisible();
+      expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+      expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
     },
   );
 });
