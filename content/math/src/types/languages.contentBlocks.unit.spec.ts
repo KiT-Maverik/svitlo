@@ -1,16 +1,10 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
 
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-
-import { learningLayout as layouts } from '../../../../shared/ui-kit/data/locale/learningLayout';
-import { navbarPreferences as preferences } from '../../../../shared/ui-kit/data/locale/navbarPreferences';
-
-const root = process.cwd();
-const newLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;
-const newLocales = ['lt-LT', 'lv-LV', 'et-EE', 'be-tarask', 'ka-GE', 'kk-Latn-KZ'] as const;
+const requiredLanguages = ['lt', 'lv', 'et', 'be', 'ka', 'kk'] as const;
 
 function collectFiles(folder: string): string[] {
   return readdirSync(folder, { withFileTypes: true }).flatMap(entry => {
@@ -19,54 +13,87 @@ function collectFiles(folder: string): string[] {
   });
 }
 
-function countLanguageEntries(source: string, language: string): number {
-  return [...source.matchAll(new RegExp(`(?:^|\\s)["']?${language}["']?\\s*:`, 'gm'))].length;
+function property(object: ts.ObjectLiteralExpression, key: string, file: string): ts.Expression {
+  const field = object.properties.find(
+    entry =>
+      ts.isPropertyAssignment(entry) &&
+      (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+      entry.name.text === key,
+  );
+  if (!field || !ts.isPropertyAssignment(field)) throw new Error(file + ': missing ' + key);
+  return field.initializer;
 }
 
-describe('Extended locale contentBlock coverage', () => {
-  it('registers each extended locale with its intended language code', () => {
-    for (let index = 0; index < newLocales.length; index++) {
-      expect(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === newLocales[index])?.language).toBe(
-        newLanguages[index],
-      );
-    }
-  });
+function objectProperty(object: ts.ObjectLiteralExpression, key: string, file: string): ts.ObjectLiteralExpression {
+  const value = property(object, key, file);
+  if (!ts.isObjectLiteralExpression(value)) throw new Error(file + ': expected literal object for ' + key);
+  return value;
+}
 
-  it('includes six translations in every authored math taxonomy config', () => {
-    const files = collectFiles(join(root, 'data/skills')).filter(
+function optionalObjectProperty(object: ts.ObjectLiteralExpression, key: string, file: string) {
+  const present = object.properties.some(
+    entry =>
+      ts.isPropertyAssignment(entry) &&
+      (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+      entry.name.text === key,
+  );
+  return present ? objectProperty(object, key, file) : undefined;
+}
+
+describe('Math Skills taxonomy locale completeness', () => {
+  it('has nonempty localized names and learner descriptions in every authored taxonomy entity', () => {
+    const files = collectFiles(join(process.cwd(), 'data/skills')).filter(
       file =>
         file.endsWith('.ts') &&
-        file !== join(root, 'data/skills/index.ts') &&
         !file.endsWith('/review.ts') &&
-        !file.endsWith('/_review.ts'),
+        !file.endsWith('/_review.ts') &&
+        file !== join(process.cwd(), 'data/skills/index.ts'),
     );
-    // Locale coverage follows the authored Code inventory. The number of Skills
-    // changes during approved taxonomy reviews, so a fixed total is not a
-    // localization requirement; the taxonomy-specific tests own that invariant.
     expect(files.length).toBeGreaterThan(0);
 
     for (const file of files) {
-      const source = readFileSync(file, 'utf8');
-      for (const language of newLanguages) {
-        expect(countLanguageEntries(source, language), `${file}: missing ${language}`).toBeGreaterThanOrEqual(1);
+      const source = ts.createSourceFile(file, readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
+      const calls = source.statements
+        .filter(ts.isVariableStatement)
+        .flatMap(statement => statement.declarationList.declarations)
+        .map(declaration => declaration.initializer)
+        .filter(
+          (value): value is ts.CallExpression =>
+            !!value &&
+            ts.isCallExpression(value) &&
+            ts.isIdentifier(value.expression) &&
+            ['defineSkillDomain', 'defineSkillGroup', 'defineSkill'].includes(value.expression.text),
+        );
+
+      expect(calls, file + ': expected exactly one authored Skill entity').toHaveLength(1);
+      const call = calls[0];
+      const config = call.arguments[0];
+      if (!ts.isObjectLiteralExpression(config)) throw new Error(file + ': Skill config must be a literal object');
+      const kind = (call.expression as ts.Identifier).text;
+      const fieldName = kind === 'defineSkillDomain' ? 'title' : 'name';
+      const name = objectProperty(config, fieldName, file);
+      const description = objectProperty(config, 'description', file);
+      // The Engine schema requires learner text for Skills, but allows
+      // SkillDomain and SkillGroup descriptions to be methodological-only.
+      const frontend =
+        kind === 'defineSkill'
+          ? objectProperty(description, 'frontend', file)
+          : optionalObjectProperty(description, 'frontend', file);
+      const dictionaries: [string, ts.ObjectLiteralExpression][] = [[fieldName, name]];
+      if (frontend) dictionaries.push(['description.frontend', frontend]);
+
+      for (const language of requiredLanguages) {
+        for (const [field, object] of dictionaries) {
+          const value = property(object, language, file);
+          expect(
+            ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value),
+            file + ': ' + field + '.' + language + ' must be a string literal',
+          ).toBe(true);
+          if (!ts.isStringLiteral(value) && !ts.isNoSubstitutionTemplateLiteral(value)) continue;
+          expect(value.text.trim(), file + ': empty ' + field + '.' + language).not.toBe('');
+          expect(value.text.trim(), file + ': placeholder ' + field + '.' + language).not.toBe('%%MISSING%%');
+        }
       }
-    }
-  });
-
-  it('supports the Crimean Tatar learner interface without locale fallback', () => {
-    const locale = 'crh-Latn-UA';
-    expect(DEFAULT_SUPPORTED_LANGUAGES.find(item => item.locale === locale)?.language).toBe('qm');
-    expect(layouts.qm.navigation.top).toBe('Oquvnıñ yuqarı navigatsiyası');
-    expect(preferences.qm.language).toBe('İnterfeys tili');
-  });
-
-  it('provides locale dictionaries for the shared learner interface', () => {
-    for (const language of newLanguages) expect(layouts[language].brand).toBeTruthy();
-    for (const language of newLanguages) {
-      const messages = preferences[language];
-      expect(messages.language).toBeTruthy();
-      expect(messages.theme.dark).toBeTruthy();
-      expect(messages.theme.light).toBeTruthy();
     }
   });
 });

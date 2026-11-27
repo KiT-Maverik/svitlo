@@ -158,7 +158,13 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
-  assert.equal(packages.length, 30);
+  const lock = JSON.parse(readFileSync(fileURLToPath(new URL('../../package-lock.json', import.meta.url)), 'utf8'));
+  assert.ok(packages.length > 0, 'workspace discovery must return package manifests');
+  assert.equal(new Set(packages.map(pkg => pkg.name)).size, packages.length, 'workspace names must be unique');
+  assert.equal(new Set(packages.map(pkg => pkg.path)).size, packages.length, 'workspace paths must be unique');
+  for (const pkg of packages) {
+    assert.equal(lock.packages[pkg.path]?.name, pkg.name, 'workspace must match the lockfile: ' + pkg.path);
+  }
   for (const fixture of ['@svitlo/web-fixture-alpha', '@svitlo/web-fixture-beta']) {
     assert(
       packages.some(pkg => pkg.name === fixture),

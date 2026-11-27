@@ -9,7 +9,7 @@
     "code:lint:check": "eslint",
     "code:check:types": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test",
-    "test:components": "vitest run",
+    "test:components": "npm run test:unit:selection && vitest run",
     "pretest:components": "npm run app:prepare:assets && node scripts/prepareTextbook/prepare-textbook.mjs",
     "test:components:coverage": "vitest run --coverage",
     "preapp:build": "npm run app:prepare:assets && node scripts/prepareTextbook/prepare-textbook.mjs",

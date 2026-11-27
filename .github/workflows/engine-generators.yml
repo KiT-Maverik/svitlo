@@ -36,6 +36,7 @@ on:
       - 'studio/generator-requirements.md'
       - 'package.json'
       - '.github/workflows/engine-generators.yml'
+      - '.github/scripts/backfill-labels.test.cjs'
   workflow_dispatch:
   workflow_call:
 
@@ -75,6 +76,8 @@ jobs:
         with:
           node-version: '26'
       - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
+      - name: Verify historical backfill labels with repository-scoped mocks
+        run: node --test .github/scripts/backfill-labels.test.cjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
@@ -112,7 +115,11 @@ jobs:
             shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
             shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
             shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
+            scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs \
+            scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs \
             scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
+            shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs \
+            shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs \
             shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
             shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
             shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \

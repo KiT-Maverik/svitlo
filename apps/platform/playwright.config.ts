@@ -11,8 +11,8 @@ export default defineConfig({
   reporter: 'list',
   use: { baseURL: `http://127.0.0.1:${port}`, trace: 'retain-on-failure' },
   projects: [
-    { name: 'desktop', use: devices['Desktop Chrome'] },
-    { name: 'mobile', use: devices['Pixel 7'] },
+    { name: 'desktop', use: devices['Desktop Chrome'], testMatch: '**/page.e2e.spec.ts' },
+    { name: 'mobile-viewport', use: devices['Pixel 7'], testMatch: '**/responsive.e2e.spec.ts' },
   ],
   webServer: {
     command: `npm run app:start -- --hostname 127.0.0.1 --port ${port}`,

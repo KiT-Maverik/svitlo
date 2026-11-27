@@ -1,7 +1,9 @@
+// @vitest-environment node
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
-import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
+
+import { describe, it } from 'vitest';
 
 import { assessmentMethod_Data_Schema, assessmentMethodSlugs, type AssessmentMethodSlug } from '@svitlo/engine/build';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
@@ -52,7 +54,7 @@ describe('Assessment Method authored definitions', () => {
     assert.deepEqual(files.sort(), names.map(name => name + '.ts').sort());
     for (const name of names) {
       const source = readFileSync(fileURLToPath(new URL('./' + name + '.ts', import.meta.url)), 'utf8');
-      assert.match(source, /defineAssessmentMethod\(/);
+      assert.match(source, /defineAssessmentMethod(?:<[^>]+>)?\s*\(/);
       assert.ok(
         source.includes("id: '" + definitions[name as AssessmentMethodSlug].build.data({ languages }).base.id + "'"),
       );

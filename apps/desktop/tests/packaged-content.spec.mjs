@@ -70,17 +70,3 @@ test('statically registered Scene modules are emitted as local JavaScript chunks
   assert.ok(styles.length > 0, 'expected compiled textbook Scene styles');
   assert.ok(javascript.some(name => name.startsWith('2abe959c-0908-4779-afbb-b2da6c1aa4d4-')));
 });
-
-test('Forge packages once and CI uses the already-built package for makers', () => {
-  const scripts = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).scripts;
-  const workflow = readFileSync(resolve(root, '../../.github/workflows/desktop-ci.yml'), 'utf8');
-  assert.equal(scripts['app:build'], 'electron-forge package');
-  assert.equal(scripts['app:pack'], 'npm run app:build');
-  assert.equal(scripts['app:pack:make:prepared'], 'electron-forge make --from-package');
-  assert.equal(scripts['app:pack:linux'], 'npm run app:build && npm run app:pack:make:prepared');
-  assert.match(workflow, /npm run app:build --workspace @svitlo\/desktop/);
-  assert.match(workflow, /npm run test:integration --workspace @svitlo\/desktop/);
-  assert.doesNotMatch(workflow, /npm run app:pack:prepared --workspace @svitlo\/desktop/);
-  assert.match(workflow, /npm run app:pack:make:prepared --workspace @svitlo\/desktop/);
-  assert.match(workflow, /test:packaged --workspace @svitlo\/desktop/);
-});

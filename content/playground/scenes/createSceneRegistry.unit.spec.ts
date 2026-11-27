@@ -9,11 +9,12 @@ describe('Scene registry preload recovery', () => {
     const load = vi.fn(async () => scene);
     const registry = createSceneRegistry({ sample: load });
 
+    const cachedComponent = registry.resolveScene('sample');
     await Promise.all([registry.preloadScene('sample'), registry.preloadScene('sample')]);
     await registry.preloadScene('sample');
 
     expect(load).toHaveBeenCalledTimes(1);
-    expect(registry.resolveScene('sample')).toBe(registry.resolveScene('sample'));
+    expect(registry.resolveScene('sample')).toBe(cachedComponent);
   });
 
   it('evicts rejected imports and lazy components so a later preload can retry', async () => {

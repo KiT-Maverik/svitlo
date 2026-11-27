@@ -1,0 +1,60 @@
+name: UI Kit tests
+
+# Nested integration children do not run Production Quality. Run UI Kit's own
+# selected logic, locale and component suites at the Ready handoff only.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - 'shared/ui-kit/**'
+      - 'shared/engine/runtime.ts'
+      # Direct Engine sources consumed by UI Kit's authored-method and locale tests.
+      - 'shared/engine/configurators/assessmentMethods/**'
+      - 'shared/engine/configurators/educationStandards/**'
+      - 'shared/engine/configurators/questions/assessmentMethod.schemas.ts'
+      - 'shared/engine/configurators/contentBlocks/contentBlock.schemas.ts'
+      - 'shared/engine/schemas/languages.schemas.ts'
+      - 'shared/engine/utils/languages/**'
+      - 'shared/engine/package.json'
+      - 'scripts/ci/testRouting/**'
+      - '.github/workflows/ui-kit-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ui-kit-tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Active UI Kit test suites
+    # The main promotion already runs these under Production / unit tests.
+    if: github.event_name == 'workflow_dispatch' || (!github.event.pull_request.draft && github.event.pull_request.base.ref != 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Build the public Engine package needed by UI Kit
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - name: Prove Web and UI Kit Ready trigger coverage
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/testRouting/test-routing.spec.mjs
+      - name: Verify separately selected UI Kit regressions are discoverable
+        working-directory: shared/ui-kit
+        run: |
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/components/layout/LearningLayout/NavbarPreferences/NavbarPreferences.unit.spec.tsx
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/components/widgets/questions/response/QuestionContent.unit.spec.ts
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run src/utils/assessmentMethods.spec.ts
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run data/definitions/assessmentMethods/assessmentMethodTaxonomy.spec.ts
+          node ../../scripts/ci/quietRun/quiet-run.mjs -- npx vitest run data/definitions/educationStandards/catalog.spec.ts
+      - name: Run the full package-owned logic, locale and component tests
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm test --workspace @svitlo/ui-kit

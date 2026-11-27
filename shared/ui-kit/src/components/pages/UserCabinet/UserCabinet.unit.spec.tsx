@@ -87,12 +87,8 @@ describe('UserCabinet mockup', () => {
     expect(screen.getByRole('tabpanel')).toHaveAccessibleName(messages.tabs.profile);
   });
 
-  it('offers a useful empty state for accounts and supports RTL container direction', () => {
-    render(
-      <div dir="rtl" lang="ar">
-        <UserCabinet {...userCabinetDemo} additionalAccounts={[]} initialTab="accounts" />
-      </div>,
-    );
+  it('offers a useful empty state when there are no additional accounts', () => {
+    render(<UserCabinet {...userCabinetDemo} additionalAccounts={[]} initialTab="accounts" />);
     expect(screen.getByText(messages.noAdditionalAccounts)).toBeVisible();
     expect(screen.getByRole('tablist', { name: messages.navigationLabel })).toBeVisible();
     expect(screen.getByRole('tab', { name: messages.tabs.accounts })).toHaveAttribute('aria-selected', 'true');

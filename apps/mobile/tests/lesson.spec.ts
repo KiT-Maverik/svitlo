@@ -16,9 +16,26 @@ test('a real Playground lesson opens from the index on a phone-sized screen', as
   expect(sizes.scrollWidth).toBeLessThanOrEqual(sizes.viewportWidth + 1);
 });
 
-test('the lesson has semantic section navigation and native-sized controls', async ({ page }) => {
+test('lesson step progress survives a reload of the mobile production host', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link').first().click();
-  await expect(page.getByRole('main')).toBeVisible();
-  await expect(page.getByRole('button', { name: /next|далі|наступ/i }).first()).toBeVisible();
+  const steps = page.locator('nav').filter({ has: page.locator('button[aria-current="step"]') });
+  const activeStep = () =>
+    steps
+      .locator('button')
+      .evaluateAll(buttons => buttons.findIndex(button => button.getAttribute('aria-current') === 'step'));
+
+  await expect(steps).toHaveCount(1);
+  const initial = await activeStep();
+  expect(initial).toBeGreaterThanOrEqual(0);
+  await page
+    .getByRole('button', { name: /next|далі|наступ/i })
+    .first()
+    .click();
+  await expect.poll(activeStep).toBeGreaterThan(initial);
+  const advanced = await activeStep();
+
+  await page.reload();
+  await expect(page.locator('#learning-content')).toBeVisible();
+  await expect.poll(activeStep).toBe(advanced);
 });

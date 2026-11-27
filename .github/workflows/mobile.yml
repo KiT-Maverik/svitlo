@@ -3,7 +3,7 @@ name: Mobile host checks
 on:
   pull_request:
     types: [ready_for_review, reopened, synchronize]
-    branches: [main, develop]
+    # Nested integration PRs also require the Ready mobile checks.
     paths:
       - 'apps/mobile/**'
       - 'shared/adapters/capacitor/**'

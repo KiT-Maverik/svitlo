@@ -20,7 +20,7 @@ export type { LessonActions, EditableSectionParam } from './LessonController';
 export { MediaSettingsProvider, useMediaSettings, useOptionalMediaSettings } from './MediaSettings';
 export type { MediaSettings } from './MediaSettings';
 export type { LessonProps } from './Lesson';
-export { LessonNavigationProvider, useLessonNavigation } from './LessonNavigation';
+export { useLessonNavigation } from './LessonNavigation';
 export type { LessonNavigationAction } from './LessonNavigation';
 export { LessonSteps } from './LessonSteps';
 export type { LessonStepsProps } from './LessonSteps';

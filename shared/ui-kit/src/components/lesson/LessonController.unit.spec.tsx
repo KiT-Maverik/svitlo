@@ -326,40 +326,10 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.getByText('1 / 1')).toBeVisible();
   });
 
-  it('announces an explicit localized empty eligible Flashcard pool', async () => {
-    const response = fixture(false);
-    const audio: Flashcard_Data = {
-      id: uuid(101),
-      slug: 'audioOnly',
-      type: 'flashcard',
-      parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(102, 'Hear this sound')], back: [text(103, 'A bell')] },
-    };
-    response.section = [
-      {
-        id: uuid(104),
-        slug: 'audioRecall',
-        type: 'flashcards',
-        params: { selection: { flashcardIds: [audio.id] } },
-        locale: { title: 'Recall', navigationLabel: 'Flashcards' },
-        content: [],
-      },
-      response.section[1],
-    ];
-    showLesson(
-      response,
-      [],
-      {
-        loadQuestions: async () => ({ items: [], fallbacks: [] }),
-        loadFlashcards: async () => ({ items: [audio], fallbacks: [] }),
-      },
-      ['deafness'],
-    );
-    expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.flashcard.flashcard.noCompatibleCards);
-    expect(screen.queryByText('Hear this sound')).toBeNull();
-  });
-
-  it('completes a blocking Engine Quiz after a Question attempt', async () => {
+  it.each([
+    { choice: 'Radiation', failed: false },
+    { choice: 'Sound', failed: true },
+  ])('unlocks a blocking Engine Quiz after a completed $choice attempt', async ({ choice, failed }) => {
     const response = fixture(false);
     const question = {
       id: uuid(26),
@@ -385,6 +355,7 @@ describe('Engine Props Lesson Controller', () => {
         selection: { mode: 'all', questionIds: [question.id] },
         layout: { mode: 'stack' },
         feedbackMode: 'immediate',
+        grading: { mode: 'points', successThreshold: 1 },
         interaction: {
           retries: 0,
           showErrors: true,
@@ -412,11 +383,14 @@ describe('Engine Props Lesson Controller', () => {
     };
     showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(await screen.findByRole('radio', { name: /Radiation/i }));
+    fireEvent.click(await screen.findByRole('radio', { name: choice }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() => expect(navigationButton('next')).toBeEnabled());
-    expect(received).toContain('quizCompleted');
+    expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+    expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
     fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
+    expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+    expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
   });
 });

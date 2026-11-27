@@ -1,0 +1,50 @@
+name: Editorial reference tests
+
+# The trusted report command is separate from these read-only generator tests.
+# Scope execution to the three active reference families; don't rerun the
+# larger Engine generator suite or duplicate its translation-artifact tests.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - 'content/geography/data/homeCopy.ts'
+      - 'content/geography/scripts/generateHomeCopyReference/**'
+      - 'shared/ui-kit/data/locale/**'
+      - 'shared/ui-kit/data/definitions/assessmentMethods/**'
+      - 'shared/ui-kit/scripts/generateAssessmentMethodsReference/**'
+      - 'shared/ui-kit/scripts/generateUiKitLocaleReference/**'
+      - 'shared/engine/schemas/languages.schemas.ts'
+      - 'scripts/generateTranslationReviewArtifacts/**'
+      - '.github/workflows/agent-ci-artifacts.yml'
+      - '.github/workflows/editorial-reference-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editorial-references-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  references:
+    name: Geography and UI Kit reference contracts
+    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install the pinned TypeScript parser used by static source readers
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Test each active, fail-closed reference generator
+        run: |
+          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
+            content/geography/scripts/generateHomeCopyReference/generate-home-copy-reference.spec.mjs \
+            shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs \
+            shared/ui-kit/scripts/generateUiKitLocaleReference/generate-ui-kit-locale-reference.spec.mjs
