@@ -38,10 +38,12 @@ warrant isolated investigation before considering a bounded parallelism A/B.
 ## Explicit unit-overlap diagnostic (Draft PR #925, not adopted CI)
 
 The default root `npm test` and all required PR/production jobs remain **sequential**.
-Only a deliberately selected `workflow_dispatch` with boolean input
-`unit_overlap_experiment=true` activates
+Only an explicitly authorized manual `workflow_dispatch` on branch
+`ci/quality-workflow-rearchitecture` activates
 `SVITLO_CI_UNIT_OVERLAP_EXPERIMENT=1` in the existing Production unit runner.
-The input is not enabled by the `/production-quality` PR-comment command.
+The established `/production-quality` PR-comment dispatcher selects this exact
+branch when the owner authorizes a full diagnostic; no new workflow input or
+default-branch registration is needed. Normal required PR checks remain serial.
 
 The opt-in mode preserves the eight selected workspace test capabilities and
 seven topologically ordered prerequisite builds. All package builds and the
