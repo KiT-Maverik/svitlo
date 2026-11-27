@@ -58,6 +58,9 @@ export const fillBlanksWithBlocks_Data_Schema = questionBase.extend({
         ctx.addIssue({ code: 'custom', message: 'Invalid slot order' });
       }
       for (const key of keys) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved block-slot placement key' });
+        }
         if (!z.strictObject({ correctAnswer: primitiveContentBlockResolved_Schema }).safeParse(slots[key]).success) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid block-answer slot' });
         }
