@@ -14,7 +14,15 @@ const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
  * Run the original command exactly once; optional telemetry cannot change the
  * command's exit status or promote a missing/failed compiler to success.
  */
-export function runBuildCommand({ workspace, origin, command, args, root = repoRoot, env = process.env, spawn = spawnSync }) {
+export function runBuildCommand({
+  workspace,
+  origin,
+  command,
+  args,
+  root = repoRoot,
+  env = process.env,
+  spawn = spawnSync,
+}) {
   if (!/^@svitlo\/[a-z0-9-]+$/.test(workspace)) throw new Error('Invalid build workspace');
   if (!/^[a-z0-9-]+$/.test(origin)) throw new Error('Invalid build origin');
   if (!command || !Array.isArray(args)) throw new Error('Missing build command');
@@ -52,7 +60,9 @@ export function runBuildCommand({ workspace, origin, command, args, root = repoR
   if (!success) {
     throw new Error(
       workspace + ' / package:build failed' +
-        (result.error ? ': ' + result.error.message + ' (' + origin + ')' : ' (' + origin + ', exit ' + result.status + ')'),
+        (result.error
+          ? ': ' + result.error.message + ' (' + origin + ')'
+          : ' (' + origin + ', exit ' + result.status + ')'),
     );
   }
 }
