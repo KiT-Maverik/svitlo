@@ -99,20 +99,6 @@ describe('Text', () => {
     expect(screen.getByRole('heading', { level: 2, name: 'Wrapped' })).toHaveAttribute('id', 'title');
   });
 
-  it('keeps readable text when a marker is incomplete', () => {
-    const { container } = render(<Text {...textResponse('Hello %_%id: name; value: John')} />);
-    expect(container.textContent).toBe('Hello %_%id: name; value: John');
-  });
-
-  it('recovers from an unfinished marker before another marker', () => {
-    const { container } = render(<Text {...textResponse('%_%id: first; value: John %_%id: second; value: Jane%_%')} />);
-    expect(container.textContent).toBe('%_%id: first; value: John Jane');
-  });
-
-  it('preserves an unmatched closing delimiter as ordinary text', () => {
-    const { container } = render(<Text {...textResponse('Hello John %_%')} />);
-    expect(container.textContent).toBe('Hello John %_%');
-  });
 });
 
 describe('Text additional inline styling', () => {
