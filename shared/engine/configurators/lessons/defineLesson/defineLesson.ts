@@ -126,12 +126,29 @@ type LessonAuthoredInput<
 } & Sections & ChildrenSupporting<Languages, Sections> &
   SafePlacementMap<Sections> & { [Key in keyof Sections]: Key extends 'events' ? never : Sections[Key] };
 
+
+/**
+ * Infer child keys from the entire authoring literal before validating the
+ * placement map. An unconstrained Record<string, Section> inferred from an
+ * intersection would incorrectly classify id/params as Section children.
+ */
+type LessonChildKeys<Input> = Exclude<keyof Input, keyof Lesson_Metadata_Config | 'children'>;
+type InferredLessonSections<Input> = {
+  [Key in LessonChildKeys<Input>]: Input[Key] extends Section_Configurator
+    ? Input[Key]
+    : Section_Configurator;
+};
+type InferredLessonLanguages<Input extends { params: { languages: readonly LanguageCode[] } }> =
+  Input['params']['languages'] extends readonly [LanguageCode, ...LanguageCode[]]
+    ? Input['params']['languages']
+    : readonly [LanguageCode, ...LanguageCode[]];
+
 /**
  * Author a reusable, Course-neutral Lesson with ordered instructional Sections.
  * Quiz and Flashcards Sections hold stable bank UUID references, not inline
  * bank resources. Event metadata remains separate from direct Section placements.
  */
-export const defineLesson = <
+const defineLessonImpl = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Sections extends Record<string, Section_Configurator>,
@@ -382,5 +399,32 @@ export const defineLesson = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+/**
+ * Literal-first inference preserves actual Section/Block Build signatures.
+ * Keep the explicit three-generic API for existing specialized authoring.
+ */
+export const defineLesson: {
+  <const Input extends Omit<Lesson_Metadata_Config, 'slug' | 'params' | 'locale'> & {
+    slug: string;
+    params: Omit<Lesson_Config['params'], 'languages'> & {
+      languages: readonly [LanguageCode, ...LanguageCode[]];
+    };
+    locale: Lesson_Config['locale'];
+  }>(
+    config: Input & LessonAuthoredInput<
+      Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
+    >,
+  ): ReturnType<typeof defineLessonImpl<
+    Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
+  >>;
+  <
+    const Slug extends string,
+    const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+    const Sections extends Record<string, Section_Configurator>,
+  >(
+    config: LessonAuthoredInput<Slug, Languages, Sections>,
+  ): ReturnType<typeof defineLessonImpl<Slug, Languages, Sections>>;
+} = defineLessonImpl;
 
 export type Lesson_Configurator = ReturnType<typeof defineLesson>;
