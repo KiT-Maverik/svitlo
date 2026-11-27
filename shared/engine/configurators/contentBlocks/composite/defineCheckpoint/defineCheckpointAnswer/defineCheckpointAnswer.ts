@@ -15,7 +15,6 @@ import {
   validateSluggedConfiguratorMap,
   type SafePlacementMap,
 } from '../../../../_shared__configurators';
-import type { ConfiguratorChild } from '../../../../../types/configuratorChild';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import {
   checkpointAnswer_Config_Schema,
@@ -194,7 +193,7 @@ export const defineCheckpointAnswer = <
           continue;
         }
         if (Object.hasOwn(initialItems, key)) changes[key] = value;
-        else additions[key] = value as Block;
+        else additions[key] = value as unknown as Block;
       }
       const issues = validateSluggedConfiguratorMap(additions, primitiveContentBlockTypes, {
         path: 'children', itemLabel: 'Answer Primitive', reservedKeys: slugAddressedReservedKeys,
@@ -272,4 +271,17 @@ export const defineCheckpointAnswer = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
-export type ContentBlock_CheckpointAnswer_Configurator = ConfiguratorChild<ReturnType<typeof defineCheckpointAnswer>>;
+/**
+ * The higher-order generic Build overrides method cannot be extracted by the
+ * common conditional ConfiguratorChild helper. Erase only its patch parameter
+ * at the parent collection boundary, retaining the concrete direct children.
+ */
+type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
+export type ContentBlock_CheckpointAnswer_Configurator = Omit<DefinedAnswer, 'build'> & {
+  readonly build: Omit<DefinedAnswer['build'], 'overrides'> & {
+    overrides(
+      patch: never,
+      options: PublicationLanguageOptions,
+    ): ReturnType<DefinedAnswer['build']['overrides']>;
+  };
+};
