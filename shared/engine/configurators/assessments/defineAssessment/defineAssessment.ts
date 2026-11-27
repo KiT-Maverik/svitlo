@@ -360,23 +360,30 @@ export const defineAssessment = <
         if (!isRecord(patch.quiz)) throw new Error('Assessment Quiz override must be an object, never false');
         if (isRecord(patch.quiz.params) && Object.hasOwn(patch.quiz.params, 'disabled'))
           throw new Error('Assessment Quiz cannot be disabled or re-enabled via overrides');
-        childPatches[quiz.slug] = patch.quiz;
       }
-      const edited = {
-        ...mergedMetadata,
-        before: updatedBefore,
-        quiz,
-        after: updatedAfter,
-      };
-      validate(edited);
-      if (patch.before !== undefined || patch.after !== undefined || patch.quiz !== undefined) {
-        const sections = composeSections(edited);
-        const keys = [...Object.keys(sections.items)];
-        if (keys.length !== new Set(keys).size) throw new Error('Assessment Section slug collision');
-        const resolved = buildSections(sections.items, sections.order, childPatches);
-        output.base.section = resolved.base;
-        for (const [language, values] of Object.entries(resolved.locale))
-          (files[language as LanguageCode] ??= {}).section = values;
+      const updatedBefore = phase('before', before, patch.before);
+      const updatedAfter = phase('after', after, patch.after);
+      validate({ ...mergedMetadata, before: updatedBefore, quiz, after: updatedAfter });
+      if (patch.before !== undefined) {
+        const built = buildPhase(updatedBefore, childPatches);
+        output.base.before = built.base;
+        for (const [language, value] of Object.entries(built.locale)) {
+          (files[language as LanguageCode] ??= {}).before = value;
+        }
+      }
+      if (patch.after !== undefined) {
+        const built = buildPhase(updatedAfter, childPatches);
+        output.base.after = built.base;
+        for (const [language, value] of Object.entries(built.locale)) {
+          (files[language as LanguageCode] ??= {}).after = value;
+        }
+      }
+      if (patch.quiz !== undefined) {
+        const built = buildChildOverrides(quiz, patch.quiz as never) as SectionResource;
+        output.base.quiz = built.base;
+        for (const [language, value] of Object.entries(built.locale ?? {})) {
+          (files[language as LanguageCode] ??= {}).quiz = value as Assessment_DataBase['quiz'];
+        }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
