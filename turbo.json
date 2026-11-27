@@ -1,23 +1,36 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "globalDependencies": [
+    "package-lock.json",
+    "tsconfig*.json",
+    "scripts/textbook-tooling/**",
+    "scripts/ci/packageBuildReuse/**"
+  ],
+  "globalEnv": [
+    "SVITLO_MEDIA_MODE",
+    "SVITLO_TEXTBOOK",
+    "SVITLO_WEB_TEST_SELECTION",
+    "npm_config_ignore_scripts"
+  ],
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    "package:build": {
+      "dependsOn": [
+        "^package:build"
+      ],
+      "outputs": [
+        "dist/**"
+      ],
+      "cache": false
     },
-    "typecheck": {
-      "dependsOn": ["^build"]
-    },
-    "lint": {
-      "dependsOn": ["^build"]
-    },
-    "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["coverage/**"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
+    "code:lint:check": {
+      "dependsOn": [
+        "^package:build"
+      ],
+      "outputs": [],
+      "cache": false
     }
+  },
+  "remoteCache": {
+    "enabled": false
   }
 }

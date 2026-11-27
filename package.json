@@ -5,7 +5,7 @@
   "scripts": {
     "code:format:check": "prettier --check .",
     "code:format:fix": "prettier --write .",
-    "code:lint:check": "node scripts/runWorkspaceScript/run-workspace-script.mjs code:lint:check",
+    "code:lint:check": "turbo run code:lint:check --concurrency=2 --cache=local:off",
     "code:lint:fix": "node scripts/runWorkspaceScript/run-workspace-script.mjs code:lint:fix",
     "code:check:types": "node scripts/runWorkspaceScript/run-workspace-script.mjs code:check:types",
     "test": "node scripts/runWorkspaceScript/run-workspace-script.mjs test",
@@ -14,7 +14,7 @@
     "test:components:coverage": "node scripts/runWorkspaceScript/run-workspace-script.mjs test:components:coverage",
     "test:taxonomy-generator": "node --test shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.spec.mjs shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.roundtrip.spec.mjs",
     "test:taxonomy-import": "node --test shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.spec.mjs",
-    "package:build": "node scripts/runWorkspaceScript/run-workspace-script.mjs package:build",
+    "package:build": "turbo run package:build --concurrency=2 --cache=local:off",
     "app:build": "node scripts/runWorkspaceScript/run-workspace-script.mjs app:build",
     "app:pack": "node scripts/runWorkspaceScript/run-workspace-script.mjs app:pack",
     "storybook:build": "node scripts/runWorkspaceScript/run-workspace-script.mjs storybook:build",
@@ -29,13 +29,15 @@
     "content:check:skills": "node shared/engine/scripts/generateSkills/generateSkills.mjs",
     "content:generate:course-props": "node shared/engine/scripts/generateCourseProps/generateCourseProps.mjs",
     "content:check:course-props": "node shared/engine/scripts/generateCourseProps/generateCourseProps.mjs",
-    "test:import-format": "node --test scripts/checkImportFormatting/prettier-import-order.spec.mjs"
+    "test:import-format": "node --test scripts/checkImportFormatting/prettier-import-order.spec.mjs",
+    "repo:check:turbo": "node scripts/ci/turboTaskGraph/verify-graph.mjs --live"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.7.1",
     "ajv": "8.20.0",
     "jiti": "2.7.0",
     "prettier": "3.9.10",
+    "turbo": "2.11.13",
     "typescript": "5.9.3",
     "yaml": "2.9.1"
   },
@@ -53,5 +55,6 @@
     "@storybook/react-vite": {
       "@joshwooding/vite-plugin-react-docgen-typescript": "0.9.1"
     }
-  }
+  },
+  "packageManager": "npm@11.20.0"
 }
