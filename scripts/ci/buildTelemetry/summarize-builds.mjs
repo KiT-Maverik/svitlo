@@ -24,7 +24,7 @@ export function summarizeBuilds(lines) {
     const key = (event.origin || event.recordKind || 'reuse-helper') + ' | ' + event.workspace;
     const row = rows.get(key) || {
       key, requests: 0, built: 0, reused: 0, failed: 0, durationMs: 0,
-      rebuildReasons: {}, unverifiedAfterBuild: 0,
+      rebuildReasons: {}, unverifiedAfterBuild: 0, sourceChecks: {}, dirtyTrackedFiles: [],
     };
     row.requests++;
     row[event.outcome]++;
@@ -38,6 +38,23 @@ export function summarizeBuilds(lines) {
     if (event.outcome === 'built' && Object.hasOwn(event, 'sourceAfterBuildRevision') &&
       event.sourceAfterBuildRevision === null) {
       row.unverifiedAfterBuild++;
+    }
+    if (event.sourceCheck) {
+      if (!['modified-tracked-files', 'no-tracked-differences', 'git-diff-unavailable'].includes(event.sourceCheck)) {
+        throw new Error('Invalid Git source diagnostic');
+      }
+      row.sourceChecks[event.sourceCheck] = (row.sourceChecks[event.sourceCheck] || 0) + 1;
+    }
+    if (event.dirtyTrackedFiles) {
+      if (!Array.isArray(event.dirtyTrackedFiles) ||
+        event.dirtyTrackedFiles.some(path => typeof path !== 'string')) {
+        throw new Error('Invalid tracked file diagnostic');
+      }
+      for (const path of event.dirtyTrackedFiles) {
+        if (!row.dirtyTrackedFiles.includes(path) && row.dirtyTrackedFiles.length < 12) {
+          row.dirtyTrackedFiles.push(path);
+        }
+      }
     }
     rows.set(key, row);
     total++;
@@ -61,6 +78,22 @@ export function formatBuildSummary({ total, rows }) {
         ' | ' + reasons + ' | ' + (row.unverifiedAfterBuild || 0) + ' |';
     }),
     '',
+    ...(rows.some(row => Object.keys(row.sourceChecks || {}).length)
+      ? [
+          'Git source verification at invalidation (tracked filenames only; no file contents):',
+          '| Origin and workspace | Git verification results | Tracked paths (at most 12) |',
+          '| --- | --- | --- |',
+          ...rows.filter(row => Object.keys(row.sourceChecks || {}).length).map(row => {
+            const checks = Object.entries(row.sourceChecks)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([status, count]) => status + ': ' + count)
+              .join(', ');
+            const paths = row.dirtyTrackedFiles.map(path => path.replaceAll('|', '/')).join(', ') || '—';
+            return '| ' + row.key.replaceAll('|', '/') + ' | ' + checks + ' | ' + paths + ' |';
+          }),
+          '',
+        ]
+      : []),
   ].join('\n');
 }
 
