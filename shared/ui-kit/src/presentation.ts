@@ -5,7 +5,7 @@
  */
 import {
   carousel_Slide_Data_Schema,
-  checkpointAnswer_Child_Data_Schema,
+  primitiveContentBlockResolved_Schema,
   checkpointItem_Data_Schema,
   contentBlockResolved_Schema,
   type Checkpoint_Allowed_Data,
@@ -101,7 +101,10 @@ export function toContentBlockProps(value: unknown): ContentBlockViewProps {
         question: item.question,
         answer: ordered(item.answer, 'checkpoint answer')
           .filter(enabled)
-          .map(answer => checkpointAnswer_Child_Data_Schema.parse(answer)),
+          .map(answer => {
+            primitiveContentBlockResolved_Schema.parse(answer);
+            return answer as Checkpoint_Allowed_Data;
+          }),
       };
     });
     if (!content.length) throw Error('Checkpoint needs an enabled item');
