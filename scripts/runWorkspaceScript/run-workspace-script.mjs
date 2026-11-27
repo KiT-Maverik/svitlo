@@ -259,11 +259,11 @@ export async function runUnitOverlapPair(steps, run) {
       ? [steps[index].name + ' / ' + steps[index].script + ': ' + String(result.reason?.message ?? result.reason)]
       : [],
   );
-  if (failures.length) throw Error('Unit overlap failed:\\n' + failures.join('\\n'));
+  if (failures.length) throw Error('Unit overlap failed:\n' + failures.join('\n'));
 }
 
 function runUnitOverlapStepAsync({ name, script }) {
-  console.log('\\n▶ ' + name + ' / ' + script + ' (unit overlap)');
+  console.log('\n▶ ' + name + ' / ' + script + ' (unit overlap)');
   const startedAt = process.hrtime.bigint();
   return new Promise((resolveStep, rejectStep) => {
     const environment = environmentForWorkspace(name);
