@@ -256,7 +256,7 @@ export function materializeCodingTaskSection(config: Source, options: Options): 
       name +
       ' = defineCodingTaskSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
