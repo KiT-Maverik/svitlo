@@ -120,9 +120,9 @@ export const defineBuildAnswerWithBlocks = <
         field === 'correctSequence',
       );
       if (field === 'correctSequence') {
-        result.base.children.forEach(key => assertEnabledBlock(result.base[key], 'content.correctSequence.' + key));
+        result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.correctSequence.' + key));
       }
-      base[field] = result.base;
+      if (Object.keys(result.base).length) base[field] = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {})[field] = entries;
     }
     return { base, locale };
