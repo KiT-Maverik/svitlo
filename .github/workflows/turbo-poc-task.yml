@@ -1,0 +1,101 @@
+# Private helper for manual Turborepo A/B/C benchmark in engine-generators.yml.
+# This file is not independently dispatchable and never changes protected checks.
+name: Turbo PoC package task
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        required: true
+        type: string
+      operation:
+        required: true
+        type: string
+      requires:
+        required: true
+        type: string
+      artifact_key:
+        required: true
+        type: string
+      artifact_root:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  task:
+    name: ${{ inputs.workspace }} / ${{ inputs.operation }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install same pinned workspace dependencies
+        run: npm ci --no-audit --no-fund
+
+      # Same-run, same-attempt immutable artifacts. No shared node_modules or
+      # packageBuildReuse state. Each task gets an isolated runner.
+      - uses: actions/download-artifact@v6
+        if: contains(inputs.requires, 'engine')
+        with:
+          name: turbo-poc-engine-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/engine/dist/
+      - uses: actions/download-artifact@v6
+        if: contains(inputs.requires, 'ui-kit')
+        with:
+          name: turbo-poc-ui-kit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/ui-kit/dist/
+      - uses: actions/download-artifact@v6
+        if: contains(inputs.requires, 'math')
+        with:
+          name: turbo-poc-math-${{ github.run_id }}-${{ github.run_attempt }}
+          path: content/math/dist/
+
+      - name: Validate predecessor exports and snapshot dist
+        env:
+          REQUIRES: ${{ inputs.requires }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs snapshot "$RUNNER_TEMP/turbo-poc-before.json" "$REQUIRES"
+
+      - name: Execute exactly one canonical workspace operation
+        env:
+          WORKSPACE: ${{ inputs.workspace }}
+          OPERATION: ${{ inputs.operation }}
+        run: |
+          set -euo pipefail
+          case "$WORKSPACE:$OPERATION" in
+            @svitlo/engine:package:build|@svitlo/engine:code:check:types|@svitlo/engine:test|@svitlo/ui-kit:package:build|@svitlo/ui-kit:code:check:types|@svitlo/ui-kit:test|@svitlo/math:package:build|@svitlo/math:code:check:types|@svitlo/math:test) ;;
+            *) echo "::error::Unsupported benchmark task"; exit 1 ;;
+          esac
+          start=$(date +%s)
+          # Suppress implicit npm pretest/prebuild hooks in ALL variants.
+          # The selected script itself still executes normally.
+          npm --ignore-scripts run "$OPERATION" --workspace "$WORKSPACE"
+          echo "- $WORKSPACE / $OPERATION: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Ensure no prerequisite was rebuilt
+        if: ${{ !cancelled() }}
+        env:
+          REQUIRES: ${{ inputs.requires }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs verify "$RUNNER_TEMP/turbo-poc-before.json" "$REQUIRES"
+
+      - name: Validate locally built public exports
+        if: ${{ inputs.operation == 'package:build' }}
+        env:
+          KEY: ${{ inputs.artifact_key }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs check "$KEY"
+
+      - name: Upload compiled package as same-run artifact
+        if: ${{ inputs.operation == 'package:build' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: turbo-poc-${{ inputs.artifact_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ inputs.artifact_root }}/dist/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
