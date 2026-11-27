@@ -59,12 +59,12 @@ type OverrideBase = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-// "events" is an Lesson-owned semantic field, not a Section slug. Other
+// Skills and events are Lesson-owned metadata, not Section slugs. Other
 // metadata keys are also excluded from the direct child-placement map.
-const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children', 'events']);
+const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children', 'skills', 'events']);
 const directSections = (config: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
-const extraReserved = new Set<string>([...slugAddressedReservedKeys, 'events']);
+const extraReserved = new Set<string>([...slugAddressedReservedKeys, 'skills', 'events']);
 
 const validate = (config: Lesson_Config): void => {
   if (Object.hasOwn(config, 'programId')) {
