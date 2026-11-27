@@ -79,14 +79,14 @@ describe('Configurators', () => {
           type: 'checkpointItem',
           question,
           check: true,
-          answer: defineCheckpointAnswer({
+          answer: defineCheckpointAnswer<'answer', { answer: typeof answer }>({
             id: id('07'),
             slug: 'answer',
             type: 'checkpointAnswer',
             children: ['answer'], answer,
           }),
         });
-        const checkpoint = defineCheckpoint({
+        const checkpoint = defineCheckpoint<'checkpoint', { item: typeof item }>({
           id: id('06'),
           slug: 'checkpoint',
           type: 'checkpoint',
