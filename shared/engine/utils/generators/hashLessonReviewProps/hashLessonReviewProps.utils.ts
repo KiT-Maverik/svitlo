@@ -3,7 +3,7 @@
  *
  * Hash the fully assembled `lesson.build.data({ languages })` resource.
  * This deliberately excludes Scene implementation and binary asset bytes:
- * unchanged Props with changed external files require separate reviews.
+ * unchanged Data with changed external files require separate reviews.
  */
 import { createHash } from 'node:crypto';
 
@@ -31,12 +31,12 @@ function canonical(value: unknown): string {
   throw new Error('Lesson review Props must contain serializable JSON values');
 }
 
-/** Short SHA-256 identity for all assembled Lesson Props including locale data. */
-export function hashLessonReviewProps(props: { base: unknown; locale?: unknown }): string {
-  if (props === null || typeof props !== 'object' || !Object.hasOwn(props, 'base')) {
+/** Short SHA-256 identity for all assembled Lesson Data including locale data. */
+export function hashLessonReviewData(data: { base: unknown; locale?: unknown }): string {
+  if (data === null || typeof data !== 'object' || !Object.hasOwn(data, 'base')) {
     throw new Error('Expected assembled Lesson Props with a base object');
   }
-  return createHash('sha256').update(canonical(props)).digest('hex').slice(0, 20);
+  return createHash('sha256').update(canonical(data)).digest('hex').slice(0, 20);
 }
 
 /** A bare digest is the identifier unless TypeScript needs '_' for a leading digit. */
