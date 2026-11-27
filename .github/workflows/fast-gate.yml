@@ -81,6 +81,7 @@ jobs:
         if: steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-fastgate-builds.jsonl
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           TARGET_BRANCH: ${{ github.event.pull_request.base.ref }}
@@ -97,7 +98,12 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-fastgate-builds.jsonl
         run: node scripts/runFastGate/run-fast-gate.mjs --all
+
+      - name: Summarize observed FastGate dependency builds
+        if: always() && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
+        run: node scripts/ci/buildTelemetry/summarize-builds.mjs --file "${{ runner.temp }}/svitlo-fastgate-builds.jsonl"
 
       - name: 'Validated Ready scope v1 | ${{ github.event.pull_request.number }} | ${{ github.event.pull_request.head.ref }} | ${{ github.event.pull_request.head.sha }} | ${{ github.event.pull_request.base.ref }} | ${{ github.event.pull_request.base.sha }} | ${{ github.sha }}'
         if: success() && github.event_name == 'pull_request' && !github.event.pull_request.draft
