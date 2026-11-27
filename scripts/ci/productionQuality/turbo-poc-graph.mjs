@@ -99,13 +99,31 @@ export function checkActionsGraph(dry, workflow) {
     visiting.delete(name);
     return visited;
   }
+  const taskById = new Map(dry.tasks.map(task => [task.taskId, task]));
+  function taskAncestors(taskId, seen = new Set(), visiting = new Set()) {
+    if (visiting.has(taskId)) throw Error('Cyclic Turbo benchmark tasks: ' + taskId);
+    visiting.add(taskId);
+    for (const dep of taskById.get(taskId)?.dependencies || []) {
+      if (!focus.some(pkg => dep.startsWith(pkg + '#'))) continue;
+      if (!taskById.has(dep)) throw Error('Missing dependency task: ' + dep);
+      if (!seen.has(dep)) {
+        taskAncestors(dep, seen, visiting);
+        seen.add(dep);
+      }
+    }
+    visiting.delete(taskId);
+    return seen;
+  }
   for (const task of dry.tasks) {
     if (!focus.some(pkg => task.taskId.startsWith(pkg + '#'))) continue;
     const name = jobName(task.taskId);
     const upstream = ancestors(name);
-    for (const dep of task.dependencies) {
-      if (!focus.some(pkg => dep.startsWith(pkg + '#'))) continue;
-      if (!upstream.has(jobName(dep))) throw Error('GitHub needs missing task dependency: ' + name + ' => ' + jobName(dep));
+    const required = new Set([...taskAncestors(task.taskId)].map(jobName));
+    for (const dep of required) {
+      if (!upstream.has(dep)) throw Error('GitHub needs missing task dependency: ' + name + ' => ' + dep);
+    }
+    for (const dep of upstream) {
+      if (!required.has(dep)) throw Error('Unnecessary GitHub job serialization: ' + name + ' => ' + dep);
     }
   }
   return { jobs: jobs.size };
