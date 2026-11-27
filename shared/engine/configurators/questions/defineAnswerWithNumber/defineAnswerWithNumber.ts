@@ -25,7 +25,7 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, slugAddressedReservedKeys } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -57,7 +57,8 @@ type LiteralPromptPatch<
   Languages extends readonly LanguageCode[],
 > = Patch extends { content: { question: infer Group } }
   ? Group extends Record<string, unknown>
-    ? Exclude<keyof Patch, 'params' | 'locale' | 'content'> extends never
+    ? [Exclude<keyof Patch, 'params' | 'locale' | 'content'> |
+       Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation'>] extends [never]
       ? {
           content: {
             question: {
@@ -66,8 +67,10 @@ type LiteralPromptPatch<
                   ? Extract<Content['question']['children'][number] | keyof Group, string>[]
                   : Key extends keyof BlockMembers<Content['question']>
                     ? Parameters<BlockMembers<Content['question']>[Key]['build']['overrides']>[0] | false
-                    : Group[Key] extends ContentBlock_Primitive_Configurator
-                      ? ChildSupporting<Languages, Group[Key]>
+                    : Key extends (typeof slugAddressedReservedKeys)[number]
+                      ? never
+                      : Group[Key] extends ContentBlock_Primitive_Configurator
+                        ? ChildSupporting<Languages, Group[Key]>
                       : never;
             };
           } & Pick<QuestionCommonPatch<Content, {}, Languages>, 'hint' | 'explanation'>;
