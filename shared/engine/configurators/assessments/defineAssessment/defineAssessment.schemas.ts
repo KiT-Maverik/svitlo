@@ -1,35 +1,23 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import type { DeepPartial, PublicationLanguageOptions } from '#types';
+import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { validateSlugAddressedContainer } from '../../_shared__configurators';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentSection_Configurator } from '../../sections/defineContentSection/defineContentSection';
+import type { Section_Configurator } from '../../sections/section.types';
 import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
-import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
 import { quizSection_Data_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 
-/** The one Quiz is structurally separate from optional supporting Content Sections. */
-/**
- * Section overrides are now generic over added slug keys. The general
- * ConfiguratorChild conditional cannot extract a single generic call
- * signature; retain every other Section member and erase only the patch
- * argument at this parent collection boundary.
+/** An Assessment accepts real child Configurators through the same Build-only
+ * collection boundary as Lesson; concrete authored sections keep their precise
+ * overrides and language scope before being composed into this boundary.
  */
-export type Assessment_Content_Section_Configurator =
-  Omit<ContentSection_Configurator, 'build'> & {
-    readonly build: Omit<ContentSection_Configurator['build'], 'overrides'> & {
-      overrides(
-        patch: never,
-        options: PublicationLanguageOptions,
-      ): ReturnType<ContentSection_Configurator['build']['overrides']>;
-    };
-  };
-export type Assessment_Quiz_Configurator = QuizSection_Configurator;
+export type Assessment_Content_Section_Configurator = Extract<Section_Configurator, { readonly type: 'content' }>;
+export type Assessment_Quiz_Configurator = Extract<Section_Configurator, { readonly type: 'quiz' }>;
 export type Assessment_Section_Configurator = Assessment_Content_Section_Configurator | Assessment_Quiz_Configurator;
 
 const languages = z
