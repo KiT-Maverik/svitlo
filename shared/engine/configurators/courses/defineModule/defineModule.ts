@@ -1,3 +1,4 @@
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -128,7 +129,7 @@ export type Module_Configurator<
     data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>>;
     overrides<const Added extends Record<string, Module_Child> = {}>(
       patch: Module_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
       },
       options: PublicationLanguageOptions<Languages>,
     ): ModulePublication<ModuleOverrideBase>;
@@ -148,7 +149,7 @@ export const defineModule = <
 >(
   config: Omit<Module_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
     locale: RequireLanguages<Module_Config['locale'], Languages>;
   },
 ): Module_Configurator<Slug, Items, Languages> => {
@@ -277,7 +278,7 @@ export const defineModule = <
 
   const overrides = <const Added extends Record<string, Module_Child> = {}>(
     patch: Module_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
     },
     options: PublicationLanguageOptions<Languages>,
   ): ModulePublication<ModuleOverrideBase> => {
