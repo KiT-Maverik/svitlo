@@ -154,10 +154,10 @@ test('standalone and reusable Engine generators have distinct cancellation group
   // promotion both workflows see the same PR number; if their groups match,
   // cancel-in-progress can cancel the required reusable Production gate.
   const engineGroup = engineGeneratorsWorkflow.match(
-    /concurrency:\\n(?:.*\\n)*?  group: (.+)\\n  cancel-in-progress: true/,
+    /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
   )?.[1];
   const productionGroup = workflow.match(
-    /concurrency:\\n(?:.*\\n)*?  group: (.+)\\n  cancel-in-progress: true/,
+    /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
   )?.[1];
   assert.equal(
     engineGroup,
