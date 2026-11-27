@@ -286,7 +286,7 @@ describe('Configurators', () => {
         });
         const withRecall = defineLesson({
           ...input,
-          children: ['intro', 'banklessRecall'], intro: section, banklessRecall: recall,
+          children: ['intro' as const, 'banklessRecall' as const], intro: section, banklessRecall: recall,
         });
         assert.equal((withQuiz.build.data({ languages: ['en'] }).base.banklessQuiz as {type?: string})?.type, 'quiz');
         assert.equal((withRecall.build.data({ languages: ['en'] }).base.banklessRecall as {type?: string})?.type, 'flashcards');
