@@ -124,6 +124,9 @@ export const flashcard_Data_Schema = identityBase_Schema.extend({
         ctx.addIssue({ code: 'custom', message: 'Invalid Flashcard relationship children order' });
       }
       for (const key of members) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved relationship placement key' });
+        }
         if (!flashcardRelationship_Schema.safeParse(relationships[key]).success) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard relationship Data' });
         }
