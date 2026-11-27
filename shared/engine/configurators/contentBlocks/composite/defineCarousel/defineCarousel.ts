@@ -317,18 +317,12 @@ export const defineCarousel = <
       if (structural && patch.children === undefined)
         throw new Error('children is required when adding or disabling Carousel slides');
       const order = patch.children ?? initialOrder.filter(key => Object.hasOwn(enabled, key));
-      const orderIssues = validateOrderedKeys(
-        { items: candidates, order },
-        { path: 'children', allowDisabled: true, requireNonEmpty: true },
-      );
-      // Effective disabled children must also be omitted from the replacement order.
+      // Only effective active slides belong in the resolved order. An authored
+      // disabled slide can remain addressable in Config but is absent from Data.
       const activeOrderIssues = validateOrderedKeys(
         { items: enabled, order },
         { path: 'children', requireNonEmpty: true },
       );
-      if (orderIssues.length && !Object.keys(childPatches).length) {
-        throw new Error(orderIssues.map(issue => issue.message).join('; '));
-      }
       if (activeOrderIssues.length) {
         throw new Error(activeOrderIssues.map(issue => issue.message).join('; '));
       }
