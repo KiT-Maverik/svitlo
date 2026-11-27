@@ -11,7 +11,7 @@ import {
 } from '@svitlo/adapter-nextjs';
 import { courseActivities, resolveEntityPath, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
 
-export type { LocalizedCourse, LocalizedCourseContent, LocalizedCourseNode } from '@svitlo/engine/runtime';
+export type { LocalizedCourse, LocalizedCourseNode } from '@svitlo/engine/runtime';
 /** Draft-only content is available locally; production always fails closed. */
 export const loadCourseTree = (id: string, language: LanguageCode) =>
   loadPublishedCourseTree(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
