@@ -83,4 +83,3 @@ it('keeps the requested interface language while routing activities through sele
   expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/11111111-1111-4111-8111-00000000011c');
   expect(resources.toc).toHaveBeenCalledWith(courseId, 'uk');
 });
-
