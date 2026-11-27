@@ -370,7 +370,7 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Standalone', uk: 'Самостійний' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const chapter = defineChapter<'chapterContext', { caseStudy: typeof lesson }, typeof languages>({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d22',
@@ -440,7 +440,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Original', uk: 'Оригінал' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = {
     params: { sections: { allowSkipping: false } },
@@ -532,7 +532,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: 'Introduction', navigationLabel: 'Intro' },
-    content: { items: { missingTranslation }, order: ['missingTranslation'] },
+    children: ['missingTranslation'], missingTranslation,
   });
   const quiz = defineQuizSection<'quiz', {}, typeof bilingual>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d23',
@@ -554,7 +554,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
       results: { visibility: 'after-review', showScore: true },
     },
     locale: { title: 'Check', navigationLabel: 'Quiz' },
-    content: { items: {}, order: [] },
+    children: [],
   });
   const lesson = defineLesson({
     id: 'f775647f-203d-481a-a1c7-4d331c779d25',
@@ -567,7 +567,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: 'Standalone' },
-    section: { items: { intro, quiz }, order: ['intro', 'quiz'] },
+    children: ['intro', 'quiz'], intro, quiz,
   });
   const exhibitionNotes = defineContentSection<'exhibitionNotes', {}, typeof english>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d26',
@@ -575,10 +575,10 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: { en: 'English-only notes' }, navigationLabel: 'Notes' },
-    content: { items: {}, order: [] },
+    children: [],
   });
   const placement = placeLesson(lesson, {
-    section: { additionalItems: { exhibitionNotes }, order: ['intro', 'quiz', 'exhibitionNotes'] },
+    children: ['intro', 'quiz', 'exhibitionNotes'], exhibitionNotes,
   } as never);
   const course = defineCourse<'englishCourse', { placement: typeof placement }, typeof english>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d27',
@@ -602,13 +602,13 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
   }
 
   assert.deepEqual(
-    lesson.build.data({ languages: ['en'] }).base.section.map(section => section.slug),
+    lesson.build.data({ languages: ['en'] }).base.children,
     ['intro', 'quiz'],
   );
   assert.throws(() => lesson.build.data({ languages: ['zh'] }), /Invalid publication/);
   assert.throws(
     () =>
-      placement.build.overrides({ section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never, {
+      placement.build.overrides({ quiz: false, children: ['intro', 'exhibitionNotes'] } as never, {
         languages: ['en'],
       }),
     /at least one enabled Quiz/,
@@ -629,7 +629,7 @@ test('Completed Lesson UUID can be reused as distinct Course, Module and Chapter
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Original', uk: 'Оригінал' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const secondPlacement = placeLesson(lesson, { locale: { title: { uk: 'Повторення' } } });
   const placements = { first: lesson, second: secondPlacement };
