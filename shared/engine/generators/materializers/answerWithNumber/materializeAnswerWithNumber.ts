@@ -10,7 +10,7 @@ import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
-type BlockCollection = { items: Record<string, BlockNode>; order: string[] };
+type BlockCollection = { children: string[] } & Record<string, unknown>;
 type Content = Omit<Question_AnswerWithNumber_Config['content'], 'question' | 'hint' | 'explanation'> & {
   question: BlockCollection;
   hint?: BlockCollection;
@@ -108,7 +108,7 @@ const allowedBlocks = new Set([
   'checkpoint',
 ]);
 const collectionPaths = new Set(['content.question', 'content.hint', 'content.explanation']);
-const childPatterns = ['content.question.items.*', 'content.hint.items.*', 'content.explanation.items.*'];
+const childPatterns = ['content.question.*', 'content.hint.*', 'content.explanation.*'];
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function fail(location: string, reason: string): never {
@@ -129,22 +129,16 @@ function checkPath(value: string): void {
   )
     fail(value, 'unsafe destination path');
 }
-function assertCollection(
-  value: unknown,
-  location: string,
-): asserts value is { items: Record<string, unknown>; order: string[] } {
-  if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
-    fail(location, 'expected items/order collection');
-  const items = value.items;
-  const order = value.order;
-  const keys = Object.keys(items);
-  if (
-    keys.length !== order.length ||
-    new Set(order).size !== keys.length ||
-    order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))
-  )
-    fail(location + '.order', 'order must include each item exactly once');
-  for (const key of keys) safeSlug(key, location + '.items.' + key);
+function assertCollection(value: unknown, location: string): asserts value is { children: string[] } & Record<string, unknown> {
+  if (!isRecord(value) || !Array.isArray(value.children) ||
+      Object.hasOwn(value, 'items') || Object.hasOwn(value, 'order'))
+    fail(location, 'expected direct child keys and children order');
+  const order = value.children;
+  const keys = Object.keys(value).filter(key => key !== 'children');
+  if (keys.length !== order.length || new Set(order).size !== keys.length ||
+      order.some(key => typeof key !== 'string' || !Object.hasOwn(value, key)))
+    fail(location + '.children', 'children must include every child once');
+  for (const key of keys) safeSlug(key, location + '.' + key);
 }
 /** Prune only true locale-code dictionaries, not ordinary maps (e.g. accepted answers). */
 function sourceLocale(value: unknown, language: string, location: string): unknown {
@@ -173,7 +167,7 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
     fail('languages.document', 'valid source locale required');
   if (!isRecord(config.params) || !isRecord(config.content)) fail('config', 'params/content required');
   assertCollection(config.content.question, 'content.question');
-  if (!config.content.question.order.length) fail('content.question', 'reviewed prompt required');
+  if (!config.content.question.children.length) fail('content.question', 'reviewed prompt required');
   if (config.content.hint !== undefined) assertCollection(config.content.hint, 'content.hint');
   if (config.content.explanation !== undefined) assertCollection(config.content.explanation, 'content.explanation');
   if (
@@ -222,10 +216,10 @@ export function materializeAnswerWithNumber(node: AnswerWithNumberNode, context:
       if (typeof child.id !== 'string' || !validUUID.test(child.id))
         fail(location + '.id', 'existing child UUID required');
       safeSlug(child.slug, location + '.slug');
-      if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
+      if (child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
       // Keep semantic Question roles, but discard source-only content/items wrappers.
-      const childPath = [...parts.slice(1, -2), parts[parts.length - 1]].join('/');
+      const childPath = parts.slice(1).join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(

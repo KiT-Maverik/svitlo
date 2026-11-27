@@ -10,7 +10,7 @@ import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
-type BlockCollection = { items: Record<string, BlockNode>; order: string[] };
+type BlockCollection = { children: string[] } & Record<string, unknown>;
 type Content = Omit<Question_MatchBlocks_Config['content'], 'question' | 'hint' | 'explanation' | 'pairs'> & {
   question: BlockCollection;
   hint?: BlockCollection;
@@ -107,11 +107,11 @@ const allowedBlocks = new Set([
 ]);
 const collectionPaths = new Set(['content.question', 'content.hint', 'content.explanation', 'content.pairs']);
 const childPatterns = [
-  'content.question.items.*',
-  'content.hint.items.*',
-  'content.explanation.items.*',
-  'content.pairs.items.*.left',
-  'content.pairs.items.*.right',
+  'content.question.*',
+  'content.hint.*',
+  'content.explanation.*',
+  'content.pairs.*.left',
+  'content.pairs.*.right',
 ];
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -133,22 +133,16 @@ function checkPath(value: string): void {
   )
     fail(value, 'unsafe destination path');
 }
-function assertCollection(
-  value: unknown,
-  location: string,
-): asserts value is { items: Record<string, unknown>; order: string[] } {
-  if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
-    fail(location, 'expected items/order collection');
-  const items = value.items;
-  const order = value.order;
-  const keys = Object.keys(items);
-  if (
-    keys.length !== order.length ||
-    new Set(order).size !== keys.length ||
-    order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))
-  )
-    fail(location + '.order', 'order must include each item exactly once');
-  for (const key of keys) safeSlug(key, location + '.items.' + key);
+function assertCollection(value: unknown, location: string): asserts value is { children: string[] } & Record<string, unknown> {
+  if (!isRecord(value) || !Array.isArray(value.children) ||
+      Object.hasOwn(value, 'items') || Object.hasOwn(value, 'order'))
+    fail(location, 'expected direct child keys and children order');
+  const order = value.children;
+  const keys = Object.keys(value).filter(key => key !== 'children');
+  if (keys.length !== order.length || new Set(order).size !== keys.length ||
+      order.some(key => typeof key !== 'string' || !Object.hasOwn(value, key)))
+    fail(location + '.children', 'children must include every child once');
+  for (const key of keys) safeSlug(key, location + '.' + key);
 }
 /** Prune only true locale-code dictionaries, not ordinary maps (e.g. accepted answers). */
 function sourceLocale(value: unknown, language: string, location: string): unknown {
@@ -177,13 +171,13 @@ export function materializeMatchBlocks(node: MatchBlocksNode, context: MatchBloc
     fail('languages.document', 'valid source locale required');
   if (!isRecord(config.params) || !isRecord(config.content)) fail('config', 'params/content required');
   assertCollection(config.content.question, 'content.question');
-  if (!config.content.question.order.length) fail('content.question', 'reviewed prompt required');
+  if (!config.content.question.children.length) fail('content.question', 'reviewed prompt required');
   if (config.content.hint !== undefined) assertCollection(config.content.hint, 'content.hint');
   if (config.content.explanation !== undefined) assertCollection(config.content.explanation, 'content.explanation');
   assertCollection(config.content.pairs, 'content.pairs');
-  if (!config.content.pairs.order.length) fail('content.pairs', 'at least one pair required');
-  for (const key of config.content.pairs.order) {
-    const pair = config.content.pairs.items[key];
+  if (!config.content.pairs.children.length) fail('content.pairs', 'at least one pair required');
+  for (const key of config.content.pairs.children) {
+    const pair = config.content.pairs[key];
     if (!isRecord(pair) || !pair.left || !pair.right)
       fail('content.pairs.items.' + key, 'both left and right blocks required');
   }
@@ -227,10 +221,10 @@ export function materializeMatchBlocks(node: MatchBlocksNode, context: MatchBloc
       if (typeof child.id !== 'string' || !validUUID.test(child.id))
         fail(location + '.id', 'existing child UUID required');
       safeSlug(child.slug, location + '.slug');
-      if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
+      if (parts[1] !== 'pairs' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
       // Preserve the pair's identity and left/right roles without source-only items wrappers.
-      const childPath = parts[1] === 'pairs' ? ['pairs', parts[3], parts[4]].join('/') : [parts[1], parts[3]].join('/');
+      const childPath = parts.slice(1).join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(
