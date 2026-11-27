@@ -70,7 +70,7 @@ type ExistingSectionPatch<Section> = SectionMetadata<Section> & {
 type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
 type ExistingLessonPatch<
   Lesson,
-  Added extends Record<string, AddedReference>,
+  Added extends Record<string, unknown>,
 > = Lesson_Metadata_Overrides & {
   children?: Extract<SectionKeys<Lesson> | keyof Added, string>[];
 } & {
@@ -78,7 +78,7 @@ type ExistingLessonPatch<
 };
 type VerifiedAdded<
   Lesson,
-  Added extends Record<string, AddedReference>,
+  Added extends Record<string, unknown>,
 > = {
   [Key in keyof Added]: Key extends keyof Lesson | keyof Lesson_Metadata_Overrides | 'children'
     ? never
@@ -93,4 +93,15 @@ type VerifiedAdded<
 export type CourseLessonSourcePatch<
   Lesson extends { readonly type: 'lesson' },
   Added extends Record<string, AddedReference> = {},
+> = ExistingLessonPatch<Lesson, Added> & VerifiedAdded<Lesson, Added>;
+
+/**
+ * Post-binding form for generated executable Course placement modules.
+ * Unlike CourseLessonSourcePatch this allows ONLY the trusted, concrete
+ * Section Configurators emitted/imported by the binder, not inert refs.
+ * The original Lesson Build API still performs the final semantic validation.
+ */
+export type CourseLessonBoundPatch<
+  Lesson extends { readonly type: 'lesson' },
+  Added extends Record<string, SectionChild> = {},
 > = ExistingLessonPatch<Lesson, Added> & VerifiedAdded<Lesson, Added>;
