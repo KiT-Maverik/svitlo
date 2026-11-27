@@ -451,7 +451,7 @@ export function defineFlashcard<
         if (!isRecord(change)) throw new Error('content.' + side + ' must be an object');
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
-        const current = initialContent[side] ?? defineFlashcardSide({ children: [] });
+        const current = initialContent[side] ?? defineFlashcardSide<{}, Languages>({ children: [] });
         const built = buildChildOverrides(current, change as never) as SidePublication;
         if (side !== 'hint' && built.base.children.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
