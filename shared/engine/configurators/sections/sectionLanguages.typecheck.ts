@@ -1,4 +1,5 @@
 import type { ChildrenSupporting, ChildSupporting } from '#types';
+import type { SafePlacementMap } from '../_shared__configurators';
 
 import { defineText } from '../contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../lessons/defineLesson/defineLesson';
@@ -26,6 +27,14 @@ function authoringLanguageContracts() {
   const forbidden: ChildSupporting<['en', 'uk'], typeof ukText> = ukText;
   void allowed;
   void forbidden;
+  
+  // Metadata and the previous collection wrapper are not valid placement keys.
+  // @ts-expect-error 'children' is reserved and cannot hold a ContentBlock configurator.
+  const forbiddenChildrenKey: SafePlacementMap<{ children: typeof enUkText }> = { children: enUkText };
+  // @ts-expect-error 'content' is reserved, not a second nested collection alias.
+  const forbiddenContentKey: SafePlacementMap<{ content: typeof enUkText }> = { content: enUkText };
+  void forbiddenChildrenKey;
+  void forbiddenContentKey;
 
   const bilingual = defineContentSection<'intro', { paragraph: typeof enUkText }, ['en', 'uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e03',
