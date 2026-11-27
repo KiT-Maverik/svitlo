@@ -100,10 +100,10 @@ export const defineOrderSequence = <
 
   const extraContent = (source: Content, languages: readonly LanguageCode[], patch?: ResolvableBlockPatch) => {
     const result = resolveBlockCollection(source.sequence, languages, patch, 'content.sequence', true);
-    result.base.children.forEach(key => assertEnabledBlock(result.base[key], 'content.sequence.' + key));
+    result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.sequence.' + key));
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, entries] of Object.entries(result.locale)) locale[language] = { sequence: entries };
-    return { base: { sequence: result.base }, locale };
+    return { base: Object.keys(result.base).length ? { sequence: result.base } : {}, locale };
   };
 
   const data = (
