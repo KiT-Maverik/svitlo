@@ -76,8 +76,8 @@ export function run(argv = process.argv.slice(2)) {
     { decoder: new StringDecoder('utf8'), pending: '' },
     { decoder: new StringDecoder('utf8'), pending: '' },
   ];
-  const actionable = /(?:^|\\s)(?:error TS\\d+|Error:|FAIL|not ok|fatal:)|::error|\\[error\\]/i;
-  const annotation = /^::(?:error|warning|notice)(?:\\s|::)/;
+  const actionable = /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i;
+  const annotation = /^::(?:error|warning|notice)(?:\s|::)/;
   const spawnCommand = resolveSpawnCommand(command, args);
   const child = spawn(spawnCommand.command, spawnCommand.args, {
     stdio: verbose ? 'inherit' : ['inherit', 'pipe', 'pipe'],
