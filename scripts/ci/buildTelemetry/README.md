@@ -27,7 +27,7 @@ evidence that `tsc` internally compiled exactly once. The
 verified job-local requests. A report distinguishes those from direct commands.
 
 The Content workflow collects separate per-job traces from its `prepare`
-and up to five `shard` runners. It wraps their explicit Engine build commands
+and up to three concurrent `shard` runners (current approved default). It wraps their explicit Engine build commands
 and records textbook `package:build` commands in `buildChangedContent` and
 conditional Engine/UI Kit fallback builds in `buildTextbook`. The special
 skills-agent route may request another Engine build in its own shard:
