@@ -58,12 +58,64 @@ export function checkGraph(dry, workspaces) {
   return { taskCount: included.length, workspaces: focus.length };
 }
 
+
+// The B topology is intentionally static (Actions cannot add dynamic needs).
+// Verify that its actual job graph preserves every real Turbo dependency edge.
+const jobName = taskId => {
+  const [pkg, operation] = taskId.split('#');
+  const slug = pkg === '@svitlo/engine' ? 'engine' : pkg === '@svitlo/ui-kit' ? 'ui-kit' : pkg === '@svitlo/math' ? 'math' : null;
+  const action = operation === 'package:build' ? 'build' : operation === 'code:check:types' ? 'types' : operation === 'test' ? 'tests' : null;
+  if (!slug || !action) throw Error('Unexpected representative task: ' + taskId);
+  return 'turbo-b-' + slug + '-' + action;
+};
+
+export function checkActionsGraph(dry, workflow) {
+  const jobs = new Map();
+  for (const task of dry.tasks) {
+    if (!focus.some(pkg => task.taskId.startsWith(pkg + '#'))) continue;
+    const name = jobName(task.taskId);
+    const blocks = workflow.split('\n  ' + name + ':\n');
+    if (blocks.length !== 2) throw Error('Missing or duplicate GitHub job: ' + name);
+    const body = blocks[1].split(/\n  [a-z][a-z0-9-]*:\n/)[0];
+    if (!body.includes("inputs.ci_mode == 'turbo-distributed'")) {
+      throw Error('Unisolated benchmark job: ' + name);
+    }
+    const matches = body.match(/\n    needs: \[([^\]]+)\]/);
+    const needs = matches ? matches[1].split(',').map(v => v.trim()) : [];
+    jobs.set(name, needs);
+  }
+  if (jobs.size !== focus.length * operations.length) throw Error('Incomplete distributed job graph');
+  function ancestors(name, visited = new Set()) {
+    for (const need of jobs.get(name) || []) {
+      if (!jobs.has(need)) throw Error('Unknown benchmark predecessor: ' + need);
+      if (need === name) throw Error('Cyclic direct dependency: ' + need);
+      if (!visited.has(need)) {
+        visited.add(need);
+        ancestors(need, visited);
+      }
+    }
+    return visited;
+  }
+  for (const task of dry.tasks) {
+    if (!focus.some(pkg => task.taskId.startsWith(pkg + '#'))) continue;
+    const name = jobName(task.taskId);
+    const upstream = ancestors(name);
+    for (const dep of task.dependencies) {
+      if (!focus.some(pkg => dep.startsWith(pkg + '#'))) continue;
+      if (!upstream.has(jobName(dep))) throw Error('GitHub needs missing task dependency: ' + name + ' => ' + jobName(dep));
+    }
+  }
+  return { jobs: jobs.size };
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     if (process.argv.length !== 3) throw Error('Usage: turbo-poc-graph.mjs <turbo-dry-json-path>');
     const dry = JSON.parse(readFileSync(process.argv[2], 'utf8'));
     const result = checkGraph(dry, discoverWorkspaces());
-    console.log('Turbo representative graph verified: ' + result.taskCount + ' tasks across ' + result.workspaces + ' packages');
+    const yaml = readFileSync(new URL('../../../.github/workflows/engine-generators.yml', import.meta.url), 'utf8');
+    const actions = checkActionsGraph(dry, yaml);
+    console.log('Turbo graph verified: ' + result.taskCount + ' tasks; ' + actions.jobs + ' GitHub job DAG nodes');
   } catch (error) {
     console.error('::error::' + error.message);
     process.exitCode = 1;
