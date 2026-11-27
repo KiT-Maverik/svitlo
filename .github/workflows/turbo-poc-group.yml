@@ -1,0 +1,108 @@
+# Manual-only multi-task Turbo runner. One package group per runner with
+# staged upstream dist and local Turbo cache transferred as GitHub artifacts.
+name: Turbo PoC package group
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        required: true
+        type: string
+      requires:
+        required: true
+        type: string
+      artifact_key:
+        required: true
+        type: string
+      artifact_root:
+        required: true
+        type: string
+      cache_from:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  group:
+    name: ${{ inputs.workspace }} / Turbo build, types, tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK: 'true'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install same pinned workspace dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify pinned Turbo OSS CLI
+        run: npm exec --yes --package=turbo@2.11.13 -- turbo --version
+
+      - uses: actions/download-artifact@v6
+        if: contains(inputs.requires, 'engine')
+        with:
+          name: turbo-poc-hybrid-engine-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/engine/dist/
+      - uses: actions/download-artifact@v6
+        if: contains(inputs.requires, 'ui-kit')
+        with:
+          name: turbo-poc-hybrid-ui-kit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: shared/ui-kit/dist/
+      - uses: actions/download-artifact@v6
+        if: inputs.cache_from != ''
+        with:
+          name: turbo-poc-hybrid-cache-${{ inputs.cache_from }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .turbo/cache/
+
+      - name: Snapshot precursor package exports
+        env:
+          REQUIRES: ${{ inputs.requires }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs snapshot "$RUNNER_TEMP/hybrid-before.json" "$REQUIRES"
+
+      - name: Run current package build, types, tests through Turbo DAG
+        env:
+          WORKSPACE: ${{ inputs.workspace }}
+        run: |
+          set -euo pipefail
+          case "$WORKSPACE" in
+            @svitlo/engine|@svitlo/ui-kit|@svitlo/math) ;;
+            *) echo "::error::Unexpected group"; exit 1 ;;
+          esac
+          start=$(date +%s)
+          # npm may run its pretest hook otherwise and secretly rebuild Engine.
+          npm_config_ignore_scripts=true npm exec --yes --package=turbo@2.11.13 -- \
+            turbo run test --filter="$WORKSPACE" --concurrency=2 --env-mode=loose --summarize
+          echo "- Hybrid $WORKSPACE Turbo DAG: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Require upstream public exports to remain byte-for-byte identical
+        if: ${{ !cancelled() }}
+        env:
+          REQUIRES: ${{ inputs.requires }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs verify-content "$RUNNER_TEMP/hybrid-before.json" "$REQUIRES"
+
+      - name: Validate this group's public exports
+        env:
+          KEY: ${{ inputs.artifact_key }}
+        run: node scripts/ci/productionQuality/turbo-poc-artifact.mjs check "$KEY"
+
+      - name: Export group dist
+        uses: actions/upload-artifact@v6
+        with:
+          name: turbo-poc-hybrid-${{ inputs.artifact_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ inputs.artifact_root }}/dist/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+      - name: Export local Turbo cache for the next stage
+        uses: actions/upload-artifact@v6
+        with:
+          name: turbo-poc-hybrid-cache-${{ inputs.artifact_key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .turbo/cache/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
