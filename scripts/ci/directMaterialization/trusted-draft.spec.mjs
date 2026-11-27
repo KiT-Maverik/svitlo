@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createHash } from 'node:crypto';
-import { operationSpec, parseTrustedDraft, renderTrustedDraft, executeTrustedDraft } from './trusted-draft.mjs';
+import { fileURLToPath } from 'node:url';
+import { operationSpec, parseTrustedDraft, renderTrustedDraft, executeTrustedDraft, trustedEngine } from './trusted-draft.mjs';
 
 const uuid = '12345678-1234-4234-8234-123456789001';
 const base = 'content/math/data/';
@@ -55,23 +56,20 @@ for (const [operation, kind, method, filename] of cases) {
   });
 }
 
-test('malicious source is parsed only and never executed', () => {
+test('pinned malicious source reaches the actual inert Draft Reader without execution', () => {
   const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
-  const source = pinned(cases[1][3]);
-  const read = () => {
-    throw Error('Executable statement forbidden');
-  };
-  assert.throws(
-    () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: textSource, read }),
-    /Executable statement forbidden/,
-  );
-  assert.equal(Object.hasOwn(globalThis, marker), false);
-  const injected = textSource + 'globalThis.' + marker + ' = true;';
+  const injected =
+    'export default { config: {}, production: {} } satisfies LessonWorkflowStage2;\n' +
+    'globalThis.' + marker + ' = true;\n';
+  const source = { ...pinned(cases[1][3]), sourceBlobSha: gitBlob(injected) };
+  const read = trustedEngine(fileURLToPath(new URL('../../../', import.meta.url))).readDeclarativeDraft;
+  assert.equal(typeof read, 'function', 'The built Engine must expose the trusted static reader');
+  const before = Object.hasOwn(globalThis, marker);
   assert.throws(
     () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
-    /exact pinned/,
+    /Declarative draft structure/,
   );
-  assert.equal(Object.hasOwn(globalThis, marker), false);
+  assert.equal(Object.hasOwn(globalThis, marker), before);
 });
 
 test('invalid operation/path/stale blob and output spoofing fail before publication', () => {

@@ -19,9 +19,11 @@ const LANGUAGES = ['en', 'uk'];
 const SOURCE_SHA = 'a'.repeat(40);
 
 test('on-demand standard references do not build a nonexistent dedicated package', () => {
-  const workflow = fs.readFileSync(new URL('../../.github/workflows/translation-review.yml', import.meta.url), 'utf8');
+  const workflow = fs.readFileSync(new URL('../../.github/workflows/agent-ci-artifacts.yml', import.meta.url), 'utf8');
   assert.ok(!workflow.includes('@svitlo/education-standards'));
+  assert.match(workflow, /needs\.resolve\.outputs\.kind == 'education-standards' && steps\.catalog_check\.outputs\.complete == 'true'/);
   assert.ok(workflow.includes('npm run package:build --workspace @svitlo/engine'));
+  assert.match(workflow, /Detect complete EducationStandard authoring matrix/);
 });
 
 function setup(records) {

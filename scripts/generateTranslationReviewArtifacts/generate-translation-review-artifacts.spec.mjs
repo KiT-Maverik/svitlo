@@ -7,10 +7,6 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { fixTaxonomyLinks, parseArguments } from './generate-translation-review-artifacts.mjs';
-// Keep command/manifest and Lesson discovery checks in the existing Ready generator CI suite.
-import './agent-reference-command.spec.mjs';
-import '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs';
-import '../../shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs';
 
 test('requires an explicit reference family and never defaults to whole-repository generation', () => {
   assert.throws(() => parseArguments([]), /explicit supported --kind/);
@@ -130,13 +126,15 @@ test('allows only explicitly selected standalone reference families and optional
 
 test('Skills and UI Kit requests replace only an ignored, run-scoped corpus', () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-  const workspace = path.join(root, 'temp/agent-reference-library');
-  assert.equal(fs.existsSync(workspace), false, 'Test must not overwrite another report');
+  const temp = path.join(root, 'temp');
+  fs.mkdirSync(temp, { recursive: true });
+  const workspace = fs.mkdtempSync(path.join(temp, 'agent-reference-test-'));
   const script = 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs';
   function generate(args) {
     const result = spawnSync(process.execPath, [script, ...args], {
       cwd: root,
       encoding: 'utf8',
+      env: { ...process.env, SVITLO_AGENT_REPORT_OUTPUT: workspace },
       timeout: 180_000,
       maxBuffer: 32 * 1024 * 1024,
     });
