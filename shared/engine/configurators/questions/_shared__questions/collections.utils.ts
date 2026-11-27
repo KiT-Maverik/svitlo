@@ -26,7 +26,7 @@ type Files<T> = Partial<Record<LanguageCode, T>>;
 type BlockResource = { base: Fragment; locale: Files<Fragment> | undefined };
 type BlockPatch = { base: DeepPartial<Fragment>; locale: Files<Fragment> | undefined };
 
-export type OrderedBlocks<Child = Block> = { children: string[] } & Record<string, Child | string[]>;
+export type OrderedBlocks<Child = Block> = { children: string[] } & Record<string, unknown>;
 export type BlockMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Block ? Group[Key] : Block;
 };
@@ -187,7 +187,7 @@ export const resolveChild = (child: Block, languages: readonly LanguageCode[], p
 };
 
 /**
- * Ordered collection validation and full-array replacement.
+ * Ordered collection validation and atomic keyed-group replacement.
  * This helper performs only ContentBlock child composition, not entity lifecycle.
  */
 type ResolvedBlockGroup = { children: string[] } & Record<string, unknown>;
