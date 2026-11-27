@@ -447,6 +447,26 @@ type ModuleInferredChildren<Config> = {
     Config[Key] extends Module_Child ? Config[Key] : never;
 };
 
+/** The inferred scope is the intersection of every child's advertised languages. */
+type ModuleChildLanguages<Children extends Record<string, Module_Child>> = Exclude<
+  LanguageCode,
+  {
+    [Key in keyof Children]: Children[Key] extends LanguageScope<infer Available extends readonly LanguageCode[]>
+      ? Exclude<LanguageCode, Available[number]>
+      : LanguageCode;
+  }[keyof Children]
+>;
+
+/** An invariant title supports all languages; a localized title supports only authored keys. */
+type ModuleTitleLanguages<Title> = Title extends string ? LanguageCode : Extract<keyof Title, LanguageCode>;
+type ModuleInferredLanguages<Config extends ModuleInferredBase> = readonly [
+  Extract<
+    ModuleChildLanguages<ModuleInferredChildren<Config>> &
+      ModuleTitleLanguages<Config['locale']['title']>,
+    LanguageCode
+  >,
+];
+
 /** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
 export function defineModule<
   const Slug extends string,
@@ -454,18 +474,22 @@ export function defineModule<
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: ModuleAuthoredInput<Slug, Items, Languages>): Module_Configurator<Slug, Items, Languages>;
 
-/** Infer the exact child Configurator types from every direct root placement. */
+/** Infer direct children and the languages supported by ALL children and the own title. */
 export function defineModule<
   const Config extends ModuleInferredBase,
 >(
   config: Config &
     ModuleInferredChildren<Config> & {
       children: Extract<keyof ModuleInferredChildren<Config>, string>[];
-      locale: RequireLanguages<Module_Config['locale'], readonly LanguageCode[]>;
+      locale: RequireLanguages<Module_Config['locale'], ModuleInferredLanguages<Config>>;
     } &
-    
+    ChildrenSupporting<ModuleInferredLanguages<Config>, ModuleInferredChildren<Config>> &
     SafePlacementMap<ModuleInferredChildren<Config>>,
-): Module_Configurator<Config['slug'], ModuleInferredChildren<Config>, readonly LanguageCode[]>;
+): Module_Configurator<
+  Config['slug'],
+  ModuleInferredChildren<Config>,
+  ModuleInferredLanguages<Config>
+>;
 export function defineModule(config: unknown): unknown {
   return defineModuleImplementation(config as never);
 }
