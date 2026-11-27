@@ -7,6 +7,7 @@ import { defineLesson } from '../../lessons/defineLesson';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineChapter } from '../defineChapter';
+import { defineLessonStub } from '../defineCourseChildStubs';
 import { defineModule } from '../defineModule';
 import { placeLesson } from '../placeLesson';
 import { defineCourse } from './defineCourse';
@@ -623,6 +624,108 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
 });
 
 
+test('Completed Lesson UUID can be reused as distinct Course, Module and Chapter placements', () => {
+  const languages = ['en', 'uk'] as const;
+  const lesson = defineLesson({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d91',
+    slug: 'sourceLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Original', uk: 'Оригінал' } },
+    section: { items: {}, order: [] },
+  });
+  const secondPlacement = placeLesson(lesson, { locale: { title: { uk: 'Повторення' } } });
+  const placements = { first: lesson, second: secondPlacement };
+  const chapter = defineChapter<'chapter', typeof placements, typeof languages>({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d92',
+    type: 'chapter',
+    slug: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: placements, order: ['first', 'second'] },
+  });
+  const module = defineModule<'module', { chapter: typeof chapter; first: typeof lesson; second: typeof secondPlacement }, typeof languages>({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d93',
+    type: 'module',
+    slug: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: { items: { chapter, ...placements }, order: ['chapter', 'first', 'second'] },
+  });
+  const course = defineCourse<'course', { module: typeof module; first: typeof lesson; second: typeof secondPlacement }, typeof languages>({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d94',
+    type: 'course',
+    slug: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Reusable placement' },
+    content: { items: { module, ...placements }, order: ['module', 'first', 'second'] },
+  });
+  const all = [chapter.build.data({ languages }), module.build.data({ languages }), course.build.data({ languages })];
+  for (const built of all) {
+    const base = built.base as Record<string, unknown> & {
+      children: string[];
+      first: { id: string; slug: string };
+      second: { id: string; slug: string };
+    };
+    assert.equal(base.first.id, lesson.id);
+    assert.equal(base.second.id, lesson.id);
+    assert.equal(base.first.slug, 'sourceLesson');
+    assert.equal(base.second.slug, 'sourceLesson');
+    assert.deepEqual(base.children.slice(-2), ['first', 'second']);
+    assert.match(JSON.stringify(built.locale?.uk), /Повторення/);
+  }
+  assert.equal(lesson.build.data({ languages }).locale?.uk?.locale?.title, 'Оригінал');
+  assert.equal(course_Data_Schema.safeParse(course.build.data({ languages }).base).success, true);
+  assert.equal(
+    course_Data_Schema.safeParse({
+      ...course.build.data({ languages }).base,
+      second: { ...course.build.data({ languages }).base.second, slug: 'changedSource' },
+    }).success,
+    false,
+    'reusing a UUID with a different source slug violates immutable identity',
+  );
+
+  const duplicateChapter = defineChapter({
+    id: chapter.id,
+    type: 'chapter',
+    slug: 'chapterCopy',
+    params: {},
+    locale: { title: 'Other' },
+    content: { items: {}, order: [] },
+  });
+  assert.throws(
+    () => defineCourse({
+      id: 'bd75647f-203d-481a-a1c7-4d331c779d95',
+      type: 'course',
+      slug: 'badCourse',
+      params: { languages },
+      locale: { title: 'Course', description: 'Duplicate owners' },
+      content: { items: { chapter, chapterCopy: duplicateChapter }, order: ['chapter', 'chapterCopy'] },
+    }).build.data({ languages }),
+    /duplicate Course child ID/,
+  );
+
+  const stubId = 'bd75647f-203d-481a-a1c7-4d331c779d96';
+  const draftFirst = defineLessonStub({ id: stubId, slug: 'first' });
+  const draftSecond = defineLessonStub({ id: stubId, slug: 'second' });
+  assert.throws(
+    () => defineChapter({
+      id: 'bd75647f-203d-481a-a1c7-4d331c779d97',
+      type: 'chapter',
+      slug: 'badChapter',
+      params: {},
+      locale: { title: 'Chapter' },
+      content: { items: { first: draftFirst, second: draftSecond }, order: ['first', 'second'] },
+    }).build.data({ languages: ['en'] }),
+    /duplicate Chapter child ID/,
+  );
+});
+
 test('Slug-addressed Data validates placement ordering, reserved keys and immutable child identity', () => {
   const child = defineChapter({
     id: 'b775647f-203d-481a-a1c7-4d331c779d88',
@@ -653,6 +756,8 @@ test('Slug-addressed Data validates placement ordering, reserved keys and immuta
     ['invalid type', { ...data, unit: { ...data.unit, type: 'question' } }],
     ['wrong identity', { ...data, unit: { ...data.unit, slug: 'anotherChapter' } }],
     ['missing child id', { ...data, unit: { ...data.unit, id: undefined } }],
+    ['invalid UUID', { ...data, unit: { ...data.unit, id: 'not-a-uuid' } }],
+    ['invalid authored slug', { ...data, unit: { ...data.unit, slug: 'not-valid' } }],
     ['invalid key', { ...data, children: ['invalid-key'], 'invalid-key': data.unit }],
     ['retired content', { ...data, content: { items: {}, order: [] } }],
     ['reserved params', { ...data, children: ['params'] }],
