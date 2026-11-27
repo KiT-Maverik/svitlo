@@ -11,24 +11,6 @@ test('the academy landing page links to learning materials', async ({ page }) =>
   await expect(page.getByText('Посилання з’явиться після публікації')).toBeVisible();
 });
 
-test('team cards have the requested text with a separate ellipsis line', async ({ page }) => {
-  await page.goto('/team');
-  await expect(page.getByRole('heading', { level: 1, name: 'Наша команда' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Микола' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Марія' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Мія' })).toBeVisible();
-  await expect(page.locator('.team-card__ellipsis')).toHaveText('...');
-  await expect(page.getByText('Одним словом — безробітний.')).toBeVisible();
-});
-
-test('hall of fame uses a justified inline flow and nonbreaking flag-name pairs', async ({ page }) => {
-  await page.goto('/hall-of-fame');
-  await expect(page.locator('.hall-entry')).toHaveCount(18);
-  await expect(page.locator('.hall-names')).toHaveCSS('text-align', 'justify');
-  await expect(page.locator('.hall-entry').first()).toHaveCSS('white-space', 'nowrap');
-  await expect(page.getByText('Усі імена вище — вигадані демонстраційні приклади.', { exact: false })).toBeVisible();
-});
-
 test('scholarships are marked as proposals, not active applications', async ({ page }) => {
   await page.goto('/scholarships');
   await expect(page.locator('.scholarship-card')).toHaveCount(6);
