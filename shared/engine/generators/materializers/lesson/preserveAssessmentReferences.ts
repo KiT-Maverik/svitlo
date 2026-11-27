@@ -56,7 +56,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
     // than using an executable materializer call or intermediate const.
     if (ts.isExportAssignment(statement)) {
       const root = unwrap(statement.expression);
-      if (at(root, ['config', 'section', 'items']) && at(root, ['production'])) candidates.push(root);
+      if (at(root, ['config', 'children']) && at(root, ['production'])) candidates.push(root);
     }
     if (ts.isExpressionStatement(statement) && ts.isCallExpression(statement.expression)) {
       const call = statement.expression;
@@ -64,7 +64,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
         ts.isIdentifier(call.expression) &&
         call.expression.text === 'materializeLessonStage6' &&
         call.arguments.length === 1 &&
-        at(call.arguments[0], ['config', 'section', 'items']) &&
+        at(call.arguments[0], ['config', 'children']) &&
         at(call.arguments[0], ['production'])
       )
         candidates.push(call.arguments[0]);
@@ -73,7 +73,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
     for (const declaration of statement.declarationList.declarations) {
       if (
         declaration.initializer &&
-        at(declaration.initializer, ['config', 'section', 'items']) &&
+        at(declaration.initializer, ['config', 'children']) &&
         at(declaration.initializer, ['production'])
       )
         candidates.push(declaration.initializer);
