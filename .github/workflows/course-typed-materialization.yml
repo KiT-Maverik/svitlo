@@ -56,9 +56,9 @@ jobs:
       - name: Build ordinary Engine package
         run: npm run package:build --workspace @svitlo/engine
       - name: Test trusted typed Course Stage 5 boundary
-        run: node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
       - name: Test Course source generator and atomic writer
-        run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
+        run: node --test --test-reporter=dot shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
         run: npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
