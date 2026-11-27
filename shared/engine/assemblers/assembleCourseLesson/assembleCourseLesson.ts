@@ -7,7 +7,7 @@ import {
   assembleLessonData,
   type PublishedLessonDataOverride,
   type PublishedLessonDataResource,
-} from '../assembleLessonData/assembleLessonData';
+} from '../assembleLessonProps/assembleLessonProps';
 
 /**
  * The Course generator publishes a Lesson reference in a slug-keyed hierarchy, not standalone Lesson
@@ -51,6 +51,7 @@ export type AssembleCourseLessonInput = {
 
 const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
 const allowedOverrideKeys = new Set(['params', 'locale', 'children', 'events']);
+const forbiddenOverrideKeys = new Set(['id', 'slug', 'type', 'skills', 'draft']);
 const validPlacement = /^[a-z][a-zA-Z0-9]*$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -164,7 +165,7 @@ function getOverride(
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
-    if (!allowedOverrideKeys.has(key) && (!validPlacement.test(key) || forbiddenKeys.has(key)))
+    if (forbiddenOverrideKeys.has(key) || (!allowedOverrideKeys.has(key) && (!validPlacement.test(key) || forbiddenKeys.has(key))))
       throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
   if (node.overrides.children !== undefined && (!Array.isArray(node.overrides.children) ||
