@@ -78,9 +78,28 @@ test('non-develop PRs check only directly changed workspaces, not public API con
   assert.deepEqual([...twoChanged.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
 });
 
-test('non-develop PR root-only changes do not select untouched workspaces', () => {
-  const selection = chooseChecks(['package.json', 'package-lock.json'], packages, { changedOnly: true });
+test('nested Ready PR root dependency and TypeScript configuration edits fail closed', () => {
+  for (const filename of ['package.json', 'package-lock.json', 'tsconfig.json', 'tsconfig.base.json']) {
+    const selection = chooseChecks([filename], packages, { changedOnly: true });
+    assert.deepEqual(
+      [...selection.affected].sort(),
+      packages.map(pkg => pkg.name).sort(),
+      filename + ' must not yield a green zero-typecheck result',
+    );
+  }
+});
+
+test('nested Ready PR unrelated root or workflow changes do not broaden typechecks', () => {
+  const selection = chooseChecks(['README.md', '.github/workflows/fast-gate.yml'], packages, {
+    changedOnly: true,
+  });
   assert.deepEqual([...selection.affected], []);
+  const changedWorkspace = chooseChecks(
+    ['README.md', 'content/math/src/demo.ts'],
+    packages,
+    { changedOnly: true },
+  );
+  assert.deepEqual([...changedWorkspace.affected], ['@svitlo/math']);
 });
 
 test('selects only changed subject workspaces', () => {
