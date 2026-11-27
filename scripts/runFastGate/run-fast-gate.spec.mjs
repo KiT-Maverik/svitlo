@@ -152,7 +152,12 @@ test('FastGate is strictly typecheck-only and still always emits the required st
   assert.match(workflow, /Typecheck changed workspaces and public API consumers/);
   assert.match(workflow, /No changed TypeScript workspace or dependency config/);
   assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);
-  assert.doesNotMatch(workflow, /node --test|test:coverage|test:components|app:build|Scoped quality checks/);
+  assert.match(
+    workflow,
+    /node --test --test-reporter=dot scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/,
+    'The narrowly scoped Course stub safety regression is permitted in FastGate',
+  );
+  assert.doesNotMatch(workflow, /test:coverage|test:components|app:build|Scoped quality checks/);
   assert.match(runner, /code:check:types/);
   assert.doesNotMatch(runner, /['"](?:test(?::[a-z-]+)?|app:build)['"]/);
   assert.match(coverage, /github\.event\.comment\.body == '\/engine-coverage'/);
