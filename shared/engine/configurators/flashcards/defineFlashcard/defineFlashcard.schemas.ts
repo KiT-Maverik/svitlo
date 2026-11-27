@@ -141,8 +141,14 @@ export const flashcard_Data_Schema = identityBase_Schema.extend({
     }).optional(),
   }),
   content: z.strictObject({
-    front: resolvedSide.refine(value => value.children.length > 0, 'Flashcard front must not be empty'),
-    back: resolvedSide.refine(value => value.children.length > 0, 'Flashcard back must not be empty'),
+    front: resolvedSide.refine(value => value.children.some(key => {
+      const block = value[key] as { params?: { disabled?: boolean } } | undefined;
+      return block?.params?.disabled !== true;
+    }), 'Flashcard front requires an enabled ContentBlock'),
+    back: resolvedSide.refine(value => value.children.some(key => {
+      const block = value[key] as { params?: { disabled?: boolean } } | undefined;
+      return block?.params?.disabled !== true;
+    }), 'Flashcard back requires an enabled ContentBlock'),
     hint: resolvedSide.optional(),
   }),
 });
