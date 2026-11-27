@@ -12,7 +12,11 @@ import { EngineFlashcardsRenderer } from './EngineFlashcardsRenderer';
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
 
-const card = (number: number, front: string, disabilities: Flashcard_Data['parameters']['disabilities'] = []): Flashcard_Data => ({
+const card = (
+  number: number,
+  front: string,
+  disabilities: Flashcard_Data['parameters']['disabilities'] = [],
+): Flashcard_Data => ({
   id: uuid(number),
   slug: `flashcard-${number}`,
   type: 'flashcard',
@@ -78,10 +82,13 @@ describe('EngineFlashcardsRenderer resource boundaries', () => {
         return Promise.resolve({ items: [newCard], fallbacks: [] });
       },
     };
-    const common = { lessonId: uuid(50), language: 'en' as const, assessmentLoader: loader, messages: enUiKitMessages };
-    const view = render(
-      <EngineFlashcardsRenderer {...common} section={section(52, [oldCard.id])} />,
-    );
+    const common = {
+      lessonId: uuid(50),
+      language: 'en' as const,
+      assessmentLoader: loader,
+      messages: enUiKitMessages,
+    };
+    const view = render(<EngineFlashcardsRenderer {...common} section={section(52, [oldCard.id])} />);
     await waitFor(() => expect(requests).toEqual([[oldCard.id]]));
 
     view.rerender(<EngineFlashcardsRenderer {...common} section={section(53, [newCard.id])} />);
@@ -99,9 +106,10 @@ describe('EngineFlashcardsRenderer resource boundaries', () => {
 
   it('recovers from a failed host load through the accessible retry action', async () => {
     const selected = card(4, 'Retry question');
-    const loadFlashcards = vi.fn()
-      .mockRejectedValueOnce(new Error('offline'))
-      .mockResolvedValue({ items: [selected], fallbacks: [] });
+    const loadFlashcards = vi.fn().mockRejectedValueOnce(new Error('offline')).mockResolvedValue({
+      items: [selected],
+      fallbacks: [],
+    });
     const loader: AssessmentResourceLoader = {
       loadQuestions: emptyQuestions,
       loadFlashcards,
