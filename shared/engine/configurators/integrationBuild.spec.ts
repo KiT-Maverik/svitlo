@@ -195,7 +195,13 @@ describe('Configurators', () => {
         const lessonResource = lesson.build.data(uk);
         // Configurator sparse deletion publishes a tombstone; only the runtime
         // assembler applies that tombstone after the resource's selected locale.
-        const lessonResult = assembleLessonData(lessonResource, 'uk', removed);
+        const lessonResult = assembleLessonData(
+          lessonResource,
+          'uk',
+          // Published Configurator patches are JSON data; the Build generic
+          // exposes events as unknown until final assembler schema validation.
+          removed as unknown as NonNullable<Parameters<typeof assembleLessonData>[2]>,
+        );
         assert.deepEqual(lesson_Data_Schema.parse(lessonResult).children, []);
         assert.equal(Object.hasOwn(lessonResult, 'intro'), false);
       });
