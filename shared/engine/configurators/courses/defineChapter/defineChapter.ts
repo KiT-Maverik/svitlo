@@ -1,3 +1,4 @@
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -128,7 +129,7 @@ export type Chapter_Configurator<
     data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase<Items>>;
     overrides<const Added extends Record<string, Chapter_Child> = {}>(
       patch: Chapter_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
       },
       options: PublicationLanguageOptions<Languages>,
     ): ChapterPublication<ChapterOverrideBase>;
@@ -148,7 +149,7 @@ export const defineChapter = <
 >(
   config: Omit<Chapter_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
     locale: RequireLanguages<Chapter_Config['locale'], Languages>;
   },
 ): Chapter_Configurator<Slug, Items, Languages> => {
@@ -277,7 +278,7 @@ export const defineChapter = <
 
   const overrides = <const Added extends Record<string, Chapter_Child> = {}>(
     patch: Chapter_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
     },
     options: PublicationLanguageOptions<Languages>,
   ): ChapterPublication<ChapterOverrideBase> => {
