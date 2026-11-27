@@ -125,7 +125,11 @@ export type Course_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
-    overrides<const Added extends Record<string, Course_Child> = {}>(
+    overrides(
+      patch: Course_Overrides<Items>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CoursePublication<CourseOverrideBase>;
+    overrides<const Added extends Record<string, Course_Child>>(
       patch: Course_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
@@ -135,7 +139,7 @@ export type Course_Configurator<
     locales: () => { locale: DeepPartial<Course_Locale<'config'>> };
     validate: typeof validate;
   };
-} & Readonly<Items> & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
 /** Define a Course with immutable ordered child configurators and stateless Build. */
 export const defineCourse = <
