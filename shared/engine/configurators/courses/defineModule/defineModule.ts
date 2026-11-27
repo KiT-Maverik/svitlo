@@ -54,7 +54,7 @@ type ModulePublication<Base> = {
 type ModuleDataBase<Items extends Record<string, Module_Child>> = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Module_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
-} & { [Key in keyof Items]: DeepPartial<Extract<Module_Child_Data, { type: Items[Key]['type'] }>> };
+} & { [Key in keyof Items]: DeepPartial<ReturnType<Items[Key]['build']['data']>['base']> };
 type ModuleOverrideBase = Module_Metadata_Overrides & {
   children?: string[];
   [key: string]: unknown;
@@ -262,7 +262,7 @@ export const defineModule = <
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         children: [...initialOrder],
         ...children.base,
-      } as ModuleDataBase<Items>,
+      } as unknown as ModuleDataBase<Items>,
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
