@@ -43,7 +43,10 @@ async function Content({ params, searchParams }: Props) {
   }
 
   const [response, messages, toc] = await Promise.all([
-    loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language, { placement }),
+    loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language, {
+      placement,
+      mode: process.env.NODE_ENV === 'development' ? 'draft' : 'production',
+    }),
     loadPublishedUiKitMessages(descriptor.locale),
     loadCourseToc(course.id, lessonDescriptor.language),
   ]);

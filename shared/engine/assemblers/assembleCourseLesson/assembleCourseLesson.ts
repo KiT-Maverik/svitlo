@@ -50,6 +50,8 @@ export type AssembleCourseLessonInput = {
   language: LanguageCode;
   lesson: PublishedLessonPropsResource;
   course: PublishedCoursePropsFiles;
+  /** Draft preview permits unfinished sibling activities, never assembling an unfinished selected Lesson. */
+  mode?: 'production' | 'draft';
 };
 
 const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
@@ -98,6 +100,7 @@ function findLesson(
   lessonId: string,
   label: string,
   placement?: string,
+  mode: 'production' | 'draft' = 'production',
 ): { node: Record<string, unknown>; path: string[] } | undefined {
   let match: { node: Record<string, unknown>; path: string[] } | undefined;
   const visit = (content: unknown, at: string, prefix: string[]): void => {
@@ -117,8 +120,24 @@ function findLesson(
       const location = at + '/' + slug;
       const raw = items[slug];
       if (!isRecord(raw) || typeof raw.id !== 'string') throw new Error('Invalid Course child at ' + location);
-      if (Object.hasOwn(raw, 'draft'))
-        throw new Error('Course draft stub cannot be assembled as a completed Lesson at ' + location);
+      if (Object.hasOwn(raw, 'draft')) {
+        if (
+          mode !== 'draft' ||
+          raw.draft !== true ||
+          (raw.type !== 'lesson' && raw.type !== 'episode' && raw.type !== 'assessment')
+        ) {
+          throw new Error('Course draft stub cannot be assembled as a completed Lesson at ' + location);
+        }
+        if (
+          raw.type === 'lesson' &&
+          raw.id === lessonId &&
+          (placement === undefined || [...prefix, slug].join('/') === placement)
+        ) {
+          throw new Error('Selected Course draft Lesson cannot be assembled at ' + location);
+        }
+        // Preview-only Course-owned drafts do not prevent independent completed Lessons from loading.
+        continue;
+      }
       if (raw.type === 'lesson') {
         if (raw.id === lessonId && (placement === undefined || [...prefix, slug].join('/') === placement)) {
           if (match) throw new Error('Duplicate Lesson ID ' + lessonId + ' in ' + label + ' Course publication');
@@ -189,6 +208,7 @@ export function assembleCourseLesson({
   language,
   lesson,
   course,
+  mode = 'production',
 }: AssembleCourseLessonInput): Lesson_Props {
   if (!isRecord(lesson.base) || lesson.base.id !== lessonId || lesson.base.type !== 'lesson') {
     throw new Error('Standalone Lesson publication ID/type mismatch');
@@ -201,7 +221,7 @@ export function assembleCourseLesson({
     throw new Error('Course does not support language ' + language);
   }
 
-  const baseMatch = findLesson(base, lessonId, 'base', placement);
+  const baseMatch = findLesson(base, lessonId, 'base', placement, mode);
   if (!baseMatch) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
 
   const localeData = course.locale?.[language];
