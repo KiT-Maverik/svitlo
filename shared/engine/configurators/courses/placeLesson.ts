@@ -35,6 +35,16 @@ type AddedFromPatch<Lesson, Patch> = {
   [Key in Exclude<keyof Patch, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
     Patch[Key] extends BoundSectionChild ? Patch[Key] : never;
 };
+/**
+ * A later placement override may reorder/remove an already trusted Section,
+ * but must not be forced to resupply it or introduce unbound Section slugs.
+ * Keep Added in the children union while making its direct entries optional.
+ */
+type ChainedPlacementPatch<Lesson extends Lesson_Configurator, Added extends AddedSections> =
+  Omit<CourseLessonBoundPatch<Lesson, Added>, keyof Added> & {
+    [Key in keyof Added]?: Added[Key] | false;
+  };
+
 type VerifiedPatchKeys<Lesson extends Lesson_Configurator, Patch> = {
   [Key in keyof Patch]: Key extends keyof CourseLessonBoundPatch<Lesson>
     ? unknown
@@ -53,7 +63,7 @@ export type PlacedLesson<
 > = Omit<Lesson, 'build'> & {
   readonly build: Omit<Lesson['build'], 'overrides'> & {
     overrides(
-      patch: CourseLessonBoundPatch<Lesson>,
+      patch: ChainedPlacementPatch<Lesson, Added>,
       options: PublicationLanguageOptions<Lesson['__svitloLanguageScope']>,
     ): ReturnType<Lesson['build']['overrides']>;
   };
@@ -183,12 +193,20 @@ export function placeLesson<
   }
   const existingKeys = new Set<string>(source.children);
   const authored = snapshotPatch(patch, existingKeys);
+  const addedKeys = new Set(
+    Object.keys(authored).filter(key =>
+      !existingKeys.has(key) &&
+      isVerifiedSection((authored as Record<string, unknown>)[key], key)),
+  );
 
   const composed = (additional: unknown): Record<string, unknown> => {
     const next = snapshotPatch(additional, existingKeys) as Record<string, unknown>;
     const combined = { ...(authored as Record<string, unknown>) };
     for (const [key, value] of Object.entries(next)) {
       const prior = combined[key];
+      if (!metadataKeys.has(key) && !existingKeys.has(key) && !addedKeys.has(key)) {
+        throw new Error('Unknown added Lesson Section in placement override: ' + key);
+      }
       if (!existingKeys.has(key) && isVerifiedSection(prior, key)) {
         if (value === false) {
           delete combined[key];
@@ -234,7 +252,7 @@ export function placeLesson<
       } as ReturnType<Lesson['build']['data']>;
     },
     overrides(
-      additional: CourseLessonBoundPatch<Lesson>,
+      additional: ChainedPlacementPatch<Lesson, AddedFromPatch<Lesson, Patch>>,
       _options: PublicationLanguageOptions<Lesson['__svitloLanguageScope']>,
     ) {
       return buildChildOverrides(source, composed(additional));
