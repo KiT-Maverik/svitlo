@@ -12,7 +12,7 @@ resulting Course files.
 import { publishCourse } from './publishCourseData.mjs';
 
 // course: defineCourse(...)
-// Inline Lesson patches belong in the Course Configurator's content.items
+// Inline Lesson patches belong in the Course Configurator's direct placement fields and children
 publishCourse(course, {
   packageRoot: '/absolute/path/to/content/playground',
   // outputRoot: '/absolute/path/to/content/playground/generated/courses',
@@ -36,7 +36,7 @@ When `outputRoot` is provided, the files are instead written directly to
 an authored resource or a runtime import.
 
 The Course root, Modules and Chapters carry their full Data-shaped metadata
-and their ordered, slug-keyed `content: { items, order }` collections. Each Lesson appears only as
+and their ordered, slug-keyed direct placement fields and `children: string[]`. Each Lesson appears only as
 `{ "type": "lesson", "id": "<uuid>" }`, with an optional `overrides` field
 containing the **already-built sparse Lesson override Data**. These are obtained
 through the real Lesson `build.overrides` API from the authored patch attached
@@ -44,15 +44,15 @@ to that placement. Course-specific patches never mutate the standalone Lesson's
 published resources; even repeated Lesson IDs can carry different patches.
 
 The locale patch is Data-shaped and has **no extra locale wrapper**. Course
-`content.items` is keyed by slug and sparse locale patches include only changed
-items. The `order` array records ordering independently. Published Data arrays
+direct Course placement fields are keyed by slug and sparse locale patches include only changed
+items. The `children` array records ordering independently. Published Data arrays
 within Lesson overrides remain atomic and must never be merged by index.
 
 Course/Module/Chapter and Lesson config validation and override resolution
 remain owned by their existing `build.data` / `build.overrides` methods.
 The output is intentionally a _compact Course resource_, **not** a standalone
 `course_Data_Schema` object: Lesson leaves are references to separately
-published Lesson Data. The future Course assembler must resolve those Lesson
+published Lesson Data. The runtime Course Lesson assembler resolves those Lesson
 IDs and apply these sparse patches after the Lesson's own locale assembly.
 
 `publishCourse` writes only this UUID's directory using a staging directory,
