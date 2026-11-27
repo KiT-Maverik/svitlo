@@ -21,8 +21,8 @@ const textBlock = (slug: string, number: number) => ({
 });
 
 const collection = <T>(items: Record<string, T>) => ({
-  items,
-  order: Object.keys(items),
+  children: Object.keys(items),
+  ...items,
 });
 
 /** Use actual defineText imports: dummy objects cannot demonstrate generic compatibility. */
@@ -87,15 +87,13 @@ test('materialized Question + Flashcard + Side modules typecheck against real En
           tags: ['mathematics'],
           flags: [{ type: 'acronym', value: { uk: 'ABC' } }],
           relationships: {
-            items: {
-              reverse: {
+            children: ['reverse'],
+            reverse: {
                 relationshipId: 'reverseConnection',
                 type: 'reverse',
                 position: 'peer',
                 relatedFlashcardId: uuid(11),
               },
-            },
-            order: ['reverse'],
           },
         },
         content: {
