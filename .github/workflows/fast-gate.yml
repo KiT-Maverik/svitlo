@@ -68,7 +68,7 @@ jobs:
 
       - name: Verify symbol-aware Course stub guard
         if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
-        run: node --test scripts/ci/checkStubImports/check-stub-imports.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/checkStubImports/check-stub-imports.spec.mjs
 
       - name: Reject newly introduced Course stub imports and uses
         if: steps.reuse.outputs.reuse != 'true' && steps.scope.outputs.run == 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft
