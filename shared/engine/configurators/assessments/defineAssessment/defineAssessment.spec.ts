@@ -209,6 +209,11 @@ describe('Course-owned Assessment Configurator', () => {
     assert.deepEqual(result.base.preview.children, ['message']);
     assert.equal((result.base.preview.message as { type: string }).type, 'text');
     assert.equal(assessment_Data_Schema.safeParse(result.base).success, true);
+    const counterfeit = structuredClone(result.base);
+    (counterfeit.preview as Record<string, unknown>).message = {
+      type: 'text', locale: { value: 'Not implemented' },
+    };
+    assert.equal(assessment_Data_Schema.safeParse(counterfeit).success, false);
     assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
     // A well-formed non-placeholder Text block must not make a Draft publishable.
     const otherText = defineText({
