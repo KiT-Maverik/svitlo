@@ -87,10 +87,14 @@ jobs:
       - name: Typecheck all eligible workspaces
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-production-types-builds.jsonl
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - name: Report package build reuse
         if: always()
         run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+      - name: Report per-workspace TypeScript build requests
+        if: always()
+        run: node scripts/ci/buildTelemetry/summarize-builds.mjs --file "${{ runner.temp }}/svitlo-production-types-builds.jsonl"
 
   unit:
     name: Production / unit tests
