@@ -43,7 +43,7 @@ const block = (slug: string, num: number) => ({
     locale: { value: { uk: 'Перевірене формулювання' } },
   },
 });
-const collection = (items: Record<string, unknown>) => ({ children: Object.keys(items), ...items });
+const collection = <Items extends Record<string, unknown>>(items: Items) => ({ children: Object.keys(items), ...items });
 const question = () => ({
   config: {
     id: id(10),
@@ -189,7 +189,15 @@ test('Question Bank rejects Composite children in Stage 3 authored source, inclu
         params: {},
         locale: {},
         children: ['illustration'],
-        illustration: { config: { id: id(48), slug: 'illustration', type: 'image', params: { width: 640, height: 480 }, locale: { alt: { uk: 'Illustration' } } } },
+        illustration: {
+          config: {
+            id: id(48),
+            slug: 'illustration',
+            type: 'image',
+            params: { width: 640, height: 480 },
+            locale: { alt: { uk: 'Illustration' } },
+          },
+        },
       },
     },
   });
