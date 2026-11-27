@@ -300,7 +300,7 @@ export function materializeFlashcardsSection(config: Source, options: Options): 
       name +
       ' = defineFlashcardsSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
