@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { carousel_Config_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
-import { checkpoint_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
+import { carousel_Metadata_Config_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+import { checkpoint_Metadata_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
 import { checkpointAnswer_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 import { checkpointItem_Config_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
 import type { ContentBlock_Primitive_Type } from '../../configurators/contentBlocks/contentBlock.constants';
@@ -14,31 +14,31 @@ import { subtitles_Config_Schema } from '../../configurators/contentBlocks/primi
 import { text_Config_Schema } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
 import { video_Config_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
 import { youtube_Config_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
-import { lesson_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { codingTaskSection_Config_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
-import { contentSection_Config_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
-import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
-import { learningFlowSection_Config_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
-import { practiceSection_Config_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
+import { lesson_Metadata_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import { codingTaskSection_Metadata_Config_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
+import { contentSection_Metadata_Config_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
+import { flashcardsSection_Metadata_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import { learningFlowSection_Metadata_Config_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import { practiceSection_Metadata_Config_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import { questSection_Config_Schema } from '../../configurators/sections/defineQuestSection/defineQuestSection.schemas';
 import { stage_Config_Schema } from '../../configurators/sections/defineQuestSection/defineStage/defineStage.schemas';
 import { task_Config_Schema } from '../../configurators/sections/defineQuestSection/defineTask/defineTask.schemas';
-import { quizSection_Config_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
+import { quizSection_Metadata_Config_Schema } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Stage 1 is an editorial plan, not a partially built Lesson Configurator. */
-const lessonStage1Params_Schema = lesson_Config_Schema.shape.params
+const lessonStage1Params_Schema = lesson_Metadata_Config_Schema.shape.params
   .omit({ languages: true, quizRequiredForCompletion: true, sections: true })
   .partial()
   .extend({
     languages: z.never().optional(),
-    quizRequiredForCompletion: lesson_Config_Schema.shape.params.shape.quizRequiredForCompletion,
-    sections: lesson_Config_Schema.shape.params.shape.sections.partial().optional(),
+    quizRequiredForCompletion: lesson_Metadata_Config_Schema.shape.params.shape.quizRequiredForCompletion,
+    sections: lesson_Metadata_Config_Schema.shape.params.shape.sections.partial().optional(),
   })
   .strict();
 
-const lessonStage1Config_Schema = lesson_Config_Schema
+const lessonStage1Config_Schema = lesson_Metadata_Config_Schema
   .pick({ id: true, type: true, slug: true, locale: true })
   .extend({
     skills: z.tuple([z.uuid()], z.uuid()).readonly(),
@@ -69,23 +69,37 @@ export const lessonWorkflowStage1_Schema = z.strictObject({
 export type LessonWorkflowStage1 = z.infer<typeof lessonWorkflowStage1_Schema>;
 
 /** Editorial collections contain plain child nodes, not built configurators. */
-export type LessonWorkflowOrdered<Child> = { items: Record<string, Child>; order: string[] };
+/** Inert Stage children are direct root placement nodes, not executable Configurators.
+ * Full child semantics are checked at the boundary, without evaluating the draft.
+ */
+export type LessonWorkflowOrdered<Child> = { children: string[] } & Record<string, Child | string[]>;
 
-export function workflowOrdered_Schema<Child extends z.ZodType>(child: Child) {
-  return z
-    .strictObject({
-      items: z.record(z.string(), child),
-      order: z.array(z.string()),
-    })
-    .refine(
-      ({ items, order }) =>
-        Object.keys(items).length === order.length &&
-        new Set(order).size === order.length &&
-        order.every(key => Object.hasOwn(items, key)),
-      'Order must enumerate every authored child exactly once',
-    );
+export function workflowChildren_Schema<Metadata extends z.ZodObject, Child extends z.ZodType>(
+  metadata: Metadata, child: Child,
+) {
+  return metadata.extend({ children: z.array(z.string()) }).catchall(z.unknown()).superRefine((source, ctx) => {
+    const own = new Set([...Object.keys(metadata.shape), 'children']);
+    const keys = Object.keys(source).filter(key => !own.has(key));
+    if (keys.length !== source.children.length ||
+        new Set(source.children).size !== source.children.length ||
+        source.children.some(key => !Object.hasOwn(source, key) || own.has(key))) {
+      ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every authored child must be ordered once' });
+    }
+    for (const key of keys) {
+      if (!/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+          ['items', 'order', 'content', 'slides', 'section', 'constructor', 'prototype', '__proto__'].includes(key)) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'Unsafe or reserved child placement key' });
+        continue;
+      }
+      const parsed = child.safeParse(source[key]);
+      if (!parsed.success)
+        for (const issue of parsed.error.issues)
+          ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
+    }
+  });
 }
 
+/** Retained only for named semantic Quest groups that are explicitly unordered. */
 /** Production notes do not become Config or runtime Props fields. */
 const nodeProduction_Schema = z.strictObject({
   purpose: z.string().optional(),
@@ -163,19 +177,16 @@ const simpleBlock_Schema = z.union(
 );
 export type LessonWorkflowStage2SimpleBlock = z.infer<typeof simpleBlock_Schema>;
 
-const carouselNode_Schema = node(
-  carousel_Config_Schema.extend({
-    slides: workflowOrdered_Schema(z.union([imageNode_Schema, sceneNode_Schema])),
-  }),
-);
+const carouselNode_Schema = node(workflowChildren_Schema(
+  carousel_Metadata_Config_Schema, z.union([imageNode_Schema, sceneNode_Schema]),
+));
 export type LessonWorkflowStage2Carousel = z.infer<typeof carouselNode_Schema>;
 
 /** Editorial Checkpoint Answer uses the exhaustively classified Primitive nodes. */
-export const lessonWorkflowCheckpointAnswerSource_Schema = node(
-  checkpointAnswer_Config_Schema.extend({
-    content: workflowOrdered_Schema(simpleBlock_Schema),
-  }),
-);
+export const lessonWorkflowCheckpointAnswerSource_Schema = node(workflowChildren_Schema(
+  z.object(checkpointAnswer_Config_Schema.shape).omit({ children: true }),
+  simpleBlock_Schema,
+));
 export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof lessonWorkflowCheckpointAnswerSource_Schema>;
 
 const checkpointItemNode_Schema = node(
@@ -186,44 +197,42 @@ const checkpointItemNode_Schema = node(
 );
 export type LessonWorkflowStage2CheckpointItem = z.infer<typeof checkpointItemNode_Schema>;
 
-const checkpointNode_Schema = node(
-  checkpoint_Config_Schema.extend({
-    content: workflowOrdered_Schema(checkpointItemNode_Schema),
-  }),
-);
+const checkpointNode_Schema = node(workflowChildren_Schema(
+  checkpoint_Metadata_Config_Schema, checkpointItemNode_Schema,
+));
 export type LessonWorkflowStage2Checkpoint = z.infer<typeof checkpointNode_Schema>;
 
 const block_Schema = z.union([simpleBlock_Schema, carouselNode_Schema, checkpointNode_Schema]);
 export type LessonWorkflowStage2Block = z.infer<typeof block_Schema>;
 
-const sectionContent_Schema = workflowOrdered_Schema(block_Schema);
-
-/** Shared ordinary Section nodes are also used by Episode authoring. */
-export const lessonWorkflowContentSection_Schema = node(
-  contentSection_Config_Schema.extend({ content: sectionContent_Schema }),
-);
+/** Ordinary Section children remain in one ordered direct placement collection. */
+export const lessonWorkflowContentSection_Schema = node(workflowChildren_Schema(
+  contentSection_Metadata_Config_Schema, block_Schema,
+));
 export const lessonWorkflowOrdinarySection_Schema = z.union([
   lessonWorkflowContentSection_Schema,
-  node(practiceSection_Config_Schema.extend({ content: sectionContent_Schema })),
-  node(codingTaskSection_Config_Schema.extend({ content: sectionContent_Schema })),
-  node(learningFlowSection_Config_Schema.extend({ content: sectionContent_Schema })),
+  node(workflowChildren_Schema(practiceSection_Metadata_Config_Schema, block_Schema)),
+  node(workflowChildren_Schema(codingTaskSection_Metadata_Config_Schema, block_Schema)),
+  node(workflowChildren_Schema(learningFlowSection_Metadata_Config_Schema, block_Schema)),
 ]);
 
-/** Banks are independent. Editorial selection/scoring may remain unfinished. */
+/** Quiz/Flashcards keep named selection/scoring params while ordering real child blocks. */
 export const lessonWorkflowQuizSection_Schema = z.strictObject({
-  config: quizSection_Config_Schema.extend({
-    params: quizSection_Config_Schema.shape.params.partial(),
-    content: sectionContent_Schema,
-  }),
+  config: workflowChildren_Schema(
+    quizSection_Metadata_Config_Schema.extend({
+      params: quizSection_Metadata_Config_Schema.shape.params.partial(),
+    }), block_Schema,
+  ),
   production: nodeProduction_Schema,
 });
 export type LessonWorkflowStage2QuizSection = z.infer<typeof lessonWorkflowQuizSection_Schema>;
 
 const flashcardsSectionNode_Schema = z.strictObject({
-  config: flashcardsSection_Config_Schema.extend({
-    params: flashcardsSection_Config_Schema.shape.params.partial(),
-    content: sectionContent_Schema,
-  }),
+  config: workflowChildren_Schema(
+    flashcardsSection_Metadata_Config_Schema.extend({
+      params: flashcardsSection_Metadata_Config_Schema.shape.params.partial(),
+    }), block_Schema,
+  ),
   production: nodeProduction_Schema,
 });
 export type LessonWorkflowStage2FlashcardsSection = z.infer<typeof flashcardsSectionNode_Schema>;
@@ -266,10 +275,12 @@ const section_Schema = z.union([
 export const lessonWorkflowSection_Schema = section_Schema;
 export type LessonWorkflowStage2Section = z.infer<typeof section_Schema>;
 
-const lessonStage2Config_Schema = lessonStage1Config_Schema.omit({ section: true, events: true }).extend({
-  section: workflowOrdered_Schema(section_Schema),
-  events: lesson_Config_Schema.shape.events,
-});
+const lessonStage2Config_Schema = workflowChildren_Schema(
+  lessonStage1Config_Schema.omit({ section: true, events: true }).extend({
+    events: lesson_Metadata_Config_Schema.shape.events,
+  }),
+  section_Schema,
+);
 export type LessonWorkflowStage2Config = z.infer<typeof lessonStage2Config_Schema>;
 
 /** Stage 2 remains the final Lesson input; no additional editorial stage. */
