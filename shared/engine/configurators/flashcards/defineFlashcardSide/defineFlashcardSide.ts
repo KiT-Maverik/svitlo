@@ -1,6 +1,6 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { SafePlacementMap } from '../../_shared__configurators';
+import type { AddedPlacementsFromPatch, SafePlacementMap } from '../../_shared__configurators';
 
 import {
   buildChildData,
@@ -86,13 +86,17 @@ const validatePublication = (resource: SidePublication, languages: readonly Lang
  * One ordered primitive-ContentBlock collection. The parent Flashcard owns
  * the semantic front/back/hint role; the Side owns only children and their slugs.
  */
-export function defineFlashcardSide<
+type InferredSideBlocks<Input> = {
+  [Key in Exclude<keyof Input, 'children'>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+const defineFlashcardSideImpl = <
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: { children: Extract<keyof Items, string>[] } & Items &
     ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
-) {
+) => {
   const initialOrder = [...config.children];
   const initialItems = directChildren(config) as Items;
   const children = [...initialOrder];
@@ -158,7 +162,7 @@ export function defineFlashcardSide<
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: FlashcardSide_Overrides<Items, Added> &
       Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added>,
     options: PublicationLanguageOptions<Languages>,
@@ -201,17 +205,44 @@ export function defineFlashcardSide<
     return result;
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & FlashcardSide_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block, 'children'>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block, 'children'>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): SidePublication;
+    (
+      patch: FlashcardSide_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): SidePublication;
+  } = overridesImplementation;
+
   const result = {
+    ...initialItems,
     kind: 'flashcardSide' as const,
     children,
-    ...initialItems,
     validate: (required = false) => validateSide({ children: initialOrder, ...initialItems }, required),
     build: scopeBuild({ data, overrides }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
-}
+};
+
+export const defineFlashcardSide: {
+  <const Input extends { children: string[] }>(
+    config: Input & { children: Extract<keyof InferredSideBlocks<Input>, string>[] } &
+      InferredSideBlocks<Input> & ChildrenSupporting<AllLanguageCodes, InferredSideBlocks<Input>> &
+      SafePlacementMap<InferredSideBlocks<Input>>,
+  ): ReturnType<typeof defineFlashcardSideImpl<InferredSideBlocks<Input>, AllLanguageCodes>>;
+  <
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: { children: Extract<keyof Items, string>[] } & Items &
+      ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+  ): ReturnType<typeof defineFlashcardSideImpl<Items, Languages>>;
+} = defineFlashcardSideImpl;
 
 export type FlashcardSide_Configurator<
   Items extends Record<string, Block> = Record<string, Block>,
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
-> = ReturnType<typeof defineFlashcardSide<Items, Languages>>;
+> = ReturnType<typeof defineFlashcardSideImpl<Items, Languages>>;

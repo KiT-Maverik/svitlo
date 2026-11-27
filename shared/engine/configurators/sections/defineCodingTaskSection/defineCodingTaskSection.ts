@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -198,7 +199,7 @@ export const defineCodingTaskSection = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: CodingTaskSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -297,6 +298,18 @@ export const defineCodingTaskSection = <
       );
     }
   };
+
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & CodingTaskSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: CodingTaskSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
 
   const result = {
     id, slug, type,

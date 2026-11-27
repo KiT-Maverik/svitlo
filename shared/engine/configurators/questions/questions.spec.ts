@@ -20,6 +20,15 @@ describe('Configurators', () => {
   describe('Questions', () => {
     describe('question configurators', () => {
       const scope = { languages: ['en', 'uk'] as const };
+      const atPath = (value: unknown, ...keys: string[]): unknown => {
+        let current: unknown = value;
+        for (const key of keys) {
+          assert.ok(current !== null && typeof current === 'object' && key in current,
+            'Missing output property: ' + key);
+          current = (current as Record<string, unknown>)[key];
+        }
+        return current;
+      };
       const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
       const block = <const Slug extends string>(slug: Slug, text: string) =>
         defineText({ id, slug, type: 'text', params: {}, locale: { value: text } });
@@ -134,7 +143,7 @@ describe('Configurators', () => {
           const a = question.build.data(scope);
           const b = question.build.data(scope);
           assert.deepEqual(a, b);
-          assert.deepEqual((a.base.content as { question: { promptBlock: { slug: string } } }).question.promptBlock.slug, 'promptBlock');
+          assert.equal(atPath(a.base.content, 'question', 'promptBlock', 'slug'), 'promptBlock');
           assert.doesNotThrow(() => JSON.stringify(a));
           const override = question.build.overrides as (patch: never, options: typeof scope) => unknown;
           assert.doesNotThrow(() => JSON.stringify(override({ params: { disabled: true } } as never, scope)));
@@ -158,15 +167,11 @@ describe('Configurators', () => {
           'yes',
         );
         assert.equal(
-          (instances[5].build.data(scope).base.content as { sequence: { yes: { slug: string } } }).sequence.yes.slug,
+          atPath(instances[5].build.data(scope).base.content, 'sequence', 'yes', 'slug'),
           'yes',
         );
         assert.equal(
-          (
-            instances[6].build.data(scope).base.content as {
-              correctSequence: { yes: { slug: string } };
-            }
-          ).correctSequence.yes.slug,
+          atPath(instances[6].build.data(scope).base.content, 'correctSequence', 'yes', 'slug'),
           'yes',
         );
         assert.equal(
@@ -218,7 +223,7 @@ describe('Configurators', () => {
           () =>
             question.build.overrides(
               {
-                content: { question: { children: ['notFound'] } },
+                content: { question: { children: ['notFound'] as never } },
               },
               scope,
             ),
@@ -235,17 +240,13 @@ describe('Configurators', () => {
           /overrides/,
         );
         assert.deepEqual(
-          (
-            question.build.data(scope).base.content as {
-              question: { promptBlock: { slug: string } };
-            }
-          ).question.promptBlock.slug,
+          atPath(question.build.data(scope).base.content, 'question', 'promptBlock', 'slug'),
           'promptBlock',
         );
       });
 
       test('Question prompt and scoring groups publish only explicit sparse child patches', () => {
-        const note = defineText({
+        const note = defineText<'note', ['en', 'uk']>({
           id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
           slug: 'note',
           type: 'text',
@@ -275,15 +276,15 @@ describe('Configurators', () => {
           content: { question: { promptBlock: { params: { disabled: true } } } },
         });
         assert.equal(oneChild.locale, undefined);
-        const localized = question.build.overrides(
+        const localizedPatch = question.build.overrides(
           { content: { question: { note: { locale: { value: { uk: 'Оновлено' } } } } } },
           { languages: ['uk'] },
         );
-        assert.deepEqual(localized.base, {});
-        assert.deepEqual(localized.locale?.uk, {
+        assert.deepEqual(localizedPatch.base, {});
+        assert.deepEqual(localizedPatch.locale?.uk, {
           content: { question: { note: { locale: { value: 'Оновлено' } } } },
         });
-        assert.equal(localized.locale?.en, undefined);
+        assert.equal(localizedPatch.locale?.en, undefined);
         const structural = question.build.overrides(
           { content: { question: { note: false, children: ['promptBlock'] } } },
           scope,
@@ -692,10 +693,7 @@ describe('Configurators', () => {
           { languages: ['uk'] },
         );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        const blocks = (patch.locale?.uk as {
-          content: { question: { translatedPrompt: { locale: { value: string } } } };
-        }).content.question;
-        assert.equal(blocks.translatedPrompt.locale.value, 'Оновлено');
+        assert.equal(atPath(patch.locale?.uk, 'content', 'question', 'translatedPrompt', 'locale', 'value'), 'Оновлено');
       });
 
       test('localized answer and text-slot projections reject only missing selected translations', () => {

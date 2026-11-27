@@ -40,7 +40,7 @@ describe('Configurators', () => {
         type: 'content',
         params: {},
         locale: { title: { uk: 'Вступ', en: 'Introduction' }, navigationLabel: '1' },
-        content: { items: { paragraph }, order: ['paragraph'] },
+        children: ['paragraph'], paragraph,
       });
 
       const questionPrompt = defineText<'questionPrompt', ['uk', 'en']>({
@@ -51,7 +51,7 @@ describe('Configurators', () => {
         locale: { value: { uk: 'Скільки?', en: 'How many?' } },
       });
       const questionContent = {
-        question: { items: { questionPrompt }, order: ['questionPrompt'] },
+        question: { children: ['questionPrompt'], questionPrompt },
       };
       const numeric = defineAnswerWithNumber<'numeric', typeof questionContent, ['uk', 'en']>({
         id: id('04'),
@@ -89,8 +89,8 @@ describe('Configurators', () => {
         slug: 'card',
         parameters: { tags: [], flags: [{ type: 'warning' }] },
         content: {
-          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
-          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ items: { back }, order: ['back'] }),
+          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ children: ['front'], front }),
+          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ children: ['back'], back }),
         },
       });
       const lesson = defineLesson({
@@ -104,7 +104,7 @@ describe('Configurators', () => {
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
-        section: { items: { intro: introduction }, order: ['intro'] },
+        children: ['intro'], intro: introduction,
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
         id: id('09'),
@@ -112,7 +112,7 @@ describe('Configurators', () => {
         type: 'chapter',
         params: {},
         locale: { title: { uk: 'Розділ', en: 'Chapter' } },
-        content: { items: { lesson }, order: ['lesson'] },
+        children: ['lesson'], lesson,
       });
       const courseModule = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
         id: id('10'),
@@ -120,7 +120,7 @@ describe('Configurators', () => {
         type: 'module',
         params: {},
         locale: { title: { uk: 'Модуль', en: 'Module' } },
-        content: { items: { chapter }, order: ['chapter'] },
+        children: ['chapter'], chapter,
       });
       const course = defineCourse<'course', { module: typeof courseModule }, ['uk']>({
         id: id('11'),
@@ -128,7 +128,7 @@ describe('Configurators', () => {
         type: 'course',
         params: { languages: ['uk'] as const },
         locale: { title: { uk: 'Курс' }, description: 'Universal introduction' },
-        content: { items: { module: courseModule }, order: ['module'] },
+        children: ['module'], module: courseModule,
       });
 
       test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
@@ -157,27 +157,11 @@ describe('Configurators', () => {
       test('Nested Course override composes a complete, language-scoped atomic tree and leaves authored resources untouched', () => {
         const patch = course.build.overrides(
           {
-            content: {
-              items: {
-                module: {
-                  content: {
-                    items: {
-                      chapter: {
-                        content: {
-                          items: {
-                            lesson: {
-                              section: {
-                                items: {
-                                  intro: {
-                                    content: { items: { paragraph: { locale: { value: { uk: 'Оновлений текст' } } } } },
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
+            module: {
+              chapter: {
+                lesson: {
+                  intro: {
+                    paragraph: { locale: { value: { uk: 'Оновлений текст' } } },
                   },
                 },
               },
@@ -200,18 +184,18 @@ describe('Configurators', () => {
 
         const removed = lesson.build.overrides(
           {
-            section: { items: { intro: false }, order: [] },
+            intro: false, children: [],
           },
           uk,
         );
-        assert.deepEqual(removed.base.section, []);
-        assert.equal(removed.locale?.uk?.section, undefined);
+        assert.deepEqual(removed.base.children, []);
+        assert.equal(removed.locale?.uk?.intro, undefined);
         const lessonResource = lesson.build.data(uk);
         const lessonResult = mergeObjects(
           mergeObjects(mergeObjects(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
           removed.locale?.uk ?? {},
         );
-        assert.deepEqual(lesson_Data_Schema.parse(lessonResult).section, []);
+        assert.deepEqual(lesson_Data_Schema.parse(lessonResult).children, []);
       });
 
       test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {

@@ -4,6 +4,7 @@ import test, { describe } from 'node:test';
 import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineFlashcardSide } from '../defineFlashcardSide';
 import { defineFlashcard } from './defineFlashcard';
+import type { Flashcard_Config } from './defineFlashcard.schemas';
 import {
   flashcard_Config_Schema,
   flashcard_Data_Schema,
@@ -65,7 +66,7 @@ describe('Configurators', () => {
             { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
           ],
           relationships: {
-            children: ['reverseLink'],
+            children: ['reverseLink' as const],
             reverseLink: {
               relationshipId: 'r1',
               type: 'reverse' as const,
@@ -81,7 +82,8 @@ describe('Configurators', () => {
         },
       };
       const defineBilingualFlashcard = (
-        config: Omit<typeof source, 'content'> & {
+        config: Omit<typeof source, 'content' | 'parameters'> & {
+          parameters: typeof source.parameters & Pick<Flashcard_Config['parameters'], 'disabilities'>;
           content: {
             front: typeof source.content.front;
             back: typeof source.content.back;
@@ -160,7 +162,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard validates disability restrictions and publishes safe overrides', () => {
-        const card = defineFlashcard({
+        const card = defineBilingualFlashcard({
           ...source,
           parameters: { ...source.parameters, disabilities: ['deafness'] },
         });

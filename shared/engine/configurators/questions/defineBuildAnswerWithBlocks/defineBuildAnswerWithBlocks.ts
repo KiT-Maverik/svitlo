@@ -154,7 +154,7 @@ export const defineBuildAnswerWithBlocks = <
     return resource;
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
+  const overridesImplementation = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Data> => {
@@ -207,6 +207,18 @@ export const defineBuildAnswerWithBlocks = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  /** Preserve the exact existing-child override call alongside inferred additions. */
+  const overrides: {
+    <const Added extends Record<string, ContentBlock_Primitive_Configurator>>(
+      patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Data>;
+    (
+      patch: Question_BuildAnswerWithBlocks_Overrides<Content, {}, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,

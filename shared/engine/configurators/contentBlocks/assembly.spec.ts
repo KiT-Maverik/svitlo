@@ -3,7 +3,6 @@ import test, { describe } from 'node:test';
 
 import {
   defineAudio,
-  defineCarousel,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -16,15 +15,6 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('assembly', () => {
       const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
-      const slide = <const Slug extends string>(
-        slug: Slug,
-        locale: {
-          fileName: string | Record<'en' | 'uk', string>;
-          alt: string | Record<'en' | 'uk', string>;
-          caption?: string | Record<'en' | 'uk', string>;
-        },
-      ) =>
-        defineImage<Slug, ['en', 'uk']>({ id, slug, type: 'image', params: { fill: true, aspectRatio: 1.5 }, locale });
 
       test('Published locale bodies already match Props and require no embedding', () => {
         const block = defineAudio<'localeShape', ['en']>({
@@ -101,61 +91,6 @@ describe('Configurators', () => {
         assert.deepEqual(audio.build.data({ languages: ['en', 'uk'] }).base.params, {});
       });
 
-      test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
-        const first = slide('first', {
-          fileName: { en: 'https://example.com/a-en.png', uk: 'https://example.com/a-uk.png' },
-          alt: 'First',
-        });
-        const second = slide('second', {
-          fileName: 'https://example.com/b.png',
-          alt: 'Second',
-          caption: { en: 'A caption', uk: 'Підпис' },
-        });
-        const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
-          id,
-          type: 'carousel',
-          slug: 'gallery',
-          params: { loop: true },
-          locale: { title: 'Gallery' },
-          slides: { items: { first, second }, order: ['first', 'second'] },
-        });
-        const resource = carousel.build.data({ languages: ['en', 'uk'] });
-        assert.equal(resource.base.locale?.title, 'Gallery');
-        assert.deepEqual(
-          resource.locale?.en?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
-          [
-            { src: 'https://example.com/a-en.png', alt: 'First' },
-            { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
-          ],
-        );
-        assert.equal(
-          resource.locale?.uk?.locale.slides?.[0]?.type === 'image'
-            ? resource.locale.uk.locale.slides[0]?.locale?.src
-            : undefined,
-          'https://example.com/a-uk.png',
-        );
-        const localized = carousel.build.overrides(
-          {
-            slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
-          },
-          { languages: ['en', 'uk'] },
-        );
-        assert.deepEqual(
-          localized.locale?.uk?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
-          [
-            { src: 'https://example.com/a-uk.png', alt: 'Перший' },
-            { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
-          ],
-        );
-        assert.equal(
-          localized.locale?.en?.locale.slides?.[0]?.type === 'image'
-            ? localized.locale.en.locale.slides[0]?.locale?.alt
-            : undefined,
-          'First',
-        );
-        assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
-        assert.equal(carousel.build.data({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
-      });
       test('Code applies semantic validation after merging sparse replacement dictionaries', () => {
         const code = defineCode<'example', ['en', 'uk']>({
           id,
@@ -376,25 +311,6 @@ describe('Configurators', () => {
         assert.equal(typeof block.build.data, 'function');
       });
 
-      test('Carousel rejects a language lacking complete slide fields', () => {
-        // Deliberately incomplete dictionaries exercise runtime publication validation.
-        const mixed = slide('mixed', {
-          fileName: { en: 'https://example.com/en.png' },
-          alt: { uk: 'Українською' },
-        } as never);
-        const carousel = defineCarousel<'mixedSlides', { mixed: typeof mixed }, ['en', 'uk']>({
-          id,
-          slug: 'mixedSlides',
-          type: 'carousel',
-          params: {},
-          locale: {},
-          slides: { items: { mixed }, order: ['mixed'] },
-        });
-        assert.throws(
-          () => carousel.build.data({ languages: ['en', 'uk'] }),
-          /Incomplete Carousel slides|Invalid publication for language/,
-        );
-      });
       test('Markdown can override one language of an invariant replacement without losing the others', () => {
         const markdown = defineMarkdown<'invariantVariable', ['en', 'uk']>({
           id,
@@ -416,7 +332,6 @@ describe('Configurators', () => {
       });
 
       test('Flat ContentBlocks publish stateless Props without the legacy assemble surface', () => {
-        const invariantSlide = slide('first', { fileName: 'https://example.com/a.png', alt: 'A' });
         const blocks = [
           defineAudio({
             id,
@@ -424,17 +339,6 @@ describe('Configurators', () => {
             type: 'audio',
             params: {},
             locale: { title: 'Audio', fileName: 'https://example.com/a.mp3' },
-          }),
-          defineCarousel<'b', { first: typeof invariantSlide }, ['en', 'uk']>({
-            id,
-            slug: 'b',
-            type: 'carousel',
-            params: {},
-            locale: {},
-            slides: {
-              items: { first: invariantSlide },
-              order: ['first'],
-            },
           }),
           defineCode({
             id,
@@ -503,53 +407,6 @@ describe('Configurators', () => {
         }
       });
 
-      test('Carousel slide overrides and published output are mutation-isolated', () => {
-        const authored = { fileName: 'https://example.com/a.png', alt: 'Original' };
-        const first = slide('first', authored);
-        const carousel = defineCarousel<'atomicSlides', { first: typeof first }, ['en', 'uk']>({
-          id,
-          slug: 'atomicSlides',
-          type: 'carousel',
-          params: {},
-          locale: {},
-          slides: { items: { first }, order: ['first'] },
-        });
-        const patch = { slides: { items: { first: { locale: { alt: 'Updated' } } } } };
-        const publication = carousel.build.overrides(patch, { languages: ['en', 'uk'] });
-        const expected = {
-          id,
-          slug: 'first',
-          type: 'image',
-          params: { fill: true, aspectRatio: 1.5 },
-          locale: { src: 'https://example.com/a.png', alt: 'Updated' },
-        };
-        assert.deepEqual(publication.base.locale?.slides, [expected]);
-        patch.slides.items.first.locale.alt = 'Mutated caller';
-        const published = publication.base.locale?.slides?.[0];
-        assert.equal(published?.type, 'image');
-        if (published?.type === 'image' && published.locale && 'alt' in published.locale) {
-          assert.equal(published.locale.alt, 'Updated');
-          published.locale.alt = 'Mutated result';
-        }
-        assert.deepEqual(
-          carousel.build.overrides(
-            { slides: { items: { first: { locale: { alt: 'Updated' } } } } },
-            { languages: ['en', 'uk'] },
-          ).base.locale?.slides,
-          [expected],
-        );
-        authored.alt = 'Mutated author';
-        const original = carousel.build.data({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
-        assert.equal(original?.type, 'image');
-        if (original?.type === 'image') assert.equal(original.locale?.alt, 'Original');
-        assert.throws(
-          () =>
-            carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never, {
-              languages: ['en', 'uk'],
-            }),
-          /Invalid Carousel overrides/,
-        );
-      });
     });
   });
 });

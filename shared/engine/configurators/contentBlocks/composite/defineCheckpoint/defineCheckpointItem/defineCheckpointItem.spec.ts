@@ -46,7 +46,7 @@ describe('defineCheckpointItem named question/answer roles', () => {
     const localized = mergeForValidation(built.base, built.locale?.uk ?? {});
     assert.equal(checkpointItem_Data_Schema.safeParse(localized).success, true);
     assert.equal(
-      (localized.answer.second as { locale: { value: string } }).locale.value,
+      ((localized.answer as Record<string, unknown>).second as { locale: { value: string } }).locale.value,
       'Другий',
     );
     assert.equal(JSON.stringify(built).includes('"content"'), false);
@@ -74,11 +74,11 @@ describe('defineCheckpointItem named question/answer roles', () => {
     assert.equal(checkpointItem_Config_Schema.safeParse({
       ...config, answer: { ...answer, config: { base: { id: id('79'), slug: answer.slug, type: 'checkpointAnswer' } } },
     }).success, false);
-    const disabledQuestion = defineText({
+    const disabledQuestion = defineText<'question', ['en', 'uk']>({
       id: id('70'), slug: 'question', type: 'text',
       params: { disabled: true }, locale: { value: 'Disabled' },
     });
-    assert.throws(() => defineCheckpointItem({
+    assert.throws(() => defineCheckpointItem<'invalidItem', typeof answer, typeof disabledQuestion, ['en', 'uk']>({
       id: id('71'), slug: 'invalidItem', type: 'checkpointItem',
       question: disabledQuestion, answer,
     }).build.data({ languages: ['en'] }), /Question must remain enabled/);

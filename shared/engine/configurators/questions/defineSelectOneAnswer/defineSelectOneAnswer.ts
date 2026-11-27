@@ -196,7 +196,7 @@ export const defineSelectOneAnswer = <
     return resource;
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
+  const overridesImplementation = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_SelectOneAnswer_Data> => {
@@ -249,6 +249,18 @@ export const defineSelectOneAnswer = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  /** Preserve the exact existing-child override call alongside inferred additions. */
+  const overrides: {
+    <const Added extends Record<string, ContentBlock_Primitive_Configurator>>(
+      patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_SelectOneAnswer_Data>;
+    (
+      patch: Question_SelectOneAnswer_Overrides<Content, {}, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_SelectOneAnswer_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,

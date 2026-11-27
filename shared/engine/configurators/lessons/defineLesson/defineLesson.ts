@@ -23,6 +23,7 @@ import {
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
   type SafePlacementMap,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -126,12 +127,29 @@ type LessonAuthoredInput<
 } & Sections & ChildrenSupporting<Languages, Sections> &
   SafePlacementMap<Sections> & { [Key in keyof Sections]: Key extends 'events' ? never : Sections[Key] };
 
+
+/**
+ * Infer child keys from the entire authoring literal before validating the
+ * placement map. An unconstrained Record<string, Section> inferred from an
+ * intersection would incorrectly classify id/params as Section children.
+ */
+type LessonChildKeys<Input> = Exclude<keyof Input, keyof Lesson_Metadata_Config | 'children'>;
+type InferredLessonSections<Input> = {
+  [Key in LessonChildKeys<Input>]: Input[Key] extends Section_Configurator
+    ? Input[Key]
+    : Section_Configurator;
+};
+type InferredLessonLanguages<Input extends { params: { languages: readonly LanguageCode[] } }> =
+  Input['params']['languages'] extends readonly [LanguageCode, ...LanguageCode[]]
+    ? Input['params']['languages']
+    : readonly [LanguageCode, ...LanguageCode[]];
+
 /**
  * Author a reusable, Course-neutral Lesson with ordered instructional Sections.
  * Quiz and Flashcards Sections hold stable bank UUID references, not inline
  * bank resources. Event metadata remains separate from direct Section placements.
  */
-export const defineLesson = <
+const defineLessonImpl = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Sections extends Record<string, Section_Configurator>,
@@ -253,7 +271,7 @@ export const defineLesson = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Section_Configurator> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Section_Configurator> = {}>(
     patch: Lesson_Overrides<Sections, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> & Pick<Lesson_Metadata_Config, 'id'> => {
@@ -365,6 +383,26 @@ export const defineLesson = <
     }
   };
 
+  /**
+   * Keep a non-generic existing-child call signature as the last overload.
+   * An unspecialized generic Added map otherwise becomes Record<string, never>
+   * when Parameters<> inspects a nested concrete Configurator.
+   */
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Lesson_Overrides<Sections, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
+      >> & ChildrenSupporting<Languages, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
+      >>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase> & Pick<Lesson_Metadata_Config, 'id'>;
+    (
+      patch: Lesson_Overrides<Sections, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase> & Pick<Lesson_Metadata_Config, 'id'>;
+  } = overridesImplementation;
+
   const result = {
     id, slug, type,
     draft: false as const,
@@ -383,4 +421,49 @@ export const defineLesson = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type Lesson_Configurator = ReturnType<typeof defineLesson>;
+/**
+ * Literal-first inference preserves actual Section/Block Build signatures.
+ * Keep the explicit three-generic API for existing specialized authoring.
+ */
+export const defineLesson: {
+  <const Input extends Omit<Lesson_Metadata_Config, 'slug' | 'params' | 'locale'> & {
+    slug: string;
+    params: Omit<Lesson_Config['params'], 'languages'> & {
+      languages: readonly [LanguageCode, ...LanguageCode[]];
+    };
+    locale: Lesson_Config['locale'];
+  }>(
+    config: Input & LessonAuthoredInput<
+      Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
+    >,
+  ): ReturnType<typeof defineLessonImpl<
+    Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
+  >>;
+  <
+    const Slug extends string,
+    const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+    const Sections extends Record<string, Section_Configurator>,
+  >(
+    config: LessonAuthoredInput<Slug, Languages, Sections>,
+  ): ReturnType<typeof defineLessonImpl<Slug, Languages, Sections>>;
+} = defineLessonImpl;
+
+/**
+ * Parent-facing Lesson is a Build Configurator with opaque Section placements,
+ * not an unspecialized Record<string, never> from generic authoring inference.
+ * Concrete source Lessons keep their own literal Section keys and language
+ * scopes at the placeLesson/Course call site.
+ */
+type LessonBaseConfigurator = ReturnType<typeof defineLessonImpl<
+  string, readonly [LanguageCode, ...LanguageCode[]], {}
+>>;
+export type Lesson_Configurator = Omit<
+  LessonBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<LessonBaseConfigurator['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['overrides']>;
+  };
+};

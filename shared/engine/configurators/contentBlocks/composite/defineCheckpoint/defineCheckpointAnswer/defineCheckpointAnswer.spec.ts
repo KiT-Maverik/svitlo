@@ -57,7 +57,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     assert.equal(built.locale?.en, undefined);
     assert.equal((built.locale?.uk?.second as { locale: { value: string } }).locale.value, 'Другий');
     assert.deepEqual(built.locale?.uk, { second: { locale: { value: 'Другий' } } });
-    assert.equal(built.locale?.uk?.first, undefined);
+    assert.equal((built.locale?.uk as Record<string, unknown> | undefined)?.first, undefined);
     assert.equal((built.base.first as { locale: { value: string } }).locale.value, 'Invariant');
   });
 
@@ -109,11 +109,11 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
 
   test('authored disabled Primitives stay in Config but are absent from published Data', () => {
     const { second } = example();
-    const first = defineText({
+    const first = defineText<'first', ['en', 'uk']>({
       id: id('75'), slug: 'first', type: 'text',
       params: { disabled: true }, locale: { value: { en: 'Hidden', uk: 'Сховано' } },
     });
-    const answer = defineCheckpointAnswer({
+    const answer = defineCheckpointAnswer<'answer', { first: typeof first; second: typeof second }, ['en', 'uk']>({
       id: id('76'), slug: 'answer', type: 'checkpointAnswer',
       children: ['first', 'second'], first, second,
     });
@@ -130,7 +130,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     assert.throws(() => answer.build.overrides({
       first: { locale: { value: { uk: 'Ще' } } },
     } as never, { languages: ['uk'] }), /already disabled/);
-    assert.throws(() => defineCheckpointAnswer({
+    assert.throws(() => defineCheckpointAnswer<'allHidden', { first: typeof first }, ['en', 'uk']>({
       id: id('77'), slug: 'allHidden', type: 'checkpointAnswer',
       children: ['first'], first,
     }).build.data({ languages: ['uk'] }));
@@ -162,7 +162,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       params: { fill: true, aspectRatio: 1.5 },
       locale: { fileName: 'https://example.com/image.png', alt: 'An image' },
     });
-    const carousel = defineCarousel({
+    const carousel = defineCarousel<'carousel', { image: typeof image }>({
       id: id('77'), slug: 'carousel', type: 'carousel', params: {}, locale: {},
       children: ['image'], image,
     });
@@ -174,7 +174,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       id: id('79'), slug: 'activity', type: 'scene', params: {},
       locale: { value: { en: 'Choose', uk: 'Обери' } },
     });
-    const valid = defineCheckpointAnswer({
+    const valid = defineCheckpointAnswer<'sceneAnswer', { activity: typeof scene }, ['en', 'uk']>({
       id: id('80'), slug: 'sceneAnswer', type: 'checkpointAnswer',
       children: ['activity'], activity: scene,
     });

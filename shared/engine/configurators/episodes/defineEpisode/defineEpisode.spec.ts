@@ -172,7 +172,7 @@ describe('Configurators', () => {
       test('Episode rejects Lesson-only authoring fields', () => {
         assert.throws(
           () =>
-            defineEpisode({
+            defineEpisode<'invalid', typeof languages, {}>({
               id: id('0a'),
               slug: 'invalid',
               type: 'episode',

@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../../_shared__configurators';
 import {
@@ -240,7 +241,7 @@ export const defineCarousel = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Slide> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Slide> = {}>(
     patch: ContentBlock_Carousel_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<CarouselOverrideBase> => {
@@ -385,12 +386,24 @@ export const defineCarousel = <
     }
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & ContentBlock_Carousel_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Slide>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Slide>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+    (
+      patch: ContentBlock_Carousel_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+  } = overridesImplementation;
+
   const result = {
+    ...initialItems,
     id,
     slug,
     type,
     children: [...initialOrder],
-    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -404,4 +417,18 @@ export const defineCarousel = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_Carousel_Configurator = ReturnType<typeof defineCarousel>;
+type DefinedCarousel = ReturnType<typeof defineCarousel>;
+/** The parent-facing union erases a composite's generic placement index. */
+export type ContentBlock_Carousel_Configurator = Pick<
+  DefinedCarousel, 'validate' | 'config'
+> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'carousel';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['overrides']>;
+  };
+};

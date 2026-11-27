@@ -283,10 +283,10 @@ describe('Configurators', () => {
         const text = defineText({
           id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' },
         });
-        assert.throws(() => defineCarousel({
+        assert.throws(() => Reflect.apply(defineCarousel, undefined, [{
           id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
-          children: ['text'], text: text as never,
-        }).build.data({ languages: ['en'] }), /Invalid Carousel slides/);
+          children: ['text'], text,
+        }]).build.data({ languages: ['en'] }), /Invalid Carousel slides/);
       });
 
       test('disabled slides do not publish and an empty effective Carousel is invalid', () => {
@@ -309,7 +309,7 @@ describe('Configurators', () => {
           params: { fill: true, aspectRatio: 1, disabled: true },
           locale: { fileName: 'https://example.com/a.png', alt: 'A' },
         });
-        const invalid = defineCarousel({
+        const invalid = defineCarousel<'bad', { only: typeof only }>({
           id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
           children: ['only'], only,
         });
@@ -347,7 +347,7 @@ describe('Configurators', () => {
       test('keeps the authored snapshot isolated from consumer mutation', () => {
         const { carousel, first } = example();
         const before = carousel.build.data(scope);
-        carousel.children.reverse();
+        Reflect.apply(Array.prototype.reverse, carousel.children, []);
         (carousel as unknown as { first: unknown }).first = first;
         assert.deepEqual(carousel.build.data(scope), before);
         assert.deepEqual(carousel.build.data({ languages: ['uk'] as const }).base.children, ['second', 'first']);

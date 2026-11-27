@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -101,8 +102,18 @@ type AuthoredInput<
 } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
   ConfigWithLanguages<Content_Section_Config, Languages>;
 
+/**
+ * Infer the *literal* block keys, excluding Section metadata before enforcing
+ * the ConfiguratorChild constraints. Generic Record inference would otherwise
+ * absorb "id" and "children" as incorrectly typed ContentBlocks.
+ */
+type ContentBlockKeys<Input> = Exclude<keyof Input, 'id' | 'slug' | 'type' | 'params' | 'locale' | 'children'>;
+type InferredContentBlocks<Input> = {
+  [Key in ContentBlockKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const defineContentSection = <
+const defineContentSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -198,7 +209,7 @@ export const defineContentSection = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: ContentSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -298,6 +309,23 @@ export const defineContentSection = <
     }
   };
 
+  /**
+   * Keep a non-generic existing-child call signature as the last overload.
+   * An unspecialized generic Added map otherwise becomes Record<string, never>
+   * when Parameters<> inspects a nested concrete Configurator.
+   */
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & ContentSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: ContentSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id, slug, type,
     children: [...initialOrder],
@@ -315,4 +343,39 @@ export const defineContentSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentSection_Configurator = ReturnType<typeof defineContentSection>;
+/** Support inferred literal child keys and existing explicit authoring generics. */
+export const defineContentSection: {
+  <const Input extends Pick<Content_Section_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+    children: string[];
+  }>(
+    config: Input & AuthoredInput<Input['slug'], InferredContentBlocks<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineContentSectionImpl<
+    Input['slug'], InferredContentBlocks<Input>, AllLanguageCodes
+  >>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineContentSectionImpl<Slug, Items, Languages>>;
+} = defineContentSectionImpl;
+
+/**
+ * Widen only the parent-facing collection boundary. A concrete Section has
+ * literal child keys and a narrowed language scope; the baseline public type
+ * must not require a never[] child order or an all-language Build input.
+ * At the authoring site typeof defineContentSection(...) retains its full
+ * Build signature and the actual child-key/locale constraints.
+ */
+type ContentSectionBase = ReturnType<typeof defineContentSectionImpl<string, {}, AllLanguageCodes>>;
+export type ContentSection_Configurator = Omit<
+  ContentSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<ContentSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<ContentSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<ContentSectionBase['build']['overrides']>;
+  };
+};

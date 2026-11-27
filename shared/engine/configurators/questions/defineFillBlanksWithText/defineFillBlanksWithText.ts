@@ -29,6 +29,7 @@ import {
   scopeBuild,
   validateOrderedKeys,
   slugAddressedReservedKeys,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -51,6 +52,40 @@ type SlotMembers<Group extends { children: string[] }> = {
 type SlotChanges<Content extends ContentShape> = {
   [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
 };
+/** Key-specific source validation keeps existing slot translations sparse. */
+type LiteralSlotsPatch<
+  Patch,
+  Content extends ContentShape,
+  Languages extends readonly LanguageCode[],
+> = Patch extends { content: { slots: infer Group } }
+  ? Group extends Record<string, unknown>
+    ? [Exclude<keyof Patch, 'params' | 'locale' | 'content'> |
+       Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation' | 'slots'>] extends [never]
+      ? {
+          content: QuestionCommonPatch<Content, {}, Languages> & {
+            slots: {
+              [Key in keyof Group]:
+                Key extends 'children'
+                  ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
+                  : Key extends keyof SlotMembers<Content['slots']>
+                    ? DeepPartial<Slot> | false
+                    : Key extends (typeof slugAddressedReservedKeys)[number]
+                      ? never
+                      : Group[Key] extends Slot
+                        ? Group[Key] & RequireLanguages<Group[Key], Languages>
+                      : never;
+            };
+          };
+        }
+      : never
+    : never
+  : never;
+
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
+  Patch extends { content: { slots: infer Collection } }
+    ? AddedPlacementsFromPatch<Collection, SlotMembers<Content['slots']>, Slot, 'children'>
+    : {};
+
 type SlotsOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, Slot>,
@@ -225,11 +260,11 @@ export const defineFillBlanksWithText = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedSlots extends Record<string, Slot> = {},
   >(
-    patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
+    patch: Patch & Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithText_Data> => {
     try {
@@ -287,6 +322,20 @@ export const defineFillBlanksWithText = <
       );
     }
   };
+
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch & Question_FillBlanksWithText_MetadataOverrides & LiteralSlotsPatch<Patch, Content, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithText_Data>;
+    (
+      patch: Question_FillBlanksWithText_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithText_Data>;
+  } = overridesImplementation;
 
   const result = {
     id,

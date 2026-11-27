@@ -14,9 +14,9 @@ import {
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
+  type AddedPlacementsFromPatch,
   validateRequestedPublication,
 } from '../../../../_shared__configurators';
-import type { ConfiguratorChild } from '../../../../../types/configuratorChild';
 import type {
   Checkpoint_Allowed_Configurator,
   ContentBlock_CheckpointAnswer_Configurator,
@@ -151,9 +151,17 @@ export const defineCheckpointItem = <
     return output;
   };
 
-  const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
-    patch: CheckpointItem_Overrides<Answer, Added> & {
-      answer?: ChildrenSupporting<Languages, Added>;
+  type AuthorAnswerChildren = {
+    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
+      Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
+  };
+  type NestedAnswerAdditions<Patch> =
+    Patch extends { answer: infer AnswerPatch }
+      ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
+      : {};
+  const overridesImplementation = <const Patch extends Record<string, unknown>>(
+    patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+      answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
     },
     options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
@@ -211,6 +219,20 @@ export const defineCheckpointItem = <
       );
     }
   };
+
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+        answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
+      },
+      options: PublicationLanguageOptions<Languages>,
+    ): ItemPublication<ItemOverrideBase>;
+    (
+      patch: CheckpointItem_Overrides<Answer, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): ItemPublication<ItemOverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
@@ -224,4 +246,28 @@ export const defineCheckpointItem = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
-export type ContentBlock_CheckpointItem_Configurator = ConfiguratorChild<ReturnType<typeof defineCheckpointItem>>;
+/**
+ * Parent Checkpoints need a stable Item Build boundary, not the arbitrary
+ * generic Answer parameter projected through ConfiguratorChild/ReturnType.
+ * The authored Item retains its concrete question and answer types for nested
+ * patches; collections enforce the published discriminator and language scope.
+ */
+type DefinedCheckpointItem = ReturnType<typeof defineCheckpointItem>;
+export type ContentBlock_CheckpointItem_Configurator = Pick<
+  DefinedCheckpointItem, 'validate' | 'config'
+> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'checkpointItem';
+  readonly question: DefinedCheckpointItem['question'];
+  readonly answer: ContentBlock_CheckpointAnswer_Configurator;
+  readonly check?: true;
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedCheckpointItem['build']['data']>;
+    overrides(
+      patch: never,
+      options: PublicationLanguageOptions,
+    ): ReturnType<DefinedCheckpointItem['build']['overrides']>;
+  };
+};

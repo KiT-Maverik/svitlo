@@ -50,10 +50,10 @@ function authoringLanguageContracts() {
   bilingual.build.data({ languages: ['pl'] });
   // @ts-expect-error Patch publication also requires explicit selected languages.
   bilingual.build.overrides({});
+  // @ts-expect-error A new child must support every authored language of the Section.
   bilingual.build.overrides(
     {
       children: ['paragraph', 'ukOnly'],
-      // @ts-expect-error A new child must support every language of the parent Section.
       ukOnly: ukText,
     },
     { languages: ['uk'] },

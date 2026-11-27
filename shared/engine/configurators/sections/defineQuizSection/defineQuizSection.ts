@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -137,8 +138,14 @@ type AuthoredInput<
 } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
   ConfigWithLanguages<QuizSection_Config, Languages>;
 
+/** Infer authored block slugs without treating Quiz metadata as child blocks. */
+type QuizBlockKeys<Input> = Exclude<keyof Input, 'id' | 'slug' | 'type' | 'params' | 'locale' | 'children'>;
+type InferredQuizBlocks<Input> = {
+  [Key in QuizBlockKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const defineQuizSection = <
+const defineQuizSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -235,7 +242,7 @@ export const defineQuizSection = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: QuizSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -342,6 +349,23 @@ export const defineQuizSection = <
     }
   };
 
+  /**
+   * Keep a non-generic existing-child call signature as the last overload.
+   * An unspecialized generic Added map otherwise becomes Record<string, never>
+   * when Parameters<> inspects a nested concrete Configurator.
+   */
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & QuizSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: QuizSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id, slug, type,
     children: [...initialOrder],
@@ -359,4 +383,39 @@ export const defineQuizSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type QuizSection_Configurator = ReturnType<typeof defineQuizSection>;
+/** Preserve both literal-inferred and explicitly parameterized Quiz Sections. */
+export const defineQuizSection: {
+  <const Input extends Pick<QuizSection_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+    children: string[];
+  }>(
+    config: Input & AuthoredInput<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineQuizSectionImpl<
+    Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes
+  >>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineQuizSectionImpl<Slug, Items, Languages>>;
+} = defineQuizSectionImpl;
+
+/**
+ * Widen only the parent-facing collection boundary. A concrete Section has
+ * literal child keys and a narrowed language scope; the baseline public type
+ * must not require a never[] child order or an all-language Build input.
+ * At the authoring site typeof defineQuizSection(...) retains its full
+ * Build signature and the actual child-key/locale constraints.
+ */
+type QuizSectionBase = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
+export type QuizSection_Configurator = Omit<
+  QuizSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<QuizSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['overrides']>;
+  };
+};

@@ -103,6 +103,14 @@ one.build.overrides({ id }, scope);
 one.build.overrides({ content: { question: {  answerBlock: { slug: 'another' }  } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
 number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
+// @ts-expect-error A Question cannot accept arbitrary content role names.
+number.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error A reserved slug is never an authored prompt child.
+number.build.overrides({ content: { question: { children: ['answerBlock', 'items'], items: block } } }, scope);
+// @ts-expect-error An unrecognized role is not part of text-slot Config patches.
+blanks.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error Reserved slot keys cannot be authored as additional named gaps.
+blanks.build.overrides({ content: { slots: { children: ['slot', 'items'], items: { correctAnswers: { first: 'yes' } } } } }, scope);
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
@@ -189,11 +197,12 @@ scopedMatch.build.overrides(
   },
   scope,
 );
+// @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
 scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-        // @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
+        
          secondPair: { left: onlyUkrainianBlock, right: localizedBlock } ,
         children: ['firstPair', 'secondPair'],
       },
@@ -228,11 +237,12 @@ scopedBlocks.build.overrides(
   },
   scope,
 );
+// @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
 scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
+        
          secondSlot: { correctAnswer: onlyUkrainianBlock } ,
         children: ['originalSlot', 'secondSlot'],
       },
@@ -266,11 +276,12 @@ scopedTextSlots.build.overrides(
   },
   scope,
 );
+// @ts-expect-error The added slot needs the declared English translation.
 scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error The added slot needs the declared English translation.
+        
          secondSlot: { correctAnswers: { first: { uk: 'Так' } } } ,
         children: ['originalSlot', 'secondSlot'],
       },
@@ -285,7 +296,12 @@ void [scopedMatch, scopedBlocks, scopedTextSlots];
 
 const numberResource = number.build.data(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
-const typedPromptSlug: string = numberResource.base.content.question.answerBlock.slug;
+const numberPrompt = numberResource.base.content.question.answerBlock;
+if (!numberPrompt || typeof numberPrompt !== 'object' ||
+    Array.isArray(numberPrompt) || !('slug' in numberPrompt)) {
+  throw new Error('Published Question answerBlock must have a slug');
+}
+const typedPromptSlug: string = numberPrompt.slug;
 const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
 const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } }, scope);
 const typedSparseAnswers: number[] | undefined = numericOverride.base.params?.correctAnswers;

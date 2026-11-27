@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -198,7 +199,7 @@ export const defineFlashcardsSection = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: FlashcardsSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -298,10 +299,22 @@ export const defineFlashcardsSection = <
     }
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & FlashcardsSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: FlashcardsSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
+    ...initialItems,
     id, slug, type,
     children: [...initialOrder],
-    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -315,4 +328,15 @@ export const defineFlashcardsSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type FlashcardsSection_Configurator = ReturnType<typeof defineFlashcardsSection>;
+/** The concrete Section retains literal keys; parents require an opaque collection boundary. */
+type FlashcardsSectionBase = ReturnType<typeof defineFlashcardsSection<string, {}, AllLanguageCodes>>;
+export type FlashcardsSection_Configurator = Omit<
+  FlashcardsSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<FlashcardsSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<FlashcardsSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<FlashcardsSectionBase['build']['overrides']>;
+  };
+};
