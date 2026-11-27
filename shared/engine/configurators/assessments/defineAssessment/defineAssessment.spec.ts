@@ -191,7 +191,7 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'chapter',
       params: {},
       locale: { title: 'Chapter' },
-      content: { items: { chapterAssessment }, order: ['chapterAssessment'] },
+      children: ['chapterAssessment'], chapterAssessment,
     });
     const module = defineModule<
       'module',
@@ -203,7 +203,7 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'module',
       params: {},
       locale: { title: 'Module' },
-      content: { items: { chapter, moduleAssessment }, order: ['chapter', 'moduleAssessment'] },
+      children: ['chapter', 'moduleAssessment'], chapter, moduleAssessment,
     });
     const course = defineCourse({
       id: id('42'),
@@ -211,7 +211,7 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'course',
       params: { languages },
       locale: { title: 'Course', description: 'Course description' },
-      content: { items: { module, finalAssessment }, order: ['module', 'finalAssessment'] },
+      children: ['module', 'finalAssessment'], module, finalAssessment,
     });
     const result = course.build.data({ languages: ['en', 'uk'] });
     assert.deepEqual(result.base.children, ['module', 'finalAssessment']);
