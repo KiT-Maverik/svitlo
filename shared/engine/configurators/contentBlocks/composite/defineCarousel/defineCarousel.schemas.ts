@@ -95,7 +95,7 @@ export type ContentBlock_Carousel_DataBase = z.infer<typeof carouselBase> & {
  */
 export const carousel_Data_Schema = carouselBase
   .extend({
-    locale: z.object(dataLocale).strict(),
+    locale: z.object(dataLocale).strict().optional(),
     children: z.array(z.string()),
   })
   .catchall(z.unknown())
