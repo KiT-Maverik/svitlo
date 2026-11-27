@@ -750,9 +750,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'practice',
       params: {},
       locale: { title: { uk: 'Власна практика' }, navigationLabel: '1' },
-      content: {
-        items: {
-          message: {
+      children: ['message'], message: {
             config: {
               id: '663572e7-bd85-4516-86e2-3de07d209e30',
               type: 'text',
@@ -764,10 +762,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
               purpose: 'Explain the Course-only evidence with a real example.',
               pedagogicalIntent: 'Keep this Text rationale only with this placement.',
             },
-          },
-        },
-        order: ['message'],
-      },
+          },,
     },
   };
   const scene = (id, slug) => ({
@@ -793,7 +788,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'sceneCarousel',
       params: { showArrows: true },
       locale: { title: { uk: 'Порівняй сцени' } },
-      slides: { items: { nestedScene: scene(nestedSceneId, 'nestedScene') }, order: ['nestedScene'] },
+      children: ['nestedScene'], nestedScene: scene(nestedSceneId, 'nestedScene'),
     },
     production: { purpose: 'Verify a nested Carousel Scene' },
   };
@@ -805,9 +800,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'checkpoint',
       params: { requireCompletion: true },
       locale: { title: 'Check' },
-      content: {
-        items: {
-          first: {
+      children: ['first'], first: {
             production: { pedagogicalIntent: 'Prompt a learner to explain the observation.' },
             config: {
               id: '663572e7-bd85-4516-86e2-3de07d209e36',
@@ -829,9 +822,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
                   id: '663572e7-bd85-4516-86e2-3de07d209e38',
                   type: 'checkpointAnswer',
                   slug: 'answer',
-                  content: {
-                    items: {
-                      explanation: {
+                  children: ['explanation'], explanation: {
                         config: {
                           id: '663572e7-bd85-4516-86e2-3de07d209e39',
                           type: 'text',
@@ -840,17 +831,11 @@ test('new Course-owned Section and Text block materialize below an overridden Le
                           locale: { value: { uk: 'Тінь стала іншою.' } },
                         },
                         production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
-                      },
-                    },
-                    order: ['explanation'],
-                  },
+                      },,
                 },
               },
             },
-          },
-        },
-        order: ['first'],
-      },
+          },,
     },
   };
   authoredSection.config.children.push('directScene', 'sceneCarousel', 'checkpoint');
