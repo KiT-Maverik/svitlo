@@ -82,6 +82,13 @@ jobs:
         run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - name: Verify direct build-command tracing and summary
         run: node --test --test-reporter=spec scripts/ci/buildTelemetry/*.spec.mjs
+      - name: Parse touched CI orchestration scripts without npm dependencies
+        run: |
+          node --check scripts/ci/buildChangedContent/build-changed-content.mjs
+          node --check scripts/textbook-tooling/buildTextbook/build.mjs
+          node --check scripts/runFastGate/run-fast-gate.mjs
+          node --check scripts/ci/buildTelemetry/record-build-command.mjs
+          node --check scripts/ci/buildTelemetry/summarize-builds.mjs
       - name: Verify historical backfill labels with repository-scoped mocks
         run: node --test .github/scripts/backfill-labels.test.cjs
 
