@@ -140,7 +140,7 @@ export const questionBankWorkflowBlockNode_Schema = simpleBlockNode_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
 const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
 const blocks_Schema: z.ZodType<{ children: string[] } & Record<string, unknown>> =
-  workflowChildren_Schema(z.strictObject({}), block_Schema);
+  workflowChildren_Schema(z.looseObject({}), block_Schema);
 const commonContent_Schema = z.strictObject({
   question: blocks_Schema,
   hint: blocks_Schema.optional(),
@@ -155,7 +155,7 @@ const questionContent = {
   selectOneAnswer: commonContent_Schema.extend({ answers: answerSets_Schema }),
   selectMultipleAnswers: commonContent_Schema.extend({ answers: answerSets_Schema }),
   matchBlocks: commonContent_Schema.extend({
-    pairs: workflowChildren_Schema(z.strictObject({}),
+    pairs: workflowChildren_Schema(z.looseObject({}),
       z.strictObject({
         left: block_Schema,
         right: block_Schema,
@@ -170,7 +170,7 @@ const questionContent = {
     distractors: blocks_Schema,
   }),
   fillBlanksWithBlocks: commonContent_Schema.extend({
-    slots: workflowChildren_Schema(z.strictObject({}), z.strictObject({ correctAnswer: block_Schema })),
+    slots: workflowChildren_Schema(z.looseObject({}), z.strictObject({ correctAnswer: block_Schema })),
     distractors: blocks_Schema,
   }),
   fillBlanksWithText: commonContent_Schema.extend({
@@ -354,7 +354,7 @@ const flashcardBlockNode_Schema = z.union([
       .optional(),
   }),
 ]);
-const flashcardSideSource_Schema = workflowChildren_Schema(z.strictObject({}), flashcardBlockNode_Schema);
+const flashcardSideSource_Schema = workflowChildren_Schema(z.looseObject({}), flashcardBlockNode_Schema);
 const card_Schema = z.strictObject({
   config: flashcard_Config_Schema.omit({ content: true, parameters: true }).extend({
     content: z.strictObject({
