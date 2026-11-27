@@ -128,9 +128,9 @@ export function planTypecheckPhases(plan) {
 }
 
 /**
- * GitHub notices are forwarded by quietRun even when root npm output is
- * suppressed. This is opt-in, timing-only diagnostics for the Production unit
- * job; no file or workflow control output is written by the workspace runner.
+ * Source-bounded timing lines are forwarded by quietRun only when explicitly
+ * enabled. GitHub annotations don't appear in decoded job logs, so use inert
+ * text instead of workflow commands. No artifact or repository file is written.
  */
 export function formatUnitWorkspaceTiming(name, script, durationMs, passed) {
   if (
@@ -140,7 +140,7 @@ export function formatUnitWorkspaceTiming(name, script, durationMs, passed) {
     durationMs < 0
   ) return null;
   return (
-    '::notice title=Unit workspace timing::' + name + ' / ' + script + ' ' +
+    'SVITLO_CI_UNIT_TIMING ' + name + ' / ' + script + ' ' +
     (durationMs / 1000).toFixed(1) + 's (' + (passed ? 'success' : 'failure') + ')'
   );
 }
