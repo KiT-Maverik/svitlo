@@ -234,6 +234,30 @@ describe('active Engine Quiz renderer', () => {
     await waitFor(() => expect(complete).toHaveBeenCalledWith({ passed: true, correct: 1, total: 2, timedOut: false }));
   });
 
+  it('applies points threshold without confusing a failed grade with an unfinished attempt', async () => {
+    const second: Question_SelectOneAnswer_Data = {
+      ...(questions[0] as Question_SelectOneAnswer_Data),
+      ...base(10),
+      type: 'selectOneAnswer',
+    };
+    const selected = [questions[0], second];
+    const complete = mount(selected, vi.fn(), loader(selected), {
+      grading: { mode: 'points', successThreshold: 2 },
+    });
+    await screen.findByText('Prompt 10');
+    const yes = screen.getAllByRole('radio', { name: 'Yes' });
+    const no = screen.getAllByRole('radio', { name: 'No' });
+    fireEvent.click(yes[0]);
+    fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[0]);
+    expect(complete).not.toHaveBeenCalled();
+    fireEvent.click(no[1]);
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    await waitFor(() =>
+      expect(complete).toHaveBeenCalledWith({ passed: false, correct: 1, total: 2, timedOut: false }),
+    );
+    expect(complete).toHaveBeenCalledTimes(1);
+  });
+
   it('rejects malformed or absent selected resources and supports loader retry', async () => {
     const selected = [questions[0]];
     const loadQuestions = vi.fn().mockResolvedValueOnce({ items: [], fallbacks: [] }).mockResolvedValueOnce({ items: selected, fallbacks: [] });
