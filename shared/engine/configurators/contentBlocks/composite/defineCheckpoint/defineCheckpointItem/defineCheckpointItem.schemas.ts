@@ -9,9 +9,8 @@ import type {
 import { text_Data_Schema } from '../../../primitive/defineText/defineText.schemas';
 import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
 import {
-  checkpointAnswer_Child_Data_Schema,
+  checkpointAnswer_Data_Schema,
   type Checkpoint_Allowed_Configurator,
-  type Checkpoint_Allowed_Data,
   type CheckpointAnswer_Overrides,
 } from '../defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 
@@ -33,11 +32,10 @@ export type ContentBlock_CheckpointItem_Config = z.infer<typeof checkpointItem_C
 
 export const checkpointItem_Data_Schema = checkpointItemBase.extend({
   question: text_Data_Schema,
-  answer: z.array(checkpointAnswer_Child_Data_Schema).min(1),
+  answer: checkpointAnswer_Data_Schema,
 });
-export type ContentBlock_CheckpointItem_Data = Omit<z.infer<typeof checkpointItem_Data_Schema>, 'answer'> & {
+export type ContentBlock_CheckpointItem_Data = Omit<z.infer<typeof checkpointItem_Data_Schema>, 'question'> & {
   question: ContentBlock_Text_Data;
-  answer: Checkpoint_Allowed_Data[];
 };
 
 export type CheckpointItem_Question_Overrides = Omit<ContentBlock_Text_Overrides, 'params'> & {
@@ -49,5 +47,5 @@ export type CheckpointItem_Overrides<
 > = {
   check?: true;
   question?: CheckpointItem_Question_Overrides;
-  answer?: CheckpointAnswer_Overrides<Answer['content']['items'], Added>;
+  answer?: Parameters<Answer['build']['overrides']>[0] & CheckpointAnswer_Overrides<Record<string, Checkpoint_Allowed_Configurator>, Added>;
 };
