@@ -30,7 +30,7 @@ import {
   type QuestionResourcePublication,
   type ResolvableBlockPatch,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -58,6 +58,11 @@ type SlotBlock = { correctAnswer: ContentBlock_Primitive_Configurator };
 type SlotBlockMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends SlotBlock ? Group[Key] : SlotBlock;
 };
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
+  Patch extends { content: { slots: infer Collection } }
+    ? AddedPlacementsFromPatch<Collection, SlotBlockMembers<Content['slots']>, SlotBlock, 'children'>
+    : {};
+
 type SlotBlocksOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, SlotBlock>,
@@ -178,10 +183,10 @@ export const defineFillBlanksWithBlocks = <
   };
 
   const overrides = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedSlots extends Record<string, SlotBlock> = {},
   >(
-    patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
+    patch: Patch & Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data> => {
     try {
