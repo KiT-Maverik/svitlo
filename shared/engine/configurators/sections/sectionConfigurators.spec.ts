@@ -53,6 +53,28 @@ describe('Configurators', () => {
           }),
       ];
 
+      /**
+       * A union of five unrelated generic Build methods cannot accept a
+       * single nested patch by invoking their intersected signatures.
+       * Narrow the actual Section discriminator before calling its Build API.
+       * This keeps every invocation fully typechecked, without casts.
+       */
+      const overridePrompt = (
+        section: ReturnType<(typeof definitions)[number]>,
+        value: string,
+        languages: readonly ('en' | 'uk')[],
+      ) => {
+        const patch = { prompt: { locale: { value: { uk: value } } } };
+        const options = { languages };
+        switch (section.type) {
+          case 'content': return section.build.overrides(patch, options);
+          case 'practice': return section.build.overrides(patch, options);
+          case 'codingTask': return section.build.overrides(patch, options);
+          case 'learningFlow': return section.build.overrides(patch, options);
+          case 'flashcards': return section.build.overrides(patch, options);
+        }
+      };
+
       test('every Section publishes ordered JSON-safe ContentBlock Props without mutable override state', () => {
         for (const create of definitions) {
           const section = create();
@@ -189,14 +211,8 @@ describe('Configurators', () => {
       test('all Sections remain reusable across independently built override contexts', () => {
         for (const create of definitions) {
           const section = create();
-          const one = section.build.overrides(
-            { prompt: { locale: { value: { uk: 'Один' } } } },
-            { languages: ['en', 'uk'] },
-          );
-          const two = section.build.overrides(
-            { prompt: { locale: { value: { uk: 'Два' } } } },
-            { languages: ['en', 'uk'] },
-          );
+          const one = overridePrompt(section, 'Один', ['en', 'uk']);
+          const two = overridePrompt(section, 'Два', ['en', 'uk']);
           assert.equal(textValue(one.locale?.uk?.prompt), 'Один');
           assert.equal(textValue(two.locale?.uk?.prompt), 'Два');
           const base = section.build.data({ languages: ['en', 'uk'] });
@@ -213,12 +229,7 @@ describe('Configurators', () => {
           const one = section.build.data({ languages: ['uk'] });
           assert.deepEqual(Object.keys(one.locale ?? {}), ['uk']);
           assert.equal(one.locale?.en, undefined);
-          const replacement = section.build.overrides(
-            {
-              prompt: { locale: { value: { uk: 'Новий текст' } } },
-            },
-            { languages: ['uk'] },
-          );
+          const replacement = overridePrompt(section, 'Новий текст', ['uk']);
           assert.deepEqual(Object.keys(replacement.locale ?? {}), ['uk']);
           assert.equal(textValue(replacement.locale?.uk?.prompt), 'Новий текст');
           assert.throws(() => section.build.data({ languages: [] }), /nonempty languages/);
