@@ -15,12 +15,13 @@ import {
   openSync,
   readFileSync,
   readdirSync,
+  realpathSync,
   readSync,
   renameSync,
   statSync,
   writeFileSync,
 } from 'node:fs';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { discoverWorkspaces } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
@@ -34,8 +35,18 @@ const telemetryVariable = 'SVITLO_CI_BUILD_TELEMETRY';
  */
 export function appendBuildTelemetry({ root, file, event, env = process.env }) {
   if (!isAbsolute(file)) throw new Error('Build telemetry path must be absolute');
-  const normalized = resolve(root);
-  const relativeFile = relative(normalized, resolve(file));
+  const normalized = realpathSync(resolve(root));
+  const target = resolve(realpathSync(dirname(resolve(file))), basename(file));
+  // Reject even dangling file symlinks: appendFileSync would otherwise follow
+  // the link and could modify tracked source despite the lexical path check.
+  let existing = null;
+  try {
+    existing = lstatSync(target);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  if (existing?.isSymbolicLink()) throw new Error('Build telemetry target must not be a symlink');
+  const relativeFile = relative(normalized, target);
   if (relativeFile === '' || (relativeFile !== '..' && !relativeFile.startsWith('..' + sep))) {
     throw new Error('Build telemetry must stay outside the repository');
   }
@@ -49,7 +60,7 @@ export function appendBuildTelemetry({ root, file, event, env = process.env }) {
     operation: 'package:build',
     ...event,
   };
-  appendFileSync(file, JSON.stringify(record) + '\n');
+  appendFileSync(target, JSON.stringify(record) + '\n');
 }
 
 function npmBuild(name, root = repoRoot) {
