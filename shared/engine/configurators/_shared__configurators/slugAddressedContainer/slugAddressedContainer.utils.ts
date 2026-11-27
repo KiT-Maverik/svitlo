@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 import { camelCase_Schema } from '#schemas';
 import type { LanguageCode } from '#schemas';
 
@@ -26,6 +28,21 @@ const record = (value: unknown): value is Record<string, unknown> =>
 export type SlugAddressedIssue = { path: (string | number)[]; message: string };
 
 /**
+ * One completed Lesson may have multiple placement keys. Draft stubs and
+ * every other owner identity must be unique, even when the kinds coincide.
+ * Matching source slug protects immutable identity across reused placements.
+ */
+export const mayReuseCompletedLesson = (previous: unknown, candidate: unknown): boolean => {
+  if (!record(previous) || !record(candidate)) return false;
+  return previous.type === 'lesson' &&
+    candidate.type === 'lesson' &&
+    previous.id === candidate.id &&
+    previous.slug === candidate.slug &&
+    (previous.draft === undefined || previous.draft === false) &&
+    (candidate.draft === undefined || candidate.draft === false);
+};
+
+/**
  * Validate ONE ordered, slug-addressed Data boundary. Child-owned content is
  * intentionally opaque: its own Configurator has already validated it.
  */
@@ -41,7 +58,7 @@ export const validateSlugAddressedContainer = (
   const children = Array.isArray(value.children) ? value.children : [];
   const keys = Object.keys(value).filter(key => !metadata.has(key));
   const active = new Set<string>();
-  const ids = new Set<string>();
+  const ids = new Map<string, Record<string, unknown>>();
 
   for (const key of keys) {
     if (reserved.has(key)) {
@@ -59,15 +76,18 @@ export const validateSlugAddressedContainer = (
     if (typeof child.type !== 'string' || !allowedTypes.includes(child.type)) {
       issues.push({ path: [key, 'type'], message: 'Unsupported child type: ' + String(child.type) });
     }
-    if (typeof child.id !== 'string' || !child.id) {
-      issues.push({ path: [key, 'id'], message: 'Child must have an immutable ID' });
-    } else if (ids.has(child.id)) {
-      issues.push({ path: [key, 'id'], message: 'Duplicate child ID: ' + child.id });
+    if (!z.uuid().safeParse(child.id).success) {
+      issues.push({ path: [key, 'id'], message: 'Child ID must be a UUID' });
     } else {
-      ids.add(child.id);
+      const earlier = ids.get(child.id as string);
+      if (earlier && !mayReuseCompletedLesson(earlier, child)) {
+        issues.push({ path: [key, 'id'], message: 'Duplicate child ID: ' + child.id });
+      } else {
+        ids.set(child.id as string, child);
+      }
     }
-    if (typeof child.slug !== 'string' || !child.slug) {
-      issues.push({ path: [key, 'slug'], message: 'Child must retain its authored slug' });
+    if (!camelCase_Schema.safeParse(child.slug).success) {
+      issues.push({ path: [key, 'slug'], message: 'Child must retain a camelCase authored slug' });
     } else if (child.type !== 'lesson' && child.slug !== key) {
       issues.push({ path: [key, 'slug'], message: 'Child placement key does not match authored slug: ' + key });
     }
