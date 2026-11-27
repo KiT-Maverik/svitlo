@@ -207,6 +207,9 @@ export function assembleCourseLesson({
 
   const baseMatch = findLesson(base, lessonId, 'base', placement);
   if (!baseMatch) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
+  if (Object.hasOwn(baseMatch.node, 'draft')) throw new Error('Course draft Lesson cannot be assembled');
+  if (Object.keys(baseMatch.node).some(field => !['id', 'type', 'overrides'].includes(field)))
+    throw new Error('Course Lesson must be a compact published reference');
 
   const localeData = course.locale?.[language];
   const localeRoot = localeData === undefined ? undefined : assertCourseRoot(localeData, courseId, language);
