@@ -2,7 +2,10 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, configDefaults } from 'vitest/config';
 export default defineConfig({
   resolve: {
-    alias: { '#utils': fileURLToPath(new URL('./src/utils', import.meta.url)) },
+    alias: {
+      '#utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
+      '#widgets': fileURLToPath(new URL('./src/components/widgets', import.meta.url)),
+    },
   },
   test: {
     environment: 'jsdom',
