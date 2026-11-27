@@ -79,7 +79,7 @@ export const defineOrderSequence = <
     slug: Slug;
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
-        sequence: { items: ChildrenSupporting<Languages, BlockMembers<Content['sequence']>> };
+        sequence: ChildrenSupporting<Languages, BlockMembers<Content['sequence']>>;
       };
   } & ConfigWithLanguages<Question_OrderSequence_Config, Languages>,
 ) => {
