@@ -75,6 +75,10 @@ describe('Configurators', () => {
         }
       };
 
+      /** Exercise invalid dynamically sourced Config patches against every concrete Section. */
+      const rejectPatch = (section: ReturnType<(typeof definitions)[number]>, patch: unknown) =>
+        Reflect.apply(section.build.overrides, undefined, [patch, { languages: ['en', 'uk'] }]);
+
       test('every Section publishes ordered JSON-safe ContentBlock Props without mutable override state', () => {
         for (const create of definitions) {
           const section = create();
@@ -127,32 +131,17 @@ describe('Configurators', () => {
 
           assert.throws(
             () =>
-              section.build.overrides(
-                {
-                  prompt: false,
-                },
-                { languages: ['en', 'uk'] },
-              ),
+              rejectPatch(section, { prompt: false }),
             /children is required/,
           );
           assert.throws(
             () =>
-              section.build.overrides(
-                {
-                  children: ['prompt'], extra,
-                },
-                { languages: ['en', 'uk'] },
-              ),
+              rejectPatch(section, { children: ['prompt'], extra }),
             /Unlisted|Missing slug|unlisted/i,
           );
           assert.throws(
             () =>
-              section.build.overrides(
-                {
-                  children: ['prompt', 'extra', 'extra'], extra,
-                },
-                { languages: ['en', 'uk'] },
-              ),
+              rejectPatch(section, { children: ['prompt', 'extra', 'extra'], extra }),
             /Duplicate slug|Duplicate placement/i,
           );
           assert.throws(
