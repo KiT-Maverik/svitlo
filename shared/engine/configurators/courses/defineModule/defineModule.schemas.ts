@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { validateSlugAddressedContainer } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
+import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 
 import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
@@ -9,22 +9,14 @@ import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
-import {
-  type Assessment_Data,
-} from '../../assessments/defineAssessment/defineAssessment.schemas';
+import type { Assessment_Data } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
-import {
-  type Episode_Data,
-  type Episode_Draft_Data,
-} from '../../episodes/defineEpisode/defineEpisode.schemas';
+import type { Episode_Data, Episode_Draft_Data } from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import {
-  type Lesson_Data,
-  type Lesson_Draft_Data,
-} from '../../lessons/defineLesson/defineLesson.schemas';
+import type { Lesson_Data, Lesson_Draft_Data } from '../../lessons/defineLesson/defineLesson.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import type { Chapter_Data } from '../defineChapter/defineChapter.schemas';
 import type {
@@ -85,7 +77,7 @@ export type Module_Overrides<
 > = Module_Metadata_Overrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & { [Key in keyof Items]?: never };
+    additionalItems?: Added & SafePlacementMap<Added> & { [Key in keyof Items]?: never };
     order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
   };
 };
