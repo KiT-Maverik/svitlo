@@ -124,7 +124,7 @@ audio.build.data({ embed: true });
 const carouselPublished = carousel.build.data({ languages: ['en'] });
 void carouselPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
-void carouselPublished.locale?.en?.slides;
+void carouselPublished.locale?.en?.locale?.slides;
 // @ts-expect-error The Build API does not support conditional embedding.
 carousel.build.data({ embed: true });
 
