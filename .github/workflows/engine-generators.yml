@@ -81,7 +81,7 @@ jobs:
       - name: Verify job-local package build reuse and passive telemetry
         run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - name: Verify direct build-command tracing and summary
-        run: node --test --test-reporter=dot scripts/ci/buildTelemetry/*.spec.mjs
+        run: node --test --test-reporter=spec scripts/ci/buildTelemetry/*.spec.mjs
       - name: Verify historical backfill labels with repository-scoped mocks
         run: node --test .github/scripts/backfill-labels.test.cjs
 
