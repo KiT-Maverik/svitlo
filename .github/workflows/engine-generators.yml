@@ -43,6 +43,13 @@ on:
       - '.github/scripts/backfill-labels.test.cjs'
   workflow_dispatch:
   workflow_call:
+    inputs:
+      # The strict Production Quality aggregator also requires a complete
+      # Engine generator suite. Direct Ready main PRs must not pay for a
+      # second npm-installed copy of the same full suite.
+      run_full_generator_tests:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -99,8 +106,14 @@ jobs:
         run: node --test .github/scripts/backfill-labels.test.cjs
 
   generator-tests:
-    # Full host/browser/generator suites only at review boundary or explicitly on demand.
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    # Preserve full Ready suites for all standalone non-main PRs and manual
+    # dispatches. A Ready main promotion runs them in Production Quality's
+    # explicit reusable call instead of launching a second npm-installed job.
+    # The no-npm policy and publisher-isolation jobs still run directly.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (!github.event.pull_request.draft &&
+       (github.event.pull_request.base.ref != 'main' || inputs.run_full_generator_tests))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

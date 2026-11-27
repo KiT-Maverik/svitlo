@@ -127,6 +127,10 @@ jobs:
     # Reuse the authoritative generator suite, including pinned Docker-worker
     # round trips. Root npm test does not cover its CI-only security regressions.
     uses: ./.github/workflows/engine-generators.yml
+    with:
+      # Required on main promotions: direct Engine generators skips only
+      # its duplicate expensive job; this reuse must run the complete suite.
+      run_full_generator_tests: true
 
   components:
     name: Production / extra component tests

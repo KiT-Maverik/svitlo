@@ -120,6 +120,34 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.ok(workflow.indexOf('check-release-source.mjs') < workflow.indexOf('npm ci'));
 });
 
+test('Ready main runs the full Engine generator suite once through required Production Quality', () => {
+  // Engine generators is a direct Ready PR workflow AND a reusable production
+  // gate. Preserve its cheap direct Draft/security checks on all PR targets,
+  // without dispatching two independently installed full suites on main.
+  assert.match(engineGeneratorsWorkflow, /  pull_request:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  workflow_dispatch:\s*\n/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /  workflow_call:\s*\n    inputs:\s*\n[\s\S]*?run_full_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
+  assert.match(engineGeneratorsWorkflow, /  publisher-isolation:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  ci-policy:\s*\n/);
+  const generatorTests = engineGeneratorsWorkflow.split('\n  generator-tests:\n')[1];
+  assert.ok(generatorTests, 'missing complete generator-tests job');
+  assert.match(
+    generatorTests,
+    /github\.event_name == 'workflow_dispatch' \|\|\s*\n\s*\(!github\.event\.pull_request\.draft &&\s*\n\s*\(github\.event\.pull_request\.base\.ref != 'main' \|\| inputs\.run_full_generator_tests\)\)/,
+  );
+  assert.match(generatorTests, /Run targeted generator and CLI regression tests/);
+  assert.match(generatorTests, /Test typed Bank source and PR-command security/);
+  assert.match(generatorTests, /Test typed Lesson Stage 6 source and PR-command security/);
+  assert.match(
+    workflow,
+    /  generators:\s*\n    name: Production \/ Engine generators\s*\n    needs: policy\s*\n[\s\S]*?uses: \.\/\.github\/workflows\/engine-generators\.yml\s*\n    with:\s*\n[\s\S]*?run_full_generator_tests: true/,
+  );
+  assert.match(workflow, /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/);
+});
+
 test('PR comment command dispatches the unchanged full production workflow', () => {
   assert.match(commandWorkflow, /issue_comment:\s*\n\s*types: \[created\]/);
   assert.match(commandWorkflow, /github\.event\.issue\.pull_request/);

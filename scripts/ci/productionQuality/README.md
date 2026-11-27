@@ -14,6 +14,16 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   Docker-isolated, SHA-pinned five-materializer round trip, CI-only security
   regressions, and generator CLI tests that root `npm test` does not cover.
   A failed or skipped reusable workflow blocks `Production Quality / verify`.
+  On Ready `main` promotions, the separately PR-triggered Engine generators
+  workflow still runs its npm-free publisher-isolation and CI-policy guards but
+  skips its **second** expensive `generator-tests` job. The Production Quality
+  reusable call explicitly passes `run_full_generator_tests: true`, so the
+  complete Engine generator suite still executes once inside the strict
+  protected aggregate. Standalone Ready PRs to `develop` or integration
+  branches and manual `workflow_dispatch` still run the complete suite.
+  This avoids redundant job initialization; no individual generator tests
+  are removed, and a cost saving has not yet been measured in a real
+  Ready `develop → main` promotion.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics
