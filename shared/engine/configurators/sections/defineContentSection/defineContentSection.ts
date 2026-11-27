@@ -359,4 +359,21 @@ export const defineContentSection: {
   ): ReturnType<typeof defineContentSectionImpl<Slug, Items, Languages>>;
 } = defineContentSectionImpl;
 
-export type ContentSection_Configurator = ReturnType<typeof defineContentSectionImpl<string, {}, AllLanguageCodes>>;
+/**
+ * Widen only the parent-facing collection boundary. A concrete Section has
+ * literal child keys and a narrowed language scope; the baseline public type
+ * must not require a never[] child order or an all-language Build input.
+ * At the authoring site typeof defineContentSection(...) retains its full
+ * Build signature and the actual child-key/locale constraints.
+ */
+type ContentSectionBase = ReturnType<typeof defineContentSectionImpl<string, {}, AllLanguageCodes>>;
+export type ContentSection_Configurator = Omit<
+  ContentSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<ContentSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<ContentSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<ContentSectionBase['build']['overrides']>;
+  };
+};
