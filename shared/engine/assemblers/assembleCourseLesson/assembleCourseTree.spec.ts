@@ -90,28 +90,54 @@ test('localized Course, Episode and Assessment cannot mutate immutable language 
   assert.deepEqual(translated.params.languages, ['en', 'uk']);
 });
 
-test('validated direct placement paths use indexed membership, not order-array searches', () => {
+test('validated immutable Course snapshots resolve by direct indexed placement', () => {
   const course = assembleCourseTree(base, undefined, id(1), 'en');
-  const module = course.module as { children: string[]; nested: { children: string[] } };
-  for (const order of [course.children, module.children, module.nested.children]) {
-    Object.defineProperty(order, 'includes', {
-      value: () => { throw Error('navigation must never linearly scan siblings'); },
-    });
+  const module = course.module as { children: string[]; nested: { children: string[]; lesson: unknown } };
+  assert.equal(Object.isFrozen(course), true);
+  assert.equal(Object.isFrozen(course.children), true);
+  assert.equal(Object.isFrozen(module), true);
+  assert.equal(Object.isFrozen(module.nested.children), true);
+
+  // A search of any authoritative sibling order is a regression in the
+  // navigation path; the saved membership index must serve these lookups.
+  const originalIncludes = Array.prototype.includes;
+  Array.prototype.includes = function (...values) {
+    if (this === course.children || this === module.children || this === module.nested.children)
+      throw Error('navigation must never linearly scan siblings');
+    return originalIncludes.apply(this, values);
+  };
+  try {
+    assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
+    assert.equal(findCourseActivityByPlacement(course, 'module/nested/missing'), undefined);
+    assert.equal(findCourseActivityByPlacement(course, 'module/nested'), undefined);
+  } finally {
+    Array.prototype.includes = originalIncludes;
   }
-  assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
-  assert.equal(findCourseActivityByPlacement(course, 'module/nested/missing'), undefined);
-  assert.equal(findCourseActivityByPlacement(course, 'module/nested'), undefined);
   assert.throws(
     () => findCourseActivityByPlacement(structuredClone(course), 'module/nested/lesson'),
     /assembled, validated Course/,
   );
-  const changed = assembleCourseTree(base, undefined, id(1), 'en');
-  const changedModule = changed.module as { children: string[] };
-  changedModule.children = [];
-  assert.throws(
-    () => findCourseActivityByPlacement(changed, 'module/nested/lesson'),
-    /changed after validation/,
-  );
+});
+
+test('same-length child-array edits and direct-child replacement cannot corrupt a validated Course', () => {
+  const course = assembleCourseTree(base, undefined, id(1), 'en');
+  const nested = (course.module as { nested: { children: string[]; lesson: unknown } }).nested;
+  assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
+  assert.throws(() => { nested.children[0] = 'renamed'; }, TypeError);
+  assert.throws(() => { nested.lesson = { id: id(99), type: 'lesson' }; }, TypeError);
+  assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
+
+  // Reassembly of a changed caller-owned JSON document builds a fresh index
+  // and must not reuse the stale path from the previous immutable snapshot.
+  const changed = structuredClone(course);
+  const changedNested = (changed.module as Record<string, unknown>).nested as Record<string, unknown>;
+  (changedNested.children as string[])[0] = 'renamed';
+  changedNested.renamed = changedNested.lesson;
+  delete changedNested.lesson;
+  const updated = assembleCourseTree(changed, undefined, id(1), 'en');
+  assert.equal(findCourseActivityByPlacement(updated, 'module/nested/lesson'), undefined);
+  assert.equal(findCourseActivityByPlacement(updated, 'module/nested/renamed')?.node.id, id(90));
+  assert.equal(Object.isFrozen(changedNested.children), false, 'caller-owned JSON is never frozen');
 });
 
 test('rejects translation changing structure, identity or unsupported Episode events', () => {
