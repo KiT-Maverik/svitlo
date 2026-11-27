@@ -17,14 +17,14 @@ const ws = (name, path, scripts, deps = []) => ({
   dependencies: Object.fromEntries(deps.map(dep => [dep, '*'])),
 });
 
-test('opt-in unit timing annotations identify distinct build and test steps without source data', () => {
+test('opt-in unit timing text identifies distinct build and test steps without source data', () => {
   assert.equal(
     formatUnitWorkspaceTiming('@svitlo/engine', 'test', 6432.4, true),
-    '::notice title=Unit workspace timing::@svitlo/engine / test 6.4s (success)',
+    'SVITLO_CI_UNIT_TIMING @svitlo/engine / test 6.4s (success)',
   );
   assert.equal(
     formatUnitWorkspaceTiming('@svitlo/ui-kit', 'package:build', 991.9, false),
-    '::notice title=Unit workspace timing::@svitlo/ui-kit / package:build 1.0s (failure)',
+    'SVITLO_CI_UNIT_TIMING @svitlo/ui-kit / package:build 1.0s (failure)',
   );
   assert.equal(formatUnitWorkspaceTiming('@svitlo/engine', 'code:check:types', 22, true), null);
   assert.equal(formatUnitWorkspaceTiming('fake\\n::error::injection', 'test', 1, false), null);
