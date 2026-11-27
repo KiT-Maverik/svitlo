@@ -30,6 +30,16 @@ function objectProperty(object: ts.ObjectLiteralExpression, key: string, file: s
   return value;
 }
 
+function optionalObjectProperty(object: ts.ObjectLiteralExpression, key: string, file: string) {
+  const present = object.properties.some(
+    entry =>
+      ts.isPropertyAssignment(entry) &&
+      (ts.isIdentifier(entry.name) || ts.isStringLiteral(entry.name)) &&
+      entry.name.text === key,
+  );
+  return present ? objectProperty(object, key, file) : undefined;
+}
+
 describe('Math Skills taxonomy locale completeness', () => {
   it('has nonempty localized names and learner descriptions in every authored taxonomy entity', () => {
     const files = collectFiles(join(process.cwd(), 'data/skills')).filter(
@@ -56,13 +66,20 @@ describe('Math Skills taxonomy locale completeness', () => {
       const call = calls[0];
       const config = call.arguments[0];
       if (!ts.isObjectLiteralExpression(config)) throw new Error(file + ': Skill config must be a literal object');
-      const fieldName = (call.expression as ts.Identifier).text === 'defineSkillDomain' ? 'title' : 'name';
+      const kind = (call.expression as ts.Identifier).text;
+      const fieldName = kind === 'defineSkillDomain' ? 'title' : 'name';
       const name = objectProperty(config, fieldName, file);
       const description = objectProperty(config, 'description', file);
-      const frontend = objectProperty(description, 'frontend', file);
+      // The Engine schema requires learner text for Skills, but allows
+      // SkillDomain and SkillGroup descriptions to be methodological-only.
+      const frontend = kind === 'defineSkill'
+        ? objectProperty(description, 'frontend', file)
+        : optionalObjectProperty(description, 'frontend', file);
+      const dictionaries: [string, ts.ObjectLiteralExpression][] = [[fieldName, name]];
+      if (frontend) dictionaries.push(['description.frontend', frontend]);
 
       for (const language of requiredLanguages) {
-        for (const [field, object] of [[fieldName, name], ['description.frontend', frontend]] as const) {
+        for (const [field, object] of dictionaries) {
           const value = property(object, language, file);
           expect(
             ts.isStringLiteral(value) || ts.isNoSubstitutionTemplateLiteral(value),
