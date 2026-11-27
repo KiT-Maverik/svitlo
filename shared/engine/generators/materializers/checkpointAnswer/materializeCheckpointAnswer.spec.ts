@@ -110,7 +110,7 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
       materializeCheckpointAnswer(
         {
           ...source,
-          children: ['bad'],
+          children: ['second', 'first', 'bad'],
           bad: forbidden as never,
         },
         context().renderer,
@@ -130,7 +130,7 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
       materializeCheckpointAnswer(
         {
           ...source,
-          children: ['gallery'],
+          children: ['second', 'first', 'gallery'],
           gallery: carousel as never,
         },
         context().renderer,
