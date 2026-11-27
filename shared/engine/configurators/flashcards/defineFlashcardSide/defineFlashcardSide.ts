@@ -96,7 +96,7 @@ const defineFlashcardSideImpl = <
 >(
   config: { children: Extract<keyof Items, string>[] } & Items &
     ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
-) {
+) => {
   const initialOrder = [...config.children];
   const initialItems = directChildren(config) as Items;
   const children = [...initialOrder];
