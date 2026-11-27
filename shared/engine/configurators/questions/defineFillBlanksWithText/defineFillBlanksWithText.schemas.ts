@@ -55,6 +55,9 @@ export const fillBlanksWithText_Data_Schema = questionBase.extend({
         ctx.addIssue({ code: 'custom', message: 'Invalid text slot order' });
       }
       for (const key of keys) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved text-slot placement key' });
+        }
         if (!z.strictObject({ correctAnswers: z.array(localizationSwitch.data).min(1) })
           .safeParse(slots[key]).success) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid text slot data' });
