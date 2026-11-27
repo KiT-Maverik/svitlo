@@ -124,9 +124,8 @@ export function courseStage3() {
       slug: 'skyBasics',
       params: { age: { min: 6, max: 10 } },
       locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-      content: {
-        items: {
-          newLesson,
+      children: ['newLesson', 'reused', 'overridden', 'episodeOne'],
+      newLesson,
           reused: {
             config: { type: 'lesson', slug: 'reused', skills: [skillId] },
             production: {
@@ -146,8 +145,7 @@ export function courseStage3() {
             production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
           },
         },
-        order: ['newLesson', 'reused', 'overridden', 'episodeOne'],
-      },
+      
     },
     production: {
       languages: { document: 'uk', planned: ['uk'] },
