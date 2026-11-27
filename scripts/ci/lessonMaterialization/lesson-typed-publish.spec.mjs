@@ -182,8 +182,20 @@ test('PR prose edits do not affect publishing or its atomic branch lease', async
 });
 
 test('tampered manifest and unauthorized actor are rejected before any write', async () => {
-  await assert.rejects(() => exercise({ corruptArtifact: true }), /SHA256 attestation/);
-  await assert.rejects(() => exercise({ permission: 'read' }), /permission/);
+  for (const [options, expected] of [
+    [{ corruptArtifact: true }, /SHA256 attestation/],
+    [{ permission: 'read' }, /permission/],
+  ]) {
+    await assert.rejects(() => exercise(options), error => {
+      assert.match(error.message, expected);
+      assert.equal(
+        error.calls.filter(call => call.method === 'POST' || call.method === 'PATCH').length,
+        0,
+        'rejected publisher must not create Git objects or update refs',
+      );
+      return true;
+    });
+  }
 });
 
 test('non-fast-forward branch lease is never forced or silently retried', async () => {

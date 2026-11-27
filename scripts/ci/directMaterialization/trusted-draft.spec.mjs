@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { operationSpec, parseTrustedDraft, renderTrustedDraft, executeTrustedDraft, trustedEngine } from './trusted-draft.mjs';
 
@@ -56,14 +57,37 @@ for (const [operation, kind, method, filename] of cases) {
   });
 }
 
-test('pinned malicious source reaches the actual inert Draft Reader without execution', () => {
+const maliciousDraft = marker =>
+  'export default { config: {}, production: {} } satisfies LessonWorkflowStage2;\n' +
+  'globalThis.' + marker + ' = true;\n';
+
+test('correctly SHA-pinned malicious bytes reach the reader callback without execution', () => {
   const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
-  const injected =
-    'export default { config: {}, production: {} } satisfies LessonWorkflowStage2;\n' +
-    'globalThis.' + marker + ' = true;\n';
+  const injected = maliciousDraft(marker);
+  const source = { ...pinned(cases[1][3]), sourceBlobSha: gitBlob(injected) };
+  let invoked = false;
+  const read = (text, kind) => {
+    invoked = true;
+    assert.equal(text, injected);
+    assert.equal(kind, 'lesson');
+    throw Error('Reader rejected executable statement');
+  };
+  const before = Object.hasOwn(globalThis, marker);
+  assert.throws(
+    () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
+    /Reader rejected executable statement/,
+  );
+  assert.equal(invoked, true, 'Pinned malicious source must reach the delegated reader');
+  assert.equal(Object.hasOwn(globalThis, marker), before);
+});
+
+const builtEngine = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
+test('compiled trusted Engine rejects pinned malicious source without evaluation', { skip: !existsSync(builtEngine) }, () => {
+  const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
+  const injected = maliciousDraft(marker);
   const source = { ...pinned(cases[1][3]), sourceBlobSha: gitBlob(injected) };
   const read = trustedEngine(fileURLToPath(new URL('../../../', import.meta.url))).readDeclarativeDraft;
-  assert.equal(typeof read, 'function', 'The built Engine must expose the trusted static reader');
+  assert.equal(typeof read, 'function');
   const before = Object.hasOwn(globalThis, marker);
   assert.throws(
     () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),

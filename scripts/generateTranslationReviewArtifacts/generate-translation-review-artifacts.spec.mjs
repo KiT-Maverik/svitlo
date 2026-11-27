@@ -8,6 +8,25 @@ import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 import { fixTaxonomyLinks, parseArguments } from './generate-translation-review-artifacts.mjs';
 
+// The generator CI currently selects this file explicitly. Run adjacent suites
+// explicitly until discovery is updated in the separate CI workstream; importing
+// spec files for their side effects would silently duplicate tests under discovery.
+test('selected command and Lesson reference suites remain covered', () => {
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+  const selected = [
+    'scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs',
+    'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
+    'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs',
+  ];
+  const result = spawnSync(process.execPath, ['--test', ...selected], {
+    cwd: root,
+    encoding: 'utf8',
+    timeout: 180_000,
+    maxBuffer: 32 * 1024 * 1024,
+  });
+  assert.equal(result.status, 0, result.stderr || result.stdout || result.error?.message);
+});
+
 test('requires an explicit reference family and never defaults to whole-repository generation', () => {
   assert.throws(() => parseArguments([]), /explicit supported --kind/);
   assert.throws(() => parseArguments(['--kind', 'all']), /explicit supported --kind/);
