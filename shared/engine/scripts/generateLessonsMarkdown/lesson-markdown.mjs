@@ -153,11 +153,11 @@ export function renderLessonMarkdown({
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (Object.hasOwn(lesson, 'section') || Object.hasOwn(lesson, 'questions') ||
-      Object.hasOwn(lesson, 'flashcards')) {
+  const sections = orderedLessonChildren(lesson, 'Lesson');
+  if (Object.hasOwn(lesson, 'section') ||
+      ['questions', 'flashcards'].some(key => Object.hasOwn(lesson, key) && !lesson.children.includes(key))) {
     throw new Error('Lesson must contain slug-addressed Section Data only; assessment banks are reviewed independently');
   }
-  const sections = orderedLessonChildren(lesson, 'Lesson');
   if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {
     throw new Error('Lesson Data must contain a resolved locale.title');
   }
