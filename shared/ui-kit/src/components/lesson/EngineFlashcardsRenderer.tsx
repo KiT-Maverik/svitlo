@@ -7,10 +7,11 @@ import type {
   AssessmentResourceLoader,
   Disability,
   Flashcard_Data,
+  ContentBlock_Primitive_Data,
   LanguageCode,
 } from '@svitlo/engine/runtime';
 
-import type { SectionViewProps } from '../../presentation';
+import { toPrimitiveBlockProps, type SectionViewProps } from '../../presentation';
 type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
 
 import type { UiKitMessages } from '#types/uiKitMessages';
@@ -135,7 +136,7 @@ function ResolvedFlashcards({
   };
   const content = useMemo(() => section.content, [section.content]);
   if (!card) return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
-  const render = (blocks: Flashcard_Data['content']['front']) => (
+  const render = (blocks: readonly ContentBlock_Primitive_Data[]) => (
     <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} />
   );
   return (
@@ -150,8 +151,8 @@ function ResolvedFlashcards({
         <Flashcard
           key={card.id}
           messages={messages.flashcard}
-          question={render(card.content.front)}
-          answer={render(card.content.back)}
+          question={render(toPrimitiveBlockProps(card.content.front))}
+          answer={render(toPrimitiveBlockProps(card.content.back))}
           flags={card.parameters.flags}
           revealed={revealed}
           onReveal={() => setRevealed(true)}
