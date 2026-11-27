@@ -29,6 +29,7 @@ import {
   scopeBuild,
   validateOrderedKeys,
   slugAddressedReservedKeys,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -51,6 +52,11 @@ type SlotMembers<Group extends { children: string[] }> = {
 type SlotChanges<Content extends ContentShape> = {
   [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
 };
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
+  Patch extends { content: { slots: infer Collection } }
+    ? AddedPlacementsFromPatch<Collection, SlotMembers<Content['slots']>, Slot, 'children'>
+    : {};
+
 type SlotsOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, Slot>,
@@ -226,10 +232,10 @@ export const defineFillBlanksWithText = <
   };
 
   const overrides = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedSlots extends Record<string, Slot> = {},
   >(
-    patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
+    patch: Patch & Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithText_Data> => {
     try {
