@@ -54,7 +54,7 @@ type ModulePublication<Base> = {
 type ModuleDataBase<Items extends Record<string, Module_Child>> = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Module_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
-} & { [Key in keyof Items]: ReturnType<Items[Key]['build']['data']>['base'] };
+} & { [Key in keyof Items]: DeepPartial<Extract<Module_Child_Data, { type: Items[Key]['type'] }>> };
 type ModuleOverrideBase = Module_Metadata_Overrides & {
   children?: string[];
   [key: string]: unknown;
