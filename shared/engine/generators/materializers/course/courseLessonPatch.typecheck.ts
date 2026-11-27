@@ -33,7 +33,7 @@ const practice = defineContentSection<'practice', { paragraph: typeof paragraph 
   children: ['paragraph'],
   paragraph,
 });
-export const lesson = defineLesson({
+export const lesson = defineLesson<'reusableLesson', ['en', 'uk'], { intro: typeof intro }>({
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
   type: 'lesson',
   slug: 'reusableLesson',
