@@ -148,58 +148,34 @@ export type CourseWorkflowStage2AssessmentSlot = {
   };
 };
 
-/** Chapter can contain provisional Lessons, Episodes and Assessments. */
+/** Only direct placement slugs are ordered. Editorial children are plain
+ * stage objects on the Config root, not nested configurators or content maps.
+ * Dynamic placement values are verified by the Stage Zod boundary.
+ */
+type StagePlacementConfig = { children: string[]; content?: never; items?: never; order?: never };
+export type CourseWorkflowStage2ChapterChild =
+  | CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
 export type CourseWorkflowStage2Chapter = {
   config: Pick<Chapter_Config, 'type' | 'slug' | 'locale'> & {
     id?: never;
     params?: Partial<Chapter_Config['params']>;
-    content: Omit<Chapter_Config['content'], 'items'> & {
-      items: Record<
-        string,
-        CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
-      >;
-    };
-  };
+  } & StagePlacementConfig & Record<string, unknown>;
   production: CourseWorkflowStage2UnitProduction;
 };
 
-/** Module can contain Chapters and provisional Lessons/Episodes, but no Module. */
+export type CourseWorkflowStage2ModuleChild = CourseWorkflowStage2Chapter | CourseWorkflowStage2ChapterChild;
 export type CourseWorkflowStage2Module = {
   config: Pick<Module_Config, 'type' | 'slug' | 'locale'> & {
     id?: never;
     params?: Partial<Module_Config['params']>;
-    content: Omit<Module_Config['content'], 'items'> & {
-      items: Record<
-        string,
-        | CourseWorkflowStage2Chapter
-        | CourseWorkflowStage2LessonSlot
-        | CourseWorkflowStage2EpisodeSlot
-        | CourseWorkflowStage2AssessmentSlot
-      >;
-    };
-  };
+  } & StagePlacementConfig & Record<string, unknown>;
   production: CourseWorkflowStage2UnitProduction;
 };
 
-/** Only the Course root may contain Modules. Direct Chapters, Lesson slots and
- * Episode slots are also permitted; no artificial wrapper is required.
- */
-export type CourseWorkflowStage2Content = Omit<Course_Config['content'], 'items'> & {
-  items: Record<
-    string,
-    | CourseWorkflowStage2Module
-    | CourseWorkflowStage2Chapter
-    | CourseWorkflowStage2LessonSlot
-    | CourseWorkflowStage2EpisodeSlot
-    | CourseWorkflowStage2AssessmentSlot
-  >;
-};
+export type CourseWorkflowStage2CourseChild = CourseWorkflowStage2Module | CourseWorkflowStage2ModuleChild;
+export type CourseWorkflowStage2Config = CourseWorkflowStage1Config & StagePlacementConfig & Record<string, unknown>;
 
-/** All Stage 1 authoring data remains required; Stage 2 adds only content. */
-export type CourseWorkflowStage2Config = CourseWorkflowStage1Config & {
-  content: CourseWorkflowStage2Content;
-};
-
+/** All Stage 1 authoring data remains required; Stage 2 adds placements. */
 export interface CourseWorkflowStage2 extends CourseWorkflowStage1 {
   config: CourseWorkflowStage2Config;
 }
@@ -318,46 +294,20 @@ export type CourseWorkflowLessonSeed = {
 
 export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | CourseWorkflowStage3ExistingLesson;
 
-/** Stage 3 changes only the nested Lesson slots, keeping Stage 2 hierarchy. */
+/** Stage 3 resolves provisional Lesson slots without changing the
+ * direct-children hierarchy. Concrete nesting is checked at the Zod boundary.
+ */
+export type CourseWorkflowStage3ChapterChild =
+  | CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {
-  config: Omit<CourseWorkflowStage2Chapter['config'], 'content'> & {
-    content: Omit<CourseWorkflowStage2Chapter['config']['content'], 'items'> & {
-      items: Record<
-        string,
-        CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot
-      >;
-    };
-  };
+  config: CourseWorkflowStage2Chapter['config'];
 };
-
+export type CourseWorkflowStage3ModuleChild = CourseWorkflowStage3Chapter | CourseWorkflowStage3ChapterChild;
 export type CourseWorkflowStage3Module = Omit<CourseWorkflowStage2Module, 'config'> & {
-  config: Omit<CourseWorkflowStage2Module['config'], 'content'> & {
-    content: Omit<CourseWorkflowStage2Module['config']['content'], 'items'> & {
-      items: Record<
-        string,
-        | CourseWorkflowStage3Chapter
-        | CourseWorkflowStage3LessonSlot
-        | CourseWorkflowStage2EpisodeSlot
-        | CourseWorkflowStage2AssessmentSlot
-      >;
-    };
-  };
+  config: CourseWorkflowStage2Module['config'];
 };
-
-export type CourseWorkflowStage3Content = Omit<CourseWorkflowStage2Content, 'items'> & {
-  items: Record<
-    string,
-    | CourseWorkflowStage3Module
-    | CourseWorkflowStage3Chapter
-    | CourseWorkflowStage3LessonSlot
-    | CourseWorkflowStage2EpisodeSlot
-    | CourseWorkflowStage2AssessmentSlot
-  >;
-};
-
-export type CourseWorkflowStage3Config = Omit<CourseWorkflowStage2Config, 'content'> & {
-  content: CourseWorkflowStage3Content;
-};
+export type CourseWorkflowStage3CourseChild = CourseWorkflowStage3Module | CourseWorkflowStage3ModuleChild;
+export type CourseWorkflowStage3Config = CourseWorkflowStage2Config;
 
 /** Final authoring contract: the executable Zod schema owns this shape. */
 export type CourseWorkflowStage3 = z.infer<typeof courseWorkflowStage3_Schema>;
