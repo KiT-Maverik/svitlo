@@ -83,10 +83,8 @@ function renderPlacementOverrideSpecification(production, patch) {
       if (key !== 'production') visit(child, path + '.' + key, depth + 1);
     }
   };
-  for (const [sectionKey, entry] of Object.entries(patch.section?.additionalItems ?? {}).sort(([a], [b]) =>
-    a.localeCompare(b),
-  )) {
-    if (entry?.$create === 'course-section') visit(entry.source, 'section.additionalItems.' + sectionKey + '.source');
+  for (const [sectionKey, entry] of Object.entries(patch).sort(([a], [b]) => a.localeCompare(b))) {
+    if (entry?.$create === 'course-section') visit(entry.source, sectionKey + '.source');
   }
   return notes.join('\n\n');
 }
@@ -358,7 +356,7 @@ export function materializeCourseStage5(input, options = {}) {
       // UUIDs authored in Course-owned Section/Block trees must be unique
       // across the entire Course, including its derived child allocations.
       // The concrete Section renderer independently validates the node schema.
-      for (const candidate of Object.values(rawPatch.section?.additionalItems ?? {})) {
+      for (const candidate of Object.values(rawPatch)) {
         if (candidate?.$create !== 'course-section') continue;
         const walk = (value, depth = 0) => {
           if (depth > 80) throw Error(context.directory + ': oversized Course-owned Section tree');
@@ -385,25 +383,16 @@ export function materializeCourseStage5(input, options = {}) {
         renderAddedSection: options.renderAddedSection,
       });
       const created = Object.keys(binding.createdSections);
-      if (created.length) {
-        // The complete placement order is checked against immutable original
-        // keys and both kinds of additions before any source is emitted.
-        const originals = Object.keys(lesson.configurator.section.items);
-        const disabled = Object.entries(rawPatch.section?.items ?? {})
-          .filter(([, value]) => value === false)
-          .map(([key]) => key);
-        const expected = [
-          ...originals.filter(key => !disabled.includes(key)),
-          ...Object.keys(rawPatch.section?.additionalItems ?? {}),
-        ];
-        const order = rawPatch.section?.order;
-        if (
-          !Array.isArray(order) ||
-          order.length !== expected.length ||
-          new Set(order).size !== expected.length ||
-          order.some(key => !expected.includes(key))
-        )
-          throw Error(context.directory + ': Course-owned Section order must include all and only active Sections');
+      const added = Object.keys(binding.aliases);
+      if (added.length) {
+        const originals = lesson.configurator.children;
+        if (!Array.isArray(originals)) throw Error(context.directory + ': invalid existing Lesson children');
+        const disabled = originals.filter(key => rawPatch[key] === false);
+        const expected = [...originals.filter(key => !disabled.includes(key)), ...added];
+        const order = rawPatch.children;
+        if (!Array.isArray(order) || order.length !== expected.length ||
+            new Set(order).size !== expected.length || order.some(key => !expected.includes(key)))
+          throw Error(context.directory + ': Course-owned Section children must include all and only active Sections');
       }
       placementDiagnostics = Object.values(binding.createdSections).flatMap(section => section.diagnostics ?? []);
       const layout = renderCourseLessonPatch({
@@ -453,16 +442,9 @@ export function materializeCourseStage5(input, options = {}) {
         // Publication remains blocked until the generated sources are compiled.
         let checkedPatch = binding.patch;
         if (created.length) {
-          const external = { ...binding.patch.section.additionalItems };
-          for (const key of created) delete external[key];
-          checkedPatch = {
-            ...binding.patch,
-            section: {
-              ...binding.patch.section,
-              additionalItems: external,
-              order: binding.patch.section.order.filter(key => !created.includes(key)),
-            },
-          };
+          checkedPatch = { ...binding.patch };
+          for (const key of created) delete checkedPatch[key];
+          checkedPatch.children = (binding.patch.children ?? lesson.configurator.children).filter(key => !created.includes(key));
         }
         const built = lesson.configurator.build.overrides(checkedPatch, { languages: patchLanguages });
         if (built.id !== existing.id)
