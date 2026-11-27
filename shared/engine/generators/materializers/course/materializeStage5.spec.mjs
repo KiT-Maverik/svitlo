@@ -449,7 +449,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
         sourcePatch: raw,
         overrideRationale: 'Verified Course-local navigation accommodation',
       },
-    };;
+    };
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(realLesson);
   const plan = materializeCourseStage5(reviewed, opts);
@@ -762,7 +762,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
               purpose: 'Explain the Course-only evidence with a real example.',
               pedagogicalIntent: 'Keep this Text rationale only with this placement.',
             },
-          },,
+          },
     },
   };
   const scene = (id, slug) => ({
@@ -831,11 +831,11 @@ test('new Course-owned Section and Text block materialize below an overridden Le
                           locale: { value: { uk: 'Тінь стала іншою.' } },
                         },
                         production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
-                      },,
+                      },
                 },
               },
             },
-          },,
+          },
     },
   };
   authoredSection.config.children.push('directScene', 'sceneCarousel', 'checkpoint');
@@ -858,7 +858,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
         },
         overrideRationale: 'Course-specific extra practice is required',
       },
-    };;
+    };
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(original);
   const plan = materializeCourse(reviewed, opts);
@@ -985,7 +985,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
         sourcePatch: raw,
         overrideRationale: 'Reviewed added practice Section',
       },
-    };;
+    };
   reviewed.config.children = ['reused'];
   const opts = {
     ...reuseOptions(original),
