@@ -27,6 +27,7 @@ import {
 } from '../../_shared__configurators';
 import {
   course_Config_Schema,
+  course_Metadata_Config_Schema,
   course_Data_Schema,
   course_Override_Config_Schema,
   type Course_Child,
@@ -148,7 +149,7 @@ export const defineCourse = <
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
 ): Course_Configurator<Slug, Items, Languages> => {
-  const metadataSchema = course_Config_Schema.omit({ children: true });
+  const metadataSchema = course_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
   const authored: Omit<Course_Config, 'children' | 'params'> & { params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] } } = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
