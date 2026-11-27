@@ -524,7 +524,13 @@ describe('Configurators', () => {
       });
 
       test('SelectMultipleAnswers rejects partially disabled correct answer sets', () => {
-        const secondCorrect = block('secondCorrect', 'Second correct answer');
+        const secondCorrect = defineText({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
+          slug: 'secondCorrect',
+          type: 'text',
+          params: {},
+          locale: { value: 'Second correct answer' },
+        });
         const multi = (() => {
           const config = {
             ...common('selectMultipleAnswers'),
