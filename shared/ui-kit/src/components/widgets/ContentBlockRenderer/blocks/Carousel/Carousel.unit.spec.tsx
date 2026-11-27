@@ -1,12 +1,12 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Carousel_Data } from '@svitlo/engine/runtime';
+import type { CarouselViewProps } from '../../../../../presentation';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentBlockRenderer, type ResponseOf, type SceneRegistry } from '../../ContentBlockRenderer';
 
-const gallery: ContentBlock_Carousel_Data = {
+const gallery: CarouselViewProps = {
   id: 'gallery',
   slug: 'gallery',
   type: 'carousel',
@@ -39,7 +39,7 @@ const gallery: ContentBlock_Carousel_Data = {
   },
 };
 
-function show(block: ContentBlock_Carousel_Data, language: 'en' | 'ar' = 'en') {
+function show(block: CarouselViewProps, language: 'en' | 'ar' = 'en') {
   return render(<ContentBlockRenderer language={language} messages={enUiKitMessages} blocks={[block]} />);
 }
 
@@ -123,7 +123,7 @@ describe('carousel content block', () => {
       </button>
     );
     const registry: SceneRegistry = id => (id === 'scene-slide' ? Activity : undefined);
-    const mixed: ContentBlock_Carousel_Data = {
+    const mixed: CarouselViewProps = {
       ...gallery,
       params: { ...gallery.params, autoplay: true, autoplayIntervalMs: 1600 },
       locale: {
@@ -151,7 +151,7 @@ describe('carousel content block', () => {
   });
 
   it('does not silently render a Scene without a registered implementation', () => {
-    const mixed: ContentBlock_Carousel_Data = {
+    const mixed: CarouselViewProps = {
       ...gallery,
       params: { startIndex: 1 },
       locale: {
