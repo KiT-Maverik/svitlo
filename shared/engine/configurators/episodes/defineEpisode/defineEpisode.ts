@@ -249,7 +249,10 @@ export const defineEpisode = <
         Object.fromEntries(Object.entries(patch).filter(([key]) =>
           key === 'params' || key === 'locale' || key === 'events')),
       );
-      const mergedMetadata = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      const mergedMetadata = metadataSchema.parse(mergeForValidation<Record<string, unknown>>(
+        copyAuthored() as Record<string, unknown>,
+        metadataPatch as Record<string, unknown>,
+      ));
       const own = splitLocale(metadataPatch.locale ?? {});
       const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: Publication<OverrideBase> = {
