@@ -83,8 +83,8 @@ const textBlock = (slug: string, n: number) => ({
   },
 });
 const side = (slug: string, n: number) => ({
-  items: { [slug]: textBlock(slug, n) },
-  order: [slug],
+  children: [slug],
+  [slug]: textBlock(slug, n),
 });
 const card = (slug: string, n: number) => ({
   config: {
@@ -244,7 +244,7 @@ test('Reject duplicate and broken graph links, pending Cards and incompatible se
 test('Flashcard Bank rejects both Composite child kinds before source emission', () => {
   for (const type of ['carousel', 'checkpoint']) {
     const source = completed();
-    Object.assign(source.config.flashcards.items.alpha.config.content.front.items, {
+    Object.assign(source.config.flashcards.items.alpha.config.content.front, {
       invalid: {
         config: {
           id: id(type === 'carousel' ? 471 : 472),
@@ -255,7 +255,7 @@ test('Flashcard Bank rejects both Composite child kinds before source emission',
         },
       },
     });
-    source.config.flashcards.items.alpha.config.content.front.order.push('invalid');
+    source.config.flashcards.items.alpha.config.content.front.children.push('invalid');
     assert.throws(
       () => materializeFlashcardBank(source as never, finalAuthorization(source)),
       /Invalid reviewed flashcardBank Stage 3 input/,
@@ -270,7 +270,7 @@ test('Flashcard source materialization does not gate on editorial bank-required 
 });
 test('Flashcard Bank rejects pending nested Side Blocks and stale reviewed structured input', () => {
   const input = completed();
-  Object.assign(input.config.flashcards.items.alpha.config.content.front.items.frontText, {
+  Object.assign(input.config.flashcards.items.alpha.config.content.front.frontText, {
     production: { pending: true },
   });
   assert.throws(
