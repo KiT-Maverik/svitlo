@@ -148,19 +148,19 @@ export const defineSelectOneAnswer = <
         'content.answers.distractors',
       ),
     };
-    const correctCount = complete.correct.base.children.length;
+    const correctCount = complete.correct.effectiveBase.children.length;
     if (correctCount !== 1) {
       throw new Error('SelectOneAnswer has an invalid number of correct answers');
     }
-    assertEnabledBlock(complete.correct.base[complete.correct.base.children[0]], 'content.answers.correct');
-    const activeKeys = groups.flatMap(group => complete[group].base.children);
+    assertEnabledBlock(complete.correct.effectiveBase[complete.correct.effectiveBase.children[0]], 'content.answers.correct');
+    const activeKeys = groups.flatMap(group => complete[group].effectiveBase.children);
     if (new Set(activeKeys).size !== activeKeys.length) {
       throw new Error('An answer cannot occur in multiple scoring groups');
     }
     for (const group of groups) {
       if (patch && patch[group] === undefined) continue;
       const resolved = complete[group];
-      answers[group] = resolved.base;
+      if (Object.keys(resolved.base).length) answers[group] = resolved.base;
       for (const [language, blocks] of Object.entries(resolved.locale)) {
         const fields = (locale[language] ??= {});
         ((fields.answers ??= {}) as Record<string, unknown>)[group] = blocks;
