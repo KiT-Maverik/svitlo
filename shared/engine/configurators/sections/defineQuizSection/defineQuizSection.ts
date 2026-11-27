@@ -383,4 +383,4 @@ export const defineQuizSection: {
   ): ReturnType<typeof defineQuizSectionImpl<Slug, Items, Languages>>;
 } = defineQuizSectionImpl;
 
-export type QuizSection_Configurator = ReturnType<typeof defineQuizSection>;
+export type QuizSection_Configurator = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
