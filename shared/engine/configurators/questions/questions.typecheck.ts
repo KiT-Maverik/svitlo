@@ -103,6 +103,14 @@ one.build.overrides({ id }, scope);
 one.build.overrides({ content: { question: {  answerBlock: { slug: 'another' }  } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
 number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
+// @ts-expect-error A Question cannot accept arbitrary content role names.
+number.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error A reserved slug is never an authored prompt child.
+number.build.overrides({ content: { question: { children: ['answerBlock', 'items'], items: block } } }, scope);
+// @ts-expect-error An unrecognized role is not part of text-slot Config patches.
+blanks.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error Reserved slot keys cannot be authored as additional named gaps.
+blanks.build.overrides({ content: { slots: { children: ['slot', 'items'], items: { correctAnswers: { first: 'yes' } } } } }, scope);
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
