@@ -23,6 +23,48 @@ test('summarizes direct build and helper reuse distinctly by workspace', () => {
   assert.match(formatBuildSummary(summary), /not exhaustive compiler invocations/);
 });
 
+test('reports reasons for repeated Engine builds without inferring compiler reuse', () => {
+  const sampleReason = (outcome, reason, after) =>
+    JSON.stringify({
+      schemaVersion: 1,
+      operation: 'package:build',
+      workspace: '@svitlo/engine',
+      outcome,
+      durationMs: 42,
+      rebuildReason: reason,
+      sourceAfterBuildRevision: after,
+    });
+  const summary = summarizeBuilds([
+    sampleReason('built', 'missing-state-record', 'commit-1'),
+    sampleReason('built', 'unverified-source', null),
+    sampleReason('built', 'unverified-source', null),
+    sampleReason('reused', null, null),
+    sampleReason('failed', 'missing-or-invalid-dist', null),
+  ].join('\n'));
+  assert.deepEqual(summary.rows[0].rebuildReasons, {
+    'missing-state-record': 1,
+    'unverified-source': 2,
+    'missing-or-invalid-dist': 1,
+  });
+  assert.equal(summary.rows[0].unverifiedAfterBuild, 2);
+  assert.match(formatBuildSummary(summary), /unverified-source: 2/);
+  assert.match(formatBuildSummary(summary), /missing-or-invalid-dist: 1/);
+  assert.match(formatBuildSummary(summary), /Unverified after build/);
+  assert.match(formatBuildSummary(summary), /\| 2 \|/);
+});
+
+test('reuse cannot be reported as having a rebuild reason', () => {
+  const invalid = JSON.stringify({
+    schemaVersion: 1,
+    operation: 'package:build',
+    workspace: '@svitlo/engine',
+    outcome: 'reused',
+    durationMs: 1,
+    rebuildReason: 'unverified-source',
+  });
+  assert.throws(() => summarizeBuilds(invalid), /Invalid rebuild reason/);
+});
+
 test('empty logs do not claim compilation occurred', () => {
   assert.deepEqual(summarizeBuilds(''), { total: 0, rows: [] });
   assert.match(formatBuildSummary(summarizeBuilds('')), /No instrumented build commands/);
