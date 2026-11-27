@@ -13,6 +13,25 @@ valid 1–8). `SVITLO_FASTGATE_PARALLELISM` retains FastGate's existing
 independent default of 2. Both flows run all selected checks and propagate
 failures; no workspace is dropped to improve latency.
 
+## Production unit-workspace timing diagnostics (PR #925 Phase 0a)
+
+Root `npm test` is intentionally **exhaustive** and currently executes
+workspace tests sequentially with npm `pretest`/`posttest` hooks intact.
+`SVITLO_CI_UNIT_TEST_TIMINGS=1` adds *passive*, bounded GitHub `::notice`
+annotations for each actual `package:build` prerequisite and workspace
+`test` invocation. Each line records the workspace, operation, wall time and
+success/failure, including npm lifecycle hooks within the workspace `test`
+duration. Ordinary execution has no additional notices. The existing
+`scripts/ci/quietRun/quiet-run.mjs` forwards these notices even when full
+successful npm logs remain suppressed.
+
+Production Quality sets the option **only** on the existing unit job's
+`npm test` step; there is no change to tested packages, test IDs, npm
+lifecycle, build caching, ordering, or concurrency. This is intentionally
+not a test-case-level duration profiler and not evidence of parallel safety.
+Use the resulting source-SHA-pinned job logs to identify which workspaces
+warrant isolated investigation before considering a bounded parallelism A/B.
+
 Root `package:build` and `code:lint:check` now execute via the pinned Turbo DAG, not this runner. The remaining root commands preserve their npm lifecycle hooks. See `studio/rules/package-scripts.md` and
 `scripts/ci/productionQuality/README.md`.
 
