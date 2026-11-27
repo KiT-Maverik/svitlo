@@ -183,7 +183,7 @@ export const resolveChild = (child: Block, languages: readonly LanguageCode[], p
       locale[language] = effective;
     }
   }
-  return { base, locale };
+  return { base, locale, patch: builtPatch };
 };
 
 /**
@@ -197,7 +197,7 @@ export const resolveBlockCollection = (
   patch?: ResolvableBlockPatch,
   path = 'content',
   nonEmpty = false,
-): ResolvedCollection<ResolvedBlockGroup> & { order: string[] } => {
+): ResolvedCollection<ResolvedBlockGroup> & { order: string[]; effectiveBase: ResolvedBlockGroup } => {
   validateBlockCollection(source, path, nonEmpty);
   if (patch !== undefined && !isRecord(patch)) throw new Error(path + ' override must be an object');
   const original = directChildren(source);
@@ -243,7 +243,26 @@ export const resolveBlockCollection = (
       ])),
     };
   }
-  return { base, locale, order: [...order] };
+  // A structural change explicitly replaces the ordered group. Otherwise
+  // expose only the nested ContentBlock's own sparse Build patch. The complete
+  // materialization above is retained solely for semantic validation.
+  if (patch === undefined || patch.children !== undefined) {
+    return { base, locale, order: [...order], effectiveBase: base };
+  }
+  const sparseBase: ResolvedBlockGroup = { children: [] };
+  delete (sparseBase as Partial<ResolvedBlockGroup>).children;
+  const sparseLocale: Files<ResolvedBlockGroup> = {};
+  for (const entry of entries) {
+    if (!entry.patch) continue;
+    if (Object.keys(entry.patch.base).length) sparseBase[entry.key] = cloneJson(entry.patch.base);
+    for (const [language, fragment] of Object.entries(entry.patch.locale ?? {})) {
+      (sparseLocale[language as LanguageCode] ??= { children: [] })[entry.key] = cloneJson(fragment);
+    }
+  }
+  for (const value of Object.values(sparseLocale)) {
+    delete (value as Partial<ResolvedBlockGroup>).children;
+  }
+  return { base: sparseBase, locale: sparseLocale, order: [...order], effectiveBase: base };
 };
 
 export const resolveBlockMap = (
@@ -251,7 +270,7 @@ export const resolveBlockMap = (
   languages: readonly LanguageCode[],
   patch?: ResolvableBlockPatch,
   path = 'content',
-): ResolvedCollection<ResolvedBlockGroup> =>
+): ResolvedCollection<ResolvedBlockGroup> & { effectiveBase: ResolvedBlockGroup } =>
   resolveBlockCollection(source, languages, patch, path);
 
 export const resolveCommonContent = (
@@ -273,9 +292,9 @@ export const resolveCommonContent = (
       'content.' + field,
       field === 'question',
     );
-    base[field] = result.base;
+    if (Object.keys(result.base).length) base[field] = result.base;
     for (const [language, translated] of Object.entries(result.locale)) {
-      (locale[language as LanguageCode] ??= {})[field] = translated;
+      if (Object.keys(translated).length) (locale[language as LanguageCode] ??= {})[field] = translated;
     }
   }
   return { base, locale };
