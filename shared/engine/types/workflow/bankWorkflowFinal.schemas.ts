@@ -27,7 +27,7 @@ import type { Question_Type } from '../../configurators/questions/question.const
 import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
 import { UNRESOLVED_RESOURCE_UUID } from '../../schemas/media.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
-import { workflowOrdered_Schema } from './lessonWorkflow.types';
+import { workflowChildren_Schema } from './lessonWorkflow.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
 /** Final editorial schemas compose real Configurator metadata, leaving composite
@@ -139,10 +139,8 @@ export const questionBankWorkflowBlockConfig_Schema = simpleBlock_Schema;
 export const questionBankWorkflowBlockNode_Schema = simpleBlockNode_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
 const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
-const blocks_Schema: z.ZodType<{
-  items: Record<string, z.infer<typeof questionBankWorkflowBlockNode_Schema>>;
-  order: string[];
-}> = workflowOrdered_Schema(block_Schema);
+const blocks_Schema: z.ZodType<{ children: string[] } & Record<string, unknown>> =
+  workflowChildren_Schema(z.strictObject({}), block_Schema);
 const commonContent_Schema = z.strictObject({
   question: blocks_Schema,
   hint: blocks_Schema.optional(),
@@ -157,7 +155,7 @@ const questionContent = {
   selectOneAnswer: commonContent_Schema.extend({ answers: answerSets_Schema }),
   selectMultipleAnswers: commonContent_Schema.extend({ answers: answerSets_Schema }),
   matchBlocks: commonContent_Schema.extend({
-    pairs: workflowOrdered_Schema(
+    pairs: workflowChildren_Schema(z.strictObject({}),
       z.strictObject({
         left: block_Schema,
         right: block_Schema,
@@ -172,7 +170,7 @@ const questionContent = {
     distractors: blocks_Schema,
   }),
   fillBlanksWithBlocks: commonContent_Schema.extend({
-    slots: workflowOrdered_Schema(z.strictObject({ correctAnswer: block_Schema })),
+    slots: workflowChildren_Schema(z.strictObject({}), z.strictObject({ correctAnswer: block_Schema })),
     distractors: blocks_Schema,
   }),
   fillBlanksWithText: commonContent_Schema.extend({
@@ -356,7 +354,7 @@ const flashcardBlockNode_Schema = z.union([
       .optional(),
   }),
 ]);
-const flashcardSideSource_Schema = workflowOrdered_Schema(flashcardBlockNode_Schema);
+const flashcardSideSource_Schema = workflowChildren_Schema(z.strictObject({}), flashcardBlockNode_Schema);
 const card_Schema = z.strictObject({
   config: flashcard_Config_Schema.omit({ content: true, parameters: true }).extend({
     content: z.strictObject({
