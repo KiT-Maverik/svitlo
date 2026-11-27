@@ -53,6 +53,14 @@ const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
 const allowedOverrideKeys = new Set(['params', 'locale', 'children', 'events']);
 const forbiddenOverrideKeys = new Set(['id', 'slug', 'type', 'skills', 'draft']);
 const validPlacement = /^[a-z][a-zA-Z0-9]*$/;
+/** An exhaustive order index is verified once per immutable published Course resource. */
+type VerifiedChildren = { readonly source: string[]; readonly count: number; readonly keys: ReadonlySet<string> };
+const verifiedPublications = new WeakMap<object, WeakMap<object, VerifiedChildren>>();
+const reservedPlacementKeys = new Set([
+  'id', 'slug', 'type', 'params', 'locale', 'children',
+  'content', 'items', 'order', 'additionalItems', 'additionalChildren',
+  '__proto__', 'constructor', 'prototype',
+]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
@@ -91,18 +99,63 @@ function assertCourseRoot(root: unknown, courseId: string, label: string): Recor
   return root;
 }
 
-/** Direct placement lookup touches only Course→Module→Chapter ancestors, never sibling leaves. */
+/**
+ * The producer emits exhaustive direct keys; establish that boundary once before
+ * resolving routes. Reuse membership sets for later placements of the same resource.
+ * If a host changes an ordered array, it must load/revalidate a fresh publication.
+ */
+function verifiedChildren(root: Record<string, unknown>): WeakMap<object, VerifiedChildren> {
+  const previous = verifiedPublications.get(root);
+  if (previous) return previous;
+  const index = new WeakMap<object, VerifiedChildren>();
+  const visited = new Set<string>();
+  function visit(parent: Record<string, unknown>, parentType: 'course' | 'module' | 'chapter'): void {
+    const order = parent.children;
+    if (!Array.isArray(order) || new Set(order).size !== order.length)
+      throw new Error('Invalid Course publication children');
+    const keys = new Set(order);
+    const placements = Object.keys(parent).filter(key =>
+      !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
+    if (placements.length !== keys.size || placements.some(key => !keys.has(key)))
+      throw new Error('Unaddressed or disabled Course publication placement');
+    for (const slug of order) {
+      if (typeof slug !== 'string' || !validPlacement.test(slug) ||
+          reservedPlacementKeys.has(slug) || !Object.hasOwn(parent, slug))
+        throw new Error('Unsafe or unknown Course publication placement');
+      const node: unknown = parent[slug];
+      if (!isRecord(node) || typeof node.id !== 'string')
+        throw new Error('Invalid Course child at ' + slug);
+      if (node.type === 'module' || node.type === 'chapter') {
+        if (parentType === 'chapter' || (parentType === 'module' && node.type === 'module') ||
+            node.slug !== slug || visited.has(node.id))
+          throw new Error('Invalid Course publication hierarchy at ' + slug);
+        visited.add(node.id);
+        visit(node, node.type);
+      } else if (!['lesson', 'episode', 'assessment'].includes(String(node.type))) {
+        throw new Error('Unsupported Course activity at ' + slug);
+      }
+    }
+    index.set(parent, { source: order, count: order.length, keys });
+  }
+  visit(root, 'course');
+  verifiedPublications.set(root, index);
+  return index;
+}
+
+/** Direct placement lookup: O(depth) after one-time publication integrity validation. */
 function findLesson(
   root: Record<string, unknown>,
   lessonId: string,
   label: string,
   placement?: string,
 ): { node: Record<string, unknown>; path: string[] } | undefined {
+  const index = verifiedChildren(root);
   const child = (parent: Record<string, unknown>, slug: string, location: string): Record<string, unknown> => {
-    if (!['course', 'module', 'chapter'].includes(String(parent.type)) ||
-        !Array.isArray(parent.children) || !parent.children.includes(slug) || !Object.hasOwn(parent, slug)) {
+    const published = index.get(parent);
+    if (!published || published.source !== parent.children || published.source.length !== published.count)
+      throw new Error('Unknown Course placement: publication hierarchy changed since validation at ' + location);
+    if (!published.keys.has(slug) || !Object.hasOwn(parent, slug))
       throw new Error('Unknown Course placement at ' + location);
-    }
     const node: unknown = parent[slug];
     if (!isRecord(node) || typeof node.id !== 'string')
       throw new Error('Invalid Course child at ' + location);
@@ -123,9 +176,10 @@ function findLesson(
 
   let match: { node: Record<string, unknown>; path: string[] } | undefined;
   function visit(parent: Record<string, unknown>, path: string[]): void {
-    if (!Array.isArray(parent.children) || new Set(parent.children).size !== parent.children.length)
+    const verified = index.get(parent);
+    if (!verified || verified.source !== parent.children || verified.source.length !== verified.count)
       throw new Error('Invalid Course children at ' + label + '/' + path.join('/'));
-    for (const slug of parent.children) {
+    for (const slug of verified.source) {
       if (typeof slug !== 'string' || !validPlacement.test(slug) || forbiddenKeys.has(slug))
         throw new Error('Unsafe Course child path at ' + label);
       const node = child(parent, slug, label + '/' + [...path, slug].join('/'));
@@ -213,6 +267,8 @@ export function assembleCourseLesson({
 
   const localeData = course.locale?.[language];
   const localeRoot = localeData === undefined ? undefined : assertCourseRoot(localeData, courseId, language);
+  if (localeRoot && isRecord(localeRoot.params) && Object.hasOwn(localeRoot.params, 'languages'))
+    throw new Error('Localized Course cannot override params.languages');
   const localeNode = findLocalizedLesson(localeRoot, baseMatch.path, language);
   if (
     localeNode &&
