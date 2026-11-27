@@ -113,6 +113,14 @@ const validate = (config: Course_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
+type CourseNewPlacements<
+  Items extends Record<string, Course_Child>,
+  Patch extends Record<string, unknown>,
+> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
+    Patch[Key] extends Course_Child ? Patch[Key] : never;
+};
+
 export type Course_Configurator<
   Slug extends string = string,
   Items extends Record<string, Course_Child> = Record<string, Course_Child>,
@@ -125,8 +133,18 @@ export type Course_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
-    overrides<const Added extends Record<string, Course_Child>>(
-      patch: Course_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    overrides<const Patch extends Record<string, unknown>>(
+      patch: Patch & {
+        children: Extract<keyof Items | keyof Patch, string>[];
+      } & {
+        [Key in keyof Patch]:
+          Key extends 'params' ? Course_Metadata_Overrides['params']
+            : Key extends 'locale' ? Course_Metadata_Overrides['locale']
+            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
+            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
+            : Patch[Key] extends Course_Child ? Patch[Key] : never;
+      } & ChildrenSupporting<Languages, CourseNewPlacements<Items, Patch>> &
+        SafePlacementMap<CourseNewPlacements<Items, Patch>>,
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
     overrides(
