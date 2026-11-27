@@ -19,13 +19,10 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateRequestedPublication,
+  validateSlugAddressedPublication,
+  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { assessment_Data_Schema } from '../../assessments/defineAssessment';
-import { episode_Data_Schema } from '../../episodes/defineEpisode';
-import { lesson_Data_Schema } from '../../lessons/defineLesson';
-import { chapter_Data_Schema } from '../defineChapter';
 import {
   module_Config_Schema,
   module_Data_Schema,
@@ -53,12 +50,13 @@ type ModulePublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Module_Data>>> | undefined;
 };
-type ModuleDataBase = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type ModuleDataBase<Items extends Record<string, Module_Child>> = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Module_Locale<'data'>>;
-  content: DeepPartial<Module_Child_Data>[];
-};
+  children: Extract<keyof Items, string>[];
+} & { [Key in keyof Items]: DeepPartial<Extract<Module_Child_Data, { type: Items[Key]['type'] }>> };
 type ModuleOverrideBase = Module_Metadata_Overrides & {
-  content?: DeepPartial<Module_Child_Data>[];
+  children?: string[];
+  [key: string]: unknown;
 };
 type ModuleConfigBase = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale: DeepPartial<Module_Locale<'config'>>;
@@ -77,6 +75,7 @@ const validate = (config: Module_Config): void => {
       path: 'content.items',
       itemLabel: 'Module child',
       allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
@@ -111,34 +110,6 @@ const validate = (config: Module_Config): void => {
   if (errors.length) throw new Error('Module validation failed: ' + errors.join('; '));
 };
 
-const parseChild = (value: unknown): Module_Child_Data => {
-  if (!isRecord(value)) throw new Error('Expected resolved Module child Props');
-  switch (value.type) {
-    case 'chapter': {
-      const parsed = chapter_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
-      return structuredClone(value) as Module_Child_Data;
-    }
-    case 'lesson': {
-      const parsed = lesson_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
-      return structuredClone(value) as Module_Child_Data;
-    }
-    case 'episode': {
-      const parsed = episode_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
-      return structuredClone(value) as Module_Child_Data;
-    }
-    case 'assessment': {
-      const parsed = assessment_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
-      return structuredClone(value) as Module_Child_Data;
-    }
-    default:
-      throw new Error('Unsupported Module child type: ' + String(value.type));
-  }
-};
-
 /**
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
@@ -154,7 +125,7 @@ export type Module_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase>;
+    data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>>;
     overrides<const Added extends Record<string, Module_Child> = {}>(
       patch: Module_Overrides<Items, Added> & {
         content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
@@ -278,7 +249,7 @@ export const defineModule = <
     locale: onlyStrings(authored.locale),
   };
 
-  const data = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -290,7 +261,7 @@ export const defineModule = <
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
-    const result: ModulePublication<ModuleDataBase> = {
+    const result: ModulePublication<ModuleDataBase<Items>> = {
       base: {
         id,
         slug,
@@ -355,6 +326,7 @@ export const defineModule = <
         path: 'content.additionalItems',
         itemLabel: 'Module child',
         allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
