@@ -1,4 +1,6 @@
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { Lesson_Metadata_Overrides, Lesson_Overrides } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { Section_Configurator } from '../../configurators/sections/section.types';
 import type { LessonWorkflowStage2Section } from './lessonWorkflow.types';
 
 /**
@@ -30,14 +32,25 @@ export type CourseLessonNewSection = {
  * The trusted binder resolves only those exact descriptors, never executable
  * authored values.
  */
+type LessonStructuralFields = 'id' | 'slug' | 'type' | 'draft' | 'children' | 'validate' | 'build' | 'config';
+type AuthoredSections<Lesson extends Lesson_Configurator> = Omit<Lesson, LessonStructuralFields>;
+
+/** A generic Lesson_Configurator loses literal Sections; allow inert JSON only
+ * at the editorial Stage boundary. Concrete typeof lesson imports retain exact
+ * Section keys and child-specific sparse Build patches.
+ */
 type ConcretePatch<Lesson extends Lesson_Configurator> =
-  Parameters<Lesson['build']['overrides']>[0];
+  string extends keyof AuthoredSections<Lesson>
+    ? Lesson_Metadata_Overrides & { children?: string[] } & Record<string, unknown>
+    : AuthoredSections<Lesson> extends Record<string, Section_Configurator>
+      ? Lesson_Overrides<AuthoredSections<Lesson>>
+      : Lesson_Metadata_Overrides & { children?: string[] };
 type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
 type VerifiedAdded<
   Lesson extends Lesson_Configurator,
   Added extends Record<string, AddedReference>,
 > = {
-  [Key in keyof Added]: Key extends keyof ConcretePatch<Lesson> ? never : Added[Key];
+  [Key in keyof Added]: Key extends keyof AuthoredSections<Lesson> ? never : Added[Key];
 };
 export type CourseLessonSourcePatch<
   Lesson extends Lesson_Configurator,
