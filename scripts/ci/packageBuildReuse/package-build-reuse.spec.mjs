@@ -85,10 +85,27 @@ test('changed and missing outputs rebuild dependents; new source invalidates all
   rmSync(join(f.root, 'shared/b/dist/index.js'));
   f.runner.ensure('b');
   assert.deepEqual(f.calls, ['a', 'b', 'a', 'b', 'b']);
+  assert.deepEqual(
+    f.events.filter(event => event.outcome === 'built').map(({ workspace, rebuildReason }) => [
+      workspace,
+      rebuildReason,
+    ]),
+    [
+      ['a', 'missing-state-record'],
+      ['b', 'missing-state-record'],
+      ['a', 'dist-digest-changed'],
+      ['b', 'dependency-versions-changed'],
+      ['b', 'missing-or-invalid-dist'],
+    ],
+  );
   f.setSource('commit-2');
   f.runner.ensure('b');
   assert.deepEqual(f.calls.slice(-2), ['a', 'b']);
   assert.equal(readBuildState(f.stateFile, f.root).stats.built, 7);
+  assert.deepEqual(
+    f.events.slice(-2).map(({ workspace, rebuildReason }) => [workspace, rebuildReason]),
+    [['a', 'source-revision-changed'], ['b', 'source-revision-changed']],
+  );
 });
 
 test('failed compiler cannot stamp success and a missing dist fails closed', t => {
@@ -123,6 +140,52 @@ test('dirty or unknown source prevents reuse even with intact artifacts', t => {
   f.runner.ensure('a');
   f.runner.ensure('a');
   assert.deepEqual(f.calls, ['a', 'a']);
+  assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 0);
+  assert.deepEqual(f.events.map(event => event.rebuildReason), ['unverified-source', 'unverified-source']);
+  assert.equal(f.events[0].sourceAfterBuildRevision, null);
+});
+
+
+test('a build which dirties tracked source explains later fail-closed recompilations', t => {
+  const packages = [ws('a', 'shared/a')];
+  const f = fixture(t, { packages });
+  let source = 'commit-1';
+  const events = [];
+  const runner = createPackageBuildReuse({
+    root: f.root,
+    packages,
+    stateFile: f.stateFile,
+    runBuild: name => {
+      const dist = join(f.root, 'shared/a/dist');
+      mkdirSync(dist, { recursive: true });
+      writeFileSync(join(dist, 'index.js'), 'compiled ' + name);
+      source = null; // Simulate an npm prehook mutating a tracked source file.
+    },
+    sourceRevision: () => source,
+    onBuildEvent: event => events.push(event),
+  });
+  runner.ensure('a');
+  runner.ensure('a');
+  assert.deepEqual(
+    events.map(({ rebuildReason, sourceRevision, sourceAfterBuildRevision }) => [
+      rebuildReason, sourceRevision, sourceAfterBuildRevision,
+    ]),
+    [
+      ['missing-state-record', 'commit-1', null],
+      ['unverified-source', null, null],
+    ],
+  );
+  assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 0);
+  assert.equal(readBuildState(f.stateFile, f.root).stats.built, 2);
+});
+
+test('unverified source cannot become a cache hit even if dist matches', t => {
+  const f = fixture(t, { packages: [ws('a', 'shared/a')] });
+  f.runner.ensure('a');
+  f.setSource(null);
+  assert.equal(f.runner.ensure('a'), 'built');
+  assert.equal(f.events.at(-1).rebuildReason, 'unverified-source');
+  assert.equal(f.events.at(-1).sourceRevision, null);
   assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 0);
 });
 
@@ -209,6 +272,8 @@ test('telemetry records actual compiler, verified reuse and failure per workspac
     assert.equal(event.sourceRevision, 'commit-1');
     assert.ok(Number.isInteger(event.durationMs) && event.durationMs >= 0);
     assert.match(event.outputDigest, /^[a-f0-9]{64}$/);
+    assert.equal(event.rebuildReason, event.outcome === 'built' ? 'missing-state-record' : null);
+    assert.equal(event.sourceAfterBuildRevision, event.outcome === 'built' ? 'commit-1' : null);
   }
   f.setFailure('a');
   rmSync(join(f.root, 'shared/a/dist'), { recursive: true, force: true });
@@ -216,6 +281,7 @@ test('telemetry records actual compiler, verified reuse and failure per workspac
   assert.deepEqual(f.events.at(-1).outcome, 'failed');
   assert.equal(f.events.at(-1).workspace, 'a');
   assert.equal(f.events.at(-1).outputDigest, null);
+  assert.equal(f.events.at(-1).rebuildReason, 'missing-or-invalid-dist');
   assert.equal(readBuildState(f.stateFile, f.root).stats.failed, 1);
 });
 
