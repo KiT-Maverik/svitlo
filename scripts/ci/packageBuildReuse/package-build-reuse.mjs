@@ -352,7 +352,15 @@ function main(args) {
     root: repoRoot,
     packages,
     stateFile: file,
-    runBuild: name => npmBuild(name),
+    runBuild: name => {
+      // During the opt-in Engine/UI Kit overlap, UI Kit may read Engine dist.
+      // A stale or invalid build stamp must fail the experiment rather than
+      // silently rebuilding that shared output under a concurrent consumer.
+      if (process.env.SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY === '1') {
+        throw Error('Unit overlap forbids rebuilding shared dist: ' + name);
+      }
+      npmBuild(name);
+    },
     sourceRevision: () => cleanSourceRevision(repoRoot),
     onBuildEvent: event => {
       const file = process.env[telemetryVariable];
