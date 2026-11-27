@@ -39,25 +39,30 @@ describe('Configurators', () => {
           assert.equal(first.base.draft, true);
           assert.equal(first.base.id, draft.id);
           assert.equal(first.base.slug, draft.slug);
-          assert.equal(first.base.section.length, 1);
-          const preview = first.base.section[0] as {
+          const base = first.base as unknown as Record<string, unknown>;
+          // Lesson/Episode draft previews are ordered Section placements.
+          // Assessment drafts retain their semantically named preview Section.
+          if (kind === 'assessment') {
+            assert.equal('children' in base, false);
+          } else {
+            assert.deepEqual(base.children, ['preview']);
+          }
+          const preview = base.preview as {
             type: string;
-            content: Array<{ type: string; locale?: { value?: string } }>;
+            children: string[];
+            message: { type: string; locale?: { value?: string } };
           };
           assert.equal(preview.type, 'content');
-          assert.deepEqual(
-            preview.content.map(item => item.type),
-            ['text'],
-          );
-          assert.equal(preview.content[0]?.locale?.value, 'Not implemented');
+          assert.deepEqual(preview.children, ['message']);
+          assert.equal(preview.message.type, 'text');
+          assert.equal(preview.message.locale?.value, 'Not implemented');
+          assert.equal('content' in preview, false);
+          assert.equal('section' in base, false);
           assert.equal(first.locale, undefined);
           assert.equal('events' in first.base, false);
           assert.equal('questions' in first.base, false);
           assert.equal('flashcards' in first.base, false);
-          assert.equal(
-            first.base.section.some(section => section.type === 'quiz'),
-            false,
-          );
+          assert.equal('quiz' in base, false);
           assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
           assert.doesNotThrow(() => draft.validate());
           assert.doesNotThrow(() => JSON.stringify(first));
