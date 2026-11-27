@@ -12,10 +12,16 @@ import type { Lesson_Configurator } from '../lessons/defineLesson';
 import { sectionTypes, type Section_Configurator } from '../sections';
 import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 
-type AddedSections = Record<string, {
-  readonly type: Section_Configurator['type'];
+/**
+ * Mirror the trusted bound-source Section capability (not the erased parent
+ * ConfiguratorChild union). Actual additions are checked for real Section
+ * identity and Build methods by isVerifiedSection at the runtime boundary.
+ */
+type BoundSectionChild = {
+  readonly type: 'content' | 'practice' | 'codingTask' | 'learningFlow' | 'quiz' | 'flashcards';
   readonly build: { readonly overrides: (...args: never[]) => unknown };
-}>;
+};
+type AddedSections = Record<string, BoundSectionChild>;
 type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections = {}> =
   CourseLessonBoundPatch<Lesson, Added> &
   ChildrenSupporting<Lesson['__svitloLanguageScope'], Added>;
@@ -27,14 +33,14 @@ type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections
  */
 type AddedFromPatch<Lesson, Patch> = {
   [Key in Exclude<keyof Patch, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
-    Patch[Key] extends Section_Configurator ? Patch[Key] : never;
+    Patch[Key] extends BoundSectionChild ? Patch[Key] : never;
 };
 type VerifiedPatchKeys<Lesson extends Lesson_Configurator, Patch> = {
   [Key in keyof Patch]: Key extends keyof CourseLessonBoundPatch<Lesson>
     ? unknown
     : Key extends keyof Lesson
       ? never
-      : Patch[Key] extends Section_Configurator ? unknown : never;
+      : Patch[Key] extends BoundSectionChild ? unknown : never;
 };
 
 /**
