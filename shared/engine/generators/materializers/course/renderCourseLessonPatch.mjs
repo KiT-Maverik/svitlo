@@ -13,12 +13,15 @@ const keyPath = path => JSON.stringify(path);
 const lessonImportPattern = /^#lessonsData\/[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index$/i;
 const lessonTypes = sourceLesson => [
   'import type { ' + sourceLesson.exportName + ' } from ' + JSON.stringify(sourceLesson.importPath) + ';',
-  'type LessonPatch = Parameters<typeof ' + sourceLesson.exportName + '.build.overrides>[0];',
 ];
-const sectionType = key =>
-  'type SectionPatch = Exclude<LessonPatch[' + JSON.stringify(key) + '], undefined | false>;';
-const blockType = key =>
-  'type BlockPatch = Exclude<SectionPatch[' + JSON.stringify(key) + '], undefined | false>';
+// Specialize each real existing Section's generic Build with NO added blocks.
+// Extracting Parameters from an unspecialized generic overrides method widens
+// Added to its constraint and can make valid existing child patches `never`.
+const sectionType = (sourceLesson, key) =>
+  'type SectionPatch = Parameters<typeof ' + sourceLesson.exportName + '.' + key + '.build.overrides<{}>>[0];';
+const blockType = (sourceLesson, sectionKey, blockKey) =>
+  'type BlockPatch = Parameters<typeof ' + sourceLesson.exportName + '.' + sectionKey + '.' + blockKey +
+  '.build.overrides>[0];';
 const clean = (value, where) => {
   if (!slug.test(value) || reserved.has(value)) throw Error(where + ': invalid Course-owned override path');
 };
@@ -126,7 +129,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
     const childRefs = new Map();
     const childImports = [];
     const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [
-      sourceLesson.exportName, 'LessonPatch', 'SectionPatch', sectionKey,
+      sourceLesson.exportName, 'SectionPatch', sectionKey,
     ]);
     const ownSection = new Set(['params', 'locale', 'children']);
     for (const [blockKey, blockPatch] of Object.entries(sectionPatch).filter(([key]) => !ownSection.has(key))) {
@@ -134,15 +137,14 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
       if (!record(blockPatch)) continue;
       const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
       createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [
-        sourceLesson.exportName, 'LessonPatch', 'SectionPatch', 'BlockPatch',
+        sourceLesson.exportName, 'SectionPatch', 'BlockPatch',
       ])(blockKey, path);
       childNames(blockKey, path);
       files.push({
         path, kind: 'typescript',
         content: [
           ...lessonTypes(sourceLesson),
-          sectionType(sectionKey),
-          blockType(blockKey) + ';',
+          blockType(sourceLesson, sectionKey, blockKey),
           '',
           'export const ' + blockKey + ' = ' + literal(blockPatch) + ' satisfies BlockPatch;',
           '',
@@ -155,7 +157,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
       path: directory + '/sections/' + sectionKey + '/index.ts',
       kind: 'typescript',
       content: [
-        ...lessonTypes(sourceLesson), ...childImports, sectionType(sectionKey),
+        ...lessonTypes(sourceLesson), ...childImports, sectionType(sourceLesson, sectionKey),
         '',
         'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ' satisfies SectionPatch;',
         '',
