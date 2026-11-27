@@ -361,7 +361,9 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
     '  ...' + JSON.stringify(recapConfig) + ', recapText,',
     '});',
     "export const independentLesson = defineLesson<'independentLesson', ['uk'], { intro: typeof intro; recap: typeof recap }>({",
-    '  ...' + JSON.stringify(lessonConfig) + ', intro, recap,',
+    '  ...' + JSON.stringify(lessonConfig) + ',',
+    '  params: { ...' + JSON.stringify(lessonConfig.params) + ', languages: ["uk"] as const },',
+    '  intro, recap,',
     '});',
     '',
   ].join('\n');
