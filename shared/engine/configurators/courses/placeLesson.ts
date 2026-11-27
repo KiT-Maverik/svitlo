@@ -18,6 +18,23 @@ type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections
   ChildrenSupporting<Lesson['__svitloLanguageScope'], Added>;
 
 /**
+ * Infer *only* genuinely new Section keys from the supplied literal patch.
+ * A generic Added=Record<string, Section> would poison every existing key
+ * with never and silently discard all useful inference.
+ */
+type AddedFromPatch<Lesson, Patch> = {
+  [Key in Exclude<keyof Patch, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
+    Patch[Key] extends Section_Configurator ? Patch[Key] : never;
+};
+type VerifiedPatchKeys<Lesson extends Lesson_Configurator, Patch> = {
+  [Key in keyof Patch]: Key extends keyof CourseLessonBoundPatch<Lesson>
+    ? unknown
+    : Key extends keyof Lesson
+      ? never
+      : Patch[Key] extends Section_Configurator ? unknown : never;
+};
+
+/**
  * A placement owns its patch snapshot, not the independently authored Lesson.
  * Added Sections are trusted Build Configurators, never executable draft input.
  */
@@ -135,11 +152,12 @@ const withoutDisabledSections = (
  */
 export function placeLesson<
   const Lesson extends Lesson_Configurator,
-  const Added extends AddedSections = {},
+  const Patch extends Record<string, unknown>,
 >(
   source: Lesson,
-  patch: LessonPatch<Lesson, Added>,
-): PlacedLesson<Lesson, Added> {
+  patch: Patch & LessonPatch<Lesson, AddedFromPatch<Lesson, Patch>> &
+    VerifiedPatchKeys<Lesson, Patch>,
+): PlacedLesson<Lesson, AddedFromPatch<Lesson, Patch>> {
   if (
     source?.type !== 'lesson' ||
     typeof source.build?.data !== 'function' ||
@@ -212,5 +230,5 @@ export function placeLesson<
     ...source,
     placement: { source, patch: snapshotPatch(authored, existingKeys) },
     build,
-  } as PlacedLesson<Lesson, Added>;
+  } as PlacedLesson<Lesson, AddedFromPatch<Lesson, Patch>>;
 }
