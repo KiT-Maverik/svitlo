@@ -87,7 +87,7 @@ test('buildAnswerWithBlocks: rejects delegated ContentBlock writing outside its 
 });
 test('buildAnswerWithBlocks: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
-  Object.assign(noPrompt.config.content.question, { children: [] });
+  noPrompt.config.content.question = collection({}) as never;
   assert.throws(() => materializeBuildAnswerWithBlocks(noPrompt as never, context), /reviewed prompt/);
   const bad = fixture();
   bad.config.content.question.children = ['notThere'];
