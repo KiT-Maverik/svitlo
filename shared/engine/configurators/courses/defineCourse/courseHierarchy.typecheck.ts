@@ -18,7 +18,7 @@ const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['en', 'uk']
   slug: 'chapter',
   params: {},
   locale: { title: { en: 'Chapter', uk: 'Розділ' } },
-  content: { items: { lesson }, order: ['lesson'] },
+  children: ['lesson'], lesson,
 });
 const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -26,7 +26,7 @@ const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>
   slug: 'module',
   params: {},
   locale: { title: 'Module' },
-  content: { items: { chapter }, order: ['chapter'] },
+  children: ['chapter'], chapter,
 });
 const course = defineCourse<'course', { module: typeof module; chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -34,14 +34,14 @@ const course = defineCourse<'course', { module: typeof module; chapter: typeof c
   slug: 'course',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Introduction' },
-  content: { items: { module, chapter }, order: ['module', 'chapter'] },
+  children: ['module', 'chapter'], module, chapter,
 });
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
 type CourseSlug = Expect<Equal<typeof course.slug, 'course'>>;
-type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'>>;
-type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
+type NestedKind = Expect<Equal<typeof course.module.type, 'module'>>;
+type ExactChapter = Expect<Equal<typeof module.chapter, typeof chapter>>;
 
 const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
   id,
@@ -49,7 +49,7 @@ const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
   slug: 'chapterEnglish',
   params: {},
   locale: { title: { en: 'Chapter' } },
-  content: { items: {}, order: [] },
+  children: [],
 });
 const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter }, ['en']>({
   id,
@@ -57,7 +57,7 @@ const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter },
   slug: 'courseEnglish',
   params: { languages: ['en'] as const },
   locale: { title: { en: 'Course' }, description: 'Introduction' },
-  content: { items: { chapter }, order: ['chapter'] },
+  children: ['chapter'], chapter,
 });
 
 // Parent's languages must be covered by every child, never the other way around.
@@ -98,7 +98,7 @@ defineCourse({
   params: { languages: ['en'] },
   // @ts-expect-error Course locale must contain description.
   locale: { title: 'Course' },
-  content: { items: {}, order: [] },
+  children: [],
 });
 
 void course;
@@ -135,7 +135,7 @@ const placedChapter = defineChapter<'placedChapter', { shadow: typeof shadow }, 
   slug: 'placedChapter',
   params: {},
   locale: { title: 'Placed chapter' },
-  content: { items: { shadow }, order: ['shadow'] },
+  children: ['shadow'], shadow,
 });
 const placedModule = defineModule<'placedModule', { placedChapter: typeof placedChapter }, ['en', 'uk']>({
   id,
@@ -143,7 +143,7 @@ const placedModule = defineModule<'placedModule', { placedChapter: typeof placed
   slug: 'placedModule',
   params: {},
   locale: { title: 'Placed module' },
-  content: { items: { placedChapter }, order: ['placedChapter'] },
+  children: ['placedChapter'], placedChapter,
 });
 const placedCourse = defineCourse<
   'placedCourse',
@@ -159,14 +159,11 @@ const placedCourse = defineCourse<
   slug: 'placedCourse',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: 'Course', description: 'Placement type-check' },
-  content: {
-    items: { placedModule, directLesson: lesson, lessonAgain },
-    order: ['placedModule', 'directLesson', 'lessonAgain'],
-  },
+  children: ['placedModule', 'directLesson', 'lessonAgain'], placedModule, directLesson: lesson, lessonAgain,
 });
 placedCourse.build.data({ languages: ['uk'] });
 placedCourse.build.overrides(
-  { content: { items: { lessonAgain: { params: { sections: { allowNavigation: false } } } } } },
+  { lessonAgain: { params: { sections: { allowNavigation: false } } } },
   { languages: ['uk'] },
 );
 // @ts-expect-error Immutable Lesson ID is never a valid authored Config patch.
