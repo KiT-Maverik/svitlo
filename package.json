@@ -2,6 +2,7 @@
   "name": "svitlo",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@11.20.0",
   "scripts": {
     "code:format:check": "prettier --check .",
     "code:format:fix": "prettier --write .",
