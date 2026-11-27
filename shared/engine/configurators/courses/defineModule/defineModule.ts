@@ -33,6 +33,7 @@ import {
   type Module_Child,
   type Module_Child_Data,
   type Module_Config,
+  type Module_Metadata_Config,
   type Module_Data,
   type Module_Locale,
   type Module_Metadata_Overrides,
@@ -142,7 +143,7 @@ export const defineModule = <
   const Items extends Record<string, Module_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<Module_Config, 'slug' | 'children' | 'locale'> & {
+  config: Omit<Module_Metadata_Config, 'slug' | 'locale'> & {
     slug: Slug;
     children: Extract<keyof Items, string>[];
     locale: RequireLanguages<Module_Config['locale'], Languages>;
@@ -150,7 +151,7 @@ export const defineModule = <
 ): Module_Configurator<Slug, Items, Languages> => {
   const metadataSchema = module_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
-  const authored: Omit<Module_Config, 'children'> = structuredClone(metadataInput);
+  const authored: Omit<Module_Metadata_Config, never> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
