@@ -94,9 +94,9 @@ export const defineSelectMultipleAnswers = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         answers: {
-          correct: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['correct']>> };
-          incorrect: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['incorrect']>> };
-          distractors: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['distractors']>> };
+          correct: ChildrenSupporting<Languages, BlockMembers<Content['answers']['correct']>>;
+          incorrect: ChildrenSupporting<Languages, BlockMembers<Content['answers']['incorrect']>>;
+          distractors: ChildrenSupporting<Languages, BlockMembers<Content['answers']['distractors']>>;
         };
       };
   } & ConfigWithLanguages<Question_SelectMultipleAnswers_Config, Languages>,
@@ -150,7 +150,7 @@ export const defineSelectMultipleAnswers = <
         'content.answers.distractors',
       ),
     };
-    const correctCount = Object.keys(complete.correct.base.children.length;
+    const correctCount = complete.correct.base.children.length;
     if (correctCount < 1) {
       throw new Error('SelectMultipleAnswers has an invalid number of correct answers');
     }
