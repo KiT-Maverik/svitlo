@@ -101,8 +101,18 @@ type AuthoredInput<
 } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
   ConfigWithLanguages<Content_Section_Config, Languages>;
 
+/**
+ * Infer the *literal* block keys, excluding Section metadata before enforcing
+ * the ConfiguratorChild constraints. Generic Record inference would otherwise
+ * absorb "id" and "children" as incorrectly typed ContentBlocks.
+ */
+type ContentBlockKeys<Input> = Exclude<keyof Input, 'id' | 'slug' | 'type' | 'params' | 'locale' | 'children'>;
+type InferredContentBlocks<Input> = {
+  [Key in ContentBlockKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const defineContentSection = <
+const defineContentSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -314,5 +324,23 @@ export const defineContentSection = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+/** Support inferred literal child keys and existing explicit authoring generics. */
+export const defineContentSection: {
+  <const Input extends Pick<Content_Section_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+    children: string[];
+  }>(
+    config: Input & AuthoredInput<Input['slug'], InferredContentBlocks<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineContentSectionImpl<
+    Input['slug'], InferredContentBlocks<Input>, AllLanguageCodes
+  >>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineContentSectionImpl<Slug, Items, Languages>>;
+} = defineContentSectionImpl;
 
 export type ContentSection_Configurator = ReturnType<typeof defineContentSection>;
