@@ -210,13 +210,15 @@ export function createPackageBuildReuse({
     const requestStarted = Date.now();
     const state = readBuildState(stateFile, normalized);
     const source = sourceRevision();
-    const emit = (outcome, outputDigest = null) => {
+    const emit = (outcome, outputDigest = null, rebuildReason = null, sourceAfterBuildRevision = null) => {
       try {
         onBuildEvent({
           workspace: name,
           outcome,
           durationMs: Date.now() - requestStarted,
           sourceRevision: source,
+          sourceAfterBuildRevision,
+          rebuildReason,
           outputDigest,
         });
       } catch (error) {
@@ -227,11 +229,16 @@ export function createPackageBuildReuse({
     const dependencyVersions = Object.fromEntries(dependencies.map(dep => [dep, state.records[dep]?.sequence ?? null]));
     const previous = state.records[name];
     state.stats.requested++;
-    if (
-      source &&
-      previous?.source === source &&
-      JSON.stringify(previous.dependencies) === JSON.stringify(dependencyVersions)
-    ) {
+    // Diagnostic classification only: preserve the exact fail-closed reuse
+    // predicate and artifact verification rather than treating reasons as
+    // permission to reuse any compiled output.
+    let rebuildReason;
+    if (!source) rebuildReason = 'unverified-source';
+    else if (!previous) rebuildReason = 'missing-state-record';
+    else if (previous.source !== source) rebuildReason = 'source-revision-changed';
+    else if (JSON.stringify(previous.dependencies) !== JSON.stringify(dependencyVersions)) {
+      rebuildReason = 'dependency-versions-changed';
+    } else {
       let current = null;
       try {
         current = snapshotDist(normalized, pkg.path);
@@ -245,6 +252,7 @@ export function createPackageBuildReuse({
         emit('reused', current.digest);
         return 'reused';
       }
+      rebuildReason = current ? 'dist-digest-changed' : 'missing-or-invalid-dist';
     }
 
     const started = Date.now();
@@ -263,14 +271,14 @@ export function createPackageBuildReuse({
       state.stats.buildMs += Date.now() - started;
       saveBuildState(stateFile, state);
       console.log('BUILD ' + name + ' / package:build (verified)');
-      emit('built', files.digest);
+      emit('built', files.digest, rebuildReason, after);
       return 'built';
     } catch (error) {
       // Never permit a previously stamped success to survive a failed rebuild.
       delete state.records[name];
       state.stats.failed++;
       saveBuildState(stateFile, state);
-      emit('failed');
+      emit('failed', null, rebuildReason);
       throw error;
     }
   }
