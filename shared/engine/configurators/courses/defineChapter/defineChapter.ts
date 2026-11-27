@@ -33,6 +33,7 @@ import {
   type Chapter_Child,
   type Chapter_Child_Data,
   type Chapter_Config,
+  type Chapter_Metadata_Config,
   type Chapter_Data,
   type Chapter_Locale,
   type Chapter_Metadata_Overrides,
@@ -142,7 +143,7 @@ export const defineChapter = <
   const Items extends Record<string, Chapter_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<Chapter_Config, 'slug' | 'children' | 'locale'> & {
+  config: Omit<Chapter_Metadata_Config, 'slug' | 'locale'> & {
     slug: Slug;
     children: Extract<keyof Items, string>[];
     locale: RequireLanguages<Chapter_Config['locale'], Languages>;
@@ -150,7 +151,7 @@ export const defineChapter = <
 ): Chapter_Configurator<Slug, Items, Languages> => {
   const metadataSchema = chapter_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
-  const authored: Omit<Chapter_Config, 'children'> = structuredClone(metadataInput);
+  const authored: Omit<Chapter_Metadata_Config, never> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
