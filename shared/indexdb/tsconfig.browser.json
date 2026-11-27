@@ -2,7 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "types": ["node"],
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@svitlo/indexdb": ["./index.ts"]
+    }
   },
   "include": ["testing/**/*.ts", "playwright.config.ts"],
   "exclude": ["node_modules", "dist", ".test-build"]
