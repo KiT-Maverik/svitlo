@@ -121,6 +121,37 @@ test('rejects unknown, unsafe or disabled placement paths and mismatched identit
   assert.throws(() => assembleCourseLesson(different), /identity/i);
 });
 
+test('direct Lesson selection indexes validated order without scanning sibling arrays', () => {
+  const input = fixture();
+  const root = input.course.base;
+  const module = root.laboratory as { children: string[] };
+  for (const order of [root.children, module.children]) {
+    Object.defineProperty(order, 'includes', {
+      value: () => { throw Error('direct route must not search sibling order'); },
+    });
+  }
+  const first = assembleCourseLesson(input);
+  const second = assembleCourseLesson(input);
+  assert.equal(first.id, lessonId);
+  assert.equal(second.id, lessonId);
+  assert.deepEqual(second.children, ['intro', 'review']);
+
+  // A stale unlisted placement is never a valid route, even if its own key exists.
+  const stale = fixture();
+  stale.course.base.children = [];
+  assert.throws(() => assembleCourseLesson(stale), /Unaddressed|disabled Course publication placement/);
+  const changed = fixture();
+  assert.equal(assembleCourseLesson(changed).id, lessonId);
+  changed.course.base.children = [];
+  assert.throws(() => assembleCourseLesson(changed), /Course placement|hierarchy changed/);
+});
+
+test('selected Course locale may not replace the publication language scope', () => {
+  const input = fixture();
+  input.course.locale = { uk: { params: { languages: ['uk'] } } };
+  assert.throws(() => assembleCourseLesson(input), /cannot override params.languages/);
+});
+
 test('forbids identity and language changes through published placement override', () => {
   const input = fixture();
   courseSlot(input).overrides = { params: { languages: ['en'] } };
