@@ -137,8 +137,14 @@ type AuthoredInput<
 } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
   ConfigWithLanguages<QuizSection_Config, Languages>;
 
+/** Infer authored block slugs without treating Quiz metadata as child blocks. */
+type QuizBlockKeys<Input> = Exclude<keyof Input, 'id' | 'slug' | 'type' | 'params' | 'locale' | 'children'>;
+type InferredQuizBlocks<Input> = {
+  [Key in QuizBlockKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const defineQuizSection = <
+const defineQuizSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -358,5 +364,23 @@ export const defineQuizSection = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+/** Preserve both literal-inferred and explicitly parameterized Quiz Sections. */
+export const defineQuizSection: {
+  <const Input extends Pick<QuizSection_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+    children: string[];
+  }>(
+    config: Input & AuthoredInput<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineQuizSectionImpl<
+    Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes
+  >>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineQuizSectionImpl<Slug, Items, Languages>>;
+} = defineQuizSectionImpl;
 
 export type QuizSection_Configurator = ReturnType<typeof defineQuizSection>;
