@@ -85,7 +85,7 @@ test('answerWithText: rejects delegated ContentBlock writing outside its semanti
 });
 test('answerWithText: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
-  Object.assign(noPrompt.config.content.question, { children: [] });
+  noPrompt.config.content.question = collection({}) as never;
   assert.throws(() => materializeAnswerWithText(noPrompt as never, context), /reviewed prompt/);
   const bad = fixture();
   bad.config.content.question.children = ['notThere'];
