@@ -1,3 +1,4 @@
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -128,7 +129,7 @@ export type Course_Configurator<
     data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
     overrides<const Added extends Record<string, Course_Child> = {}>(
       patch: Course_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
       },
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
@@ -148,7 +149,7 @@ export const defineCourse = <
 >(
   config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
     locale: RequireLanguages<Course_Config['locale'], Languages>;
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   },
@@ -285,7 +286,7 @@ export const defineCourse = <
 
   const overrides = <const Added extends Record<string, Course_Child> = {}>(
     patch: Course_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
     },
     options: PublicationLanguageOptions<Languages>,
   ): CoursePublication<CourseOverrideBase> => {
