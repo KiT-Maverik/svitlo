@@ -88,6 +88,8 @@ jobs:
         with:
           node-version: '26'
       - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
+      - name: Test Turbo PoC graph, artifact integrity and workflow isolation
+        run: node --test scripts/ci/productionQuality/turbo-poc.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
