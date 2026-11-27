@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
@@ -32,8 +32,7 @@ describe('UserCabinet mockup', () => {
     );
 
     const displayName = screen.getByRole('textbox', { name: messages.displayName });
-    await user.clear(displayName);
-    await user.type(displayName, 'Нове ім’я');
+    fireEvent.change(displayName, { target: { value: 'Нове ім’я' } });
     expect(screen.queryByRole('heading', { name: 'Нове ім’я' })).not.toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: messages.saveProfile }));
@@ -51,14 +50,13 @@ describe('UserCabinet mockup', () => {
     expect(current).toHaveAttribute('type', 'password');
     expect(password).toHaveAttribute('type', 'password');
 
-    await user.type(current, 'old-demo-password');
-    await user.type(password, 'new-demo-password');
-    await user.type(confirm, 'does-not-match');
+    fireEvent.change(current, { target: { value: 'old-demo-password' } });
+    fireEvent.change(password, { target: { value: 'new-demo-password' } });
+    fireEvent.change(confirm, { target: { value: 'does-not-match' } });
     await user.click(screen.getByRole('button', { name: messages.changePassword }));
     expect(screen.getByRole('alert')).toHaveTextContent(messages.passwordMismatch);
 
-    await user.clear(confirm);
-    await user.type(confirm, 'new-demo-password');
+    fireEvent.change(confirm, { target: { value: 'new-demo-password' } });
     await user.click(screen.getByRole('button', { name: messages.changePassword }));
     expect(screen.getByRole('status')).toHaveTextContent(messages.passwordDemoNotice);
     expect(current).toHaveValue('');
@@ -69,7 +67,9 @@ describe('UserCabinet mockup', () => {
   it('discards password inputs when switching pages', async () => {
     const user = userEvent.setup();
     render(<UserCabinet {...userCabinetDemo} initialTab="security" />);
-    await user.type(screen.getByLabelText(new RegExp(messages.currentPassword)), 'temporary');
+    fireEvent.change(screen.getByLabelText(new RegExp(messages.currentPassword)), {
+      target: { value: 'temporary' },
+    });
     await user.click(screen.getByRole('tab', { name: messages.tabs.accounts }));
     await user.click(screen.getByRole('tab', { name: messages.tabs.security }));
     expect(screen.getByLabelText(new RegExp(messages.currentPassword))).toHaveValue('');

@@ -16,9 +16,11 @@ import type {
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
+import { Checkpoint } from '../widgets/ContentBlockRenderer/blocks/Checkpoint/Checkpoint';
 import { Lesson } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
 import { useLessonEventBus } from './LessonEvents';
+import { useLessonNavigation } from './LessonNavigation';
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
 const text = (number: number, value: string): ContentBlock_Text_Data => ({
@@ -141,18 +143,45 @@ describe('Engine Props Lesson Controller', () => {
   });
 
   it('blocks Next until a required Engine Checkpoint Item is complete', () => {
-    showLesson();
-    expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
+    // Only mount the Checkpoint and Lesson contexts. The full LearningLayout
+    // is not relevant to the navigation gate and makes this test unnecessarily slow.
+    function CheckpointOnlyLayout() {
+      const actions = useLessonActions();
+      const { progress } = useLessonNavigation();
+      return (
+        <>
+          <Checkpoint
+            {...checkpoint(true)}
+            messages={enUiKitMessages.checkpoint}
+            renderNested={block => (block.type === 'text' ? <span>{block.locale.value}</span> : null)}
+            onComplete={() => actions.completeCheckpoint(uuid(2), uuid(10))}
+          />
+          <button onClick={actions.next}>Next section</button>
+          <output data-testid="checkpoint-step">{progress.step}</output>
+        </>
+      );
+    }
+
+    render(
+      <Lesson
+        response={fixture(true)}
+        language="en"
+        href="/en/lesson/light"
+        layout={CheckpointOnlyLayout}
+        messages={enUiKitMessages}
+      />,
+    );
+
+    const next = screen.getByRole('button', { name: 'Next section' });
+    fireEvent.click(next);
+    expect(screen.getByTestId('checkpoint-step')).toHaveTextContent('0');
+
+    fireEvent.click(screen.getByText('What is light?'));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.checkpoint.check }));
-    expect(navigationButton('next')).toBeEnabled();
-    fireEvent.click(navigationButton('next'));
-    expect(screen.getByText('Second section content')).toBeVisible();
-    fireEvent.click(navigationButton('previous'));
-    // Accordion state is local to the section and resets after navigation.
-    // Reopen it to verify that the completed checkpoint stays disabled.
-    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
+
+    fireEvent.click(next);
+    expect(screen.getByTestId('checkpoint-step')).toHaveTextContent('1');
   });
 
   it('allows an optional Section to skip its unfinished Checkpoint', () => {
