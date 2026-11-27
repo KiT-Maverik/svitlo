@@ -182,7 +182,7 @@ export const defineCheckpointAnswer = <
     return output;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: CheckpointAnswer_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): AnswerPublication<AnswerOverrideBase> => {
@@ -303,6 +303,17 @@ export const defineCheckpointAnswer = <
   // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
   const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
   const buildApi = scopeBuild({ data, overrides });
+  const overrides: {
+    <const Added extends Record<string, Block>>(
+      patch: CheckpointAnswer_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+      options: PublicationLanguageOptions<Languages>,
+    ): AnswerPublication<AnswerOverrideBase>;
+    (
+      patch: CheckpointAnswer_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): AnswerPublication<AnswerOverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     ...initialItems,
     id, slug, type,
