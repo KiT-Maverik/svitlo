@@ -65,6 +65,32 @@ test('reuse cannot be reported as having a rebuild reason', () => {
   assert.throws(() => summarizeBuilds(invalid), /Invalid rebuild reason/);
 });
 
+test('emits bounded tracked file names when Git rejects source reuse', () => {
+  const summary = summarizeBuilds([
+    JSON.stringify({
+      schemaVersion: 1, operation: 'package:build', workspace: '@svitlo/engine',
+      outcome: 'built', durationMs: 42, sourceCheck: 'modified-tracked-files',
+      dirtyTrackedFiles: ['apps/platform/tsconfig.json'],
+    }),
+    JSON.stringify({
+      schemaVersion: 1, operation: 'package:build', workspace: '@svitlo/engine',
+      outcome: 'built', durationMs: 13, sourceCheck: 'modified-tracked-files',
+      dirtyTrackedFiles: ['apps/platform/tsconfig.json'],
+    }),
+    JSON.stringify({
+      schemaVersion: 1, operation: 'package:build', workspace: '@svitlo/ui-kit',
+      outcome: 'failed', durationMs: 2, sourceCheck: 'git-diff-unavailable',
+      dirtyTrackedFiles: [],
+    }),
+  ].join('\n'));
+  assert.deepEqual(summary.rows[0].dirtyTrackedFiles, ['apps/platform/tsconfig.json']);
+  assert.equal(summary.rows[0].sourceChecks['modified-tracked-files'], 2);
+  const formatted = formatBuildSummary(summary);
+  assert.match(formatted, /Git source verification at invalidation/);
+  assert.match(formatted, /apps\/platform\/tsconfig\.json/);
+  assert.match(formatted, /git-diff-unavailable: 1/);
+});
+
 test('empty logs do not claim compilation occurred', () => {
   assert.deepEqual(summarizeBuilds(''), { total: 0, rows: [] });
   assert.match(formatBuildSummary(summarizeBuilds('')), /No instrumented build commands/);
