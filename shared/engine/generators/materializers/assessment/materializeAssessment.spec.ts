@@ -37,7 +37,7 @@ const fixture = (): AssessmentWorkflowStage2 =>
             results: { visibility: 'immediate', showScore: true },
           },
           locale: { title: { uk: 'Запитання' }, navigationLabel: '1' },
-          content: { items: {}, order: [] },
+          children: [],
         },
         production: { purpose: 'Reviewed knowledge check' },
       },
