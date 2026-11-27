@@ -123,13 +123,20 @@ export const flashcard_Data_Schema = identityBase_Schema.extend({
           members.some(key => !order.includes(key))) {
         ctx.addIssue({ code: 'custom', message: 'Invalid Flashcard relationship children order' });
       }
+      const ids = new Set<string>();
       for (const key of members) {
         if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved relationship placement key' });
         }
-        if (!flashcardRelationship_Schema.safeParse(relationships[key]).success) {
+        const parsed = flashcardRelationship_Schema.safeParse(relationships[key]);
+        if (!parsed.success) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard relationship Data' });
+          continue;
         }
+        if (ids.has(parsed.data.relationshipId)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Duplicate Flashcard relationship ID' });
+        }
+        ids.add(parsed.data.relationshipId);
       }
     }).optional(),
   }),
