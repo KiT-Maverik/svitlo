@@ -90,7 +90,7 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   const enabled = Object.entries(config).filter(
     (entry): entry is [string, CheckpointItemSource] => !metadata.has(entry[0]),
   );
-  if (enabled.some(([, value]) => value === false)) throw new Error('Checkpoint: disabled children cannot be authored');
+  if (enabled.some(([, value]) => typeof value === 'boolean')) throw new Error('Checkpoint: disabled children cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||
@@ -129,7 +129,6 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   const paths = new Set<string>();
   for (const key of config.children) {
     const child = config[key] as CheckpointItemSource;
-    if (child === false) continue;
     const target = (directory ? directory + '/' : '') + key;
     const result = context.renderItem(child, target);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
