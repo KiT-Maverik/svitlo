@@ -6,6 +6,8 @@ import type { AssessmentResourceLoader, ContentBlock_Text_Data, Question_SelectO
 import type { QuestionResponse } from '#types/questions';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
+import { parseQuestionNumber } from '../widgets/questions/AnswerWithNumber/AnswerWithNumber';
+import { questionBlockLabel } from '../widgets/questions/response/QuestionContent';
 import { EngineQuestionRenderer, selectQuizQuestions } from './EngineQuestionRenderer';
 
 const uuid = (n: number) => `663572e7-bd85-4516-86e2-${n.toString(16).padStart(12, '0')}`;
@@ -246,10 +248,10 @@ describe('active Engine Quiz renderer', () => {
 
   it('ends a timed Quiz once and locks answer submission', async () => {
     const selected = [questions[0]];
-    const complete = mount(selected, vi.fn(), loader(selected), { timeLimitSeconds: 2 });
-    await screen.findByText('Prompt 1');
-    vi.useFakeTimers();
+    vi.useFakeTimers({ shouldAdvanceTime: true });
     try {
+      const complete = mount(selected, vi.fn(), loader(selected), { timeLimitSeconds: 2 });
+      await screen.findByText('Prompt 1');
       act(() => vi.advanceTimersByTime(2000));
       expect(screen.getByRole('timer')).toHaveTextContent('0:00');
       expect(complete).toHaveBeenCalledWith({ passed: false, correct: 0, total: 1, timedOut: true });
@@ -258,5 +260,74 @@ describe('active Engine Quiz renderer', () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+
+  it('scores malformed numeric input as incorrect rather than accepting nonfinite values', async () => {
+    const complete = mount([questions[4]]);
+    await screen.findByText('Prompt 5');
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Infinity' } });
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    await waitFor(() =>
+      expect(complete).toHaveBeenCalledWith({ passed: false, correct: 0, total: 1, timedOut: false }),
+    );
+    expect(parseQuestionNumber('6,28')).toBe(6.28);
+    expect(parseQuestionNumber('')).toBeNull();
+    expect(parseQuestionNumber('Infinity')).toBeNull();
+    expect(parseQuestionNumber('1,2,3')).toBeNull();
+  });
+
+  it('preserves localized media and nested Carousel accessible names for published Question blocks', () => {
+    const slides = [
+      {
+        id: uuid(301),
+        slug: 'illustration',
+        type: 'image' as const,
+        params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: '/example.svg', alt: 'Illustrated comparison' },
+      },
+    ];
+    const carousel = {
+      id: uuid(302),
+      slug: 'carousel',
+      type: 'carousel' as const,
+      params: {},
+      locale: { slides },
+    };
+    expect(questionBlockLabel(carousel)).toBe('Illustrated comparison');
+    expect(questionBlockLabel({ ...carousel, locale: { title: 'Compare', slides } })).toBe('Compare');
+    expect(questionBlockLabel({
+      id: uuid(303),
+      slug: 'markdown',
+      type: 'markdown',
+      params: {},
+      locale: { value: '**Important** and `code`' },
+    })).toBe('Important and code');
+    expect(questionBlockLabel({
+      id: uuid(304),
+      slug: 'subtitles',
+      type: 'subtitles',
+      params: {},
+      locale: { fileLocation: '/captions.en.vtt' },
+    })).toBe('captions.en.vtt');
+    expect(questionBlockLabel({
+      id: uuid(305),
+      slug: 'video',
+      type: 'video',
+      params: {},
+      locale: { fileLocation: '/recording.mp4', poster: '/poster.png', label: 'Recording', title: 'Запис' },
+    }, 'uk')).toBe('Запис');
+  });
+
+  it('does not advance a nondeferrable stepper before checking its current Question', async () => {
+    const selected = [questions[0], { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' as const }];
+    mount(selected, vi.fn(), loader(selected), { layout: { mode: 'stepper', showProgress: true } });
+    await screen.findByText('Prompt 1');
+    expect(screen.getByText('Prompt 10')).not.toBeVisible();
+    expect(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.next })).toBeDisabled();
+    fireEvent.click(screen.getByRole('radio', { name: 'Yes' }));
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.next }));
+    expect(screen.getByText('Prompt 10')).toBeVisible();
+    expect(screen.getByText('Prompt 1')).not.toBeVisible();
   });
 });
