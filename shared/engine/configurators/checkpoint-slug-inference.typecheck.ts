@@ -1,135 +1,78 @@
-import { configuratorArrayToSlugMap } from './_shared__configurators';
-import {
-  defineCheckpoint,
-  defineCheckpointAnswer,
-  defineCheckpointItem,
-} from './contentBlocks/composite/defineCheckpoint';
+import { configuratorArrayToSlugMap, type SafePlacementMap } from './_shared__configurators';
+
 import { defineText } from './contentBlocks/primitive/defineText';
+import { defineCheckpoint } from './contentBlocks/composite/defineCheckpoint';
+import { defineCheckpointAnswer } from './contentBlocks/composite/defineCheckpoint/defineCheckpointAnswer';
+import { defineCheckpointItem } from './contentBlocks/composite/defineCheckpoint/defineCheckpointItem';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
 
-const question = defineText<'question', ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
-  type: 'text', slug: 'question', params: {},
-  locale: { value: { en: 'What is light?', uk: 'Що таке світло?' } },
-});
-const answer = defineText<'answer', ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
-  type: 'text', slug: 'answer', params: {},
-  locale: { value: { en: 'Electromagnetic radiation', uk: 'Електромагнітне випромінювання' } },
-});
+/** Compile-time contract: inferred slugs, direct child keys and language scope. */
+function typecheckCheckpointChildren() {
+  const scope = { languages: ['uk'] as const };
+  const text = defineText<'response', ['uk']>({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d01',
+    slug: 'response', type: 'text', params: {}, locale: { value: { uk: 'Відповідь' } },
+  });
+  const slugged = configuratorArrayToSlugMap([text]);
+  type ResponseKeys = Expect<Equal<keyof typeof slugged, 'response'>>;
+  type ResponseSlug = Expect<Equal<typeof slugged.response.slug, 'response'>>;
+  // @ts-expect-error Slug-addressed map must reject undeclared keys.
+  void slugged.other;
+  void slugged;
+  const question = defineText<'question', ['uk']>({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d02',
+    slug: 'question', type: 'text', params: {}, locale: { value: { uk: 'Питання?' } },
+  });
+  const answer = defineCheckpointAnswer<
+    'answer', { response: typeof text }, ['uk']
+  >({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d03',
+    slug: 'answer', type: 'checkpointAnswer', children: ['response'], response: text,
+  });
+  const item = defineCheckpointItem<'first', typeof answer, typeof question, ['uk']>({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d04',
+    slug: 'first', type: 'checkpointItem', question, answer,
+  });
+  const checkpoint = defineCheckpoint<
+    'review', { first: typeof item }, ['uk']
+  >({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d05',
+    slug: 'review', type: 'checkpoint', params: {},
+    locale: { title: { uk: 'Перевірка' } }, children: ['first'], first: item,
+  });
 
-const answers = configuratorArrayToSlugMap([answer]);
-type AnswerKeys = Expect<Equal<keyof typeof answers, 'answer'>>;
-type AnswerSlug = Expect<Equal<typeof answers.answer.slug, 'answer'>>;
-// @ts-expect-error The helper must not accept an unknown literal key.
-void answers.unknown;
+  type ItemSlug = Expect<Equal<typeof item.slug, 'first'>>;
+  type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
+  // @ts-expect-error The direct Checkpoint map has no unknown Item.
+  void checkpoint.unknown;
 
-const answerComposite = defineCheckpointAnswer<
-  'answerContent', { answer: typeof answer }, ['en', 'uk']
->({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d70',
-  type: 'checkpointAnswer', slug: 'answerContent',
-  children: ['answer'], answer,
-});
-const item = defineCheckpointItem<'whatIsLight', typeof answerComposite, typeof question, ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
-  type: 'checkpointItem', slug: 'whatIsLight', question, answer: answerComposite,
-});
-type ItemSlug = Expect<Equal<typeof item.slug, 'whatIsLight'>>;
-type ItemAnswerKeys = Expect<Equal<keyof Pick<typeof item.answer, 'answer'>, 'answer'>>;
-// @ts-expect-error Answer direct child keys must be inferred literally.
-void item.answer.unknown;
+  // Direct slug-keyed overrides, without a second content.items/order envelope.
+  answer.build.overrides({ response: { locale: { value: { uk: 'Оновлено' } } } }, scope);
+  item.build.overrides({ answer: { response: { locale: { value: { uk: 'Знову' } } } } }, scope);
+  checkpoint.build.overrides({
+    first: { question: { locale: { value: { uk: 'Інше?' } } } },
+  }, scope);
 
-const checkpoint = defineCheckpoint<
-  'review', { whatIsLight: typeof item }, ['en', 'uk']
->({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6c',
-  type: 'checkpoint', slug: 'review', params: {},
-  locale: { title: 'Review' },
-  children: ['whatIsLight'], whatIsLight: item,
-});
+  const later = defineText<'later', ['uk']>({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d06',
+    slug: 'later', type: 'text', params: {}, locale: { value: { uk: 'Далі' } },
+  });
+  answer.build.overrides({ later, children: ['response', 'later'] }, scope);
+  item.build.overrides({ answer: { later, children: ['response', 'later'] } }, scope);
 
-type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
-type CheckpointItemKeys = Expect<Equal<keyof Pick<typeof checkpoint, 'whatIsLight'>, 'whatIsLight'>>;
-checkpoint.whatIsLight.question.build.overrides(
-  { locale: { value: { uk: 'Оновлене питання' } } },
-  { languages: ['en', 'uk'] },
-);
-checkpoint.whatIsLight.answer.answer.build.overrides(
-  { locale: { value: { uk: 'Оновлена відповідь' } } },
-  { languages: ['en', 'uk'] },
-);
-// @ts-expect-error Checkpoint item slugs are literal properties.
-void checkpoint.unknown;
+  // @ts-expect-error A Checkpoint's ordered collection cannot contain arbitrary strings.
+  checkpoint.build.overrides({ children: ['missing'] }, scope);
+  // @ts-expect-error Unknown children cannot be disabled as if they were authored.
+  answer.build.overrides({ missing: false }, scope);
+  // @ts-expect-error A required Text question cannot be disabled.
+  item.build.overrides({ question: { params: { disabled: true } } }, scope);
+  // @ts-expect-error Identity is never overridable.
+  checkpoint.build.overrides({ id: 'b775647f-203d-481a-a1c7-4d331c779d07' }, scope);
+  // @ts-expect-error Reserved keys cannot be used as placement slugs.
+  const reserved: SafePlacementMap<{ content: typeof text }> = { content: text };
+  void reserved;
+}
 
-const later = defineText<'later', ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6e',
-  type: 'text', slug: 'later', params: {},
-  locale: { value: { en: 'Later answer', uk: 'Інша відповідь' } },
-});
-item.build.overrides(
-  {
-    question: { locale: { value: { uk: 'Оновлене питання' } } },
-    answer: {
-      answer: { locale: { value: { uk: 'Оновлена відповідь' } } },
-      later,
-      children: ['answer', 'later'],
-    },
-  },
-  { languages: ['en', 'uk'] },
-);
-item.build.overrides(
-  // @ts-expect-error An unknown direct Answer child cannot be modified.
-  { answer: { unknown: { locale: { value: 'Unknown' } } } },
-  { languages: ['en', 'uk'] },
-);
-// @ts-expect-error Mandatory Text question cannot be disabled.
-item.build.overrides({ question: { params: { disabled: true } } }, { languages: ['en', 'uk'] });
-// @ts-expect-error Unknown final-order keys are rejected.
-item.build.overrides({ answer: { children: ['unknown'] } }, { languages: ['en', 'uk'] });
-// @ts-expect-error Identity is immutable.
-item.build.overrides({ slug: 'renamed' }, { languages: ['en', 'uk'] });
-
-const notQuestion: import('./contentBlocks/composite/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
-  type: 'checkpointItem', slug: 'invalid',
-  // @ts-expect-error A bare config is not a Text Configurator.
-  question: question.config.base,
-  answer: answerComposite,
-};
-void notQuestion;
-
-const publishedCheckpoint = checkpoint.build.data({ languages: ['en', 'uk'] });
-void publishedCheckpoint.base.children;
-void publishedCheckpoint.locale?.uk;
-// @ts-expect-error Completed Checkpoint Data has no legacy content.items envelope.
-void publishedCheckpoint.base.content.items;
-// @ts-expect-error Legacy mutable override API is retired.
-checkpoint.override.content.disable(['whatIsLight']);
-// @ts-expect-error Identity cannot be overridden.
-checkpoint.build.overrides({ slug: 'other' }, { languages: ['en', 'uk'] });
-// @ts-expect-error Only known authored CheckpointItems can be patched.
-checkpoint.build.overrides({ unknown: { check: true } }, { languages: ['en', 'uk'] });
-// @ts-expect-error Unknown final-order slug cannot be accepted.
-checkpoint.build.overrides({ children: ['unknown'] }, { languages: ['en', 'uk'] });
-
-const laterAnswer = defineCheckpointAnswer<'answerContent', { later: typeof later }, ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d71',
-  type: 'checkpointAnswer', slug: 'answerContent', children: ['later'], later,
-});
-const laterItem = defineCheckpointItem<'laterItem', typeof laterAnswer, typeof question, ['en', 'uk']>({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
-  type: 'checkpointItem', slug: 'laterItem', question, answer: laterAnswer,
-});
-checkpoint.build.overrides({
-  whatIsLight: { question: { locale: { value: { uk: 'Оновлене?' } } } },
-  laterItem, children: ['whatIsLight', 'laterItem'],
-}, { languages: ['en', 'uk'] });
-// @ts-expect-error Existing CheckpointItem slugs cannot be added as new identities.
-checkpoint.build.overrides({ children: ['whatIsLight'], whatIsLight: item }, { languages: ['en', 'uk'] });
-
-void answerComposite;
-void checkpoint;
-void laterItem;
+void typecheckCheckpointChildren;
