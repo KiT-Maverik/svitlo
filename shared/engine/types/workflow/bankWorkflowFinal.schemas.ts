@@ -420,7 +420,10 @@ export const flashcardBankWorkflowStage3_Schema = z.strictObject({
       z.strictObject({ kind: z.literal('notApplicable'), rationale: nonempty }),
       z.strictObject({
         kind: z.literal('selected'),
-        section: flashcardsSection_Config_Schema.pick({ id: true, slug: true }),
+        section: z.strictObject({
+          id: flashcardsSection_Config_Schema.shape.id,
+          slug: flashcardsSection_Config_Schema.shape.slug,
+        }),
         existingSection: z.boolean(),
         placement: nonempty,
         selectedCardSlugs: z.tuple([nonempty], nonempty).readonly(),
