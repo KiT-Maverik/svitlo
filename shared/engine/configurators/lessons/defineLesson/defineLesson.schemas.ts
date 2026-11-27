@@ -8,6 +8,8 @@ import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
+import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
 import type { Section_Configurator } from '../../sections/section.types';
 
@@ -42,6 +44,50 @@ const refineSectionPlacements = (value: Record<string, unknown>, ctx: z.Refineme
     ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
   }
 };
+
+/** Authored and completed data have no Draft marker; Draft has a separate schema. */
+const refineNonDraftPlacements = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  if (Object.hasOwn(value, 'draft')) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['draft'],
+      message: 'Lesson Config and completed Data must not declare draft',
+    });
+  }
+  refineSectionPlacements(value, ctx);
+};
+
+/**
+ * A Draft preview is structurally a collection of Content Sections. Every
+ * Section must validate, and the required placeholder must be a valid Text
+ * ContentBlock inside an enabled Section rather than an arbitrary object.
+ */
+const refineDraftSections = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  let hasPlaceholder = false;
+  for (const sectionSlug of value.children as string[]) {
+    const parsed = contentSection_Data_Schema.safeParse(value[sectionSlug]);
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [sectionSlug, ...issue.path],
+          message: issue.message,
+        });
+      }
+      continue;
+    }
+    if (parsed.data.params.disabled === true) continue;
+    for (const blockSlug of parsed.data.children) {
+      const text = text_Data_Schema.safeParse(parsed.data[blockSlug]);
+      if (text.success && text.data.locale.value === 'Not implemented') {
+        hasPlaceholder = true;
+      }
+    }
+  }
+  if (!hasPlaceholder) {
+    ctx.addIssue({ code: 'custom', message: 'Lesson draft needs the Not implemented Text ContentBlock' });
+  }
+};
 /** Full authored Config validates only the direct Section boundary. */
 export const lesson_Metadata_Config_Schema = identity
   .extend({
@@ -53,7 +99,7 @@ export type Lesson_Metadata_Config = z.infer<typeof lesson_Metadata_Config_Schem
 export const lesson_Config_Schema = lesson_Metadata_Config_Schema
   .extend({ children: z.array(z.string()) })
   .catchall(z.unknown())
-  .superRefine(refineSectionPlacements);
+  .superRefine(refineNonDraftPlacements);
 export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 
 export const lesson_Completed_Data_Schema = identity
@@ -63,7 +109,7 @@ export const lesson_Completed_Data_Schema = identity
     events: z.record(z.string(), z.json()).optional(),
   })
   .catchall(z.unknown())
-  .superRefine(refineSectionPlacements);
+  .superRefine(refineNonDraftPlacements);
 /** Explicit draft preview; it cannot pass the completed Lesson schema. */
 export const lesson_Draft_Data_Schema = identity
   .extend({
@@ -74,17 +120,12 @@ export const lesson_Draft_Data_Schema = identity
   .catchall(z.unknown())
   .superRefine((value, ctx) => {
     refineSectionPlacements(value, ctx);
-    const hasPlaceholder = value.children.some(key => {
-      const section = value[key] as Record<string, unknown> | undefined;
-      if (!section || !Array.isArray(section.children) || !section.params ||
-          (section.params as {disabled?: boolean}).disabled === true) return false;
-      return section.children.some(slug => {
-        const block = section[slug] as {type?: string; locale?: {value?: string}} | undefined;
-        return block?.type === 'text' && block.locale?.value === 'Not implemented';
-      });
-    });
-    if (!hasPlaceholder) ctx.addIssue({code:'custom', message:'Lesson draft needs the Not implemented Text ContentBlock'});
+    if (Object.hasOwn(value, 'events')) {
+      ctx.addIssue({ code: 'custom', path: ['events'], message: 'Lesson Draft does not declare events' });
+    }
+    refineDraftSections(value, ctx);
   });
+
 export const lesson_Data_Schema = z.union([lesson_Completed_Data_Schema, lesson_Draft_Data_Schema]);
 export type Lesson_Draft_Data = z.infer<typeof lesson_Draft_Data_Schema>;
 export type Lesson_Data = z.infer<typeof lesson_Completed_Data_Schema>;
