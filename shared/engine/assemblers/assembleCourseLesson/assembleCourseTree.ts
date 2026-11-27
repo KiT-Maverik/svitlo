@@ -75,6 +75,15 @@ function assertSafeJson(value: unknown, ancestors = new Set<object>()): void {
   if (Object.getOwnPropertySymbols(value).length) throw Error('Symbol Course key');
   ancestors.delete(value);
 }
+/** Freeze only the owned, cloned assembly result; never freeze the host's publication inputs. */
+function freezeSnapshot<T>(value: T, visited = new WeakSet<object>()): T {
+  if (value === null || typeof value !== 'object' || visited.has(value)) return value;
+  visited.add(value);
+  for (const entry of Object.values(value)) freezeSnapshot(entry, visited);
+  Object.freeze(value);
+  return value;
+}
+
 /** Atomic arrays; only false in a previously ordered placement is a deletion. */
 function merge(base: unknown, patch: unknown): unknown {
   if (patch === undefined) return structuredClone(base);
@@ -259,8 +268,11 @@ export function assembleCourseTree(
     }
   }
   visit(value, 'course');
-  validatedPlacementIndexes.set(value, membershipIndex);
-  return value as LocalizedCourse;
+  // The merge creates a private JSON snapshot. Freezing it makes the cached
+  // membership sets sound even when a caller retains the public return value.
+  const snapshot = freezeSnapshot(value);
+  validatedPlacementIndexes.set(snapshot, membershipIndex);
+  return snapshot as LocalizedCourse;
 }
 
 export type CourseActivity = {
