@@ -21,15 +21,15 @@ import {
   type Section_Data,
 } from '@svitlo/engine/runtime';
 
-export type CarouselViewProps = Omit<ContentBlock_Carousel_Data, 'children'> & {
+export type CarouselViewProps = Pick<ContentBlock_Carousel_Data, 'id' | 'slug' | 'type' | 'params'> & {
   locale: { title?: string; slides: ContentBlock_Carousel_SlideData[] };
 };
 
-export type CheckpointItemViewProps = Omit<ContentBlock_CheckpointItem_Data, 'answer'> & {
+export type CheckpointItemViewProps = Pick<ContentBlock_CheckpointItem_Data, 'id' | 'slug' | 'type' | 'check' | 'question'> & {
   answer: Checkpoint_Allowed_Data[];
 };
 
-export type CheckpointViewProps = Omit<ContentBlock_Checkpoint_Data, 'children'> & {
+export type CheckpointViewProps = Pick<ContentBlock_Checkpoint_Data, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
   content: CheckpointItemViewProps[];
 };
 
@@ -38,8 +38,11 @@ export type ContentBlockViewProps =
   | CarouselViewProps
   | CheckpointViewProps;
 
-type WithoutChildren<T> = T extends unknown ? Omit<T, 'children'> : never;
-export type SectionViewProps = WithoutChildren<Section_Data> & { content: ContentBlockViewProps[] };
+/** Explicit picks preserve discriminants even when domain Data has a catchall index signature. */
+type ProjectSection<T extends Section_Data> = T extends unknown
+  ? Pick<T, 'id' | 'slug' | 'type' | 'params' | 'locale'> & { content: ContentBlockViewProps[] }
+  : never;
+export type SectionViewProps = ProjectSection<Section_Data>;
 
 export type LessonViewProps = Pick<Lesson_Data, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'skills' | 'events'> & {
   section: SectionViewProps[];
