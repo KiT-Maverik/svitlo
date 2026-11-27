@@ -121,7 +121,7 @@ test('selectOneAnswer: refuses imported child without a generated entrypoint', (
 });
 test('selectOneAnswer: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
-  Object.assign(noPrompt.config.content.question, { children: [] });
+  noPrompt.config.content.question = collection({}) as never;
   assert.throws(() => materializeSelectOneAnswer(noPrompt as never, context), /reviewed prompt/);
   const bad = fixture();
   bad.config.content.question.children = ['notThere'];
