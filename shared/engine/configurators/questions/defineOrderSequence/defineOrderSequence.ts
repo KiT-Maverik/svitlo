@@ -47,7 +47,7 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.sequence, 'content.sequence', true);
   candidate.content.sequence.children.forEach(key =>
-    assertEnabledBlock(candidate.content.sequence[key].config.base, 'content.sequence.' + key),
+    assertEnabledBlock((candidate.content.sequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.sequence.' + key),
   );
 };
 
