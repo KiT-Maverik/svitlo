@@ -18,7 +18,7 @@ Svitlo is a modular interactive-learning project. The repository contains textbo
 | `backend/server`                  | Backend placeholder                                                            |
 | `studio`                          | Architecture, entity, and workflow documentation                               |
 
-The root [package.json](package.json) defines npm workspaces and scripts. `package-lock.json` is the npm lockfile.
+The root [package.json](package.json) defines npm workspaces and scripts. `package-lock.json` is the npm lockfile. Root package builds and lint checks use a pinned, local Turborepo DAG with caches disabled; other operations retain their existing orchestration. See [Turbo graph validation](scripts/ci/turboTaskGraph/README.md).
 
 ## Getting started
 

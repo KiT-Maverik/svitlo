@@ -22,8 +22,10 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   `test:e2e`/`test:integration` suite from the **same checkout and runner**.
   Any new E2E workspace without `app:build` fails discovery rather than
   silently losing coverage.
-- Package builds and compiled-export verification remain a full standalone
-  gate. App builds independently compile their own needed dependencies.
+- Package builds use the pinned local Turborepo DAG on one runner, after live
+  verification of the complete task graph. The package worker has no legacy
+  build-reuse state; Turbo executes each build once without caching.
+  Compiled-export verification remains a full standalone gate. App builds independently compile their own needed dependencies.
   `SVITLO_CI_PACKAGE_BUILD_STATE` is strictly local to **each job**; never
   share its JSON or compiled output across runners.
 - GitHub's `fail-fast: false` retains all app results. A stable final job
@@ -87,3 +89,41 @@ The baseline Production Quality run
 spent 219.9s in root `code:check:types` (109.6s inside package builds).
 This is a baseline, **not** a measured post-change speedup. Compare an actual
 full run at the same source scope before claiming improvement.
+
+## Turborepo package and lint task orchestration (PR #900)
+
+Root `package:build` and `code:lint:check` use pinned `turbo@2.11.13`
+and the real npm workspace graph with bounded concurrency 2. Run
+`npm run repo:check:turbo` after `npm ci` to validate the actual
+`--dry=json` task graph against all eligible npm workspaces. The
+source-policy job runs deterministic graph tests without npm installation;
+the package worker must verify the installed CLI's graph before building.
+
+Both cache sources are disabled (`--cache=local:,remote:`) and each task has
+`cache: false`; no remote service, cross-run `dist/` or persistent remote
+cache is introduced. `envMode: loose` preserves inherited npm lifecycle and
+generator variables; these outputs are never replayed from a Turbo cache.
+
+Other root operations still require existing manifest-derived orchestration:
+full typechecks with sequential Web/Mobile pre-hooks, tests, selected
+components, app builds and verified job-local reuse. Trusted generator and
+materialization workflows, selected-content publication and Chromium/E2E
+jobs stay independent. This scoped adoption does **not** establish migration
+of the full production suite or a measured speedup.
+
+Verification from clean checkout:
+
+```sh
+npm ci --no-audit --no-fund
+node --test scripts/ci/turboTaskGraph/verify-graph.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs
+npm run repo:check:turbo
+npm run package:build
+npm run repo:check:artifacts
+```
+
+**Rollback:** revert the root `package:build` and `code:lint:check`
+scripts to `runWorkspaceScript`, then remove Turbo installation/config
+and the package-only graph gate. Preserve all existing protected check names,
+release source checks, strict `verify` aggregator, app/browser suites and
+security/materializer jobs. Use equivalent successful head-pinned full runs
+to compare critical-path time, total runner minutes and diagnostics.
