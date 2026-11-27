@@ -105,7 +105,7 @@ export type Lesson_Metadata_Overrides = {
  * Use their original shapes to derive partial override validation. The merged
  * candidate is still validated against the full age/grade refinements.
  */
-const partializableParams_Schema = lesson_Config_Schema.shape.params.omit({ languages: true }).extend({
+const partializableParams_Schema = lesson_Metadata_Config_Schema.shape.params.omit({ languages: true }).extend({
   age: z.strictObject(ageRange_Schema.shape).optional(),
   grade: z.strictObject(gradeRange_Schema.shape).optional(),
 });
@@ -113,13 +113,13 @@ const lessonOverrideMetadataFields = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: partializableParams_Schema,
-      locale: lesson_Config_Schema.shape.locale,
+      locale: lesson_Metadata_Config_Schema.shape.locale,
     }),
   ),
 );
 export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.strictObject({
   ...lessonOverrideMetadataFields.shape,
-  events: lesson_Config_Schema.shape.events,
+  events: lesson_Metadata_Config_Schema.shape.events,
 });
 
 type ExistingPatches<Items extends Record<string, object>> = {
