@@ -25,6 +25,8 @@ test('only opt-in, bounded workspace timing lines pass through quiet CI output',
   const valid = 'SVITLO_CI_UNIT_TIMING @svitlo/engine / test 12.3s (success)';
   const other = 'SVITLO_CI_UNIT_TIMING @svitlo/engine / npm install 12.3s (success)';
   assert.equal(isUnitWorkspaceTimingLine(valid, true), true);
+  assert.equal(isUnitWorkspaceTimingLine('SVITLO_CI_UNIT_TIMING @svitlo/ui-kit / test:logic 3.4s (success)', true), true);
+  assert.equal(isUnitWorkspaceTimingLine('SVITLO_CI_UNIT_TIMING @svitlo/ui-kit / test:components 4.5s (failure)', true), true);
   assert.equal(isUnitWorkspaceTimingLine(valid, false), false);
   assert.equal(isUnitWorkspaceTimingLine(other, true), false);
   assert.equal(isUnitWorkspaceTimingLine(valid + '\\n::error::injection', true), false);
