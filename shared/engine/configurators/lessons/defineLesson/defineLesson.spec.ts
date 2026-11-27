@@ -28,12 +28,12 @@ describe('Configurators', () => {
         slug: 'intro',
         params: {},
         locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
-        content: { items: { paragraph: text }, order: ['paragraph'] },
+        children: ['paragraph'], paragraph: text,
       });
-      const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
-        const block = blocks?.[0];
-        if (block?.type !== 'text') return undefined;
-        return (block.locale as { value?: string } | undefined)?.value;
+      const textValue = (block: unknown): string | undefined => {
+        if (block === undefined || block === null || typeof block !== 'object' ||
+            !('locale' in block)) return undefined;
+        return (block.locale as {value?: string} | undefined)?.value;
       };
       const makeLesson = () =>
         defineLesson({
@@ -78,7 +78,7 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Media', navigationLabel: '1' },
-          content: { items: { pendingVideo: video, pendingScene: scene }, order: ['pendingVideo', 'pendingScene'] },
+          children: ['pendingVideo', 'pendingScene'], pendingVideo: video, pendingScene: scene,
         });
         const lesson = defineLesson({
           id: id('a4'),
@@ -96,7 +96,7 @@ describe('Configurators', () => {
         const draft = lesson.build.data({ languages: ['uk'], mode: 'draft' });
         assert.match(JSON.stringify(draft.base), new RegExp(UNRESOLVED_YOUTUBE_HREF));
         assert.equal(draft.locale?.en, undefined);
-        assert.equal(draft.locale?.uk?.media?.content?.length, 2);
+        assert.equal((draft.locale?.uk?.media as {children?: string[]})?.children?.length, 2);
         assert.throws(() => lesson.build.data({ languages: ['uk'] }), /unresolved video reference|Scene/i);
         assert.deepEqual(lesson.build.data({ languages: ['uk'], mode: 'draft' }), draft);
       });
@@ -164,10 +164,10 @@ describe('Configurators', () => {
         assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
         assert.equal(lesson.intro, section);
         assert.equal(built.base.intro?.slug, 'intro');
-        assert.equal(built.base.intro?.content?.[0]?.slug, 'paragraph');
+        assert.equal((built.base.intro as {children?: string[]})?.children?.[0], 'paragraph');
         assert.equal(built.locale?.uk?.locale?.title, 'Приклад');
-        assert.equal(textValue(built.locale?.uk?.intro?.content), 'Привіт');
-        assert.equal(built.locale?.en?.intro?.locale?.title, 'Introduction');
+        assert.equal(textValue((built.locale?.uk?.intro as { paragraph?: unknown })?.paragraph), 'Привіт');
+        assert.equal((built.locale?.en?.intro as {locale?: {title?: string}})?.locale?.title, 'Introduction');
         assert.equal('flashcards' in built.base, false);
         assert.equal('questions' in built.base, false);
         assert.equal(lessonConfigurator_Schema.safeParse(lesson).success, true);
@@ -221,7 +221,7 @@ describe('Configurators', () => {
             results: { visibility: 'after-review', showScore: true },
           },
           locale: { title: 'Quiz', navigationLabel: 'Quiz' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const recall = defineFlashcardsSection<'banklessRecall', {}, ['en', 'uk']>({
           id: id('63'),
@@ -229,7 +229,7 @@ describe('Configurators', () => {
           type: 'flashcards',
           params: { selection: { flashcardIds: [id('65')] } },
           locale: { title: 'Recall', navigationLabel: 'Cards' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const withQuiz = defineLesson({
           ...input,
@@ -285,7 +285,7 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Unscoped section', navigationLabel: '1' },
-          content: { items: { sparseText }, order: ['sparseText'] },
+          children: ['sparseText'], sparseText,
         });
         const lesson = defineLesson({
           id: id('83'),
@@ -357,11 +357,7 @@ describe('Configurators', () => {
         const updated = lesson.build.overrides(
           {
             intro: {
-              content: {
-                items: {
-                  paragraph: { locale: { value: { uk: 'Новий текст' } } },
-                },
-              },
+              paragraph: { locale: { value: { uk: 'Новий текст' } } },
             },
             locale: { title: { uk: 'Новий заголовок' } },
           },
@@ -371,10 +367,10 @@ describe('Configurators', () => {
           Object.keys(updated.base).filter(key => key === 'intro'),
           ['intro'],
         );
-        assert.equal(textValue(updated.locale?.uk?.intro?.content), 'Новий текст');
+        assert.equal(textValue((updated.locale?.uk?.intro as {paragraph?: unknown})?.paragraph), 'Новий текст');
         assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
         assert.equal(
-          textValue(lesson.build.data({ languages: ['en', 'uk'] }).locale?.uk?.intro?.content),
+          textValue((lesson.build.data({ languages: ['en', 'uk'] }).locale?.uk?.intro as {paragraph?: unknown})?.paragraph),
           'Привіт',
         );
 
@@ -384,7 +380,7 @@ describe('Configurators', () => {
           slug: 'extra',
           params: {},
           locale: { title: 'Extra', navigationLabel: '2' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const changed = lesson.build.overrides(
           {
@@ -492,7 +488,7 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'English', navigationLabel: '1' },
-          content: { items: { englishOnly: text }, order: ['englishOnly'] },
+          children: ['englishOnly'], englishOnly: text,
         });
         const quiz = defineQuizSection<'review', {}, ['en', 'zh']>({
           id: id('b3'),
@@ -514,7 +510,7 @@ describe('Configurators', () => {
             results: { visibility: 'after-review', showScore: true },
           },
           locale: { title: 'Review', navigationLabel: 'Quiz' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const lesson = defineLesson({
           id: id('b4'),
@@ -587,7 +583,7 @@ describe('Configurators', () => {
             results: { visibility: 'after-review', showScore: true },
           },
           locale: { title: 'Knowledge check', navigationLabel: 'Quiz' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const required = defineLesson({
           ...lessonInput,
@@ -629,7 +625,7 @@ describe('Configurators', () => {
           type: 'quiz',
           params: { ...quiz.config.base.params, disabled: true },
           locale: { title: 'Disabled quiz', navigationLabel: 'Q' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         assert.throws(
           () =>
@@ -647,7 +643,7 @@ describe('Configurators', () => {
         assert.deepEqual(single.base.params.languages, ['uk']);
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);
-        assert.equal(textValue(single.locale?.uk?.intro?.content), 'Привіт');
+        assert.equal(textValue((single.locale?.uk?.intro as {paragraph?: unknown})?.paragraph), 'Привіт');
         const patched = lesson.build.overrides(
           {
             intro: { locale: { title: { uk: 'Новий' } } },
