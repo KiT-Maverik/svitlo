@@ -423,18 +423,18 @@ const defineChapterImplementation = <
   } as unknown as Chapter_Configurator<Slug, Items, Languages>;
 };
 
+type ChapterInferredBase = Chapter_Metadata_Config & { children: string[] };
+type ChapterInferredChildren<Config> = {
+  [Key in Exclude<keyof Config, keyof ChapterInferredBase>]:
+    Config[Key] extends Chapter_Child ? Config[Key] : never;
+};
+
 /** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
 export function defineChapter<
   const Slug extends string,
   const Items extends Record<string, Chapter_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: ChapterAuthoredInput<Slug, Items, Languages>): Chapter_Configurator<Slug, Items, Languages>;
-
-type ChapterInferredBase = Chapter_Metadata_Config & { children: string[] };
-type ChapterInferredChildren<Config> = {
-  [Key in Exclude<keyof Config, keyof ChapterInferredBase>]:
-    Config[Key] extends Chapter_Child ? Config[Key] : never;
-};
 
 /** Infer the exact child Configurator types from every direct root placement. */
 export function defineChapter<
