@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
+import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
-import type { Section_Configurator, Section_Data } from '../../sections/section.types';
+import type { Section_Configurator } from '../../sections/section.types';
 
 const languages = z
   .array(languageCode_Schema)
@@ -32,67 +32,67 @@ const identity = identityBase_Schema.extend({
   skills: z.array(z.uuid()),
   params,
 });
-const sectionCollection = z.strictObject({
-  items: z.record(z.string(), z.custom<Section_Configurator>()),
-  order: z.array(z.string()),
-});
-/** Metadata and collection boundaries are owned by Lesson; children own internal validation. */
-export const lesson_Config_Schema = identity
+/** Lesson events are semantic metadata, not Section placement keys. */
+const withoutSemanticFields = (value: Record<string, unknown>) => {
+  const { events: _events, draft: _draft, ...placements } = value;
+  return placements;
+};
+const refineSectionPlacements = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  for (const issue of validateSlugAddressedContainer(withoutSemanticFields(value), sectionTypes)) {
+    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+};
+/** Full authored Config validates only the direct Section boundary. */
+export const lesson_Metadata_Config_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: localizationSwitch.config }),
-    section: sectionCollection,
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
+export type Lesson_Metadata_Config = z.infer<typeof lesson_Metadata_Config_Schema>;
+export const lesson_Config_Schema = lesson_Metadata_Config_Schema
+  .extend({ children: z.array(z.string()) })
+  .catchall(z.unknown())
+  .superRefine(refineSectionPlacements);
 export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 
-const sectionResolved = z
-  .object({
-    id: z.uuid(),
-    slug: z.string().min(1),
-    type: z.enum(sectionTypes),
-  })
-  .catchall(z.unknown());
 export const lesson_Completed_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: localizationSwitch.data }),
-    section: z.array(sectionResolved),
+    children: z.array(z.string()),
     events: z.record(z.string(), z.json()).optional(),
   })
-  .strict();
+  .catchall(z.unknown())
+  .superRefine(refineSectionPlacements);
 /** Explicit draft preview; it cannot pass the completed Lesson schema. */
 export const lesson_Draft_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: localizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Data_Schema).nonempty(),
+    children: z.array(z.string()).nonempty(),
   })
-  .strict()
-  .refine(
-    value =>
-      value.section.some(
-        section =>
-          section.params.disabled !== true &&
-          section.content.some(
-            block =>
-              block.type === 'text' &&
-              typeof block.locale === 'object' &&
-              block.locale !== null &&
-              'value' in block.locale &&
-              block.locale.value === 'Not implemented',
-          ),
-      ),
-    'Lesson draft needs the Not implemented Text ContentBlock',
-  );
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    refineSectionPlacements(value, ctx);
+    const hasPlaceholder = value.children.some(key => {
+      const section = value[key] as Record<string, unknown> | undefined;
+      if (!section || !Array.isArray(section.children) || !section.params ||
+          (section.params as {disabled?: boolean}).disabled === true) return false;
+      return section.children.some(slug => {
+        const block = section[slug] as {type?: string; locale?: {value?: string}} | undefined;
+        return block?.type === 'text' && block.locale?.value === 'Not implemented';
+      });
+    });
+    if (!hasPlaceholder) ctx.addIssue({code:'custom', message:'Lesson draft needs the Not implemented Text ContentBlock'});
+  });
 export const lesson_Data_Schema = z.union([lesson_Completed_Data_Schema, lesson_Draft_Data_Schema]);
 export type Lesson_Draft_Data = z.infer<typeof lesson_Draft_Data_Schema>;
-export type Lesson_Data = Omit<z.infer<typeof lesson_Completed_Data_Schema>, 'section'> & {
-  section: Section_Data[];
-};
+export type Lesson_Data = z.infer<typeof lesson_Completed_Data_Schema>;
 export type Lesson_DataBase = Pick<Lesson_Data, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
   locale?: { title?: string };
-  section: ReturnType<Section_Configurator['build']['data']>['base'][];
+  children: string[];
   events?: Record<string, unknown>;
+  [placementSlug: string]: unknown;
 };
 
 export type Lesson_Metadata_Overrides = {
@@ -127,20 +127,13 @@ type ExistingPatches<Items extends Record<string, object>> = {
     ? Parameters<Items[Key]['build']['overrides']>[0] | false
     : never;
 };
-export type Lesson_Ordered_Overrides<
-  Items extends Record<string, object>,
-  Added extends Record<string, object> = {},
-> = {
-  items?: ExistingPatches<Items>;
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
 export type Lesson_Overrides<
   Sections extends Record<string, Section_Configurator>,
   AddedSections extends Record<string, Section_Configurator> = {},
 > = Lesson_Metadata_Overrides & {
-  section?: Lesson_Ordered_Overrides<Sections, AddedSections>;
-};
+  children?: Extract<keyof Sections | keyof NoInfer<AddedSections>, string>[];
+} & ExistingPatches<Sections> & AddedSections & SafePlacementMap<AddedSections> &
+  { [Key in keyof Sections & keyof AddedSections]?: never };
 
 export const lessonConfigurator_Schema = z.custom<{
   readonly id: string;
