@@ -1,29 +1,22 @@
-import type { LanguageCode } from '../schemas/languages.schemas';
-
 /**
- * A parent collection handles a child through an opaque, verified Build
- * boundary. Erase only Build *inputs* (patch and publication options) and the
- * parent-facing language scope. Retain the concrete child Build API at the
- * authoring call site; ChildrenSupporting checks that original scope there.
+ * A collection child must preserve its concrete Build API at the authoring site.
  *
- * Without input erasure a narrow ['en', 'uk'] Section cannot satisfy a parent
- * union advertising all languages. Without scope erasure, nested collections
- * accidentally prohibit those correctly scoped children before the parent has
- * even checked its own required languages.
+ * TypeScript checks function parameters contravariantly: an instance whose
+ * build.overrides accepts only its actual slug keys is not assignable to the
+ * widened ReturnType<typeof defineX> constraint of a parent collection.
+ * Erase only the *input* of overrides on the collection boundary. Parents
+ * validate the child and dispatch its overrides through the Build protocol;
+ * an individual defineX return value retains its precise override signature.
  *
- * Outputs and other discriminants remain intact for runtime composition.
+ * All other properties, including the phantom LanguageScope, stay unchanged.
+ * This prevents accidental locale widening and keeps child-kind discrimination.
  */
 export type ConfiguratorChild<Child> = Child extends {
-  readonly build: {
-    readonly data: (options: infer _DataOptions) => infer DataResult;
-    readonly overrides: (patch: infer _Patch, options: infer _OverrideOptions) => infer OverrideResult;
-  };
+  readonly build: { readonly overrides: (patch: infer _Patch, options: infer Options) => infer Result };
 }
-  ? Omit<Child, 'build' | '__svitloLanguageScope'> & {
-      readonly __svitloLanguageScope: readonly LanguageCode[];
-      readonly build: Omit<Child['build'], 'data' | 'overrides'> & {
-        data(options: never): DataResult;
-        overrides(patch: never, options: never): OverrideResult;
+  ? Omit<Child, 'build'> & {
+      readonly build: Omit<Child['build'], 'overrides'> & {
+        overrides(patch: never, options: Options): Result;
       };
     }
   : never;
