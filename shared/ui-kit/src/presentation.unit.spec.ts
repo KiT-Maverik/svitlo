@@ -69,7 +69,7 @@ describe('host-neutral presentation boundary', () => {
 
     const review = view.section[0].content[1];
     if (review.type !== 'checkpoint') throw Error('Expected Checkpoint Props');
-    expect(review.content[0].answer.map(item => item.locale.value)).toEqual([
+    expect(review.content[0].answer.map(item => item.type === 'text' ? item.locale.value : undefined)).toEqual([
       'Electromagnetic', 'radiation',
     ]);
     expect('children' in review).toBe(false);
@@ -120,7 +120,7 @@ describe('host-neutral presentation boundary', () => {
     const view = toQuestionProps(question);
     expect(view.content.question.map(item => item.id)).toEqual([uuid(16)]);
     if (view.type !== 'selectOneAnswer') throw Error('Expected Select One Props');
-    expect(view.content.answers.correct[0].locale.value).toBe('Light');
+    expect(view.content.answers.correct[0]?.type === 'text' && view.content.answers.correct[0].locale.value).toBe('Light');
     expect(toPrimitiveBlockProps({
       children: ['a', 'b'], a: text(17, 'a', 'A'), b: text(18, 'b', 'B'),
     }).map(item => item.slug)).toEqual(['a', 'b']);
