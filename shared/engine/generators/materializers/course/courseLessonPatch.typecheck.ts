@@ -6,7 +6,7 @@
 import { defineText } from '../../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
-import type { CourseLessonSourcePatch, CourseLessonSectionReference } from '../../../types/workflow/courseLessonSourcePatch.types';
+import type { CourseLessonBoundPatch, CourseLessonSourcePatch, CourseLessonSectionReference } from '../../../types/workflow/courseLessonSourcePatch.types';
 
 const paragraph = defineText<'paragraph', ['en', 'uk']>({
   id: '663572e7-bd85-4516-86e2-3de07d209e01',
@@ -47,13 +47,19 @@ export const lesson = defineLesson({
   children: ['intro'],
   intro,
 });
-type ActualPatch = Parameters<typeof lesson.build.overrides>[0];
+type ActualPatch = CourseLessonSourcePatch<typeof lesson>;
 const changed = {
   params: { sections: { allowSkipping: false } },
   intro: { paragraph: { locale: { value: { uk: 'Інший текст' } } } },
 } satisfies ActualPatch;
-const added = { practice, children: ['intro', 'practice'] };
-void lesson.build.overrides(added, { languages: ['en', 'uk'] });
+// This is the trusted post-binding form, not an executable editorial source.
+const added = { practice, children: ['intro', 'practice'] } satisfies CourseLessonBoundPatch<
+  typeof lesson,
+  { practice: typeof practice }
+>;
+// The real generic Build API must remain callable for a pure metadata override.
+// A/A2 owns placeLesson and the generic Section-addition Build contract.
+void lesson.build.overrides({ params: { sections: { allowSkipping: false } } }, { languages: ['en', 'uk'] });
 const disabled = { intro: false, children: [] } satisfies ActualPatch;
 const invalidSlug = {
   // @ts-expect-error Only existing Section keys or explicitly authorized additions are valid.
