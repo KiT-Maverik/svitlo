@@ -67,6 +67,46 @@ test('Course resolves direct ordered placements and localized nested Episode dat
   assert.equal(base.start.intro.message.locale.value, 'Hello', 'published inputs stay unchanged');
 });
 
+test('localized Course, Episode and Assessment cannot mutate immutable language scopes', () => {
+  for (const change of [
+    { params: { languages: ['uk'] } },
+    { start: { params: { languages: ['uk'] } } },
+    { module: { nested: { end: { params: { languages: ['en'] } } } } },
+    { last: { params: { languages: ['uk'] } } },
+  ]) {
+    assert.throws(
+      () => assembleCourseTree(base, change, id(1), 'uk'),
+      /Localized Course language scope changed/,
+    );
+  }
+  const translated = assembleCourseTree(base, {
+    locale: { title: 'Курс' },
+    start: { locale: { title: 'Оповідь' } },
+    last: { locale: { title: 'Перевірка' } },
+  }, id(1), 'uk');
+  assert.equal(translated.locale.title, 'Курс');
+  assert.equal(findCourseEpisode(translated, id(2))?.locale.title, 'Оповідь');
+  assert.equal(findCourseAssessment(translated, id(6))?.locale.title, 'Перевірка');
+  assert.deepEqual(translated.params.languages, ['en', 'uk']);
+});
+
+test('validated direct placement paths use indexed membership, not order-array searches', () => {
+  const course = assembleCourseTree(base, undefined, id(1), 'en');
+  const module = course.module as { children: string[]; nested: { children: string[] } };
+  for (const order of [course.children, module.children, module.nested.children]) {
+    Object.defineProperty(order, 'includes', {
+      value: () => { throw Error('navigation must never linearly scan siblings'); },
+    });
+  }
+  assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
+  assert.equal(findCourseActivityByPlacement(course, 'module/nested/missing'), undefined);
+  assert.equal(findCourseActivityByPlacement(course, 'module/nested'), undefined);
+  assert.throws(
+    () => findCourseActivityByPlacement(structuredClone(course), 'module/nested/lesson'),
+    /assembled, validated Course/,
+  );
+});
+
 test('rejects translation changing structure, identity or unsupported Episode events', () => {
   for (const patch of [
     { children: ['module', 'start', 'last'] },
