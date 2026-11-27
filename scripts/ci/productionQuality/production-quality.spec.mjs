@@ -137,6 +137,15 @@ test('PR comment command dispatches the unchanged full production workflow', () 
   assert.match(workflow, /name: Production Quality \/ verify/);
 });
 
+test('single-runner unit overlap requires explicit manual input; protected PR tests remain serial', () => {
+  assert.match(workflow, /unit_overlap_experiment:\\s*\\n\\s*description:/);
+  assert.match(workflow, /default: false/);
+  assert.match(workflow, /SVITLO_CI_UNIT_OVERLAP_EXPERIMENT:.*github\\.event_name == 'workflow_dispatch' && inputs\\.unit_overlap_experiment/);
+  const unit = workflow.split('\\n  unit:\\n')[1].split('\\n  generators:\\n')[0];
+  assert.match(unit, /npm test/);
+  assert.match(unit, /SVITLO_CI_PACKAGE_BUILD_STATE/);
+});
+
 test('production typecheck retains exhaustive canonical root command', () => {
   assert.match(workflow, /name: Typecheck all eligible workspaces/);
   assert.match(workflow, /npm run code:check:types/);
