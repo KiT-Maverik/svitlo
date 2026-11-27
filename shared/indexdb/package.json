@@ -10,7 +10,7 @@
     "test:unit:db-utils:coverage": "tsc -p tsconfig.test.json && node --experimental-test-coverage --test --test-coverage-include='.test-build/utils/**/*.js' .test-build/utils/*/*.spec.js",
     "test:integration:db:coverage": "tsc -p tsconfig.test.json && node --experimental-test-coverage --test .test-build/controllers/__tests__/*.integration.test.js",
     "prepack": "npm run package:build",
-    "test:e2e:db": "playwright test --config playwright.config.ts",
+    "test:e2e:db": "npm test && playwright test --config playwright.config.ts",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
