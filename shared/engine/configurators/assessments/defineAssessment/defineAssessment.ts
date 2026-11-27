@@ -51,9 +51,9 @@ type SectionBuild = {
 };
 type LocaleBody = {
   locale?: { title?: string };
-  before?: Assessment_Phase_DataBase;
+  before?: Record<string, unknown>;
   quiz?: Assessment_DataBase['quiz'];
-  after?: Assessment_Phase_DataBase;
+  after?: Record<string, unknown>;
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
@@ -238,7 +238,19 @@ export const defineAssessment = <
   };
 
   /** A phase is fully replaced only when its ordered children are explicitly supplied. */
-  const buildPhase = (phase: Phase, patches: Record<string, unknown> = {}, sparse = false) => {
+  type CompletedPhase = {
+    base: Assessment_Phase_DataBase;
+    locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>>;
+  };
+  type SparsePhase = {
+    base: Record<string, unknown>;
+    locale: Partial<Record<LanguageCode, Record<string, unknown>>>;
+  };
+  function buildPhase(phase: Phase, patches?: Record<string, unknown>, sparse?: false): CompletedPhase;
+  function buildPhase(phase: Phase, patches: Record<string, unknown>, sparse: boolean): CompletedPhase | SparsePhase;
+  function buildPhase(
+    phase: Phase, patches: Record<string, unknown> = {}, sparse = false,
+  ): CompletedPhase | SparsePhase {
     const built = buildSections(phaseItems(phase), phase.children, patches);
     if (sparse) {
       const base: Record<string, unknown> = {};
@@ -264,7 +276,7 @@ export const defineAssessment = <
       } as Assessment_Phase_DataBase;
     }
     return { base, locale };
-  };
+  }
   const publicationLanguages = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     for (const language of languages) {
