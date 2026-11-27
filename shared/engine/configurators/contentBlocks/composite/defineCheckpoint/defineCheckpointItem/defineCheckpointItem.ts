@@ -14,6 +14,7 @@ import {
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
+  type AddedPlacementsFromPatch,
   validateRequestedPublication,
 } from '../../../../_shared__configurators';
 import type {
@@ -210,10 +211,19 @@ export const defineCheckpointItem = <
       );
     }
   };
+  type AuthorAnswerChildren = {
+    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
+      Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
+  };
+  type NestedAnswerAdditions<Patch> =
+    Patch extends { answer: infer AnswerPatch }
+      ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
+      : {};
+
   const overrides: {
-    <const Added extends Record<string, Checkpoint_Allowed_Configurator>>(
-      patch: CheckpointItem_Overrides<Answer, Added> & {
-        answer?: ChildrenSupporting<Languages, Added>;
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+        answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
       },
       options: PublicationLanguageOptions<Languages>,
     ): ItemPublication<ItemOverrideBase>;
