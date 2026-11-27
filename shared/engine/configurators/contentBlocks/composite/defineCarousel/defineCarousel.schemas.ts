@@ -54,7 +54,7 @@ export const carousel_Metadata_Config_Schema = carouselBase.extend({
 
 /** Direct root placements are kept as configurators and ordered by children. */
 export const carousel_Config_Schema = carousel_Metadata_Config_Schema
-  .extend({ children: z.array(z.string()) })
+  .extend({ children: z.array(z.string()).min(1) })
   .catchall(z.unknown())
   .superRefine((value, ctx) => {
     for (const issue of validateSlugAddressedContainer(value, carouselSlideTypes)) {
@@ -96,7 +96,7 @@ export type ContentBlock_Carousel_DataBase = z.infer<typeof carouselBase> & {
 export const carousel_Data_Schema = carouselBase
   .extend({
     locale: z.object(dataLocale).strict().optional(),
-    children: z.array(z.string()),
+    children: z.array(z.string()).min(1),
   })
   .catchall(z.unknown())
   .superRefine((value, ctx) => {
