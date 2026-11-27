@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 
-// Original generator-tests step selectors, kept byte-for-byte in one place.
+// Authoritative targeted generator suites; retire a selector when its last owned test is removed.
 export const generatorSelectors = Object.freeze([
   'shared/engine/.test-build/generators/lessons/*.spec.js',
   'shared/engine/generators/courses/publishCourseData.spec.mjs',
@@ -38,7 +38,6 @@ export const generatorSelectors = Object.freeze([
   'shared/engine/generators/materializers/course/*.spec.mjs',
   'shared/engine/generators/materializers/module/*.spec.mjs',
   'shared/engine/generators/materializers/chapter/*.spec.mjs',
-  'shared/engine/generators/materializers/lesson/*.spec.mjs',
   'shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js',
   'shared/engine/.test-build/generators/materializers/lesson/*.spec.js',
   'shared/engine/.test-build/generators/materializers/scene/*.spec.js',
