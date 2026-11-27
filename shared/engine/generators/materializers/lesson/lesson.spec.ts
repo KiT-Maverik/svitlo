@@ -20,7 +20,7 @@ const section = () => ({
         type: 'text',
         params: {},
         locale: { value: { en: 'Read', uk: 'Читай' } },
-      },,
+      },
 });
 const lesson = () => ({
   id: id('01'),
@@ -141,7 +141,7 @@ test('Rejects duplicate order, mismatched Section slug and unsafe paths', () => 
           throw Error('never');
         },
       }),
-    /order/,
+    /children/,
   );
   const x = lesson();
   x.introduction.slug = 'bad';
@@ -375,7 +375,7 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
   const input = {
     ...l,
     children: ['introduction', 'pendingQuiz', 'pendingCards'],
-    ...l., pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards,
+    ...l, pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards,
   };
   const noDelegate = () => {
     throw Error('must not emit incomplete Section');
@@ -511,7 +511,7 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
             pedagogicalIntent:
               'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
           },
-        },,
+        },
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
@@ -591,7 +591,7 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
     introduction: {
           config: section(),
           production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
-        },,
+        },
   };
   let acknowledged: unknown;
   const output = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
@@ -619,7 +619,7 @@ test('Lesson input Section production is immutable after successful handoff', ()
     introduction: {
           config: section(),
           production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
-        },,
+        },
   };
   const original = structuredClone(input);
   let handedOff = false;
