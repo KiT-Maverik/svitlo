@@ -96,8 +96,8 @@ export type Episode_Metadata_Overrides = {
 // JSON event payloads can be recursive: keep them outside deepPartial to
 // avoid unbounded Zod/TypeScript schema expansion.
 export const episode_Override_Metadata_Schema: z.ZodType<Episode_Metadata_Overrides> = z.strictObject({
-  params: z.deepPartial(deepStrict_Schema(episode_Config_Schema.shape.params.omit({ languages: true }))).optional(),
-  locale: z.deepPartial(deepStrict_Schema(episode_Config_Schema.shape.locale)).optional(),
+  params: z.deepPartial(deepStrict_Schema(episode_Metadata_Config_Schema.shape.params.omit({ languages: true }))).optional(),
+  locale: z.deepPartial(deepStrict_Schema(episode_Metadata_Config_Schema.shape.locale)).optional(),
   events: z.record(z.string(), z.json()).optional(),
 });
 
