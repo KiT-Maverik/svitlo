@@ -61,9 +61,9 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'assessment',
       params: { languages },
       locale: { title: { en: 'Review', uk: 'Перевірка' } },
-      before: { items: { intro }, order: ['intro'] },
+      before: { children: ['intro'], intro },
       quiz,
-      after: { items: {}, order: [] },
+      after: { children: [] },
     });
   };
 
@@ -97,7 +97,7 @@ describe('Course-owned Assessment Configurator', () => {
           type: 'assessment',
           params: { languages },
           locale: { title: 'Incomplete' },
-          before: { items: { intro }, order: ['intro'] },
+          before: { children: ['intro'], intro },
           quiz: undefined as never,
         }).build.data({ languages: ['en'] }),
       /Quiz/,
@@ -111,7 +111,7 @@ describe('Course-owned Assessment Configurator', () => {
 
   test('permits supporting Sections to be removed without disabling the one Quiz', () => {
     const assessment = makeAssessment('withOptionalIntro', '15', '16');
-    const patch = assessment.build.overrides({ before: { items: { intro: false }, order: [] } }, { languages: ['en'] });
+    const patch = assessment.build.overrides({ before: { intro: false, children: [] } }, { languages: ['en'] });
     assert.deepEqual(
       patch.base.section?.map(item => item.type),
       ['quiz'],
@@ -124,11 +124,38 @@ describe('Course-owned Assessment Configurator', () => {
           type: 'assessment',
           params: { languages },
           locale: { title: 'Review' },
-          before: { items: { intro }, order: ['intro'] },
+          before: { children: ['intro'], intro },
           quiz: makeQuiz('18'),
-          after: { items: { intro }, order: ['intro'] },
+          after: { children: ['intro'], intro },
         }).build.data({ languages: ['en'] }),
       /unique/,
+    );
+  });
+
+  test('rejects invalid supporting phase keys and unknown or stale ordered placements', () => {
+    const metadata = {
+      id: id('60'), slug: 'phaseValidation', type: 'assessment' as const,
+      params: { languages }, locale: { title: 'Review' }, quiz: makeQuiz('61'),
+    };
+    const publish = (before: unknown) =>
+      defineAssessment({ ...metadata, before } as never).build.data({ languages: ['en'] });
+    assert.throws(() => publish({ children: ['absent'] }), /Unknown or disabled child/);
+    assert.throws(() => publish({ children: [], intro }), /Unlisted\/stale child/);
+    assert.throws(() => publish({ children: ['intro', 'intro'], intro }), /Duplicate placement slug/);
+    assert.throws(() => publish({ children: ['items'], items: intro }), /Reserved child placement slug/);
+    assert.throws(() => publish({ children: ['intro'], intro: false }), /active Data object/);
+    const assessment = makeAssessment('safePhases', '62', '63');
+    assert.throws(
+      () => assessment.build.overrides({ before: { missing: false } } as never, { languages: ['en'] }),
+      /New Assessment Section/,
+    );
+    assert.throws(
+      () => assessment.build.overrides({ before: { intro: false } } as never, { languages: ['en'] }),
+      /children is required/,
+    );
+    assert.throws(
+      () => assessment.build.overrides({ before: { intro: false, children: ['intro'] } }, { languages: ['en'] }),
+      /Unknown or disabled child/,
     );
   });
 
