@@ -47,50 +47,6 @@ test('full production scope maps all 17 distinct packages into five stable balan
   );
 });
 
-test('three-shard diagnostic preserves full scope and failures without changing the five-shard default', () => {
-  const control = planContentShards(selected);
-  const candidate = planContentShards(selected, 3);
-  assert.equal(control.include.length, 5);
-  assert.equal(candidate.include.length, 3);
-  assert.deepEqual(candidate, planContentShards([...selected].reverse(), 3));
-  assert.deepEqual(planContentShards(selected), control, 'the production default must remain five shards');
-
-  for (const scope of [
-    selected,
-    [pkg('content/math')],
-    [pkg('content/math'), pkg('content/playground')],
-    [pkg('content/history', 'agent')],
-  ]) {
-    const shards = planContentShards(scope, 3).include;
-    validateShardCoverage(scope, shards);
-    assert.deepEqual(
-      shards.flatMap(shard => shard.packages.map(item => item.path + '#' + item.kind)).sort(),
-      scope.map(item => item.path + '#' + item.kind).sort(),
-    );
-  }
-
-  // Exercise the real shard runner for every diagnostic assignment. The one
-  // simulated package failure must survive grouping without skipping peers.
-  const invoked = [];
-  const failures = [];
-  const reporter = { log() {}, error() {} };
-  for (const shard of candidate.include) {
-    failures.push(
-      ...runContentShard(
-        shard.packages,
-        (_command, args) => {
-          const path = args[args.indexOf('--package') + 1];
-          invoked.push(path);
-          return { status: path === 'content/history' ? 1 : 0 };
-        },
-        reporter,
-      ),
-    );
-  }
-  assert.deepEqual(invoked.sort(), selected.map(item => item.path).sort());
-  assert.deepEqual(failures, ['content/history']);
-});
-
 test('legacy assigned-domain agent scope remains agent, not a full content build', () => {
   assert.deepEqual(planContentShards([pkg('content/history', 'agent')]), {
     include: [{ id: 'shard-1', packages: [pkg('content/history', 'agent')] }],

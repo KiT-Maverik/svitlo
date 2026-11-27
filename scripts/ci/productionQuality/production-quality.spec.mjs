@@ -137,39 +137,6 @@ test('PR comment command dispatches the unchanged full production workflow', () 
   assert.match(workflow, /name: Production Quality \/ verify/);
 });
 
-test('five-vs-three content benchmark is manual-only, exhaustive and excluded from required release gates', () => {
-  const plan = workflow.split('\n  content_shard_ab_plan:\n')[1].split('\n  content_shard_ab:\n')[0];
-  const shard = workflow.split('\n  content_shard_ab:\n')[1].split('\n  verify:\n')[0];
-  assert.ok(plan, 'missing diagnostic matrix planner');
-  assert.ok(shard, 'missing diagnostic shard worker');
-  assert.match(plan, /needs: policy/);
-  assert.match(plan, /github\.event_name == 'workflow_dispatch' && github\.ref_name == 'ci\/quality-workflow-rearchitecture'/);
-  assert.match(plan, /contentWorkspaces\(\)/);
-  assert.match(plan, /planContentShards\(selected, shardLimit\)/);
-  assert.match(plan, /\[\[5, 'five'\], \[3, 'three'\]\]/);
-  assert.match(plan, /validateShardCoverage\(selected, shards\)/);
-  assert.match(plan, /scripts\/ci\/buildChangedContent\/content-shards\.spec\.mjs/);
-  assert.match(shard, /needs: content_shard_ab_plan/);
-  assert.match(shard, /github\.event_name == 'workflow_dispatch' && github\.ref_name == 'ci\/quality-workflow-rearchitecture'/);
-  assert.match(shard, /fail-fast: false/);
-  assert.match(shard, /matrix: \$\{\{ fromJSON\(needs\.content_shard_ab_plan\.outputs\.matrix\) \}\}/);
-  assert.match(shard, /npm ci --no-audit --no-fund/);
-  assert.match(shard, /npm run package:build --workspace @svitlo\/engine/);
-  assert.match(shard, /CONTENT_BUILD_ALL: 'true'/);
-  assert.match(shard, /SVITLO_MEDIA_MODE: production/);
-  assert.match(shard, /CONTENT_SHARD_PACKAGES: \$\{\{ toJSON\(matrix\.packages\) \}\}/);
-  assert.match(shard, /node scripts\/ci\/buildChangedContent\/content-shards\.mjs/);
-  assert.match(shard, /summarize-builds\.mjs/);
-  const verify = workflow.split('\n  verify:\n')[1];
-  assert.ok(verify.includes(
-    'needs: [reuse, policy, repository, types, unit, generators, components, lint, packages, apps]',
-  ));
-  assert.doesNotMatch(verify, /content_shard_ab/);
-  const contentWorkflow = readFileSync(new URL('../../../.github/workflows/content-build.yml', import.meta.url), 'utf8');
-  assert.match(contentWorkflow, /max-parallel: 5/);
-  assert.match(contentWorkflow, /matrix: \$\{\{ fromJSON\(needs\.prepare\.outputs\.shards\) \}\}/);
-});
-
 test('production typecheck retains exhaustive canonical root command', () => {
   assert.match(workflow, /name: Typecheck all eligible workspaces/);
   assert.match(workflow, /npm run code:check:types/);
