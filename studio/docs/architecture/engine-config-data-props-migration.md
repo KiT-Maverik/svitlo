@@ -86,3 +86,29 @@ Parallel work is allowed only on non-overlapping owned files after the relevant 
 - Coordination with existing open Draft Course/Lesson PRs and any migration/re-materialization needed for their authored sources.
 
 Any material decision must be documented and reconciled here **before** dependent agents implement it.
+
+## Configurator collection schema inventory
+
+**Scope of verification:** all current `shared/engine/configurators/**/*.schemas.ts` files on the integration branch, checked against the actual Config and Data definitions on 2026-11-28. This is a **schema-level collection classification**, not proof that every editor, materializer, test fixture, authored textbook or UI consumer has been migrated. The integration test and source audit remain separate gates.
+
+| Configurator family | Collection contract | Decision |
+| --- | --- | --- |
+| Course, Module, Chapter | Root `children` and direct placement keys, including reusable Lesson slots | **Migrated ordered children**; no `content.items/order` |
+| Lesson, Episode | Root `children` and direct Section placement keys | **Migrated ordered children**; no `section.items/order` |
+| Content, Quiz, Flashcards, Practice, CodingTask, LearningFlow Sections | Root `children` and direct ContentBlock placement keys | **Migrated ordered children**; independent bank UUID selection arrays remain semantic references |
+| Carousel | Root `children` plus direct Image/Scene configurators | **Migrated ordered children**; UI `slides[]` is derived Props |
+| Checkpoint | Root `children` plus direct CheckpointItem configurators | **Migrated ordered children** |
+| CheckpointItem | Mandatory named `question` (Text) and `answer` (CheckpointAnswer) | **Retained fixed semantic roles**; no redundant `children` at the Item level |
+| CheckpointAnswer | Root `children` plus direct Primitive ContentBlocks | **Migrated ordered children**, Primitive-only |
+| Assessment | `before.children`, mandatory `quiz`, `after.children`; supporting Section keys are direct within each phase | **Migrated phase-scoped ordered children**; fixed Quiz role retained |
+| All Question kinds | Named `content.question/hint/explanation` roles; each block collection has `children` and direct Primitive keys; answer/pair/slot/sequence groupings use the same local order rule when applicable | **Migrated ordered inner groups**; retained semantic scoring/answer roles |
+| Flashcard and FlashcardSide | Named `front/back/hint` sides with ordered `children` and direct Primitive keys; ordered `parameters.relationships.children` and direct relationship keys | **Migrated inner ordered groups**; fixed sides and typed relationship roles retained |
+| Flashcard flags, tags and disability restrictions | Arrays of values, not keyed child Configurators; `flags` replaces atomically | **Retained semantic arrays**; do not fabricate placement slugs |
+| Quiz screen content and Question/Flashcard selection | UUID or direct Section-placement references, not owned child-configurator collections | **Retained reference arrays**; effective referenced children must remain enabled |
+| Quest, Stage, Task | `stages`/`tasks` unordered keyed dictionaries, fixed `start` semantics and named media/Scene roles | **Retained unordered/semantic maps**; no synthetic `children` order |
+| SkillDomain, SkillGroup | Named `skills`/`groups` taxonomy maps; published arrays sorted deterministically by key | **Retained unordered classification maps**; output sorting does not imply authored pedagogical order |
+| Primitive ContentBlocks, Skill, EducationStandard, AssessmentMethod | No owned variable-length Configurator-child collection | **Not applicable** |
+
+**Schema finding:** the current Configurator schemas no longer define a positive `items/order` wrapper for a true ordered child collection; residual `items`/`order` string literals in Flashcard/Question schema guards reject reserved placement keys. This does not license deletion of bank manifests, authored editorial-only structures, UI arrays or other independent uses of these words without inspecting their contracts.
+
+**Outstanding integration evidence:** reconcile the corresponding typed editorial Stage schemas, materializers, generator/CLI fixtures and published runtime consumers; run actual latest-head typechecks and generator/UI/host/browser suites; independently review the result. Do not mark the parent Ready based on this schema inventory alone.
