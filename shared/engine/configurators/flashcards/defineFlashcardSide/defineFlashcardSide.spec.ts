@@ -82,7 +82,7 @@ describe('Configurators', () => {
         assert.throws(() => side.build.overrides({ first: false, children: ['first'] }, { languages: ['en'] }));
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-            children: ['missing'], first,
+            children: ['missing'] as never, first,
           }).build.data({ languages: ['en'] }),
         );
         assert.throws(() =>
@@ -100,7 +100,7 @@ describe('Configurators', () => {
           params: { fill: true, aspectRatio: 1.5 },
           locale: { fileName: 'https://example.com/image.png', alt: 'Image' },
         });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'carousel', { image: typeof image }>({
           id: '409a419f-5a01-46e0-aee6-4f66db492304',
           slug: 'carousel',
           type: 'carousel',
