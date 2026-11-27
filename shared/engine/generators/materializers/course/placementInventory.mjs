@@ -11,8 +11,8 @@ export function buildPlacementInventory(input, rendered, root, files) {
     seen = new Set();
   function visit(node, parentPath, orderPath) {
     const config = node.config;
-    for (const [index, slug] of config.content.order.entries()) {
-      const child = config.content.items[slug];
+    for (const [index, slug] of config.children.entries()) {
+      const child = config[slug];
       const type = child.config.type;
       const path = [parentPath, slug].filter(Boolean).join('/');
       const order = [...orderPath, index];

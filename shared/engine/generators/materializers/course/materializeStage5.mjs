@@ -139,9 +139,8 @@ export function materializeCourseStage5(input, options = {}) {
     !input.production.prerequisites.explanation.trim() ||
     !Array.isArray(input.production.standardsAlignment) ||
     !record(input.production.openDecisions) ||
-    !record(input.config.content) ||
-    !record(input.config.content.items) ||
-    !Array.isArray(input.config.content.order)
+    Object.hasOwn(input.config, 'content') ||
+    !Array.isArray(input.config.children)
   )
     throw new Error('Incomplete reviewed Course Stage 3 hierarchy or required methodology');
   for (const alignment of input.production.standardsAlignment) {
@@ -195,8 +194,8 @@ export function materializeCourseStage5(input, options = {}) {
     const previousLessons = new Map();
     const priorById = new Map();
     function inspect(owner, parent) {
-      for (const key of owner.config.content.order) {
-        const child = owner.config.content.items[key];
+      for (const key of owner.config.children) {
+        const child = owner.config[key];
         const kind = child?.config?.type;
         const path = [parent, key].filter(Boolean).join('/');
         if (kind === 'module' || kind === 'chapter') {
