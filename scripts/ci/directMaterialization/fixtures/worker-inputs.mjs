@@ -28,7 +28,7 @@ export function independentLessonConfig(sourceId = reusedLessonId, slug = 'indep
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Незалежний урок' } },
-    children: [],
+    section: { items: {}, order: [] },
   };
 }
 export function lessonStage2() {
@@ -124,23 +124,29 @@ export function courseStage3() {
       slug: 'skyBasics',
       params: { age: { min: 6, max: 10 } },
       locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-      children: ['newLesson', 'reused', 'overridden', 'episodeOne'],
-      newLesson,
-      reused: {
-        config: { type: 'lesson', slug: 'reused', skills: [skillId] },
-        production: { ...baseExisting(reusedLessonId, 'independentLesson') },
-      },
-      overridden: {
-        config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
-        production: {
-          ...baseExisting(overriddenLessonId, 'overriddenLesson'),
-          sourcePatch: patch,
-          overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
+      content: {
+        items: {
+          newLesson,
+          reused: {
+            config: { type: 'lesson', slug: 'reused', skills: [skillId] },
+            production: {
+              ...baseExisting(reusedLessonId, 'independentLesson'),
+            },
+          },
+          overridden: {
+            config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
+            production: {
+              ...baseExisting(overriddenLessonId, 'overriddenLesson'),
+              sourcePatch: patch,
+              overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
+            },
+          },
+          episodeOne: {
+            config: { type: 'episode' },
+            production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
+          },
         },
-      },
-      episodeOne: {
-        config: { type: 'episode' },
-        production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
+        order: ['newLesson', 'reused', 'overridden', 'episodeOne'],
       },
     },
     production: {
