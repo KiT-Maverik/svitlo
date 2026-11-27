@@ -41,6 +41,8 @@ export type LocalizedCourse = CoursePublishedTree & {
 const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
 const slot = /^[a-z][a-zA-Z0-9]*$/;
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+/** Membership is indexed when the complete resolved Course is validated, not during navigation. */
+const validatedPlacementIndexes = new WeakMap<object, WeakMap<object, Set<string>>>();
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function assertRecord(value: unknown, at: string): asserts value is Record<string, unknown> {
@@ -159,6 +161,16 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
   assertRecord(selected, at);
   if (base.id !== selected.id || base.type !== selected.type || base.draft !== selected.draft ||
       (base.slug !== undefined && base.slug !== selected.slug)) throw Error('Localized Course identity changed at ' + at);
+  // Language availability is authored identity, never locale-dependent metadata.
+  if (base.type === 'course' || base.type === 'episode' || base.type === 'assessment' ||
+      (base.type === 'lesson' && base.draft === true)) {
+    assertRecord(base.params, at + '/params');
+    assertRecord(selected.params, at + '/params');
+    if (!Array.isArray(base.params.languages) ||
+        JSON.stringify(base.params.languages) !== JSON.stringify(selected.params.languages)) {
+      throw Error('Localized Course language scope changed at ' + at);
+    }
+  }
   if (Array.isArray(base.children)) {
     if (JSON.stringify(base.children) !== JSON.stringify(selected.children))
       throw Error('Localized Course children changed at ' + at);
@@ -200,6 +212,7 @@ export function assembleCourseTree(
   if (!Array.isArray(value.params.languages) || !value.params.languages.includes(language))
     throw Error('Course does not support language ' + language);
   const visited = new Set([id]);
+  const membershipIndex = new WeakMap<object, Set<string>>();
   function title(node: Record<string, unknown>): void {
     assertRecord(node.locale, 'locale');
     if (typeof node.locale.title !== 'string' || !node.locale.title.trim()) throw Error('Missing localized Course title');
@@ -212,6 +225,7 @@ export function assembleCourseTree(
     const keys = Object.keys(owner).filter(key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
     if (keys.length !== children.length || keys.some(key => !children.includes(key)))
       throw Error('Unaddressed Course placement keys');
+    membershipIndex.set(owner, new Set(children));
     for (const key of children) {
       if (typeof key !== 'string' || !slot.test(key) || !Object.hasOwn(owner, key))
         throw Error('Invalid Course child slot');
@@ -244,6 +258,7 @@ export function assembleCourseTree(
     }
   }
   visit(value, 'course');
+  validatedPlacementIndexes.set(value, membershipIndex);
   return value as LocalizedCourse;
 }
 
@@ -268,15 +283,17 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
   return result;
 }
 
-/** O(depth) path resolver; does not scan unrelated siblings. */
+/** O(depth) navigation over a tree whose exhaustive child order was validated at assembly. */
 export function findCourseActivityByPlacement(course: LocalizedCourse, placement: string): CourseActivity | undefined {
   if (typeof placement !== 'string' || !placement ||
       placement.split('/').some(key => !slot.test(key) || forbidden.has(key)))
     throw Error('Unsafe Course placement path');
+  const index = validatedPlacementIndexes.get(course);
+  if (!index) throw Error('Course placement lookup requires an assembled, validated Course');
   let owner: Record<string, unknown> = course;
   const path = placement.split('/');
   for (const key of path) {
-    if (!Array.isArray(owner.children) || !owner.children.includes(key)) return undefined;
+    if (!index.get(owner)?.has(key) || !Object.hasOwn(owner, key)) return undefined;
     const child: unknown = owner[key];
     assertRecord(child, placement);
     owner = child;
