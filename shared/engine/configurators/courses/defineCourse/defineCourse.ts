@@ -125,12 +125,12 @@ export type Course_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
-    overrides(
-      patch: Course_Overrides<Items>,
-      options: PublicationLanguageOptions<Languages>,
-    ): CoursePublication<CourseOverrideBase>;
     overrides<const Added extends Record<string, Course_Child>>(
       patch: Course_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CoursePublication<CourseOverrideBase>;
+    overrides(
+      patch: Course_Overrides<Items>,
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
   };
