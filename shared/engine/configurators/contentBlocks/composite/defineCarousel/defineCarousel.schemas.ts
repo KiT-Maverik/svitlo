@@ -4,6 +4,10 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import { createContentBlockBaseSchema, localizationSwitch } from '../../contentBlock.schemas';
 import type { ContentBlock_Image_Configurator } from '../../primitive/defineImage/defineImage';
@@ -15,18 +19,8 @@ export type ContentBlock_Carousel_SlideConfigurator = ConfiguratorChild<
   ContentBlock_Image_Configurator | ContentBlock_Scene_Configurator
 >;
 
-/** Carousel's narrower child policy; shared by direct Zod and Build validation. */
+/** Carousel is Composite, but its directly placed slides are Image or Scene only. */
 export const carouselSlideTypes = ['image', 'scene'] as const;
-const carouselSlideConfigurator_Schema = z.custom<ContentBlock_Carousel_SlideConfigurator>(
-  value =>
-    value !== null &&
-    typeof value === 'object' &&
-    'type' in value &&
-    carouselSlideTypes.some(type => type === value.type),
-  { message: 'Carousel slides accept only Image or Scene configurators' },
-);
-
-/** Carousel children retain the complete, type-discriminated ContentBlock Props contract. */
 export const carousel_Slide_Data_Schema = z.discriminatedUnion('type', [image_Data_Schema, scene_Data_Schema]);
 export type ContentBlock_Carousel_SlideData = z.infer<typeof carousel_Slide_Data_Schema>;
 
@@ -48,51 +42,81 @@ const params = contentBlockBase.shape.params.extend({
 });
 const carouselBase = contentBlockBase.extend({ params });
 const configLocale = { title: localizationSwitch.config.optional() };
-const propsLocale = {
-  title: localizationSwitch.data.optional(),
-  slides: z.array(carousel_Slide_Data_Schema).min(1),
-};
+const dataLocale = { title: localizationSwitch.data.optional() };
 
 export type ContentBlock_Carousel_Locale<Mode extends 'config' | 'data'> = Mode extends 'config'
   ? z.infer<z.ZodObject<typeof configLocale>>
-  : z.infer<z.ZodObject<typeof propsLocale>>;
+  : z.infer<z.ZodObject<typeof dataLocale>>;
 
-export const carousel_Config_Schema = carouselBase.extend({
-  ...addUnifiedLocale(configLocale),
-  slides: z.object({
-    items: z.record(z.string(), carouselSlideConfigurator_Schema),
-    order: z.array(z.string()),
-  }),
+/** Own metadata is strict: slide collection fields are never Carousel locale values. */
+export const carousel_Metadata_Config_Schema = carouselBase.extend({
+  locale: z.object(configLocale).strict(),
 });
+
+/** Direct root placements are kept as configurators and ordered by children. */
+export const carousel_Config_Schema = carousel_Metadata_Config_Schema
+  .extend({ children: z.array(z.string()) })
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    for (const issue of validateSlugAddressedContainer(value, carouselSlideTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+  });
 export type ContentBlock_Carousel_Config = z.infer<typeof carousel_Config_Schema>;
 
-export type Carousel_Metadata_Overrides = DeepPartial<Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>>;
+export type Carousel_Metadata_Overrides = DeepPartial<
+  Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>
+>;
 export const carousel_Override_Config_Schema: z.ZodType<Carousel_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
-      params: carousel_Config_Schema.shape.params,
-      locale: carousel_Config_Schema.shape.locale,
+      params: carousel_Metadata_Config_Schema.shape.params,
+      locale: carousel_Metadata_Config_Schema.shape.locale,
     }),
   ),
 );
 
 export type ContentBlock_Carousel_Overrides<
-  Items extends Record<string, ContentBlock_Carousel_SlideConfigurator> = Record<
-    string,
-    ContentBlock_Carousel_SlideConfigurator
-  >,
+  Items extends Record<string, ContentBlock_Carousel_SlideConfigurator>,
   Added extends Record<string, ContentBlock_Carousel_SlideConfigurator> = {},
 > = Carousel_Metadata_Overrides & {
-  slides?: {
-    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & { [Key in keyof Items]?: never };
-    order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-  };
-};
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } &
+  Added & SafePlacementMap<Added> & { [Key in keyof Items & keyof Added]?: never };
 
 export type ContentBlock_Carousel_DataBase = z.infer<typeof carouselBase> & {
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;
+  children: string[];
+  [placementSlug: string]: unknown;
 };
 
-export const carousel_Data_Schema = carouselBase.extend(addUnifiedLocale(propsLocale));
+/**
+ * Canonical Data is slug-addressed. UI-specific slides[] belong only to
+ * the later Props assembly boundary (#912/#913), not Config or Data.
+ */
+export const carousel_Data_Schema = carouselBase
+  .extend({
+    locale: z.object(dataLocale).strict(),
+    children: z.array(z.string()),
+  })
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    for (const issue of validateSlugAddressedContainer(value, carouselSlideTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+    for (const key of value.children) {
+      const child = value[key];
+      if (child === undefined || child === false) continue;
+      const parsed = carousel_Slide_Data_Schema.safeParse(child);
+      if (!parsed.success) {
+        for (const issue of parsed.error.issues) {
+          ctx.addIssue({
+            code: 'custom',
+            path: [key, ...issue.path],
+            message: issue.message,
+          });
+        }
+      }
+    }
+  });
 export type ContentBlock_Carousel_Data = z.infer<typeof carousel_Data_Schema>;
