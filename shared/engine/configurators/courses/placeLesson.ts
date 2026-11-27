@@ -50,7 +50,13 @@ type VerifiedPatchKeys<Lesson extends Lesson_Configurator, Patch> = {
 export type PlacedLesson<
   Lesson extends Lesson_Configurator,
   Added extends AddedSections = {},
-> = Lesson & {
+> = Omit<Lesson, 'build'> & {
+  readonly build: Omit<Lesson['build'], 'overrides'> & {
+    overrides(
+      patch: CourseLessonBoundPatch<Lesson>,
+      options: PublicationLanguageOptions<Lesson['__svitloLanguageScope']>,
+    ): ReturnType<Lesson['build']['overrides']>;
+  };
   readonly placement: {
     readonly source: Lesson;
     readonly patch: LessonPatch<Lesson, Added>;
