@@ -75,6 +75,13 @@ describe('Configurators', () => {
           ...base, children: ['first', 'activity'], first, activity,
         }).success, true);
 
+        assert.equal(carousel_Config_Schema.safeParse({
+          ...base, children: [],
+        }).success, false, 'An empty authored Carousel is invalid');
+        assert.equal(carousel_Data_Schema.safeParse({
+          ...base, children: [],
+        }).success, false, 'An empty published Carousel is invalid');
+
         const text = defineText({ id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' } });
         for (const forbidden of [
           text,
