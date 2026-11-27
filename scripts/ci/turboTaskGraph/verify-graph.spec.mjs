@@ -103,3 +103,18 @@ test('stale configuration, remote cache or an unlocked Turbo CLI fail closed', (
   root.scripts['package:build'] = 'node scripts/runWorkspaceScript/run-workspace-script.mjs package:build';
   assert.throws(() => verifyTurboConfiguration(root, lock, config), /must use uncached Turbo/);
 });
+
+// A textbook may reference Engine only through its build-time generator.
+// The manifest edge is still mandatory for Turbo's parallel build order.
+test('textbook builder must declare a real build-time Engine dependency', () => {
+  const textbook = pkg('@svitlo/lesson', {
+    'package:build': 'node ../../scripts/textbook-tooling/buildTextbook/build.mjs',
+  });
+  const synthetic = { tasks: [{ taskId: '@svitlo/lesson#package:build', dependencies: [] }] };
+  assert.throws(() => verifyTurboGraph(synthetic, [textbook]), /declared Engine build dependency/);
+  const corrected = pkg(textbook.name, textbook.scripts, {}, { '@svitlo/engine': '0.0.0' });
+  const engine = pkg('@svitlo/engine', { 'package:build': 'compile' });
+  synthetic.tasks.push({ taskId: '@svitlo/engine#package:build', dependencies: [] });
+  synthetic.tasks[0].dependencies.push('@svitlo/engine#package:build');
+  assert.deepEqual(verifyTurboGraph(synthetic, [engine, corrected]), { tasks: 2, builds: 2, lint: 0 });
+});

@@ -51,6 +51,15 @@ export function verifyTurboGraph(dry, workspaces) {
   const expected = new Set();
   const tasks = new Map();
   for (const pkg of workspaces) {
+    // The shared textbook builder imports compiled Engine code even when a
+    // textbook has no authored lessons. Legacy lexicographic build ordering
+    // masked missing build-time dependency declarations; Turbo cannot.
+    if (pkg.scripts?.['package:build']?.includes('scripts/textbook-tooling/buildTextbook/build.mjs')) {
+      check(
+        Boolean(pkg.dependencies?.['@svitlo/engine'] || pkg.devDependencies?.['@svitlo/engine']),
+        'Textbook builder requires a declared Engine build dependency: ' + pkg.name,
+      );
+    }
     for (const operation of turboOperations) {
       if (Object.hasOwn(pkg.scripts || {}, operation)) expected.add(pkg.name + '#' + operation);
     }
