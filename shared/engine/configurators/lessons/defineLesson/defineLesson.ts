@@ -443,4 +443,22 @@ export const defineLesson: {
   ): ReturnType<typeof defineLessonImpl<Slug, Languages, Sections>>;
 } = defineLessonImpl;
 
-export type Lesson_Configurator = ReturnType<typeof defineLesson>;
+/**
+ * Parent-facing Lesson is a Build Configurator with opaque Section placements,
+ * not an unspecialized Record<string, never> from generic authoring inference.
+ * Concrete source Lessons keep their own literal Section keys and language
+ * scopes at the placeLesson/Course call site.
+ */
+type LessonBaseConfigurator = ReturnType<typeof defineLessonImpl<
+  string, readonly [LanguageCode, ...LanguageCode[]], {}
+>>;
+export type Lesson_Configurator = Omit<
+  LessonBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<LessonBaseConfigurator['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['overrides']>;
+  };
+};
