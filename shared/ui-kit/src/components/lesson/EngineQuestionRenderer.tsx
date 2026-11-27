@@ -26,7 +26,6 @@ import {
   type Question_OrderSequence_Data,
   type Question_SelectMultipleAnswers_Data,
   type Question_SelectOneAnswer_Data,
-  type QuizSectionViewProps,
 } from '@svitlo/engine/runtime';
 
 import type { SectionViewProps } from '../../presentation';
