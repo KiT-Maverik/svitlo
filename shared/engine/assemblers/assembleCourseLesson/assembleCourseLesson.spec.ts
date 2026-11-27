@@ -146,6 +146,55 @@ test('direct Lesson selection indexes validated order without scanning sibling a
   assert.throws(() => assembleCourseLesson(changed), /Course placement|hierarchy changed/);
 });
 
+test('same-length in-place edits invalidate mutable Course publication membership', () => {
+  const input = fixture();
+  const slot = input.course.base.laboratory as {
+    children: string[];
+    demo: { id: string; type: string; overrides?: object };
+    renamed?: { id: string; type: string; overrides?: object };
+  };
+
+  assert.equal(assembleCourseLesson(input).id, lessonId);
+  slot.children[0] = 'renamed'; // same array identity and length; old Set is stale.
+  assert.throws(
+    () => assembleCourseLesson(input),
+    /Unaddressed or disabled Course publication placement/,
+  );
+  slot.renamed = slot.demo;
+  delete (slot as unknown as Record<string, unknown>).demo;
+  assert.throws(
+    () => assembleCourseLesson(input),
+    /Unknown Course placement/,
+  );
+  assert.equal(
+    assembleCourseLesson({ ...input, placement: 'laboratory/renamed' }).id,
+    lessonId,
+  );
+  // Replacing a direct child without changing order must also be observed:
+  // a cached snapshot of the old child would incorrectly resolve lessonId.
+  slot.renamed = { id: id(99), type: 'lesson' };
+  assert.throws(
+    () => assembleCourseLesson({ ...input, placement: 'laboratory/renamed' }),
+    /Lesson ID or kind mismatch/,
+  );
+});
+
+test('frozen published Courses can reuse indexed navigation without owning the caller objects', () => {
+  const input = fixture();
+  const root = input.course.base;
+  const module = root.laboratory as { children: string[]; demo: object };
+  Object.freeze(module.children);
+  Object.freeze(module.demo);
+  Object.freeze(module);
+  Object.freeze(root.children);
+  Object.freeze(root);
+  assert.equal(assembleCourseLesson(input).id, lessonId);
+  assert.equal(assembleCourseLesson(input).id, lessonId);
+  assert.throws(() => { module.children[0] = 'changed'; }, TypeError);
+  assert.throws(() => { (module as unknown as Record<string, unknown>).demo = { id: id(99), type: 'lesson' }; }, TypeError);
+  assert.equal(assembleCourseLesson(input).id, lessonId);
+});
+
 test('selected Course locale may not replace the publication language scope', () => {
   const input = fixture();
   input.course.locale = { uk: { params: { languages: ['uk'] } } };
