@@ -1,7 +1,7 @@
 # Carousel Image/Scene slides in typed Lesson source
 
 **Current contract:** `defineCarousel` accepts `defineImage` and `defineScene` children
-in `slides: { items, order }`. Carousel is **Composite**: it cannot be nested under a CheckpointAnswer, Question or Flashcard side. A regular Section may hold a Carousel beside a Checkpoint. The former `defineCarouselSlide` configurator
+through root `children: string[]` plus direct slug-keyed Image/Scene Configurators. Carousel is **Composite**: it cannot be nested under a CheckpointAnswer, Question or Flashcard side. A regular Section may hold a Carousel beside a Checkpoint. The former `defineCarouselSlide` configurator
 and colocated binary media are retired. See the
 [typed Carousel source materializer](../../../shared/engine/generators/materializers/carousel/README.md)
 and [textbook asset packaging guide](../../../scripts/textbook-tooling/buildTextbook/README.md)
@@ -10,9 +10,10 @@ records a historical layout prototype, not a current source template.
 
 ## Authored and generated structure
 
-- `slides.items` maps authored camelCase slugs to full Image or Scene
-  configurators; `slides.order` fixes the sequence. Build Props preserve each
-  child's identity, type and runtime data.
+- `children` lists authored Image/Scene placement slugs in order. Each named
+  root key holds its full Image/Scene Configurator. Build emits slug-addressed
+  domain Data; a UI adapter projects ordered `slides[]` into presentation Props.
+  Child identity, type, locale scope and ordered placement are preserved.
 - The typed Stage 6.1 Lesson materializer places each slide under the Carousel's
   `slides/<slug>/` child path; there are no per-kind `images/` or `scenes/` wrappers:
 
