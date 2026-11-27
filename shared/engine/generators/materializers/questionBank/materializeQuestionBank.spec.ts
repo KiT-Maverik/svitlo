@@ -279,7 +279,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
 
   // Keep the published Stage 3 boundary as strict as the concrete Image renderer.
   const shortPrompt = structuredClone(input);
-  const pending = shortPrompt.config.questions.selectOneAnswer.promptOne.config.content.question
+  const pending = (shortPrompt.config.questions.selectOneAnswer.promptOne.config.content.question as Record<string, unknown>)
     .pendingDiagram as typeof image;
   pending.production.prompt = 'Draw a diagram';
   assert.throws(
