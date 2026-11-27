@@ -53,6 +53,9 @@ export const matchBlocks_Data_Schema = questionBase.extend({
         ctx.addIssue({ code: 'custom', message: 'Invalid pair order' });
       }
       for (const key of keys) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved pair placement key' });
+        }
         if (!z.strictObject({ left: primitiveContentBlockResolved_Schema,
                                right: primitiveContentBlockResolved_Schema }).safeParse(pairs[key]).success) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid matching pair' });
