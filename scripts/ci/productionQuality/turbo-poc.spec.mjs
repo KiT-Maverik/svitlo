@@ -69,6 +69,11 @@ test('real distributed GitHub needs preserve Turbo task dependencies and reject 
     'needs: []',
   );
   assert.throws(() => checkActionsGraph(graph(), missing), /GitHub needs missing task dependency/);
+  const serialized = workflow.replace(
+    'needs: [turbo-b-ui-kit-build]',
+    'needs: [turbo-b-ui-kit-build, turbo-b-engine-tests]',
+  );
+  assert.throws(() => checkActionsGraph(graph(), serialized), /Unnecessary GitHub job serialization/);
   const cyclic = workflow.replace(
     'needs: [turbo-b-engine-build]',
     'needs: [turbo-b-engine-build, turbo-b-engine-tests]',
