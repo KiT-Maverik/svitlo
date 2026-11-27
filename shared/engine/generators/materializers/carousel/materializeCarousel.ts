@@ -93,7 +93,7 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   const enabled = Object.entries(config).filter(
     (entry): entry is [string, CarouselSlideSource] => !metadata.has(entry[0]),
   );
-  if (enabled.some(([, value]) => value === false)) throw new Error('Carousel: disabled slides cannot be authored');
+  if (enabled.some(([, value]) => typeof value === 'boolean')) throw new Error('Carousel: disabled slides cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||
@@ -133,7 +133,6 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   const emitted = new Set<string>();
   for (const key of config.children) {
     const child = config[key] as CarouselSlideSource;
-    if (child === false) continue;
     const childDirectory = (directory ? directory + '/' : '') + 'slides/' + key;
     const result = context.renderChild(child, childDirectory);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
