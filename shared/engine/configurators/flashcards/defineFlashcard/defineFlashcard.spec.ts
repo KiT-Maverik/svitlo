@@ -254,6 +254,64 @@ describe('Configurators', () => {
         assert.equal(card.content.front.front, front);
       });
 
+      test('Flashcard Side publishes no inherited siblings for sparse patches', () => {
+        const side = defineFlashcardSide<{ front: typeof front; extra: typeof extra }, ['en', 'uk']>({
+          children: ['front', 'extra'],
+          front,
+          extra,
+        });
+        assert.deepEqual(side.build.overrides({}, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        const changedBase = side.build.overrides(
+          { extra: { params: { disabled: true } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(changedBase.base, { extra: { params: { disabled: true } } });
+        assert.equal(changedBase.locale, undefined);
+        const localized = side.build.overrides(
+          { front: { locale: { value: { uk: 'Нове запитання' } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          front: { locale: { value: 'Нове запитання' } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        assert.equal('extra' in (localized.locale?.uk ?? {}), false);
+        const structural = side.build.overrides(
+          { front: false, children: ['extra'] },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(structural.base.children, ['extra']);
+        assert.equal('front' in structural.base, false);
+        assert.equal('extra' in structural.base, true);
+        assert.deepEqual(side.build.data({ languages: ['en', 'uk'] }).base.children, ['front', 'extra']);
+      });
+
+      test('Flashcard parent preserves sparse Side patches and only replaces explicitly ordered groups', () => {
+        const card = defineBilingualFlashcard(source);
+        assert.deepEqual(card.build.overrides({}, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        assert.deepEqual(card.build.overrides({ content: { front: {} } }, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        const localized = card.build.overrides(
+          { content: { front: { front: { locale: { value: { uk: 'Нове запитання' } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk?.content?.front, {
+          front: { locale: { value: 'Нове запитання' } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
+      });
+
       test('Flashcard rejects invalid metadata, identity, duplicate flags and empty mandatory side', () => {
         const card = defineBilingualFlashcard(source);
         assert.throws(
