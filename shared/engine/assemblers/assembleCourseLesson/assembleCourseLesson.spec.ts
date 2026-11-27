@@ -56,7 +56,7 @@ test('resolves selected Course placement without duplicating standalone Lesson D
   assert.equal(value.id, lessonId);
   assert.equal(value.locale.title, 'Український урок');
   assert.deepEqual(value.children, ['intro', 'review']);
-  assert.equal(value.intro.type, 'content');
+  assert.equal((value.intro as { type: string }).type, 'content');
   assert.deepEqual(input, snapshot, 'published inputs remain immutable');
 });
 
@@ -84,7 +84,7 @@ test('structural base override removes translated children by tombstone, without
   const value = assembleCourseLesson(input);
   assert.deepEqual(value.children, ['review']);
   assert.equal(Object.hasOwn(value, 'intro'), false);
-  assert.equal(value.review.id, id(11));
+  assert.equal((value.review as { id: string }).id, id(11));
   assert.deepEqual(input.lesson.locale?.uk?.intro, { locale: { title: 'Вступ' } });
 });
 
@@ -94,7 +94,7 @@ test('localized override can replace a complete ordered children array', () => {
   const value = assembleCourseLesson(input);
   assert.deepEqual(value.children, ['intro']);
   assert.equal(Object.hasOwn(value, 'review'), false);
-  assert.equal(value.intro.id, id(10));
+  assert.equal((value.intro as { id: string }).id, id(10));
 });
 
 test('repeated Lesson UUIDs require explicit placement and keep independent contextual overrides', () => {
