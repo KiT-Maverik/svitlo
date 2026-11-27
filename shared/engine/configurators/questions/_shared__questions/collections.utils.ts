@@ -258,7 +258,7 @@ export const resolveBlockCollection = (
       (sparseLocale[language as LanguageCode] ??= {} as ResolvedBlockGroup)[entry.key] = cloneJson(fragment);
     }
   }
-   return { base: sparseBase, locale: sparseLocale, order: [...order], effectiveBase: base };
+  return { base: sparseBase, locale: sparseLocale, order: [...order], effectiveBase: base };
 };
 
 export const resolveBlockMap = (
