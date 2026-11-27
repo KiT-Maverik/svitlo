@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type { LocalizedEpisode } from '@svitlo/engine/runtime';
+import type { EpisodeViewProps } from '../../presentation';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { Episode } from './Episode';
 
-const response: LocalizedEpisode = {
+const response: EpisodeViewProps = {
   id: 'episode',
   slug: 'story',
   type: 'episode',
