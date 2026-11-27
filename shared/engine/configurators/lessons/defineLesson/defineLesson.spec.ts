@@ -54,7 +54,7 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
           locale: { title: { en: 'Example', uk: 'Приклад' } },
-          children: ['intro'], intro: section,
+          children: ['intro' as const], intro: section,
         });
 
       test('completed Lesson Data rejects Draft markers, and Draft requires a valid Content Section and Text placeholder', () => {
@@ -181,7 +181,7 @@ describe('Configurators', () => {
             grade: { min: 1, max: 4 },
           },
           locale: { title: 'For early learners' },
-          children: ['intro'], intro: section,
+          children: ['intro' as const], intro: section,
         };
         const lesson = defineLesson(input);
         const built = lesson.build.data({ languages: ['en'] });
@@ -243,7 +243,7 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
           locale: { title: 'Bankless Lesson' },
-          children: ['intro'], intro: section,
+          children: ['intro' as const], intro: section,
         };
         const lesson = defineLesson(input);
         const built = lesson.build.data({ languages: ['en'] });
@@ -336,6 +336,7 @@ describe('Configurators', () => {
           locale: { title: 'Unscoped section', navigationLabel: '1' },
           children: ['sparseText'], sparseText,
         });
+        // @ts-expect-error Intentionally incompatible child scope must fail at the authoring call.
         const lesson = defineLesson({
           id: id('83'),
           slug: 'incompleteLesson',
@@ -348,7 +349,6 @@ describe('Configurators', () => {
           },
           locale: { title: 'Lesson' },
           children: ['unscoped'],
-          // @ts-expect-error Intentionally bypass the incompatible child scope to test runtime validation.
           unscoped: unscopedSection,
         });
 
@@ -377,7 +377,7 @@ describe('Configurators', () => {
           children: [],
         };
         assert.equal(lesson_Config_Schema.safeParse(draft).success, true, 'Config permits sparse locale dictionaries');
-        const lesson = defineLesson(draft as never);
+        const lesson = defineLesson<'sourceOnly', typeof draft.params.languages, {}>(draft as never);
         assert.doesNotThrow(() => lesson.config.validate(draft as never));
         const source = lesson.build.data({ languages: ['en'] });
         assert.equal(source.locale?.en?.locale?.title, 'Source language only');
@@ -492,11 +492,11 @@ describe('Configurators', () => {
         const lesson = makeLesson();
         assert.throws(
           () =>
-            defineLesson({
+            defineLesson<'exampleLesson', ['en', 'uk'], { intro: typeof section }>({
               ...lesson.config.base,
               programId: id('04'),
               locale: { title: 'Legacy' },
-              children: ['intro'], intro: section,
+              children: ['intro' as const], intro: section,
             } as never).build.data({ languages: ['en'] }),
           /programId/,
         );
@@ -606,7 +606,7 @@ describe('Configurators', () => {
 
         const deferred = defineLesson({
           ...lessonInput,
-          children: ['intro'], intro: section,
+          children: ['intro' as const], intro: section,
         });
         assert.equal(deferred.slug, 'quizRequiredLesson');
         assert.throws(() => deferred.build.data({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
