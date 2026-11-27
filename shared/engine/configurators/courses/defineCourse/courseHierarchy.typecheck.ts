@@ -180,6 +180,80 @@ const invalidPlacementChildren: ChildrenSupporting<['en', 'uk'], { shadow: typeo
 void invalidPlacementChildren;
 
 
+/** Inferred owners advertise exactly the languages all children and own locale can publish. */
+const inferredEnglishChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredEnglishChapter',
+  params: {},
+  locale: { title: 'English chapter' },
+  children: ['lessonEnglishOnly'],
+  lessonEnglishOnly,
+});
+inferredEnglishChapter.build.data({ languages: ['en'] });
+// @ts-expect-error An inferred Chapter cannot advertise Ukrainian from an English-only Lesson.
+inferredEnglishChapter.build.data({ languages: ['uk'] });
+
+const inferredEnglishModule = defineModule({
+  id,
+  type: 'module',
+  slug: 'inferredEnglishModule',
+  params: {},
+  locale: { title: 'English module' },
+  children: ['inferredEnglishChapter'],
+  inferredEnglishChapter,
+});
+inferredEnglishModule.build.data({ languages: ['en'] });
+// @ts-expect-error An inferred Module cannot advertise Ukrainian its Chapter lacks.
+inferredEnglishModule.build.data({ languages: ['uk'] });
+
+defineCourse<'invalidInferredModule', { inferredEnglishModule: typeof inferredEnglishModule }, ['en', 'uk']>({
+  id,
+  type: 'course',
+  slug: 'invalidInferredModule',
+  params: { languages: ['en', 'uk'] as const },
+  locale: { title: 'Course', description: 'Invalid scope' },
+  children: ['inferredEnglishModule'],
+  // @ts-expect-error A bilingual Course cannot include an inferred English-only Module.
+  inferredEnglishModule,
+});
+
+defineModule<'invalidInferredChapter', { inferredEnglishChapter: typeof inferredEnglishChapter }, ['en', 'uk']>({
+  id,
+  type: 'module',
+  slug: 'invalidInferredChapter',
+  params: {},
+  locale: { title: 'Module' },
+  children: ['inferredEnglishChapter'],
+  // @ts-expect-error An explicitly bilingual Module cannot contain an inferred English-only Chapter.
+  inferredEnglishChapter,
+});
+
+const inferredBilingualChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredBilingualChapter',
+  params: {},
+  locale: { title: { en: 'Chapter', uk: 'Розділ' } },
+  children: ['lesson'],
+  lesson,
+});
+inferredBilingualChapter.build.data({ languages: ['uk'] });
+// @ts-expect-error Inferred scope excludes Polish absent from its title and child.
+inferredBilingualChapter.build.data({ languages: ['pl'] });
+
+const inferredTitleOnlyChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredTitleOnlyChapter',
+  params: {},
+  locale: { title: { en: 'English title' } },
+  children: [],
+});
+inferredTitleOnlyChapter.build.data({ languages: ['en'] });
+// @ts-expect-error Even without children, the own title limits available publication languages.
+inferredTitleOnlyChapter.build.data({ languages: ['uk'] });
+
 /** A's Data surface: placement keys are literals, never a generic content array. */
 const publishedCourse = course.build.data({ languages: ['en'] });
 type PublishedCourseChildKeys = Expect<Equal<(typeof publishedCourse.base.children)[number], 'module' | 'chapter'>>;
