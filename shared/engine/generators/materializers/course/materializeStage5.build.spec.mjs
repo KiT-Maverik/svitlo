@@ -59,35 +59,26 @@ const input = {
       prerequisites: { skills: [circleSkill] },
     },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Природа' } },
-    content: {
-      items: {
-        moduleOne: {
+    children: ['moduleOne'],
+    moduleOne: {
+      config: {
+        type: 'module',
+        slug: 'moduleOne',
+        locale: { title: { uk: 'Модуль' } },
+        children: ['chapterOne'],
+        chapterOne: {
           config: {
-            type: 'module',
-            slug: 'moduleOne',
-            locale: { title: { uk: 'Модуль' } },
-            content: {
-              items: {
-                chapterOne: {
-                  config: {
-                    type: 'chapter',
-                    slug: 'chapterOne',
-                    locale: { title: { uk: 'Розділ' } },
-                    content: {
-                      items: { lessonOne: pendingLesson, episodeOne: pendingEpisode },
-                      order: ['lessonOne', 'episodeOne'],
-                    },
-                  },
-                  production: unit(),
-                },
-              },
-              order: ['chapterOne'],
-            },
+            type: 'chapter',
+            slug: 'chapterOne',
+            locale: { title: { uk: 'Розділ' } },
+            children: ['lessonOne', 'episodeOne'],
+            lessonOne: pendingLesson,
+            episodeOne: pendingEpisode,
           },
           production: unit(),
         },
       },
-      order: ['moduleOne'],
+      production: unit(),
     },
   },
   production: {
