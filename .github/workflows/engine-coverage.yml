@@ -94,7 +94,7 @@ jobs:
         run: npm ci --silent --ignore-scripts --no-audit --no-fund
 
       - name: Build Engine
-        run: npm run package:build --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
 
       - name: Validate the coverage filter and gap reporter
         run: node --test --test-reporter=dot shared/engine/scripts/coverage/report.spec.mjs
