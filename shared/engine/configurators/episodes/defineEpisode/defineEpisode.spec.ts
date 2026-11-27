@@ -184,7 +184,7 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: 'Chapter' },
-          content: { items: { chapterScene: chapterEpisode }, order: ['chapterScene'] },
+          children: ['chapterScene'], chapterScene: chapterEpisode,
         });
         const module = defineModule<
           'module',
@@ -196,7 +196,7 @@ describe('Configurators', () => {
           type: 'module',
           params: {},
           locale: { title: 'Module' },
-          content: { items: { chapter, moduleScene: moduleEpisode }, order: ['chapter', 'moduleScene'] },
+          children: ['chapter', 'moduleScene'], chapter, moduleScene: moduleEpisode,
         });
         const course = defineCourse<'course', { module: typeof module; arrival: typeof episode }, typeof languages>({
           id: id('07'),
@@ -204,18 +204,18 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages, scenarioMode: 'story' },
           locale: { title: 'Story', description: 'A journey' },
-          content: { items: { module, arrival: episode }, order: ['module', 'arrival'] },
+          children: ['module', 'arrival'], module, arrival: episode,
         });
         const resource = course.build.data({ languages: ['en', 'uk'] });
-        assert.equal(course.content.items.arrival, episode);
-        assert.equal(chapter.content.items.chapterScene, chapterEpisode);
-        assert.equal(module.content.items.moduleScene, moduleEpisode);
+        assert.equal(course.arrival, episode);
+        assert.equal(chapter.chapterScene, chapterEpisode);
+        assert.equal(module.moduleScene, moduleEpisode);
         assert.deepEqual(resource.base.children, ['module', 'arrival']);
         assert.equal(resource.base.arrival.type, 'episode');
         assert.ok(JSON.stringify(resource.locale?.uk).includes('Прибуття'));
         const override = course.build.overrides(
           {
-            content: { items: { arrival: { locale: { title: { uk: 'Змінена сцена' } } } } },
+            arrival: { locale: { title: { uk: 'Змінена сцена' } } },
           },
           { languages: ['en', 'uk'] },
         );
