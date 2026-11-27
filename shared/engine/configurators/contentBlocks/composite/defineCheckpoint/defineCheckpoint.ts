@@ -198,12 +198,12 @@ export const defineCheckpoint = <
     for (const language of languages) {
       const fragments: Record<string, unknown> = {};
       for (const { key, resource, patch } of entries) {
-        if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
-        const translated = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const withBase = patch ? mergeForValidation(translated, patch.base) : translated;
-        fragments[key] = patch?.locale?.[language]
-          ? mergeForValidation(withBase, patch.locale[language])
-          : withBase;
+        // Preserve the Item's sparse question/answer locale paths: do not
+        // inject its invariant id, question Data or Answer Data here.
+        const translated = mergeForValidation(
+          resource.locale?.[language] ?? {}, patch?.locale?.[language] ?? {},
+        );
+        if (Object.keys(translated).length) fragments[key] = translated;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
     }

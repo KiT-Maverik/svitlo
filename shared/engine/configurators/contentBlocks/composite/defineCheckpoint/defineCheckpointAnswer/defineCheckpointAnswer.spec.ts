@@ -56,6 +56,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     const built = answer.build.data({ languages: ['uk'] });
     assert.equal(built.locale?.en, undefined);
     assert.equal((built.locale?.uk?.second as { locale: { value: string } }).locale.value, 'Другий');
+    assert.deepEqual(built.locale?.uk, { second: { locale: { value: 'Другий' } } });
     assert.equal(built.locale?.uk?.first, undefined);
     assert.equal((built.base.first as { locale: { value: string } }).locale.value, 'Invariant');
   });
@@ -82,6 +83,57 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       first: false, second: { locale: { value: { uk: 'Змінено' } } },
       third, children: ['third', 'second'],
     }, scope), patch);
+  });
+
+  test('disabling a live Primitive requires a replacement order and publishes a tombstone', () => {
+    const { answer } = example();
+    assert.throws(
+      () => answer.build.overrides({ first: { params: { disabled: true } } }, scope),
+      /children is required/,
+    );
+    assert.throws(
+      () => answer.build.overrides({
+        first: { params: { disabled: true } }, children: ['second', 'first'],
+      }, scope),
+      /Invalid Checkpoint Answer overrides/,
+    );
+    const patch = answer.build.overrides({
+      first: { params: { disabled: true } }, children: ['second'],
+    }, scope);
+    assert.deepEqual(patch, { base: { children: ['second'], first: false }, locale: undefined });
+    const merged = mergeForValidation(answer.build.data(scope).base, patch.base);
+    delete merged.first;
+    assert.equal(checkpointAnswer_Data_Schema.safeParse(merged).success, true);
+    assert.deepEqual(answer.build.data(scope).base.children, ['second', 'first']);
+  });
+
+  test('authored disabled Primitives stay in Config but are absent from published Data', () => {
+    const { second } = example();
+    const first = defineText({
+      id: id('75'), slug: 'first', type: 'text',
+      params: { disabled: true }, locale: { value: { en: 'Hidden', uk: 'Сховано' } },
+    });
+    const answer = defineCheckpointAnswer({
+      id: id('76'), slug: 'answer', type: 'checkpointAnswer',
+      children: ['first', 'second'], first, second,
+    });
+    const data = answer.build.data({ languages: ['uk'] });
+    assert.deepEqual(data.base.children, ['second']);
+    assert.equal(data.base.first, undefined);
+    assert.deepEqual(data.locale?.uk, { second: { locale: { value: 'Другий' } } });
+    assert.equal(checkpointAnswer_Data_Schema.safeParse(
+      mergeForValidation(data.base, data.locale?.uk ?? {}),
+    ).success, true);
+    assert.deepEqual(answer.build.overrides({}, { languages: ['uk'] }), {
+      base: {}, locale: undefined,
+    });
+    assert.throws(() => answer.build.overrides({
+      first: { locale: { value: { uk: 'Ще' } } },
+    } as never, { languages: ['uk'] }), /already disabled/);
+    assert.throws(() => defineCheckpointAnswer({
+      id: id('77'), slug: 'allHidden', type: 'checkpointAnswer',
+      children: ['first'], first,
+    }).build.data({ languages: ['uk'] }));
   });
 
   test('rejects missing, repeated, orphaned, reserved, and unsafe placements', () => {
@@ -112,7 +164,7 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     });
     const carousel = defineCarousel({
       id: id('77'), slug: 'carousel', type: 'carousel', params: {}, locale: {},
-      slides: { items: { image }, order: ['image'] },
+      children: ['image'], image,
     });
     assert.throws(() => answer.build.overrides({ carousel, children: ['second', 'first', 'carousel'] } as never, scope));
     assert.throws(() => defineCheckpointAnswer({

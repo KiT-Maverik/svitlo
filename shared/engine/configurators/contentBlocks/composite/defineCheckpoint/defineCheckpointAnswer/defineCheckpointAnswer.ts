@@ -59,6 +59,12 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const ownFields = new Set(['id', 'slug', 'type', 'children']);
 const directBlocks = (config: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
+/** Disabled authored children remain in Config, but never enter canonical Data. */
+const enabledAuthoredOrder = (items: Record<string, Block>, order: readonly string[]) =>
+  order.filter(key => {
+    const params = items[key]?.config.base.params;
+    return !isRecord(params) || params.disabled !== true;
+  });
 
 /** Parent owns the Primitive-only collection boundary; each child validates itself. */
 const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
@@ -151,12 +157,12 @@ export const defineCheckpointAnswer = <
     for (const language of languages) {
       const fragments: Record<string, unknown> = {};
       for (const { key, original, patch } of entries) {
-        if (original.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
-        const translated = mergeForValidation(original.base, original.locale?.[language] ?? {});
-        const withBase = patch ? mergeForValidation(translated, patch.base) : translated;
-        fragments[key] = patch?.locale?.[language]
-          ? mergeForValidation(withBase, patch.locale[language])
-          : withBase;
+        // Locale files are sparse fragments, not fully resolved child Data.
+        // Invariant identity/params stay in base and are merged for validation.
+        const translated = mergeForValidation(
+          original.locale?.[language] ?? {}, patch?.locale?.[language] ?? {},
+        );
+        if (Object.keys(translated).length) fragments[key] = translated;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
     }
@@ -166,9 +172,10 @@ export const defineCheckpointAnswer = <
   const data = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
     validate(originalConfig());
-    const built = buildContent(initialItems, initialOrder);
+    const enabledOrder = enabledAuthoredOrder(initialItems, initialOrder);
+    const built = buildContent(initialItems, enabledOrder);
     const output: AnswerPublication<AnswerBase> = structuredClone({
-      base: { id, slug, type, children: [...initialOrder], ...built.base },
+      base: { id, slug, type, children: enabledOrder, ...built.base },
       locale: Object.keys(built.locale).length ? built.locale : undefined,
     });
     validateRequestedPublication(checkpointAnswer_Data_Schema, output, languages);
@@ -199,6 +206,8 @@ export const defineCheckpointAnswer = <
         path: 'children', itemLabel: 'Answer Primitive', reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+      const source = data(options);
+      const initiallyEnabled = new Set(source.base.children);
       const active: Record<string, Block | false> = { ...initialItems };
       const childPatches: Record<string, unknown> = {};
       let structureChanged = Object.keys(additions).length > 0;
@@ -216,41 +225,69 @@ export const defineCheckpointAnswer = <
           throw new Error('Answer child override must be an object or false: ' + key);
         }
       }
+      const enabled: Record<string, Block> = {};
+      for (const [key, child] of Object.entries(active)) {
+        if (child === false) continue;
+        let disabled = isRecord(child.config.base.params) && child.config.base.params.disabled === true;
+        if (Object.hasOwn(childPatches, key)) {
+          const original = buildChildData(child) as unknown as BlockResource;
+          const childPatch = buildChildOverrides(child, childPatches[key] as never) as unknown as BlockPatch;
+          const effective = mergeForValidation(original.base, childPatch.base);
+          disabled = isRecord(effective.params) && effective.params.disabled === true;
+        }
+        if (disabled) {
+          if (initiallyEnabled.has(key)) structureChanged = true;
+          if (Object.hasOwn(childPatches, key) && !initiallyEnabled.has(key))
+            throw new Error('Cannot patch an already disabled Answer Primitive: ' + key);
+          continue;
+        }
+        if (!initiallyEnabled.has(key)) structureChanged = true;
+        enabled[key] = child;
+      }
       if (structureChanged && patch.children === undefined)
         throw new Error('children is required when adding or disabling answers');
-      const order = patch.children ?? initialOrder;
+      // Default to the published active order, never the authored order
+      // containing disabled Config children.
+      const order = patch.children ?? source.base.children;
       const ordered = validateOrderedKeys(
-        { items: active, order }, { path: 'children', allowDisabled: true, requireNonEmpty: true },
+        { items: enabled, order }, { path: 'children', requireNonEmpty: true },
       );
       if (ordered.length) throw new Error(ordered.map(issue => issue.message).join('; '));
-      if (!order.length) throw new Error('At least one active answer is required');
-      const enabled = Object.fromEntries(
-        Object.entries(active).filter((entry): entry is [string, Block] => entry[1] !== false),
-      );
       validate({ ...base, children: [...order], ...enabled });
       const built = buildContent(enabled, order, childPatches);
       const output: AnswerPublication<AnswerOverrideBase> = { base: {}, locale: undefined };
       const files: AnswerLocaleFiles = {};
       if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
         if (structureChanged || patch.children !== undefined) output.base.children = [...order];
-        for (const [key, value] of Object.entries(changes)) {
-          output.base[key] = value === false ? false : (built.childPatches[key]?.base ?? {});
+        for (const [key] of Object.entries(changes)) {
+          // A params.disabled override is a structural removal, not a live
+          // child with a disabled param and a stale position in children.
+          output.base[key] = !Object.hasOwn(enabled, key)
+            ? false
+            : !initiallyEnabled.has(key)
+              ? built.base[key]
+              : (built.childPatches[key]?.base ?? {});
         }
-        for (const key of Object.keys(additions)) output.base[key] = built.base[key];
+        for (const key of Object.keys(additions))
+          if (Object.hasOwn(enabled, key)) output.base[key] = built.base[key];
         for (const language of languages) {
           const fragment: Record<string, unknown> = {};
           for (const key of Object.keys(additions)) {
-            if (built.locale[language]?.[key] !== undefined) fragment[key] = built.locale[language][key];
+            if (Object.hasOwn(enabled, key) && built.locale[language]?.[key] !== undefined)
+              fragment[key] = built.locale[language][key];
           }
           for (const key of Object.keys(childPatches)) {
-            const localized = built.childPatches[key]?.locale?.[language];
+            if (!Object.hasOwn(enabled, key)) continue;
+            const localized = !initiallyEnabled.has(key)
+              ? built.locale[language]?.[key]
+              : built.childPatches[key]?.locale?.[language];
             if (localized !== undefined) fragment[key] = localized;
           }
           if (Object.keys(fragment).length) files[language] = fragment;
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
-      validateSlugAddressedPublication(checkpointAnswer_Data_Schema, data(options), languages, output);
+      validateSlugAddressedPublication(checkpointAnswer_Data_Schema, source, languages, output);
       return output;
     } catch (error) {
       throw new Error(

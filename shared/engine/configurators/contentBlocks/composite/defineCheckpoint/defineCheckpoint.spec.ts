@@ -64,10 +64,10 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     assert.equal(result.base.params.enableChecks, true);
     assert.equal(result.base.params.requireCompletion, true);
     assert.equal((result.base.first as { check: boolean }).check, true);
-    assert.equal(
-      (((result.locale?.uk?.first as Record<string, unknown>).question as { locale: { value: string } }).locale.value),
-      'Перше?',
-    );
+    assert.deepEqual(result.locale?.uk, {
+      locale: { title: 'Перевірка' },
+      first: { question: { locale: { value: 'Перше?' } } },
+    });
     const localized = mergeForValidation(result.base, result.locale?.uk ?? {});
     assert.equal(checkpoint_Data_Schema.safeParse(localized).success, true);
     const firstData = localized.first as { question: { params: Record<string, unknown> } };
@@ -83,6 +83,40 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     }).success, false);
     assert.equal(JSON.stringify(result).includes('"items"'), false);
     assert.equal(JSON.stringify(result).includes('"order"'), false);
+  });
+
+  test('publishes only sparse nested Answer and Question locale fragments', () => {
+    const question = text('question', '81', { en: 'Where?', uk: 'Де?' });
+    const answerText = text('answerText', '82', { en: 'Here', uk: 'Тут' });
+    const unchanged = text('unchanged', '83', 'Invariant');
+    const answer = defineCheckpointAnswer({
+      id: id('84'), slug: 'answer', type: 'checkpointAnswer',
+      children: ['answerText', 'unchanged'], answerText, unchanged,
+    });
+    const first = defineCheckpointItem({
+      id: id('85'), slug: 'first', type: 'checkpointItem', question, answer,
+    });
+    const checkpoint = defineCheckpoint({
+      id: id('86'), slug: 'review', type: 'checkpoint',
+      params: {}, locale: { title: { en: 'Review', uk: 'Огляд' } },
+      children: ['first'], first,
+    });
+    const published = checkpoint.build.data({ languages: ['uk'] });
+    assert.deepEqual(published.locale, {
+      uk: {
+        locale: { title: 'Огляд' },
+        first: {
+          question: { locale: { value: 'Де?' } },
+          answer: { answerText: { locale: { value: 'Тут' } } },
+        },
+      },
+    });
+    assert.equal(published.locale?.uk?.first && (
+      (published.locale.uk.first as Record<string, unknown>).id
+    ), undefined);
+    assert.equal(checkpoint_Data_Schema.safeParse(
+      mergeForValidation(published.base, published.locale?.uk ?? {}),
+    ).success, true);
   });
 
   test('publishes sparse metadata and isolated nested Text/Answer locale patches', () => {
