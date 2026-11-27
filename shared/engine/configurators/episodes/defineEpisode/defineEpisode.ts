@@ -93,7 +93,7 @@ const validate = (config: Episode_Config): void => {
     ) {
       errors.push('Invalid Episode Section Build API or identity: ' + key);
     }
-    if (typeof child?.id === 'string') {
+    if (isRecord(child) && typeof child.id === 'string') {
       if (ids.has(child.id)) errors.push('Duplicate Episode Section ID: ' + child.id);
       ids.add(child.id);
     }
@@ -137,7 +137,7 @@ export const defineEpisode = <
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
-  const initialSections = directSections(config) as Sections;
+  const initialSections = directSections(config) as unknown as Sections;
   const initialOrder = [...config.children];
 
   const configBase = {
@@ -322,7 +322,7 @@ export const defineEpisode = <
             const translated = sections.locale[language]?.[key];
             if (translated !== undefined) fragments[key] = translated;
           }
-          Object.assign((files[language] ??= {}), fragments);
+          if (Object.keys(fragments).length) Object.assign((files[language] ??= {}), fragments);
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
