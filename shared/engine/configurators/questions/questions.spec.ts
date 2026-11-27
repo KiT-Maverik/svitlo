@@ -28,10 +28,8 @@ describe('Configurators', () => {
       const no = block('no', 'No');
       const maybe = block('maybe', 'Maybe');
       const extra = block('extra', 'Extra');
-      const collection = <const Slug extends string, T extends { slug: Slug }>(value: T) => ({
-        items: { [value.slug]: value } as Record<Slug, T>,
-        order: [value.slug] as Slug[],
-      });
+      const collection = <const Slug extends string, T extends { slug: Slug }>(value: T) =>
+        ({ children: [value.slug], [value.slug]: value }) as { children: Slug[] } & Record<Slug, T>;
       const prompt = { question: collection(promptBlock) };
       const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
       const localized = { en: 'Answer', uk: 'Відповідь' } as const;
@@ -62,7 +60,7 @@ describe('Configurators', () => {
           (() => {
             const config = {
               ...common('matchBlocks'),
-              content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
+              content: { ...prompt, pairs: {  pairOne: { left: yes, right: no } , children: ['pairOne'] } },
             };
             return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
           })(),
@@ -102,7 +100,7 @@ describe('Configurators', () => {
               locale: { placeholder: localized },
               content: {
                 ...prompt,
-                slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
+                slots: {  slotOne: { correctAnswer: yes } , children: ['slotOne'] },
                 distractors: collection(no),
               },
             };
@@ -115,8 +113,8 @@ describe('Configurators', () => {
               content: {
                 ...prompt,
                 slots: {
-                  items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } },
-                  order: ['slotOne'],
+                   slotOne: { correctAnswers: { first: 'Yes', second: localized } } ,
+                  children: ['slotOne'],
                 },
               },
             };
@@ -136,7 +134,7 @@ describe('Configurators', () => {
           const a = question.build.data(scope);
           const b = question.build.data(scope);
           assert.deepEqual(a, b);
-          assert.deepEqual((a.base.content as { question: { slug: string }[] }).question[0].slug, 'promptBlock');
+          assert.deepEqual((a.base.content as { question: { promptBlock: { slug: string } } }).question.promptBlock.slug, 'promptBlock');
           assert.doesNotThrow(() => JSON.stringify(a));
           const override = question.build.overrides as (patch: never, options: typeof scope) => unknown;
           assert.doesNotThrow(() => JSON.stringify(override({ params: { disabled: true } } as never, scope)));
@@ -160,23 +158,23 @@ describe('Configurators', () => {
           'yes',
         );
         assert.equal(
-          (instances[5].build.data(scope).base.content as { sequence: { slug: string }[] }).sequence[0].slug,
+          (instances[5].build.data(scope).base.content as { sequence: { yes: { slug: string } } }).sequence.yes.slug,
           'yes',
         );
         assert.equal(
           (
             instances[6].build.data(scope).base.content as {
-              correctSequence: { slug: string }[];
+              correctSequence: { yes: { slug: string } };
             }
-          ).correctSequence[0].slug,
+          ).correctSequence.yes.slug,
           'yes',
         );
         assert.equal(
           (
             instances[7].build.data(scope).base.content as {
-              slots: { selector: string }[];
+              slots: { children: string[] };
             }
-          ).slots[0].selector,
+          ).slots.children[0],
           'slotOne',
         );
       });
@@ -194,43 +192,43 @@ describe('Configurators', () => {
           {
             content: {
               question: {
-                items: { promptBlock: false },
-                additionalItems: { extra },
-                order: ['extra'],
+                 promptBlock: false ,
+                 extra ,
+                children: ['extra'],
               },
             },
           },
           scope,
         );
         assert.deepEqual(
-          (override.base.content as { question: { slug: string }[] }).question.map(item => item.slug),
+          (override.base.content as { question: { children: string[] } }).question.children,
           ['extra'],
         );
         assert.throws(
           () =>
             question.build.overrides(
               {
-                content: { question: { items: { promptBlock: false } } },
+                content: { question: {  promptBlock: false  } },
               },
               scope,
             ),
-          /order/,
+          /children/,
         );
         assert.throws(
           () =>
             question.build.overrides(
               {
-                content: { question: { order: ['notFound'] } },
+                content: { question: { children: ['notFound'] } },
               },
               scope,
             ),
-          /Unknown slug/,
+          /Unknown or disabled child/,
         );
         assert.throws(
           () =>
             question.build.overrides(
               {
-                content: { question: { items: { promptBlock: { id: 'changed' } as never } } },
+                content: { question: {  promptBlock: { id: 'changed' } as never  } },
               },
               scope,
             ),
@@ -239,14 +237,112 @@ describe('Configurators', () => {
         assert.deepEqual(
           (
             question.build.data(scope).base.content as {
-              question: { slug: string }[];
+              question: { promptBlock: { slug: string } };
             }
-          ).question[0].slug,
+          ).question.promptBlock.slug,
           'promptBlock',
         );
       });
 
-      test('Question localized answers and slots publish full Props-shaped arrays and sparse language patches', () => {
+      test('Question prompt and scoring groups publish only explicit sparse child patches', () => {
+        const note = defineText({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
+          slug: 'note',
+          type: 'text',
+          params: {},
+          locale: { value: { en: 'Read carefully', uk: 'Читайте уважно' } },
+        });
+        const config = {
+          ...common('answerWithNumber'),
+          params: { ...params, correctAnswers: [5] },
+          locale: { placeholder: localized },
+          content: {
+            question: { children: ['promptBlock', 'note'], promptBlock, note },
+          },
+        };
+        const question = defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+
+        assert.deepEqual(question.build.overrides({}, scope), { base: {}, locale: undefined });
+        assert.deepEqual(
+          question.build.overrides({ content: { question: {} } }, scope),
+          { base: {}, locale: undefined },
+        );
+        const oneChild = question.build.overrides(
+          { content: { question: { promptBlock: { params: { disabled: true } } } } },
+          scope,
+        );
+        assert.deepEqual(oneChild.base, {
+          content: { question: { promptBlock: { params: { disabled: true } } } },
+        });
+        assert.equal(oneChild.locale, undefined);
+        const localized = question.build.overrides(
+          { content: { question: { note: { locale: { value: { uk: 'Оновлено' } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          content: { question: { note: { locale: { value: 'Оновлено' } } } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        const structural = question.build.overrides(
+          { content: { question: { note: false, children: ['promptBlock'] } } },
+          scope,
+        );
+        assert.deepEqual(
+          (structural.base.content as { question: { children: string[] } }).question.children,
+          ['promptBlock'],
+        );
+        assert.equal('note' in (structural.base.content as { question: Record<string, unknown> }).question, false);
+        assert.deepEqual(
+          (question.build.data(scope).base.content as { question: { children: string[] } }).question.children,
+          ['promptBlock', 'note'],
+        );
+
+        const selectConfig = { ...common('selectOneAnswer'), content: { ...prompt, answers } };
+        const select = defineSelectOneAnswer<
+          typeof selectConfig.slug, typeof selectConfig.content, ['en', 'uk']
+        >(selectConfig);
+        assert.deepEqual(
+          select.build.overrides({ content: { answers: { correct: {} } } }, scope),
+          { base: {}, locale: undefined },
+        );
+        assert.deepEqual(
+          select.build.overrides({
+            content: { answers: { incorrect: { no: { params: { disabled: true } } } } },
+          }, scope).base,
+          { content: { answers: { incorrect: { no: { params: { disabled: true } } } } } },
+        );
+      });
+
+      test('Question matching pairs keep semantic child roles sparse', () => {
+        const config = {
+          ...common('matchBlocks'),
+          content: {
+            ...prompt,
+            pairs: { children: ['pairOne'], pairOne: { left: yes, right: no } },
+          },
+        };
+        const question = defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+        assert.deepEqual(
+          question.build.overrides({ content: { pairs: {} } }, scope),
+          { base: {}, locale: undefined },
+        );
+        const localized = question.build.overrides(
+          { content: { pairs: { pairOne: { left: { locale: { value: { uk: 'Ліворуч' } } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          content: { pairs: { pairOne: { left: { locale: { value: 'Ліворуч' } } } } },
+        });
+        assert.equal(JSON.stringify(localized).includes('"right"'), false);
+        assert.deepEqual(
+          (question.build.data(scope).base.content as { pairs: { children: string[] } }).pairs.children,
+          ['pairOne'],
+        );
+      });
+
+      test('Question localized answers and slots preserve semantic Data groups and sparse languages', () => {
         const text = (() => {
           const config = {
             ...common('answerWithText'),
@@ -277,22 +373,26 @@ describe('Configurators', () => {
             locale: { placeholder: localized },
             content: {
               ...prompt,
-              slots: { items: { one: { correctAnswers: { yes: 'Yes', another: localized } } }, order: ['one'] },
+              slots: {  one: { correctAnswers: { yes: 'Yes', another: localized } } , children: ['one'] },
             },
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        assert.deepEqual((blanks.build.data(scope).locale?.uk as { locale: { slots: unknown[] } }).locale.slots, [
-          { selector: 'one', correctAnswers: ['Yes', 'Відповідь'] },
-        ]);
+        assert.deepEqual((blanks.build.data(scope).locale?.uk as {
+          locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
+        }).locale.slots, {
+          children: ['one'], one: { correctAnswers: ['Yes', 'Відповідь'] },
+        });
         const sparse = blanks.build.overrides(
-          { content: { slots: { items: { one: { correctAnswers: { another: { uk: 'Так' } } } } } } },
+          { content: { slots: {  one: { correctAnswers: { another: { uk: 'Так' } } }  } } },
           scope,
         );
         assert.equal(sparse.locale?.en, undefined);
-        assert.deepEqual((sparse.locale?.uk as { locale: { slots: unknown[] } }).locale.slots, [
-          { selector: 'one', correctAnswers: ['Yes', 'Так'] },
-        ]);
+        assert.deepEqual((sparse.locale?.uk as {
+          locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
+        }).locale.slots, {
+          children: ['one'], one: { correctAnswers: ['Yes', 'Так'] },
+        });
       });
 
       test('numeric scoring values remain atomic and Question build results are isolated', () => {
@@ -327,7 +427,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             one.build.overrides(
-              { content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } },
+              { content: { answers: { correct: {  yes: { params: { disabled: true } }  } } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -343,7 +443,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             multiple.build.overrides(
-              { content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } },
+              { content: { answers: { correct: {  yes: { params: { disabled: true } }  } } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -352,14 +452,14 @@ describe('Configurators', () => {
         const match = (() => {
           const config = {
             ...common('matchBlocks'),
-            content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
+            content: { ...prompt, pairs: {  pairOne: { left: yes, right: no } , children: ['pairOne'] } },
           };
           return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
         assert.throws(
           () =>
             match.build.overrides(
-              { content: { pairs: { items: { pairOne: { left: { params: { disabled: true } } } } } } },
+              { content: { pairs: {  pairOne: { left: { params: { disabled: true } } }  } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -371,7 +471,7 @@ describe('Configurators', () => {
             locale: { placeholder: 'Fill' },
             content: {
               ...prompt,
-              slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
+              slots: {  slotOne: { correctAnswer: yes } , children: ['slotOne'] },
               distractors: collection(no),
             },
           };
@@ -381,7 +481,7 @@ describe('Configurators', () => {
           () =>
             blanks.build.overrides(
               {
-                content: { slots: { items: { slotOne: { correctAnswer: { params: { disabled: true } } } } } },
+                content: { slots: {  slotOne: { correctAnswer: { params: { disabled: true } } }  } },
               },
               scope,
             ),
@@ -398,7 +498,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             sequence.build.overrides(
-              { content: { sequence: { items: { yes: { params: { disabled: true } } } } } },
+              { content: { sequence: {  yes: { params: { disabled: true } }  } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -415,7 +515,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             built.build.overrides(
-              { content: { correctSequence: { items: { yes: { params: { disabled: true } } } } } },
+              { content: { correctSequence: {  yes: { params: { disabled: true } }  } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -430,7 +530,7 @@ describe('Configurators', () => {
             content: {
               ...prompt,
               answers: {
-                correct: { items: { yes, secondCorrect }, order: ['yes', 'secondCorrect'] },
+                correct: {  yes, secondCorrect , children: ['yes', 'secondCorrect'] },
                 incorrect: collection(no),
                 distractors: collection(maybe),
               },
@@ -442,7 +542,7 @@ describe('Configurators', () => {
           () =>
             multi.build.overrides(
               {
-                content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } },
+                content: { answers: { correct: {  yes: { params: { disabled: true } }  } } },
               },
               scope,
             ),
@@ -583,18 +683,19 @@ describe('Configurators', () => {
           {
             content: {
               question: {
-                items: {
+                
                   translatedPrompt: { locale: { value: { uk: 'Оновлено', en: 'Updated', pl: 'Zmienione' } } },
-                },
+
               },
             },
           },
           { languages: ['uk'] },
         );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        const blocks = (patch.locale?.uk as { content: { question: { locale: { value: string } }[] } }).content
-          .question;
-        assert.equal(blocks[0].locale.value, 'Оновлено');
+        const blocks = (patch.locale?.uk as {
+          content: { question: { translatedPrompt: { locale: { value: string } } } };
+        }).content.question;
+        assert.equal(blocks.translatedPrompt.locale.value, 'Оновлено');
       });
 
       test('localized answer and text-slot projections reject only missing selected translations', () => {
@@ -615,7 +716,7 @@ describe('Configurators', () => {
             locale: { placeholder: 'Answer' },
             content: {
               ...prompt,
-              slots: { items: { firstSlot: { correctAnswers: { yes: { uk: 'Так' } } } }, order: ['firstSlot'] },
+              slots: {  firstSlot: { correctAnswers: { yes: { uk: 'Так' } } } , children: ['firstSlot'] },
             },
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['uk']>(config);

@@ -9,6 +9,7 @@ import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlo
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
+  questionBlockCollection_Data_Schema,
   questionCommonContent_Config_Schema,
   questionCommonContent_Data_Schema,
   type QuestionContent,
@@ -46,13 +47,13 @@ export const buildAnswerWithBlocks_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.data }),
   content: questionCommonContent_Data_Schema.extend({
-    correctSequence: z.array(primitiveContentBlockResolved_Schema).min(1),
-    distractors: z.array(primitiveContentBlockResolved_Schema),
+    correctSequence: questionBlockCollection_Data_Schema.refine(group => group.children.length > 0, 'A correct sequence is required'),
+    distractors: questionBlockCollection_Data_Schema,
   }),
 });
 export type Question_BuildAnswerWithBlocks_Data = Omit<z.infer<typeof buildAnswerWithBlocks_Data_Schema>, 'content'> & {
   content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
-    correctSequence: ContentBlock_Primitive_Data[];
-    distractors: ContentBlock_Primitive_Data[];
+    correctSequence: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
+    distractors: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
   };
 };

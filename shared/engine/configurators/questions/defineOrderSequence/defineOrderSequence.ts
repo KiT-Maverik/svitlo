@@ -19,6 +19,7 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   validateQuestionPublication,
+  type BlockMembers,
   type OrderedBlockPatch,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
@@ -45,8 +46,8 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
   orderSequence_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.sequence, 'content.sequence', true);
-  candidate.content.sequence.order.forEach(key =>
-    assertEnabledBlock(candidate.content.sequence.items[key].config.base, 'content.sequence.' + key),
+  candidate.content.sequence.children.forEach(key =>
+    assertEnabledBlock((candidate.content.sequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.sequence.' + key),
   );
 };
 
@@ -57,7 +58,7 @@ export type Question_OrderSequence_Overrides<
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_OrderSequence_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
-    sequence?: OrderedBlockPatch<Content['sequence']['items'], Added, Languages>;
+    sequence?: OrderedBlockPatch<BlockMembers<Content['sequence']>, Added, Languages>;
   };
 };
 
@@ -65,7 +66,7 @@ export type Question_OrderSequence_Overrides<
  * Ask learners to reconstruct the correct order of ContentBlocks.
  *
  * @remarks
- * Author `content.sequence.order` in the actual correct sequence.
+ * Author `content.sequence.children` in the actual correct sequence.
  * That order is the answer key; do not shuffle it in the authoring data.
  * Keep at least one active item.
  */
@@ -78,7 +79,7 @@ export const defineOrderSequence = <
     slug: Slug;
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
-        sequence: { items: ChildrenSupporting<Languages, Content['sequence']['items']> };
+        sequence: ChildrenSupporting<Languages, BlockMembers<Content['sequence']>>;
       };
   } & ConfigWithLanguages<Question_OrderSequence_Config, Languages>,
 ) => {
@@ -99,10 +100,10 @@ export const defineOrderSequence = <
 
   const extraContent = (source: Content, languages: readonly LanguageCode[], patch?: ResolvableBlockPatch) => {
     const result = resolveBlockCollection(source.sequence, languages, patch, 'content.sequence', true);
-    result.base.forEach((block, index) => assertEnabledBlock(block, 'content.sequence[' + index + ']'));
+    result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.sequence.' + key));
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, entries] of Object.entries(result.locale)) locale[language] = { sequence: entries };
-    return { base: { sequence: result.base }, locale };
+    return { base: Object.keys(result.base).length ? { sequence: result.base } : {}, locale };
   };
 
   const data = (
