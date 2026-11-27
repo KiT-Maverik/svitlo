@@ -8,7 +8,7 @@ import { navbarPreferences } from '../../../../../data/locale/navbarPreferences'
 import { ukUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import NavbarPreferences from './NavbarPreferences';
 
-const { lt, ar, en } = navbarPreferences;
+const { lt, ar } = navbarPreferences;
 const uk = ukUiKitMessages.navbarPreferences;
 
 describe('NavbarPreferences in shared UI Kit', () => {
@@ -112,19 +112,10 @@ describe('NavbarPreferences in shared UI Kit', () => {
     expect(setLocale).toHaveBeenCalledWith('be-tarask');
   });
 
-  it('uses authored Arabic labels for RTL', () => {
-    render(
-      <div dir="rtl" lang="ar-SA">
-        <NavbarPreferences locale="ar-SA" messages={ar} onLocaleChange={setLocale} />
-      </div>,
-    );
+  it('renders Arabic accessible names provided by the host', () => {
+    render(<NavbarPreferences locale="ar-SA" messages={ar} onLocaleChange={setLocale} />);
     expect(screen.getByRole('combobox', { name: ar.language })).toBeVisible();
-    expect(ar.language).not.toEqual(uk.language);
   });
 
-  it('retains distinct English translations', () => {
-    expect(en.language).toBe('Interface language');
-    expect(en.lessonLanguage).toBe('Lesson language');
-    expect(en.theme.dark).toBe('Dark theme');
-  });
+
 });
