@@ -101,10 +101,10 @@ test('validated immutable Course snapshots resolve by direct indexed placement',
   // A search of any authoritative sibling order is a regression in the
   // navigation path; the saved membership index must serve these lookups.
   const originalIncludes = Array.prototype.includes;
-  Array.prototype.includes = function (...values) {
+  Array.prototype.includes = function (searchElement: unknown, fromIndex?: number) {
     if (this === course.children || this === module.children || this === module.nested.children)
       throw Error('navigation must never linearly scan siblings');
-    return originalIncludes.apply(this, values);
+    return originalIncludes.call(this, searchElement, fromIndex);
   };
   try {
     assert.equal(findCourseActivityByPlacement(course, 'module/nested/lesson')?.node.id, id(90));
