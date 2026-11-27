@@ -198,7 +198,7 @@ export const defineFlashcardsSection = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: FlashcardsSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -297,6 +297,17 @@ export const defineFlashcardsSection = <
       );
     }
   };
+
+  const overrides: {
+    <const Added extends Record<string, Block>>(
+      patch: FlashcardsSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: FlashcardsSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
 
   const result = {
     id, slug, type,
