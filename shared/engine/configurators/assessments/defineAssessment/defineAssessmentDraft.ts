@@ -29,6 +29,8 @@ import {
 type LocaleBody = { locale?: { title?: string }; preview?: Assessment_Draft_DataBase['preview'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication = { base: Assessment_Draft_DataBase; locale: Files | undefined };
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /**
  * Course Stage 5 owns a visible, intentionally incomplete Assessment.
@@ -54,12 +56,24 @@ export const defineAssessmentDraft = <
   const { id, slug, type } = authored;
   const validate = () => {
     copyAuthored();
-    if (preview.type !== 'content' || preview.config.base.params?.disabled === true)
+    const candidate: unknown = preview;
+    if (!isRecord(candidate) || candidate.type !== 'content' ||
+        !isRecord(candidate.config) || !isRecord(candidate.config.base) ||
+        !isRecord(candidate.config.base.params) ||
+        candidate.config.base.params.disabled === true) {
       throw new Error('Assessment draft preview requires an enabled Content Section');
+    }
     const language = authored.params.languages[0];
     const source = preview.build.data({ languages: [language] });
-    const effective = mergeForValidation(source.base, source.locale?.[language] ?? {});
-    const hasPlaceholder = effective.children.some(key => {
+    const effective: Record<string, unknown> = mergeForValidation(
+      source.base as Record<string, unknown>,
+      source.locale?.[language] ?? {},
+    );
+    if (!Array.isArray(effective.children)) {
+      throw new Error('Assessment draft preview requires ordered children');
+    }
+    const hasPlaceholder = effective.children.some((key: unknown) => {
+      if (typeof key !== 'string') return false;
       const text = text_Data_Schema.safeParse(effective[key]);
       return text.success &&
         text.data.params.disabled !== true &&
