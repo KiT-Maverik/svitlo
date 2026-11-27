@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 import { assessment_Config_Schema } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { chapter_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
-import { course_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
-import { module_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
+import { chapter_Metadata_Config_Schema } from '../../configurators/courses/defineChapter/defineChapter.schemas';
+import { course_Metadata_Config_Schema } from '../../configurators/courses/defineCourse/defineCourse.schemas';
+import { module_Metadata_Config_Schema } from '../../configurators/courses/defineModule/defineModule.schemas';
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import { lesson_Config_Schema } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
@@ -20,19 +20,40 @@ const sourcePatch_Schema = z.custom<CourseLessonSourcePatch<Lesson_Configurator>
   value => plainConfig_Schema.safeParse(value).success,
 );
 const uid = z.uuid();
-const ordered = <Child extends z.ZodType>(child: Child) =>
-  z
-    .strictObject({
-      items: z.record(z.string(), child),
-      order: z.array(z.string()),
-    })
-    .refine(
-      ({ items, order }) =>
-        Object.keys(items).length === order.length &&
-        new Set(order).size === order.length &&
-        order.every(key => Object.hasOwn(items, key)),
-      'Every Course child must be ordered once',
-    );
+/**
+ * A Stage config keeps authored placement keys at its root. Parse every
+ * unknown key as a child, then require exact membership in children. This
+ * makes the Zod boundary authoritative even though TypeScript cannot infer
+ * arbitrary Stage draft keys from a non-generic satisfies annotation.
+ */
+const stagedPlacements = <T extends z.ZodObject, Child extends z.ZodType>(metadata: T, child: Child) =>
+  metadata
+    .extend({ children: z.array(z.string()) })
+    .catchall(z.unknown())
+    .superRefine((value, ctx) => {
+      const own = new Set([...Object.keys(metadata.shape), 'children']);
+      const keys = Object.keys(value).filter(key => !own.has(key));
+      const order = value.children;
+      if (
+        keys.length !== order.length ||
+        new Set(order).size !== order.length ||
+        order.some(key => !Object.hasOwn(value, key) || own.has(key))
+      ) {
+        ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every direct Course child must be ordered exactly once' });
+      }
+      for (const key of keys) {
+        if (!/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+            ['content', 'items', 'order', 'additionalItems', 'constructor', 'prototype', '__proto__'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Unsafe or reserved Course placement key' });
+          continue;
+        }
+        const parsed = child.safeParse(value[key]);
+        if (!parsed.success) {
+          for (const issue of parsed.error.issues)
+            ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
+        }
+      }
+    });
 
 const unitProduction = z.strictObject({
   methodology: rationale,
@@ -50,7 +71,7 @@ const unitProduction = z.strictObject({
   depth: rationale,
   sequenceReason: rationale,
 });
-const unitParams = module_Config_Schema.shape.params.partial();
+const unitParams = module_Metadata_Config_Schema.shape.params.partial();
 const placement = z.strictObject({
   type: z.literal('lesson'),
   slug: rationale,
@@ -103,7 +124,7 @@ const episodeSlot = z.strictObject({
  * educational purpose and upstream Lesson placements/UUIDs. Its own Quiz
  * and Questions are not fabricated by Course materialization.
  */
-const lessonPlacementPath = z.string().regex(/^(?:content\/)?[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/);
+const lessonPlacementPath = z.string().regex(/^[A-Za-z][A-Za-z0-9]*(?:\/[A-Za-z][A-Za-z0-9]*){0,2}$/);
 const assessmentSlot = z.strictObject({
   config: assessment_Config_Schema.pick({ type: true, locale: true }),
   production: z.strictObject({
@@ -116,31 +137,34 @@ const assessmentSlot = z.strictObject({
 });
 
 const chapter = z.strictObject({
-  config: chapter_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
-    params: chapter_Config_Schema.shape.params.partial().optional(),
-    content: ordered(z.union([newLesson, existingLesson, episodeSlot, assessmentSlot])),
-  }),
+  config: stagedPlacements(
+    chapter_Metadata_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
+      params: chapter_Metadata_Config_Schema.shape.params.partial().optional(),
+    }),
+    z.union([newLesson, existingLesson, episodeSlot, assessmentSlot]),
+  ),
   production: unitProduction,
 });
 const module_Schema = z.strictObject({
-  config: module_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
-    params: unitParams.optional(),
-    content: ordered(z.union([chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
-  }),
+  config: stagedPlacements(
+    module_Metadata_Config_Schema.pick({ type: true, slug: true, locale: true }).extend({
+      params: unitParams.optional(),
+    }),
+    z.union([chapter, newLesson, existingLesson, episodeSlot, assessmentSlot]),
+  ),
   production: unitProduction,
 });
 
 /** Review approval, imported dependencies and provenance are verified separately. */
 export const courseWorkflowStage3_Schema = z.strictObject({
-  config: course_Config_Schema.pick({ id: true, type: true, slug: true }).extend({
-    params: course_Config_Schema.shape.params
+  config: stagedPlacements(course_Metadata_Config_Schema.pick({ id: true, type: true, slug: true }).extend({
+    params: course_Metadata_Config_Schema.shape.params
       .omit({ languages: true, scenarioMode: true })
       .partial()
       .extend({ languages: z.never().optional(), scenarioMode: z.never().optional() })
       .optional(),
-    locale: course_Config_Schema.shape.locale.partial().optional(),
-    content: ordered(z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
-  }),
+    locale: course_Metadata_Config_Schema.shape.locale.partial().optional(),
+  }), z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
   production: z.strictObject({
     languages: workflowLanguages_Schema,
     methodology: z.strictObject({
