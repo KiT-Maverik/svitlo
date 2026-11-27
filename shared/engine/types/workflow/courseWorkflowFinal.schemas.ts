@@ -33,7 +33,7 @@ const stagedPlacements = <T extends z.ZodObject, Child extends z.ZodType>(metada
     .superRefine((value, ctx) => {
       const own = new Set([...Object.keys(metadata.shape), 'children']);
       const keys = Object.keys(value).filter(key => !own.has(key));
-      const order = value.children;
+      const order: string[] = Array.isArray(value.children) ? value.children : [];
       if (
         keys.length !== order.length ||
         new Set(order).size !== order.length ||
@@ -53,7 +53,7 @@ const stagedPlacements = <T extends z.ZodObject, Child extends z.ZodType>(metada
             ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
         }
       }
-    });
+    }) as unknown as z.ZodType<z.output<T> & { children: string[] } & Record<string, unknown>>;
 
 const unitProduction = z.strictObject({
   methodology: rationale,
