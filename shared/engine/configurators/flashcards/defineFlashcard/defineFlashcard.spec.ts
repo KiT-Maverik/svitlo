@@ -65,15 +65,13 @@ describe('Configurators', () => {
             { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
           ],
           relationships: {
-            items: {
-              reverseLink: {
-                relationshipId: 'r1',
-                type: 'reverse' as const,
-                relatedFlashcardId: id('a5'),
-                position: 'peer' as const,
-              },
+            children: ['reverseLink'],
+            reverseLink: {
+              relationshipId: 'r1',
+              type: 'reverse' as const,
+              relatedFlashcardId: id('a5'),
+              position: 'peer' as const,
             },
-            order: ['reverseLink'],
           },
         },
         content: {
@@ -97,7 +95,7 @@ describe('Configurators', () => {
           Pick<typeof source.content.back, 'back'>,
           Pick<typeof source.content.hint, 'hint'>,
           typeof source.parameters.flags,
-          typeof source.parameters.relationships.items,
+          Pick<typeof source.parameters.relationships, 'reverseLink'>,
           ['en', 'uk']
         >(config);
 
@@ -192,8 +190,8 @@ describe('Configurators', () => {
           ['list', 'acronym'],
         );
         assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId),
-          ['r1'],
+          card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.children,
+          ['reverseLink'],
         );
         assert.equal(textValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
         assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
@@ -280,7 +278,7 @@ describe('Configurators', () => {
               },
               { languages: ['en', 'uk'] },
             ),
-          /order is required/,
+          /children is required/,
         );
         assert.throws(
           () =>
@@ -296,7 +294,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                parameters: { relationships: { items: { reverseLink: { relationshipId: 'changed' } } } },
+                parameters: { relationships: { reverseLink: { relationshipId: 'changed' } } },
               } as never,
               { languages: ['en', 'uk'] },
             ),
