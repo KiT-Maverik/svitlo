@@ -4,6 +4,8 @@ import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { validateSlugAddressedContainer } from '../../_shared__configurators';
+import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import { disability_Schema } from '../../../schemas/disabilities.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import {
@@ -103,7 +105,16 @@ export const flashcard_Config_Schema = identityBase_Schema
   .strict();
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
-const resolvedBlocks = z.array(primitiveContentBlockResolved_Schema);
+const resolvedSide = z.looseObject({ children: z.array(z.string()) }).superRefine((side, ctx) => {
+  for (const issue of validateSlugAddressedContainer(side, primitiveContentBlockTypes)) {
+    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+  for (const key of side.children) {
+    if (typeof key === 'string' && !primitiveContentBlockResolved_Schema.safeParse(side[key]).success) {
+      ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard side ContentBlock Data' });
+    }
+  }
+});
 export const flashcard_Data_Schema = identityBase_Schema.extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
@@ -113,27 +124,21 @@ export const flashcard_Data_Schema = identityBase_Schema.extend({
     relationships: z.array(flashcardRelationship_Schema).optional(),
   }),
   content: z.strictObject({
-    front: resolvedBlocks.min(1),
-    back: resolvedBlocks.min(1),
-    hint: resolvedBlocks.optional(),
+    front: resolvedSide.refine(value => value.children.length > 0, 'Flashcard front must not be empty'),
+    back: resolvedSide.refine(value => value.children.length > 0, 'Flashcard back must not be empty'),
+    hint: resolvedSide.optional(),
   }),
 });
-export type Flashcard_Data = Omit<z.infer<typeof flashcard_Data_Schema>, 'content'> & {
-  content: {
-    front: ContentBlock_Primitive_Data[];
-    back: ContentBlock_Primitive_Data[];
-    hint?: ContentBlock_Primitive_Data[];
-  };
-};
+export type Flashcard_Data = z.infer<typeof flashcard_Data_Schema>;
 
 export type Flashcard_DataBase = Pick<Flashcard_Data, 'id' | 'slug' | 'type'> & {
   parameters: Omit<Flashcard_Data['parameters'], 'flags'> & {
     flags: DeepPartial<Flashcard_Flag_Data>[];
   };
   content: {
-    front: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
-    back: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
-    hint?: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
+    front: ReturnType<import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']>['base'];
+    back: ReturnType<import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']>['base'];
+    hint?: ReturnType<import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']>['base'];
   };
 };
 
