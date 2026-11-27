@@ -26,6 +26,31 @@ import { discoverWorkspaces } from '../../runWorkspaceScript/run-workspace-scrip
 
 const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 const stateVariable = 'SVITLO_CI_PACKAGE_BUILD_STATE';
+const telemetryVariable = 'SVITLO_CI_BUILD_TELEMETRY';
+
+/**
+ * Opt-in, job-local observability only. Never write telemetry into the checkout.
+ * Consumers must not use these events as a build cache or authorization signal.
+ */
+export function appendBuildTelemetry({ root, file, event, env = process.env }) {
+  if (!isAbsolute(file)) throw new Error('Build telemetry path must be absolute');
+  const normalized = resolve(root);
+  const relativeFile = relative(normalized, resolve(file));
+  if (relativeFile === '' || (relativeFile !== '..' && !relativeFile.startsWith('..' + sep))) {
+    throw new Error('Build telemetry must stay outside the repository');
+  }
+  const record = {
+    schemaVersion: 1,
+    timestamp: new Date().toISOString(),
+    runId: env.GITHUB_RUN_ID || null,
+    runAttempt: env.GITHUB_RUN_ATTEMPT || null,
+    job: env.GITHUB_JOB || null,
+    checkoutSha: env.GITHUB_SHA || null,
+    operation: 'package:build',
+    ...event,
+  };
+  appendFileSync(file, JSON.stringify(record) + '\n');
+}
 
 function npmBuild(name, root = repoRoot) {
   const command = process.platform === 'win32' ? 'npm.cmd' : 'npm';
@@ -145,7 +170,7 @@ function saveBuildState(stateFile, state) {
 }
 
 /** Injectable runner keeps dependency, invalidation and error paths testable. */
-export function createPackageBuildReuse({ root, packages, stateFile, runBuild, sourceRevision }) {
+export function createPackageBuildReuse({ root, packages, stateFile, runBuild, sourceRevision, onBuildEvent = () => {} }) {
   if (!isAbsolute(stateFile)) throw new Error('Package-build state path must be absolute');
   const normalized = resolve(root);
   if (relative(normalized, resolve(stateFile)) === '' || !relative(normalized, resolve(stateFile)).startsWith('..')) {
@@ -164,8 +189,23 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
       .sort();
     for (const dependency of dependencies) ensure(dependency, next);
 
+    const requestStarted = Date.now();
     const state = readBuildState(stateFile, normalized);
     const source = sourceRevision();
+    const emit = (outcome, outputDigest = null) => {
+      try {
+        onBuildEvent({
+          workspace: name,
+          outcome,
+          durationMs: Date.now() - requestStarted,
+          sourceRevision: source,
+          outputDigest,
+        });
+      } catch (error) {
+        // Instrumentation must never change a build/reuse decision or its result.
+        console.warn('Optional build telemetry unavailable: ' + String(error.message || error));
+      }
+    };
     const dependencyVersions = Object.fromEntries(dependencies.map(dep => [dep, state.records[dep]?.sequence ?? null]));
     const previous = state.records[name];
     state.stats.requested++;
@@ -184,6 +224,7 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
         state.stats.reused++;
         saveBuildState(stateFile, state);
         console.log('REUSE ' + name + ' / package:build (verified)');
+        emit('reused', current.digest);
         return 'reused';
       }
     }
@@ -204,12 +245,14 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
       state.stats.buildMs += Date.now() - started;
       saveBuildState(stateFile, state);
       console.log('BUILD ' + name + ' / package:build (verified)');
+      emit('built', files.digest);
       return 'built';
     } catch (error) {
       // Never permit a previously stamped success to survive a failed rebuild.
       delete state.records[name];
       state.stats.failed++;
       saveBuildState(stateFile, state);
+      emit('failed');
       throw error;
     }
   }
@@ -256,6 +299,16 @@ function main(args) {
     stateFile: file,
     runBuild: name => npmBuild(name),
     sourceRevision: () => cleanSourceRevision(repoRoot),
+    onBuildEvent: event => {
+      const file = process.env[telemetryVariable];
+      if (!file) return;
+      try {
+        appendBuildTelemetry({ root: repoRoot, file, event });
+      } catch (error) {
+        // A diagnostic sink is not allowed to fail successful compilers or reuses.
+        console.warn('Optional build telemetry unavailable: ' + String(error.message || error));
+      }
+    },
   }).ensure(args[0]);
 }
 
