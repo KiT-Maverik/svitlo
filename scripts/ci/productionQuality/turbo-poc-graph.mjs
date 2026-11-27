@@ -85,15 +85,18 @@ export function checkActionsGraph(dry, workflow) {
     jobs.set(name, needs);
   }
   if (jobs.size !== focus.length * operations.length) throw Error('Incomplete distributed job graph');
-  function ancestors(name, visited = new Set()) {
+  function ancestors(name, visited = new Set(), visiting = new Set()) {
+    if (visiting.has(name)) throw Error('Cyclic benchmark job graph: ' + name);
+    visiting.add(name);
     for (const need of jobs.get(name) || []) {
       if (!jobs.has(need)) throw Error('Unknown benchmark predecessor: ' + need);
-      if (need === name) throw Error('Cyclic direct dependency: ' + need);
+      if (visiting.has(need)) throw Error('Cyclic benchmark job graph: ' + need);
       if (!visited.has(need)) {
+        ancestors(need, visited, visiting);
         visited.add(need);
-        ancestors(need, visited);
       }
     }
+    visiting.delete(name);
     return visited;
   }
   for (const task of dry.tasks) {
