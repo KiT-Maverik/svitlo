@@ -45,8 +45,13 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   formatting, bank/Lesson security and trusted command steps are unchanged.
   The strict `Production Quality / verify` depends on both the unit and
   generators jobs. The new npm-free fixture tests cover selection and
-  failure conditions; a current-HEAD Production Quality run is still needed
-  to verify exact compiled-file counts, case-ID parity and any actual savings.
+  failure conditions. Owner-authorized [Production Quality #46067229201](https://github.com/KiT-Maverik/svitlo/actions/runs/46067229201)
+  passed all 16 jobs at exact source HEAD `6462049bb783cc96bc8647aec6260244535ff9b6`:
+  the Production-only targeted generator step executed 11 of 54 concrete test
+  files, while 43 were selected by the separate required root Engine npm test.
+  This confirms compiled-file routing under manual `workflow_dispatch`, not
+  exact case-ID/environment equivalence, a same-SHA measured time saving, or
+  actual Ready `develop → main` event/concurrency coverage.
   This design does not share compiled output between runners.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
