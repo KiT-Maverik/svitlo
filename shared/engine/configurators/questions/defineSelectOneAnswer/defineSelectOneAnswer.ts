@@ -92,9 +92,9 @@ export const defineSelectOneAnswer = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         answers: {
-          correct: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['correct']>> };
-          incorrect: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['incorrect']>> };
-          distractors: { items: ChildrenSupporting<Languages, BlockMembers<Content['answers']['distractors']>> };
+          correct: ChildrenSupporting<Languages, BlockMembers<Content['answers']['correct']>>;
+          incorrect: ChildrenSupporting<Languages, BlockMembers<Content['answers']['incorrect']>>;
+          distractors: ChildrenSupporting<Languages, BlockMembers<Content['answers']['distractors']>>;
         };
       };
   } & ConfigWithLanguages<Question_SelectOneAnswer_Config, Languages>,
@@ -148,7 +148,7 @@ export const defineSelectOneAnswer = <
         'content.answers.distractors',
       ),
     };
-    const correctCount = Object.keys(complete.correct.base.children.length;
+    const correctCount = complete.correct.base.children.length;
     if (correctCount !== 1) {
       throw new Error('SelectOneAnswer has an invalid number of correct answers');
     }
