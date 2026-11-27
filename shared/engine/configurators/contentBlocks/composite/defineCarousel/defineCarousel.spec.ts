@@ -269,7 +269,7 @@ describe('Configurators', () => {
         const available = image('available', ids[1], {
           fileName: 'https://example.com/available.png', alt: 'Available',
         });
-        const disabled = defineImage({
+        const disabled = defineImage<'disabled', ['en']>({
           id: ids[6],
           slug: 'disabled',
           type: 'image',
@@ -279,11 +279,15 @@ describe('Configurators', () => {
             alt: { en: 'Only English' },
           },
         });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<
+          'gallery', { disabled: typeof disabled; available: typeof available }, ['en']
+        >({
           id: ids[0], slug: 'gallery', type: 'carousel', params: {}, locale: {},
           children: ['disabled', 'available'], disabled, available,
         });
-        const built = carousel.build.data({ languages: ['uk'] });
+        // Simulate an untyped caller: explicit parent/child authoring scopes remain
+        // statically enforced, but a disabled child must not block runtime selection.
+        const built = carousel.build.data({ languages: ['uk'] } as never);
         assert.deepEqual(built.base.children, ['available']);
         assert.equal(built.base.disabled, undefined);
         assert.equal(built.locale, undefined);
