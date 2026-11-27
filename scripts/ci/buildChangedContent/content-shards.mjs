@@ -71,7 +71,7 @@ export function validateShardCoverage(selected, shards) {
 }
 
 /** Stable longest-processing-time-first distribution; never changes the selected scope. */
-export function planContentShards(selected, maxShards = 5) {
+export function planContentShards(selected, maxShards = 3) {
   if (!Array.isArray(selected) || !Number.isInteger(maxShards) || maxShards < 1 || maxShards > 5) {
     throw new Error('Expected selected packages and shard limit 1..5');
   }

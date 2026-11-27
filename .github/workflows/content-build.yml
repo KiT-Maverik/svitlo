@@ -85,7 +85,7 @@ jobs:
     if: needs.prepare.outputs.has_builds == 'true'
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
       matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45

@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { planContentShards, runContentShard, validateShardCoverage } from './content-shards.mjs';
 
 const pkg = (path, kind = 'content') => ({ path, kind });
@@ -33,9 +34,9 @@ test('one selected textbook remains one independently verified shard', () => {
   });
 });
 
-test('full production scope maps all 17 distinct packages into five stable balanced shards', () => {
+test('full production scope maps all 17 distinct packages into three stable balanced shards', () => {
   const first = planContentShards(selected);
-  assert.equal(first.include.length, 5);
+  assert.equal(first.include.length, 3);
   assert.deepEqual(first, planContentShards([...selected].reverse()));
   validateShardCoverage(selected, first.include);
   assert.deepEqual(
@@ -45,6 +46,30 @@ test('full production scope maps all 17 distinct packages into five stable balan
       .sort(),
     selected.map(item => item.path).sort(),
   );
+});
+
+test('production workflow uses bounded three-shard selection without weakening final verification', () => {
+  const workflow = readFileSync(new URL('../../../.github/workflows/content-build.yml', import.meta.url), 'utf8');
+  const planner = readFileSync(new URL('./plan-content-builds.mjs', import.meta.url), 'utf8');
+  assert.match(planner, /const shards = planContentShards\(matrix\.include\)/);
+  assert.match(workflow, /max-parallel: 3/);
+  assert.match(workflow, /matrix: \$\{\{ fromJSON\(needs\.prepare\.outputs\.shards\) \}\}/);
+  assert.match(workflow, /fail-fast: false/);
+  assert.match(workflow, /name: Affected content \/ build, taxonomy and packaging/);
+  assert.match(workflow, /needs: \[prepare, build\]/);
+
+  const formerFive = planContentShards(selected, 5);
+  assert.equal(formerFive.include.length, 5, 'five-shard baseline remains available for diagnostics');
+  validateShardCoverage(selected, formerFive.include);
+  for (const scope of [
+    [pkg('content/art'), pkg('content/history')],
+    [pkg('content/astronomy'), pkg('content/languages/ukrainian'), pkg('content/math')],
+    [pkg('content/math'), pkg('content/art'), pkg('content/history'), pkg('content/playground')],
+  ]) {
+    const selectedShards = planContentShards(scope);
+    assert.equal(selectedShards.include.length, Math.min(3, scope.length));
+    validateShardCoverage(scope, selectedShards.include);
+  }
 });
 
 test('legacy assigned-domain agent scope remains agent, not a full content build', () => {
