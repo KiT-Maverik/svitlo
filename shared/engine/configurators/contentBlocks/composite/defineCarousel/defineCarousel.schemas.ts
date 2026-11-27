@@ -52,6 +52,27 @@ export const carousel_Metadata_Config_Schema = carouselBase.extend({
   locale: z.object(configLocale).strict(),
 });
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+
+/**
+ * The public Config schema must reject impostors at its own boundary.
+ * Verify the child Build protocol and immutable identity, not child internals:
+ * Image/Scene configurators own their own semantic validation.
+ */
+const isSlideConfigurator = (child: unknown, key: string): boolean =>
+  isRecord(child) &&
+  isRecord(child.build) &&
+  typeof child.build.data === 'function' &&
+  typeof child.build.overrides === 'function' &&
+  isRecord(child.config) &&
+  typeof child.config.locales === 'function' &&
+  isRecord(child.config.base) &&
+  isRecord(child.config.base.params) &&
+  child.config.base.id === child.id &&
+  child.config.base.slug === key &&
+  child.config.base.type === child.type;
+
 /** Direct root placements are kept as configurators and ordered by children. */
 export const carousel_Config_Schema = carousel_Metadata_Config_Schema
   .extend({ children: z.array(z.string()).min(1) })
@@ -59,6 +80,27 @@ export const carousel_Config_Schema = carousel_Metadata_Config_Schema
   .superRefine((value, ctx) => {
     for (const issue of validateSlugAddressedContainer(value, carouselSlideTypes)) {
       ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+    let activeSlides = 0;
+    for (const key of value.children) {
+      const child = value[key];
+      if (!isSlideConfigurator(child, key)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [key],
+          message: 'Carousel slide must be a matching Image or Scene Configurator with Build API',
+        });
+        continue;
+      }
+      if ((child as { config: { base: { params: { disabled?: boolean } } } })
+        .config.base.params.disabled !== true) activeSlides++;
+    }
+    if (!activeSlides) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['children'],
+        message: 'At least one active Carousel slide is required',
+      });
     }
   });
 export type ContentBlock_Carousel_Config = z.infer<typeof carousel_Config_Schema>;
@@ -103,6 +145,7 @@ export const carousel_Data_Schema = carouselBase
     for (const issue of validateSlugAddressedContainer(value, carouselSlideTypes)) {
       ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
     }
+    let activeSlides = 0;
     for (const key of value.children) {
       const child = value[key];
       if (child === undefined || child === false) continue;
@@ -115,7 +158,16 @@ export const carousel_Data_Schema = carouselBase
             message: issue.message,
           });
         }
+      } else if (parsed.data.params.disabled !== true) {
+        activeSlides++;
       }
+    }
+    if (!activeSlides) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['children'],
+        message: 'At least one active Carousel slide is required',
+      });
     }
   });
 export type ContentBlock_Carousel_Data = z.infer<typeof carousel_Data_Schema>;
