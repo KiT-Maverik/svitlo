@@ -34,6 +34,10 @@ SVITLO_TEXTBOOK selects a declared catalog entry in textbooks.json before build.
 Mobile preparation compiles the selected textbook distribution and invokes its
 public `svitlo-playground publish` CLI to copy **prebuilt** localized lesson,
 Skills Analytics and textbook-owned asset files into `apps/mobile/public`.
+The publisher's ownership manifest `public/.svitlo/publish-playground.json`
+is generated for each local preparation and must remain Git-ignored; it is
+not authored textbook data. Keeping an old checked-in manifest would make
+`packageBuildReuse` fail closed after source mutation during CI typechecks.
 UI Kit global translations and flags are staged independently. Authored source
 stays in `content/<textbook>/data`, never imported into the runtime;
 **apps/web/public is not touched**.
