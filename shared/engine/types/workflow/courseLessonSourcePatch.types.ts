@@ -21,26 +21,25 @@ export type CourseLessonNewSection = {
 };
 
 /**
- * Keep the concrete Lesson Build's deeply inferred existing-item patches and
- * metadata. Only its non-serializable additionalItems Configurators are
- * replaced with inert references. No change to build.overrides() itself.
+ * A concrete Lesson override has metadata, children order and direct Section
+ * placement keys. It never contains the legacy section.items/additionalItems.
  *
- * Existing-item names are excluded from additions at compile time; Build still
- * validates identities, supported languages, ordering and nested children at
- * materialization time.
+ * Inert references must be explicitly declared as Added by their authored
+ * source type. Existing keys retain the concrete Build API's deeply inferred
+ * sparse patch types; a would-be addition cannot shadow an existing Section.
+ * The trusted binder resolves only those exact descriptors, never executable
+ * authored values.
  */
-type ConcretePatch<Lesson extends Lesson_Configurator> = Parameters<Lesson['build']['overrides']>[0];
-type ExistingItemKeys<Lesson extends Lesson_Configurator> = keyof NonNullable<
-  NonNullable<ConcretePatch<Lesson>['section']>['items']
->;
-type ExcludeExistingKeys<Lesson extends Lesson_Configurator> =
-  string extends ExistingItemKeys<Lesson>
-    ? {} // Generic Lesson: no known key set; real Build checks duplicates.
-    : { [Key in ExistingItemKeys<Lesson>]?: never };
-
-export type CourseLessonSourcePatch<Lesson extends Lesson_Configurator> = Omit<ConcretePatch<Lesson>, 'section'> & {
-  section?: Omit<NonNullable<ConcretePatch<Lesson>['section']>, 'additionalItems'> & {
-    additionalItems?: Record<string, CourseLessonSectionReference | CourseLessonNewSection> &
-      ExcludeExistingKeys<Lesson>;
-  };
+type ConcretePatch<Lesson extends Lesson_Configurator> =
+  Parameters<Lesson['build']['overrides']>[0];
+type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
+type VerifiedAdded<
+  Lesson extends Lesson_Configurator,
+  Added extends Record<string, AddedReference>,
+> = {
+  [Key in keyof Added]: Key extends keyof ConcretePatch<Lesson> ? never : Added[Key];
 };
+export type CourseLessonSourcePatch<
+  Lesson extends Lesson_Configurator,
+  Added extends Record<string, AddedReference> = {},
+> = ConcretePatch<Lesson> & VerifiedAdded<Lesson, Added>;
