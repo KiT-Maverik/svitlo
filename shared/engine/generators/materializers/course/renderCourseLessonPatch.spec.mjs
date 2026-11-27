@@ -16,21 +16,11 @@ const sourceLesson = {
 test('Course-owned Lesson override emits distinct Section and ContentBlock fragment modules', () => {
   const rawPatch = {
     params: { sections: { allowSkipping: false } },
-    section: {
-      items: {
-        content: {
-          params: { skippable: true },
-          content: {
-            items: {
-              p1: { locale: { value: { uk: 'section_content is literal user text' } } },
-              p2: false,
-            },
-            order: ['p1'],
-          },
-        },
-        practice: false,
-      },
-      order: ['content'],
+    children: ['intro'],
+    intro: {
+      params: { skippable: true },
+      children: ['paragraph'],
+      paragraph: { locale: { value: { uk: 'section_content is literal user text' } } },
     },
   };
   const before = JSON.stringify(rawPatch);
@@ -40,29 +30,25 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
   assert.equal(JSON.stringify(rawPatch), before, 'authored patch must remain immutable');
   assert.deepEqual(
     first.files.map(file => file.path),
-    [directory + '/sections/content/p1/index.ts', directory + '/sections/content/index.ts'],
+    [directory + '/sections/intro/paragraph/index.ts', directory + '/sections/intro/index.ts'],
   );
   assert.match(first.files[0].content, /section_content is literal user text/);
   assert.match(first.files[0].content, /satisfies BlockPatch/);
-  assert.match(first.files[0].content, /NonNullable<SectionPatch\["content"\]>/);
+  assert.match(first.files[0].content, /SectionPatch\["paragraph"\]/);
   assert.match(first.files[1].content, /satisfies SectionPatch/);
   assert.match(first.files[1].content, /typeof standaloneLesson\.build\.overrides/);
-  assert.match(first.files[1].content, /import \{ p1 \} from "\.\/p1"/);
-  assert.match(first.files[1].content, /"items": \{p1, "p2": false\}/);
-  assert.match(first.files[1].content, /"p2": false/);
-  assert.match(first.patchSource, /"items": \{content, "practice": false\}/);
-  assert.match(first.patchSource, /"practice": false/);
+  assert.match(first.files[1].content, /import \{ paragraph \} from "\.\/paragraph"/);
+  assert.match(first.files[1].content, /"paragraph": paragraph/);
+  assert.match(first.patchSource, /"intro": intro/);
   assert.doesNotMatch(first.patchSource, /section_content is literal user text/);
-  assert.deepEqual(first.imports, ['import { content } from "./sections/content";']);
+  assert.deepEqual(first.imports, ['import { intro } from "./sections/intro";']);
 });
 
 test('additional trusted Sections are referenced through the Course-owned Section tree', () => {
   const exportName = 'extra';
   const rawPatch = {
-    section: {
-      additionalItems: { extra: { $ref: 'lesson-section' } },
-      order: ['content', 'extra'],
-    },
+    extra: { $ref: 'lesson-section' },
+    children: ['intro', 'extra'],
   };
   const binding = {
     aliases: { extra: exportName },
@@ -74,7 +60,7 @@ test('additional trusted Sections are referenced through the Course-owned Sectio
     [directory + '/sections/extra/index.ts'],
   );
   assert.match(result.files[0].content, /export \{ extra \}/);
-  assert.match(result.patchSource, /"additionalItems": \{extra\}/);
+  assert.match(result.patchSource, /"extra": extra/);
   assert.doesNotMatch(result.patchSource, /"\$ref"/);
   assert.deepEqual(result.imports, ['import { extra } from "./sections/extra";']);
 });
@@ -111,7 +97,7 @@ test('unsafe placement paths and unverified references fail closed', () => {
       renderCourseLessonPatch({
         sourceLesson,
         directory,
-        rawPatch: { section: { items: JSON.parse('{"__proto__":{}}') } },
+        rawPatch: JSON.parse('{"__proto__":{"locale":{}}}'),
         binding: { imports: [] },
       }),
     /invalid Course-owned override path/,
@@ -121,7 +107,7 @@ test('unsafe placement paths and unverified references fail closed', () => {
       renderCourseLessonPatch({
         sourceLesson,
         directory,
-        rawPatch: { section: { additionalItems: { extra: { $ref: 'lesson-section' } } } },
+        rawPatch: { extra: { $ref: 'lesson-section' } },
         binding: { imports: [], aliases: { extra: 'forgedReference' } },
       }),
     /Missing trusted Section import/,
@@ -201,17 +187,7 @@ function compileFragments(rawPatch) {
   }));
 }
 
-const typed = patch => ({
-  section: {
-    items: {
-      intro: {
-        content: {
-          items: { paragraph: patch },
-        },
-      },
-    },
-  },
-});
+const typed = patch => ({ intro: { paragraph: patch } });
 
 test('generated Course-owned Section/ContentBlock fragments compile using their real Lesson Build types', () => {
   const errors = compileFragments(typed({ locale: { value: { uk: 'Інший текст' } } }));
@@ -220,13 +196,9 @@ test('generated Course-owned Section/ContentBlock fragments compile using their 
 
 test('generated fragments fail TypeScript on invalid field types and missing contract fields', () => {
   const errors = compileFragments({
-    section: {
-      items: {
-        intro: {
-          params: { fieldRemovedFromSection: true },
-          content: { items: { paragraph: { locale: { value: { uk: 42 } } } } },
-        },
-      },
+    intro: {
+      params: { fieldRemovedFromSection: true },
+      paragraph: { locale: { value: { uk: 42 } } },
     },
   });
   const fragmentErrors = errors.filter(diagnostic => diagnostic.path.includes('typedPlacement/sections/'));
@@ -243,16 +215,8 @@ test('generated fragments fail TypeScript on invalid field types and missing con
 
 test('generated fragments fail TypeScript for renamed nested keys and invalid locales', () => {
   const errors = compileFragments({
-    section: {
-      items: {
-        intro: {
-          content: {
-            items: {
-              renamedParagraph: { locale: { value: { xx: 'Unsupported locale' } } },
-            },
-          },
-        },
-      },
+    intro: {
+      renamedParagraph: { locale: { value: { xx: 'Unsupported locale' } } },
     },
   });
   const fragmentErrors = errors.filter(diagnostic => diagnostic.path.includes('typedPlacement/sections/'));
