@@ -1,5 +1,5 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import type { ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+import type { ChildSupporting, ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
 
 import {
   cloneJson,
@@ -25,7 +25,7 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -46,15 +46,35 @@ const validate = (candidate: Question_AnswerWithNumber_Config): void => {
 };
 
 type ContentShape = Question_AnswerWithNumber_Config['content'];
-type AddedPromptBlocksFromPatch<Patch, Content extends ContentShape> =
-  Patch extends { content: { question: infer Collection } }
-    ? AddedPlacementsFromPatch<
-        Collection,
-        Record<Extract<Content['question']['children'][number], string>, unknown>,
-        ContentBlock_Primitive_Configurator,
-        'children'
-      >
-    : {};
+/**
+ * Validate the concrete prompt patch by key, not via a generic Added record:
+ * the latter incorrectly classifies both the 'children' order and existing
+ * false/sparse patches as newly authored ContentBlock configurators.
+ */
+type LiteralPromptPatch<
+  Patch,
+  Content extends ContentShape,
+  Languages extends readonly LanguageCode[],
+> = Patch extends { content: { question: infer Group } }
+  ? Group extends Record<string, unknown>
+    ? Exclude<keyof Patch, 'params' | 'locale' | 'content'> extends never
+      ? {
+          content: {
+            question: {
+              [Key in keyof Group]:
+                Key extends 'children'
+                  ? Extract<Content['question']['children'][number] | keyof Group, string>[]
+                  : Key extends keyof BlockMembers<Content['question']>
+                    ? Parameters<BlockMembers<Content['question']>[Key]['build']['overrides']>[0] | false
+                    : Group[Key] extends ContentBlock_Primitive_Configurator
+                      ? ChildSupporting<Languages, Group[Key]>
+                      : never;
+            };
+          } & Pick<QuestionCommonPatch<Content, {}, Languages>, 'hint' | 'explanation'>;
+        }
+      : never
+    : never
+  : never;
 export type Question_AnswerWithNumber_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -173,7 +193,7 @@ export const defineAnswerWithNumber = <
   /** Preserve the exact existing-child override call alongside inferred additions. */
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & Question_AnswerWithNumber_Overrides<Content, AddedPromptBlocksFromPatch<Patch, Content>, Languages>,
+      patch: Patch & Question_AnswerWithNumber_MetadataOverrides & LiteralPromptPatch<Patch, Content, Languages>,
       options: PublicationLanguageOptions<Languages>,
     ): QuestionOverridePublication<Question_AnswerWithNumber_Data>;
     <const Added extends Record<string, ContentBlock_Primitive_Configurator>>(
