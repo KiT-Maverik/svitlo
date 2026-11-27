@@ -399,11 +399,11 @@ export const defineCarousel = <
   } = overridesImplementation;
 
   const result = {
+    ...initialItems,
     id,
     slug,
     type,
     children: [...initialOrder],
-    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
