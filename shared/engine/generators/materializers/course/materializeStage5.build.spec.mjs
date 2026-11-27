@@ -247,7 +247,18 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
       languages: ['uk'], quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
-    locale: { title: { uk: 'Окремий урок' } }, children: ['intro'],
+    locale: { title: { uk: 'Окремий урок' } }, children: ['intro', 'recap'],
+  };
+  const recapTextConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e24',
+    slug: 'recapText', type: 'text', params: {},
+    locale: { value: { uk: 'Повторення' } },
+  };
+  const recapConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e25',
+    slug: 'recap', type: 'content', params: {},
+    locale: { title: 'Повторення', navigationLabel: '3' },
+    children: ['recapText'],
   };
   const extraText = {
     id: '663572e7-bd85-4516-86e2-3de07d209e22',
@@ -262,7 +273,9 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
   };
   const paragraph = build.defineText(textConfig);
   const intro = build.defineContentSection({ ...sectionConfig, paragraph });
-  const independentLesson = build.defineLesson({ ...lessonConfig, intro });
+  const recapText = build.defineText(recapTextConfig);
+  const recap = build.defineContentSection({ ...recapConfig, recapText });
+  const independentLesson = build.defineLesson({ ...lessonConfig, intro, recap });
   const message = build.defineText(extraText);
   const practice = build.defineContentSection({ ...extraConfig, message });
 
@@ -287,6 +300,7 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
       sourceExportName: 'independentLesson',
       sourcePatch: {
         intro: { paragraph: { locale: { value: { uk: 'Інший текст' } } } },
+        recap: false,
         practice: {
           $ref: 'lesson-section', lessonId,
           sectionId: practice.id, sourceSha, exportName: 'practice',
@@ -328,6 +342,7 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
   assert.ok(wrapper, 'Course Lesson placement must have a generated wrapper');
   assert.match(wrapper.content, /CourseLessonBoundPatch<typeof independentLesson/);
   assert.match(wrapper.content, /"practice": typeof practice/);
+  assert.match(wrapper.content, /"recap": false/);
   const blockPath = courseRoot + '/reused/sections/intro/paragraph/index.ts';
   const block = plan.files.find(file => file.path === blockPath);
   assert.ok(block, 'nested existing ContentBlock override must be emitted');
@@ -341,8 +356,12 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
     "const intro = defineContentSection<'intro', { paragraph: typeof paragraph }, ['uk']>({",
     '  ...' + JSON.stringify(sectionConfig) + ', paragraph,',
     '});',
-    "export const independentLesson = defineLesson<'independentLesson', ['uk'], { intro: typeof intro }>({",
-    '  ...' + JSON.stringify(lessonConfig) + ', intro,',
+    "const recapText = defineText<'recapText', ['uk']>(" + JSON.stringify(recapTextConfig) + ');',
+    "const recap = defineContentSection<'recap', { recapText: typeof recapText }, ['uk']>({",
+    '  ...' + JSON.stringify(recapConfig) + ', recapText,',
+    '});',
+    "export const independentLesson = defineLesson<'independentLesson', ['uk'], { intro: typeof intro; recap: typeof recap }>({",
+    '  ...' + JSON.stringify(lessonConfig) + ', intro, recap,',
     '});',
     '',
   ].join('\n');
@@ -368,6 +387,13 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
   });
   assert.deepEqual(format(diagnostics(files, additionalPaths)), []);
 
+  const unknownPlacement = files.map(file => file.path === emittedPath
+    ? { ...file, content: file.content.replace('"recap": false', '"unknownSection": false') }
+    : file);
+  assert.ok(
+    diagnostics(unknownPlacement, additionalPaths).some(error => error.file?.fileName.endsWith(emittedPath)),
+    'unknown Lesson Section must fail generated placement TypeScript',
+  );
   const invalid = files.map(file => file.path === blockPath
     ? { ...file, content: file.content.replace('"Інший текст"', '23') }
     : file);
