@@ -136,7 +136,7 @@ test('Checkpoint requires exact active order, correct item type and stable child
       materializeCheckpoint(
         {
           ...input,
-          children: ['bad'],
+          children: ['first', 'bad'],
           bad: { ...input.first, type: 'text' as never },
         },
         options,
