@@ -28,7 +28,7 @@ export function independentLessonConfig(sourceId = reusedLessonId, slug = 'indep
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Незалежний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   };
 }
 export function lessonStage2() {
