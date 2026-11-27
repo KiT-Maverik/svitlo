@@ -46,12 +46,16 @@ export type Chapter_Child = ConfiguratorChild<
 >;
 export type Chapter_Child_Data = Lesson_Data | Episode_Data | Assessment_Data | Lesson_Draft_Data | Episode_Draft_Data;
 
-export const chapter_Config_Schema = identity.extend({
+export const chapter_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
-  content: z.object({
-    items: z.record(z.string(), z.custom<Chapter_Child>()),
-    order: z.array(z.string()),
-  }),
+});
+export type Chapter_Metadata_Config = z.infer<typeof chapter_Metadata_Config_Schema>;
+export const chapter_Config_Schema = chapter_Metadata_Config_Schema.extend({
+  children: z.array(z.string()),
+}).catchall(z.unknown()).superRefine((value, context) => {
+  for (const issue of validateSlugAddressedContainer(value, ['lesson', 'episode', 'assessment'])) {
+    context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
 });
 export type Chapter_Config = z.infer<typeof chapter_Config_Schema>;
 
@@ -71,12 +75,11 @@ export type Chapter_Overrides<
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,
   Added extends Record<string, Chapter_Child> = {},
 > = Chapter_Metadata_Overrides & {
-  content?: {
-    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & SafePlacementMap<Added> & { [Key in keyof Items]?: never };
-    order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-  };
-};
+  /** Complete replacement order when adding, removing or reordering placements. */
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & {
+  [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
+} & Added & SafePlacementMap<Added> & { [Key in Extract<keyof Items, keyof Added>]?: never };
 
 export const chapter_Data_Schema = identity
   .extend({

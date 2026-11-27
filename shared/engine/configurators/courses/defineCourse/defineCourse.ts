@@ -27,11 +27,13 @@ import {
 } from '../../_shared__configurators';
 import {
   course_Config_Schema,
+  course_Metadata_Config_Schema,
   course_Data_Schema,
   course_Override_Config_Schema,
   type Course_Child,
   type Course_Child_Data,
   type Course_Config,
+  type Course_Metadata_Config,
   type Course_Data,
   type Course_Locale,
   type Course_Metadata_Overrides,
@@ -68,50 +70,41 @@ const allowedChildren = ['module', 'chapter', 'lesson', 'episode', 'assessment']
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+const authoredFields = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+const directChildren = (config: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !authoredFields.has(key)));
+
 const validate = (config: Course_Config): void => {
+  const items = directChildren(config);
   const parsed = course_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys(config.content, { path: 'content' }).map(issue => issue.path + ': ' + issue.message),
-    ...validateSluggedConfiguratorMap(config.content?.items, allowedChildren, {
-      path: 'content.items',
-      itemLabel: 'Course child',
-      allowAliasForTypes: ['lesson'],
-      reservedKeys: slugAddressedReservedKeys,
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.path + ': ' + issue.message),
+    ...validateSluggedConfiguratorMap(items, allowedChildren, {
+      path: 'children', itemLabel: 'Course child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
-  if (isRecord(config.content) && isRecord(config.content.items)) {
-    for (const [slug, child] of Object.entries(config.content.items)) {
-      if (
-        !isRecord(child) ||
-        !isRecord(child.build) ||
-        typeof child.build.data !== 'function' ||
-        typeof child.build.overrides !== 'function'
-      ) {
-        errors.push('content.items.' + slug + ': child must expose the stateless Build API');
-        continue;
-      }
-      if (
-        !isRecord(child.config) ||
-        !isRecord(child.config.base) ||
+  for (const [slug, child] of Object.entries(items)) {
+    if (!isRecord(child) || !isRecord(child.build) ||
+        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function') {
+      errors.push('children.' + slug + ': child must expose the stateless Build API');
+      continue;
+    }
+    if (!isRecord(child.config) || !isRecord(child.config.base) ||
         child.config.base.id !== child.id ||
         ('draft' in child && child.draft === true && child.slug !== slug) ||
         (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
-        child.config.base.type !== child.type
-      ) {
-        errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
-      }
+        child.config.base.type !== child.type) {
+      errors.push('children.' + slug + ': immutable child identity does not match its authored metadata');
     }
   }
   const seenIds = new Map<string, Record<string, unknown>>();
-  for (const child of Object.values(config.content?.items ?? {})) {
+  for (const child of Object.values(items)) {
     if (!isRecord(child) || typeof child.id !== 'string') continue;
     const previous = seenIds.get(child.id);
     if (previous && !mayReuseCompletedLesson(previous, child)) {
-      errors.push('content.items: duplicate Course child ID ' + child.id);
-    } else {
-      seenIds.set(child.id, child);
-    }
+      errors.push('children: duplicate Course child ID ' + child.id);
+    } else seenIds.set(child.id, child);
   }
   if (errors.length) throw new Error('Course validation failed: ' + errors.join('; '));
 };
@@ -120,6 +113,14 @@ const validate = (config: Course_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
+type CourseNewPlacements<
+  Items extends Record<string, Course_Child>,
+  Patch extends Record<string, unknown>,
+> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
+    Patch[Key] extends Course_Child ? Patch[Key] : never;
+};
+
 export type Course_Configurator<
   Slug extends string = string,
   Items extends Record<string, Course_Child> = Record<string, Course_Child>,
@@ -128,14 +129,26 @@ export type Course_Configurator<
   readonly id: string;
   readonly slug: Slug;
   readonly type: 'course';
-  readonly content: { items: Items; order: string[] };
+  readonly children: Extract<keyof Items, string>[];
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>>;
-    overrides<const Added extends Record<string, Course_Child> = {}>(
-      patch: Course_Overrides<Items, Added> & {
-        content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
-      },
+    overrides<const Patch extends Record<string, unknown>>(
+      patch: Patch & {
+        children: Extract<keyof Items | keyof Patch, string>[];
+      } & {
+        [Key in keyof Patch]:
+          Key extends 'params' ? Course_Metadata_Overrides['params']
+            : Key extends 'locale' ? Course_Metadata_Overrides['locale']
+            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
+            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
+            : Patch[Key] extends Course_Child ? Patch[Key] : never;
+      } & ChildrenSupporting<Languages, CourseNewPlacements<Items, Patch>> &
+        SafePlacementMap<CourseNewPlacements<Items, Patch>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CoursePublication<CourseOverrideBase>;
+    overrides(
+      patch: Course_Overrides<Items>,
       options: PublicationLanguageOptions<Languages>,
     ): CoursePublication<CourseOverrideBase>;
   };
@@ -144,32 +157,36 @@ export type Course_Configurator<
     locales: () => { locale: DeepPartial<Course_Locale<'config'>> };
     validate: typeof validate;
   };
-} & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
+
+type CourseAuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Course_Child>,
+  Languages extends readonly [LanguageCode, ...LanguageCode[]],
+> = Omit<Course_Metadata_Config, 'slug' | 'locale' | 'params'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+  locale: RequireLanguages<Course_Config['locale'], Languages>;
+  params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
+
+} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
 
 /** Define a Course with immutable ordered child configurators and stateless Build. */
-export const defineCourse = <
+const defineCourseImplementation = <
   const Slug extends string,
   const Items extends Record<string, Course_Child>,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
 >(
-  config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
-    slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
-    locale: RequireLanguages<Course_Config['locale'], Languages>;
-    params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
-  },
+  config: CourseAuthoredInput<Slug, Items, Languages>,
 ): Course_Configurator<Slug, Items, Languages> => {
-  const metadataSchema = course_Config_Schema.omit({ content: true });
-  const { content: _content, ...metadataInput } = config;
-  const authored: Omit<Course_Config, 'content' | 'params'> & {
-    params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] };
-  } = structuredClone(metadataInput);
+  const metadataSchema = course_Metadata_Config_Schema;
+  const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
+  const authored: Omit<Course_Metadata_Config, 'params'> & { params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] } } = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
-  const initialItems: Items = { ...config.content.items };
-  const initialOrder = [...config.content.order];
-  const content = { items: { ...initialItems }, order: [...initialOrder] };
+  const initialItems = directChildren(config) as Items;
+  const initialOrder = [...config.children];
 
   const splitOwnLocale = (value: DeepPartial<Course_Config['locale']>) => {
     const own = splitLocalizedFields(value);
@@ -254,7 +271,7 @@ export const defineCourse = <
 
   const data = (options: PublicationLanguageOptions<Languages>): CoursePublication<CourseDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+    validate({ ...copyAuthored(), children: initialOrder, ...initialItems });
     const metadata = copyAuthored();
     for (const language of languages) {
       if (!metadata.params.languages.includes(language)) {
@@ -293,25 +310,20 @@ export const defineCourse = <
   };
 
   const overrides = <const Added extends Record<string, Course_Child> = {}>(
-    patch: Course_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> };
-    },
+    patch: Course_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): CoursePublication<CourseOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+      validate({ ...copyAuthored(), children: initialOrder, ...initialItems });
       for (const language of languages) {
         if (!authored.params.languages.includes(language)) {
           throw new Error('Course does not support publication language: ' + language);
         }
       }
       if (!isRecord(patch)) throw new Error('Expected Course overrides object');
-      for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'content'].includes(key)) throw new Error('Unknown Course override field: ' + key);
-      }
       const metadataPatch = course_Override_Config_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
       );
       metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const own = splitOwnLocale(metadataPatch.locale ?? {});
@@ -324,23 +336,23 @@ export const defineCourse = <
       };
       const files = selectPublicationLocales(own.files, languages) ?? {};
 
-      if (patch.content !== undefined && !isRecord(patch.content)) throw new Error('content must be an object');
-      if (patch.content) {
-        for (const key of Object.keys(patch.content)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) {
-            throw new Error('Unknown Course content override field: ' + key);
-          }
-        }
+      if (patch.children !== undefined && !Array.isArray(patch.children)) {
+        throw new Error('children must be a replacement order array');
       }
-      const changes = patch.content?.items ?? {};
-      const additions = patch.content?.additionalItems ?? {};
-      if (!isRecord(changes)) throw new Error('content.items must be a slug-keyed object');
-      if (!isRecord(additions)) throw new Error('content.additionalItems must be a slug-keyed configurator map');
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Course_Child> = {};
+      for (const [key, change] of Object.entries(patch)) {
+        if (authoredFields.has(key)) {
+          if (key !== 'params' && key !== 'locale' && key !== 'children') {
+            throw new Error('Immutable Course override field: ' + key);
+          }
+          continue;
+        }
+        if (Object.hasOwn(initialItems, key)) changes[key] = change;
+        else additions[key] = change as Course_Child;
+      }
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'content.additionalItems',
-        itemLabel: 'Course child',
-        allowAliasForTypes: ['lesson'],
-        reservedKeys: slugAddressedReservedKeys,
+        path: 'children', itemLabel: 'Course child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -375,19 +387,19 @@ export const defineCourse = <
           childPatches[key] = change;
         }
       }
-      if (structureChanged && patch.content?.order === undefined) {
-        throw new Error('content.order is required when adding or disabling children');
+      if (structureChanged && patch.children === undefined) {
+        throw new Error('children is required when adding or disabling placements');
       }
-      const order = patch.content?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: active, order }, { path: 'content', allowDisabled: true });
+      const order = patch.children ?? initialOrder;
+      const issues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
 
-      if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
+      if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Course_Child] => entry[1] !== false),
         );
         const built = buildContent(enabled, order, childPatches);
-        if (structureChanged || patch.content?.order !== undefined) output.base.children = [...order];
+        if (structureChanged || patch.children !== undefined) output.base.children = [...order];
         // Existing placements are sparse, additions are complete; false is a
         // deletion tombstone applied by the runtime Data assembler.
         for (const [key, change] of Object.entries(changes)) {
@@ -426,7 +438,8 @@ export const defineCourse = <
     id,
     slug,
     type,
-    content,
+    children: [...initialOrder],
+    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -438,3 +451,36 @@ export const defineCourse = <
     },
   } as unknown as Course_Configurator<Slug, Items, Languages>;
 };
+
+type CourseInferredBase = Omit<Course_Metadata_Config, 'slug' | 'params'> & {
+  slug: string;
+  params: Omit<Course_Config['params'], 'languages'> & { languages: readonly [LanguageCode, ...LanguageCode[]] };
+  children: string[];
+};
+type CourseInferredChildren<Config> = {
+  [Key in Exclude<keyof Config, keyof CourseInferredBase>]:
+    Config[Key] extends Course_Child ? Config[Key] : never;
+};
+
+/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
+export function defineCourse<
+  const Slug extends string,
+  const Items extends Record<string, Course_Child>,
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+>(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
+
+/** Infer the exact child Configurator types from every direct root placement. */
+export function defineCourse<
+  const Config extends CourseInferredBase,
+>(
+  config: Config &
+    CourseInferredChildren<Config> & {
+      children: Extract<keyof CourseInferredChildren<Config>, string>[];
+      locale: RequireLanguages<Course_Config['locale'], Config['params']['languages']>;
+    } &
+    ChildrenSupporting<Config['params']['languages'], CourseInferredChildren<Config>> &
+    SafePlacementMap<CourseInferredChildren<Config>>,
+): Course_Configurator<Config['slug'], CourseInferredChildren<Config>, Config['params']['languages']>;
+export function defineCourse(config: unknown): unknown {
+  return defineCourseImplementation(config as never);
+}

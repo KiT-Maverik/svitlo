@@ -1,19 +1,49 @@
-# Course hierarchy — slug-addressed Data contract (PR #906)
+# Course hierarchy — authored Config and slug-addressed Data contracts (#906 / #914)
 
-**Scope:** Course, Module and Chapter **published Data**. This is an interim
-contract for #902, with canonical **authored Config/overrides** explicitly
-assigned to prerequisite **A2 issue #914** before B #909 and C #910 can start.
-It does not redefine other entities' semantic roles or UI Props.
+**Scope:** Course, Module and Chapter authored Config, authored overrides and
+published Data within integration #902. #906 established the built Data boundary;
+A2 #914 migrates the authored surface in Draft PR #916. Dependent source
+materializers, publisher/runtime and UI remain separate workstreams.
+This document does not redefine other entities' semantic roles or presentation Props.
 
 ## Exact shape and ownership
 
-An authored Course/Module/Chapter still declares a Configurator's
-`content: { items: { [placementSlug]: childConfigurator }, order: placementSlug[] }`.
-That legacy input remains only as an **intermediate implementation detail**:
-A2 #914 owns the final Course/Module/Chapter Configurator schema, builder
-signature and authored overrides API. Only *after A2* may D #911 migrate the
-trusted Stage/source materializer output to that new authored Config shape.
-The current `content.items/order` is **not** the agreed final Config API.
+Canonical authored `defineCourse`, `defineModule` and `defineChapter` take
+`children: [placementSlug, ...]` at the root together with direct
+`placementSlug: ChildConfigurator` properties. The previous
+`content: { items, order }` input is **invalid**, not a compatibility alias.
+
+```ts
+// Shape only; IDs, locale completeness and child sources are illustrative.
+const chapter = defineChapter({
+  id: chapterUuid, type: 'chapter', slug: 'practice', params: {},
+  locale: { title: 'Practice' },
+  children: ['review'], review: existingLesson,
+});
+const module = defineModule({
+  id: moduleUuid, type: 'module', slug: 'shapes', params: {},
+  locale: { title: 'Shapes' },
+  children: ['practice'], practice: chapter,
+});
+const course = defineCourse({
+  id: courseUuid, type: 'course', slug: 'intro',
+  params: { languages: ['en'] as const },
+  locale: { title: 'Course', description: 'Shapes' },
+  children: ['shapes'], shapes: module,
+});
+```
+
+**Entrypoints:** `defineCourse/defineModule/defineChapter` and their
+`Course_Configurator/Module_Configurator/Chapter_Configurator` TypeScript
+contracts live in `shared/engine/configurators/courses/define*/define*.ts`;
+`course_Config_Schema/module_Config_Schema/chapter_Config_Schema`
+validate root child placement boundaries. The corresponding
+`*_Metadata_Config_Schema` parses only entity-owned authored metadata,
+not child configurators. `SafePlacementMap` from
+`_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils.ts`
+rejects reserved **literal** placement names; `validateSlugAddressedContainer`
+provides runtime keys/identity/order checks. Parent Config validation checks
+the direct boundary without parsing child-owned internals again.
 
 `build.data({ languages, mode? })` emits `{ base, locale }`. The **base Data**
 for each of these owners has its own `id`, `type`, `slug`, `params`,
@@ -81,9 +111,32 @@ language subset. Each `locale[language]` is already a Data-shaped fragment;
 a localized child lives at `locale[language][placementSlug]`. A parent owner
 wraps **only its own** localized fields as `locale[language].locale`.
 
-The **temporary** authored `build.overrides({ content: { items, additionalItems, order } },
-{ languages, mode? })` input must be migrated by A2 #914; its current **output**
-is a sparse, placement-keyed Data patch, not a full replacement Course array:
+The canonical authored `build.overrides()` patch uses direct keys:
+
+```ts
+course.build.overrides(
+  { shapes: { locale: { title: 'New shapes' } } },
+  { languages: ['en'] },
+);
+course.build.overrides(
+  { children: ['shapes', 'extra'], extra: additionalModule },
+  { languages: ['en'] },
+);
+course.build.overrides(
+  { children: ['extra'], shapes: false, extra: additionalModule },
+  { languages: ['en'] },
+);
+```
+
+Existing placements accept the child's own sparse authored override or
+`false` tombstone; additional placements accept whole child Configurator
+objects. New and disabled placements require an exhaustive replacement
+`children` array. A pure child patch does not require `children`.
+Unknown/reused/reserved names, altered identity, unsupported child types and
+invalid locale scopes are rejected. The original Config is never mutated.
+The authored input has **no** `content.items`, `additionalItems` or
+`order` wrapper, but its **output** is still a sparse direct placement Data
+patch:
 
 - Changed existing children publish their **own** sparse fragments at the
   placement key; unchanged siblings do not reappear.
@@ -119,10 +172,12 @@ Question prompt/explanation/group, assessment scoring and explicit Quiz
 references are semantically named fields, not generic dynamic children.
 Preserve bank identity and selection contracts independently.
 
-**A2 — Course authored Config/overrides (#914):** Owns the final root
-`children` + direct slug keys for authoring as well as the Config-sourced
-override API. This is a hard gate **after A #906 and before B/C/D**.
-A2 must not rewrite D-owned materializer sources.
+**A2 — Course authored Config/overrides (#914 / Draft PR #916):** Direct
+root child keys, Config schemas and sparse authored overrides are introduced
+in the Course Configurator family only. Changes to the existing Course Stage 3
+source renderer, typed Course editor and Playground authored Course are
+separate explicit consumer migrations. Do not treat a direct Data producer
+as proof that every authored call site has migrated.
 
 **D — Source materializers/Stage types (#911):** Consume A2's finalized
 Config API and transform inert reviewed drafts to valid Configurator code
@@ -139,6 +194,28 @@ Build presentation arrays only in a dedicated **Props** adapter.
 validated Data, not the authored Config or a synthetic `content.items/order`
 Data namespace.
 
-**Status / verification caveat:** All of the above is the PR #906 candidate
-contract. It does not represent a completed end-to-end rollout; D/E/F and
-independent review are still separate acceptance gates.
+**Status / verification caveat:** #906's Data contract is merged into the
+integration branch; #914's authored API is proposed in child PR #916 pending
+focused verification and independent review. **Downstream source migration details:** `types/workflow/courseWorkflow.types.ts`
+still derives `CourseWorkflowStage2Content` from deleted
+`Course_Config['content']`; define an explicit editorial Stage 2 structure
+instead. `types/workflow/courseWorkflowFinal.schemas.ts` still calls
+`.pick()` on the full Course/Module/Chapter Config schemas; these have
+placement-boundary refinements, so in Zod 4 use the exported
+`*_Metadata_Config_Schema` for metadata projections and leave the full
+`*_Config_Schema` to validate whole authored Config. The existing
+`configurators/assessments/defineAssessment/*.spec.ts`,
+`configurators/episodes/defineEpisode/*.spec.ts` and
+`configurators/integrationBuild.spec.ts` fixtures also need their Course
+hierarchies migrated from `content.items/order` (their internal Section
+collections must **not** be changed). These files are outside the A2
+implementation boundary and remain integration handoffs.
+
+The Course Stage 3 materializer,
+typed editor/fixtures, Playground authored Course and older Course-specific
+test call sites must migrate their declarations before the integrated
+typecheck and source-generation suites can be green. D #911 must generate
+direct `children` and placement properties without executing inert drafts;
+E #912 must keep the compact published Lesson reference distinction and
+apply `false` tombstones. No change is authorized to D/E files here. Entire
+end-to-end rollout still depends on B/C/D/E/F and owner-approved integration.
