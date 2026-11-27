@@ -207,7 +207,7 @@ export const defineAssessment = <
       const build = (child as unknown as SectionBuild).build;
       const resource = buildChildData({ build });
       const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
-      return { resource, patch };
+      return { key, resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
@@ -229,12 +229,29 @@ export const defineAssessment = <
         return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
       }) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
     }
-    return { base, locale };
+    return {
+      base,
+      locale,
+      patches: Object.fromEntries(entries.filter(entry => entry.patch)
+        .map(entry => [entry.key, entry.patch])) as Record<string, SectionResource>,
+    };
   };
 
-  /** Phase names remain semantic; direct child keys preserve stable source references. */
-  const buildPhase = (phase: Phase, patches: Record<string, unknown> = {}) => {
+  /** A phase is fully replaced only when its ordered children are explicitly supplied. */
+  const buildPhase = (phase: Phase, patches: Record<string, unknown> = {}, sparse = false) => {
     const built = buildSections(phaseItems(phase), phase.children, patches);
+    if (sparse) {
+      const base = {} as Assessment_Phase_DataBase;
+      const locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>> = {};
+      for (const [key, published] of Object.entries(built.patches)) {
+        if (Object.keys(published.base).length) base[key] = structuredClone(published.base);
+        for (const [language, value] of Object.entries(published.locale ?? {})) {
+          (locale[language as LanguageCode] ??= {} as Assessment_Phase_DataBase)[key] =
+            structuredClone(value);
+        }
+      }
+      return { base, locale };
+    }
     const base = {
       children: [...phase.children],
       ...Object.fromEntries(phase.children.map((key, index) => [key, built.base[index]])),
@@ -390,15 +407,17 @@ export const defineAssessment = <
       const updatedAfter = phase('after', after, patch.after);
       validate({ ...mergedMetadata, before: updatedBefore, quiz, after: updatedAfter });
       if (patch.before !== undefined) {
-        const built = buildPhase(updatedBefore, childPatches);
-        output.base.before = built.base;
+        const built = buildPhase(updatedBefore, childPatches,
+          !Object.hasOwn(patch.before, 'children'));
+        if (Object.keys(built.base).length) output.base.before = built.base;
         for (const [language, value] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= {}).before = value;
         }
       }
       if (patch.after !== undefined) {
-        const built = buildPhase(updatedAfter, childPatches);
-        output.base.after = built.base;
+        const built = buildPhase(updatedAfter, childPatches,
+          !Object.hasOwn(patch.after, 'children'));
+        if (Object.keys(built.base).length) output.base.after = built.base;
         for (const [language, value] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= {}).after = value;
         }
