@@ -312,9 +312,9 @@ export const defineFlashcardsSection = <
   } = overridesImplementation;
 
   const result = {
+    ...initialItems,
     id, slug, type,
     children: [...initialOrder],
-    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -328,4 +328,15 @@ export const defineFlashcardsSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type FlashcardsSection_Configurator = ReturnType<typeof defineFlashcardsSection>;
+/** The concrete Section retains literal keys; parents require an opaque collection boundary. */
+type FlashcardsSectionBase = ReturnType<typeof defineFlashcardsSection<string, {}, AllLanguageCodes>>;
+export type FlashcardsSection_Configurator = Omit<
+  FlashcardsSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<FlashcardsSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<FlashcardsSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<FlashcardsSectionBase['build']['overrides']>;
+  };
+};
