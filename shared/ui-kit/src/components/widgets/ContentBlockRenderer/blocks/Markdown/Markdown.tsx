@@ -4,7 +4,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import remarkMath from 'remark-math';
 
-import type { ContentBlock_Markdown_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Markdown_Data } from '@svitlo/engine/runtime';
 
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { localizedAttributes, resolveLocalizedRecord } from '../../utils';
@@ -27,7 +27,7 @@ const schema = {
  * Supports inline `$...$` and display `$$...$$` LaTeX formulas with KaTeX,
  * including accessible MathML and safely sanitized authored HTML.
  */
-export const Markdown = ({ locale: { value, variables } }: ContentBlock_Markdown_Props) => {
+export const Markdown = ({ locale: { value, variables } }: ContentBlock_Markdown_Data) => {
   const contentLanguage = useContentLanguage();
   return (
     <article {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.content}>

@@ -10,7 +10,7 @@ import {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Configurator, ContentBlock_Data } from '../../contentBlocks/contentBlock.types';
 
 const sectionBase = identityBase_Schema.extend({
   type: z.literal('quiz'),
@@ -102,19 +102,19 @@ export const quizSection_Config_Schema = sectionBase.extend({
 });
 export type QuizSection_Config = z.infer<typeof quizSection_Config_Schema>;
 
-export const quizSection_Props_Schema = sectionBase.extend({
+export const quizSection_Data_Schema = sectionBase.extend({
   params,
-  ...addUnifiedLocale(locale('props')),
+  ...addUnifiedLocale(locale('data')),
   content: z.array(contentBlockResolved_Schema),
 });
-export type QuizSection_Props = Omit<z.infer<typeof quizSection_Props_Schema>, 'content'> & {
-  content: ContentBlock_Props[];
+export type QuizSection_Data = Omit<z.infer<typeof quizSection_Data_Schema>, 'content'> & {
+  content: ContentBlock_Data[];
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type QuizSection_PropsBase = Pick<QuizSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
-  locale?: DeepPartial<QuizSection_Locale<'props'>>;
-  content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
+export type QuizSection_DataBase = Pick<QuizSection_Data, 'id' | 'slug' | 'type' | 'params'> & {
+  locale?: DeepPartial<QuizSection_Locale<'data'>>;
+  content: ReturnType<ContentBlock_Configurator['build']['data']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */

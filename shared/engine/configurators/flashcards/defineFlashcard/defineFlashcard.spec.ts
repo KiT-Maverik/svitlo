@@ -6,7 +6,7 @@ import { defineFlashcardSide } from '../defineFlashcardSide';
 import { defineFlashcard } from './defineFlashcard';
 import {
   flashcard_Config_Schema,
-  flashcard_Props_Schema,
+  flashcard_Data_Schema,
   flashcardConfigurator_Schema,
 } from './defineFlashcard.schemas';
 
@@ -110,7 +110,7 @@ describe('Configurators', () => {
             back: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
           },
         });
-        const resource = card.build.props({ languages: ['en', 'uk'] });
+        const resource = card.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(resource.base.parameters.flags, []);
         assert.deepEqual(resource.base.parameters.disabilities, []);
         assert.equal(resource.locale, undefined);
@@ -155,7 +155,7 @@ describe('Configurators', () => {
         );
         assert.equal(flagValue(changed.locale?.uk?.parameters?.flags, 1), 'Другий');
         assert.deepEqual(
-          card.build.props({ languages: ['en'] }).base.parameters.flags.map(x => x!.type),
+          card.build.data({ languages: ['en'] }).base.parameters.flags.map(x => x!.type),
           ['list', 'acronym'],
         );
       });
@@ -165,10 +165,10 @@ describe('Configurators', () => {
           ...source,
           parameters: { ...source.parameters, disabilities: ['deafness'] },
         });
-        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        assert.deepEqual(card.build.data({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
         const patch = card.build.overrides({ parameters: { disabilities: ['blindness'] } }, { languages: ['en'] });
         assert.deepEqual(patch.base.parameters?.disabilities, ['blindness']);
-        assert.deepEqual(card.build.props({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
+        assert.deepEqual(card.build.data({ languages: ['en'] }).base.parameters.disabilities, ['deafness']);
         assert.equal(
           flashcard_Config_Schema.safeParse({
             ...source,
@@ -181,23 +181,23 @@ describe('Configurators', () => {
       test('Flashcard composes ordered sides and unordered flag arrays as JSON-only published Props', () => {
         const card = defineBilingualFlashcard(source);
         assert.equal(card.content.front.items.front, front);
-        assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
+        assert.equal(card.build.data({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
         assert.deepEqual(
-          card.build.props({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug),
+          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug),
           ['front'],
         );
         assert.deepEqual(
-          card.build.props({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x!.type),
+          card.build.data({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x!.type),
           ['list', 'acronym'],
         );
         assert.deepEqual(
-          card.build.props({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId),
+          card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId),
           ['r1'],
         );
-        assert.equal(textValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
-        assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
-        assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
-        assert.doesNotThrow(() => JSON.stringify(card.build.props({ languages: ['en', 'uk'] })));
+        assert.equal(textValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
+        assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
+        assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
+        assert.doesNotThrow(() => JSON.stringify(card.build.data({ languages: ['en', 'uk'] })));
         assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
         assert.deepEqual(
           card.config.locales().parameters.flags,
@@ -206,7 +206,7 @@ describe('Configurators', () => {
         );
         assert.equal(flashcard_Config_Schema.safeParse({ ...source, type: 'flashcard' }).success, false);
         assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
-        assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
+        assert.equal(flashcard_Data_Schema.safeParse(source).success, false);
         assert.equal('override' in card, false);
         assert.equal('overrides' in card.config, false);
       });
@@ -225,7 +225,7 @@ describe('Configurators', () => {
         );
         assert.deepEqual(first.locale, undefined);
         assert.deepEqual(
-          card.build.props({ languages: ['en', 'uk'] }).base.content.front.map(block => block.slug),
+          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(block => block.slug),
           ['front'],
         );
         const second = card.build.overrides(
@@ -243,7 +243,7 @@ describe('Configurators', () => {
         assert.deepEqual(second.base.parameters?.tags, ['science']);
         assert.equal(flagValue(second.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
         assert.equal(flagValue(second.locale?.en?.parameters?.flags, 1), 'ABC');
-        assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
         const cleared = card.build.overrides(
           {
             parameters: { flags: [] },
@@ -310,7 +310,7 @@ describe('Configurators', () => {
                 // Intentionally add an invalid duplicate flag to exercise the runtime validator.
                 flags: [...source.parameters.flags, { type: 'list', count: 3 }] as never,
               },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /Duplicate built-in Flashcard flag/,
         );
         assert.throws(() =>
@@ -323,24 +323,24 @@ describe('Configurators', () => {
                 order: ['front'],
               }) as unknown as typeof source.content.front,
             },
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
       });
 
       test('Flashcard permits absent hint and provides independent detached results', () => {
         const { hint: _hint, ...requiredContent } = source.content;
         const card = defineBilingualFlashcard({ ...source, content: requiredContent });
-        assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.content.hint, undefined);
-        const original = card.build.props({ languages: ['en', 'uk'] });
+        assert.equal(card.build.data({ languages: ['en', 'uk'] }).base.content.hint, undefined);
+        const original = card.build.data({ languages: ['en', 'uk'] });
         const changed = card.build.overrides({ parameters: { tags: ['other'] } }, { languages: ['en', 'uk'] });
         assert.deepEqual(changed.base, { parameters: { tags: ['other'] } });
         original.base.parameters.tags.push('mutation');
-        assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
       });
 
       test('Flashcard publishes selected languages only and checks each requested resolved Props', () => {
         const card = defineBilingualFlashcard(source);
-        const single = card.build.props({ languages: ['uk'] });
+        const single = card.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);
         const patch = card.build.overrides(
@@ -356,8 +356,8 @@ describe('Configurators', () => {
         );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
         assert.equal(flagValue(patch.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
-        assert.throws(() => card.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => card.build.props({ languages: ['uk', 'uk'] }), /unique/);
+        assert.throws(() => card.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => card.build.data({ languages: ['uk', 'uk'] }), /unique/);
       });
     });
   });

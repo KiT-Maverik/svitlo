@@ -2,14 +2,14 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import {
-  assembleLessonProps,
+  assembleLessonData,
   languageCode_Schema,
   resolveEntityPath,
   type LanguageCode,
-  type Lesson_Props,
-  type LessonPropsFragment,
-  type PublishedLessonPropsOverride,
-  type PublishedLessonPropsResource,
+  type Lesson_Data,
+  type LessonDataFragment,
+  type PublishedLessonDataOverride,
+  type PublishedLessonDataResource,
 } from '@svitlo/engine/runtime';
 
 export type LoadPublishedLessonPropsOptions = {
@@ -17,7 +17,7 @@ export type LoadPublishedLessonPropsOptions = {
   rootDirectory: string;
   id: string;
   language: LanguageCode;
-  override?: PublishedLessonPropsOverride;
+  override?: PublishedLessonDataOverride;
 };
 
 async function readPublishedJson(filename: string, required: boolean): Promise<unknown | undefined> {
@@ -46,7 +46,7 @@ export async function loadPublishedLessonProps({
   id,
   language,
   override,
-}: LoadPublishedLessonPropsOptions): Promise<Lesson_Props> {
+}: LoadPublishedLessonPropsOptions): Promise<Lesson_Data> {
   if (typeof rootDirectory !== 'string' || !rootDirectory.trim()) {
     throw new Error('A published Lesson rootDirectory is required');
   }
@@ -60,11 +60,11 @@ export async function loadPublishedLessonProps({
     readPublishedJson(path.join(directory, selectedLanguage + '.json'), false),
   ]);
 
-  const resource: PublishedLessonPropsResource = {
-    base: base as PublishedLessonPropsResource['base'],
-    ...(locale !== undefined ? { locale: { [selectedLanguage]: locale as LessonPropsFragment } } : {}),
+  const resource: PublishedLessonDataResource = {
+    base: base as PublishedLessonDataResource['base'],
+    ...(locale !== undefined ? { locale: { [selectedLanguage]: locale as LessonDataFragment } } : {}),
   };
-  const result = assembleLessonProps(resource, selectedLanguage, override);
+  const result = assembleLessonData(resource, selectedLanguage, override);
   if (result.id.toLowerCase() !== normalizedId) {
     throw new Error('Published Lesson ID does not match the requested folder: ' + normalizedId);
   }

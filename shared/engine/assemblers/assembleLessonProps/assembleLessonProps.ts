@@ -1,17 +1,17 @@
 import {
-  lesson_Props_Schema,
-  type Lesson_Props,
-  type Lesson_PropsBase,
+  lesson_Data_Schema,
+  type Lesson_Data,
+  type Lesson_DataBase,
 } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import type { DeepPartial } from '../../types/transformer.types';
 
 /** Published locale files are sparse Props-shaped fragments, not authoring configs. */
-export type LessonPropsFragment = DeepPartial<Lesson_Props>;
+export type LessonDataFragment = DeepPartial<Lesson_Data>;
 
-export type PublishedLessonPropsResource = {
-  base: Lesson_PropsBase;
-  locale?: Partial<Record<LanguageCode, LessonPropsFragment>>;
+export type PublishedLessonDataResource = {
+  base: Lesson_DataBase;
+  locale?: Partial<Record<LanguageCode, LessonDataFragment>>;
 };
 
 /**
@@ -20,13 +20,13 @@ export type PublishedLessonPropsResource = {
  * partial entries. Question/Flashcard resources are published independently.
  */
 export type LessonOverrideFragment = {
-  params?: DeepPartial<Omit<Lesson_Props['params'], 'languages'>>;
-  locale?: DeepPartial<Lesson_Props['locale']>;
-  section?: Lesson_PropsBase['section'];
-  events?: Lesson_Props['events'];
+  params?: DeepPartial<Omit<Lesson_Data['params'], 'languages'>>;
+  locale?: DeepPartial<Lesson_Data['locale']>;
+  section?: Lesson_DataBase['section'];
+  events?: Lesson_Data['events'];
 };
 
-export type PublishedLessonPropsOverride = {
+export type PublishedLessonDataOverride = {
   base?: LessonOverrideFragment;
   locale?: Partial<Record<LanguageCode, LessonOverrideFragment>>;
 };
@@ -71,11 +71,11 @@ function checkFragment(fragment: unknown, label: string): void {
  *             override.base -> override.locale[language].
  * A published Props array always replaces the complete earlier array.
  */
-export function assembleLessonProps(
-  resource: PublishedLessonPropsResource,
+export function assembleLessonData(
+  resource: PublishedLessonDataResource,
   language: LanguageCode,
-  override?: PublishedLessonPropsOverride,
-): Lesson_Props {
+  override?: PublishedLessonDataOverride,
+): Lesson_Data {
   const selected = languageCode_Schema.parse(language);
   if (!isRecord(resource) || !isRecord(resource.base)) {
     throw new Error('Invalid published Lesson resource: missing base Props object');
@@ -99,7 +99,7 @@ export function assembleLessonProps(
 
   try {
     // Zod parses a fresh Props value; clone the unknown child payloads as well.
-    return structuredClone(lesson_Props_Schema.parse(resolved)) as Lesson_Props;
+    return structuredClone(lesson_Data_Schema.parse(resolved)) as Lesson_Data;
   } catch (error) {
     throw new Error('Invalid assembled Lesson Props for ' + selected, { cause: error });
   }

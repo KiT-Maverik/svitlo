@@ -10,7 +10,7 @@ const slugCode = /^[a-z][a-zA-Z0-9]*$/;
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /**
- * @param {readonly { id: string, slug: string, type: string, build: { props(options: { languages: readonly string[] }): { base: object, locale?: Record<string, object> } } }[]} domains
+ * @param {readonly { id: string, slug: string, type: string, build: { data(options: { languages: readonly string[] }): { base: object, locale?: Record<string, object> } } }[]} domains
  * @param {readonly string[]} languages
  */
 export function prepareSkillPublication(domains, languages) {
@@ -30,15 +30,15 @@ export function prepareSkillPublication(domains, languages) {
       typeof domain.slug !== 'string' ||
       !slugCode.test(domain.slug) ||
       typeof domain.id !== 'string' ||
-      typeof domain.build?.props !== 'function'
+      typeof domain.build?.data !== 'function'
     ) {
-      throw new Error('Expected SkillDomain configurators exposing build.props');
+      throw new Error('Expected SkillDomain configurators exposing build.data');
     }
     if (Object.hasOwn(base, domain.slug) || seenIds.has(domain.id)) {
       throw new Error('Duplicate SkillDomain identity: ' + domain.slug);
     }
     seenIds.add(domain.id);
-    const publication = domain.build.props({ languages });
+    const publication = domain.build.data({ languages });
     if (
       !isRecord(publication) ||
       !isRecord(publication.base) ||

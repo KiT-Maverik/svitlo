@@ -3,17 +3,17 @@ export * from './composite';
 
 export type {
   ContentBlock_Configurator,
-  ContentBlock_Props,
+  ContentBlock_Data,
   ContentBlock_Config,
-  ContentBlock_PropsBase,
+  ContentBlock_DataBase,
   ContentBlock_Primitive_Configurator,
   ContentBlock_Primitive_Config,
-  ContentBlock_Primitive_PropsBase,
-  ContentBlock_Primitive_Props,
+  ContentBlock_Primitive_DataBase,
+  ContentBlock_Primitive_Data,
   ContentBlock_Composite_Configurator,
   ContentBlock_Composite_Config,
-  ContentBlock_Composite_PropsBase,
-  ContentBlock_Composite_Props,
+  ContentBlock_Composite_DataBase,
+  ContentBlock_Composite_Data,
 } from './contentBlock.types';
 export * from './contentBlock.constants';
 export {

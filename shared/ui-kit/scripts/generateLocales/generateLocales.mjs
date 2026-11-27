@@ -116,13 +116,13 @@ function loadAssessmentMethodDefinitions() {
 function createAssessmentMethodResources() {
   const entries = loadAssessmentMethodDefinitions();
   const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
-  const { assessmentMethod_Props_Schema } = require('@svitlo/engine/build');
+  const { assessmentMethod_Data_Schema } = require('@svitlo/engine/build');
   const ids = new Set();
   const base = {};
   const localized = Object.fromEntries(languages.map(language => [language, {}]));
 
   for (const { name, definition } of entries) {
-    const publication = definition.build.props({ languages });
+    const publication = definition.build.data({ languages });
     const metadata = publication.base;
     if (metadata.slug !== name || ids.has(metadata.id)) {
       throw new Error('Invalid or duplicate Assessment Method identity: ' + name);
@@ -130,7 +130,7 @@ function createAssessmentMethodResources() {
     ids.add(metadata.id);
     base[name] = { id: metadata.id, slug: metadata.slug };
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
-      const props = assessmentMethod_Props_Schema.parse({
+      const props = assessmentMethod_Data_Schema.parse({
         ...metadata,
         ...publication.locale?.[language],
       });
@@ -146,13 +146,13 @@ function createAssessmentMethodResources() {
 function createEducationStandardResources() {
   const definitions = loadEducationStandards();
   const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
-  const { educationStandard_Props_Schema } = require('@svitlo/engine/runtime');
+  const { educationStandard_Data_Schema } = require('@svitlo/engine/runtime');
   const ids = new Set();
   const base = {};
   const localized = Object.fromEntries(languages.map(language => [language, {}]));
 
   for (const definition of definitions) {
-    const publication = definition.build.props({ languages });
+    const publication = definition.build.data({ languages });
     const metadata = publication.base;
     if (ids.has(metadata.id) || Object.hasOwn(base, metadata.slug) || metadata.slug !== definition.slug) {
       throw new Error('Invalid or duplicated EducationStandard identity: ' + definition.slug);
@@ -164,7 +164,7 @@ function createEducationStandardResources() {
       if (!fragment?.description?.frontend?.trim()) {
         throw new Error('Missing EducationStandard translation: ' + metadata.slug + '/' + language);
       }
-      educationStandard_Props_Schema.parse({
+      educationStandard_Data_Schema.parse({
         ...metadata,
         description: { ...metadata.description, ...fragment.description },
       });

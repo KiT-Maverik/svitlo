@@ -4,7 +4,7 @@ import { describe, test } from 'node:test';
 import { defineImage } from '../../primitive/defineImage';
 import { defineScene } from '../../primitive/defineScene';
 import { defineText } from '../../primitive/defineText';
-import { carousel_Config_Schema, carousel_Props_Schema, defineCarousel } from './index';
+import { carousel_Config_Schema, carousel_Data_Schema, defineCarousel } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -89,7 +89,7 @@ describe('Configurators', () => {
 
       test('publishes complete, ordered Image Props with their stable identity', () => {
         const { carousel } = example();
-        const resource = carousel.build.props(scope);
+        const resource = carousel.build.data(scope);
         assert.equal(resource.base.locale?.slides, undefined);
         const en = resource.locale?.en?.locale.slides;
         assert.deepEqual(
@@ -119,7 +119,7 @@ describe('Configurators', () => {
         assert.equal(JSON.stringify(resource).includes('"additionalItems"'), false);
         assert.equal(JSON.stringify(resource).includes('"order"'), false);
         assert.equal(
-          carousel_Props_Schema.safeParse({
+          carousel_Data_Schema.safeParse({
             ...resource.base,
             locale: { ...resource.base.locale, ...resource.locale?.uk?.locale },
           }).success,
@@ -144,7 +144,7 @@ describe('Configurators', () => {
           locale: { title: { en: 'Explore', uk: 'Досліди' } },
           slides: { items: { picture, activity }, order: ['picture', 'activity'] },
         });
-        const built = carousel.build.props(scope);
+        const built = carousel.build.data(scope);
         assert.deepEqual(
           built.locale?.uk?.locale.slides?.map(slide => slide?.type),
           ['image', 'scene'],
@@ -155,7 +155,7 @@ describe('Configurators', () => {
         if (scene?.type === 'scene' && scene.locale && 'value' in scene.locale)
           assert.deepEqual(scene.locale.value, { instruction: 'Обери' });
         assert.equal(
-          carousel_Props_Schema.safeParse({
+          carousel_Data_Schema.safeParse({
             ...built.base,
             locale: { ...built.base.locale, ...built.locale?.uk?.locale },
           }).success,
@@ -173,7 +173,7 @@ describe('Configurators', () => {
           locale: {},
           slides: { items: { first }, order: ['first'] },
         });
-        assert.deepEqual(carousel.build.props(scope).base.locale?.slides, [
+        assert.deepEqual(carousel.build.data(scope).base.locale?.slides, [
           {
             id: ids[1],
             slug: 'first',
@@ -182,7 +182,7 @@ describe('Configurators', () => {
             locale: { src: 'https://example.com/base.png', alt: 'Base' },
           },
         ]);
-        assert.equal(carousel.build.props(scope).locale, undefined);
+        assert.equal(carousel.build.data(scope).locale, undefined);
         assert.deepEqual(carousel.build.overrides({}, scope), { base: {}, locale: undefined });
       });
 
@@ -195,7 +195,7 @@ describe('Configurators', () => {
           params: {},
           locale: { value: { en: 'Later', uk: 'Пізніше' } },
         });
-        const before = carousel.build.props(scope);
+        const before = carousel.build.data(scope);
         const patch = {
           slides: {
             items: { first: false as const, second: { locale: { alt: { uk: 'Другий' } } } },
@@ -211,7 +211,7 @@ describe('Configurators', () => {
         const second = built.locale?.uk?.locale.slides?.[1];
         if (second?.type === 'image' && second.locale && 'alt' in second.locale)
           assert.equal(second.locale.alt, 'Другий');
-        assert.deepEqual(carousel.build.props(scope), before);
+        assert.deepEqual(carousel.build.data(scope), before);
         assert.deepEqual(carousel.build.overrides(patch, scope), built);
       });
 
@@ -246,7 +246,7 @@ describe('Configurators', () => {
               params: {},
               locale: {},
               slides: { items: { text: text as never }, order: ['text'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /expected.*image|expected.*scene|Unsupported.*type|Invalid Carousel (?:slides|Config)|must be/i,
         );
       });
@@ -294,14 +294,14 @@ describe('Configurators', () => {
               params: {},
               locale: {},
               slides: { items: { different: first }, order: ['different'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /key does not match configurator slug/,
         );
-        const before = carousel.build.props(scope);
+        const before = carousel.build.data(scope);
         carousel.slides.order.reverse();
         const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };
         exposed.items.first = exposed.items.second;
-        assert.deepEqual(carousel.build.props(scope), before);
+        assert.deepEqual(carousel.build.data(scope), before);
       });
     });
   });

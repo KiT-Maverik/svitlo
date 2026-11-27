@@ -299,7 +299,7 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
           {
             ...episode,
             config: { base: { params: { languages: ['en'] } } },
-            build: { props: () => ({ base: episode }) },
+            build: { data: () => ({ base: episode }) },
           },
         ];
       },

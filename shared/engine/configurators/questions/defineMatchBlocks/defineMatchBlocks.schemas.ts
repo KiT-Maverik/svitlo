@@ -8,12 +8,12 @@ import {
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -48,18 +48,18 @@ export const matchBlocks_Override_Config_Schema: z.ZodType<Question_MatchBlocks_
   ),
 );
 
-export const matchBlocks_Props_Schema = questionBase.extend({
+export const matchBlocks_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
-  content: questionCommonContent_Props_Schema.extend({
+  content: questionCommonContent_Data_Schema.extend({
     pairs: z.record(
       z.string(),
       z.object({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema }),
     ),
   }),
 });
-export type Question_MatchBlocks_Props = Omit<z.infer<typeof matchBlocks_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
-    pairs: Record<string, { left: ContentBlock_Primitive_Props; right: ContentBlock_Primitive_Props }>;
+export type Question_MatchBlocks_Data = Omit<z.infer<typeof matchBlocks_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
+    pairs: Record<string, { left: ContentBlock_Primitive_Data; right: ContentBlock_Primitive_Data }>;
   };
 };

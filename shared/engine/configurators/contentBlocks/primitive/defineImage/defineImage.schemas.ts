@@ -34,14 +34,14 @@ const configLocale = {
     .optional(),
 };
 const propsLocale = {
-  src: localizationSwitch.props,
-  alt: localizationSwitch.props,
-  caption: localizationSwitch.props.optional(),
+  src: localizationSwitch.data,
+  alt: localizationSwitch.data,
+  caption: localizationSwitch.data.optional(),
   fallback: z
     .object({
-      offline: localizationSwitch.props.optional(),
-      unavailable: localizationSwitch.props.optional(),
-      retry: localizationSwitch.props.optional(),
+      offline: localizationSwitch.data.optional(),
+      unavailable: localizationSwitch.data.optional(),
+      retry: localizationSwitch.data.optional(),
     })
     .optional(),
 };
@@ -74,11 +74,11 @@ export const image_Override_Config_Schema: z.ZodType<ContentBlock_Image_Override
   ),
 );
 
-export type ContentBlock_Image_PropsBase = z.infer<typeof imageBase> & {
-  locale?: DeepPartial<ContentBlock_Image_Locale<'props'>>;
+export type ContentBlock_Image_DataBase = z.infer<typeof imageBase> & {
+  locale?: DeepPartial<ContentBlock_Image_Locale<'data'>>;
 };
 
-export const image_Props_Schema = imageBase
+export const image_Data_Schema = imageBase
   .extend(addUnifiedLocale(propsLocale))
   .refine(
     value =>
@@ -89,4 +89,4 @@ export const image_Props_Schema = imageBase
       message: 'Image requires either fill/aspectRatio or width/height',
     },
   );
-export type ContentBlock_Image_Props = z.infer<typeof image_Props_Schema>;
+export type ContentBlock_Image_Data = z.infer<typeof image_Data_Schema>;

@@ -36,9 +36,9 @@ function authoringLanguageContracts() {
     content: { items: { paragraph: enUkText }, order: ['paragraph'] },
   });
   // @ts-expect-error Build publication always requires explicit selected languages.
-  bilingual.build.props();
+  bilingual.build.data();
   // @ts-expect-error Section can publish only its authored language tuple.
-  bilingual.build.props({ languages: ['pl'] });
+  bilingual.build.data({ languages: ['pl'] });
   // @ts-expect-error Patch publication also requires explicit selected languages.
   bilingual.build.overrides({});
   bilingual.build.overrides(
@@ -98,7 +98,7 @@ function authoringLanguageContracts() {
     { languages: ['uk'] },
   );
   // @ts-expect-error Lesson supports only the authored Ukrainian publication scope.
-  lesson.build.props({ languages: ['en'] });
+  lesson.build.data({ languages: ['en'] });
 }
 
 void authoringLanguageContracts;

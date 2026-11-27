@@ -4,13 +4,13 @@ import { describe, expect, it } from 'vitest';
 
 import type {
   AssessmentResourceLoader,
-  ContentBlock_Checkpoint_Props,
-  ContentBlock_Text_Props,
+  ContentBlock_Checkpoint_Data,
+  ContentBlock_Text_Data,
   Disability,
-  Flashcard_Props,
-  FlashcardsSection_Props,
-  Lesson_Props,
-  QuizSection_Props,
+  Flashcard_Data,
+  FlashcardsSection_Data,
+  Lesson_Data,
+  QuizSection_Data,
 } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
@@ -21,14 +21,14 @@ import { useLessonActions, type LessonActions } from './LessonController';
 import { useLessonEventBus } from './LessonEvents';
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
-const text = (number: number, value: string): ContentBlock_Text_Props => ({
+const text = (number: number, value: string): ContentBlock_Text_Data => ({
   id: uuid(number),
   slug: 'text' + number,
   type: 'text',
   params: {},
   locale: { value },
 });
-const checkpoint = (required: boolean): ContentBlock_Checkpoint_Props => ({
+const checkpoint = (required: boolean): ContentBlock_Checkpoint_Data => ({
   id: uuid(10),
   slug: 'checkpoint',
   type: 'checkpoint',
@@ -46,7 +46,7 @@ const checkpoint = (required: boolean): ContentBlock_Checkpoint_Props => ({
   ],
 });
 
-function fixture(required: boolean, allowNavigation = true): Lesson_Props {
+function fixture(required: boolean, allowNavigation = true): Lesson_Data {
   return {
     id: uuid(1),
     slug: 'light',
@@ -221,7 +221,7 @@ describe('Engine Props Lesson Controller', () => {
 
   it('loads only the selected Flashcard UUID and reveals the separate response on demand', async () => {
     const response = fixture(false);
-    const card: Flashcard_Props = {
+    const card: Flashcard_Data = {
       id: uuid(90),
       slug: 'lightCard',
       type: 'flashcard',
@@ -231,7 +231,7 @@ describe('Engine Props Lesson Controller', () => {
         back: [text(92, 'Light does.')],
       },
     };
-    const recall: FlashcardsSection_Props = {
+    const recall: FlashcardsSection_Data = {
       id: uuid(93),
       slug: 'recall',
       type: 'flashcards',
@@ -259,14 +259,14 @@ describe('Engine Props Lesson Controller', () => {
 
   it('shows a compatible alternative when a host loader returns incompatible Flashcards', async () => {
     const response = fixture(false);
-    const restricted: Flashcard_Props = {
+    const restricted: Flashcard_Data = {
       id: uuid(94),
       slug: 'audioRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
       content: { front: [text(95, 'Listen to a bell')], back: [text(96, 'A bell')] },
     };
-    const alternative: Flashcard_Props = {
+    const alternative: Flashcard_Data = {
       id: uuid(97),
       slug: 'textRecall',
       type: 'flashcard',
@@ -299,7 +299,7 @@ describe('Engine Props Lesson Controller', () => {
 
   it('announces an explicit localized empty eligible Flashcard pool', async () => {
     const response = fixture(false);
-    const audio: Flashcard_Props = {
+    const audio: Flashcard_Data = {
       id: uuid(101),
       slug: 'audioOnly',
       type: 'flashcard',
@@ -339,7 +339,7 @@ describe('Engine Props Lesson Controller', () => {
       params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
       locale: {},
       content: {
-        question: [text(27, 'Question about light')] as [ContentBlock_Text_Props],
+        question: [text(27, 'Question about light')] as [ContentBlock_Text_Data],
         answers: {
           correct: { radiation: text(28, 'Radiation') },
           incorrect: { sound: text(29, 'Sound') },
@@ -347,7 +347,7 @@ describe('Engine Props Lesson Controller', () => {
         },
       },
     };
-    const quiz: QuizSection_Props = {
+    const quiz: QuizSection_Data = {
       id: uuid(24),
       slug: 'quiz',
       type: 'quiz',

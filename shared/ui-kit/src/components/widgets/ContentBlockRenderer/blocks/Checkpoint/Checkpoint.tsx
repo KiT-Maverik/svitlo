@@ -13,7 +13,7 @@ import { createElement, useEffect, useId, useState } from 'react';
 import {
   DEFAULT_SUPPORTED_LANGUAGES,
   getLocaleDirection,
-  type ContentBlock_Checkpoint_Props,
+  type ContentBlock_Checkpoint_Data,
 } from '@svitlo/engine/runtime';
 
 import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
@@ -22,7 +22,7 @@ import { useContentLanguage } from '../../ContentLanguageContext';
 import type { RenderNested } from '../../types';
 import styles from './Checkpoint.module.css';
 
-type CheckpointProps = ContentBlock_Checkpoint_Props & {
+type CheckpointProps = ContentBlock_Checkpoint_Data & {
   messages: Checkpoint_Locale;
   renderNested: RenderNested;
   onComplete?: () => void;

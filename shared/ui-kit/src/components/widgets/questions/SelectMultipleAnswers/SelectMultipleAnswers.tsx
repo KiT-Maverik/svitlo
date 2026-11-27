@@ -2,7 +2,7 @@
 
 import { Stack } from '@mui/material';
 
-import type { Question_SelectMultipleAnswers_Props } from '@svitlo/engine/runtime';
+import type { Question_SelectMultipleAnswers_Data } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -16,7 +16,7 @@ export function SelectMultipleAnswers({
   sceneRegistry,
   messages,
 }: {
-  response: Question_SelectMultipleAnswers_Props;
+  response: Question_SelectMultipleAnswers_Data;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

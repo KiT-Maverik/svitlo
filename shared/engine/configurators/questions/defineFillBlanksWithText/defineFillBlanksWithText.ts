@@ -33,11 +33,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
+  fillBlanksWithText_Data_Schema,
   fillBlanksWithText_Override_Config_Schema,
-  fillBlanksWithText_Props_Schema,
   type Question_FillBlanksWithText_Config,
+  type Question_FillBlanksWithText_Data,
   type Question_FillBlanksWithText_MetadataOverrides,
-  type Question_FillBlanksWithText_Props,
 } from './defineFillBlanksWithText.schemas';
 
 type ContentShape = Question_FillBlanksWithText_Config['content'];
@@ -222,9 +222,9 @@ export const defineFillBlanksWithText = <
     return own;
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
+  ): QuestionResourcePublication<Question_FillBlanksWithText_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -241,8 +241,8 @@ export const defineFillBlanksWithText = <
         content: common.base,
       },
       locale: finishFiles(own.files),
-    } as unknown as QuestionResourcePublication<Question_FillBlanksWithText_Props>;
-    validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_FillBlanksWithText_Data>;
+    validateQuestionPublication(fillBlanksWithText_Data_Schema, languages, resource);
     return resource;
   };
 
@@ -252,7 +252,7 @@ export const defineFillBlanksWithText = <
   >(
     patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_FillBlanksWithText_Props> => {
+  ): QuestionOverridePublication<Question_FillBlanksWithText_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -295,8 +295,8 @@ export const defineFillBlanksWithText = <
       const publication = {
         base,
         locale: finishFiles(own.files),
-      } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
-      validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_FillBlanksWithText_Data>;
+      validateQuestionPublication(fillBlanksWithText_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -315,7 +315,7 @@ export const defineFillBlanksWithText = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: {
         id,

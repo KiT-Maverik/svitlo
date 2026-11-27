@@ -22,16 +22,16 @@ export type Question_Configurator = ConfiguratorChild<
 >;
 
 /** Resolved Question Props retain each question kind's discriminant and payload. */
-export type Question_Props =
-  | import('./defineSelectOneAnswer').Question_SelectOneAnswer_Props
-  | import('./defineSelectMultipleAnswers').Question_SelectMultipleAnswers_Props
-  | import('./defineMatchBlocks').Question_MatchBlocks_Props
-  | import('./defineAnswerWithText').Question_AnswerWithText_Props
-  | import('./defineAnswerWithNumber').Question_AnswerWithNumber_Props
-  | import('./defineOrderSequence').Question_OrderSequence_Props
-  | import('./defineBuildAnswerWithBlocks').Question_BuildAnswerWithBlocks_Props
-  | import('./defineFillBlanksWithBlocks').Question_FillBlanksWithBlocks_Props
-  | import('./defineFillBlanksWithText').Question_FillBlanksWithText_Props;
+export type Question_Data =
+  | import('./defineSelectOneAnswer').Question_SelectOneAnswer_Data
+  | import('./defineSelectMultipleAnswers').Question_SelectMultipleAnswers_Data
+  | import('./defineMatchBlocks').Question_MatchBlocks_Data
+  | import('./defineAnswerWithText').Question_AnswerWithText_Data
+  | import('./defineAnswerWithNumber').Question_AnswerWithNumber_Data
+  | import('./defineOrderSequence').Question_OrderSequence_Data
+  | import('./defineBuildAnswerWithBlocks').Question_BuildAnswerWithBlocks_Data
+  | import('./defineFillBlanksWithBlocks').Question_FillBlanksWithBlocks_Data
+  | import('./defineFillBlanksWithText').Question_FillBlanksWithText_Data;
 
 /** Base fragments retain Question identity and kind, but omit translated values. */
-export type Question_PropsBase = ReturnType<Question_Configurator['build']['props']>['base'];
+export type Question_DataBase = ReturnType<Question_Configurator['build']['data']>['base'];

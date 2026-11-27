@@ -9,7 +9,7 @@ import { defineContentSection } from '../../sections/defineContentSection/define
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from './defineLesson';
-import { lesson_Config_Schema, lesson_Props_Schema, lessonConfigurator_Schema } from './defineLesson.schemas';
+import { lesson_Config_Schema, lesson_Data_Schema, lessonConfigurator_Schema } from './defineLesson.schemas';
 
 describe('Configurators', () => {
   describe('Lessons', () => {
@@ -93,12 +93,12 @@ describe('Configurators', () => {
           locale: { title: 'Draft media' },
           section: { items: { media }, order: ['media'] },
         });
-        const draft = lesson.build.props({ languages: ['uk'], mode: 'draft' });
+        const draft = lesson.build.data({ languages: ['uk'], mode: 'draft' });
         assert.match(JSON.stringify(draft.base), new RegExp(UNRESOLVED_YOUTUBE_HREF));
         assert.equal(draft.locale?.en, undefined);
         assert.equal(draft.locale?.uk?.section?.[0]?.content?.length, 2);
-        assert.throws(() => lesson.build.props({ languages: ['uk'] }), /unresolved video reference|Scene/i);
-        assert.deepEqual(lesson.build.props({ languages: ['uk'], mode: 'draft' }), draft);
+        assert.throws(() => lesson.build.data({ languages: ['uk'] }), /unresolved video reference|Scene/i);
+        assert.deepEqual(lesson.build.data({ languages: ['uk'], mode: 'draft' }), draft);
       });
 
       test('Lesson Build overrides carry the owning ID outside the sparse Props patch', () => {
@@ -114,7 +114,7 @@ describe('Configurators', () => {
         assert.equal(adapted.id, lesson.id);
         assert.equal('id' in adapted.base, false);
         assert.equal('id' in (adapted.locale?.uk ?? {}), false);
-        assert.equal(lesson.build.props({ languages: ['uk'] }).base.id, lesson.id);
+        assert.equal(lesson.build.data({ languages: ['uk'] }).base.id, lesson.id);
         assert.deepEqual(lesson.build.overrides({}, { languages: ['en'] }), noChanges);
       });
 
@@ -135,7 +135,7 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         };
         const lesson = defineLesson(input);
-        const built = lesson.build.props({ languages: ['en'] });
+        const built = lesson.build.data({ languages: ['en'] });
         assert.deepEqual(built.base.params.age, { min: 6, max: 10 });
         assert.deepEqual(built.base.params.grade, { min: 1, max: 4 });
         assert.equal(lesson_Config_Schema.safeParse(input).success, true);
@@ -158,9 +158,9 @@ describe('Configurators', () => {
 
       test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
         const lesson = makeLesson();
-        const built = lesson.build.props({ languages: ['en', 'uk'] });
+        const built = lesson.build.data({ languages: ['en', 'uk'] });
         assert.equal('programId' in lesson.config.base, false);
-        assert.equal('programId' in lesson.build.props({ languages: ['en'] }).base, false);
+        assert.equal('programId' in lesson.build.data({ languages: ['en'] }).base, false);
         assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
         assert.equal(lesson.section.items.intro, section);
         assert.equal(built.base.section[0]?.slug, 'intro');
@@ -172,7 +172,7 @@ describe('Configurators', () => {
         assert.equal('questions' in built.base, false);
         assert.equal(lessonConfigurator_Schema.safeParse(lesson).success, true);
         assert.equal(
-          lesson_Props_Schema.safeParse(built.base).success,
+          lesson_Data_Schema.safeParse(built.base).success,
           false,
           'untranslated base fragment need not satisfy fully resolved Props schema',
         );
@@ -197,7 +197,7 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         };
         const lesson = defineLesson(input);
-        const built = lesson.build.props({ languages: ['en'] });
+        const built = lesson.build.data({ languages: ['en'] });
         assert.equal('questions' in built.base, false);
         assert.equal('flashcards' in built.base, false);
         assert.equal(lesson_Config_Schema.safeParse(input).success, true);
@@ -239,13 +239,13 @@ describe('Configurators', () => {
           ...input,
           section: { items: { intro: section, banklessRecall: recall }, order: ['intro', 'banklessRecall'] },
         });
-        assert.equal(withQuiz.build.props({ languages: ['en'] }).base.section[1]?.type, 'quiz');
-        assert.equal(withRecall.build.props({ languages: ['en'] }).base.section[1]?.type, 'flashcards');
-        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection, {
+        assert.equal(withQuiz.build.data({ languages: ['en'] }).base.section[1]?.type, 'quiz');
+        assert.equal(withRecall.build.data({ languages: ['en'] }).base.section[1]?.type, 'flashcards');
+        assert.deepEqual(quiz.build.data({ languages: ['en'] }).base.params.selection, {
           mode: 'all',
           questionIds: [id('64')],
         });
-        assert.deepEqual(recall.build.props({ languages: ['en'] }).base.params.selection, { flashcardIds: [id('65')] });
+        assert.deepEqual(recall.build.data({ languages: ['en'] }).base.params.selection, { flashcardIds: [id('65')] });
         assert.deepEqual(
           lesson.build
             .overrides(
@@ -268,7 +268,7 @@ describe('Configurators', () => {
           false,
           'Lesson Config must reject legacy banks',
         );
-        assert.deepEqual(lesson.build.props({ languages: ['en'] }), built);
+        assert.deepEqual(lesson.build.data({ languages: ['en'] }), built);
       });
 
       test('Unscoped children still validate each requested language before publishing Lesson Props', () => {
@@ -307,9 +307,9 @@ describe('Configurators', () => {
           },
         });
 
-        assert.doesNotThrow(() => lesson.build.props({ languages: ['uk'] }));
+        assert.doesNotThrow(() => lesson.build.data({ languages: ['uk'] }));
         assert.throws(
-          () => lesson.build.props({ languages: ['en', 'uk'] }),
+          () => lesson.build.data({ languages: ['en', 'uk'] }),
           /Invalid publication for language en/,
           'An unscoped authoring child cannot publish a missing translation to a scoped parent',
         );
@@ -334,11 +334,11 @@ describe('Configurators', () => {
         assert.equal(lesson_Config_Schema.safeParse(draft).success, true, 'Config permits sparse locale dictionaries');
         const lesson = defineLesson(draft as never);
         assert.doesNotThrow(() => lesson.config.validate(draft as never));
-        const source = lesson.build.props({ languages: ['en'] });
+        const source = lesson.build.data({ languages: ['en'] });
         assert.equal(source.locale?.en?.locale?.title, 'Source language only');
         assert.deepEqual(source.base.params.languages, ['en'], 'A scoped Build describes only its requested languages');
         assert.throws(
-          () => lesson.build.props({ languages: ['en', 'uk'] }),
+          () => lesson.build.data({ languages: ['en', 'uk'] }),
           /Invalid Lesson Props for language uk/,
           'A source-only Build must never be interpreted as complete for the declared locale set',
         );
@@ -346,7 +346,7 @@ describe('Configurators', () => {
 
       test('all-language Props validation does not supply independent editorial review evidence', () => {
         const lesson = makeLesson();
-        const publication = lesson.build.props({ languages: ['en', 'uk'] });
+        const publication = lesson.build.data({ languages: ['en', 'uk'] });
         assert.equal(publication.locale?.en?.locale?.title, 'Example');
         assert.equal(publication.locale?.uk?.locale?.title, 'Приклад');
         assert.equal(Object.hasOwn(publication.base, 'review'), false);
@@ -382,7 +382,7 @@ describe('Configurators', () => {
         assert.equal(textValue(updated.locale?.uk?.section?.[0]?.content), 'Новий текст');
         assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
         assert.equal(
-          textValue(lesson.build.props({ languages: ['en', 'uk'] }).locale?.uk?.section?.[0]?.content),
+          textValue(lesson.build.data({ languages: ['en', 'uk'] }).locale?.uk?.section?.[0]?.content),
           'Привіт',
         );
 
@@ -409,7 +409,7 @@ describe('Configurators', () => {
         assert.deepEqual(changed.base.params?.sections, { allowSkipping: true });
         assert.deepEqual(lesson.section.order, ['intro']);
         assert.deepEqual(
-          lesson.build.props({ languages: ['en', 'uk'] }).base.section.map(item => item.slug),
+          lesson.build.data({ languages: ['en', 'uk'] }).base.section.map(item => item.slug),
           ['intro'],
         );
         assert.throws(
@@ -436,15 +436,15 @@ describe('Configurators', () => {
         assert.equal(patch.id, lesson.id);
         assert.deepEqual(Object.keys(patch).sort(), ['base', 'id', 'locale']);
         assert.deepEqual(patch.base.events, events);
-        assert.equal(lesson.build.props({ languages: ['uk'] }).base.events, undefined);
+        assert.equal(lesson.build.data({ languages: ['uk'] }).base.events, undefined);
         assert.equal(patch.locale, undefined);
         assert.throws(
           () => lesson.build.overrides({ events: { lessonStarted: () => false } } as never, { languages: ['uk'] }),
           /Invalid Lesson overrides/,
         );
         assert.equal(
-          lesson_Props_Schema.safeParse({
-            ...lesson.build.props({ languages: ['uk'] }).base,
+          lesson_Data_Schema.safeParse({
+            ...lesson.build.data({ languages: ['uk'] }).base,
           }).success,
           false,
           'Lesson Props must not accept embedded Question banks',
@@ -460,7 +460,7 @@ describe('Configurators', () => {
               programId: id('04'),
               locale: { title: 'Legacy' },
               section: { items: { intro: section }, order: ['intro'] },
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /programId/,
         );
       });
@@ -480,7 +480,7 @@ describe('Configurators', () => {
               },
               locale: { title: 'Wrong' },
               section: { items: { wrongKey: section }, order: ['wrongKey'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /matching .* configurator/,
         );
       });
@@ -537,11 +537,11 @@ describe('Configurators', () => {
           locale: { title: 'English scope' },
           section: { items: { english, review: quiz }, order: ['english', 'review'] },
         });
-        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'], mode: 'draft' }));
-        assert.doesNotThrow(() => lesson.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => lesson.build.data({ languages: ['en'], mode: 'draft' }));
+        assert.doesNotThrow(() => lesson.build.data({ languages: ['en'] }));
         assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'], mode: 'draft' }));
         assert.doesNotThrow(() => lesson.build.overrides({}, { languages: ['en'] }));
-        assert.throws(() => lesson.build.props({ languages: ['en', 'zh'] }), /Invalid publication/);
+        assert.throws(() => lesson.build.data({ languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(() => lesson.build.overrides({}, { languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(
           () =>
@@ -572,7 +572,7 @@ describe('Configurators', () => {
           section: { items: { intro: section }, order: ['intro'] },
         });
         assert.equal(deferred.slug, 'quizRequiredLesson');
-        assert.throws(() => deferred.build.props({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
+        assert.throws(() => deferred.build.data({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
         assert.throws(() => deferred.build.overrides({}, { languages: ['en', 'uk'] }), /at least one enabled Quiz/);
 
         const quiz = defineQuizSection<'knowledgeQuiz', {}, ['en', 'uk']>({
@@ -604,7 +604,7 @@ describe('Configurators', () => {
             order: ['intro', 'knowledgeQuiz'],
           },
         });
-        assert.doesNotThrow(() => required.build.props({ languages: ['en', 'uk'] }));
+        assert.doesNotThrow(() => required.build.data({ languages: ['en', 'uk'] }));
         assert.throws(
           () =>
             required.build.overrides(
@@ -647,14 +647,14 @@ describe('Configurators', () => {
             defineLesson({
               ...lessonInput,
               section: { items: { disabledQuiz }, order: ['disabledQuiz'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /at least one enabled Quiz/,
         );
       });
 
       test('Lesson publication language options are mandatory and scoped recursively', () => {
         const lesson = makeLesson();
-        const single = lesson.build.props({ languages: ['uk'] });
+        const single = lesson.build.data({ languages: ['uk'] });
         assert.deepEqual(single.base.params.languages, ['uk']);
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);
@@ -666,12 +666,9 @@ describe('Configurators', () => {
           { languages: ['uk'] },
         );
         assert.deepEqual(Object.keys(patched.locale ?? {}), ['uk']);
-        assert.throws(() => lesson.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => lesson.build.props({ languages: ['uk', 'uk'] }), /unique/);
-        assert.throws(
-          () => lesson.build.props({ languages: ['pl'] as never }),
-          /does not support publication language/,
-        );
+        assert.throws(() => lesson.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => lesson.build.data({ languages: ['uk', 'uk'] }), /unique/);
+        assert.throws(() => lesson.build.data({ languages: ['pl'] as never }), /does not support publication language/);
       });
     });
   });

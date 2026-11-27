@@ -1,7 +1,7 @@
 /**
  * Build-only content identity for Lesson reviews.
  *
- * Hash the fully assembled `lesson.build.props({ languages })` resource.
+ * Hash the fully assembled `lesson.build.data({ languages })` resource.
  * This deliberately excludes Scene implementation and binary asset bytes:
  * unchanged Props with changed external files require separate reviews.
  */

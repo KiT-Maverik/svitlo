@@ -27,15 +27,15 @@ const configLocale = {
     .optional(),
 };
 const propsLocale = {
-  fileLocation: localizationSwitch.props,
-  title: localizationSwitch.props,
-  description: localizationSwitch.props.optional(),
+  fileLocation: localizationSwitch.data,
+  title: localizationSwitch.data,
+  description: localizationSwitch.data.optional(),
   fallback: z
     .object({
-      offline: localizationSwitch.props.optional(),
-      unavailable: localizationSwitch.props.optional(),
-      playbackError: localizationSwitch.props.optional(),
-      retry: localizationSwitch.props.optional(),
+      offline: localizationSwitch.data.optional(),
+      unavailable: localizationSwitch.data.optional(),
+      playbackError: localizationSwitch.data.optional(),
+      retry: localizationSwitch.data.optional(),
     })
     .optional(),
 };
@@ -58,9 +58,9 @@ export const audio_Override_Config_Schema: z.ZodType<ContentBlock_Audio_Override
   ),
 );
 
-export type ContentBlock_Audio_PropsBase = z.infer<typeof audioBase> & {
-  locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
+export type ContentBlock_Audio_DataBase = z.infer<typeof audioBase> & {
+  locale?: DeepPartial<ContentBlock_Audio_Locale<'data'>>;
 };
 
-export const audio_Props_Schema = audioBase.extend(addUnifiedLocale(propsLocale));
-export type ContentBlock_Audio_Props = z.infer<typeof audio_Props_Schema>;
+export const audio_Data_Schema = audioBase.extend(addUnifiedLocale(propsLocale));
+export type ContentBlock_Audio_Data = z.infer<typeof audio_Data_Schema>;

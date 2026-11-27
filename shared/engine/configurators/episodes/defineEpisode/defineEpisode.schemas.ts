@@ -6,9 +6,9 @@ import type { DeepPartial } from '#types';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
+import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
-import type { Section_Configurator, Section_Props } from '../../sections/section.types';
+import type { Section_Configurator, Section_Data } from '../../sections/section.types';
 
 /**
  * A Course-owned narrative activity. Episode is not a Lesson subtype:
@@ -45,19 +45,19 @@ const sectionResolved = z
   })
   .catchall(z.unknown());
 
-export const episode_Completed_Props_Schema = identity
+export const episode_Completed_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
     section: z.array(sectionResolved),
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
 /** Explicit draft preview; it cannot pass the completed Episode schema. */
-export const episode_Draft_Props_Schema = identity
+export const episode_Draft_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Props_Schema).nonempty(),
+    section: z.array(contentSection_Data_Schema).nonempty(),
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict()
@@ -77,14 +77,14 @@ export const episode_Draft_Props_Schema = identity
       ),
     'Episode draft needs the Not implemented Text ContentBlock',
   );
-export const episode_Props_Schema = z.union([episode_Completed_Props_Schema, episode_Draft_Props_Schema]);
-export type Episode_Draft_Props = z.infer<typeof episode_Draft_Props_Schema>;
-export type Episode_Props = Omit<z.infer<typeof episode_Completed_Props_Schema>, 'section'> & {
-  section: Section_Props[];
+export const episode_Data_Schema = z.union([episode_Completed_Data_Schema, episode_Draft_Data_Schema]);
+export type Episode_Draft_Data = z.infer<typeof episode_Draft_Data_Schema>;
+export type Episode_Data = Omit<z.infer<typeof episode_Completed_Data_Schema>, 'section'> & {
+  section: Section_Data[];
 };
-export type Episode_PropsBase = Pick<Episode_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type Episode_DataBase = Pick<Episode_Data, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: { title?: string };
-  section: ReturnType<Section_Configurator['build']['props']>['base'][];
+  section: ReturnType<Section_Configurator['build']['data']>['base'][];
   events?: Record<string, unknown>;
 };
 
@@ -118,7 +118,7 @@ export const episodeConfigurator_Schema = z.custom<{
   readonly id: string;
   readonly slug: string;
   readonly type: 'episode';
-  readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
+  readonly build: { readonly data: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
   value =>
     value !== null &&
@@ -133,8 +133,8 @@ export const episodeConfigurator_Schema = z.custom<{
     'build' in value &&
     value.build !== null &&
     typeof value.build === 'object' &&
-    'props' in value.build &&
-    typeof value.build.props === 'function' &&
+    'data' in value.build &&
+    typeof value.build.data === 'function' &&
     'overrides' in value.build &&
     typeof value.build.overrides === 'function',
   { message: 'Expected defineEpisode Build configurator, not authored Episode data' },

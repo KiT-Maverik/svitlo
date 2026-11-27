@@ -9,11 +9,11 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
 } from '../../_shared__configurators';
-import { skill_Config_Schema, skill_Props_Schema, type Skill_Config, type Skill_Props } from './defineSkill.schemas';
+import { skill_Config_Schema, skill_Data_Schema, type Skill_Config, type Skill_Data } from './defineSkill.schemas';
 
 type SkillPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Data>>> | undefined;
 };
 
 const validate = (config: Skill_Config): void => {
@@ -24,9 +24,9 @@ const validate = (config: Skill_Config): void => {
 const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>) => {
   const split = splitLocalizedFields(input);
   return {
-    base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
+    base: split.base as DeepPartial<Pick<Skill_Data, 'name' | 'description'>>,
     locale: split.locale as
-      Partial<Record<LanguageCode, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
+      Partial<Record<LanguageCode, DeepPartial<Pick<Skill_Data, 'name' | 'description'>>>> | undefined,
   };
 };
 
@@ -40,12 +40,12 @@ export type Skill_Configurator<
   readonly type: 'skill';
   readonly validate: typeof validate;
   readonly build: {
-    props(
+    data(
       options: PublicationLanguageOptions<Languages>,
-    ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
+    ): SkillPublication<DeepPartial<Skill_Data> & { id: Skill_Config['id']; slug: string }>;
   };
   readonly config: {
-    base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
+    base: DeepPartial<Skill_Data> & { id: Skill_Config['id']; slug: string };
     validate: typeof validate;
     locales: () => DeepPartial<Skill_Config>;
   };
@@ -62,18 +62,18 @@ export function defineSkill<
   const slug = config.slug;
   const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> => {
+  ): SkillPublication<DeepPartial<Skill_Data> & { id: Skill_Config['id']; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ name: current.name, description: current.description });
-    const result: SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> = {
+    const result: SkillPublication<DeepPartial<Skill_Data> & { id: Skill_Config['id']; slug: string }> = {
       base: { id: id as Skill_Config['id'], slug, ...own.base },
-      locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
+      locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Data>>['locale'], languages),
     };
     for (const language of languages) {
-      skill_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+      skill_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -83,7 +83,7 @@ export function defineSkill<
     slug,
     type: 'skill' as const,
     validate,
-    build: scopeBuild({ props }),
+    build: scopeBuild({ data }),
     config: {
       base: {
         id: id as Skill_Config['id'],

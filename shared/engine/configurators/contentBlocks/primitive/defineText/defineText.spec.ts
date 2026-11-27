@@ -3,7 +3,7 @@ import test, { describe } from 'node:test';
 
 import { z } from 'zod';
 
-import { defineText, text_Props_Schema, type ContentBlock_Text_Config } from './index';
+import { defineText, text_Data_Schema, type ContentBlock_Text_Config } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -18,18 +18,18 @@ describe('Configurators', () => {
       test('Text exposes only the new build publication API', () => {
         const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         assert.equal('assemble' in text, false);
-        assert.equal(typeof text.build.props, 'function');
+        assert.equal(typeof text.build.data, 'function');
         assert.equal(typeof text.build.overrides, 'function');
       });
 
       test('Text publishes invariant values in base and no locale files', () => {
         const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
-        const output = text.build.props({ languages: ['en', 'uk'] });
+        const output = text.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity, locale: { value: 'Welcome' } },
           locale: undefined,
         });
-        assert.equal(text_Props_Schema.safeParse(output.base).success, true);
+        assert.equal(text_Data_Schema.safeParse(output.base).success, true);
       });
 
       test('Text publishes translated values as Props-shaped language JSON bodies', () => {
@@ -37,12 +37,12 @@ describe('Configurators', () => {
           ...identity,
           locale: { value: { en: 'Welcome', uk: 'Привіт' } },
         });
-        const output = text.build.props({ languages: ['en', 'uk'] });
+        const output = text.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity },
           locale: { en: { locale: { value: 'Welcome' } }, uk: { locale: { value: 'Привіт' } } },
         });
-        assert.equal(text_Props_Schema.safeParse({ ...output.base, ...output.locale?.uk }).success, true);
+        assert.equal(text_Data_Schema.safeParse({ ...output.base, ...output.locale?.uk }).success, true);
       });
 
       test('Text always publishes Props-shaped locale fragments', () => {
@@ -50,8 +50,8 @@ describe('Configurators', () => {
           ...identity,
           locale: { value: { en: 'Welcome', uk: 'Привіт' } },
         });
-        const publication = text.build.props({ languages: ['en', 'uk'] });
-        const embedded = text.build.props({ languages: ['en', 'uk'] });
+        const publication = text.build.data({ languages: ['en', 'uk'] });
+        const embedded = text.build.data({ languages: ['en', 'uk'] });
 
         assert.deepEqual(embedded, {
           base: publication.base,
@@ -60,16 +60,16 @@ describe('Configurators', () => {
             uk: { locale: { value: 'Привіт' } },
           },
         });
-        assert.equal(text_Props_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
-        assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }), publication);
+        assert.equal(text_Data_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), publication);
 
         if (embedded.locale?.en) embedded.locale.en.locale.value = 'Modified output';
-        assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }).locale?.en, { locale: { value: 'Welcome' } });
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }).locale?.en, { locale: { value: 'Welcome' } });
       });
 
       test('Text preserves invariant values without inventing locale files', () => {
         const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Universal' } });
-        assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }), {
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), {
           base: { ...identity, locale: { value: 'Universal' } },
           locale: undefined,
         });
@@ -80,7 +80,7 @@ describe('Configurators', () => {
           ...identity,
           locale: { value: { en: 'Welcome', uk: 'Привіт' } },
         });
-        const before = text.build.props({ languages: ['en', 'uk'] });
+        const before = text.build.data({ languages: ['en', 'uk'] });
         const patch = { params: { disabled: true as const }, locale: { value: { uk: 'Вітаю' } } };
 
         assert.deepEqual(text.build.overrides(patch, { languages: ['en', 'uk'] }), {
@@ -88,7 +88,7 @@ describe('Configurators', () => {
           locale: { uk: { locale: { value: 'Вітаю' } } },
         });
         assert.deepEqual(text.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-        assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }), before);
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }), before);
         assert.deepEqual(patch, { params: { disabled: true }, locale: { value: { uk: 'Вітаю' } } });
         assert.equal('override' in text, false);
         assert.equal('disable' in text, false);
@@ -117,7 +117,7 @@ describe('Configurators', () => {
           base: { locale: { value: 'Universal' } },
           locale: undefined,
         });
-        assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }).locale, {
+        assert.deepEqual(text.build.data({ languages: ['en', 'uk'] }).locale, {
           en: { locale: { value: 'Welcome' } },
           uk: { locale: { value: 'Привіт' } },
         });
@@ -229,7 +229,7 @@ describe('Configurators', () => {
           defineText<'intro', ['en', 'uk']>({
             ...identity,
             locale: { value: ['not a locale dictionary'] },
-          } as never).build.props({ languages: ['en', 'uk'] }),
+          } as never).build.data({ languages: ['en', 'uk'] }),
         );
         assert.throws(() =>
           text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, {
@@ -279,7 +279,7 @@ describe('Configurators', () => {
         config.locale.value = 'Other';
         config.params.disabled = true;
 
-        assert.deepEqual(text.build.props({ languages: ['en'] }), {
+        assert.deepEqual(text.build.data({ languages: ['en'] }), {
           base: {
             ...identity,
             params: { wrap: { enabled: true, typographyProps: { nested: { weight: 'normal' } } } },
@@ -287,10 +287,10 @@ describe('Configurators', () => {
           locale: { en: { locale: { value: 'Welcome' } } },
         });
 
-        const assembled = text.build.props({ languages: ['en'] });
+        const assembled = text.build.data({ languages: ['en'] });
         (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight =
           'mutated output';
-        assert.deepEqual(text.build.props({ languages: ['en'] }).base.params.wrap?.typographyProps, {
+        assert.deepEqual(text.build.data({ languages: ['en'] }).base.params.wrap?.typographyProps, {
           nested: { weight: 'normal' },
         });
 
@@ -311,19 +311,19 @@ describe('Configurators', () => {
           slug: 'trilingual',
           locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
         });
-        const selected = text.build.props({ languages: ['uk'] });
+        const selected = text.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(selected.locale ?? {}), ['uk']);
         assert.deepEqual(selected.locale?.uk, { locale: { value: 'Привіт' } });
         assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['uk'] }).locale, {
           uk: { locale: { value: 'Вітаю' } },
         });
-        assert.throws(() => text.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => text.build.props({ languages: ['uk', 'uk'] }), /unique/);
-        assert.throws(() => text.build.props({ languages: ['bogus'] as never }));
+        assert.throws(() => text.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => text.build.data({ languages: ['uk', 'uk'] }), /unique/);
+        assert.throws(() => text.build.data({ languages: ['bogus'] as never }));
         const partial = defineText<'intro', ['en']>({ ...identity, locale: { value: { en: 'Only English' } } });
-        assert.doesNotThrow(() => partial.build.props({ languages: ['en'] }));
+        assert.doesNotThrow(() => partial.build.data({ languages: ['en'] }));
         // Explicitly request an unsupported locale to assert the runtime publication guard.
-        assert.throws(() => partial.build.props({ languages: ['uk' as never] }), /Invalid publication for language uk/);
+        assert.throws(() => partial.build.data({ languages: ['uk' as never] }), /Invalid publication for language uk/);
       });
     });
   });

@@ -9,7 +9,7 @@ import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type TouchEvent } from 'react';
 
-import type { ContentBlock_Carousel_Props, ContentBlock_Carousel_SlideProps } from '@svitlo/engine/runtime';
+import type { ContentBlock_Carousel_Data, ContentBlock_Carousel_SlideData } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -20,7 +20,7 @@ import { Image } from '../Image/Image';
 import { Scene } from '../Scene/Scene';
 import styles from './Carousel.module.css';
 
-type Props = ContentBlock_Carousel_Props & {
+type Props = ContentBlock_Carousel_Data & {
   messages: Pick<UiKitMessages, 'image' | 'learningLayout'>;
   sceneRegistry?: SceneRegistry;
 };
@@ -188,11 +188,11 @@ export function Carousel({
     slides[transitionState.from]?.type === 'image';
   const style = { '--carousel-duration': String(duration) + 'ms' } as CSSProperties;
 
-  function slideLabel(slide: ContentBlock_Carousel_SlideProps, position: number) {
+  function slideLabel(slide: ContentBlock_Carousel_SlideData, position: number) {
     return slide.type === 'image' ? slide.locale.alt : `${title ?? slide.slug} ${position + 1}`;
   }
 
-  function renderSlide(slide: ContentBlock_Carousel_SlideProps) {
+  function renderSlide(slide: ContentBlock_Carousel_SlideData) {
     if (slide.type === 'scene') {
       return (
         <div className={styles.scene}>

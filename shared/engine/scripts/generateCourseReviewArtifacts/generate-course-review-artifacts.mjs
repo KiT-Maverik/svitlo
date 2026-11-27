@@ -94,7 +94,7 @@ export async function loadCourse(entry, packageDirectory) {
   loaded.paths = Module._nodeModulePaths(packageDirectory);
   loaded._compile(bundled.outputFiles[0].text, filename);
   const courses = Object.values(loaded.exports).filter(
-    value => object(value) && value.type === 'course' && typeof value.build?.props === 'function',
+    value => object(value) && value.type === 'course' && typeof value.build?.data === 'function',
   );
   if (courses.length !== 1) throw new Error('Expected one exported Course in ' + entry);
   return courses[0];
@@ -274,7 +274,7 @@ export async function generateCourseReviewArtifacts({
         try {
           if (!declared.includes(locale)) throw new Error('Locale not declared by Course');
           const projected = typeof entity.project === 'function' ? entity.project(locale) : null;
-          const props = projected ? null : entity.build.props({ languages: [locale] });
+          const props = projected ? null : entity.build.data({ languages: [locale] });
           const resolved = projected?.course ?? mergeCourseReview(props.base, props.locale?.[locale]);
           const missing = projected?.missing ?? 0;
           if (resolved.id !== entity.id) throw new Error('Resolved Course identity mismatch');
@@ -357,7 +357,7 @@ export async function generateEpisodeReviewArtifacts({
     configurators[0].id !== episodeId ||
     configurators[0].slug !== slot.slug ||
     configurators[0].type !== 'episode' ||
-    typeof configurators[0].build?.props !== 'function'
+    typeof configurators[0].build?.data !== 'function'
   )
     throw Error('Episode Configurator identity differs from requested slot');
   const episode = configurators[0];
@@ -373,7 +373,7 @@ export async function generateEpisodeReviewArtifacts({
   for (const locale of languages) {
     try {
       if (!declared.includes(locale)) throw Error('Locale is not active in materialized Episode');
-      const props = episode.build.props({ languages: [locale] });
+      const props = episode.build.data({ languages: [locale] });
       const resolved = mergeCourseReview(props.base, props.locale?.[locale]);
       if (resolved.id !== episodeId || resolved.type !== 'episode') throw Error('Resolved Episode identity mismatch');
       const md = renderEpisodeMarkdown({

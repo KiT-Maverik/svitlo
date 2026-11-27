@@ -1,11 +1,7 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type {
-  ContentBlock_Text_Props,
-  Question_SelectOneAnswer_Props,
-  QuizSection_Props,
-} from '@svitlo/engine/runtime';
+import type { ContentBlock_Text_Data, Question_SelectOneAnswer_Data, QuizSection_Data } from '@svitlo/engine/runtime';
 
 import type { QuestionResponse } from '#types/questions';
 
@@ -15,7 +11,7 @@ import { questionBlockLabel } from './questions/response/QuestionContent';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 
 const uuid = (index: number) => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
-const text = (slug: string, value: string): ContentBlock_Text_Props => ({
+const text = (slug: string, value: string): ContentBlock_Text_Data => ({
   id: uuid(Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 1)),
   slug: slug.replace(/-([a-z])/gu, (_, letter: string) => letter.toUpperCase()),
   type: 'text',
@@ -27,9 +23,9 @@ const common = {
   slug: 'question1',
   params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
   locale: {},
-  content: { question: [text('prompt', 'What is the answer?')] satisfies [ContentBlock_Text_Props] },
+  content: { question: [text('prompt', 'What is the answer?')] satisfies [ContentBlock_Text_Data] },
 };
-const one: Question_SelectOneAnswer_Props = {
+const one: Question_SelectOneAnswer_Data = {
   ...common,
   type: 'selectOneAnswer',
   content: {
@@ -133,7 +129,7 @@ describe('QuestionRenderer — published Engine Props', () => {
 
   it('signals completion only after every question has been checked', async () => {
     const onComplete = vi.fn();
-    const another: Question_SelectOneAnswer_Props = {
+    const another: Question_SelectOneAnswer_Data = {
       ...one,
       id: uuid(2),
       slug: 'question2',
@@ -171,7 +167,7 @@ describe('QuestionRenderer — published Engine Props', () => {
   });
 });
 
-const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): QuizSection_Props['params'] => ({
+const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): QuizSection_Data['params'] => ({
   selection: { mode: 'all', questionIds: [one.id] },
   layout: { mode: layout, showProgress: true },
   feedbackMode: 'immediate',
@@ -191,7 +187,7 @@ const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): Q
 
 describe('Quiz Section presentation', () => {
   it('supports stepper layout with one visible question and per-question progress', () => {
-    const second: Question_SelectOneAnswer_Props = {
+    const second: Question_SelectOneAnswer_Data = {
       ...one,
       id: uuid(2),
       slug: 'question2',

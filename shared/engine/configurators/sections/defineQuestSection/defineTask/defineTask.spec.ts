@@ -8,7 +8,7 @@ const languages = { languages: ['uk'] as const };
 describe('Configurators > Sections > defineTask', () => {
   test('publishes one Scene with localized data', () => {
     const { task } = fixture();
-    const publication = task.build.props(languages);
+    const publication = task.build.data(languages);
     assert.equal(publication.base.type, 'questTask');
     assert.equal((publication.base.scene as { type: string }).type, 'scene');
     assert.ok(publication.locale?.uk);

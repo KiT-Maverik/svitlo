@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Data } from '@svitlo/engine/runtime';
 
 import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -25,7 +25,7 @@ export const Youtube = ({
   params: { mode },
   locale: { href, title, label, fallback: fallbackMessages },
   messages,
-}: ContentBlock_Youtube_Props & {
+}: ContentBlock_Youtube_Data & {
   messages: Youtube_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

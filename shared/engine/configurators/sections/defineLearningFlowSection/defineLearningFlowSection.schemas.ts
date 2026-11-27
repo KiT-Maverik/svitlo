@@ -10,7 +10,7 @@ import {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Configurator, ContentBlock_Data } from '../../contentBlocks/contentBlock.types';
 
 const params = paramsBase_Schema.shape.params.extend({
   skippable: z.boolean().optional(),
@@ -38,18 +38,18 @@ export const learningFlowSection_Config_Schema = sectionBase.extend({
 });
 export type LearningFlowSection_Config = z.infer<typeof learningFlowSection_Config_Schema>;
 
-export const learningFlowSection_Props_Schema = sectionBase.extend({
-  ...addUnifiedLocale(locale('props')),
+export const learningFlowSection_Data_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('data')),
   content: z.array(contentBlockResolved_Schema),
 });
-export type LearningFlowSection_Props = Omit<z.infer<typeof learningFlowSection_Props_Schema>, 'content'> & {
-  content: ContentBlock_Props[];
+export type LearningFlowSection_Data = Omit<z.infer<typeof learningFlowSection_Data_Schema>, 'content'> & {
+  content: ContentBlock_Data[];
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type LearningFlowSection_PropsBase = Pick<LearningFlowSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
-  locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
+export type LearningFlowSection_DataBase = Pick<LearningFlowSection_Data, 'id' | 'slug' | 'type' | 'params'> & {
+  locale?: DeepPartial<LearningFlowSection_Locale<'data'>>;
+  content: ReturnType<ContentBlock_Configurator['build']['data']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */

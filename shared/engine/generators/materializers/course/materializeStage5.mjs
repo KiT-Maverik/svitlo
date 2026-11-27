@@ -323,7 +323,7 @@ export function materializeCourseStage5(input, options = {}) {
           ),
       ) ||
       !lesson.configurator.config.base.params?.languages?.includes(sourceLanguage) ||
-      typeof lesson.configurator.build?.props !== 'function' ||
+      typeof lesson.configurator.build?.data !== 'function' ||
       typeof lesson.configurator.build?.overrides !== 'function' ||
       typeof lesson.exportName !== 'string' ||
       !slug.test(lesson.exportName) ||

@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -25,13 +25,13 @@ import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/a
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   quizSection_Config_Schema,
+  quizSection_Data_Schema,
   quizSection_Override_Config_Schema,
-  quizSection_Props_Schema,
   type QuizSection_Config,
+  type QuizSection_DataBase,
   type QuizSection_Locale,
   type QuizSection_MetadataOverrides,
   type QuizSection_Overrides,
-  type QuizSection_PropsBase,
 } from './defineQuizSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -43,13 +43,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'props'>>; content?: QuizSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'data'>>; content?: QuizSection_DataBase['content'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: QuizSection_MetadataOverrides['params'];
-  locale?: DeepPartial<QuizSection_Locale<'props'>>;
-  content?: QuizSection_PropsBase['content'];
+  locale?: DeepPartial<QuizSection_Locale<'data'>>;
+  content?: QuizSection_DataBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -65,7 +65,7 @@ const validateGrading = (grading: QuizSection_Config['params']['grading']): void
 };
 
 /** Validate the effective Props for each explicitly requested publication locale. */
-const validateResolvedProps = (
+const validateResolvedData = (
   resource: Publication<unknown>,
   languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
@@ -80,7 +80,7 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      const valid = quizSection_Props_Schema.parse(resolved);
+      const valid = quizSection_Data_Schema.parse(resolved);
       validateGrading(valid.params.grading);
       selectQuizQuestionIds(valid.params.selection, valid.id);
     } catch (error) {
@@ -135,7 +135,7 @@ const validate = (config: QuizSection_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -200,9 +200,9 @@ export const defineQuizSection = <
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCode] = { locale: fields as DeepPartial<QuizSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<QuizSection_Locale<'data'>> };
     }
-    return { invariant: split.base as DeepPartial<QuizSection_Locale<'props'>>, files };
+    return { invariant: split.base as DeepPartial<QuizSection_Locale<'data'>>, files };
   };
 
   const buildContent = (
@@ -213,7 +213,7 @@ export const defineQuizSection = <
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = buildChildProps(child) as unknown as ChildResource;
+      const resource = buildChildData(child) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
         ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
         : undefined;
@@ -221,8 +221,8 @@ export const defineQuizSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as QuizSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCode, QuizSection_PropsBase['content']>> = {};
+    ) as QuizSection_DataBase['content'];
+    const locales: Partial<Record<LanguageCode, QuizSection_DataBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -237,12 +237,12 @@ export const defineQuizSection = <
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
         return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as QuizSection_PropsBase['content'];
+      }) as QuizSection_DataBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -263,7 +263,7 @@ export const defineQuizSection = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateResolvedProps(result, languages);
+    validateResolvedData(result, languages);
     return result;
   };
 
@@ -321,7 +321,7 @@ export const defineQuizSection = <
         if (
           !isRecord(child) ||
           !isRecord(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function' ||
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
@@ -371,7 +371,7 @@ export const defineQuizSection = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateResolvedProps(props(options), languages, result);
+      validateResolvedData(data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -390,7 +390,7 @@ export const defineQuizSection = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<QuizSection_Locale<'config'>> } => ({

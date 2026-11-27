@@ -31,7 +31,7 @@ export const flashcardSideConfigurator_Schema = z.custom<FlashcardSide_Configura
     Array.isArray(value.order) &&
     typeof value.validate === 'function' &&
     isRecord(value.build) &&
-    typeof value.build.props === 'function' &&
+    typeof value.build.data === 'function' &&
     typeof value.build.overrides === 'function',
   { message: 'Expected defineFlashcardSide configurator' },
 );

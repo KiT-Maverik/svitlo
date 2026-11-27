@@ -38,7 +38,7 @@ test('rejects dynamic and CommonJS build module loading', () => {
 test('allows runtime imports and unrelated string literals', () => {
   for (const source of [
     "import { assembleSkills } from '@svitlo/engine/runtime';",
-    "import type { Lesson_Props } from '@svitlo/engine/runtime';",
+    "import type { Lesson_Data } from '@svitlo/engine/runtime';",
     'const example = "import from \'@svitlo/engine/build\'";',
   ]) {
     assert.equal(lint(source).length, 0, source);

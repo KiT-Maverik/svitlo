@@ -34,7 +34,7 @@ describe('Configurators', () => {
           params: {},
           locale: { title: { en: 'Hello' }, fileName: 'https://example.com/audio.mp3' },
         });
-        const result = block.build.props({ languages: ['en'] });
+        const result = block.build.data({ languages: ['en'] });
         assert.deepEqual(result.locale?.en, { locale: { title: 'Hello' } });
         assert.deepEqual(
           block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en'] }).locale?.en,
@@ -43,7 +43,7 @@ describe('Configurators', () => {
           },
         );
         assert.equal(
-          block.build.props({ languages: ['en'] }).base.locale?.fileLocation,
+          block.build.data({ languages: ['en'] }).base.locale?.fileLocation,
           'https://example.com/audio.mp3',
         );
       });
@@ -61,7 +61,7 @@ describe('Configurators', () => {
           },
         };
         const audio = defineAudio<string, ['en', 'uk']>(authored);
-        assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
+        assert.deepEqual(audio.build.data({ languages: ['en', 'uk'] }), {
           base: {
             id,
             slug: 'audioExample',
@@ -74,8 +74,8 @@ describe('Configurators', () => {
             uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
           },
         });
-        assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
-          base: audio.build.props({ languages: ['en', 'uk'] }).base,
+        assert.deepEqual(audio.build.data({ languages: ['en', 'uk'] }), {
+          base: audio.build.data({ languages: ['en', 'uk'] }).base,
           locale: {
             en: { locale: { fileLocation: 'https://example.com/en.mp3', fallback: { retry: 'Retry' } } },
             uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
@@ -95,10 +95,10 @@ describe('Configurators', () => {
         assert.equal('override' in audio, false);
         assert.equal('disable' in audio, false);
         authored.locale.title = 'Changed';
-        assert.equal(audio.build.props({ languages: ['en', 'uk'] }).base.locale?.title, 'Narration');
-        const first = audio.build.props({ languages: ['en', 'uk'] });
+        assert.equal(audio.build.data({ languages: ['en', 'uk'] }).base.locale?.title, 'Narration');
+        const first = audio.build.data({ languages: ['en', 'uk'] });
         first.base.params.disabled = true;
-        assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }).base.params, {});
+        assert.deepEqual(audio.build.data({ languages: ['en', 'uk'] }).base.params, {});
       });
 
       test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
@@ -119,7 +119,7 @@ describe('Configurators', () => {
           locale: { title: 'Gallery' },
           slides: { items: { first, second }, order: ['first', 'second'] },
         });
-        const resource = carousel.build.props({ languages: ['en', 'uk'] });
+        const resource = carousel.build.data({ languages: ['en', 'uk'] });
         assert.equal(resource.base.locale?.title, 'Gallery');
         assert.deepEqual(
           resource.locale?.en?.locale.slides?.map(slide => (slide?.type === 'image' ? slide.locale : undefined)),
@@ -154,7 +154,7 @@ describe('Configurators', () => {
           'First',
         );
         assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
-        assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
+        assert.equal(carousel.build.data({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
       test('Code applies semantic validation after merging sparse replacement dictionaries', () => {
         const code = defineCode<'example', ['en', 'uk']>({
@@ -164,7 +164,7 @@ describe('Configurators', () => {
           params: { language: 'python', codeAsText: 'print(%_%NAME%_%)' },
           locale: { title: 'Code', variables: { NAME: { en: 'Ada', uk: 'Ада' } } },
         });
-        assert.deepEqual(code.build.props({ languages: ['en', 'uk'] }), {
+        assert.deepEqual(code.build.data({ languages: ['en', 'uk'] }), {
           base: {
             id,
             type: 'code',
@@ -174,7 +174,7 @@ describe('Configurators', () => {
           },
           locale: { en: { locale: { variables: { NAME: 'Ada' } } }, uk: { locale: { variables: { NAME: 'Ада' } } } },
         });
-        assert.deepEqual(code.build.props({ languages: ['en', 'uk'] }).locale?.uk, {
+        assert.deepEqual(code.build.data({ languages: ['en', 'uk'] }).locale?.uk, {
           locale: { variables: { NAME: 'Ада' } },
         });
         assert.deepEqual(
@@ -206,11 +206,11 @@ describe('Configurators', () => {
             fallback: { offline: 'Offline' },
           },
         });
-        assert.deepEqual(image.build.props({ languages: ['en', 'uk'] }).base.locale, {
+        assert.deepEqual(image.build.data({ languages: ['en', 'uk'] }).base.locale, {
           src: 'https://example.com/image.png',
           fallback: { offline: 'Offline' },
         });
-        assert.deepEqual(image.build.props({ languages: ['en', 'uk'] }).locale?.uk, { locale: { alt: 'Схема' } });
+        assert.deepEqual(image.build.data({ languages: ['en', 'uk'] }).locale?.uk, { locale: { alt: 'Схема' } });
         assert.deepEqual(
           image.build.overrides({ locale: { alt: { uk: 'Ілюстрація' } } }, { languages: ['en', 'uk'] }),
           {
@@ -243,11 +243,11 @@ describe('Configurators', () => {
             variables: { NAME: { en: 'Ada', uk: 'Ада' } },
           },
         });
-        assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }).locale, {
+        assert.deepEqual(markdown.build.data({ languages: ['en', 'uk'] }).locale, {
           en: { locale: { value: 'Hello %_%NAME%_%', variables: { NAME: 'Ada' } } },
           uk: { locale: { value: 'Привіт %_%NAME%_%', variables: { NAME: 'Ада' } } },
         });
-        assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }).locale?.en, {
+        assert.deepEqual(markdown.build.data({ languages: ['en', 'uk'] }).locale?.en, {
           locale: { value: 'Hello %_%NAME%_%', variables: { NAME: 'Ada' } },
         });
         assert.deepEqual(
@@ -277,7 +277,7 @@ describe('Configurators', () => {
             value: { heading: { en: 'Hello', uk: 'Привіт' }, panel: { caption: 'Invariant', info: { uk: 'Деталі' } } },
           },
         });
-        assert.deepEqual(scene.build.props({ languages: ['en', 'uk'] }), {
+        assert.deepEqual(scene.build.data({ languages: ['en', 'uk'] }), {
           base: {
             id,
             type: 'scene',
@@ -290,7 +290,7 @@ describe('Configurators', () => {
             uk: { locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } } },
           },
         });
-        assert.deepEqual(scene.build.props({ languages: ['en', 'uk'] }).locale?.uk, {
+        assert.deepEqual(scene.build.data({ languages: ['en', 'uk'] }).locale?.uk, {
           locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } },
         });
         assert.deepEqual(
@@ -322,11 +322,11 @@ describe('Configurators', () => {
             fallback: { offline: 'Offline' },
           },
         });
-        assert.deepEqual(video.build.props({ languages: ['en', 'uk'] }).locale, {
+        assert.deepEqual(video.build.data({ languages: ['en', 'uk'] }).locale, {
           en: { locale: { label: 'Movie' } },
           uk: { locale: { label: 'Відео' } },
         });
-        assert.deepEqual(video.build.props({ languages: ['en', 'uk'] }).locale?.uk, { locale: { label: 'Відео' } });
+        assert.deepEqual(video.build.data({ languages: ['en', 'uk'] }).locale?.uk, { locale: { label: 'Відео' } });
         assert.deepEqual(video.build.overrides({ locale: { label: { uk: 'Фільм' } } }, { languages: ['en', 'uk'] }), {
           base: {},
           locale: { uk: { locale: { label: 'Фільм' } } },
@@ -338,10 +338,10 @@ describe('Configurators', () => {
           params: { mode: 'link' },
           locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch', uk: 'Дивитись' } },
         });
-        assert.deepEqual(youtube.build.props({ languages: ['en', 'uk'] }).base.locale, {
+        assert.deepEqual(youtube.build.data({ languages: ['en', 'uk'] }).base.locale, {
           href: 'https://youtube.com/watch?v=example',
         });
-        assert.deepEqual(youtube.build.props({ languages: ['en', 'uk'] }).locale?.en, { locale: { label: 'Watch' } });
+        assert.deepEqual(youtube.build.data({ languages: ['en', 'uk'] }).locale?.en, { locale: { label: 'Watch' } });
         assert.deepEqual(
           youtube.build.overrides(
             { params: { mode: 'embed' }, locale: { label: { uk: 'Переглянути' } } },
@@ -370,10 +370,10 @@ describe('Configurators', () => {
         assert.equal('disable' in block, false);
         assert.equal('overrides' in block.config, false);
         assert.equal('assemble' in block, false);
-        assert.equal(typeof block.build.props, 'function');
+        assert.equal(typeof block.build.data, 'function');
         assert.equal(typeof block.build.overrides, 'function');
         assert.equal(typeof block.config.locales, 'function');
-        assert.equal(typeof block.build.props, 'function');
+        assert.equal(typeof block.build.data, 'function');
       });
 
       test('Carousel rejects a language lacking complete slide fields', () => {
@@ -391,7 +391,7 @@ describe('Configurators', () => {
           slides: { items: { mixed }, order: ['mixed'] },
         });
         assert.throws(
-          () => carousel.build.props({ languages: ['en', 'uk'] }),
+          () => carousel.build.data({ languages: ['en', 'uk'] }),
           /Incomplete Carousel slides|Invalid publication for language/,
         );
       });
@@ -486,16 +486,16 @@ describe('Configurators', () => {
 
         for (const block of blocks) {
           assert.equal('assemble' in block, false);
-          assert.equal(typeof block.build.props, 'function');
+          assert.equal(typeof block.build.data, 'function');
           assert.equal(typeof block.build.overrides, 'function');
-          const original = block.build.props({ languages: ['en', 'uk'] });
-          assert.deepEqual(block.build.props({ languages: ['en', 'uk'] }).base, original.base);
+          const original = block.build.data({ languages: ['en', 'uk'] });
+          assert.deepEqual(block.build.data({ languages: ['en', 'uk'] }).base, original.base);
           assert.deepEqual(block.build.overrides({ params: { disabled: true } }, { languages: ['en', 'uk'] }), {
             base: { params: { disabled: true } },
             locale: undefined,
           });
           assert.deepEqual(block.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-          assert.deepEqual(block.build.props({ languages: ['en', 'uk'] }), original);
+          assert.deepEqual(block.build.data({ languages: ['en', 'uk'] }), original);
           assert.throws(
             () => block.build.overrides({ params: { unknown: true } } as never, { languages: ['en', 'uk'] }),
             /Invalid .* overrides/,
@@ -539,7 +539,7 @@ describe('Configurators', () => {
           [expected],
         );
         authored.alt = 'Mutated author';
-        const original = carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
+        const original = carousel.build.data({ languages: ['en', 'uk'] }).base.locale?.slides?.[0];
         assert.equal(original?.type, 'image');
         if (original?.type === 'image') assert.equal(original.locale?.alt, 'Original');
         assert.throws(

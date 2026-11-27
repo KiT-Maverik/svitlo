@@ -274,7 +274,7 @@ test('complete typed Lesson source publishes all authored locales without Previe
       locale: { title: { en: 'Real lesson', uk: 'Справжній урок' } },
       section: { items: { introduction: section }, order: ['introduction'] },
     });
-    const publication = lesson.build.props({ languages: ['en', 'uk'] });
+    const publication = lesson.build.data({ languages: ['en', 'uk'] });
     const { result, diagnostics } = publish(root, publication, 'production');
     assert.deepEqual(diagnostics, []);
     const publishedImage = result.base.section[0]?.content?.[1];

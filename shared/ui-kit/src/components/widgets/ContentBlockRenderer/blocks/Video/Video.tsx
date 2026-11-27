@@ -3,7 +3,7 @@
 import Button from '@mui/material/Button';
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Data } from '@svitlo/engine/runtime';
 
 import type { Video_Locale } from '../../../../../../data/locale/video';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
@@ -17,7 +17,7 @@ type VideoFailure = { source: string; kind: VideoFailureKind };
 export const Video = ({
   locale: { fileLocation, poster, title, label, fallback },
   messages,
-}: ContentBlock_Video_Props & {
+}: ContentBlock_Video_Data & {
   messages: Video_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

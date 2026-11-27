@@ -3,9 +3,9 @@ import test from 'node:test';
 
 import { defineSkill } from '../../configurators/skills/defineSkill';
 import { defineSkillDomain } from '../../configurators/skills/defineSkillDomain';
-import { skillDomain_Props_Schema } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+import { skillDomain_Data_Schema } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 import { defineSkillGroup } from '../../configurators/skills/defineSkillGroup';
-import { skillGroup_Props_Schema } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
+import { skillGroup_Data_Schema } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 import { assembleSkills, type Skills_Publication } from './assembleSkills';
 
 const id = (n: string) => '00000000-0000-4000-8000-0000000000' + n;
@@ -173,7 +173,7 @@ test('consumes actual SkillDomain Build output without a second translation wrap
     description: { methodological: 'Physics methodology' },
     groups: { mechanics: cluster },
   });
-  const built = root.build.props({ languages: ['uk'] });
+  const built = root.build.data({ languages: ['uk'] });
   const result = assembleSkills(
     { base: { physics: built.base }, locale: { uk: { physics: built.locale?.uk ?? {} } } },
     'uk',
@@ -188,10 +188,10 @@ test('published Skill Props reject unresolved locale dictionaries at domain and 
   const domain = assembleSkills(publication(), 'uk').physics;
   const group = domain.groups?.[0];
   assert.ok(group);
-  assert.equal(skillDomain_Props_Schema.safeParse({ ...domain, title: { uk: 'Фізика' } }).success, false);
-  assert.equal(skillGroup_Props_Schema.safeParse({ ...group, name: { uk: 'Механіка' } }).success, false);
+  assert.equal(skillDomain_Data_Schema.safeParse({ ...domain, title: { uk: 'Фізика' } }).success, false);
+  assert.equal(skillGroup_Data_Schema.safeParse({ ...group, name: { uk: 'Механіка' } }).success, false);
   assert.equal(
-    skillGroup_Props_Schema.safeParse({
+    skillGroup_Data_Schema.safeParse({
       ...group,
       description: { ...group.description, frontend: { uk: 'Вивчай механіку' } },
     }).success,

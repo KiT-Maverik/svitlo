@@ -4,15 +4,15 @@ import type { ChildrenSupporting, DeepPartial } from '#types';
 import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
-import { audio_Props_Schema } from '../../contentBlocks/primitive/defineAudio';
-import { code_Props_Schema } from '../../contentBlocks/primitive/defineCode';
-import { image_Props_Schema } from '../../contentBlocks/primitive/defineImage';
-import { markdown_Props_Schema } from '../../contentBlocks/primitive/defineMarkdown';
-import { scene_Props_Schema } from '../../contentBlocks/primitive/defineScene';
-import { subtitles_Props_Schema } from '../../contentBlocks/primitive/defineSubtitles';
-import { text_Props_Schema } from '../../contentBlocks/primitive/defineText';
-import { video_Props_Schema } from '../../contentBlocks/primitive/defineVideo';
-import { youtube_Props_Schema } from '../../contentBlocks/primitive/defineYoutube';
+import { audio_Data_Schema } from '../../contentBlocks/primitive/defineAudio';
+import { code_Data_Schema } from '../../contentBlocks/primitive/defineCode';
+import { image_Data_Schema } from '../../contentBlocks/primitive/defineImage';
+import { markdown_Data_Schema } from '../../contentBlocks/primitive/defineMarkdown';
+import { scene_Data_Schema } from '../../contentBlocks/primitive/defineScene';
+import { subtitles_Data_Schema } from '../../contentBlocks/primitive/defineSubtitles';
+import { text_Data_Schema } from '../../contentBlocks/primitive/defineText';
+import { video_Data_Schema } from '../../contentBlocks/primitive/defineVideo';
+import { youtube_Data_Schema } from '../../contentBlocks/primitive/defineYoutube';
 
 type Block = ContentBlock_Primitive_Configurator;
 type Fragment = Record<string, unknown>;
@@ -105,7 +105,7 @@ export function validateBlock(child: unknown, key: string): asserts child is Blo
     child.config.base.id !== child.id ||
     child.config.base.type !== child.type ||
     !isRecord(child.build) ||
-    typeof child.build.props !== 'function' ||
+    typeof child.build.data !== 'function' ||
     typeof child.build.overrides !== 'function'
   ) {
     throw new Error('Invalid ContentBlock identity or Build API: ' + key);
@@ -127,7 +127,7 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
 
 /** ContentBlocks have a first-class selected-language Build API; no transition adapter. */
 const readResource = (child: Block, languages: readonly LanguageCode[]): BlockResource =>
-  cloneJson(child.build.props({ languages }) as BlockResource);
+  cloneJson(child.build.data({ languages }) as BlockResource);
 const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCode[]): BlockPatch =>
   cloneJson(
     (child.build.overrides as (value: never, options: { languages: readonly LanguageCode[] }) => BlockPatch)(
@@ -137,15 +137,15 @@ const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCod
   );
 
 const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
-  text: text_Props_Schema,
-  markdown: markdown_Props_Schema,
-  code: code_Props_Schema,
-  image: image_Props_Schema,
-  video: video_Props_Schema,
-  audio: audio_Props_Schema,
-  youtube: youtube_Props_Schema,
-  scene: scene_Props_Schema,
-  subtitles: subtitles_Props_Schema,
+  text: text_Data_Schema,
+  markdown: markdown_Data_Schema,
+  code: code_Data_Schema,
+  image: image_Data_Schema,
+  video: video_Data_Schema,
+  audio: audio_Data_Schema,
+  youtube: youtube_Data_Schema,
+  scene: scene_Data_Schema,
+  subtitles: subtitles_Data_Schema,
 };
 const validateChildPublication = (value: Fragment, language: LanguageCode): void => {
   const schema = propsSchemas[value.type as string];

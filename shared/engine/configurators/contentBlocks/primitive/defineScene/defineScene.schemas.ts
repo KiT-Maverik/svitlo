@@ -17,13 +17,13 @@ const sceneConfigValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
   z.union([localizationSwitch.config, z.record(z.string(), sceneConfigValue_Schema)]),
 );
 
-const scenePropsValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
-  z.union([localizationSwitch.props, z.record(z.string(), scenePropsValue_Schema)]),
+const sceneDataValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
+  z.union([localizationSwitch.data, z.record(z.string(), sceneDataValue_Schema)]),
 );
 
 const sceneLocalizationSwitch = {
   config: sceneConfigValue_Schema,
-  props: scenePropsValue_Schema,
+  data: sceneDataValue_Schema,
 } as const;
 
 const contentBlockBase = createContentBlockBaseSchema('scene');
@@ -52,9 +52,9 @@ export const scene_Override_Config_Schema: z.ZodType<ContentBlock_Scene_Override
   ),
 );
 
-export type ContentBlock_Scene_PropsBase = z.infer<typeof sceneBase> & {
-  locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
+export type ContentBlock_Scene_DataBase = z.infer<typeof sceneBase> & {
+  locale?: DeepPartial<ContentBlock_Scene_Locale<'data'>>;
 };
 
-export const scene_Props_Schema = sceneBase.extend(addUnifiedLocale(locale('props')));
-export type ContentBlock_Scene_Props = z.infer<typeof scene_Props_Schema>;
+export const scene_Data_Schema = sceneBase.extend(addUnifiedLocale(locale('data')));
+export type ContentBlock_Scene_Data = z.infer<typeof scene_Data_Schema>;

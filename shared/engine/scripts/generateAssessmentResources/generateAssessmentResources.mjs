@@ -22,8 +22,8 @@ import {
   assertMediaPublicationReady,
 } from '@svitlo/engine/build';
 import {
-  checkLessonProps,
-  publishLessonProps,
+  checkLessonData,
+  publishLessonData,
   assertSafeDirectoryPath,
 } from '../generateLessonProps/publishLessonProps.mjs';
 
@@ -46,7 +46,7 @@ export function collectAssessmentConfigurators(exports, kind) {
     if (!node || typeof node !== 'object' || Array.isArray(node)) {
       throw new Error('Expected slug-keyed ' + kind + ' bank at ' + pathParts.join('/'));
     }
-    if (typeof node.build?.props === 'function') {
+    if (typeof node.build?.data === 'function') {
       // A Lesson draft's feedc0de UUIDv8 cannot be laundered into an
       // independently published real bank merely by adding a source object.
       if (typeof node.id === 'string' && node.id.startsWith('feedc0de-')) {
@@ -140,7 +140,7 @@ export async function render(packageDirectory, kind, mediaMode = 'production') {
             lessonId,
             kind: selectedKind,
             languages,
-            publication: projectTextbookMedia(item.build.props({ languages, mode: mediaMode }), {
+            publication: projectTextbookMedia(item.build.data({ languages, mode: mediaMode }), {
               textbookRoot: packageDirectory,
               textbookId,
               source: path.relative(root, source) + '#' + item.slug,
@@ -188,10 +188,10 @@ export async function main(argv) {
     return;
   }
   if (mode === '--write') {
-    publishLessonProps(output, files, 'assessment');
+    publishLessonData(output, files, 'assessment');
     console.log('Published ' + files.size + ' independent ' + kind + ' Assessment files');
   } else {
-    checkLessonProps(output, files, 'assessment');
+    checkLessonData(output, files, 'assessment');
     console.log('Verified ' + files.size + ' independent ' + kind + ' Assessment files');
   }
 }

@@ -52,7 +52,7 @@ describe('Configurators', () => {
           locale: { title: { en: 'Theory', uk: 'Теорія' }, navigationLabel: '1' },
           content: { items: { prompt }, order: ['prompt'] },
         });
-        assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.slug, 'intro');
+        assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.slug, 'intro');
         assert.deepEqual(
           section.build
             .overrides({ content: { order: ['prompt'] } }, { languages: ['en', 'uk'] })
@@ -72,17 +72,17 @@ describe('Configurators', () => {
               items: { prompt: prompt.config.base },
               order: ['prompt'],
             },
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
       });
 
       test('Quiz preserves named screen references and scoring semantics', () => {
         const quiz = makeQuiz();
         assert.equal(quiz.type, 'quiz');
-        assert.deepEqual(quiz.build.props({ languages: ['en', 'uk'] }).base.params.screen?.starting?.content, [
+        assert.deepEqual(quiz.build.data({ languages: ['en', 'uk'] }).base.params.screen?.starting?.content, [
           'prompt',
         ]);
-        assert.equal(quiz.build.props({ languages: ['en', 'uk'] }).base.params.interaction.retries, 1);
+        assert.equal(quiz.build.data({ languages: ['en', 'uk'] }).base.params.interaction.retries, 1);
         assert.deepEqual(
           quiz.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params,
           {
@@ -147,14 +147,14 @@ describe('Configurators', () => {
               params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
               locale: { title: 'Quiz', navigationLabel: 'Q' },
               content: { items: { prompt }, order: ['prompt'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /unknown ContentBlock/,
         );
       });
 
       test('Quiz requires stable explicit unique Question UUIDs and valid sample bounds', () => {
         const quiz = makeQuiz();
-        assert.deepEqual(quiz.build.props({ languages: ['en'] }).base.params.selection.questionIds, [
+        assert.deepEqual(quiz.build.data({ languages: ['en'] }).base.params.selection.questionIds, [
           id('c2'),
           id('c3'),
           id('c4'),
@@ -211,7 +211,7 @@ describe('Configurators', () => {
         });
         assert.equal(deferredQuiz.slug, 'badDisabledQuiz');
         assert.throws(
-          () => deferredQuiz.build.props({ languages: ['en', 'uk'] }),
+          () => deferredQuiz.build.data({ languages: ['en', 'uk'] }),
           /screen starting references disabled ContentBlock: prompt/,
         );
         assert.throws(
@@ -231,7 +231,7 @@ describe('Configurators', () => {
           /screen starting references disabled ContentBlock: prompt/,
         );
         // A rejected override cannot alter the authored configurator.
-        assert.equal(quiz.build.props({ languages: ['uk'] }).base.content[0]?.params.disabled, undefined);
+        assert.equal(quiz.build.data({ languages: ['uk'] }).base.content[0]?.params.disabled, undefined);
       });
 
       test('Quiz accepts atomic screen-reference removal together with nested disable or structural removal', () => {
@@ -246,7 +246,7 @@ describe('Configurators', () => {
         assert.deepEqual(disabled.base.params?.screen?.starting?.content, []);
         assert.equal(disabled.base.content?.[0]?.params.disabled, true);
         assert.equal(disabled.base.content?.[0]?.slug, 'prompt');
-        assert.equal(quiz.build.props({ languages: ['uk'] }).base.content[0]?.params.disabled, undefined);
+        assert.equal(quiz.build.data({ languages: ['uk'] }).base.content[0]?.params.disabled, undefined);
 
         const removed = quiz.build.overrides(
           {
@@ -282,7 +282,7 @@ describe('Configurators', () => {
           { languages: ['uk'] },
         );
         assert.equal(result.base.content?.find(block => block.slug === 'other')?.params.disabled, true);
-        assert.deepEqual(quiz.build.props({ languages: ['uk'] }).base.params.screen?.starting?.content, ['prompt']);
+        assert.deepEqual(quiz.build.data({ languages: ['uk'] }).base.params.screen?.starting?.content, ['prompt']);
       });
 
       test('Quiz ending success/fail/retry screens must not target effectively disabled ContentBlocks', () => {

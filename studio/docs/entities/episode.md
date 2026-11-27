@@ -14,11 +14,11 @@ Episodes belong in their owning Course's authoring directory, at the reviewed sl
 
 ## Independent Engine Build API
 
-`defineEpisode` is exported through the build-time `@svitlo/engine/build` entrypoint and implemented in `configurators/episodes/defineEpisode`. Its own `episode_Config_Schema`, `episode_Props_Schema` and `episode_Override_Metadata_Schema` are not derived from Lesson schemas or functions.
+`defineEpisode` is exported through the build-time `@svitlo/engine/build` entrypoint and implemented in `configurators/episodes/defineEpisode`. Its own `episode_Config_Schema`, `episode_Data_Schema` and `episode_Override_Metadata_Schema` are not derived from Lesson schemas or functions.
 
 The initial authored shape includes identity (`type: 'episode'`, UUID and slug), `params.languages`, localized `locale.title`, optional `events`, and a slug-keyed `section: { items, order }` collection of Section configurators. Episode does not own Lesson `skills`, `questions`, `flashcards`, `requireQuiz`, or `programId`.
 
-`build.props({ languages })` returns `{ base, locale }`, with complete per-language **atomic Section Props arrays** wherever Sections require translation. `build.overrides(patch, { languages })` returns sparse metadata changes and complete Section arrays for changed collections. Existing Section overrides, additions, disabling, and order are validated. Course, Module and Chapter may directly contain Episode children.
+`build.data({ languages })` returns `{ base, locale }`, with complete per-language **atomic Section Props arrays** wherever Sections require translation. `build.overrides(patch, { languages })` returns sparse metadata changes and complete Section arrays for changed collections. Existing Section overrides, additions, disabling, and order are validated. Course, Module and Chapter may directly contain Episode children.
 
 The typed [Course workflow](../../skills/course-workflow/create-course-flow.skill.md) reserves Episode order, identity and Course/Module/Chapter ownership; Course Stage 5 emits a blocked inert `EpisodeWorkflowStage1Handoff` seed, not a completed Episode. The final reviewed `draft.ts` is a **single default-exported inert** `EpisodeWorkflowStage2` literal with type-only imports, no `materializeEpisodeStage5()` invocation. In the #857 target a shared trusted static Reader, canonical Stage 2 Zod and Course-slot/dependency verifier precede trusted Section/Block/Scene generation and create-only Episode source publication without changing the parent. Verify default-branch deployment before use; independent reviews and human Stage 9 Media Generation / Stage 10 QA cannot be inferred from emission.
 

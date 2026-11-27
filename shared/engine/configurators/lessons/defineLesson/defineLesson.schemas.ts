@@ -7,9 +7,9 @@ import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
+import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
-import type { Section_Configurator, Section_Props } from '../../sections/section.types';
+import type { Section_Configurator, Section_Data } from '../../sections/section.types';
 
 const languages = z
   .array(languageCode_Schema)
@@ -53,19 +53,19 @@ const sectionResolved = z
     type: z.enum(sectionTypes),
   })
   .catchall(z.unknown());
-export const lesson_Completed_Props_Schema = identity
+export const lesson_Completed_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: localizationSwitch.props }),
+    ...addUnifiedLocale({ title: localizationSwitch.data }),
     section: z.array(sectionResolved),
     events: z.record(z.string(), z.json()).optional(),
   })
   .strict();
 /** Explicit draft preview; it cannot pass the completed Lesson schema. */
-export const lesson_Draft_Props_Schema = identity
+export const lesson_Draft_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: localizationSwitch.props }),
+    ...addUnifiedLocale({ title: localizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Props_Schema).nonempty(),
+    section: z.array(contentSection_Data_Schema).nonempty(),
   })
   .strict()
   .refine(
@@ -84,14 +84,14 @@ export const lesson_Draft_Props_Schema = identity
       ),
     'Lesson draft needs the Not implemented Text ContentBlock',
   );
-export const lesson_Props_Schema = z.union([lesson_Completed_Props_Schema, lesson_Draft_Props_Schema]);
-export type Lesson_Draft_Props = z.infer<typeof lesson_Draft_Props_Schema>;
-export type Lesson_Props = Omit<z.infer<typeof lesson_Completed_Props_Schema>, 'section'> & {
-  section: Section_Props[];
+export const lesson_Data_Schema = z.union([lesson_Completed_Data_Schema, lesson_Draft_Data_Schema]);
+export type Lesson_Draft_Data = z.infer<typeof lesson_Draft_Data_Schema>;
+export type Lesson_Data = Omit<z.infer<typeof lesson_Completed_Data_Schema>, 'section'> & {
+  section: Section_Data[];
 };
-export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
+export type Lesson_DataBase = Pick<Lesson_Data, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
   locale?: { title?: string };
-  section: ReturnType<Section_Configurator['build']['props']>['base'][];
+  section: ReturnType<Section_Configurator['build']['data']>['base'][];
   events?: Record<string, unknown>;
 };
 
@@ -146,7 +146,7 @@ export const lessonConfigurator_Schema = z.custom<{
   readonly id: string;
   readonly slug: string;
   readonly type: 'lesson';
-  readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
+  readonly build: { readonly data: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
   value =>
     value !== null &&
@@ -161,8 +161,8 @@ export const lessonConfigurator_Schema = z.custom<{
     'build' in value &&
     value.build !== null &&
     typeof value.build === 'object' &&
-    'props' in value.build &&
-    typeof value.build.props === 'function' &&
+    'data' in value.build &&
+    typeof value.build.data === 'function' &&
     'overrides' in value.build &&
     typeof value.build.overrides === 'function',
   { message: 'Expected defineLesson Build configurator, not authored Lesson data' },

@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -24,11 +24,11 @@ import {
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
   lesson_Config_Schema,
+  lesson_Data_Schema,
   lesson_Override_Metadata_Schema,
-  lesson_Props_Schema,
   type Lesson_Config,
+  type Lesson_DataBase,
   type Lesson_Overrides,
-  type Lesson_PropsBase,
 } from './defineLesson.schemas';
 
 type Child = {
@@ -37,7 +37,7 @@ type Child = {
   type: string;
   config?: { base?: { id?: string; slug?: string; type?: string }; locales?: () => unknown };
   build: {
-    props: (options: PublicationLanguageOptions) => ChildResource;
+    data: (options: PublicationLanguageOptions) => ChildResource;
     overrides: (patch: never, options: PublicationLanguageOptions) => ChildPatch;
   };
 };
@@ -51,14 +51,14 @@ type ChildPatch = {
 };
 type LocaleBody = {
   locale?: { title?: string };
-  section?: Lesson_PropsBase['section'];
+  section?: Lesson_DataBase['section'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Lesson_Config['params'], 'languages'>>;
   locale?: { title?: string };
-  section?: Lesson_PropsBase['section'];
+  section?: Lesson_DataBase['section'];
   events?: NonNullable<Lesson_Config['events']>;
 };
 type CollectionPatch = { items?: Record<string, unknown>; additionalItems?: Record<string, unknown>; order?: string[] };
@@ -82,7 +82,7 @@ const validatePublication = (
       ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : withPatch;
     try {
-      lesson_Props_Schema.parse(effective);
+      lesson_Data_Schema.parse(effective);
     } catch (error) {
       throw new Error(
         'Invalid Lesson Props for language ' +
@@ -100,7 +100,7 @@ const isBuildChild = (value: unknown): value is Child => {
     typeof value.id === 'string' &&
     typeof value.slug === 'string' &&
     typeof value.type === 'string' &&
-    typeof value.build.props === 'function' &&
+    typeof value.build.data === 'function' &&
     typeof value.build.overrides === 'function'
   );
 };
@@ -200,7 +200,7 @@ export function defineLesson<
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
-      const resource = buildChildProps(child);
+      const resource = buildChildData(child);
       const patch = Object.hasOwn(changes, key) ? buildChildOverrides(child, changes[key] as never) : undefined;
       return { resource, patch };
     });
@@ -232,7 +232,7 @@ export function defineLesson<
       (files[code as LanguageCode] ??= {})[key] = children as never;
     }
   };
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), section: { items: initialSections, order: sectionOrder } });
     const own = copyAuthored();
@@ -255,7 +255,7 @@ export function defineLesson<
         skills: own.skills,
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(split.base).length ? { locale: split.base as { title?: string } } : {}),
-        section: sections.bases as Lesson_PropsBase['section'],
+        section: sections.bases as Lesson_DataBase['section'],
         ...(own.events !== undefined ? { events: own.events } : {}),
       },
       locale: Object.keys(files).length ? files : undefined,
@@ -377,7 +377,7 @@ export function defineLesson<
       );
       if (sections.changed) {
         const built = buildOrdered(sections.active, sections.order, sections.childChanges);
-        output.base.section = built.bases as Lesson_PropsBase['section'];
+        output.base.section = built.bases as Lesson_DataBase['section'];
         addLocalizedArray(files, 'section', built.locales);
       }
       // Recheck parent collection, identity and cross-child invariants after changes.
@@ -391,7 +391,7 @@ export function defineLesson<
         !hasEnabledQuiz(
           sections.changed
             ? (output.base.section ?? [])
-            : (buildOrdered(sections.active, sections.order).bases as Lesson_PropsBase['section']),
+            : (buildOrdered(sections.active, sections.order).bases as Lesson_DataBase['section']),
         )
       ) {
         throw new Error('Lesson requires at least one enabled Quiz section');
@@ -399,7 +399,7 @@ export function defineLesson<
       output.locale = Object.keys(files).length ? files : undefined;
       // A reference to the owning Lesson, not an identity override in the sparse Props patch.
       const result = structuredClone({ id, ...output });
-      validatePublication(props(options), languages, result);
+      validatePublication(data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -416,7 +416,7 @@ export function defineLesson<
     draft: false as const,
     section,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<Lesson_Config['locale']> } => ({

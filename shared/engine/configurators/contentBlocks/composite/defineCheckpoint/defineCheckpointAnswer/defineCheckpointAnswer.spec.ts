@@ -4,7 +4,7 @@ import test, { describe } from 'node:test';
 import { defineImage } from '../../../primitive/defineImage';
 import { defineText } from '../../../primitive/defineText';
 import { defineCarousel } from '../../defineCarousel';
-import { checkpointAnswer_Config_Schema, checkpointAnswer_Props_Schema, defineCheckpointAnswer } from './index';
+import { checkpointAnswer_Config_Schema, checkpointAnswer_Data_Schema, defineCheckpointAnswer } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -42,7 +42,7 @@ describe('Configurators', () => {
           true,
         );
         assert.deepEqual(
-          answer.build.props({ languages: ['en', 'uk'] }).base.content.map(x => x.slug),
+          answer.build.data({ languages: ['en', 'uk'] }).base.content.map(x => x.slug),
           ['second', 'first'],
         );
         for (const content of [
@@ -58,7 +58,7 @@ describe('Configurators', () => {
               slug: 'bad',
               type: 'checkpointAnswer',
               content,
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           );
         }
       });
@@ -86,7 +86,7 @@ describe('Configurators', () => {
             slug: 'invalid',
             type: 'checkpointAnswer',
             content: { items: { carousel }, order: ['carousel'] },
-          } as never).build.props({ languages: ['en'] }),
+          } as never).build.data({ languages: ['en'] }),
         );
         assert.throws(() =>
           answer.build.overrides(
@@ -97,7 +97,7 @@ describe('Configurators', () => {
           ),
         );
         assert.equal(
-          checkpointAnswer_Props_Schema.safeParse({
+          checkpointAnswer_Data_Schema.safeParse({
             id: answer.id,
             slug: answer.slug,
             type: 'checkpointAnswer',
@@ -119,7 +119,7 @@ describe('Configurators', () => {
 
       test('publishes data-only ordered Props and separate locale fragments', () => {
         const { answer } = create();
-        const built = answer.build.props({ languages: ['en', 'uk'] });
+        const built = answer.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(
           built.base.content.map(x => x.slug),
           ['second', 'first'],
@@ -135,14 +135,14 @@ describe('Configurators', () => {
           [{ value: 'Second' }, { value: 'Invariant' }],
         );
         assert.equal(
-          checkpointAnswer_Props_Schema.safeParse({
+          checkpointAnswer_Data_Schema.safeParse({
             ...built.base,
             content: built.locale?.en?.content,
           }).success,
           true,
         );
         assert.equal(
-          checkpointAnswer_Props_Schema.safeParse({
+          checkpointAnswer_Data_Schema.safeParse({
             ...built.base,
             content: [],
           }).success,
@@ -153,7 +153,7 @@ describe('Configurators', () => {
       test('overrides reorder, disable and add without mutating source', () => {
         const { answer } = create();
         const third = text(id('75'), 'third', { en: 'Third', uk: 'Третій' });
-        const before = answer.build.props({ languages: ['en', 'uk'] });
+        const before = answer.build.data({ languages: ['en', 'uk'] });
         const patch = {
           content: {
             items: { first: false as const, second: { locale: { value: { uk: 'Змінено' } } } },
@@ -171,7 +171,7 @@ describe('Configurators', () => {
           [{ value: 'Третій' }, { value: 'Змінено' }],
         );
         assert.equal(JSON.stringify(changed).includes('additionalItems'), false);
-        assert.deepEqual(answer.build.props({ languages: ['en', 'uk'] }), before);
+        assert.deepEqual(answer.build.data({ languages: ['en', 'uk'] }), before);
         assert.deepEqual(answer.build.overrides(patch, { languages: ['en', 'uk'] }), changed);
       });
 

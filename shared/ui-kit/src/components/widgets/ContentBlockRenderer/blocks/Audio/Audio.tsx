@@ -11,7 +11,7 @@ import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import {
   DEFAULT_SUPPORTED_LANGUAGES,
   UNRESOLVED_RESOURCE_UUID,
-  type ContentBlock_Audio_Props,
+  type ContentBlock_Audio_Data,
 } from '@svitlo/engine/runtime';
 
 import type { Audio_Locale } from '../../../../../../data/locale/audio';
@@ -36,7 +36,7 @@ const SPEEDS = [0.75, 1, 1.25, 1.5, 2] as const;
 export const Audio = ({
   locale: { fileLocation, title, description, fallback },
   messages,
-}: ContentBlock_Audio_Props & {
+}: ContentBlock_Audio_Data & {
   messages: Audio_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

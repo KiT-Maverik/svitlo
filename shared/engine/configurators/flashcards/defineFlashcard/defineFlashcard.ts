@@ -10,8 +10,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
@@ -26,33 +26,33 @@ import { defineFlashcardSide, type FlashcardSide_Configurator } from '../defineF
 import { flashcardSideConfigurator_Schema } from '../defineFlashcardSide/defineFlashcardSide.schemas';
 import {
   flashcard_Config_Schema,
+  flashcard_Data_Schema,
   flashcard_Override_Metadata_Schema,
-  flashcard_Props_Schema,
   flashcardFlag_Config_Schema,
   flashcardRelationship_Schema,
   type Flashcard_Config,
+  type Flashcard_DataBase,
   type Flashcard_Flag_Config,
   type Flashcard_Overrides,
-  type Flashcard_PropsBase,
   type Flashcard_Relationship,
 } from './defineFlashcard.schemas';
 
 type Block = ContentBlock_Primitive_Configurator;
 type Side = 'front' | 'back' | 'hint';
 type SidePublication = {
-  base: Flashcard_PropsBase['content']['front'];
-  locale: Partial<Record<LanguageCode, Flashcard_PropsBase['content']['front']>> | undefined;
+  base: Flashcard_DataBase['content']['front'];
+  locale: Partial<Record<LanguageCode, Flashcard_DataBase['content']['front']>> | undefined;
 };
-type FlagFragment = Flashcard_PropsBase['parameters']['flags'][number];
+type FlagFragment = Flashcard_DataBase['parameters']['flags'][number];
 type LocaleBody = {
   parameters?: { flags?: FlagFragment[] };
-  content?: Partial<Record<Side, Flashcard_PropsBase['content']['front']>>;
+  content?: Partial<Record<Side, Flashcard_DataBase['content']['front']>>;
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  parameters?: DeepPartial<Flashcard_PropsBase['parameters']>;
-  content?: Partial<Flashcard_PropsBase['content']>;
+  parameters?: DeepPartial<Flashcard_DataBase['parameters']>;
+  content?: Partial<Flashcard_DataBase['content']>;
 };
 type NamedInput = { items: Record<string, unknown>; order: string[] };
 type NamedPatch = {
@@ -81,7 +81,7 @@ const validatePublication = (
       ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : withPatch;
     try {
-      flashcard_Props_Schema.parse(effective);
+      flashcard_Data_Schema.parse(effective);
     } catch (error) {
       throw new Error(
         'Invalid Flashcard Props for language ' +
@@ -259,7 +259,7 @@ export function defineFlashcard<
 
   const buildSide = <Items extends Record<string, Block>>(
     side: FlashcardSide_Configurator<Items, Languages>,
-  ): SidePublication => buildChildProps(side) as SidePublication;
+  ): SidePublication => buildChildData(side) as SidePublication;
 
   const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.map(flag => splitLocalizedFields(flag));
@@ -288,7 +288,7 @@ export function defineFlashcard<
     }
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<Flashcard_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<Flashcard_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: initialContent });
     const source = copyAuthored();
@@ -441,7 +441,7 @@ export function defineFlashcard<
       validate({ ...candidate, content: effective });
       output.locale = selectPublicationLocales(Object.keys(files).length ? files : undefined, languages);
       const result = structuredClone(output);
-      validatePublication(props(options), languages, result);
+      validatePublication(data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -457,7 +457,7 @@ export function defineFlashcard<
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({

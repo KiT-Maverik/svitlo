@@ -240,11 +240,11 @@ export function renderSceneFiles(scene: ExecutableSceneDraft): Map<string, strin
     [
       "'use client';",
       '',
-      "import type { ContentBlock_Scene_Props } from '@svitlo/engine/runtime';",
+      "import type { ContentBlock_Scene_Data } from '@svitlo/engine/runtime';",
       "import styles from './" + name + ".module.css';",
       '',
       'export type ' + name + 'Props = {',
-      "  locales: ContentBlock_Scene_Props['locale']['value'];",
+      "  locales: ContentBlock_Scene_Data['locale']['value'];",
       '};',
       '',
       renderBlockerSpecification(

@@ -192,7 +192,7 @@ const ctx = () => ({
       slug: 'testExplainLightTravel',
       type: 'skill',
       config: { base: { id, slug: 'testExplainLightTravel' } },
-      build: { props() {} },
+      build: { data() {} },
     },
   }),
   deriveId,

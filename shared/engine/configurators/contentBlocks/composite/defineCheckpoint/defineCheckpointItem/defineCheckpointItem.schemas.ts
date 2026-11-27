@@ -3,15 +3,15 @@ import { z } from 'zod';
 import { identityBase_Schema } from '../../../../_shared__configurators/common.schemas';
 import type {
   ContentBlock_Text_Configurator,
+  ContentBlock_Text_Data,
   ContentBlock_Text_Overrides,
-  ContentBlock_Text_Props,
 } from '../../../primitive/defineText';
-import { text_Props_Schema } from '../../../primitive/defineText/defineText.schemas';
+import { text_Data_Schema } from '../../../primitive/defineText/defineText.schemas';
 import type { ContentBlock_CheckpointAnswer_Configurator } from '../defineCheckpointAnswer';
 import {
-  checkpointAnswer_Child_Props_Schema,
+  checkpointAnswer_Child_Data_Schema,
   type Checkpoint_Allowed_Configurator,
-  type Checkpoint_Allowed_Props,
+  type Checkpoint_Allowed_Data,
   type CheckpointAnswer_Overrides,
 } from '../defineCheckpointAnswer/defineCheckpointAnswer.schemas';
 
@@ -31,13 +31,13 @@ export const checkpointItem_Config_Schema = checkpointItemBase.extend({
 });
 export type ContentBlock_CheckpointItem_Config = z.infer<typeof checkpointItem_Config_Schema>;
 
-export const checkpointItem_Props_Schema = checkpointItemBase.extend({
-  question: text_Props_Schema,
-  answer: z.array(checkpointAnswer_Child_Props_Schema).min(1),
+export const checkpointItem_Data_Schema = checkpointItemBase.extend({
+  question: text_Data_Schema,
+  answer: z.array(checkpointAnswer_Child_Data_Schema).min(1),
 });
-export type ContentBlock_CheckpointItem_Props = Omit<z.infer<typeof checkpointItem_Props_Schema>, 'answer'> & {
-  question: ContentBlock_Text_Props;
-  answer: Checkpoint_Allowed_Props[];
+export type ContentBlock_CheckpointItem_Data = Omit<z.infer<typeof checkpointItem_Data_Schema>, 'answer'> & {
+  question: ContentBlock_Text_Data;
+  answer: Checkpoint_Allowed_Data[];
 };
 
 export type CheckpointItem_Question_Overrides = Omit<ContentBlock_Text_Overrides, 'params'> & {

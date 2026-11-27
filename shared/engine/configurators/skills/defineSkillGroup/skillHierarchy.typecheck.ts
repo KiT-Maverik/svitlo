@@ -66,18 +66,18 @@ both.build.overrides({});
 group.build.overrides({});
 // @ts-expect-error Domain overrides are not supported.
 domain.build.overrides({});
-both.build.props({ languages: ['en', 'uk'] });
-both.build.props({ languages: ['uk'] });
-group.build.props({ languages: ['uk'] });
-domain.build.props({ languages: ['uk'] });
+both.build.data({ languages: ['en', 'uk'] });
+both.build.data({ languages: ['uk'] });
+group.build.data({ languages: ['uk'] });
+domain.build.data({ languages: ['uk'] });
 // @ts-expect-error Skill cannot publish an undeclared language.
-both.build.props({ languages: ['de'] });
+both.build.data({ languages: ['de'] });
 // @ts-expect-error Group's guaranteed scope is Ukrainian.
-group.build.props({ languages: ['en'] });
+group.build.data({ languages: ['en'] });
 // @ts-expect-error Domain's guaranteed scope is Ukrainian.
-domain.build.props({ languages: ['en'] });
+domain.build.data({ languages: ['en'] });
 // @ts-expect-error Explicit publication options are required.
-both.build.props();
+both.build.data();
 defineSkillGroup<'old', { both: typeof both }, ['uk']>({
   id,
   slug: 'old',

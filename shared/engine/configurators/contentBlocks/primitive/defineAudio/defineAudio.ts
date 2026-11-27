@@ -14,19 +14,19 @@ import {
 } from '../../../_shared__configurators';
 import {
   audio_Config_Schema,
+  audio_Data_Schema,
   audio_Override_Config_Schema,
-  audio_Props_Schema,
   type ContentBlock_Audio_Config,
+  type ContentBlock_Audio_DataBase,
   type ContentBlock_Audio_Locale,
   type ContentBlock_Audio_Overrides,
-  type ContentBlock_Audio_PropsBase,
 } from './defineAudio.schemas';
 
-type AudioLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Audio_Locale<'props'>> }>>;
-type AudioPropsPublication<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type AudioOverridePropsBase = {
+type AudioLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Audio_Locale<'data'>> }>>;
+type AudioDataPublication<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type AudioOverrideDataBase = {
   params?: ContentBlock_Audio_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Audio_Locale<'data'>>;
 };
 
 const parseAndValidate = (config: ContentBlock_Audio_Config): ContentBlock_Audio_Config => {
@@ -37,7 +37,7 @@ const validate = (config: ContentBlock_Audio_Config): void => {
   parseAndValidate(config);
 };
 
-const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
+const buildAudioData = (config: ContentBlock_Audio_Config): AudioDataPublication<ContentBlock_Audio_DataBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(config.locale, 'fileLocation'));
   const base = {
@@ -46,9 +46,9 @@ const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublicati
     slug,
     params,
     ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'data'>> }
       : {}),
-  } satisfies ContentBlock_Audio_PropsBase;
+  } satisfies ContentBlock_Audio_DataBase;
   return {
     base,
     locale: (locale === undefined
@@ -58,13 +58,13 @@ const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublicati
   };
 };
 
-const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
+const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioDataPublication<AudioOverrideDataBase> => {
   const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(patch.locale ?? {}, 'fileLocation'));
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
       ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'data'>> }
         : {}),
     },
     locale: (locale === undefined
@@ -100,20 +100,18 @@ export const defineAudio = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  const props = (
-    options: PublicationLanguageOptions<Languages>,
-  ): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): AudioDataPublication<ContentBlock_Audio_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildAudioProps(parseAndValidate(copyAuthored()));
+    const result = buildAudioData(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(audio_Props_Schema, result, languages);
+    validateRequestedPublication(audio_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Audio_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): AudioPropsPublication<AudioOverridePropsBase> => {
+  ): AudioDataPublication<AudioOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = audio_Override_Config_Schema.parse(patch);
@@ -121,7 +119,7 @@ export const defineAudio = <
       validate(effective);
       const output = buildAudioPatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(audio_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(audio_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(`Invalid Audio overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
@@ -134,7 +132,7 @@ export const defineAudio = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Audio_Locale<'config'>> } => ({

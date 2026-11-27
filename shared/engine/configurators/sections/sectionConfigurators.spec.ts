@@ -62,7 +62,7 @@ describe('Configurators', () => {
           assert.equal('override' in section, false);
           assert.equal('disable' in section, false);
           assert.equal('overrides' in section.config, false);
-          const original = section.build.props({ languages: ['en', 'uk'] });
+          const original = section.build.data({ languages: ['en', 'uk'] });
           assert.equal(original.base.params.skippable, undefined);
           assert.deepEqual(
             section.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params,
@@ -93,13 +93,13 @@ describe('Configurators', () => {
             ['extra'],
           );
           assert.deepEqual(changed.locale, undefined, 'invariant replacement needs no translated file');
-          assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
+          assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
           assert.deepEqual(section.content.order, ['prompt']);
           assert.deepEqual(
             original.base.content.map(block => block.slug),
             ['prompt'],
           );
-          assert.equal(textValue(section.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
+          assert.equal(textValue(section.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
 
           const sparse = section.build.overrides(
             { locale: { title: { uk: 'Оновлено' } } },
@@ -154,7 +154,7 @@ describe('Configurators', () => {
           ...input('content'),
           params: { skippable: false },
         });
-        assert.equal(section.build.props({ languages: ['en'] }).base.params.skippable, false);
+        assert.equal(section.build.data({ languages: ['en'] }).base.params.skippable, false);
         assert.equal(section.config.base.params.skippable, false);
       });
 
@@ -171,17 +171,17 @@ describe('Configurators', () => {
           );
           assert.equal(textValue(one.locale?.uk?.content), 'Один');
           assert.equal(textValue(two.locale?.uk?.content), 'Два');
-          const base = section.build.props({ languages: ['en', 'uk'] });
+          const base = section.build.data({ languages: ['en', 'uk'] });
           assert.equal(textValue(base.locale?.uk?.content), 'Питання');
           if (one.base.content) one.base.content[0]!.slug = 'tampered';
-          assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
+          assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
         }
       });
 
       test('Sections materialize only selected languages in resources and atomic nested patches', () => {
         for (const create of definitions) {
           const section = create();
-          const one = section.build.props({ languages: ['uk'] });
+          const one = section.build.data({ languages: ['uk'] });
           assert.deepEqual(Object.keys(one.locale ?? {}), ['uk']);
           assert.equal(one.locale?.en, undefined);
           const replacement = section.build.overrides(
@@ -192,8 +192,8 @@ describe('Configurators', () => {
           );
           assert.deepEqual(Object.keys(replacement.locale ?? {}), ['uk']);
           assert.equal(textValue(replacement.locale?.uk?.content), 'Новий текст');
-          assert.throws(() => section.build.props({ languages: [] }), /nonempty languages/);
-          assert.throws(() => section.build.props({ languages: ['uk', 'uk'] }), /unique/);
+          assert.throws(() => section.build.data({ languages: [] }), /nonempty languages/);
+          assert.throws(() => section.build.data({ languages: ['uk', 'uk'] }), /unique/);
         }
       });
     });

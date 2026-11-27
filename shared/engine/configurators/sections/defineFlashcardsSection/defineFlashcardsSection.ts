@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -24,13 +24,13 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   flashcardsSection_Config_Schema,
+  flashcardsSection_Data_Schema,
   flashcardsSection_Override_Config_Schema,
-  flashcardsSection_Props_Schema,
   type FlashcardsSection_Config,
+  type FlashcardsSection_DataBase,
   type FlashcardsSection_Locale,
   type FlashcardsSection_MetadataOverrides,
   type FlashcardsSection_Overrides,
-  type FlashcardsSection_PropsBase,
 } from './defineFlashcardsSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -43,21 +43,21 @@ type ChildPatch = {
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
-  locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
-  content?: FlashcardsSection_PropsBase['content'];
+  locale?: DeepPartial<FlashcardsSection_Locale<'data'>>;
+  content?: FlashcardsSection_DataBase['content'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: FlashcardsSection_MetadataOverrides['params'];
-  locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
-  content?: FlashcardsSection_PropsBase['content'];
+  locale?: DeepPartial<FlashcardsSection_Locale<'data'>>;
+  content?: FlashcardsSection_DataBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /** Validate the effective Props for each explicitly requested publication locale. */
-const validateResolvedProps = (
+const validateResolvedData = (
   resource: Publication<unknown>,
   languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
@@ -72,7 +72,7 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      flashcardsSection_Props_Schema.parse(resolved);
+      flashcardsSection_Data_Schema.parse(resolved);
     } catch (error) {
       throw new Error(
         'Invalid defineFlashcardsSection Props for language ' +
@@ -99,7 +99,7 @@ const validate = (config: FlashcardsSection_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -145,9 +145,9 @@ export const defineFlashcardsSection = <
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCode] = { locale: fields as DeepPartial<FlashcardsSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<FlashcardsSection_Locale<'data'>> };
     }
-    return { invariant: split.base as DeepPartial<FlashcardsSection_Locale<'props'>>, files };
+    return { invariant: split.base as DeepPartial<FlashcardsSection_Locale<'data'>>, files };
   };
 
   const buildContent = (
@@ -158,7 +158,7 @@ export const defineFlashcardsSection = <
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = buildChildProps(child) as unknown as ChildResource;
+      const resource = buildChildData(child) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
         ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
         : undefined;
@@ -166,8 +166,8 @@ export const defineFlashcardsSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as FlashcardsSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCode, FlashcardsSection_PropsBase['content']>> = {};
+    ) as FlashcardsSection_DataBase['content'];
+    const locales: Partial<Record<LanguageCode, FlashcardsSection_DataBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -182,12 +182,12 @@ export const defineFlashcardsSection = <
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
         return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as FlashcardsSection_PropsBase['content'];
+      }) as FlashcardsSection_DataBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<FlashcardsSection_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<FlashcardsSection_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -208,7 +208,7 @@ export const defineFlashcardsSection = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateResolvedProps(result, languages);
+    validateResolvedData(result, languages);
     return result;
   };
 
@@ -266,7 +266,7 @@ export const defineFlashcardsSection = <
         if (
           !isRecord(child) ||
           !isRecord(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function' ||
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
@@ -308,7 +308,7 @@ export const defineFlashcardsSection = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateResolvedProps(props(options), languages, result);
+      validateResolvedData(data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -327,7 +327,7 @@ export const defineFlashcardsSection = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<FlashcardsSection_Locale<'config'>> } => ({

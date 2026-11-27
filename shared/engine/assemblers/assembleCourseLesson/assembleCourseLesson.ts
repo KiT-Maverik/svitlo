@@ -1,12 +1,12 @@
-import type { Assessment_PropsBase } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import type { Episode_PropsBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
+import type { Assessment_DataBase } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
+import type { Episode_DataBase } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
+import type { Lesson_Data } from '../../configurators/lessons/defineLesson';
 import type { LanguageCode } from '../../schemas';
 import type { DeepPartial } from '../../types/transformer.types';
 import {
-  assembleLessonProps,
-  type PublishedLessonPropsOverride,
-  type PublishedLessonPropsResource,
+  assembleLessonData,
+  type PublishedLessonDataOverride,
+  type PublishedLessonDataResource,
 } from '../assembleLessonProps/assembleLessonProps';
 
 /**
@@ -16,7 +16,7 @@ import {
 export type CourseLessonEntry = {
   type: 'lesson';
   id: string;
-  overrides?: NonNullable<PublishedLessonPropsOverride['base']>;
+  overrides?: NonNullable<PublishedLessonDataOverride['base']>;
 };
 
 export type CoursePublishedContent = {
@@ -26,8 +26,8 @@ export type CoursePublishedContent = {
 
 export type CoursePublishedNode =
   | CourseLessonEntry
-  | Episode_PropsBase
-  | Assessment_PropsBase
+  | Episode_DataBase
+  | Assessment_DataBase
   | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
@@ -37,7 +37,7 @@ export type CoursePublishedTree = {
   content: CoursePublishedContent;
 };
 
-export type PublishedCoursePropsFiles = {
+export type PublishedCourseDataFiles = {
   base: CoursePublishedTree;
   locale?: Partial<Record<LanguageCode, DeepPartial<CoursePublishedTree>>>;
 };
@@ -48,8 +48,8 @@ export type AssembleCourseLessonInput = {
   /** Required when the same Lesson occurs in multiple distinct Course slots. */
   placement?: string;
   language: LanguageCode;
-  lesson: PublishedLessonPropsResource;
-  course: PublishedCoursePropsFiles;
+  lesson: PublishedLessonDataResource;
+  course: PublishedCourseDataFiles;
 };
 
 const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
@@ -161,7 +161,7 @@ function findLocalizedLesson(
 function getOverride(
   node: Record<string, unknown> | undefined,
   label: string,
-): NonNullable<PublishedLessonPropsOverride['base']> | undefined {
+): NonNullable<PublishedLessonDataOverride['base']> | undefined {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
@@ -171,12 +171,12 @@ function getOverride(
     throw new Error('Course Lesson overrides cannot override Lesson supported languages');
   }
   assertJson(node.overrides, label + '/overrides');
-  return node.overrides as NonNullable<PublishedLessonPropsOverride['base']>;
+  return node.overrides as NonNullable<PublishedLessonDataOverride['base']>;
 }
 
 /**
  * Compose one Course Lesson using the canonical standalone Lesson assembler.
- * It owns the four-layer Props merge and final lesson_Props_Schema validation:
+ * It owns the four-layer Props merge and final lesson_Data_Schema validation:
  *
  *   Lesson base -> Lesson locale -> Course override base -> Course override locale.
  *
@@ -189,7 +189,7 @@ export function assembleCourseLesson({
   language,
   lesson,
   course,
-}: AssembleCourseLessonInput): Lesson_Props {
+}: AssembleCourseLessonInput): Lesson_Data {
   if (!isRecord(lesson.base) || lesson.base.id !== lessonId || lesson.base.type !== 'lesson') {
     throw new Error('Standalone Lesson publication ID/type mismatch');
   }
@@ -225,11 +225,11 @@ export function assembleCourseLesson({
       : ({
           ...(basePatch !== undefined ? { base: basePatch } : {}),
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
-        } satisfies PublishedLessonPropsOverride);
+        } satisfies PublishedLessonDataOverride);
 
   // Reuse the canonical Lesson Props validator with the published keyed Course hierarchy.
   try {
-    return assembleLessonProps(lesson, language, overrides);
+    return assembleLessonData(lesson, language, overrides);
   } catch (error) {
     throw new Error('Invalid assembled Course Lesson Props for ' + language, { cause: error });
   }

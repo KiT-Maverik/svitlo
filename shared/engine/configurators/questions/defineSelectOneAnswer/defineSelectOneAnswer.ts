@@ -32,11 +32,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectOneAnswer_Config_Schema,
+  selectOneAnswer_Data_Schema,
   selectOneAnswer_Override_Config_Schema,
-  selectOneAnswer_Props_Schema,
   type Question_SelectOneAnswer_Config,
+  type Question_SelectOneAnswer_Data,
   type Question_SelectOneAnswer_MetadataOverrides,
-  type Question_SelectOneAnswer_Props,
 } from './defineSelectOneAnswer.schemas';
 
 const metadataSchema = selectOneAnswer_Config_Schema.omit({ content: true });
@@ -169,9 +169,9 @@ export const defineSelectOneAnswer = <
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
+  ): QuestionResourcePublication<Question_SelectOneAnswer_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -190,15 +190,15 @@ export const defineSelectOneAnswer = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
-    validateQuestionPublication(selectOneAnswer_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_SelectOneAnswer_Data>;
+    validateQuestionPublication(selectOneAnswer_Data_Schema, languages, resource);
     return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_SelectOneAnswer_Props> => {
+  ): QuestionOverridePublication<Question_SelectOneAnswer_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -233,8 +233,8 @@ export const defineSelectOneAnswer = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
-      validateQuestionPublication(selectOneAnswer_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_SelectOneAnswer_Data>;
+      validateQuestionPublication(selectOneAnswer_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -254,7 +254,7 @@ export const defineSelectOneAnswer = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

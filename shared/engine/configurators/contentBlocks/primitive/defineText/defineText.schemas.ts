@@ -51,9 +51,9 @@ export const text_Override_Config_Schema: z.ZodType<ContentBlock_Text_Overrides>
 );
 
 /** Published base is a Props fragment: translations are kept in separate locale files. */
-export type ContentBlock_Text_PropsBase = z.infer<typeof textBase> & {
-  locale?: Partial<ContentBlock_Text_Locale<'props'>>;
+export type ContentBlock_Text_DataBase = z.infer<typeof textBase> & {
+  locale?: Partial<ContentBlock_Text_Locale<'data'>>;
 };
 
-export const text_Props_Schema = textBase.extend(addUnifiedLocale(locale('props')));
-export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;
+export const text_Data_Schema = textBase.extend(addUnifiedLocale(locale('data')));
+export type ContentBlock_Text_Data = z.infer<typeof text_Data_Schema>;

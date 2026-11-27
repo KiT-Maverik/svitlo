@@ -4,16 +4,16 @@ import { localeText_Schema } from '#schemas';
 
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Skill_Configurator } from '../defineSkill/defineSkill';
-import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
+import { skill_Data_Schema, type Skill_Data } from '../defineSkill/defineSkill.schemas';
 import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
-import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
+import { skillGroup_Data_Schema, type SkillGroup_Data } from '../defineSkillGroup/defineSkillGroup.schemas';
 
 const frontendByMode = {
   config: localizationSwitch.config.optional(),
-  props: localizationSwitch.props.optional(),
+  data: localizationSwitch.data.optional(),
 } as const;
 
-const localized = <const Mode extends 'config' | 'props'>(mode: Mode) => ({
+const localized = <const Mode extends 'config' | 'data'>(mode: Mode) => ({
   id: z.uuid(),
   slug: z.string().min(1),
   description: z.object({
@@ -30,9 +30,9 @@ export const skillDomain_Config_Schema = z.object(localized('config')).extend({
 export type SkillDomain_Config = z.infer<typeof skillDomain_Config_Schema>;
 export type SkillDomain_Metadata = Pick<SkillDomain_Config, 'title' | 'description'>;
 
-export const skillDomain_Props_Schema = z.object(localized('props')).extend({
-  skills: z.array(skill_Props_Schema).optional(),
-  groups: z.array(skillGroup_Props_Schema).optional(),
+export const skillDomain_Data_Schema = z.object(localized('data')).extend({
+  skills: z.array(skill_Data_Schema).optional(),
+  groups: z.array(skillGroup_Data_Schema).optional(),
 });
-export type SkillDomain_Props = z.infer<typeof skillDomain_Props_Schema>;
-export type SkillDomain_Child_Props = Skill_Props | SkillGroup_Props;
+export type SkillDomain_Data = z.infer<typeof skillDomain_Data_Schema>;
+export type SkillDomain_Child_Data = Skill_Data | SkillGroup_Data;

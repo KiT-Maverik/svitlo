@@ -52,7 +52,7 @@ const scope: LanguageScope<AllLanguageCodes> = standard;
 void literalSlug;
 void type;
 void scope;
-standard.build.props({ languages: ['uk', 'en', 'qm'] });
+standard.build.data({ languages: ['uk', 'en', 'qm'] });
 
 // @ts-expect-error Missing most canonical frontend languages is forbidden.
 defineEducationStandard({ ...config, description: { ...config.description, frontend: { uk: 'Короткий опис' } } });
@@ -61,9 +61,9 @@ defineEducationStandard({ ...config, name: { uk: 'Назва' } });
 // @ts-expect-error Methodological description must be a single English-language string.
 defineEducationStandard({ ...config, description: { ...config.description, methodological: { en: 'Methodology' } } });
 // @ts-expect-error An unknown language cannot be published.
-standard.build.props({ languages: ['xx'] });
+standard.build.data({ languages: ['xx'] });
 // @ts-expect-error The publication language options are required.
-standard.build.props();
+standard.build.data();
 // @ts-expect-error The one-method configurator has no contextual overrides.
 standard.build.overrides({}, { languages: ['uk'] });
 // @ts-expect-error The configurator exposes no validation facade.

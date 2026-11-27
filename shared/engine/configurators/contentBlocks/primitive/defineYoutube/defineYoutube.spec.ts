@@ -23,7 +23,7 @@ describe('Configurators', () => {
 
       test('retains the mode and the requested accessible link label', () => {
         const youtube = defineYoutube<'watch', ['en', 'uk']>(config());
-        const resource = youtube.build.props(scope);
+        const resource = youtube.build.data(scope);
         assert.equal(resource.base.params.mode, 'link');
         assert.equal(resource.base.locale?.href, 'https://www.youtube.com/watch?v=example');
         assert.deepEqual(resource.locale, { uk: { locale: { label: 'Переглянути урок' } } });
@@ -34,7 +34,7 @@ describe('Configurators', () => {
           ...config(),
           locale: { ...config().locale, href: UNRESOLVED_YOUTUBE_HREF },
         });
-        assert.throws(() => pending.build.props(scope), /unresolved video reference/);
+        assert.throws(() => pending.build.data(scope), /unresolved video reference/);
         const ready = defineYoutube<'watch', ['en', 'uk']>(config());
         assert.throws(
           () => ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, scope),
@@ -47,10 +47,10 @@ describe('Configurators', () => {
           ...config(),
           locale: { ...config().locale, href: UNRESOLVED_YOUTUBE_HREF },
         });
-        const preview = pending.build.props({ ...scope, mode: 'draft' });
+        const preview = pending.build.data({ ...scope, mode: 'draft' });
         assert.equal(preview.base.locale?.href, UNRESOLVED_YOUTUBE_HREF);
-        assert.throws(() => pending.build.props(scope), /unresolved video reference/);
-        assert.throws(() => pending.build.props({ ...scope, mode: 'production' }), /unresolved video reference/);
+        assert.throws(() => pending.build.data(scope), /unresolved video reference/);
+        assert.throws(() => pending.build.data({ ...scope, mode: 'production' }), /unresolved video reference/);
 
         const ready = defineYoutube<'watch', ['en', 'uk']>(config());
         const patch = ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, { ...scope, mode: 'draft' });
@@ -59,19 +59,19 @@ describe('Configurators', () => {
           () => ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, scope),
           /unresolved video reference/,
         );
-        assert.equal(ready.build.props(scope).base.locale?.href, config().locale.href);
+        assert.equal(ready.build.data(scope).base.locale?.href, config().locale.href);
       });
 
       test('allows a valid mode override but rejects invalid values', () => {
         const youtube = defineYoutube<'watch', ['en', 'uk']>(config());
-        const before = youtube.build.props(scope);
+        const before = youtube.build.data(scope);
         const patch = youtube.build.overrides({ params: { mode: 'embed' } }, scope);
         assert.deepEqual(patch, { base: { params: { mode: 'embed' } }, locale: undefined });
         assert.throws(
           () => youtube.build.overrides({ params: { mode: 'unknown' as never } }, scope),
           /Invalid Youtube overrides/,
         );
-        assert.deepEqual(youtube.build.props(scope), before);
+        assert.deepEqual(youtube.build.data(scope), before);
       });
     });
   });

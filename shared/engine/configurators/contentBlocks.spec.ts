@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import {
-  code_Props_Schema,
+  code_Data_Schema,
   defineCheckpoint,
   defineCheckpointAnswer,
   defineCheckpointItem,
@@ -24,14 +24,14 @@ describe('Configurators', () => {
           params: {},
           locale: { value: { en: 'Hello', uk: 'Привіт' } },
         });
-        const original = text.build.props({ languages: ['uk'] });
+        const original = text.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(original.locale ?? {}), ['uk']);
         assert.deepEqual(original.locale?.uk, { locale: { value: 'Привіт' } });
         assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['uk'] }), {
           base: {},
           locale: { uk: { locale: { value: 'Вітаю' } } },
         });
-        assert.deepEqual(text.build.props({ languages: ['uk'] }), original);
+        assert.deepEqual(text.build.data({ languages: ['uk'] }), original);
         assert.equal(
           text_Config_Schema.safeParse({
             id: id('01'),
@@ -54,9 +54,9 @@ describe('Configurators', () => {
           params: { language: 'typescript', codeAsText: 'const answer = 42;' },
           locale: {},
         });
-        const result = code.build.props({ languages: ['uk'] });
+        const result = code.build.data({ languages: ['uk'] });
         assert.equal(result.locale, undefined);
-        assert.equal(code_Props_Schema.safeParse(result.base).success, true);
+        assert.equal(code_Data_Schema.safeParse(result.base).success, true);
         assert.deepEqual(code.build.overrides({ params: { disabled: true } }, { languages: ['uk'] }), {
           base: { params: { disabled: true } },
           locale: undefined,
@@ -94,7 +94,7 @@ describe('Configurators', () => {
           locale: { title: 'Review' },
           content: { items: { item }, order: ['item'] },
         });
-        const output = checkpoint.build.props({ languages: ['en'] });
+        const output = checkpoint.build.data({ languages: ['en'] });
         assert.equal(output.base.content.length, 1);
         assert.equal(output.base.content[0]?.question.slug, 'question');
         assert.equal(output.base.content[0]?.answer[0]?.slug, 'answer');

@@ -114,7 +114,7 @@ const options = () => ({
       slug: 'sampleSkill',
       type: 'skill',
       config: { base: { id, slug: 'sampleSkill' } },
-      build: { props() {} },
+      build: { data() {} },
     },
   }),
 });
@@ -252,7 +252,7 @@ function fakeLesson() {
     type: 'lesson',
     config: { base: { id: reusedLessonId, type: 'lesson', skills: [skill], params: { languages: ['uk'] } } },
     build: {
-      props: () => ({ base: {}, locale: undefined }),
+      data: () => ({ base: {}, locale: undefined }),
       overrides: (raw, selection) => {
         assert.deepEqual(selection.languages, ['uk']);
         assert.deepEqual(raw.params.sections, { allowSkipping: false });
@@ -468,9 +468,9 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
     content: { items: { reused: placeLesson(realLesson, raw) }, order: ['reused'] },
   });
-  const actualCourseBuild = actualCourse.build.props({ languages: ['uk'] });
+  const actualCourseBuild = actualCourse.build.data({ languages: ['uk'] });
   assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
-  assert.equal(realLesson.build.props({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
+  assert.equal(realLesson.build.data({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
 
 test('existing Lesson fails closed for a mismatched Course Skill even if author supplied matching SHA', () => {
@@ -484,7 +484,7 @@ test('existing Lesson fails closed for a mismatched Course Skill even if author 
 test('non-plain Course patch Configurator cannot be serialized into TypeScript', () => {
   const input = patchedSource();
   input.config.content.items.directLesson.production.sourcePatch = {
-    content: { items: { unsafe: { build: { props() {} } } } },
+    content: { items: { unsafe: { build: { data() {} } } } },
   };
   const opts = reuseOptions();
   assert.throws(() => materializeCourseStage5(input, opts), /JSON-safe/);
@@ -1021,7 +1021,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
   const built = original.build.overrides(bound, { languages: ['uk'] });
   assert.equal(built.id, original.id);
   assert.equal(built.base.section[0].type, 'content');
-  assert.deepEqual(original.build.props({ languages: ['uk'] }).base.section, []);
+  assert.deepEqual(original.build.data({ languages: ['uk'] }).base.section, []);
   const course = defineCourse({
     id: rootId,
     type: 'course',
@@ -1030,7 +1030,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
     content: { items: { reused: placeLesson(original, bound) }, order: ['reused'] },
   });
-  assert.equal(course.build.props({ languages: ['uk'] }).base.content[0].section[0].type, 'content');
+  assert.equal(course.build.data({ languages: ['uk'] }).base.content[0].section[0].type, 'content');
 
   const denied = {
     ...opts,
@@ -1111,12 +1111,12 @@ test('Course Build rejects a missing requested translation without changing inte
       content: { items: {}, order: [] },
     });
   const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
-  const english = incomplete.build.props({ languages: ['en'] });
+  const english = incomplete.build.data({ languages: ['en'] });
   assert.equal(english.locale.en.locale.title, 'Sky');
   assert.equal(english.locale.uk, undefined);
-  assert.throws(() => incomplete.build.props({ languages: ['en', 'uk'] }));
+  assert.throws(() => incomplete.build.data({ languages: ['en', 'uk'] }));
   const invariant = create({ title: 'H₂O', description: 'Non-translatable label' });
-  const both = invariant.build.props({ languages: ['en', 'uk'] });
+  const both = invariant.build.data({ languages: ['en', 'uk'] });
   assert.equal(both.base.locale.title, 'H₂O');
   assert.equal(both.base.locale.description, 'Non-translatable label');
   assert.equal(both.locale, undefined);

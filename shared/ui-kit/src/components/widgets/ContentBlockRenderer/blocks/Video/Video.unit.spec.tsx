@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Video_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Video } from './Video';
 
-const response: ContentBlock_Video_Props = {
+const response: ContentBlock_Video_Data = {
   id: 'video-1',
   slug: 'video-1',
   type: 'video',

@@ -17,5 +17,5 @@ function createAssessmentMethodSchema<Mode extends keyof typeof localizationSwit
 export const assessmentMethod_Config_Schema = createAssessmentMethodSchema('config');
 export type AssessmentMethod_Config = z.infer<typeof assessmentMethod_Config_Schema>;
 
-export const assessmentMethod_Props_Schema = createAssessmentMethodSchema('props');
-export type AssessmentMethod_Props = z.infer<typeof assessmentMethod_Props_Schema>;
+export const assessmentMethod_Data_Schema = createAssessmentMethodSchema('data');
+export type AssessmentMethod_Data = z.infer<typeof assessmentMethod_Data_Schema>;

@@ -39,5 +39,5 @@ export type {
   LessonReview,
   LessonReviewStage,
 } from './types';
-export { renderLessonPropsFiles } from './generators/lessons/generateLessonProps.utils';
-export type { LessonPropsPublication, LessonPublicationEntry } from './generators/lessons/generateLessonProps.utils';
+export { renderLessonDataFiles } from './generators/lessons/generateLessonProps.utils';
+export type { LessonDataPublication, LessonPublicationEntry } from './generators/lessons/generateLessonProps.utils';

@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import test, { describe } from 'node:test';
 import { pathToFileURL } from 'node:url';
 
-import { defineMarkdown, markdown_Props_Schema, readMarkdown } from './index';
+import { defineMarkdown, markdown_Data_Schema, readMarkdown } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -46,13 +46,13 @@ describe('Configurators', () => {
             },
           });
           assert.equal(
-            markdown_Props_Schema.safeParse({
+            markdown_Data_Schema.safeParse({
               ...base,
               locale: { value: 'Привіт %_%NAME%_%', variables: { NAME: 'Ада' } },
             }).success,
             true,
           );
-          assert.deepEqual(markdown.build.props({ languages: ['uk'] }).locale, {
+          assert.deepEqual(markdown.build.data({ languages: ['uk'] }).locale, {
             uk: { locale: { value: '# Привіт %_%NAME%_%\n', variables: { NAME: 'Ада' } } },
           });
         });
@@ -83,8 +83,8 @@ describe('Configurators', () => {
           });
           assert.equal(markdown.config.base.locale?.value, '# 2 + 3 = 5\n');
           assert.deepEqual(markdown.config.locales(), { locale: {} });
-          assert.equal(markdown.build.props({ languages: ['en', 'uk'] }).base.locale?.value, '# 2 + 3 = 5\n');
-          assert.equal(markdown.build.props({ languages: ['en', 'uk'] }).locale, undefined);
+          assert.equal(markdown.build.data({ languages: ['en', 'uk'] }).base.locale?.value, '# 2 + 3 = 5\n');
+          assert.equal(markdown.build.data({ languages: ['en', 'uk'] }).locale, undefined);
         });
       });
 
@@ -138,13 +138,13 @@ describe('Configurators', () => {
             variables: { NAME: { en: 'Ada', uk: 'Ада' } },
           },
         });
-        const before = markdown.build.props({ languages: ['en', 'uk'] });
+        const before = markdown.build.data({ languages: ['en', 'uk'] });
         const patch = markdown.build.overrides(
           { locale: { value: { uk: 'Вітаю %_%NAME%_%' } } },
           { languages: ['en', 'uk'] },
         );
         assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { value: 'Вітаю %_%NAME%_%' } } } });
-        assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }), before);
+        assert.deepEqual(markdown.build.data({ languages: ['en', 'uk'] }), before);
         assert.throws(
           () => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['en', 'uk'] }),
           /missing configured variable "NAME"/,
@@ -163,16 +163,16 @@ describe('Configurators', () => {
         const variables = { NAME: 'Ada' };
         for (const value of ['%_%NAME', '%_%name%_%', '%_%id: name; value: Ada%_%']) {
           assert.throws(
-            () => defineMarkdown({ ...base, locale: { value, variables } }).build.props({ languages: ['en'] }),
+            () => defineMarkdown({ ...base, locale: { value, variables } }).build.data({ languages: ['en'] }),
             /Markdown variables validation failed/,
           );
         }
         assert.throws(
-          () => defineMarkdown({ ...base, locale: { value: 'Hello', variables } }).build.props({ languages: ['en'] }),
+          () => defineMarkdown({ ...base, locale: { value: 'Hello', variables } }).build.data({ languages: ['en'] }),
           /missing configured variable "NAME"/,
         );
         assert.throws(
-          () => defineMarkdown({ ...base, locale: { value: '%_%UNKNOWN%_%' } }).build.props({ languages: ['en'] }),
+          () => defineMarkdown({ ...base, locale: { value: '%_%UNKNOWN%_%' } }).build.data({ languages: ['en'] }),
           /variable "UNKNOWN" is not declared/,
         );
         assert.doesNotThrow(() =>

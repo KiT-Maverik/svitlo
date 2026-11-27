@@ -23,7 +23,7 @@ const localeSubset_Schema = z
 
 export const localizationSwitch = {
   config: z.union([nonTranslatableText_Schema, localeSubset_Schema]),
-  props: localeText_Schema,
+  data: localeText_Schema,
 } as const;
 
 /** Resolved child blocks are plain props, never authoring-time configurators. */

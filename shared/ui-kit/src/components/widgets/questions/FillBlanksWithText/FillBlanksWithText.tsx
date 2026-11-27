@@ -2,7 +2,7 @@
 
 import { Stack, TextField } from '@mui/material';
 
-import type { Question_FillBlanksWithText_Props } from '@svitlo/engine/runtime';
+import type { Question_FillBlanksWithText_Data } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -15,7 +15,7 @@ export function FillBlanksWithText({
   sceneRegistry,
   messages,
 }: {
-  response: Question_FillBlanksWithText_Props;
+  response: Question_FillBlanksWithText_Data;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

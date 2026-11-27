@@ -2,7 +2,7 @@
 
 import { TextField } from '@mui/material';
 
-import type { Question_AnswerWithText_Props } from '@svitlo/engine/runtime';
+import type { Question_AnswerWithText_Data } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -15,7 +15,7 @@ export function AnswerWithText({
   sceneRegistry,
   messages,
 }: {
-  response: Question_AnswerWithText_Props;
+  response: Question_AnswerWithText_Data;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

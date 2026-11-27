@@ -1,9 +1,9 @@
-import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
 import { parseText } from '../text/parseText';
 import styles from './StyledText.module.css';
 
-type StyledText_Rules = ContentBlock_Text_Props['params']['variables'];
+type StyledText_Rules = ContentBlock_Text_Data['params']['variables'];
 
 export interface ApplyStyledTextOptions {
   text: string;

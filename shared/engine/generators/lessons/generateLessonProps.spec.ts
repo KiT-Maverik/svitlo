@@ -3,7 +3,7 @@ import test from 'node:test';
 
 import { defineLessonStub } from '../../configurators/courses/defineCourseChildStubs';
 import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
-import { renderLessonPropsFiles, type LessonPublicationEntry } from './generateLessonProps.utils';
+import { renderLessonDataFiles, type LessonPublicationEntry } from './generateLessonProps.utils';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const relative = 'c/' + id;
@@ -25,12 +25,12 @@ const makeLesson = (title: string | { en: string; uk: string } = { en: 'Light', 
 
 const entry = (source = 'content/playground/first.ts'): LessonPublicationEntry => ({
   source,
-  publication: makeLesson().build.props({ languages: ['en', 'uk'] }),
+  publication: makeLesson().build.data({ languages: ['en', 'uk'] }),
 });
 
 test('emits one base and Props-shaped language fragments at canonical UUID paths', () => {
-  const publication = makeLesson().build.props({ languages: ['en', 'uk'] });
-  const files = renderLessonPropsFiles([{ source: 'lesson.ts', publication }]);
+  const publication = makeLesson().build.data({ languages: ['en', 'uk'] });
+  const files = renderLessonDataFiles([{ source: 'lesson.ts', publication }]);
   assert.deepEqual([...files.keys()], [relative + '/base.json', relative + '/en.json', relative + '/uk.json']);
   const base = JSON.parse(files.get(relative + '/base.json')!);
   assert.equal(base.id, id);
@@ -43,15 +43,15 @@ test('emits one base and Props-shaped language fragments at canonical UUID paths
 });
 
 test('does not generate locale files for invariant-only Lessons', () => {
-  const built = makeLesson('Invariant').build.props({ languages: ['en', 'uk'] });
+  const built = makeLesson('Invariant').build.data({ languages: ['en', 'uk'] });
   assert.equal(built.locale, undefined);
-  const files = renderLessonPropsFiles([{ source: 'lesson.ts', publication: built }]);
+  const files = renderLessonDataFiles([{ source: 'lesson.ts', publication: built }]);
   assert.deepEqual([...files.keys()], [relative + '/base.json']);
   assert.equal(JSON.parse(files.get(relative + '/base.json')!).locale.title, 'Invariant');
 });
 
 test('skips empty and undefined locales without synthesizing translation data', () => {
-  const files = renderLessonPropsFiles([
+  const files = renderLessonDataFiles([
     {
       source: 'lesson.ts',
       publication: {
@@ -66,40 +66,40 @@ test('skips empty and undefined locales without synthesizing translation data', 
 test('rejects duplicate IDs across sources rather than rejecting legitimate regeneration', () => {
   const first = entry();
   const second = entry('content/math/another.ts');
-  assert.throws(() => renderLessonPropsFiles([first, second]), /Duplicate Lesson ID.*first\.ts.*another\.ts/);
+  assert.throws(() => renderLessonDataFiles([first, second]), /Duplicate Lesson ID.*first\.ts.*another\.ts/);
   assert.deepEqual(
-    [...renderLessonPropsFiles([first])],
-    [...renderLessonPropsFiles([first])],
+    [...renderLessonDataFiles([first])],
+    [...renderLessonDataFiles([first])],
     'Rebuilding the same Lesson is deterministic and allowed',
   );
 });
 
 test('rejects malformed identities, malformed language keys, and broken locale bodies', () => {
   assert.throws(
-    () => renderLessonPropsFiles([{ source: 'bad', publication: { base: { id: '../escape', type: 'lesson' } } }]),
+    () => renderLessonDataFiles([{ source: 'bad', publication: { base: { id: '../escape', type: 'lesson' } } }]),
     /canonical UUID/,
   );
   assert.throws(
-    () => renderLessonPropsFiles([{ source: 'bad', publication: { base: { id, type: 'text' } } }]),
+    () => renderLessonDataFiles([{ source: 'bad', publication: { base: { id, type: 'text' } } }]),
     /Expected built Lesson Props/,
   );
   assert.throws(
     () =>
-      renderLessonPropsFiles([
+      renderLessonDataFiles([
         { source: 'bad', publication: { base: { id, type: 'lesson' }, locale: { '../uk': {} } } },
       ]),
     /Invalid Lesson language file name/,
   );
   assert.throws(
     () =>
-      renderLessonPropsFiles([
+      renderLessonDataFiles([
         { source: 'bad', publication: { base: { id, type: 'lesson' }, locale: { uk: 'not props' } } },
       ]),
     /Invalid Lesson locale body/,
   );
   assert.throws(
     () =>
-      renderLessonPropsFiles([
+      renderLessonDataFiles([
         { source: 'bad', publication: { base: { id, type: 'lesson', invalid: () => false } as never } },
       ]),
     /Non-JSON value/,
@@ -107,8 +107,8 @@ test('rejects malformed identities, malformed language keys, and broken locale b
 });
 
 test('renders deterministic, isolated publication snapshots with canonical relative paths', () => {
-  const first = renderLessonPropsFiles([entry()]);
-  const second = renderLessonPropsFiles([entry()]);
+  const first = renderLessonDataFiles([entry()]);
+  const second = renderLessonDataFiles([entry()]);
 
   assert.notStrictEqual(first, second, 'Each render owns its output map');
   assert.deepEqual([...first], [...second], 'Rebuilding the same Lesson produces identical bytes');
@@ -131,17 +131,17 @@ test('rejects deeply non-JSON Lesson publication values instead of silently drop
         publication: { base: { id, type: 'lesson', extra: nested } },
       },
     ] as never;
-  assert.throws(() => renderLessonPropsFiles(bad({ retained: true, dropped: undefined })), /Non-JSON value/);
-  assert.throws(() => renderLessonPropsFiles(bad({ count: Number.POSITIVE_INFINITY })), /Non-JSON value/);
-  assert.throws(() => renderLessonPropsFiles(bad([, 'value'])), /Sparse Lesson array/);
-  assert.throws(() => renderLessonPropsFiles(bad({ nested: () => null })), /Non-JSON value/);
+  assert.throws(() => renderLessonDataFiles(bad({ retained: true, dropped: undefined })), /Non-JSON value/);
+  assert.throws(() => renderLessonDataFiles(bad({ count: Number.POSITIVE_INFINITY })), /Non-JSON value/);
+  assert.throws(() => renderLessonDataFiles(bad([, 'value'])), /Sparse Lesson array/);
+  assert.throws(() => renderLessonDataFiles(bad({ nested: () => null })), /Non-JSON value/);
 });
 
 test('rejects an authored Lesson stub preview at the strict publication boundary', () => {
   const draft = defineLessonStub({ id, slug: 'lightLesson' });
-  assert.equal(draft.build.props({ languages: ['en'] }).base.draft, true);
+  assert.equal(draft.build.data({ languages: ['en'] }).base.draft, true);
   assert.throws(
-    () => renderLessonPropsFiles([{ source: 'stub.ts', publication: draft.build.props({ languages: ['en'] }) }]),
+    () => renderLessonDataFiles([{ source: 'stub.ts', publication: draft.build.data({ languages: ['en'] }) }]),
     /Draft Lesson stub cannot be published/,
   );
 });

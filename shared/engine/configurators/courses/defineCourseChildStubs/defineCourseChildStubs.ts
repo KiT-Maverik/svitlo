@@ -1,12 +1,12 @@
 import { allLanguageCodes, type AllLanguageCodes, type LanguageCode } from '#schemas';
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 
-import { buildChildProps, resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
+import { buildChildData, resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
 import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
 import { defineAssessmentDraft } from '../../assessments/defineAssessment';
 import { defineText } from '../../contentBlocks/primitive/defineText';
-import { episode_Draft_Props_Schema } from '../../episodes/defineEpisode';
-import { lesson_Draft_Props_Schema } from '../../lessons/defineLesson';
+import { episode_Draft_Data_Schema } from '../../episodes/defineEpisode';
+import { lesson_Draft_Data_Schema } from '../../lessons/defineLesson';
 import { defineContentSection } from '../../sections/defineContentSection';
 
 /**
@@ -63,7 +63,7 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
 
   const validate = (): void => {
     identityBase_Schema.parse({ id, slug });
-    const built = section.build.props({ languages: ['en'] });
+    const built = section.build.data({ languages: ['en'] });
     if (
       !built.base.content.some(
         block =>
@@ -77,9 +77,9 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
       throw new Error('Stub preview must include a Not implemented Text ContentBlock');
     }
   };
-  const props = (options: PublicationLanguageOptions<AllLanguageCodes>) => {
+  const data = (options: PublicationLanguageOptions<AllLanguageCodes>) => {
     const languages = resolvePublicationLanguages(options);
-    const child = buildChildProps(section);
+    const child = buildChildData(section);
     const base = {
       id,
       slug,
@@ -90,7 +90,7 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
       locale: { title: 'Not implemented' },
       section: [child.base],
     };
-    (type === 'lesson' ? lesson_Draft_Props_Schema : episode_Draft_Props_Schema).parse(base);
+    (type === 'lesson' ? lesson_Draft_Data_Schema : episode_Draft_Data_Schema).parse(base);
     return { base, locale: undefined };
   };
   const overrides = (_patch: never, _options: PublicationLanguageOptions<AllLanguageCodes>): never => {
@@ -103,7 +103,7 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
     draft: true as const,
     preview: section,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: { id, slug, type, params, locale: { title: 'Not implemented' } },
       locales: () => ({ locale: {} }),

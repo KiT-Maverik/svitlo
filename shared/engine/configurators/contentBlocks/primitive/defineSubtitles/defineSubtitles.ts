@@ -14,8 +14,8 @@ import {
 } from '../../../_shared__configurators';
 import {
   subtitles_Config_Schema,
+  subtitles_Data_Schema,
   subtitles_Override_Config_Schema,
-  subtitles_Props_Schema,
   type ContentBlock_Subtitles_Config,
   type ContentBlock_Subtitles_Overrides,
 } from './defineSubtitles.schemas';
@@ -50,14 +50,14 @@ export const defineSubtitles = <
             ) as Partial<Record<LanguageCode, { locale: unknown }>>),
     };
   };
-  const props = (options: PublicationLanguageOptions<Languages>) => {
+  const data = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     const resource = files(parse(structuredClone(authored)).locale);
     const output = {
       base: { id, slug, type, params: authored.params, ...resource.base },
       locale: selectPublicationLocales(resource.locale, languages),
     };
-    validateRequestedPublication(subtitles_Props_Schema, output, languages);
+    validateRequestedPublication(subtitles_Data_Schema, output, languages);
     return output;
   };
   const overrides = (patch: ContentBlock_Subtitles_Overrides, options: PublicationLanguageOptions<Languages>) => {
@@ -69,7 +69,7 @@ export const defineSubtitles = <
       base: { ...(validated.params ? { params: validated.params } : {}), ...resource.base },
       locale: selectPublicationLocales(resource.locale, languages),
     };
-    validateRequestedPublication(subtitles_Props_Schema, props(options), languages, output);
+    validateRequestedPublication(subtitles_Data_Schema, data(options), languages, output);
     return output;
   };
   const result = {
@@ -77,7 +77,7 @@ export const defineSubtitles = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: { id, slug, type, params: structuredClone(authored.params), locale: onlyStrings(authored.locale) },
       locales: () => ({ locale: onlyLocales(authored.locale) }),

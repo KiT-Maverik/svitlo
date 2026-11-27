@@ -10,7 +10,7 @@ import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
 import { placeLesson } from '../placeLesson';
 import { defineCourse } from './defineCourse';
-import { course_Config_Schema, course_Props_Schema } from './defineCourse.schemas';
+import { course_Config_Schema, course_Data_Schema } from './defineCourse.schemas';
 
 describe('Configurators', () => {
   describe('Courses', () => {
@@ -50,7 +50,7 @@ describe('Configurators', () => {
         assert.equal(course.slug, 'course');
         assert.equal(course.content.items.module, chapterModule);
         assert.equal(chapterModule.content.items.chapter, chapter);
-        const resource = course.build.props({ languages: ['en', 'uk'] });
+        const resource = course.build.data({ languages: ['en', 'uk'] });
         assert.equal(resource.base.params.scenarioMode, 'story');
         assert.deepEqual(
           resource.base.content?.map(child => child!.slug),
@@ -67,7 +67,7 @@ describe('Configurators', () => {
         assert.deepEqual(course.config.locales(), { locale: { title: { en: 'Course', uk: 'Курс' } } });
         assert.equal(course_Config_Schema.safeParse(courseInput).success, true);
         assert.equal(
-          course_Props_Schema.safeParse(
+          course_Data_Schema.safeParse(
             mergeForValidation<Record<string, unknown>>(
               resource.base as Record<string, unknown>,
               (resource.locale?.uk ?? {}) as Record<string, unknown>,
@@ -96,7 +96,7 @@ describe('Configurators', () => {
           ['module'],
         );
         assert.equal(nested.base.content?.[0]?.locale?.title, 'Unit');
-        assert.equal(course.build.props({ languages: ['en', 'uk'] }).base.content[0]?.locale?.title, 'Module');
+        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.content[0]?.locale?.title, 'Module');
 
         const removed = course.build.overrides(
           { content: { items: { module: false }, order: [] } },
@@ -147,7 +147,7 @@ describe('Configurators', () => {
           ['extra', 'module'],
         );
         assert.deepEqual(
-          course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
+          course.build.data({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
           ['module'],
         );
         assert.throws(
@@ -161,18 +161,18 @@ describe('Configurators', () => {
       });
 
       test('Independent Course Build calls do not mutate original children or authored input', () => {
-        const first = course.build.props({ languages: ['en', 'uk'] });
+        const first = course.build.data({ languages: ['en', 'uk'] });
         first.base.content[0]!.slug = 'mutated';
-        assert.equal(course.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'module');
+        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'module');
         const patch = course.build.overrides({ locale: { title: 'Replacement' } }, { languages: ['en', 'uk'] });
         assert.equal(patch.base.locale?.title, 'Replacement');
-        assert.equal(course.build.props({ languages: ['en', 'uk'] }).locale?.uk?.locale?.title, 'Курс');
+        assert.equal(course.build.data({ languages: ['en', 'uk'] }).locale?.uk?.locale?.title, 'Курс');
 
         const authoredContent = course.content;
         authoredContent.order.push('module');
         assert.throws(() => course.validate({ ...courseInput, content: authoredContent } as never), /Duplicate slug/);
         assert.deepEqual(
-          course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
+          course.build.data({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
           ['module'],
         );
         assert.deepEqual(courseInput.content.order, ['module']);
@@ -184,7 +184,7 @@ describe('Configurators', () => {
             defineCourse({
               ...courseInput,
               content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /does not match configurator slug/,
         );
         assert.throws(
@@ -196,7 +196,7 @@ describe('Configurators', () => {
               params: {},
               locale: { title: 'Invalid' },
               content: { items: { module: chapterModule }, order: ['module'] },
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /Unsupported Module child type/,
         );
         assert.throws(
@@ -208,7 +208,7 @@ describe('Configurators', () => {
               params: {},
               locale: { title: 'Invalid' },
               content: { items: { chapter }, order: ['chapter'] },
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /Unsupported Chapter child type/,
         );
         assert.throws(
@@ -216,7 +216,7 @@ describe('Configurators', () => {
             defineCourse({
               ...courseInput,
               params: { languages: ['en', 'en'] as unknown as typeof languages },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /unique/,
         );
         const duplicate = defineChapter<'copy', {}, typeof languages>({
@@ -232,17 +232,17 @@ describe('Configurators', () => {
             defineCourse({
               ...courseInput,
               content: { items: { module: chapterModule, copy: duplicate }, order: ['module', 'copy'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /duplicate Course child ID/,
         );
       });
 
       test('Course scope excludes extra Chapter translations and propagates selected languages', () => {
-        const standalone = chapter.build.props({ languages: ['pl'] });
+        const standalone = chapter.build.data({ languages: ['pl'] });
         assert.deepEqual(Object.keys(standalone.locale ?? {}), ['pl']);
         assert.equal(standalone.locale?.pl?.locale?.title, 'Rozdział');
 
-        const resource = course.build.props({ languages: ['uk'] });
+        const resource = course.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
         assert.deepEqual(resource.base.params.languages, ['uk'], 'frontend must not advertise unpublished locales');
         assert.equal(JSON.stringify(resource).includes('Rozdział'), false);
@@ -258,11 +258,8 @@ describe('Configurators', () => {
         assert.deepEqual(Object.keys(override.locale ?? {}), ['uk']);
         assert.equal(JSON.stringify(override).includes('Hidden'), false);
 
-        assert.throws(
-          () => course.build.props({ languages: ['pl'] } as never),
-          /does not support publication language/,
-        );
-        assert.throws(() => course.build.props({ languages: [] }), /nonempty languages/);
+        assert.throws(() => course.build.data({ languages: ['pl'] } as never), /does not support publication language/);
+        assert.throws(() => course.build.data({ languages: [] }), /nonempty languages/);
       });
     });
   });
@@ -293,7 +290,7 @@ test('Course publishes optional outcomes, EducationStandard references and learn
   };
   assert.equal(course_Config_Schema.safeParse(input).success, true);
   const course = defineCourse(input);
-  const published = course.build.props({ languages: ['uk'] });
+  const published = course.build.data({ languages: ['uk'] });
   assert.deepEqual(published.base.params.outcomes?.skills, [skillId]);
   assert.deepEqual(published.base.params.educationStandards, [standardId]);
   assert.deepEqual(published.base.params.age, { min: 6, max: 10 });
@@ -308,7 +305,7 @@ test('Course publishes optional outcomes, EducationStandard references and learn
   );
   assert.deepEqual(patch.base.params?.outcomes?.skills, [skillId]);
   assert.equal(patch.locale?.uk?.locale?.outcomesText, 'Нова мета');
-  assert.equal(course.build.props({ languages: ['uk'] }).locale?.uk?.locale?.outcomesText, 'Пояснювати світло');
+  assert.equal(course.build.data({ languages: ['uk'] }).locale?.uk?.locale?.outcomesText, 'Пояснювати світло');
 
   assert.equal(
     course_Config_Schema.safeParse({
@@ -401,8 +398,8 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Testing placement aliases' },
     content: { items: { moduleContext: module, courseReview: lesson }, order: ['moduleContext', 'courseReview'] },
   });
-  const original = lesson.build.props({ languages });
-  const embedded = course.build.props({ languages });
+  const original = lesson.build.data({ languages });
+  const embedded = course.build.data({ languages });
   assert.equal(original.base.slug, 'standaloneLesson');
   assert.equal(lesson.slug, 'standaloneLesson');
   assert.equal(embedded.base.content[0]?.slug, 'moduleContext');
@@ -486,7 +483,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   const expectedSparse = original.build.overrides(raw, { languages });
   assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
   assert.deepEqual(shadow.placement.patch, raw);
-  const publication = course.build.props({ languages });
+  const publication = course.build.data({ languages });
   const shadowBase = (
     publication.base.content[0] as {
       content: { content: { params: { sections: { allowSkipping: boolean } }; slug: string }[] }[];
@@ -497,26 +494,26 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   assert.equal(publication.base.content[1]?.slug, 'direct');
   assert.match(JSON.stringify(publication.locale?.uk), /Контекстний урок/);
   assert.equal(JSON.stringify(publication.locale?.en).includes('Контекстний урок'), false);
-  assert.equal(original.build.props({ languages }).base.params.sections.allowSkipping, true);
-  assert.equal(original.build.props({ languages }).base.slug, 'originalLesson');
+  assert.equal(original.build.data({ languages }).base.params.sections.allowSkipping, true);
+  assert.equal(original.build.data({ languages }).base.slug, 'originalLesson');
   assert.equal(shadow.placement.source, original);
 
   const additional = shadow.build.overrides({ params: { sections: { allowNavigation: false } } }, { languages });
   assert.equal(additional.base.params?.sections?.allowSkipping, false);
   assert.equal(additional.base.params?.sections?.allowNavigation, false);
   assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
-  assert.throws(() => shadow.build.props({ languages: ['pl'] } as never), /does not support publication language/);
+  assert.throws(() => shadow.build.data({ languages: ['pl'] } as never), /does not support publication language/);
   assert.throws(
-    () => placeLesson(original, { params: { languages: ['uk'] } } as never).build.props({ languages }),
+    () => placeLesson(original, { params: { languages: ['uk'] } } as never).build.data({ languages }),
     /Invalid Lesson overrides/,
   );
   assert.throws(
-    () => placeLesson(original, { id: 'c775647f-203d-481a-a1c7-4d331c779d99' } as never).build.props({ languages }),
+    () => placeLesson(original, { id: 'c775647f-203d-481a-a1c7-4d331c779d99' } as never).build.data({ languages }),
     /Invalid Lesson overrides/,
   );
   assert.throws(
     () =>
-      placeLesson(original, { base: { params: { sections: { allowSkipping: false } } } } as never).build.props({
+      placeLesson(original, { base: { params: { sections: { allowSkipping: false } } } } as never).build.data({
         languages,
       }),
     /Invalid Lesson overrides/,
@@ -598,7 +595,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
   });
 
   for (const mode of ['draft', 'production'] as const) {
-    const result = course.build.props({ languages: ['en'], mode });
+    const result = course.build.data({ languages: ['en'], mode });
     assert.match(JSON.stringify(result), /English-only notes/);
     assert.equal(result.locale?.zh, undefined);
     const patch = course.build.overrides(
@@ -610,10 +607,10 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
   }
 
   assert.deepEqual(
-    lesson.build.props({ languages: ['en'] }).base.section.map(section => section.slug),
+    lesson.build.data({ languages: ['en'] }).base.section.map(section => section.slug),
     ['intro', 'quiz'],
   );
-  assert.throws(() => lesson.build.props({ languages: ['zh'] }), /Invalid publication/);
+  assert.throws(() => lesson.build.data({ languages: ['zh'] }), /Invalid publication/);
   assert.throws(
     () =>
       placement.build.overrides({ section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never, {

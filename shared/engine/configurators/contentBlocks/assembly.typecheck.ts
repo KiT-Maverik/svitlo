@@ -107,12 +107,12 @@ const youtube = defineYoutube<'youtube', ['en']>({
   locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch' } },
 });
 
-const textPublished = text.build.props({ languages: ['en'] });
+const textPublished = text.build.data({ languages: ['en'] });
 void textPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void textPublished.locale?.en?.value;
 // @ts-expect-error The Build API does not support conditional embedding.
-text.build.props({ embed: true });
+text.build.data({ embed: true });
 
 // @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
 text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } }, { languages: ['en'] });
@@ -125,61 +125,61 @@ text.build.overrides({ type: 'text' }, { languages: ['en'] });
 // @ts-expect-error Authored locale values must not contain positional arrays.
 text.build.overrides({ locale: { value: ['not a locale dictionary'] } }, { languages: ['en'] });
 
-const audioPublished = audio.build.props({ languages: ['en'] });
+const audioPublished = audio.build.data({ languages: ['en'] });
 void audioPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void audioPublished.locale?.en?.title;
 // @ts-expect-error The Build API does not support conditional embedding.
-audio.build.props({ embed: true });
+audio.build.data({ embed: true });
 
-const carouselPublished = carousel.build.props({ languages: ['en'] });
+const carouselPublished = carousel.build.data({ languages: ['en'] });
 void carouselPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void carouselPublished.locale?.en?.slides;
 // @ts-expect-error The Build API does not support conditional embedding.
-carousel.build.props({ embed: true });
+carousel.build.data({ embed: true });
 
-const codePublished = code.build.props({ languages: ['en'] });
+const codePublished = code.build.data({ languages: ['en'] });
 void codePublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void codePublished.locale?.en?.variables;
 // @ts-expect-error The Build API does not support conditional embedding.
-code.build.props({ embed: true });
+code.build.data({ embed: true });
 
-const imagePublished = image.build.props({ languages: ['en'] });
+const imagePublished = image.build.data({ languages: ['en'] });
 void imagePublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void imagePublished.locale?.en?.alt;
 // @ts-expect-error The Build API does not support conditional embedding.
-image.build.props({ embed: true });
+image.build.data({ embed: true });
 
-const markdownPublished = markdown.build.props({ languages: ['en'] });
+const markdownPublished = markdown.build.data({ languages: ['en'] });
 void markdownPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void markdownPublished.locale?.en?.value;
 // @ts-expect-error The Build API does not support conditional embedding.
-markdown.build.props({ embed: true });
+markdown.build.data({ embed: true });
 
-const scenePublished = scene.build.props({ languages: ['en'] });
+const scenePublished = scene.build.data({ languages: ['en'] });
 void scenePublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void scenePublished.locale?.en?.value;
 // @ts-expect-error The Build API does not support conditional embedding.
-scene.build.props({ embed: true });
+scene.build.data({ embed: true });
 
-const videoPublished = video.build.props({ languages: ['en'] });
+const videoPublished = video.build.data({ languages: ['en'] });
 void videoPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void videoPublished.locale?.en?.label;
 // @ts-expect-error The Build API does not support conditional embedding.
-video.build.props({ embed: true });
+video.build.data({ embed: true });
 
-const youtubePublished = youtube.build.props({ languages: ['en'] });
+const youtubePublished = youtube.build.data({ languages: ['en'] });
 void youtubePublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
 void youtubePublished.locale?.en?.label;
 // @ts-expect-error The Build API does not support conditional embedding.
-youtube.build.props({ embed: true });
+youtube.build.data({ embed: true });
 
 // @ts-expect-error Audio no longer exposes the legacy assemble API.
 audio.assemble.resource();
