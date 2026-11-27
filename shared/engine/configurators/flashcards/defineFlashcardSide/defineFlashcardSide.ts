@@ -48,7 +48,11 @@ const validateSide = (phase: { children: string[] } & Record<string, unknown>, r
        ...errors.map(issue => issue.message)].join('; '),
     );
   }
-  if (requireNonEmpty && phase.children.length === 0) throw new Error('At least one item is required in Flashcard side');
+  if (requireNonEmpty && !phase.children.some(key => {
+    const child = members[key];
+    return isRecord(child) && isRecord(child.config) && isRecord(child.config.base) &&
+      isRecord(child.config.base.params) && child.config.base.params.disabled !== true;
+  })) throw new Error('At least one enabled item is required in Flashcard side');
   for (const [key, child] of Object.entries(members)) {
     if (!isRecord(child) || !isRecord(child.build) ||
         typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
