@@ -103,10 +103,14 @@ The shared Lesson Controller provides a lesson-scoped Event Bus with the built-i
 `lessonStarted`, `lessonCompleted`, `quizCompleted` and `quizFailed` event names.
 Only the controller emits built-in lifecycle events; a Scene may emit a custom event
 declared in its own Lesson's `events` configuration via `LessonActions`.
-The generic QuestionRenderer only signals all questions checked: scoring is not
-implemented here, so `quizFailed` requires an explicit assessed failure rather
-than an inferred score. `lessonCompleted` indicates reaching and satisfying the
-last Section's navigation gate; it does **not** establish Skill mastery.
+The active `EngineQuestionRenderer` loads published Question UUIDs, grades a
+completed attempt using the Quiz Section's configured threshold, and reports the
+result to `LessonController`. The controller emits `quizCompleted` for a finished
+attempt and also emits `quizFailed` when its grade fails. A completed failed
+attempt may unlock a blocking Quiz: completing an attempt and meeting the
+success threshold are separate policies. `lessonCompleted` indicates reaching
+and satisfying the last Section's navigation gate; it does **not** establish
+Skill mastery.
 
 Authoring `Lesson<'data', Languages, CustomEvents>` accepts optional standard
 event reactions and requires a Scene block for each declared custom event.
