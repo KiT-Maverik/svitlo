@@ -31,8 +31,13 @@ type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections
  * A generic Added=Record<string, Section> would poison every existing key
  * with never and silently discard all useful inference.
  */
+type ExplicitPatchKeys<Patch> =
+  string extends keyof Patch ? never :
+  number extends keyof Patch ? never :
+  symbol extends keyof Patch ? never :
+  Extract<keyof Patch, string>;
 type AddedFromPatch<Lesson, Patch> = {
-  [Key in Exclude<keyof Patch, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
+  [Key in Exclude<ExplicitPatchKeys<Patch>, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
     Patch[Key] extends BoundSectionChild ? Patch[Key] : never;
 };
 /**
