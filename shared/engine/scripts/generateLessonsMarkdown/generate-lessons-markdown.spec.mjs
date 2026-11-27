@@ -26,7 +26,7 @@ function fixture(locale = 'uk') {
     params: {},
     locale: { value: t(en, uk) },
   });
-  return {
+  const lesson = {
     id: lessonId,
     slug: 'fixtureLesson',
     type: 'lesson',
@@ -95,15 +95,18 @@ function fixture(locale = 'uk') {
             slug: 'slides',
             type: 'carousel',
             params: {},
-            locale: {
-              title: t('Gallery', 'Галерея'),
-              slides: [
-                {
-                  src: '/slides/one.png',
-                  alt: t('First beam', 'Перший промінь'),
-                  caption: t('Slide caption', 'Підпис слайда'),
-                },
-              ],
+            locale: { title: t('Gallery', 'Галерея') },
+            children: ['slideOne'],
+            slideOne: {
+              id: 'slide-one-id',
+              slug: 'slideOne',
+              type: 'image',
+              params: {},
+              locale: {
+                src: '/slides/one.png',
+                alt: t('First beam', 'Перший промінь'),
+                caption: t('Slide caption', 'Підпис слайда'),
+              },
             },
           },
           {
@@ -126,7 +129,14 @@ function fixture(locale = 'uk') {
             type: 'checkpoint',
             params: {},
             locale: { title: t('Check', 'Перевірка') },
-            content: [{ question: block('checkQuestion', 'Where?', 'Де?'), answer: [block('answer', 'Here', 'Тут')] }],
+            children: ['firstCheck'],
+            firstCheck: {
+              id: 'first-check-id',
+              slug: 'firstCheck',
+              type: 'checkpointItem',
+              question: block('checkQuestion', 'Where?', 'Де?'),
+              answer: { children: ['answer'], answer: block('answer', 'Here', 'Тут') },
+            },
           },
         ],
       },
@@ -143,6 +153,17 @@ function fixture(locale = 'uk') {
       },
     ],
   };
+  const sections = lesson.section;
+  delete lesson.section;
+  lesson.children = sections.map(section => section.slug);
+  for (const section of sections) {
+    const blocks = section.content;
+    delete section.content;
+    section.children = blocks.map(child => child.slug);
+    for (const child of blocks) section[child.slug] = child;
+    lesson[section.slug] = section;
+  }
+  return lesson;
 }
 
 function temporaryRepo() {
