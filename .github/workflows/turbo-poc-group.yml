@@ -30,6 +30,7 @@ jobs:
     timeout-minutes: 30
     env:
       TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK: 'true'
+      TURBO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -76,7 +77,7 @@ jobs:
           start=$(date +%s)
           # npm may run its pretest hook otherwise and secretly rebuild Engine.
           npm_config_ignore_scripts=true npm exec --yes --package=turbo@2.11.13 -- \
-            turbo run test --filter="$WORKSPACE" --concurrency=2 --env-mode=loose --summarize
+            turbo run test --filter="$WORKSPACE" --concurrency=2 --cache=local:rw --env-mode=loose --summarize
           echo "- Hybrid $WORKSPACE Turbo DAG: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Require upstream public exports to remain byte-for-byte identical
