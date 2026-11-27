@@ -60,7 +60,7 @@ test('wrapped commands retain file-based GitHub output protocol', t => {
     { GITHUB_OUTPUT: output },
   );
   assert.equal(result.status, 0);
-  assert.equal(readFileSync(output, 'utf8'), 'status=ready\\n');
+  assert.equal(readFileSync(output, 'utf8'), 'status=ready\n');
 });
 
 test('signal-terminated commands fail and identify the signal', { skip: process.platform === 'win32' }, () => {
