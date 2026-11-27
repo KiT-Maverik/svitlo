@@ -60,9 +60,9 @@ jobs:
       - name: Test Course source generator and atomic writer
         run: node --test --test-reporter=dot shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
-        run: npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
-        run: npm run code:check:types --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
       - name: Verify canonical Engine package build and public declarations
         run: |
           rm -rf shared/engine/dist
