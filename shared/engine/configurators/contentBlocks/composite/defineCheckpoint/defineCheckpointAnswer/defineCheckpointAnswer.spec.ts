@@ -85,6 +85,18 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     }, scope), patch);
   });
 
+  test('locale-only Answer patch omits empty invariant child fragments', () => {
+    const { answer } = example();
+    const original = answer.build.data(scope);
+    const patch = answer.build.overrides({
+      second: { locale: { value: { uk: 'Друга відповідь' } } },
+    }, scope);
+    assert.deepEqual(patch.base, {});
+    assert.deepEqual(patch.locale?.uk, { second: { locale: { value: 'Друга відповідь' } } });
+    assert.equal(patch.locale?.en, undefined);
+    assert.deepEqual(answer.build.data(scope), original, 'source Configurator is immutable');
+  });
+
   test('disabling a live Primitive requires a replacement order and publishes a tombstone', () => {
     const { answer } = example();
     assert.throws(
