@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
+import { mergeForValidation } from '../../_shared__configurators';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../schemas/media.schemas';
 import { defineScene } from '../../contentBlocks/primitive/defineScene/defineScene';
 import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
@@ -9,7 +10,13 @@ import { defineContentSection } from '../../sections/defineContentSection/define
 import { defineFlashcardsSection } from '../../sections/defineFlashcardsSection/defineFlashcardsSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from './defineLesson';
-import { lesson_Config_Schema, lesson_Data_Schema, lessonConfigurator_Schema } from './defineLesson.schemas';
+import {
+  lesson_Completed_Data_Schema,
+  lesson_Draft_Data_Schema,
+  lesson_Data_Schema,
+  lesson_Config_Schema,
+  lessonConfigurator_Schema,
+} from './defineLesson.schemas';
 
 describe('Configurators', () => {
   describe('Lessons', () => {
@@ -49,6 +56,48 @@ describe('Configurators', () => {
           locale: { title: { en: 'Example', uk: 'Приклад' } },
           children: ['intro'], intro: section,
         });
+
+      test('completed Lesson Data rejects Draft markers, and Draft requires a valid Content Section and Text placeholder', () => {
+        const lesson = makeLesson();
+        const built = lesson.build.data({ languages: ['en'] });
+        const completed = mergeForValidation(built.base, built.locale?.en ?? {});
+        assert.equal(lesson_Completed_Data_Schema.safeParse(completed).success, true);
+
+        // Draft must never fall through the completed arm of the union.
+        const missingPlaceholder = { ...completed, draft: true };
+        assert.equal(lesson_Completed_Data_Schema.safeParse(missingPlaceholder).success, false);
+        assert.equal(lesson_Draft_Data_Schema.safeParse(missingPlaceholder).success, false);
+        assert.equal(lesson_Data_Schema.safeParse(missingPlaceholder).success, false);
+
+        const intro = completed.intro as Record<string, unknown>;
+        const paragraph = intro.paragraph as Record<string, unknown>;
+        const validDraft = {
+          ...completed,
+          draft: true,
+          intro: {
+            ...intro,
+            paragraph: { ...paragraph, locale: { value: 'Not implemented' } },
+          },
+        };
+        assert.equal(lesson_Completed_Data_Schema.safeParse(validDraft).success, false);
+        assert.equal(lesson_Draft_Data_Schema.safeParse(validDraft).success, true);
+        assert.equal(lesson_Data_Schema.safeParse(validDraft).success, true);
+
+        // A structural parent cannot treat an arbitrary Section or forged Text as a draft.
+        const invalidKind = { ...validDraft, intro: { ...validDraft.intro, type: 'quiz' } };
+        assert.equal(lesson_Draft_Data_Schema.safeParse(invalidKind).success, false);
+        assert.equal(lesson_Data_Schema.safeParse(invalidKind).success, false);
+        const forgedText = {
+          ...validDraft,
+          intro: { ...validDraft.intro, paragraph: { type: 'text', locale: { value: 'Not implemented' } } },
+        };
+        assert.equal(lesson_Draft_Data_Schema.safeParse(forgedText).success, false);
+        assert.equal(lesson_Data_Schema.safeParse(forgedText).success, false);
+        const disabled = { ...validDraft, intro: { ...validDraft.intro, params: { disabled: true } } };
+        assert.equal(lesson_Data_Schema.safeParse(disabled).success, false);
+        // Unlike completed Lessons, the previous explicit Draft schema never owned events.
+        assert.equal(lesson_Draft_Data_Schema.safeParse({ ...validDraft, events: { enter: true } }).success, false);
+      });
 
       test('Draft Lesson carries unresolved YouTube and Scene through nested Section and restores strict publication', () => {
         const video = defineYoutube<'pendingVideo', ['en', 'uk']>({
