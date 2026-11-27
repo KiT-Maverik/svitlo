@@ -54,7 +54,7 @@ type CoursePublication<Base> = {
 type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Course_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
-} & { [Key in keyof Items]: DeepPartial<Extract<Course_Child_Data, { type: Items[Key]['type'] }>> };
+} & { [Key in keyof Items]: DeepPartial<ReturnType<Items[Key]['build']['data']>['base']> };
 type CourseOverrideBase = Course_Metadata_Overrides & {
   children?: string[];
   [key: string]: unknown;
@@ -270,7 +270,7 @@ export const defineCourse = <
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         children: [...initialOrder],
         ...children.base,
-      } as CourseDataBase<Items>,
+      } as unknown as CourseDataBase<Items>,
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
