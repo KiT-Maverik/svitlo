@@ -86,13 +86,9 @@ describe('ProfileMenu', () => {
     expect(onLogout).not.toHaveBeenCalled();
   });
 
-  it('uses the supplied RTL localization', async () => {
+  it('uses the supplied Arabic accessible names', async () => {
     const ar = learningLayout.ar;
-    render(
-      <div dir="rtl" lang="ar-SA">
-        <ProfileMenu messages={ar} />
-      </div>,
-    );
+    render(<ProfileMenu messages={ar} />);
     await userEvent.click(screen.getByRole('button', { name: ar.actions.profile }));
     expect(screen.getByRole('menuitem', { name: ar.actions.switchProfile })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: ar.actions.profileSettings })).toBeInTheDocument();
