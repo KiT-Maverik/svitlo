@@ -15,7 +15,7 @@ type Content = Omit<Question_MatchBlocks_Config['content'], 'question' | 'hint' 
   question: BlockCollection;
   hint?: BlockCollection;
   explanation?: BlockCollection;
-  pairs: { items: Record<string, { left: BlockNode; right: BlockNode }>; order: string[] };
+  pairs: { children: string[] } & Record<string, unknown>;
 };
 export type MatchBlocksSource = Omit<Question_MatchBlocks_Config, 'content'> & { content: Content };
 export type MatchBlocksNode = { config: MatchBlocksSource; production?: { pending?: boolean; specification?: string } };
@@ -179,7 +179,7 @@ export function materializeMatchBlocks(node: MatchBlocksNode, context: MatchBloc
   for (const key of config.content.pairs.children) {
     const pair = config.content.pairs[key];
     if (!isRecord(pair) || !pair.left || !pair.right)
-      fail('content.pairs.items.' + key, 'both left and right blocks required');
+      fail('content.pairs.' + key, 'both left and right blocks required');
   }
   const planned = context.languages.planned;
   if (
