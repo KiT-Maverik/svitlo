@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { capture, inspect } from './turbo-poc-artifact.mjs';
 import { checkGraph, focus, operations } from './turbo-poc-graph.mjs';
+import { discoverWorkspaces, planWorkspaceOperation } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
 const root = fileURLToPath(new URL('../../..', import.meta.url));
 const source = name => readFileSync(new URL(name, import.meta.url), 'utf8');
@@ -49,6 +50,18 @@ test('Turbo tasks match current canonical npm scripts, with explicit task prereq
 
 test('dry-run graph includes nine real tasks and both runtime + development dependency edges', () => {
   assert.deepEqual(checkGraph(graph(), workspaces), { taskCount: 9, workspaces: 3 });
+});
+
+test('representative graph uses the actual npm manifests and reports old-planner semantic differences', () => {
+  const actual = discoverWorkspaces();
+  assert.deepEqual(checkGraph(graph(), actual), { taskCount: 9, workspaces: 3 });
+  const previous = planWorkspaceOperation(actual, 'test', { onlyWorkspaces: focus });
+  const earlierBuilds = previous.steps.filter(step => step.script === 'package:build').map(step => step.name);
+  assert.ok(earlierBuilds.includes('@svitlo/engine'));
+  assert.ok(earlierBuilds.includes('@svitlo/ui-kit'));
+  // The old root test planner does not build content/math itself; this PoC
+  // explicitly does so for every variant before Math typechecking/tests.
+  assert.ok(!earlierBuilds.includes('@svitlo/math'));
 });
 
 test('dry-run graph rejects missing tasks, missing build/type edges and absent canonical scripts', () => {
