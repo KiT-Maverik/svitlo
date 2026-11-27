@@ -100,11 +100,23 @@ export const checkpointAnswer_Config_Schema = answerBase
     for (const issue of validateSlugAddressedContainer(value, primitiveContentBlockTypes)) {
       ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
     }
+    let enabled = 0;
     for (const key of value.children) {
-      if (!primitiveContentBlockConfigurator_Schema.safeParse(value[key]).success) {
+      const child = value[key];
+      if (!primitiveContentBlockConfigurator_Schema.safeParse(child).success) {
         ctx.addIssue({ code: 'custom', path: [key], message: 'CheckpointAnswer requires a Primitive Configurator' });
       }
+      if (child !== null && typeof child === 'object' && !Array.isArray(child) &&
+          'config' in child && child.config !== null && typeof child.config === 'object' &&
+          'base' in child.config && child.config.base !== null && typeof child.config.base === 'object' &&
+          'params' in child.config.base && child.config.base.params !== null &&
+          typeof child.config.base.params === 'object' && 'disabled' in child.config.base.params &&
+          child.config.base.params.disabled === true) continue;
+      if (primitiveContentBlockConfigurator_Schema.safeParse(child).success) enabled++;
     }
+    if (enabled === 0) ctx.addIssue({
+      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
+    });
   });
 export type ContentBlock_CheckpointAnswer_Config = z.infer<typeof checkpointAnswer_Config_Schema>;
 
@@ -126,11 +138,18 @@ export const checkpointAnswer_Data_Schema = answerBase
     for (const issue of validateSlugAddressedContainer(value, primitiveContentBlockTypes)) {
       ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
     }
+    let enabled = 0;
     for (const key of value.children) {
-      if (!checkpointAnswer_Child_Data_Schema.safeParse(value[key]).success) {
+      const parsed = checkpointAnswer_Child_Data_Schema.safeParse(value[key]);
+      if (!parsed.success) {
         ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Primitive answer child Data' });
+      } else if (parsed.data.params.disabled !== true) {
+        enabled++;
       }
     }
+    if (!enabled) ctx.addIssue({
+      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
+    });
   });
 export type ContentBlock_CheckpointAnswer_Data = z.infer<typeof checkpointAnswer_Data_Schema>;
 export type CheckpointAnswer_Overrides<
