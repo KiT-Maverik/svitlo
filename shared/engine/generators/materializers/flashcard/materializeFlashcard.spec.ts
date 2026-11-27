@@ -91,7 +91,7 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
   assert.throws(() => materializeFlashcard(duplicate as never, context), /duplicate built-in/);
   const missing = fixture();
   missing.config.content.front.children = [];
-  assert.throws(() => materializeFlashcard(missing as never, context), /children/);
+  assert.throws(() => materializeFlashcard(missing as never, context), /content\.front\.(?:children|order): order must include every item once/);
   assert.throws(
     () =>
       materializeFlashcard(fixture() as never, {
