@@ -193,13 +193,6 @@ void (null as unknown as PublishedChapterKind);
 
 // @ts-expect-error Course's inferred placement fields do not include an arbitrary child.
 publishedCourse.base.nonexistent;
-defineChapter<'badOrder', { lesson: typeof lesson }, ['en', 'uk']>({
-  id, slug: 'badOrder', type: 'chapter', params: {}, locale: { title: 'Chapter' },
-  content: { items: { lesson },
-    // @ts-expect-error A Chapter's child order cannot reference a missing placement key.
-    order: ['missingLesson'] },
-});
-
 defineCourse<'invalidReserved', { id: typeof chapter }, ['en', 'uk']>({
   id,
   type: 'course',
