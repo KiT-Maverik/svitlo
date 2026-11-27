@@ -3,13 +3,10 @@ import { test } from 'node:test';
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { capture, inspect } from './turbo-poc-artifact.mjs';
 import { checkActionsGraph, checkGraph, focus, operations } from './turbo-poc-graph.mjs';
 import { discoverWorkspaces, planWorkspaceOperation } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
-const root = fileURLToPath(new URL('../../..', import.meta.url));
-const source = name => readFileSync(new URL(name, import.meta.url), 'utf8');
 const workflow = readFileSync(new URL('../../../.github/workflows/engine-generators.yml', import.meta.url), 'utf8');
 const taskWorkflow = readFileSync(new URL('../../../.github/workflows/turbo-poc-task.yml', import.meta.url), 'utf8');
 const groupWorkflow = readFileSync(new URL('../../../.github/workflows/turbo-poc-group.yml', import.meta.url), 'utf8');
