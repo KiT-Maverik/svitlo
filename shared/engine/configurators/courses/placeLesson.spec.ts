@@ -138,7 +138,7 @@ test('Invalid forged additions, stale children, identity edits and legacy envelo
     children: ['intro', 'fake'],
     fake: { id: id('06'), slug: 'fake', type: 'content' },
   }).build.data({ languages: ['en'] }), /Section/);
-  assert.throws(() => invoke({ children: ['missing'] }).build.data({ languages: ['en'] }), /Unknown or disabled|order/);
+  assert.throws(() => invoke({ children: ['missing'] }).build.data({ languages: ['en'] }), /Unknown slug: missing; Missing slug: intro/);
   assert.throws(() => invoke({
     locale: { title: () => 'untrusted' },
   }), /plain JSON Config/);
