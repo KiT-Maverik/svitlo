@@ -27,7 +27,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
 export type QuizSection_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 const screen = z.strictObject({
   showDefaultContent: z.boolean().optional(),
-  // Screen content references Section.content.items, never nested raw configs.
+  // Screen content references direct Section ContentBlock placement slugs, never raw Question or bank data.
   content: z.array(camelCase_Schema).optional(),
 });
 const params = sectionBase.shape.params.extend({
