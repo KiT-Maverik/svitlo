@@ -75,6 +75,19 @@ describe('Configurators', () => {
           ...base, children: ['first', 'activity'], first, activity,
         }).success, true);
 
+        // A matching kind, slug, and UUID must not bypass the Configurator API.
+        const impostor = { id: ids[4], slug: 'fake', type: 'image' };
+        assert.equal(carousel_Config_Schema.safeParse({
+          ...base, children: ['fake'], fake: impostor,
+        }).success, false, 'Shallow Image/Scene impostors must fail the public Config schema');
+        const malformedIdentity = {
+          ...first,
+          config: { ...first.config, base: { ...first.config.base, id: ids[6] } },
+        };
+        assert.equal(carousel_Config_Schema.safeParse({
+          ...base, children: ['first'], first: malformedIdentity,
+        }).success, false, 'Child Build identity must match the declared Configurator identity');
+
         assert.equal(carousel_Config_Schema.safeParse({
           ...base, children: [],
         }).success, false, 'An empty authored Carousel is invalid');
@@ -124,6 +137,37 @@ describe('Configurators', () => {
             mergeForValidation(resource.base, (resource.locale?.uk ?? {}) as never),
           ).success,
           true,
+        );
+      });
+
+      test('public Data schema requires at least one effective enabled Image or Scene', () => {
+        const { carousel } = example();
+        const resource = carousel.build.data(scope);
+        const completed = mergeForValidation(
+          resource.base, (resource.locale?.en ?? {}) as never,
+        ) as Record<string, unknown>;
+        assert.equal(carousel_Data_Schema.safeParse(completed).success, true);
+
+        const oneDisabled = structuredClone(completed);
+        (oneDisabled.first as { params: { disabled?: boolean } }).params.disabled = true;
+        assert.equal(
+          carousel_Data_Schema.safeParse(oneDisabled).success, true,
+          'An enabled slide is still available',
+        );
+
+        const allDisabled = structuredClone(oneDisabled);
+        (allDisabled.second as { params: { disabled?: boolean } }).params.disabled = true;
+        assert.equal(
+          carousel_Data_Schema.safeParse(allDisabled).success, false,
+          'All-disabled effective Data must fail the exported schema',
+        );
+
+        const singleDisabled = structuredClone(oneDisabled);
+        singleDisabled.children = ['first'];
+        delete singleDisabled.second;
+        assert.equal(
+          carousel_Data_Schema.safeParse(singleDisabled).success, false,
+          'A single disabled slide is not an active Carousel',
         );
       });
 
