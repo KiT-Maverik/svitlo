@@ -131,7 +131,7 @@ export const defineMatchBlocks = <
     const result = resolvePairMap(source.pairs, languages, patch as never);
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, pairs] of Object.entries(result.locale)) locale[language] = { pairs };
-    return { base: { pairs: result.base }, locale };
+    return { base: Object.keys(result.base).length ? { pairs: result.base } : {}, locale };
   };
 
   const data = (
