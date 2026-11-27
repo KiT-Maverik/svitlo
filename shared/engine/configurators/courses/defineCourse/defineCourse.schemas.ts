@@ -78,6 +78,7 @@ export type Course_Child_Data =
 export const course_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
 });
+export type Course_Metadata_Config = z.infer<typeof course_Metadata_Config_Schema>;
 export const course_Config_Schema = course_Metadata_Config_Schema.extend({
   children: z.array(z.string()),
 }).catchall(z.unknown()).superRefine((value, context) => {
