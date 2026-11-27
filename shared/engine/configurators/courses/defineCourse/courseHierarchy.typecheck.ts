@@ -1,4 +1,5 @@
 import type { ChildrenSupporting, LanguageScope } from '#types';
+import type { SafePlacementMap } from '../../_shared__configurators';
 
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
@@ -18,7 +19,7 @@ const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['en', 'uk']
   slug: 'chapter',
   params: {},
   locale: { title: { en: 'Chapter', uk: 'Розділ' } },
-  content: { items: { lesson }, order: ['lesson'] },
+  children: ['lesson'], lesson,
 });
 const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -26,7 +27,7 @@ const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>
   slug: 'module',
   params: {},
   locale: { title: 'Module' },
-  content: { items: { chapter }, order: ['chapter'] },
+  children: ['chapter'], chapter,
 });
 const course = defineCourse<'course', { module: typeof module; chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -34,14 +35,14 @@ const course = defineCourse<'course', { module: typeof module; chapter: typeof c
   slug: 'course',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Introduction' },
-  content: { items: { module, chapter }, order: ['module', 'chapter'] },
+  children: ['module', 'chapter'], module, chapter,
 });
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
 type CourseSlug = Expect<Equal<typeof course.slug, 'course'>>;
-type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'>>;
-type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
+type NestedKind = Expect<Equal<typeof course.module.type, 'module'>>;
+type ExactChapter = Expect<Equal<typeof module.chapter, typeof chapter>>;
 
 const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
   id,
@@ -49,7 +50,7 @@ const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
   slug: 'chapterEnglish',
   params: {},
   locale: { title: { en: 'Chapter' } },
-  content: { items: {}, order: [] },
+  children: [],
 });
 const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter }, ['en']>({
   id,
@@ -57,7 +58,7 @@ const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter },
   slug: 'courseEnglish',
   params: { languages: ['en'] as const },
   locale: { title: { en: 'Course' }, description: 'Introduction' },
-  content: { items: { chapter }, order: ['chapter'] },
+  children: ['chapter'], chapter,
 });
 
 // Parent's languages must be covered by every child, never the other way around.
@@ -98,7 +99,7 @@ defineCourse({
   params: { languages: ['en'] },
   // @ts-expect-error Course locale must contain description.
   locale: { title: 'Course' },
-  content: { items: {}, order: [] },
+  children: [],
 });
 
 void course;
@@ -135,7 +136,7 @@ const placedChapter = defineChapter<'placedChapter', { shadow: typeof shadow }, 
   slug: 'placedChapter',
   params: {},
   locale: { title: 'Placed chapter' },
-  content: { items: { shadow }, order: ['shadow'] },
+  children: ['shadow'], shadow,
 });
 const placedModule = defineModule<'placedModule', { placedChapter: typeof placedChapter }, ['en', 'uk']>({
   id,
@@ -143,7 +144,7 @@ const placedModule = defineModule<'placedModule', { placedChapter: typeof placed
   slug: 'placedModule',
   params: {},
   locale: { title: 'Placed module' },
-  content: { items: { placedChapter }, order: ['placedChapter'] },
+  children: ['placedChapter'], placedChapter,
 });
 const placedCourse = defineCourse<
   'placedCourse',
@@ -159,14 +160,11 @@ const placedCourse = defineCourse<
   slug: 'placedCourse',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: 'Course', description: 'Placement type-check' },
-  content: {
-    items: { placedModule, directLesson: lesson, lessonAgain },
-    order: ['placedModule', 'directLesson', 'lessonAgain'],
-  },
+  children: ['placedModule', 'directLesson', 'lessonAgain'], placedModule, directLesson: lesson, lessonAgain,
 });
 placedCourse.build.data({ languages: ['uk'] });
 placedCourse.build.overrides(
-  { content: { items: { lessonAgain: { params: { sections: { allowNavigation: false } } } } } },
+  { lessonAgain: { params: { sections: { allowNavigation: false } } } },
   { languages: ['uk'] },
 );
 // @ts-expect-error Immutable Lesson ID is never a valid authored Config patch.
@@ -180,3 +178,118 @@ const invalidPlacementChildren: ChildrenSupporting<['en', 'uk'], { shadow: typeo
   shadow: englishOnlyPlacement,
 };
 void invalidPlacementChildren;
+
+
+/** Inferred owners advertise exactly the languages all children and own locale can publish. */
+const inferredEnglishChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredEnglishChapter',
+  params: {},
+  locale: { title: 'English chapter' },
+  children: ['lessonEnglishOnly'],
+  lessonEnglishOnly,
+});
+inferredEnglishChapter.build.data({ languages: ['en'] });
+// @ts-expect-error An inferred Chapter cannot advertise Ukrainian from an English-only Lesson.
+inferredEnglishChapter.build.data({ languages: ['uk'] });
+
+const inferredEnglishModule = defineModule({
+  id,
+  type: 'module',
+  slug: 'inferredEnglishModule',
+  params: {},
+  locale: { title: 'English module' },
+  children: ['inferredEnglishChapter'],
+  inferredEnglishChapter,
+});
+inferredEnglishModule.build.data({ languages: ['en'] });
+// @ts-expect-error An inferred Module cannot advertise Ukrainian its Chapter lacks.
+inferredEnglishModule.build.data({ languages: ['uk'] });
+
+defineCourse<'invalidInferredModule', { inferredEnglishModule: typeof inferredEnglishModule }, ['en', 'uk']>({
+  id,
+  type: 'course',
+  slug: 'invalidInferredModule',
+  params: { languages: ['en', 'uk'] as const },
+  locale: { title: 'Course', description: 'Invalid scope' },
+  children: ['inferredEnglishModule'],
+  // @ts-expect-error A bilingual Course cannot include an inferred English-only Module.
+  inferredEnglishModule,
+});
+
+defineModule<'invalidInferredChapter', { inferredEnglishChapter: typeof inferredEnglishChapter }, ['en', 'uk']>({
+  id,
+  type: 'module',
+  slug: 'invalidInferredChapter',
+  params: {},
+  locale: { title: 'Module' },
+  children: ['inferredEnglishChapter'],
+  // @ts-expect-error An explicitly bilingual Module cannot contain an inferred English-only Chapter.
+  inferredEnglishChapter,
+});
+
+const inferredBilingualChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredBilingualChapter',
+  params: {},
+  locale: { title: { en: 'Chapter', uk: 'Розділ' } },
+  children: ['lesson'],
+  lesson,
+});
+inferredBilingualChapter.build.data({ languages: ['uk'] });
+// @ts-expect-error Inferred scope excludes Polish absent from its title and child.
+inferredBilingualChapter.build.data({ languages: ['pl'] });
+
+const inferredTitleOnlyChapter = defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'inferredTitleOnlyChapter',
+  params: {},
+  locale: { title: { en: 'English title' } },
+  children: [],
+});
+inferredTitleOnlyChapter.build.data({ languages: ['en'] });
+// @ts-expect-error Even without children, the own title limits available publication languages.
+inferredTitleOnlyChapter.build.data({ languages: ['uk'] });
+
+/** A's Data surface: placement keys are literals, never a generic content array. */
+const publishedCourse = course.build.data({ languages: ['en'] });
+type PublishedCourseChildKeys = Expect<Equal<(typeof publishedCourse.base.children)[number], 'module' | 'chapter'>>;
+type PublishedModuleKind = Expect<Equal<NonNullable<typeof publishedCourse.base.module.type>, 'module'>>;
+type PublishedChapterKind = Expect<Equal<NonNullable<typeof publishedCourse.base.chapter.type>, 'chapter'>>;
+void (null as unknown as PublishedCourseChildKeys);
+void (null as unknown as PublishedModuleKind);
+void (null as unknown as PublishedChapterKind);
+
+// @ts-expect-error Course's inferred placement fields do not include an arbitrary child.
+publishedCourse.base.nonexistent;
+/** Literal reserved-key guards apply before dynamic runtime validation. */
+const invalidCoursePlacement: SafePlacementMap<{ id: typeof chapter }> = {
+  // @ts-expect-error id is reserved entity metadata.
+  id: chapter,
+};
+const invalidModulePlacement: SafePlacementMap<{ children: typeof chapter }> = {
+  // @ts-expect-error children is the order, not an authored child.
+  children: chapter,
+};
+const invalidChapterPlacement: SafePlacementMap<{ content: typeof lesson }> = {
+  // @ts-expect-error content is a retired container field.
+  content: lesson,
+};
+void invalidCoursePlacement;
+void invalidModulePlacement;
+void invalidChapterPlacement;
+
+// Old authored content.items/order is no longer accepted.
+defineChapter<'invalidLegacy', {}, ['en', 'uk']>({
+  id,
+  type: 'chapter',
+  slug: 'invalidLegacy',
+  params: {},
+  locale: { title: 'Chapter' },
+  children: [],
+  // @ts-expect-error No legacy content collection in Chapter Config.
+  content: { items: {}, order: [] },
+});

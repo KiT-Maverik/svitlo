@@ -16,6 +16,7 @@ import {
   onlyLocales,
   resolvePublicationLanguages,
   scopeBuild,
+  slugAddressedReservedKeys,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -54,37 +55,55 @@ type OverrideBase = {
   parameters?: DeepPartial<Flashcard_DataBase['parameters']>;
   content?: Partial<Flashcard_DataBase['content']>;
 };
-type NamedInput = { items: Record<string, unknown>; order: string[] };
-type NamedPatch = {
-  items?: Record<string, unknown>;
-  additionalItems?: Record<string, unknown>;
-  order?: string[];
-};
+type NamedInput = { children: string[] } & Record<string, unknown>;
+type NamedPatch = { children?: string[] } & Record<string, unknown>;
+const isValidRelationshipKey = (key: string): boolean =>
+  /^[a-z][A-Za-z0-9]*$/.test(key) && !slugAddressedReservedKeys.some(reserved => reserved === key);
+
+const relationItems = (source: NamedInput): Record<string, unknown> =>
+  Object.fromEntries(Object.entries(source).filter(([key]) => key !== 'children'));
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-/** Ensure each requested language materializes a complete Flashcard, not a partial UI value. */
+/** A complete side publication replaces the ordered group, not its individual keys. */
+const mergeSideLayers = (original: Record<string, unknown>, changes: Record<string, unknown>) => {
+  const merged = mergeForValidation(original, changes);
+  if (isRecord(changes.content) && isRecord(merged.content)) {
+    for (const side of ['front', 'back', 'hint'] as const) {
+      if (isRecord(changes.content[side]) && Array.isArray(changes.content[side].children)) {
+        merged.content[side] = structuredClone(changes.content[side]);
+      }
+    }
+  }
+  if (isRecord(changes.parameters) && isRecord(merged.parameters) &&
+      Object.hasOwn(changes.parameters, 'relationships')) {
+    merged.parameters.relationships = structuredClone(changes.parameters.relationships);
+  }
+  return merged;
+};
+
+/** Ensure each selected locale can resolve every required semantic Side. */
 const validatePublication = (
   resource: Publication<unknown>,
   languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
 ): void => {
   for (const language of languages) {
-    const original = mergeForValidation(
+    const original = mergeSideLayers(
       resource.base as Record<string, unknown>,
-      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
+      (resource.locale?.[language] ?? {}) as Record<string, unknown>,
     );
     const withPatch = patch
-      ? mergeForValidation(original, patch.base as DeepPartial<Record<string, unknown>>)
+      ? mergeSideLayers(original, patch.base as Record<string, unknown>)
       : original;
     const effective = patch
-      ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
+      ? mergeSideLayers(withPatch, (patch.locale?.[language] ?? {}) as Record<string, unknown>)
       : withPatch;
     try {
       flashcard_Data_Schema.parse(effective);
     } catch (error) {
       throw new Error(
-        'Invalid Flashcard Props for language ' +
+        'Invalid Flashcard Data for language ' +
           language +
           ': ' +
           (error instanceof Error ? error.message : String(error)),
@@ -105,7 +124,11 @@ const validate = (config: Flashcard_Config): void => {
     (collection as FlashcardSide_Configurator).validate(side !== 'hint');
   }
   if (config.parameters.relationships) {
-    const issues = validateOrderedKeys(config.parameters.relationships, { path: 'parameters.relationships' });
+    const relationships = config.parameters.relationships as NamedInput;
+    const issues = validateOrderedKeys(
+      { items: relationItems(relationships), order: relationships.children },
+      { path: 'parameters.relationships' },
+    );
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
   }
   const flags = new Set<string>();
@@ -116,7 +139,12 @@ const validate = (config: Flashcard_Config): void => {
     }
   }
   const ids = new Set<string>();
-  for (const relation of Object.values(config.parameters.relationships?.items ?? {})) {
+  for (const [key, value] of Object.entries(
+    config.parameters.relationships ? relationItems(config.parameters.relationships as NamedInput) : {},
+  )) {
+    if (!isValidRelationshipKey(key))
+      throw new Error('Invalid Flashcard relationship slug: ' + key);
+    const relation = flashcardRelationship_Schema.parse(value);
     if (ids.has(relation.relationshipId))
       throw new Error('Duplicate Flashcard relationship ID: ' + relation.relationshipId);
     ids.add(relation.relationshipId);
@@ -136,39 +164,36 @@ const resolveNamed = (
   parseUpdate: (original: Record<string, unknown>, value: unknown) => unknown,
 ) => {
   if (patch !== undefined && !isRecord(patch)) throw new Error('parameters.' + label + ' must be an object');
-  for (const key of Object.keys(patch ?? {})) {
-    if (!['items', 'additionalItems', 'order'].includes(key)) {
-      throw new Error('Unknown parameters.' + label + ' override field: ' + key);
+  const original = relationItems(source);
+  const active: Record<string, unknown | false> = { ...original };
+  let structureChanged = false;
+  for (const [key, change] of Object.entries(patch ?? {})) {
+    if (key === 'children') continue;
+    if (!isValidRelationshipKey(key)) {
+      throw new Error('Invalid Flashcard ' + label + ' slug: ' + key);
+    }
+    if (Object.hasOwn(original, key)) {
+      if (change === false) { active[key] = false; structureChanged = true; }
+      else active[key] = parseUpdate(original[key] as Record<string, unknown>, change);
+    } else {
+      active[key] = parseItem(change);
+      structureChanged = true;
     }
   }
-  const changes = patch?.items ?? {};
-  const additions = patch?.additionalItems ?? {};
-  if (!isRecord(changes) || !isRecord(additions)) throw new Error('Invalid named Flashcard ' + label + ' map');
-  const enabled: Record<string, unknown | false> = { ...source.items };
-  let structureChanged = Object.keys(additions).length > 0;
-  for (const [key, value] of Object.entries(additions)) {
-    if (Object.hasOwn(source.items, key)) throw new Error('Duplicate Flashcard ' + label + ' slug: ' + key);
-    enabled[key] = parseItem(value);
+  if (structureChanged && patch?.children === undefined) {
+    throw new Error('parameters.' + label + '.children is required when adding or disabling items');
   }
-  for (const [key, change] of Object.entries(changes)) {
-    if (!Object.hasOwn(source.items, key)) throw new Error('Unknown existing Flashcard ' + label + ': ' + key);
-    if (change === false) {
-      enabled[key] = false;
-      structureChanged = true;
-    } else enabled[key] = parseUpdate(source.items[key] as Record<string, unknown>, change);
-  }
-  if (structureChanged && patch?.order === undefined) {
-    throw new Error('parameters.' + label + '.order is required when adding or disabling items');
-  }
-  const order = patch?.order ?? source.order;
-  const issues = validateOrderedKeys({ items: enabled, order }, { path: 'parameters.' + label, allowDisabled: true });
+  const children = patch?.children ?? source.children;
+  if (!Array.isArray(children)) throw new Error('parameters.' + label + '.children must be an array');
+  const issues = validateOrderedKeys(
+    { items: active, order: children },
+    { path: 'parameters.' + label, allowDisabled: true },
+  );
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  const members = Object.fromEntries(Object.entries(active).filter(([, value]) => value !== false));
   return {
-    items: Object.fromEntries(Object.entries(enabled).filter(entry => entry[1] !== false)),
-    order: [...order],
-    changed:
-      patch !== undefined &&
-      (Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.order !== undefined),
+    collection: { children: [...children], ...members },
+    changed: patch !== undefined && Object.keys(patch).length > 0,
   };
 };
 
@@ -184,7 +209,7 @@ const resolveNamed = (
  * Each built-in flag may appear only once; multiple custom flags are allowed.
  *
  * Relationships connect distinct Flashcards by the OTHER card's UUID in
- * `relatedFlashcardId` (not by slug). Choose a semantic relationship:
+ * `relatedFlashcardId` (not by placement key). Choose a semantic relationship:
  * - Symmetric: `reverse` (opposite recall direction), `equivalent` (same
  *   meaning), `contrast` (a distinction), `complementary` (related facts).
  * - Directed: `prerequisite` (foundation -> dependent), `partOf` (part ->
@@ -224,12 +249,12 @@ export function defineFlashcard<
     slug: Slug;
     parameters: Omit<Flashcard_Config['parameters'], 'flags' | 'relationships'> & {
       flags: Flags & RequireLanguages<Flags, Languages>;
-      relationships?: { items: Relationships; order: string[] };
+      relationships?: { children: Extract<keyof Relationships, string>[] } & Relationships;
     };
     content: {
-      front: FlashcardSide_Configurator<Front, Languages> & { items: Front & ChildrenSupporting<Languages, Front> };
-      back: FlashcardSide_Configurator<Back, Languages> & { items: Back & ChildrenSupporting<Languages, Back> };
-      hint?: FlashcardSide_Configurator<Hint, Languages> & { items: Hint & ChildrenSupporting<Languages, Hint> };
+      front: FlashcardSide_Configurator<Front, Languages> & Front & ChildrenSupporting<Languages, Front>;
+      back: FlashcardSide_Configurator<Back, Languages> & Back & ChildrenSupporting<Languages, Back>;
+      hint?: FlashcardSide_Configurator<Hint, Languages> & Hint & ChildrenSupporting<Languages, Hint>;
     };
   },
 ) {
@@ -275,7 +300,7 @@ export function defineFlashcard<
   };
 
   const buildRelationships = (relations: Flashcard_Config['parameters']['relationships']) =>
-    relations?.order.map(key => structuredClone(relations.items[key]));
+    relations ? structuredClone(relations) : undefined;
 
   const addSideFiles = (files: Files, side: Side, built: SidePublication) => {
     for (const [code, values] of Object.entries(built.locale ?? {})) {
@@ -348,9 +373,9 @@ export function defineFlashcard<
       AddedRelationships
     > & {
       content?: {
-        front?: { additionalItems?: AddedFront & ChildrenSupporting<Languages, AddedFront> };
-        back?: { additionalItems?: AddedBack & ChildrenSupporting<Languages, AddedBack> };
-        hint?: { additionalItems?: AddedHint & ChildrenSupporting<Languages, AddedHint> };
+        front?: AddedFront & ChildrenSupporting<Languages, AddedFront>;
+        back?: AddedBack & ChildrenSupporting<Languages, AddedBack>;
+        hint?: AddedHint & ChildrenSupporting<Languages, AddedHint>;
       };
     },
     options: PublicationLanguageOptions<Languages>,
@@ -401,7 +426,7 @@ export function defineFlashcard<
       const relationshipChange = patch.parameters?.relationships as NamedPatch | undefined;
       const relationships = resolveNamed(
         'relationships',
-        candidate.parameters.relationships ?? { items: {}, order: [] },
+        (candidate.parameters.relationships ?? { children: [] }) as NamedInput,
         relationshipChange,
         value => flashcardRelationship_Schema.parse(value),
         (previous, value) => {
@@ -413,7 +438,7 @@ export function defineFlashcard<
       );
       newParams.relationships =
         candidate.parameters.relationships || relationships.changed
-          ? { items: relationships.items as Record<string, Flashcard_Relationship>, order: relationships.order }
+          ? relationships.collection
           : undefined;
       if (relationships.changed) {
         (output.base.parameters ??= {}).relationships = buildRelationships(newParams.relationships);
@@ -430,12 +455,14 @@ export function defineFlashcard<
         if (!isRecord(change)) throw new Error('content.' + side + ' must be an object');
         // Optional hint can be introduced through additionalItems without
         // inventing a separate side UUID or changing the authored card.
-        const current = initialContent[side] ?? defineFlashcardSide({ items: {}, order: [] });
+        const current = initialContent[side] ?? defineFlashcardSide<{}, Languages>({ children: [] });
         const built = buildChildOverrides(current, change as never) as SidePublication;
-        if (side !== 'hint' && built.base.length === 0) {
+        if (side !== 'hint' && Array.isArray(built.base.children) && built.base.children.length === 0) {
           throw new Error('At least one item is required in Flashcard content.' + side);
         }
-        (output.base.content ??= {})[side] = built.base;
+        if (Object.keys(built.base).length) {
+          (output.base.content ??= {})[side] = built.base;
+        }
         addSideFiles(files, side, built);
       }
       validate({ ...candidate, content: effective });

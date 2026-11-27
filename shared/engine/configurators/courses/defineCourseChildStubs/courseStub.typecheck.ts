@@ -17,10 +17,8 @@ const chapter = defineChapter({
   type: 'chapter',
   params: {},
   locale: { title: 'Chapter' },
-  content: {
-    items: { lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment },
-    order: ['lessonSlot', 'episodeSlot', 'assessmentSlot'],
-  },
+  children: ['lessonSlot', 'episodeSlot', 'assessmentSlot'],
+  lessonSlot: lesson, episodeSlot: episode, assessmentSlot: assessment,
 });
 const module = defineModule({
   id,
@@ -28,7 +26,7 @@ const module = defineModule({
   type: 'module',
   params: {},
   locale: { title: 'Module' },
-  content: { items: { chapter }, order: ['chapter'] },
+  children: ['chapter'], chapter,
 });
 const course = defineCourse({
   id,
@@ -36,7 +34,7 @@ const course = defineCourse({
   type: 'course',
   params: { languages: ['en'] as const },
   locale: { title: 'Course', description: 'Draft' },
-  content: { items: { module }, order: ['module'] },
+  children: ['module'], module,
 });
 course.build.data({ languages: ['en'] });
 

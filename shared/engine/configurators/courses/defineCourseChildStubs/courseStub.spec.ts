@@ -86,7 +86,7 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages: ['en'] as const },
           locale: { title: 'Draft', description: 'Only a preview' },
-          content: { items: { renamedSlot: stub }, order: ['renamedSlot'] },
+          children: ['renamedSlot'], renamedSlot: stub,
         });
         assert.throws(() => course.build.data({ languages: ['en'] }), /immutable child identity/i);
       });
@@ -101,7 +101,7 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: 'Chapter' },
-          content: { items: { assessmentSlot: assessment }, order: ['assessmentSlot'] },
+          children: ['assessmentSlot'], assessmentSlot: assessment,
         });
         const module = defineModule({
           id: id('25'),
@@ -109,7 +109,7 @@ describe('Configurators', () => {
           type: 'module',
           params: {},
           locale: { title: 'Module' },
-          content: { items: { chapter, episodeSlot: episode }, order: ['episodeSlot', 'chapter'] },
+          children: ['episodeSlot', 'chapter'], chapter, episodeSlot: episode,
         });
         const course = defineCourse({
           id: id('26'),
@@ -117,42 +117,27 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages: ['en'] as const },
           locale: { title: 'Course', description: 'Draft preview' },
-          content: { items: { module, lessonSlot: lesson }, order: ['lessonSlot', 'module'] },
+          children: ['lessonSlot', 'module'], module, lessonSlot: lesson,
         });
         const result = course.build.data({ languages: ['en'] });
-        const root = result.base as unknown as {
-          content: Array<{
-            type: string;
-            slug: string;
-            id: string;
-            draft?: boolean;
-            content?: Array<{
-              type: string;
-              slug: string;
-              id: string;
-              draft?: boolean;
-              content?: Array<{ id: string; slug: string; draft?: boolean }>;
-            }>;
-          }>;
-        };
-        assert.deepEqual(
-          root.content.map(child => child.slug),
-          ['lessonSlot', 'module'],
-        );
-        assert.equal(root.content[0]?.id, lesson.id);
-        assert.equal(root.content[0]?.draft, true);
-        assert.deepEqual(
-          root.content[1]?.content?.map(child => child.slug),
-          ['episodeSlot', 'chapter'],
-        );
-        assert.equal(root.content[1]?.content?.[0]?.id, episode.id);
-        assert.equal(root.content[1]?.content?.[0]?.draft, true);
-        assert.deepEqual(
-          root.content[1]?.content?.[1]?.content?.map(child => child.slug),
-          ['assessmentSlot'],
-        );
-        assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.id, assessment.id);
-        assert.equal(root.content[1]?.content?.[1]?.content?.[0]?.draft, true);
+        const root = result.base as unknown as Record<string, unknown> & { children: string[] };
+        const lessonData = root.lessonSlot as { id: string; slug: string; draft: boolean };
+        const moduleData = root.module as Record<string, unknown> & { children: string[] };
+        const episodeData = moduleData.episodeSlot as { id: string; draft: boolean };
+        const chapterData = moduleData.chapter as Record<string, unknown> & { children: string[] };
+        const assessmentData = chapterData.assessmentSlot as { id: string; draft: boolean };
+        assert.deepEqual(root.children, ['lessonSlot', 'module']);
+        assert.equal(lessonData.id, lesson.id);
+        assert.equal(lessonData.draft, true);
+        assert.deepEqual(moduleData.children, ['episodeSlot', 'chapter']);
+        assert.equal(episodeData.id, episode.id);
+        assert.equal(episodeData.draft, true);
+        assert.deepEqual(chapterData.children, ['assessmentSlot']);
+        assert.equal(assessmentData.id, assessment.id);
+        assert.equal(assessmentData.draft, true);
+        assert.equal('content' in root, false);
+        assert.equal('content' in moduleData, false);
+        assert.equal('content' in chapterData, false);
         assert.doesNotThrow(() => JSON.stringify(result));
       });
     });
