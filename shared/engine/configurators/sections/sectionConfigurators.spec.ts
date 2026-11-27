@@ -144,6 +144,39 @@ describe('Configurators', () => {
         }
       });
 
+      test('direct Section children reject unsafe names, missing order entries, wrong kinds and duplicate IDs', () => {
+        const author = (patch: Record<string, unknown>) =>
+          defineContentSection({
+            ...input('content'),
+            ...patch,
+          } as never).build.data({ languages: ['en', 'uk'] });
+
+        assert.throws(
+          () => author({ children: ['prompt', 'prompt'] }),
+          /Duplicate placement|Duplicate slug/,
+        );
+        assert.throws(
+          () => author({ children: [] }),
+          /Unlisted|Missing slug|unlisted/i,
+        );
+        assert.throws(
+          () => author({ children: ['prompt', 'missing'] }),
+          /Unknown or disabled|Unknown child|Missing slug/,
+        );
+        assert.throws(
+          () => author({ content: extra }),
+          /Reserved child placement slug|Reserved child/,
+        );
+        assert.throws(
+          () => author({ prompt: { ...prompt, type: 'lesson' } }),
+          /Unsupported child type|Unsupported/,
+        );
+        assert.throws(
+          () => author({ children: ['prompt', 'other'], other: { ...prompt, slug: 'other' } }),
+          /Duplicate Section ContentBlock ID|Duplicate child ID/,
+        );
+      });
+
       test('Section authoring preserves an explicit opt-out from Lesson skipping', () => {
         const section = defineContentSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({
           ...input('content'),
