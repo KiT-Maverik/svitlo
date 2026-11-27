@@ -33,7 +33,10 @@ function objectProperty(object: ts.ObjectLiteralExpression, key: string, file: s
 describe('Math Skills taxonomy locale completeness', () => {
   it('has nonempty localized names and learner descriptions in every authored taxonomy entity', () => {
     const files = collectFiles(join(process.cwd(), 'data/skills')).filter(
-      file => file.endsWith('.ts') && !file.endsWith('/review.ts') && !file.endsWith('/_review.ts') &&
+      file =>
+        file.endsWith('.ts') &&
+        !file.endsWith('/review.ts') &&
+        !file.endsWith('/_review.ts') &&
         file !== join(process.cwd(), 'data/skills/index.ts'),
     );
     expect(files.length).toBeGreaterThan(0);

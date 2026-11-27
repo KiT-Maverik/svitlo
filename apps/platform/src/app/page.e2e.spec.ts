@@ -16,6 +16,7 @@ test('scholarships are marked as proposals, not active applications', async ({ p
   await expect(page.locator('.scholarship-card')).toHaveCount(6);
   await expect(page.getByRole('heading', { name: 'Рукавичка' })).toBeVisible();
   await expect(page.getByText('Програми на етапі розробки.')).toBeVisible();
+  await expect(page.getByRole('link', { name: /подати заявку/i })).toHaveCount(0);
 });
 
 test('sponsor category tabs work with pointer and keyboard', async ({ page }) => {
