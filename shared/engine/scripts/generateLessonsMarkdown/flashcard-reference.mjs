@@ -6,6 +6,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { orderedLessonChildren } from './lesson-markdown.mjs';
+
 const tick = String.fromCharCode(96);
 const UUID = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
 const extensions = {
@@ -143,7 +145,8 @@ export function renderFlashcardReference({
   verifyAtSha,
 }) {
   if (!/^[0-9a-f]{40}$/.test(sourceRef)) throw new Error('Flashcard reference requires an exact Git source SHA');
-  if (!isObject(lesson) || !Array.isArray(lesson.section)) throw new Error('Missing built Lesson sections');
+  if (!isObject(lesson) || Object.hasOwn(lesson, 'section')) throw new Error('Missing canonical Lesson Data');
+  const sections = orderedLessonChildren(lesson, 'Lesson');
   const book = packagePath.slice('content/'.length);
   const lessonRoot = path.relative(root, lessonDirectory).split(path.sep).join('/');
   if (!lessonRoot.startsWith(packagePath + '/data/lessons/')) throw new Error('Unexpected Lesson directory');
@@ -158,7 +161,7 @@ export function renderFlashcardReference({
     '- **Lesson slug:** ' + code(lesson.slug),
     '- **Effective locale:** ' + code(locale),
     '- **Declared Lesson languages:** ' + (lesson.params.languages ?? []).map(code).join(', '),
-    '- **Content build status:** resolved typed Lesson Props; media readiness and editorial approval are separate.',
+    '- **Content build status:** resolved typed Lesson Data; media readiness and editorial approval are separate.',
     '- **Reference completeness:** pending media checks.',
     '',
     '### Methodological reference',
@@ -194,9 +197,9 @@ export function renderFlashcardReference({
   let occurrences = 0;
   let missingMedia = 0;
   const seen = new Set();
-  for (const section of lesson.section) {
+  for (const section of sections) {
     if (!isObject(section)) throw new Error('Malformed Lesson Section');
-    if (!Array.isArray(section.content)) throw new Error('Section is missing ordered content: ' + section.slug);
+    const blocks = orderedLessonChildren(section, 'Section ' + section.slug);
     function visit(block, ancestry, index, siblings) {
       if (!isObject(block) || typeof block.type !== 'string' || typeof block.id !== 'string')
         throw new Error('Malformed referenced ContentBlock in Section ' + section.slug);
@@ -281,21 +284,19 @@ export function renderFlashcardReference({
           );
       }
       if (block.type === 'carousel') {
-        const slides = block.locale?.slides;
-        if (!Array.isArray(slides)) throw new Error('Carousel is missing resolved slides: ' + block.slug);
+        const slides = orderedLessonChildren(block, 'Carousel ' + block.slug);
         slides.forEach((child, n) => visit(child, [...ancestry, block.slug], n, slides));
       }
       if (block.type === 'checkpoint') {
-        if (!Array.isArray(block.content)) throw new Error('Checkpoint is missing resolved items: ' + block.slug);
-        block.content.forEach(item => {
-          if (!isObject(item) || item.type !== 'checkpointItem' || !Array.isArray(item.answer))
+        for (const item of orderedLessonChildren(block, 'Checkpoint ' + block.slug)) {
+          if (!isObject(item) || item.type !== 'checkpointItem' || !isObject(item.question))
             throw new Error('Invalid Checkpoint Item in ' + block.slug);
-          const elements = [item.question, ...item.answer];
+          const elements = [item.question, ...orderedLessonChildren(item.answer, 'Checkpoint Answer ' + item.slug)];
           elements.forEach((child, n) => visit(child, [...ancestry, block.slug, item.slug], n, elements));
-        });
+        }
       }
     }
-    section.content.forEach((block, index, blocks) => visit(block, [], index, blocks));
+    blocks.forEach((block, index) => visit(block, [], index, blocks));
   }
   if (occurrences === 0) lines.push('No directly referenced media found in this Lesson locale.', '');
   const completeness = missingMedia
@@ -310,7 +311,7 @@ export function renderFlashcardReference({
     'Questions and Flashcards are published separately. The Lesson only selects existing UUIDs; no bank contents or approval is implied.',
     '',
   );
-  for (const section of lesson.section) {
+  for (const section of sections) {
     const ids =
       section.type === 'quiz'
         ? section.params?.selection?.questionIds
