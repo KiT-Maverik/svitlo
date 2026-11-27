@@ -141,18 +141,25 @@ export type Course_Configurator<
   };
 } & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
+type CourseAuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Course_Child>,
+  Languages extends readonly [LanguageCode, ...LanguageCode[]],
+> = Omit<Course_Metadata_Config, 'slug' | 'locale' | 'params'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+  locale: RequireLanguages<Course_Config['locale'], Languages>;
+  params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
+
+} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+
 /** Define a Course with immutable ordered child configurators and stateless Build. */
-export const defineCourse = <
+const defineCourseImplementation = <
   const Slug extends string,
   const Items extends Record<string, Course_Child>,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
 >(
-  config: Omit<Course_Metadata_Config, 'slug' | 'params' | 'locale'> & {
-    slug: Slug;
-    children: Extract<keyof Items, string>[];
-    locale: RequireLanguages<Course_Config['locale'], Languages>;
-    params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
-  } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+  config: CourseAuthoredInput<Slug, Items, Languages>,
 ): Course_Configurator<Slug, Items, Languages> => {
   const metadataSchema = course_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
@@ -426,3 +433,27 @@ export const defineCourse = <
     },
   } as unknown as Course_Configurator<Slug, Items, Languages>;
 };
+
+/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
+export function defineCourse<
+  const Slug extends string,
+  const Items extends Record<string, Course_Child>,
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+>(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
+
+/** Infer direct placement fields from the ordered placement key literals. */
+export function defineCourse<
+  const Slug extends string,
+  const Keys extends string,
+  const Items extends Record<Keys, Course_Child>,
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+>(config: Omit<Course_Metadata_Config, 'slug' | 'locale' | 'params'> & {
+    slug: Slug;
+    children: Keys[];
+    locale: RequireLanguages<Course_Config['locale'], Languages>;
+    params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
+  } & { [Key in Keys]: Items[Key] } &
+  ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>): Course_Configurator<Slug, Items, Languages>;
+export function defineCourse(config: unknown): unknown {
+  return defineCourseImplementation(config as never);
+}
