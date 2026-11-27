@@ -151,9 +151,17 @@ export const defineCheckpointItem = <
     return output;
   };
 
-  const overridesImplementation = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
-    patch: CheckpointItem_Overrides<Answer, Added> & {
-      answer?: ChildrenSupporting<Languages, Added>;
+  type AuthorAnswerChildren = {
+    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
+      Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
+  };
+  type NestedAnswerAdditions<Patch> =
+    Patch extends { answer: infer AnswerPatch }
+      ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
+      : {};
+  const overridesImplementation = <const Patch extends Record<string, unknown>>(
+    patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+      answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
     },
     options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
@@ -211,14 +219,6 @@ export const defineCheckpointItem = <
       );
     }
   };
-  type AuthorAnswerChildren = {
-    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
-      Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
-  };
-  type NestedAnswerAdditions<Patch> =
-    Patch extends { answer: infer AnswerPatch }
-      ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
-      : {};
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
