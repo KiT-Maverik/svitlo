@@ -59,8 +59,13 @@ events have no rebuild reason. The `sourceAfterBuildRevision` field captures
 the source verification already performed after compilation; `null` means
 Git could not verify the post-build tracked worktree, not proof of a particular
 file mutation. The job summary groups each reason by workspace and counts
-builds with unverified post-build sources, so no artifacts must be downloaded
-to diagnose repeated Engine builds. **These reason labels only describe
+builds with unverified post-build sources. When Git source verification fails,
+opt-in diagnostics also collect at most ten **tracked relative file names**
+from `git diff --name-only HEAD --` (never file contents), and a separate
+summary table groups distinct filenames and Git verification statuses by
+workspace. A missing Git result remains `git-diff-unavailable`, not a claim
+that the worktree is dirty. This is diagnostic-only and does not make an
+unverified source eligible for cache reuse. **These reason labels only describe
 decisions; they never enable reuse or weaken output checks.**
 
 A failure to write this **optional diagnostic** logs a warning and never turns a
