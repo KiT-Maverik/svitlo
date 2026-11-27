@@ -25,7 +25,7 @@ describe('Configurators', () => {
         for (const key of keys) {
           assert.ok(current !== null && typeof current === 'object' && key in current,
             'Missing output property: ' + key);
-          current = current[key];
+          current = (current as Record<string, unknown>)[key];
         }
         return current;
       };
@@ -223,7 +223,7 @@ describe('Configurators', () => {
           () =>
             question.build.overrides(
               {
-                content: { question: { children: ['notFound'] } },
+                content: { question: { children: ['notFound'] as never } },
               },
               scope,
             ),
