@@ -24,7 +24,7 @@ import { orderSequence_Config_Schema } from '../../configurators/questions/defin
 import { selectMultipleAnswers_Config_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
 import { selectOneAnswer_Config_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
 import type { Question_Type } from '../../configurators/questions/question.constants';
-import { flashcardsSection_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import { flashcardsSection_Metadata_Config_Schema } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
 import { UNRESOLVED_RESOURCE_UUID } from '../../schemas/media.schemas';
 import { lessonProductionAssessmentRequirements_Schema } from './lessonAssessment.types';
 import { workflowChildren_Schema } from './lessonWorkflow.types';
@@ -420,7 +420,7 @@ export const flashcardBankWorkflowStage3_Schema = z.strictObject({
       z.strictObject({ kind: z.literal('notApplicable'), rationale: nonempty }),
       z.strictObject({
         kind: z.literal('selected'),
-        section: flashcardsSection_Config_Schema.pick({ id: true, slug: true }),
+        section: flashcardsSection_Metadata_Config_Schema.pick({ id: true, slug: true }),
         existingSection: z.boolean(),
         placement: nonempty,
         selectedCardSlugs: z.tuple([nonempty], nonempty).readonly(),
