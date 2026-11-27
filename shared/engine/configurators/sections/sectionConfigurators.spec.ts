@@ -34,7 +34,7 @@ describe('Configurators', () => {
         type,
         params: {},
         locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
-        children: ['prompt'], prompt,
+        children: ['prompt' as const], prompt,
       });
       const textValue = (value: unknown): string | undefined => {
         if (!value || typeof value !== 'object' || !('locale' in value)) return undefined;
