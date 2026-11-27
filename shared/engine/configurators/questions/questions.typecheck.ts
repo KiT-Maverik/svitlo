@@ -285,7 +285,12 @@ void [scopedMatch, scopedBlocks, scopedTextSlots];
 
 const numberResource = number.build.data(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
-const typedPromptSlug: string = numberResource.base.content.question.answerBlock.slug;
+const numberPrompt = numberResource.base.content.question.answerBlock;
+if (!numberPrompt || typeof numberPrompt !== 'object' ||
+    Array.isArray(numberPrompt) || !('slug' in numberPrompt)) {
+  throw new Error('Published Question answerBlock must have a slug');
+}
+const typedPromptSlug: string = numberPrompt.slug;
 const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
 const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } }, scope);
 const typedSparseAnswers: number[] | undefined = numericOverride.base.params?.correctAnswers;
