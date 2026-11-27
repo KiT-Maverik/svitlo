@@ -125,12 +125,12 @@ export type Module_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): ModulePublication<ModuleDataBase<Items>>;
-    overrides(
-      patch: Module_Overrides<Items>,
-      options: PublicationLanguageOptions<Languages>,
-    ): ModulePublication<ModuleOverrideBase>;
     overrides<const Added extends Record<string, Module_Child>>(
       patch: Module_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+      options: PublicationLanguageOptions<Languages>,
+    ): ModulePublication<ModuleOverrideBase>;
+    overrides(
+      patch: Module_Overrides<Items>,
       options: PublicationLanguageOptions<Languages>,
     ): ModulePublication<ModuleOverrideBase>;
   };
