@@ -98,7 +98,6 @@ describe('Text', () => {
     );
     expect(screen.getByRole('heading', { level: 2, name: 'Wrapped' })).toHaveAttribute('id', 'title');
   });
-
 });
 
 describe('Text additional inline styling', () => {
