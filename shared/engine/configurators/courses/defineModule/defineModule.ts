@@ -430,18 +430,24 @@ export function defineModule<
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: ModuleAuthoredInput<Slug, Items, Languages>): Module_Configurator<Slug, Items, Languages>;
 
-/** Infer direct placement fields from the ordered placement key literals. */
+type ModuleInferredBase = Module_Metadata_Config & { children: string[] };
+type ModuleInferredChildren<Config> = {
+  [Key in Exclude<keyof Config, keyof ModuleInferredBase>]:
+    Config[Key] extends Module_Child ? Config[Key] : never;
+};
+
+/** Infer the exact child Configurator types from every direct root placement. */
 export function defineModule<
-  const Slug extends string,
-  const Keys extends string,
-  const Items extends Record<Keys, Module_Child>,
-  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: Omit<Module_Metadata_Config, 'slug' | 'locale'> & {
-    slug: Slug;
-    children: Keys[];
-    locale: RequireLanguages<Module_Config['locale'], Languages>;
-  } & { [Key in Keys]: Items[Key] } &
-  ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>): Module_Configurator<Slug, Items, Languages>;
+  const Config extends ModuleInferredBase,
+>(
+  config: Config &
+    ModuleInferredChildren<Config> & {
+      children: Extract<keyof ModuleInferredChildren<Config>, string>[];
+      locale: RequireLanguages<Module_Config['locale'], readonly LanguageCode[]>;
+    } &
+    
+    SafePlacementMap<ModuleInferredChildren<Config>>,
+): Module_Configurator<Config['slug'], ModuleInferredChildren<Config>, readonly LanguageCode[]>;
 export function defineModule(config: unknown): unknown {
   return defineModuleImplementation(config as never);
 }
