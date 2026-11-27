@@ -354,8 +354,6 @@ export const defineAssessment = <
         validatePhase(updated, name);
         return updated;
       };
-      const updatedBefore = phase('before', before, patch.before);
-      const updatedAfter = phase('after', after, patch.after);
       if (patch.quiz !== undefined) {
         if (!isRecord(patch.quiz)) throw new Error('Assessment Quiz override must be an object, never false');
         if (isRecord(patch.quiz.params) && Object.hasOwn(patch.quiz.params, 'disabled'))
