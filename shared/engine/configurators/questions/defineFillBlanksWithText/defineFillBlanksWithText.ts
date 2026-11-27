@@ -28,11 +28,13 @@ import {
   onlyStrings,
   scopeBuild,
   validateOrderedKeys,
+  slugAddressedReservedKeys,
 } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
+  fillBlanksWithTextSlot_Config_Schema,
   fillBlanksWithText_Data_Schema,
   fillBlanksWithText_Override_Config_Schema,
   type Question_FillBlanksWithText_Config,
@@ -41,22 +43,22 @@ import {
 } from './defineFillBlanksWithText.schemas';
 
 type ContentShape = Question_FillBlanksWithText_Config['content'];
-type Slot = ContentShape['slots']['items'][string];
-type SlotMap = ContentShape['slots']['items'];
+type Slot = z.infer<typeof fillBlanksWithTextSlot_Config_Schema>;
+type SlotMap = Record<string, Slot>;
+type SlotMembers<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Slot ? Group[Key] : Slot;
+};
 type SlotChanges<Content extends ContentShape> = {
-  [Key in keyof Content['slots']['items']]?: DeepPartial<Slot> | false;
+  [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
 };
 type SlotsOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, Slot>,
   Languages extends readonly LanguageCode[],
 > = {
-  items?: SlotChanges<Content>;
-  additionalItems?: AddedSlots &
-    RequireLanguages<AddedSlots, Languages> &
-    (string extends keyof Content['slots']['items'] ? {} : { [Key in keyof Content['slots']['items']]?: never });
-  order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
-};
+  children?: Extract<keyof SlotMembers<Content['slots']> | keyof NoInfer<AddedSlots>, string>[];
+} & SlotChanges<Content> & AddedSlots & RequireLanguages<AddedSlots, Languages>;
+
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -69,15 +71,22 @@ export type Question_FillBlanksWithText_Overrides<
 };
 
 const metadataSchema = fillBlanksWithText_Config_Schema.omit({ content: true });
-const slotSchema = fillBlanksWithText_Config_Schema.shape.content.shape.slots.shape.items.valueType;
+const slotSchema = fillBlanksWithTextSlot_Config_Schema;
 const slotPatchSchema: z.ZodType<DeepPartial<Slot>> = z.deepPartial(deepStrict_Schema(slotSchema));
 
+const slotsOf = (value: { children: string[] } & Record<string, unknown>): SlotMap =>
+  Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'children')) as SlotMap;
+
 const validateSlots = (value: ContentShape['slots']): void => {
-  const issues = validateOrderedKeys(value, { path: 'content.slots', requireNonEmpty: true });
+  const items = slotsOf(value);
+  const issues = validateOrderedKeys({ items, order: value.children }, {
+    path: 'content.slots', requireNonEmpty: true,
+  });
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-  if (!value.order.length) throw new Error('FillBlanksWithText requires at least one slot');
-  for (const [selector, item] of Object.entries(value.items)) {
+  if (!value.children.length) throw new Error('FillBlanksWithText requires at least one slot');
+  for (const [selector, item] of Object.entries(items)) {
     camelCase_Schema.parse(selector);
+    if (slugAddressedReservedKeys.some(key => key === selector)) throw new Error('Reserved text slot slug: ' + selector);
     slotSchema.parse(item);
   }
 };
@@ -118,10 +127,7 @@ export const defineFillBlanksWithText = <
   const copyMetadata = () => cloneJson(authored);
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    slots: {
-      items: cloneJson(config.content.slots.items),
-      order: [...config.content.slots.order],
-    },
+    slots: cloneJson(config.content.slots),
   } as Content;
   const content = {
     ...snapshotCommonContent(initialContent),
@@ -130,83 +136,56 @@ export const defineFillBlanksWithText = <
 
   const projectSlots = (
     languages: readonly LanguageCode[],
-    patch?: {
-      items?: SlotChanges<Content>;
-      additionalItems?: Record<string, Slot>;
-      order?: string[];
-    },
+    patch?: { children?: string[] } & Record<string, unknown>,
   ) => {
     if (patch !== undefined && !isRecord(patch)) throw new Error('content.slots must be an object');
-    for (const key of Object.keys(patch ?? {})) {
-      if (!['items', 'additionalItems', 'order'].includes(key)) {
-        throw new Error('Unknown content.slots override field: ' + key);
-      }
-    }
-    const changes = patch?.items ?? {};
-    const additions = patch?.additionalItems ?? {};
-    if (!isRecord(changes) || !isRecord(additions)) {
-      throw new Error('content.slots items must be slug-keyed objects');
-    }
-
-    const effective: Record<string, Slot | false> = { ...cloneJson(initialContent.slots.items) };
+    const original = slotsOf(initialContent.slots);
+    const effective: Record<string, Slot | false> = cloneJson(original);
     const translatedChanges: Record<string, DeepPartial<Slot>> = {};
-    let structural = Object.keys(additions).length > 0;
-    for (const [key, value] of Object.entries(additions)) {
-      if (Object.hasOwn(effective, key)) throw new Error('Duplicate slot: ' + key);
+    let structural = false;
+    for (const [key, change] of Object.entries(patch ?? {})) {
+      if (key === 'children') continue;
       camelCase_Schema.parse(key);
-      effective[key] = cloneJson(slotSchema.parse(value));
-    }
-    for (const [key, change] of Object.entries(changes)) {
-      if (!Object.hasOwn(initialContent.slots.items, key)) {
-        throw new Error('Cannot override unknown text slot: ' + key);
-      }
-      if (change === false) {
-        effective[key] = false;
-        structural = true;
+      if (slugAddressedReservedKeys.some(reserved => reserved === key))
+        throw new Error('Reserved text slot slug: ' + key);
+      if (Object.hasOwn(original, key)) {
+        if (change === false) { effective[key] = false; structural = true; }
+        else {
+          const validated = slotPatchSchema.parse(change);
+          translatedChanges[key] = validated;
+          effective[key] = slotSchema.parse(mergeForValidation(cloneJson(original[key]), validated));
+        }
       } else {
-        const validated = slotPatchSchema.parse(change);
-        translatedChanges[key] = validated;
-        effective[key] = slotSchema.parse(mergeForValidation(cloneJson(initialContent.slots.items[key]), validated));
+        effective[key] = cloneJson(slotSchema.parse(change));
+        structural = true;
       }
     }
-    if (structural && patch?.order === undefined) {
-      throw new Error('content.slots.order is required for additions/removals');
+    if (structural && patch?.children === undefined) {
+      throw new Error('content.slots.children is required for additions/removals');
     }
-    const order = patch?.order ?? initialContent.slots.order;
+    const order = patch?.children ?? initialContent.slots.children;
+    if (!Array.isArray(order)) throw new Error('content.slots.children must be an array');
     const issues = validateOrderedKeys(
       { items: effective, order },
       { path: 'content.slots', requireNonEmpty: true, allowDisabled: true },
     );
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-    if (order.length === 0) throw new Error('At least one active text slot is required');
+    if (!order.length) throw new Error('At least one active text slot is required');
 
     const active: SlotMap = Object.fromEntries(order.map(key => [key, effective[key] as Slot]));
     const resolved = projectSlotList(active, languages, undefined, order);
     if (patch === undefined) return resolved;
-
-    const modifies = Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.order !== undefined;
+    const modifies = Object.keys(patch).length > 0;
     if (!modifies) return { locale: {}, base: undefined };
-
-    const affected =
-      structural || patch.order !== undefined
-        ? Object.keys(resolved.locale)
-        : Object.keys(
-            projectSlotList(
-              initialContent.slots.items,
-              languages,
-              translatedChanges as never,
-              initialContent.slots.order,
-            ).locale,
-          );
+    const affected = structural || patch.children !== undefined
+      ? Object.keys(resolved.locale)
+      : Object.keys(projectSlotList(original, languages, translatedChanges as never, initialContent.slots.children).locale);
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
       const language = code as LanguageCode;
       if (resolved.locale[language]) locale[language] = resolved.locale[language];
     }
-    return {
-      ...(resolved.base === undefined ? {} : { base: resolved.base }),
-      locale,
-    };
+    return { ...(resolved.base === undefined ? {} : { base: resolved.base }), locale };
   };
 
   const ownProps = (metadata: typeof authored, languages: readonly LanguageCode[]) => {
