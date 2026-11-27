@@ -249,20 +249,16 @@ export const resolveBlockCollection = (
   if (patch === undefined || patch.children !== undefined) {
     return { base, locale, order: [...order], effectiveBase: base };
   }
-  const sparseBase: ResolvedBlockGroup = { children: [] };
-  delete (sparseBase as Partial<ResolvedBlockGroup>).children;
+  const sparseBase = {} as ResolvedBlockGroup;
   const sparseLocale: Files<ResolvedBlockGroup> = {};
   for (const entry of entries) {
     if (!entry.patch) continue;
     if (Object.keys(entry.patch.base).length) sparseBase[entry.key] = cloneJson(entry.patch.base);
     for (const [language, fragment] of Object.entries(entry.patch.locale ?? {})) {
-      (sparseLocale[language as LanguageCode] ??= { children: [] })[entry.key] = cloneJson(fragment);
+      (sparseLocale[language as LanguageCode] ??= {} as ResolvedBlockGroup)[entry.key] = cloneJson(fragment);
     }
   }
-  for (const value of Object.values(sparseLocale)) {
-    delete (value as Partial<ResolvedBlockGroup>).children;
-  }
-  return { base: sparseBase, locale: sparseLocale, order: [...order], effectiveBase: base };
+   return { base: sparseBase, locale: sparseLocale, order: [...order], effectiveBase: base };
 };
 
 export const resolveBlockMap = (
