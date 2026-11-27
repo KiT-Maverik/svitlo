@@ -343,4 +343,4 @@ export const defineContentSection: {
   ): ReturnType<typeof defineContentSectionImpl<Slug, Items, Languages>>;
 } = defineContentSectionImpl;
 
-export type ContentSection_Configurator = ReturnType<typeof defineContentSection>;
+export type ContentSection_Configurator = ReturnType<typeof defineContentSectionImpl<string, {}, AllLanguageCodes>>;
