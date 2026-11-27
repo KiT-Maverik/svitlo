@@ -27,7 +27,7 @@ type BlockResource = { base: Fragment; locale: Files<Fragment> | undefined };
 type BlockPatch = { base: DeepPartial<Fragment>; locale: Files<Fragment> | undefined };
 
 export type OrderedBlocks<Child = Block> = { children: string[] } & Record<string, Child | string[]>;
-type MemberMap<Group extends { children: string[] }> = {
+export type BlockMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Block ? Group[Key] : Block;
 };
 
@@ -53,9 +53,9 @@ export type QuestionCommonPatch<
   Added extends Record<string, Block> = {},
   Languages extends readonly LanguageCode[] = [],
 > = {
-  question?: OrderedBlockPatch<MemberMap<Content['question']>, Added, Languages>;
-  hint?: OrderedBlockPatch<MemberMap<NonNullable<Content['hint']>>, Added, Languages>;
-  explanation?: OrderedBlockPatch<MemberMap<NonNullable<Content['explanation']>>, Added, Languages>;
+  question?: OrderedBlockPatch<BlockMembers<Content['question']>, Added, Languages>;
+  hint?: OrderedBlockPatch<BlockMembers<NonNullable<Content['hint']>>, Added, Languages>;
+  explanation?: OrderedBlockPatch<BlockMembers<NonNullable<Content['explanation']>>, Added, Languages>;
 };
 
 export type ResolvedCollection<T> = { base: T; locale: Files<T> };
