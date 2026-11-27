@@ -1,6 +1,6 @@
 # Root workspace aggregation and TypeScript checking
 
-The canonical root workspace runner is `run-workspace-script.mjs`. It discovers
+`run-workspace-script.mjs` still owns typechecking, unit/component tests, app builds and other lifecycle-sensitive root operations. It discovers
 all npm workspaces, selects only workspaces declaring the requested operation,
 and prepares dependency builds in topological order. `code:check:types` uses
 `typecheck-scheduler.mjs`, shared with FastGate, to check independent
@@ -13,8 +13,7 @@ valid 1–8). `SVITLO_FASTGATE_PARALLELISM` retains FastGate's existing
 independent default of 2. Both flows run all selected checks and propagate
 failures; no workspace is dropped to improve latency.
 
-Other root operations keep their existing sequential execution and npm
-lifecycle hooks. See `studio/rules/package-scripts.md` and
+Root `package:build` and `code:lint:check` now execute via the pinned Turbo DAG, not this runner. The remaining root commands preserve their npm lifecycle hooks. See `studio/rules/package-scripts.md` and
 `scripts/ci/productionQuality/README.md`.
 
 Run focused validation:

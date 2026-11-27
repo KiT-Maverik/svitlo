@@ -124,7 +124,7 @@ Specialized scripts may use further meaningful segments: `app:pack:linux`, `cont
 4. Report run, skipped and failed workspaces; propagate failures. Never hide them with `|| true`.
 5. Do not interfere with npm lifecycle hooks such as `prebuild`, `prepack` and app content preparation or execute them twice.
 6. Omitting an unsafe/unimplemented root command is better than a misleading partial aggregator. **Never put `storybook:start` in root.**
-7. The repository uses **npm workspaces** and an authoritative `package-lock.json`; no implied pnpm or Turbo orchestration.
+7. The repository uses **npm workspaces** and an authoritative `package-lock.json`. Pinned Turborepo OSS schedules root `package:build` and `code:lint:check` against the real workspace DAG; remaining lifecycle-sensitive operations keep the manifest-derived runner. This does not imply pnpm, remote caching, or complete migration of CI.
 
 ### Supported CLI usage
 
@@ -166,9 +166,11 @@ The canonical scripts have been adopted in the root and workspace manifests; the
 repository's GitHub Actions workflows, app-host preparation scripts, content build
 tooling, and documented invocations use the new names.
 
-- Root aggregation is implemented by `scripts/runWorkspaceScript/run-workspace-script.mjs`. It
-  discovers eligible workspaces dynamically and orders dependency-sensitive
-  operations topologically. See its Node regression tests.
+- Root `package:build` and `code:lint:check` use the pinned `turbo.json` DAG,
+  with caching disabled and `npm run repo:check:turbo` verifying task parity.
+  `scripts/runWorkspaceScript/run-workspace-script.mjs` continues to own
+  TypeScript, tests, app and other lifecycle-sensitive aggregation. Its
+  workspace discovery is still reused by CI/build-reuse integrity checks.
 - Legacy `build`, `typecheck`, `lint`, `dev`, `start`, and
   `build-storybook` npm script names have been replaced with the respective
   `package:*`, `app:*`, `code:*` and `storybook:*` operations.
