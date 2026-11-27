@@ -31,6 +31,7 @@ import {
   type Assessment_Config,
   type Assessment_Content_Section_Configurator,
   type Assessment_DataBase,
+  type Assessment_Phase_DataBase,
   type Assessment_Overrides,
   type Assessment_Quiz_Configurator,
   type Assessment_Section_Configurator,
@@ -48,13 +49,20 @@ type SectionBuild = {
     overrides(patch: never, options: PublicationLanguageOptions): SectionResource;
   };
 };
-type LocaleBody = { locale?: { title?: string }; section?: Assessment_DataBase['section'] };
+type LocaleBody = {
+  locale?: { title?: string };
+  before?: Assessment_Phase_DataBase;
+  quiz?: Assessment_DataBase['quiz'];
+  after?: Assessment_Phase_DataBase;
+};
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Assessment_Config['params'], 'languages'>>;
   locale?: { title?: string };
-  section?: Assessment_DataBase['section'];
+  before?: Record<string, unknown>;
+  quiz?: Record<string, unknown>;
+  after?: Record<string, unknown>;
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -153,15 +161,14 @@ export const defineAssessment = <
   const before: Phase = { ...(config.before ?? {}), children: [...(config.before?.children ?? [])] };
   const after: Phase = { ...(config.after ?? {}), children: [...(config.after?.children ?? [])] };
   const quiz = config.quiz;
-  const section = composeSections({
+  // Composition validates shared child identities and phase/Quiz slug collisions.
+  validate({
     ...metadataInput,
     params: { ...metadataInput.params, languages: [...metadataInput.params.languages] },
     before,
     quiz,
     after,
   } as Assessment_Config);
-  const initialSections = section.items;
-  const initialOrder = section.order;
 
   const configBase = {
     id,
@@ -196,8 +203,8 @@ export const defineAssessment = <
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as Assessment_DataBase['section'];
-    const locale: Partial<Record<LanguageCode, Assessment_DataBase['section']>> = {};
+    ) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
+    const locale: Partial<Record<LanguageCode, ReturnType<Assessment_Section_Configurator['build']['data']>['base'][]>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -212,11 +219,27 @@ export const defineAssessment = <
         );
         const withBasePatch = patch ? mergeForValidation(translated, patch.base) : translated;
         return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
-      }) as Assessment_DataBase['section'];
+      }) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
     }
     return { base, locale };
   };
 
+  /** Phase names remain semantic; direct child keys preserve stable source references. */
+  const buildPhase = (phase: Phase, patches: Record<string, unknown> = {}) => {
+    const built = buildSections(phaseItems(phase), phase.children, patches);
+    const base = {
+      children: [...phase.children],
+      ...Object.fromEntries(phase.children.map((key, index) => [key, built.base[index]])),
+    } as Assessment_Phase_DataBase;
+    const locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>> = {};
+    for (const [language, entries] of Object.entries(built.locale)) {
+      locale[language as LanguageCode] = {
+        children: [...phase.children],
+        ...Object.fromEntries(phase.children.map((key, index) => [key, entries[index]])),
+      } as Assessment_Phase_DataBase;
+    }
+    return { base, locale };
+  };
   const publicationLanguages = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     for (const language of languages) {
@@ -231,10 +254,16 @@ export const defineAssessment = <
     validate({ ...copyAuthored(), before, quiz, after });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
-    const children = buildSections(initialSections, initialOrder);
+    const beforeBuilt = buildPhase(before);
+    const afterBuilt = buildPhase(after);
+    const quizBuilt = buildChildData(quiz) as SectionResource;
     const files = selectPublicationLocales(translated.files, languages) ?? {};
-    for (const [language, values] of Object.entries(children.locale)) {
-      (files[language as LanguageCode] ??= {}).section = values;
+    for (const language of languages) {
+      if (beforeBuilt.locale[language]) (files[language] ??= {}).before = beforeBuilt.locale[language];
+      if (afterBuilt.locale[language]) (files[language] ??= {}).after = afterBuilt.locale[language];
+      if (quizBuilt.locale?.[language]) {
+        (files[language] ??= {}).quiz = mergeForValidation(quizBuilt.base, quizBuilt.locale[language]) as Assessment_DataBase['quiz'];
+      }
     }
     const result: Publication<Assessment_DataBase> = structuredClone({
       base: {
@@ -243,10 +272,12 @@ export const defineAssessment = <
         type,
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(translated.invariant).length ? { locale: translated.invariant } : {}),
-        section: children.base,
+        before: beforeBuilt.base,
+        quiz: quizBuilt.base,
+        after: afterBuilt.base,
       },
       locale: Object.keys(files).length ? files : undefined,
-    });
+    }) as Publication<Assessment_DataBase>;
     validateRequestedPublication(assessment_Data_Schema, result, languages);
     return result;
   };
