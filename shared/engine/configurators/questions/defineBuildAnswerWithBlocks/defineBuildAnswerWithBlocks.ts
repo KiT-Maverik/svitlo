@@ -81,8 +81,8 @@ export const defineBuildAnswerWithBlocks = <
     slug: Slug;
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
-        correctSequence: { items: ChildrenSupporting<Languages, BlockMembers<Content['correctSequence']>> };
-        distractors: { items: ChildrenSupporting<Languages, BlockMembers<Content['distractors']>> };
+        correctSequence: ChildrenSupporting<Languages, BlockMembers<Content['correctSequence']>>;
+        distractors: ChildrenSupporting<Languages, BlockMembers<Content['distractors']>>;
       };
   } & ConfigWithLanguages<Question_BuildAnswerWithBlocks_Config, Languages>,
 ) => {
