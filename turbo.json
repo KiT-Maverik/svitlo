@@ -1,23 +1,36 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "globalDependencies": [
+    "tsconfig*.json",
+    "scripts/textbook-tooling/**",
+    "scripts/ci/productionQuality/turbo-poc-*.mjs"
+  ],
+  "globalEnv": [
+    "SVITLO_MEDIA_MODE",
+    "SVITLO_TEXTBOOK",
+    "npm_config_ignore_scripts"
+  ],
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    "package:build": {
+      "dependsOn": [
+        "^package:build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     },
-    "typecheck": {
-      "dependsOn": ["^build"]
-    },
-    "lint": {
-      "dependsOn": ["^build"]
+    "code:check:types": {
+      "dependsOn": [
+        "package:build",
+        "^package:build"
+      ],
+      "cache": false
     },
     "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["coverage/**"]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true
+      "dependsOn": [
+        "code:check:types"
+      ],
+      "cache": false
     }
   }
 }
