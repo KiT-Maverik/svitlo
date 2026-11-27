@@ -64,6 +64,4 @@ describe('ThreeSlotLayout', () => {
     fireEvent.click(center);
     expect(onClick).toHaveBeenCalledOnce();
   });
-
-
 });
