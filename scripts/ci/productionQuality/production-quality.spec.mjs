@@ -120,6 +120,86 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.ok(workflow.indexOf('check-release-source.mjs') < workflow.indexOf('npm ci'));
 });
 
+test('Ready main runs the full Engine generator suite once through required Production Quality', () => {
+  // Engine generators is a direct Ready PR workflow AND a reusable production
+  // gate. Preserve its cheap direct Draft/security checks on all PR targets,
+  // without dispatching two independently installed full suites on main.
+  assert.match(engineGeneratorsWorkflow, /  pull_request:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  workflow_dispatch:\s*\n/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /  workflow_call:\s*\n    inputs:\s*\n[\s\S]*?run_full_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
+  assert.match(engineGeneratorsWorkflow, /  publisher-isolation:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  ci-policy:\s*\n/);
+  const generatorTests = engineGeneratorsWorkflow.split('\n  generator-tests:\n')[1];
+  assert.ok(generatorTests, 'missing complete generator-tests job');
+  assert.match(
+    generatorTests,
+    /github\.event_name == 'workflow_dispatch' \|\|\s*\n\s*\(!github\.event\.pull_request\.draft &&\s*\n\s*\(github\.event\.pull_request\.base\.ref != 'main' \|\| inputs\.run_full_generator_tests\)\)/,
+  );
+  assert.match(generatorTests, /Run targeted generator and CLI regression tests/);
+  assert.match(generatorTests, /Test typed Bank source and PR-command security/);
+  assert.match(generatorTests, /Test typed Lesson Stage 6 source and PR-command security/);
+  assert.match(
+    workflow,
+    /  generators:\s*\n    name: Production \/ Engine generators\s*\n    needs: policy\s*\n[\s\S]*?uses: \.\/\.github\/workflows\/engine-generators\.yml\s*\n    with:\s*\n[\s\S]*?run_full_generator_tests: true/,
+  );
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
+});
+
+test('production-exclusive generator selection requires exhaustive unit and strict verify', () => {
+  const target = engineGeneratorsWorkflow.split('  generator-tests:\n')[1];
+  assert.ok(target);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /only_unit_unique_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
+  assert.match(target, /SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: \$\{\{ inputs\.only_unit_unique_generator_tests \}\}/);
+  assert.match(target, /run: node scripts\/ci\/productionQuality\/select-generator-tests\.mjs/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /scripts\/ci\/productionQuality\/production-quality\.spec\.mjs scripts\/ci\/productionQuality\/select-generator-tests\.spec\.mjs/,
+  );
+  assert.match(workflow, /only_unit_unique_generator_tests: true/);
+  assert.match(workflow, /run_full_generator_tests: true/);
+  assert.match(workflow, /name: Test every eligible workspace[\s\S]*?-- npm test/);
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
+  assert.match(workflow, /status !== 'success'/);
+});
+
+test('standalone and reusable Engine generators have distinct cancellation groups', () => {
+  // GitHub Actions evaluates github.workflow in the called workflow as the
+  // caller's workflow name, not the reusable file name. On a Ready main
+  // promotion both workflows see the same PR number; if their groups match,
+  // cancel-in-progress can cancel the required reusable Production gate.
+  const engineGroup = engineGeneratorsWorkflow.match(
+    /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
+  )?.[1];
+  const productionGroup = workflow.match(/concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/)?.[1];
+  assert.equal(
+    engineGroup,
+    'engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}',
+  );
+  assert.equal(productionGroup, 'production-quality-${{ github.event.pull_request.number || github.ref }}');
+  // Model only these two documented substitutions (not the GitHub evaluator).
+  const evaluateGroup = (template, workflowName, prNumber) =>
+    template
+      .replace('${{ github.workflow }}', workflowName)
+      .replace('${{ github.event.pull_request.number || github.ref }}', String(prNumber));
+  const standalone = evaluateGroup(engineGroup, 'Engine generators', 925);
+  const called = evaluateGroup(engineGroup, 'Production quality', 925);
+  const parent = evaluateGroup(productionGroup, 'Production quality', 925);
+  assert.notEqual(standalone, called, 'standalone must not cancel the production reusable call');
+  assert.notEqual(called, parent, 'reusable must not cancel its own Production Quality parent');
+});
+
 test('PR comment command dispatches the unchanged full production workflow', () => {
   assert.match(commandWorkflow, /issue_comment:\s*\n\s*types: \[created\]/);
   assert.match(commandWorkflow, /github\.event\.issue\.pull_request/);

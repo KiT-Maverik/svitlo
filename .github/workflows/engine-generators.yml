@@ -13,6 +13,10 @@ on:
       - 'scripts/ci/lessonMaterialization/**'
       - 'scripts/ci/directMaterialization/**'
       - 'scripts/ci/requiredCheckReuse/**'
+      - 'scripts/ci/packageBuildReuse/**'
+      - 'scripts/ci/buildTelemetry/**'
+      - 'scripts/runFastGate/**'
+      - 'scripts/runWorkspaceScript/**'
       - 'scripts/ci/draftCiPolicy/**'
       - 'scripts/ci/productionQuality/**'
       - 'scripts/ci/releaseSource/**'
@@ -39,12 +43,27 @@ on:
       - '.github/scripts/backfill-labels.test.cjs'
   workflow_dispatch:
   workflow_call:
+    inputs:
+      # The strict Production Quality aggregator also requires a complete
+      # Engine generator suite. Direct Ready main PRs must not pay for a
+      # second npm-installed copy of the same full suite.
+      run_full_generator_tests:
+        type: boolean
+        default: false
+      # May omit only the same concrete files already exercised by the
+      # independent required root Engine npm test in Production Quality.
+      only_unit_unique_generator_tests:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  # A workflow_call uses its caller's github.workflow (GitHub Actions rule).
+  # Separate standalone Ready runs from their Production Quality reusable calls;
+  # otherwise cancel-in-progress can cancel an independent required gate.
+  group: engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -75,13 +94,34 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '26'
-      - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
+      - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/productionQuality/select-generator-tests.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
+      - name: Verify job-local package build reuse and passive telemetry
+        run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
+      - name: Verify direct build-command tracing and summary
+        run: node --test --test-reporter=spec scripts/ci/buildTelemetry/*.spec.mjs
+      - name: Verify FastGate nested root and changed-workspace selection
+        run: node --test --test-reporter=spec scripts/runFastGate/run-fast-gate.spec.mjs
+      - name: Verify root unit-workspace coverage and safe timing annotations
+        run: node --test --test-reporter=dot scripts/runWorkspaceScript/run-workspace-script.spec.mjs
+      - name: Parse touched CI orchestration scripts without npm dependencies
+        run: |
+          node --check scripts/ci/buildChangedContent/build-changed-content.mjs
+          node --check scripts/textbook-tooling/buildTextbook/build.mjs
+          node --check scripts/runFastGate/run-fast-gate.mjs
+          node --check scripts/ci/buildTelemetry/record-build-command.mjs
+          node --check scripts/ci/buildTelemetry/summarize-builds.mjs
       - name: Verify historical backfill labels with repository-scoped mocks
         run: node --test .github/scripts/backfill-labels.test.cjs
 
   generator-tests:
-    # Full host/browser/generator suites only at review boundary or explicitly on demand.
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    # Preserve full Ready suites for all standalone non-main PRs and manual
+    # dispatches. A Ready main promotion runs them in Production Quality's
+    # explicit reusable call instead of launching a second npm-installed job.
+    # The no-npm policy and publisher-isolation jobs still run directly.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (!github.event.pull_request.draft &&
+       (github.event.pull_request.base.ref != 'main' || inputs.run_full_generator_tests))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -100,43 +140,11 @@ jobs:
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
           node scripts/ci/quietRun/quiet-run.mjs -- npx tsc -p shared/engine/tsconfig.test.json
       - name: Run targeted generator and CLI regression tests
-        run: |
-          node scripts/ci/quietRun/quiet-run.mjs -- node --test \
-            shared/engine/.test-build/generators/lessons/*.spec.js \
-            shared/engine/generators/courses/publishCourseData.spec.mjs \
-            shared/engine/generators/skills/publishSkillTree.spec.mjs \
-            shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
-            shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
-            shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
-            shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js \
-            shared/engine/.test-build/assemblers/courseToc/*.spec.js \
-            shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs \
-            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs \
-            shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs \
-            shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs \
-            shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs \
-            scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs \
-            shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs \
-            shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs \
-            shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs \
-            shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs \
-            shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs \
-            shared/engine/generators/materializers/course/*.spec.mjs \
-            shared/engine/generators/materializers/module/*.spec.mjs \
-            shared/engine/generators/materializers/chapter/*.spec.mjs \
-            shared/engine/generators/materializers/lesson/*.spec.mjs \
-            shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js \
-            shared/engine/.test-build/generators/materializers/lesson/*.spec.js \
-            shared/engine/.test-build/generators/materializers/scene/*.spec.js \
-            shared/engine/.test-build/generators/materializers/episode/*.spec.js \
-            shared/engine/.test-build/generators/materializers/questStage/*.spec.js \
-            shared/engine/.test-build/generators/materializers/questTask/*.spec.js \
-            scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs \
-            shared/engine/.test-build/generators/materializers/bankSource/*.spec.js \
-            scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs \
-            scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs
+        env:
+          # Defaults false for standalone Ready/manual; true only when
+          # explicitly invoked by the protected Production Quality workflow.
+          SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: ${{ inputs.only_unit_unique_generator_tests }}
+        run: node scripts/ci/productionQuality/select-generator-tests.mjs
 
       - name: Test typed Bank source and PR-command security
         run: |

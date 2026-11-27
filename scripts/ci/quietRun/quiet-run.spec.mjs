@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { failureExcerpt, isDirectCliInvocation, resolveSpawnCommand } from './quiet-run.mjs';
+import { failureExcerpt, isDirectCliInvocation, isUnitWorkspaceTimingLine, resolveSpawnCommand } from './quiet-run.mjs';
 
 const script = fileURLToPath(new URL('./quiet-run.mjs', import.meta.url));
 const invoke = (source, extraEnv = {}) =>
@@ -19,6 +19,27 @@ test('successful command emits summary without child stdout', () => {
   assert.equal(result.status, 0);
   assert.match(result.stdout, /PASS/);
   assert.doesNotMatch(result.stdout, /many many lines/);
+});
+
+test('only opt-in, bounded workspace timing lines pass through quiet CI output', () => {
+  const valid = 'SVITLO_CI_UNIT_TIMING @svitlo/engine / test 12.3s (success)';
+  const other = 'SVITLO_CI_UNIT_TIMING @svitlo/engine / npm install 12.3s (success)';
+  assert.equal(isUnitWorkspaceTimingLine(valid, true), true);
+  assert.equal(isUnitWorkspaceTimingLine(valid, false), false);
+  assert.equal(isUnitWorkspaceTimingLine(other, true), false);
+  assert.equal(isUnitWorkspaceTimingLine(valid + '\\n::error::injection', true), false);
+
+  const source =
+    "console.log('ordinary debug output'); " +
+    "console.log('SVITLO_CI_UNIT_TIMING @svitlo/engine / test 12.3s (success)'); " +
+    "console.log('SVITLO_CI_UNIT_TIMING @svitlo/engine / npm install 12.3s (success)')";
+  const off = invoke(source);
+  assert.equal(off.status, 0);
+  assert.doesNotMatch(off.stdout, /SVITLO_CI_UNIT_TIMING/);
+  const on = invoke(source, { SVITLO_CI_UNIT_TEST_TIMINGS: '1' });
+  assert.equal(on.status, 0);
+  assert.equal(on.stdout.split(valid).length - 1, 1);
+  assert.doesNotMatch(on.stdout, /ordinary debug output|npm install/);
 });
 
 test('failure retains exit status and diagnostic', () => {

@@ -15,17 +15,82 @@ import {
   openSync,
   readFileSync,
   readdirSync,
+  realpathSync,
   readSync,
   renameSync,
   statSync,
   writeFileSync,
 } from 'node:fs';
-import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { discoverWorkspaces } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
 const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 const stateVariable = 'SVITLO_CI_PACKAGE_BUILD_STATE';
+const telemetryVariable = 'SVITLO_CI_BUILD_TELEMETRY';
+
+/**
+ * Diagnose an unverified source without changing the existing fail-closed
+ * cleanSourceRevision() predicate. Only report Git-tracked relative filenames,
+ * never file contents, and bound the diagnostic output.
+ */
+export function inspectTrackedSourceChanges(root, run = spawnSync) {
+  const result = run('git', ['diff', '--name-only', 'HEAD', '--'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+  if (result.error || result.status !== 0) {
+    return { sourceCheck: 'git-diff-unavailable', dirtyTrackedFileCount: null, dirtyTrackedFiles: [] };
+  }
+  const files = result.stdout.split(/\r?\n/).filter(Boolean);
+  return {
+    sourceCheck: files.length ? 'modified-tracked-files' : 'no-tracked-differences',
+    dirtyTrackedFileCount: files.length,
+    dirtyTrackedFiles: files.slice(0, 10),
+  };
+}
+
+/**
+ * Opt-in, job-local observability only. Never write telemetry into the checkout.
+ * Consumers must not use these events as a build cache or authorization signal.
+ */
+export function appendBuildTelemetry({ root, file, event, env = process.env }) {
+  if (!isAbsolute(file)) throw new Error('Build telemetry path must be absolute');
+  const normalized = realpathSync(resolve(root));
+  const target = resolve(realpathSync(dirname(resolve(file))), basename(file));
+  // Reject even dangling file symlinks: appendFileSync would otherwise follow
+  // the link and could modify tracked source despite the lexical path check.
+  let existing = null;
+  try {
+    existing = lstatSync(target);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  if (existing?.isSymbolicLink()) throw new Error('Build telemetry target must not be a symlink');
+  const relativeFile = relative(normalized, target);
+  if (relativeFile === '' || (relativeFile !== '..' && !relativeFile.startsWith('..' + sep))) {
+    throw new Error('Build telemetry must stay outside the repository');
+  }
+  const diagnostic =
+    event.recordKind !== 'direct-build-command' &&
+    (event.rebuildReason === 'unverified-source' ||
+      (event.outcome === 'built' && event.sourceAfterBuildRevision === null))
+      ? inspectTrackedSourceChanges(normalized)
+      : {};
+  const record = {
+    schemaVersion: 1,
+    timestamp: new Date().toISOString(),
+    runId: env.GITHUB_RUN_ID || null,
+    runAttempt: env.GITHUB_RUN_ATTEMPT || null,
+    job: env.GITHUB_JOB || null,
+    checkoutSha: env.GITHUB_SHA || null,
+    operation: 'package:build',
+    ...event,
+    ...diagnostic,
+  };
+  appendFileSync(target, JSON.stringify(record) + '\n');
+}
 
 function npmBuild(name, root = repoRoot) {
   const command = process.platform === 'win32' ? 'npm.cmd' : 'npm';
@@ -145,7 +210,14 @@ function saveBuildState(stateFile, state) {
 }
 
 /** Injectable runner keeps dependency, invalidation and error paths testable. */
-export function createPackageBuildReuse({ root, packages, stateFile, runBuild, sourceRevision }) {
+export function createPackageBuildReuse({
+  root,
+  packages,
+  stateFile,
+  runBuild,
+  sourceRevision,
+  onBuildEvent = () => {},
+}) {
   if (!isAbsolute(stateFile)) throw new Error('Package-build state path must be absolute');
   const normalized = resolve(root);
   if (relative(normalized, resolve(stateFile)) === '' || !relative(normalized, resolve(stateFile)).startsWith('..')) {
@@ -164,16 +236,38 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
       .sort();
     for (const dependency of dependencies) ensure(dependency, next);
 
+    const requestStarted = Date.now();
     const state = readBuildState(stateFile, normalized);
     const source = sourceRevision();
+    const emit = (outcome, outputDigest = null, rebuildReason = null, sourceAfterBuildRevision = null) => {
+      try {
+        onBuildEvent({
+          workspace: name,
+          outcome,
+          durationMs: Date.now() - requestStarted,
+          sourceRevision: source,
+          sourceAfterBuildRevision,
+          rebuildReason,
+          outputDigest,
+        });
+      } catch (error) {
+        // Instrumentation must never change a build/reuse decision or its result.
+        console.warn('Optional build telemetry unavailable: ' + String(error.message || error));
+      }
+    };
     const dependencyVersions = Object.fromEntries(dependencies.map(dep => [dep, state.records[dep]?.sequence ?? null]));
     const previous = state.records[name];
     state.stats.requested++;
-    if (
-      source &&
-      previous?.source === source &&
-      JSON.stringify(previous.dependencies) === JSON.stringify(dependencyVersions)
-    ) {
+    // Diagnostic classification only: preserve the exact fail-closed reuse
+    // predicate and artifact verification rather than treating reasons as
+    // permission to reuse any compiled output.
+    let rebuildReason;
+    if (!source) rebuildReason = 'unverified-source';
+    else if (!previous) rebuildReason = 'missing-state-record';
+    else if (previous.source !== source) rebuildReason = 'source-revision-changed';
+    else if (JSON.stringify(previous.dependencies) !== JSON.stringify(dependencyVersions)) {
+      rebuildReason = 'dependency-versions-changed';
+    } else {
       let current = null;
       try {
         current = snapshotDist(normalized, pkg.path);
@@ -184,8 +278,10 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
         state.stats.reused++;
         saveBuildState(stateFile, state);
         console.log('REUSE ' + name + ' / package:build (verified)');
+        emit('reused', current.digest);
         return 'reused';
       }
+      rebuildReason = current ? 'dist-digest-changed' : 'missing-or-invalid-dist';
     }
 
     const started = Date.now();
@@ -204,12 +300,14 @@ export function createPackageBuildReuse({ root, packages, stateFile, runBuild, s
       state.stats.buildMs += Date.now() - started;
       saveBuildState(stateFile, state);
       console.log('BUILD ' + name + ' / package:build (verified)');
+      emit('built', files.digest, rebuildReason, after);
       return 'built';
     } catch (error) {
       // Never permit a previously stamped success to survive a failed rebuild.
       delete state.records[name];
       state.stats.failed++;
       saveBuildState(stateFile, state);
+      emit('failed', null, rebuildReason);
       throw error;
     }
   }
@@ -256,6 +354,16 @@ function main(args) {
     stateFile: file,
     runBuild: name => npmBuild(name),
     sourceRevision: () => cleanSourceRevision(repoRoot),
+    onBuildEvent: event => {
+      const file = process.env[telemetryVariable];
+      if (!file) return;
+      try {
+        appendBuildTelemetry({ root: repoRoot, file, event });
+      } catch (error) {
+        // A diagnostic sink is not allowed to fail successful compilers or reuses.
+        console.warn('Optional build telemetry unavailable: ' + String(error.message || error));
+      }
+    },
   }).ensure(args[0]);
 }
 

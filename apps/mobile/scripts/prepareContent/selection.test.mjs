@@ -21,3 +21,17 @@ test('unknown textbook fails before generating or touching Web assets', () => {
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Unknown SVITLO_TEXTBOOK/);
 });
+
+test('publisher ownership manifest is generated, ignored and not tracked source', () => {
+  const name = 'apps/mobile/public/.svitlo/publish-playground.json';
+  const ignored = spawnSync('git', ['check-ignore', '--quiet', name], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  assert.equal(ignored.status, 0, 'Publisher ownership manifest must be ignored by Git');
+  const tracked = spawnSync('git', ['ls-files', '--error-unmatch', '--', name], {
+    cwd: root,
+    encoding: 'utf8',
+  });
+  assert.notEqual(tracked.status, 0, 'Generated publisher ownership manifest must not be checked in');
+});

@@ -92,7 +92,23 @@ for (const [workspace, compiled] of [
     ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']]
     : []),
 ]) {
-  if (!existsSync(join(repo, compiled))) run('npm', ['run', 'package:build', '--workspace', workspace]);
+  if (!existsSync(join(repo, compiled))) {
+    const args = ['run', 'package:build', '--workspace', workspace];
+    if (process.env.SVITLO_CI_BUILD_TELEMETRY) {
+      run(process.execPath, [
+        join(repo, 'scripts/ci/buildTelemetry/record-build-command.mjs'),
+        '--workspace',
+        workspace,
+        '--origin',
+        'textbook-dependency-fallback',
+        '--',
+        'npm',
+        ...args,
+      ]);
+    } else {
+      run('npm', args);
+    }
+  }
 }
 // Some textbooks expose placeholder Scene registries before authoring real Scenes.
 // Enable generated-registry verification explicitly via the shared npm check.

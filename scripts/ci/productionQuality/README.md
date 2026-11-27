@@ -14,6 +14,65 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   Docker-isolated, SHA-pinned five-materializer round trip, CI-only security
   regressions, and generator CLI tests that root `npm test` does not cover.
   A failed or skipped reusable workflow blocks `Production Quality / verify`.
+  On Ready `main` promotions, the separately PR-triggered Engine generators
+  workflow still runs its npm-free publisher-isolation and CI-policy guards but
+  skips its **second** expensive `generator-tests` job. The Production Quality
+  reusable call explicitly passes `run_full_generator_tests: true`, so the
+  complete Engine generator suite still executes once inside the strict
+  protected aggregate. Standalone Ready PRs to `develop` or integration
+  branches and manual `workflow_dispatch` still run the complete suite.
+  This avoids redundant job initialization; no individual generator tests
+  are removed, and a cost saving has not yet been measured in a real
+  Ready `develop → main` promotion. Importantly, the reusable workflow's
+  `github.workflow` context is the **calling workflow** name; its workflow-level
+  concurrency group includes that value, keeping a direct Ready
+  `Engine generators` run isolated from the separate `Production quality`
+  reusable call. Both retain same-workflow cancellation of superseded
+  runs without accidentally canceling the other path or its required gate.
+  This separation has a focused `production-quality.spec.mjs` regression
+  test; actual simultaneous Ready main event behavior remains to be verified.
+  The Production-only targeted generator step now compares actual compiled
+  test-file paths selected by the two independent routes. Standalone Ready and
+  manual Engine generator runs retain the **entire original selection**. Only
+  the protected Production Quality caller passes
+  `only_unit_unique_generator_tests: true`: the targeted generator step
+  skips concrete files already selected by the required exhaustive root
+  Engine `npm test` job. It expands all original 35 generator selectors
+  and the current Engine npm test selectors, rejecting missing compiled
+  files, unrecognized root command shapes and empty generator-only scopes.
+  If the root command stops selecting a file, that file automatically
+  returns to the generator selection. All separate publisher, materializer,
+  formatting, bank/Lesson security and trusted command steps are unchanged.
+  The strict `Production Quality / verify` depends on both the unit and
+  generators jobs. The new npm-free fixture tests cover selection and
+  failure conditions. Owner-authorized [Production Quality #46067229201](https://github.com/KiT-Maverik/svitlo/actions/runs/46067229201)
+  passed all 16 jobs at exact source HEAD `6462049bb783cc96bc8647aec6260244535ff9b6`:
+  the Production-only targeted generator step executed 11 of 54 concrete test
+  files, while 43 were selected by the separate required root Engine npm test.
+  This confirmed compiled-file routing under manual `workflow_dispatch`.
+  Subsequent same-runner [Production Quality #46070793047](https://github.com/KiT-Maverik/svitlo/actions/runs/46070793047)
+  at experiment SHA `de4eb900b7d16bd2f1032b3c6257b347ab930760` completed all 16 jobs and
+  passed an A/B/B/A comparison of the **full 54-file test step** (48.936s and
+  49.095s) against **11 generator-only files** (7.692s and 7.768s): mean
+  **49.016s vs 7.730s**, or **41.286s (84.2%)** less _selected step time_.
+  This is not a matched reduction in entire workflow wall time or billed minutes.
+
+  Further [Production Quality #46076287045](https://github.com/KiT-Maverik/svitlo/actions/runs/46076287045)
+  at experiment SHA `9018cb58b07882d5edebe23aa6bbe20b9942e220` passed all 16 jobs and
+  compared **the same 43 overlapping compiled test files** using canonical
+  `node --test` plus a read-only event reporter from the repository root and
+  `shared/engine` working directories: **290 identical passing case events**
+  in each, with no skipped, todo or failing cases and no case identity/status
+  differences (normalized file, name, nesting, line, column and status).
+  Earlier exploratory diagnostic attempts did not establish parity and are
+  not passing evidence. Temporary A/B and case-parity steps were fully removed
+  after measurement: the final generator workflow blob is unchanged from its
+  pre-experiment value `0d4340341a8d483af8e6161b138fe1c45a35d5cb`.
+  This validates case selection under both CLI working directories, **not**
+  every npm lifecycle environment setting, the independent runners' hidden
+  state, or the actual Ready `develop → main` concurrency/cancellation event.
+  No compiled output is shared between runners.
+
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics

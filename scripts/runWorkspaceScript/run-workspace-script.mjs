@@ -127,8 +127,35 @@ export function planTypecheckPhases(plan) {
   return { builds, ...partitionBuildMutatingHosts(checks) };
 }
 
+/**
+ * Source-bounded timing lines are forwarded by quietRun only when explicitly
+ * enabled. GitHub annotations don't appear in decoded job logs, so use inert
+ * text instead of workflow commands. No artifact or repository file is written.
+ */
+export function formatUnitWorkspaceTiming(name, script, durationMs, passed) {
+  if (
+    !/^@svitlo\/[a-z][a-z0-9-]*$/.test(name) ||
+    !['test', 'package:build'].includes(script) ||
+    !Number.isFinite(durationMs) ||
+    durationMs < 0
+  )
+    return null;
+  return (
+    'SVITLO_CI_UNIT_TIMING ' +
+    name +
+    ' / ' +
+    script +
+    ' ' +
+    (durationMs / 1000).toFixed(1) +
+    's (' +
+    (passed ? 'success' : 'failure') +
+    ')'
+  );
+}
+
 function runStepSync({ name, script }) {
   console.log('\n▶ ' + name + ' / ' + script);
+  const startedAt = process.hrtime.bigint();
   const reuse = script === 'package:build' && Boolean(process.env.SVITLO_CI_PACKAGE_BUILD_STATE);
   const command = reuse ? process.execPath : 'npm';
   const args = reuse
@@ -140,6 +167,15 @@ function runStepSync({ name, script }) {
     stdio: 'inherit',
     shell: !reuse && process.platform === 'win32',
   });
+  if (process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
+    const notice = formatUnitWorkspaceTiming(
+      name,
+      script,
+      Number(process.hrtime.bigint() - startedAt) / 1_000_000,
+      !result.error && result.status === 0,
+    );
+    if (notice) console.log(notice);
+  }
   if (result.error || result.status !== 0) {
     throw Error(name + ' / ' + script + ' failed' + (result.error ? ': ' + result.error.message : ''));
   }
