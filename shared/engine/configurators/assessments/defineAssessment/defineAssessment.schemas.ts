@@ -126,7 +126,7 @@ type SupportingSectionOverrides<
 > = {
   children?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
 } & { [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false } &
-  Added & { [Key in Extract<keyof Added, keyof Sections>]?: never };
+  { [Key in Exclude<keyof Added, keyof Sections | 'children'>]: Added[Key] };
 
 export type Assessment_Overrides<
   Before extends Record<string, Assessment_Content_Section_Configurator>,
