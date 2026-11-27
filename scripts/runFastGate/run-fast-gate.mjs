@@ -164,7 +164,23 @@ async function runGate(changed, base, head, { changedOnly = false } = {}) {
       ensureSharedDependencies(dep, next);
       const dependency = all.get(dep);
       if (shouldBuildDependency(pkg, dependency) && !built.has(dep)) {
-        exec('npm', ['run', 'package:build', '--workspace', dep]);
+        if (process.env.SVITLO_CI_BUILD_TELEMETRY) {
+          exec(process.execPath, [
+            'scripts/ci/buildTelemetry/record-build-command.mjs',
+            '--workspace',
+            dep,
+            '--origin',
+            'fastgate-prerequisite',
+            '--',
+            'npm',
+            'run',
+            'package:build',
+            '--workspace',
+            dep,
+          ]);
+        } else {
+          exec('npm', ['run', 'package:build', '--workspace', dep]);
+        }
         built.add(dep);
       }
     }
