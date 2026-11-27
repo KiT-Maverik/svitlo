@@ -105,6 +105,13 @@ test('validated direct placement paths use indexed membership, not order-array s
     () => findCourseActivityByPlacement(structuredClone(course), 'module/nested/lesson'),
     /assembled, validated Course/,
   );
+  const changed = assembleCourseTree(base, undefined, id(1), 'en');
+  const changedModule = changed.module as { children: string[] };
+  changedModule.children = [];
+  assert.throws(
+    () => findCourseActivityByPlacement(changed, 'module/nested/lesson'),
+    /changed after validation/,
+  );
 });
 
 test('rejects translation changing structure, identity or unsupported Episode events', () => {
