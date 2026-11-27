@@ -9,7 +9,7 @@ import {
   loadPublishedCourseTreeWithFallback,
   PublishedResourceError,
 } from '@svitlo/adapter-nextjs';
-import { courseActivities, resolveEntityPath, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
+import { resolveEntityPath, type LanguageCode, type LocalizedCourse } from '@svitlo/engine/runtime';
 
 export type { LocalizedCourse, LocalizedCourseNode } from '@svitlo/engine/runtime';
 /** Draft-only content is available locally; production always fails closed. */
@@ -65,14 +65,6 @@ export async function loadExistingCourseWithFallback(
   }
 }
 
-export function courseHasLesson(course: LocalizedCourse, id: string): boolean {
-  return courseActivities(course).some(({ node }) => node.type === 'lesson' && node.id === id);
-}
-export function courseLessonIds(course: LocalizedCourse): string[] {
-  return courseActivities(course)
-    .filter(({ node }) => node.type === 'lesson' && !('draft' in node && node.draft === true))
-    .map(({ node }) => node.id);
-}
 /** Read only the derived TOC, using the same strict draft gate as Course Props. */
 export const loadCourseToc = (id: string, language: LanguageCode) =>
   loadPublishedCourseToc(id, language, undefined, process.env.NODE_ENV === 'development' ? 'draft' : 'production');
