@@ -290,6 +290,28 @@ export const defineAssessment = <
     return result;
   };
 
+  const validatePhasePatch = (
+    source: Publication<Assessment_DataBase>,
+    patch: Publication<OverrideBase>,
+    languages: readonly LanguageCode[],
+  ): void => {
+    const mergeLayer = (original: Record<string, unknown>, changes: Record<string, unknown>) => {
+      const merged = mergeForValidation(original, changes);
+      for (const role of ['before', 'after'] as const) {
+        if (isRecord(changes[role]) && Array.isArray(changes[role].children)) {
+          merged[role] = structuredClone(changes[role]);
+        }
+      }
+      return merged;
+    };
+    for (const language of languages) {
+      const original = mergeLayer(source.base as Record<string, unknown>, source.locale?.[language] ?? {});
+      const basePatched = mergeLayer(original, patch.base as Record<string, unknown>);
+      const localized = mergeLayer(basePatched, patch.locale?.[language] ?? {});
+      assessment_Data_Schema.parse(localized);
+    }
+  };
+
   const overrides = <
     const AddedBefore extends Record<string, Assessment_Content_Section_Configurator> = {},
     const AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
@@ -390,7 +412,7 @@ export const defineAssessment = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateRequestedPublication(assessment_Data_Schema, data(options), languages, result);
+      validatePhasePatch(data(options), result, languages);
       return result;
     } catch (error) {
       throw new Error(
