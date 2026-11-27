@@ -1,4 +1,5 @@
 import type { LanguageCode } from '#schemas';
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -18,7 +19,8 @@ import {
   scopeBuild,
   selectPublicationLocales,
   splitLocalizedFields,
-  validateOrderedKeys,
+  validateSlugAddressedContainer,
+  slugAddressedReservedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
@@ -56,10 +58,28 @@ type OverrideBase = {
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
-const emptyCollection = () => ({
-  items: {} as Record<string, Assessment_Content_Section_Configurator>,
-  order: [] as string[],
-});
+type Phase = { children: string[] } & Record<string, unknown>;
+const emptyCollection = (): Phase => ({ children: [] });
+const phaseItems = (phase: Phase): Record<string, Assessment_Content_Section_Configurator> =>
+  Object.fromEntries(Object.entries(phase).filter(([key]) => key !== 'children')) as Record<
+    string,
+    Assessment_Content_Section_Configurator
+  >;
+const validatePhase = (phase: Phase, name: string): void => {
+  const issues = validateSlugAddressedContainer(phase, contentSectionTypes);
+  const members = phaseItems(phase);
+  const errors = validateSluggedConfiguratorMap(members, contentSectionTypes, {
+    path: name,
+    itemLabel: 'Assessment Content Section',
+    reservedKeys: slugAddressedReservedKeys,
+  });
+  if (issues.length || errors.length) {
+    throw new Error(
+      [...issues.map(issue => name + '.' + issue.path.join('.') + ': ' + issue.message),
+       ...errors.map(issue => issue.message)].join('; '),
+    );
+  }
+};
 
 const composeSections = (input: Assessment_Config) => {
   const before = input.before ?? emptyCollection();
@@ -67,11 +87,11 @@ const composeSections = (input: Assessment_Config) => {
   if (input.quiz?.type !== 'quiz') throw new Error('Assessment must define exactly one Quiz in quiz');
   if (input.quiz.config?.base?.params?.disabled === true) throw new Error('Assessment Quiz cannot be disabled');
   const quizKey = input.quiz.slug;
-  const names = [...before.order, quizKey, ...after.order];
+  const names = [...before.children, quizKey, ...after.children];
   if (new Set(names).size !== names.length)
     throw new Error('Assessment Section slugs must be unique across before, quiz and after');
   return {
-    items: { ...before.items, [quizKey]: input.quiz, ...after.items },
+    items: { ...phaseItems(before), [quizKey]: input.quiz, ...phaseItems(after) },
     order: names,
   };
 };
@@ -79,19 +99,8 @@ const validate = (config: Assessment_Config): void => {
   assessment_Config_Schema.parse(config);
   const before = config.before ?? emptyCollection();
   const after = config.after ?? emptyCollection();
-  const issues = [
-    ...validateOrderedKeys(before, { path: 'before' }),
-    ...validateOrderedKeys(after, { path: 'after' }),
-    ...validateSluggedConfiguratorMap(before.items, contentSectionTypes, {
-      path: 'before.items',
-      itemLabel: 'Assessment Content Section',
-    }),
-    ...validateSluggedConfiguratorMap(after.items, contentSectionTypes, {
-      path: 'after.items',
-      itemLabel: 'Assessment Content Section',
-    }),
-  ];
-  if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  validatePhase(before, 'before');
+  validatePhase(after, 'after');
   const section = composeSections(config);
   const ids = new Set<string>();
   for (const [key, child] of Object.entries(section.items)) {
@@ -129,9 +138,11 @@ export const defineAssessment = <
     slug: Slug;
     params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Assessment_Config['locale'], Languages>;
-    before?: { items: Before & ChildrenSupporting<Languages, Before>; order: string[] };
+    before?: { children: Extract<keyof Before, string>[] } & Before &
+      ChildrenSupporting<Languages, Before> & SafePlacementMap<Before>;
     quiz: Quiz;
-    after?: { items: After & ChildrenSupporting<Languages, After>; order: string[] };
+    after?: { children: Extract<keyof After, string>[] } & After &
+      ChildrenSupporting<Languages, After> & SafePlacementMap<After>;
   },
 ) => {
   const metadataSchema = assessment_Config_Schema.omit({ before: true, quiz: true, after: true });
@@ -139,8 +150,8 @@ export const defineAssessment = <
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
-  const before = { items: { ...(config.before?.items ?? {}) }, order: [...(config.before?.order ?? [])] };
-  const after = { items: { ...(config.after?.items ?? {}) }, order: [...(config.after?.order ?? [])] };
+  const before: Phase = { ...(config.before ?? {}), children: [...(config.before?.children ?? [])] };
+  const after: Phase = { ...(config.after ?? {}), children: [...(config.after?.children ?? [])] };
   const quiz = config.quiz;
   const section = composeSections({
     ...metadataInput,
@@ -245,8 +256,8 @@ export const defineAssessment = <
     const AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
   >(
     patch: Assessment_Overrides<Before, Quiz, After, AddedBefore, AddedAfter> & {
-      before?: { additionalItems?: AddedBefore & ChildrenSupporting<Languages, AddedBefore> };
-      after?: { additionalItems?: AddedAfter & ChildrenSupporting<Languages, AddedAfter> };
+      before?: AddedBefore & ChildrenSupporting<Languages, AddedBefore> & SafePlacementMap<AddedBefore>;
+      after?: AddedAfter & ChildrenSupporting<Languages, AddedAfter> & SafePlacementMap<AddedAfter>;
     },
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
@@ -272,54 +283,45 @@ export const defineAssessment = <
         locale: undefined,
       };
       const childPatches: Record<string, unknown> = {};
-      const phase = (
-        name: 'before' | 'after',
-        original: { items: Record<string, Assessment_Content_Section_Configurator>; order: string[] },
-        changeset: unknown,
-      ) => {
+      const phase = (name: 'before' | 'after', original: Phase, changeset: unknown): Phase => {
         if (changeset === undefined) return original;
         if (!isRecord(changeset)) throw new Error(name + ' must be an object');
-        for (const key of Object.keys(changeset)) {
-          if (!['items', 'additionalItems', 'order'].includes(key))
-            throw new Error('Unknown Assessment ' + name + ' override field: ' + key);
-        }
-        const changes = changeset.items ?? {};
-        const additions = changeset.additionalItems ?? {};
-        if (!isRecord(changes) || !isRecord(additions))
-          throw new Error('Assessment ' + name + ' override maps must be objects');
-        const issues = validateSluggedConfiguratorMap(additions, contentSectionTypes, {
-          path: name + '.additionalItems',
-          itemLabel: 'Assessment Content Section',
-        });
-        if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-        const active: Record<string, Assessment_Content_Section_Configurator | false> = { ...original.items };
-        let structural = Object.keys(additions).length > 0;
-        for (const [key, child] of Object.entries(additions)) {
-          if (Object.hasOwn(original.items, key))
-            throw new Error('Duplicate Assessment supporting Section slug: ' + key);
-          active[key] = child as Assessment_Content_Section_Configurator;
-        }
-        for (const [key, change] of Object.entries(changes)) {
-          if (!Object.hasOwn(original.items, key)) throw new Error('Unknown Assessment supporting Section: ' + key);
-          if (change === false) {
-            active[key] = false;
+        const originalItems = phaseItems(original);
+        const active: Record<string, Assessment_Content_Section_Configurator | false> = { ...originalItems };
+        let structural = false;
+        for (const [key, change] of Object.entries(changeset)) {
+          if (key === 'children') continue;
+          if (slugAddressedReservedKeys.some(reserved => reserved === key)) {
+            throw new Error('Reserved Assessment Section slug: ' + key);
+          }
+          if (Object.hasOwn(originalItems, key)) {
+            if (change === false) {
+              active[key] = false;
+              structural = true;
+            } else if (isRecord(change) && !isRecord(change.build)) {
+              childPatches[key] = change;
+            } else {
+              throw new Error('Assessment Content Section patch must be a sparse object or false: ' + key);
+            }
+          } else {
+            if (!isRecord(change) || change.type !== 'content') {
+              throw new Error('New Assessment Section must be a Content Section Configurator: ' + key);
+            }
+            active[key] = change as Assessment_Content_Section_Configurator;
             structural = true;
-          } else if (isRecord(change)) childPatches[key] = change;
-          else throw new Error('Assessment Content Section patch must be an object or false: ' + key);
+          }
         }
-        if (structural && changeset.order === undefined)
-          throw new Error(name + '.order is required when adding or disabling Sections');
-        const order = (changeset.order ?? original.order) as string[];
-        const errors = validateOrderedKeys({ items: active, order }, { path: name, allowDisabled: true });
-        if (errors.length) throw new Error(errors.map(issue => issue.message).join('; '));
-        return {
-          items: Object.fromEntries(
-            Object.entries(active).filter(
-              (entry): entry is [string, Assessment_Content_Section_Configurator] => entry[1] !== false,
-            ),
-          ),
-          order: [...order],
+        if (structural && changeset.children === undefined) {
+          throw new Error(name + '.children is required when adding or disabling Sections');
+        }
+        const children = changeset.children ?? original.children;
+        if (!Array.isArray(children)) throw new Error(name + '.children must be an array');
+        const updated: Phase = {
+          children: [...children],
+          ...Object.fromEntries(Object.entries(active).filter(([, value]) => value !== false)),
         };
+        validatePhase(updated, name);
+        return updated;
       };
       const updatedBefore = phase('before', before, patch.before);
       const updatedAfter = phase('after', after, patch.after);
