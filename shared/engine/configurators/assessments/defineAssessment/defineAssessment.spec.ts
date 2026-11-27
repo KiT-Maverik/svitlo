@@ -134,6 +134,22 @@ describe('Course-owned Assessment Configurator', () => {
     );
   });
 
+  test('Assessment phase patches never republish untouched Sections or inherited translations', () => {
+    const assessment = makeAssessment('sparsePhase', '69', '70');
+    assert.deepEqual(assessment.build.overrides({ before: {} }, { languages: ['en', 'uk'] }), {
+      base: {}, locale: undefined,
+    });
+    const patch = assessment.build.overrides({
+      before: { intro: { locale: { title: { uk: 'Нові інструкції' } } } },
+    }, { languages: ['uk'] });
+    assert.deepEqual(patch.base, {});
+    assert.deepEqual(patch.locale?.uk?.before, {
+      intro: { locale: { title: 'Нові інструкції' } },
+    });
+    assert.equal(patch.locale?.en, undefined);
+    assert.deepEqual(assessment.build.data({ languages: ['en'] }).base.before.children, ['intro']);
+  });
+
   test('rejects invalid supporting phase keys and unknown or stale ordered placements', () => {
     const metadata = {
       id: id('60'), slug: 'phaseValidation', type: 'assessment' as const,
