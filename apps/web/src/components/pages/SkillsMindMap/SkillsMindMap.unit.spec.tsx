@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TEST_SKILL_NODES_UK } from './skillsData.fixture';
@@ -97,6 +97,7 @@ describe('SkillsMindMap', () => {
     await screen.findByTestId('skill-node-testRed');
     fireEvent.click(screen.getByRole('button', { name: 'Список' }));
     const list = screen.getByRole('region', { name: 'Навички за доменами' });
+    expect(within(list).getByRole('button', { name: /Група: Теплі кольори/ })).toBeInTheDocument();
     expect(within(list).getByRole('progressbar')).toHaveAttribute('aria-valuenow');
     expect(within(list).queryByText('Розпізнавати червоний.')).not.toBeInTheDocument();
     expect(within(list).queryByRole('link', { name: /Прокачати навичку/ })).not.toBeInTheDocument();
@@ -134,24 +135,6 @@ describe('SkillsMindMap', () => {
     expect(screen.queryByTestId('skill-node-testRed')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Розгорнути все' }));
     expect(screen.getByTestId('skill-node-testRed')).toHaveAttribute('data-expanded', 'true');
-  });
-
-  it('collapses all branches, expands them, and supports a keyboard-friendly list view', async () => {
-    render(
-      <SkillsPageSettingsProvider>
-        <SkillsPagePreferences />
-        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
-      </SkillsPageSettingsProvider>,
-    );
-    await screen.findByTestId('skill-node-testRed');
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Згорнути все' })).toBeEnabled());
-    fireEvent.click(screen.getByRole('button', { name: 'Згорнути все' }));
-    expect(screen.queryByTestId('skill-node-testRed')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Розгорнути все' }));
-    expect(screen.getByTestId('skill-node-testRed')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Список' }));
-    expect(screen.getByRole('region', { name: 'Навички за доменами' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Група: Теплі кольори/ })).toBeInTheDocument();
   });
 
   it('allows collapsing the avatar root to just the learner profile', async () => {
