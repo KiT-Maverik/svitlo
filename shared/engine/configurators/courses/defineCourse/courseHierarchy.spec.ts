@@ -504,7 +504,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   );
   assert.throws(
     () => placeLesson(original, { id: 'c775647f-203d-481a-a1c7-4d331c779d99' } as never).build.data({ languages }),
-    /Invalid Lesson overrides/,
+    /Unsafe or immutable Lesson placement field: id/,
   );
   assert.throws(
     () =>
