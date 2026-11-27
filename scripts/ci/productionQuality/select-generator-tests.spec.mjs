@@ -46,7 +46,16 @@ test('standalone Ready and manual routes retain all generator test files', t => 
     selected: [a, b, c],
     coveredByUnit: [],
   });
-  assert.equal(generatorSelectors.length, 35, 'retain every previous targeted generator selector');
+  assert.equal(generatorSelectors.length, 34, 'targeted routes must match active suites');
+  assert.ok(
+    generatorSelectors.includes('shared/engine/.test-build/generators/materializers/lesson/*.spec.js'),
+    'active Lesson source materializer tests remain selected',
+  );
+  assert.equal(
+    generatorSelectors.includes('shared/engine/generators/materializers/lesson/*.spec.mjs'),
+    false,
+    'do not require a retired Lesson-only writer suite',
+  );
 });
 
 test('production route removes only concrete files also selected by exhaustive root npm test', t => {
