@@ -305,7 +305,10 @@ async function executeUnitOverlapExperiment(plan, packages) {
     throw Error('Unit overlap requires Linux and an enabled job-local verified build state');
   }
   const phases = planUnitOverlapExperiment(plan, packages);
-  console.log('Experimental unit overlap: prerequisites and other tests serial; UI Kit logic before Engine; overlap Engine and UI Kit components only.');
+  console.log(
+    'Experimental unit overlap: prerequisites and other tests serial; ' +
+      'UI Kit logic before Engine; overlap Engine and UI Kit components only.',
+  );
   for (const step of phases.builds) runStepSync(step);
   for (const step of phases.serial) runStepSync(step);
   runStepSync(phases.uiLogic);
