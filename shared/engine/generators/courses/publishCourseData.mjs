@@ -1,9 +1,9 @@
 /**
  * Publish a compact Course resource from a defineCourse configurator.
  *
- * The root Course, Modules and Chapters retain complete resolved Props.
+ * The root Course, Modules and Chapters retain complete addressable Data.
  * Lessons are *references* to independently published resources, with only
- * Course-specific sparse Lesson override Props embedded in the reference.
+ * Course-specific sparse Lesson override Data embedded in the reference.
  *
  * Output: <textbook>/generated/courses/<course-id>/{base,<language>}.json
  * No authored configurators or full standalone Lesson resources are serialized.
@@ -18,7 +18,7 @@ const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const clone = value => structuredClone(value);
 
-/** Props arrays are atomic; object keys merge recursively in publication order. */
+/** Data arrays are atomic; object keys merge recursively in publication order. */
 export function mergeCourseData(base, patch) {
   if (patch === undefined) return clone(base);
   if (!isObject(base) || !isObject(patch)) return clone(patch);
@@ -118,21 +118,16 @@ function findLessonPatches(course, languages, mode) {
     if (!['course', 'module', 'chapter'].includes(entity.type)) {
       throw new Error('Unsupported Course entity type at ' + location + ': ' + String(entity.type));
     }
-    const collection = entity.content;
-    if (!collection || !isObject(collection.items) || !Array.isArray(collection.order)) {
-      throw new Error('Invalid Course collection at ' + location);
-    }
-    const items = collection.items;
-    const order = collection.order;
-    if (
-      order.length !== Object.keys(items).length ||
-      new Set(order).size !== order.length ||
-      Object.keys(items).some(key => !order.includes(key))
-    ) {
-      throw new Error('Invalid Course child order at ' + location);
-    }
+    const order = entity.children;
+    if (!Array.isArray(order) || new Set(order).size !== order.length)
+      throw new Error('Invalid Course children at ' + location);
     for (const key of order) {
-      const child = items[key];
+      if (typeof key !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(key) || !own(entity, key))
+        throw new Error('Invalid Course child placement at ' + location + '/' + key);
+    }
+
+    for (const key of order) {
+      const child = entity[key];
       if (!child || (child.slug !== key && child.type !== 'lesson')) {
         throw new Error('Invalid Course child ' + location + '/' + key);
       }
@@ -176,55 +171,31 @@ function compactEntity(value, lessonPatches, language, location, mode) {
       throw new Error('Unsupported Episode Section: ' + value.id);
     return clone(value);
   }
-  if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content)) {
-    throw new Error('Invalid Course/Module/Chapter Props for ' + value.id);
+  if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.children))
+    throw new Error('Invalid Course/Module/Chapter Data for ' + value.id);
+  if (new Set(value.children).size !== value.children.length) throw new Error('Duplicate Course placement');
+  const output = clone(value);
+  for (const key of value.children) {
+    if (typeof key !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(key) || !own(value, key))
+      throw new Error('Invalid Course child placement at ' + location + '/' + key);
+    output[key] = compactEntity(value[key], lessonPatches, language, location + '/' + key, mode);
   }
-  const items = {};
-  const order = [];
-  for (const child of value.content) {
-    if (!isObject(child) || typeof child.slug !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(child.slug)) {
-      throw new Error('Course child must have a valid slug in ' + value.id);
-    }
-    if (own(items, child.slug)) throw new Error('Duplicate Course child slug: ' + child.slug);
-    items[child.slug] = compactEntity(child, lessonPatches, language, location + '/' + child.slug, mode);
-    order.push(child.slug);
-  }
-  return {
-    ...clone(Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'content'))),
-    content: { items, order },
-  };
+  return output;
 }
 
 /** Confirm a language cannot change course membership in a sparse localization file. */
 function assertSameCourseStructure(base, localized, location = 'course') {
-  if (!isObject(base) || !isObject(localized) || base.id !== localized.id || base.type !== localized.type) {
+  if (!isObject(base) || !isObject(localized) || base.id !== localized.id || base.type !== localized.type)
     throw new Error('Localized Course identity mismatch at ' + location);
-  }
   if (base.draft !== localized.draft) throw new Error('Localized Course draft status mismatch at ' + location);
-  if (base.type === 'episode' || (base.draft === true && base.type !== 'lesson')) {
-    const identity = section => [section.id, section.type, section.slug];
-    if (JSON.stringify(base.section.map(identity)) !== JSON.stringify(localized.section.map(identity)))
-      throw new Error('Localized Episode Section identity mismatch at ' + location);
-  }
-  if (base.draft === true && base.type === 'lesson') {
-    if (base.slug !== localized.slug || JSON.stringify(base.section) !== JSON.stringify(localized.section))
-      throw new Error('Localized Course Lesson preview identity mismatch at ' + location);
-  }
-  if (!base.content && !localized.content) return;
-  if (!isObject(base.content) || !isObject(localized.content)) {
-    throw new Error('Localized Course content mismatch at ' + location);
-  }
-  const original = base.content;
-  const translated = localized.content;
-  if (JSON.stringify(original.order) !== JSON.stringify(translated.order)) {
+  if (base.type === 'lesson') return;
+  if (base.slug !== localized.slug) throw new Error('Localized Course slug mismatch at ' + location);
+  if (!['course', 'module', 'chapter'].includes(base.type)) return;
+  if (!Array.isArray(base.children) || JSON.stringify(base.children) !== JSON.stringify(localized.children))
     throw new Error('Localized Course order mismatch at ' + location);
-  }
-  if (Object.keys(original.items).length !== Object.keys(translated.items).length) {
-    throw new Error('Localized Course child count mismatch at ' + location);
-  }
-  for (const slug of original.order) {
-    if (!own(translated.items, slug)) throw new Error('Localized Course missing child at ' + location + '/' + slug);
-    assertSameCourseStructure(original.items[slug], translated.items[slug], location + '/' + slug);
+  for (const key of base.children) {
+    if (!own(localized, key)) throw new Error('Localized Course child missing at ' + location + '/' + key);
+    assertSameCourseStructure(base[key], localized[key], location + '/' + key);
   }
 }
 
@@ -238,8 +209,7 @@ function projectToc(value) {
   if (title !== undefined && (typeof title !== 'string' || !title.trim()))
     throw Error('Invalid resolved Course TOC title: ' + value.id);
   const result = {
-    id: value.id,
-    type: value.type,
+    id: value.id, type: value.type,
     ...(title !== undefined ? { label: title } : {}),
   };
   if (value.draft === true) {
@@ -247,22 +217,19 @@ function projectToc(value) {
     return { ...result, draft: true };
   }
   if (['lesson', 'episode', 'assessment'].includes(value.type)) return result;
-  if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content))
+  if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.children))
     throw Error('Invalid resolved Course TOC hierarchy: ' + value.id);
-  const items = {};
-  const order = [];
-  for (const child of value.content) {
-    if (!isObject(child) || typeof child.slug !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(child.slug))
-      throw Error('Invalid Course TOC placement in ' + value.id);
-    if (own(items, child.slug)) throw Error('Duplicate Course TOC slot: ' + child.slug);
-    items[child.slug] = projectToc(child);
-    order.push(child.slug);
-  }
-  return {
+  const projected = {
     ...result,
     ...(value.type === 'course' ? { languages: [...value.params.languages] } : {}),
-    content: { items, order },
+    children: [...value.children],
   };
+  for (const key of value.children) {
+    if (typeof key !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(key) || !own(value, key))
+      throw Error('Invalid Course TOC slot: ' + key);
+    projected[key] = projectToc(value[key]);
+  }
+  return projected;
 }
 
 /**
@@ -330,9 +297,10 @@ export function renderCourseFiles(
     const localized = projectMedia ? projectMedia(localizedRaw, language) : localizedRaw;
     assertSameCourseStructure(base, localized);
     // Validate fully localized Episode Props after media projection, including nested blocks.
-    const containsEpisode = node =>
-      node.type === 'episode' || Object.values(node.content?.items ?? {}).some(containsEpisode);
-    if (mode === 'draft' || containsEpisode(localized))
+    const containsActivity = node =>
+      ['episode', 'assessment'].includes(node.type) ||
+      (Array.isArray(node.children) && node.children.some(key => containsActivity(node[key])));
+    if (mode === 'draft' || containsActivity(localized))
       assembleCourseTree(base, difference(base, localized), course.id, language, mode);
     const delta = difference(base, localized);
     if (delta !== undefined) {
