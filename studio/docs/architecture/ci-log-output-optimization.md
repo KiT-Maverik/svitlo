@@ -1,6 +1,6 @@
 # CI log output: full-workflow optimization
 
-**Status (2026-11-27):** active, **partial** implementation and evidence on [PR #915](https://github.com/KiT-Maverik/svitlo/pull/915). The full-workflow baseline, matched after-runs, transitive script audit, and independent reviews remain open. This is not a claim that the acceptance criteria have passed.
+**Status (2026-11-27):** implementation and source-level inventory are in progress on [PR #915](https://github.com/KiT-Maverik/svitlo/pull/915), with both success and failure baseline samples verified against Actions source SHAs. Full after-data and independent reviews are tracked in the PR conversation. This guide records architecture decisions and empirical limitations; it is **not** an assertion that all matrix/event paths executed.
 
 ## Problem and evidence
 
@@ -10,7 +10,7 @@ At brief creation, the `develop` tree contains **27 workflow YAML files** in `.g
 
 ## Required complete scope
 
-Audit **every job and step of every current workflow**, including reusable workflows, dynamically constructed matrix jobs, scheduled/dispatch-only flows and indirectly invoked repository/package scripts. Start from the complete file listing in `.github/workflows/` and walk through `.github/actions/` (if present), `scripts/ci/`, applicable application/package scripts and npm scripts. The source-level starting inventory and current changes are recorded in the **27-workflow snapshot** below. Discover the workflow set from the current tree again before final acceptance; this is not a maintained allowlist.\n\nThat inventory is a starting snapshot, not a permanently maintained allowlist. Discover new/renamed workflows dynamically when validating coverage.
+Audit **every job and step of every current workflow**, including reusable workflows, dynamically constructed matrix jobs, scheduled/dispatch-only flows and indirectly invoked repository/package scripts. Start from the complete file listing in `.github/workflows/` and walk through `.github/actions/` (if present), `scripts/ci/`, applicable application/package scripts and npm scripts. The source-level starting inventory and current changes are recorded in the **27-workflow snapshot** below, with each job, step, condition, reusable call and source reference in the [independent static job/step inventory](./ci-log-output-job-step-inventory.md). Discover the current tree again before final acceptance; neither document is a maintained allowlist.\n\nThat inventory is a starting snapshot, not a permanently maintained allowlist. Discover new/renamed workflows dynamically when validating coverage.
 
 ## Design priorities
 
@@ -103,7 +103,7 @@ deliberate first-pass choice, **not** proof of zero remaining noise.
 | `course-navigation-web` | verify; browser run | Existing quiet install/build/Playwright; preserve browser artifacts |
 | `course-typed-materialization` | verify-implementation, resolve, analyze, publish, reconcile-pr-tables | Native compact verify tests, quiet verify install/build; preserve trusted transaction, Git checks and reconciliation output |
 | `db-controllers-e2e` | browser-controllers | Existing quiet build/browser tests; keep artifacts |
-| `desktop-ci` | desktop, native-installers | Existing quiet common commands; do **not** intercept npm-audit JSON/exit statuses, native packaging or smoke diagnostics |
+| `desktop-ci` | desktop, native-installers (macOS/Windows) | Keep npm-audit JSON/exit statuses direct; summarize successful `npm explain` provenance through existing quiet runner while preserving failed diagnostics; native packaging/smoke remain visible |
 | `engine-coverage` | analyze; on-demand report | Native compact reporter only for the direct report unit test; keep coverage metrics/report and upload visible |
 | `engine-generators` | publisher-isolation, ci-policy, generator-tests; reusable `workflow_call` | Native compact reporter for three direct test commands; existing quiet generator suite and security checks unchanged |
 | `episode-materialization` | verify, resolve, analyze, publish | Native compact tests and quiet verify install/build; preserve trusted analyze/publish |
@@ -111,7 +111,7 @@ deliberate first-pass choice, **not** proof of zero remaining noise.
 | `frontend-components` | verify; push/dispatch | Quiet direct root `npm test` as an existing human-readable suite; other commands already quiet |
 | `get-lesson` | resolve, analyze; PR comment/dispatch | Unchanged: source-pinned resolution and generated report transport |
 | `lesson-materialization` | typed-resolve, typed-analyze, typed-publish | Existing scoped quiet execution; leave trust-transaction output and boundaries unchanged pending audit |
-| `mobile` | web, android, ios | Existing quiet install/build/test; preserve native Android/iOS tool output where needed for packaging diagnosis |
+| `mobile` | web, android, ios | Existing quiet npm commands; use Gradle native `--quiet` for Android task chatter, retaining Gradle errors; manual-only iOS xcodebuild remains raw until verified |
 | `pr-auto-format` | format | Unchanged: source-mutating formatter and commit/branch lease diagnostics |
 | `pr-clear-blocked-on-merge` | cleanup | Unchanged: GitHub Script and label actions |
 | `pr-labeler` | apply | Unchanged: provider action outputs are not shell chatter |
@@ -120,6 +120,47 @@ deliberate first-pass choice, **not** proof of zero remaining noise.
 | `repository-git-audit` | audit; dispatch/comment | Existing quiet tests; keep generated audit/report protocol direct |
 | `sync-labels` | synchronize | Unchanged: provider GitHub Script for label mutations |
 | `ui-kit-storybook` | storybook; browser checks | Quiet human-readable Playwright dependency installer; retain test and server-artifact diagnostic channels |
+
+### Transitive call-site decisions and matrix coverage
+
+This audit followed commands into the *current* root and selected workspace manifests and named script entrypoints; labels in the structural inventory describe source **steps**, while a single step can execute multiple nested npm lifecycle scripts. The following ownership is material for stdout decisions:
+
+| Entrypoint / job family | Actual downstream output and required handling |
+| --- | --- |
+| Root `package:build` and `code:lint:check` | Pinned local Turbo task graph, no caches, bounded concurrency. Existing outer `quiet-run` hides successful per-workspace scheduling and preserves failed task excerpts; cache and dependency behavior untouched |
+| Root `test`, `code:check:types`, `app:build`, `test:components` | `runWorkspaceScript` discovers manifests, runs topological dependency builds, emits per-workspace progress; npm `pretest` / `preapp:build` hooks remain active. Outer quiet-run is safe for human-readable output only; verbose reproduction is available |
+| FastGate `runFastGate` | Uses a nested quiet command runner; the top-level planner must stay direct because it reports selected targets, failures and Draft/Ready scope, and can spawn builds and typechecks |
+| Production `plan-app-matrix` | Discovers **all four** `app:build` hosts from manifests (web/platform/mobile/desktop in the pinned sample), emits the matrix to `GITHUB_OUTPUT`, and rejects E2E-only apps without a build. It is deliberately not wrapped. Production also calls the *reusable* Engine generators workflow |
+| Selected content planner and sharded builder | `plan-content-builds` chooses affected textbooks and writes `GITHUB_OUTPUT`; dynamic `content-shards` must retain per-textbook failure provenance. No hardcoded static shard set replaces the dynamic planner |
+| Backfill labels / Desktop native installers | Backfill has a fixed four-shard matrix `[0,1,2,3]`. Desktop installer matrix is **macOS + Windows** in the cited run, with a separate Linux packaging path in the main desktop job; preserve native artifact verification |
+| Web/Playground/UI Kit/Math test workspaces | Vitest, Node test runner and Playwright are invoked via npm scripts, sometimes with compilation, content preparation and browser artifact prerequisites. Do not substitute dot reporting for an npm script whose internal runner is not a direct `node --test` invocation |
+| Trusted Course/Episode/Lesson/Assessment/Bank PR commands | Default-branch authorization, actor permission, pinned source SHA, isolated analyzer, sealed manifest and privileged Git publication retain their stdout and `GITHUB_OUTPUT` semantics. The existing older quiet-wrapped Bank/Lesson/Course analyzer invocations have **not** been broadened; new noise suppression targets only explicitly scoped verify-only commands |
+| Desktop audit / provenance | `npm audit --json` writes machine data to files; audit statuses and advisory summaries stay direct. `npm explain` was the single largest safe human-readable success source in a Desktop job; quiet its success output while retaining failed command diagnostics and the existing lockfile resolution check |
+| Mobile native compilation | `./gradlew assembleDebug --no-daemon --quiet` selects Gradle's supported native logging mode without changing the task or exit code. The iOS Simulator `xcodebuild` command is manual-only and remains unchanged; source and observed native build failures must remain reviewable |
+| Agent artifact, lesson lookup and coverage jobs | SHA-pinned generated manifest checks, report files, JSON fields, coverage summaries and uploads are intentionally direct; diagnostic artifacts are one-day scoped. Do not wrap machine-readable stdout or hide first-cause coverage errors |
+| GitHub runner/provider steps | Checkout/setup/cache/action post-cleanup and third-party actions are independent log producers. The source cannot safely erase their setup or security audit trail, and their output establishes a baseline floor |
+
+The `.github/actions/` directory was absent in the examined tree. The [step-by-step inventory](./ci-log-output-job-step-inventory.md) records every YAML-defined job step. Its matrix expressions and conditional branches are **definitions**, not claims about unobserved platform or manual dispatch executions.
+
+### Additional source-pinned before samples
+
+These are **different source SHAs and scopes**, not directly comparable throughput measurements. The byte count measures complete decoded UTF-8 **job logs** retrieved from Actions. Unicode characters count code points (not tokens). Duration is full workflow wall-clock from Actions metadata, even where only one job is measured.
+
+| Workflow, outcome, event / immutable SHA | Job measured | UTF-8 bytes / Unicode characters | Workflow time |
+| --- | --- | ---: | ---: |
+| [Frontend #46012031612](https://github.com/KiT-Maverik/svitlo/actions/runs/46012031612), success, dispatch, `97d65ffca506784fc94d75547c2b10c974532b4c` | 140549710185 | 220,217 / 216,564 | 724 s |
+| [Frontend #46010806830](https://github.com/KiT-Maverik/svitlo/actions/runs/46010806830), failure, dispatch, `3e0a3026263137f8ab06a6f4e4f2a636699eed1c` | 140545517860 | 231,835 / 228,919 | 261 s |
+| [Desktop #46013560739](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560739), success, PR, `67dcd7368f4b65cf2a84ca28f0a18e174c0f5f7e` | 140554915804 (main desktop only) | 84,982 / 84,972 | 235 s |
+| [Mobile #46013560353](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560353), success, PR, same SHA as Desktop | 140554997936 (Android only) | 37,050 / 37,046 | 134 s |
+| [Engine generators #46013560492](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560492), success, PR, same SHA | three jobs: 140554898733, 140554899188, 140554899228 | 65,225 / 65,015 | 117 s |
+| [Engine generators #46013960595](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960595), failure, PR, `7f3886a064157e7ad0ea2d9c9ca05119dd870e21` | 140556229076 (failing tests only) | 29,843 / 29,755 | 105 s |
+| [Typed Course #46013960636](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960636), success, PR, same `7f3886a...` SHA | 140556228976 | 29,136 / 28,968 | 71 s |
+| [Typed Course #46009626824](https://github.com/KiT-Maverik/svitlo/actions/runs/46009626824), failure, PR, `cb11abd7461b177e5f02ae9b948e240773a755ac` | 140541524572 | 28,915 / 28,741 | 65 s |
+| [Engine coverage #46009961761](https://github.com/KiT-Maverik/svitlo/actions/runs/46009961761), failure, comment, `74758a8651eb16c056e382c5e0b3e632e6c778db` | 140542647694 | 44,807 / 44,745 | 252 s |
+
+Pre-change Frontend's unwrapped `npm test` step accounted for approximately **201,033 of its 216,564 total log characters** (from source log boundaries), a clear optimization target. In successful Desktop, the long `npm explain` provenance segment accounted for approximately **54,363 of 84,972 log characters**. In Android, `./gradlew assembleDebug` accounted for approximately **17,662 of 37,046 log characters**. Those figures include step metadata and neighboring text between run markers; treat them as approximate **source attribution**, not exact command stdout byte measurements.
+
+For agent handling, **complete job-log API retrieval costs the whole cited number of bytes**, even if the assistant selects only a small error excerpt for context. Extracting a bounded first-cause excerpt does not reduce server-side job logs or Actions billing. Before/after agent-context cost must be reported separately from raw Actions storage and from end-to-end workflow runtime.
 
 ### Implemented choice and local probe
 
@@ -144,20 +185,9 @@ The existing `quiet-run` regression file now covers warning/error
 annotations, nonzero exit, child signal, and file-based `GITHUB_OUTPUT`
 alongside its prior failure-excerpt/Windows cases.
 
-### Still required before Ready
+### Verification, review and comparable after-data
 
-1. Audit transitive scripts and matrix expansions at real executed source
-   SHA, not just YAML sources; classify top log producers per step and job.
-2. Obtain source-pinned **success and failure** baselines across the other
-   workflows with exact event/branch, runtime, runner minutes, bytes,
-   Unicode characters, and bounded agent diagnostic retrieval cost.
-3. Run actual repository-focused test suites and YAML/format checks on the
-   final branch SHA; confirm shell commands, statuses, cancellation, GitHub
-   annotations/outputs and PR-command source trust still work.
-4. Collect representative **matched after** Actions logs and distinguish
-   raw output reduction, job time, runner cost, and reduced API retrieval.
-   The 80-test micro-probe does not substitute for this.
-5. Obtain independent Development and QA reviews in separate contexts,
-   resolve findings, transition to Ready and inspect the resulting checks.
-   Do **not** manually dispatch full Production Quality without owner
-   authorization.
+- Changes to this PR can be verified with the existing Draft policy job (which directly tests `quiet-run` diagnostics), then the Ready-target workflows and a **user-authorized** full Production Quality dispatch. The owner has authorized the Production Quality run for #915 on 2026-11-27; always pin the resulting run to the final tested HEAD.
+- The relevant regression file covers bounded success/failure output, early workflow annotations (including across output-tail rollover and separate stdout/stderr streams), first spawn cause, exit status and child signal, GitHub environment/output/step-summary files, explicit verbose opt-in and Windows npm execution. Syntax and changed-workflow policy are also validated by current Ready checks and source-policy tests; never claim unexecuted manual paths passed.
+- Record matched after-run totals, job/step source attributions, duration and agent-selected excerpt size **in the PR description**, referencing the exact Actions run and source SHA. This keeps experiment results tied to an immutable run without rewriting a canonical architecture file for each diagnostic run. Preserve honestly unmatched baseline results as qualitative only.
+- Independent Development and QA reviews must be performed in **distinct contexts** against the exact resulting SHA; they are not satisfied by implementation self-review or CI. The PR must never be merged by the agent.
