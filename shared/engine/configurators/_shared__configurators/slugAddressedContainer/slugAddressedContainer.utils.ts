@@ -34,12 +34,14 @@ export type SlugAddressedIssue = { path: (string | number)[]; message: string };
  */
 export const mayReuseCompletedLesson = (previous: unknown, candidate: unknown): boolean => {
   if (!record(previous) || !record(candidate)) return false;
-  return previous.type === 'lesson' &&
+  return (
+    previous.type === 'lesson' &&
     candidate.type === 'lesson' &&
     previous.id === candidate.id &&
     previous.slug === candidate.slug &&
     (previous.draft === undefined || previous.draft === false) &&
-    (candidate.draft === undefined || candidate.draft === false);
+    (candidate.draft === undefined || candidate.draft === false)
+  );
 };
 
 /**
