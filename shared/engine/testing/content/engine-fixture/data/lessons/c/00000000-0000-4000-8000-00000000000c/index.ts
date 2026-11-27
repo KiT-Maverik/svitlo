@@ -19,7 +19,8 @@ const intro = defineContentSection({
     title: { en: 'Introduction', uk: 'Вступ' },
     navigationLabel: { en: 'Introduction', uk: 'Вступ' },
   },
-  content: { items: { introText }, order: ['introText'] },
+  children: ['introText'],
+  introText,
 });
 
 const quiz = defineQuizSection({
@@ -45,7 +46,7 @@ const quiz = defineQuizSection({
     title: { en: 'Quiz', uk: 'Перевірка' },
     navigationLabel: { en: 'Quiz', uk: 'Перевірка' },
   },
-  content: { items: {}, order: [] },
+  children: [],
 });
 
 export const fixtureLesson = defineLesson({
@@ -59,5 +60,7 @@ export const fixtureLesson = defineLesson({
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   locale: { title: { en: 'Engine Test Lesson', uk: 'Тестовий урок Engine' } },
-  section: { items: { intro, quiz }, order: ['intro', 'quiz'] },
+  children: ['intro', 'quiz'],
+  intro,
+  quiz,
 });
