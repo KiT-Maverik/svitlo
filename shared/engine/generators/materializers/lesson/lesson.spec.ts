@@ -13,18 +13,14 @@ const section = () => ({
   type: 'content',
   params: {},
   locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
-  content: {
-    items: {
-      prompt: {
+  children: ['prompt'],
+    prompt: {
         id: id('03'),
         slug: 'prompt',
         type: 'text',
         params: {},
         locale: { value: { en: 'Read', uk: 'Читай' } },
-      },
-    },
-    order: ['prompt'],
-  },
+      },,
 });
 const lesson = () => ({
   id: id('01'),
@@ -37,7 +33,8 @@ const lesson = () => ({
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   locale: { title: { en: 'Basics', uk: 'Основи' } },
-  section: { items: { introduction: section() }, order: ['introduction'] },
+  children: ['introduction'],
+    introduction: section(),
 });
 const renderContentBlock = (child: { slug: string }, o: { directory: string }) => ({
   exportName: child.slug,
@@ -72,8 +69,8 @@ test('Lesson source retains immutable ID, order and source-only active languages
     0,
     'generated TS must parse without errors',
   );
-  assert.match(root, /defineLesson<"basics", Languages, typeof section.items>/);
-  assert.match(root, /"order": \["introduction"\]/);
+  assert.match(root, /defineLesson<"basics", Languages, typeof __sections>/);
+  assert.match(root, /"children": \["introduction"\]/);
   assert.match(root, new RegExp(id('01')));
   assert.match(root, /"en": "Basics"/);
   assert.doesNotMatch(root, /"uk": "Основи"/);
@@ -135,7 +132,7 @@ test('Missing enabled Quiz refuses complete Lesson emission before delegating ch
 });
 test('Rejects duplicate order, mismatched Section slug and unsafe paths', () => {
   const l = lesson();
-  l.section.order = [];
+  l.children = [];
   assert.throws(
     () =>
       materializeLesson(l as Parameters<typeof materializeLesson>[0], {
@@ -147,7 +144,7 @@ test('Rejects duplicate order, mismatched Section slug and unsafe paths', () => 
     /order/,
   );
   const x = lesson();
-  x.section.items.introduction.slug = 'bad';
+  x.introduction.slug = 'bad';
   assert.throws(
     () =>
       materializeLesson(x as Parameters<typeof materializeLesson>[0], {
@@ -377,10 +374,8 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
   const disabledFlashcards = { id: id('13'), slug: 'pendingCards', type: 'flashcards', params: { disabled: true } };
   const input = {
     ...l,
-    section: {
-      items: { ...l.section.items, pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards },
-      order: ['introduction', 'pendingQuiz', 'pendingCards'],
-    },
+    children: ['introduction', 'pendingQuiz', 'pendingCards'],
+    ...l., pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards,
   };
   const noDelegate = () => {
     throw Error('must not emit incomplete Section');
@@ -492,9 +487,8 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
   const base = lesson();
   const input = {
     ...base,
-    section: {
-      items: {
-        exploreColors: {
+    children: ['exploreColors', 'recallColors', 'checkColors'],
+    exploreColors: {
           config: { ...section(), slug: 'exploreColors' },
           production: {
             purpose: 'Guided exploration and formative reflection without graded evidence.',
@@ -517,10 +511,7 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
             pedagogicalIntent:
               'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
           },
-        },
-      },
-      order: ['exploreColors', 'recallColors', 'checkColors'],
-    },
+        },,
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
@@ -596,15 +587,11 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
   const l = lesson();
   const input = {
     ...l,
-    section: {
-      items: {
-        introduction: {
+    children: ['introduction'],
+    introduction: {
           config: section(),
           production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
-        },
-      },
-      order: ['introduction'],
-    },
+        },,
   };
   let acknowledged: unknown;
   const output = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
@@ -616,7 +603,7 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
   });
   assert.equal(acknowledged, undefined);
   assert.equal(
-    (input.section.items.introduction.production as Record<string, unknown>).methodologyIntegrated,
+    (input.introduction.production as Record<string, unknown>).methodologyIntegrated,
     undefined,
   );
   const markdown = output.files.find(f => f.path === 'methodology.md')?.content ?? '';
@@ -628,15 +615,11 @@ test('Lesson input Section production is immutable after successful handoff', ()
   const l = lesson();
   const input = {
     ...l,
-    section: {
-      items: {
-        introduction: {
+    children: ['introduction'],
+    introduction: {
           config: section(),
           production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
-        },
-      },
-      order: ['introduction'],
-    },
+        },,
   };
   const original = structuredClone(input);
   let handedOff = false;
