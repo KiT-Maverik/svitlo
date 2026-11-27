@@ -264,15 +264,24 @@ export const defineCheckpointAnswer = <
   // Authored placement keys cannot override the Answer's fixed identity.
   // Keeping identity after the generic spread also preserves the literal
   // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
+  const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
   const result = {
     ...initialItems,
     id, slug, type,
     children: [...initialOrder],
     validate,
     build: scopeBuild({ data, overrides }),
-    config: { base, locales: () => ({ locale: {} }), validate },
+    config: configApi,
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  // A generic string-keyed placement map may appear to shadow fixed fields
+  // in ReturnType<typeof defineCheckpointAnswer>. Restore their exact types
+  // at the owning factory boundary rather than widening the Answer role.
+  return result as Omit<typeof result, 'id' | 'slug' | 'type' | 'config'> & {
+    readonly id: typeof id;
+    readonly slug: typeof slug;
+    readonly type: typeof type;
+    readonly config: typeof configApi;
+  } & LanguageScope<Languages>;
 };
 /**
  * The higher-order generic Build overrides method cannot be extracted by the
