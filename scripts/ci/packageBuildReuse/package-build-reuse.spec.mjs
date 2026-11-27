@@ -250,6 +250,18 @@ test('telemetry JSONL is job-local, source-labeled and never written into checko
     () => appendBuildTelemetry({ root: f.root, file: 'relative.jsonl', event }),
     /absolute/,
   );
+  const linkedFile = join(dirname(f.stateFile), 'linked-telemetry.jsonl');
+  symlinkSync(join(f.root, 'inside-repo.jsonl'), linkedFile);
+  assert.throws(
+    () => appendBuildTelemetry({ root: f.root, file: linkedFile, event }),
+    /symlink/,
+  );
+  const linkedFolder = join(dirname(f.stateFile), 'linked-checkout');
+  symlinkSync(f.root, linkedFolder, 'dir');
+  assert.throws(
+    () => appendBuildTelemetry({ root: f.root, file: join(linkedFolder, 'inside-repo.jsonl'), event }),
+    /outside the repository/,
+  );
 });
 
 test('unavailable optional telemetry cannot convert a valid build or failed compiler into success', t => {
