@@ -7,6 +7,7 @@
 import { spawn } from 'node:child_process';
 import { appendFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { StringDecoder } from 'node:string_decoder';
 
 export function failureExcerpt(output, limit = 12000) {
   const lines = output.split(/\r?\n/);
@@ -68,8 +69,15 @@ export function run(argv = process.argv.slice(2)) {
   // Preserve the first actionable diagnostics, even if later log volume
   // exceeds the rolling tail cap. Avoid retaining entire successful logs.
   const diagnostics = [];
-  let pending = '';
-  const actionable = /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i;
+  // stdout/stderr have independent chunk boundaries. Never combine partial
+  // lines from different streams or lose an early GitHub diagnostic when the
+  // bounded output tail rolls over.
+  const streams = [
+    { decoder: new StringDecoder('utf8'), pending: '' },
+    { decoder: new StringDecoder('utf8'), pending: '' },
+  ];
+  const actionable = /(?:^|\\s)(?:error TS\\d+|Error:|FAIL|not ok|fatal:)|::error|\\[error\\]/i;
+  const annotation = /^::(?:error|warning|notice)(?:\\s|::)/;
   const spawnCommand = resolveSpawnCommand(command, args);
   const child = spawn(spawnCommand.command, spawnCommand.args, {
     stdio: verbose ? 'inherit' : ['inherit', 'pipe', 'pipe'],
@@ -77,18 +85,25 @@ export function run(argv = process.argv.slice(2)) {
     env: process.env,
   });
   if (!verbose) {
-    const record = chunk => {
-      const raw = chunk.toString('utf8');
+    const acceptLine = line => {
+      // Only GitHub diagnostic annotations are forwarded from ordinary,
+      // human-readable commands. Workflow-control and structured protocols
+      // must never be quiet-wrapped in the first place.
+      if (annotation.test(line)) process.stdout.write(line + '\n');
+      if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
+    };
+    const record = (chunk, stream) => {
+      const raw = stream.decoder.write(chunk);
       output += raw;
       if (output.length > 128000) output = output.slice(-128000);
-      const parts = (pending + raw).split(/\r?\n/);
-      pending = parts.pop().slice(-512);
-      for (const line of parts) {
-        if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
-      }
+      const parts = (stream.pending + raw).split(/\r?\n/);
+      // Keep the *prefix* of an excessively long partial line: it can hold
+      // the first cause or GitHub annotation marker. Bound retained memory.
+      stream.pending = parts.pop().slice(0, 8192);
+      for (const line of parts) acceptLine(line);
     };
-    child.stdout.on('data', record);
-    child.stderr.on('data', record);
+    child.stdout.on('data', chunk => record(chunk, streams[0]));
+    child.stderr.on('data', chunk => record(chunk, streams[1]));
   }
   child.once('error', error => {
     failure = error;
@@ -100,9 +115,6 @@ export function run(argv = process.argv.slice(2)) {
     const message = status + ' ' + title + ' (' + seconds + 's)';
     if (passed) {
       console.log(message);
-      for (const line of output.split(/\r?\n/)) {
-        if (/^::(?:error|warning|notice)(?:\s|::)/.test(line)) console.log(line);
-      }
     } else {
       console.error(message + ' (exit ' + String(code ?? signal ?? failure?.message) + ')');
       if (!verbose)
