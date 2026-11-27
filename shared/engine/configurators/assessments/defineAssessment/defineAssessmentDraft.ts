@@ -22,12 +22,12 @@ import {
   assessment_Draft_Data_Schema,
   type Assessment_Config,
   type Assessment_Content_Section_Configurator,
-  type Assessment_DataBase,
+  type Assessment_Draft_DataBase,
 } from './defineAssessment.schemas';
 
-type LocaleBody = { locale?: { title?: string }; section?: Assessment_DataBase['section'] };
+type LocaleBody = { locale?: { title?: string }; preview?: Assessment_Draft_DataBase['preview'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
-type Publication = { base: Assessment_DataBase & { draft: true }; locale: Files | undefined };
+type Publication = { base: Assessment_Draft_DataBase; locale: Files | undefined };
 
 /**
  * Course Stage 5 owns a visible, intentionally incomplete Assessment.
@@ -76,9 +76,10 @@ export const defineAssessmentDraft = <
     const selected = selectPublicationLocales(files, languages) ?? {};
     for (const language of languages) {
       if (!section.locale?.[language]) continue;
-      (selected[language] ??= {}).section = [
-        mergeForValidation(section.base, section.locale[language]),
-      ] as Assessment_DataBase['section'];
+      (selected[language] ??= {}).preview = mergeForValidation(
+        section.base,
+        section.locale[language],
+      ) as Assessment_Draft_DataBase['preview'];
     }
     const base: Publication['base'] = {
       id,
@@ -87,7 +88,7 @@ export const defineAssessmentDraft = <
       params: { ...own.params, languages: [...languages] },
       draft: true,
       ...(Object.keys(split.base ?? {}).length ? { locale: split.base as { title?: string } } : {}),
-      section: [section.base],
+      preview: section.base,
     };
     const result: Publication = {
       base: structuredClone(base),
