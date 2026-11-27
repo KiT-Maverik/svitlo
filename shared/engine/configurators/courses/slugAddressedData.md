@@ -196,7 +196,22 @@ Data namespace.
 
 **Status / verification caveat:** #906's Data contract is merged into the
 integration branch; #914's authored API is proposed in child PR #916 pending
-focused verification and independent review. The Course Stage 3 materializer,
+focused verification and independent review. **Downstream source migration details:** `types/workflow/courseWorkflow.types.ts`
+still derives `CourseWorkflowStage2Content` from deleted
+`Course_Config['content']`; define an explicit editorial Stage 2 structure
+instead. `types/workflow/courseWorkflowFinal.schemas.ts` still calls
+`.pick()` on the full Course/Module/Chapter Config schemas; these have
+placement-boundary refinements, so in Zod 4 use the exported
+`*_Metadata_Config_Schema` for metadata projections and leave the full
+`*_Config_Schema` to validate whole authored Config. The existing
+`configurators/assessments/defineAssessment/*.spec.ts`,
+`configurators/episodes/defineEpisode/*.spec.ts` and
+`configurators/integrationBuild.spec.ts` fixtures also need their Course
+hierarchies migrated from `content.items/order` (their internal Section
+collections must **not** be changed). These files are outside the A2
+implementation boundary and remain integration handoffs.
+
+The Course Stage 3 materializer,
 typed editor/fixtures, Playground authored Course and older Course-specific
 test call sites must migrate their declarations before the integrated
 typecheck and source-generation suites can be green. D #911 must generate
