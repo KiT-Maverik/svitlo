@@ -49,10 +49,29 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   passed all 16 jobs at exact source HEAD `6462049bb783cc96bc8647aec6260244535ff9b6`:
   the Production-only targeted generator step executed 11 of 54 concrete test
   files, while 43 were selected by the separate required root Engine npm test.
-  This confirms compiled-file routing under manual `workflow_dispatch`, not
-  exact case-ID/environment equivalence, a same-SHA measured time saving, or
-  actual Ready `develop → main` event/concurrency coverage.
-  This design does not share compiled output between runners.
+  This confirmed compiled-file routing under manual `workflow_dispatch`.
+  Subsequent same-runner [Production Quality #46070793047](https://github.com/KiT-Maverik/svitlo/actions/runs/46070793047)
+  at experiment SHA `de4eb900b7d16bd2f1032b3c6257b347ab930760` completed all 16 jobs and
+  passed an A/B/B/A comparison of the **full 54-file test step** (48.936s and
+  49.095s) against **11 generator-only files** (7.692s and 7.768s): mean
+  **49.016s vs 7.730s**, or **41.286s (84.2%)** less *selected step time*.
+  This is not a matched reduction in entire workflow wall time or billed minutes.
+
+  Further [Production Quality #46076287045](https://github.com/KiT-Maverik/svitlo/actions/runs/46076287045)
+  at experiment SHA `9018cb58b07882d5edebe23aa6bbe20b9942e220` passed all 16 jobs and
+  compared **the same 43 overlapping compiled test files** using canonical
+  `node --test` plus a read-only event reporter from the repository root and
+  `shared/engine` working directories: **290 identical passing case events**
+  in each, with no skipped, todo or failing cases and no case identity/status
+  differences (normalized file, name, nesting, line, column and status).
+  Earlier exploratory diagnostic attempts did not establish parity and are
+  not passing evidence. Temporary A/B and case-parity steps were fully removed
+  after measurement: the final generator workflow blob is unchanged from its
+  pre-experiment value `0d4340341a8d483af8e6161b138fe1c45a35d5cb`.
+  This validates case selection under both CLI working directories, **not**
+  every npm lifecycle environment setting, the independent runners' hidden
+  state, or the actual Ready `develop → main` concurrency/cancellation event.
+  No compiled output is shared between runners.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics
