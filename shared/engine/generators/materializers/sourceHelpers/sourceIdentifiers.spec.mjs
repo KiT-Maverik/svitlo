@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createSourceIdentifierRegistry, renderSourceItem } from './sourceIdentifiers.mjs';
+import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 test('canonical import names and explicit map bindings', () => {
   const claim = createSourceIdentifierRegistry('lesson', ['defineLesson', 'languages', 'section']);

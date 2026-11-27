@@ -3,7 +3,7 @@ import { test } from 'node:test';
 
 import ts from 'typescript';
 
-import { renderTemporaryMediaSpecification } from './renderTemporaryMediaSpecification';
+import { renderTemporaryMediaSpecification } from '../renderTemporaryMediaSpecification';
 
 test('temporary media brief: absent and metadata-only production emit no extra source', () => {
   assert.equal(renderTemporaryMediaSpecification(undefined, 'Video'), '');
