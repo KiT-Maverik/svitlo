@@ -28,6 +28,13 @@ export type SafePlacementMap<Items> = {
  * Invalid new values become never, so arbitrary additions cannot silently
  * acquire a valid placement type.
  */
+/**
+ * A generic Record<string, Child> represents possible child placements, not a
+ * concrete slug map. Do not let its index signature turn the parent's fixed
+ * "type", "id" and Build protocol into impossible Child intersections.
+ */
+export type LiteralPlacementMap<Items> = string extends keyof Items ? {} : Items;
+
 export type AddedPlacementsFromPatch<
   Patch,
   Existing,
