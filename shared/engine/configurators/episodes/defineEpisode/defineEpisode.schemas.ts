@@ -7,6 +7,8 @@ import type { DeepPartial } from '#types';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
+import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { sectionTypes } from '../../sections/section.constants';
 import type { Section_Configurator } from '../../sections/section.types';
 
@@ -34,6 +36,50 @@ const refineSectionPlacements = (value: Record<string, unknown>, ctx: z.Refineme
   }
 };
 
+/** Authored and completed data have no Draft marker; Draft has a separate schema. */
+const refineNonDraftPlacements = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  if (Object.hasOwn(value, 'draft')) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['draft'],
+      message: 'Episode Config and completed Data must not declare draft',
+    });
+  }
+  refineSectionPlacements(value, ctx);
+};
+
+/**
+ * A Draft preview is structurally a collection of Content Sections. Every
+ * Section must validate, and the required placeholder must be a valid Text
+ * ContentBlock inside an enabled Section rather than an arbitrary object.
+ */
+const refineDraftSections = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
+  let hasPlaceholder = false;
+  for (const sectionSlug of value.children as string[]) {
+    const parsed = contentSection_Data_Schema.safeParse(value[sectionSlug]);
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [sectionSlug, ...issue.path],
+          message: issue.message,
+        });
+      }
+      continue;
+    }
+    if (parsed.data.params.disabled === true) continue;
+    for (const blockSlug of parsed.data.children) {
+      const text = text_Data_Schema.safeParse(parsed.data[blockSlug]);
+      if (text.success && text.data.locale.value === 'Not implemented') {
+        hasPlaceholder = true;
+      }
+    }
+  }
+  if (!hasPlaceholder) {
+    ctx.addIssue({ code: 'custom', message: 'Episode draft needs the Not implemented Text ContentBlock' });
+  }
+};
+
 export const episode_Metadata_Config_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
@@ -45,7 +91,7 @@ export type Episode_Metadata_Config = z.infer<typeof episode_Metadata_Config_Sch
 export const episode_Config_Schema = episode_Metadata_Config_Schema
   .extend({ children: z.array(z.string()) })
   .catchall(z.unknown())
-  .superRefine(refineSectionPlacements);
+  .superRefine(refineNonDraftPlacements);
 export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 
 export const episode_Completed_Data_Schema = identity
@@ -55,7 +101,7 @@ export const episode_Completed_Data_Schema = identity
     events: z.record(z.string(), z.json()).optional(),
   })
   .catchall(z.unknown())
-  .superRefine(refineSectionPlacements);
+  .superRefine(refineNonDraftPlacements);
 /** Explicit draft preview; it cannot pass the completed Episode schema. */
 export const episode_Draft_Data_Schema = identity
   .extend({
@@ -67,17 +113,9 @@ export const episode_Draft_Data_Schema = identity
   .catchall(z.unknown())
   .superRefine((value, ctx) => {
     refineSectionPlacements(value, ctx);
-    const hasPlaceholder = value.children.some(key => {
-      const section = value[key] as Record<string, unknown> | undefined;
-      if (!section || !Array.isArray(section.children) || !section.params ||
-          (section.params as {disabled?: boolean}).disabled === true) return false;
-      return section.children.some(slug => {
-        const block = section[slug] as {type?: string; locale?: {value?: string}} | undefined;
-        return block?.type === 'text' && block.locale?.value === 'Not implemented';
-      });
-    });
-    if (!hasPlaceholder) ctx.addIssue({code:'custom', message:'Episode draft needs the Not implemented Text ContentBlock'});
+    refineDraftSections(value, ctx);
   });
+
 export const episode_Data_Schema = z.union([episode_Completed_Data_Schema, episode_Draft_Data_Schema]);
 export type Episode_Draft_Data = z.infer<typeof episode_Draft_Data_Schema>;
 export type Episode_Data = z.infer<typeof episode_Completed_Data_Schema>;
