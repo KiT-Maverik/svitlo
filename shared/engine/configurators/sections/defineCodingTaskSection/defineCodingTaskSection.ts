@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
@@ -299,8 +300,9 @@ export const defineCodingTaskSection = <
   };
 
   const overrides: {
-    <const Added extends Record<string, Block>>(
-      patch: CodingTaskSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & CodingTaskSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
     (
