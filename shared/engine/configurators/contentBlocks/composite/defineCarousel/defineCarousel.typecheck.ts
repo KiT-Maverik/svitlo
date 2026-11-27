@@ -29,7 +29,7 @@ const carousel = defineCarousel<
   locale: { title: 'Slides' },
   children: ['picture', 'activity'],
   picture,
-  activity,
+  activity: scene,
 });
 carousel.build.data({ languages: ['uk'] });
 carousel.build.overrides({ picture: { locale: { alt: { uk: 'Зображення' } } } }, { languages: ['uk'] });
