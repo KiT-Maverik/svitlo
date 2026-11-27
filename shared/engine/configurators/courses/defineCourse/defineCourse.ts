@@ -434,13 +434,6 @@ const defineCourseImplementation = <
   } as unknown as Course_Configurator<Slug, Items, Languages>;
 };
 
-/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
-export function defineCourse<
-  const Slug extends string,
-  const Items extends Record<string, Course_Child>,
-  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
->(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
-
 type CourseInferredBase = Omit<Course_Metadata_Config, 'slug' | 'params'> & {
   slug: string;
   params: Omit<Course_Config['params'], 'languages'> & { languages: readonly [LanguageCode, ...LanguageCode[]] };
@@ -450,6 +443,13 @@ type CourseInferredChildren<Config> = {
   [Key in Exclude<keyof Config, keyof CourseInferredBase>]:
     Config[Key] extends Course_Child ? Config[Key] : never;
 };
+
+/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
+export function defineCourse<
+  const Slug extends string,
+  const Items extends Record<string, Course_Child>,
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
+>(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
 
 /** Infer the exact child Configurator types from every direct root placement. */
 export function defineCourse<
