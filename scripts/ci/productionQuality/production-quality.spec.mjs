@@ -142,7 +142,9 @@ test('single-runner unit overlap is limited to manually dispatched PR #925 diagn
   const unit = workflow.split('\n  unit:\n')[1].split('\n  generators:\n')[0];
   assert.match(unit, /npm test/);
   assert.match(unit, /SVITLO_CI_PACKAGE_BUILD_STATE/);
-  assert.doesNotMatch(workflow, /unit_overlap_experiment:\s*description:/);
+  assert.match(workflow, /unit_overlap_experiment:\s*\n\s*description:/);
+  assert.match(workflow, /default: false/);
+  assert.match(workflow, /inputs\.unit_overlap_experiment && '1' \|\| '0'/);
 });
 
 test('production typecheck retains exhaustive canonical root command', () => {
