@@ -165,6 +165,10 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
     for (const key of base.children) verifyIdentity(base[key], selected[key], at + '/' + key);
   }
   if (base.type === 'assessment') {
+    if (base.draft === true) {
+      verifyIdentity(base.preview, selected.preview, at + '/preview');
+      return;
+    }
     for (const phase of ['before', 'after']) {
       const a = base[phase], b = selected[phase];
       assertRecord(a, at + '/' + phase);
@@ -172,8 +176,7 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
       if (JSON.stringify(a.children) !== JSON.stringify(b.children)) throw Error('Localized Assessment order changed');
       for (const key of a.children as string[]) verifyIdentity(a[key], b[key], at + '/' + phase + '/' + key);
     }
-    if (base.draft === true) verifyIdentity(base.preview, selected.preview, at + '/preview');
-    else verifyIdentity(base.quiz, selected.quiz, at + '/quiz');
+    verifyIdentity(base.quiz, selected.quiz, at + '/quiz');
   }
 }
 
