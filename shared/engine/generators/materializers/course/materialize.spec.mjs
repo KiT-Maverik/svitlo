@@ -313,7 +313,7 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   invalid.config.children = ['moduleOne'];
   assert.throws(() => materializeCourse(invalid, ctx()), /children/);
   const unsafe = course();
-  unsafe.config.content.items['../bad'] = unsafe.config.directLesson;
+  unsafe.config['../bad'] = unsafe.config.directLesson;
   unsafe.config.children.push('../bad');
   assert.throws(() => materializeCourse(unsafe, ctx()), /unsafe slug/);
   const missing = course();
