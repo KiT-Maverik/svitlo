@@ -45,7 +45,7 @@ type BuiltChild = {
 type SectionKind = 'content' | 'practice' | 'codingTask' | 'learningFlow' | 'quiz' | 'flashcards';
 type SectionChild = BuiltChild & { readonly type: SectionKind };
 type ChildKeys<Parent, Child> = Extract<{
-  [Key in keyof Parent]-?: Parent[Key] extends Child ? Key : never;
+  [Key in keyof Parent]-?: [Parent[Key]] extends [never] ? never : Parent[Key] extends Child ? Key : never;
 }[keyof Parent], string>;
 type SectionKeys<Lesson> = ChildKeys<Lesson, SectionChild>;
 type BlockKeys<Section> = ChildKeys<Section, BuiltChild>;
