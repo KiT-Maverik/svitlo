@@ -72,11 +72,13 @@ describe('Course-owned Assessment Configurator', () => {
     const result = assessment.build.data({ languages: ['en', 'uk'] });
     assert.equal(assessmentConfigurator_Schema.safeParse(assessment).success, true);
     assert.deepEqual(
-      result.base.section.map(s => s.type),
+      [...result.base.before.children.map(key => (result.base.before[key] as { type: string }).type),
+       result.base.quiz.type,
+       ...result.base.after.children.map(key => (result.base.after[key] as { type: string }).type)],
       ['content', 'quiz'],
     );
     assert.equal(result.locale?.uk?.locale?.title, 'Перевірка');
-    assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Оберіть відповідь'));
+    assert.ok(JSON.stringify(result.locale?.uk?.before).includes('Оберіть відповідь'));
     assert.equal(
       assessment_Data_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
       true,
@@ -113,8 +115,8 @@ describe('Course-owned Assessment Configurator', () => {
     const assessment = makeAssessment('withOptionalIntro', '15', '16');
     const patch = assessment.build.overrides({ before: { intro: false, children: [] } }, { languages: ['en'] });
     assert.deepEqual(
-      patch.base.section?.map(item => item.type),
-      ['quiz'],
+      patch.base.before?.children,
+      [],
     );
     assert.throws(
       () =>
@@ -185,12 +187,8 @@ describe('Course-owned Assessment Configurator', () => {
     });
     const result = draft.build.data({ languages: ['en'] });
     assert.equal(result.base.draft, true);
-    assert.equal(result.base.section.length, 1);
-    assert.equal(result.base.section[0]?.type, 'content');
-    assert.deepEqual(
-      result.base.section[0]?.content.map(block => block.type),
-      ['text'],
-    );
+    assert.equal(result.base.preview.type, 'content');
+    assert.deepEqual(result.base.preview.content.map(block => block.type), ['text']);
     assert.equal(assessment_Data_Schema.safeParse(result.base).success, true);
     assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
   });
