@@ -215,7 +215,7 @@ export function materializeFillBlanksWithText(
   };
   const render = (value: unknown, parts: string[], depth = 0): string => {
     const location = parts.join('.');
-    if (childPatterns.some(pattern => matches(pattern, parts))) {
+    if (parts.at(-1) !== 'children' && childPatterns.some(pattern => matches(pattern, parts))) {
       if (!isRecord(value)) fail(location, 'nested ContentBlock Config required');
       const child = isRecord(value.config) ? value.config : value;
       if (!isRecord(child) || typeof child.type !== 'string' || !allowedBlocks.has(child.type))
@@ -266,7 +266,7 @@ export function materializeFillBlanksWithText(
       const path = [...parts, key];
       const rendered = render(item, path, depth + 1);
       const keySource = validIdentifier.test(key) && key !== '__proto__' ? key : JSON.stringify(key);
-      const isChild = childPatterns.some(pattern => matches(pattern, path));
+      const isChild = path.at(-1) !== 'children' && childPatterns.some(pattern => matches(pattern, path));
       return '  '.repeat(depth + 1) + (isChild && rendered === key ? keySource : keySource + ': ' + rendered);
     });
     return entries.length ? '{\n' + entries.join(',\n') + '\n' + '  '.repeat(depth) + '}' : '{}';
