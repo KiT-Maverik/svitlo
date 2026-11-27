@@ -30,6 +30,28 @@ const stateVariable = 'SVITLO_CI_PACKAGE_BUILD_STATE';
 const telemetryVariable = 'SVITLO_CI_BUILD_TELEMETRY';
 
 /**
+ * Diagnose an unverified source without changing the existing fail-closed
+ * cleanSourceRevision() predicate. Only report Git-tracked relative filenames,
+ * never file contents, and bound the diagnostic output.
+ */
+export function inspectTrackedSourceChanges(root, run = spawnSync) {
+  const result = run('git', ['diff', '--name-only', 'HEAD', '--'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 1024 * 1024,
+  });
+  if (result.error || result.status !== 0) {
+    return { sourceCheck: 'git-diff-unavailable', dirtyTrackedFileCount: null, dirtyTrackedFiles: [] };
+  }
+  const files = result.stdout.split(/\r?\n/).filter(Boolean);
+  return {
+    sourceCheck: files.length ? 'modified-tracked-files' : 'no-tracked-differences',
+    dirtyTrackedFileCount: files.length,
+    dirtyTrackedFiles: files.slice(0, 10),
+  };
+}
+
+/**
  * Opt-in, job-local observability only. Never write telemetry into the checkout.
  * Consumers must not use these events as a build cache or authorization signal.
  */
@@ -50,6 +72,12 @@ export function appendBuildTelemetry({ root, file, event, env = process.env }) {
   if (relativeFile === '' || (relativeFile !== '..' && !relativeFile.startsWith('..' + sep))) {
     throw new Error('Build telemetry must stay outside the repository');
   }
+  const diagnostic =
+    event.recordKind !== 'direct-build-command' &&
+    (event.rebuildReason === 'unverified-source' ||
+      (event.outcome === 'built' && event.sourceAfterBuildRevision === null))
+      ? inspectTrackedSourceChanges(normalized)
+      : {};
   const record = {
     schemaVersion: 1,
     timestamp: new Date().toISOString(),
@@ -59,6 +87,7 @@ export function appendBuildTelemetry({ root, file, event, env = process.env }) {
     checkoutSha: env.GITHUB_SHA || null,
     operation: 'package:build',
     ...event,
+    ...diagnostic,
   };
   appendFileSync(target, JSON.stringify(record) + '\n');
 }
