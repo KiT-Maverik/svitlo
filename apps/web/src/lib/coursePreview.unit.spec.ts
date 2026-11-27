@@ -10,18 +10,15 @@ const course = {
   type: 'course',
   params: { languages: ['uk', 'en'] },
   locale: { title: 'Controlled title', description: 'Controlled description' },
-  content: {
-    order: ['module'],
-    items: {
-      module: {
-        type: 'module',
-        id: '11111111-1111-4111-8111-111111111118',
-        locale: { title: 'Controlled module' },
-        content: { order: ['lesson'], items: { lesson: { type: 'lesson', id: lesson } } },
-      },
-    },
+  children: ['module'],
+  module: {
+    type: 'module',
+    id: '11111111-1111-4111-8111-111111111118',
+    locale: { title: 'Controlled module' },
+    children: ['lesson'],
+    lesson: { type: 'lesson', id: lesson },
   },
-} as LocalizedCourse;
+} as unknown as LocalizedCourse;
 
 describe('published course presentation', () => {
   it('derives previews only from published Props, not demo textbooks', () => {
@@ -42,17 +39,17 @@ describe('published course presentation', () => {
 
 it('does not count a Course-owned Assessment as a Lesson or Module', () => {
   const withAssessment = structuredClone(course);
-  const courseModule = withAssessment.content.items.module;
+  const courseModule = withAssessment.module;
   if (courseModule.type !== 'module' && courseModule.type !== 'chapter') throw Error('Expected Module fixture');
-  courseModule.content.items.review = {
+  courseModule.review = {
     id: '11111111-1111-4111-8111-111111111119',
     type: 'assessment',
     slug: 'review',
     params: { languages: ['uk'] },
     locale: { title: 'Review' },
-    section: [],
+    before: { children: [] }, quiz: {}, after: { children: [] },
   };
-  courseModule.content.order.push('review');
+  courseModule.children.push('review');
   expect(toCoursePreview(withAssessment)).toMatchObject({ lessons: 1, modules: 1 });
 });
 
