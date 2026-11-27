@@ -109,7 +109,7 @@ function verifyPackage(pkg, changed) {
     if (pkg.scripts['code:lint:check']) run('npm', ['run', 'code:lint:check', '--workspace', pkg.name]);
     if (pkg.name === '@svitlo/math' && changed.some(f => f.startsWith('content/math/'))) {
       run('npm', ['run', 'test:types', '--workspace', pkg.name]);
-      run('npm', ['run', 'test:components', '--workspace', pkg.name]);
+      run('npm', ['test', '--workspace', pkg.name]);
     }
     const cwd = join(repo, pkg.path);
     const publisher = join(repo, 'scripts/textbook-tooling/publishTextbook/test-publish.mjs');

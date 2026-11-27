@@ -23,7 +23,9 @@ without performing a build or modifying authored files.
   Each runner installs dependencies once, then invokes
   `build-changed-content.mjs --package <path> <kind>` independently for every
   package in its shard. Publication, taxonomy, portability and compiled-export
-  checks remain per package. A failed package is annotated; remaining packages
+  checks remain per package. A changed Math package additionally runs its
+  package-owned `test:types` and `test` scripts; its remaining taxonomy locale
+  assertions are not React component tests. A failed package is annotated; remaining packages
   in the shard still run and its job fails at the end.
   Runner outputs and generated resources remain isolated between shards.
 - The prepare job owns common tests, review-ready resource readiness,
