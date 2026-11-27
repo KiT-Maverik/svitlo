@@ -240,7 +240,7 @@ export const defineCarousel = <
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Slide> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Slide> = {}>(
     patch: ContentBlock_Carousel_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<CarouselOverrideBase> => {
@@ -384,6 +384,17 @@ export const defineCarousel = <
       );
     }
   };
+
+  const overrides: {
+    <const Added extends Record<string, Slide>>(
+      patch: ContentBlock_Carousel_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+    (
+      patch: ContentBlock_Carousel_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+  } = overridesImplementation;
 
   const result = {
     id,
