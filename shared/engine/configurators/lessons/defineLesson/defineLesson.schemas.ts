@@ -34,7 +34,7 @@ const identity = identityBase_Schema.extend({
 });
 /** Lesson events are semantic metadata, not Section placement keys. */
 const withoutSemanticFields = (value: Record<string, unknown>) => {
-  const { events: _events, draft: _draft, ...placements } = value;
+  const { skills: _skills, events: _events, draft: _draft, ...placements } = value;
   return placements;
 };
 const refineSectionPlacements = (value: Record<string, unknown>, ctx: z.RefinementCtx) => {
