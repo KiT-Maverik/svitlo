@@ -28,7 +28,8 @@ describe('Course-owned Assessment Configurator', () => {
     type: 'content',
     params: {},
     locale: { title: 'Instructions', navigationLabel: '1' },
-    content: { items: { instructions: text }, order: ['instructions'] },
+    children: ['instructions'],
+    instructions: text,
   });
   const makeQuiz = (suffix: string) =>
     defineQuizSection({
@@ -51,7 +52,7 @@ describe('Course-owned Assessment Configurator', () => {
         results: { visibility: 'immediate', showScore: true },
       },
       locale: { title: 'Quiz', navigationLabel: 'Q' },
-      content: { items: {}, order: [] },
+      children: [],
     });
   const makeAssessment = <S extends string>(slug: S, suffix: string, quizSuffix: string) => {
     const quiz = makeQuiz(quizSuffix);
@@ -191,7 +192,8 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'content',
       params: {},
       locale: { title: 'Preview', navigationLabel: 'Preview' },
-      content: { items: { message }, order: ['message'] },
+      children: ['message'],
+      message,
     });
     const draft = defineAssessmentDraft({
       id: id('53'),
@@ -204,9 +206,41 @@ describe('Course-owned Assessment Configurator', () => {
     const result = draft.build.data({ languages: ['en'] });
     assert.equal(result.base.draft, true);
     assert.equal(result.base.preview.type, 'content');
-    assert.deepEqual(result.base.preview.content.map(block => block.type), ['text']);
+    assert.deepEqual(result.base.preview.children, ['message']);
+    assert.equal((result.base.preview.message as { type: string }).type, 'text');
     assert.equal(assessment_Data_Schema.safeParse(result.base).success, true);
     assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
+    // A well-formed non-placeholder Text block must not make a Draft publishable.
+    const otherText = defineText({
+      id: id('54'), slug: 'different', type: 'text', params: {},
+      locale: { value: 'Other content' },
+    });
+    const noPlaceholder = defineContentSection({
+      id: id('55'), slug: 'preview', type: 'content', params: {},
+      locale: { title: 'Preview', navigationLabel: 'Preview' },
+      children: ['different'], different: otherText,
+    });
+    const metadata = {
+      id: id('56'), slug: 'badDraft', type: 'assessment' as const,
+      params: { languages }, locale: { title: 'Not implemented' },
+    };
+    assert.throws(
+      () => defineAssessmentDraft({ ...metadata, preview: noPlaceholder }).build.data({ languages: ['en'] }),
+      /Not implemented Text ContentBlock/,
+    );
+    const disabledPlaceholder = defineText({
+      id: id('57'), slug: 'disabledPlaceholder', type: 'text',
+      params: { disabled: true }, locale: { value: 'Not implemented' },
+    });
+    const disabledPreview = defineContentSection({
+      id: id('58'), slug: 'preview', type: 'content', params: {},
+      locale: { title: 'Preview', navigationLabel: 'Preview' },
+      children: ['disabledPlaceholder'], disabledPlaceholder,
+    });
+    assert.throws(
+      () => defineAssessmentDraft({ ...metadata, preview: disabledPreview }).build.data({ languages: ['en'] }),
+      /Not implemented Text ContentBlock/,
+    );
   });
 
   test('preserves identity and isolates localized overrides', () => {
