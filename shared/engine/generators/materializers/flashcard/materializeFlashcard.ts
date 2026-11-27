@@ -116,8 +116,15 @@ function literal(value: unknown, location: string, level = 0): string {
   }
   if (value === null || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value))
-    return '[' + value.map((entry, i) => literal(entry, location + '[' + i + ']', level + 1)).join(', ') + ']';
+  if (Array.isArray(value)) {
+    const list = '[' + value.map((entry, i) => literal(entry, location + '[' + i + ']', level + 1)).join(', ') + ']';
+    if (location === 'parameters.relationships.children') {
+      if (value.some(child => typeof child !== 'string')) fail(location, 'relationship placement keys must be strings');
+      // Preserve exact keys in defineFlashcard's typed relationship placement order.
+      return list + ' as [' + value.map(key => JSON.stringify(key)).join(', ') + ']';
+    }
+    return list;
+  }
   if (!record(value)) fail(location, 'unsupported authored value');
   const entries = Object.entries(value).map(
     ([key, item]) =>
