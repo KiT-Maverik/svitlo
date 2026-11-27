@@ -6,6 +6,12 @@ on:
     branches: [main]
     types: [opened, reopened, synchronize, edited, ready_for_review]
   workflow_dispatch:
+    inputs:
+      unit_overlap_experiment:
+        description: 'Diagnostic only: overlap Engine tests with UI Kit components in the unit runner'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -116,6 +122,9 @@ jobs:
           # Passive timing annotations: every workspace test and prerequisite build
           # retains the canonical npm lifecycle and sequential execution.
           SVITLO_CI_UNIT_TEST_TIMINGS: '1'
+          # Never change required PR validation until the manually selected
+          # same-runner diagnostic has proven safe and worthwhile.
+          SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && inputs.unit_overlap_experiment && '1' || '0' }}
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - name: Report package build reuse
         if: always()
