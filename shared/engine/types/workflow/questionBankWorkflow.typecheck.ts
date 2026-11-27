@@ -67,7 +67,7 @@ const oneAnswer = {
     type: 'answerWithNumber',
     params: { assessmentMethod: 'application', restrictions: [], correctAnswers: [2] },
     locale: { placeholder: { uk: 'Введіть число' } },
-    content: { question: { items: { prompt }, order: ['prompt'] } },
+    content: { question: { children: ['prompt'], prompt } },
   },
   production: { specification: 'Number response specification' },
 } satisfies QuestionBankWorkflowQuestionNode<QuestionBankWorkflowAnswerWithNumberConfig>;
@@ -97,23 +97,21 @@ const choice = {
     params: { assessmentMethod: 'application', restrictions: [] },
     locale: {},
     content: {
-      question: { items: { prompt: choicePrompt }, order: ['prompt'] },
+      question: { children: ['prompt'], prompt: choicePrompt },
       answers: {
-        correct: { items: { correct }, order: ['correct'] },
+        correct: { children: ['correct'], correct },
         incorrect: {
-          items: {
-            incorrect: {
-              config: {
-                ...correct.config,
-                id: '663572e7-bd85-4516-86e2-3de07d209e0a',
-                slug: 'incorrect',
-                locale: { value: { uk: 'Три' } },
-              },
+          children: ['incorrect'],
+          incorrect: {
+            config: {
+              ...correct.config,
+              id: '663572e7-bd85-4516-86e2-3de07d209e0a',
+              slug: 'incorrect',
+              locale: { value: { uk: 'Три' } },
             },
           },
-          order: ['incorrect'],
         },
-        distractors: { items: {}, order: [] },
+        distractors: { children: [] },
       },
     },
   },
