@@ -367,6 +367,30 @@ describe('Configurators', () => {
         );
       });
 
+      test('Flashcard rejects all-disabled required sides and reserved relationship keys', () => {
+        const card = defineBilingualFlashcard(source);
+        assert.throws(
+          () => card.build.overrides(
+            { content: { front: { front: { params: { disabled: true } } } } },
+            { languages: ['en'] },
+          ),
+          /enabled ContentBlock/,
+        );
+        assert.throws(
+          () => defineFlashcard({
+            ...source,
+            parameters: {
+              ...source.parameters,
+              relationships: {
+                children: ['items'],
+                items: source.parameters.relationships.reverseLink,
+              },
+            },
+          } as never).build.data({ languages: ['en'] }),
+          /Invalid Flashcard relationship slug: items/,
+        );
+      });
+
       test('Flashcard permits absent hint and provides independent detached results', () => {
         const { hint: _hint, ...requiredContent } = source.content;
         const card = defineBilingualFlashcard({ ...source, content: requiredContent });
