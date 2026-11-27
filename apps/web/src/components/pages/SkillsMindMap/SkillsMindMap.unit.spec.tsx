@@ -15,9 +15,12 @@ describe('SkillsMindMap', () => {
     window.history.replaceState({}, '', '/skillAnalytics');
     // These components receive resolved props from Next.js server routes.
     // Any client fetch is a regression, not a successful mocked API response.
-    vi.stubGlobal('fetch', vi.fn(() => {
-      throw new Error('Unexpected client-side Skills fetch');
-    }));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() => {
+        throw new Error('Unexpected client-side Skills fetch');
+      }),
+    );
   });
 
   afterEach(() => {
