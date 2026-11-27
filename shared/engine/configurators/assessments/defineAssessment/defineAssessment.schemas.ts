@@ -26,9 +26,9 @@ const identity = identityBase_Schema.extend({
   params: paramsBase_Schema.shape.params.extend({ languages }),
 });
 
-const supportingSections = z.strictObject({
-  items: z.record(z.string(), z.custom<Assessment_Content_Section_Configurator>()),
-  order: z.array(z.string()),
+/** A phase is an ordered slug-addressable collection; quiz is a separate semantic role. */
+const supportingSections = z.looseObject({
+  children: z.array(z.string()),
 });
 
 export const assessment_Config_Schema = identity
@@ -97,14 +97,14 @@ export const assessment_Override_Metadata_Schema: z.ZodType<Assessment_Metadata_
   locale: z.deepPartial(deepStrict_Schema(assessment_Config_Schema.shape.locale)).optional(),
 });
 
+/** Existing child patches stay sparse; new direct keys contain whole Configurators. */
 type SupportingSectionOverrides<
   Sections extends Record<string, Assessment_Content_Section_Configurator>,
   Added extends Record<string, Assessment_Content_Section_Configurator>,
 > = {
-  items?: { [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Added & { [Key in keyof Sections]?: never };
-  order?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
-};
+  children?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false } &
+  Added & { [Key in Extract<keyof Added, keyof Sections>]?: never };
 
 export type Assessment_Overrides<
   Before extends Record<string, Assessment_Content_Section_Configurator>,
