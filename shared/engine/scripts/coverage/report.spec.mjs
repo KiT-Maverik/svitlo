@@ -31,7 +31,7 @@ describe('Engine standard runner discovery', () => {
     const requireSelection = patterns => {
       for (const compiled of required) {
         assert.ok(patterns.includes(compiled), 'Unselected Engine Node runtime regression: ' + compiled);
-        const source = path.join(engineRoot, compiled.replace(/^\\.test-build\\//, '').replace(/\\.js$/, '.ts'));
+        const source = path.join(engineRoot, compiled.slice('.test-build/'.length).replace(/\.js$/, '.ts'));
         assert.ok(fs.existsSync(source), 'Engine runtime test source is missing: ' + source);
       }
     };
