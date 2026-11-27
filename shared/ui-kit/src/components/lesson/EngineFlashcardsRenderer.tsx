@@ -7,9 +7,11 @@ import type {
   AssessmentResourceLoader,
   Disability,
   Flashcard_Data,
-  FlashcardsSection_Data,
   LanguageCode,
 } from '@svitlo/engine/runtime';
+
+import type { SectionViewProps } from '../../presentation';
+type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -31,7 +33,7 @@ export function EngineFlashcardsRenderer({
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
   accessNeeds?: readonly Disability[];
-  section: FlashcardsSection_Data;
+  section: FlashcardsSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
 }) {
@@ -120,7 +122,7 @@ function ResolvedFlashcards({
 }: {
   cards: readonly Flashcard_Data[];
   fallbackIds: readonly string[];
-  section: FlashcardsSection_Data;
+  section: FlashcardsSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
 }) {
