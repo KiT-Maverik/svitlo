@@ -50,7 +50,7 @@ test('root test planning retains every eligible workspace and npm lifecycle hook
   }
 });
 
-test('opt-in unit overlap is exhaustive, keeps every build serial, and moves npm-heavy UI Kit logic before Engine', () => {
+test('opt-in overlap keeps all builds serial, UI Kit logic before Engine and all tests selected', () => {
   const packages = discoverWorkspaces();
   const plan = planWorkspaceOperation(packages, 'test');
   const phases = planUnitOverlapExperiment(plan, packages);
@@ -76,7 +76,11 @@ test('opt-in unit overlap is exhaustive, keeps every build serial, and moves npm
 
 test('unit overlap refuses changed npm lifecycle, missing suites and duplicate selections', () => {
   const packages = [
-    ws('@svitlo/engine', 'shared/engine', { test: 'engine', 'package:build': 'build', pretest: 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine' }),
+    ws('@svitlo/engine', 'shared/engine', {
+      test: 'engine',
+      'package:build': 'build',
+      pretest: 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine',
+    }),
     ws('@svitlo/ui-kit', 'shared/ui-kit', {
       test: 'npm run test:logic && npm run test:components',
       'test:logic': 'logic',
