@@ -131,6 +131,31 @@ describe('Configurators', () => {
         content: { items: { module: courseModule }, order: ['module'] },
       });
 
+      test('Configurator publication is data-only, ordered and repeatable across entity boundaries', () => {
+        // Keep shared Build/Props invariants in one place. Entity-specific semantics
+        // (Question answers, Flashcard sides, Lesson sections) retain their own tests.
+        const publishers = [
+          ['Text', () => paragraph.build.data(uk)],
+          ['Section', () => introduction.build.data(uk)],
+          ['Question', () => numeric.build.data(uk)],
+          ['Flashcard', () => card.build.data(uk)],
+          ['Lesson', () => lesson.build.data(uk)],
+          ['Chapter', () => chapter.build.data(uk)],
+          ['Module', () => courseModule.build.data(uk)],
+          ['Course', () => course.build.data(uk)],
+        ] as const;
+
+        for (const [entity, publish] of publishers) {
+          const resource = publish();
+          const json = JSON.stringify(resource);
+          for (const authoringField of ['items', 'order', 'additionalItems', 'build']) {
+            assert.equal(json.includes('"' + authoringField + '"'), false, entity + ' leaked ' + authoringField);
+          }
+          assert.doesNotThrow(() => JSON.parse(json), entity + ' must publish JSON data');
+          assert.deepEqual(publish(), resource, entity + ' Build must not mutate its source');
+        }
+      });
+
       test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
         const resource = course.build.data(uk);
         const json = JSON.stringify(resource);
@@ -142,14 +167,17 @@ describe('Configurators', () => {
         assert.ok(json.includes('Привіт'));
         assert.equal(json.includes('Скільки?'), false, 'Question Bank must remain independent of Lesson');
         assert.equal(json.includes('Відповідь'), false, 'Flashcard Bank must remain independent of Lesson');
-        assert.equal(json.includes('"additionalItems"'), false);
-        assert.equal(json.includes('"order"'), false);
-        assert.equal(json.includes('"build"'), false);
 
         const resolved = mergeObjects(resource.base, resource.locale?.uk ?? {});
         assert.doesNotThrow(() => course_Data_Schema.parse(resolved));
         assert.deepEqual(resource.base.params.languages, ['uk']);
         assert.deepEqual(lesson.build.data(uk).base.params.languages, ['uk']);
+        assert.deepEqual(
+          lesson.build.data(uk).base.section.map(section => section.slug),
+          ['intro'],
+        );
+        assert.equal(lesson.build.data(uk).base.section[0]?.content[0]?.slug, 'paragraph');
+        assert.equal('overrides' in lesson.config, false);
         assert.deepEqual(Object.keys(paragraph.build.data({ languages: ['pl'] }).locale ?? {}), ['pl']);
         assert.throws(() => course.build.data({ languages: ['en'] } as never), /does not support publication language/);
       });
