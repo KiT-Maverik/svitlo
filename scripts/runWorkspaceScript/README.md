@@ -39,11 +39,15 @@ warrant isolated investigation before considering a bounded parallelism A/B.
 
 The default root `npm test` and all required PR/production jobs remain **sequential**.
 Only an explicitly authorized manual `workflow_dispatch` on branch
-`ci/quality-workflow-rearchitecture` activates
-`SVITLO_CI_UNIT_OVERLAP_EXPERIMENT=1` in the existing Production unit runner.
-The established `/production-quality` PR-comment dispatcher selects this exact
-branch when the owner authorizes a full diagnostic; no new workflow input or
-default-branch registration is needed. Normal required PR checks remain serial.
+`ci/quality-workflow-rearchitecture` with boolean input
+`unit_overlap_experiment=true` activates `SVITLO_CI_UNIT_OVERLAP_EXPERIMENT=1`
+in the existing Production unit runner. The same HEAD with input `false`
+(the default) is a canonical, sequential control. This workflow already exists
+on `develop`, but the newly added input's manual-dispatch availability on
+a feature branch has **not yet been verified**. The established
+`/production-quality` PR-comment dispatcher does not pass experiment
+inputs and therefore selects the serial baseline. Normal required PR checks
+remain serial.
 
 The opt-in mode preserves the eight selected workspace test capabilities and
 seven topologically ordered prerequisite builds. All package builds and the
