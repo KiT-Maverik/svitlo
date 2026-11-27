@@ -126,11 +126,7 @@ export const defineMatchBlocks = <
   const extraContent = (
     source: Content,
     languages: readonly LanguageCode[],
-    patch?: {
-      items?: Record<string, unknown>;
-      additionalItems?: Record<string, unknown>;
-      order?: string[];
-    },
+    patch?: { children?: string[] } & Record<string, unknown>,
   ) => {
     const result = resolvePairMap(source.pairs, languages, patch as never);
     const locale: Record<string, Record<string, unknown>> = {};
