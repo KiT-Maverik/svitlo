@@ -430,7 +430,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: { uk: 'Самостійний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = { params: { sections: { allowSkipping: true } } };
   const built = realLesson.build.overrides(raw, { languages: ['uk'] });
@@ -468,7 +468,8 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
-    content: { items: { reused: placeLesson(realLesson, raw) }, order: ['reused'] },
+    children: ['reused'],
+    reused: placeLesson(realLesson, raw),
   });
   const actualCourseBuild = actualCourse.build.data({ languages: ['uk'] });
   assert.equal(actualCourseBuild.base.reused.params.sections.allowSkipping, true);
@@ -736,7 +737,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Оригінальний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const authoredSection = {
     production: {
@@ -880,7 +881,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
   const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
   assert.match(wrapper ?? '', /import \{ practice \} from "\.\/sections\/practice"/);
-  assert.match(wrapper ?? '', /"additionalItems": \{practice\}/);
+  assert.match(wrapper ?? '', /"practice": practice/);
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
@@ -928,11 +929,11 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal(plan.inventory.lessons[0].overrideSourcePath, root + '/reused/index.ts');
   assert.deepEqual(plan.files, materializeCourse(reviewed, opts).files);
   const invalid = structuredClone(reviewed);
-  invalid.config.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug =
+  invalid.config.reused.production.sourcePatch.practice.source.config.slug =
     'other';
   assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
   const collision = structuredClone(reviewed);
-  collision.config.reused.production.sourcePatch.section.additionalItems.practice.source.config.id =
+  collision.config.reused.production.sourcePatch.practice.source.config.id =
     original.id;
   assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
@@ -955,7 +956,8 @@ test('Course additionalItems binds only verified Sections and retains real neste
     slug: 'practice',
     params: {},
     locale: { title: { uk: 'Практика' }, navigationLabel: '1' },
-    content: { items: { message: extraBlock }, order: ['message'] },
+    children: ['message'],
+    message: extraBlock,
   });
   const original = defineLesson({
     id: reusedLessonId,
@@ -968,7 +970,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: { uk: 'Самостійний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = {
     section: {
@@ -1016,23 +1018,24 @@ test('Course additionalItems binds only verified Sections and retains real neste
   assert.match(index, /import \{ reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"additionalItems": \{practice\}/);
+  assert.match(wrapper, /"practice": practice/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
-  const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
+  const bound = { practice: extraSection, children: ['practice'] };
   const built = original.build.overrides(bound, { languages: ['uk'] });
   assert.equal(built.id, original.id);
-  assert.equal(built.base.section[0].type, 'content');
-  assert.deepEqual(original.build.data({ languages: ['uk'] }).base.section, []);
+  assert.equal(built.base.practice.type, 'content');
+  assert.deepEqual(original.build.data({ languages: ['uk'] }).base.children, []);
   const course = defineCourse({
     id: rootId,
     type: 'course',
     slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-    content: { items: { reused: placeLesson(original, bound) }, order: ['reused'] },
+    children: ['reused'],
+    reused: placeLesson(original, bound),
   });
-  assert.equal(course.build.data({ languages: ['uk'] }).base.reused.section[0].type, 'content');
+  assert.equal(course.build.data({ languages: ['uk'] }).base.reused.practice.type, 'content');
 
   const denied = {
     ...opts,
@@ -1110,7 +1113,7 @@ test('Course Build rejects a missing requested translation without changing inte
       slug: 'localizationTest',
       params: { languages: ['en', 'uk'] },
       locale,
-      content: { items: {}, order: [] },
+      children: [],
     });
   const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
   const english = incomplete.build.data({ languages: ['en'] });
