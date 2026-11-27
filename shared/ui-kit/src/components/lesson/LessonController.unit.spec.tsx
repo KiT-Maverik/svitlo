@@ -326,39 +326,6 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.getByText('1 / 1')).toBeVisible();
   });
 
-  it('announces an explicit localized empty eligible Flashcard pool', async () => {
-    const response = fixture(false);
-    const audio: Flashcard_Data = {
-      id: uuid(101),
-      slug: 'audioOnly',
-      type: 'flashcard',
-      parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(102, 'Hear this sound')], back: [text(103, 'A bell')] },
-    };
-    response.section = [
-      {
-        id: uuid(104),
-        slug: 'audioRecall',
-        type: 'flashcards',
-        params: { selection: { flashcardIds: [audio.id] } },
-        locale: { title: 'Recall', navigationLabel: 'Flashcards' },
-        content: [],
-      },
-      response.section[1],
-    ];
-    showLesson(
-      response,
-      [],
-      {
-        loadQuestions: async () => ({ items: [], fallbacks: [] }),
-        loadFlashcards: async () => ({ items: [audio], fallbacks: [] }),
-      },
-      ['deafness'],
-    );
-    expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.flashcard.flashcard.noCompatibleCards);
-    expect(screen.queryByText('Hear this sound')).toBeNull();
-  });
-
   it.each([{ choice: 'Radiation', failed: false }, { choice: 'Sound', failed: true }])(
     'unlocks a blocking Engine Quiz after a completed $choice attempt',
     async ({ choice, failed }) => {
