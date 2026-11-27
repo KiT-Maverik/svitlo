@@ -47,22 +47,22 @@ jobs:
           node-version: '26'
           cache: npm
       - name: Install pinned dependencies without lifecycle scripts
-        run: npm ci --ignore-scripts --no-audit --no-fund
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
       - name: Assert clean trusted Engine preparation
         run: |
           test ! -e shared/engine/dist
           test ! -e shared/engine/temp
           git rev-parse HEAD
       - name: Build ordinary Engine package
-        run: npm run package:build --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Test trusted typed Course Stage 5 boundary
-        run: node --test scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/courseMaterialization/typed-course-direct.spec.mjs scripts/ci/courseMaterialization/course-handoff-tables.spec.mjs scripts/ci/courseMaterialization/course-handoff-publish.spec.mjs scripts/ci/reviewEvidence/review-evidence.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
       - name: Test Course source generator and atomic writer
-        run: node --test shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
+        run: node --test --test-reporter=dot shared/engine/generators/materializers/course/materializeStage5.spec.mjs shared/engine/generators/materializers/course/materializeStage5.build.spec.mjs shared/engine/generators/materializers/course/sourceCommit.spec.mjs
       - name: Verify focused source formatting
-        run: npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npx prettier --check scripts/ci/courseMaterialization/typed-course-direct*.mjs .github/workflows/course-typed-materialization.yml
       - name: Verify Engine build-time type contracts
-        run: npm run code:check:types --workspace @svitlo/engine
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
       - name: Verify canonical Engine package build and public declarations
         run: |
           rm -rf shared/engine/dist

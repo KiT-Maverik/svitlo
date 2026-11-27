@@ -48,7 +48,7 @@ jobs:
           console.log('Story files: ' + sources + '; docs entries: ' + entries.filter(entry => entry.type === 'docs').length);
           NODE
       - name: Install Chromium for browser preview smoke
-        run: npx playwright install --with-deps chromium
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install --with-deps chromium
       - name: Verify actual stories, Docs, Controls and shared flags in Chromium
         run: |
           npm run storybook:start --workspace @svitlo/ui-kit -- --ci > /tmp/svitlo-storybook.log 2>&1 &

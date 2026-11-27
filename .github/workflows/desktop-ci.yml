@@ -69,8 +69,8 @@ jobs:
           '
           for name in inflight glob rimraf @electron/get; do
             if npm ls "$name" --all --parseable > /dev/null 2>&1; then
-              echo "Dependency provenance for $name"
-              npm explain "$name"
+              echo "Checking resolved dependency provenance for $name"
+              SVITLO_CI_LABEL="npm explain $name" node scripts/ci/quietRun/quiet-run.mjs -- npm explain "$name"
             else
               echo "$name not present in installed dependency graph"
             fi

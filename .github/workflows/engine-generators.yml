@@ -59,9 +59,9 @@ jobs:
         with:
           node-version: '26'
       - name: Prove typed Lesson and bank publishers load without installed packages
-        run: node --test scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs scripts/ci/bankMaterialization/bank-typed-materialization.spec.mjs
       - name: Verify static six-command dispatch, trust boundaries and Course dependency inventory
-        run: node --test scripts/ci/directMaterialization/materialization-workflow-security.spec.mjs scripts/ci/directMaterialization/trusted-draft.spec.mjs scripts/ci/directMaterialization/course-dependency-isolation.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/directMaterialization/materialization-workflow-security.spec.mjs scripts/ci/directMaterialization/trusted-draft.spec.mjs scripts/ci/directMaterialization/course-dependency-isolation.spec.mjs
 
   ci-policy:
     name: Required check reuse and Draft policy
@@ -74,7 +74,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '26'
-      - run: node --test scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs
+      - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
@@ -91,7 +91,7 @@ jobs:
       - name: Build Engine
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Verify pinned Prettier import ordering without rewriting sources
-        run: npm run test:import-format
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:import-format
       - name: Typecheck Engine and compile generator tests
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine

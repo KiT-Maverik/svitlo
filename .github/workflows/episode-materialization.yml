@@ -44,10 +44,10 @@ jobs:
         with:
           node-version: '26'
           cache: npm
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: npm run package:build --workspace @svitlo/engine
-      - run: node --test scripts/ci/episodeMaterialization/episode-direct.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
-      - run: npm run code:check:types --workspace @svitlo/engine
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --ignore-scripts --no-audit --no-fund
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+      - run: node --test --test-reporter=dot scripts/ci/episodeMaterialization/episode-direct.spec.mjs shared/engine/generators/materializers/episode/materialize.spec.mjs scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs
+      - run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
 
   resolve:
     if: >-
