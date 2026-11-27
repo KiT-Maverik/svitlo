@@ -55,7 +55,7 @@ const validate = (candidate: Question_SelectMultipleAnswers_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  if (!groups.correct.children.every(key => isEnabledBlock(groups.correct[key].config.base))) {
+  if (!groups.correct.children.every(key => isEnabledBlock((groups.correct[key] as ContentBlock_Primitive_Configurator).config.base))) {
     throw new Error('content.answers.correct must contain an enabled ContentBlock');
   }
 };
