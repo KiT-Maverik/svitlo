@@ -13,6 +13,7 @@ import {
   validateRequestedPublication,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../../../_shared__configurators';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
@@ -304,8 +305,9 @@ export const defineCheckpointAnswer = <
   const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
   const buildApi = scopeBuild({ data, overrides });
   const overrides: {
-    <const Added extends Record<string, Block>>(
-      patch: CheckpointAnswer_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & CheckpointAnswer_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): AnswerPublication<AnswerOverrideBase>;
     (
