@@ -113,6 +113,14 @@ const validate = (config: Chapter_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
+type ChapterNewPlacements<
+  Items extends Record<string, Chapter_Child>,
+  Patch extends Record<string, unknown>,
+> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
+    Patch[Key] extends Chapter_Child ? Patch[Key] : never;
+};
+
 export type Chapter_Configurator<
   Slug extends string = string,
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,
@@ -125,8 +133,18 @@ export type Chapter_Configurator<
   readonly validate: typeof validate;
   readonly build: {
     data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase<Items>>;
-    overrides<const Added extends Record<string, Chapter_Child>>(
-      patch: Chapter_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    overrides<const Patch extends Record<string, unknown>>(
+      patch: Patch & {
+        children: Extract<keyof Items | keyof Patch, string>[];
+      } & {
+        [Key in keyof Patch]:
+          Key extends 'params' ? Chapter_Metadata_Overrides['params']
+            : Key extends 'locale' ? Chapter_Metadata_Overrides['locale']
+            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
+            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
+            : Patch[Key] extends Chapter_Child ? Patch[Key] : never;
+      } & ChildrenSupporting<Languages, ChapterNewPlacements<Items, Patch>> &
+        SafePlacementMap<ChapterNewPlacements<Items, Patch>>,
       options: PublicationLanguageOptions<Languages>,
     ): ChapterPublication<ChapterOverrideBase>;
     overrides(
