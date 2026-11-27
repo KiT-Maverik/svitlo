@@ -111,7 +111,10 @@ const validate = (config: Assessment_Config): void => {
   validatePhase(after, 'after');
   const section = composeSections(config);
   const ids = new Set<string>();
-  for (const [key, child] of Object.entries(section.items)) {
+  for (const [key, candidate] of Object.entries(section.items)) {
+    // Widened generic Section child maps have dynamic placement keys. Check
+    // the concrete identity shape at runtime before using its own fields.
+    const child: unknown = candidate;
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
@@ -119,6 +122,9 @@ const validate = (config: Assessment_Config): void => {
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
+      typeof child.id !== 'string' ||
+      typeof child.slug !== 'string' ||
+      typeof child.type !== 'string' ||
       child.config.base.id !== child.id ||
       child.config.base.slug !== key ||
       child.config.base.type !== child.type
