@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path';
 import {
   appendBuildTelemetry,
   cleanSourceRevision,
+  inspectTrackedSourceChanges,
   createPackageBuildReuse,
   readBuildState,
   snapshotDist,
@@ -241,6 +242,78 @@ test('source revision requires an unchanged tracked worktree', t => {
   assert.equal(cleanSourceRevision(temporary), git(['rev-parse', 'HEAD']));
   writeFileSync(join(temporary, 'source.txt'), 'modified');
   assert.equal(cleanSourceRevision(temporary), null);
+});
+
+test('bounded Git diagnostics reveal tracked edits but never source contents', t => {
+  const temp = mkdtempSync(join(tmpdir(), 'svitlo-source-diagnostics-'));
+  t.after(() => rmSync(temp, { recursive: true, force: true }));
+  const root = join(temp, 'checkout');
+  mkdirSync(root);
+  const git = args => {
+    const result = spawnSync('git', args, { cwd: root, encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    return result.stdout.trim();
+  };
+  git(['init', '--quiet']);
+  git(['config', 'user.name', 'CI diagnostics test']);
+  git(['config', 'user.email', 'ci-diagnostics@example.invalid']);
+  writeFileSync(join(root, 'source.ts'), 'original content');
+  git(['add', 'source.ts']);
+  git(['commit', '--quiet', '-m', 'fixture']);
+  assert.deepEqual(inspectTrackedSourceChanges(root), {
+    sourceCheck: 'no-tracked-differences',
+    dirtyTrackedFileCount: 0,
+    dirtyTrackedFiles: [],
+  });
+
+  writeFileSync(join(root, 'source.ts'), 'SECRET_NOT_FOR_LOGS');
+  assert.equal(cleanSourceRevision(root), null);
+  const trace = join(temp, 'events.jsonl');
+  appendBuildTelemetry({
+    root,
+    file: trace,
+    event: {
+      workspace: '@svitlo/engine',
+      outcome: 'built',
+      durationMs: 12,
+      rebuildReason: 'missing-state-record',
+      sourceRevision: git(['rev-parse', 'HEAD']),
+      sourceAfterBuildRevision: null,
+    },
+  });
+  const entry = JSON.parse(readFileSync(trace, 'utf8'));
+  assert.equal(entry.sourceCheck, 'modified-tracked-files');
+  assert.equal(entry.dirtyTrackedFileCount, 1);
+  assert.deepEqual(entry.dirtyTrackedFiles, ['source.ts']);
+  assert.doesNotMatch(JSON.stringify(entry), /SECRET_NOT_FOR_LOGS/);
+
+  appendBuildTelemetry({
+    root,
+    file: trace,
+    event: {
+      workspace: '@svitlo/engine',
+      outcome: 'built',
+      durationMs: 14,
+      sourceRevision: null,
+      rebuildReason: 'unverified-source',
+      sourceAfterBuildRevision: null,
+    },
+  });
+  const entries = readFileSync(trace, 'utf8').trim().split('\n').map(JSON.parse);
+  assert.equal(entries[1].sourceCheck, 'modified-tracked-files');
+  assert.deepEqual(entries[1].dirtyTrackedFiles, ['source.ts']);
+});
+
+test('Git diagnostic failures remain an observation and cannot enable reuse', () => {
+  const result = inspectTrackedSourceChanges('/nonexistent-checkout', () => ({
+    status: 128,
+    stdout: '',
+  }));
+  assert.deepEqual(result, {
+    sourceCheck: 'git-diff-unavailable',
+    dirtyTrackedFileCount: null,
+    dirtyTrackedFiles: [],
+  });
 });
 
 test('a nonempty distribution missing its declared public export is rejected', t => {
