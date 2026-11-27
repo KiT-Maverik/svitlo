@@ -3,8 +3,14 @@ import { test } from 'node:test';
 import { spawnSync } from 'node:child_process';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { cleanSourceRevision, createPackageBuildReuse, readBuildState, snapshotDist } from './package-build-reuse.mjs';
+import { dirname, join } from 'node:path';
+import {
+  appendBuildTelemetry,
+  cleanSourceRevision,
+  createPackageBuildReuse,
+  readBuildState,
+  snapshotDist,
+} from './package-build-reuse.mjs';
 
 const ws = (name, path, dependencies = []) => ({
   name,
@@ -28,6 +34,7 @@ function fixture(t, { packages = [ws('a', 'shared/a'), ws('b', 'shared/b', ['a']
   }
   const stateFile = join(temporary, 'build-state.json');
   const calls = [];
+  const events = [];
   let source = 'commit-1';
   let failure = null;
   const build = name => {
@@ -44,11 +51,13 @@ function fixture(t, { packages = [ws('a', 'shared/a'), ws('b', 'shared/b', ['a']
     stateFile,
     runBuild: build,
     sourceRevision: () => source,
+    onBuildEvent: event => events.push(event),
   });
   return {
     root,
     stateFile,
     calls,
+    events,
     runner,
     setSource: value => (source = value),
     setFailure: value => (failure = value),
@@ -186,4 +195,90 @@ test('a nonempty distribution missing its declared public export is rejected', t
   });
   assert.throws(() => runner.ensure('a'), /Missing compiled public export/);
   assert.deepEqual(readBuildState(f.stateFile, f.root).records, {});
+});
+
+test('telemetry records actual compiler, verified reuse and failure per workspace', t => {
+  const f = fixture(t);
+  f.runner.ensure('b');
+  f.runner.ensure('b');
+  assert.deepEqual(
+    f.events.map(({ workspace, outcome }) => [workspace, outcome]),
+    [['a', 'built'], ['b', 'built'], ['a', 'reused'], ['b', 'reused']],
+  );
+  for (const event of f.events) {
+    assert.equal(event.sourceRevision, 'commit-1');
+    assert.ok(Number.isInteger(event.durationMs) && event.durationMs >= 0);
+    assert.match(event.outputDigest, /^[a-f0-9]{64}$/);
+  }
+  f.setFailure('a');
+  rmSync(join(f.root, 'shared/a/dist'), { recursive: true, force: true });
+  assert.throws(() => f.runner.ensure('b'), /compilation failed/);
+  assert.deepEqual(f.events.at(-1).outcome, 'failed');
+  assert.equal(f.events.at(-1).workspace, 'a');
+  assert.equal(f.events.at(-1).outputDigest, null);
+  assert.equal(readBuildState(f.stateFile, f.root).stats.failed, 1);
+});
+
+test('telemetry JSONL is job-local, source-labeled and never written into checkout', t => {
+  const f = fixture(t, { packages: [ws('a', 'shared/a')] });
+  const trace = join(dirname(f.stateFile), 'compilation-telemetry.jsonl');
+  const event = { workspace: 'a', outcome: 'built', durationMs: 42, sourceRevision: 'commit-1' };
+  appendBuildTelemetry({
+    root: f.root,
+    file: trace,
+    event,
+    env: { GITHUB_RUN_ID: '123', GITHUB_RUN_ATTEMPT: '2', GITHUB_JOB: 'types', GITHUB_SHA: 'abc' },
+  });
+  const [line] = readFileSync(trace, 'utf8').trim().split('\n');
+  const record = JSON.parse(line);
+  assert.equal(record.schemaVersion, 1);
+  assert.equal(record.operation, 'package:build');
+  assert.equal(record.runId, '123');
+  assert.equal(record.runAttempt, '2');
+  assert.equal(record.job, 'types');
+  assert.equal(record.checkoutSha, 'abc');
+  assert.equal(record.sourceRevision, 'commit-1');
+  assert.equal(record.workspace, 'a');
+  assert.equal(record.outcome, 'built');
+  assert.equal(record.durationMs, 42);
+  assert.ok(!Number.isNaN(Date.parse(record.timestamp)));
+  assert.throws(
+    () => appendBuildTelemetry({ root: f.root, file: join(f.root, 'unsafe.jsonl'), event }),
+    /outside the repository/,
+  );
+  assert.throws(
+    () => appendBuildTelemetry({ root: f.root, file: 'relative.jsonl', event }),
+    /absolute/,
+  );
+});
+
+test('unavailable optional telemetry cannot convert a valid build or failed compiler into success', t => {
+  const f = fixture(t, { packages: [ws('a', 'shared/a')] });
+  const reporter = () => { throw new Error('trace sink unavailable'); };
+  const runner = createPackageBuildReuse({
+    root: f.root,
+    packages: [ws('a', 'shared/a')],
+    stateFile: f.stateFile,
+    runBuild: name => {
+      if (name === 'a') {
+        const dist = join(f.root, 'shared/a/dist');
+        mkdirSync(dist, { recursive: true });
+        writeFileSync(join(dist, 'index.js'), 'compiled a');
+      }
+    },
+    sourceRevision: () => 'commit-1',
+    onBuildEvent: reporter,
+  });
+  const warn = console.warn;
+  const warnings = [];
+  console.warn = (...args) => warnings.push(args.join(' '));
+  try {
+    assert.equal(runner.ensure('a'), 'built');
+    assert.equal(runner.ensure('a'), 'reused');
+  } finally {
+    console.warn = warn;
+  }
+  assert.equal(warnings.length, 2);
+  assert.ok(warnings.every(message => message.includes('trace sink unavailable')));
+  assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 1);
 });
