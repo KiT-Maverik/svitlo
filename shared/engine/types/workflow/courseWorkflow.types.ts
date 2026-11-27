@@ -237,8 +237,10 @@ export type CourseWorkflowStage3ExistingLesson = {
     sourceExportName: string;
     source?: never;
     /** Only the authored sparse Config patch; no pre-built duplicate. In a
-     * concrete draft, derive its exact type from a type-only Lesson import:
-     * Parameters<typeof actualLesson.build.overrides>[0].
+     * concrete draft, constrain the inert patch with the verified Lesson's
+     * type-only declaration via CourseLessonSourcePatch<typeof actualLesson>.
+     * Trusted generated placements use CourseLessonBoundPatch after binding
+     * approved Section references; the real Lesson Build API validates both.
      */
     sourcePatch?: CourseLessonSourcePatch<Lesson_Configurator>;
     /** Editorial explanation of Course-local changes, when there are any.
