@@ -89,6 +89,19 @@ const addedBoundPatch = {
 const boundAdded = placeLesson(lesson, addedBoundPatch);
 boundAdded.build.data({ languages: ['en'] });
 
+// Chained overrides retain the exact original + trusted added Section keys.
+// Existing additions need not be resupplied merely to change their order.
+boundAdded.build.overrides({ children: ['extra', 'intro'] }, { languages: ['en'] });
+boundAdded.build.overrides({ children: ['intro'], extra: false }, { languages: ['en'] });
+boundAdded.build.overrides({ params: { sections: { allowNavigation: false } } }, { languages: ['en'] });
+
+// @ts-expect-error An unbound Section cannot be added through a chained override.
+boundAdded.build.overrides({ children: ['intro', 'extra', 'newSection'] }, { languages: ['en'] });
+// @ts-expect-error Chained overrides may not use unknown Section keys.
+boundAdded.build.overrides({ unknown: false }, { languages: ['en'] });
+// @ts-expect-error Chained overrides cannot replace a Section with a ContentBlock.
+boundAdded.build.overrides({ extra: paragraph }, { languages: ['en'] });
+
 // @ts-expect-error Unlisted Section slugs are not valid placement keys.
 placeLesson(lesson, { absent: false });
 // @ts-expect-error Lesson navigation flags are booleans.
