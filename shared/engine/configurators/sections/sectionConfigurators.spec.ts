@@ -75,6 +75,39 @@ describe('Configurators', () => {
         }
       };
 
+      const overrideSkipping = (section: ReturnType<(typeof definitions)[number]>, skippable: boolean) => {
+        const options = { languages: ['en', 'uk'] as const };
+        switch (section.type) {
+          case 'content': return section.build.overrides({ params: { skippable } }, options);
+          case 'practice': return section.build.overrides({ params: { skippable } }, options);
+          case 'codingTask': return section.build.overrides({ params: { skippable } }, options);
+          case 'learningFlow': return section.build.overrides({ params: { skippable } }, options);
+          case 'flashcards': return section.build.overrides({ params: { skippable } }, options);
+        }
+      };
+
+      const replacePrompt = (section: ReturnType<(typeof definitions)[number]>) => {
+        const options = { languages: ['en', 'uk'] as const };
+        switch (section.type) {
+          case 'content': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'practice': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'codingTask': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'learningFlow': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'flashcards': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+        }
+      };
+
+      const overrideTitle = (section: ReturnType<(typeof definitions)[number]>) => {
+        const options = { languages: ['en', 'uk'] as const };
+        switch (section.type) {
+          case 'content': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'practice': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'codingTask': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'learningFlow': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'flashcards': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+        }
+      };
+
       /** Exercise invalid dynamically sourced Config patches against every concrete Section. */
       const rejectPatch = (section: ReturnType<(typeof definitions)[number]>, patch: unknown) =>
         Reflect.apply(section.build.overrides, undefined, [patch, { languages: ['en', 'uk'] }]);
@@ -90,11 +123,11 @@ describe('Configurators', () => {
           const original = section.build.data({ languages: ['en', 'uk'] });
           assert.equal(original.base.params.skippable, undefined);
           assert.deepEqual(
-            section.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params,
+            overrideSkipping(section, false).base.params,
             { skippable: false },
           );
           assert.deepEqual(
-            section.build.overrides({ params: { skippable: true } }, { languages: ['en', 'uk'] }).base.params,
+            overrideSkipping(section, true).base.params,
             { skippable: true },
           );
           assert.equal((original.base.prompt as { slug?: string })?.slug, 'prompt');
@@ -103,12 +136,7 @@ describe('Configurators', () => {
           assert.equal(original.locale?.en?.locale?.title, 'Title');
           assert.doesNotThrow(() => JSON.stringify(original));
 
-          const changed = section.build.overrides(
-            {
-              children: ['extra'], prompt: false, extra,
-            },
-            { languages: ['en', 'uk'] },
-          );
+          const changed = replacePrompt(section);
           assert.deepEqual(
             changed.base.children,
             ['extra'],
@@ -122,10 +150,7 @@ describe('Configurators', () => {
           );
           assert.equal(textValue(section.build.data({ languages: ['en', 'uk'] }).locale?.uk?.prompt), 'Питання');
 
-          const sparse = section.build.overrides(
-            { locale: { title: { uk: 'Оновлено' } } },
-            { languages: ['en', 'uk'] },
-          );
+          const sparse = overrideTitle(section);
           assert.deepEqual(sparse.base, {});
           assert.deepEqual(sparse.locale, { uk: { locale: { title: 'Оновлено' } } });
 
