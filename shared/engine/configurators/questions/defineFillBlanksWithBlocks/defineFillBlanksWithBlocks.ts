@@ -145,7 +145,7 @@ export const defineFillBlanksWithBlocks = <
     }
     if (!patch || patch.distractors !== undefined) {
       const result = resolveBlockCollection(source.distractors, languages, patch?.distractors, 'content.distractors');
-      base.distractors = result.base;
+      if (Object.keys(result.base).length) base.distractors = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {}).distractors = entries;
     }
     return { base, locale };
