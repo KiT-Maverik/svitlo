@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Test production source and parallel workflow contracts
-        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/turboTaskGraph/verify-graph.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/turboTaskGraph/verify-graph.spec.mjs
       - name: Reject non-develop production source
         if: github.event_name == 'pull_request'
         env:
