@@ -60,8 +60,8 @@ test('opt-in overlap keeps all builds serial, UI Kit logic before Engine and all
     .map(step => step.name));
   assert.deepEqual(phases.uiLogic, { name: '@svitlo/ui-kit', script: 'test:logic' });
   assert.deepEqual(phases.overlap, [
-    { name: '@svitlo/engine', script: 'test' },
     { name: '@svitlo/ui-kit', script: 'test:components' },
+    { name: '@svitlo/engine', script: 'test' },
   ]);
   assert.deepEqual(
     [...phases.serial, { name: '@svitlo/engine', script: 'test' }, { name: '@svitlo/ui-kit', script: 'test' }]
