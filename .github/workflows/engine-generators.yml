@@ -37,17 +37,29 @@ on:
       - 'package.json'
       - '.github/workflows/engine-generators.yml'
   workflow_dispatch:
+    inputs:
+      ci_mode:
+        description: 'Standard generator checks or manual Turborepo A/B/C benchmark'
+        required: false
+        type: choice
+        options:
+          - standard
+          - turbo-single
+          - turbo-distributed
+          - turbo-hybrid
+        default: standard
   workflow_call:
 
 permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}-${{ inputs.ci_mode || 'standard' }}
   cancel-in-progress: true
 
 jobs:
   publisher-isolation:
+    if: ${{ inputs.ci_mode != 'turbo-single' && inputs.ci_mode != 'turbo-distributed' && inputs.ci_mode != 'turbo-hybrid' }}
     name: Publisher isolation / no npm dependencies
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -64,6 +76,7 @@ jobs:
         run: node --test scripts/ci/directMaterialization/materialization-workflow-security.spec.mjs scripts/ci/directMaterialization/trusted-draft.spec.mjs scripts/ci/directMaterialization/course-dependency-isolation.spec.mjs
 
   ci-policy:
+    if: ${{ inputs.ci_mode != 'turbo-single' && inputs.ci_mode != 'turbo-distributed' && inputs.ci_mode != 'turbo-hybrid' }}
     name: Required check reuse and Draft policy
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -78,7 +91,9 @@ jobs:
 
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
-    if: github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft
+    if: >-
+      inputs.ci_mode != 'turbo-single' && inputs.ci_mode != 'turbo-distributed' && inputs.ci_mode != 'turbo-hybrid' &&
+      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -160,3 +175,172 @@ jobs:
             shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts \
             shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts \
             package.json shared/engine/package.json
+
+  # MANUAL-ONLY Turbo benchmark, unrelated to required Production Quality.
+  # A: one runner; B: independent GitHub job per task; C: grouped Turbo DAG.
+  turbo-a-single:
+    name: Turbo PoC A / single runner
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-single' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK: 'true'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Confirm pinned Turbo OSS CLI
+        run: npm exec --yes --package=turbo@2.11.13 -- turbo --version
+      - name: Inspect real task DAG before running
+        run: |
+          npm exec --yes --package=turbo@2.11.13 -- turbo run test \
+            --filter=@svitlo/engine --filter=@svitlo/ui-kit --filter=@svitlo/math \
+            --dry=json > "$RUNNER_TEMP/turbo-dag.json"
+          node scripts/ci/productionQuality/turbo-poc-graph.mjs "$RUNNER_TEMP/turbo-dag.json"
+      - name: Execute same nine canonical tasks through Turbo
+        run: |
+          start=$(date +%s)
+          npm_config_ignore_scripts=true npm exec --yes --package=turbo@2.11.13 -- \
+            turbo run test --filter=@svitlo/engine --filter=@svitlo/ui-kit \
+            --filter=@svitlo/math --concurrency=3 --env-mode=loose --summarize
+          echo "- Single Turbo DAG: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify all three compiled package public exports
+        run: |
+          for key in engine ui-kit math; do
+            node scripts/ci/productionQuality/turbo-poc-artifact.mjs check "$key"
+          done
+
+  turbo-b-engine-build:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/engine'
+      operation: 'package:build'
+      requires: ''
+      artifact_key: 'engine'
+      artifact_root: 'shared/engine'
+
+  turbo-b-engine-types:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-engine-build]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/engine'
+      operation: 'code:check:types'
+      requires: 'engine'
+      artifact_key: 'engine'
+      artifact_root: 'shared/engine'
+
+  turbo-b-engine-tests:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-engine-types]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/engine'
+      operation: 'test'
+      requires: 'engine'
+      artifact_key: 'engine'
+      artifact_root: 'shared/engine'
+
+  turbo-b-ui-kit-build:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-engine-build]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/ui-kit'
+      operation: 'package:build'
+      requires: 'engine'
+      artifact_key: 'ui-kit'
+      artifact_root: 'shared/ui-kit'
+
+  turbo-b-ui-kit-types:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-ui-kit-build]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/ui-kit'
+      operation: 'code:check:types'
+      requires: 'engine,ui-kit'
+      artifact_key: 'ui-kit'
+      artifact_root: 'shared/ui-kit'
+
+  turbo-b-ui-kit-tests:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-ui-kit-types]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/ui-kit'
+      operation: 'test'
+      requires: 'engine,ui-kit'
+      artifact_key: 'ui-kit'
+      artifact_root: 'shared/ui-kit'
+
+  turbo-b-math-build:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-ui-kit-build]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/math'
+      operation: 'package:build'
+      requires: 'engine,ui-kit'
+      artifact_key: 'math'
+      artifact_root: 'content/math'
+
+  turbo-b-math-types:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-math-build]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/math'
+      operation: 'code:check:types'
+      requires: 'engine,ui-kit,math'
+      artifact_key: 'math'
+      artifact_root: 'content/math'
+
+  turbo-b-math-tests:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-distributed' }}
+    needs: [turbo-b-math-types]
+    uses: ./.github/workflows/turbo-poc-task.yml
+    with:
+      workspace: '@svitlo/math'
+      operation: 'test'
+      requires: 'engine,ui-kit,math'
+      artifact_key: 'math'
+      artifact_root: 'content/math'
+
+  turbo-c-engine:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-hybrid' }}
+    uses: ./.github/workflows/turbo-poc-group.yml
+    with:
+      workspace: '@svitlo/engine'
+      requires: ''
+      artifact_key: 'engine'
+      artifact_root: 'shared/engine'
+      cache_from: ''
+
+  turbo-c-ui-kit:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-hybrid' }}
+    needs: [turbo-c-engine]
+    uses: ./.github/workflows/turbo-poc-group.yml
+    with:
+      workspace: '@svitlo/ui-kit'
+      requires: 'engine'
+      artifact_key: 'ui-kit'
+      artifact_root: 'shared/ui-kit'
+      cache_from: 'engine'
+
+  turbo-c-math:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'turbo-hybrid' }}
+    needs: [turbo-c-ui-kit]
+    uses: ./.github/workflows/turbo-poc-group.yml
+    with:
+      workspace: '@svitlo/math'
+      requires: 'engine,ui-kit'
+      artifact_key: 'math'
+      artifact_root: 'content/math'
+      cache_from: 'ui-kit'
