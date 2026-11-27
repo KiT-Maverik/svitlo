@@ -42,10 +42,11 @@ describe('Configurators', () => {
         params: {},
         locale: { value: 'More' },
       });
-      const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
-        const block = blocks?.[0];
-        if (block?.type !== 'text') return undefined;
-        return (block.locale as { value?: string } | undefined)?.value;
+      const textValue = (side: ({ children: string[] } & Record<string, unknown>) | undefined): string | undefined => {
+        const key = side?.children[0];
+        const block = key ? side?.[key] : undefined;
+        if (!block || typeof block !== 'object' || !('type' in block) || block.type !== 'text') return undefined;
+        return (('locale' in block ? block.locale : undefined) as { value?: string } | undefined)?.value;
       };
       const flagValue = (flags: readonly unknown[] | undefined, index: number): string | undefined => {
         const flag = flags?.[index];
@@ -76,9 +77,9 @@ describe('Configurators', () => {
           },
         },
         content: {
-          front: defineFlashcardSide<{ front: typeof front }, ['en', 'uk']>({ items: { front }, order: ['front'] }),
-          back: defineFlashcardSide<{ back: typeof back }, ['en', 'uk']>({ items: { back }, order: ['back'] }),
-          hint: defineFlashcardSide<{ hint: typeof hint }, ['en', 'uk']>({ items: { hint }, order: ['hint'] }),
+          front: defineFlashcardSide<{ front: typeof front }, ['en', 'uk']>({ children: ['front'], front }),
+          back: defineFlashcardSide<{ back: typeof back }, ['en', 'uk']>({ children: ['back'], back }),
+          hint: defineFlashcardSide<{ hint: typeof hint }, ['en', 'uk']>({ children: ['hint'], hint }),
         },
       };
       const defineBilingualFlashcard = (
@@ -92,9 +93,9 @@ describe('Configurators', () => {
       ) =>
         defineFlashcard<
           typeof source.slug,
-          typeof source.content.front.items,
-          typeof source.content.back.items,
-          typeof source.content.hint.items,
+          Pick<typeof source.content.front, 'front'>,
+          Pick<typeof source.content.back, 'back'>,
+          Pick<typeof source.content.hint, 'hint'>,
           typeof source.parameters.flags,
           typeof source.parameters.relationships.items,
           ['en', 'uk']
@@ -106,8 +107,8 @@ describe('Configurators', () => {
           slug: 'invariantFlashcard',
           parameters: { tags: [], flags: [] },
           content: {
-            front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
-            back: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
+            front: defineFlashcardSide({ children: ['extra'], extra }),
+            back: defineFlashcardSide({ children: ['extra'], extra }),
           },
         });
         const resource = card.build.data({ languages: ['en', 'uk'] });
@@ -180,10 +181,10 @@ describe('Configurators', () => {
 
       test('Flashcard composes ordered sides and unordered flag arrays as JSON-only published Props', () => {
         const card = defineBilingualFlashcard(source);
-        assert.equal(card.content.front.items.front, front);
+        assert.equal(card.content.front.front, front);
         assert.equal(card.build.data({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
         assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug),
+          card.build.data({ languages: ['en', 'uk'] }).base.content.front.children,
           ['front'],
         );
         assert.deepEqual(
@@ -215,17 +216,17 @@ describe('Configurators', () => {
         const card = defineBilingualFlashcard(source);
         const first = card.build.overrides(
           {
-            content: { front: { items: { front: false }, additionalItems: { extra }, order: ['extra'] } },
+            content: { front: { front: false, extra, children: ['extra'] } },
           },
           { languages: ['en', 'uk'] },
         );
         assert.deepEqual(
-          first.base.content?.front?.map(block => block.slug),
+          first.base.content?.front?.children,
           ['extra'],
         );
         assert.deepEqual(first.locale, undefined);
         assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(block => block.slug),
+          card.build.data({ languages: ['en', 'uk'] }).base.content.front.children,
           ['front'],
         );
         const second = card.build.overrides(
@@ -252,7 +253,7 @@ describe('Configurators', () => {
         );
         assert.deepEqual(cleared.base.parameters?.flags, []);
         assert.equal(cleared.locale, undefined);
-        assert.equal(card.content.front.items.front, front);
+        assert.equal(card.content.front.front, front);
       });
 
       test('Flashcard rejects invalid metadata, identity, duplicate flags and empty mandatory side', () => {
@@ -265,7 +266,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                content: { front: { items: { front: false }, order: [] } },
+                content: { front: { front: false, children: [] } },
               },
               { languages: ['en', 'uk'] },
             ),
@@ -275,7 +276,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                content: { front: { additionalItems: { extra } } },
+                content: { front: { extra } },
               },
               { languages: ['en', 'uk'] },
             ),
@@ -318,10 +319,7 @@ describe('Configurators', () => {
             ...source,
             content: {
               ...source.content,
-              front: defineFlashcardSide({
-                items: { front: front.config.base } as never,
-                order: ['front'],
-              }) as unknown as typeof source.content.front,
+              front: defineFlashcardSide({ children: ['front'], front: front.config.base } as never) as unknown as typeof source.content.front,
             },
           }).build.data({ languages: ['en'] }),
         );
