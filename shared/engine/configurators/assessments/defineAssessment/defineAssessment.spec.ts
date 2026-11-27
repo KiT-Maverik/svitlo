@@ -214,14 +214,9 @@ describe('Course-owned Assessment Configurator', () => {
       content: { items: { module, finalAssessment }, order: ['module', 'finalAssessment'] },
     });
     const result = course.build.data({ languages: ['en', 'uk'] });
-    assert.equal(result.base.content[1]?.type, 'assessment');
-    const moduleContent = result.base.content[0] as {
-      content: Array<{ type: string; content?: Array<{ type: string }> }>;
-    };
-    assert.deepEqual(
-      moduleContent.content.map(item => item.type),
-      ['chapter', 'assessment'],
-    );
-    assert.equal(moduleContent.content[0]?.content?.[0]?.type, 'assessment');
+    assert.deepEqual(result.base.children, ['module', 'finalAssessment']);
+    assert.equal(result.base.finalAssessment.type, 'assessment');
+    assert.deepEqual(result.base.module.children, ['chapter', 'moduleAssessment']);
+    assert.equal(result.base.module.chapter.chapterAssessment.type, 'assessment');
   });
 });
