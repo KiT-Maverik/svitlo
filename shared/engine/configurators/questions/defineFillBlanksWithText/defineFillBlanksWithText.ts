@@ -28,6 +28,7 @@ import {
   onlyStrings,
   scopeBuild,
   validateOrderedKeys,
+  slugAddressedReservedKeys,
 } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -85,6 +86,7 @@ const validateSlots = (value: ContentShape['slots']): void => {
   if (!value.children.length) throw new Error('FillBlanksWithText requires at least one slot');
   for (const [selector, item] of Object.entries(items)) {
     camelCase_Schema.parse(selector);
+    if (slugAddressedReservedKeys.some(key => key === selector)) throw new Error('Reserved text slot slug: ' + selector);
     slotSchema.parse(item);
   }
 };
@@ -144,6 +146,8 @@ export const defineFillBlanksWithText = <
     for (const [key, change] of Object.entries(patch ?? {})) {
       if (key === 'children') continue;
       camelCase_Schema.parse(key);
+      if (slugAddressedReservedKeys.some(reserved => reserved === key))
+        throw new Error('Reserved text slot slug: ' + key);
       if (Object.hasOwn(original, key)) {
         if (change === false) { effective[key] = false; structural = true; }
         else {
