@@ -5,7 +5,7 @@ import {
   assembleLessonData,
   type PublishedLessonDataOverride,
   type PublishedLessonDataResource,
-} from './assembleLessonData';
+} from './assembleLessonProps';
 
 const lessonId = '663572e7-bd85-4516-86e2-3de07d209e03';
 const firstId = '663572e7-bd85-4516-86e2-3de07d209e02';
@@ -101,7 +101,8 @@ test('removing a translated child does not resurrect it from the original locale
     uk.children,
     ['practice'],
   );
-  assert.equal((uk.intro as {locale:{title:string}}).locale.title, 'Practice');
+  assert.equal((uk.practice as {locale:{title:string}}).locale.title, 'Practice');
+  assert.equal(Object.hasOwn(uk, 'intro'), false);
   assert.deepEqual(
     assembleLessonData(resource(), 'en', patch).children,
     ['practice'],
