@@ -19,6 +19,31 @@ describe('Engine coverage invocation parsing', () => {
   });
 });
 
+describe('Engine standard runner discovery', () => {
+  it('executes both Assessment and Skill-target regressions (not only TypeScript compilation)', () => {
+    const engineRoot = path.resolve(import.meta.dirname, '../..');
+    const manifest = JSON.parse(fs.readFileSync(path.join(engineRoot, 'package.json'), 'utf8'));
+    const selected = engineTestPatterns(manifest.scripts.test);
+    const required = [
+      '.test-build/configurators/assessments/defineAssessment/defineAssessment.spec.js',
+      '.test-build/configurators/courses/moduleChapterSkillTargets.spec.js',
+    ];
+    const requireSelection = patterns => {
+      for (const compiled of required) {
+        assert.ok(patterns.includes(compiled), 'Unselected Engine Node runtime regression: ' + compiled);
+        const source = path.join(engineRoot, compiled.replace(/^\\.test-build\\//, '').replace(/\\.js$/, '.ts'));
+        assert.ok(fs.existsSync(source), 'Engine runtime test source is missing: ' + source);
+      }
+    };
+    requireSelection(selected);
+    assert.throws(
+      () => requireSelection(selected.filter(pattern => pattern !== required[0])),
+      /Unselected Engine Node runtime regression/,
+      'removing an authored test from Node selection must fail the discovery guard',
+    );
+  });
+});
+
 describe('Engine gap report', () => {
   it('selects executable modules without counting declarations, tests or obsolete configurators', () => {
     for (const name of [
