@@ -323,6 +323,50 @@ describe('Configurators', () => {
         );
       });
 
+      test('rejects unsafe, stale and unknown Side children without weakening front/back roles', () => {
+        const wrongOrder = defineFlashcardSide({ children: ['missing'], front } as never);
+        assert.throws(() => wrongOrder.build.data({ languages: ['en'] }), /Unknown or disabled child/);
+        const stale = defineFlashcardSide({ children: [], front } as never);
+        assert.throws(() => stale.build.data({ languages: ['en'] }), /Unlisted\/stale child/);
+        const reserved = defineFlashcardSide({ children: ['items'], items: front } as never);
+        assert.throws(() => reserved.build.data({ languages: ['en'] }), /Reserved child placement slug/);
+
+        const card = defineBilingualFlashcard(source);
+        assert.throws(
+          () => card.build.overrides(
+            { content: { front: { children: ['missing'] } } } as never,
+            { languages: ['en'] },
+          ),
+          /Invalid Flashcard overrides/,
+        );
+        assert.deepEqual(card.build.data({ languages: ['en'] }).base.content.front.children, ['front']);
+      });
+
+      test('relationship references keep identity and support atomic structural changes', () => {
+        const card = defineBilingualFlashcard(source);
+        const original = card.build.data({ languages: ['en'] });
+        const cleared = card.build.overrides(
+          { parameters: { relationships: { reverseLink: false, children: [] } } },
+          { languages: ['en'] },
+        );
+        assert.deepEqual(cleared.base.parameters?.relationships?.children, []);
+        assert.deepEqual(card.build.data({ languages: ['en'] }), original);
+        assert.throws(
+          () => defineBilingualFlashcard({
+            ...source,
+            parameters: {
+              ...source.parameters,
+              relationships: {
+                children: ['reverseLink', 'duplicate'],
+                reverseLink: source.parameters.relationships.reverseLink,
+                duplicate: { ...source.parameters.relationships.reverseLink },
+              },
+            } as never,
+          }).build.data({ languages: ['en'] }),
+          /Duplicate Flashcard relationship ID/,
+        );
+      });
+
       test('Flashcard permits absent hint and provides independent detached results', () => {
         const { hint: _hint, ...requiredContent } = source.content;
         const card = defineBilingualFlashcard({ ...source, content: requiredContent });
