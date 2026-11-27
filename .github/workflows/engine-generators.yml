@@ -146,6 +146,69 @@ jobs:
           SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: ${{ inputs.only_unit_unique_generator_tests }}
         run: node scripts/ci/productionQuality/select-generator-tests.mjs
 
+      # Temporary PR #925 parity diagnostic; manual Production dispatch only.
+      - name: Experimental overlapping Engine case parity across workdirs
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { spawnSync } from 'node:child_process';
+          import { join, resolve } from 'node:path';
+          import { planGeneratorTests } from './scripts/ci/productionQuality/select-generator-tests.mjs';
+          const root = process.cwd();
+          const plan = planGeneratorTests({ uniqueOnly: true });
+          if (plan.coveredByUnit.length !== 43 || plan.all.length !== 54) {
+            throw new Error('Unexpected experiment input: expected 43 shared / 54 total compiled files');
+          }
+          const paths = plan.coveredByUnit.map(file => resolve(root, file));
+          const runner = String.raw`
+            import { run } from 'node:test';
+            import { relative } from 'node:path';
+            const cases = [];
+            let summary;
+            const stream = run({ files: JSON.parse(process.env.SVITLO_COMPARE_FILES), concurrency: true });
+            for (const [event, status] of [['test:pass','pass'],['test:fail','fail']]) {
+              stream.on(event, data => cases.push({
+                file: relative(process.env.SVITLO_COMPARE_ROOT, data.file || ''),
+                name: data.name, nesting: data.nesting, line: data.line, column: data.column,
+                status: data.skip ? 'skip' : data.todo ? 'todo' : status
+              }));
+            }
+            stream.on('test:summary', data => { if (!data.file) summary = data; });
+            stream.on('end', () => {
+              console.log('SVITLO_CASE_COMPARE_JSON=' + JSON.stringify({ cases, summary: summary?.counts, success: summary?.success }));
+              if (!summary?.success) process.exitCode = 1;
+            });
+          `;
+          const snapshots = [];
+          for (const [label, cwd] of [['repo-root', root], ['engine-root', join(root, 'shared/engine')]]) {
+            const executed = spawnSync(process.execPath, ['--input-type=module', '-'], {
+              cwd, encoding: 'utf8', input: runner, maxBuffer: 32 * 1024 * 1024,
+              env: { ...process.env, SVITLO_COMPARE_ROOT: root, SVITLO_COMPARE_FILES: JSON.stringify(paths) }
+            });
+            const serialized = (executed.stdout || '').split(/\r?\n/).find(line => line.startsWith('SVITLO_CASE_COMPARE_JSON='));
+            if (executed.error || executed.status !== 0 || !serialized) {
+              console.error((executed.stderr || '').slice(-3500));
+              console.error((executed.stdout || '').slice(-3500));
+              throw executed.error || new Error(label + ' failed or missing machine-readable test results: ' + executed.status);
+            }
+            const data = JSON.parse(serialized.slice('SVITLO_CASE_COMPARE_JSON='.length));
+            assert.equal(data.success, true, label + ' had failing test cases');
+            const ids = data.cases.map(entry => JSON.stringify(entry)).sort();
+            snapshots.push(ids);
+            console.log('GENERATOR_CASE_PARITY mode=' + label + ' source_files=' + paths.length +
+              ' events=' + ids.length + ' passed=' + data.summary.passed + ' skipped=' + data.summary.skipped +
+              ' todo=' + data.summary.todo + ' failed=' + data.summary.failed);
+          }
+          if (JSON.stringify(snapshots[0]) !== JSON.stringify(snapshots[1])) {
+            const a = new Set(snapshots[0]), b = new Set(snapshots[1]);
+            console.error('Only repo-root: ' + JSON.stringify([...a].filter(x => !b.has(x)).slice(0,10)));
+            console.error('Only engine-root: ' + JSON.stringify([...b].filter(x => !a.has(x)).slice(0,10)));
+            throw new Error('Generator test case identity/status differs between work directories');
+          }
+          console.log('GENERATOR_CASE_PARITY_SUCCESS sha=' + process.env.GITHUB_SHA +
+            ' compared_files=' + paths.length + ' case_events=' + snapshots[0].length);
+          NODE
       - name: Test typed Bank source and PR-command security
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- node --test \
