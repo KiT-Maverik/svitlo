@@ -199,7 +199,7 @@ describe('active Engine Quiz renderer', () => {
     fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[0]);
     expect(complete).not.toHaveBeenCalled();
     fireEvent.click(yes[1]);
-    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[1]);
     await waitFor(() => expect(complete).toHaveBeenCalledTimes(1));
     expect(complete).toHaveBeenCalledWith({ passed: true, correct: 2, total: 2, timedOut: false });
   });
@@ -235,7 +235,7 @@ describe('active Engine Quiz renderer', () => {
     fireEvent.click(yes[0]);
     fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[0]);
     fireEvent.click(no[1]);
-    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[1]);
     await waitFor(() => expect(complete).toHaveBeenCalledWith({ passed: true, correct: 1, total: 2, timedOut: false }));
   });
 
@@ -252,7 +252,7 @@ describe('active Engine Quiz renderer', () => {
     fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[0]);
     expect(complete).not.toHaveBeenCalled();
     fireEvent.click(no[1]);
-    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    fireEvent.click(screen.getAllByRole('button', { name: enUiKitMessages.questionFrame.check })[1]);
     await waitFor(() =>
       expect(complete).toHaveBeenCalledWith({ passed: false, correct: 1, total: 2, timedOut: false }),
     );
