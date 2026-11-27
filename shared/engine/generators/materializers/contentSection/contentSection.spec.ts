@@ -19,7 +19,8 @@ const input = () => ({
   slug: 'introduction',
   params: {},
   locale: { title: { en: 'Start', uk: 'Початок' }, navigationLabel: '1' },
-  content: { items: { prompt: block('prompt') }, order: ['prompt'] },
+  children: ['prompt'],
+  prompt: block('prompt'),
 });
 const renderContentBlock = (config: ChildConfig, options: { directory: string; languagesImport: string }) => ({
   exportName: config.slug,
@@ -46,7 +47,7 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
   assert.ok(first.files.every(file => !file.path.endsWith('/specification.md')));
   const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';
   assert.match(root, /import \{ prompt \} from "\.\/prompt"/);
-  assert.match(root, /"items": \{\s*prompt,?\s*\}/);
+  assert.match(root, /"prompt": prompt/);
   assert.doesNotMatch(root, /child_content_items_/);
   const parsed = ts.transpileModule(root, {
     reportDiagnostics: true,
@@ -58,8 +59,8 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
     'generated TS must parse without errors',
   );
   assert.match(root, /defineContentSection|defineContentSection/);
-  assert.match(root, /typeof content.items, typeof languages/);
-  assert.match(root, /"order": \["prompt"\]/);
+  assert.match(root, /typeof __blocks, typeof languages/);
+  assert.match(root, /"children": \["prompt"\]/);
   assert.match(root, /"en": "Start"/);
   assert.doesNotMatch(root, /"uk": "Початок"/);
 
@@ -67,7 +68,7 @@ test('content: delegates exact subtree and preserves explicit collection/order/s
 });
 test('content: fails closed for invalid ordering, identifiers and path escapes', () => {
   const config = input();
-  config.content.order = [];
+  config.children = [];
   assert.throws(
     () =>
       materializeContentSection(config as Parameters<typeof materializeContentSection>[0], {
@@ -75,10 +76,10 @@ test('content: fails closed for invalid ordering, identifiers and path escapes',
         languagesImport: './languages',
         renderContentBlock,
       }),
-    /order/,
+    /children/,
   );
   const other = input();
-  other.content.items.prompt.slug = 'mismatch';
+  other.prompt.slug = 'mismatch';
   assert.throws(
     () =>
       materializeContentSection(other as Parameters<typeof materializeContentSection>[0], {
