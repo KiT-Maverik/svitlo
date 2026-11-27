@@ -254,7 +254,7 @@ export function materializeContentSection(config: Source, options: Options): Res
       name +
       ' = defineContentSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');
