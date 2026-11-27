@@ -17,13 +17,16 @@ failures; no workspace is dropped to improve latency.
 
 Root `npm test` is intentionally **exhaustive** and currently executes
 workspace tests sequentially with npm `pretest`/`posttest` hooks intact.
-`SVITLO_CI_UNIT_TEST_TIMINGS=1` adds *passive*, bounded GitHub `::notice`
-annotations for each actual `package:build` prerequisite and workspace
-`test` invocation. Each line records the workspace, operation, wall time and
-success/failure, including npm lifecycle hooks within the workspace `test`
-duration. Ordinary execution has no additional notices. The existing
-`scripts/ci/quietRun/quiet-run.mjs` forwards these notices even when full
-successful npm logs remain suppressed.
+`SVITLO_CI_UNIT_TEST_TIMINGS=1` adds *passive*, validated
+`SVITLO_CI_UNIT_TIMING` text lines for each actual `package:build`
+prerequisite and workspace `test` invocation. Each line contains the
+workspace, operation, wall time and success/failure, including npm lifecycle
+hooks within the workspace `test` duration. Ordinary execution does not
+emit these lines. The existing `scripts/ci/quietRun/quiet-run.mjs` forwards
+**only** this opt-in, narrowly validated protocol and standard GitHub
+annotations, suppressing all other successful test noise. We intentionally
+avoid GitHub `::notice` annotations for timings: the Actions API strips
+them from decoded job logs, making source-pinned analysis inaccessible.
 
 Production Quality sets the option **only** on the existing unit job's
 `npm test` step; there is no change to tested packages, test IDs, npm
