@@ -667,7 +667,7 @@ test('Completed Lesson UUID can be reused as distinct Course, Module and Chapter
   });
   const all = [chapter.build.data({ languages }), module.build.data({ languages }), course.build.data({ languages })];
   for (const built of all) {
-    const base = built.base as Record<string, unknown> & {
+    const base = built.base as unknown as Record<string, unknown> & {
       children: string[];
       first: { id: string; slug: string };
       second: { id: string; slug: string };
