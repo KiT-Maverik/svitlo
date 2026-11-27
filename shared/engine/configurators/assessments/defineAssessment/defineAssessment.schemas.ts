@@ -1,23 +1,43 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import type { DeepPartial } from '#types';
+import type { DeepPartial, PublicationLanguageOptions } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { validateSlugAddressedContainer } from '../../_shared__configurators';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
-import type { Section_Configurator } from '../../sections/section.types';
+import type { ContentSection_Configurator } from '../../sections/defineContentSection/defineContentSection';
+import type { ContentSection_MetadataOverrides } from '../../sections/defineContentSection/defineContentSection.schemas';
+import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
+import type { QuizSection_MetadataOverrides } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
 import { quizSection_Data_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 
-/** An Assessment accepts real child Configurators through the same Build-only
- * collection boundary as Lesson; concrete authored sections keep their precise
- * overrides and language scope before being composed into this boundary.
+/**
+ * Parent collections require metadata-safe Build overrides, without erasing
+ * the parameter to never. A concrete Section retains its exact child patches
+ * when Assessment's generic Before/Quiz/After arguments are inferred.
  */
-export type Assessment_Content_Section_Configurator = Extract<Section_Configurator, { readonly type: 'content' }>;
-export type Assessment_Quiz_Configurator = Extract<Section_Configurator, { readonly type: 'quiz' }>;
+export type Assessment_Content_Section_Configurator =
+  Omit<ContentSection_Configurator, 'build'> & {
+    readonly build: Omit<ContentSection_Configurator['build'], 'overrides'> & {
+      overrides(
+        patch: ContentSection_MetadataOverrides,
+        options: PublicationLanguageOptions,
+      ): ReturnType<ContentSection_Configurator['build']['overrides']>;
+    };
+  };
+export type Assessment_Quiz_Configurator =
+  Omit<QuizSection_Configurator, 'build'> & {
+    readonly build: Omit<QuizSection_Configurator['build'], 'overrides'> & {
+      overrides(
+        patch: QuizSection_MetadataOverrides,
+        options: PublicationLanguageOptions,
+      ): ReturnType<QuizSection_Configurator['build']['overrides']>;
+    };
+  };
 export type Assessment_Section_Configurator = Assessment_Content_Section_Configurator | Assessment_Quiz_Configurator;
 
 const languages = z
