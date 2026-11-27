@@ -1,12 +1,12 @@
 # Quality Constitution — proposed risk-based test standards
 
-> **Status: PROPOSAL — owner approval required.** This document does **not** create an enforceable quality gate, CI requirement, reviewer sign-off rule or test threshold by being committed. The owner must explicitly decide which clauses to adopt during review of [PR #921](https://github.com/KiT-Maverik/svitlo/pull/921) and integration into [#901](https://github.com/KiT-Maverik/svitlo/pull/901). Until then, follow the [CI workflow](../rules/ci-workflow.md), [package scripts](../rules/package-scripts.md), [GitHub naming/labels](../rules/github-labels-and-naming.md), existing security/product invariants and actual code. This proposal governs *how to judge test value*, not when CI runs.
+> **Status: PROPOSAL — owner approval required.** This document does **not** create an enforceable quality gate, CI requirement, reviewer sign-off rule or test threshold by being committed. The owner must explicitly decide which clauses to adopt during review of [PR #921](https://github.com/KiT-Maverik/svitlo/pull/921) and integration into [#901](https://github.com/KiT-Maverik/svitlo/pull/901). Until then, follow the [CI workflow](../rules/ci-workflow.md), [package scripts](../rules/package-scripts.md), [GitHub naming/labels](../rules/github-labels-and-naming.md), existing security/product invariants and actual code. This proposal governs _how to judge test value_, not when CI runs.
 
 ## Purpose and decision rule
 
 Protect **current, approved Svitlo behavior** against realistic regressions with the smallest maintainable set of effective checks. More tests, higher coverage, a green badge or an idealized pyramid are not goals. Each proposed test, consolidation or deletion is evaluated by:
 
-1. **Legitimacy:** Is the behavior a current implemented contract, or an approved new contract with an identified owner? Check the feature specification, actual code, public consumers and package boundary. Mark merely planned behavior as a *gap / future acceptance criterion*, not a failing current test.
+1. **Legitimacy:** Is the behavior a current implemented contract, or an approved new contract with an identified owner? Check the feature specification, actual code, public consumers and package boundary. Mark merely planned behavior as a _gap / future acceptance criterion_, not a failing current test.
 2. **Risk:** What learner harm, data loss, security failure, broken publication, access barrier or operational regression could occur? How likely is this fault and how hard is it to detect elsewhere?
 3. **Detection:** What realistic change would make the test fail, and which observable result distinguishes correct from incorrect behavior? Would the failure explain the defect?
 4. **Sufficiency:** Which existing check already detects the same fault? What is the least costly layer that preserves this particular guarantee, including the necessary real environment?
@@ -25,14 +25,14 @@ Protect **current, approved Svitlo behavior** against realistic regressions with
 
 Every meaningful case or homogeneous group should record its **contract → plausible regression → observable outcome → diagnostic** (in a test name, adjacent comment when valuable, or review evidence). Prefer independently derived expectations, relevant positive/negative/boundary states and precise errors. Add failure, malformed input, synchronous setup error, async rejection, rollback, retry, timeout, race or recovery cases **when the particular contract and impact warrant them**, not mechanically for every function.
 
-| Weak evidence | Stronger Svitlo-specific check |
-| --- | --- |
-| Nine Quiz buttons exist | Different answers yield expected approved grades, attempts and navigation gates in the **active** Quiz/Controller |
-| A localized page contains `dir="rtl"` | Arabic/Hebrew/Urdu user flow has correct logical control order, arrow meaning, bidi labels and keyboard focus |
-| A password demo accepts 65 typed characters | A demo's actual supported state transition with direct input change; do not claim this proves authentication |
-| `expect(a).toEqual(a)` or a broad snapshot | Expected output derived from the contract, changed-state or corrupt-input rejection with a useful diff |
-| Regex counts `locale:` in source text | Parsed/published locale keys, actual localized output and explicit missing-content failure |
-| A mocked loader returns data | The host resolves a **real compiled public package export** and handles missing/corrupt published resources |
+| Weak evidence                               | Stronger Svitlo-specific check                                                                                    |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Nine Quiz buttons exist                     | Different answers yield expected approved grades, attempts and navigation gates in the **active** Quiz/Controller |
+| A localized page contains `dir="rtl"`       | Arabic/Hebrew/Urdu user flow has correct logical control order, arrow meaning, bidi labels and keyboard focus     |
+| A password demo accepts 65 typed characters | A demo's actual supported state transition with direct input change; do not claim this proves authentication      |
+| `expect(a).toEqual(a)` or a broad snapshot  | Expected output derived from the contract, changed-state or corrupt-input rejection with a useful diff            |
+| Regex counts `locale:` in source text       | Parsed/published locale keys, actual localized output and explicit missing-content failure                        |
+| A mocked loader returns data                | The host resolves a **real compiled public package export** and handles missing/corrupt published resources       |
 
 Do not test React, MUI, Next.js, Vitest, browser primitives or TypeScript guarantees again **unless Svitlo has a specific integration obligation**. Avoid incidental DOM counts, brittle class selectors, unrestricted snapshots, duplicating the production algorithm in expectations, per-character typing for final-state checks, and source-text matching where a semantic/compiled/published check is available. Snapshot tests are justified for a specific reviewed serialized contract with stable intentional change review—not as uninspected change detectors.
 
@@ -40,23 +40,23 @@ Do not test React, MUI, Next.js, Vitest, browser primitives or TypeScript guaran
 
 Choose the **cheapest layer that can observe the defect**; retain another layer only for a genuinely different failure mode. Treat each check's environmental limit as part of its claim.
 
-| Layer | Owns a distinct guarantee | Cannot establish by itself |
-| --- | --- | --- |
-| Static/type, lint and boundary checks | Invalid TypeScript contract usage, imports, prohibited runtime/build dependencies, source conventions | Runtime validation of untrusted JSON/JS or actual learner interaction |
-| Unit / pure function | Deterministic transform, invariants, error and edge branches without heavy hosts | DB transaction commits, real package loading or browser focus |
-| UI component (jsdom where configured) | UI Kit state transitions, accessible roles/names, feedback and Controller gate behavior with minimal providers | Native keyboard/assistive-tech behavior, actual SSR or platform rendering |
-| Node integration | Real Configurator/schema and publisher behavior, source generation, isolated file/Git transactions, fake-IndexedDB controller contracts | Actual browser IndexedDB semantics or deployed host behavior |
-| Real browser / IndexedDB | Route/resource rendering, keyboard/focus flow, native browser DB reload/rollback/versionchange and cross-page persistence | Installed Android/iOS WebView, physical-device offline support or Electron packaging |
-| Build / publish / portability | Compiled exports, selected textbook publishing, tarball/extraction, assets/locales and independent host consumption | Complete accessibility, media licensing or installed-platform operation |
-| Packaged Electron | The packaged executable/protocol, local lesson loads, security and network behavior of that runtime | Signed installers or Windows/macOS outcomes from Linux-only execution |
-| Capacitor / device verification | Actual Android/iOS WebView, plugin bridges, app lifecycle/storage and disconnected-device behavior **when a harness exists** | Native behavior from a desktop Chromium viewport test |
-| Human specialist QA | Age-appropriate pedagogy, subject correctness, keyboard/screen-reader usability, captions, audio/video meaning, on-device UX | Automated repeatability or proof of cases not actually examined |
+| Layer                                 | Owns a distinct guarantee                                                                                                               | Cannot establish by itself                                                           |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Static/type, lint and boundary checks | Invalid TypeScript contract usage, imports, prohibited runtime/build dependencies, source conventions                                   | Runtime validation of untrusted JSON/JS or actual learner interaction                |
+| Unit / pure function                  | Deterministic transform, invariants, error and edge branches without heavy hosts                                                        | DB transaction commits, real package loading or browser focus                        |
+| UI component (jsdom where configured) | UI Kit state transitions, accessible roles/names, feedback and Controller gate behavior with minimal providers                          | Native keyboard/assistive-tech behavior, actual SSR or platform rendering            |
+| Node integration                      | Real Configurator/schema and publisher behavior, source generation, isolated file/Git transactions, fake-IndexedDB controller contracts | Actual browser IndexedDB semantics or deployed host behavior                         |
+| Real browser / IndexedDB              | Route/resource rendering, keyboard/focus flow, native browser DB reload/rollback/versionchange and cross-page persistence               | Installed Android/iOS WebView, physical-device offline support or Electron packaging |
+| Build / publish / portability         | Compiled exports, selected textbook publishing, tarball/extraction, assets/locales and independent host consumption                     | Complete accessibility, media licensing or installed-platform operation              |
+| Packaged Electron                     | The packaged executable/protocol, local lesson loads, security and network behavior of that runtime                                     | Signed installers or Windows/macOS outcomes from Linux-only execution                |
+| Capacitor / device verification       | Actual Android/iOS WebView, plugin bridges, app lifecycle/storage and disconnected-device behavior **when a harness exists**            | Native behavior from a desktop Chromium viewport test                                |
+| Human specialist QA                   | Age-appropriate pedagogy, subject correctness, keyboard/screen-reader usability, captions, audio/video meaning, on-device UX            | Automated repeatability or proof of cases not actually examined                      |
 
-Use mocks to isolate a unit's *owned* behavior and control deterministic errors; **do not mock away the boundary the test claims to verify**. A UI mock of a lesson loader can test an error message; a host content-loading guarantee must exercise its actual selected/public package or publication fixture. `fake-indexeddb` is valuable for controller behavior, but native browser cases remain necessary for browser-specific persistence/coordination. Web Playwright mobile device descriptors simulate viewport and input characteristics; they are **not** Capacitor or Android WebView tests.
+Use mocks to isolate a unit's _owned_ behavior and control deterministic errors; **do not mock away the boundary the test claims to verify**. A UI mock of a lesson loader can test an error message; a host content-loading guarantee must exercise its actual selected/public package or publication fixture. `fake-indexeddb` is valuable for controller behavior, but native browser cases remain necessary for browser-specific persistence/coordination. Web Playwright mobile device descriptors simulate viewport and input characteristics; they are **not** Capacitor or Android WebView tests.
 
 ## 4. Never optimize away trusted boundaries
 
-Security and publishing checks deserve disproportionate weight, even if slow or lengthy, when they are the only protection for an irreversible/privileged operation. Keep failure-path assertions for the *actual trusted implementation* and a test that confirms rejected inputs cause **no write or side effect**, including:
+Security and publishing checks deserve disproportionate weight, even if slow or lengthy, when they are the only protection for an irreversible/privileged operation. Keep failure-path assertions for the _actual trusted implementation_ and a test that confirms rejected inputs cause **no write or side effect**, including:
 
 - Static editorial draft parsing **without execution**; rejecting dynamic imports, calls, computed keys, prototype pollution, malformed syntax and unsafe structure when disallowed by the current Reader.
 - Pinned source blob SHA, PR/ref/actor authorization, branch-head lease and stale-head rejection; reject content replacement when a reviewed source has changed.

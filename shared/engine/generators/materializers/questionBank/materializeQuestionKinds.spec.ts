@@ -8,15 +8,15 @@ import { test } from 'node:test';
 import ts from 'typescript';
 
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow/courseWorkflow.types';
-import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
-import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
 import { materializeAnswerWithNumber } from '../answerWithNumber/materializeAnswerWithNumber';
 import { materializeAnswerWithText } from '../answerWithText/materializeAnswerWithText';
-import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
+import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
 import { materializeFillBlanksWithBlocks } from '../fillBlanksWithBlocks/materializeFillBlanksWithBlocks';
+import { materializeFillBlanksWithText } from '../fillBlanksWithText/materializeFillBlanksWithText';
 import { materializeMatchBlocks } from '../matchBlocks/materializeMatchBlocks';
 import { materializeOrderSequence } from '../orderSequence/materializeOrderSequence';
-import { materializeBuildAnswerWithBlocks } from '../buildAnswerWithBlocks/materializeBuildAnswerWithBlocks';
+import { materializeSelectMultipleAnswers } from '../selectMultipleAnswers/materializeSelectMultipleAnswers';
+import { materializeSelectOneAnswer } from '../selectOneAnswer/materializeSelectOneAnswer';
 
 const stageLanguages = { document: 'uk', planned: ['uk', 'en'] } as const satisfies CourseWorkflowStage1Languages;
 const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(6, '0');
@@ -30,7 +30,11 @@ const makeContext = (kind: string) => ({
   materializeBlock: (node: { config: { slug: string } }, props: { directory: string }) => ({
     exportName: node.config.slug,
     files: [
-      { path: props.directory + '/index.ts', content: 'export const ' + node.config.slug + ' = {};\n', kind: 'typescript' as const },
+      {
+        path: props.directory + '/index.ts',
+        content: 'export const ' + node.config.slug + ' = {};\n',
+        kind: 'typescript' as const,
+      },
     ],
   }),
 });
@@ -186,15 +190,60 @@ const contextOrderSequence = makeContext('orderSequence');
 const contextBuildAnswerWithBlocks = makeContext('buildAnswerWithBlocks');
 
 const suites = [
-  { kind: 'selectOneAnswer' as const, fixture: fixtureSelectOneAnswer, context: contextSelectOneAnswer, render: (node: unknown, options: unknown) => materializeSelectOneAnswer(node as never, options as never) },
-  { kind: 'selectMultipleAnswers' as const, fixture: fixtureSelectMultipleAnswers, context: contextSelectMultipleAnswers, render: (node: unknown, options: unknown) => materializeSelectMultipleAnswers(node as never, options as never) },
-  { kind: 'answerWithNumber' as const, fixture: fixtureAnswerWithNumber, context: contextAnswerWithNumber, render: (node: unknown, options: unknown) => materializeAnswerWithNumber(node as never, options as never) },
-  { kind: 'answerWithText' as const, fixture: fixtureAnswerWithText, context: contextAnswerWithText, render: (node: unknown, options: unknown) => materializeAnswerWithText(node as never, options as never) },
-  { kind: 'fillBlanksWithText' as const, fixture: fixtureFillBlanksWithText, context: contextFillBlanksWithText, render: (node: unknown, options: unknown) => materializeFillBlanksWithText(node as never, options as never) },
-  { kind: 'fillBlanksWithBlocks' as const, fixture: fixtureFillBlanksWithBlocks, context: contextFillBlanksWithBlocks, render: (node: unknown, options: unknown) => materializeFillBlanksWithBlocks(node as never, options as never) },
-  { kind: 'matchBlocks' as const, fixture: fixtureMatchBlocks, context: contextMatchBlocks, render: (node: unknown, options: unknown) => materializeMatchBlocks(node as never, options as never) },
-  { kind: 'orderSequence' as const, fixture: fixtureOrderSequence, context: contextOrderSequence, render: (node: unknown, options: unknown) => materializeOrderSequence(node as never, options as never) },
-  { kind: 'buildAnswerWithBlocks' as const, fixture: fixtureBuildAnswerWithBlocks, context: contextBuildAnswerWithBlocks, render: (node: unknown, options: unknown) => materializeBuildAnswerWithBlocks(node as never, options as never) },
+  {
+    kind: 'selectOneAnswer' as const,
+    fixture: fixtureSelectOneAnswer,
+    context: contextSelectOneAnswer,
+    render: (node: unknown, options: unknown) => materializeSelectOneAnswer(node as never, options as never),
+  },
+  {
+    kind: 'selectMultipleAnswers' as const,
+    fixture: fixtureSelectMultipleAnswers,
+    context: contextSelectMultipleAnswers,
+    render: (node: unknown, options: unknown) => materializeSelectMultipleAnswers(node as never, options as never),
+  },
+  {
+    kind: 'answerWithNumber' as const,
+    fixture: fixtureAnswerWithNumber,
+    context: contextAnswerWithNumber,
+    render: (node: unknown, options: unknown) => materializeAnswerWithNumber(node as never, options as never),
+  },
+  {
+    kind: 'answerWithText' as const,
+    fixture: fixtureAnswerWithText,
+    context: contextAnswerWithText,
+    render: (node: unknown, options: unknown) => materializeAnswerWithText(node as never, options as never),
+  },
+  {
+    kind: 'fillBlanksWithText' as const,
+    fixture: fixtureFillBlanksWithText,
+    context: contextFillBlanksWithText,
+    render: (node: unknown, options: unknown) => materializeFillBlanksWithText(node as never, options as never),
+  },
+  {
+    kind: 'fillBlanksWithBlocks' as const,
+    fixture: fixtureFillBlanksWithBlocks,
+    context: contextFillBlanksWithBlocks,
+    render: (node: unknown, options: unknown) => materializeFillBlanksWithBlocks(node as never, options as never),
+  },
+  {
+    kind: 'matchBlocks' as const,
+    fixture: fixtureMatchBlocks,
+    context: contextMatchBlocks,
+    render: (node: unknown, options: unknown) => materializeMatchBlocks(node as never, options as never),
+  },
+  {
+    kind: 'orderSequence' as const,
+    fixture: fixtureOrderSequence,
+    context: contextOrderSequence,
+    render: (node: unknown, options: unknown) => materializeOrderSequence(node as never, options as never),
+  },
+  {
+    kind: 'buildAnswerWithBlocks' as const,
+    fixture: fixtureBuildAnswerWithBlocks,
+    context: contextBuildAnswerWithBlocks,
+    render: (node: unknown, options: unknown) => materializeBuildAnswerWithBlocks(node as never, options as never),
+  },
 ];
 
 const extraChildPaths: Partial<Record<(typeof suites)[number]['kind'], readonly string[]>> = {
@@ -221,7 +270,10 @@ for (const { kind, fixture, context, render } of suites) {
     assert.doesNotMatch(main.content, /NOT REVIEWED/);
     assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
     for (const role of extraChildPaths[kind] ?? []) {
-      assert(a.files.some(file => file.path.endsWith(role)), kind + ': missing nested role ' + role);
+      assert(
+        a.files.some(file => file.path.endsWith(role)),
+        kind + ': missing nested role ' + role,
+      );
     }
     for (const role of extraImports[kind] ?? []) {
       assert(main.content.includes('from ' + JSON.stringify(role)), kind + ': missing import for ' + role);
@@ -244,13 +296,20 @@ for (const { kind, fixture, context, render } of suites) {
 
   test(kind + ': rejects delegated ContentBlock writing outside its semantic role', () => {
     assert.throws(
-      () => render(fixture(), {
-        ...context,
-        materializeBlock: () => ({
-          exportName: 'prompt',
-          files: [{ path: 'questions/' + kind + '/otherQuestion/index.ts', content: 'export const prompt = {};\n', kind: 'typescript' as const }],
+      () =>
+        render(fixture(), {
+          ...context,
+          materializeBlock: () => ({
+            exportName: 'prompt',
+            files: [
+              {
+                path: 'questions/' + kind + '/otherQuestion/index.ts',
+                content: 'export const prompt = {};\n',
+                kind: 'typescript' as const,
+              },
+            ],
+          }),
         }),
-      }),
       /escaped its assigned directory/,
     );
   });
@@ -275,10 +334,13 @@ for (const { kind, fixture, context, render } of suites) {
       production: { scope: 'Question Bank needed by owning Lesson; authoring not started' },
     };
     assert.throws(
-      () => render(planned, {
-        ...context,
-        materializeBlock: () => { throw new Error('Unexpected Stage 1 ContentBlock materialization'); },
-      }),
+      () =>
+        render(planned, {
+          ...context,
+          materializeBlock: () => {
+            throw new Error('Unexpected Stage 1 ContentBlock materialization');
+          },
+        }),
       /params\/content required/,
     );
   });
@@ -326,10 +388,11 @@ test('selectMultipleAnswers: rejects duplicate child bindings instead of aliasin
 
 test('selectOneAnswer: rejects source language absent from planned languages', () => {
   assert.throws(
-    () => materializeSelectOneAnswer(fixtureSelectOneAnswer() as never, {
-      ...contextSelectOneAnswer,
-      languages: { document: 'uk' as const, planned: ['en'] as const },
-    }),
+    () =>
+      materializeSelectOneAnswer(fixtureSelectOneAnswer() as never, {
+        ...contextSelectOneAnswer,
+        languages: { document: 'uk' as const, planned: ['en'] as const },
+      }),
     /languages.planned/,
   );
 });

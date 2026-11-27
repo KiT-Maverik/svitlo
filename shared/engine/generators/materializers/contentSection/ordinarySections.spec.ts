@@ -8,11 +8,11 @@ import test from 'node:test';
 
 import ts from 'typescript';
 
-import type { ChildConfig } from './contentSection';
-import { materializeContentSection } from '../contentSection/contentSection';
-import { materializePracticeSection } from '../practiceSection/practiceSection';
 import { materializeCodingTaskSection } from '../codingTaskSection/codingTaskSection';
+import { materializeContentSection } from '../contentSection/contentSection';
 import { materializeLearningFlowSection } from '../learningFlowSection/learningFlowSection';
+import { materializePracticeSection } from '../practiceSection/practiceSection';
+import type { ChildConfig } from './contentSection';
 
 const id = (n: string) => '12345678-1234-4234-8234-1234567890' + n;
 const block = (slug: string): ChildConfig => ({
@@ -37,17 +37,33 @@ const renderContentBlock = (config: ChildConfig, options: { directory: string; l
   files: [{ path: options.directory + '/index.ts', kind: 'typescript' as const, content: '// child\n' }],
 });
 const suites = [
-  { kind: 'contentSection' as const, render: (node: unknown, opts: unknown) => materializeContentSection(node as never, opts as never) },
-  { kind: 'practiceSection' as const, render: (node: unknown, opts: unknown) => materializePracticeSection(node as never, opts as never) },
-  { kind: 'codingTaskSection' as const, render: (node: unknown, opts: unknown) => materializeCodingTaskSection(node as never, opts as never) },
-  { kind: 'learningFlowSection' as const, render: (node: unknown, opts: unknown) => materializeLearningFlowSection(node as never, opts as never) },
+  {
+    kind: 'contentSection' as const,
+    render: (node: unknown, opts: unknown) => materializeContentSection(node as never, opts as never),
+  },
+  {
+    kind: 'practiceSection' as const,
+    render: (node: unknown, opts: unknown) => materializePracticeSection(node as never, opts as never),
+  },
+  {
+    kind: 'codingTaskSection' as const,
+    render: (node: unknown, opts: unknown) => materializeCodingTaskSection(node as never, opts as never),
+  },
+  {
+    kind: 'learningFlowSection' as const,
+    render: (node: unknown, opts: unknown) => materializeLearningFlowSection(node as never, opts as never),
+  },
 ];
 
 for (const { kind, render } of suites) {
-  const sectionType = kind === 'contentSection' ? 'content'
-    : kind === 'practiceSection' ? 'practice'
-    : kind === 'codingTaskSection' ? 'codingTask'
-    : 'learningFlow';
+  const sectionType =
+    kind === 'contentSection'
+      ? 'content'
+      : kind === 'practiceSection'
+        ? 'practice'
+        : kind === 'codingTaskSection'
+          ? 'codingTask'
+          : 'learningFlow';
   const options = {
     documentLanguage: 'en',
     directory: 'sections/introduction',
@@ -59,7 +75,10 @@ for (const { kind, render } of suites) {
     const config = input(sectionType);
     const first = render(config, options);
     assert.deepEqual(first, render(config, options));
-    assert.equal(first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content, '// child\n');
+    assert.equal(
+      first.files.find(file => file.path === 'sections/introduction/prompt/index.ts')?.content,
+      '// child\n',
+    );
     assert(first.files.every(file => !file.path.includes('/content/items/')));
     assert(first.files.every(file => !file.path.endsWith('/specification.md')));
     const root = first.files.find(file => file.path === 'sections/introduction/index.ts')?.content ?? '';

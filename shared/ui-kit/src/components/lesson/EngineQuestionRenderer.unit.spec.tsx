@@ -1,7 +1,12 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { AssessmentResourceLoader, ContentBlock_Text_Data, Question_SelectOneAnswer_Data, QuizSection_Data } from '@svitlo/engine/runtime';
+import type {
+  AssessmentResourceLoader,
+  ContentBlock_Text_Data,
+  Question_SelectOneAnswer_Data,
+  QuizSection_Data,
+} from '@svitlo/engine/runtime';
 
 import type { QuestionResponse } from '#types/questions';
 
@@ -83,7 +88,10 @@ function anotherChoice(n: number): Question_SelectOneAnswer_Data {
   return { ...original, ...base(n), content: { ...original.content, ...base(n).content } };
 }
 
-function quiz(selected: readonly QuestionResponse[], overrides: Partial<QuizSection_Data['params']> = {}): QuizSection_Data {
+function quiz(
+  selected: readonly QuestionResponse[],
+  overrides: Partial<QuizSection_Data['params']> = {},
+): QuizSection_Data {
   return {
     id: uuid(90),
     slug: 'regressionQuiz',
@@ -121,7 +129,12 @@ function loader(items: readonly QuestionResponse[] = questions): AssessmentResou
   };
 }
 
-function mount(selected: readonly QuestionResponse[], onComplete = vi.fn(), resourceLoader = loader(selected), overrides: Partial<QuizSection_Data['params']> = {}) {
+function mount(
+  selected: readonly QuestionResponse[],
+  onComplete = vi.fn(),
+  resourceLoader = loader(selected),
+  overrides: Partial<QuizSection_Data['params']> = {},
+) {
   render(
     <EngineQuestionRenderer
       lessonId={uuid(99)}
@@ -176,9 +189,7 @@ describe('active Engine Quiz renderer', () => {
     await screen.findByText('Prompt ' + (questions.indexOf(question) + 1));
     chooseCorrect(question.type);
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
-    await waitFor(() =>
-      expect(complete).toHaveBeenCalledWith({ passed: true, correct: 1, total: 1, timedOut: false }),
-    );
+    await waitFor(() => expect(complete).toHaveBeenCalledWith({ passed: true, correct: 1, total: 1, timedOut: false }));
     expect(complete).toHaveBeenCalledTimes(1);
   });
 
@@ -212,7 +223,9 @@ describe('active Engine Quiz renderer', () => {
     await screen.findByText('Prompt 1');
     fireEvent.click(screen.getByRole('radio', { name: 'No' }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
-    await waitFor(() => expect(complete).toHaveBeenCalledWith({ passed: false, correct: 0, total: 1, timedOut: false }));
+    await waitFor(() =>
+      expect(complete).toHaveBeenCalledWith({ passed: false, correct: 0, total: 1, timedOut: false }),
+    );
     expect(complete).toHaveBeenCalledTimes(1);
     // The Quiz has finished as soon as all answers have been checked. A retry is a
     // local card operation and cannot publish a second completion for that attempt.
@@ -261,7 +274,10 @@ describe('active Engine Quiz renderer', () => {
 
   it('rejects malformed or absent selected resources and supports loader retry', async () => {
     const selected = [questions[0]];
-    const loadQuestions = vi.fn().mockResolvedValueOnce({ items: [], fallbacks: [] }).mockResolvedValueOnce({ items: selected, fallbacks: [] });
+    const loadQuestions = vi
+      .fn()
+      .mockResolvedValueOnce({ items: [], fallbacks: [] })
+      .mockResolvedValueOnce({ items: selected, fallbacks: [] });
     mount(selected, vi.fn(), { ...loader(), loadQuestions });
     expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.retry }));
@@ -320,27 +336,36 @@ describe('active Engine Quiz renderer', () => {
     };
     expect(questionBlockLabel(carousel)).toBe('Illustrated comparison');
     expect(questionBlockLabel({ ...carousel, locale: { title: 'Compare', slides } })).toBe('Compare');
-    expect(questionBlockLabel({
-      id: uuid(303),
-      slug: 'markdown',
-      type: 'markdown',
-      params: {},
-      locale: { value: '**Important** and `code`' },
-    })).toBe('Important and code');
-    expect(questionBlockLabel({
-      id: uuid(304),
-      slug: 'subtitles',
-      type: 'subtitles',
-      params: {},
-      locale: { fileLocation: '/captions.en.vtt' },
-    })).toBe('captions.en.vtt');
-    expect(questionBlockLabel({
-      id: uuid(305),
-      slug: 'video',
-      type: 'video',
-      params: {},
-      locale: { fileLocation: '/recording.mp4', poster: '/poster.png', label: 'Recording', title: 'Запис' },
-    }, 'uk')).toBe('Запис');
+    expect(
+      questionBlockLabel({
+        id: uuid(303),
+        slug: 'markdown',
+        type: 'markdown',
+        params: {},
+        locale: { value: '**Important** and `code`' },
+      }),
+    ).toBe('Important and code');
+    expect(
+      questionBlockLabel({
+        id: uuid(304),
+        slug: 'subtitles',
+        type: 'subtitles',
+        params: {},
+        locale: { fileLocation: '/captions.en.vtt' },
+      }),
+    ).toBe('captions.en.vtt');
+    expect(
+      questionBlockLabel(
+        {
+          id: uuid(305),
+          slug: 'video',
+          type: 'video',
+          params: {},
+          locale: { fileLocation: '/recording.mp4', poster: '/poster.png', label: 'Recording', title: 'Запис' },
+        },
+        'uk',
+      ),
+    ).toBe('Запис');
   });
 
   it('does not advance a nondeferrable stepper before checking its current Question', async () => {

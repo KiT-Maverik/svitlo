@@ -13,9 +13,7 @@ test('the academy landing page links to learning materials', async ({ page }) =>
 
 test('hall of fame identifies its names as fictional demonstration data', async ({ page }) => {
   await page.goto('/hall-of-fame');
-  await expect(
-    page.getByText('Усі імена вище — вигадані демонстраційні приклади.', { exact: false }),
-  ).toBeVisible();
+  await expect(page.getByText('Усі імена вище — вигадані демонстраційні приклади.', { exact: false })).toBeVisible();
 });
 
 test('scholarships are marked as proposals, not active applications', async ({ page }) => {

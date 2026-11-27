@@ -42,14 +42,20 @@ function assertRoute(paths, source, owningPattern) {
   assert.equal(selects(paths, source), true, 'Unselected Ready source: ' + source);
   // A route that accidentally drops its owning positive glob must fail.
   assert.equal(
-    selects(paths.filter(pattern => pattern !== owningPattern), source),
+    selects(
+      paths.filter(pattern => pattern !== owningPattern),
+      source,
+    ),
     false,
     'The trigger test does not detect loss of the required path pattern: ' + owningPattern,
   );
 }
 
 function commands(workflow) {
-  return Object.values(workflow.jobs).flatMap(job => job.steps ?? []).map(step => step.run ?? '').join('\n');
+  return Object.values(workflow.jobs)
+    .flatMap(job => job.steps ?? [])
+    .map(step => step.run ?? '')
+    .join('\n');
 }
 
 test('ordinary Web-only changes select real negative-selection, component and publication regressions', () => {
@@ -78,12 +84,17 @@ test('ordinary Web-only changes select real negative-selection, component and pu
     'apps/web/src/app/en/course/lesson/page.tsx',
     'apps/web/src/lib/courseNavigation.ts',
     'apps/web/scripts/buildTestContent/build.mjs',
-  ]) assert.equal(selects(course.paths, source), true, 'Lost existing Course route: ' + source);
+  ])
+    assert.equal(selects(course.paths, source), true, 'Lost existing Course route: ' + source);
 
   const script = commands(workflow);
   assert.match(script, /npm run test:components --workspace @svitlo\/web/);
   assert.match(script, /npm run test:integration --workspace @svitlo\/web/);
-  assert.doesNotMatch(script, /test:e2e|playwright install|npm run app:build/, 'Do not invoke Course browsers for unrelated edits');
+  assert.doesNotMatch(
+    script,
+    /test:e2e|playwright install|npm run app:build/,
+    'Do not invoke Course browsers for unrelated edits',
+  );
   assert.match(String(workflow.jobs.tests.if), /!github\.event\.pull_request\.draft/);
   assert.match(String(workflow.jobs.tests.if), /base\.ref != 'main'/);
   assert.equal(workflow.jobs.tests.env.SVITLO_WEB_TEST_SELECTION, 'web-fixture-alpha');
@@ -97,10 +108,22 @@ test('ordinary Web-only changes select real negative-selection, component and pu
 test('UI Kit Ready tests run on direct Engine assessment, standard and language contract edits', () => {
   const { workflow, paths } = readWorkflow('ui-kit-tests.yml');
   const owners = [
-    ['shared/engine/configurators/assessmentMethods/defineAssessmentMethod.schemas.ts', 'shared/engine/configurators/assessmentMethods/**'],
-    ['shared/engine/configurators/educationStandards/defineEducationStandard/defineEducationStandard.schemas.ts', 'shared/engine/configurators/educationStandards/**'],
-    ['shared/engine/configurators/questions/assessmentMethod.schemas.ts', 'shared/engine/configurators/questions/assessmentMethod.schemas.ts'],
-    ['shared/engine/configurators/contentBlocks/contentBlock.schemas.ts', 'shared/engine/configurators/contentBlocks/contentBlock.schemas.ts'],
+    [
+      'shared/engine/configurators/assessmentMethods/defineAssessmentMethod.schemas.ts',
+      'shared/engine/configurators/assessmentMethods/**',
+    ],
+    [
+      'shared/engine/configurators/educationStandards/defineEducationStandard/defineEducationStandard.schemas.ts',
+      'shared/engine/configurators/educationStandards/**',
+    ],
+    [
+      'shared/engine/configurators/questions/assessmentMethod.schemas.ts',
+      'shared/engine/configurators/questions/assessmentMethod.schemas.ts',
+    ],
+    [
+      'shared/engine/configurators/contentBlocks/contentBlock.schemas.ts',
+      'shared/engine/configurators/contentBlocks/contentBlock.schemas.ts',
+    ],
     ['shared/engine/schemas/languages.schemas.ts', 'shared/engine/schemas/languages.schemas.ts'],
     ['shared/engine/utils/languages/getLanguageCode/getLanguageCode.utils.ts', 'shared/engine/utils/languages/**'],
   ];
@@ -109,7 +132,8 @@ test('UI Kit Ready tests run on direct Engine assessment, standard and language 
     'shared/engine/configurators/lessons/defineLesson/defineLesson.ts',
     'shared/engine/generators/materializers/sourceHelpers/sourceIdentifiers.mjs',
     'apps/web/src/app/page.tsx',
-  ]) assert.equal(selects(paths, unrelated), false, 'Unnecessary UI Kit run: ' + unrelated);
+  ])
+    assert.equal(selects(paths, unrelated), false, 'Unnecessary UI Kit run: ' + unrelated);
   const steps = commands(workflow);
   assert.match(steps, /npm test --workspace @svitlo\/ui-kit/);
   assert.match(steps, /node --test scripts\/ci\/testRouting\/test-routing\.spec\.mjs/);

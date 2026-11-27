@@ -44,4 +44,3 @@ test('production gate CLI propagates authorized and unauthorized exit statuses',
   assert.equal(denied.status, 1);
   assert.match(denied.stderr, /Production promotion requires/);
 });
-

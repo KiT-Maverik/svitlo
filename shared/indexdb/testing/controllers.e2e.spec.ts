@@ -115,9 +115,9 @@ test.describe('Native IndexedDB controller contracts', () => {
   test('should roll back invalid native controller updates without rewriting persisted state', async ({ page }) => {
     const saved = progressingQuiz('quiz-rollback', 'quiz');
     await invoke(page, { op: 'saveQuizState', state: saved });
-    await expect(
-      invoke(page, { op: 'updateQuizState', id: saved.id, patch: { id: 'changed-id' } }),
-    ).rejects.toThrow(/cannot change its ID/);
+    await expect(invoke(page, { op: 'updateQuizState', id: saved.id, patch: { id: 'changed-id' } })).rejects.toThrow(
+      /cannot change its ID/,
+    );
     await expect(
       invoke(page, {
         op: 'updateQuizState',

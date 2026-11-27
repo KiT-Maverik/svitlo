@@ -168,12 +168,19 @@ test('typed publisher makes one atomic no-force draft deletion + index creation 
 });
 
 test('stale HEAD refuses the branch write after constructing a candidate commit', async () => {
-  await assert.rejects(() => exercise({ advance: true }), error => {
-    assert.match(error.message, /HEAD advanced/);
-    assert.equal(error.calls.filter(call => call.route === 'git/commits' && call.method === 'POST').length, 1);
-    assert.equal(error.calls.filter(call => call.method === 'PATCH').length, 0, 'stale HEAD must never advance a ref');
-    return true;
-  });
+  await assert.rejects(
+    () => exercise({ advance: true }),
+    error => {
+      assert.match(error.message, /HEAD advanced/);
+      assert.equal(error.calls.filter(call => call.route === 'git/commits' && call.method === 'POST').length, 1);
+      assert.equal(
+        error.calls.filter(call => call.method === 'PATCH').length,
+        0,
+        'stale HEAD must never advance a ref',
+      );
+      return true;
+    },
+  );
 });
 
 test('PR prose edits do not affect publishing or its atomic branch lease', async () => {
@@ -186,15 +193,18 @@ test('tampered manifest and unauthorized actor are rejected before any write', a
     [{ corruptArtifact: true }, /SHA256 attestation/],
     [{ permission: 'read' }, /permission/],
   ]) {
-    await assert.rejects(() => exercise(options), error => {
-      assert.match(error.message, expected);
-      assert.equal(
-        error.calls.filter(call => call.method === 'POST' || call.method === 'PATCH').length,
-        0,
-        'rejected publisher must not create Git objects or update refs',
-      );
-      return true;
-    });
+    await assert.rejects(
+      () => exercise(options),
+      error => {
+        assert.match(error.message, expected);
+        assert.equal(
+          error.calls.filter(call => call.method === 'POST' || call.method === 'PATCH').length,
+          0,
+          'rejected publisher must not create Git objects or update refs',
+        );
+        return true;
+      },
+    );
   }
 });
 

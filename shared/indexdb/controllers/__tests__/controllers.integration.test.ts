@@ -150,7 +150,6 @@ describe('DB', { concurrency: false }, () => {
           await assert.rejects(createLessonState(''));
           assert.deepEqual(await listLessonStates(''), []);
         });
-
       });
     });
 
@@ -261,7 +260,6 @@ describe('DB', { concurrency: false }, () => {
           await assert.rejects(saveLessonState(invalid));
           assert.equal(await readStored('lessonStates', invalid.id), undefined);
         });
-
       });
     });
 
@@ -359,7 +357,6 @@ describe('DB', { concurrency: false }, () => {
           await assert.rejects(createQuizState(''));
           assert.deepEqual(await listQuizStates(''), []);
         });
-
       });
     });
 
@@ -605,10 +602,12 @@ describe('DB', { concurrency: false }, () => {
           if (completed?.status !== 'finished') throw new Error('Expected a finished quiz');
           assert.deepEqual(completed.result, { status: 'graded', success: false, value: -2 });
           const before = await readStored('quizStates', initial.id);
-          await assert.rejects(updateQuizState(initial.id, current => {
-            if (current.status !== 'finished') throw new Error('Unexpected status');
-            return { ...current, result: { status: 'graded', success: true, value: Number.POSITIVE_INFINITY } };
-          }));
+          await assert.rejects(
+            updateQuizState(initial.id, current => {
+              if (current.status !== 'finished') throw new Error('Unexpected status');
+              return { ...current, result: { status: 'graded', success: true, value: Number.POSITIVE_INFINITY } };
+            }),
+          );
           assert.deepEqual(await readStored('quizStates', initial.id), before);
         });
 

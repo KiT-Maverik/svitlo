@@ -326,71 +326,71 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.getByText('1 / 1')).toBeVisible();
   });
 
-  it.each([{ choice: 'Radiation', failed: false }, { choice: 'Sound', failed: true }])(
-    'unlocks a blocking Engine Quiz after a completed $choice attempt',
-    async ({ choice, failed }) => {
-      const response = fixture(false);
-      const question = {
-        id: uuid(26),
-        slug: 'whatIsLight',
-        type: 'selectOneAnswer' as const,
-        params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
-        locale: {},
-        content: {
-          question: [text(27, 'Question about light')] as [ContentBlock_Text_Data],
-          answers: {
-            correct: { radiation: text(28, 'Radiation') },
-            incorrect: { sound: text(29, 'Sound') },
-            distractors: {},
-          },
+  it.each([
+    { choice: 'Radiation', failed: false },
+    { choice: 'Sound', failed: true },
+  ])('unlocks a blocking Engine Quiz after a completed $choice attempt', async ({ choice, failed }) => {
+    const response = fixture(false);
+    const question = {
+      id: uuid(26),
+      slug: 'whatIsLight',
+      type: 'selectOneAnswer' as const,
+      params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
+      locale: {},
+      content: {
+        question: [text(27, 'Question about light')] as [ContentBlock_Text_Data],
+        answers: {
+          correct: { radiation: text(28, 'Radiation') },
+          incorrect: { sound: text(29, 'Sound') },
+          distractors: {},
         },
-      };
-      const quiz: QuizSection_Data = {
-        id: uuid(24),
-        slug: 'quiz',
-        type: 'quiz',
-        params: {
-          isBlocker: true,
-          selection: { mode: 'all', questionIds: [question.id] },
-          layout: { mode: 'stack' },
-          feedbackMode: 'immediate',
-          grading: { mode: 'points', successThreshold: 1 },
-          interaction: {
-            retries: 0,
-            showErrors: true,
-            showCorrectAnswers: true,
-            allowExplanations: true,
-            allowDeferring: false,
-            allowQuestionNavigation: false,
-            skippable: false,
-          },
-          results: { visibility: 'immediate', showScore: true },
-          screen: {},
+      },
+    };
+    const quiz: QuizSection_Data = {
+      id: uuid(24),
+      slug: 'quiz',
+      type: 'quiz',
+      params: {
+        isBlocker: true,
+        selection: { mode: 'all', questionIds: [question.id] },
+        layout: { mode: 'stack' },
+        feedbackMode: 'immediate',
+        grading: { mode: 'points', successThreshold: 1 },
+        interaction: {
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: true,
+          allowDeferring: false,
+          allowQuestionNavigation: false,
+          skippable: false,
         },
-        locale: { title: 'Quiz', navigationLabel: 'Quiz' },
-        content: [],
-      };
-      // Published Question Props arrive as JSON, without source-only TypeScript metadata.
-      response.section = [quiz, response.section[1]];
-      const loader: AssessmentResourceLoader = {
-        loadQuestions: async ({ language, ids }) => {
-          expect(language).toBe('en');
-          expect(ids).toEqual([question.id]);
-          return { items: [JSON.parse(JSON.stringify(question))] as never, fallbacks: [] };
-        },
-        loadFlashcards: async () => ({ items: [], fallbacks: [] }),
-      };
-      showLesson(response, [], loader);
-      expect(navigationButton('next')).toBeDisabled();
-      fireEvent.click(await screen.findByRole('radio', { name: choice }));
-      fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
-      await waitFor(() => expect(navigationButton('next')).toBeEnabled());
-      expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
-      expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
-      fireEvent.click(navigationButton('next'));
-      expect(screen.getByText('Second section content')).toBeVisible();
-      expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
-      expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
-    },
-  );
+        results: { visibility: 'immediate', showScore: true },
+        screen: {},
+      },
+      locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+      content: [],
+    };
+    // Published Question Props arrive as JSON, without source-only TypeScript metadata.
+    response.section = [quiz, response.section[1]];
+    const loader: AssessmentResourceLoader = {
+      loadQuestions: async ({ language, ids }) => {
+        expect(language).toBe('en');
+        expect(ids).toEqual([question.id]);
+        return { items: [JSON.parse(JSON.stringify(question))] as never, fallbacks: [] };
+      },
+      loadFlashcards: async () => ({ items: [], fallbacks: [] }),
+    };
+    showLesson(response, [], loader);
+    expect(navigationButton('next')).toBeDisabled();
+    fireEvent.click(await screen.findByRole('radio', { name: choice }));
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    await waitFor(() => expect(navigationButton('next')).toBeEnabled());
+    expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+    expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
+    fireEvent.click(navigationButton('next'));
+    expect(screen.getByText('Second section content')).toBeVisible();
+    expect(received.filter(event => event === 'quizCompleted')).toHaveLength(1);
+    expect(received.filter(event => event === 'quizFailed')).toHaveLength(failed ? 1 : 0);
+  });
 });

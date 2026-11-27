@@ -57,9 +57,12 @@ describe('Math Skills taxonomy locale completeness', () => {
         .filter(ts.isVariableStatement)
         .flatMap(statement => statement.declarationList.declarations)
         .map(declaration => declaration.initializer)
-        .filter((value): value is ts.CallExpression =>
-          !!value && ts.isCallExpression(value) && ts.isIdentifier(value.expression) &&
-          ['defineSkillDomain', 'defineSkillGroup', 'defineSkill'].includes(value.expression.text),
+        .filter(
+          (value): value is ts.CallExpression =>
+            !!value &&
+            ts.isCallExpression(value) &&
+            ts.isIdentifier(value.expression) &&
+            ['defineSkillDomain', 'defineSkillGroup', 'defineSkill'].includes(value.expression.text),
         );
 
       expect(calls, file + ': expected exactly one authored Skill entity').toHaveLength(1);
@@ -72,9 +75,10 @@ describe('Math Skills taxonomy locale completeness', () => {
       const description = objectProperty(config, 'description', file);
       // The Engine schema requires learner text for Skills, but allows
       // SkillDomain and SkillGroup descriptions to be methodological-only.
-      const frontend = kind === 'defineSkill'
-        ? objectProperty(description, 'frontend', file)
-        : optionalObjectProperty(description, 'frontend', file);
+      const frontend =
+        kind === 'defineSkill'
+          ? objectProperty(description, 'frontend', file)
+          : optionalObjectProperty(description, 'frontend', file);
       const dictionaries: [string, ts.ObjectLiteralExpression][] = [[fieldName, name]];
       if (frontend) dictionaries.push(['description.frontend', frontend]);
 

@@ -21,4 +21,3 @@ test('unknown textbook fails before generating or touching Web assets', () => {
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /Unknown SVITLO_TEXTBOOK/);
 });
-

@@ -21,14 +21,17 @@ test('lesson step progress survives a reload of the mobile production host', asy
   await page.getByRole('link').first().click();
   const steps = page.locator('nav').filter({ has: page.locator('button[aria-current="step"]') });
   const activeStep = () =>
-    steps.locator('button').evaluateAll(buttons =>
-      buttons.findIndex(button => button.getAttribute('aria-current') === 'step'),
-    );
+    steps
+      .locator('button')
+      .evaluateAll(buttons => buttons.findIndex(button => button.getAttribute('aria-current') === 'step'));
 
   await expect(steps).toHaveCount(1);
   const initial = await activeStep();
   expect(initial).toBeGreaterThanOrEqual(0);
-  await page.getByRole('button', { name: /next|далі|наступ/i }).first().click();
+  await page
+    .getByRole('button', { name: /next|далі|наступ/i })
+    .first()
+    .click();
   await expect.poll(activeStep).toBeGreaterThan(initial);
   const advanced = await activeStep();
 

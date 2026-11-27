@@ -1,8 +1,9 @@
 // @vitest-environment node
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
-import { describe, it } from 'vitest';
 import { fileURLToPath } from 'node:url';
+
+import { describe, it } from 'vitest';
 
 import { assessmentMethod_Data_Schema, assessmentMethodSlugs, type AssessmentMethodSlug } from '@svitlo/engine/build';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';

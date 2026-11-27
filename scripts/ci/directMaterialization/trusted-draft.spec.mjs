@@ -3,7 +3,13 @@ import test from 'node:test';
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { operationSpec, parseTrustedDraft, renderTrustedDraft, executeTrustedDraft, trustedEngine } from './trusted-draft.mjs';
+import {
+  operationSpec,
+  parseTrustedDraft,
+  renderTrustedDraft,
+  executeTrustedDraft,
+  trustedEngine,
+} from './trusted-draft.mjs';
 
 const uuid = '12345678-1234-4234-8234-123456789001';
 const base = 'content/math/data/';
@@ -59,7 +65,9 @@ for (const [operation, kind, method, filename] of cases) {
 
 const maliciousDraft = marker =>
   'export default { config: {}, production: {} } satisfies LessonWorkflowStage2;\n' +
-  'globalThis.' + marker + ' = true;\n';
+  'globalThis.' +
+  marker +
+  ' = true;\n';
 
 test('correctly SHA-pinned malicious bytes reach the reader callback without execution', () => {
   const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
@@ -82,19 +90,23 @@ test('correctly SHA-pinned malicious bytes reach the reader callback without exe
 });
 
 const builtEngine = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
-test('compiled trusted Engine rejects pinned malicious source without evaluation', { skip: !existsSync(builtEngine) }, () => {
-  const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
-  const injected = maliciousDraft(marker);
-  const source = { ...pinned(cases[1][3]), sourceBlobSha: gitBlob(injected) };
-  const read = trustedEngine(fileURLToPath(new URL('../../../', import.meta.url))).readDeclarativeDraft;
-  assert.equal(typeof read, 'function');
-  const before = Object.hasOwn(globalThis, marker);
-  assert.throws(
-    () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
-    /Declarative draft structure/,
-  );
-  assert.equal(Object.hasOwn(globalThis, marker), before);
-});
+test(
+  'compiled trusted Engine rejects pinned malicious source without evaluation',
+  { skip: !existsSync(builtEngine) },
+  () => {
+    const marker = '__SVITLO_TRUSTED_ANALYSIS_SENTINEL__';
+    const injected = maliciousDraft(marker);
+    const source = { ...pinned(cases[1][3]), sourceBlobSha: gitBlob(injected) };
+    const read = trustedEngine(fileURLToPath(new URL('../../../', import.meta.url))).readDeclarativeDraft;
+    assert.equal(typeof read, 'function');
+    const before = Object.hasOwn(globalThis, marker);
+    assert.throws(
+      () => parseTrustedDraft({ operation: 'lesson-stage6', source, sourceText: injected, read }),
+      /Declarative draft structure/,
+    );
+    assert.equal(Object.hasOwn(globalThis, marker), before);
+  },
+);
 
 test('invalid operation/path/stale blob and output spoofing fail before publication', () => {
   const original = pinned(cases[1][3]);

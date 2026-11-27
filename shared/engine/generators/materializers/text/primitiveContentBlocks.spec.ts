@@ -9,14 +9,14 @@ import { test } from 'node:test';
 import ts from 'typescript';
 
 import type { CourseWorkflowStage1Languages } from '../../../types/workflow';
-import { materializeText } from '../text/materializeText';
-import { materializeMarkdown } from '../markdown/materializeMarkdown';
-import { materializeCode } from '../code/materializeCode';
 import { materializeAudio } from '../audio/materializeAudio';
+import { materializeCode } from '../code/materializeCode';
 import { materializeImage } from '../image/materializeImage';
+import { materializeMarkdown } from '../markdown/materializeMarkdown';
+import { materializeSubtitles } from '../subtitles/materializeSubtitles';
+import { materializeText } from '../text/materializeText';
 import { materializeVideo } from '../video/materializeVideo';
 import { materializeYoutube } from '../youtube/materializeYoutube';
-import { materializeSubtitles } from '../subtitles/materializeSubtitles';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const productionLanguages: CourseWorkflowStage1Languages = { document: 'uk', planned: ['uk', 'en'] };
@@ -97,14 +97,62 @@ const validSubtitles = () => ({
 });
 
 const suites = [
-  { kind: 'text' as const, slug: 'intro', unreviewed: "Welcome", fixture: validText, render: (source: unknown, options: unknown) => materializeText(source as never, options as never) },
-  { kind: 'markdown' as const, slug: 'prose', unreviewed: "Unreviewed", fixture: validMarkdown, render: (source: unknown, options: unknown) => materializeMarkdown(source as never, options as never) },
-  { kind: 'code' as const, slug: 'sourceCode', unreviewed: "'Ada'", fixture: validCode, render: (source: unknown, options: unknown) => materializeCode(source as never, options as never) },
-  { kind: 'audio' as const, slug: 'narration', unreviewed: "English-only", fixture: validAudio, render: (source: unknown, options: unknown) => materializeAudio(source as never, options as never) },
-  { kind: 'image' as const, slug: 'figure', unreviewed: "English-only", fixture: validImage, render: (source: unknown, options: unknown) => materializeImage(source as never, options as never) },
-  { kind: 'video' as const, slug: 'clip', unreviewed: "English-only", fixture: validVideo, render: (source: unknown, options: unknown) => materializeVideo(source as never, options as never) },
-  { kind: 'youtube' as const, slug: 'watch', unreviewed: "English-only", fixture: validYoutube, render: (source: unknown, options: unknown) => materializeYoutube(source as never, options as never) },
-  { kind: 'subtitles' as const, slug: 'captions', unreviewed: "01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.vtt", fixture: validSubtitles, render: (source: unknown, options: unknown) => materializeSubtitles(source as never, options as never) },
+  {
+    kind: 'text' as const,
+    slug: 'intro',
+    unreviewed: 'Welcome',
+    fixture: validText,
+    render: (source: unknown, options: unknown) => materializeText(source as never, options as never),
+  },
+  {
+    kind: 'markdown' as const,
+    slug: 'prose',
+    unreviewed: 'Unreviewed',
+    fixture: validMarkdown,
+    render: (source: unknown, options: unknown) => materializeMarkdown(source as never, options as never),
+  },
+  {
+    kind: 'code' as const,
+    slug: 'sourceCode',
+    unreviewed: "'Ada'",
+    fixture: validCode,
+    render: (source: unknown, options: unknown) => materializeCode(source as never, options as never),
+  },
+  {
+    kind: 'audio' as const,
+    slug: 'narration',
+    unreviewed: 'English-only',
+    fixture: validAudio,
+    render: (source: unknown, options: unknown) => materializeAudio(source as never, options as never),
+  },
+  {
+    kind: 'image' as const,
+    slug: 'figure',
+    unreviewed: 'English-only',
+    fixture: validImage,
+    render: (source: unknown, options: unknown) => materializeImage(source as never, options as never),
+  },
+  {
+    kind: 'video' as const,
+    slug: 'clip',
+    unreviewed: 'English-only',
+    fixture: validVideo,
+    render: (source: unknown, options: unknown) => materializeVideo(source as never, options as never),
+  },
+  {
+    kind: 'youtube' as const,
+    slug: 'watch',
+    unreviewed: 'English-only',
+    fixture: validYoutube,
+    render: (source: unknown, options: unknown) => materializeYoutube(source as never, options as never),
+  },
+  {
+    kind: 'subtitles' as const,
+    slug: 'captions',
+    unreviewed: '01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.vtt',
+    fixture: validSubtitles,
+    render: (source: unknown, options: unknown) => materializeSubtitles(source as never, options as never),
+  },
 ];
 
 for (const { kind, slug, unreviewed, fixture, render } of suites) {
@@ -118,7 +166,10 @@ for (const { kind, slug, unreviewed, fixture, render } of suites) {
     assert(one.files.some(file => file.path === 'index.ts'));
     assert(one.files.every(file => !file.path.startsWith('/') && !file.path.includes('..')));
     const module = one.files.find(file => file.path === 'index.ts')?.content ?? '';
-    assert.match(module, new RegExp('define' + kind[0].toUpperCase() + kind.slice(1) + '<"' + slug + '", typeof languages>'));
+    assert.match(
+      module,
+      new RegExp('define' + kind[0].toUpperCase() + kind.slice(1) + '<"' + slug + '", typeof languages>'),
+    );
     assert(module.includes(id), 'original immutable UUID retained');
     assert(!module.includes(unreviewed), 'unreviewed locale is not materialized');
     const parsed = ts.transpileModule(module, {
@@ -134,74 +185,78 @@ for (const { kind, slug, unreviewed, fixture, render } of suites) {
     assert(one.diagnostics.some(item => item.code === 'pending-locales'));
     assert(one.diagnostics.every(item => item.severity === 'warning'));
     switch (kind) {
-    case 'text': {
-  assert.match(module, /Привіт/);
-  assert.match(module, /%_%id: person; value: Оля%_%/);
-  assert.match(module, /applyStyle/);
-  assert.throws(
-    () =>
-      materializeText(
-        { ...validText(), locale: { value: { uk: '%_%id: invalid; value: x%_%' } } },
-        { documentLanguage: 'uk' },
-      ),
-    /Text variables validation failed/,
-  );
-      break;
-    }
-    case 'markdown': {
-  assert.match(module, /readMarkdown\(import.meta.url, \["uk"\]\)/);
-  assert.equal(one.files.find(file => file.path === 'uk.md')?.content, 'Радіус $r$. %_%NAME%_%\n');
-  assert(!one.files.some(file => file.path === 'en.md'));
-  assert.throws(
-    () => materializeMarkdown({ ...validMarkdown(), locale: { value: '' } }, { documentLanguage: 'uk' }),
-    /empty Markdown/,
-  );
-      break;
-    }
-    case 'code': {
-  assert.match(module, /readCodeSource\(import.meta.url, "py"\)/);
-  assert.equal(one.files.find(file => file.path === 'code.py')?.content, 'print(%_%NAME%_%)\n');
-  assert.throws(
-    () => materializeCode({ ...validCode(), params: { language: 'unknown', codeAsText: 'x' } }, { documentLanguage: 'uk' }),
-    /unsupported Code language/,
-  );
-      break;
-    }
-    case 'audio': {
-  assert.match(module, new RegExp(id + '\\.mp3'));
-  assert(!one.diagnostics.some(item => item.code === 'pending-media'));
-      break;
-    }
-    case 'image': {
-  assert.match(module, new RegExp(id + '\\.webp'));
-  assert(!module.includes('01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp'));
-  assert(!one.diagnostics.some(item => item.code === 'pending-media'));
-  assert.equal(one.files.length, 1);
-      break;
-    }
-    case 'video': {
-  assert.match(module, /01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp/);
-  assert.match(module, new RegExp(id + '\\.mp4'));
-  assert(!one.diagnostics.some(item => item.code === 'pending-media'));
-      break;
-    }
-    case 'youtube': {
-  assert.match(module, /youtube.com/);
-  assert.match(module, /Переглянути/);
-  assert(!one.diagnostics.some(item => item.code === 'pending-copy'));
-  assert(!one.files.some(file => file.kind !== 'typescript'));
-  assert.match(
-    module,
-    /TODO \(BLOCKER\): Verify external video \(availability, appropriateness, access, captions, language\/offline alternative, link\)/,
-  );
-  assert(one.diagnostics.some(item => item.code === 'pending-youtube-verification'));
-      break;
-    }
-    case 'subtitles': {
-  assert.match(module, new RegExp(id + '\\.vtt'));
-  assert(!one.diagnostics.some(item => item.code === 'pending-media'));
-      break;
-    }
+      case 'text': {
+        assert.match(module, /Привіт/);
+        assert.match(module, /%_%id: person; value: Оля%_%/);
+        assert.match(module, /applyStyle/);
+        assert.throws(
+          () =>
+            materializeText(
+              { ...validText(), locale: { value: { uk: '%_%id: invalid; value: x%_%' } } },
+              { documentLanguage: 'uk' },
+            ),
+          /Text variables validation failed/,
+        );
+        break;
+      }
+      case 'markdown': {
+        assert.match(module, /readMarkdown\(import.meta.url, \["uk"\]\)/);
+        assert.equal(one.files.find(file => file.path === 'uk.md')?.content, 'Радіус $r$. %_%NAME%_%\n');
+        assert(!one.files.some(file => file.path === 'en.md'));
+        assert.throws(
+          () => materializeMarkdown({ ...validMarkdown(), locale: { value: '' } }, { documentLanguage: 'uk' }),
+          /empty Markdown/,
+        );
+        break;
+      }
+      case 'code': {
+        assert.match(module, /readCodeSource\(import.meta.url, "py"\)/);
+        assert.equal(one.files.find(file => file.path === 'code.py')?.content, 'print(%_%NAME%_%)\n');
+        assert.throws(
+          () =>
+            materializeCode(
+              { ...validCode(), params: { language: 'unknown', codeAsText: 'x' } },
+              { documentLanguage: 'uk' },
+            ),
+          /unsupported Code language/,
+        );
+        break;
+      }
+      case 'audio': {
+        assert.match(module, new RegExp(id + '\\.mp3'));
+        assert(!one.diagnostics.some(item => item.code === 'pending-media'));
+        break;
+      }
+      case 'image': {
+        assert.match(module, new RegExp(id + '\\.webp'));
+        assert(!module.includes('01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp'));
+        assert(!one.diagnostics.some(item => item.code === 'pending-media'));
+        assert.equal(one.files.length, 1);
+        break;
+      }
+      case 'video': {
+        assert.match(module, /01f1d8b8-e409-4cf3-bd64-1e76f2be9db2.webp/);
+        assert.match(module, new RegExp(id + '\\.mp4'));
+        assert(!one.diagnostics.some(item => item.code === 'pending-media'));
+        break;
+      }
+      case 'youtube': {
+        assert.match(module, /youtube.com/);
+        assert.match(module, /Переглянути/);
+        assert(!one.diagnostics.some(item => item.code === 'pending-copy'));
+        assert(!one.files.some(file => file.kind !== 'typescript'));
+        assert.match(
+          module,
+          /TODO \(BLOCKER\): Verify external video \(availability, appropriateness, access, captions, language\/offline alternative, link\)/,
+        );
+        assert(one.diagnostics.some(item => item.code === 'pending-youtube-verification'));
+        break;
+      }
+      case 'subtitles': {
+        assert.match(module, new RegExp(id + '\\.vtt'));
+        assert(!one.diagnostics.some(item => item.code === 'pending-media'));
+        break;
+      }
     }
   });
 }
@@ -308,8 +363,14 @@ test('markdown: composed nested source paths and Course language handoff', () =>
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );
-  assert.throws(() => materializeMarkdown(validMarkdown(), { ...options, directory: '../escape' }), /unsafe output path/);
-  assert.throws(() => materializeMarkdown(validMarkdown(), { ...options, directory }), /explicit root languages module/);
+  assert.throws(
+    () => materializeMarkdown(validMarkdown(), { ...options, directory: '../escape' }),
+    /unsafe output path/,
+  );
+  assert.throws(
+    () => materializeMarkdown(validMarkdown(), { ...options, directory }),
+    /explicit root languages module/,
+  );
 });
 
 test('code: missing mandatory Config input must not emit an invalid defineCode call', () => {
@@ -405,7 +466,10 @@ test('audio: composed nested source paths and Course language handoff', () => {
 });
 
 test('audio: pending media retains a valid Config and explicit asset blocker', () => {
-  const result = materializeAudio({ ...validAudio(), locale: { title: { uk: 'Оповідь' } } }, { documentLanguage: 'uk' });
+  const result = materializeAudio(
+    { ...validAudio(), locale: { title: { uk: 'Оповідь' } } },
+    { documentLanguage: 'uk' },
+  );
   assert(result.diagnostics.some(item => item.code === 'pending-media'));
   assert.match(result.files[0].content, /00000000-0000-0000-0000-000000000000.mp3/);
   assert.equal((result.files[0].content.match(/TODO \(BLOCKER\): Supply verified fileName asset/g) ?? []).length, 1);
@@ -692,6 +756,12 @@ test('subtitles: composed nested source paths and Course language handoff', () =
   assert(
     nested.files.find(file => file.path.endsWith('/index.ts'))?.content.includes('from "../../../../../languages"'),
   );
-  assert.throws(() => materializeSubtitles(validSubtitles(), { ...options, directory: '../escape' }), /unsafe output path/);
-  assert.throws(() => materializeSubtitles(validSubtitles(), { ...options, directory }), /explicit root languages module/);
+  assert.throws(
+    () => materializeSubtitles(validSubtitles(), { ...options, directory: '../escape' }),
+    /unsafe output path/,
+  );
+  assert.throws(
+    () => materializeSubtitles(validSubtitles(), { ...options, directory }),
+    /explicit root languages module/,
+  );
 });

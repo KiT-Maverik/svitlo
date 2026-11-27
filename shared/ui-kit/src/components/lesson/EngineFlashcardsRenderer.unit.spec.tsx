@@ -1,11 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type {
-  AssessmentResourceLoader,
-  Flashcard_Data,
-  FlashcardsSection_Data,
-} from '@svitlo/engine/runtime';
+import type { AssessmentResourceLoader, Flashcard_Data, FlashcardsSection_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { EngineFlashcardsRenderer } from './EngineFlashcardsRenderer';
@@ -56,9 +52,7 @@ describe('EngineFlashcardsRenderer resource boundaries', () => {
       />,
     );
 
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      enUiKitMessages.flashcard.flashcard.noCompatibleCards,
-    );
+    expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.flashcard.flashcard.noCompatibleCards);
     expect(screen.queryByText('Hear this sound')).not.toBeInTheDocument();
   });
 
@@ -106,10 +100,13 @@ describe('EngineFlashcardsRenderer resource boundaries', () => {
 
   it('recovers from a failed host load through the accessible retry action', async () => {
     const selected = card(4, 'Retry question');
-    const loadFlashcards = vi.fn().mockRejectedValueOnce(new Error('offline')).mockResolvedValue({
-      items: [selected],
-      fallbacks: [],
-    });
+    const loadFlashcards = vi
+      .fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValue({
+        items: [selected],
+        fallbacks: [],
+      });
     const loader: AssessmentResourceLoader = {
       loadQuestions: emptyQuestions,
       loadFlashcards,
@@ -123,9 +120,7 @@ describe('EngineFlashcardsRenderer resource boundaries', () => {
         messages={enUiKitMessages}
       />,
     );
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      enUiKitMessages.learningLayout.preparingLessonError,
-    );
+    expect(await screen.findByRole('alert')).toHaveTextContent(enUiKitMessages.learningLayout.preparingLessonError);
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.retry }));
     expect(await screen.findByText('Retry question')).toBeVisible();
     expect(loadFlashcards).toHaveBeenCalledTimes(2);
