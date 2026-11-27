@@ -271,7 +271,7 @@ export function renderLessonMarkdown({
     );
     add('');
     add(`- ID: \`${section.id}\``);
-    add(`- Navigation: ${headingText(section.locale.navigationLabel)}`);
+    add(`- Navigation: ${headingText(section.locale.navigationLabel ?? section.locale.title)}`);
     add(`- Canonical: ${source(section.id, sourceEntry)}`);
     const blocks = orderedLessonChildren(section, 'Section ' + section.slug);
     for (const [key, value] of Object.entries(section)) {
