@@ -4,6 +4,7 @@ import { deepStrict_Schema, languageCode_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { validateSlugAddressedContainer } from '../../_shared__configurators';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
@@ -41,40 +42,51 @@ export const assessment_Config_Schema = identity
   .strict();
 export type Assessment_Config = z.infer<typeof assessment_Config_Schema>;
 
+/** Data remains slug-addressed inside each named Assessment phase. */
+const phase_Data_Schema = z.looseObject({ children: z.array(z.string()) }).superRefine((phase, ctx) => {
+  for (const issue of validateSlugAddressedContainer(phase, ['content'])) {
+    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+  for (const key of phase.children) {
+    if (typeof key !== 'string') continue;
+    const child = phase[key];
+    if (!contentSection_Data_Schema.safeParse(child).success) {
+      ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Assessment supporting Content Section Data' });
+    }
+  }
+});
+
 const completedAssessment_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
-    section: z.array(z.union([contentSection_Data_Schema, quizSection_Data_Schema])),
+    before: phase_Data_Schema,
+    quiz: quizSection_Data_Schema,
+    after: phase_Data_Schema,
   })
   .strict()
   .refine(
-    value =>
-      value.section.filter(section => section.type === 'quiz').length === 1 &&
-      value.section.some(section => section.type === 'quiz' && section.params.disabled !== true),
-    'A completed Assessment must contain exactly one enabled Quiz',
+    value => value.quiz.params.disabled !== true,
+    'A completed Assessment must contain an enabled Quiz',
   );
 
-/** Course Stage 5 drafts can be rendered, but never count as a completed Quiz. */
+/** Course Stage 5 drafts are visible but never satisfy the completed Quiz contract. */
 export const assessment_Draft_Data_Schema = identity
   .extend({
     ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Data_Schema).nonempty(),
+    preview: contentSection_Data_Schema,
   })
   .strict()
   .refine(
     value =>
-      value.section.some(
-        section =>
-          section.params.disabled !== true &&
-          section.content.some(
-            block =>
-              block.type === 'text' &&
-              typeof block.locale === 'object' &&
-              block.locale !== null &&
-              'value' in block.locale &&
-              block.locale.value === 'Not implemented',
-          ),
+      value.preview.params.disabled !== true &&
+      value.preview.content.some(
+        block =>
+          block.type === 'text' &&
+          typeof block.locale === 'object' &&
+          block.locale !== null &&
+          'value' in block.locale &&
+          block.locale.value === 'Not implemented',
       ),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',
   );
@@ -82,10 +94,20 @@ export const assessment_Completed_Data_Schema = completedAssessment_Data_Schema;
 export const assessment_Data_Schema = z.union([completedAssessment_Data_Schema, assessment_Draft_Data_Schema]);
 export type Assessment_Draft_Data = z.infer<typeof assessment_Draft_Data_Schema>;
 export type Assessment_Data = z.infer<typeof assessment_Data_Schema>;
+
+type ContentSectionBase = ReturnType<Assessment_Content_Section_Configurator['build']['data']>['base'];
+type QuizBase = ReturnType<Assessment_Quiz_Configurator['build']['data']>['base'];
+export type Assessment_Phase_DataBase = { children: string[] } & Record<string, ContentSectionBase | string[]>;
 export type Assessment_DataBase = Pick<Assessment_Data, 'id' | 'slug' | 'type' | 'params'> & {
-  draft?: true;
   locale?: { title?: string };
-  section: ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
+  before: Assessment_Phase_DataBase;
+  quiz: QuizBase;
+  after: Assessment_Phase_DataBase;
+};
+export type Assessment_Draft_DataBase = Pick<Assessment_Data, 'id' | 'slug' | 'type' | 'params'> & {
+  draft: true;
+  locale?: { title?: string };
+  preview: ContentSectionBase;
 };
 
 export type Assessment_Metadata_Overrides = {
