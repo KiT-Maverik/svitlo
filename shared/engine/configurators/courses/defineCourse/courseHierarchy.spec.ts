@@ -621,3 +621,65 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     /at least one enabled Quiz/,
   );
 });
+
+
+test('Slug-addressed Data validates placement ordering, reserved keys and immutable child identity', () => {
+  const child = defineChapter({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d88',
+    slug: 'unit',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: {}, order: [] },
+  });
+  const course = defineCourse({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d89',
+    slug: 'keyedCourse',
+    type: 'course',
+    params: { languages: ['en'] as const },
+    locale: { title: 'Course', description: 'Addressable course' },
+    content: { items: { unit: child }, order: ['unit'] },
+  });
+  const data = course.build.data({ languages: ['en'] }).base;
+  const valid = (source: unknown) => course_Data_Schema.safeParse(source).success;
+  assert.equal(valid(data), true);
+
+  const failures: [string, Record<string, unknown>][] = [
+    ['duplicate placement', { ...data, children: ['unit', 'unit'] }],
+    ['missing placement', { ...data, children: [] }],
+    ['unknown placement', { ...data, children: ['unit', 'notPresent'] }],
+    ['disabled child', { ...data, unit: false }],
+    ['stale child', { ...data, children: [], unit: data.unit }],
+    ['invalid type', { ...data, unit: { ...data.unit, type: 'module' } }],
+    ['wrong identity', { ...data, unit: { ...data.unit, slug: 'anotherChapter' } }],
+    ['missing child id', { ...data, unit: { ...data.unit, id: undefined } }],
+    ['invalid key', { ...data, children: ['invalid-key'], 'invalid-key': data.unit }],
+    ['retired content', { ...data, content: { items: {}, order: [] } }],
+    ['reserved params', { ...data, children: ['params'] }],
+    ['unsafe JS key', Object.fromEntries([...Object.entries(data), ['constructor', data.unit]])],
+  ];
+  for (const [name, candidate] of failures) {
+    assert.equal(valid(candidate), false, name);
+  }
+  const copied = { ...data.unit, id: 'b775647f-203d-481a-a1c7-4d331c779d88', slug: 'copy' };
+  assert.equal(valid({ ...data, children: ['unit', 'copy'], copy: copied }), false, 'duplicate IDs');
+  assert.equal(
+    valid({ ...data, unit: { ...data.unit, content: { someChildOwnedField: 'opaque' } } }),
+    true,
+    'Course validates the direct child boundary, not child-owned internals',
+  );
+
+  const chapterWithReservedChild = defineChapter({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d90',
+    slug: 'invalidChapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: { items: { params: course as never }, order: ['params'] },
+  } as never);
+  assert.throws(() => chapterWithReservedChild.build.data({ languages: ['en'] }), /Reserved child placement slug/);
+  assert.throws(
+    () => course.build.overrides({ content: { additionalItems: { children: child }, order: ['unit', 'children'] } } as never, { languages: ['en'] }),
+    /Reserved child placement slug/,
+  );
+});
