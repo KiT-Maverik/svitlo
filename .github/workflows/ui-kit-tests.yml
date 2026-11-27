@@ -16,6 +16,7 @@ on:
       - 'shared/engine/schemas/languages.schemas.ts'
       - 'shared/engine/utils/languages/**'
       - 'shared/engine/package.json'
+      - 'scripts/ci/testRouting/**'
       - '.github/workflows/ui-kit-tests.yml'
   workflow_dispatch:
 
