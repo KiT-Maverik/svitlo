@@ -385,4 +385,18 @@ export const defineCheckpoint = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_Checkpoint_Configurator = ReturnType<typeof defineCheckpoint>;
+type DefinedCheckpoint = ReturnType<typeof defineCheckpoint>;
+/** The parent-facing union erases a composite's generic placement index. */
+export type ContentBlock_Checkpoint_Configurator = Pick<
+  DefinedCheckpoint, 'validate' | 'config'
+> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'checkpoint';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedCheckpoint['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedCheckpoint['build']['overrides']>;
+  };
+};
