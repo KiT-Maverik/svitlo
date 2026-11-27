@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import type { ContentBlock_Checkpoint_Data, ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
@@ -72,12 +72,14 @@ describe('Checkpoint content block', () => {
 });
 
 describe('Checkpoint configuration and accessibility', () => {
-  it('enables confirmation for all items and keeps their state independent', () => {
+  it('confirms a required multi-item checkpoint only after all items are checked', () => {
+    const onComplete = vi.fn();
     render(
       <Checkpoint
         messages={enUiKitMessages.checkpoint}
         {...response}
-        params={{ ...response.params, enableChecks: true }}
+        params={{ ...response.params, enableChecks: true, requireCompletion: true }}
+        onComplete={onComplete}
         content={[
           { ...response.content[0], check: undefined },
           {
@@ -96,10 +98,13 @@ describe('Checkpoint configuration and accessibility', () => {
     fireEvent.click(screen.getByText('What is light?'));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
+    expect(onComplete).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByText('What is a ray?'));
     expect(screen.getByText('answer-2')).toBeVisible();
-    expect(screen.getByRole('button', { name: 'Check' })).toBeEnabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
+    expect(onComplete).toHaveBeenCalledOnce();
+    expect(screen.getAllByRole('button', { name: 'Checked' })).toHaveLength(2);
   });
 
   it('uses right-to-left direction and clamps the item heading level at six', () => {
