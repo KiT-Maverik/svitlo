@@ -76,7 +76,7 @@ jobs:
 
   ci-policy:
     name: Required check reuse and Draft policy
-    if: ${{ inputs.ci_mode != 'build-once-engine' }}
+    if: ${{ inputs.ci_mode != 'build-once-engine' && inputs.ci_mode != 'build-each-engine' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -91,7 +91,7 @@ jobs:
   generator-tests:
     # Full host/browser/generator suites only at review boundary or explicitly on demand.
     if: >-
-      inputs.ci_mode != 'build-once-engine' &&
+      inputs.ci_mode != 'build-once-engine' && inputs.ci_mode != 'build-each-engine' &&
       (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)
     runs-on: ubuntu-latest
     timeout-minutes: 20
