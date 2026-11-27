@@ -66,9 +66,7 @@ test('partial stdout annotation is not corrupted by an interleaved stderr line',
 });
 
 test('failing command retains workflow error annotation and exact exit status', () => {
-  const result = invoke(
-    "console.error('::error file=example.ts,line=5::first cause'); process.exit(9)",
-  );
+  const result = invoke("console.error('::error file=example.ts,line=5::first cause'); process.exit(9)");
   assert.equal(result.status, 9);
   assert.match(result.stderr, /::error file=example\.ts,line=5::first cause/);
 });
@@ -77,10 +75,9 @@ test('wrapped commands retain file-based GitHub output protocol', t => {
   const folder = mkdtempSync(join(tmpdir(), 'svitlo-github-output-'));
   t.after(() => rmSync(folder, { recursive: true, force: true }));
   const output = join(folder, 'output');
-  const result = invoke(
-    "require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'status=ready\\n')",
-    { GITHUB_OUTPUT: output },
-  );
+  const result = invoke("require('node:fs').appendFileSync(process.env.GITHUB_OUTPUT, 'status=ready\\n')", {
+    GITHUB_OUTPUT: output,
+  });
   assert.equal(result.status, 0);
   assert.equal(readFileSync(output, 'utf8'), 'status=ready\n');
 });
@@ -90,10 +87,10 @@ test('file-based GitHub environment and summary survive quiet command execution'
   t.after(() => rmSync(folder, { recursive: true, force: true }));
   const envFile = join(folder, 'env');
   const summaryFile = join(folder, 'summary');
-  const result = invoke(
-    "require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'EXAMPLE=1\\n')",
-    { GITHUB_ENV: envFile, GITHUB_STEP_SUMMARY: summaryFile },
-  );
+  const result = invoke("require('node:fs').appendFileSync(process.env.GITHUB_ENV, 'EXAMPLE=1\\n')", {
+    GITHUB_ENV: envFile,
+    GITHUB_STEP_SUMMARY: summaryFile,
+  });
   assert.equal(result.status, 0);
   assert.equal(readFileSync(envFile, 'utf8'), 'EXAMPLE=1\n');
   assert.match(readFileSync(summaryFile, 'utf8'), /PASS/);

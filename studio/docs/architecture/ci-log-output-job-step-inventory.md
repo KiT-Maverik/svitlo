@@ -21,7 +21,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 7. Validate pinned manifest, scope, checksums and archive inventory — **direct CLI/shell**
 8. Upload run-scoped reference corpus — **provider**
 
-
 ### `assessment-materialization.yml`
 
 **Job `verify`** — needs: `—`; if: `github.event_name == 'pull_request' && github.event.pull_request.draft == false`.
@@ -58,14 +57,12 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 5. assessment-stage4-${{ github.run_id }} — **provider**
 6. node trusted/scripts/ci/assessmentMaterialization/assessment-transaction.mjs publish — **direct CLI/shell**; code: `scripts/ci/assessmentMaterialization/assessment-transaction.mjs`
 
-
 ### `backfill-labels.yml`
 
 **Job `backfill`** — needs: `—`; if: `>-`; matrix: `shard: [0, 1, 2, 3]`.
 
 1. actions/checkout@v5 — **provider**
 2. Apply historical labels (all Issue and PR states) — **provider**
-
 
 ### `bank-materialization.yml`
 
@@ -92,7 +89,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 3. Download isolated checksummed typed source manifest — **provider**
 4. Reauthorize, verify bounded files and CAS publish — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/bankMaterialization/bank-typed-materialization.mjs`
 
-
 ### `blocker-todos.yml`
 
 **Job `clean`** — needs: `—`; if: `—`.
@@ -101,7 +97,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 2. actions/setup-node@v5 — **provider**
 3. Test blocker TODO guard — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/checkBlockerTodos/check-blocker-todos.spec.mjs`
 4. Enforce blocking TODO guard — **direct CLI/shell**; code: `scripts/ci/checkBlockerTodos/check-blocker-todos.mjs`
-
 
 ### `content-build.yml`
 
@@ -131,7 +126,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 
 1. Require successful preparation and every selected content shard — **direct CLI/shell**
 
-
 ### `contentblock-build-api.yml`
 
 **Job `verify`** — needs: `—`; if: `github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft`.
@@ -140,7 +134,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 2. actions/setup-node@v5 — **provider**
 3. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 4. Typecheck Engine and execute ContentBlock regression tests — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
-
 
 ### `course-navigation-web.yml`
 
@@ -155,7 +148,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 7. Install Chromium — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 8. Exercise Course browser routes in desktop and mobile projects — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 9. course-navigation-web-test-results — **provider**; if: `always()`
-
 
 ### `course-typed-materialization.yml`
 
@@ -205,7 +197,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 3. typed-course-stage5-${{ needs.resolve.outputs.pr }}-${{ github.run_id }} — **provider**
 4. Verify committed file bytes and reconcile Lessons/Episodes tables only — **direct CLI/shell**; code: `scripts/ci/courseMaterialization/course-handoff-publish.mjs`
 
-
 ### `db-controllers-e2e.yml`
 
 **Job `browser-controllers`** — needs: `—`; if: `github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft`.
@@ -218,7 +209,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 6. node scripts/ci/quietRun/quiet-run.mjs -- npx playwright install chromium — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 7. Native IndexedDB Chromium — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 8. indexdb-browser-test-results — **provider**; if: `always()`
-
 
 ### `desktop-ci.yml`
 
@@ -255,7 +245,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 7. Verify native maker artifacts — **direct CLI/shell**; code: `apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs`
 8. svitlo-forge-${{ matrix.platform }} — **provider**
 
-
 ### `engine-coverage.yml`
 
 **Job `analyze`** — needs: `—`; if: `>-`.
@@ -272,7 +261,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 10. Validate and bind the gap report to this run — **direct CLI/shell**
 11. Upload gap-only diagnostics — **provider**
 
-
 ### `engine-generators.yml`
 
 **Job `publisher-isolation`** — needs: `—`; if: `—`.
@@ -286,7 +274,7 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 
 1. actions/checkout@v5 — **provider**
 2. actions/setup-node@v5 — **provider**
-3. node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/ — **native Node dot**; code: `scripts/ci/productionQuality/production-quality.spec.mjs`, `scripts/ci/releaseSource/check-release-source.spec.mjs`, `scripts/ci/quietRun/quiet-run.spec.mjs`
+3. node --test --test-reporter=dot scripts/ci/requiredCheckReuse/_.spec.mjs scripts/ci/draftCiPolicy/_.spec.mjs scripts/ci/ — **native Node dot**; code: `scripts/ci/productionQuality/production-quality.spec.mjs`, `scripts/ci/releaseSource/check-release-source.spec.mjs`, `scripts/ci/quietRun/quiet-run.spec.mjs`
 
 **Job `generator-tests`** — needs: `—`; if: `github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft`.
 
@@ -301,7 +289,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 9. Test typed Lesson Stage 6 source and PR-command security — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/lessonMaterialization/lesson-typed-materialization.spec.mjs`, `scripts/ci/lessonMaterialization/lesson-typed-publish.spec.mjs`
 10. Verify reserved Course parent ownership and AST handoff checks — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/directMaterialization/reserved-parent-slot.spec.mjs`
 11. Check formatting of typed Course Flow sources — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `shared/engine/configurators/courses/defineCourse/defineCourse.schemas.ts`, `shared/engine/configurators/courses/defineCourse/courseHierarchy.spec.ts`, `shared/engine/package.js`
-
 
 ### `episode-materialization.yml`
 
@@ -355,7 +342,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 10. Manually requested typechecks — **direct CLI/shell**; code: `scripts/runFastGate/run-fast-gate.mjs`; if: `github.event_name == 'workflow_dispatch' && steps.scope.outputs.run == 'true'`
 11. 'Validated Ready scope v1 / ${{ github.event.pull_request.number }} / ${{ github.event.pull_request.head.ref }} / ${{ gi — **direct CLI/shell**; if: `success() && github.event_name == 'pull_request' && !github.event.pull_request.d`
 
-
 ### `frontend-components.yml`
 
 **Job `verify`** — needs: `—`; if: `—`.
@@ -368,7 +354,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 6. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 7. node scripts/ci/quietRun/quiet-run.mjs -- npm run code:lint:check — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 8. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
-
 
 ### `get-lesson.yml`
 
@@ -383,7 +368,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 3. Install pinned parser dependencies safely — **direct CLI/shell**
 4. Run immutable-source static scan — **direct CLI/shell**; code: `shared/engine/scripts/queryLessons/query-lessons.mjs`
 5. Upload report only as Actions artifact — **provider**
-
 
 ### `lesson-materialization.yml`
 
@@ -409,7 +393,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 3. actions/setup-node@v5 — **provider**
 4. Download the exact read-only analyzer artifact — **provider**
 5. Verify source HEAD, blob and manifest before atomic commit — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`, `scripts/ci/lessonMaterialization/lesson-typed-materialization.mjs`
-
 
 ### `mobile.yml`
 
@@ -446,7 +429,6 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 5. node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync ios — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 6. Build simulator application without code signing — **direct CLI/shell**
 
-
 ### `pr-auto-format.yml`
 
 **Job `format`** — needs: `—`; if: `—`.
@@ -462,13 +444,11 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 9. Commit formatting fixes to PR source branch — **direct CLI/shell**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
 10. Re-run required checks on formatted commit — **direct CLI/shell**; if: `github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' &`
 
-
 ### `pr-clear-blocked-on-merge.yml`
 
 **Job `cleanup`** — needs: `—`; if: `github.event.pull_request.merged == true`.
 
 1. Remove obsolete blocker label — **provider**
-
 
 ### `pr-labeler.yml`
 
@@ -477,13 +457,11 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 1. actions/labeler@v7 — **provider**
 2. Fallback repository scope and integration role — **provider**
 
-
 ### `production-quality-command.yml`
 
 **Job `dispatch`** — needs: `—`; if: `>-`.
 
 1. Resolve PR and dispatch full Production Quality — **protocol/diagnostics (raw)**
-
 
 ### `production-quality.yml`
 
@@ -574,7 +552,6 @@ No direct steps (reusable/orchestrator job).
 1. Require every production validation suite to succeed — **direct CLI/shell**
 2. 'Validated Ready scope v1 / ${{ github.event.pull_request.number }} / ${{ github.event.pull_request.head.ref }} / ${{ gi — **direct CLI/shell**; if: `success() && github.event_name == 'pull_request' && !github.event.pull_request.d`
 
-
 ### `repository-git-audit.yml`
 
 **Job `audit`** — needs: `—`; if: `>-`.
@@ -586,14 +563,12 @@ No direct steps (reusable/orchestrator job).
 5. Publish human-readable run summary — **protocol/diagnostics (raw)**
 6. Upload full JSON and Markdown reports — **provider**
 
-
 ### `sync-labels.yml`
 
 **Job `synchronize`** — needs: `—`; if: `—`.
 
 1. actions/checkout@v5 — **provider**
 2. Rename legacy labels and synchronize the canonical catalogue — **provider**
-
 
 ### `ui-kit-storybook.yml`
 
@@ -608,4 +583,3 @@ No direct steps (reusable/orchestrator job).
 7. Verify story inventory, generated docs and shared flags — **direct CLI/shell**; code: `shared/ui-kit/storybook-static/index.js`
 8. Install Chromium for browser preview smoke — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 9. Verify actual stories, Docs, Controls and shared flags in Chromium — **direct CLI/shell**
-

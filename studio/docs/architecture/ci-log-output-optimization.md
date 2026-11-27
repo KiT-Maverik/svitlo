@@ -4,7 +4,7 @@
 
 ## Problem and evidence
 
-GitHub Actions output must remain useful to humans while being cheap for AI agents to inspect. On PR #900's successful full Production Quality run [#46011291152](https://github.com/KiT-Maverik/svitlo/actions/runs/46011291152), all 16 jobs passed. An earlier full successful run [#46007490987](https://github.com/KiT-Maverik/svitlo/actions/runs/46007490987) generated **246,152 Unicode characters across 16 job logs**. This is a reference point for *one* workflow on an earlier SHA, **not** a complete all-workflow baseline, token count, or proof of an optimization opportunity in each step.
+GitHub Actions output must remain useful to humans while being cheap for AI agents to inspect. On PR #900's successful full Production Quality run [#46011291152](https://github.com/KiT-Maverik/svitlo/actions/runs/46011291152), all 16 jobs passed. An earlier full successful run [#46007490987](https://github.com/KiT-Maverik/svitlo/actions/runs/46007490987) generated **246,152 Unicode characters across 16 job logs**. This is a reference point for _one_ workflow on an earlier SHA, **not** a complete all-workflow baseline, token count, or proof of an optimization opportunity in each step.
 
 At brief creation, the `develop` tree contains **27 workflow YAML files** in `.github/workflows/`; a literal source inspection counted **106 mentions** of `quiet-run.mjs` across those files (not 106 verified executions). Several trusted/command workflows deliberately do not use it. Runner setup, checkout, caching, GitHub Actions service output and third-party actions may account for a large irreducible portion of a log. Do not claim all of it is under our control.
 
@@ -26,7 +26,7 @@ Audit **every job and step of every current workflow**, including reusable workf
 - Publish a complete workflow/job/step inventory showing every applicable invocation, its selected strategy, exceptions and why they must remain verbose/protocol-safe. Do not omit rare/manual/security workflows.
 - Implement and test the simplest coherent solution; update source logs, workflows and any obsolete `quiet-run` docs/tests consistently. Remove dead implementation only after reference audit and behavior parity.
 - Exercise successful, failing, cancelled and relevant invalid-command/exit cases. Assert failure cause visibility, exit propagation, annotation integrity, native outputs, and trusted PR-command/materializer boundaries. Test supported platforms for changed spawn behavior where feasible.
-- Compare representative successful and failed workflows *before and after* with exact SHAs, bytes/characters, agent-retrieved excerpts, and workflow/job timing. Explain variance and portions that cannot be optimized.
+- Compare representative successful and failed workflows _before and after_ with exact SHAs, bytes/characters, agent-retrieved excerpts, and workflow/job timing. Explain variance and portions that cannot be optimized.
 - Preserve Draft/Ready/main protections, shell/CI environment, required contexts, app/browser/E2E/test/build coverage and authorizations. Run focused tests, Ready checks, and Production Quality **only when owner-authorized under CI policy**.
 - Update canonical `studio/rules/ci-workflow.md`, affected READMEs and architecture documentation to reflect actual implementation; avoid maintaining duplicate lists of workflow names.
 
@@ -43,25 +43,25 @@ code points**. Bytes and code points were counted from the retrieved decoded
 logs, not estimated from GitHub's UI. A job is not a test suite and the
 sum is **not** an all-27-workflow baseline.
 
-| Job (short name) | Job ID | Bytes | Unicode characters |
-| --- | ---: | ---: | ---: |
-| prior result | 140547165481 | 10,341 | 10,339 |
-| source policy | 140547251795 | 13,877 | 13,811 |
-| lint | 140547366377 | 12,487 | 12,485 |
-| TypeScript | 140547366470 | 14,882 | 14,880 |
-| repository integrity | 140547366499 | 12,985 | 12,983 |
-| distributable packages | 140547366511 | 14,190 | 14,188 |
-| unit tests | 140547366552 | 13,757 | 13,755 |
-| extra component tests | 140547366555 | 14,945 | 14,943 |
-| apps-platform | 140547366557 | 16,523 | 16,521 |
-| apps-web | 140547366632 | 19,152 | 19,150 |
-| apps-desktop | 140547366685 | 16,425 | 16,423 |
-| apps-mobile | 140547366767 | 17,657 | 17,655 |
-| Engine generators / policy | 140547367296 | 18,307 | 18,235 |
-| Engine generators / publisher isolation | 140547367365 | 20,180 | 20,070 |
-| Engine generators / tests | 140547367367 | 24,502 | 24,474 |
-| verify aggregate | 140549412025 | 5,493 | 5,491 |
-| **Total** | | **245,703** | **245,403** |
+| Job (short name)                        |       Job ID |       Bytes | Unicode characters |
+| --------------------------------------- | -----------: | ----------: | -----------------: |
+| prior result                            | 140547165481 |      10,341 |             10,339 |
+| source policy                           | 140547251795 |      13,877 |             13,811 |
+| lint                                    | 140547366377 |      12,487 |             12,485 |
+| TypeScript                              | 140547366470 |      14,882 |             14,880 |
+| repository integrity                    | 140547366499 |      12,985 |             12,983 |
+| distributable packages                  | 140547366511 |      14,190 |             14,188 |
+| unit tests                              | 140547366552 |      13,757 |             13,755 |
+| extra component tests                   | 140547366555 |      14,945 |             14,943 |
+| apps-platform                           | 140547366557 |      16,523 |             16,521 |
+| apps-web                                | 140547366632 |      19,152 |             19,150 |
+| apps-desktop                            | 140547366685 |      16,425 |             16,423 |
+| apps-mobile                             | 140547366767 |      17,657 |             17,655 |
+| Engine generators / policy              | 140547367296 |      18,307 |             18,235 |
+| Engine generators / publisher isolation | 140547367365 |      20,180 |             20,070 |
+| Engine generators / tests               | 140547367367 |      24,502 |             24,474 |
+| verify aggregate                        | 140549412025 |       5,493 |              5,491 |
+| **Total**                               |              | **245,703** |        **245,403** |
 
 Most success-side project commands in this run already print only
 `PASS` and a duration via `quiet-run`. Logs continue to include runner
@@ -91,54 +91,54 @@ workflow call is called out explicitly); matrix values and transitive
 scripts must be followed again at final verification. `Unchanged` is a
 deliberate first-pass choice, **not** proof of zero remaining noise.
 
-| Workflow | Jobs / special scope | Current decision or change |
-| --- | --- | --- |
-| `agent-ci-artifacts` | resolve, generate; PR comment/dispatch | Keep pinned-source resolution, generated artifact metadata and file outputs direct; Engine package build already quiet |
-| `assessment-materialization` | verify, resolve, analyze, publish | Native compact Node test output, quiet only verify-job install/build; trusted analyze/publish protocol direct |
-| `backfill-labels` | backfill; workflow_run/dispatch | Unchanged: GitHub Script state transitions |
-| `bank-materialization` | typed_resolve, typed_analyze, typed_publish | Keep existing scoped quiet build/typed commands and source-pin protections; no blind changes |
-| `blocker-todos` | clean | Existing quiet unit tests; keep active blocker scan and annotations direct |
-| `content-build` | prepare, build, verify; dynamically selected shards | Existing quiet builds; keep scope planner and output/asset validation direct |
-| `contentblock-build-api` | verify | Existing quiet install/tests |
-| `course-navigation-web` | verify; browser run | Existing quiet install/build/Playwright; preserve browser artifacts |
-| `course-typed-materialization` | verify-implementation, resolve, analyze, publish, reconcile-pr-tables | Native compact verify tests, quiet verify install/build; preserve trusted transaction, Git checks and reconciliation output |
-| `db-controllers-e2e` | browser-controllers | Existing quiet build/browser tests; keep artifacts |
-| `desktop-ci` | desktop, native-installers (macOS/Windows) | Keep npm-audit JSON/exit statuses direct; summarize successful `npm explain` provenance through existing quiet runner while preserving failed diagnostics; native packaging/smoke remain visible |
-| `engine-coverage` | analyze; on-demand report | Native compact reporter only for the direct report unit test; keep coverage metrics/report and upload visible |
-| `engine-generators` | publisher-isolation, ci-policy, generator-tests; reusable `workflow_call` | Native compact reporter for three direct test commands; existing quiet generator suite and security checks unchanged |
-| `episode-materialization` | verify, resolve, analyze, publish | Native compact tests and quiet verify install/build; preserve trusted analyze/publish |
-| `fast-gate` | verify; PR/dispatch | Native compact focused stub-guard test; keep TypeScript planner, required status and source guard direct |
-| `frontend-components` | verify; push/dispatch | Quiet direct root `npm test` as an existing human-readable suite; other commands already quiet |
-| `get-lesson` | resolve, analyze; PR comment/dispatch | Unchanged: source-pinned resolution and generated report transport |
-| `lesson-materialization` | typed-resolve, typed-analyze, typed-publish | Existing scoped quiet execution; leave trust-transaction output and boundaries unchanged pending audit |
-| `mobile` | web, android, ios | Existing quiet npm commands; use Gradle native `--quiet` for Android task chatter, retaining Gradle errors; manual-only iOS xcodebuild remains raw until verified |
-| `pr-auto-format` | format | Unchanged: source-mutating formatter and commit/branch lease diagnostics |
-| `pr-clear-blocked-on-merge` | cleanup | Unchanged: GitHub Script and label actions |
-| `pr-labeler` | apply | Unchanged: provider action outputs are not shell chatter |
-| `production-quality-command` | dispatch; on-comment | Unchanged: authorization and workflow dispatch feedback |
-| `production-quality` | reuse, policy, repository, types, unit, generators, components, lint, packages, apps (dynamic matrix), verify | Native compact source-policy tests; existing quiet build/test workers and mandatory aggregate preserved |
-| `repository-git-audit` | audit; dispatch/comment | Existing quiet tests; keep generated audit/report protocol direct |
-| `sync-labels` | synchronize | Unchanged: provider GitHub Script for label mutations |
-| `ui-kit-storybook` | storybook; browser checks | Quiet human-readable Playwright dependency installer; retain test and server-artifact diagnostic channels |
+| Workflow                       | Jobs / special scope                                                                                          | Current decision or change                                                                                                                                                                       |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `agent-ci-artifacts`           | resolve, generate; PR comment/dispatch                                                                        | Keep pinned-source resolution, generated artifact metadata and file outputs direct; Engine package build already quiet                                                                           |
+| `assessment-materialization`   | verify, resolve, analyze, publish                                                                             | Native compact Node test output, quiet only verify-job install/build; trusted analyze/publish protocol direct                                                                                    |
+| `backfill-labels`              | backfill; workflow_run/dispatch                                                                               | Unchanged: GitHub Script state transitions                                                                                                                                                       |
+| `bank-materialization`         | typed_resolve, typed_analyze, typed_publish                                                                   | Keep existing scoped quiet build/typed commands and source-pin protections; no blind changes                                                                                                     |
+| `blocker-todos`                | clean                                                                                                         | Existing quiet unit tests; keep active blocker scan and annotations direct                                                                                                                       |
+| `content-build`                | prepare, build, verify; dynamically selected shards                                                           | Existing quiet builds; keep scope planner and output/asset validation direct                                                                                                                     |
+| `contentblock-build-api`       | verify                                                                                                        | Existing quiet install/tests                                                                                                                                                                     |
+| `course-navigation-web`        | verify; browser run                                                                                           | Existing quiet install/build/Playwright; preserve browser artifacts                                                                                                                              |
+| `course-typed-materialization` | verify-implementation, resolve, analyze, publish, reconcile-pr-tables                                         | Native compact verify tests, quiet verify install/build; preserve trusted transaction, Git checks and reconciliation output                                                                      |
+| `db-controllers-e2e`           | browser-controllers                                                                                           | Existing quiet build/browser tests; keep artifacts                                                                                                                                               |
+| `desktop-ci`                   | desktop, native-installers (macOS/Windows)                                                                    | Keep npm-audit JSON/exit statuses direct; summarize successful `npm explain` provenance through existing quiet runner while preserving failed diagnostics; native packaging/smoke remain visible |
+| `engine-coverage`              | analyze; on-demand report                                                                                     | Native compact reporter only for the direct report unit test; keep coverage metrics/report and upload visible                                                                                    |
+| `engine-generators`            | publisher-isolation, ci-policy, generator-tests; reusable `workflow_call`                                     | Native compact reporter for three direct test commands; existing quiet generator suite and security checks unchanged                                                                             |
+| `episode-materialization`      | verify, resolve, analyze, publish                                                                             | Native compact tests and quiet verify install/build; preserve trusted analyze/publish                                                                                                            |
+| `fast-gate`                    | verify; PR/dispatch                                                                                           | Native compact focused stub-guard test; keep TypeScript planner, required status and source guard direct                                                                                         |
+| `frontend-components`          | verify; push/dispatch                                                                                         | Quiet direct root `npm test` as an existing human-readable suite; other commands already quiet                                                                                                   |
+| `get-lesson`                   | resolve, analyze; PR comment/dispatch                                                                         | Unchanged: source-pinned resolution and generated report transport                                                                                                                               |
+| `lesson-materialization`       | typed-resolve, typed-analyze, typed-publish                                                                   | Existing scoped quiet execution; leave trust-transaction output and boundaries unchanged pending audit                                                                                           |
+| `mobile`                       | web, android, ios                                                                                             | Existing quiet npm commands; use Gradle native `--quiet` for Android task chatter, retaining Gradle errors; manual-only iOS xcodebuild remains raw until verified                                |
+| `pr-auto-format`               | format                                                                                                        | Unchanged: source-mutating formatter and commit/branch lease diagnostics                                                                                                                         |
+| `pr-clear-blocked-on-merge`    | cleanup                                                                                                       | Unchanged: GitHub Script and label actions                                                                                                                                                       |
+| `pr-labeler`                   | apply                                                                                                         | Unchanged: provider action outputs are not shell chatter                                                                                                                                         |
+| `production-quality-command`   | dispatch; on-comment                                                                                          | Unchanged: authorization and workflow dispatch feedback                                                                                                                                          |
+| `production-quality`           | reuse, policy, repository, types, unit, generators, components, lint, packages, apps (dynamic matrix), verify | Native compact source-policy tests; existing quiet build/test workers and mandatory aggregate preserved                                                                                          |
+| `repository-git-audit`         | audit; dispatch/comment                                                                                       | Existing quiet tests; keep generated audit/report protocol direct                                                                                                                                |
+| `sync-labels`                  | synchronize                                                                                                   | Unchanged: provider GitHub Script for label mutations                                                                                                                                            |
+| `ui-kit-storybook`             | storybook; browser checks                                                                                     | Quiet human-readable Playwright dependency installer; retain test and server-artifact diagnostic channels                                                                                        |
 
 ### Transitive call-site decisions and matrix coverage
 
-This audit followed commands into the *current* root and selected workspace manifests and named script entrypoints; labels in the structural inventory describe source **steps**, while a single step can execute multiple nested npm lifecycle scripts. The following ownership is material for stdout decisions:
+This audit followed commands into the _current_ root and selected workspace manifests and named script entrypoints; labels in the structural inventory describe source **steps**, while a single step can execute multiple nested npm lifecycle scripts. The following ownership is material for stdout decisions:
 
-| Entrypoint / job family | Actual downstream output and required handling |
-| --- | --- |
-| Root `package:build` and `code:lint:check` | Pinned local Turbo task graph, no caches, bounded concurrency. Existing outer `quiet-run` hides successful per-workspace scheduling and preserves failed task excerpts; cache and dependency behavior untouched |
-| Root `test`, `code:check:types`, `app:build`, `test:components` | `runWorkspaceScript` discovers manifests, runs topological dependency builds, emits per-workspace progress; npm `pretest` / `preapp:build` hooks remain active. Outer quiet-run is safe for human-readable output only; verbose reproduction is available |
-| FastGate `runFastGate` | Uses a nested quiet command runner; the top-level planner must stay direct because it reports selected targets, failures and Draft/Ready scope, and can spawn builds and typechecks |
-| Production `plan-app-matrix` | Discovers **all four** `app:build` hosts from manifests (web/platform/mobile/desktop in the pinned sample), emits the matrix to `GITHUB_OUTPUT`, and rejects E2E-only apps without a build. It is deliberately not wrapped. Production also calls the *reusable* Engine generators workflow |
-| Selected content planner and sharded builder | `plan-content-builds` chooses affected textbooks and writes `GITHUB_OUTPUT`; dynamic `content-shards` must retain per-textbook failure provenance. No hardcoded static shard set replaces the dynamic planner |
-| Backfill labels / Desktop native installers | Backfill has a fixed four-shard matrix `[0,1,2,3]`. Desktop installer matrix is **macOS + Windows** in the cited run, with a separate Linux packaging path in the main desktop job; preserve native artifact verification |
-| Web/Playground/UI Kit/Math test workspaces | Vitest, Node test runner and Playwright are invoked via npm scripts, sometimes with compilation, content preparation and browser artifact prerequisites. Do not substitute dot reporting for an npm script whose internal runner is not a direct `node --test` invocation |
-| Trusted Course/Episode/Lesson/Assessment/Bank PR commands | Default-branch authorization, actor permission, pinned source SHA, isolated analyzer, sealed manifest and privileged Git publication retain their stdout and `GITHUB_OUTPUT` semantics. The existing older quiet-wrapped Bank/Lesson/Course analyzer invocations have **not** been broadened; new noise suppression targets only explicitly scoped verify-only commands |
-| Desktop audit / provenance | `npm audit --json` writes machine data to files; audit statuses and advisory summaries stay direct. `npm explain` was the single largest safe human-readable success source in a Desktop job; quiet its success output while retaining failed command diagnostics and the existing lockfile resolution check |
-| Mobile native compilation | `./gradlew assembleDebug --no-daemon --quiet` selects Gradle's supported native logging mode without changing the task or exit code. The iOS Simulator `xcodebuild` command is manual-only and remains unchanged; source and observed native build failures must remain reviewable |
-| Agent artifact, lesson lookup and coverage jobs | SHA-pinned generated manifest checks, report files, JSON fields, coverage summaries and uploads are intentionally direct; diagnostic artifacts are one-day scoped. Do not wrap machine-readable stdout or hide first-cause coverage errors |
-| GitHub runner/provider steps | Checkout/setup/cache/action post-cleanup and third-party actions are independent log producers. The source cannot safely erase their setup or security audit trail, and their output establishes a baseline floor |
+| Entrypoint / job family                                         | Actual downstream output and required handling                                                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Root `package:build` and `code:lint:check`                      | Pinned local Turbo task graph, no caches, bounded concurrency. Existing outer `quiet-run` hides successful per-workspace scheduling and preserves failed task excerpts; cache and dependency behavior untouched                                                                                                                                                         |
+| Root `test`, `code:check:types`, `app:build`, `test:components` | `runWorkspaceScript` discovers manifests, runs topological dependency builds, emits per-workspace progress; npm `pretest` / `preapp:build` hooks remain active. Outer quiet-run is safe for human-readable output only; verbose reproduction is available                                                                                                               |
+| FastGate `runFastGate`                                          | Uses a nested quiet command runner; the top-level planner must stay direct because it reports selected targets, failures and Draft/Ready scope, and can spawn builds and typechecks                                                                                                                                                                                     |
+| Production `plan-app-matrix`                                    | Discovers **all four** `app:build` hosts from manifests (web/platform/mobile/desktop in the pinned sample), emits the matrix to `GITHUB_OUTPUT`, and rejects E2E-only apps without a build. It is deliberately not wrapped. Production also calls the _reusable_ Engine generators workflow                                                                             |
+| Selected content planner and sharded builder                    | `plan-content-builds` chooses affected textbooks and writes `GITHUB_OUTPUT`; dynamic `content-shards` must retain per-textbook failure provenance. No hardcoded static shard set replaces the dynamic planner                                                                                                                                                           |
+| Backfill labels / Desktop native installers                     | Backfill has a fixed four-shard matrix `[0,1,2,3]`. Desktop installer matrix is **macOS + Windows** in the cited run, with a separate Linux packaging path in the main desktop job; preserve native artifact verification                                                                                                                                               |
+| Web/Playground/UI Kit/Math test workspaces                      | Vitest, Node test runner and Playwright are invoked via npm scripts, sometimes with compilation, content preparation and browser artifact prerequisites. Do not substitute dot reporting for an npm script whose internal runner is not a direct `node --test` invocation                                                                                               |
+| Trusted Course/Episode/Lesson/Assessment/Bank PR commands       | Default-branch authorization, actor permission, pinned source SHA, isolated analyzer, sealed manifest and privileged Git publication retain their stdout and `GITHUB_OUTPUT` semantics. The existing older quiet-wrapped Bank/Lesson/Course analyzer invocations have **not** been broadened; new noise suppression targets only explicitly scoped verify-only commands |
+| Desktop audit / provenance                                      | `npm audit --json` writes machine data to files; audit statuses and advisory summaries stay direct. `npm explain` was the single largest safe human-readable success source in a Desktop job; quiet its success output while retaining failed command diagnostics and the existing lockfile resolution check                                                            |
+| Mobile native compilation                                       | `./gradlew assembleDebug --no-daemon --quiet` selects Gradle's supported native logging mode without changing the task or exit code. The iOS Simulator `xcodebuild` command is manual-only and remains unchanged; source and observed native build failures must remain reviewable                                                                                      |
+| Agent artifact, lesson lookup and coverage jobs                 | SHA-pinned generated manifest checks, report files, JSON fields, coverage summaries and uploads are intentionally direct; diagnostic artifacts are one-day scoped. Do not wrap machine-readable stdout or hide first-cause coverage errors                                                                                                                              |
+| GitHub runner/provider steps                                    | Checkout/setup/cache/action post-cleanup and third-party actions are independent log producers. The source cannot safely erase their setup or security audit trail, and their output establishes a baseline floor                                                                                                                                                       |
 
 The `.github/actions/` directory was absent in the examined tree. The [step-by-step inventory](./ci-log-output-job-step-inventory.md) records every YAML-defined job step. Its matrix expressions and conditional branches are **definitions**, not claims about unobserved platform or manual dispatch executions.
 
@@ -146,17 +146,17 @@ The `.github/actions/` directory was absent in the examined tree. The [step-by-s
 
 These are **different source SHAs and scopes**, not directly comparable throughput measurements. The byte count measures complete decoded UTF-8 **job logs** retrieved from Actions. Unicode characters count code points (not tokens). Duration is full workflow wall-clock from Actions metadata, even where only one job is measured.
 
-| Workflow, outcome, event / immutable SHA | Job measured | UTF-8 bytes / Unicode characters | Workflow time |
-| --- | --- | ---: | ---: |
-| [Frontend #46012031612](https://github.com/KiT-Maverik/svitlo/actions/runs/46012031612), success, dispatch, `97d65ffca506784fc94d75547c2b10c974532b4c` | 140549710185 | 220,217 / 216,564 | 724 s |
-| [Frontend #46010806830](https://github.com/KiT-Maverik/svitlo/actions/runs/46010806830), failure, dispatch, `3e0a3026263137f8ab06a6f4e4f2a636699eed1c` | 140545517860 | 231,835 / 228,919 | 261 s |
-| [Desktop #46013560739](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560739), success, PR, `67dcd7368f4b65cf2a84ca28f0a18e174c0f5f7e` | 140554915804 (main desktop only) | 84,982 / 84,972 | 235 s |
-| [Mobile #46013560353](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560353), success, PR, same SHA as Desktop | 140554997936 (Android only) | 37,050 / 37,046 | 134 s |
-| [Engine generators #46013560492](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560492), success, PR, same SHA | three jobs: 140554898733, 140554899188, 140554899228 | 65,225 / 65,015 | 117 s |
-| [Engine generators #46013960595](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960595), failure, PR, `7f3886a064157e7ad0ea2d9c9ca05119dd870e21` | 140556229076 (failing tests only) | 29,843 / 29,755 | 105 s |
-| [Typed Course #46013960636](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960636), success, PR, same `7f3886a...` SHA | 140556228976 | 29,136 / 28,968 | 71 s |
-| [Typed Course #46009626824](https://github.com/KiT-Maverik/svitlo/actions/runs/46009626824), failure, PR, `cb11abd7461b177e5f02ae9b948e240773a755ac` | 140541524572 | 28,915 / 28,741 | 65 s |
-| [Engine coverage #46009961761](https://github.com/KiT-Maverik/svitlo/actions/runs/46009961761), failure, comment, `74758a8651eb16c056e382c5e0b3e632e6c778db` | 140542647694 | 44,807 / 44,745 | 252 s |
+| Workflow, outcome, event / immutable SHA                                                                                                                     | Job measured                                         | UTF-8 bytes / Unicode characters | Workflow time |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- | -------------------------------: | ------------: |
+| [Frontend #46012031612](https://github.com/KiT-Maverik/svitlo/actions/runs/46012031612), success, dispatch, `97d65ffca506784fc94d75547c2b10c974532b4c`       | 140549710185                                         |                220,217 / 216,564 |         724 s |
+| [Frontend #46010806830](https://github.com/KiT-Maverik/svitlo/actions/runs/46010806830), failure, dispatch, `3e0a3026263137f8ab06a6f4e4f2a636699eed1c`       | 140545517860                                         |                231,835 / 228,919 |         261 s |
+| [Desktop #46013560739](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560739), success, PR, `67dcd7368f4b65cf2a84ca28f0a18e174c0f5f7e`              | 140554915804 (main desktop only)                     |                  84,982 / 84,972 |         235 s |
+| [Mobile #46013560353](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560353), success, PR, same SHA as Desktop                                      | 140554997936 (Android only)                          |                  37,050 / 37,046 |         134 s |
+| [Engine generators #46013560492](https://github.com/KiT-Maverik/svitlo/actions/runs/46013560492), success, PR, same SHA                                      | three jobs: 140554898733, 140554899188, 140554899228 |                  65,225 / 65,015 |         117 s |
+| [Engine generators #46013960595](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960595), failure, PR, `7f3886a064157e7ad0ea2d9c9ca05119dd870e21`    | 140556229076 (failing tests only)                    |                  29,843 / 29,755 |         105 s |
+| [Typed Course #46013960636](https://github.com/KiT-Maverik/svitlo/actions/runs/46013960636), success, PR, same `7f3886a...` SHA                              | 140556228976                                         |                  29,136 / 28,968 |          71 s |
+| [Typed Course #46009626824](https://github.com/KiT-Maverik/svitlo/actions/runs/46009626824), failure, PR, `cb11abd7461b177e5f02ae9b948e240773a755ac`         | 140541524572                                         |                  28,915 / 28,741 |          65 s |
+| [Engine coverage #46009961761](https://github.com/KiT-Maverik/svitlo/actions/runs/46009961761), failure, comment, `74758a8651eb16c056e382c5e0b3e632e6c778db` | 140542647694                                         |                  44,807 / 44,745 |         252 s |
 
 Pre-change Frontend's unwrapped `npm test` step accounted for approximately **201,033 of its 216,564 total log characters** (from source log boundaries), a clear optimization target. In successful Desktop, the long `npm explain` provenance segment accounted for approximately **54,363 of 84,972 log characters**. In Android, `./gradlew assembleDebug` accounted for approximately **17,662 of 37,046 log characters**. Those figures include step metadata and neighboring text between run markers; treat them as approximate **source attribution**, not exact command stdout byte measurements.
 
