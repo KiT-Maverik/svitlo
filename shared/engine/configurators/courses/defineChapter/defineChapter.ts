@@ -447,6 +447,26 @@ type ChapterInferredChildren<Config> = {
     Config[Key] extends Chapter_Child ? Config[Key] : never;
 };
 
+/** The inferred scope is the intersection of every child's advertised languages. */
+type ChapterChildLanguages<Children extends Record<string, Chapter_Child>> = Exclude<
+  LanguageCode,
+  {
+    [Key in keyof Children]: Children[Key] extends LanguageScope<infer Available extends readonly LanguageCode[]>
+      ? Exclude<LanguageCode, Available[number]>
+      : LanguageCode;
+  }[keyof Children]
+>;
+
+/** An invariant title supports all languages; a localized title supports only authored keys. */
+type ChapterTitleLanguages<Title> = Title extends string ? LanguageCode : Extract<keyof Title, LanguageCode>;
+type ChapterInferredLanguages<Config extends ChapterInferredBase> = readonly [
+  Extract<
+    ChapterChildLanguages<ChapterInferredChildren<Config>> &
+      ChapterTitleLanguages<Config['locale']['title']>,
+    LanguageCode
+  >,
+];
+
 /** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
 export function defineChapter<
   const Slug extends string,
@@ -454,18 +474,22 @@ export function defineChapter<
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: ChapterAuthoredInput<Slug, Items, Languages>): Chapter_Configurator<Slug, Items, Languages>;
 
-/** Infer the exact child Configurator types from every direct root placement. */
+/** Infer direct children and the languages supported by ALL children and the own title. */
 export function defineChapter<
   const Config extends ChapterInferredBase,
 >(
   config: Config &
     ChapterInferredChildren<Config> & {
       children: Extract<keyof ChapterInferredChildren<Config>, string>[];
-      locale: RequireLanguages<Chapter_Config['locale'], readonly LanguageCode[]>;
+      locale: RequireLanguages<Chapter_Config['locale'], ChapterInferredLanguages<Config>>;
     } &
-    
+    ChildrenSupporting<ChapterInferredLanguages<Config>, ChapterInferredChildren<Config>> &
     SafePlacementMap<ChapterInferredChildren<Config>>,
-): Chapter_Configurator<Config['slug'], ChapterInferredChildren<Config>, readonly LanguageCode[]>;
+): Chapter_Configurator<
+  Config['slug'],
+  ChapterInferredChildren<Config>,
+  ChapterInferredLanguages<Config>
+>;
 export function defineChapter(config: unknown): unknown {
   return defineChapterImplementation(config as never);
 }
