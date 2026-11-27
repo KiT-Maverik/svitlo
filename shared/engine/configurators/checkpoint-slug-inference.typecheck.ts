@@ -38,7 +38,7 @@ const item = defineCheckpointItem<'whatIsLight', typeof answerComposite, typeof 
   type: 'checkpointItem', slug: 'whatIsLight', question, answer: answerComposite,
 });
 type ItemSlug = Expect<Equal<typeof item.slug, 'whatIsLight'>>;
-type ItemAnswerKeys = Expect<Equal<keyof typeof item.answer & 'answer', 'answer'>>;
+type ItemAnswerKeys = Expect<Equal<keyof Pick<typeof item.answer, 'answer'>, 'answer'>>;
 // @ts-expect-error Answer direct child keys must be inferred literally.
 void item.answer.unknown;
 
@@ -115,13 +115,13 @@ checkpoint.build.overrides({ unknown: { check: true } }, { languages: ['en', 'uk
 // @ts-expect-error Unknown final-order slug cannot be accepted.
 checkpoint.build.overrides({ children: ['unknown'] }, { languages: ['en', 'uk'] });
 
-const laterItem = defineCheckpointItem<'laterItem', typeof answerComposite, typeof question, ['en', 'uk']>({
+const laterAnswer = defineCheckpointAnswer<'answerContent', { later: typeof later }, ['en', 'uk']>({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d71',
+  type: 'checkpointAnswer', slug: 'answerContent', children: ['later'], later,
+});
+const laterItem = defineCheckpointItem<'laterItem', typeof laterAnswer, typeof question, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
-  type: 'checkpointItem', slug: 'laterItem', question,
-  answer: defineCheckpointAnswer<'answerContent', { later: typeof later }, ['en', 'uk']>({
-    id: 'b775647f-203d-481a-a1c7-4d331c779d71',
-    type: 'checkpointAnswer', slug: 'answerContent', children: ['later'], later,
-  }),
+  type: 'checkpointItem', slug: 'laterItem', question, answer: laterAnswer,
 });
 checkpoint.build.overrides({
   whatIsLight: { question: { locale: { value: { uk: 'Оновлене?' } } } },
