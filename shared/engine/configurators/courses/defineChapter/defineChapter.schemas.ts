@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { validateSlugAddressedContainer } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
+
 import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
@@ -8,7 +10,6 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import {
-  assessment_Data_Schema,
   type Assessment_Data,
 } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
@@ -16,13 +17,11 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import {
-  episode_Data_Schema,
   type Episode_Data,
   type Episode_Draft_Data,
 } from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
 import {
-  lesson_Data_Schema,
   type Lesson_Data,
   type Lesson_Draft_Data,
 } from '../../lessons/defineLesson/defineLesson.schemas';
@@ -87,8 +86,17 @@ export type Chapter_Overrides<
   };
 };
 
-export const chapter_Data_Schema = identity.extend({
-  ...addUnifiedLocale(locale('data')),
-  content: z.array(z.union([lesson_Data_Schema, episode_Data_Schema, assessment_Data_Schema])),
-});
+export const chapter_Data_Schema = identity
+  .extend({
+    ...addUnifiedLocale(locale('data')),
+    children: z.array(z.string()),
+  })
+  // Dynamic placement keys are validated at this boundary; never recursively
+  // reparse child-owned internal content or treat semantic roles as children.
+  .catchall(z.unknown())
+  .superRefine((value, context) => {
+    for (const issue of validateSlugAddressedContainer(value, ['lesson', 'episode', 'assessment'])) {
+      context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+  });
 export type Chapter_Data = z.infer<typeof chapter_Data_Schema>;
