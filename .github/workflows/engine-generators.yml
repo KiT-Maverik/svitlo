@@ -91,7 +91,7 @@ jobs:
       - name: Build Engine
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
       - name: Verify pinned Prettier import ordering without rewriting sources
-        run: npm run test:import-format
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:import-format
       - name: Typecheck Engine and compile generator tests
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/engine
