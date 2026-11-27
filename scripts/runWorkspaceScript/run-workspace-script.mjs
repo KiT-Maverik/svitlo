@@ -221,13 +221,21 @@ async function executeTypechecks(plan) {
 export function planUnitOverlapExperiment(plan, packages) {
   const byName = new Map(packages.map(pkg => [pkg.name, pkg]));
   const ui = byName.get('@svitlo/ui-kit');
+  const engine = byName.get('@svitlo/engine');
   if (
     ui?.scripts?.test !== 'npm run test:logic && npm run test:components' ||
+    ui.scripts['test:components'] !== 'vitest run src' ||
     ui.scripts.pretest !== undefined ||
     ui.scripts.posttest !== undefined ||
-    !ui.scripts['test:logic'] ||
-    !ui.scripts['test:components']
-  ) throw Error('Unit overlap requires the reviewed UI Kit test composition without npm test hooks');
+    ui.scripts['pretest:logic'] !== undefined ||
+    ui.scripts['posttest:logic'] !== undefined ||
+    ui.scripts['pretest:components'] !== undefined ||
+    ui.scripts['posttest:components'] !== undefined ||
+    engine?.scripts?.pretest !== 'node ../../scripts/ci/packageBuildReuse/package-build-reuse.mjs @svitlo/engine' ||
+    engine.scripts.posttest !== undefined
+  ) {
+    throw Error('Unit overlap requires reviewed Engine/UI Kit test scripts and lifecycle hooks');
+  }
 
   const tests = plan.steps.filter(step => step.script === 'test');
   const builds = plan.steps.filter(step => step.script === 'package:build');
