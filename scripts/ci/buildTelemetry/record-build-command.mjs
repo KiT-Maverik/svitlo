@@ -52,7 +52,7 @@ export function runBuildCommand({ workspace, origin, command, args, root = repoR
   if (!success) {
     throw new Error(
       workspace + ' / package:build failed' +
-        (result.error ? ': ' + result.error.message : ' (' + origin + ')' : ' (' + origin + ', exit ' + result.status + ')'),
+        (result.error ? ': ' + result.error.message + ' (' + origin + ')' : ' (' + origin + ', exit ' + result.status + ')'),
     );
   }
 }
