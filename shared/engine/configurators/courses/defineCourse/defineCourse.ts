@@ -441,19 +441,28 @@ export function defineCourse<
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
 >(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
 
-/** Infer direct placement fields from the ordered placement key literals. */
+type CourseInferredBase = Omit<Course_Metadata_Config, 'slug' | 'params'> & {
+  slug: string;
+  params: Omit<Course_Config['params'], 'languages'> & { languages: readonly [LanguageCode, ...LanguageCode[]] };
+  children: string[];
+};
+type CourseInferredChildren<Config> = {
+  [Key in Exclude<keyof Config, keyof CourseInferredBase>]:
+    Config[Key] extends Course_Child ? Config[Key] : never;
+};
+
+/** Infer the exact child Configurator types from every direct root placement. */
 export function defineCourse<
-  const Slug extends string,
-  const Keys extends string,
-  const Items extends Record<Keys, Course_Child>,
-  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
->(config: Omit<Course_Metadata_Config, 'slug' | 'locale' | 'params'> & {
-    slug: Slug;
-    children: Keys[];
-    locale: RequireLanguages<Course_Config['locale'], Languages>;
-    params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
-  } & { [Key in Keys]: Items[Key] } &
-  ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>): Course_Configurator<Slug, Items, Languages>;
+  const Config extends CourseInferredBase,
+>(
+  config: Config &
+    CourseInferredChildren<Config> & {
+      children: Extract<keyof CourseInferredChildren<Config>, string>[];
+      locale: RequireLanguages<Course_Config['locale'], Config['params']['languages']>;
+    } &
+    ChildrenSupporting<Config['params']['languages'], CourseInferredChildren<Config>> &
+    SafePlacementMap<CourseInferredChildren<Config>>,
+): Course_Configurator<Config['slug'], CourseInferredChildren<Config>, Config['params']['languages']>;
 export function defineCourse(config: unknown): unknown {
   return defineCourseImplementation(config as never);
 }
