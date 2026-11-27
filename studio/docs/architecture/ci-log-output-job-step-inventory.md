@@ -228,7 +228,7 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 2. actions/setup-node@v5 — **provider**
 3. Install workspaces — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 4. Record production and full npm audit without masking advisory findings — **protocol/diagnostics (raw)**
-5. Report resolved packaging graph — **direct CLI/shell**
+5. Report resolved packaging graph — **direct lockfile check + quiet-run for successful npm explain**
 6. svitlo-forge-npm-audits — **provider**
 7. Build and package Desktop using Forge Vite — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 8. Typecheck adapter and Desktop — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
@@ -435,7 +435,7 @@ Every listed job's YAML steps are enumerated in declaration order. Provider outp
 5. node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 6. node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/mobile — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
 7. node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android — **existing quiet-run**; code: `scripts/ci/quietRun/quiet-run.mjs`
-8. Compile debug APK without signing — **direct CLI/shell**
+8. Compile debug APK without signing — **native Gradle --quiet, errors preserved**
 
 **Job `ios`** — needs: `—`; if: `github.event_name == 'workflow_dispatch'`.
 
