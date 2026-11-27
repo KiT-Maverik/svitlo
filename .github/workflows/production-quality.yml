@@ -6,6 +6,12 @@ on:
     branches: [main]
     types: [opened, reopened, synchronize, edited, ready_for_review]
   workflow_dispatch:
+    inputs:
+      unit_overlap_experiment:
+        description: 'Compare baseline (false) with bounded Engine/UI Kit unit overlap (true)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -118,7 +124,7 @@ jobs:
           SVITLO_CI_UNIT_TEST_TIMINGS: '1'
           # Explicitly scoped to the Draft #925 branch and manual diagnostics;
           # never enable for an automatic required PR/production gate.
-          SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'ci/quality-workflow-rearchitecture' && '1' || '0' }}
+          SVITLO_CI_UNIT_OVERLAP_EXPERIMENT: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'ci/quality-workflow-rearchitecture' && inputs.unit_overlap_experiment && '1' || '0' }}
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - name: Report package build reuse
         if: always()
