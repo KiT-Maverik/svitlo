@@ -375,7 +375,8 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
   const input = {
     ...l,
     children: ['introduction', 'pendingQuiz', 'pendingCards'],
-    ...l, pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards,
+    pendingQuiz: disabledQuiz,
+    pendingCards: disabledFlashcards,
   };
   const noDelegate = () => {
     throw Error('must not emit incomplete Section');
