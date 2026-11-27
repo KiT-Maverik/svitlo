@@ -13,6 +13,7 @@ on:
       - 'scripts/ci/lessonMaterialization/**'
       - 'scripts/ci/directMaterialization/**'
       - 'scripts/ci/requiredCheckReuse/**'
+      - 'scripts/ci/packageBuildReuse/**'
       - 'scripts/ci/draftCiPolicy/**'
       - 'scripts/ci/productionQuality/**'
       - 'scripts/ci/releaseSource/**'
@@ -76,6 +77,8 @@ jobs:
         with:
           node-version: '26'
       - run: node --test --test-reporter=dot scripts/ci/requiredCheckReuse/*.spec.mjs scripts/ci/draftCiPolicy/*.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/quietRun/quiet-run.spec.mjs
+      - name: Verify job-local package build reuse and passive telemetry
+        run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - name: Verify historical backfill labels with repository-scoped mocks
         run: node --test .github/scripts/backfill-labels.test.cjs
 
