@@ -417,14 +417,14 @@ test('trusted Course manifest seals Assessment seed, imported stub and upstream 
   const firstLesson = defineLesson(independentLessonConfig());
   const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
   const actual = courseStage3();
-  actual.config.finalReview = {
+  actual.config.content.items.finalReview = {
     config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
     production: {
       purpose: 'Measure transfer after the reviewed Lessons',
       lessonDependencies: ['newLesson', 'reused'],
     },
   };
-  actual.config.children.push('finalReview');
+  actual.config.content.order.push('finalReview');
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
     ...meta,
@@ -476,14 +476,14 @@ test('Course publisher accepts all three generated inert default-export seeds un
   const firstLesson = defineLesson(independentLessonConfig());
   const overriddenLesson = defineLesson(independentLessonConfig(overriddenLessonId, 'overriddenLesson'));
   const course = courseStage3();
-  course.config.finalReview = {
+  course.config.content.items.finalReview = {
     config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
     production: {
       purpose: 'Measure transfer',
       lessonDependencies: ['newLesson', 'reused'],
     },
   };
-  course.config.children.push('finalReview');
+  course.config.content.order.push('finalReview');
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
     ...meta,
@@ -522,33 +522,41 @@ test('trusted publisher accepts all pending stub kinds in a direct Course Chapte
   const build = fileURLToPath(new URL('../../../shared/engine/dist/build.js', import.meta.url));
   const { defineLesson } = createRequire(import.meta.url)(build);
   const course = courseStage3();
-  const { newLesson, episodeOne, reused, overridden } = course.config;
-  delete course.config.newLesson;
-  delete course.config.episodeOne;
-  course.config.children = ['directChapter', 'reused', 'overridden'];
-  course.config.directChapter = {
-    config: {
-      type: 'chapter',
-      slug: 'directChapter',
-      locale: { title: { uk: 'Розділ' } },
-      children: ['newLesson', 'episodeOne', 'chapterReview'],
-      newLesson,
-      episodeOne,
-      chapterReview: {
-        config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+  const { newLesson, episodeOne, reused, overridden } = course.config.content.items;
+  course.config.content = {
+    items: {
+      directChapter: {
+        config: {
+          type: 'chapter',
+          slug: 'directChapter',
+          locale: { title: { uk: 'Розділ' } },
+          content: {
+            items: {
+              newLesson,
+              episodeOne,
+              chapterReview: {
+                config: { type: 'assessment', locale: { title: { uk: 'Перевірка' } } },
+                production: {
+                  purpose: 'Measure transfer',
+                  lessonDependencies: ['directChapter/newLesson'],
+                },
+              },
+            },
+            order: ['newLesson', 'episodeOne', 'chapterReview'],
+          },
+        },
         production: {
-          purpose: 'Measure transfer',
-          lessonDependencies: ['directChapter/newLesson'],
+          methodology: 'Observe and reflect',
+          outcomes: { skills: [] },
+          prerequisites: { skills: [] },
+          depth: 'Introductory',
+          sequenceReason: 'Prepare later practice',
         },
       },
+      reused,
+      overridden,
     },
-    production: {
-      methodology: 'Observe and reflect',
-      outcomes: { skills: [] },
-      prerequisites: { skills: [] },
-      depth: 'Introductory',
-      sequenceReason: 'Prepare later practice',
-    },
+    order: ['directChapter', 'reused', 'overridden'],
   };
   const sourcePath = 'content/math/data/courses/3/' + courseId + '/draft.ts';
   const pinned = {
