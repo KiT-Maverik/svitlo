@@ -148,6 +148,37 @@ test('Ready main runs the full Engine generator suite once through required Prod
   assert.match(workflow, /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/);
 });
 
+test('standalone and reusable Engine generators have distinct cancellation groups', () => {
+  // GitHub Actions evaluates github.workflow in the called workflow as the
+  // caller's workflow name, not the reusable file name. On a Ready main
+  // promotion both workflows see the same PR number; if their groups match,
+  // cancel-in-progress can cancel the required reusable Production gate.
+  const engineGroup = engineGeneratorsWorkflow.match(
+    /concurrency:\\n(?:.*\\n)*?  group: (.+)\\n  cancel-in-progress: true/,
+  )?.[1];
+  const productionGroup = workflow.match(
+    /concurrency:\\n(?:.*\\n)*?  group: (.+)\\n  cancel-in-progress: true/,
+  )?.[1];
+  assert.equal(
+    engineGroup,
+    'engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}',
+  );
+  assert.equal(
+    productionGroup,
+    'production-quality-${{ github.event.pull_request.number || github.ref }}',
+  );
+  // Model only these two documented substitutions (not the GitHub evaluator).
+  const evaluateGroup = (template, workflowName, prNumber) =>
+    template
+      .replace('${{ github.workflow }}', workflowName)
+      .replace('${{ github.event.pull_request.number || github.ref }}', String(prNumber));
+  const standalone = evaluateGroup(engineGroup, 'Engine generators', 925);
+  const called = evaluateGroup(engineGroup, 'Production quality', 925);
+  const parent = evaluateGroup(productionGroup, 'Production quality', 925);
+  assert.notEqual(standalone, called, 'standalone must not cancel the production reusable call');
+  assert.notEqual(called, parent, 'reusable must not cancel its own Production Quality parent');
+});
+
 test('PR comment command dispatches the unchanged full production workflow', () => {
   assert.match(commandWorkflow, /issue_comment:\s*\n\s*types: \[created\]/);
   assert.match(commandWorkflow, /github\.event\.issue\.pull_request/);

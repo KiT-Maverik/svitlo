@@ -23,7 +23,14 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   branches and manual `workflow_dispatch` still run the complete suite.
   This avoids redundant job initialization; no individual generator tests
   are removed, and a cost saving has not yet been measured in a real
-  Ready `develop → main` promotion.
+  Ready `develop → main` promotion. Importantly, the reusable workflow's
+  `github.workflow` context is the **calling workflow** name; its workflow-level
+  concurrency group includes that value, keeping a direct Ready
+  `Engine generators` run isolated from the separate `Production quality`
+  reusable call. Both retain same-workflow cancellation of superseded
+  runs without accidentally canceling the other path or its required gate.
+  This separation has a focused `production-quality.spec.mjs` regression
+  test; actual simultaneous Ready main event behavior remains to be verified.
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics

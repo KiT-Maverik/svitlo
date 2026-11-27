@@ -55,7 +55,10 @@ permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  # A workflow_call uses its caller's github.workflow (GitHub Actions rule).
+  # Separate standalone Ready runs from their Production Quality reusable calls;
+  # otherwise cancel-in-progress can cancel an independent required gate.
+  group: engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
