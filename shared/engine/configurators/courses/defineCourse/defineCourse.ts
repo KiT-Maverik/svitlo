@@ -54,7 +54,7 @@ type CoursePublication<Base> = {
 type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Course_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
-} & { [Key in keyof Items]: DeepPartial<ReturnType<Items[Key]['build']['data']>['base']> };
+} & { [Key in keyof Items]: ReturnType<Items[Key]['build']['data']>['base'] };
 type CourseOverrideBase = Course_Metadata_Overrides & {
   children?: string[];
   [key: string]: unknown;
