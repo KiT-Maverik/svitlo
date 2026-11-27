@@ -151,7 +151,7 @@ test('Course detail keeps its requested language without displaying a fallback n
 
 // This invalid TOC is published once by the Web-owned fixture builder. No
 // browser worker may create or remove files beneath the shared host public root.
-test('Corrupt published Course TOC displays an accessible recovery path', async ({ page }) => {
+test('Mismatched published Course TOC displays an accessible recovery path', async ({ page }) => {
   const invalidTocCourseId = '11111111-1111-4111-8111-0000000002fc';
   await page.goto('/en/course/' + invalidTocCourseId);
 
