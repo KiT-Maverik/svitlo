@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../../_shared__configurators';
 import {
@@ -356,8 +357,9 @@ export const defineCheckpoint = <
   };
 
   const overrides: {
-    <const Added extends Record<string, CheckpointItem>>(
-      patch: Checkpoint_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Checkpoint_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, CheckpointItem>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, CheckpointItem>>,
       options: PublicationLanguageOptions<Languages>,
     ): CheckpointPublication<CheckpointOverrideBase>;
     (
