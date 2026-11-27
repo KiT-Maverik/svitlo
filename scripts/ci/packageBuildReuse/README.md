@@ -73,12 +73,14 @@ failed compiler into a success or a successful build into a failure. JSONL is
 not a trusted cache, not an artifact permission grant, and must not be shared
 between runner jobs or trials.
 
-This is **partial Phase 0 telemetry**: it covers build requests through this
-helper only. Direct `npm run package:build` calls in Content `prepare` and
-shards, standalone Turbo package builds and possible npm lifecycle hooks are
-**not counted** by these events. For complete CI compilation counts, instrument
-those entrypoints separately and correlate actual compiler invocations; do not
-infer a duplicate build from a request count. Draft PR validation will not run
+This is **partial Phase 0 telemetry**: these reuse-helper events cover
+build requests through this helper only. Separate `record-build-command.mjs`
+instrumentation now records explicit Content `prepare` and shard commands and
+FastGate prerequisite builds in their **own per-job** JSONL files; those are
+not reuse-helper events and must never be summed as one compiler graph.
+Standalone Turbo package builds, npm lifecycle hooks and other direct compiler
+processes are still not exhaustively counted. Correlate real compiler
+invocations across the selected jobs before claiming total CI build savings. Draft PR validation will not run
 these expensive commands and cannot produce a Production baseline.
 
 Validation without CI:
