@@ -265,21 +265,28 @@ export const defineCheckpointAnswer = <
   // Keeping identity after the generic spread also preserves the literal
   // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
   const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
+  const buildApi = scopeBuild({ data, overrides });
   const result = {
     ...initialItems,
     id, slug, type,
     children: [...initialOrder],
     validate,
-    build: scopeBuild({ data, overrides }),
+    build: buildApi,
     config: configApi,
   } as const;
-  // A generic string-keyed placement map may appear to shadow fixed fields
-  // in ReturnType<typeof defineCheckpointAnswer>. Restore their exact types
-  // at the owning factory boundary rather than widening the Answer role.
-  return result as Omit<typeof result, 'id' | 'slug' | 'type' | 'config'> & {
+  // Generic direct placements can have arbitrary keys at the type level,
+  // despite SafePlacementMap rejecting reserved keys at authoring. Restore
+  // ALL fixed lifecycle keys explicitly, avoiding accidental Primitive
+  // shadowing of build, config, validation, or the Answer discriminator.
+  return result as Omit<
+    typeof result, 'id' | 'slug' | 'type' | 'children' | 'validate' | 'build' | 'config'
+  > & {
     readonly id: typeof id;
     readonly slug: typeof slug;
     readonly type: typeof type;
+    readonly children: string[];
+    readonly validate: typeof validate;
+    readonly build: typeof buildApi;
     readonly config: typeof configApi;
   } & LanguageScope<Languages>;
 };
