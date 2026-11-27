@@ -149,7 +149,7 @@ export const defineCourse = <
 >(
   config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
     locale: RequireLanguages<Course_Config['locale'], Languages>;
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   },
@@ -428,5 +428,5 @@ export const defineCourse = <
       }),
       validate,
     },
-  } as Course_Configurator<Slug, Items, Languages>;
+  } as unknown as Course_Configurator<Slug, Items, Languages>;
 };
