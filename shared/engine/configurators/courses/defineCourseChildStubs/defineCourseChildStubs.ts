@@ -43,7 +43,8 @@ const preview = (id: string) => {
     type: 'content',
     params: {},
     locale: { title: 'Not implemented', navigationLabel: 'Preview' },
-    content: { items: { message }, order: ['message'] },
+    children: ['message'],
+    message,
   });
 };
 
@@ -64,15 +65,20 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
   const validate = (): void => {
     identityBase_Schema.parse({ id, slug });
     const built = section.build.data({ languages: ['en'] });
+    const block: unknown = built.base.message;
     if (
-      !built.base.content.some(
-        block =>
-          block.type === 'text' &&
-          typeof block.locale === 'object' &&
-          block.locale !== null &&
-          'value' in block.locale &&
-          block.locale.value === 'Not implemented',
-      )
+      built.base.children.length !== 1 ||
+      built.base.children[0] !== 'message' ||
+      block === null ||
+      typeof block !== 'object' ||
+      Array.isArray(block) ||
+      !('type' in block) ||
+      block.type !== 'text' ||
+      !('locale' in block) ||
+      block.locale === null ||
+      typeof block.locale !== 'object' ||
+      !('value' in block.locale) ||
+      block.locale.value !== 'Not implemented'
     ) {
       throw new Error('Stub preview must include a Not implemented Text ContentBlock');
     }
@@ -88,7 +94,8 @@ const createStub = <const K extends Kind, const Slug extends string>(type: K, { 
       params: { ...params, languages: [...languages] },
       ...(type === 'lesson' ? { skills: [] as string[] } : {}),
       locale: { title: 'Not implemented' },
-      section: [child.base],
+      children: ['preview'],
+      preview: child.base,
     };
     (type === 'lesson' ? lesson_Draft_Data_Schema : episode_Draft_Data_Schema).parse(base);
     return { base, locale: undefined };
