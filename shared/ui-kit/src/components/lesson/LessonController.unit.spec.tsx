@@ -359,7 +359,9 @@ describe('Engine Props Lesson Controller', () => {
     expect(screen.queryByText('Hear this sound')).toBeNull();
   });
 
-  it('completes a blocking Engine Quiz after a Question attempt', async () => {
+  it.each([{ choice: 'Radiation', failed: false }, { choice: 'Sound', failed: true }])(
+    'unlocks a blocking Engine Quiz after a completed $choice attempt',
+    async ({ choice, failed }) => {
     const response = fixture(false);
     const question = {
       id: uuid(26),
@@ -412,11 +414,14 @@ describe('Engine Props Lesson Controller', () => {
     };
     showLesson(response, [], loader);
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(await screen.findByRole('radio', { name: /Radiation/i }));
+    fireEvent.click(await screen.findByRole('radio', { name: choice }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() => expect(navigationButton('next')).toBeEnabled());
     expect(received).toContain('quizCompleted');
+    if (failed) expect(received).toContain('quizFailed');
+    else expect(received).not.toContain('quizFailed');
     fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
-  });
+    },
+  );
 });
