@@ -109,10 +109,15 @@ function verifiedChildren(root: Record<string, unknown>): WeakMap<object, Verifi
   if (previous) return previous;
   const index = new WeakMap<object, VerifiedChildren>();
   const visited = new Set<string>();
+  // Cache only when the caller supplied an immutable hierarchy. For mutable
+  // JSON, revalidate every call so same-length in-place edits and replaced
+  // child objects cannot leave a trusted stale index behind.
+  let immutable = true;
   function visit(parent: Record<string, unknown>, parentType: 'course' | 'module' | 'chapter'): void {
     const order = parent.children;
     if (!Array.isArray(order) || new Set(order).size !== order.length)
       throw new Error('Invalid Course publication children');
+    if (!Object.isFrozen(parent) || !Object.isFrozen(order)) immutable = false;
     const keys = new Set(order);
     const placements = Object.keys(parent).filter(key =>
       !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
@@ -125,6 +130,7 @@ function verifiedChildren(root: Record<string, unknown>): WeakMap<object, Verifi
       const node: unknown = parent[slug];
       if (!isRecord(node) || typeof node.id !== 'string')
         throw new Error('Invalid Course child at ' + slug);
+      if (!Object.isFrozen(node)) immutable = false;
       if (node.type === 'module' || node.type === 'chapter') {
         if (parentType === 'chapter' || (parentType === 'module' && node.type === 'module') ||
             node.slug !== slug || visited.has(node.id))
@@ -138,7 +144,7 @@ function verifiedChildren(root: Record<string, unknown>): WeakMap<object, Verifi
     index.set(parent, { source: order, count: order.length, keys });
   }
   visit(root, 'course');
-  verifiedPublications.set(root, index);
+  if (immutable) verifiedPublications.set(root, index);
   return index;
 }
 
