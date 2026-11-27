@@ -1,11 +1,11 @@
 // @vitest-environment node
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { readdirSync, readFileSync } from 'node:fs';
+import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { beforeAll, describe, it } from 'vitest';
+import { afterAll, beforeAll, describe, it } from 'vitest';
 import { z } from 'zod';
 
 import { allLanguageCodes, assessmentMethod_Data_Schema, educationStandard_Data_Schema } from '@svitlo/engine/build';
@@ -14,19 +14,31 @@ import * as assessmentMethods from '../../data/definitions/assessmentMethods';
 import { educationStandards } from '../../data/definitions/educationStandards';
 
 const root = fileURLToPath(new URL('../../../../', import.meta.url));
-const output = path.join(root, 'content/playground/public/data/uiKit');
+// Use the generator's supported isolated output, never mutate Playground's published assets.
+let output = '';
 const methods = z.enum(Object.keys(assessmentMethods));
 const baseSchema = z.record(methods, assessmentMethod_Data_Schema.pick({ id: true, slug: true }).strict());
 const localeSchema = z.record(methods, assessmentMethod_Data_Schema.pick({ title: true, description: true }).strict());
 const readJson = (filename: string): unknown => JSON.parse(readFileSync(filename, 'utf8'));
 
 beforeAll(() => {
+  output = mkdtempSync(path.join(root, 'shared/ui-kit/scripts/generateLocales/.test-output-'));
   const result = spawnSync(
     process.execPath,
-    [path.join(root, 'shared/ui-kit/scripts/generateLocales/generateLocales.mjs'), '--package', 'content/playground'],
+    [
+      path.join(root, 'shared/ui-kit/scripts/generateLocales/generateLocales.mjs'),
+      '--package',
+      'content/playground',
+      '--output',
+      output,
+    ],
     { cwd: root, encoding: 'utf8' },
   );
   assert.equal(result.status, 0, result.stderr);
+});
+
+afterAll(() => {
+  if (output) rmSync(output, { recursive: true, force: true });
 });
 
 describe('Scripts', () => {
