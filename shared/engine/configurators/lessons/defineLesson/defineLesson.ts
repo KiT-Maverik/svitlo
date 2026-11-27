@@ -23,6 +23,7 @@ import {
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
   type SafePlacementMap,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
@@ -388,8 +389,12 @@ const defineLessonImpl = <
    * when Parameters<> inspects a nested concrete Configurator.
    */
   const overrides: {
-    <const Added extends Record<string, Section_Configurator>>(
-      patch: Lesson_Overrides<Sections, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Lesson_Overrides<Sections, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
+      >> & ChildrenSupporting<Languages, AddedPlacementsFromPatch<
+        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
+      >>,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase> & Pick<Lesson_Metadata_Config, 'id'>;
     (
