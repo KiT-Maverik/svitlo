@@ -13,6 +13,11 @@ export const slugAddressedReservedKeys = [
   '__lookupGetter__', '__lookupSetter__',
 ] as const;
 
+/** Compile-time mapped key rejection; Exclude<string, Keys> does not block literal reserved names. */
+export type SafePlacementMap<Items> = {
+  [Key in keyof Items]: Key extends (typeof slugAddressedReservedKeys)[number] ? never : Items[Key];
+};
+
 const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
 const reserved = new Set<string>(slugAddressedReservedKeys);
 const record = (value: unknown): value is Record<string, unknown> =>
