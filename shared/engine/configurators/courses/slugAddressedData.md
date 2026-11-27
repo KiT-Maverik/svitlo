@@ -1,15 +1,19 @@
 # Course hierarchy — slug-addressed Data contract (PR #906)
 
-**Scope:** Course, Module and Chapter **published Data**. This is a migration
-boundary for dependent PRs #909/#910/#911/#912 and does not redefine other
-entities' authored Config, their semantic roles, or presentation-specific Props.
+**Scope:** Course, Module and Chapter **published Data**. This is an interim
+contract for #902, with canonical **authored Config/overrides** explicitly
+assigned to prerequisite **A2 issue #914** before B #909 and C #910 can start.
+It does not redefine other entities' semantic roles or UI Props.
 
 ## Exact shape and ownership
 
 An authored Course/Module/Chapter still declares a Configurator's
 `content: { items: { [placementSlug]: childConfigurator }, order: placementSlug[] }`.
-That existing Config format is deliberately retained for Stage/source materializers
-until workstream D migrates their rendering and verifies the static Draft Reader.
+That legacy input remains only as an **intermediate implementation detail**:
+A2 #914 owns the final Course/Module/Chapter Configurator schema, builder
+signature and authored overrides API. Only *after A2* may D #911 migrate the
+trusted Stage/source materializer output to that new authored Config shape.
+The current `content.items/order` is **not** the agreed final Config API.
 
 `build.data({ languages, mode? })` emits `{ base, locale }`. The **base Data**
 for each of these owners has its own `id`, `type`, `slug`, `params`,
@@ -42,8 +46,12 @@ three Data owners.
 slugs. Its active keys are exhaustive and unique. The example's `practice`
 key intentionally differs from the imported Lesson's immutable `slug`.
 A complete Lesson retains its original `id`, `type`, and `slug`; its
-container alone supplies its contextual placement key. No copies of standalone
-Lesson source are authored by this operation.
+container alone supplies its contextual placement key. Two **completed** Lesson
+placements may point to the same UUID and authored slug, including as siblings,
+without changing either immutable source identity. Draft Lesson stubs cannot
+be duplicated even under different placement slugs; Module/Chapter/Episode/
+Assessment identities must remain unique. Nested/global uniqueness is owned by
+E #912. No copies of standalone Lesson source are authored by this operation.
 
 The allowed child kinds are:
 
@@ -55,7 +63,8 @@ The allowed child kinds are:
 
 Existing draft Lesson/Episode/Assessment placements remain allowed by their
 respective Configurator contracts. The parent checks **only its direct
-boundary** (child ID, type, slug, placement, ordering, active keys), while
+boundary** (child UUID, camelCase authored slug, type, placement, ordering,
+active keys and permitted completed-Lesson reuse), while
 the child Configurator remains responsible for child-owned internal validation.
 
 Reserved root metadata and unsafe JS keys may not be placement keys:
@@ -72,8 +81,8 @@ language subset. Each `locale[language]` is already a Data-shaped fragment;
 a localized child lives at `locale[language][placementSlug]`. A parent owner
 wraps **only its own** localized fields as `locale[language].locale`.
 
-The authored `build.overrides({ content: { items, additionalItems, order } },
-{ languages, mode? })` input remains unchanged for this phase; its **output**
+The **temporary** authored `build.overrides({ content: { items, additionalItems, order } },
+{ languages, mode? })` input must be migrated by A2 #914; its current **output**
 is a sparse, placement-keyed Data patch, not a full replacement Course array:
 
 - Changed existing children publish their **own** sparse fragments at the
@@ -110,10 +119,15 @@ Question prompt/explanation/group, assessment scoring and explicit Quiz
 references are semantically named fields, not generic dynamic children.
 Preserve bank identity and selection contracts independently.
 
-**D — Source materializers/Stage types:** Authoring Config is intentionally
-still `content.items/order` here. Transform inert reviewed drafts to
-valid Configurator code as a separately verified trust boundary. Do not treat
-the Data migration as permission to bypass the static Draft Reader.
+**A2 — Course authored Config/overrides (#914):** Owns the final root
+`children` + direct slug keys for authoring as well as the Config-sourced
+override API. This is a hard gate **after A #906 and before B/C/D**.
+A2 must not rewrite D-owned materializer sources.
+
+**D — Source materializers/Stage types (#911):** Consume A2's finalized
+Config API and transform inert reviewed drafts to valid Configurator code
+without bypassing the static Draft Reader or trusted Git transaction.
+D owns generated Stage/source emitters, **not** Course Configurator API migration.
 
 **E — JSON publication/runtime:** Publish `build.data()` and sparse
 `build.overrides()` exactly as Data fragments; implement direct
