@@ -41,11 +41,17 @@ export type ContentBlock_CheckpointItem_Data = Omit<z.infer<typeof checkpointIte
 export type CheckpointItem_Question_Overrides = Omit<ContentBlock_Text_Overrides, 'params'> & {
   params?: Omit<NonNullable<ContentBlock_Text_Overrides['params']>, 'disabled'> & { disabled?: never };
 };
+/** Extract the Answer's authored Primitive placements, not its lifecycle members. */
+type AnswerChildren<Answer> = {
+  [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
+    Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
+};
+
 export type CheckpointItem_Overrides<
   Answer extends ContentBlock_CheckpointAnswer_Configurator,
   Added extends Record<string, Checkpoint_Allowed_Configurator> = {},
 > = {
   check?: true;
   question?: CheckpointItem_Question_Overrides;
-  answer?: Parameters<Answer['build']['overrides']>[0] & CheckpointAnswer_Overrides<Record<string, Checkpoint_Allowed_Configurator>, Added>;
+  answer?: CheckpointAnswer_Overrides<AnswerChildren<Answer>, Added>;
 };
