@@ -250,12 +250,22 @@ test('Module rejects legacy Skill targets in config.params rather than dropping 
   }
 });
 
-test('Module rejects a child canonical import that collides with generated locals', () => {
+test('Module rejects the retired content wrapper before import generation', () => {
   const node = mod();
   const child = node.config.chapterOne;
   child.config.slug = 'content';
   delete node.config.chapterOne;
   node.config.content = child;
   node.config.children = ['content'];
-  assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*content/);
+  assert.throws(() => materializeModule(node, ctx()), /\\.content: legacy Course hierarchy wrapper is forbidden/);
+});
+
+test('Module rejects a valid child import that collides with generated identifiers', () => {
+  const node = mod();
+  const child = node.config.chapterOne;
+  child.config.slug = 'defineModule';
+  delete node.config.chapterOne;
+  node.config.defineModule = child;
+  node.config.children = ['defineModule'];
+  assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*defineModule/);
 });
