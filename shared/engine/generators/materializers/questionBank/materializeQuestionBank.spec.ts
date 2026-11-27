@@ -43,7 +43,7 @@ const block = (slug: string, num: number) => ({
     locale: { value: { uk: 'Перевірене формулювання' } },
   },
 });
-const collection = (items: Record<string, unknown>) => ({ items, order: Object.keys(items) });
+const collection = (items: Record<string, unknown>) => ({ children: Object.keys(items), ...items });
 const question = () => ({
   config: {
     id: id(10),
@@ -180,7 +180,7 @@ test('Question Bank final refuses source/review drift, missing groups and malfor
 
 test('Question Bank rejects Composite children in Stage 3 authored source, including unsafe casts', () => {
   const source = completeBank();
-  Object.assign(source.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+  Object.assign(source.config.questions.selectOneAnswer.promptOne.config.content.question, {
     gallery: {
       config: {
         id: id(47),
@@ -188,11 +188,12 @@ test('Question Bank rejects Composite children in Stage 3 authored source, inclu
         type: 'carousel',
         params: {},
         locale: {},
-        slides: { items: {}, order: [] },
+        children: ['illustration'],
+        illustration: { config: { id: id(48), slug: 'illustration', type: 'image', params: { width: 640, height: 480 }, locale: { alt: { uk: 'Illustration' } } } },
       },
     },
   });
-  source.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('gallery');
+  source.config.questions.selectOneAnswer.promptOne.config.content.question.children.push('gallery');
   assert.throws(
     () => materializeQuestionBank(source as never, finalAuth(source)),
     /Invalid reviewed questionBank Stage 3 input/,
@@ -227,7 +228,7 @@ test('Question Bank validates the source language and drops duplicated assessmen
 });
 test('Question Bank ignores authored resource state flags by rejecting them at the Zod boundary', () => {
   const input = completeBank();
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.prompt as object, {
     production: { pending: true },
   });
   assert.throws(
@@ -251,10 +252,10 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
         'Create an original high-contrast educational diagram of a lamp on the left, a cube in the middle, and the resulting shadow on a screen to the right. Show the direction of light using clear arrows, without decorative objects.',
     },
   };
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question, {
     pendingDiagram: image,
   });
-  input.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('pendingDiagram');
+  input.config.questions.selectOneAnswer.promptOne.config.content.question.children.push('pendingDiagram');
   assert.throws(() => materializeQuestionBank(input as never, finalAuth(input)), /Missing verified media evidence/);
   const authorized = finalAuth(input);
   const planned = materializeQuestionBank(input as never, {
@@ -270,7 +271,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
 
   // Keep the published Stage 3 boundary as strict as the concrete Image renderer.
   const shortPrompt = structuredClone(input);
-  const pending = shortPrompt.config.questions.selectOneAnswer.promptOne.config.content.question.items
+  const pending = shortPrompt.config.questions.selectOneAnswer.promptOne.config.content.question
     .pendingDiagram as typeof image;
   pending.production.prompt = 'Draw a diagram';
   assert.throws(
@@ -279,7 +280,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
   );
 
   const nonImage = completeBank();
-  Object.assign(nonImage.config.questions.selectOneAnswer.promptOne.config.content.question.items.prompt as object, {
+  Object.assign(nonImage.config.questions.selectOneAnswer.promptOne.config.content.question.prompt as object, {
     production: { prompt: image.production.prompt },
   });
   assert.throws(
@@ -290,7 +291,7 @@ test('Stage 5 emits missing image assets as blocked, typed Question source', () 
 
 test('Stage 5 refuses forged media paths rather than emitting a TODO', () => {
   const input = completeBank();
-  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question.items, {
+  Object.assign(input.config.questions.selectOneAnswer.promptOne.config.content.question, {
     pendingDiagram: {
       config: {
         id: id(26),
@@ -301,7 +302,7 @@ test('Stage 5 refuses forged media paths rather than emitting a TODO', () => {
       },
     },
   });
-  input.config.questions.selectOneAnswer.promptOne.config.content.question.order.push('pendingDiagram');
+  input.config.questions.selectOneAnswer.promptOne.config.content.question.children.push('pendingDiagram');
   assert.throws(
     () => materializeQuestionBank(input as never, finalAuth(input)),
     /Invalid reviewed questionBank Stage 3 input/,
