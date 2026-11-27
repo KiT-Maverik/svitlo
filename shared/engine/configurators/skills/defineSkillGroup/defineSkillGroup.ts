@@ -8,7 +8,7 @@ import type {
 } from '#types';
 
 import {
-  buildChildProps,
+  buildChildData,
   mergeForValidation,
   onlyLocales,
   requireBuildContext,
@@ -18,19 +18,19 @@ import {
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
+import { skill_Data_Schema, type Skill_Configurator, type Skill_Data } from '../defineSkill';
 import {
   skillGroup_Config_Schema,
-  skillGroup_Props_Schema,
+  skillGroup_Data_Schema,
   type SkillGroup_Config,
+  type SkillGroup_Data,
   type SkillGroup_Metadata,
-  type SkillGroup_Props,
 } from './defineSkillGroup.schemas';
 
 type Skill = Skill_Configurator;
 type SkillGroupPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCode, DeepPartial<SkillGroup_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<SkillGroup_Data>>> | undefined;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -50,7 +50,7 @@ const validate = (config: SkillGroup_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
       child.config.base.id !== child.id ||
@@ -79,9 +79,9 @@ export type SkillGroup_Configurator<
   readonly skills: Skills;
   readonly validate: typeof validate;
   readonly build: {
-    props(
+    data(
       options: PublicationLanguageOptions<Languages>,
-    ): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
+    ): SkillGroupPublication<DeepPartial<SkillGroup_Data> & { id: string; slug: string }>;
   };
   readonly config: {
     base: DeepPartial<SkillGroup_Config>;
@@ -115,8 +115,8 @@ export function defineSkillGroup<
   const splitOwn = (value: SkillGroup_Metadata) => {
     const own = splitLocalizedFields(value);
     return {
-      base: own.base as DeepPartial<Pick<SkillGroup_Props, 'name' | 'description'>>,
-      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillGroup_Props>>>,
+      base: own.base as DeepPartial<Pick<SkillGroup_Data, 'name' | 'description'>>,
+      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillGroup_Data>>>,
     };
   };
 
@@ -124,22 +124,22 @@ export function defineSkillGroup<
     const { languages } = requireBuildContext();
     const entries = Object.keys(items)
       .sort()
-      .map(key => buildChildProps(items[key]));
-    const base = entries.map(resource => resource.base) as DeepPartial<Skill_Props>[];
-    const locale: Partial<Record<LanguageCode, Skill_Props[]>> = {};
+      .map(key => buildChildData(items[key]));
+    const base = entries.map(resource => resource.base) as DeepPartial<Skill_Data>[];
+    const locale: Partial<Record<LanguageCode, Skill_Data[]>> = {};
     for (const language of languages) {
       if (entries.some(resource => resource.locale?.[language] !== undefined)) {
         locale[language] = entries.map(resource =>
-          skill_Props_Schema.parse(mergeForValidation(resource.base, resource.locale?.[language] ?? {})),
+          skill_Data_Schema.parse(mergeForValidation(resource.base, resource.locale?.[language] ?? {})),
         );
       }
     }
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
+  ): SkillGroupPublication<DeepPartial<SkillGroup_Data> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), skills: initialSkills });
     const current = copyAuthored();
@@ -154,7 +154,7 @@ export function defineSkillGroup<
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
-      skillGroup_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+      skillGroup_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -165,7 +165,7 @@ export function defineSkillGroup<
     type: 'skillGroup' as const,
     skills,
     validate,
-    build: scopeBuild({ props }),
+    build: scopeBuild({ data }),
     config: {
       base: { id, slug, ...splitOwn({ name: authored.name, description: authored.description }).base },
       validate,

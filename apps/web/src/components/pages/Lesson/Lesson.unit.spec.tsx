@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { Lesson_Props } from '@svitlo/engine/runtime';
+import type { Lesson_Data } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
 import { preloadScene } from '@/generated/textbookScenes';
@@ -63,7 +63,7 @@ const response = {
       content: [{ id: sceneTwoId, slug: 'secondScene', type: 'scene', params: {}, locale: { value: 'Scene two' } }],
     },
   ],
-} satisfies Lesson_Props;
+} satisfies Lesson_Data;
 
 describe('Web lesson preparation', () => {
   beforeEach(() => vi.clearAllMocks());

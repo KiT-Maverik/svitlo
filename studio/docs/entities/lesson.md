@@ -52,7 +52,7 @@ Related: [historical Lesson Content](./lesson-content.md), [Section](./section.m
 
 Use [`defineLesson`](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.ts) from `@svitlo/engine/build`. It composes the named, ordered `section` collection and declares `params.languages`; it does **not** own either bank. The `defineQuizSection` selection requires explicit `questionIds` that may be owned by **different source Lessons**; the `defineFlashcardsSection` selection requires explicit `flashcardIds`. Section screen ContentBlocks never define Questions. A Quiz selecting Questions from another Lesson must pass the implemented global UUID and locale resolver for the target textbook and locales before publication. Build-only independent Question and Flashcard configurators produce separately addressable Props, and the host supplies a selected-resource reader to UI Kit. Complete-release referential validation, source/review authorization, real media and full locales remain independent production gates.
 
-`lesson.build.props({ languages })` produces `base` and sparse `locale` Props fragments. `lesson.build.overrides(patch, { languages })` prepares Course-specific patches without mutating the Lesson. Generators, not configurators, write files.
+`lesson.build.data({ languages })` produces `base` and sparse `locale` Props fragments. `lesson.build.overrides(patch, { languages })` prepares Course-specific patches without mutating the Lesson. Generators, not configurators, write files.
 
 At runtime, [`assembleLessonProps`](../../../shared/engine/assemblers/assembleLessonProps/assembleLessonProps.ts) merges the published base and selected locale with optional Course overrides and validates the complete Props.
 

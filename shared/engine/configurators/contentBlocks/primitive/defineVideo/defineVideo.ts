@@ -14,19 +14,19 @@ import {
 } from '../../../_shared__configurators';
 import {
   video_Config_Schema,
+  video_Data_Schema,
   video_Override_Config_Schema,
-  video_Props_Schema,
   type ContentBlock_Video_Config,
+  type ContentBlock_Video_DataBase,
   type ContentBlock_Video_Locale,
   type ContentBlock_Video_Overrides,
-  type ContentBlock_Video_PropsBase,
 } from './defineVideo.schemas';
 
-type VideoLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Video_Locale<'props'>> }>>;
-type VideoPropsPublication<Base, LocaleFiles = VideoLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type VideoOverridePropsBase = {
+type VideoLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Video_Locale<'data'>> }>>;
+type VideoDataPublication<Base, LocaleFiles = VideoLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type VideoOverrideDataBase = {
   params?: ContentBlock_Video_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Video_Locale<'data'>>;
 };
 
 const parseAndValidate = (config: ContentBlock_Video_Config): ContentBlock_Video_Config => {
@@ -37,7 +37,7 @@ const validate = (config: ContentBlock_Video_Config): void => {
   parseAndValidate(config);
 };
 
-const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublication<ContentBlock_Video_PropsBase> => {
+const buildVideoData = (config: ContentBlock_Video_Config): VideoDataPublication<ContentBlock_Video_DataBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(config.locale, 'fileLocation'));
   const base = {
@@ -46,9 +46,9 @@ const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublicati
     slug,
     params,
     ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'data'>> }
       : {}),
-  } satisfies ContentBlock_Video_PropsBase;
+  } satisfies ContentBlock_Video_DataBase;
   return {
     base,
     locale: (locale === undefined
@@ -58,13 +58,13 @@ const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublicati
   };
 };
 
-const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublication<VideoOverridePropsBase> => {
+const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoDataPublication<VideoOverrideDataBase> => {
   const { base: invariant, locale } = splitLocalizedFields(runtimeMediaLocale(patch.locale ?? {}, 'fileLocation'));
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
       ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'data'>> }
         : {}),
     },
     locale: (locale === undefined
@@ -104,20 +104,18 @@ export const defineVideo = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
-  const props = (
-    options: PublicationLanguageOptions<Languages>,
-  ): VideoPropsPublication<ContentBlock_Video_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): VideoDataPublication<ContentBlock_Video_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildVideoProps(parseAndValidate(copyAuthored()));
+    const result = buildVideoData(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(video_Props_Schema, result, languages);
+    validateRequestedPublication(video_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Video_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): VideoPropsPublication<VideoOverridePropsBase> => {
+  ): VideoDataPublication<VideoOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = video_Override_Config_Schema.parse(patch);
@@ -125,7 +123,7 @@ export const defineVideo = <
       validate(effective);
       const output = buildVideoPatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(video_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(video_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(`Invalid Video overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
@@ -138,7 +136,7 @@ export const defineVideo = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({

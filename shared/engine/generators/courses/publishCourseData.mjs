@@ -19,12 +19,12 @@ const isObject = value => value !== null && typeof value === 'object' && !Array.
 const clone = value => structuredClone(value);
 
 /** Props arrays are atomic; object keys merge recursively in publication order. */
-export function mergeCourseProps(base, patch) {
+export function mergeCourseData(base, patch) {
   if (patch === undefined) return clone(base);
   if (!isObject(base) || !isObject(patch)) return clone(patch);
   const result = clone(base);
   for (const [key, value] of Object.entries(patch)) {
-    result[key] = mergeCourseProps(result[key], value);
+    result[key] = mergeCourseData(result[key], value);
   }
   return result;
 }
@@ -161,7 +161,7 @@ function compactEntity(value, lessonPatches, language, location, mode) {
     if (!lessonPatches.has(location)) throw new Error('Unregistered Course Lesson at ' + location + ': ' + value.id);
     const patch = lessonPatches.get(location);
     const base = patch?.base ?? {};
-    const effective = language ? mergeCourseProps(base, patch?.locale?.[language]) : clone(base);
+    const effective = language ? mergeCourseData(base, patch?.locale?.[language]) : clone(base);
     assertJson(effective, 'Lesson override ' + value.id);
     return {
       type: 'lesson',
@@ -282,7 +282,7 @@ export function renderCourseFiles(
         '; attach Lesson patches with placeLesson at their placement',
     );
   }
-  if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
+  if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.data) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
   }
   if (
@@ -296,7 +296,7 @@ export function renderCourseFiles(
   if (!['production', 'draft'].includes(mode)) throw new Error('Invalid Course publication mode');
   const scope = { languages, mode };
   // Course Configurator Build owns authoring, nested overrides and Props validation.
-  const resource = course.build.props(scope);
+  const resource = course.build.data(scope);
   const lessonPatches = findLessonPatches(course, languages, mode);
   assertJson(resource.base, 'Course resource base');
   for (const language of languages) {
@@ -316,7 +316,7 @@ export function renderCourseFiles(
 
   const files = new Map([['base.json', JSON.stringify(base, null, 2) + '\n']]);
   for (const language of languages) {
-    const resolved = mergeCourseProps(resource.base, resource.locale?.[language]);
+    const resolved = mergeCourseData(resource.base, resource.locale?.[language]);
     const tocLocalized = projectToc(resolved);
     const tocDelta = difference(tocBase, tocLocalized);
     // Validate completed selected-language labels, structure and draft gates

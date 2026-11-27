@@ -26,7 +26,7 @@ import {
   findCourseEpisode,
   UNRESOLVED_YOUTUBE_HREF,
 } from '@svitlo/engine/runtime';
-import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
+import { mergeCourseData, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
   course: '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67',
@@ -138,7 +138,7 @@ function fixture() {
     config: { base: { params: { languages: ['en', 'uk'] } } },
     content: { items: { myModule: module }, order: ['myModule'] },
     build: {
-      props: ({ languages }) => {
+      data: ({ languages }) => {
         assert.deepEqual(languages, ['en', 'uk']);
         return {
           base: structuredClone(base),
@@ -172,7 +172,7 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   assert(![...files.values()].join('').includes('standalone-section'));
   assert(!files.get('base.json').includes('Standalone title'));
   const uk = JSON.parse(files.get('uk.json'));
-  const assembled = mergeCourseProps(base, uk);
+  const assembled = mergeCourseData(base, uk);
   assert.equal(assembled.locale.title, 'Курс');
   assert.deepEqual(assembled.content.order, ['myModule']);
   assert.deepEqual(assembled.content.items.myModule.content.order, ['myChapter']);
@@ -267,14 +267,14 @@ test('locale files contain sparse slug-keyed Course changes, not repeated siblin
 
 test('rejects lossy Course Build output before serialization', () => {
   const { course } = fixture();
-  const original = course.build.props;
-  course.build.props = options => {
+  const original = course.build.data;
+  course.build.data = options => {
     const result = original(options);
     result.base.extra = { dropped: undefined };
     return result;
   };
   assert.throws(() => renderCourseFiles(course), /Non-JSON value/);
-  course.build.props = options => {
+  course.build.data = options => {
     const result = original(options);
     result.base.extra = [, 'second'];
     return result;
@@ -355,7 +355,7 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   assert.equal(directLesson.type, 'lesson');
   assert.equal(Object.hasOwn(chapterLesson, 'overrides'), false, 'uk-only nested edit stays in locale fragment');
   assert.equal(directLesson.overrides.locale.title, 'Course direct title');
-  const localized = mergeCourseProps(base, uk);
+  const localized = mergeCourseData(base, uk);
   assert.equal(
     localized.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.overrides.locale
       .title,
@@ -363,10 +363,10 @@ test('Course publication preserves contextual aliases and distinct Lesson patche
   );
   assert.equal(localized.content.items.directUse.overrides.locale.title, 'Course direct title');
   assert.equal(lesson.slug, 'independentLesson');
-  assert.equal(lesson.build.props({ languages }).base.slug, 'independentLesson');
+  assert.equal(lesson.build.data({ languages }).base.slug, 'independentLesson');
   const tocBase = JSON.parse(files.get('toc/base.json'));
   const tocUk = JSON.parse(files.get('toc/uk.json'));
-  const localizedToc = mergeCourseProps(tocBase, tocUk);
+  const localizedToc = mergeCourseData(tocBase, tocUk);
   assert.deepEqual(localizedToc.content.order, ['contextualModule', 'directUse']);
   assert.equal(
     localizedToc.content.items.contextualModule.content.items.contextualChapter.content.items.chapterUse.label,
@@ -492,7 +492,7 @@ test('real Episode Configurators publish at all four levels with localized order
   assert.equal(episode.section[0].content[1].locale.src, 'https://example.org/uk.png');
   assert.equal(episode.section[0].content[2].locale.value, 'Небо');
   assert.equal(Object.hasOwn(episode, 'skills'), false);
-  const resource = lesson.build.props({ languages });
+  const resource = lesson.build.data({ languages });
   const input = {
     courseId: course.id,
     lessonId: lesson.id,
@@ -569,13 +569,13 @@ test('real placement-local Lesson patch publishes only sparse overrides at each 
   });
   assert.deepEqual(base.content.items.original, { id: lesson.id, type: 'lesson' });
   const uk = JSON.parse(files.get('uk.json'));
-  const assembled = mergeCourseProps(base, uk);
+  const assembled = mergeCourseData(base, uk);
   assert.equal(
     assembled.content.items.group.content.items.unit.content.items.shadow.overrides.locale.title,
     'Тіньова практика',
   );
   assert.equal(Object.hasOwn(assembled.content.items.original, 'overrides'), false);
-  assert.equal(lesson.build.props({ languages }).base.params.sections.allowSkipping, true);
+  assert.equal(lesson.build.data({ languages }).base.params.sections.allowSkipping, true);
   assert.deepEqual(lesson.build.overrides(raw, { languages }).base, placement.build.overrides({}, { languages }).base);
   assert(![...files.values()].join('').includes('"section"'));
   assert(![...files.values()].join('').includes('"skills"'));
@@ -605,7 +605,7 @@ test('strict Course publication rejects every reserved draft stub even when Buil
       locale: { title: 'Preview', description: 'Draft only' },
       content: { items: { slot }, order: ['slot'] },
     });
-    assert.equal(course.build.props({ languages: ['en'] }).base.content[0].draft, true);
+    assert.equal(course.build.data({ languages: ['en'] }).base.content[0].draft, true);
     assert.throws(() => renderCourseFiles(course, { languages: ['en'] }), /draft stub cannot be published/i);
   }
 });
@@ -777,6 +777,6 @@ test('Course-owned additional Section keeps pending YouTube in draft preview but
   );
   assert.equal(patch.section[0].content[0].locale.href, UNRESOLVED_YOUTUBE_HREF);
   assert.equal(patch.section[0].content[0].locale.label, 'Video not implemented');
-  assert.deepEqual(lesson.build.props({ languages }).base.section, []);
+  assert.deepEqual(lesson.build.data({ languages }).base.section, []);
   assert.deepEqual(assembleCourseTree(base, undefined, course.id, 'en', 'draft').content.order, ['module']);
 });

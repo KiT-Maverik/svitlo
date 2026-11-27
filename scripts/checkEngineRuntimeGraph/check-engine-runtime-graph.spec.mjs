@@ -48,8 +48,8 @@ test('rejects removed root and build Engine imports behind a nested module', asy
 
 test('accepts Props schemas but rejects corresponding authoring factories', async t => {
   const entry = createFixture(t, {
-    'runtime.ts': "export { skill_Props_Schema } from './configurators/skills/defineSkill/defineSkill.schemas';\n",
-    'configurators/skills/defineSkill/defineSkill.schemas.ts': 'export const skill_Props_Schema = { safe: true };\n',
+    'runtime.ts': "export { skill_Data_Schema } from './configurators/skills/defineSkill/defineSkill.schemas';\n",
+    'configurators/skills/defineSkill/defineSkill.schemas.ts': 'export const skill_Data_Schema = { safe: true };\n',
     'configurators/skills/defineSkill/defineSkill.ts': "export const defineSkill = () => 'authoring';\n",
   });
   assert.ok((await checkEngineRuntimeGraph(entry)) >= 1);

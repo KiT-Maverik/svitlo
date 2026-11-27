@@ -1,6 +1,6 @@
 import type { LanguageCode } from '#schemas';
 
-import { buildChildOverrides, buildChildProps, mergeForValidation, scopeBuild } from '../_shared__configurators';
+import { buildChildData, buildChildOverrides, mergeForValidation, scopeBuild } from '../_shared__configurators';
 import type { Lesson_Configurator } from '../lessons/defineLesson';
 
 type LessonPatch<Lesson extends Lesson_Configurator> = Parameters<Lesson['build']['overrides']>[0];
@@ -81,7 +81,7 @@ const snapshotPatch = <Patch>(patch: Patch): Patch => {
       child.config.base.slug !== key ||
       child.config.base.type !== child.type ||
       !isObject(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function'
     )
       throw new Error('Lesson placement requires a verified Section Configurator at section.additionalItems.' + key);
@@ -109,7 +109,7 @@ const merge = (base: Record<string, unknown>, patch: Record<string, unknown>) =>
  *     locale: { title: { uk: 'Практика з тінями' } },
  *   })
  *
- * `build.props` resolves this placement without changing its source Lesson.
+ * `build.data` resolves this placement without changing its source Lesson.
  * `build.overrides` composes an additional plain Config patch against the same
  * source and preserves the normal stateless Build validation lifecycle.
  */
@@ -119,7 +119,7 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
 ): PlacedLesson<Lesson> {
   if (
     source?.type !== 'lesson' ||
-    typeof source.build?.props !== 'function' ||
+    typeof source.build?.data !== 'function' ||
     typeof source.build?.overrides !== 'function' ||
     (isObject(source) && Object.hasOwn(source, 'placement'))
   ) {
@@ -156,8 +156,8 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
   };
 
   const build = scopeBuild({
-    props(options: Parameters<Lesson['build']['props']>[0]) {
-      const original = buildChildProps(source);
+    data(options: Parameters<Lesson['build']['data']>[0]) {
+      const original = buildChildData(source);
       // Delegate the *authored* patch to the original Lesson's full validation API.
       const changed = buildChildOverrides(source, authored);
       const base = merge(original.base as Record<string, unknown>, changed.base as Record<string, unknown>);
@@ -176,7 +176,7 @@ export function placeLesson<const Lesson extends Lesson_Configurator>(
       return {
         base,
         locale: Object.keys(files).length ? files : undefined,
-      } as ReturnType<Lesson['build']['props']>;
+      } as ReturnType<Lesson['build']['data']>;
     },
     overrides(additional: LessonPatch<Lesson>, _options: Parameters<Lesson['build']['overrides']>[1]) {
       return buildChildOverrides(source, composed(additional));

@@ -8,7 +8,7 @@ import type {
 } from '#types';
 
 import {
-  buildChildProps,
+  buildChildData,
   mergeForValidation,
   onlyLocales,
   requireBuildContext,
@@ -18,14 +18,14 @@ import {
   splitLocalizedFields,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
-import { skillGroup_Props_Schema, type SkillGroup_Configurator, type SkillGroup_Props } from '../defineSkillGroup';
+import { skill_Data_Schema, type Skill_Configurator, type Skill_Data } from '../defineSkill';
+import { skillGroup_Data_Schema, type SkillGroup_Configurator, type SkillGroup_Data } from '../defineSkillGroup';
 import {
   skillDomain_Config_Schema,
-  skillDomain_Props_Schema,
+  skillDomain_Data_Schema,
   type SkillDomain_Config,
+  type SkillDomain_Data,
   type SkillDomain_Metadata,
-  type SkillDomain_Props,
 } from './defineSkillDomain.schemas';
 
 type Skill = Skill_Configurator;
@@ -33,7 +33,7 @@ type Group = SkillGroup_Configurator;
 type Child = Skill | Group;
 type SkillDomainPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCode, DeepPartial<SkillDomain_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<SkillDomain_Data>>> | undefined;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -61,7 +61,7 @@ const validate = (config: SkillDomain_Config): void => {
       if (
         !isRecord(child) ||
         !isRecord(child.build) ||
-        typeof child.build.props !== 'function' ||
+        typeof child.build.data !== 'function' ||
         !isRecord(child.config) ||
         !isRecord(child.config.base) ||
         child.config.base.id !== child.id ||
@@ -98,9 +98,9 @@ export type SkillDomain_Configurator<
   readonly groups: Groups | undefined;
   readonly validate: typeof validate;
   readonly build: {
-    props(
+    data(
       options: PublicationLanguageOptions<Languages>,
-    ): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
+    ): SkillDomainPublication<DeepPartial<SkillDomain_Data> & { id: string; slug: string }>;
   };
   readonly config: {
     base: DeepPartial<SkillDomain_Config>;
@@ -138,22 +138,22 @@ export function defineSkillDomain<
   const splitOwn = (input: SkillDomain_Metadata) => {
     const own = splitLocalizedFields(input);
     return {
-      base: own.base as DeepPartial<Pick<SkillDomain_Props, 'title' | 'description'>>,
-      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillDomain_Props>>>,
+      base: own.base as DeepPartial<Pick<SkillDomain_Data, 'title' | 'description'>>,
+      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillDomain_Data>>>,
     };
   };
 
   /** Publication arrays are sorted for reproducibility, not authored lesson order. */
-  const buildChildren = <Props extends Skill_Props | SkillGroup_Props>(
+  const buildChildren = <Data extends Skill_Data | SkillGroup_Data>(
     items: Record<string, Child>,
-    parse: (value: unknown) => Props,
+    parse: (value: unknown) => Data,
   ) => {
     const { languages } = requireBuildContext();
     const entries = Object.keys(items)
       .sort()
-      .map(key => buildChildProps(items[key]));
-    const base = entries.map(resource => resource.base) as DeepPartial<Props>[];
-    const locale: Partial<Record<LanguageCode, Props[]>> = {};
+      .map(key => buildChildData(items[key]));
+    const base = entries.map(resource => resource.base) as DeepPartial<Data>[];
+    const locale: Partial<Record<LanguageCode, Data[]>> = {};
     for (const language of languages) {
       if (entries.some(resource => resource.locale?.[language] !== undefined)) {
         locale[language] = entries.map(resource =>
@@ -166,9 +166,9 @@ export function defineSkillDomain<
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
+  ): SkillDomainPublication<DeepPartial<SkillDomain_Data> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     validate({
       ...copyAuthored(),
@@ -178,22 +178,22 @@ export function defineSkillDomain<
     const current = copyAuthored();
     const own = splitOwn({ title: current.title, description: current.description });
     const files = selectPublicationLocales(own.locale, languages) ?? {};
-    const base: DeepPartial<SkillDomain_Props> & { id: string; slug: string } = { id, slug, ...own.base };
+    const base: DeepPartial<SkillDomain_Data> & { id: string; slug: string } = { id, slug, ...own.base };
     if (skills) {
-      const built = buildChildren(initialSkills, value => skill_Props_Schema.parse(value));
+      const built = buildChildren(initialSkills, value => skill_Data_Schema.parse(value));
       base.skills = built.base;
       for (const [language, values] of Object.entries(built.locale))
         (files[language as LanguageCode] ??= {}).skills = values;
     }
     if (groups) {
-      const built = buildChildren(initialGroups, value => skillGroup_Props_Schema.parse(value));
+      const built = buildChildren(initialGroups, value => skillGroup_Data_Schema.parse(value));
       base.groups = built.base;
       for (const [language, values] of Object.entries(built.locale))
         (files[language as LanguageCode] ??= {}).groups = values;
     }
     const result = { base, locale: Object.keys(files).length ? files : undefined };
     for (const language of languages) {
-      skillDomain_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+      skillDomain_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -205,7 +205,7 @@ export function defineSkillDomain<
     skills,
     groups,
     validate,
-    build: scopeBuild({ props }),
+    build: scopeBuild({ data }),
     config: {
       base: { id, slug, ...splitOwn({ title: authored.title, description: authored.description }).base },
       validate,

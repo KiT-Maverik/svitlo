@@ -1,17 +1,17 @@
 import {
-  flashcard_Props_Schema,
-  type Flashcard_Props,
+  flashcard_Data_Schema,
+  type Flashcard_Data,
 } from '../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
-import { answerWithNumber_Props_Schema } from '../../configurators/questions/defineAnswerWithNumber/defineAnswerWithNumber.schemas';
-import { answerWithText_Props_Schema } from '../../configurators/questions/defineAnswerWithText/defineAnswerWithText.schemas';
-import { buildAnswerWithBlocks_Props_Schema } from '../../configurators/questions/defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
-import { fillBlanksWithBlocks_Props_Schema } from '../../configurators/questions/defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
-import { fillBlanksWithText_Props_Schema } from '../../configurators/questions/defineFillBlanksWithText/defineFillBlanksWithText.schemas';
-import { matchBlocks_Props_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
-import { orderSequence_Props_Schema } from '../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
-import { selectMultipleAnswers_Props_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
-import { selectOneAnswer_Props_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
-import type { Question_Props } from '../../configurators/questions/question.types';
+import { answerWithNumber_Data_Schema } from '../../configurators/questions/defineAnswerWithNumber/defineAnswerWithNumber.schemas';
+import { answerWithText_Data_Schema } from '../../configurators/questions/defineAnswerWithText/defineAnswerWithText.schemas';
+import { buildAnswerWithBlocks_Data_Schema } from '../../configurators/questions/defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
+import { fillBlanksWithBlocks_Data_Schema } from '../../configurators/questions/defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
+import { fillBlanksWithText_Data_Schema } from '../../configurators/questions/defineFillBlanksWithText/defineFillBlanksWithText.schemas';
+import { matchBlocks_Data_Schema } from '../../configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
+import { orderSequence_Data_Schema } from '../../configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
+import { selectMultipleAnswers_Data_Schema } from '../../configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
+import { selectOneAnswer_Data_Schema } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
+import type { Question_Data } from '../../configurators/questions/question.types';
 import {
   assessmentManifestPath,
   assessmentResourceManifest_Schema,
@@ -36,15 +36,15 @@ export type ReadAssessmentFiles = (
 ) => Promise<ReadonlyMap<string, unknown>>;
 
 const questionSchemas = {
-  selectOneAnswer: selectOneAnswer_Props_Schema,
-  selectMultipleAnswers: selectMultipleAnswers_Props_Schema,
-  matchBlocks: matchBlocks_Props_Schema,
-  answerWithText: answerWithText_Props_Schema,
-  answerWithNumber: answerWithNumber_Props_Schema,
-  orderSequence: orderSequence_Props_Schema,
-  buildAnswerWithBlocks: buildAnswerWithBlocks_Props_Schema,
-  fillBlanksWithBlocks: fillBlanksWithBlocks_Props_Schema,
-  fillBlanksWithText: fillBlanksWithText_Props_Schema,
+  selectOneAnswer: selectOneAnswer_Data_Schema,
+  selectMultipleAnswers: selectMultipleAnswers_Data_Schema,
+  matchBlocks: matchBlocks_Data_Schema,
+  answerWithText: answerWithText_Data_Schema,
+  answerWithNumber: answerWithNumber_Data_Schema,
+  orderSequence: orderSequence_Data_Schema,
+  buildAnswerWithBlocks: buildAnswerWithBlocks_Data_Schema,
+  fillBlanksWithBlocks: fillBlanksWithBlocks_Data_Schema,
+  fillBlanksWithText: fillBlanksWithText_Data_Schema,
 } as const;
 
 function merge(base: unknown, patch: unknown): unknown {
@@ -66,7 +66,7 @@ function isRecord(input: unknown): input is Record<string, unknown> {
 function parseResolved(kind: AssessmentResourceKind, id: string, entry: AssessmentResourceEntry, value: unknown) {
   if (!isRecord(value) || value.id !== id) throw new Error('Assessment resource UUID mismatch: ' + id);
   if (kind === 'flashcard') {
-    const card = flashcard_Props_Schema.parse(value) as Flashcard_Props;
+    const card = flashcard_Data_Schema.parse(value) as Flashcard_Data;
     const indexed = entry.disabilities;
     const authored = card.parameters.disabilities;
     if (!indexed || indexed.length !== authored.length || indexed.some(value => !authored.includes(value))) {
@@ -78,7 +78,7 @@ function parseResolved(kind: AssessmentResourceKind, id: string, entry: Assessme
     throw new Error('Unknown Question resource type for ' + id);
   }
   if (entry.questionType !== value.type) throw new Error('Question kind mismatch for ' + id);
-  return questionSchemas[value.type as keyof typeof questionSchemas].parse(value) as Question_Props;
+  return questionSchemas[value.type as keyof typeof questionSchemas].parse(value) as Question_Data;
 }
 
 /**
@@ -104,7 +104,7 @@ function resolveLanguage(
 /** Read only selected UUID resources. Cache by ID, kind and effective language. */
 export function createAssessmentResourceLoader(read: ReadAssessmentFiles): AssessmentResourceLoader {
   let manifest: AssessmentResourceManifest | undefined;
-  const items = new Map<string, Question_Props | Flashcard_Props>();
+  const items = new Map<string, Question_Data | Flashcard_Data>();
 
   async function readFiles(paths: readonly string[], signal?: AbortSignal): Promise<ReadonlyMap<string, unknown>> {
     if (signal?.aborted) throw new Error('Assessment resource load aborted');

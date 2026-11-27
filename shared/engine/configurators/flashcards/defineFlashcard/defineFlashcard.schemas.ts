@@ -12,7 +12,7 @@ import {
 } from '../../contentBlocks/contentBlock.schemas';
 import type {
   ContentBlock_Primitive_Configurator,
-  ContentBlock_Primitive_Props,
+  ContentBlock_Primitive_Data,
 } from '../../contentBlocks/contentBlock.types';
 import {
   flashcardSide_Config_Schema,
@@ -72,7 +72,7 @@ const flagSchema = <Mode extends Configurator_Mode>(mode: Mode) =>
   ]);
 export const flashcardFlag_Config_Schema = flagSchema('config');
 export type Flashcard_Flag_Config = z.infer<typeof flashcardFlag_Config_Schema>;
-export type Flashcard_Flag_Props = z.infer<ReturnType<typeof flagSchema<'props'>>>;
+export type Flashcard_Flag_Data = z.infer<ReturnType<typeof flagSchema<'data'>>>;
 
 /** Restrict retrieval modes, not learners. */
 export const flashcardDisabilities_Schema = z
@@ -104,12 +104,12 @@ export const flashcard_Config_Schema = identityBase_Schema
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
 const resolvedBlocks = z.array(primitiveContentBlockResolved_Schema);
-export const flashcard_Props_Schema = identityBase_Schema.extend({
+export const flashcard_Data_Schema = identityBase_Schema.extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
     tags: z.array(z.string()),
     disabilities: flashcardDisabilities_Schema,
-    flags: z.array(flagSchema('props')),
+    flags: z.array(flagSchema('data')),
     relationships: z.array(flashcardRelationship_Schema).optional(),
   }),
   content: z.strictObject({
@@ -118,22 +118,22 @@ export const flashcard_Props_Schema = identityBase_Schema.extend({
     hint: resolvedBlocks.optional(),
   }),
 });
-export type Flashcard_Props = Omit<z.infer<typeof flashcard_Props_Schema>, 'content'> & {
+export type Flashcard_Data = Omit<z.infer<typeof flashcard_Data_Schema>, 'content'> & {
   content: {
-    front: ContentBlock_Primitive_Props[];
-    back: ContentBlock_Primitive_Props[];
-    hint?: ContentBlock_Primitive_Props[];
+    front: ContentBlock_Primitive_Data[];
+    back: ContentBlock_Primitive_Data[];
+    hint?: ContentBlock_Primitive_Data[];
   };
 };
 
-export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> & {
-  parameters: Omit<Flashcard_Props['parameters'], 'flags'> & {
-    flags: DeepPartial<Flashcard_Flag_Props>[];
+export type Flashcard_DataBase = Pick<Flashcard_Data, 'id' | 'slug' | 'type'> & {
+  parameters: Omit<Flashcard_Data['parameters'], 'flags'> & {
+    flags: DeepPartial<Flashcard_Flag_Data>[];
   };
   content: {
-    front: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
-    back: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
-    hint?: ReturnType<ContentBlock_Primitive_Configurator['build']['props']>['base'][];
+    front: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
+    back: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
+    hint?: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
   };
 };
 
@@ -188,7 +188,7 @@ export const flashcardConfigurator_Schema = z.custom<{
   readonly id: string;
   readonly slug: string;
   readonly type: 'flashcard';
-  readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
+  readonly build: { readonly data: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
   value =>
     value !== null &&
@@ -202,8 +202,8 @@ export const flashcardConfigurator_Schema = z.custom<{
     'build' in value &&
     value.build !== null &&
     typeof value.build === 'object' &&
-    'props' in value.build &&
-    typeof value.build.props === 'function' &&
+    'data' in value.build &&
+    typeof value.build.data === 'function' &&
     'overrides' in value.build &&
     typeof value.build.overrides === 'function',
   { message: 'Expected defineFlashcard Build configurator, not authored Flashcard data' },

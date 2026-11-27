@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { mergeForValidation } from '../../_shared__configurators';
-import { defineSkill, skill_Props_Schema } from '../defineSkill';
+import { defineSkill, skill_Data_Schema } from '../defineSkill';
 import { defineSkillDomain } from '../defineSkillDomain';
 import { defineSkillGroup } from './defineSkillGroup';
 
@@ -44,7 +44,7 @@ describe('Configurators', () => {
     });
 
     test('Skill publishes validated locale files and preserves methodological identity', () => {
-      const result = balance.build.props({ languages: ['en', 'uk'] });
+      const result = balance.build.data({ languages: ['en', 'uk'] });
       assert.equal(result.base.id, id('01'));
       assert.equal(result.base.slug, 'balance');
       assert.deepEqual(result.base.description, { methodological: 'Explain balance as a relation among forces.' });
@@ -53,10 +53,7 @@ describe('Configurators', () => {
         description: { frontend: 'Урівноваж сили' },
       });
       assert.equal(result.locale?.en?.name, 'Balance');
-      assert.equal(
-        skill_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
-        true,
-      );
+      assert.equal(skill_Data_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success, true);
       assert.equal('overrides' in balance.build, false);
     });
 
@@ -67,7 +64,7 @@ describe('Configurators', () => {
       assert.equal('items' in group.skills, false);
       assert.equal('order' in group.skills, false);
       assert.equal('overrides' in group.build, false);
-      const resource = group.build.props({ languages: ['uk'] });
+      const resource = group.build.data({ languages: ['uk'] });
       assert.deepEqual(
         resource.base.skills?.map(item => item!.slug),
         ['balance', 'motion'],
@@ -97,7 +94,7 @@ describe('Configurators', () => {
         description: { methodological: 'Cannot duplicate IDs' },
         skills: { balance, duplicate: duplicateId },
       });
-      assert.throws(() => duplicates.build.props({ languages: ['uk'] }), /Duplicate Skill ID/);
+      assert.throws(() => duplicates.build.data({ languages: ['uk'] }), /Duplicate Skill ID/);
       const mismatch = defineSkillGroup<'mismatch', { wrongKey: typeof balance }, ['uk']>({
         id: id('06'),
         slug: 'mismatch',
@@ -105,7 +102,7 @@ describe('Configurators', () => {
         description: { methodological: 'Invalid key' },
         skills: { wrongKey: balance },
       });
-      assert.throws(() => mismatch.build.props({ languages: ['uk'] }), /slug|identity|match/i);
+      assert.throws(() => mismatch.build.data({ languages: ['uk'] }), /slug|identity|match/i);
     });
 
     test('Domain publishes nested Groups and directly attached Skills without authoring collections', () => {
@@ -128,7 +125,7 @@ describe('Configurators', () => {
       assert.equal('overrides' in mixed.build, false);
       assert.strictEqual(mixed.groups?.mechanics, group);
       assert.strictEqual(mixed.skills?.direct, direct);
-      const published = mixed.build.props({ languages: ['uk'] });
+      const published = mixed.build.data({ languages: ['uk'] });
       assert.deepEqual(
         published.base.skills?.map(x => x!.slug),
         ['direct'],
@@ -150,10 +147,10 @@ describe('Configurators', () => {
         skills: { direct },
       });
       assert.deepEqual(
-        standalone.build.props({ languages: ['uk'] }).base.skills?.map(x => x!.slug),
+        standalone.build.data({ languages: ['uk'] }).base.skills?.map(x => x!.slug),
         ['direct'],
       );
-      assert.equal(standalone.build.props({ languages: ['uk'] }).base.groups, undefined);
+      assert.equal(standalone.build.data({ languages: ['uk'] }).base.groups, undefined);
     });
 
     test('Domain rejects child slug collisions across group and direct Skill maps', () => {
@@ -176,17 +173,17 @@ describe('Configurators', () => {
         skills: { mechanics: collidingSkill },
         groups: { mechanics: group },
       });
-      assert.throws(() => collisions.build.props({ languages: ['uk'] }), /Duplicate Domain child slug/);
+      assert.throws(() => collisions.build.data({ languages: ['uk'] }), /Duplicate Domain child slug/);
     });
 
     test('Explicit language scope propagates through Skill, Group and Domain', () => {
-      assert.deepEqual(Object.keys(balance.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
-      assert.deepEqual(Object.keys(group.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
-      assert.deepEqual(Object.keys(domain.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
-      assert.throws(() => balance.build.props({ languages: ['de'] } as never), /Required|expected|Invalid/i);
-      assert.throws(() => balance.build.props({ languages: [] }), /nonempty languages/);
-      assert.throws(() => balance.build.props({ languages: ['uk', 'uk'] }), /unique/);
-      assert.throws(() => balance.build.props({ languages: ['invalid'] } as never), /Invalid/i);
+      assert.deepEqual(Object.keys(balance.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
+      assert.deepEqual(Object.keys(group.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
+      assert.deepEqual(Object.keys(domain.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
+      assert.throws(() => balance.build.data({ languages: ['de'] } as never), /Required|expected|Invalid/i);
+      assert.throws(() => balance.build.data({ languages: [] }), /nonempty languages/);
+      assert.throws(() => balance.build.data({ languages: ['uk', 'uk'] }), /unique/);
+      assert.throws(() => balance.build.data({ languages: ['invalid'] } as never), /Invalid/i);
     });
   });
 });

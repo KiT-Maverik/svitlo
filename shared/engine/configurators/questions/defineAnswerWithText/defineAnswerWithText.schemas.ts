@@ -5,12 +5,12 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -41,11 +41,11 @@ export const answerWithText_Override_Config_Schema: z.ZodType<Question_AnswerWit
     ),
   );
 
-export const answerWithText_Props_Schema = questionBase.extend({
+export const answerWithText_Data_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ correctAnswers: z.array(localizationSwitch.props), placeholder: localizationSwitch.props }),
-  content: questionCommonContent_Props_Schema,
+  ...addUnifiedLocale({ correctAnswers: z.array(localizationSwitch.data), placeholder: localizationSwitch.data }),
+  content: questionCommonContent_Data_Schema,
 });
-export type Question_AnswerWithText_Props = Omit<z.infer<typeof answerWithText_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props>;
+export type Question_AnswerWithText_Data = Omit<z.infer<typeof answerWithText_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data>;
 };

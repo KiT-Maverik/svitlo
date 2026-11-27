@@ -120,7 +120,7 @@ const notQuestion: import('./contentBlocks/composite/defineCheckpoint').ContentB
 };
 void notQuestion;
 
-const publishedCheckpoint = checkpoint.build.props({ languages: ['en', 'uk'] });
+const publishedCheckpoint = checkpoint.build.data({ languages: ['en', 'uk'] });
 void publishedCheckpoint.base.content[0]?.question;
 void publishedCheckpoint.locale?.uk?.content?.[0]?.question.locale.value;
 // @ts-expect-error Published Props use sorted arrays instead of authored maps.

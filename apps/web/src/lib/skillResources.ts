@@ -6,9 +6,9 @@ import { join } from 'node:path';
 import {
   assembleSkills,
   languageCode_Schema,
-  type Skill_Props,
-  type SkillDomain_Props,
-  type Skills_Props,
+  type Skill_Data,
+  type SkillDomain_Data,
+  type Skills_Data,
   type Skills_Publication,
 } from '@svitlo/engine/runtime';
 
@@ -31,12 +31,12 @@ async function readPublishedSkillFiles(code: string): Promise<Skills_Publication
   return { base, locale: { [code]: locale } } as Skills_Publication;
 }
 
-export async function loadPublishedSkillProps(language: string): Promise<Skills_Props> {
+export async function loadPublishedSkillProps(language: string): Promise<Skills_Data> {
   const code = languageCode_Schema.parse(resolveSkillLanguage(language));
   return assembleSkills(await readPublishedSkillFiles(code), code);
 }
 
-function skillPropsToNode(skill: Skill_Props): SkillNode {
+function skillPropsToNode(skill: Skill_Data): SkillNode {
   return {
     id: skill.id,
     slug: skill.slug,
@@ -47,7 +47,7 @@ function skillPropsToNode(skill: Skill_Props): SkillNode {
   };
 }
 
-function domainPropsToNode(domain: SkillDomain_Props): SkillNode {
+function domainPropsToNode(domain: SkillDomain_Data): SkillNode {
   const children: SkillNode[] = [
     ...(domain.groups ?? []).map(group => ({
       id: group.id,

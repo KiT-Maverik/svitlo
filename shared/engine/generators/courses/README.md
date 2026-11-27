@@ -24,10 +24,10 @@ publishCourse(course, {
 ```
 
 Output includes `<textbook>/generated/courses/<course-uuid>/base.json` and
-`<language>.json` only for languages that actually change the published Props.
+`<language>.json` only for languages that actually change the published Data.
 The same Course directory also owns `toc/base.json` and sparse `toc/<language>.json`
 navigation files. TOC is derived directly from completed, placement-effective Course
-Build Props before the full Lesson bodies are removed from compact Course publication.
+Build Data before the full Lesson bodies are removed from compact Course publication.
 Its keyed ordered tree stores IDs, kinds, effective title labels, Course languages and
 draft flags; no Lesson sections, authored registry or host URLs. The Engine runtime
 assembler validates labels, immutable hierarchy and production draft rejection.
@@ -35,24 +35,24 @@ When `outputRoot` is provided, the files are instead written directly to
 `<outputRoot>/<course-uuid>/` (for example, `generated/courses/`). This directory is a generated output, not
 an authored resource or a runtime import.
 
-The Course root, Modules and Chapters carry their full Props-shaped metadata
+The Course root, Modules and Chapters carry their full Data-shaped metadata
 and their ordered, slug-keyed `content: { items, order }` collections. Each Lesson appears only as
 `{ "type": "lesson", "id": "<uuid>" }`, with an optional `overrides` field
-containing the **already-built sparse Lesson override Props**. These are obtained
+containing the **already-built sparse Lesson override Data**. These are obtained
 through the real Lesson `build.overrides` API from the authored patch attached
 to that placement. Course-specific patches never mutate the standalone Lesson's
 published resources; even repeated Lesson IDs can carry different patches.
 
-The locale patch is Props-shaped and has **no extra locale wrapper**. Course
+The locale patch is Data-shaped and has **no extra locale wrapper**. Course
 `content.items` is keyed by slug and sparse locale patches include only changed
-items. The `order` array records ordering independently. Published Props arrays
+items. The `order` array records ordering independently. Published Data arrays
 within Lesson overrides remain atomic and must never be merged by index.
 
 Course/Module/Chapter and Lesson config validation and override resolution
-remain owned by their existing `build.props` / `build.overrides` methods.
+remain owned by their existing `build.data` / `build.overrides` methods.
 The output is intentionally a _compact Course resource_, **not** a standalone
-`course_Props_Schema` object: Lesson leaves are references to separately
-published Lesson Props. The future Course assembler must resolve those Lesson
+`course_Data_Schema` object: Lesson leaves are references to separately
+published Lesson Data. The future Course assembler must resolve those Lesson
 IDs and apply these sparse patches after the Lesson's own locale assembly.
 
 `publishCourse` writes only this UUID's directory using a staging directory,
@@ -65,7 +65,7 @@ The CLI lives at `shared/engine/scripts/generateCourseProps/generateCourseProps.
 
 ### Course-owned Episodes
 
-A materialized Episode publishes full invariant Props plus atomic localized Sections at its reviewed placement. The runtime validates supported Section/Block schemas, immutable identities and locale. Nonempty opaque Episode events and assessment/Quest Sections are unsupported and fail closed. Lesson references remain sparse and may occur at distinct placements with independent override patches. The Course CLI's strict source gate rejects pending Course-owned drafts and unresolved blockers; explicit draft-mode previews are not production approval. See [Episode entity](../../../../studio/docs/entities/episode.md).
+A materialized Episode publishes full invariant Data plus atomic localized Sections at its reviewed placement. The runtime validates supported Section/Block schemas, immutable identities and locale. Nonempty opaque Episode events and assessment/Quest Sections are unsupported and fail closed. Lesson references remain sparse and may occur at distinct placements with independent override patches. The Course CLI's strict source gate rejects pending Course-owned drafts and unresolved blockers; explicit draft-mode previews are not production approval. See [Episode entity](../../../../studio/docs/entities/episode.md).
 
 ## Draft preview and protected publication
 

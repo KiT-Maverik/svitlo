@@ -29,7 +29,7 @@ export async function loadAuthoredConfigurators(source, type, { includeExports =
     const configurators = exported.filter(item => item !== null && typeof item === 'object' && item.type === type);
     if (!configurators.length) throw new Error('No ' + type + ' Build configurators exported from ' + source);
     for (const item of configurators) {
-      if (!item.build || typeof item.build.props !== 'function') {
+      if (!item.build || typeof item.build.data !== 'function') {
         throw new Error('Expected a stateless ' + type + ' Build API: ' + source);
       }
     }

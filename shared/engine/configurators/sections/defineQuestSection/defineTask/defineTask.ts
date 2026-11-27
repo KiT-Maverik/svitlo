@@ -4,7 +4,7 @@ import type { LanguageScope, PublicationLanguageOptions } from '#types';
 import { resolvePublicationLanguages, scopeBuild } from '../../../_shared__configurators';
 import type { ContentBlock_Scene_Overrides } from '../../../contentBlocks/primitive/defineScene/defineScene.schemas';
 import { assertQuestChild, nestQuestPublication, projectQuestTree, validateQuestPublication } from '../quest.utils';
-import { task_Config_Schema, task_Props_Schema, type Task_Config } from './defineTask.schemas';
+import { task_Config_Schema, task_Data_Schema, type Task_Config } from './defineTask.schemas';
 
 export type Task_Overrides = { scene?: ContentBlock_Scene_Overrides };
 
@@ -21,7 +21,7 @@ export const defineTask = <
   };
   const { id, slug, type, scene } = config;
   const authored = { ...config };
-  const props = (options: PublicationLanguageOptions<Languages>) => {
+  const data = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     validate(authored);
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree({ scene }), 'unused');
@@ -33,7 +33,7 @@ export const defineTask = <
           )
         : undefined,
     };
-    validateQuestPublication(task_Props_Schema, normalized, languages);
+    validateQuestPublication(task_Data_Schema, normalized, languages);
     return normalized;
   };
   const overrides = (patch: Task_Overrides, options: PublicationLanguageOptions<Languages>) => {
@@ -42,7 +42,7 @@ export const defineTask = <
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) || Object.keys(patch).some(key => key !== 'scene'))
       throw new Error('Invalid QuestTask overrides');
     const output = projectQuestTree({ scene }, patch);
-    validateQuestPublication(task_Props_Schema, props(options), languages, output);
+    validateQuestPublication(task_Data_Schema, data(options), languages, output);
     return output;
   };
   const result = {
@@ -51,7 +51,7 @@ export const defineTask = <
     type,
     scene,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: { base: { id, slug, type }, locales: () => ({}), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

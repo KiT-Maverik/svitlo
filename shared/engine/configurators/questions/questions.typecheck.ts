@@ -283,7 +283,7 @@ scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } }
 
 void [scopedMatch, scopedBlocks, scopedTextSlots];
 
-const numberResource = number.build.props(scope);
+const numberResource = number.build.data(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
 const typedPromptSlug: string = numberResource.base.content.question[0].slug;
 const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
@@ -297,11 +297,11 @@ numberResource.base.content.unknownMember;
 numericOverride.base.slug;
 void [typedAnswers, typedPromptSlug, typedNumberLocale, typedSparseAnswers, invalidNumericAnswers];
 
-validLanguageChild.build.props({ languages: ['uk'] });
+validLanguageChild.build.data({ languages: ['uk'] });
 validLanguageChild.build.overrides({}, { languages: ['uk'] });
 // @ts-expect-error The typed Question only supports its declared publication languages.
-validLanguageChild.build.props({ languages: ['en'] });
+validLanguageChild.build.data({ languages: ['en'] });
 // @ts-expect-error Explicit language selection is required.
-validLanguageChild.build.props();
+validLanguageChild.build.data();
 // @ts-expect-error An override publication also requires language options.
 validLanguageChild.build.overrides({});

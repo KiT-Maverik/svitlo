@@ -38,7 +38,7 @@ const course = defineCourse({
   locale: { title: 'Course', description: 'Draft' },
   content: { items: { module }, order: ['module'] },
 });
-course.build.props({ languages: ['en'] });
+course.build.data({ languages: ['en'] });
 
 // No stub can masquerade as the completed Configurator API.
 // @ts-expect-error A stub is never a completed Lesson.
@@ -50,7 +50,7 @@ const completedAssessment: Assessment_Configurator = assessment;
 // @ts-expect-error Stub overrides are not authorable.
 lesson.build.overrides({}, { languages: ['en'] });
 // @ts-expect-error Course authoring declares only English here.
-course.build.props({ languages: ['pl'] });
+course.build.data({ languages: ['pl'] });
 
 void completedLesson;
 void completedEpisode;

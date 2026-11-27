@@ -9,7 +9,7 @@ import {
   languageCode_Schema,
   resolveEntityPath,
   type LanguageCode,
-  type Lesson_Props,
+  type Lesson_Data,
   type Locale,
 } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
@@ -24,10 +24,10 @@ export type LessonPageInput = {
 
 /** The host supplies its published Props loader and scene-bound Lesson renderer. */
 export type LessonPageBindings = {
-  loadLesson: (id: string, language: LanguageCode) => Promise<Lesson_Props>;
+  loadLesson: (id: string, language: LanguageCode) => Promise<Lesson_Data>;
   loadMessages: (locale: Locale) => Promise<UiKitMessages>;
   renderLesson: (props: {
-    response: Lesson_Props;
+    response: Lesson_Data;
     locale: Locale;
     lessonLocale: Locale;
     href: string;
@@ -102,7 +102,7 @@ export function createLessonPage(bindings: LessonPageBindings) {
  * Engine-first published Lesson route. It loads the new `data/lessons` Props
  * resources rather than the retired three-collection LessonResponse format.
  *
- * Hosts provide a renderer accepting `Lesson_Props`; no lossy cast to the
+ * Hosts provide a renderer accepting `Lesson_Data`; no lossy cast to the
  * legacy UI Kit LessonView is performed.
  */
 export function createPublishedLessonPropsPage(

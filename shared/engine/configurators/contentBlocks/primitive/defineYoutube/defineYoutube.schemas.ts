@@ -48,9 +48,9 @@ export const youtube_Override_Config_Schema: z.ZodType<ContentBlock_Youtube_Over
   ),
 );
 
-export type ContentBlock_Youtube_PropsBase = z.infer<typeof youtubeBase> & {
-  locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
+export type ContentBlock_Youtube_DataBase = z.infer<typeof youtubeBase> & {
+  locale?: DeepPartial<ContentBlock_Youtube_Locale<'data'>>;
 };
 
-export const youtube_Props_Schema = youtubeBase.extend(addUnifiedLocale(locale('props')));
-export type ContentBlock_Youtube_Props = z.infer<typeof youtube_Props_Schema>;
+export const youtube_Data_Schema = youtubeBase.extend(addUnifiedLocale(locale('data')));
+export type ContentBlock_Youtube_Data = z.infer<typeof youtube_Data_Schema>;

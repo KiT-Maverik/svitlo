@@ -4,15 +4,15 @@ import type { LanguageScope, PublicationLanguageOptions, RequireLanguages } from
 import { resolvePublicationLanguages, scopeBuild } from '../../_shared__configurators';
 import {
   educationStandard_Config_Schema,
-  educationStandard_Props_Schema,
+  educationStandard_Data_Schema,
   type EducationStandard_Config,
-  type EducationStandard_Props,
+  type EducationStandard_Data,
 } from './defineEducationStandard.schemas';
 
-type EducationStandardBase = Pick<EducationStandard_Props, 'id' | 'slug' | 'name' | 'params'> & {
-  description: Pick<EducationStandard_Props['description'], 'methodological'>;
+type EducationStandardBase = Pick<EducationStandard_Data, 'id' | 'slug' | 'name' | 'params'> & {
+  description: Pick<EducationStandard_Data['description'], 'methodological'>;
 };
-type EducationStandardLocale = { description: Pick<EducationStandard_Props['description'], 'frontend'> };
+type EducationStandardLocale = { description: Pick<EducationStandard_Data['description'], 'frontend'> };
 
 type EducationStandardPublication = {
   base: EducationStandardBase;
@@ -25,7 +25,7 @@ export type EducationStandard_Configurator<Slug extends string = string> = {
   readonly slug: Slug;
   readonly type: 'educationStandard';
   readonly build: {
-    props(options: PublicationLanguageOptions<AllLanguageCodes>): EducationStandardPublication;
+    data(options: PublicationLanguageOptions<AllLanguageCodes>): EducationStandardPublication;
   };
 } & LanguageScope<AllLanguageCodes>;
 
@@ -39,7 +39,7 @@ export function defineEducationStandard<const Slug extends string>(
   const { id } = authored;
   const slug = config.slug;
 
-  const props = (options: PublicationLanguageOptions<AllLanguageCodes>): EducationStandardPublication => {
+  const data = (options: PublicationLanguageOptions<AllLanguageCodes>): EducationStandardPublication => {
     const languages = resolvePublicationLanguages(options);
     // Validate the entire original dictionary, regardless of the requested publication subset.
     const current = educationStandard_Config_Schema.parse(structuredClone(authored));
@@ -53,7 +53,7 @@ export function defineEducationStandard<const Slug extends string>(
     const locale: EducationStandardPublication['locale'] = {};
     for (const language of languages) {
       const description = { frontend: current.description.frontend[language] };
-      educationStandard_Props_Schema.parse({
+      educationStandard_Data_Schema.parse({
         ...base,
         description: { ...base.description, ...description },
       });
@@ -62,6 +62,6 @@ export function defineEducationStandard<const Slug extends string>(
     return { base, locale };
   };
 
-  const result = { id, slug, type: 'educationStandard' as const, build: scopeBuild({ props }) } as const;
+  const result = { id, slug, type: 'educationStandard' as const, build: scopeBuild({ data }) } as const;
   return result as typeof result & LanguageScope<AllLanguageCodes>;
 }

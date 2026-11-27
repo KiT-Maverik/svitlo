@@ -11,7 +11,7 @@ export {
 export type * from './types/workflow/questionBankWorkflow.types';
 export type * from './types/workflow/flashcardBankWorkflow.types';
 export {
-  hashLessonReviewProps,
+  hashLessonReviewData,
   lessonReviewIdentifier,
 } from './utils/generators/hashLessonReviewProps/hashLessonReviewProps.utils';
 

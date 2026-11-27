@@ -4,8 +4,8 @@ import test, { describe } from 'node:test';
 import type { PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   requireBuildContext,
   runWithBuildContext,
   scopeBuild,
@@ -50,7 +50,7 @@ describe('Configurators', () => {
         const calls: string[] = [];
         const child = {
           build: scopeBuild({
-            props: (options: {
+            data: (options: {
               readonly languages: readonly ('en' | 'uk')[];
               readonly mode?: 'draft' | 'production';
             }) => {
@@ -66,26 +66,26 @@ describe('Configurators', () => {
             }),
           }),
         };
-        assert.throws(() => buildChildProps(child), /No active Build Context/);
-        assert.throws(() => (child.build.props as (options?: unknown) => unknown)(), /nonempty languages/);
+        assert.throws(() => buildChildData(child), /No active Build Context/);
+        assert.throws(() => (child.build.data as (options?: unknown) => unknown)(), /nonempty languages/);
         const result = runWithBuildContext({ languages: ['uk'], mode: 'draft' }, () => ({
-          child: buildChildProps(child),
+          child: buildChildData(child),
           patch: buildChildOverrides(child, { title: 'test' }),
         }));
         assert.deepEqual(result.child, { languages: ['uk'], mode: 'draft' });
         assert.deepEqual(result.patch, { languages: ['uk'], mode: 'draft' });
         assert.deepEqual(calls, ['draft']);
-        assert.deepEqual(child.build.props({ languages: ['en'] }), { languages: ['en'], mode: 'production' });
+        assert.deepEqual(child.build.data({ languages: ['en'] }), { languages: ['en'], mode: 'production' });
         if (false) {
           // @ts-expect-error Published Build entrypoint still requires languages.
-          child.build.props();
+          child.build.data();
         }
       });
 
       test('Public Build implementations receive the exact immutable normalized context', () => {
         const languages: ('en' | 'uk')[] = ['en'];
         const build = scopeBuild({
-          props: (options: PublicationLanguageOptions) => {
+          data: (options: PublicationLanguageOptions) => {
             assert.equal(options, requireBuildContext());
             assert.equal(options.mode, 'production');
             assert.ok(Object.isFrozen(options));
@@ -99,7 +99,7 @@ describe('Configurators', () => {
             return [...options.languages];
           },
         });
-        assert.deepEqual(build.props({ languages }), ['en']);
+        assert.deepEqual(build.data({ languages }), ['en']);
         assert.deepEqual(build.overrides({}, { languages: ['uk'], mode: 'draft' }), ['uk']);
         assert.throws(() => requireBuildContext(), /No active Build Context/);
       });

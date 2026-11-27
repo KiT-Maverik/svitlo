@@ -7,9 +7,9 @@ import { addUnifiedLocale } from '../../../_shared__configurators/addUnifiedLoca
 import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import { createContentBlockBaseSchema, localizationSwitch } from '../../contentBlock.schemas';
 import type { ContentBlock_Image_Configurator } from '../../primitive/defineImage/defineImage';
-import { image_Props_Schema } from '../../primitive/defineImage/defineImage.schemas';
+import { image_Data_Schema } from '../../primitive/defineImage/defineImage.schemas';
 import type { ContentBlock_Scene_Configurator } from '../../primitive/defineScene/defineScene';
-import { scene_Props_Schema } from '../../primitive/defineScene/defineScene.schemas';
+import { scene_Data_Schema } from '../../primitive/defineScene/defineScene.schemas';
 
 export type ContentBlock_Carousel_SlideConfigurator = ConfiguratorChild<
   ContentBlock_Image_Configurator | ContentBlock_Scene_Configurator
@@ -27,8 +27,8 @@ const carouselSlideConfigurator_Schema = z.custom<ContentBlock_Carousel_SlideCon
 );
 
 /** Carousel children retain the complete, type-discriminated ContentBlock Props contract. */
-export const carousel_Slide_Props_Schema = z.discriminatedUnion('type', [image_Props_Schema, scene_Props_Schema]);
-export type ContentBlock_Carousel_SlideProps = z.infer<typeof carousel_Slide_Props_Schema>;
+export const carousel_Slide_Data_Schema = z.discriminatedUnion('type', [image_Data_Schema, scene_Data_Schema]);
+export type ContentBlock_Carousel_SlideData = z.infer<typeof carousel_Slide_Data_Schema>;
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
 const params = contentBlockBase.shape.params.extend({
@@ -49,11 +49,11 @@ const params = contentBlockBase.shape.params.extend({
 const carouselBase = contentBlockBase.extend({ params });
 const configLocale = { title: localizationSwitch.config.optional() };
 const propsLocale = {
-  title: localizationSwitch.props.optional(),
-  slides: z.array(carousel_Slide_Props_Schema).min(1),
+  title: localizationSwitch.data.optional(),
+  slides: z.array(carousel_Slide_Data_Schema).min(1),
 };
 
-export type ContentBlock_Carousel_Locale<Mode extends 'config' | 'props'> = Mode extends 'config'
+export type ContentBlock_Carousel_Locale<Mode extends 'config' | 'data'> = Mode extends 'config'
   ? z.infer<z.ZodObject<typeof configLocale>>
   : z.infer<z.ZodObject<typeof propsLocale>>;
 
@@ -90,9 +90,9 @@ export type ContentBlock_Carousel_Overrides<
   };
 };
 
-export type ContentBlock_Carousel_PropsBase = z.infer<typeof carouselBase> & {
-  locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
+export type ContentBlock_Carousel_DataBase = z.infer<typeof carouselBase> & {
+  locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;
 };
 
-export const carousel_Props_Schema = carouselBase.extend(addUnifiedLocale(propsLocale));
-export type ContentBlock_Carousel_Props = z.infer<typeof carousel_Props_Schema>;
+export const carousel_Data_Schema = carouselBase.extend(addUnifiedLocale(propsLocale));
+export type ContentBlock_Carousel_Data = z.infer<typeof carousel_Data_Schema>;

@@ -4,57 +4,57 @@ import { identityBase_Schema } from '../../../../_shared__configurators/common.s
 import { primitiveContentBlockConfigurator_Schema } from '../../../contentBlock.schemas';
 import type {
   ContentBlock_Audio_Configurator,
-  ContentBlock_Audio_Props,
-  ContentBlock_Audio_PropsBase,
+  ContentBlock_Audio_Data,
+  ContentBlock_Audio_DataBase,
 } from '../../../primitive/defineAudio';
-import { audio_Props_Schema } from '../../../primitive/defineAudio/defineAudio.schemas';
+import { audio_Data_Schema } from '../../../primitive/defineAudio/defineAudio.schemas';
 import type {
   ContentBlock_Code_Configurator,
-  ContentBlock_Code_Props,
-  ContentBlock_Code_PropsBase,
+  ContentBlock_Code_Data,
+  ContentBlock_Code_DataBase,
 } from '../../../primitive/defineCode';
-import { code_Props_Schema } from '../../../primitive/defineCode/defineCode.schemas';
+import { code_Data_Schema } from '../../../primitive/defineCode/defineCode.schemas';
 import type {
   ContentBlock_Image_Configurator,
-  ContentBlock_Image_Props,
-  ContentBlock_Image_PropsBase,
+  ContentBlock_Image_Data,
+  ContentBlock_Image_DataBase,
 } from '../../../primitive/defineImage';
-import { image_Props_Schema } from '../../../primitive/defineImage/defineImage.schemas';
+import { image_Data_Schema } from '../../../primitive/defineImage/defineImage.schemas';
 import type {
   ContentBlock_Markdown_Configurator,
-  ContentBlock_Markdown_Props,
-  ContentBlock_Markdown_PropsBase,
+  ContentBlock_Markdown_Data,
+  ContentBlock_Markdown_DataBase,
 } from '../../../primitive/defineMarkdown';
-import { markdown_Props_Schema } from '../../../primitive/defineMarkdown/defineMarkdown.schemas';
+import { markdown_Data_Schema } from '../../../primitive/defineMarkdown/defineMarkdown.schemas';
 import type {
   ContentBlock_Scene_Configurator,
-  ContentBlock_Scene_Props,
-  ContentBlock_Scene_PropsBase,
+  ContentBlock_Scene_Data,
+  ContentBlock_Scene_DataBase,
 } from '../../../primitive/defineScene';
-import { scene_Props_Schema } from '../../../primitive/defineScene/defineScene.schemas';
+import { scene_Data_Schema } from '../../../primitive/defineScene/defineScene.schemas';
 import type {
   ContentBlock_Subtitles_Configurator,
-  ContentBlock_Subtitles_Props,
+  ContentBlock_Subtitles_Data,
 } from '../../../primitive/defineSubtitles';
-import { subtitles_Props_Schema } from '../../../primitive/defineSubtitles/defineSubtitles.schemas';
+import { subtitles_Data_Schema } from '../../../primitive/defineSubtitles/defineSubtitles.schemas';
 import type {
   ContentBlock_Text_Configurator,
-  ContentBlock_Text_Props,
-  ContentBlock_Text_PropsBase,
+  ContentBlock_Text_Data,
+  ContentBlock_Text_DataBase,
 } from '../../../primitive/defineText';
-import { text_Props_Schema } from '../../../primitive/defineText/defineText.schemas';
+import { text_Data_Schema } from '../../../primitive/defineText/defineText.schemas';
 import type {
   ContentBlock_Video_Configurator,
-  ContentBlock_Video_Props,
-  ContentBlock_Video_PropsBase,
+  ContentBlock_Video_Data,
+  ContentBlock_Video_DataBase,
 } from '../../../primitive/defineVideo';
-import { video_Props_Schema } from '../../../primitive/defineVideo/defineVideo.schemas';
+import { video_Data_Schema } from '../../../primitive/defineVideo/defineVideo.schemas';
 import type {
   ContentBlock_Youtube_Configurator,
-  ContentBlock_Youtube_Props,
-  ContentBlock_Youtube_PropsBase,
+  ContentBlock_Youtube_Data,
+  ContentBlock_Youtube_DataBase,
 } from '../../../primitive/defineYoutube';
-import { youtube_Props_Schema } from '../../../primitive/defineYoutube/defineYoutube.schemas';
+import { youtube_Data_Schema } from '../../../primitive/defineYoutube/defineYoutube.schemas';
 
 export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Audio_Configurator
@@ -66,26 +66,26 @@ export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Text_Configurator
   | ContentBlock_Video_Configurator
   | ContentBlock_Youtube_Configurator;
-export type Checkpoint_Allowed_Props =
-  | ContentBlock_Audio_Props
-  | ContentBlock_Code_Props
-  | ContentBlock_Image_Props
-  | ContentBlock_Markdown_Props
-  | ContentBlock_Scene_Props
-  | ContentBlock_Subtitles_Props
-  | ContentBlock_Text_Props
-  | ContentBlock_Video_Props
-  | ContentBlock_Youtube_Props;
-export type Checkpoint_Allowed_PropsBase =
-  | ContentBlock_Audio_PropsBase
-  | ContentBlock_Code_PropsBase
-  | ContentBlock_Image_PropsBase
-  | ContentBlock_Markdown_PropsBase
-  | ContentBlock_Scene_PropsBase
-  | ReturnType<ContentBlock_Subtitles_Configurator['build']['props']>['base']
-  | ContentBlock_Text_PropsBase
-  | ContentBlock_Video_PropsBase
-  | ContentBlock_Youtube_PropsBase;
+export type Checkpoint_Allowed_Data =
+  | ContentBlock_Audio_Data
+  | ContentBlock_Code_Data
+  | ContentBlock_Image_Data
+  | ContentBlock_Markdown_Data
+  | ContentBlock_Scene_Data
+  | ContentBlock_Subtitles_Data
+  | ContentBlock_Text_Data
+  | ContentBlock_Video_Data
+  | ContentBlock_Youtube_Data;
+export type Checkpoint_Allowed_DataBase =
+  | ContentBlock_Audio_DataBase
+  | ContentBlock_Code_DataBase
+  | ContentBlock_Image_DataBase
+  | ContentBlock_Markdown_DataBase
+  | ContentBlock_Scene_DataBase
+  | ReturnType<ContentBlock_Subtitles_Configurator['build']['data']>['base']
+  | ContentBlock_Text_DataBase
+  | ContentBlock_Video_DataBase
+  | ContentBlock_Youtube_DataBase;
 
 const answerBase = identityBase_Schema.extend({ type: z.literal('checkpointAnswer') });
 export const checkpointAnswer_Config_Schema = answerBase.extend({
@@ -101,22 +101,22 @@ export const checkpointAnswer_Config_Schema = answerBase.extend({
   }),
 });
 export type ContentBlock_CheckpointAnswer_Config = z.infer<typeof checkpointAnswer_Config_Schema>;
-export const checkpointAnswer_Child_Props_Schema = z.discriminatedUnion('type', [
-  audio_Props_Schema,
-  code_Props_Schema,
-  image_Props_Schema,
-  markdown_Props_Schema,
-  scene_Props_Schema,
-  subtitles_Props_Schema,
-  text_Props_Schema,
-  video_Props_Schema,
-  youtube_Props_Schema,
+export const checkpointAnswer_Child_Data_Schema = z.discriminatedUnion('type', [
+  audio_Data_Schema,
+  code_Data_Schema,
+  image_Data_Schema,
+  markdown_Data_Schema,
+  scene_Data_Schema,
+  subtitles_Data_Schema,
+  text_Data_Schema,
+  video_Data_Schema,
+  youtube_Data_Schema,
 ]);
-export const checkpointAnswer_Props_Schema = answerBase.extend({
-  content: z.array(checkpointAnswer_Child_Props_Schema).min(1),
+export const checkpointAnswer_Data_Schema = answerBase.extend({
+  content: z.array(checkpointAnswer_Child_Data_Schema).min(1),
 });
-export type ContentBlock_CheckpointAnswer_Props = Omit<z.infer<typeof checkpointAnswer_Props_Schema>, 'content'> & {
-  content: Checkpoint_Allowed_Props[];
+export type ContentBlock_CheckpointAnswer_Data = Omit<z.infer<typeof checkpointAnswer_Data_Schema>, 'content'> & {
+  content: Checkpoint_Allowed_Data[];
 };
 export type CheckpointAnswer_Overrides<
   Items extends Record<string, Checkpoint_Allowed_Configurator>,

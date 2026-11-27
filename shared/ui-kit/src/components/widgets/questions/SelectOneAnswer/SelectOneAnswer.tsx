@@ -3,7 +3,7 @@
 import { Stack } from '@mui/material';
 import { useContext } from 'react';
 
-import type { Question_SelectOneAnswer_Props } from '@svitlo/engine/runtime';
+import type { Question_SelectOneAnswer_Data } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -18,7 +18,7 @@ export function SelectOneAnswer({
   sceneRegistry,
   messages,
 }: {
-  response: Question_SelectOneAnswer_Props;
+  response: Question_SelectOneAnswer_Data;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

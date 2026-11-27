@@ -9,10 +9,10 @@ import {
   resolveEntityPath,
   type CourseToc,
   type LanguageCode,
-  type Lesson_Props,
+  type Lesson_Data,
   type LocalizedCourse,
-  type PublishedCoursePropsFiles,
-  type PublishedLessonPropsResource,
+  type PublishedCourseDataFiles,
+  type PublishedLessonDataResource,
 } from '@svitlo/engine/runtime';
 
 export class PublishedResourceError extends Error {
@@ -105,7 +105,7 @@ export async function loadPublishedCourseLessonProps(
   lessonId: string,
   language: LanguageCode,
   roots: CourseLessonPublicationRoots = {},
-): Promise<Lesson_Props> {
+): Promise<Lesson_Data> {
   const selectedLanguage = languageCode_Schema.parse(language);
   const lessonsRoot = roots.lessonsRoot ?? path.join(process.cwd(), 'public/data/lessons');
   const coursesRoot = roots.coursesRoot ?? path.join(process.cwd(), 'public/data/courses');
@@ -121,8 +121,8 @@ export async function loadPublishedCourseLessonProps(
     lessonId,
     placement: roots.placement,
     language: selectedLanguage,
-    lesson: lesson as unknown as PublishedLessonPropsResource,
-    course: course as unknown as PublishedCoursePropsFiles,
+    lesson: lesson as unknown as PublishedLessonDataResource,
+    course: course as unknown as PublishedCourseDataFiles,
   });
 }
 

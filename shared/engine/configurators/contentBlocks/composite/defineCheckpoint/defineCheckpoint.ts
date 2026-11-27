@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -24,32 +24,32 @@ import {
 } from '../../../_shared__configurators';
 import {
   checkpoint_Config_Schema,
+  checkpoint_Data_Schema,
   checkpoint_Override_Config_Schema,
-  checkpoint_Props_Schema,
   type Checkpoint_Metadata_Overrides,
   type Checkpoint_Overrides,
   type ContentBlock_Checkpoint_Config,
+  type ContentBlock_Checkpoint_DataBase,
   type ContentBlock_Checkpoint_Locale,
-  type ContentBlock_Checkpoint_PropsBase,
 } from './defineCheckpoint.schemas';
 import type {
   ContentBlock_CheckpointItem_Configurator,
-  ContentBlock_CheckpointItem_Props,
+  ContentBlock_CheckpointItem_Data,
 } from './defineCheckpointItem';
 
 type CheckpointItem = ContentBlock_CheckpointItem_Configurator;
-type ItemResource = ReturnType<CheckpointItem['build']['props']>;
+type ItemResource = ReturnType<CheckpointItem['build']['data']>;
 type ItemOverride = ReturnType<CheckpointItem['build']['overrides']>;
 type CheckpointLocaleBody = {
-  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
-  content?: ContentBlock_CheckpointItem_Props[];
+  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'data'>>;
+  content?: ContentBlock_CheckpointItem_Data[];
 };
 type CheckpointLocaleFiles = Partial<Record<LanguageCode, CheckpointLocaleBody>>;
 type CheckpointPublication<Base> = { base: Base; locale: CheckpointLocaleFiles | undefined };
 type CheckpointOverrideBase = {
   params?: Checkpoint_Metadata_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
-  content?: ContentBlock_Checkpoint_PropsBase['content'];
+  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'data'>>;
+  content?: ContentBlock_Checkpoint_DataBase['content'];
 };
 type CheckpointSubject = { id?: string; slug?: string; type?: string };
 
@@ -112,7 +112,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
       if (
         !isObject(child) ||
         !isObject(child.build) ||
-        typeof child.build.props !== 'function' ||
+        typeof child.build.data !== 'function' ||
         typeof child.build.overrides !== 'function'
       ) {
         fail('item', 'content.items.' + key, 'Checkpoint item must expose the Build API');
@@ -169,11 +169,11 @@ export const defineCheckpoint = <
     const files: CheckpointLocaleFiles = {};
     for (const [language, fields] of Object.entries(locale ?? {})) {
       files[language as LanguageCode] = {
-        locale: fields as DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>,
+        locale: fields as DeepPartial<ContentBlock_Checkpoint_Locale<'data'>>,
       };
     }
     return {
-      invariant: invariant as DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>,
+      invariant: invariant as DeepPartial<ContentBlock_Checkpoint_Locale<'data'>>,
       files,
     };
   };
@@ -190,7 +190,7 @@ export const defineCheckpoint = <
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = buildChildProps(child);
+      const resource = buildChildData(child);
       const patch = Object.hasOwn(patches, key)
         ? (buildChildOverrides(child, patches[key] as never) as unknown as ItemOverride)
         : undefined;
@@ -208,7 +208,7 @@ export const defineCheckpoint = <
       ),
     );
 
-    const locales: Partial<Record<LanguageCode, ContentBlock_CheckpointItem_Props[]>> = {};
+    const locales: Partial<Record<LanguageCode, ContentBlock_CheckpointItem_Data[]>> = {};
     for (const language of translatedLanguages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(
@@ -223,15 +223,15 @@ export const defineCheckpoint = <
           translatedPatch
             ? mergeForValidation(withPatchBase, translatedPatch as DeepPartial<typeof resource.base>)
             : withPatchBase
-        ) as ContentBlock_CheckpointItem_Props;
+        ) as ContentBlock_CheckpointItem_Data;
       });
     }
     return { bases, locales };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
+  ): CheckpointPublication<ContentBlock_Checkpoint_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -252,7 +252,7 @@ export const defineCheckpoint = <
       },
       locale: Object.keys(files).length ? files : undefined,
     };
-    validateRequestedPublication(checkpoint_Props_Schema, result, languages);
+    validateRequestedPublication(checkpoint_Data_Schema, result, languages);
     return result;
   };
 
@@ -315,7 +315,7 @@ export const defineCheckpoint = <
         if (
           !isObject(child) ||
           !isObject(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function'
         ) {
           throw new Error('New Checkpoint item must expose the Build API: ' + key);
@@ -360,7 +360,7 @@ export const defineCheckpoint = <
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
-      validateRequestedPublication(checkpoint_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(checkpoint_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -376,7 +376,7 @@ export const defineCheckpoint = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({

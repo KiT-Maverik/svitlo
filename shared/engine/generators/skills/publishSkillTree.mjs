@@ -1,7 +1,7 @@
 /**
  * Publish an already-prepared, textbook-wide Skill taxonomy.
  *
- * The caller owns configurator.build.props({ languages }), nested composition,
+ * The caller owns configurator.build.data({ languages }), nested composition,
  * child ordering and validation. This module only serializes the completed
  * Props-shaped { base, locale } publication and manages its owned output folder.
  *

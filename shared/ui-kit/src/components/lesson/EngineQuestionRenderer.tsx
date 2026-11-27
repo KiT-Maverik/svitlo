@@ -4,29 +4,29 @@ import { Box, Button, Checkbox, FormControlLabel, MenuItem, Radio, Stack, TextFi
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
-  answerWithNumber_Props_Schema,
-  answerWithText_Props_Schema,
-  buildAnswerWithBlocks_Props_Schema,
-  fillBlanksWithBlocks_Props_Schema,
-  fillBlanksWithText_Props_Schema,
-  matchBlocks_Props_Schema,
-  orderSequence_Props_Schema,
-  selectMultipleAnswers_Props_Schema,
-  selectOneAnswer_Props_Schema,
+  answerWithNumber_Data_Schema,
+  answerWithText_Data_Schema,
+  buildAnswerWithBlocks_Data_Schema,
+  fillBlanksWithBlocks_Data_Schema,
+  fillBlanksWithText_Data_Schema,
+  matchBlocks_Data_Schema,
+  orderSequence_Data_Schema,
+  selectMultipleAnswers_Data_Schema,
+  selectOneAnswer_Data_Schema,
   selectQuizQuestionIds,
   type AssessmentResourceLoader,
-  type ContentBlock_Props,
+  type ContentBlock_Data,
   type LanguageCode,
-  type Question_AnswerWithNumber_Props,
-  type Question_AnswerWithText_Props,
-  type Question_BuildAnswerWithBlocks_Props,
-  type Question_FillBlanksWithBlocks_Props,
-  type Question_FillBlanksWithText_Props,
-  type Question_MatchBlocks_Props,
-  type Question_OrderSequence_Props,
-  type Question_SelectMultipleAnswers_Props,
-  type Question_SelectOneAnswer_Props,
-  type QuizSection_Props,
+  type Question_AnswerWithNumber_Data,
+  type Question_AnswerWithText_Data,
+  type Question_BuildAnswerWithBlocks_Data,
+  type Question_FillBlanksWithBlocks_Data,
+  type Question_FillBlanksWithText_Data,
+  type Question_MatchBlocks_Data,
+  type Question_OrderSequence_Data,
+  type Question_SelectMultipleAnswers_Data,
+  type Question_SelectOneAnswer_Data,
+  type QuizSection_Data,
 } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
@@ -36,26 +36,26 @@ import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 import { QuestionProgress } from './QuestionProgress';
 
 type Question =
-  | Question_SelectOneAnswer_Props
-  | Question_SelectMultipleAnswers_Props
-  | Question_MatchBlocks_Props
-  | Question_AnswerWithText_Props
-  | Question_AnswerWithNumber_Props
-  | Question_OrderSequence_Props
-  | Question_BuildAnswerWithBlocks_Props
-  | Question_FillBlanksWithBlocks_Props
-  | Question_FillBlanksWithText_Props;
+  | Question_SelectOneAnswer_Data
+  | Question_SelectMultipleAnswers_Data
+  | Question_MatchBlocks_Data
+  | Question_AnswerWithText_Data
+  | Question_AnswerWithNumber_Data
+  | Question_OrderSequence_Data
+  | Question_BuildAnswerWithBlocks_Data
+  | Question_FillBlanksWithBlocks_Data
+  | Question_FillBlanksWithText_Data;
 
 const questionSchemas: Record<Question['type'], { parse(input: unknown): unknown }> = {
-  selectOneAnswer: selectOneAnswer_Props_Schema,
-  selectMultipleAnswers: selectMultipleAnswers_Props_Schema,
-  matchBlocks: matchBlocks_Props_Schema,
-  answerWithText: answerWithText_Props_Schema,
-  answerWithNumber: answerWithNumber_Props_Schema,
-  orderSequence: orderSequence_Props_Schema,
-  buildAnswerWithBlocks: buildAnswerWithBlocks_Props_Schema,
-  fillBlanksWithBlocks: fillBlanksWithBlocks_Props_Schema,
-  fillBlanksWithText: fillBlanksWithText_Props_Schema,
+  selectOneAnswer: selectOneAnswer_Data_Schema,
+  selectMultipleAnswers: selectMultipleAnswers_Data_Schema,
+  matchBlocks: matchBlocks_Data_Schema,
+  answerWithText: answerWithText_Data_Schema,
+  answerWithNumber: answerWithNumber_Data_Schema,
+  orderSequence: orderSequence_Data_Schema,
+  buildAnswerWithBlocks: buildAnswerWithBlocks_Data_Schema,
+  fillBlanksWithBlocks: fillBlanksWithBlocks_Data_Schema,
+  fillBlanksWithText: fillBlanksWithText_Data_Schema,
 };
 
 function parseQuestion(raw: unknown, kind: string): Question {
@@ -93,7 +93,7 @@ export function selectQuizQuestions(raw: readonly Question[], ids: readonly stri
 function plain(value: string): string {
   return value.trim().replace(/\s+/gu, ' ').toLocaleLowerCase();
 }
-const contentLabel = (block: ContentBlock_Props): string =>
+const contentLabel = (block: ContentBlock_Data): string =>
   block.type === 'text' ? block.locale.value : block.type === 'markdown' ? block.locale.value : block.slug;
 
 function QuestionCard({
@@ -107,7 +107,7 @@ function QuestionCard({
   question: Question;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
-  parameters: QuizSection_Props['params'];
+  parameters: QuizSection_Data['params'];
   onChecked: (correct: boolean | undefined) => void;
   disabled: boolean;
 }) {
@@ -170,7 +170,7 @@ function QuestionCard({
   })();
 
   const respond = (key: string, value: string) => setAnswer(previous => ({ ...previous, [key]: value }));
-  const renderer = (blocks: readonly ContentBlock_Props[]) => (
+  const renderer = (blocks: readonly ContentBlock_Data[]) => (
     <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} />
   );
   const canRetry = attempts <= parameters.interaction.retries && !correct;
@@ -376,7 +376,7 @@ export function EngineQuestionRenderer({
   lessonId: string;
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
-  section: QuizSection_Props;
+  section: QuizSection_Data;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
@@ -448,7 +448,7 @@ function ResolvedQuiz({
 }: {
   questions: Question[];
   fallbackIds: readonly string[];
-  section: QuizSection_Props;
+  section: QuizSection_Data;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;

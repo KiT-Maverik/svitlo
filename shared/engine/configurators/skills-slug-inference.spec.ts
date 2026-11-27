@@ -44,7 +44,7 @@ describe('Configurators', () => {
         assert.equal('skill' in domain, false);
         assert.equal('overrides' in group.build, false);
         assert.deepEqual(
-          group.build.props({ languages: ['en'] }).base.skills?.map(item => item!.slug),
+          group.build.data({ languages: ['en'] }).base.skills?.map(item => item!.slug),
           ['reading', 'writing'],
         );
       });
@@ -53,17 +53,17 @@ describe('Configurators', () => {
         const empty = defineSkillDomain({ id: fields.id, slug: 'empty', title: localized, description });
         assert.equal(empty.groups, undefined);
         assert.equal(empty.skills, undefined);
-        assert.throws(() => empty.build.props({ languages: ['en'] }), /At least one Skill or SkillGroup/);
+        assert.throws(() => empty.build.data({ languages: ['en'] }), /At least one Skill or SkillGroup/);
       });
 
       test('rejects duplicated child identity and mismatched authoring keys', () => {
         const reading = defineSkill({ ...fields, slug: 'reading' });
         const writing = defineSkill({ ...fields, slug: 'writing' }); // Same UUID: invalid.
         const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { reading, writing } });
-        assert.throws(() => group.build.props({ languages: ['en'] }), /Duplicate Skill ID/);
+        assert.throws(() => group.build.data({ languages: ['en'] }), /Duplicate Skill ID/);
 
         const invalidKey = defineSkillGroup({ ...fields, slug: 'invalid', skills: { wrong: reading } });
-        assert.throws(() => invalidKey.build.props({ languages: ['en'] }), /slug|matching/i);
+        assert.throws(() => invalidKey.build.data({ languages: ['en'] }), /slug|matching/i);
       });
     });
   });

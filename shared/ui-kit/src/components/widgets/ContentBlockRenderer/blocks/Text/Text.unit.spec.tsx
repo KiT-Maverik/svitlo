@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
 import styles from '#utils/styledText/StyledText.module.css';
 
@@ -10,9 +10,9 @@ import { Text } from './Text';
 
 const textResponse = (
   value: string,
-  variables?: ContentBlock_Text_Props['params']['variables'],
-  wrap?: ContentBlock_Text_Props['params']['wrap'],
-): ContentBlock_Text_Props => ({
+  variables?: ContentBlock_Text_Data['params']['variables'],
+  wrap?: ContentBlock_Text_Data['params']['wrap'],
+): ContentBlock_Text_Data => ({
   id: 'text-id',
   slug: 'textId',
   type: 'text',
@@ -53,7 +53,7 @@ describe('Text', () => {
       info: { applyStyle: ['highlight'], tone: 'info' },
       neutral: { applyStyle: ['highlight'], tone: 'neutral' },
       success: { applyStyle: ['highlight'], tone: 'success' },
-    } satisfies NonNullable<ContentBlock_Text_Props['params']['variables']>;
+    } satisfies NonNullable<ContentBlock_Text_Data['params']['variables']>;
     render(<Text {...textResponse(text, variables)} />);
 
     expect(screen.getByText('Default')).toHaveClass(styles.highlight);

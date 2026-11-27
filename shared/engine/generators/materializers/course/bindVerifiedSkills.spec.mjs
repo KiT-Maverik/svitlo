@@ -26,7 +26,7 @@ const approve = ({ id }) => ({
     slug: names.get(id),
     type: 'skill',
     config: { base: { id, slug: names.get(id) } },
-    build: { props() {} },
+    build: { data() {} },
   },
 });
 const ctx = { resolveSkill: approve, textbookRoot: 'content/playground', directory: 'content/test' };

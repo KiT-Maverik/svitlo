@@ -9,23 +9,23 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import {
-  assessment_Props_Schema,
-  type Assessment_Props,
+  assessment_Data_Schema,
+  type Assessment_Data,
 } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import {
-  episode_Props_Schema,
-  type Episode_Draft_Props,
-  type Episode_Props,
+  episode_Data_Schema,
+  type Episode_Data,
+  type Episode_Draft_Data,
 } from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
 import {
-  lesson_Props_Schema,
-  type Lesson_Draft_Props,
-  type Lesson_Props,
+  lesson_Data_Schema,
+  type Lesson_Data,
+  type Lesson_Draft_Data,
 } from '../../lessons/defineLesson/defineLesson.schemas';
 import {
   coursePrerequisiteTargets_Schema,
@@ -33,14 +33,14 @@ import {
   uniqueSkillTargetIds_Schema,
 } from '../courseSkillTargets.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
+import { chapter_Data_Schema, type Chapter_Data } from '../defineChapter/defineChapter.schemas';
 import type {
   Assessment_Stub_Configurator,
   Episode_Stub_Configurator,
   Lesson_Stub_Configurator,
 } from '../defineCourseChildStubs/defineCourseChildStubs';
 import type { Module_Configurator } from '../defineModule/defineModule';
-import { module_Props_Schema, type Module_Props } from '../defineModule/defineModule.schemas';
+import { module_Data_Schema, type Module_Data } from '../defineModule/defineModule.schemas';
 
 /** Course audience and educational-standard references describe scope, never certification. */
 
@@ -81,14 +81,8 @@ export type Course_Child = ConfiguratorChild<
   | Episode_Stub_Configurator
   | Assessment_Stub_Configurator
 >;
-export type Course_Child_Props =
-  | Module_Props
-  | Chapter_Props
-  | Lesson_Props
-  | Episode_Props
-  | Assessment_Props
-  | Lesson_Draft_Props
-  | Episode_Draft_Props;
+export type Course_Child_Data =
+  Module_Data | Chapter_Data | Lesson_Data | Episode_Data | Assessment_Data | Lesson_Draft_Data | Episode_Draft_Data;
 
 export const course_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
@@ -132,16 +126,10 @@ export type Course_Overrides<
   };
 };
 
-export const course_Props_Schema = identity.extend({
-  ...addUnifiedLocale(locale('props')),
+export const course_Data_Schema = identity.extend({
+  ...addUnifiedLocale(locale('data')),
   content: z.array(
-    z.union([
-      module_Props_Schema,
-      chapter_Props_Schema,
-      lesson_Props_Schema,
-      episode_Props_Schema,
-      assessment_Props_Schema,
-    ]),
+    z.union([module_Data_Schema, chapter_Data_Schema, lesson_Data_Schema, episode_Data_Schema, assessment_Data_Schema]),
   ),
 });
-export type Course_Props = z.infer<typeof course_Props_Schema>;
+export type Course_Data = z.infer<typeof course_Data_Schema>;

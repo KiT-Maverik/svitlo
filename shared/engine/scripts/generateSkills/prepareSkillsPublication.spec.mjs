@@ -11,7 +11,7 @@ function domain(id, slug, translations = true) {
     type: 'skillDomain',
     calls,
     build: {
-      props: ({ languages }) => {
+      data: ({ languages }) => {
         calls.push([...languages]);
         return {
           base: {
@@ -59,6 +59,6 @@ test('rejects invalid domain identity, duplicate slugs, duplicate IDs and unknow
   assert.throws(() => prepareSkillPublication([a, domain('id-1', 'shapes')], ['en']), /Duplicate SkillDomain identity/);
   assert.throws(() => prepareSkillPublication([{ ...a, type: 'skill' }], ['en']), /Expected SkillDomain/);
   const invalid = domain('id-3', 'invalid');
-  invalid.build.props = () => ({ base: { id: 'id-3', slug: 'invalid' }, locale: { ru: { locale: {} } } });
+  invalid.build.data = () => ({ base: { id: 'id-3', slug: 'invalid' }, locale: { ru: { locale: {} } } });
   assert.throws(() => prepareSkillPublication([invalid], ['uk']), /Unrequested Skill language/);
 });

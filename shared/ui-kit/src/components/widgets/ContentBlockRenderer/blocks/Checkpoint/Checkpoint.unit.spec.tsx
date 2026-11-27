@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Checkpoint_Data, ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Checkpoint } from './Checkpoint';
 
-const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+const textBlock = (id: string, value: string): ContentBlock_Text_Data => ({
   id,
   slug: 'textBlock',
   type: 'text',
@@ -15,7 +15,7 @@ const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
   locale: { value },
 });
 
-const response: ContentBlock_Checkpoint_Props = {
+const response: ContentBlock_Checkpoint_Data = {
   id: 'checkpoint-1',
   slug: 'checkpoint',
   type: 'checkpoint',

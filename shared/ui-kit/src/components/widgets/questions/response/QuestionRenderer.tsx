@@ -3,7 +3,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import type { LanguageCode, QuizSection_Props } from '@svitlo/engine/runtime';
+import type { LanguageCode, QuizSection_Data } from '@svitlo/engine/runtime';
 
 import type { QuestionResponse } from '#types/questions';
 import type { UiKitMessages } from '#types/uiKitMessages';
@@ -27,7 +27,7 @@ export type QuizCompletion = { passed: boolean; correct: number; total: number; 
 export type QuestionRendererProps = {
   messages: UiKitMessages;
   questions?: readonly QuestionResponse[];
-  parameters?: QuizSection_Props['params'];
+  parameters?: QuizSection_Data['params'];
   sceneRegistry?: SceneRegistry;
   language?: LanguageCode;
   onComplete?: (result: QuizCompletion) => void;

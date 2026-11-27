@@ -14,7 +14,7 @@ describe('Configurators', () => {
       });
 
       test('AssessmentMethod publishes complete Props-shaped locale fragments', () => {
-        const result = method.build.props({ languages: ['en', 'uk'] });
+        const result = method.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(result.base, {
           id: 'b775647f-203d-481a-a1c7-4d331c779d06',
           slug: 'retrieval',
@@ -34,16 +34,16 @@ describe('Configurators', () => {
         assert.equal('overrides' in method.build, false);
         assert.equal('config' in method, false);
         assert.equal('validate' in method, false);
-        const first = method.build.props({ languages: ['en', 'uk'] });
+        const first = method.build.data({ languages: ['en', 'uk'] });
         first.locale!.uk!.title = 'mutated';
-        assert.equal(method.build.props({ languages: ['en', 'uk'] }).locale?.uk?.title, 'Усне опитування');
+        assert.equal(method.build.data({ languages: ['en', 'uk'] }).locale?.uk?.title, 'Усне опитування');
       });
 
       test('AssessmentMethod publishes only requested locales and validates unsupported requests', () => {
-        const onlyUk = method.build.props({ languages: ['uk'] });
+        const onlyUk = method.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(onlyUk.locale ?? {}), ['uk']);
         assert.equal(onlyUk.locale?.uk?.title, 'Усне опитування');
-        assert.throws(() => method.build.props({ languages: ['de'] } as never), /Required|expected|Invalid/i);
+        assert.throws(() => method.build.data({ languages: ['de'] } as never), /Required|expected|Invalid/i);
       });
     });
   });

@@ -34,7 +34,7 @@ export function loadEducationStandards(root = repositoryRoot) {
         Object.keys(compiled.exports).length !== 1 ||
         definition?.slug !== slug ||
         definition.type !== 'educationStandard' ||
-        typeof definition.build?.props !== 'function'
+        typeof definition.build?.data !== 'function'
       ) {
         throw new Error('Invalid EducationStandard declaration: ' + filepath);
       }

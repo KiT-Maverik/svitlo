@@ -29,11 +29,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   answerWithNumber_Config_Schema,
+  answerWithNumber_Data_Schema,
   answerWithNumber_Override_Config_Schema,
-  answerWithNumber_Props_Schema,
   type Question_AnswerWithNumber_Config,
+  type Question_AnswerWithNumber_Data,
   type Question_AnswerWithNumber_MetadataOverrides,
-  type Question_AnswerWithNumber_Props,
 } from './defineAnswerWithNumber.schemas';
 
 const metadataSchema = answerWithNumber_Config_Schema.omit({ content: true });
@@ -84,9 +84,9 @@ export const defineAnswerWithNumber = <
     ...snapshotCommonContent(initialContent),
   } as Content;
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
+  ): QuestionResourcePublication<Question_AnswerWithNumber_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -105,15 +105,15 @@ export const defineAnswerWithNumber = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_AnswerWithNumber_Props>;
-    validateQuestionPublication(answerWithNumber_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_AnswerWithNumber_Data>;
+    validateQuestionPublication(answerWithNumber_Data_Schema, languages, resource);
     return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_AnswerWithNumber_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_AnswerWithNumber_Props> => {
+  ): QuestionOverridePublication<Question_AnswerWithNumber_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -145,8 +145,8 @@ export const defineAnswerWithNumber = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_AnswerWithNumber_Props>;
-      validateQuestionPublication(answerWithNumber_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_AnswerWithNumber_Data>;
+      validateQuestionPublication(answerWithNumber_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -166,7 +166,7 @@ export const defineAnswerWithNumber = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

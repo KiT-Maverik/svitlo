@@ -19,19 +19,19 @@ describe('Configurators > ContentBlocks > defineSubtitles', () => {
   test('registers a general ContentBlock and publishes scoped WebVTT locations', () => {
     const subtitles = make();
     assert.equal(contentBlockTypes.includes('subtitles'), true);
-    assert.equal(subtitles.build.props(scope).base.type, 'subtitles');
-    assert.deepEqual(subtitles.build.props(scope).locale, {
+    assert.equal(subtitles.build.data(scope).base.type, 'subtitles');
+    assert.deepEqual(subtitles.build.data(scope).locale, {
       uk: { locale: { fileLocation: 'https://example.org/uk.vtt' } },
     });
   });
   test('keeps sparse overrides stateless and identity immutable', () => {
     const subtitles = make();
-    const original = JSON.stringify(subtitles.build.props(scope));
+    const original = JSON.stringify(subtitles.build.data(scope));
     assert.deepEqual(
       subtitles.build.overrides({ locale: { fileName: { uk: 'https://example.org/new.vtt' } } }, scope).locale,
       { uk: { locale: { fileLocation: 'https://example.org/new.vtt' } } },
     );
-    assert.equal(JSON.stringify(subtitles.build.props(scope)), original);
+    assert.equal(JSON.stringify(subtitles.build.data(scope)), original);
     assert.throws(() => subtitles.build.overrides({ slug: 'other' } as never, scope));
   });
 });

@@ -8,7 +8,7 @@ const languages = { languages: ['uk'] as const };
 describe('Configurators > Sections > defineStage', () => {
   test('publishes mandatory media variants with null silent tracks and localized presentation', () => {
     const { stage } = fixture();
-    const publication = stage.build.props(languages);
+    const publication = stage.build.data(languages);
     assert.equal(publication.base.type, 'questStage');
     const content = publication.base.content as { video: Record<string, unknown>; audio: Record<string, unknown> };
     assert.deepEqual(Object.keys(content.video).sort(), ['medium', 'small']);
@@ -19,7 +19,7 @@ describe('Configurators > Sections > defineStage', () => {
 
   test('rejects incomplete media and validates localized overrides without changing original', () => {
     const { stage } = fixture();
-    const original = JSON.stringify(stage.build.props(languages));
+    const original = JSON.stringify(stage.build.data(languages));
     assert.throws(() =>
       stage.validate({
         id: stage.id,
@@ -33,6 +33,6 @@ describe('Configurators > Sections > defineStage', () => {
       languages,
     );
     assert.ok(patch.locale?.uk);
-    assert.equal(JSON.stringify(stage.build.props(languages)), original);
+    assert.equal(JSON.stringify(stage.build.data(languages)), original);
   });
 });

@@ -1,13 +1,13 @@
 import {
-  assembleLessonProps,
+  assembleLessonData,
   getLanguageCode,
   languageCode_Schema,
   resolveEntityPath,
   type LanguageCode,
-  type Lesson_Props,
-  type LessonPropsFragment,
+  type Lesson_Data,
+  type LessonDataFragment,
   type Locale,
-  type PublishedLessonPropsResource,
+  type PublishedLessonDataResource,
 } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
@@ -20,7 +20,7 @@ export async function fetchLocalJson(path: string, optional = false): Promise<un
 }
 
 /** Resolve one published Lesson Props resource for the selected language. */
-export async function loadLesson(id: string, language: LanguageCode): Promise<Lesson_Props> {
+export async function loadLesson(id: string, language: LanguageCode): Promise<Lesson_Data> {
   const selected = languageCode_Schema.parse(language);
   const location = resolveEntityPath(id);
   const basePath = '/data/lessons/' + location;
@@ -28,11 +28,11 @@ export async function loadLesson(id: string, language: LanguageCode): Promise<Le
     fetchLocalJson(basePath + '/base.json'),
     fetchLocalJson(basePath + '/' + selected + '.json', true),
   ]);
-  const resource: PublishedLessonPropsResource = {
-    base: base as PublishedLessonPropsResource['base'],
-    ...(localized === undefined ? {} : { locale: { [selected]: localized as LessonPropsFragment } }),
+  const resource: PublishedLessonDataResource = {
+    base: base as PublishedLessonDataResource['base'],
+    ...(localized === undefined ? {} : { locale: { [selected]: localized as LessonDataFragment } }),
   };
-  const result = assembleLessonProps(resource, selected);
+  const result = assembleLessonData(resource, selected);
   if (result.id !== location.split('/')[1]) throw new Error('Published Lesson ID mismatch: ' + id);
   return result;
 }

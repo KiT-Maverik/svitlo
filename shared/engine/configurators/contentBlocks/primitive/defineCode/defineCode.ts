@@ -16,12 +16,12 @@ import {
 } from '../../../_shared__configurators';
 import {
   code_Config_Schema,
+  code_Data_Schema,
   code_Override_Config_Schema,
-  code_Props_Schema,
   type ContentBlock_Code_Config,
+  type ContentBlock_Code_DataBase,
   type ContentBlock_Code_Locale,
   type ContentBlock_Code_Overrides,
-  type ContentBlock_Code_PropsBase,
 } from './defineCode.schemas';
 
 /**
@@ -42,11 +42,11 @@ export function readCodeSource(moduleUrl: string, extension: string): string {
   }
 }
 
-type CodeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Code_Locale<'props'>> }>>;
-type CodePropsPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type CodeOverridePropsBase = {
+type CodeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Code_Locale<'data'>> }>>;
+type CodeDataPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type CodeOverrideDataBase = {
   params?: ContentBlock_Code_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Code_Locale<'data'>>;
 };
 
 const parseAndValidate = (config: ContentBlock_Code_Config): ContentBlock_Code_Config => {
@@ -59,7 +59,7 @@ const validate = (config: ContentBlock_Code_Config): void => {
   parseAndValidate(config);
 };
 
-const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<ContentBlock_Code_PropsBase> => {
+const buildCodeData = (config: ContentBlock_Code_Config): CodeDataPublication<ContentBlock_Code_DataBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -68,9 +68,9 @@ const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<
     slug,
     params,
     ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'data'>> }
       : {}),
-  } satisfies ContentBlock_Code_PropsBase;
+  } satisfies ContentBlock_Code_DataBase;
   return {
     base,
     locale: (locale === undefined
@@ -80,13 +80,13 @@ const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<
   };
 };
 
-const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
+const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodeDataPublication<CodeOverrideDataBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
       ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'data'>> }
         : {}),
     },
     locale: (locale === undefined
@@ -153,18 +153,18 @@ export const defineCode = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): CodePropsPublication<ContentBlock_Code_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): CodeDataPublication<ContentBlock_Code_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildCodeProps(parseAndValidate(copyAuthored()));
+    const result = buildCodeData(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(code_Props_Schema, result, languages);
+    validateRequestedPublication(code_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Code_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): CodePropsPublication<CodeOverridePropsBase> => {
+  ): CodeDataPublication<CodeOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);
@@ -172,7 +172,7 @@ export const defineCode = <
       validate(effective);
       const output = buildCodePatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(code_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(code_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(`Invalid Code overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
@@ -185,7 +185,7 @@ export const defineCode = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Code_Locale<'config'>> } => ({

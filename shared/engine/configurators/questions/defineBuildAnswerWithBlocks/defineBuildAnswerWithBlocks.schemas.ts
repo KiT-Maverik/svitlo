@@ -5,12 +5,12 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -42,20 +42,17 @@ export const buildAnswerWithBlocks_Override_Config_Schema: z.ZodType<Question_Bu
     ),
   );
 
-export const buildAnswerWithBlocks_Props_Schema = questionBase.extend({
+export const buildAnswerWithBlocks_Data_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
-  content: questionCommonContent_Props_Schema.extend({
+  ...addUnifiedLocale({ placeholder: localizationSwitch.data }),
+  content: questionCommonContent_Data_Schema.extend({
     correctSequence: z.array(primitiveContentBlockResolved_Schema).min(1),
     distractors: z.array(primitiveContentBlockResolved_Schema),
   }),
 });
-export type Question_BuildAnswerWithBlocks_Props = Omit<
-  z.infer<typeof buildAnswerWithBlocks_Props_Schema>,
-  'content'
-> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
-    correctSequence: ContentBlock_Primitive_Props[];
-    distractors: ContentBlock_Primitive_Props[];
+export type Question_BuildAnswerWithBlocks_Data = Omit<z.infer<typeof buildAnswerWithBlocks_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
+    correctSequence: ContentBlock_Primitive_Data[];
+    distractors: ContentBlock_Primitive_Data[];
   };
 };

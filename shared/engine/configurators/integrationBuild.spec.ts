@@ -4,16 +4,16 @@ import test, { describe } from 'node:test';
 import { mergeForValidation } from './_shared__configurators';
 import { defineText } from './contentBlocks/primitive/defineText';
 import { defineChapter } from './courses/defineChapter';
-import { course_Props_Schema, defineCourse } from './courses/defineCourse';
+import { course_Data_Schema, defineCourse } from './courses/defineCourse';
 import { defineModule } from './courses/defineModule';
 import { defineFlashcard } from './flashcards/defineFlashcard';
 import { defineFlashcardSide } from './flashcards/defineFlashcardSide';
 import { defineLesson } from './lessons/defineLesson';
-import { lesson_Props_Schema } from './lessons/defineLesson/defineLesson.schemas';
+import { lesson_Data_Schema } from './lessons/defineLesson/defineLesson.schemas';
 import { defineAnswerWithNumber } from './questions/defineAnswerWithNumber';
 import { defineContentSection } from './sections/defineContentSection';
 import { defineSkill } from './skills/defineSkill';
-import { defineSkillDomain, skillDomain_Props_Schema } from './skills/defineSkillDomain';
+import { defineSkillDomain, skillDomain_Data_Schema } from './skills/defineSkillDomain';
 import { defineSkillGroup } from './skills/defineSkillGroup';
 
 describe('Configurators', () => {
@@ -132,7 +132,7 @@ describe('Configurators', () => {
       });
 
       test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
-        const resource = course.build.props(uk);
+        const resource = course.build.data(uk);
         const json = JSON.stringify(resource);
         assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
         assert.equal(json.includes('Hello'), false);
@@ -147,14 +147,11 @@ describe('Configurators', () => {
         assert.equal(json.includes('"build"'), false);
 
         const resolved = mergeObjects(resource.base, resource.locale?.uk ?? {});
-        assert.doesNotThrow(() => course_Props_Schema.parse(resolved));
+        assert.doesNotThrow(() => course_Data_Schema.parse(resolved));
         assert.deepEqual(resource.base.params.languages, ['uk']);
-        assert.deepEqual(lesson.build.props(uk).base.params.languages, ['uk']);
-        assert.deepEqual(Object.keys(paragraph.build.props({ languages: ['pl'] }).locale ?? {}), ['pl']);
-        assert.throws(
-          () => course.build.props({ languages: ['en'] } as never),
-          /does not support publication language/,
-        );
+        assert.deepEqual(lesson.build.data(uk).base.params.languages, ['uk']);
+        assert.deepEqual(Object.keys(paragraph.build.data({ languages: ['pl'] }).locale ?? {}), ['pl']);
+        assert.throws(() => course.build.data({ languages: ['en'] } as never), /does not support publication language/);
       });
 
       test('Nested Course override composes a complete, language-scoped atomic tree and leaves authored resources untouched', () => {
@@ -192,14 +189,14 @@ describe('Configurators', () => {
         assert.ok(JSON.stringify(patch.locale?.uk).includes('Оновлений текст'));
         assert.equal(JSON.stringify(patch).includes('Cześć'), false);
 
-        const original = course.build.props(uk);
+        const original = course.build.data(uk);
         const withResourceLocale = mergeObjects(original.base, original.locale?.uk ?? {});
         const withOverrideBase = mergeObjects(withResourceLocale, patch.base);
         const effective = mergeObjects(withOverrideBase, patch.locale?.uk ?? {});
-        assert.doesNotThrow(() => course_Props_Schema.parse(effective));
+        assert.doesNotThrow(() => course_Data_Schema.parse(effective));
         assert.ok(JSON.stringify(effective).includes('Оновлений текст'));
-        assert.ok(JSON.stringify(course.build.props(uk)).includes('Привіт'));
-        assert.equal(JSON.stringify(course.build.props(uk)).includes('Оновлений текст'), false);
+        assert.ok(JSON.stringify(course.build.data(uk)).includes('Привіт'));
+        assert.equal(JSON.stringify(course.build.data(uk)).includes('Оновлений текст'), false);
 
         const removed = lesson.build.overrides(
           {
@@ -209,22 +206,22 @@ describe('Configurators', () => {
         );
         assert.deepEqual(removed.base.section, []);
         assert.equal(removed.locale?.uk?.section, undefined);
-        const lessonResource = lesson.build.props(uk);
+        const lessonResource = lesson.build.data(uk);
         const lessonResult = mergeObjects(
           mergeObjects(mergeObjects(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
           removed.locale?.uk ?? {},
         );
-        assert.deepEqual(lesson_Props_Schema.parse(lessonResult).section, []);
+        assert.deepEqual(lesson_Data_Schema.parse(lessonResult).section, []);
       });
 
       test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {
-        const questionResource = numeric.build.props(uk);
-        const flashcardResource = card.build.props(uk);
+        const questionResource = numeric.build.data(uk);
+        const flashcardResource = card.build.data(uk);
         assert.ok(JSON.stringify(questionResource).includes('Скільки?'));
         assert.ok(JSON.stringify(flashcardResource).includes('Відповідь'));
-        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки?'), false);
-        assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Відповідь'), false);
-        assert.equal(JSON.stringify(course.build.props(uk)).includes('Відповідь'), false);
+        assert.equal(JSON.stringify(lesson.build.data(uk)).includes('Скільки?'), false);
+        assert.equal(JSON.stringify(lesson.build.data(uk)).includes('Відповідь'), false);
+        assert.equal(JSON.stringify(course.build.data(uk)).includes('Відповідь'), false);
       });
 
       test('SkillDomain → SkillGroup → Skill publishes stable multilingual classification', () => {
@@ -248,9 +245,9 @@ describe('Configurators', () => {
           description: { methodological: 'Physics overview' },
           groups: { mechanics },
         });
-        const resource = domain.build.props(uk);
+        const resource = domain.build.data(uk);
         const effective = mergeObjects(resource.base, resource.locale?.uk ?? {});
-        assert.doesNotThrow(() => skillDomain_Props_Schema.parse(effective));
+        assert.doesNotThrow(() => skillDomain_Data_Schema.parse(effective));
         assert.ok(JSON.stringify(effective).includes('Рівновага'));
         assert.equal(JSON.stringify(resource).includes('Balance'), false);
         assert.equal('overrides' in domain.build, false);

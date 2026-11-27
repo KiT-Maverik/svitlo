@@ -1,13 +1,13 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_YOUTUBE_HREF, type ContentBlock_Youtube_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 
-const response: ContentBlock_Youtube_Props = {
+const response: ContentBlock_Youtube_Data = {
   id: 'youtube-1',
   slug: 'youtube-1',
   type: 'youtube',
@@ -66,7 +66,7 @@ describe('YouTube content block', () => {
 
   it('shows a link only while online', () => {
     setOnline(false);
-    const linkResponse: ContentBlock_Youtube_Props = { ...response, params: { ...response.params, mode: 'link' } };
+    const linkResponse: ContentBlock_Youtube_Data = { ...response, params: { ...response.params, mode: 'link' } };
     render(<Youtube messages={enUiKitMessages.youtube} {...linkResponse} />);
     expect(screen.queryByRole('link')).toBeNull();
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');

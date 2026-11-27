@@ -1,17 +1,17 @@
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Carousel_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Carousel_Data } from '@svitlo/engine/runtime';
 
 import { questionBlockLabel } from './QuestionContent';
 
-const image: ContentBlock_Carousel_Props['locale']['slides'][number] = {
+const image: ContentBlock_Carousel_Data['locale']['slides'][number] = {
   id: 'image-one',
   slug: 'imageOne',
   type: 'image',
   params: { fill: true, aspectRatio: 1.5 },
   locale: { src: '/example.svg', alt: 'Accessible comparison of counters' },
 };
-const scene: ContentBlock_Carousel_Props['locale']['slides'][number] = {
+const scene: ContentBlock_Carousel_Data['locale']['slides'][number] = {
   id: 'scene-one',
   slug: 'sceneOne',
   type: 'scene',
@@ -19,7 +19,7 @@ const scene: ContentBlock_Carousel_Props['locale']['slides'][number] = {
   locale: { value: { title: 'Arrange the counters' } },
 };
 
-const carousel: ContentBlock_Carousel_Props = {
+const carousel: ContentBlock_Carousel_Data = {
   id: 'carousel-one',
   slug: 'gallery',
   type: 'carousel',

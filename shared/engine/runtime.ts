@@ -60,15 +60,15 @@ export * from './configurators/questions/question.constants';
 export * from './configurators/sections/section.constants';
 /** Type-only runtime contracts: never expose build factories or Configurator guards here. */
 export type {
-  ContentBlock_Props,
+  ContentBlock_Data,
   ContentBlock_Configurator,
-  ContentBlock_Primitive_Props,
-  ContentBlock_Composite_Props,
-  ContentBlock_Primitive_PropsBase,
-  ContentBlock_Composite_PropsBase,
-  ContentBlock_PropsBase,
+  ContentBlock_Primitive_Data,
+  ContentBlock_Composite_Data,
+  ContentBlock_Primitive_DataBase,
+  ContentBlock_Composite_DataBase,
+  ContentBlock_DataBase,
 } from './configurators/contentBlocks/contentBlock.types';
-export type { Section_Props, Section_Configurator } from './configurators/sections/section.types';
+export type { Section_Data, Section_Configurator } from './configurators/sections/section.types';
 export type { Question_Configurator } from './configurators/questions/question.types';
 export type { ResolveLocale } from './types';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';

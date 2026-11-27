@@ -20,7 +20,7 @@ Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
 
 ## Build-time configurator API
 
-Use the appropriate Engine `define*Section` configurator from `@svitlo/engine/build`. `build.props({ languages })` returns invariant and locale-specific Props fragments; `build.overrides(patch, { languages })` returns scoped sparse patches. Section configurators do not write files, build Course TOCs, or own the Lesson's Question Bank.
+Use the appropriate Engine `define*Section` configurator from `@svitlo/engine/build`. `build.data({ languages })` returns invariant and locale-specific Props fragments; `build.overrides(patch, { languages })` returns scoped sparse patches. Section configurators do not write files, build Course TOCs, or own the Lesson's Question Bank.
 
 ## Assessment Section decisions and typed authoring handoff
 

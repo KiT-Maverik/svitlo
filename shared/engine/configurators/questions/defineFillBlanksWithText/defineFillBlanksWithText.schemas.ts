@@ -5,12 +5,12 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch, primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -51,14 +51,14 @@ export const fillBlanksWithText_Override_Config_Schema: z.ZodType<Question_FillB
     ),
   );
 
-export const fillBlanksWithText_Props_Schema = questionBase.extend({
+export const fillBlanksWithText_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({
-    slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch.props) })),
-    placeholder: localizationSwitch.props,
+    slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch.data) })),
+    placeholder: localizationSwitch.data,
   }),
-  content: questionCommonContent_Props_Schema,
+  content: questionCommonContent_Data_Schema,
 });
-export type Question_FillBlanksWithText_Props = Omit<z.infer<typeof fillBlanksWithText_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props>;
+export type Question_FillBlanksWithText_Data = Omit<z.infer<typeof fillBlanksWithText_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data>;
 };

@@ -5,12 +5,12 @@ import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -45,10 +45,10 @@ export const selectMultipleAnswers_Override_Config_Schema: z.ZodType<Question_Se
     ),
   );
 
-export const selectMultipleAnswers_Props_Schema = questionBase.extend({
+export const selectMultipleAnswers_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
-  content: questionCommonContent_Props_Schema.extend({
+  content: questionCommonContent_Data_Schema.extend({
     answers: z.object({
       correct: z.record(z.string(), primitiveContentBlockResolved_Schema),
       incorrect: z.record(z.string(), primitiveContentBlockResolved_Schema),
@@ -56,15 +56,12 @@ export const selectMultipleAnswers_Props_Schema = questionBase.extend({
     }),
   }),
 });
-export type Question_SelectMultipleAnswers_Props = Omit<
-  z.infer<typeof selectMultipleAnswers_Props_Schema>,
-  'content'
-> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
+export type Question_SelectMultipleAnswers_Data = Omit<z.infer<typeof selectMultipleAnswers_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
     answers: {
-      correct: Record<string, ContentBlock_Primitive_Props>;
-      incorrect: Record<string, ContentBlock_Primitive_Props>;
-      distractors: Record<string, ContentBlock_Primitive_Props>;
+      correct: Record<string, ContentBlock_Primitive_Data>;
+      incorrect: Record<string, ContentBlock_Primitive_Data>;
+      distractors: Record<string, ContentBlock_Primitive_Data>;
     };
   };
 };

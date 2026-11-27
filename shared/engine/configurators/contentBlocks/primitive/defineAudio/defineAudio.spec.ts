@@ -17,7 +17,7 @@ describe('Configurators', () => {
           params: {},
           locale: { fileName: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
-        const resource = audio.build.props(scope);
+        const resource = audio.build.data(scope);
         assert.equal(resource.base.locale?.fileLocation, 'https://example.org/lesson.mp3');
         assert.deepEqual(resource.locale, { uk: { locale: { title: 'Слухай' } } });
         assert.equal(JSON.stringify(resource).includes('Listen'), false);
@@ -31,10 +31,10 @@ describe('Configurators', () => {
           params: {},
           locale: { fileName: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
-        const before = audio.build.props(scope);
+        const before = audio.build.data(scope);
         const patch = audio.build.overrides({ locale: { title: { uk: 'Прослухай' } } }, scope);
         assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { title: 'Прослухай' } } } });
-        assert.deepEqual(audio.build.props(scope), before);
+        assert.deepEqual(audio.build.data(scope), before);
         assert.throws(() => audio.build.overrides({ slug: 'renamed' } as never, scope), /Invalid Audio overrides/);
       });
     });

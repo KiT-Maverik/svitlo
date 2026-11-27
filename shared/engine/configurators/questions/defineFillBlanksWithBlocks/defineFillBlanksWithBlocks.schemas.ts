@@ -9,12 +9,12 @@ import {
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Primitive_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlock.types';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
   questionCommonContent_Config_Schema,
-  questionCommonContent_Props_Schema,
+  questionCommonContent_Data_Schema,
   type QuestionContent,
   type QuestionMetadataOverrides,
   type QuestionPublishedContent,
@@ -49,17 +49,17 @@ export const fillBlanksWithBlocks_Override_Config_Schema: z.ZodType<Question_Fil
     ),
   );
 
-export const fillBlanksWithBlocks_Props_Schema = questionBase.extend({
+export const fillBlanksWithBlocks_Data_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
-  content: questionCommonContent_Props_Schema.extend({
+  ...addUnifiedLocale({ placeholder: localizationSwitch.data }),
+  content: questionCommonContent_Data_Schema.extend({
     slots: z.array(z.object({ selector: z.string(), correctAnswer: primitiveContentBlockResolved_Schema })),
     distractors: z.array(primitiveContentBlockResolved_Schema),
   }),
 });
-export type Question_FillBlanksWithBlocks_Props = Omit<z.infer<typeof fillBlanksWithBlocks_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Props> & {
-    slots: { selector: string; correctAnswer: ContentBlock_Primitive_Props }[];
-    distractors: ContentBlock_Primitive_Props[];
+export type Question_FillBlanksWithBlocks_Data = Omit<z.infer<typeof fillBlanksWithBlocks_Data_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
+    slots: { selector: string; correctAnswer: ContentBlock_Primitive_Data }[];
+    distractors: ContentBlock_Primitive_Data[];
   };
 };

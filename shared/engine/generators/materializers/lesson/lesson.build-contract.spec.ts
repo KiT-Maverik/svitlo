@@ -89,7 +89,7 @@ function executeGeneratedLesson(result: Result) {
   }
   return load('index.ts').requiredLesson as {
     build: {
-      props: (options: { languages: string[] }) => {
+      data: (options: { languages: string[] }) => {
         base: {
           params: { quizRequiredForCompletion: boolean };
           section: { type: string; params: { disabled?: boolean } }[];
@@ -99,10 +99,10 @@ function executeGeneratedLesson(result: Result) {
   };
 }
 
-test('emitted defineLesson with an enabled Quiz satisfies the real Build.props invariant', () => {
+test('emitted defineLesson with an enabled Quiz satisfies the real Build.data invariant', () => {
   const source = emitQuizLesson(id('22'));
   assert.deepEqual(source.diagnostics, []);
-  const built = executeGeneratedLesson(source).build.props({ languages: ['en'] });
+  const built = executeGeneratedLesson(source).build.data({ languages: ['en'] });
   assert.equal(built.base.params.quizRequiredForCompletion, true);
   assert.equal(built.base.section.length, 1);
   assert.equal(built.base.section[0].type, 'quiz');
@@ -112,7 +112,7 @@ test('emitted defineLesson with an enabled Quiz satisfies the real Build.props i
 
 test('real Build-valid pending Quiz stays blocked from source release without TODO comments', () => {
   const source = emitQuizLesson(reserved);
-  const built = executeGeneratedLesson(source).build.props({ languages: ['en'] });
+  const built = executeGeneratedLesson(source).build.data({ languages: ['en'] });
   assert.equal(built.base.section[0].type, 'quiz');
   assert.ok(source.diagnostics.some(d => d.code === 'pending-quiz'));
   assert.throws(() => assertLessonSourceReleaseReady(source), /reserved provisional assessment UUID/);
@@ -164,5 +164,5 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
     locale: { title: 'Lesson' },
     section: { items: { requiredQuiz: disabledQuiz }, order: ['requiredQuiz'] },
   });
-  assert.throws(() => lesson.build.props({ languages: ['en'] }), /Lesson requires at least one enabled Quiz section/);
+  assert.throws(() => lesson.build.data({ languages: ['en'] }), /Lesson requires at least one enabled Quiz section/);
 });

@@ -41,7 +41,7 @@ references in unused authored code or comments can make an unused asset look
 used. Do not automatically remove assets from this output. Examine each
 candidate and run the regular build/preview after any manual deletion.
 
-It does not invoke `build.props()`, change media publishing behavior, validate
+It does not invoke `build.data()`, change media publishing behavior, validate
 Codec bytes, delete files, or participate in the default textbook build / CI
 gate. This allows audits while Lessons and media production are unfinished.
 

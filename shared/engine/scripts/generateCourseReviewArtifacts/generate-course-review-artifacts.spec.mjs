@@ -136,7 +136,7 @@ test('generates exactly one localized Course artifact for selected UUID, preserv
       type: 'course',
       config: { base: { params: { languages: ['en', 'uk'] } } },
       build: {
-        props({ languages }) {
+        data({ languages }) {
           return {
             base: sample(),
             locale: languages[0] === 'uk' ? { uk: { locale: { title: 'Український курс' } } } : {},
@@ -299,7 +299,7 @@ test('Stage 5 modular source projects Course/Modules/Chapters/Episodes without a
           {
             ...episode,
             config: { base: { params: { languages: ['en'] } } },
-            build: { props: () => ({ base: episode }) },
+            build: { data: () => ({ base: episode }) },
           },
         ];
       },

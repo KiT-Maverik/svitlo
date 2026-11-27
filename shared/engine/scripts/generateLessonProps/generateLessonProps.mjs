@@ -2,7 +2,7 @@
 /**
  * Build-time orchestration for new defineLesson configurators.
  *
- * This command owns discovery and calls build.props(). The Engine generator
+ * This command owns discovery and calls build.data(). The Engine generator
  * receives ONLY completed {base, locale} publication results.
  *
  * Completed Props are written to generated/lessons for textbook publication.
@@ -12,15 +12,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   loadLessonData,
-  renderLessonPropsFiles,
+  renderLessonDataFiles,
   resolveEntityPath,
   projectTextbookMedia,
   assertMediaPublicationReady,
 } from '@svitlo/engine/build';
 import { resolveMaterializedEntrypoint } from '../loadAuthoredConfigurators/resolveMaterializedEntrypoint.mjs';
-import { assertSafeDirectoryPath, checkLessonProps, publishLessonProps } from './publishLessonProps.mjs';
+import { assertSafeDirectoryPath, checkLessonData, publishLessonData } from './publishLessonProps.mjs';
 
-export { checkLessonProps as check } from './publishLessonProps.mjs';
+export { checkLessonData as check } from './publishLessonProps.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
@@ -86,7 +86,7 @@ export async function render(packageDirectory, mode) {
     if (draft) editorialDrafts++;
     if (!source) continue;
     const lesson = await loadLessonData(source);
-    if (!lesson || typeof lesson !== 'object' || !lesson.build || typeof lesson.build.props !== 'function') {
+    if (!lesson || typeof lesson !== 'object' || !lesson.build || typeof lesson.build.data !== 'function') {
       throw new Error('Lesson source does not export a Build API configurator: ' + source);
     }
     if (lesson.id !== id || lesson.type !== 'lesson') {
@@ -98,7 +98,7 @@ export async function render(packageDirectory, mode) {
     }
     let publication;
     try {
-      publication = lesson.build.props({ languages, mode });
+      publication = lesson.build.data({ languages, mode });
     } catch (error) {
       throw new Error('Failed to build Lesson Props: ' + source, { cause: error });
     }
@@ -147,7 +147,7 @@ export async function render(packageDirectory, mode) {
   for (const item of diagnostics) {
     console.warn('Missing draft media: ' + JSON.stringify(item));
   }
-  return renderLessonPropsFiles(entries);
+  return renderLessonDataFiles(entries);
 }
 
 export async function main(args) {
@@ -184,10 +184,10 @@ export async function main(args) {
     return;
   }
   if (action === '--write') {
-    publishLessonProps(output, files);
+    publishLessonData(output, files);
     console.log('Published ' + files.size + ' Props-shaped Lesson files in ' + output);
   } else {
-    checkLessonProps(output, files);
+    checkLessonData(output, files);
     console.log('Verified ' + files.size + ' Props-shaped Lesson files in ' + output);
   }
 }

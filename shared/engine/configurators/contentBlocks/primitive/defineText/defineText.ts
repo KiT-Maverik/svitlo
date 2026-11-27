@@ -10,20 +10,20 @@ import {
 } from '../../../_shared__configurators';
 import {
   text_Config_Schema,
+  text_Data_Schema,
   text_Override_Config_Schema,
-  text_Props_Schema,
   type ContentBlock_Text_Config,
+  type ContentBlock_Text_DataBase,
   type ContentBlock_Text_Locale,
   type ContentBlock_Text_Overrides,
-  type ContentBlock_Text_PropsBase,
 } from './defineText.schemas';
 import { validateTextVariables } from './defineText.utils';
 
-type TextLocaleFiles = Partial<Record<LanguageCode, { locale: ContentBlock_Text_Locale<'props'> }>>;
-type TextPropsPublication<Base, LocaleFiles = TextLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type TextOverridePropsBase = {
+type TextLocaleFiles = Partial<Record<LanguageCode, { locale: ContentBlock_Text_Locale<'data'> }>>;
+type TextDataPublication<Base, LocaleFiles = TextLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type TextOverrideDataBase = {
   params?: ContentBlock_Text_Overrides['params'];
-  locale?: Partial<ContentBlock_Text_Locale<'props'>>;
+  locale?: Partial<ContentBlock_Text_Locale<'data'>>;
 };
 
 const parseAndValidate = (config: ContentBlock_Text_Config): ContentBlock_Text_Config => {
@@ -46,7 +46,7 @@ const buildLocale = (value: ContentBlock_Text_Config['locale']['value'] | undefi
   return Object.keys(locale).length ? locale : undefined;
 };
 
-const buildTextProps = (config: ContentBlock_Text_Config): TextPropsPublication<ContentBlock_Text_PropsBase> => {
+const buildTextData = (config: ContentBlock_Text_Config): TextDataPublication<ContentBlock_Text_DataBase> => {
   const { id, type, slug, params, locale } = config;
   const base = {
     id,
@@ -54,7 +54,7 @@ const buildTextProps = (config: ContentBlock_Text_Config): TextPropsPublication<
     slug,
     params,
     ...(typeof locale.value === 'string' ? { locale: { value: locale.value } } : {}),
-  } satisfies ContentBlock_Text_PropsBase;
+  } satisfies ContentBlock_Text_DataBase;
   const translations = buildLocale(locale.value);
   if (translations === undefined && typeof base.locale?.value !== 'string') {
     throw new Error('Text resource has neither a base value nor localized values');
@@ -63,7 +63,7 @@ const buildTextProps = (config: ContentBlock_Text_Config): TextPropsPublication<
 };
 
 /** Publish only the validated, supplied fields, never the temporary resolved config. */
-const buildTextPatch = (patch: ContentBlock_Text_Overrides): TextPropsPublication<TextOverridePropsBase> => ({
+const buildTextPatch = (patch: ContentBlock_Text_Overrides): TextDataPublication<TextOverrideDataBase> => ({
   base: {
     ...(patch.params !== undefined ? { params: patch.params } : {}),
     ...(typeof patch.locale?.value === 'string' ? { locale: { value: patch.locale.value } } : {}),
@@ -115,7 +115,7 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * Every configured variable ID must appear in every supplied locale value,
  * with no undeclared or malformed fragments.
  *
- * `build.props({ languages })` prepares the complete authored resource.
+ * `build.data({ languages })` prepares the complete authored resource.
  * Every translated file is a Props-shaped fragment, including its own `locale` field.
  * `build.overrides(patch, { languages })` strictly checks the sparse patch, validates
  * a temporary merged config, and publishes only the patch. Neither method
@@ -134,20 +134,20 @@ export const defineText = <
   const { id, type } = authored;
   const slug = config.slug;
   const copyAuthored = () => structuredClone(authored);
-  const base = { ...buildTextProps(copyAuthored()).base, slug };
+  const base = { ...buildTextData(copyAuthored()).base, slug };
 
-  const props = (options: PublicationLanguageOptions<Languages>): TextPropsPublication<ContentBlock_Text_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): TextDataPublication<ContentBlock_Text_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildTextProps(parseAndValidate(copyAuthored()));
+    const result = buildTextData(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(text_Props_Schema, result, languages);
+    validateRequestedPublication(text_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Text_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): TextPropsPublication<TextOverridePropsBase> => {
+  ): TextDataPublication<TextOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       // Structural: reject unknown fields, bad types, and invalid locale keys.
@@ -159,7 +159,7 @@ export const defineText = <
 
       const output = buildTextPatch(structuredClone(validatedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(text_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(text_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
@@ -173,7 +173,7 @@ export const defineText = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     // Transitional compatibility for parents not migrated to assembly yet.
     config: {
       base,

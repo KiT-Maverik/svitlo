@@ -97,7 +97,7 @@ test('keeps explicit build and runtime Engine entrypoints intact', () => {
     "import { defineSkill } from '@svitlo/engine/build';",
   );
   assert.equal(
-    rewriteEngineImports("import { assembleLessonProps } from '@svitlo/engine/runtime';"),
-    "import { assembleLessonProps } from '@svitlo/engine/runtime';",
+    rewriteEngineImports("import { assembleLessonData } from '@svitlo/engine/runtime';"),
+    "import { assembleLessonData } from '@svitlo/engine/runtime';",
   );
 });

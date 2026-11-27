@@ -41,7 +41,7 @@ describe('Configurators', () => {
           locale: { title: 'Lesson' },
           section: { items: { intro: section }, order: ['intro'] },
         });
-        const resource = lesson.build.props({ languages: ['uk'] });
+        const resource = lesson.build.data({ languages: ['uk'] });
         assert.deepEqual(
           resource.base.section.map(item => item!.slug),
           ['intro'],
@@ -49,7 +49,7 @@ describe('Configurators', () => {
         assert.equal(resource.base.section[0]?.content[0]?.slug, 'text');
         assert.equal(resource.locale, undefined);
         assert.equal('overrides' in lesson.config, false);
-        assert.deepEqual(lesson.build.props({ languages: ['uk'] }), resource);
+        assert.deepEqual(lesson.build.data({ languages: ['uk'] }), resource);
       });
 
       test('Skill hierarchy and Assessment Method publish data-only results with explicit languages', () => {
@@ -73,7 +73,7 @@ describe('Configurators', () => {
           description: { methodological: 'Language learning', frontend: 'Language' },
           groups: { literacy: group },
         });
-        const result = domain.build.props({ languages: ['uk'] });
+        const result = domain.build.data({ languages: ['uk'] });
         assert.deepEqual(
           result.base.groups?.map(item => item!.slug),
           ['literacy'],
@@ -85,7 +85,7 @@ describe('Configurators', () => {
           title: 'Retrieval',
           description: 'Recall facts',
         });
-        assert.equal(method.build.props({ languages: ['uk'] }).base.slug, 'retrieval');
+        assert.equal(method.build.data({ languages: ['uk'] }).base.slug, 'retrieval');
       });
     });
   });

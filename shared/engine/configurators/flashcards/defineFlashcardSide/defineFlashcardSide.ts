@@ -4,8 +4,8 @@ import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   requireBuildContext,
   resolvePublicationLanguages,
@@ -30,9 +30,9 @@ type BlockPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
-type SideProps = ReturnType<Block['build']['props']>['base'][];
-type SideFiles = Partial<Record<LanguageCode, SideProps>>;
-type SidePublication = { base: SideProps; locale: SideFiles | undefined };
+type SideData = ReturnType<Block['build']['data']>['base'][];
+type SideFiles = Partial<Record<LanguageCode, SideData>>;
+type SidePublication = { base: SideData; locale: SideFiles | undefined };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -50,7 +50,7 @@ const validateSide = (config: FlashcardSide_Config, requireNonEmpty = false): vo
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -106,7 +106,7 @@ export function defineFlashcardSide<
     const { languages } = requireBuildContext();
     const entries = sorted.map(key => {
       const child = active[key];
-      const resource = buildChildProps(child) as unknown as BlockResource;
+      const resource = buildChildData(child) as unknown as BlockResource;
       const patch = Object.hasOwn(changes, key)
         ? (buildChildOverrides(child, changes[key] as never) as unknown as BlockPatch)
         : undefined;
@@ -114,7 +114,7 @@ export function defineFlashcardSide<
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as SideProps;
+    ) as SideData;
     const locale: SideFiles = {};
     for (const code of languages) {
       if (
@@ -130,12 +130,12 @@ export function defineFlashcardSide<
         );
         const updated = patch ? mergeForValidation(original, patch.base) : original;
         return patch?.locale?.[code] ? mergeForValidation(updated, patch.locale[code]) : updated;
-      }) as SideProps;
+      }) as SideData;
     }
     return { base, locale: Object.keys(locale).length ? locale : undefined };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): SidePublication => {
+  const data = (options: PublicationLanguageOptions<Languages>): SidePublication => {
     const languages = resolvePublicationLanguages(options);
     validateSide({ items: initialItems, order: initialOrder });
     const result = structuredClone(buildContent(initialItems, initialOrder));
@@ -185,7 +185,7 @@ export function defineFlashcardSide<
     );
     validateSide({ items: active, order: [...nextOrder] });
     const result = structuredClone(buildContent(active, nextOrder, childPatches));
-    validatePublication(props(options), languages, result);
+    validatePublication(data(options), languages, result);
     return result;
   };
 
@@ -194,7 +194,7 @@ export function defineFlashcardSide<
     items,
     order,
     validate: (required = false) => validateSide({ items: initialItems, order: initialOrder }, required),
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

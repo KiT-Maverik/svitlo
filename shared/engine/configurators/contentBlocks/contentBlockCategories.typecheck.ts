@@ -1,6 +1,6 @@
 import type {
-  ContentBlock_Composite_Props as PublicComposite_Props,
-  ContentBlock_Primitive_Props as PublicPrimitive_Props,
+  ContentBlock_Composite_Data as PublicComposite_Data,
+  ContentBlock_Primitive_Data as PublicPrimitive_Data,
 } from '../../runtime';
 import type {
   ContentBlock_Composite_Type,
@@ -10,13 +10,13 @@ import type {
 import type {
   ContentBlock_Composite_Config,
   ContentBlock_Composite_Configurator,
-  ContentBlock_Composite_Props,
+  ContentBlock_Composite_Data,
   ContentBlock_Config,
   ContentBlock_Configurator,
+  ContentBlock_Data,
   ContentBlock_Primitive_Config,
   ContentBlock_Primitive_Configurator,
-  ContentBlock_Primitive_Props,
-  ContentBlock_Props,
+  ContentBlock_Primitive_Data,
 } from './index';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
@@ -29,11 +29,11 @@ export type ContentBlockCategoryTypingChecks = [
   Require<Equal<ContentBlock_Primitive_Configurator['type'], ContentBlock_Primitive_Type>>,
   Require<Equal<ContentBlock_Composite_Configurator['type'], ContentBlock_Composite_Type>>,
   Require<Equal<ContentBlock_Configurator['type'], ContentBlock_Type>>,
-  Require<Equal<ContentBlock_Primitive_Props['type'], ContentBlock_Primitive_Type>>,
-  Require<Equal<ContentBlock_Composite_Props['type'], ContentBlock_Composite_Type>>,
-  Require<Equal<ContentBlock_Props['type'], ContentBlock_Type>>,
-  Require<Equal<PublicPrimitive_Props['type'], ContentBlock_Primitive_Type>>,
-  Require<Equal<PublicComposite_Props['type'], ContentBlock_Composite_Type>>,
+  Require<Equal<ContentBlock_Primitive_Data['type'], ContentBlock_Primitive_Type>>,
+  Require<Equal<ContentBlock_Composite_Data['type'], ContentBlock_Composite_Type>>,
+  Require<Equal<ContentBlock_Data['type'], ContentBlock_Type>>,
+  Require<Equal<PublicPrimitive_Data['type'], ContentBlock_Primitive_Type>>,
+  Require<Equal<PublicComposite_Data['type'], ContentBlock_Composite_Type>>,
 ];
 
 declare const composite: ContentBlock_Composite_Config;

@@ -18,8 +18,8 @@ import {
 } from '../../_shared__configurators';
 import {
   questSection_Config_Schema,
+  questSection_Data_Schema,
   questSection_Override_Metadata_Schema,
-  questSection_Props_Schema,
   type QuestSection_Config,
   type QuestSection_Metadata_Overrides,
 } from './defineQuestSection.schemas';
@@ -91,7 +91,7 @@ export const defineQuestSection = <
             ) as Partial<Record<LanguageCode, { locale: unknown }>>),
     };
   };
-  const props = (options: PublicationLanguageOptions<Languages>) => {
+  const data = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...metadata, stages, tasks });
     const own = ownLocale(metadata.locale);
@@ -103,7 +103,7 @@ export const defineQuestSection = <
       base: {},
       locale: selectPublicationLocales(own.locale, languages),
     }).locale;
-    validateQuestPublication(questSection_Props_Schema, output, languages);
+    validateQuestPublication(questSection_Data_Schema, output, languages);
     return output;
   };
   const overrides = (patch: QuestSection_Overrides<Stages, Tasks>, options: PublicationLanguageOptions<Languages>) => {
@@ -136,7 +136,7 @@ export const defineQuestSection = <
         ? { base: {}, locale: undefined }
         : nestQuestPublication({}, projectQuestTree(tasks, patch.tasks), 'tasks');
     const output = mergeQuestPatches(mergeQuestPatches(root, stagePatch), taskPatch);
-    validateQuestPublication(questSection_Props_Schema, props(options), languages, output);
+    validateQuestPublication(questSection_Data_Schema, data(options), languages, output);
     return output;
   };
   const result = {
@@ -146,7 +146,7 @@ export const defineQuestSection = <
     stages,
     tasks,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: { id, slug, type, params: structuredClone(metadata.params), locale: onlyStrings(metadata.locale) },
       locales: () => ({ locale: onlyLocales(metadata.locale) }),

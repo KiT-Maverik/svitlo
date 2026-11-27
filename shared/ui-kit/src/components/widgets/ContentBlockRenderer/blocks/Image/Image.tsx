@@ -3,7 +3,7 @@
 import Button from '@mui/material/Button';
 import { useEffect, useRef, useState } from 'react';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Data } from '@svitlo/engine/runtime';
 
 import type { Image_Locale } from '../../../../../../data/locale/image';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -14,7 +14,7 @@ import { useImageRenderer } from './ImageRenderer';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
-export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale }) => {
+export const Image = (props: ContentBlock_Image_Data & { messages: Image_Locale }) => {
   const { src, alt, caption, fallback } = props.locale;
   const { sizes, unoptimized, fill, aspectRatio, width, height, objectFit } = props.params;
   const { messages } = props;

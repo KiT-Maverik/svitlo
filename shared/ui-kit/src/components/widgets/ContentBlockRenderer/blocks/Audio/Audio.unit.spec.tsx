@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Audio_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Audio } from './Audio';
 import { formatAudioTime } from './Audio.utils';
 
-const response: ContentBlock_Audio_Props = {
+const response: ContentBlock_Audio_Data = {
   id: 'audio-1',
   slug: 'audio-1',
   type: 'audio',

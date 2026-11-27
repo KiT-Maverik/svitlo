@@ -31,11 +31,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   orderSequence_Config_Schema,
+  orderSequence_Data_Schema,
   orderSequence_Override_Config_Schema,
-  orderSequence_Props_Schema,
   type Question_OrderSequence_Config,
+  type Question_OrderSequence_Data,
   type Question_OrderSequence_MetadataOverrides,
-  type Question_OrderSequence_Props,
 } from './defineOrderSequence.schemas';
 
 const metadataSchema = orderSequence_Config_Schema.omit({ content: true });
@@ -105,9 +105,9 @@ export const defineOrderSequence = <
     return { base: { sequence: result.base }, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_OrderSequence_Props> => {
+  ): QuestionResourcePublication<Question_OrderSequence_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -126,15 +126,15 @@ export const defineOrderSequence = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_OrderSequence_Props>;
-    validateQuestionPublication(orderSequence_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_OrderSequence_Data>;
+    validateQuestionPublication(orderSequence_Data_Schema, languages, resource);
     return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_OrderSequence_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_OrderSequence_Props> => {
+  ): QuestionOverridePublication<Question_OrderSequence_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -169,8 +169,8 @@ export const defineOrderSequence = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_OrderSequence_Props>;
-      validateQuestionPublication(orderSequence_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_OrderSequence_Data>;
+      validateQuestionPublication(orderSequence_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -190,7 +190,7 @@ export const defineOrderSequence = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

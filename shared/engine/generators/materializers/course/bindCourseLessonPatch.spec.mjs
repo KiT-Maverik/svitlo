@@ -18,7 +18,7 @@ const section = {
   slug: 'practice',
   type: 'content',
   config: { base: { id: sectionId, slug: 'practice', type: 'content' } },
-  build: { props: () => ({}), overrides: () => ({}) },
+  build: { data: () => ({}), overrides: () => ({}) },
 };
 const patch = () => ({
   params: { sections: { allowSkipping: false } },

@@ -2,7 +2,7 @@
 
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
 
-import type { Question_FillBlanksWithBlocks_Props } from '@svitlo/engine/runtime';
+import type { Question_FillBlanksWithBlocks_Data } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -16,7 +16,7 @@ export function FillBlanksWithBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_FillBlanksWithBlocks_Props;
+  response: Question_FillBlanksWithBlocks_Data;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

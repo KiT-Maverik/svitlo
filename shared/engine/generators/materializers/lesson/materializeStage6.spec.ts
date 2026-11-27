@@ -281,7 +281,7 @@ test('Stage 6 imports only Skills from the owning textbook #skillsData alias', (
 test('generated Lesson source passes the real TypeScript semantic checker', () => {
   assertSemanticModules(produce());
 });
-test('generated complete Lesson runs actual Config build.props(), not a mocked factory', () => {
+test('generated complete Lesson runs actual Config build.data(), not a mocked factory', () => {
   const plan = produce();
   const sources = new Map(
     plan.files.filter(file => file.kind === 'typescript').map(file => [file.path.slice(folder.length), file.content]),
@@ -316,12 +316,12 @@ test('generated complete Lesson runs actual Config build.props(), not a mocked f
   }
   const lesson = load('index.ts').basics as {
     build: {
-      props: (opts: { languages: string[] }) => {
+      data: (opts: { languages: string[] }) => {
         base: { section: { type: string }[]; skills: string[] };
       };
     };
   };
-  const props = lesson.build.props({ languages: ['en'] });
+  const props = lesson.build.data({ languages: ['en'] });
   assert.equal(props.base.section.length, 1);
   assert.equal(props.base.section[0].type, 'content');
   assert.deepEqual(props.base.skills, [verifiedMathSkillId]);

@@ -3,13 +3,13 @@
 ## Boundary
 
 - Authoring `*.data.ts` exports stateless Engine configurators. The application
-  never imports authoring data or invokes `build.props()` at runtime.
+  never imports authoring data or invokes `build.data()` at runtime.
 - A build-time orchestration script discovers configurators and invokes their
-  `build.props({ languages })`. The Engine generators consume **completed**
+  `build.data({ languages })`. The Engine generators consume **completed**
   `{ base, locale }` publications; do not duplicate validation, reorder
   children, or reconstruct authoring patches in a serializer.
 - Runtime assemblers accept already-loaded published files and output Props
-  validated through the owning `*_Props_Schema`. Host adapters own I/O.
+  validated through the owning `*_Data_Schema`. Host adapters own I/O.
 - Generate a base file and one _direct Props-shaped_ file per nonempty locale.
   Do not add extra `locale` wrappers or synthesize invariant-only files.
   Do not silently fall back to another language.
@@ -41,7 +41,7 @@ stay host-independent. Scenes are bundled to JS chunks, not embedded in JSON.
 
 - Exactly one full Domain tree is stored in `base.json`; each locale file
   contains only translated Props-shaped tree fragments, keyed by Domain slug.
-- `SkillDomain.build.props()` and its child configurators own the array order,
+- `SkillDomain.build.data()` and its child configurators own the array order,
   identities, localization, and validation.
 - `prepareSkillPublication` composes independent Domain results; the
   `publishSkillTree` Engine serializer writes already-built data unchanged.
@@ -53,7 +53,7 @@ stay host-independent. Scenes are bundled to JS chunks, not embedded in JSON.
 - UUID is immutable. The output bucket is the final hexadecimal digit of the
   canonical lowercase Lesson UUID. Reject duplicate UUIDs across textbook
   workspaces, including `content/languages/*` and editorial draft locations.
-- `defineLesson.build.props()` resolves authored collections into Props-shaped
+- `defineLesson.build.data()` resolves authored collections into Props-shaped
   arrays. The generator serializes the result without interpreting nested
   Section, ContentBlock, Flashcard, or Question entities.
 - The standalone Lesson assembler resolves resource base, selected locale,

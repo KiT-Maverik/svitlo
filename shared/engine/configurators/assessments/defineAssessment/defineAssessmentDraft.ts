@@ -8,7 +8,7 @@ import type {
 } from '#types';
 
 import {
-  buildChildProps,
+  buildChildData,
   mergeForValidation,
   onlyLocales,
   resolvePublicationLanguages,
@@ -19,15 +19,15 @@ import {
 } from '../../_shared__configurators';
 import {
   assessment_Config_Schema,
-  assessment_Draft_Props_Schema,
+  assessment_Draft_Data_Schema,
   type Assessment_Config,
   type Assessment_Content_Section_Configurator,
-  type Assessment_PropsBase,
+  type Assessment_DataBase,
 } from './defineAssessment.schemas';
 
-type LocaleBody = { locale?: { title?: string }; section?: Assessment_PropsBase['section'] };
+type LocaleBody = { locale?: { title?: string }; section?: Assessment_DataBase['section'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
-type Publication = { base: Assessment_PropsBase & { draft: true }; locale: Files | undefined };
+type Publication = { base: Assessment_DataBase & { draft: true }; locale: Files | undefined };
 
 /**
  * Course Stage 5 owns a visible, intentionally incomplete Assessment.
@@ -55,19 +55,19 @@ export const defineAssessmentDraft = <
     copyAuthored();
     if (preview.type !== 'content' || preview.config.base.params?.disabled === true)
       throw new Error('Assessment draft preview requires an enabled Content Section');
-    const source = preview.build.props({ languages: [authored.params.languages[0]] });
+    const source = preview.build.data({ languages: [authored.params.languages[0]] });
     if (!source.base.content?.some(block => block.type === 'text' && block.locale?.value === 'Not implemented')) {
       throw new Error('Assessment draft requires the Not implemented Text ContentBlock');
     }
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication => {
     const languages = resolvePublicationLanguages(options);
     const own = copyAuthored();
     if (languages.some(language => !own.params.languages.includes(language)))
       throw new Error('Assessment draft does not support the requested language');
     validate();
-    const section = buildChildProps(preview);
+    const section = buildChildData(preview);
     const split = splitLocalizedFields(own.locale);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
@@ -78,7 +78,7 @@ export const defineAssessmentDraft = <
       if (!section.locale?.[language]) continue;
       (selected[language] ??= {}).section = [
         mergeForValidation(section.base, section.locale[language]),
-      ] as Assessment_PropsBase['section'];
+      ] as Assessment_DataBase['section'];
     }
     const base: Publication['base'] = {
       id,
@@ -93,7 +93,7 @@ export const defineAssessmentDraft = <
       base: structuredClone(base),
       locale: Object.keys(selected).length ? structuredClone(selected) : undefined,
     };
-    validateRequestedPublication(assessment_Draft_Props_Schema, result, languages);
+    validateRequestedPublication(assessment_Draft_Data_Schema, result, languages);
     return result;
   };
 
@@ -107,7 +107,7 @@ export const defineAssessmentDraft = <
     draft: true as const,
     preview,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: {
         id,

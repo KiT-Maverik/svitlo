@@ -193,7 +193,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     throw new Error('lesson.params.languages: source language must be in planned languages');
   validateSections(config);
   // A completed Lesson must not be emitted with a missing required Section.
-  // A comment alone cannot satisfy defineLesson.build.props()'s enabled-Quiz
+  // A comment alone cannot satisfy defineLesson.build.data()'s enabled-Quiz
   // invariant. Course-originated Stage 1 handoffs never invoke this materializer.
   const enabled = config.section.order
     .map(key => sourceNode(config.section.items[key]).config)

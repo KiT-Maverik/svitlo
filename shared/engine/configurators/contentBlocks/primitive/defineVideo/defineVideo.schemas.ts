@@ -33,16 +33,16 @@ const configLocale = {
     .optional(),
 };
 const propsLocale = {
-  fileLocation: localizationSwitch.props,
-  poster: localizationSwitch.props,
-  title: localizationSwitch.props.optional(),
-  label: localizationSwitch.props,
+  fileLocation: localizationSwitch.data,
+  poster: localizationSwitch.data,
+  title: localizationSwitch.data.optional(),
+  label: localizationSwitch.data,
   fallback: z
     .object({
-      offline: localizationSwitch.props.optional(),
-      unavailable: localizationSwitch.props.optional(),
-      playbackError: localizationSwitch.props.optional(),
-      retry: localizationSwitch.props.optional(),
+      offline: localizationSwitch.data.optional(),
+      unavailable: localizationSwitch.data.optional(),
+      playbackError: localizationSwitch.data.optional(),
+      retry: localizationSwitch.data.optional(),
     })
     .optional(),
 };
@@ -65,9 +65,9 @@ export const video_Override_Config_Schema: z.ZodType<ContentBlock_Video_Override
   ),
 );
 
-export type ContentBlock_Video_PropsBase = z.infer<typeof videoBase> & {
-  locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
+export type ContentBlock_Video_DataBase = z.infer<typeof videoBase> & {
+  locale?: DeepPartial<ContentBlock_Video_Locale<'data'>>;
 };
 
-export const video_Props_Schema = videoBase.extend(addUnifiedLocale(propsLocale));
-export type ContentBlock_Video_Props = z.infer<typeof video_Props_Schema>;
+export const video_Data_Schema = videoBase.extend(addUnifiedLocale(propsLocale));
+export type ContentBlock_Video_Data = z.infer<typeof video_Data_Schema>;

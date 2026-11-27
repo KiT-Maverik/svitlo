@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Data, ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 
-const text = (id: string, value: string): ContentBlock_Text_Props => ({
+const text = (id: string, value: string): ContentBlock_Text_Data => ({
   id,
   slug: 'text-' + id,
   type: 'text',
@@ -16,7 +16,7 @@ const text = (id: string, value: string): ContentBlock_Text_Props => ({
 
 describe('EngineContentBlockRenderer — assembled Props bridge', () => {
   it('preserves canonical params/locale fields, order and disabled blocks', () => {
-    const blocks: ContentBlock_Props[] = [
+    const blocks: ContentBlock_Data[] = [
       text('first', 'First'),
       { id: 'hidden', slug: 'hidden', type: 'text', params: { disabled: true }, locale: { value: 'Hidden' } },
       { id: 'markdown', slug: 'markdown', type: 'markdown', params: {}, locale: { value: '**Second**' } },
@@ -39,7 +39,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
 
   it('forwards scene registrations and complete, ordered checkpoint content', () => {
     const complete = vi.fn();
-    const blocks: ContentBlock_Props[] = [
+    const blocks: ContentBlock_Data[] = [
       { id: 'scene', slug: 'scene', type: 'scene', params: {}, locale: { value: { title: 'Experiment' } } },
       {
         id: 'checkpoint',
@@ -79,7 +79,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
   });
 
   it('uses assembled media props without flattening accessible fields', () => {
-    const blocks: ContentBlock_Props[] = [
+    const blocks: ContentBlock_Data[] = [
       {
         id: 'image',
         slug: 'image',
@@ -112,7 +112,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
   });
 
   it('renders already-localized media copy and code template variables from runtime props', () => {
-    const blocks: ContentBlock_Props[] = [
+    const blocks: ContentBlock_Data[] = [
       {
         id: 'localized-code',
         slug: 'localizedCode',

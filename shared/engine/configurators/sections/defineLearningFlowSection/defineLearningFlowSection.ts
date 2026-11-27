@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -24,13 +24,13 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   learningFlowSection_Config_Schema,
+  learningFlowSection_Data_Schema,
   learningFlowSection_Override_Config_Schema,
-  learningFlowSection_Props_Schema,
   type LearningFlowSection_Config,
+  type LearningFlowSection_DataBase,
   type LearningFlowSection_Locale,
   type LearningFlowSection_MetadataOverrides,
   type LearningFlowSection_Overrides,
-  type LearningFlowSection_PropsBase,
 } from './defineLearningFlowSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -43,21 +43,21 @@ type ChildPatch = {
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
-  locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content?: LearningFlowSection_PropsBase['content'];
+  locale?: DeepPartial<LearningFlowSection_Locale<'data'>>;
+  content?: LearningFlowSection_DataBase['content'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: LearningFlowSection_MetadataOverrides['params'];
-  locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content?: LearningFlowSection_PropsBase['content'];
+  locale?: DeepPartial<LearningFlowSection_Locale<'data'>>;
+  content?: LearningFlowSection_DataBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /** Validate the effective Props for each explicitly requested publication locale. */
-const validateResolvedProps = (
+const validateResolvedData = (
   resource: Publication<unknown>,
   languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
@@ -72,7 +72,7 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      learningFlowSection_Props_Schema.parse(resolved);
+      learningFlowSection_Data_Schema.parse(resolved);
     } catch (error) {
       throw new Error(
         'Invalid defineLearningFlowSection Props for language ' +
@@ -99,7 +99,7 @@ const validate = (config: LearningFlowSection_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -145,9 +145,9 @@ export const defineLearningFlowSection = <
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCode] = { locale: fields as DeepPartial<LearningFlowSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<LearningFlowSection_Locale<'data'>> };
     }
-    return { invariant: split.base as DeepPartial<LearningFlowSection_Locale<'props'>>, files };
+    return { invariant: split.base as DeepPartial<LearningFlowSection_Locale<'data'>>, files };
   };
 
   const buildContent = (
@@ -158,7 +158,7 @@ export const defineLearningFlowSection = <
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const resource = buildChildProps(child) as unknown as ChildResource;
+      const resource = buildChildData(child) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
         ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
         : undefined;
@@ -166,8 +166,8 @@ export const defineLearningFlowSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as LearningFlowSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCode, LearningFlowSection_PropsBase['content']>> = {};
+    ) as LearningFlowSection_DataBase['content'];
+    const locales: Partial<Record<LanguageCode, LearningFlowSection_DataBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -182,12 +182,12 @@ export const defineLearningFlowSection = <
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
         return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as LearningFlowSection_PropsBase['content'];
+      }) as LearningFlowSection_DataBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<LearningFlowSection_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<LearningFlowSection_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -208,7 +208,7 @@ export const defineLearningFlowSection = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateResolvedProps(result, languages);
+    validateResolvedData(result, languages);
     return result;
   };
 
@@ -266,7 +266,7 @@ export const defineLearningFlowSection = <
         if (
           !isRecord(child) ||
           !isRecord(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function' ||
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
@@ -308,7 +308,7 @@ export const defineLearningFlowSection = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateResolvedProps(props(options), languages, result);
+      validateResolvedData(data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -327,7 +327,7 @@ export const defineLearningFlowSection = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<LearningFlowSection_Locale<'config'>> } => ({

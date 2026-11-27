@@ -2,8 +2,8 @@ import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   requireBuildContext,
   resolvePublicationLanguages,
@@ -16,9 +16,9 @@ import type { ConfiguratorChild } from '../../../../../types/configuratorChild';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import {
   checkpointAnswer_Config_Schema,
-  checkpointAnswer_Props_Schema,
+  checkpointAnswer_Data_Schema,
   type Checkpoint_Allowed_Configurator,
-  type Checkpoint_Allowed_PropsBase,
+  type Checkpoint_Allowed_DataBase,
   type CheckpointAnswer_Overrides,
   type ContentBlock_CheckpointAnswer_Config,
 } from './defineCheckpointAnswer.schemas';
@@ -66,7 +66,7 @@ const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
       if (
         !isObject(child) ||
         !isObject(child.build) ||
-        typeof child.build.props !== 'function' ||
+        typeof child.build.data !== 'function' ||
         typeof child.build.overrides !== 'function'
       )
         fail('content', 'content.items.' + key, 'Answer must expose the ContentBlock Build API');
@@ -77,18 +77,18 @@ const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
 };
 
 type ChildPublication = {
-  base: Checkpoint_Allowed_PropsBase;
+  base: Checkpoint_Allowed_DataBase;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type ChildPatchPublication = Omit<ChildPublication, 'base'> & {
-  base: DeepPartial<Checkpoint_Allowed_PropsBase>;
+  base: DeepPartial<Checkpoint_Allowed_DataBase>;
 };
 type AnswerLocaleFiles = Partial<Record<LanguageCode, { content: Record<string, unknown>[] }>>;
 type AnswerPublication<Base> = { base: Base; locale: AnswerLocaleFiles | undefined };
 type AnswerBase = Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'slug' | 'type'> & {
-  content: Checkpoint_Allowed_PropsBase[];
+  content: Checkpoint_Allowed_DataBase[];
 };
-type AnswerOverrideBase = { content?: Checkpoint_Allowed_PropsBase[] };
+type AnswerOverrideBase = { content?: Checkpoint_Allowed_DataBase[] };
 
 /**
  * Independently identified and ordered Checkpoint Answer. The Answer id comes
@@ -112,7 +112,7 @@ export const defineCheckpointAnswer = <
   const base = { id, slug, type } as const;
 
   const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
-    buildChildProps(child) as unknown as ChildPublication;
+    buildChildData(child) as unknown as ChildPublication;
   const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
     buildChildOverrides(child, patch as never) as unknown as ChildPatchPublication;
 
@@ -150,7 +150,7 @@ export const defineCheckpointAnswer = <
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
     const built = buildContent(initialItems, initialOrder);
@@ -158,7 +158,7 @@ export const defineCheckpointAnswer = <
       base: { id, slug, type, content: built.bases },
       locale: Object.keys(built.locales).length ? built.locales : undefined,
     };
-    validateRequestedPublication(checkpointAnswer_Props_Schema, output, languages);
+    validateRequestedPublication(checkpointAnswer_Data_Schema, output, languages);
     return output;
   };
 
@@ -198,7 +198,7 @@ export const defineCheckpointAnswer = <
         if (
           !isObject(child) ||
           !isObject(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function'
         )
           throw new Error('New ContentBlock must expose the Build API: ' + key);
@@ -235,7 +235,7 @@ export const defineCheckpointAnswer = <
         output.base.content = built.bases;
         output.locale = Object.keys(built.locales).length ? built.locales : undefined;
       }
-      validateRequestedPublication(checkpointAnswer_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(checkpointAnswer_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -254,7 +254,7 @@ export const defineCheckpointAnswer = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: { base, locales: () => ({ locale: {} }), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

@@ -13,19 +13,19 @@ import {
 } from '../../../_shared__configurators';
 import {
   youtube_Config_Schema,
+  youtube_Data_Schema,
   youtube_Override_Config_Schema,
-  youtube_Props_Schema,
   type ContentBlock_Youtube_Config,
+  type ContentBlock_Youtube_DataBase,
   type ContentBlock_Youtube_Locale,
   type ContentBlock_Youtube_Overrides,
-  type ContentBlock_Youtube_PropsBase,
 } from './defineYoutube.schemas';
 
-type YoutubeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
-type YoutubePropsPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type YoutubeOverridePropsBase = {
+type YoutubeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Youtube_Locale<'data'>> }>>;
+type YoutubeDataPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type YoutubeOverrideDataBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Youtube_Locale<'data'>>;
 };
 
 const parseAndValidate = (config: ContentBlock_Youtube_Config): ContentBlock_Youtube_Config => {
@@ -46,9 +46,9 @@ function assertResolvedHref(href: ContentBlock_Youtube_Config['locale']['href'])
   }
 }
 
-const buildYoutubeProps = (
+const buildYoutubeData = (
   config: ContentBlock_Youtube_Config,
-): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
+): YoutubeDataPublication<ContentBlock_Youtube_DataBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -57,9 +57,9 @@ const buildYoutubeProps = (
     slug,
     params,
     ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'data'>> }
       : {}),
-  } satisfies ContentBlock_Youtube_PropsBase;
+  } satisfies ContentBlock_Youtube_DataBase;
   return {
     base,
     locale: (locale === undefined
@@ -69,15 +69,13 @@ const buildYoutubeProps = (
   };
 };
 
-const buildYoutubePatch = (
-  patch: ContentBlock_Youtube_Overrides,
-): YoutubePropsPublication<YoutubeOverridePropsBase> => {
+const buildYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubeDataPublication<YoutubeOverrideDataBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
       ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'data'>> }
         : {}),
     },
     locale: (locale === undefined
@@ -117,22 +115,22 @@ export const defineYoutube = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
+  ): YoutubeDataPublication<ContentBlock_Youtube_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     const parsed = parseAndValidate(copyAuthored());
     if (options.mode !== 'draft') assertResolvedHref(parsed.locale.href);
-    const result = buildYoutubeProps(parsed);
+    const result = buildYoutubeData(parsed);
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(youtube_Props_Schema, result, languages);
+    validateRequestedPublication(youtube_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Youtube_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): YoutubePropsPublication<YoutubeOverridePropsBase> => {
+  ): YoutubeDataPublication<YoutubeOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
@@ -141,7 +139,7 @@ export const defineYoutube = <
       if (options.mode !== 'draft') assertResolvedHref(effective.locale.href);
       const output = buildYoutubePatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(youtube_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(youtube_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -157,7 +155,7 @@ export const defineYoutube = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Youtube_Locale<'config'>> } => ({

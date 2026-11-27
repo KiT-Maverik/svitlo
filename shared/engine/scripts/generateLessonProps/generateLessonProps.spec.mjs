@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { check, render } from './generateLessonProps.mjs';
-import { publishLessonProps } from './publishLessonProps.mjs';
+import { publishLessonData } from './publishLessonProps.mjs';
 
 test('Lesson CLI check is read-only and detects missing, modified, and stale files', () => {
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lessons-cli-'));
@@ -68,17 +68,17 @@ test('Lesson publication swaps the complete tree, removes stale files, and prese
     [ukFile, '{"locale":{"title":"Світло"}}\n'],
   ]);
   try {
-    publishLessonProps(root, initial);
+    publishLessonData(root, initial);
     assert.doesNotThrow(() => check(root, initial));
     fs.writeFileSync(path.join(root, 'stale.json'), '{}');
     fs.writeFileSync(path.join(home, 'untouched.txt'), 'keep');
-    publishLessonProps(root, updated);
+    publishLessonData(root, updated);
     assert.doesNotThrow(() => check(root, updated));
     assert.equal(fs.readFileSync(path.join(root, baseFile), 'utf8'), updated.get(baseFile));
     assert.equal(fs.readFileSync(path.join(root, ukFile), 'utf8'), updated.get(ukFile));
     assert.equal(fs.existsSync(path.join(root, 'stale.json')), false);
     assert.equal(fs.readFileSync(path.join(home, 'untouched.txt'), 'utf8'), 'keep');
-    publishLessonProps(root, updated);
+    publishLessonData(root, updated);
     assert.doesNotThrow(() => check(root, updated), 'regeneration must be byte-deterministic');
     assert.deepEqual(fs.readdirSync(path.join(home, 'generated')), ['lessons']);
   } finally {
@@ -99,9 +99,9 @@ test('global Assessment JSON is published atomically without changing Lesson Pro
     [locale, '{"locale":{"title":"Питання"}}\n'],
   ]);
   try {
-    publishLessonProps(directory, new Map([[owner + '/base.json', '{"type":"lesson"}\n']]));
+    publishLessonData(directory, new Map([[owner + '/base.json', '{"type":"lesson"}\n']]));
     const assessmentRoot = path.join(directory, 'assessment');
-    publishLessonProps(assessmentRoot, files, 'assessment');
+    publishLessonData(assessmentRoot, files, 'assessment');
     assert.doesNotThrow(() => check(assessmentRoot, files, 'assessment'));
     assert.equal(fs.existsSync(path.join(directory, owner, 'questions', id, 'base.json')), false);
     assert.equal(fs.readFileSync(path.join(directory, owner, 'base.json'), 'utf8'), '{"type":"lesson"}\n');
@@ -112,11 +112,11 @@ test('global Assessment JSON is published atomically without changing Lesson Pro
       owner + '/questions/' + id + '/base.json',
     ]) {
       assert.throws(
-        () => publishLessonProps(assessmentRoot, new Map([[bad, '{}']]), 'assessment'),
+        () => publishLessonData(assessmentRoot, new Map([[bad, '{}']]), 'assessment'),
         /Invalid generated Assessment path/,
       );
     }
-    assert.throws(() => publishLessonProps(assessmentRoot, files), /Invalid generated Lesson path/);
+    assert.throws(() => publishLessonData(assessmentRoot, files), /Invalid generated Lesson path/);
     assert.doesNotThrow(
       () => check(assessmentRoot, files, 'assessment'),
       'invalid publication must leave previous files intact',
@@ -131,9 +131,9 @@ test('Lesson publisher rejects traversal, incorrect UUID buckets, and invalid fi
   const root = path.join(home, 'lessons');
   try {
     for (const filename of ['../outside.json', 'd/' + lessonId + '/base.json', baseFile + '/child']) {
-      assert.throws(() => publishLessonProps(root, new Map([[filename, '{}']])), /Invalid generated Lesson path/);
+      assert.throws(() => publishLessonData(root, new Map([[filename, '{}']])), /Invalid generated Lesson path/);
     }
-    assert.throws(() => publishLessonProps(root, new Map([[baseFile, undefined]])), /Invalid generated Lesson body/);
+    assert.throws(() => publishLessonData(root, new Map([[baseFile, undefined]])), /Invalid generated Lesson body/);
     assert.throws(() => check(root, new Map([['../outside.json', '{}']])), /Invalid generated Lesson path/);
     assert.equal(fs.existsSync(root), false);
     assert.equal(fs.existsSync(path.join(home, 'outside.json')), false);
@@ -150,19 +150,19 @@ test('Lesson publisher and check reject output symlinks, symlink ancestors, and 
   try {
     fs.mkdirSync(outside);
     fs.symlinkSync(outside, output);
-    assert.throws(() => publishLessonProps(output, files), /Symlink in generated path/);
+    assert.throws(() => publishLessonData(output, files), /Symlink in generated path/);
     assert.throws(() => check(output, files), /Symlink in generated path/);
     fs.unlinkSync(output);
 
     fs.symlinkSync(outside, path.join(home, 'alias'));
     const escaped = path.join(home, 'alias', 'lessons');
-    assert.throws(() => publishLessonProps(escaped, files), /Symlink in generated path/);
+    assert.throws(() => publishLessonData(escaped, files), /Symlink in generated path/);
     assert.throws(() => check(escaped, files), /Symlink in generated path/);
     assert.equal(fs.existsSync(path.join(outside, 'lessons')), false);
 
-    publishLessonProps(output, files);
+    publishLessonData(output, files);
     fs.symlinkSync(outside, path.join(output, 'linked'));
-    assert.throws(() => publishLessonProps(output, files), /Unexpected symlink in generated Lessons/);
+    assert.throws(() => publishLessonData(output, files), /Unexpected symlink in generated Lessons/);
     assert.throws(() => check(output, files), /Unexpected symlink in generated Lessons/);
     assert.equal(fs.readFileSync(path.join(output, baseFile), 'utf8'), files.get(baseFile));
   } finally {
@@ -179,7 +179,7 @@ test('Lesson publisher leaves the previous tree intact when staging fails partwa
     [ukFile, 'translation\n'],
   ]);
   try {
-    publishLessonProps(root, original);
+    publishLessonData(root, original);
     const write = fs.writeFileSync;
     let stagedWrites = 0;
     try {
@@ -189,7 +189,7 @@ test('Lesson publisher leaves the previous tree intact when staging fails partwa
         }
         return write(...args);
       };
-      assert.throws(() => publishLessonProps(root, next), /Injected staging failure/);
+      assert.throws(() => publishLessonData(root, next), /Injected staging failure/);
     } finally {
       fs.writeFileSync = write;
     }
@@ -206,7 +206,7 @@ test('Lesson publisher restores the previous tree when the final rename fails', 
   const original = new Map([[baseFile, 'original\n']]);
   const replacement = new Map([[baseFile, 'replacement\n']]);
   try {
-    publishLessonProps(root, original);
+    publishLessonData(root, original);
     const rename = fs.renameSync;
     try {
       fs.renameSync = (from, to) => {
@@ -215,7 +215,7 @@ test('Lesson publisher restores the previous tree when the final rename fails', 
         }
         return rename(from, to);
       };
-      assert.throws(() => publishLessonProps(root, replacement), /Injected final rename failure/);
+      assert.throws(() => publishLessonData(root, replacement), /Injected final rename failure/);
     } finally {
       fs.renameSync = rename;
     }

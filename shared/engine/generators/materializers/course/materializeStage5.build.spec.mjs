@@ -174,7 +174,7 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
           id: skillId,
           slug,
           config: { base: { id: skillId, slug } },
-          build: { props() {} },
+          build: { data() {} },
         },
       };
     },

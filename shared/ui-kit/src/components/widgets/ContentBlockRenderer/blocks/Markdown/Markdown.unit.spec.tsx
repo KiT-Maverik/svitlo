@@ -2,12 +2,12 @@ import { render, screen, within } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Markdown_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Markdown_Data } from '@svitlo/engine/runtime';
 
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Markdown } from './Markdown';
 
-const response: ContentBlock_Markdown_Props = {
+const response: ContentBlock_Markdown_Data = {
   id: 'markdown-example',
   slug: 'markdownExample',
   type: 'markdown',

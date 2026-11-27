@@ -116,7 +116,7 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
         section.config.base.id !== section.id ||
         section.config.base.slug !== key ||
         section.config.base.type !== section.type ||
-        typeof section.build?.props !== 'function' ||
+        typeof section.build?.data !== 'function' ||
         typeof section.build?.overrides !== 'function'
       ) {
         throw Error(placementPath + ': resolved additional Section has invalid Configurator identity');

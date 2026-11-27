@@ -19,7 +19,7 @@ describe('Configurators', () => {
 
       test('publishes the selected recursive Scene localization as Props', () => {
         const scene = defineScene(config());
-        const resource = scene.build.props(scope);
+        const resource = scene.build.data(scope);
         assert.equal(resource.base.locale?.value, undefined);
         assert.deepEqual(resource.locale, { uk: { locale: { value: 'Обери варіант' } } });
         assert.equal(JSON.stringify(resource).includes('Choose an option'), false);
@@ -33,7 +33,7 @@ describe('Configurators', () => {
             type: 'scene',
             params: {},
             locale: { value: ['first', 'second'] as never },
-          }).build.props(scope),
+          }).build.data(scope),
         );
         const scene = defineScene(config());
         assert.throws(() => scene.build.overrides({ type: 'image' } as never, scope), /Invalid Scene overrides/);

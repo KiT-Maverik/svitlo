@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import { code_Config_Schema, code_Props_Schema, defineCode, defineText } from './contentBlocks';
+import { code_Config_Schema, code_Data_Schema, defineCode, defineText } from './contentBlocks';
 import type { ContentBlock_Code_Config } from './contentBlocks/primitive/defineCode/defineCode.schemas';
 import type { ContentBlock_Text_Config } from './contentBlocks/primitive/defineText/defineText.schemas';
 
@@ -103,7 +103,7 @@ describe('Configurators', () => {
             type: 'text',
             params: {},
             locale: { value: 'Literal %_%id: notValid' },
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
       });
 
@@ -165,13 +165,13 @@ describe('Configurators', () => {
           locale: { variables: { USER_NAME: { en: 'Maria', uk: 'Марія' } } },
         });
         assert.equal(
-          code_Props_Schema.safeParse({
+          code_Data_Schema.safeParse({
             ...config,
             locale: { variables: { USER_NAME: 'Марія', FIXED: '!' } },
           }).success,
           true,
         );
-        assert.equal(code_Props_Schema.safeParse(config).success, false);
+        assert.equal(code_Data_Schema.safeParse(config).success, false);
       });
 
       test('Code checks placeholder integrity even without configured variables', () => {
@@ -194,7 +194,7 @@ describe('Configurators', () => {
             defineCode<'exampleCode', ['en']>({
               ...codeConfig,
               params: { ...codeConfig.params, codeAsText: '%_%UNDECLARED%_%' },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /variable "UNDECLARED" is not declared/,
         );
         assert.throws(
@@ -202,7 +202,7 @@ describe('Configurators', () => {
             defineCode<'exampleCode', ['en']>({
               ...codeConfig,
               params: { ...codeConfig.params, codeAsText: '' },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /Too small|expected string|String must contain/i,
         );
         assert.doesNotThrow(() => defineCode<'exampleCode', ['en']>(codeConfig));
