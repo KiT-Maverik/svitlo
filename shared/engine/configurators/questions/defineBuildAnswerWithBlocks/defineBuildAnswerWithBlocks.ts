@@ -47,7 +47,7 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
   candidate.content.correctSequence.children.forEach(key =>
-    assertEnabledBlock(candidate.content.correctSequence[key].config.base, 'content.correctSequence.' + key),
+    assertEnabledBlock((candidate.content.correctSequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.correctSequence.' + key),
   );
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
