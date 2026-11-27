@@ -1,4 +1,10 @@
-import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
+import type { Lesson_Metadata_Overrides } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { CodingTaskSection_MetadataOverrides } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
+import type { ContentSection_MetadataOverrides } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
+import type { FlashcardsSection_MetadataOverrides } from '../../configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+import type { LearningFlowSection_MetadataOverrides } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import type { PracticeSection_MetadataOverrides } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
+import type { QuizSection_MetadataOverrides } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
 import type { LessonWorkflowStage2Section } from './lessonWorkflow.types';
 
 /**
@@ -21,25 +27,70 @@ export type CourseLessonNewSection = {
 };
 
 /**
- * A concrete Lesson override has metadata, children order and direct Section
- * placement keys. It never contains the legacy section.items/additionalItems.
+ * Extract the concrete children from a real imported Lesson, not from
+ * ReturnType<typeof defineLesson>. Its generic Sections parameter collapses to
+ * Record<string, never> at that boundary, while Parameters<build.overrides>[0]
+ * of an unspecialized generic method also collapses the Added parameter.
+ * Neither represents the authoring contract for an actual source Lesson.
  *
- * Inert references must be explicitly declared as Added by their authored
- * source type. Existing keys retain the concrete Build API's deeply inferred
- * sparse patch types; a would-be addition cannot shadow an existing Section.
- * The trusted binder resolves only those exact descriptors, never executable
- * authored values.
+ * Reuse the Configurators' own metadata override types; existing ContentBlock
+ * leaves retain their exact Build patch parameters. This is solely the inert
+ * editorial source shape: the trusted binder still validates the complete
+ * resolved patch through the original Lesson Build API.
  */
-type ConcretePatch<Lesson extends Lesson_Configurator> =
-  Parameters<Lesson['build']['overrides']>[0];
+type BuiltChild = {
+  readonly type: string;
+  readonly build: { readonly overrides: (...args: never[]) => unknown };
+};
+type SectionKind = 'content' | 'practice' | 'codingTask' | 'learningFlow' | 'quiz' | 'flashcards';
+type SectionChild = BuiltChild & { readonly type: SectionKind };
+type ChildKeys<Parent, Child> = Extract<{
+  [Key in keyof Parent]-?: Parent[Key] extends Child ? Key : never;
+}[keyof Parent], string>;
+type SectionKeys<Lesson> = ChildKeys<Lesson, SectionChild>;
+type BlockKeys<Section> = ChildKeys<Section, BuiltChild>;
+
+type SectionMetadata<Section> =
+  Section extends { readonly type: 'content' } ? ContentSection_MetadataOverrides :
+  Section extends { readonly type: 'practice' } ? PracticeSection_MetadataOverrides :
+  Section extends { readonly type: 'codingTask' } ? CodingTaskSection_MetadataOverrides :
+  Section extends { readonly type: 'learningFlow' } ? LearningFlowSection_MetadataOverrides :
+  Section extends { readonly type: 'quiz' } ? QuizSection_MetadataOverrides :
+  Section extends { readonly type: 'flashcards' } ? FlashcardsSection_MetadataOverrides :
+  never;
+
+type ExistingBlockPatch<Block> =
+  Block extends BuiltChild ? Parameters<Block['build']['overrides']>[0] : never;
+type ExistingSectionPatch<Section> = SectionMetadata<Section> & {
+  children?: BlockKeys<Section>[];
+} & {
+  [Key in BlockKeys<Section>]?: ExistingBlockPatch<Section[Key]> | false;
+};
+
 type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
+type ExistingLessonPatch<
+  Lesson,
+  Added extends Record<string, AddedReference>,
+> = Lesson_Metadata_Overrides & {
+  children?: Extract<SectionKeys<Lesson> | keyof Added, string>[];
+} & {
+  [Key in SectionKeys<Lesson>]?: ExistingSectionPatch<Lesson[Key]> | false;
+};
 type VerifiedAdded<
-  Lesson extends Lesson_Configurator,
+  Lesson,
   Added extends Record<string, AddedReference>,
 > = {
-  [Key in keyof Added]: Key extends keyof ConcretePatch<Lesson> ? never : Added[Key];
+  [Key in keyof Added]: Key extends keyof Lesson | keyof Lesson_Metadata_Overrides | 'children'
+    ? never
+    : Added[Key];
 };
+
+/**
+ * A Course source patch preserves the imported Lesson's exact existing
+ * Section/ContentBlock keys. Only explicitly listed Added keys accept inert
+ * descriptors, never arbitrary Configurator values or legacy wrappers.
+ */
 export type CourseLessonSourcePatch<
-  Lesson extends Lesson_Configurator,
+  Lesson extends { readonly type: 'lesson' },
   Added extends Record<string, AddedReference> = {},
-> = ConcretePatch<Lesson> & VerifiedAdded<Lesson, Added>;
+> = ExistingLessonPatch<Lesson, Added> & VerifiedAdded<Lesson, Added>;
