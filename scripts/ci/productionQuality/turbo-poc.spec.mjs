@@ -45,7 +45,7 @@ test('Turbo tasks match current canonical npm scripts, with explicit task prereq
   assert.equal(turbo.tasks['code:check:types'].cache, false);
   assert.deepEqual(focus, workspaces.map(x => x.name));
   const root = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
-  assert.match(root.packageManager, /^npm@\\d+\\.\\d+\\.\\d+$/, 'Turborepo requires a root npm packageManager for workspace graph detection');
+  assert.match(root.packageManager, /^npm@\d+\.\d+\.\d+$/, 'Turborepo requires a root npm packageManager for workspace graph detection');
 });
 
 test('dry-run graph includes nine real tasks and both runtime + development dependency edges', () => {
