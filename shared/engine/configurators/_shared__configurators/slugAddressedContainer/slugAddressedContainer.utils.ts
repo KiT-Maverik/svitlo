@@ -20,6 +20,24 @@ export type SafePlacementMap<Items> = {
   [Key in keyof Items]: Key extends (typeof slugAddressedReservedKeys)[number] ? never : Items[Key];
 };
 
+/**
+ * Infer newly authored direct child keys from the entire literal patch before
+ * checking them against the child Build boundary. Generic "Added" inference
+ * otherwise attempts to treat existing sparse patches as new Configurators.
+ *
+ * Invalid new values become never, so arbitrary additions cannot silently
+ * acquire a valid placement type.
+ */
+export type AddedPlacementsFromPatch<
+  Patch,
+  Existing,
+  Allowed,
+  OwnKeys extends PropertyKey = 'children' | 'params' | 'locale',
+> = {
+  [Key in Exclude<keyof Patch, keyof Existing | OwnKeys>]:
+    Patch[Key] extends Allowed ? Patch[Key] : never;
+};
+
 const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
 const reserved = new Set<string>(slugAddressedReservedKeys);
 const record = (value: unknown): value is Record<string, unknown> =>
