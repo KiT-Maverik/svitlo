@@ -206,12 +206,13 @@ export function assembleCourseTree(
   }
   function visit(owner: Record<string, unknown>, parent: 'course' | 'module' | 'chapter'): void {
     title(owner);
-    if (!Array.isArray(owner.children) || new Set(owner.children).size !== owner.children.length)
+    const children = owner.children;
+    if (!Array.isArray(children) || new Set(children).size !== children.length)
       throw Error('Invalid Course children');
     const keys = Object.keys(owner).filter(key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
-    if (keys.length !== owner.children.length || keys.some(key => !owner.children.includes(key)))
+    if (keys.length !== children.length || keys.some(key => !children.includes(key)))
       throw Error('Unaddressed Course placement keys');
-    for (const key of owner.children) {
+    for (const key of children) {
       if (typeof key !== 'string' || !slot.test(key) || !Object.hasOwn(owner, key))
         throw Error('Invalid Course child slot');
       const node: unknown = owner[key];
