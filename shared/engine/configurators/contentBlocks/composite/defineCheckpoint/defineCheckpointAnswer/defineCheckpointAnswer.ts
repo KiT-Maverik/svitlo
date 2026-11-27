@@ -263,11 +263,15 @@ export const defineCheckpointAnswer = <
         for (const [key] of Object.entries(changes)) {
           // A params.disabled override is a structural removal, not a live
           // child with a disabled param and a stale position in children.
-          output.base[key] = !Object.hasOwn(enabled, key)
+          const childBase = !Object.hasOwn(enabled, key)
             ? false
             : !initiallyEnabled.has(key)
               ? built.base[key]
               : (built.childPatches[key]?.base ?? {});
+          // Locale-only patches must not manufacture empty invariant child
+          // fragments in sparse published Data.
+          if (childBase === false || (isRecord(childBase) && Object.keys(childBase).length))
+            output.base[key] = childBase;
         }
         for (const key of Object.keys(additions))
           if (Object.hasOwn(enabled, key)) output.base[key] = built.base[key];
