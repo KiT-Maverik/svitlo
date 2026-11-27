@@ -34,9 +34,9 @@ test('Course-owned Lesson override emits distinct Section and ContentBlock fragm
   );
   assert.match(first.files[0].content, /section_content is literal user text/);
   assert.match(first.files[0].content, /satisfies BlockPatch/);
-  assert.match(first.files[0].content, /SectionPatch\["paragraph"\]/);
+  assert.match(first.files[0].content, /typeof standaloneLesson\.intro\.paragraph\.build\.overrides/);
   assert.match(first.files[1].content, /satisfies SectionPatch/);
-  assert.match(first.files[1].content, /typeof standaloneLesson\.build\.overrides/);
+  assert.match(first.files[1].content, /typeof standaloneLesson\.intro\.build\.overrides<\{\}>/);
   assert.match(first.files[1].content, /import \{ paragraph \} from "\.\/paragraph"/);
   assert.match(first.files[1].content, /"paragraph": paragraph/);
   assert.match(first.patchSource, /"intro": intro/);
@@ -139,8 +139,9 @@ function compileFragments(rawPatch) {
       kind: 'typescript',
       content: [
         'import type { lesson } from ' + JSON.stringify(sourceLesson.importPath) + ';',
+        'import type { CourseLessonBoundPatch } from "@svitlo/engine/build";',
         ...built.imports,
-        'export const placement = ' + built.patchSource + ' satisfies Parameters<typeof lesson.build.overrides>[0];',
+        'export const placement = ' + built.patchSource + ' satisfies CourseLessonBoundPatch<typeof lesson>;',
         '',
       ].join('\n'),
     },
