@@ -251,7 +251,7 @@ export function materializeLesson(config: Source, options: Options): Result {
     readiness: 'Production readiness',
   };
   for (const sectionKey of config.children) {
-    const section = sourceNode(config[sectionKey]);
+    const section = sourceNode(config[sectionKey] as SourceChild);
     if (!section.production) continue;
     const notes: string[] = [];
     let allTransferred = true;
@@ -427,7 +427,7 @@ export function materializeLesson(config: Source, options: Options): Result {
       severity: 'warning',
     });
   const metadata = Object.fromEntries(Object.entries(config).filter(([key]) => lessonFields.has(key) && key !== 'children'));
-  const params = { ...metadata.params, languages: imported('languages') };
+  const params = { ...(isObject(metadata.params) ? metadata.params : {}), languages: imported('languages') };
   const own = {
     ...metadata,
     skills: resolvedSkills,
