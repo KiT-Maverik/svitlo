@@ -124,8 +124,10 @@ deliberate first-pass choice, **not** proof of zero remaining noise.
 ### Implemented choice and local probe
 
 Use Node's native `--test-reporter=dot` on **ten direct Node test commands**
-in seven workflow files, without changing test paths, job conditions, or
-test process count. The native reporter retains failure details and returns
+in seven workflow files, without removing any existing test paths or changing
+job conditions. The existing Engine generators CI-policy job also runs the
+`quiet-run.spec.mjs` file directly (once), exercising the new regressions on
+Draft PRs without adding a workflow or spawning nested test processes. The native reporter retains failure details and returns
 the original nonzero test status. The direct reporter is intentionally not
 forced on every process or into `NODE_OPTIONS`. On a **synthetic local
 Node v22** test file with 80 successful subtests, TAP produced **8,082 bytes**
