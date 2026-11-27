@@ -423,18 +423,18 @@ const defineModuleImplementation = <
   } as unknown as Module_Configurator<Slug, Items, Languages>;
 };
 
+type ModuleInferredBase = Module_Metadata_Config & { children: string[] };
+type ModuleInferredChildren<Config> = {
+  [Key in Exclude<keyof Config, keyof ModuleInferredBase>]:
+    Config[Key] extends Module_Child ? Config[Key] : never;
+};
+
 /** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
 export function defineModule<
   const Slug extends string,
   const Items extends Record<string, Module_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(config: ModuleAuthoredInput<Slug, Items, Languages>): Module_Configurator<Slug, Items, Languages>;
-
-type ModuleInferredBase = Module_Metadata_Config & { children: string[] };
-type ModuleInferredChildren<Config> = {
-  [Key in Exclude<keyof Config, keyof ModuleInferredBase>]:
-    Config[Key] extends Module_Child ? Config[Key] : never;
-};
 
 /** Infer the exact child Configurator types from every direct root placement. */
 export function defineModule<
