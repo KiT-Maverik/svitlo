@@ -166,19 +166,17 @@ jobs:
             import { relative } from 'node:path';
             const cases = [];
             let summary;
-            const stream = run({ files: JSON.parse(process.env.SVITLO_COMPARE_FILES), concurrency: true });
-            for (const [event, status] of [['test:pass','pass'],['test:fail','fail']]) {
-              stream.on(event, data => cases.push({
+            for await (const event of run({ files: JSON.parse(process.env.SVITLO_COMPARE_FILES), concurrency: true })) {
+              const { type, data } = event;
+              if (type === 'test:pass' || type === 'test:fail') cases.push({
                 file: relative(process.env.SVITLO_COMPARE_ROOT, data.file || ''),
                 name: data.name, nesting: data.nesting, line: data.line, column: data.column,
-                status: data.skip ? 'skip' : data.todo ? 'todo' : status
-              }));
+                status: data.skip ? 'skip' : data.todo ? 'todo' : type === 'test:fail' ? 'fail' : 'pass'
+              });
+              if (type === 'test:summary' && !data.file) summary = data;
             }
-            stream.on('test:summary', data => { if (!data.file) summary = data; });
-            stream.on('end', () => {
-              console.log('SVITLO_CASE_COMPARE_JSON=' + JSON.stringify({ cases, summary: summary?.counts, success: summary?.success }));
-              if (!summary?.success) process.exitCode = 1;
-            });
+            console.log('SVITLO_CASE_COMPARE_JSON=' + JSON.stringify({ cases, summary: summary?.counts, success: summary?.success }));
+            if (!summary?.success) process.exitCode = 1;
           `;
           const snapshots = [];
           for (const [label, cwd] of [['repo-root', root], ['engine-root', join(root, 'shared/engine')]]) {
