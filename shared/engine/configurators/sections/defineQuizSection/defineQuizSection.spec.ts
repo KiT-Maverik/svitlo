@@ -104,9 +104,7 @@ describe('Configurators', () => {
           },
           { languages: ['en', 'uk'] },
         );
-        const firstBlock = overridden.locale?.uk?.prompt;
-        assert.equal(firstBlock?.type, 'text');
-        assert.equal((firstBlock?.locale as { value?: string } | undefined)?.value, 'Читай далі');
+        assert.deepEqual(overridden.locale?.uk?.prompt, { locale: { value: 'Читай далі' } });
         assert.equal(
           quizSection_Config_Schema.safeParse({
             ...quiz.config.base,
