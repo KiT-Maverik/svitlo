@@ -713,6 +713,16 @@ test('Completed Lesson UUID can be reused as distinct Course, Module and Chapter
   const stubId = 'bd75647f-203d-481a-a1c7-4d331c779d96';
   const draftFirst = defineLessonStub({ id: stubId, slug: 'first' });
   const draftSecond = defineLessonStub({ id: stubId, slug: 'second' });
+  assert.equal(
+    course_Data_Schema.safeParse({
+      ...course.build.data({ languages }).base,
+      children: ['first', 'second'],
+      first: draftFirst.build.data({ languages: ['en'] }).base,
+      second: draftSecond.build.data({ languages: ['en'] }).base,
+    }).success,
+    false,
+    'draft Lesson stubs cannot share a UUID even under distinct placement keys',
+  );
   assert.throws(
     () => defineChapter({
       id: 'bd75647f-203d-481a-a1c7-4d331c779d97',
