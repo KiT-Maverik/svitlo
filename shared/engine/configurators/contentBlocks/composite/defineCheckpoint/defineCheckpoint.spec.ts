@@ -89,14 +89,14 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     const question = text('question', '81', { en: 'Where?', uk: 'Де?' });
     const answerText = text('answerText', '82', { en: 'Here', uk: 'Тут' });
     const unchanged = text('unchanged', '83', 'Invariant');
-    const answer = defineCheckpointAnswer({
+    const answer = defineCheckpointAnswer<'answer', { answerText: typeof answerText; unchanged: typeof unchanged }, ['en', 'uk']>({
       id: id('84'), slug: 'answer', type: 'checkpointAnswer',
       children: ['answerText', 'unchanged'], answerText, unchanged,
     });
-    const first = defineCheckpointItem({
+    const first = defineCheckpointItem<'first', typeof answer, typeof question, ['en', 'uk']>({
       id: id('85'), slug: 'first', type: 'checkpointItem', question, answer,
     });
-    const checkpoint = defineCheckpoint({
+    const checkpoint = defineCheckpoint<'review', { first: typeof first }, ['en', 'uk']>({
       id: id('86'), slug: 'review', type: 'checkpoint',
       params: {}, locale: { title: { en: 'Review', uk: 'Огляд' } },
       children: ['first'], first,
@@ -182,7 +182,7 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     ];
     for (const candidate of cases) {
       assert.equal(checkpoint_Config_Schema.safeParse(candidate).success, false);
-      assert.throws(() => defineCheckpoint(candidate as never).build.data({ languages: ['en'] }));
+      assert.throws(() => Reflect.apply(defineCheckpoint, undefined, [candidate]).build.data({ languages: ['en'] }));
     }
     for (const impostor of [
       { id: first.id, slug: first.slug, type: 'checkpointItem' },
@@ -220,7 +220,7 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
       params: { mode: 'link' },
       locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Pending video' },
     });
-    const answer = defineCheckpointAnswer({
+    const answer = defineCheckpointAnswer<'answer', { pendingVideo: typeof pendingVideo }, ['en']>({
       id: id('71'), slug: 'answer', type: 'checkpointAnswer',
       children: ['pendingVideo'], pendingVideo,
     });
@@ -228,10 +228,10 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
       id: id('72'), slug: 'question', type: 'text',
       params: {}, locale: { value: 'Where is the shadow?' },
     });
-    const first = defineCheckpointItem({
+    const first = defineCheckpointItem<'first', typeof answer, typeof question, ['en']>({
       id: id('73'), slug: 'first', type: 'checkpointItem', question, answer,
     });
-    const checkpoint = defineCheckpoint({
+    const checkpoint = defineCheckpoint<'review', { first: typeof first }, ['en']>({
       id: id('74'), slug: 'review', type: 'checkpoint',
       params: {}, locale: { title: 'Review' },
       children: ['first'], first,
