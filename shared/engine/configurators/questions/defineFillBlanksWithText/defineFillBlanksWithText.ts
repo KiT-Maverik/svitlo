@@ -50,7 +50,7 @@ type SlotMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Slot ? Group[Key] : Slot;
 };
 type SlotChanges<Content extends ContentShape> = {
-  [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<SlotMembers<Content['slots']>[Key]> | false;
+  [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
 };
 /** Key-specific source validation keeps existing slot translations sparse. */
 type LiteralSlotsPatch<
@@ -67,7 +67,7 @@ type LiteralSlotsPatch<
                 Key extends 'children'
                   ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
                   : Key extends keyof SlotMembers<Content['slots']>
-                    ? DeepPartial<SlotMembers<Content['slots']>[Key]> | false
+                    ? DeepPartial<Slot> | false
                     : Group[Key] extends Slot
                       ? Group[Key] & RequireLanguages<Group[Key], Languages>
                       : never;
