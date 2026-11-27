@@ -34,12 +34,12 @@ describe('Configurators', () => {
         type,
         params: {},
         locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
-        content: { items: { prompt }, order: ['prompt'] },
+        children: ['prompt'], prompt,
       });
-      const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
-        const block = blocks?.[0];
-        if (block?.type !== 'text') return undefined;
-        return (block.locale as { value?: string } | undefined)?.value;
+      const textValue = (value: unknown): string | undefined => {
+        if (!value || typeof value !== 'object' || !('type' in value) ||
+            value.type !== 'text' || !('locale' in value)) return undefined;
+        return (value.locale as { value?: string } | undefined)?.value;
       };
 
       const definitions = [
@@ -72,34 +72,30 @@ describe('Configurators', () => {
             section.build.overrides({ params: { skippable: true } }, { languages: ['en', 'uk'] }).base.params,
             { skippable: true },
           );
-          assert.equal(original.base.content[0]?.slug, 'prompt');
-          assert.equal(textValue(original.locale?.uk?.content), 'Питання');
+          assert.equal((original.base.prompt as { slug?: string })?.slug, 'prompt');
+          assert.equal(textValue(original.locale?.uk?.prompt), 'Питання');
           assert.deepEqual(original.locale?.uk?.locale, { title: 'Назва' });
           assert.equal(original.locale?.en?.locale?.title, 'Title');
           assert.doesNotThrow(() => JSON.stringify(original));
 
           const changed = section.build.overrides(
             {
-              content: {
-                items: { prompt: false },
-                additionalItems: { extra },
-                order: ['extra'],
-              },
+              children: ['extra'], prompt: false, extra,
             },
             { languages: ['en', 'uk'] },
           );
           assert.deepEqual(
-            changed.base.content?.map(block => block.slug),
+            changed.base.children,
             ['extra'],
           );
           assert.deepEqual(changed.locale, undefined, 'invariant replacement needs no translated file');
-          assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
-          assert.deepEqual(section.content.order, ['prompt']);
+          assert.equal((section.build.data({ languages: ['en', 'uk'] }).base.prompt as {slug?: string})?.slug, 'prompt');
+          assert.deepEqual(section.children, ['prompt']);
           assert.deepEqual(
-            original.base.content.map(block => block.slug),
+            original.base.children,
             ['prompt'],
           );
-          assert.equal(textValue(section.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
+          assert.equal(textValue(section.build.data({ languages: ['en', 'uk'] }).locale?.uk?.prompt), 'Питання');
 
           const sparse = section.build.overrides(
             { locale: { title: { uk: 'Оновлено' } } },
@@ -112,31 +108,31 @@ describe('Configurators', () => {
             () =>
               section.build.overrides(
                 {
-                  content: { items: { prompt: false } },
+                  prompt: false,
                 },
                 { languages: ['en', 'uk'] },
               ),
-            /order is required/,
+            /children is required/,
           );
           assert.throws(
             () =>
               section.build.overrides(
                 {
-                  content: { additionalItems: { extra }, order: ['prompt'] },
+                  children: ['prompt'], extra,
                 },
                 { languages: ['en', 'uk'] },
               ),
-            /Missing slug/,
+            /Unlisted|Missing slug|unlisted/i,
           );
           assert.throws(
             () =>
               section.build.overrides(
                 {
-                  content: { additionalItems: { extra }, order: ['prompt', 'extra', 'extra'] },
+                  children: ['prompt', 'extra', 'extra'], extra,
                 },
                 { languages: ['en', 'uk'] },
               ),
-            /Duplicate slug/,
+            /Duplicate slug|Duplicate placement/i,
           );
           assert.throws(
             () => section.build.overrides({ id: id('09') } as never, { languages: ['en', 'uk'] }),
@@ -162,19 +158,20 @@ describe('Configurators', () => {
         for (const create of definitions) {
           const section = create();
           const one = section.build.overrides(
-            { content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } },
+            { prompt: { locale: { value: { uk: 'Один' } } } },
             { languages: ['en', 'uk'] },
           );
           const two = section.build.overrides(
-            { content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } },
+            { prompt: { locale: { value: { uk: 'Два' } } } },
             { languages: ['en', 'uk'] },
           );
-          assert.equal(textValue(one.locale?.uk?.content), 'Один');
-          assert.equal(textValue(two.locale?.uk?.content), 'Два');
+          assert.equal(textValue(one.locale?.uk?.prompt), 'Один');
+          assert.equal(textValue(two.locale?.uk?.prompt), 'Два');
           const base = section.build.data({ languages: ['en', 'uk'] });
-          assert.equal(textValue(base.locale?.uk?.content), 'Питання');
-          if (one.base.content) one.base.content[0]!.slug = 'tampered';
-          assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
+          assert.equal(textValue(base.locale?.uk?.prompt), 'Питання');
+          if (typeof one.base.prompt === 'object' && one.base.prompt !== null)
+            (one.base.prompt as { slug?: string }).slug = 'tampered';
+          assert.equal((section.build.data({ languages: ['en', 'uk'] }).base.prompt as {slug?: string})?.slug, 'prompt');
         }
       });
 
@@ -186,12 +183,12 @@ describe('Configurators', () => {
           assert.equal(one.locale?.en, undefined);
           const replacement = section.build.overrides(
             {
-              content: { items: { prompt: { locale: { value: { uk: 'Новий текст' } } } } },
+              prompt: { locale: { value: { uk: 'Новий текст' } } },
             },
             { languages: ['uk'] },
           );
           assert.deepEqual(Object.keys(replacement.locale ?? {}), ['uk']);
-          assert.equal(textValue(replacement.locale?.uk?.content), 'Новий текст');
+          assert.equal(textValue(replacement.locale?.uk?.prompt), 'Новий текст');
           assert.throws(() => section.build.data({ languages: [] }), /nonempty languages/);
           assert.throws(() => section.build.data({ languages: ['uk', 'uk'] }), /unique/);
         }
