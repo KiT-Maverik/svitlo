@@ -95,7 +95,7 @@ test('Carousel rejects mismatched kinds, duplicate IDs, bad paths and missing so
   assert.throws(
     () =>
       materializeCarousel(
-        { ...original, diagram: { ...image, type: 'checkpoint' as never }, children: ['diagram'] },
+        { ...original, diagram: { ...image, type: 'checkpoint' as never } },
         context().renderer,
       ),
     /invalid child/,
