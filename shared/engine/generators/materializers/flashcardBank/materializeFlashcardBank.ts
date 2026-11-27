@@ -122,14 +122,15 @@ export function materializeFlashcardBankDraft(
 type Card = FlashcardBankWorkflowStage3['config']['flashcards']['items'][string];
 
 /** Expand a single reviewed edge into both existing immutable Card UUID endpoints. */
+type RelationProjection = { children: string[] } & Record<string, Flashcard_Relationship | string[]>;
 function projectRelationships(
   bank: FlashcardBankWorkflowStage3,
-): Readonly<Record<string, { items: Record<string, Flashcard_Relationship>; order: string[] }>> {
+): Readonly<Record<string, RelationProjection>> {
   const cards = bank.config.flashcards.items;
   const edges = bank.config.relationships;
   assertBankOrder(edges.items, edges.order, 'Flashcard relationship graph', false);
-  const projected: Record<string, { items: Record<string, Flashcard_Relationship>; order: string[] }> =
-    Object.fromEntries(bank.config.flashcards.order.map(slug => [slug, { items: {}, order: [] }]));
+  const projected: Record<string, RelationProjection> =
+    Object.fromEntries(bank.config.flashcards.order.map(slug => [slug, { children: [] }]));
   const seenIds = new Set<string>();
   const seenPairs = new Set<string>();
   for (const key of edges.order) {
@@ -153,13 +154,13 @@ function projectRelationships(
     ] as const) {
       const targetId = cards[to].config.id;
       assertBankUuid(targetId, 'relationship target Card UUID');
-      projected[from].items[key] = {
+      projected[from][key] = {
         relationshipId: edge.relationshipId,
         type: edge.type,
         relatedFlashcardId: targetId,
         position,
       };
-      projected[from].order.push(key);
+      projected[from].children.push(key);
     }
   }
   return projected;
@@ -173,9 +174,11 @@ function checkSides(card: Card, slug: string): void {
   for (const role of ['front', 'back', 'hint'] as const) {
     const side = card.config.content[role];
     if (!side) continue;
-    assertBankOrder(side.items, side.order, 'Flashcard ' + slug + ' ' + role, role !== 'hint');
-    for (const key of side.order) {
-      const node = side.items[key];
+    const items = Object.fromEntries(Object.entries(side).filter(([key]) => key !== 'children'));
+    assertBankOrder(items, side.children, 'Flashcard ' + slug + ' ' + role, role !== 'hint');
+    for (const key of side.children) {
+      const node = side[key];
+      if (!node || Array.isArray(node)) throw new Error('Invalid Flashcard Side child ' + key);
       const config = 'config' in node ? node.config : node;
       if (config.slug !== key)
         throw new Error('Flashcard Side Block slug mismatch at ' + slug + '/' + role + '/' + key);
@@ -267,7 +270,7 @@ function planFlashcardBank(
       ...card.config,
       parameters: {
         ...card.config.parameters,
-        ...(projected.order.length ? { relationships: projected } : {}),
+        ...(projected.children.length ? { relationships: projected } : {}),
       },
     };
     const output = materializeFlashcard(
