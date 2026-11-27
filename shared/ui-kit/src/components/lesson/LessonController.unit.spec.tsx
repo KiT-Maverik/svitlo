@@ -4,14 +4,15 @@ import { describe, expect, it } from 'vitest';
 
 import type {
   AssessmentResourceLoader,
-  ContentBlock_Checkpoint_Data,
   ContentBlock_Text_Data,
   Disability,
   Flashcard_Data,
-  FlashcardsSection_Data,
-  Lesson_Data,
-  QuizSection_Data,
 } from '@svitlo/engine/runtime';
+
+import type { CheckpointViewProps, LessonViewProps, SectionViewProps } from '../../presentation';
+
+type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
@@ -30,7 +31,7 @@ const text = (number: number, value: string): ContentBlock_Text_Data => ({
   params: {},
   locale: { value },
 });
-const checkpoint = (required: boolean): ContentBlock_Checkpoint_Data => ({
+const checkpoint = (required: boolean): CheckpointViewProps => ({
   id: uuid(10),
   slug: 'checkpoint',
   type: 'checkpoint',
@@ -48,7 +49,7 @@ const checkpoint = (required: boolean): ContentBlock_Checkpoint_Data => ({
   ],
 });
 
-function fixture(required: boolean, allowNavigation = true): Lesson_Data {
+function fixture(required: boolean, allowNavigation = true): LessonViewProps {
   return {
     id: uuid(1),
     slug: 'light',
@@ -256,11 +257,11 @@ describe('Engine Props Lesson Controller', () => {
       type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
       content: {
-        front: [text(91, 'What travels in a straight line?')],
-        back: [text(92, 'Light does.')],
+        front: { children: ['prompt'], prompt: text(91, 'What travels in a straight line?') },
+        back: { children: ['answer'], answer: text(92, 'Light does.') },
       },
     };
-    const recall: FlashcardsSection_Data = {
+    const recall: FlashcardsSectionViewProps = {
       id: uuid(93),
       slug: 'recall',
       type: 'flashcards',
@@ -376,7 +377,7 @@ describe('Engine Props Lesson Controller', () => {
         },
       },
     };
-    const quiz: QuizSection_Data = {
+    const quiz: QuizSectionViewProps = {
       id: uuid(24),
       slug: 'quiz',
       type: 'quiz',
