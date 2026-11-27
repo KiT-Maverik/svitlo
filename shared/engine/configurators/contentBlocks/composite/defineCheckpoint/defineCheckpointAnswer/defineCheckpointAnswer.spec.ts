@@ -33,6 +33,13 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     const { answer, first, second } = example();
     const config = { id: answer.id, slug: answer.slug, type: answer.type, children: ['second', 'first'], first, second };
     assert.equal(checkpointAnswer_Config_Schema.safeParse(config).success, true);
+    for (const fake of [
+      { id: first.id, slug: first.slug, type: 'text' },
+      { ...first, build: {} },
+      { ...first, config: { base: { id: id('74'), slug: 'first', type: 'text' } } },
+    ]) {
+      assert.equal(checkpointAnswer_Config_Schema.safeParse({ ...config, first: fake }).success, false);
+    }
     const built = answer.build.data(scope);
     assert.deepEqual(built.base.children, ['second', 'first']);
     assert.equal((built.base.second as { type: string }).type, 'text');

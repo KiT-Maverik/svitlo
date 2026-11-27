@@ -14,6 +14,7 @@ import type {
   ContentBlock_CheckpointItem_Configurator,
 } from './defineCheckpointItem';
 import { checkpointItem_Data_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
+import { hasConfiguratorBuildIdentity } from './configuratorBoundary';
 
 export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Data } from './defineCheckpointAnswer';
 
@@ -56,9 +57,8 @@ export const checkpoint_Config_Schema = checkpoint_Metadata_Config_Schema
     }
     for (const key of value.children) {
       const child = value[key];
-      if (child !== null && typeof child === 'object' && !Array.isArray(child) &&
-          (child as Record<string, unknown>).type === 'checkpointItem') continue;
-      ctx.addIssue({ code: 'custom', path: [key], message: 'Checkpoint requires CheckpointItem configurators' });
+      if (hasConfiguratorBuildIdentity(child, 'checkpointItem')) continue;
+      ctx.addIssue({ code: 'custom', path: [key], message: 'Checkpoint requires CheckpointItem configurators with a valid Build API and identity' });
     }
   });
 export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;

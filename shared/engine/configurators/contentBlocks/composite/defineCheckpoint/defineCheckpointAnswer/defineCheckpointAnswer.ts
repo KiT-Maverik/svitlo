@@ -261,10 +261,13 @@ export const defineCheckpointAnswer = <
     }
   };
 
+  // Authored placement keys cannot override the Answer's fixed identity.
+  // Keeping identity after the generic spread also preserves the literal
+  // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
   const result = {
+    ...initialItems,
     id, slug, type,
     children: [...initialOrder],
-    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: { base, locales: () => ({ locale: {} }), validate },
@@ -277,7 +280,11 @@ export const defineCheckpointAnswer = <
  * at the parent collection boundary, retaining the concrete direct children.
  */
 type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
-export type ContentBlock_CheckpointAnswer_Configurator = Omit<DefinedAnswer, 'build'> & {
+export type ContentBlock_CheckpointAnswer_Configurator =
+  Omit<DefinedAnswer, 'id' | 'slug' | 'type' | 'build'> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'checkpointAnswer';
   readonly build: Omit<DefinedAnswer['build'], 'overrides'> & {
     overrides(
       patch: never,

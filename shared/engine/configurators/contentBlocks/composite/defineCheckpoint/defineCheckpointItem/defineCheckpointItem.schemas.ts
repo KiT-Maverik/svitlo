@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { hasConfiguratorBuildIdentity } from '../configuratorBoundary';
+
 import { identityBase_Schema } from '../../../../_shared__configurators/common.schemas';
 import type {
   ContentBlock_Text_Configurator,
@@ -20,11 +22,11 @@ const checkpointItemBase = identityBase_Schema.extend({
 });
 export const checkpointItem_Config_Schema = checkpointItemBase.extend({
   question: z.custom<ContentBlock_Text_Configurator>(
-    value => value !== null && typeof value === 'object' && 'type' in value && value.type === 'text',
+    value => hasConfiguratorBuildIdentity(value, 'text'),
     { message: 'CheckpointItem question must be a Text configurator' },
   ),
   answer: z.custom<ContentBlock_CheckpointAnswer_Configurator>(
-    value => value !== null && typeof value === 'object' && 'type' in value && value.type === 'checkpointAnswer',
+    value => hasConfiguratorBuildIdentity(value, 'checkpointAnswer'),
     { message: 'CheckpointItem answer must be a CheckpointAnswer configurator' },
   ),
 });
@@ -33,6 +35,13 @@ export type ContentBlock_CheckpointItem_Config = z.infer<typeof checkpointItem_C
 export const checkpointItem_Data_Schema = checkpointItemBase.extend({
   question: text_Data_Schema,
   answer: checkpointAnswer_Data_Schema,
+}).superRefine((value, ctx) => {
+  if (value.question.params.disabled === true) {
+    ctx.addIssue({
+      code: 'custom', path: ['question', 'params', 'disabled'],
+      message: 'The mandatory Checkpoint question must remain enabled',
+    });
+  }
 });
 export type ContentBlock_CheckpointItem_Data = Omit<z.infer<typeof checkpointItem_Data_Schema>, 'question'> & {
   question: ContentBlock_Text_Data;

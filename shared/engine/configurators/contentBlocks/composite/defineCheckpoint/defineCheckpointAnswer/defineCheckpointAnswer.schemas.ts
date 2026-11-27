@@ -7,6 +7,7 @@ import {
 } from '../../../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import { primitiveContentBlockConfigurator_Schema } from '../../../contentBlock.schemas';
+import { hasConfiguratorBuildIdentity } from '../configuratorBoundary';
 import type {
   ContentBlock_Audio_Configurator,
   ContentBlock_Audio_Data,
@@ -103,8 +104,10 @@ export const checkpointAnswer_Config_Schema = answerBase
     let enabled = 0;
     for (const key of value.children) {
       const child = value[key];
-      if (!primitiveContentBlockConfigurator_Schema.safeParse(child).success) {
-        ctx.addIssue({ code: 'custom', path: [key], message: 'CheckpointAnswer requires a Primitive Configurator' });
+      const valid = primitiveContentBlockConfigurator_Schema.safeParse(child).success &&
+        hasConfiguratorBuildIdentity(child);
+      if (!valid) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'CheckpointAnswer requires a Primitive Configurator with a valid Build API and identity' });
       }
       if (child !== null && typeof child === 'object' && !Array.isArray(child) &&
           'config' in child && child.config !== null && typeof child.config === 'object' &&
@@ -112,7 +115,7 @@ export const checkpointAnswer_Config_Schema = answerBase
           'params' in child.config.base && child.config.base.params !== null &&
           typeof child.config.base.params === 'object' && 'disabled' in child.config.base.params &&
           child.config.base.params.disabled === true) continue;
-      if (primitiveContentBlockConfigurator_Schema.safeParse(child).success) enabled++;
+      if (valid) enabled++;
     }
     if (enabled === 0) ctx.addIssue({
       code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',

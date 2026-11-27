@@ -70,6 +70,17 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     );
     const localized = mergeForValidation(result.base, result.locale?.uk ?? {});
     assert.equal(checkpoint_Data_Schema.safeParse(localized).success, true);
+    const firstData = localized.first as { question: { params: Record<string, unknown> } };
+    assert.equal(checkpoint_Data_Schema.safeParse({
+      ...localized,
+      first: {
+        ...firstData,
+        question: {
+          ...firstData.question,
+          params: { ...firstData.question.params, disabled: true },
+        },
+      },
+    }).success, false);
     assert.equal(JSON.stringify(result).includes('"items"'), false);
     assert.equal(JSON.stringify(result).includes('"order"'), false);
   });
@@ -138,6 +149,15 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     for (const candidate of cases) {
       assert.equal(checkpoint_Config_Schema.safeParse(candidate).success, false);
       assert.throws(() => defineCheckpoint(candidate as never).build.data({ languages: ['en'] }));
+    }
+    for (const impostor of [
+      { id: first.id, slug: first.slug, type: 'checkpointItem' },
+      { ...first, build: {} },
+      { ...first, config: { base: { id: id('70'), slug: 'first', type: 'checkpointItem' } } },
+    ]) {
+      assert.equal(checkpoint_Config_Schema.safeParse({
+        ...metadata, children: ['first'], first: impostor,
+      }).success, false);
     }
   });
 

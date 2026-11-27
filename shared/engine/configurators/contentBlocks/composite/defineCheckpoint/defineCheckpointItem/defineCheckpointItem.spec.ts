@@ -61,6 +61,19 @@ describe('defineCheckpointItem named question/answer roles', () => {
     }
     assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, question: undefined }).success, false);
     assert.equal(checkpointItem_Config_Schema.safeParse({ ...config, answer: undefined }).success, false);
+    // Public Config schema must reject type-only impostors and identity mismatches.
+    assert.equal(checkpointItem_Config_Schema.safeParse({
+      ...config, question: { id: question.id, slug: question.slug, type: 'text' },
+    }).success, false);
+    assert.equal(checkpointItem_Config_Schema.safeParse({
+      ...config, answer: { id: answer.id, slug: answer.slug, type: 'checkpointAnswer' },
+    }).success, false);
+    assert.equal(checkpointItem_Config_Schema.safeParse({
+      ...config, question: { ...question, build: {} },
+    }).success, false);
+    assert.equal(checkpointItem_Config_Schema.safeParse({
+      ...config, answer: { ...answer, config: { base: { id: id('79'), slug: answer.slug, type: 'checkpointAnswer' } } },
+    }).success, false);
     const disabledQuestion = defineText({
       id: id('70'), slug: 'question', type: 'text',
       params: { disabled: true }, locale: { value: 'Disabled' },
@@ -136,6 +149,11 @@ describe('defineCheckpointItem named question/answer roles', () => {
     const built = item.build.data(scope);
     const localized = mergeForValidation(built.base, built.locale?.uk ?? {});
     assert.equal(checkpointItem_Data_Schema.safeParse(localized).success, true);
+    const question = localized.question as { params: Record<string, unknown> };
+    assert.equal(checkpointItem_Data_Schema.safeParse({
+      ...localized,
+      question: { ...question, params: { ...question.params, disabled: true } },
+    }).success, false);
     assert.equal(checkpointItem_Data_Schema.safeParse({
       ...localized,
       answer: { ...localized.answer, second: { id: id('6c'), slug: 'second', type: 'carousel' } },
