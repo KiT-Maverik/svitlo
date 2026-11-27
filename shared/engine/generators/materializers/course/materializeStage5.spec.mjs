@@ -50,7 +50,9 @@ const chapter = () => ({
     type: 'chapter',
     slug: 'chapterOne',
     locale: { title: { uk: 'Розділ' } },
-    content: { items: { lessonOne: lesson('lessonOne'), episodeOne: episode() }, order: ['lessonOne', 'episodeOne'] },
+    children: ['lessonOne', 'episodeOne'],
+    lessonOne: lesson('lessonOne'),
+    episodeOne: episode(),
   },
   production: unitMeta,
 });
@@ -59,7 +61,8 @@ const moduleNode = () => ({
     type: 'module',
     slug: 'moduleOne',
     locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapterOne: chapter() }, order: ['chapterOne'] },
+    children: ['chapterOne'],
+    chapterOne: chapter(),
   },
   production: unitMeta,
 });
@@ -70,10 +73,9 @@ const source = () => ({
     slug: 'skyBasics',
     params: { age: { min: 6, max: 10 } },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-    content: {
-      items: { moduleOne: moduleNode(), directLesson: lesson('directLesson') },
-      order: ['moduleOne', 'directLesson'],
-    },
+    children: ['moduleOne', 'directLesson'],
+    moduleOne: moduleNode(),
+    directLesson: lesson('directLesson'),
   },
   production: {
     languages: { document: 'uk', planned: ['uk'] },
@@ -189,7 +191,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   const rootContent = first.files.find(f => f.path === root + '/index.ts').content;
   const chapterContent = first.files.find(f => f.path === root + '/moduleOne/chapterOne/index.ts').content;
   assert.match(rootContent, /directLesson/);
-  assert.match(rootContent, /order: \["moduleOne","directLesson"\]/);
+  assert.match(rootContent, /children: \["moduleOne","directLesson"\]/);
   assert.match(rootContent, /#coursesData\/3\/663572e7-bd85-4516-86e2-3de07d209e03\/constants/);
   assert.doesNotMatch(chapterContent, /#skillsData\/sampleSkill|sampleSkill\.id|outcomes|prerequisites/);
   assert.match(
@@ -198,7 +200,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   );
   assert.match(chapterContent, /lessonOne/);
   assert.match(chapterContent, /episodeOne/);
-  assert.match(chapterContent, /order: \["lessonOne","episodeOne"\]/);
+  assert.match(chapterContent, /children: \["lessonOne","episodeOne"\]/);
   assert.doesNotMatch(rootContent, /Reviewed original content order|Pending handoffs|const languages =/);
   const constants = first.files.find(f => f.path === root + '/constants.ts').content;
   assert.match(constants, /export type Languages = typeof languages/);
@@ -206,21 +208,21 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
 
 test('parent source identifiers refuse reserved local collisions rather than inventing aliases', () => {
   const input = source();
-  const module = input.config.content.items.moduleOne;
+  const module = input.config.moduleOne;
   module.config.slug = 'content';
-  input.config.content.items.content = module;
-  delete input.config.content.items.moduleOne;
-  input.config.content.order = ['content', 'directLesson'];
-  const chapter = module.config.content.items.chapterOne;
+  input.config.content = module;
+  delete input.config.moduleOne;
+  input.config.children = ['content', 'directLesson'];
+  const chapter = module.config.chapterOne;
   chapter.config.slug = 'content';
-  module.config.content.items.content = chapter;
-  delete module.config.content.items.chapterOne;
-  module.config.content.order = ['content'];
+  module.config.content = chapter;
+  delete module.config.chapterOne;
+  module.config.children = ['content'];
 
   assert.throws(
     () => materializeCourseStage5(input, options()),
-    /generated identifier collision "content"/,
-    'a parent slug must not shadow the generated content local',
+    /legacy.*wrapper|reserved/,
+    'reserved Course placement metadata cannot become a child key',
   );
 });
 
@@ -229,10 +231,10 @@ test('Course Stage 5 fails closed on unverified source, duplicate order and part
   unverified.verifySource = () => false;
   assert.throws(() => materializeCourseStage5(source(), unverified), /not independently verified/);
   const unordered = source();
-  unordered.config.content.order = ['moduleOne', 'moduleOne'];
+  unordered.config.children = ['moduleOne', 'moduleOne'];
   assert.throws(() => materializeCourseStage5(unordered, options()), /order/);
   const incomplete = source();
-  delete incomplete.config.content.items.directLesson.production.assessment;
+  delete incomplete.config.directLesson.production.assessment;
   assert.throws(() => materializeCourseStage5(incomplete, options()), /four explicit assessment/);
   const unreviewedSource = options();
   delete unreviewedSource.source.sourceBlobSha;
@@ -267,7 +269,7 @@ function fakeLesson() {
 }
 function patchedSource() {
   const course = source();
-  course.config.content.items.directLesson = {
+  course.config.directLesson = {
     config: { type: 'lesson', slug: 'directLesson', skills: [skill] },
     production: {
       kind: 'existing',
@@ -334,8 +336,8 @@ test('existing Lesson preserves source-authored plain Config patch and placement
 });
 test('reused Lesson UUID may occupy two direct Course placements with independent patches', () => {
   const input = patchedSource();
-  const original = input.config.content.items.directLesson;
-  input.config.content.items.secondLesson = {
+  const original = input.config.directLesson;
+  input.config.secondLesson = {
     config: { ...original.config, slug: 'secondLesson' },
     production: {
       ...original.production,
@@ -344,7 +346,7 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
       overrideRationale: undefined,
     },
   };
-  input.config.content.order.push('secondLesson');
+  input.config.children.push('secondLesson');
   const result = materializeCourseStage5(input, reuseOptions());
   const references = result.inventory.lessons.filter(row => row.id === reusedLessonId);
   assert.deepEqual(
@@ -364,14 +366,14 @@ test('reused Lesson UUID may occupy two direct Course placements with independen
   assert.match(index, /directLesson/);
   assert.match(index, /import \{ directLesson \} from "\.\/directLesson"/);
   assert.match(index, /"secondLesson": actualLesson/);
-  assert.match(index, /order: \["moduleOne","directLesson","secondLesson"\]/);
+  assert.match(index, /children: \["moduleOne","directLesson","secondLesson"\]/);
   assert.deepEqual(result.files, materializeCourseStage5(input, reuseOptions()).files);
 });
 
 test('repeated placements of one Lesson keep distinct reviewed override footers', () => {
   const input = patchedSource();
-  const first = input.config.content.items.directLesson;
-  input.config.content.items.secondLesson = {
+  const first = input.config.directLesson;
+  input.config.secondLesson = {
     config: { ...first.config, slug: 'secondLesson' },
     production: {
       ...first.production,
@@ -379,7 +381,7 @@ test('repeated placements of one Lesson keep distinct reviewed override footers'
       overrideRationale: 'Only the second placement gets this separately reviewed intention.',
     },
   };
-  input.config.content.order.push('secondLesson');
+  input.config.children.push('secondLesson');
   const before = structuredClone(input);
   const result = materializeCourseStage5(input, reuseOptions());
   const firstSource = result.files.find(file => file.path === root + '/directLesson/index.ts')?.content ?? '';
@@ -397,10 +399,10 @@ test('repeated placements of one Lesson keep distinct reviewed override footers'
 test('Course Lesson reuse requires an approved pinned dependency, never built author Props', () => {
   assert.throws(() => materializeCourseStage5(patchedSource(), options()), /trusted dependency resolver/);
   const noPatch = patchedSource();
-  delete noPatch.config.content.items.directLesson.production.sourcePatch;
+  delete noPatch.config.directLesson.production.sourcePatch;
   assert.throws(() => materializeCourseStage5(noPatch, reuseOptions()), /rationale without/);
   const prebuilt = patchedSource();
-  prebuilt.config.content.items.directLesson.production.existing.base = { locale: { title: 'Injected' } };
+  prebuilt.config.directLesson.production.existing.base = { locale: { title: 'Injected' } };
   assert.throws(() => materializeCourseStage5(prebuilt, reuseOptions()), /expected only \{id\}/);
   const stale = reuseOptions();
   const resolve = stale.resolveExistingLesson;
@@ -428,14 +430,15 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: { uk: 'Самостійний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = { params: { sections: { allowSkipping: true } } };
   const built = realLesson.build.overrides(raw, { languages: ['uk'] });
   assert.equal(built.base.params.sections.allowSkipping, true);
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -446,9 +449,8 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
         sourcePatch: raw,
         overrideRationale: 'Verified Course-local navigation accommodation',
       },
-    },
-  };
-  reviewed.config.content.order = ['reused'];
+    };
+  reviewed.config.children = ['reused'];
   const opts = reuseOptions(realLesson);
   const plan = materializeCourseStage5(reviewed, opts);
   assert.equal(
@@ -466,16 +468,17 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Основи' } },
-    content: { items: { reused: placeLesson(realLesson, raw) }, order: ['reused'] },
+    children: ['reused'],
+    reused: placeLesson(realLesson, raw),
   });
   const actualCourseBuild = actualCourse.build.data({ languages: ['uk'] });
-  assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
+  assert.equal(actualCourseBuild.base.reused.params.sections.allowSkipping, true);
   assert.equal(realLesson.build.data({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
 
 test('existing Lesson fails closed for a mismatched Course Skill even if author supplied matching SHA', () => {
   const input = patchedSource();
-  input.config.content.items.directLesson.config.skills = ['663572e7-bd85-4516-86e2-3de07d209e05'];
+  input.config.directLesson.config.skills = ['663572e7-bd85-4516-86e2-3de07d209e05'];
   assert.throws(
     () => materializeCourseStage5(input, reuseOptions()),
     /identity, SHA, Build API or source locale not verified/,
@@ -483,7 +486,7 @@ test('existing Lesson fails closed for a mismatched Course Skill even if author 
 });
 test('non-plain Course patch Configurator cannot be serialized into TypeScript', () => {
   const input = patchedSource();
-  input.config.content.items.directLesson.production.sourcePatch = {
+  input.config.directLesson.production.sourcePatch = {
     content: { items: { unsafe: { build: { data() {} } } } },
   };
   const opts = reuseOptions();
@@ -507,26 +510,26 @@ test('Course Lesson seed refuses an authored title without the reviewed document
 
 test('inventory follows all four Episode nesting levels and retains repeated Lesson placements', () => {
   const input = patchedSource();
-  const top = input.config.content;
-  const module = top.items.moduleOne.config.content;
-  const nested = module.items.chapterOne.config.content;
-  top.items.directEpisode = episode();
-  top.items.directChapter = chapter();
-  top.items.directChapter.config.slug = 'directChapter';
-  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
-  module.items.moduleEpisode = episode();
-  module.order = ['moduleEpisode', 'chapterOne'];
-  nested.items.reused = {
-    ...top.items.directLesson,
-    config: { ...top.items.directLesson.config, slug: 'reused' },
+  const top = input.config;
+  const module = top.moduleOne.config;
+  const nested = module.chapterOne.config;
+  top.directEpisode = episode();
+  top.directChapter = chapter();
+  top.directChapter.config.slug = 'directChapter';
+  top.children = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.moduleEpisode = episode();
+  module.children = ['moduleEpisode', 'chapterOne'];
+  nested.reused = {
+    ...top.directLesson,
+    config: { ...top.directLesson.config, slug: 'reused' },
     production: {
-      ...top.items.directLesson.production,
+      ...top.directLesson.production,
       existing: { id: reusedLessonId },
       sourcePatch: undefined,
       overrideRationale: undefined,
     },
   };
-  nested.order.push('reused');
+  nested.children.push('reused');
   const result = materializeCourseStage5(input, reuseOptions());
   const { lessons, episodes } = result.inventory;
   assert.deepEqual(
@@ -562,32 +565,32 @@ const assessmentSlot = (...dependencies) => ({
 
 test('reviewed Course preview with four Episodes, three Assessments and two new Lessons has nine owned stubs', () => {
   const input = patchedSource();
-  const top = input.config.content;
-  const module = top.items.moduleOne.config.content;
-  const chapterContent = module.items.chapterOne.config.content;
-  top.items.directEpisode = episode();
-  top.items.directChapter = chapter();
-  top.items.directChapter.config.slug = 'directChapter';
-  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
-  module.items.moduleEpisode = episode();
-  module.order = ['moduleEpisode', 'chapterOne'];
-  chapterContent.items.reused = {
-    ...top.items.directLesson,
-    config: { ...top.items.directLesson.config, slug: 'reused' },
+  const top = input.config;
+  const module = top.moduleOne.config;
+  const chapterContent = module.chapterOne.config;
+  top.directEpisode = episode();
+  top.directChapter = chapter();
+  top.directChapter.config.slug = 'directChapter';
+  top.children = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.moduleEpisode = episode();
+  module.children = ['moduleEpisode', 'chapterOne'];
+  chapterContent.reused = {
+    ...top.directLesson,
+    config: { ...top.directLesson.config, slug: 'reused' },
     production: {
-      ...top.items.directLesson.production,
+      ...top.directLesson.production,
       existing: { id: reusedLessonId },
       sourcePatch: undefined,
       overrideRationale: undefined,
     },
   };
-  chapterContent.order.push('reused');
-  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  chapterContent.order.push('chapterReview');
-  module.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  module.order.push('moduleReview');
-  top.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
-  top.order.push('finalReview');
+  chapterContent.children.push('reused');
+  chapterContent.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  chapterContent.children.push('chapterReview');
+  module.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  module.children.push('moduleReview');
+  top.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
+  top.children.push('finalReview');
   const plan = materializeCourseStage5(input, reuseOptions());
   assert.equal(plan.inventory.episodes.length, 4);
   assert.equal(plan.inventory.assessments.length, 3);
@@ -626,16 +629,16 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
 
 test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners with verified upstream Lessons', () => {
   const input = source();
-  const rootContent = input.config.content;
-  const moduleContent = rootContent.items.moduleOne.config.content;
-  const chapterContent = moduleContent.items.chapterOne.config.content;
+  const rootContent = input.config;
+  const moduleContent = rootContent.moduleOne.config;
+  const chapterContent = moduleContent.chapterOne.config;
 
-  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  chapterContent.order.push('chapterReview');
-  moduleContent.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  moduleContent.order.push('moduleReview');
-  rootContent.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
-  rootContent.order.push('finalReview');
+  chapterContent.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  chapterContent.children.push('chapterReview');
+  moduleContent.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  moduleContent.children.push('moduleReview');
+  rootContent.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
+  rootContent.children.push('finalReview');
 
   const result = materializeCourseStage5(input, options());
   assert.equal(result.inventory.assessments.length, 3);
@@ -678,7 +681,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(stub?.content.includes('TODO (BLOCKER): Complete and validate the Assessment Configurator'));
     assert.ok(parent?.content.includes(row.slug));
-    assert.ok(parent?.content.includes('order: '));
+    assert.ok(parent?.content.includes('children: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
@@ -689,8 +692,8 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
 
 test('legacy Course draft dependencies normalize to flat published Lesson placements', () => {
   const input = source();
-  input.config.content.items.finalReview = assessmentSlot('content/directLesson');
-  input.config.content.order.push('finalReview');
+  input.config.finalReview = assessmentSlot('content/directLesson');
+  input.config.children.push('finalReview');
   const result = materializeCourseStage5(input, options());
   assert.deepEqual(result.inventory.assessments[0].lessonDependencies, ['directLesson']);
   assert.equal(result.inventory.assessments[0].sourcePath, root + '/finalReview/draft.ts');
@@ -698,25 +701,25 @@ test('legacy Course draft dependencies normalize to flat published Lesson placem
 
 test('Course Assessment placement rejects missing, forward, repeated and ambiguous Lesson dependencies', () => {
   const base = source();
-  const content = base.config.content;
-  content.items.finalReview = assessmentSlot('missingLesson');
-  content.order.push('finalReview');
+  const content = base.config;
+  content.finalReview = assessmentSlot('missingLesson');
+  content.children.push('finalReview');
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
-  content.items.finalReview = assessmentSlot('directLesson', 'directLesson');
+  content.finalReview = assessmentSlot('directLesson', 'directLesson');
   assert.throws(() => materializeCourseStage5(base, options()), /duplicat/i);
 
-  content.items.finalReview = assessmentSlot('directLesson');
-  content.order.unshift(content.order.pop());
+  content.finalReview = assessmentSlot('directLesson');
+  content.children.unshift(content.children.pop());
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
   const another = source();
-  another.config.content.items.finalReview = assessmentSlot('directLesson');
-  another.config.content.order.push('finalReview');
-  another.config.content.items.moduleOne.config.content.items.chapterOne.config.content.items.chapterReview =
+  another.config.finalReview = assessmentSlot('directLesson');
+  another.config.children.push('finalReview');
+  another.config.moduleOne.config.chapterOne.config.chapterReview =
     assessmentSlot('directLesson');
-  const chapter = another.config.content.items.moduleOne.config.content.items.chapterOne.config.content;
-  chapter.order.push('chapterReview');
+  const chapter = another.config.moduleOne.config.chapterOne.config;
+  chapter.children.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
@@ -734,7 +737,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Оригінальний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const authoredSection = {
     production: {
@@ -747,9 +750,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'practice',
       params: {},
       locale: { title: { uk: 'Власна практика' }, navigationLabel: '1' },
-      content: {
-        items: {
-          message: {
+      children: ['message'], message: {
             config: {
               id: '663572e7-bd85-4516-86e2-3de07d209e30',
               type: 'text',
@@ -762,9 +763,6 @@ test('new Course-owned Section and Text block materialize below an overridden Le
               pedagogicalIntent: 'Keep this Text rationale only with this placement.',
             },
           },
-        },
-        order: ['message'],
-      },
     },
   };
   const scene = (id, slug) => ({
@@ -782,19 +780,19 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   });
   const directSceneId = '663572e7-bd85-4516-86e2-3de07d209e32';
   const nestedSceneId = '663572e7-bd85-4516-86e2-3de07d209e33';
-  authoredSection.config.content.items.directScene = scene(directSceneId, 'directScene');
-  authoredSection.config.content.items.sceneCarousel = {
+  authoredSection.config.directScene = scene(directSceneId, 'directScene');
+  authoredSection.config.sceneCarousel = {
     config: {
       id: '663572e7-bd85-4516-86e2-3de07d209e34',
       type: 'carousel',
       slug: 'sceneCarousel',
       params: { showArrows: true },
       locale: { title: { uk: 'Порівняй сцени' } },
-      slides: { items: { nestedScene: scene(nestedSceneId, 'nestedScene') }, order: ['nestedScene'] },
+      children: ['nestedScene'], nestedScene: scene(nestedSceneId, 'nestedScene'),
     },
     production: { purpose: 'Verify a nested Carousel Scene' },
   };
-  authoredSection.config.content.items.checkpoint = {
+  authoredSection.config.checkpoint = {
     production: { purpose: 'Use the nested Checkpoint to verify transfer.' },
     config: {
       id: '663572e7-bd85-4516-86e2-3de07d209e35',
@@ -802,9 +800,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'checkpoint',
       params: { requireCompletion: true },
       locale: { title: 'Check' },
-      content: {
-        items: {
-          first: {
+      children: ['first'], first: {
             production: { pedagogicalIntent: 'Prompt a learner to explain the observation.' },
             config: {
               id: '663572e7-bd85-4516-86e2-3de07d209e36',
@@ -826,9 +822,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
                   id: '663572e7-bd85-4516-86e2-3de07d209e38',
                   type: 'checkpointAnswer',
                   slug: 'answer',
-                  content: {
-                    items: {
-                      explanation: {
+                  children: ['explanation'], explanation: {
                         config: {
                           id: '663572e7-bd85-4516-86e2-3de07d209e39',
                           type: 'text',
@@ -838,22 +832,17 @@ test('new Course-owned Section and Text block materialize below an overridden Le
                         },
                         production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
                       },
-                    },
-                    order: ['explanation'],
-                  },
                 },
               },
             },
           },
-        },
-        order: ['first'],
-      },
     },
   };
-  authoredSection.config.content.order.push('directScene', 'sceneCarousel', 'checkpoint');
+  authoredSection.config.children.push('directScene', 'sceneCarousel', 'checkpoint');
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -862,23 +851,20 @@ test('new Course-owned Section and Text block materialize below an overridden Le
         assessment,
         sourceExportName: 'independentLesson',
         sourcePatch: {
-          section: {
-            additionalItems: { practice: { $create: 'course-section', source: authoredSection } },
-            order: ['practice'],
-          },
+          children: ['practice'],
+          practice: { $create: 'course-section', source: authoredSection },
         },
         overrideRationale: 'Course-specific extra practice is required',
       },
-    },
-  };
-  reviewed.config.content.order = ['reused'];
+    };
+  reviewed.config.children = ['reused'];
   const opts = reuseOptions(original);
   const plan = materializeCourse(reviewed, opts);
   const wrapper = plan.files.find(file => file.path === root + '/reused/index.ts')?.content;
   const section = plan.files.find(file => file.path === root + '/reused/sections/practice/index.ts')?.content;
   const block = plan.files.find(file => file.path === root + '/reused/sections/practice/message/index.ts')?.content;
   assert.match(wrapper ?? '', /import \{ practice \} from "\.\/sections\/practice"/);
-  assert.match(wrapper ?? '', /"additionalItems": \{practice\}/);
+  assert.match(wrapper ?? '', /"practice": practice/);
   assert.match(section ?? '', /defineContentSection/);
   assert.match(block ?? '', /defineText/);
   assert.match(block ?? '', /Тільки для цього курсу/);
@@ -888,7 +874,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
   assert.match(
     wrapper ?? '',
-    /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
+    /practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
   );
   assert.match(wrapper ?? '', /production\.pedagogicalIntent:\n \* Keep this Text rationale only with this placement/);
   assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
@@ -926,16 +912,16 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal(plan.inventory.lessons[0].overrideSourcePath, root + '/reused/index.ts');
   assert.deepEqual(plan.files, materializeCourse(reviewed, opts).files);
   const invalid = structuredClone(reviewed);
-  invalid.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.slug =
+  invalid.config.reused.production.sourcePatch.practice.source.config.slug =
     'other';
   assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
   const collision = structuredClone(reviewed);
-  collision.config.content.items.reused.production.sourcePatch.section.additionalItems.practice.source.config.id =
+  collision.config.reused.production.sourcePatch.practice.source.config.id =
     original.id;
   assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
 
-test('Course additionalItems binds only verified Sections and retains real nested Lesson Build semantics', () => {
+test('Course direct Section references bind only verified Sections and retain real Lesson Build semantics', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
   const { defineLesson, defineCourse, defineContentSection, defineText, placeLesson } = createRequire(import.meta.url)(
     path.join(engineRoot, 'dist/build.js'),
@@ -953,7 +939,8 @@ test('Course additionalItems binds only verified Sections and retains real neste
     slug: 'practice',
     params: {},
     locale: { title: { uk: 'Практика' }, navigationLabel: '1' },
-    content: { items: { message: extraBlock }, order: ['message'] },
+    children: ['message'],
+    message: extraBlock,
   });
   const original = defineLesson({
     id: reusedLessonId,
@@ -966,25 +953,22 @@ test('Course additionalItems binds only verified Sections and retains real neste
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: { uk: 'Самостійний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = {
-    section: {
-      additionalItems: {
-        practice: {
-          $ref: 'lesson-section',
-          lessonId: original.id,
-          sectionId: extraSection.id,
-          sourceSha: 'c'.repeat(40),
-          exportName: 'practice',
-        },
-      },
-      order: ['practice'],
+    children: ['practice'],
+    practice: {
+      $ref: 'lesson-section',
+      lessonId: original.id,
+      sectionId: extraSection.id,
+      sourceSha: 'c'.repeat(40),
+      exportName: 'practice',
     },
   };
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -995,9 +979,8 @@ test('Course additionalItems binds only verified Sections and retains real neste
         sourcePatch: raw,
         overrideRationale: 'Reviewed added practice Section',
       },
-    },
-  };
-  reviewed.config.content.order = ['reused'];
+    };
+  reviewed.config.children = ['reused'];
   const opts = {
     ...reuseOptions(original),
     resolveAddedSection(request) {
@@ -1014,23 +997,24 @@ test('Course additionalItems binds only verified Sections and retains real neste
   assert.match(index, /import \{ reused \} from "\.\/reused"/);
   assert.match(wrapper, /import \{ practice \} from "\.\/sections\/practice"/);
   assert.match(section, /import \{ practice \} from "#lessonsData\/1\//);
-  assert.match(wrapper, /"additionalItems": \{practice\}/);
+  assert.match(wrapper, /"practice": practice/);
   assert.doesNotMatch(wrapper, /"\$ref":/);
   assert.deepEqual(plan.files, materializeCourseStage5(reviewed, opts).files);
-  const bound = { section: { additionalItems: { practice: extraSection }, order: ['practice'] } };
+  const bound = { practice: extraSection, children: ['practice'] };
   const built = original.build.overrides(bound, { languages: ['uk'] });
   assert.equal(built.id, original.id);
-  assert.equal(built.base.section[0].type, 'content');
-  assert.deepEqual(original.build.data({ languages: ['uk'] }).base.section, []);
+  assert.equal(built.base.practice.type, 'content');
+  assert.deepEqual(original.build.data({ languages: ['uk'] }).base.children, []);
   const course = defineCourse({
     id: rootId,
     type: 'course',
     slug: 'skyBasics',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-    content: { items: { reused: placeLesson(original, bound) }, order: ['reused'] },
+    children: ['reused'],
+    reused: placeLesson(original, bound),
   });
-  assert.equal(course.build.data({ languages: ['uk'] }).base.content[0].section[0].type, 'content');
+  assert.equal(course.build.data({ languages: ['uk'] }).base.reused.practice.type, 'content');
 
   const denied = {
     ...opts,
@@ -1048,20 +1032,20 @@ test('Course Stage 5 normalizes reviewed English workflow fields and preserves o
     prerequisitesText: 'Start here',
     outcomesText: 'Learn to observe',
   };
-  const module = input.config.content.items.moduleOne;
+  const module = input.config.moduleOne;
   module.config.locale.title = 'Module';
-  const chapter = module.config.content.items.chapterOne;
+  const chapter = module.config.chapterOne;
   chapter.config.locale.title = { en: 'Chapter', uk: 'Розділ' };
-  chapter.config.content.items.lessonOne.config.locale.title = 'First Lesson';
-  input.config.content.items.directLesson.config.locale.title = { en: 'Lesson', uk: 'Урок' };
-  chapter.config.content.items.chapterReview = {
+  chapter.config.lessonOne.config.locale.title = 'First Lesson';
+  input.config.directLesson.config.locale.title = { en: 'Lesson', uk: 'Урок' };
+  chapter.config.chapterReview = {
     config: { type: 'assessment', locale: { title: 'Check knowledge' } },
     production: {
       purpose: 'Check understanding of the first Lesson',
       lessonDependencies: ['moduleOne/chapterOne/lessonOne'],
     },
   };
-  chapter.config.content.order.push('chapterReview');
+  chapter.config.children.push('chapterReview');
   const result = materializeCourseStage5(input, options());
   const file = suffix => {
     const found = result.files.find(item => item.path === suffix);
@@ -1108,7 +1092,7 @@ test('Course Build rejects a missing requested translation without changing inte
       slug: 'localizationTest',
       params: { languages: ['en', 'uk'] },
       locale,
-      content: { items: {}, order: [] },
+      children: [],
     });
   const incomplete = create({ title: { en: 'Sky' }, description: { en: 'Learn astronomy' } });
   const english = incomplete.build.data({ languages: ['en'] });
@@ -1126,7 +1110,9 @@ test('Course root scalar English title and description materialize as sparse loc
   const input = source();
   input.production.languages = { document: 'en', planned: ['en', 'uk'] };
   input.config.locale = { title: 'Sky', description: 'Explore the sky' };
-  input.config.content = { items: {}, order: [] };
+  delete input.config.moduleOne;
+  delete input.config.directLesson;
+  input.config.children = [];
   const plan = materializeCourseStage5(input, options());
   const rootSource = plan.files.find(file => file.path === root + '/index.ts')?.content ?? '';
   assert.match(rootSource, /"title": \{\s*"en": "Sky"/);

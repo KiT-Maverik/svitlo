@@ -100,14 +100,14 @@ export async function render(packageDirectory, mode) {
     try {
       publication = lesson.build.data({ languages, mode });
     } catch (error) {
-      throw new Error('Failed to build Lesson Props: ' + source, { cause: error });
+      throw new Error('Failed to build Lesson Data: ' + source, { cause: error });
     }
     if (publication?.base?.id !== id) {
       throw new Error('Built Lesson ID differs from authored ID: ' + source);
     }
     if (mode === 'production') {
       // Localized Section labels can live only in publication.locale, not in
-      // base.section. Inspect both fragments so a valid real UUID cannot hide
+      // base child placements. Inspect both fragments so a valid real UUID cannot hide
       // unfinished editorial copy from the strict publisher.
       if (containsPendingAssessmentLabel(publication.base) || containsPendingAssessmentLabel(publication.locale)) {
         throw new Error('Unresolved assessment Section draft label in Lesson ' + id);
@@ -115,7 +115,8 @@ export async function render(packageDirectory, mode) {
       // Do not write even intermediate Lesson JSON containing the reserved
       // assessment-draft namespace. The textbook build has a second, strict
       // resource/locale verifier after independent banks are staged.
-      for (const section of publication.base.section ?? []) {
+      for (const slug of publication.base.children ?? []) {
+        const section = publication.base[slug];
         if (typeof section.id === 'string' && section.id.startsWith('feedc0de-')) {
           throw new Error('Unresolved generated Section UUID in Lesson ' + id + ': ' + section.id);
         }
@@ -185,10 +186,10 @@ export async function main(args) {
   }
   if (action === '--write') {
     publishLessonData(output, files);
-    console.log('Published ' + files.size + ' Props-shaped Lesson files in ' + output);
+    console.log('Published ' + files.size + ' Data-shaped Lesson files in ' + output);
   } else {
     checkLessonData(output, files);
-    console.log('Verified ' + files.size + ' Props-shaped Lesson files in ' + output);
+    console.log('Verified ' + files.size + ' Data-shaped Lesson files in ' + output);
   }
 }
 

@@ -86,7 +86,9 @@ test('emitted Checkpoint → Item → Answer → Scene modules typecheck against
     id: id(4),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: { items: { interactive: scene, explanation }, order: ['interactive', 'explanation'] },
+    children: ['interactive', 'explanation'],
+    interactive: scene,
+    explanation,
   };
   const item = {
     id: id(2),
@@ -102,7 +104,8 @@ test('emitted Checkpoint → Item → Answer → Scene modules typecheck against
     type: 'checkpoint' as const,
     params: {},
     locale: { title: { uk: 'Підсумок' } },
-    content: { items: { first: item }, order: ['first'] },
+    children: ['first'],
+    first: item,
   };
 
   const result = materializeCheckpoint(checkpoint, {

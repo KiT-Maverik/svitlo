@@ -10,6 +10,7 @@ import type {
 import {
   buildChildData,
   buildChildOverrides,
+  mergeForValidation,
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
@@ -72,7 +73,9 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   else if (isObject(question.config.base.params) && question.config.base.params.disabled === true)
     fail('question', 'question', 'Question must remain enabled');
 
-  const answer = config?.answer;
+  // Narrow the external Configurator through the runtime structural boundary:
+  // its generic placement map must not stand in for the fixed Answer role.
+  const answer: unknown = config?.answer;
   if (
     !isObject(answer) ||
     answer.type !== 'checkpointAnswer' ||
@@ -93,20 +96,20 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
 
 type AnswerResource = ReturnType<ContentBlock_CheckpointAnswer_Configurator['build']['data']>;
 type AnswerOverride = {
-  base: { content?: ItemBase['answer'] };
-  locale: Partial<Record<LanguageCode, { content: Record<string, unknown>[] }>> | undefined;
+  base: Record<string, unknown>;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
-type ItemLocale = { question?: Record<string, unknown>; answer?: Record<string, unknown>[] };
+type ItemLocale = { question?: Record<string, unknown>; answer?: Record<string, unknown> };
 type ItemFiles = Partial<Record<LanguageCode, ItemLocale>>;
 type ItemPublication<Base> = { base: Base; locale: ItemFiles | undefined };
 type ItemBase = Pick<ContentBlock_CheckpointItem_Data, 'id' | 'slug' | 'type' | 'check'> & {
   question: ReturnType<ContentBlock_CheckpointItem_Config['question']['build']['data']>['base'];
-  answer: AnswerResource['base']['content'];
+  answer: AnswerResource['base'];
 };
 type ItemOverrideBase = {
   check?: true;
   question?: DeepPartial<ItemBase['question']>;
-  answer?: AnswerResource['base']['content'];
+  answer?: Record<string, unknown>;
 };
 
 export const defineCheckpointItem = <
@@ -131,7 +134,7 @@ export const defineCheckpointItem = <
     const builtAnswer = buildChildData(answer);
     const locale: ItemFiles = {};
     for (const [language, fields] of Object.entries(builtAnswer.locale ?? {})) {
-      (locale[language as LanguageCode] ??= {}).answer = fields.content;
+      (locale[language as LanguageCode] ??= {}).answer = fields;
     }
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
       (locale[language as LanguageCode] ??= {}).question = fields;
@@ -140,7 +143,7 @@ export const defineCheckpointItem = <
       base: {
         ...base,
         question: builtQuestion.base,
-        answer: builtAnswer.base.content,
+        answer: builtAnswer.base,
       },
       locale: Object.keys(locale).length ? locale : undefined,
     };
@@ -150,7 +153,7 @@ export const defineCheckpointItem = <
 
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answer, Added> & {
-      answer?: { content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> } };
+      answer?: ChildrenSupporting<Languages, Added>;
     },
     options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
@@ -178,12 +181,28 @@ export const defineCheckpointItem = <
       }
       if (patch.answer !== undefined) {
         const built = buildChildOverrides(answer, patch.answer as never) as unknown as AnswerOverride;
-        if (built.base.content) output.base.answer = built.base.content;
+        if (Object.keys(built.base).length) output.base.answer = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {}))
-          (locale[language as LanguageCode] ??= {}).answer = fields.content;
+          (locale[language as LanguageCode] ??= {}).answer = fields;
       }
       output.locale = Object.keys(locale).length ? locale : undefined;
-      validateRequestedPublication(checkpointItem_Data_Schema, data(options), languages, output);
+      // Answer is a fixed semantic role, but its nested collection may publish
+      // false tombstones. Resolve those for validation without expanding the
+      // published sparse patch or changing the learner-visible presentation.
+      const source = data(options);
+      for (const language of languages) {
+        const original = mergeForValidation(source.base, source.locale?.[language] ?? {});
+        const withBase = mergeForValidation(original, output.base);
+        const effective = mergeForValidation(withBase, output.locale?.[language] ?? {});
+        if (isObject(effective.answer) && isObject(output.base.answer)) {
+          const answer = { ...effective.answer };
+          for (const [key, value] of Object.entries(output.base.answer)) {
+            if (value === false) delete answer[key];
+          }
+          effective.answer = answer;
+        }
+        checkpointItem_Data_Schema.parse(effective);
+      }
       return output;
     } catch (error) {
       throw new Error(

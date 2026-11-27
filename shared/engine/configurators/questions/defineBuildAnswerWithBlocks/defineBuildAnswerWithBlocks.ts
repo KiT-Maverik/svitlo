@@ -19,6 +19,7 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   validateQuestionPublication,
+  type BlockMembers,
   type OrderedBlockPatch,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
@@ -45,8 +46,8 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   buildAnswerWithBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
-  candidate.content.correctSequence.order.forEach(key =>
-    assertEnabledBlock(candidate.content.correctSequence.items[key].config.base, 'content.correctSequence.' + key),
+  candidate.content.correctSequence.children.forEach(key =>
+    assertEnabledBlock((candidate.content.correctSequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.correctSequence.' + key),
   );
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
@@ -58,8 +59,8 @@ export type Question_BuildAnswerWithBlocks_Overrides<
   Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_BuildAnswerWithBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
-    correctSequence?: OrderedBlockPatch<Content['correctSequence']['items'], Added, Languages>;
-    distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
+    correctSequence?: OrderedBlockPatch<BlockMembers<Content['correctSequence']>, Added, Languages>;
+    distractors?: OrderedBlockPatch<BlockMembers<Content['distractors']>, Added, Languages>;
   };
 };
 
@@ -80,8 +81,8 @@ export const defineBuildAnswerWithBlocks = <
     slug: Slug;
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
-        correctSequence: { items: ChildrenSupporting<Languages, Content['correctSequence']['items']> };
-        distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
+        correctSequence: ChildrenSupporting<Languages, BlockMembers<Content['correctSequence']>>;
+        distractors: ChildrenSupporting<Languages, BlockMembers<Content['distractors']>>;
       };
   } & ConfigWithLanguages<Question_BuildAnswerWithBlocks_Config, Languages>,
 ) => {
@@ -119,9 +120,9 @@ export const defineBuildAnswerWithBlocks = <
         field === 'correctSequence',
       );
       if (field === 'correctSequence') {
-        result.base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
+        result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.correctSequence.' + key));
       }
-      base[field] = result.base;
+      if (Object.keys(result.base).length) base[field] = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {})[field] = entries;
     }
     return { base, locale };

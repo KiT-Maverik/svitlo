@@ -4,7 +4,7 @@ import { assessment_Config_Schema } from '../../configurators/assessments/define
 import {
   lessonWorkflowContentSection_Schema,
   lessonWorkflowQuizSection_Schema,
-  workflowOrdered_Schema,
+  workflowChildren_Schema,
 } from './lessonWorkflow.types';
 import { workflowLanguages_Schema } from './workflowLanguages.schemas';
 
@@ -45,7 +45,7 @@ export const assessmentWorkflowStage1_Schema = assessmentWorkflowSeed_Schema.ext
 export type AssessmentWorkflowStage1 = z.infer<typeof assessmentWorkflowStage1_Schema>;
 
 /** The Quiz is a single required owned node, not an optional Section list member. */
-const supportingSections = workflowOrdered_Schema(lessonWorkflowContentSection_Schema);
+const supportingSections = workflowChildren_Schema(z.strictObject({}), lessonWorkflowContentSection_Schema);
 
 export const assessmentWorkflowStage2_Schema = assessmentWorkflowStage1_Schema
   .extend({

@@ -20,6 +20,7 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   validateQuestionPublication,
+  type BlockMembers,
   type OrderedBlockPatch,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
@@ -49,12 +50,12 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   for (const group of ['correct', 'incorrect', 'distractors'] as const) {
     validateBlockCollection(groups[group], 'content.answers.' + group);
   }
-  if (groups.correct.order.length !== 1) throw new Error('SelectOneAnswer requires exactly one correct answer');
-  const slugs = (['correct', 'incorrect', 'distractors'] as const).flatMap(group => groups[group].order);
+  if (groups.correct.children.length !== 1) throw new Error('SelectOneAnswer requires exactly one correct answer');
+  const slugs = (['correct', 'incorrect', 'distractors'] as const).flatMap(group => groups[group].children);
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  assertEnabledBlock(groups.correct.items[groups.correct.order[0]].config.base, 'content.answers.correct');
+  assertEnabledBlock((groups.correct[groups.correct.children[0]] as ContentBlock_Primitive_Configurator).config.base, 'content.answers.correct');
 };
 
 type ContentShape = Question_SelectOneAnswer_Config['content'];
@@ -65,9 +66,9 @@ export type Question_SelectOneAnswer_Overrides<
 > = Question_SelectOneAnswer_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
     answers?: {
-      correct?: OrderedBlockPatch<Content['answers']['correct']['items'], Added, Languages>;
-      incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items'], Added, Languages>;
-      distractors?: OrderedBlockPatch<Content['answers']['distractors']['items'], Added, Languages>;
+      correct?: OrderedBlockPatch<BlockMembers<Content['answers']['correct']>, Added, Languages>;
+      incorrect?: OrderedBlockPatch<BlockMembers<Content['answers']['incorrect']>, Added, Languages>;
+      distractors?: OrderedBlockPatch<BlockMembers<Content['answers']['distractors']>, Added, Languages>;
     };
   };
 };
@@ -91,9 +92,9 @@ export const defineSelectOneAnswer = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         answers: {
-          correct: { items: ChildrenSupporting<Languages, Content['answers']['correct']['items']> };
-          incorrect: { items: ChildrenSupporting<Languages, Content['answers']['incorrect']['items']> };
-          distractors: { items: ChildrenSupporting<Languages, Content['answers']['distractors']['items']> };
+          correct: ChildrenSupporting<Languages, BlockMembers<Content['answers']['correct']>>;
+          incorrect: ChildrenSupporting<Languages, BlockMembers<Content['answers']['incorrect']>>;
+          distractors: ChildrenSupporting<Languages, BlockMembers<Content['answers']['distractors']>>;
         };
       };
   } & ConfigWithLanguages<Question_SelectOneAnswer_Config, Languages>,
@@ -147,19 +148,19 @@ export const defineSelectOneAnswer = <
         'content.answers.distractors',
       ),
     };
-    const correctCount = Object.keys(complete.correct.base).length;
+    const correctCount = complete.correct.effectiveBase.children.length;
     if (correctCount !== 1) {
       throw new Error('SelectOneAnswer has an invalid number of correct answers');
     }
-    assertEnabledBlock(Object.values(complete.correct.base)[0], 'content.answers.correct');
-    const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));
+    assertEnabledBlock(complete.correct.effectiveBase[complete.correct.effectiveBase.children[0]], 'content.answers.correct');
+    const activeKeys = groups.flatMap(group => complete[group].effectiveBase.children);
     if (new Set(activeKeys).size !== activeKeys.length) {
       throw new Error('An answer cannot occur in multiple scoring groups');
     }
     for (const group of groups) {
       if (patch && patch[group] === undefined) continue;
       const resolved = complete[group];
-      answers[group] = resolved.base;
+      if (Object.keys(resolved.base).length) answers[group] = resolved.base;
       for (const [language, blocks] of Object.entries(resolved.locale)) {
         const fields = (locale[language] ??= {});
         ((fields.answers ??= {}) as Record<string, unknown>)[group] = blocks;

@@ -132,25 +132,26 @@ function createStage2Normalizer(initialIds: readonly string[]) {
   const scenes: { id: string; slug: string; specification?: string }[] = [];
   const seen = new Set<string>(initialIds);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
-    if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
-      throw new Error(location + ': expected authored { items, order }');
-    const collection = value.items;
+    if (!isRecord(value) || !Array.isArray(value.children) ||
+        Object.hasOwn(value, 'content') || Object.hasOwn(value, 'section') || Object.hasOwn(value, 'slides'))
+      throw new Error(location + ': expected direct root children');
+    const own = new Set(['id', 'type', 'slug', 'params', 'locale', 'skills', 'events', 'draft', 'children']);
+    const collection = Object.fromEntries(Object.entries(value).filter(([key]) => !own.has(key)));
     const keys = Object.keys(collection);
-    if (
-      keys.length !== value.order.length ||
-      new Set(value.order).size !== keys.length ||
-      value.order.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key))
-    )
-      throw new Error(location + '.order: every authored child must be ordered once');
+    if (keys.length !== value.children.length ||
+        new Set(value.children).size !== keys.length ||
+        value.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key)))
+      throw new Error(location + '.children: every authored child must be ordered once');
     const items: Record<string, unknown> = {};
     for (const key of keys) {
-      if (!safeSlug.test(key)) throw new Error(location + ': unsafe child key ' + key);
-      const raw = node(collection[key], location + '.items.' + key);
-      if (raw.config.slug !== key) throw new Error(location + '.items.' + key + ': key and child slug disagree');
-      const child = unwrap(collection[key], location + '.items.' + key);
+      if (!safeSlug.test(key) || ['constructor', 'prototype', '__proto__'].includes(key))
+        throw new Error(location + ': unsafe child key ' + key);
+      const raw = node(collection[key], location + '.' + key);
+      if (raw.config.slug !== key) throw new Error(location + '.' + key + ': child slug mismatch');
+      const child = unwrap(collection[key], location + '.' + key);
       items[key] = wrapped ? { config: child, ...(raw.production ? { production: raw.production } : {}) } : child;
     }
-    return { items, order: [...value.order] };
+    return { children: [...value.children], ...items };
   };
 
   function unwrap(value: unknown, at: string): Record<string, unknown> {
@@ -171,13 +172,13 @@ function createStage2Normalizer(initialIds: readonly string[]) {
       });
 
     if (['content', 'practice', 'codingTask', 'learningFlow', 'quiz', 'flashcards'].includes(typ as string))
-      normalized.content = ordered(config.content, at + '.content', true);
-    else if (typ === 'carousel') normalized.slides = ordered(config.slides, at + '.slides', false);
-    else if (typ === 'checkpoint') normalized.content = ordered(config.content, at + '.content', false);
+      Object.assign(normalized, ordered(config, at, true));
+    else if (typ === 'carousel') Object.assign(normalized, ordered(config, at, false));
+    else if (typ === 'checkpoint') Object.assign(normalized, ordered(config, at, false));
     else if (typ === 'checkpointItem') {
       normalized.question = unwrap(config.question, at + '.question');
       normalized.answer = unwrap(config.answer, at + '.answer');
-    } else if (typ === 'checkpointAnswer') normalized.content = ordered(config.content, at + '.content', false);
+    } else if (typ === 'checkpointAnswer') Object.assign(normalized, ordered(config, at, false));
     else if (typ === 'quest') {
       for (const group of ['stages', 'tasks'] as const) {
         if (!isRecord(config[group]) || !Object.hasOwn(config[group], 'start'))
@@ -235,7 +236,7 @@ function createStage2Normalizer(initialIds: readonly string[]) {
 function normalizeStage2(input: LessonWorkflowStage2) {
   const normalizer = createStage2Normalizer([input.config.id]);
   return {
-    sections: normalizer.ordered(input.config.section, 'lesson.section', true),
+    sections: normalizer.ordered(input.config, 'lesson', true),
     metadata: normalizer.metadata,
     scenes: normalizer.scenes,
   };
@@ -513,7 +514,7 @@ function planLessonStage6(input: LessonWorkflowStage2, options: LessonStage6Opti
     {
       ...config,
       params: parsed.data,
-      section: sections,
+      ...sections,
     } as unknown as Parameters<typeof materializeLesson>[0],
     {
       documentLanguage,

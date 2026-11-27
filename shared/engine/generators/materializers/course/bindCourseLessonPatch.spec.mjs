@@ -22,11 +22,9 @@ const section = {
 };
 const patch = () => ({
   params: { sections: { allowSkipping: false } },
-  section: {
-    items: { intro: false },
-    additionalItems: { practice: ref() },
-    order: ['practice'],
-  },
+  intro: false,
+  practice: ref(),
+  children: ['practice'],
 });
 const resolveAddedSection = request => ({
   ...request,
@@ -37,14 +35,14 @@ const resolveAddedSection = request => ({
 test('inert Section reference binds to approved Configurator without mutating reviewed patch', () => {
   const raw = patch();
   const result = bindCourseLessonPatch(raw, { resolveAddedSection, placementPath: 'content/chapter/practice' });
-  assert.equal(result.patch.section.additionalItems.practice, section);
+  assert.equal(result.patch.practice, section);
   assert.deepEqual(raw, patch());
-  assert.deepEqual(result.patch.section.items, { intro: false });
-  assert.deepEqual(result.patch.section.order, ['practice']);
+  assert.equal(result.patch.intro, false);
+  assert.deepEqual(result.patch.children, ['practice']);
   assert.match(result.patchSource, /"allowSkipping": false/);
   assert.match(result.patchSource, /"intro": false/);
-  assert.match(result.patchSource, /"order": \["practice"\]/);
-  assert.match(result.patchSource, /"additionalItems": \{"practice": practice\}/);
+  assert.match(result.patchSource, /"children": \["practice"\]/);
+  assert.match(result.patchSource, /"practice": practice/);
   assert.equal(result.imports.length, 1);
   assert.match(result.imports[0], /#lessonsData\/1\/1368c1c9-2fd8-4007-b2c8-6bbfd98d5111\/sections\/practice/);
   assert.equal(result.patchSource.includes('"$ref"'), false);
@@ -60,11 +58,11 @@ test('Course placements keep the verified Section export name rather than invent
   assert.equal(first.imports[0], second.imports[0]);
   assert.equal(first.patchSource, second.patchSource);
   assert.equal(first.aliases.practice, 'practice');
-  assert.equal(first.patch.section.additionalItems.practice, second.patch.section.additionalItems.practice);
+  assert.equal(first.patch.practice, second.patch.practice);
 });
 
 test('plain patches without additions need no Section dependency resolver', () => {
-  const input = { section: { items: { intro: { locale: { title: { uk: 'Назва' } } } } } };
+  const input = { intro: { locale: { title: { uk: 'Назва' } } } };
   const result = bindCourseLessonPatch(input, { placementPath: 'content/intro' });
   assert.deepEqual(result.patch, input);
   assert.deepEqual(result.imports, []);
@@ -112,13 +110,13 @@ test('reject malformed additions, dangerous keys and executable payloads', () =>
     { ...ref(), $ref: 'runtime-import' },
   ]) {
     const input = patch();
-    input.section.additionalItems.practice = bad;
+    input.practice = bad;
     assert.throws(
       () => bindCourseLessonPatch(input, { resolveAddedSection, placementPath: 'content/test' }),
       /invalid declarative Section reference/,
     );
   }
-  const malicious = { section: { additionalItems: JSON.parse('{"__proto__":{}}') } };
+  const malicious = JSON.parse('{"__proto__":{"$ref":"lesson-section"}}');
   assert.throws(
     () => bindCourseLessonPatch(malicious, { resolveAddedSection, placementPath: 'content/test' }),
     /invalid declarative Section reference/,

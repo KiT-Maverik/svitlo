@@ -19,7 +19,8 @@ const input = () => ({
   slug: 'introduction',
   params: {},
   locale: { title: { en: 'Start', uk: 'Початок' }, navigationLabel: '1' },
-  content: { items: { prompt: block('prompt') }, order: ['prompt'] },
+  children: ['prompt'],
+  prompt: block('prompt'),
 });
 const renderContentBlock = (config: ChildConfig, options: { directory: string }) => ({
   exportName: config.slug,
@@ -55,8 +56,8 @@ test('practice: delegates exact subtree and preserves explicit collection/order/
     'generated TS must parse without errors',
   );
   assert.match(root, /definePracticeSection|definePracticeSection/);
-  assert.match(root, /typeof content.items, typeof languages/);
-  assert.match(root, /"order": \["prompt"\]/);
+  assert.match(root, /typeof __blocks, typeof languages/);
+  assert.match(root, /"children": \["prompt"\]/);
   assert.match(root, /"en": "Start"/);
   assert.doesNotMatch(root, /"uk": "Початок"/);
 
@@ -64,7 +65,7 @@ test('practice: delegates exact subtree and preserves explicit collection/order/
 });
 test('practice: fails closed for invalid ordering, identifiers and path escapes', () => {
   const config = input();
-  config.content.order = [];
+  config.children = [];
   assert.throws(
     () =>
       materializePracticeSection(config as Parameters<typeof materializePracticeSection>[0], {
@@ -72,10 +73,10 @@ test('practice: fails closed for invalid ordering, identifiers and path escapes'
         languagesImport: './languages',
         renderContentBlock,
       }),
-    /order/,
+    /children/,
   );
   const other = input();
-  other.content.items.prompt.slug = 'mismatch';
+  other.prompt.slug = 'mismatch';
   assert.throws(
     () =>
       materializePracticeSection(other as Parameters<typeof materializePracticeSection>[0], {

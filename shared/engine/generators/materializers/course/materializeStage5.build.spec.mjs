@@ -59,35 +59,26 @@ const input = {
       prerequisites: { skills: [circleSkill] },
     },
     locale: { title: { uk: 'Небо' }, description: { uk: 'Природа' } },
-    content: {
-      items: {
-        moduleOne: {
+    children: ['moduleOne'],
+    moduleOne: {
+      config: {
+        type: 'module',
+        slug: 'moduleOne',
+        locale: { title: { uk: 'Модуль' } },
+        children: ['chapterOne'],
+        chapterOne: {
           config: {
-            type: 'module',
-            slug: 'moduleOne',
-            locale: { title: { uk: 'Модуль' } },
-            content: {
-              items: {
-                chapterOne: {
-                  config: {
-                    type: 'chapter',
-                    slug: 'chapterOne',
-                    locale: { title: { uk: 'Розділ' } },
-                    content: {
-                      items: { lessonOne: pendingLesson, episodeOne: pendingEpisode },
-                      order: ['lessonOne', 'episodeOne'],
-                    },
-                  },
-                  production: unit(),
-                },
-              },
-              order: ['chapterOne'],
-            },
+            type: 'chapter',
+            slug: 'chapterOne',
+            locale: { title: { uk: 'Розділ' } },
+            children: ['lessonOne', 'episodeOne'],
+            lessonOne: pendingLesson,
+            episodeOne: pendingEpisode,
           },
           production: unit(),
         },
       },
-      order: ['moduleOne'],
+      production: unit(),
     },
   },
   production: {
@@ -108,7 +99,7 @@ const input = {
     openDecisions: {},
   },
 };
-function diagnostics(files) {
+function diagnostics(files, additionalPaths = {}) {
   const read = ts.readConfigFile(path.join(engineRoot, 'tsconfig.json'), ts.sys.readFile);
   if (read.error) throw Error(ts.flattenDiagnosticMessageText(read.error.messageText, '\n'));
   const parsed = ts.parseJsonConfigFileContent(read.config, ts.sys, engineRoot);
@@ -124,6 +115,7 @@ function diagnostics(files) {
       '@svitlo/engine/build': ['build.ts'],
       '#coursesData/*': ['temp/stage5-course-build/content/playground/data/courses/3/' + id + '/constants.ts'],
       '#skillsData/*': ['../../content/playground/data/skills/*.ts'],
+      ...additionalPaths,
     },
   };
   const virtual = new Map(
@@ -224,5 +216,191 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
       );
     }),
     [],
+  );
+});
+
+
+/**
+ * Compile REAL emitted Course-local Lesson patch modules, not only source-text
+ * snapshots or transpileModule syntax. The Configurator import is authored
+ * against the actual Engine Build API. This is a deliberate cross-workstream
+ * integration gate: it must fail if Lesson/Section override inference or
+ * A-owned placeLesson becomes incompatible with generated output.
+ */
+test('generated Course Lesson patch typechecks concrete nested, disabled and added Section placements', () => {
+  const build = createRequire(import.meta.url)(path.join(engineRoot, 'dist/build.js'));
+  const lessonId = '1368c1c9-2fd8-4007-b2c8-6bbfd98d5111';
+  const textConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e20',
+    slug: 'paragraph', type: 'text', params: {},
+    locale: { value: { uk: 'Прочитай' } },
+  };
+  const sectionConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e21',
+    slug: 'intro', type: 'content', params: {},
+    locale: { title: 'Вступ', navigationLabel: '1' },
+    children: ['paragraph'],
+  };
+  const lessonConfig = {
+    id: lessonId, slug: 'independentLesson', type: 'lesson', skills: [lightSkill],
+    params: {
+      languages: ['uk'], quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { uk: 'Окремий урок' } }, children: ['intro', 'recap'],
+  };
+  const recapTextConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e24',
+    slug: 'recapText', type: 'text', params: {},
+    locale: { value: { uk: 'Повторення' } },
+  };
+  const recapConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e25',
+    slug: 'recap', type: 'content', params: {},
+    locale: { title: 'Повторення', navigationLabel: '3' },
+    children: ['recapText'],
+  };
+  const extraText = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e22',
+    slug: 'message', type: 'text', params: {},
+    locale: { value: { uk: 'Практика' } },
+  };
+  const extraConfig = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e23',
+    slug: 'practice', type: 'content', params: {},
+    locale: { title: 'Практика', navigationLabel: '2' },
+    children: ['message'],
+  };
+  const paragraph = build.defineText(textConfig);
+  const intro = build.defineContentSection({ ...sectionConfig, paragraph });
+  const recapText = build.defineText(recapTextConfig);
+  const recap = build.defineContentSection({ ...recapConfig, recapText });
+  const independentLesson = build.defineLesson({ ...lessonConfig, intro, recap });
+  const message = build.defineText(extraText);
+  const practice = build.defineContentSection({ ...extraConfig, message });
+
+  const reviewed = structuredClone(input);
+  delete reviewed.config.moduleOne;
+  reviewed.config.children = ['reused'];
+  const sourceSha = 'c'.repeat(40);
+  reviewed.config.reused = {
+    config: { type: 'lesson', slug: 'reused', skills: [lightSkill] },
+    production: {
+      kind: 'existing', existing: { id: lessonId },
+      matching: {
+        sourceSha,
+        methodologySourcePath: 'content/playground/data/lessons/1/' + lessonId + '/methodology.md',
+        matchingRationale: 'Compared objectives and verified the Lesson',
+        languageEvidence: 'Verified uk source and text coverage',
+      },
+      assessment: {
+        questionBankRequired: false, flashcardBankRequired: false,
+        quizSectionRequired: false, flashcardsSectionRequired: false,
+      },
+      sourceExportName: 'independentLesson',
+      sourcePatch: {
+        intro: { paragraph: { locale: { value: { uk: 'Інший текст' } } } },
+        recap: false,
+        practice: {
+          $ref: 'lesson-section', lessonId,
+          sectionId: practice.id, sourceSha, exportName: 'practice',
+        },
+        children: ['intro', 'practice'],
+      },
+      overrideRationale: 'Reviewed accessibility improvement with additional practice',
+    },
+  };
+  const courseRoot = 'content/playground/data/courses/3/' + id;
+  const plan = materializeCourseStage5(reviewed, {
+    textbookRoot: 'content/playground',
+    source: { sourcePath: courseRoot + '/draft.ts', sourceBlobSha: '1'.repeat(40) },
+    verifySource: () => true,
+    resolveSkill({ id: skillId }) {
+      const modulePath = skillModules.get(skillId);
+      assert.ok(modulePath, 'Unexpected Skill');
+      const slug = modulePath.split('/').at(-1);
+      return {
+        approved: true, id: skillId, slug, exportName: slug,
+        importPath: '#skillsData/' + modulePath,
+        sourcePath: 'content/playground/data/skills/' + modulePath + '.ts',
+        sourceSha: 'a'.repeat(40),
+        configurator: { id: skillId, slug, type: 'skill',
+          config: { base: { id: skillId, slug } }, build: { data() {} } },
+      };
+    },
+    resolveExistingLesson(request) {
+      assert.equal(request.id, lessonId);
+      return { ...request, approved: true, configurator: independentLesson };
+    },
+    resolveAddedSection(request) {
+      assert.equal(request.id, practice.id);
+      return { ...request, approved: true, configurator: practice };
+    },
+  });
+  const emittedPath = courseRoot + '/reused/index.ts';
+  const wrapper = plan.files.find(file => file.path === emittedPath);
+  assert.ok(wrapper, 'Course Lesson placement must have a generated wrapper');
+  assert.match(wrapper.content, /CourseLessonBoundPatch<typeof independentLesson/);
+  assert.match(wrapper.content, /"practice": typeof practice/);
+  assert.match(wrapper.content, /"recap": false/);
+  const blockPath = courseRoot + '/reused/sections/intro/paragraph/index.ts';
+  const block = plan.files.find(file => file.path === blockPath);
+  assert.ok(block, 'nested existing ContentBlock override must be emitted');
+  assert.match(block.content, /independentLesson\.intro\.paragraph\.build\.overrides/);
+
+  const lessonPath = 'content/playground/data/lessons/1/' + lessonId + '/index.ts';
+  const practicePath = 'content/playground/data/lessons/1/' + lessonId + '/sections/practice/index.ts';
+  const lessonModule = [
+    "import { defineText, defineContentSection, defineLesson } from '@svitlo/engine/build';",
+    "const paragraph = defineText<'paragraph', ['uk']>(" + JSON.stringify(textConfig) + ');',
+    "const intro = defineContentSection<'intro', { paragraph: typeof paragraph }, ['uk']>({",
+    '  ...' + JSON.stringify(sectionConfig) + ', paragraph,',
+    '});',
+    "const recapText = defineText<'recapText', ['uk']>(" + JSON.stringify(recapTextConfig) + ');',
+    "const recap = defineContentSection<'recap', { recapText: typeof recapText }, ['uk']>({",
+    '  ...' + JSON.stringify(recapConfig) + ', recapText,',
+    '});',
+    "export const independentLesson = defineLesson<'independentLesson', ['uk'], { intro: typeof intro; recap: typeof recap }>({",
+    '  ...' + JSON.stringify(lessonConfig) + ',',
+    '  params: { ...' + JSON.stringify(lessonConfig.params) + ', languages: ["uk"] as const },',
+    '  intro, recap,',
+    '});',
+    '',
+  ].join('\n');
+  const practiceModule = [
+    "import { defineText, defineContentSection } from '@svitlo/engine/build';",
+    "const message = defineText<'message', ['uk']>(" + JSON.stringify(extraText) + ');',
+    "export const practice = defineContentSection<'practice', { message: typeof message }, ['uk']>({",
+    '  ...' + JSON.stringify(extraConfig) + ', message,',
+    '});',
+    '',
+  ].join('\n');
+  const files = [...plan.files,
+    { path: lessonPath, kind: 'typescript', content: lessonModule },
+    { path: practicePath, kind: 'typescript', content: practiceModule }];
+  const additionalPaths = {
+    ['#lessonsData/1/' + lessonId + '/index']: ['temp/stage5-course-build/' + lessonPath],
+    ['#lessonsData/1/' + lessonId + '/sections/practice']: ['temp/stage5-course-build/' + practicePath],
+  };
+  const format = errors => errors.map(error => {
+    const loc = error.file?.getLineAndCharacterOfPosition(error.start ?? 0);
+    return (error.file?.fileName ?? '<compiler>') + ':' + (loc ? loc.line + 1 : 0) +
+      ' TS' + error.code + ': ' + ts.flattenDiagnosticMessageText(error.messageText, ' ');
+  });
+  assert.deepEqual(format(diagnostics(files, additionalPaths)), []);
+
+  const unknownPlacement = files.map(file => file.path === emittedPath
+    ? { ...file, content: file.content.replace('"recap": false', '"unknownSection": false') }
+    : file);
+  assert.ok(
+    diagnostics(unknownPlacement, additionalPaths).some(error => error.file?.fileName.endsWith(emittedPath)),
+    'unknown Lesson Section must fail generated placement TypeScript',
+  );
+  const invalid = files.map(file => file.path === blockPath
+    ? { ...file, content: file.content.replace('"Інший текст"', '23') }
+    : file);
+  assert.ok(
+    diagnostics(invalid, additionalPaths).some(error => error.file?.fileName.endsWith(blockPath)),
+    'incorrect nested localized value must fail generated ContentBlock TypeScript',
   );
 });

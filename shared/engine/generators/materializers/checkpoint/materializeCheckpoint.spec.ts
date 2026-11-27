@@ -28,10 +28,9 @@ const example = () => {
     id: id(4),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: {
-      items: { practiceScene: scene, explanation: text('explanation', 8) },
-      order: ['practiceScene', 'explanation'],
-    },
+    children: ['practiceScene', 'explanation'],
+    practiceScene: scene,
+    explanation: text('explanation', 8),
   };
   const item = {
     id: id(2),
@@ -47,7 +46,8 @@ const example = () => {
     type: 'checkpoint' as const,
     params: { requireCompletion: true },
     locale: { title: { uk: 'Перевір себе', en: 'Check yourself' } },
-    content: { items: { first: item }, order: ['first'] },
+    children: ['first'],
+    first: item,
   };
 };
 const primitive = (config: { slug: string }, directory: string) => ({
@@ -111,7 +111,7 @@ test('Checkpoint materializes Item → Text + Answer → Primitive Scene/Text', 
   assert.equal(paths.filter(path => path.includes('/content/items/')).length, 0);
   assert.equal(paths.filter(path => path.includes('/slides/items/')).length, 0);
   const code = result.files.at(-1)!.content;
-  assert.match(code, /defineCheckpoint<"review", typeof content.items, typeof languages>/);
+  assert.match(code, /defineCheckpoint<"review", typeof __placements, typeof languages>/);
   assert.match(code, /"uk": "Перевір себе"/);
   assert.doesNotMatch(code, /"en": "Check yourself"/);
   assert.equal(
@@ -128,7 +128,7 @@ test('Checkpoint requires exact active order, correct item type and stable child
   const input = example();
   const options = { directory: '', documentLanguage: 'uk', languagesImport: './languages', renderItem: primitive };
   assert.throws(
-    () => materializeCheckpoint({ ...input, content: { ...input.content, order: [] } }, options),
+    () => materializeCheckpoint({ ...input, children: [] }, options),
     /exactly once/,
   );
   assert.throws(
@@ -136,7 +136,8 @@ test('Checkpoint requires exact active order, correct item type and stable child
       materializeCheckpoint(
         {
           ...input,
-          content: { items: { bad: { ...input.content.items.first, type: 'text' as never } }, order: ['bad'] },
+          children: ['bad'],
+          bad: { ...input.first, type: 'text' as never },
         },
         options,
       ),
@@ -145,7 +146,7 @@ test('Checkpoint requires exact active order, correct item type and stable child
   assert.throws(
     () =>
       materializeCheckpoint(
-        { ...input, content: { items: { first: { ...input.content.items.first, id: input.id } }, order: ['first'] } },
+        { ...input, first: { ...input.first, id: input.id } },
         options,
       ),
     /duplicate UUID/,
@@ -153,18 +154,13 @@ test('Checkpoint requires exact active order, correct item type and stable child
   assert.throws(() => materializeCheckpoint(input, { ...options, directory: '../escape' }), /unsafe source/);
 });
 
-test('Checkpoint omits a draft-disabled item rather than emitting false into final Config', () => {
-  const first = example().content.items.first;
-  const second = { ...first, id: id(11), slug: 'second' };
-  const input = { ...example(), content: { items: { first: false as const, second }, order: ['second'] } };
-  const result = materializeCheckpoint(input, {
-    directory: '',
-    documentLanguage: 'uk',
-    languagesImport: './languages',
-    renderItem: primitive,
-  });
-  assert.match(result.files.at(-1)!.content, /\bsecond,/);
-  assert.doesNotMatch(result.files.at(-1)!.content, /\bfirst\b/);
+test('Checkpoint rejects disabled authored child values rather than publishing tombstones', () => {
+  const input = example();
+  const options = { directory: '', documentLanguage: 'uk', languagesImport: './languages', renderItem: primitive };
+  assert.throws(
+    () => materializeCheckpoint({ ...input, first: false as never }, options),
+    /disabled/,
+  );
 });
 
 test('Checkpoint rejects a delegated item that writes into another module', () => {

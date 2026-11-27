@@ -33,7 +33,8 @@ const input = () => ({
     results: { visibility: 'immediate', showScore: true },
   },
   locale: { title: { en: 'Start', uk: 'Початок' }, navigationLabel: '1' },
-  content: { items: { prompt: block('prompt') }, order: ['prompt'] },
+  children: ['prompt'],
+  prompt: block('prompt'),
 });
 const renderContentBlock = (config: ChildConfig, options: { directory: string }) => ({
   exportName: config.slug,
@@ -66,8 +67,8 @@ test('quiz: delegates exact subtree and preserves explicit collection/order/sour
     'generated TS must parse without errors',
   );
   assert.match(root, /defineQuizSection|defineQuizSection/);
-  assert.match(root, /typeof content.items, typeof languages/);
-  assert.match(root, /"order": \["prompt"\]/);
+  assert.match(root, /typeof __blocks, typeof languages/);
+  assert.match(root, /"children": \["prompt"\]/);
   assert.match(root, /"en": "Start"/);
   assert.doesNotMatch(root, /"uk": "Початок"/);
   assert.match(root, new RegExp(id('03')));
@@ -76,7 +77,7 @@ test('quiz: delegates exact subtree and preserves explicit collection/order/sour
 });
 test('quiz: fails closed for invalid ordering, identifiers and path escapes', () => {
   const config = input();
-  config.content.order = [];
+  config.children = [];
   assert.throws(
     () =>
       materializeQuizSection(config as Parameters<typeof materializeQuizSection>[0], {
@@ -84,10 +85,10 @@ test('quiz: fails closed for invalid ordering, identifiers and path escapes', ()
         languagesImport: './languages',
         renderContentBlock,
       }),
-    /order/,
+    /children/,
   );
   const other = input();
-  other.content.items.prompt.slug = 'mismatch';
+  other.prompt.slug = 'mismatch';
   assert.throws(
     () =>
       materializeQuizSection(other as Parameters<typeof materializeQuizSection>[0], {

@@ -1,7 +1,13 @@
 import { z } from 'zod';
 
 import { identityBase_Schema } from '../../../../_shared__configurators/common.schemas';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
+import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import { primitiveContentBlockConfigurator_Schema } from '../../../contentBlock.schemas';
+import { hasConfiguratorBuildIdentity } from '../configuratorBoundary';
 import type {
   ContentBlock_Audio_Configurator,
   ContentBlock_Audio_Data,
@@ -88,19 +94,35 @@ export type Checkpoint_Allowed_DataBase =
   | ContentBlock_Youtube_DataBase;
 
 const answerBase = identityBase_Schema.extend({ type: z.literal('checkpointAnswer') });
-export const checkpointAnswer_Config_Schema = answerBase.extend({
-  content: z.object({
-    items: z.record(
-      z.string(),
-      z.custom<Checkpoint_Allowed_Configurator>(
-        value => primitiveContentBlockConfigurator_Schema.safeParse(value).success,
-        { message: 'CheckpointAnswer accepts only Primitive ContentBlocks' },
-      ),
-    ),
-    order: z.array(z.string()),
-  }),
-});
+export const checkpointAnswer_Config_Schema = answerBase
+  .extend({ children: z.array(z.string()).min(1) })
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    for (const issue of validateSlugAddressedContainer(value, primitiveContentBlockTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+    let enabled = 0;
+    for (const key of value.children) {
+      const child = value[key];
+      const valid = primitiveContentBlockConfigurator_Schema.safeParse(child).success &&
+        hasConfiguratorBuildIdentity(child);
+      if (!valid) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'CheckpointAnswer requires a Primitive Configurator with a valid Build API and identity' });
+      }
+      if (child !== null && typeof child === 'object' && !Array.isArray(child) &&
+          'config' in child && child.config !== null && typeof child.config === 'object' &&
+          'base' in child.config && child.config.base !== null && typeof child.config.base === 'object' &&
+          'params' in child.config.base && child.config.base.params !== null &&
+          typeof child.config.base.params === 'object' && 'disabled' in child.config.base.params &&
+          child.config.base.params.disabled === true) continue;
+      if (valid) enabled++;
+    }
+    if (enabled === 0) ctx.addIssue({
+      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
+    });
+  });
 export type ContentBlock_CheckpointAnswer_Config = z.infer<typeof checkpointAnswer_Config_Schema>;
+
 export const checkpointAnswer_Child_Data_Schema = z.discriminatedUnion('type', [
   audio_Data_Schema,
   code_Data_Schema,
@@ -112,19 +134,34 @@ export const checkpointAnswer_Child_Data_Schema = z.discriminatedUnion('type', [
   video_Data_Schema,
   youtube_Data_Schema,
 ]);
-export const checkpointAnswer_Data_Schema = answerBase.extend({
-  content: z.array(checkpointAnswer_Child_Data_Schema).min(1),
-});
-export type ContentBlock_CheckpointAnswer_Data = Omit<z.infer<typeof checkpointAnswer_Data_Schema>, 'content'> & {
-  content: Checkpoint_Allowed_Data[];
-};
+export const checkpointAnswer_Data_Schema = answerBase
+  .extend({ children: z.array(z.string()).min(1) })
+  .catchall(z.unknown())
+  .superRefine((value, ctx) => {
+    for (const issue of validateSlugAddressedContainer(value, primitiveContentBlockTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+    let enabled = 0;
+    for (const key of value.children) {
+      const parsed = checkpointAnswer_Child_Data_Schema.safeParse(value[key]);
+      if (!parsed.success) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Primitive answer child Data' });
+      } else if (parsed.data.params.disabled !== true) {
+        enabled++;
+      }
+    }
+    if (!enabled) ctx.addIssue({
+      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
+    });
+  });
+export type ContentBlock_CheckpointAnswer_Data = z.infer<typeof checkpointAnswer_Data_Schema>;
 export type CheckpointAnswer_Overrides<
   Items extends Record<string, Checkpoint_Allowed_Configurator>,
   Added extends Record<string, Checkpoint_Allowed_Configurator> = {},
 > = {
-  content?: {
-    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
-    additionalItems?: Added & { [Key in keyof Items]?: never };
-    order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-  };
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & {
+  [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
+} & Added & SafePlacementMap<Added> & {
+  [Key in keyof Items & keyof Added]?: never;
 };
