@@ -303,7 +303,6 @@ export const defineCheckpointAnswer = <
   // Keeping identity after the generic spread also preserves the literal
   // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
   const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
-  const buildApi = scopeBuild({ data, overrides });
   const overrides: {
     <const Patch extends Record<string, unknown>>(
       patch: Patch & CheckpointAnswer_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
@@ -315,6 +314,7 @@ export const defineCheckpointAnswer = <
       options: PublicationLanguageOptions<Languages>,
     ): AnswerPublication<AnswerOverrideBase>;
   } = overridesImplementation;
+  const buildApi = scopeBuild({ data, overrides });
 
   const result = {
     ...initialItems,
