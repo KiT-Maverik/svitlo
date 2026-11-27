@@ -242,7 +242,7 @@ describe('Configurators', () => {
         );
         assert.deepEqual(disabled.base.params?.screen?.starting?.content, []);
         assert.equal((disabled.base.prompt as {params?: {disabled?: boolean}})?.params?.disabled, true);
-        assert.equal((disabled.base.prompt as {slug?: string})?.slug, 'prompt');
+        assert.equal(Object.hasOwn(disabled.base.prompt as object, 'slug'), false, 'sparse child patches cannot repeat identity');
         assert.equal((quiz.build.data({ languages: ['uk'] }).base.prompt as { params: { disabled?: boolean } })?.params.disabled, undefined);
 
         const removed = quiz.build.overrides(
