@@ -19,12 +19,10 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateRequestedPublication,
+  validateSlugAddressedPublication,
+  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { assessment_Data_Schema } from '../../assessments/defineAssessment';
-import { episode_Data_Schema } from '../../episodes/defineEpisode';
-import { lesson_Data_Schema } from '../../lessons/defineLesson';
 import {
   chapter_Config_Schema,
   chapter_Data_Schema,
@@ -52,12 +50,13 @@ type ChapterPublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Data>>> | undefined;
 };
-type ChapterDataBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type ChapterDataBase<Items extends Record<string, Chapter_Child>> = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Chapter_Locale<'data'>>;
-  content: DeepPartial<Chapter_Child_Data>[];
-};
+  children: Extract<keyof Items, string>[];
+} & { [Key in keyof Items]: DeepPartial<Extract<Chapter_Child_Data, { type: Items[Key]['type'] }>> };
 type ChapterOverrideBase = Chapter_Metadata_Overrides & {
-  content?: DeepPartial<Chapter_Child_Data>[];
+  children?: string[];
+  [key: string]: unknown;
 };
 type ChapterConfigBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale: DeepPartial<Chapter_Locale<'config'>>;
@@ -76,6 +75,7 @@ const validate = (config: Chapter_Config): void => {
       path: 'content.items',
       itemLabel: 'Chapter child',
       allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
@@ -110,29 +110,6 @@ const validate = (config: Chapter_Config): void => {
   if (errors.length) throw new Error('Chapter validation failed: ' + errors.join('; '));
 };
 
-const parseChild = (value: unknown): Chapter_Child_Data => {
-  if (!isRecord(value)) throw new Error('Expected resolved Chapter child Props');
-  switch (value.type) {
-    case 'lesson': {
-      const parsed = lesson_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Data;
-    }
-    case 'episode': {
-      const parsed = episode_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Data;
-    }
-    case 'assessment': {
-      const parsed = assessment_Data_Schema.safeParse(value);
-      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Data;
-    }
-    default:
-      throw new Error('Unsupported Chapter child type: ' + String(value.type));
-  }
-};
-
 /**
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
@@ -148,7 +125,7 @@ export type Chapter_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase>;
+    data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase<Items>>;
     overrides<const Added extends Record<string, Chapter_Child> = {}>(
       patch: Chapter_Overrides<Items, Added> & {
         content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
@@ -272,7 +249,7 @@ export const defineChapter = <
     locale: onlyStrings(authored.locale),
   };
 
-  const data = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase<Items>> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -284,7 +261,7 @@ export const defineChapter = <
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
-    const result: ChapterPublication<ChapterDataBase> = {
+    const result: ChapterPublication<ChapterDataBase<Items>> = {
       base: {
         id,
         slug,
@@ -349,6 +326,7 @@ export const defineChapter = <
         path: 'content.additionalItems',
         itemLabel: 'Chapter child',
         allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
