@@ -20,7 +20,7 @@ const makeLesson = (title: string | { en: string; uk: string } = { en: 'Light', 
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title },
-    section: { items: {}, order: [] },
+    children: [],
   });
 
 const entry = (source = 'content/playground/first.ts'): LessonPublicationEntry => ({
@@ -28,7 +28,7 @@ const entry = (source = 'content/playground/first.ts'): LessonPublicationEntry =
   publication: makeLesson().build.data({ languages: ['en', 'uk'] }),
 });
 
-test('emits one base and Props-shaped language fragments at canonical UUID paths', () => {
+test('emits one base and Data-shaped language fragments at canonical UUID paths', () => {
   const publication = makeLesson().build.data({ languages: ['en', 'uk'] });
   const files = renderLessonDataFiles([{ source: 'lesson.ts', publication }]);
   assert.deepEqual([...files.keys()], [relative + '/base.json', relative + '/en.json', relative + '/uk.json']);
