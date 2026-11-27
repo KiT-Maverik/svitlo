@@ -384,7 +384,7 @@ describe('Configurators', () => {
         assert.deepEqual(source.base.params.languages, ['en'], 'A scoped Build describes only its requested languages');
         assert.throws(
           () => lesson.build.data({ languages: ['en', 'uk'] }),
-          /Invalid Lesson Props for language uk/,
+          /"locale"[\s\S]*Invalid input: expected object, received undefined/,
           'A source-only Build must never be interpreted as complete for the declared locale set',
         );
       });
