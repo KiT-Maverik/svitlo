@@ -54,7 +54,7 @@ type ChapterPublication<Base> = {
 type ChapterDataBase<Items extends Record<string, Chapter_Child>> = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Chapter_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
-} & { [Key in keyof Items]: DeepPartial<ReturnType<Items[Key]['build']['data']>['base']> };
+} & { [Key in keyof Items]: ReturnType<Items[Key]['build']['data']>['base'] };
 type ChapterOverrideBase = Chapter_Metadata_Overrides & {
   children?: string[];
   [key: string]: unknown;
