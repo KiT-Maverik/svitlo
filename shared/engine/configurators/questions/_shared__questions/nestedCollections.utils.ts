@@ -87,6 +87,8 @@ const resolveNested = (
   if (order.length === 0) throw new Error(path + ' must contain at least one active item');
   const base: ResolvedNested = { children: [...order] };
   const locale: Files<ResolvedNested> = {};
+  const sparseBase = {} as ResolvedNested;
+  const sparseLocale: Files<ResolvedNested> = {};
   for (const key of order) {
     const entry = active[key] as Entry;
     const built: Record<string, ReturnType<typeof resolveChild>> = {};
@@ -95,6 +97,20 @@ const resolveNested = (
       assertEnabledBlock(built[field].base, path + '.' + key + '.' + field);
     }
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
+    if (patch !== undefined && patch.children === undefined) {
+      const nestedBase = Object.fromEntries(fields.filter(field =>
+        built[field].patch && Object.keys(built[field].patch!.base).length,
+      ).map(field => [field, cloneJson(built[field].patch!.base)]));
+      if (Object.keys(nestedBase).length) sparseBase[key] = nestedBase;
+      for (const language of languages) {
+        const nestedLocale = Object.fromEntries(fields.filter(field =>
+          built[field].patch?.locale?.[language] !== undefined,
+        ).map(field => [field, cloneJson(built[field].patch!.locale![language])]));
+        if (Object.keys(nestedLocale).length) {
+          (sparseLocale[language] ??= {} as ResolvedNested)[key] = nestedLocale;
+        }
+      }
+    }
     const affected = new Set<LanguageCode>();
     for (const field of fields) for (const language of Object.keys(built[field].locale))
       affected.add(language as LanguageCode);
@@ -107,7 +123,9 @@ const resolveNested = (
   for (const group of Object.values(locale)) {
     for (const key of order) if (!Object.hasOwn(group!, key)) group![key] = cloneJson(base[key]);
   }
-  return { base, locale };
+  return patch !== undefined && patch.children === undefined
+    ? { base: sparseBase, locale: sparseLocale }
+    : { base, locale };
 };
 
 export const resolvePairMap = (
