@@ -1,7 +1,13 @@
 import type { LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
-import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  slugAddressedReservedKeys,
+  validateSlugAddressedContainer,
+  validateSluggedConfiguratorMap,
+  type SafePlacementMap,
+} from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import { audio_Data_Schema } from '../../contentBlocks/primitive/defineAudio';
@@ -20,29 +26,23 @@ type Files<T> = Partial<Record<LanguageCode, T>>;
 type BlockResource = { base: Fragment; locale: Files<Fragment> | undefined };
 type BlockPatch = { base: DeepPartial<Fragment>; locale: Files<Fragment> | undefined };
 
-export type OrderedBlocks<Child = Block> = {
-  items: Record<string, Child>;
-  order: string[];
+export type OrderedBlocks<Child = Block> = { children: string[] } & Record<string, Child | string[]>;
+type MemberMap<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Block ? Group[Key] : Block;
 };
+
 export type OrderedBlockPatch<
   Children extends Record<string, Block> = Record<string, Block>,
   Added extends Record<string, Block> = {},
   Languages extends readonly LanguageCode[] = [],
 > = {
-  items?: { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false };
-  // A broad string index cannot identify known slugs; runtime collection
-  // validation guards those. Preserve compile-time collision checks for literal maps.
-  additionalItems?: Added &
-    ChildrenSupporting<Languages, Added> &
-    (string extends keyof Children ? {} : { [Key in keyof Children]?: never });
-  order?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
-};
-/** Broad internal runtime input; public OrderedBlockPatch retains literal key and language inference. */
-export type ResolvableBlockPatch = {
-  items?: Record<string, unknown>;
-  additionalItems?: Record<string, unknown>;
-  order?: string[];
-};
+  children?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false } &
+  Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> &
+  { [Key in Extract<keyof Children, keyof Added>]?: never };
+
+export type ResolvableBlockPatch = { children?: string[] } & Record<string, unknown>;
+
 export type QuestionCommonContent<Child = Block> = {
   question: OrderedBlocks<Child>;
   hint?: OrderedBlocks<Child>;
@@ -53,9 +53,9 @@ export type QuestionCommonPatch<
   Added extends Record<string, Block> = {},
   Languages extends readonly LanguageCode[] = [],
 > = {
-  question?: OrderedBlockPatch<Content['question']['items'], Added, Languages>;
-  hint?: OrderedBlockPatch<NonNullable<Content['hint']>['items'], Added, Languages>;
-  explanation?: OrderedBlockPatch<NonNullable<Content['explanation']>['items'], Added, Languages>;
+  question?: OrderedBlockPatch<MemberMap<Content['question']>, Added, Languages>;
+  hint?: OrderedBlockPatch<MemberMap<NonNullable<Content['hint']>>, Added, Languages>;
+  explanation?: OrderedBlockPatch<MemberMap<NonNullable<Content['explanation']>>, Added, Languages>;
 };
 
 export type ResolvedCollection<T> = { base: T; locale: Files<T> };
@@ -77,11 +77,9 @@ export const assertEnabledBlock = (value: unknown, path: string): void => {
 
 export const cloneJson = <T>(value: T): T => structuredClone(value);
 
-/** Snapshot only the collection map/order; children stay independent configurator references. */
-export const snapshotBlockCollection = <T>(value: OrderedBlocks<T>): OrderedBlocks<T> => ({
-  items: { ...value.items },
-  order: [...value.order],
-});
+/** Snapshot only placement keys; the child Configurators remain independent. */
+export const snapshotBlockCollection = <T extends OrderedBlocks>(value: T): T =>
+  ({ ...value, children: [...value.children] }) as T;
 
 export const snapshotCommonContent = <C extends QuestionCommonContent>(value: C): C =>
   ({
@@ -112,11 +110,16 @@ export function validateBlock(child: unknown, key: string): asserts child is Blo
   }
 }
 
+const directChildren = (source: Record<string, unknown>): Record<string, Block> =>
+  Object.fromEntries(Object.entries(source).filter(([key]) => key !== 'children')) as Record<string, Block>;
+
 export function validateBlockCollection(value: unknown, path: string, nonEmpty = false): void {
-  const errors = validateOrderedKeys(value, { path, requireNonEmpty: nonEmpty });
-  if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
-  if (!isRecord(value) || !isRecord(value.items)) return;
-  for (const [key, child] of Object.entries(value.items)) validateBlock(child, key);
+  if (!isRecord(value)) throw new Error(path + ': expected ordered slug-addressed object');
+  const issues = validateSlugAddressedContainer(value, primitiveContentBlockTypes);
+  if (issues.length) throw new Error(issues.map(issue => path + '.' + issue.path.join('.') + ': ' + issue.message).join('; '));
+  const order = value.children as string[];
+  if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
+  for (const [key, child] of Object.entries(directChildren(value))) validateBlock(child, key);
 }
 
 export const validateCommonContent = (content: QuestionCommonContent): void => {
@@ -187,60 +190,60 @@ export const resolveChild = (child: Block, languages: readonly LanguageCode[], p
  * Ordered collection validation and full-array replacement.
  * This helper performs only ContentBlock child composition, not entity lifecycle.
  */
+type ResolvedBlockGroup = { children: string[] } & Record<string, unknown>;
 export const resolveBlockCollection = (
   source: OrderedBlocks,
   languages: readonly LanguageCode[],
   patch?: ResolvableBlockPatch,
   path = 'content',
   nonEmpty = false,
-): ResolvedCollection<Fragment[]> & { order: string[] } => {
+): ResolvedCollection<ResolvedBlockGroup> & { order: string[] } => {
   validateBlockCollection(source, path, nonEmpty);
   if (patch !== undefined && !isRecord(patch)) throw new Error(path + ' override must be an object');
-  for (const key of Object.keys(patch ?? {})) {
-    if (!['items', 'additionalItems', 'order'].includes(key))
-      throw new Error('Unknown ' + path + ' override field: ' + key);
-  }
-  const changes = patch?.items ?? {};
-  const additions = patch?.additionalItems ?? {};
-  if (!isRecord(changes) || !isRecord(additions)) throw new Error(path + ' items must be slug-keyed objects');
-  const items: Record<string, Block | false> = { ...source.items };
+  const original = directChildren(source);
+  const enabled: Record<string, Block | false> = { ...original };
   const childPatches: Record<string, unknown> = {};
-  let structural = Object.keys(additions).length > 0;
-  for (const [key, child] of Object.entries(additions)) {
-    if (Object.hasOwn(items, key)) throw new Error('Duplicate ' + path + ' slug: ' + key);
-    validateBlock(child, key);
-    items[key] = child;
-  }
-  for (const [key, change] of Object.entries(changes)) {
-    if (!Object.hasOwn(source.items, key)) throw new Error('Unknown existing ' + path + ' slug: ' + key);
-    if (change === false) {
-      items[key] = false;
-      structural = true;
+  let structural = false;
+  for (const [key, change] of Object.entries(patch ?? {})) {
+    if (key === 'children') continue;
+    if (slugAddressedReservedKeys.some(reserved => reserved === key))
+      throw new Error('Reserved ' + path + ' child slug: ' + key);
+    if (Object.hasOwn(original, key)) {
+      if (change === false) { enabled[key] = false; structural = true; }
+      else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
+      else throw new Error('Invalid child override at ' + path + '.' + key);
     } else {
-      if (!isRecord(change)) throw new Error('Invalid child override at ' + path + '.' + key);
-      childPatches[key] = change;
+      validateBlock(change, key);
+      enabled[key] = change;
+      structural = true;
     }
   }
-  if (structural && patch?.order === undefined) throw new Error(path + '.order is required when changing members');
-  const order = patch?.order ?? source.order;
-  const errors = validateOrderedKeys({ items, order }, { path, allowDisabled: true, requireNonEmpty: nonEmpty });
-  if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
-  if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
-  const entries = order.map(key => resolveChild(items[key] as Block, languages, childPatches[key]));
-  if (nonEmpty && entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true)) {
+  if (structural && patch?.children === undefined)
+    throw new Error(path + '.children is required when changing members');
+  const order = patch?.children ?? source.children;
+  if (!Array.isArray(order)) throw new Error(path + '.children must be an array');
+  const active = Object.fromEntries(
+    Object.entries(enabled).filter((entry): entry is [string, Block] => entry[1] !== false),
+  );
+  validateBlockCollection({ children: [...order], ...active }, path, nonEmpty);
+  const entries = order.map(key => ({ key, ...resolveChild(active[key], languages, childPatches[key]) }));
+  if (nonEmpty && entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true))
     throw new Error(path + ' must contain an enabled ContentBlock');
+  const base: ResolvedBlockGroup = {
+    children: [...order],
+    ...Object.fromEntries(entries.map(({ key, base }) => [key, base])),
+  };
+  const locale: Files<ResolvedBlockGroup> = {};
+  for (const language of languages) {
+    if (!entries.some(entry => entry.locale[language] !== undefined)) continue;
+    locale[language] = {
+      children: [...order],
+      ...Object.fromEntries(entries.map(entry => [
+        entry.key, cloneJson(entry.locale[language] ?? entry.base),
+      ])),
+    };
   }
-  const locale: Files<Fragment[]> = {};
-  for (const entry of entries) {
-    for (const language of Object.keys(entry.locale)) {
-      const code = language as LanguageCode;
-      locale[code] ??= [];
-    }
-  }
-  for (const language of Object.keys(locale) as LanguageCode[]) {
-    locale[language] = entries.map(entry => cloneJson(entry.locale[language] ?? entry.base));
-  }
-  return { base: entries.map(entry => entry.base), locale, order: [...order] };
+  return { base, locale, order: [...order] };
 };
 
 export const resolveBlockMap = (
@@ -248,18 +251,8 @@ export const resolveBlockMap = (
   languages: readonly LanguageCode[],
   patch?: ResolvableBlockPatch,
   path = 'content',
-): ResolvedCollection<Record<string, Fragment>> => {
-  const result = resolveBlockCollection(source, languages, patch, path);
-  const base: Record<string, Fragment> = {};
-  const locale: Files<Record<string, Fragment>> = {};
-  result.order.forEach((key, index) => {
-    base[key] = result.base[index];
-    for (const language of Object.keys(result.locale) as LanguageCode[]) {
-      (locale[language] ??= {})[key] = result.locale[language]![index];
-    }
-  });
-  return { base, locale };
-};
+): ResolvedCollection<ResolvedBlockGroup> =>
+  resolveBlockCollection(source, languages, patch, path);
 
 export const resolveCommonContent = (
   source: QuestionCommonContent,
@@ -271,7 +264,7 @@ export const resolveCommonContent = (
   const locale: Files<Record<string, unknown>> = {};
   for (const field of ['question', 'hint', 'explanation'] as const) {
     if (patch && patch[field] === undefined) continue;
-    const original = source[field] ?? { items: {}, order: [] };
+    const original = source[field] ?? { children: [] };
     if (!patch && field !== 'question' && source[field] === undefined) continue;
     const result = resolveBlockCollection(
       original,
