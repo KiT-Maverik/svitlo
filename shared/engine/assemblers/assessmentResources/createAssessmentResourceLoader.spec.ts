@@ -97,21 +97,21 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
         type: 'flashcard',
         parameters: { tags: [], disabilities: [], flags: [] },
         content: {
-          front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
-          back: [{ id: backId, slug: 'back', type: 'text', params: {} }],
+          front: { children: ['front'], front: { id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } } },
+          back: { children: ['back'], back: { id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Back' } } },
         },
       },
       locale: {
         uk: {
           content: {
-            front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Перед' } }],
-            back: [{ id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Назад' } }],
+            front: { front: { locale: { value: 'Перед' } } },
+            back: { back: { locale: { value: 'Назад' } } },
           },
         },
         en: {
           content: {
-            front: [{ id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } }],
-            back: [{ id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Back' } }],
+            front: { front: { locale: { value: 'Front' } } },
+            back: { back: { locale: { value: 'Back' } } },
           },
         },
       },
@@ -146,8 +146,8 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const uk = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
   assert.equal(uk.items.length, 1);
   assert.equal(uk.items[0].id, cardId);
-  assert.equal(textValue(uk.items[0].content.front[0]), 'Перед');
-  assert.equal(textValue(uk.items[0].content.back[0]), 'Назад');
+  assert.equal(textValue(uk.items[0].content.front.front), 'Перед');
+  assert.equal(textValue(uk.items[0].content.back.back), 'Назад');
   assert.deepEqual(requests[0], [manifestUrl]);
   assert.deepEqual(requests[1], [
     'data/flashcards/' + cardId.at(-1) + '/' + cardId + '/base.json',
@@ -156,11 +156,11 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   const count = requests.length;
   const second = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
   assert.equal(requests.length, count, 'No additional files for cached locale');
-  second.items[0].content.front[0].slug = 'modified';
+  second.items[0].content.front.front.slug = 'modified';
   const third = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
-  assert.equal(third.items[0].content.front[0].slug, 'front', 'Cached Props must be returned as independent snapshots');
+  assert.equal(third.items[0].content.front.front.slug, 'front', 'Cached Props must be returned as independent snapshots');
   const en = await loader.loadFlashcards({ language: 'en', ids: [cardId] });
-  assert.equal(textValue(en.items[0].content.back[0]), 'Back');
+  assert.equal(textValue(en.items[0].content.back.back), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');
 });
 
@@ -187,11 +187,11 @@ test('a completed Question is published and resolved separately with the request
     locale: { value: { en: 'Three', uk: 'Три' } },
   });
   const content = {
-    question: { items: { prompt }, order: ['prompt'] },
+    question: { children: ['prompt'], prompt },
     answers: {
-      correct: { items: { correct }, order: ['correct'] },
-      incorrect: { items: { incorrect }, order: ['incorrect'] },
-      distractors: { items: {}, order: [] },
+      correct: { children: ['correct'], correct },
+      incorrect: { children: ['incorrect'], incorrect },
+      distractors: { children: [] },
     },
   };
   const question = defineSelectOneAnswer<'sampleQuestion', typeof content, ['en', 'uk']>({
@@ -219,7 +219,7 @@ test('a completed Question is published and resolved separately with the request
   assert.equal(uk.items.length, 1);
   assert.equal(uk.items[0].type, 'selectOneAnswer');
   if (uk.items[0].type !== 'selectOneAnswer') throw new Error('Unexpected Question kind');
-  assert.equal(textValue(uk.items[0].content.question[0]), 'Що дорівнює?');
+  assert.equal(textValue(uk.items[0].content.question.prompt), 'Що дорівнює?');
   assert.equal(textValue(uk.items[0].content.answers.correct.correct), 'Два');
   assert.equal(requests.length, 2, 'One manifest batch and one selected asset batch');
   assert.deepEqual(requests[1], [
@@ -230,7 +230,7 @@ test('a completed Question is published and resolved separately with the request
   const en = await loader.loadQuestions({ language: 'en', ids: [questionId] });
   assert.equal(en.items[0].type, 'selectOneAnswer');
   if (en.items[0].type !== 'selectOneAnswer') throw new Error('Unexpected Question kind');
-  assert.equal(textValue(en.items[0].content.question[0]), 'What is equal?');
+  assert.equal(textValue(en.items[0].content.question.prompt), 'What is equal?');
   assert.equal(textValue(en.items[0].content.answers.incorrect.incorrect), 'Three');
   assert.equal(requests.length, 3, 'Only requested locale is loaded after shared manifest');
 
