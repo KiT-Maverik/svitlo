@@ -65,7 +65,7 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 ├── package.json          # npm workspaces (authoritative)
 ├── package-lock.json     # npm lockfile (authoritative with npm ci)
 ├── pnpm-workspace.yaml   # pattern mirror; not the active CI installer
-└── turbo.json            # task graph reference; not used by GitHub Actions
+└── turbo.json            # active local package/lint DAG in CI; other tasks keep their current orchestrators
 ```
 
 **Concrete source roots:** `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `apps/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.

@@ -139,6 +139,27 @@ textbooks, and Ready `main` or manual dispatch builds all. With zero selected
 textbooks, avoid `npm ci` while emitting the same stable required status.
 Do not rerun the full Engine suite during an unrelated Biology build.
 
+## Turborepo package and lint orchestration
+
+Root `package:build` and `code:lint:check` use local, pinned Turborepo OSS
+over the real npm workspace graph. `scripts/ci/turboTaskGraph/verify-graph.mjs`
+checks the installed Turbo dry-run for complete eligible task coverage,
+development-dependency build edges and no missing, duplicate or cyclic tasks.
+Source-policy tests run before dependency installation; the production
+package worker verifies the real graph after `npm ci` and before building.
+
+Turbo package/lint tasks disable both local and remote caching, run with
+bounded concurrency, and retain the inherited npm/CI environment. The
+standalone packages worker no longer initializes a build-reuse state.
+All other workers that need job-local SHA-verified repeat-build protection
+retain their helper. FastGate impacted/public-contract selection, exhaustive
+TypeScript checks, npm pre-hooks, root tests, selected components, host
+builds, Docker-isolated generator/materialization, content publication,
+E2E/Chromium and protected `verify` aggregation remain independent. Do
+not assume full CI parity or speedup without matched head-pinned runs.
+See the [Production Quality runbook](../../scripts/ci/productionQuality/README.md)
+for verification and rollback.
+
 ## Parallel production validation and package-build reuse
 
 Ready `develop → main` promotions execute the full existing coverage in
@@ -168,7 +189,8 @@ Production TypeScript checks use `SVITLO_TYPECHECK_PARALLELISM=4` by default
 (range 1–8), while FastGate retains its separate existing parallelism setting.
 
 Each runner installs its own pinned dependencies and prepares only the
-required local build outputs. `SVITLO_CI_PACKAGE_BUILD_STATE` remains
+required local build outputs. The package worker uses Turbo without a reuse
+state; in the other applicable jobs `SVITLO_CI_PACKAGE_BUILD_STATE` remains
 **strictly local to a job**. The root workspace aggregator, Engine/adapter
 test hooks and Web/Mobile/Desktop content preparation use
 `scripts/ci/packageBuildReuse/package-build-reuse.mjs` to reuse builds within

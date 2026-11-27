@@ -157,3 +157,23 @@ test('Mobile E2E serves the already-built production bundle and checks offline r
   );
   assert.match(mobile.scripts.test, /scripts\/serveBuilt\/\*\.test\.mjs/);
 });
+
+test('Turbo migration retains protected verification and bounds scheduling to package/lint', () => {
+  const root = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
+  const turbo = JSON.parse(readFileSync(new URL('../../../turbo.json', import.meta.url), 'utf8'));
+  assert.match(root.scripts['package:build'], /^turbo run package:build /);
+  assert.match(root.scripts['code:lint:check'], /^turbo run code:lint:check /);
+  assert.equal(turbo.tasks['package:build'].cache, false);
+  assert.equal(turbo.tasks['code:lint:check'].cache, false);
+  assert.equal(turbo.envMode, 'loose');
+  assert.match(workflow, /scripts\/ci\/turboTaskGraph\/verify-graph\.spec\.mjs/);
+  const packageJob = workflow.split('\n  packages:\n')[1].split('\n  apps:\n')[0];
+  assert.match(packageJob, /npm run repo:check:turbo/);
+  assert.match(packageJob, /node --test scripts\/ci\/turboTaskGraph\/verify-execution\.spec\.mjs/);
+  assert.ok(packageJob.indexOf('verify-execution.spec.mjs') < packageJob.indexOf('npm run package:build'));
+
+  assert.match(packageJob, /npm run package:build/);
+  assert.match(packageJob, /npm run repo:check:artifacts/);
+  assert.doesNotMatch(packageJob, /SVITLO_CI_PACKAGE_BUILD_STATE|package-build-reuse\.mjs --summary/);
+  assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
+});

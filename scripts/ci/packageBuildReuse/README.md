@@ -1,8 +1,6 @@
 # Production Quality package build reuse
 
-This **job-local** helper deduplicates `package:build` requests from the root
-workspace aggregator, npm test lifecycle hooks, and Web/Mobile/Desktop content
-preparation. Do not use a cross-job cache or inherit a `dist/` directory from
+This **job-local** helper deduplicates `package:build` requests from the remaining root typecheck/test planner, npm test lifecycle hooks, and Web/Mobile/Desktop content preparation. The standalone Production Quality package worker uses Turbo to schedule every build once and does **not** set this helper's state variable. Do not use a cross-job cache or inherit a `dist/` directory from
 the separate textbook Content Build matrix.
 
 Production Quality sets `SVITLO_CI_PACKAGE_BUILD_STATE` to an absolute file
