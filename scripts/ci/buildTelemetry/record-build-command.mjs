@@ -58,7 +58,7 @@ export function runBuildCommand({ workspace, origin, command, args, root = repoR
 }
 
 export function parseArguments(argv) {
-  if (argv.length < 7 || argv[0] !== '--workspace' || argv[2] !== '--origin' || argv[4] !== '--') {
+  if (argv.length < 6 || argv[0] !== '--workspace' || argv[2] !== '--origin' || argv[4] !== '--') {
     throw new Error('Usage: --workspace <@svitlo/name> --origin <slug> -- <command> [args...]');
   }
   return { workspace: argv[1], origin: argv[3], command: argv[5], args: argv.slice(6) };
