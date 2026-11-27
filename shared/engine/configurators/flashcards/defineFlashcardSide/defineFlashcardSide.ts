@@ -66,10 +66,14 @@ const validateSide = (phase: { children: string[] } & Record<string, unknown>, r
 
 const validatePublication = (resource: SidePublication, languages: readonly LanguageCode[], patch?: SidePublication) => {
   for (const language of languages) {
-    // A Side is an atomic ordered group; a structural patch replaces it completely.
-    const effective = patch
-      ? (patch.locale?.[language] ?? patch.base)
-      : (resource.locale?.[language] ?? resource.base);
+    // A new children array replaces the whole group; scalar/child patches stay sparse.
+    const layer = (original: SideData, changes: SideData | undefined): SideData =>
+      changes && Array.isArray(changes.children)
+        ? structuredClone(changes)
+        : mergeForValidation(original, changes ?? {}) as SideData;
+    const original = layer(resource.base, resource.locale?.[language]);
+    const changed = patch ? layer(original, patch.base) : original;
+    const effective = patch ? layer(changed, patch.locale?.[language]) : changed;
     const issues = validateSlugAddressedContainer(effective, primitiveContentBlockTypes);
     if (issues.length) throw new Error('Invalid Flashcard side Data: ' + issues.map(issue => issue.message).join('; '));
     for (const key of effective.children) {
@@ -97,6 +101,7 @@ export function defineFlashcardSide<
     active: Record<string, Block>,
     sorted: readonly string[],
     changes: Record<string, unknown> = {},
+    sparse = false,
   ): SidePublication => {
     const { languages } = requireBuildContext();
     const entries = sorted.map(key => {
@@ -107,6 +112,22 @@ export function defineFlashcardSide<
         : undefined;
       return { key, resource, patch };
     });
+    if (sparse) {
+      const base = Object.fromEntries(
+        entries.filter(entry => entry.patch && Object.keys(entry.patch.base).length).map(
+          entry => [entry.key, entry.patch!.base],
+        ),
+      ) as SideData;
+      const locale: SideFiles = {};
+      for (const code of languages) {
+        const translated = Object.fromEntries(
+          entries.filter(entry => entry.patch?.locale?.[code] !== undefined)
+            .map(entry => [entry.key, entry.patch!.locale![code]]),
+        ) as SideData;
+        if (Object.keys(translated).length) locale[code] = translated;
+      }
+      return { base, locale: Object.keys(locale).length ? locale : undefined };
+    }
     const base: SideData = {
       children: [...sorted],
       ...Object.fromEntries(entries.map(({ key, resource, patch }) => [
@@ -175,7 +196,7 @@ export function defineFlashcardSide<
     if (!Array.isArray(sorted)) throw new Error('Flashcard side.children must be an array');
     const enabled = Object.fromEntries(Object.entries(active).filter(([, child]) => child !== false)) as Record<string, Block>;
     validateSide({ children: [...sorted], ...enabled });
-    const result = structuredClone(buildContent(enabled, sorted, childPatches));
+    const result = structuredClone(buildContent(enabled, sorted, childPatches, patch.children === undefined));
     validatePublication(data(options), languages, result);
     return result;
   };
