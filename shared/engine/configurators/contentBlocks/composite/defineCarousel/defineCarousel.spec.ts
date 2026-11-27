@@ -265,6 +265,30 @@ describe('Configurators', () => {
         assert.throws(() => invalid.build.data({ languages: ['en'] }), /At least one active Carousel slide/);
       });
 
+      test('disabled authored slides do not constrain requested language scope', () => {
+        const available = image('available', ids[1], {
+          fileName: 'https://example.com/available.png', alt: 'Available',
+        });
+        const disabled = defineImage({
+          id: ids[6],
+          slug: 'disabled',
+          type: 'image',
+          params: { fill: true, aspectRatio: 1, disabled: true },
+          locale: {
+            fileName: { en: 'https://example.com/only-en.png' },
+            alt: { en: 'Only English' },
+          },
+        });
+        const carousel = defineCarousel({
+          id: ids[0], slug: 'gallery', type: 'carousel', params: {}, locale: {},
+          children: ['disabled', 'available'], disabled, available,
+        });
+        const built = carousel.build.data({ languages: ['uk'] });
+        assert.deepEqual(built.base.children, ['available']);
+        assert.equal(built.base.disabled, undefined);
+        assert.equal(built.locale, undefined);
+      });
+
       test('keeps the authored snapshot isolated from consumer mutation', () => {
         const { carousel, first } = example();
         const before = carousel.build.data(scope);
