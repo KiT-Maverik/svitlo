@@ -851,10 +851,8 @@ test('new Course-owned Section and Text block materialize below an overridden Le
         assessment,
         sourceExportName: 'independentLesson',
         sourcePatch: {
-          section: {
-            additionalItems: { practice: { $create: 'course-section', source: authoredSection } },
-            order: ['practice'],
-          },
+          children: ['practice'],
+          practice: { $create: 'course-section', source: authoredSection },
         },
         overrideRationale: 'Course-specific extra practice is required',
       },
@@ -876,7 +874,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
   assert.match(
     wrapper ?? '',
-    /section\.additionalItems\.practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
+    /practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
   );
   assert.match(wrapper ?? '', /production\.pedagogicalIntent:\n \* Keep this Text rationale only with this placement/);
   assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
@@ -958,17 +956,13 @@ test('Course additionalItems binds only verified Sections and retains real neste
     children: [],
   });
   const raw = {
-    section: {
-      additionalItems: {
-        practice: {
-          $ref: 'lesson-section',
-          lessonId: original.id,
-          sectionId: extraSection.id,
-          sourceSha: 'c'.repeat(40),
-          exportName: 'practice',
-        },
-      },
-      order: ['practice'],
+    children: ['practice'],
+    practice: {
+      $ref: 'lesson-section',
+      lessonId: original.id,
+      sectionId: extraSection.id,
+      sourceSha: 'c'.repeat(40),
+      exportName: 'practice',
     },
   };
   const reviewed = source();
