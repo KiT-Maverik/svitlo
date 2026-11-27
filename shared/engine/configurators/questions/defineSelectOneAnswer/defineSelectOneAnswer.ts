@@ -55,7 +55,7 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  assertEnabledBlock(groups.correct[groups.correct.children[0]].config.base, 'content.answers.correct');
+  assertEnabledBlock((groups.correct[groups.correct.children[0]] as ContentBlock_Primitive_Configurator).config.base, 'content.answers.correct');
 };
 
 type ContentShape = Question_SelectOneAnswer_Config['content'];
