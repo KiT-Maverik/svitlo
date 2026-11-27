@@ -93,7 +93,7 @@ test('A disabled Section is removed from completed Data, not published as a fals
 
 test('Placed data is immune to caller edits of the exposed placement snapshot', () => {
   const placed = placeLesson(lesson, { children: ['intro', 'extra'], extra });
-  placed.placement.patch.children?.push('unknown');
+  (placed.placement.patch.children as string[] | undefined)?.push('unknown');
   const result = placed.build.data({ languages: ['en'] });
   assert.deepEqual(result.base.children, ['intro', 'extra']);
   assert.equal(result.base.unknown, undefined);
