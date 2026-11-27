@@ -5,7 +5,7 @@ import { SvitloThemeProvider } from '@svitlo/ui-kit';
 
 import { ukUiKitMessages } from '../../../../../../shared/ui-kit/src/testing/uiKitMessages.unit.fx';
 import { SkillAnalyticsPage } from './SkillAnalyticsPage';
-import { fixtureJsonForSkillUrl, TEST_SKILL_NODES_UK, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { TEST_SKILL_NODES_UK } from './skillsData.fixture';
 
 const aria = ukUiKitMessages.learningLayout;
 
@@ -18,11 +18,11 @@ describe('Skills page in shared LearningLayout', () => {
   beforeEach(() => {
     document.documentElement.lang = 'uk';
     window.history.replaceState({}, '', '/skillAnalytics');
+    // Skills pages receive server-resolved props; a client fetch is a regression.
     vi.stubGlobal(
       'fetch',
-      vi.fn(async (url: string) => {
-        const data: unknown = fixtureJsonForSkillUrl(url);
-        return { ok: data !== null, status: data === null ? 404 : 200, json: async () => data };
+      vi.fn(() => {
+        throw new Error('Unexpected client-side Skills fetch');
       }),
     );
   });
