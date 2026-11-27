@@ -9,6 +9,7 @@ export type CourseNavigationTopic = {
 };
 
 const routeKey = /^[a-z][a-zA-Z0-9]*$/;
+const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
 
 /** The UI route addresses a placement, not the reusable activity UUID. */
 export function coursePlacementHref(
@@ -19,7 +20,7 @@ export function coursePlacementHref(
   placement: string,
 ): string {
   const path = placement.split('/');
-  if (!path.length || path.some(key => !routeKey.test(key))) throw Error('Unsafe Course route placement');
+  if (!path.length || path.some(key => !routeKey.test(key) || forbidden.has(key))) throw Error('Unsafe Course route placement');
   return (
     '/' + encodeURIComponent(interfaceLanguage) + '/course/' + encodeURIComponent(courseId) +
     '/' + type + '/' + encodeURIComponent(contentLanguage) + '/' + path.map(encodeURIComponent).join('/')
@@ -28,7 +29,7 @@ export function coursePlacementHref(
 
 /** Extract only a validated placement path; never reinterpret UUIDs or query strings as paths. */
 export function parseCoursePlacement(path: readonly string[]): string | null {
-  if (!Array.isArray(path) || !path.length || path.some(key => typeof key !== 'string' || !routeKey.test(key)))
+  if (!Array.isArray(path) || !path.length || path.some(key => typeof key !== 'string' || !routeKey.test(key) || forbidden.has(key)))
     return null;
   return path.join('/');
 }
