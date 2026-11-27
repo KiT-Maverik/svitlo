@@ -112,6 +112,10 @@ jobs:
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - name: Test every eligible workspace
+        env:
+          # Passive timing annotations: every workspace test and prerequisite build
+          # retains the canonical npm lifecycle and sequential execution.
+          SVITLO_CI_UNIT_TEST_TIMINGS: '1'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - name: Report package build reuse
         if: always()
