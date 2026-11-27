@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Test production source and parallel workflow contracts
-        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs
+        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/turboTaskGraph/verify-graph.spec.mjs
       - name: Reject non-develop production source
         if: github.event_name == 'pull_request'
         env:
@@ -172,15 +172,12 @@ jobs:
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - name: Initialize job-local package build reuse
-        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Verify Turborepo task DAG against eligible workspaces
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:turbo
       - name: Build all distributable packages
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
       - name: Verify compiled public package artifacts
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
-      - name: Report package build reuse
-        if: always()
-        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
 
   apps:
     name: Production / ${{ matrix.slug }}
