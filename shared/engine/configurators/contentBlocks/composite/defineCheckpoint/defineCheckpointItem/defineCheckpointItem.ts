@@ -73,7 +73,9 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   else if (isObject(question.config.base.params) && question.config.base.params.disabled === true)
     fail('question', 'question', 'Question must remain enabled');
 
-  const answer = config?.answer;
+  // Narrow the external Configurator through the runtime structural boundary:
+  // its generic placement map must not stand in for the fixed Answer role.
+  const answer: unknown = config?.answer;
   if (
     !isObject(answer) ||
     answer.type !== 'checkpointAnswer' ||
