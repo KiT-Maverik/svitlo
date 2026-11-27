@@ -650,7 +650,7 @@ test('Slug-addressed Data validates placement ordering, reserved keys and immuta
     ['unknown placement', { ...data, children: ['unit', 'notPresent'] }],
     ['disabled child', { ...data, unit: false }],
     ['stale child', { ...data, children: [], unit: data.unit }],
-    ['invalid type', { ...data, unit: { ...data.unit, type: 'module' } }],
+    ['invalid type', { ...data, unit: { ...data.unit, type: 'question' } }],
     ['wrong identity', { ...data, unit: { ...data.unit, slug: 'anotherChapter' } }],
     ['missing child id', { ...data, unit: { ...data.unit, id: undefined } }],
     ['invalid key', { ...data, children: ['invalid-key'], 'invalid-key': data.unit }],
