@@ -26,8 +26,11 @@ import {
   type Question_OrderSequence_Data,
   type Question_SelectMultipleAnswers_Data,
   type Question_SelectOneAnswer_Data,
-  type QuizSection_Data,
+  type QuizSectionViewProps,
 } from '@svitlo/engine/runtime';
+
+import type { SectionViewProps } from '../../presentation';
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -107,7 +110,7 @@ function QuestionCard({
   question: Question;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
-  parameters: QuizSection_Data['params'];
+  parameters: QuizSectionViewProps['params'];
   onChecked: (correct: boolean | undefined) => void;
   disabled: boolean;
 }) {
@@ -376,7 +379,7 @@ export function EngineQuestionRenderer({
   lessonId: string;
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
-  section: QuizSection_Data;
+  section: QuizSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
@@ -448,7 +451,7 @@ function ResolvedQuiz({
 }: {
   questions: Question[];
   fallbackIds: readonly string[];
-  section: QuizSection_Data;
+  section: QuizSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
