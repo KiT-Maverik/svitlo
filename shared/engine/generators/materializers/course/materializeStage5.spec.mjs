@@ -469,7 +469,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
     content: { items: { reused: placeLesson(realLesson, raw) }, order: ['reused'] },
   });
   const actualCourseBuild = actualCourse.build.data({ languages: ['uk'] });
-  assert.equal(actualCourseBuild.base.content[0].params.sections.allowSkipping, true);
+  assert.equal(actualCourseBuild.base.reused.params.sections.allowSkipping, true);
   assert.equal(realLesson.build.data({ languages: ['uk'] }).base.params.sections.allowSkipping, false);
 });
 
@@ -1030,7 +1030,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
     locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
     content: { items: { reused: placeLesson(original, bound) }, order: ['reused'] },
   });
-  assert.equal(course.build.data({ languages: ['uk'] }).base.content[0].section[0].type, 'content');
+  assert.equal(course.build.data({ languages: ['uk'] }).base.reused.section[0].type, 'content');
 
   const denied = {
     ...opts,
