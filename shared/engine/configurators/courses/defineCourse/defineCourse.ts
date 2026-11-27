@@ -258,7 +258,7 @@ export const defineCourse = <
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
-      destination.content = entries;
+      Object.assign(destination, entries);
     }
     const result: CoursePublication<CourseDataBase<Items>> = {
       base: {
@@ -267,8 +267,9 @@ export const defineCourse = <
         type,
         params: { ...metadata.params, languages: [...languages] },
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
-        content: children.base,
-      },
+        children: [...initialOrder],
+        ...children.base,
+      } as CourseDataBase<Items>,
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
@@ -377,16 +378,32 @@ export const defineCourse = <
           Object.entries(active).filter((entry): entry is [string, Course_Child] => entry[1] !== false),
         );
         const built = buildContent(enabled, order, childPatches);
-        output.base.content = built.base;
-        for (const [language, values] of Object.entries(built.locale)) {
-          // Keep the atomic child array as a runtime publication fragment; validate it through Props.
-          const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
-          destination.content = values;
+        if (structureChanged || patch.content?.order !== undefined) output.base.children = [...order];
+        // Existing placements are sparse, additions are complete; false is a
+        // deletion tombstone applied by the runtime Data assembler.
+        for (const [key, change] of Object.entries(changes)) {
+          output.base[key] = change === false ? false : (built.patches[key]?.base ?? {});
+        }
+        for (const key of Object.keys(additions)) output.base[key] = built.base[key];
+        for (const language of languages) {
+          const fragments: Record<string, unknown> = {};
+          for (const key of Object.keys(changes)) {
+            if (changes[key] === false) continue;
+            const translated = built.patches[key]?.locale?.[language];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          for (const key of Object.keys(additions)) {
+            const translated = built.locale[language]?.[key];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          if (Object.keys(fragments).length) {
+            Object.assign((files[language] ??= {}) as Record<string, unknown>, fragments);
+          }
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       // Reject an override when its four-layer resolved Props are invalid for any requested locale.
-      validateRequestedPublication(course_Data_Schema, data(options), languages, output);
+      validateSlugAddressedPublication(course_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
