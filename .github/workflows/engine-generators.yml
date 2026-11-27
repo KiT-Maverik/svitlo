@@ -186,7 +186,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
-      TURBO_DANGEROUSLY_DISABLE_PACKAGE_MANAGER_CHECK: 'true'
       TURBO_TELEMETRY_DISABLED: '1'
     steps:
       - uses: actions/checkout@v5
