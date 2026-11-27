@@ -113,7 +113,7 @@ describe('Configurators', () => {
             defineFlashcardSide({
               children: ['carousel'], carousel,
             } as never).build.data({ languages: ['en'] }),
-          /Primitive ContentBlock Configurator/,
+          /Unsupported Flashcard ContentBlock type: carousel/,
         );
         assert.throws(
           () =>
@@ -124,14 +124,14 @@ describe('Configurators', () => {
               } as never,
               { languages: ['en'] },
             ),
-          /Primitive ContentBlock Configurator/,
+          /Unsupported Flashcard ContentBlock type: carousel/,
         );
       });
 
       test('supports empty optional side while required sides must remain nonempty', () => {
         const empty = defineFlashcardSide({ children: [] });
         assert.doesNotThrow(() => empty.validate());
-        assert.throws(() => empty.validate(true), /At least one item/);
+        assert.throws(() => empty.validate(true), /At least one enabled item/);
         assert.throws(() => side.build.data({ languages: [] }), /nonempty languages/);
         assert.throws(() => side.build.data({ languages: ['en', 'en'] }), /unique/);
       });
