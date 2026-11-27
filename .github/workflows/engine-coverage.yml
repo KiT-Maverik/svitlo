@@ -97,7 +97,7 @@ jobs:
         run: npm run package:build --workspace @svitlo/engine
 
       - name: Validate the coverage filter and gap reporter
-        run: node --test shared/engine/scripts/coverage/report.spec.mjs
+        run: node --test --test-reporter=dot shared/engine/scripts/coverage/report.spec.mjs
 
       - name: Discover files changed by the PR
         shell: bash
