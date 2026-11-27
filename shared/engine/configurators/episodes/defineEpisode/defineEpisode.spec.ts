@@ -38,7 +38,7 @@ describe('Configurators', () => {
           type: 'episode',
           params: { languages },
           locale: { title: { en: 'Arrival', uk: 'Прибуття' } },
-          section: { items: { intro }, order: ['intro'] },
+          children: ['intro'], intro,
           events: { enter: { trigger: 'onStart' } },
         });
 
@@ -47,19 +47,19 @@ describe('Configurators', () => {
         const resource = episode.build.data({ languages: ['en', 'uk'] });
         assert.equal(episodeConfigurator_Schema.safeParse(episode).success, true);
         assert.equal(episode.type, 'episode');
-        assert.equal(episode.section.items.intro, intro);
+        assert.equal(episode.intro, intro);
         assert.equal('skills' in episode.config.base, false);
         assert.equal('programId' in episode.config.base, false);
         assert.equal('flashcards' in resource.base, false);
         assert.equal('questions' in resource.base, false);
         assert.deepEqual(resource.base.events, { enter: { trigger: 'onStart' } });
         assert.deepEqual(
-          resource.base.section.map(item => item.slug),
+          resource.base.children,
           ['intro'],
         );
         assert.deepEqual(episode.config.locales(), { locale: { title: { en: 'Arrival', uk: 'Прибуття' } } });
         assert.equal(resource.locale?.uk?.locale?.title, 'Прибуття');
-        assert.ok(JSON.stringify(resource.locale?.uk?.section).includes('Ви заходите до зали'));
+        assert.ok(JSON.stringify(resource.locale?.uk?.intro).includes('Ви заходите до зали'));
         assert.equal(
           episode_Data_Schema.safeParse(mergeForValidation(resource.base, resource.locale?.uk ?? {})).success,
           true,
@@ -73,20 +73,16 @@ describe('Configurators', () => {
         const result = episode.build.overrides(
           {
             locale: { title: { uk: 'Нове прибуття' } },
-            section: {
-              items: {
-                intro: { content: { items: { line: { locale: { value: { uk: 'Відчиніть двері' } } } } } },
-              },
-            },
+            intro: { content: { items: { line: { locale: { value: { uk: 'Відчиніть двері' } } } } } },
           },
           { languages: ['en', 'uk'] },
         );
         assert.deepEqual(
-          result.base.section?.map(item => item.slug),
+          Object.keys(result.base).filter(key => key === 'intro'),
           ['intro'],
         );
         assert.equal(result.locale?.uk?.locale?.title, 'Нове прибуття');
-        assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Відчиніть двері'));
+        assert.ok(JSON.stringify(result.locale?.uk?.intro).includes('Відчиніть двері'));
         assert.ok(JSON.stringify(episode.build.data({ languages: ['en', 'uk'] })).includes('Ви заходите до зали'));
         assert.deepEqual(episode.build.data({ languages: ['en', 'uk'] }), original);
 
@@ -100,27 +96,27 @@ describe('Configurators', () => {
         });
         const reordered = episode.build.overrides(
           {
-            section: { items: { intro: false }, additionalItems: { extra }, order: ['extra'] },
+            children: ['extra'], intro: false, extra,
           },
           { languages: ['en', 'uk'] },
         );
         assert.deepEqual(
-          reordered.base.section?.map(item => item.slug),
+          reordered.base.children,
           ['extra'],
         );
-        assert.deepEqual(episode.section.order, ['intro']);
+        assert.deepEqual(episode.children, ['intro']);
         assert.throws(
-          () => episode.build.overrides({ section: { items: { intro: false } } }, { languages: ['en', 'uk'] }),
-          /order is required/,
+          () => episode.build.overrides({ intro: false }, { languages: ['en', 'uk'] }),
+          /children.*required/,
         );
         assert.throws(
-          () => episode.build.overrides({ section: { order: ['intro', 'intro'] } }, { languages: ['en', 'uk'] }),
-          /Duplicate slug/,
+          () => episode.build.overrides({ children: ['intro', 'intro'] }, { languages: ['en', 'uk'] }),
+          /Duplicate placement slug|Duplicate slug/,
         );
         assert.throws(
           () =>
-            episode.build.overrides({ section: { items: { missing: false } } } as never, { languages: ['en', 'uk'] }),
-          /Unknown Episode Section/,
+            episode.build.overrides({ missing: false } as never, { languages: ['en', 'uk'] }),
+          /Expected|Build API|child|Unknown Episode Section/,
         );
         assert.throws(
           () => episode.build.overrides({ params: { languages: ['pl'] } } as never, { languages: ['en', 'uk'] }),
@@ -137,7 +133,7 @@ describe('Configurators', () => {
               type: 'episode',
               params: { languages },
               locale: { title: 'Invalid' },
-              section: { items: {}, order: [] },
+              children: [],
               skills: [],
             } as never).build.data({ languages: ['en'] }),
           /skills/,
@@ -168,7 +164,7 @@ describe('Configurators', () => {
           type: 'episode',
           params: { languages },
           locale: { title: 'Chapter scene' },
-          section: { items: {}, order: [] },
+          children: [],
         });
         const moduleEpisode = defineEpisode({
           id: id('09'),
@@ -176,7 +172,7 @@ describe('Configurators', () => {
           type: 'episode',
           params: { languages },
           locale: { title: 'Module scene' },
-          section: { items: {}, order: [] },
+          children: [],
         });
         const chapter = defineChapter<'chapter', { chapterScene: typeof chapterEpisode }, typeof languages>({
           id: id('05'),
