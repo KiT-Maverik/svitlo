@@ -138,7 +138,10 @@ test('PR comment command dispatches the unchanged full production workflow', () 
 });
 
 test('single-runner unit overlap is limited to manually dispatched PR #925 diagnostics', () => {
-  assert.match(workflow, /SVITLO_CI_UNIT_OVERLAP_EXPERIMENT:.*github\.event_name == 'workflow_dispatch' && github\.ref_name == 'ci\/quality-workflow-rearchitecture'/);
+  assert.match(
+    workflow,
+    /SVITLO_CI_UNIT_OVERLAP_EXPERIMENT:.*github\.event_name == 'workflow_dispatch' && github\.ref_name == 'ci\/quality-workflow-rearchitecture'/,
+  );
   const unit = workflow.split('\n  unit:\n')[1].split('\n  generators:\n')[0];
   assert.match(unit, /npm test/);
   assert.match(unit, /SVITLO_CI_PACKAGE_BUILD_STATE/);
