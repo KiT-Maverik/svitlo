@@ -22,6 +22,7 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../../_shared__configurators';
 import {
@@ -386,8 +387,9 @@ export const defineCarousel = <
   };
 
   const overrides: {
-    <const Added extends Record<string, Slide>>(
-      patch: ContentBlock_Carousel_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & ContentBlock_Carousel_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Slide>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Slide>>,
       options: PublicationLanguageOptions<Languages>,
     ): CarouselPublication<CarouselOverrideBase>;
     (
