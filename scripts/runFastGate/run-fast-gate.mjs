@@ -6,7 +6,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { changedFiles } from '../ci/prDiff/changed-files.mjs';
 import { partitionBuildMutatingHosts, runParallelTypechecks } from '../runWorkspaceScript/typecheck-scheduler.mjs';
-import { changedPublicContracts } from './public-contract-impact.mjs';
 
 export { partitionBuildMutatingHosts };
 
@@ -154,7 +153,12 @@ export function shouldBuildDependency(owner, dependency) {
 async function runGate(changed, base, head, { changedOnly = false } = {}) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(workspace => [workspace.name, workspace]));
-  const publicChanges = !changedOnly && base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
+  // Only public-signature comparisons need TypeScript. Keep the scope planner
+  // npm-free so root-only nested PR regression tests run during cheap Draft CI.
+  const publicChanges =
+    !changedOnly && base && head
+      ? (await import('./public-contract-impact.mjs')).changedPublicContracts(changed, workspaces, base, head)
+      : [];
   if (publicChanges.length) console.log('Changed public contracts: ' + publicChanges.join(', '));
   const plan = chooseChecks(changed, workspaces, { publicChanges, changedOnly });
 
