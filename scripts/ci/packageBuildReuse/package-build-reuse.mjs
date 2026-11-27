@@ -333,6 +333,13 @@ function summary(file) {
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, '\n- ' + result + '\n');
 }
 
+/** Opt-in unit-overlap guard: never rebuild a compiled dependency under its consumer. */
+export function assertUnitOverlapBuildAllowed(name, env = process.env) {
+  if (env.SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY === '1') {
+    throw Error('Unit overlap forbids rebuilding shared dist: ' + name);
+  }
+}
+
 function main(args) {
   if (args.length !== 1) throw new Error('Usage: package-build-reuse.mjs <workspace|--summary>');
   const file = process.env[stateVariable];
@@ -356,9 +363,7 @@ function main(args) {
       // During the opt-in Engine/UI Kit overlap, UI Kit may read Engine dist.
       // A stale or invalid build stamp must fail the experiment rather than
       // silently rebuilding that shared output under a concurrent consumer.
-      if (process.env.SVITLO_CI_UNIT_OVERLAP_REUSE_ONLY === '1') {
-        throw Error('Unit overlap forbids rebuilding shared dist: ' + name);
-      }
+      assertUnitOverlapBuildAllowed(name);
       npmBuild(name);
     },
     sourceRevision: () => cleanSourceRevision(repoRoot),
