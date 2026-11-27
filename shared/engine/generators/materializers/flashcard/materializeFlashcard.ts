@@ -142,25 +142,26 @@ function validateParameters(params: FlashcardSource['parameters']): void {
   }
   const relations = params.relationships;
   if (relations !== undefined) {
-    if (!record(relations) || !record(relations.items) || !Array.isArray(relations.order))
-      fail('parameters.relationships', 'expected items/order');
-    const keys = Object.keys(relations.items);
+    if (!record(relations) || !Array.isArray(relations.children) || Object.hasOwn(relations, 'items') || Object.hasOwn(relations, 'order'))
+      fail('parameters.relationships', 'expected direct relation keys and children order');
+    const keys = Object.keys(relations).filter(key => key !== 'children');
     if (
-      keys.length !== relations.order.length ||
-      new Set(relations.order).size !== keys.length ||
-      relations.order.some(key => !Object.hasOwn(relations.items, key))
+      keys.length !== relations.children.length ||
+      new Set(relations.children).size !== keys.length ||
+      relations.children.some(key => !Object.hasOwn(relations, key))
     )
-      fail('parameters.relationships.order', 'all relationship keys required exactly once');
+      fail('parameters.relationships.children', 'all relationship keys required exactly once');
     const ids = new Set<string>();
-    for (const [key, relation] of Object.entries(relations.items)) {
+    for (const key of keys) {
+      const relation = relations[key];
       if (
         !slug.test(key) ||
         !record(relation) ||
         typeof relation.relationshipId !== 'string' ||
         !uuid.test(relation.relatedFlashcardId as string)
       )
-        fail('parameters.relationships.items.' + key, 'valid relationship identity and real target UUID required');
-      if (ids.has(relation.relationshipId)) fail('parameters.relationships.items.' + key, 'duplicate relationshipId');
+        fail('parameters.relationships.' + key, 'valid relationship identity and real target UUID required');
+      if (ids.has(relation.relationshipId)) fail('parameters.relationships.' + key, 'duplicate relationshipId');
       ids.add(relation.relationshipId);
     }
   }
@@ -239,10 +240,10 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
   const generics =
     '<' +
     JSON.stringify(config.slug) +
-    ', typeof content.front.items, typeof content.back.items, ' +
-    (hint ? 'typeof content.hint.items' : '{}') +
+    ', Pick<typeof content.front, (typeof content.front.children)[number]>, Pick<typeof content.back, (typeof content.back.children)[number]>, ' +
+    (hint ? 'Pick<typeof content.hint, (typeof content.hint.children)[number]>' : '{}') +
     ', typeof parameters.flags, ' +
-    (config.parameters.relationships ? 'typeof parameters.relationships.items' : '{}') +
+    (config.parameters.relationships ? "Omit<typeof parameters.relationships, 'children'>" : '{}') +
     ', ' +
     (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(languages) + ']') +
     '>';

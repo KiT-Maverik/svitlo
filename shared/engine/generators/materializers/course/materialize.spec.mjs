@@ -36,7 +36,7 @@ const section = (slug, id) => ({
   slug,
   params: {},
   locale: { title: { uk: 'Розділ' } },
-  content: { items: {}, order: [] },
+  children: [],
 });
 const ep = (slug = 'episodeOne', id = IDs.episode) => ({
   config: {
@@ -45,7 +45,8 @@ const ep = (slug = 'episodeOne', id = IDs.episode) => ({
     slug,
     params: { languages: ['uk', 'en'] },
     locale: { title: { uk: 'Пригода', en: 'Journey' } },
-    section: { items: { opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5') }, order: ['opening'] },
+    children: ['opening'],
+    opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5'),
   },
   production: { focus: 'Narrative situation', purpose: 'Contextual transition' },
 });
@@ -90,7 +91,8 @@ const ch = (slug = 'chapterOne') => ({
     type: 'chapter',
     slug,
     locale: { title: { uk: 'Глава' } },
-    content: { items: { episodeOne: ep() }, order: ['episodeOne'] },
+    children: ['episodeOne'],
+    episodeOne: ep(),
   },
   production: { ...unitProduction },
 });
@@ -99,7 +101,8 @@ const mod = (slug = 'moduleOne') => ({
     type: 'module',
     slug,
     locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapterOne: ch() }, order: ['chapterOne'] },
+    children: ['chapterOne'],
+    chapterOne: ch(),
   },
   production: { ...unitProduction },
 });
@@ -110,14 +113,10 @@ const course = () => ({
     slug: 'rootCourse',
     params: { age: { min: 6, max: 10 } },
     locale: { title: { uk: 'Курс', en: 'Course' }, description: { uk: 'Про курс', en: 'Description' } },
-    content: {
-      items: {
-        moduleOne: mod(),
-        directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
-        directLesson: lesson('directLesson', 'Зміна'),
-      },
-      order: ['moduleOne', 'directEpisode', 'directLesson'],
-    },
+    children: ['moduleOne', 'directEpisode', 'directLesson'],
+    moduleOne: mod(),
+    directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
+    directLesson: lesson('directLesson', 'Зміна'),
   },
   production: {
     languages: { document: 'uk', planned: ['uk', 'en'] },
@@ -226,7 +225,7 @@ test('full Course > Module > Chapter > Episode, direct placements and Stage 1 la
   const method = first.files.find(f => f.path === 'methodology.md');
   assert.match(method.content, /## Entry conditions/);
   const main = first.files.find(f => f.path === 'index.ts').content;
-  assert.match(main, /defineCourse<"rootCourse", typeof content.items, Languages>/);
+  assert.match(main, /defineCourse<"rootCourse", typeof __placements, Languages>/);
   assert.match(
     main,
     /import \{ languages, type Languages \} from "#coursesData\/7\/50d8cd6f-41f1-4cb4-a156-d6f898d552a7\/constants"/,
@@ -248,22 +247,17 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   reused.length = 0;
   const src = course();
   const first = ch('chapterOne');
-  first.config.content = { items: { first: lesson('first', 'One') }, order: ['first'] };
+  first.config.children = ['first'];
+  first.config.first = lesson('first', 'One');
   const second = ch('chapterTwo');
-  second.config.content = { items: { second: lesson('second', 'Two') }, order: ['second'] };
-  src.config.content = {
-    items: {
-      moduleOne: {
-        ...mod(),
-        config: {
-          ...mod().config,
-          content: { items: { chapterOne: first, chapterTwo: second }, order: ['chapterOne', 'chapterTwo'] },
-        },
-      },
-      newLesson: newLesson('newLesson'),
-    },
-    order: ['moduleOne', 'newLesson'],
+  second.config.children = ['second'];
+  second.config.second = lesson('second', 'Two');
+  src.config.children = ['moduleOne', 'newLesson'];
+  src.config.moduleOne = {
+    ...mod(),
+    config: { ...mod().config, children: ['chapterOne', 'chapterTwo'], chapterOne: first, chapterTwo: second },
   };
+  src.config.newLesson = newLesson('newLesson');
   const result = materializeCourse(src, ctx());
   assert.equal(reused.filter(c => c.kind === 'existing').length, 2);
   assert.equal(reused[0].existing.id, reused[1].existing.id);
@@ -294,7 +288,7 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
 });
 test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked authoring draft', () => {
   const draft = course();
-  draft.config.content.items.directEpisode = {
+  draft.config.directEpisode = {
     config: { type: 'episode' },
     production: { focus: 'Situation', purpose: 'Transition' },
   };
@@ -313,14 +307,14 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   syntax(result.files);
   assert.deepEqual(result.files, materializeCourse(draft, context).files);
   const old = course();
-  old.config.content.items.directLesson.config.lessonId = IDs.lesson;
+  old.config.directLesson.config.lessonId = IDs.lesson;
   assert.throws(() => materializeCourse(old, ctx()), /belong to production/);
   const invalid = course();
-  invalid.config.content.order = ['moduleOne'];
-  assert.throws(() => materializeCourse(invalid, ctx()), /content.order/);
+  invalid.config.children = ['moduleOne'];
+  assert.throws(() => materializeCourse(invalid, ctx()), /children/);
   const unsafe = course();
-  unsafe.config.content.items['../bad'] = unsafe.config.content.items.directLesson;
-  unsafe.config.content.order.push('../bad');
+  unsafe.config['../bad'] = unsafe.config.directLesson;
+  unsafe.config.children.push('../bad');
   assert.throws(() => materializeCourse(unsafe, ctx()), /unsafe slug/);
   const missing = course();
   delete missing.production.languages;
@@ -328,10 +322,10 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
 });
 test('the same imported Lesson must keep a verified ID, not an unvalidated raw patch', () => {
   const bad = course();
-  bad.config.content.items.directLesson.production.existing = { base: { params: {} } };
+  bad.config.directLesson.production.existing = { base: { params: {} } };
   assert.throws(() => materializeCourse(bad, ctx()), /existing.id/);
   const patch = course();
-  patch.config.content.items.directLesson.production.existing = {
+  patch.config.directLesson.production.existing = {
     id: IDs.lesson,
     params: { sections: { allowSkipping: false } },
   };
@@ -374,8 +368,8 @@ test('Methodology Markdown is ordered, preserves evidence and never JSON dumps C
 });
 test('new Lesson handoff cannot be mistaken for a finished Configurator or generate unrelated sections', () => {
   const c = course();
-  c.config.content.items.pending = newLesson('pending');
-  c.config.content.order.push('pending');
+  c.config.pending = newLesson('pending');
+  c.config.children.push('pending');
   const bad = ctx();
   bad.materializeLessonPlacement = (node, context) =>
     context.kind === 'existing'
@@ -393,14 +387,14 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
         };
   assert.throws(() => materializeCourse(c, bad), /UUID-addressed Stage 1 draft.ts/);
   const noAssessment = course();
-  delete noAssessment.config.content.items.directLesson.production.assessment;
+  delete noAssessment.config.directLesson.production.assessment;
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);
 });
 
 test('Course fails closed when a child import shadows generated content', () => {
   const node = course();
-  node.config.content.items.content = lesson('content', 'Текст');
-  node.config.content.order.push('content');
+  node.config.content = lesson('content', 'Текст');
+  node.config.children.push('content');
   assert.throws(() => materializeCourse(node, ctx()), /generated identifier collision.*content/);
 });
 

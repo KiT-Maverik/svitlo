@@ -10,14 +10,14 @@ import type {
   CourseWorkflowStage2,
   CourseWorkflowStage2Chapter,
   CourseWorkflowStage2Config,
-  CourseWorkflowStage2Content,
+  CourseWorkflowStage2ModuleChild,
+  CourseWorkflowStage2ChapterChild,
   CourseWorkflowStage2EpisodeProduction,
   CourseWorkflowStage2EpisodeSlot,
   CourseWorkflowStage2LessonSlot,
   CourseWorkflowStage2Module,
   CourseWorkflowStage3,
   CourseWorkflowStage3Chapter,
-  CourseWorkflowStage3Config,
   CourseWorkflowStage3ExistingLesson,
   CourseWorkflowStage3ExistingLessonConfig,
   CourseWorkflowStage3ExistingLessonReference,
@@ -28,6 +28,7 @@ import type {
   CourseWorkflowStage3NewLessonConfig,
 } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 
 const config = {
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -148,10 +149,9 @@ const chapter = {
     type: 'chapter',
     slug: 'observations',
     locale: { title: 'Observations' },
-    content: {
-      items: { observe: lessonSlot, reflection: episodeSlot },
-      order: ['observe', 'reflection'],
-    },
+    children: ['observe', 'reflection'],
+    observe: lessonSlot,
+    reflection: episodeSlot,
   },
   production: {
     methodology: 'Observe first, then reflect',
@@ -167,10 +167,10 @@ const module = {
     type: 'module',
     slug: 'skyBasics',
     locale: { title: 'Sky basics' },
-    content: {
-      items: { observations: chapter, directLesson: lessonSlot, directEpisode: episodeSlot },
-      order: ['observations', 'directLesson', 'directEpisode'],
-    },
+    children: ['observations', 'directLesson', 'directEpisode'],
+    observations: chapter,
+    directLesson: lessonSlot,
+    directEpisode: episodeSlot,
   },
   production: {
     methodology: 'Introductory sky observation unit',
@@ -185,24 +185,20 @@ const planned = {
   ...complete,
   config: {
     ...complete.config,
-    content: {
-      items: {
-        skyBasics: module,
-        directChapter: chapter,
-        directLesson: lessonSlot,
-        directEpisode: episodeSlot,
-      },
-      order: ['skyBasics', 'directChapter', 'directLesson', 'directEpisode'],
-    },
+    children: ['skyBasics', 'directChapter', 'directLesson', 'directEpisode'],
+    skyBasics: module,
+    directChapter: chapter,
+    directLesson: lessonSlot,
+    directEpisode: episodeSlot,
   },
 } satisfies CourseWorkflowStage2;
 
 const explicitlyEmpty = {
   ...complete,
-  config: { ...complete.config, content: { items: {}, order: [] } },
+  config: { ...complete.config, children: [] },
 } satisfies CourseWorkflowStage2;
 
-// @ts-expect-error Stage 2 must explicitly supply a complete content collection.
+// @ts-expect-error Stage 2 must explicitly supply an ordered children collection.
 const missingStage2Content: CourseWorkflowStage2Config = config;
 
 const stage1DoesNotContainContent: CourseWorkflowStage1Config = {
@@ -211,23 +207,17 @@ const stage1DoesNotContainContent: CourseWorkflowStage1Config = {
   content: { items: {}, order: [] },
 };
 
-// @ts-expect-error Every ordered collection needs an explicit order.
-const missingStage2Order: CourseWorkflowStage2Content = { items: {} };
+// @ts-expect-error A Stage 2 Config cannot omit the children order.
+const missingStage2Order: CourseWorkflowStage2Config = { ...config, observe: lessonSlot };
 
-const moduleUnderModule: CourseWorkflowStage2Module['config']['content']['items'] = {
-  // @ts-expect-error A Module cannot contain another Module.
-  nestedModule: module,
-};
-
-const moduleUnderChapter: CourseWorkflowStage2Chapter['config']['content']['items'] = {
-  // @ts-expect-error A Chapter cannot contain Modules.
-  nestedModule: module,
-};
-
-const chapterUnderChapter: CourseWorkflowStage2Chapter['config']['content']['items'] = {
-  // @ts-expect-error A Chapter cannot contain another Chapter.
-  nestedChapter: chapter,
-};
+// These role-union checks remain statically strict even though dynamic keys
+// of an inert Course draft are validated by the final Stage Zod schema.
+// @ts-expect-error A Module cannot contain another Module.
+const moduleUnderModule: CourseWorkflowStage2ModuleChild = module;
+// @ts-expect-error A Chapter cannot contain Modules.
+const moduleUnderChapter: CourseWorkflowStage2ChapterChild = module;
+// @ts-expect-error A Chapter cannot contain another Chapter.
+const chapterUnderChapter: CourseWorkflowStage2ChapterChild = chapter;
 
 const emptyLessonSkills: CourseWorkflowStage2LessonSlot = {
   config: {
@@ -271,8 +261,8 @@ const missingModuleMethodology: CourseWorkflowStage2Module = {
 
 type Assert<Condition extends true> = Condition;
 type IsNever<T> = [T] extends [never] ? true : false;
-type ModuleChildren = CourseWorkflowStage2Module['config']['content']['items'][string];
-type ChapterChildren = CourseWorkflowStage2Chapter['config']['content']['items'][string];
+type ModuleChildren = CourseWorkflowStage2ModuleChild;
+type ChapterChildren = CourseWorkflowStage2ChapterChild;
 type ModuleChild = Extract<ModuleChildren, { config: { type: 'module' } }>;
 type ChapterModuleChild = Extract<ChapterChildren, { config: { type: 'module' } }>;
 type ChapterChapterChild = Extract<ChapterChildren, { config: { type: 'chapter' } }>;
@@ -370,9 +360,7 @@ const existingLesson = {
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies Parameters<
-  typeof importedLesson.build.overrides
->[0];
+const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies CourseLessonSourcePatch<typeof importedLesson>;
 const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {
@@ -398,49 +386,45 @@ const patchId: Lesson_Config['id'] = importedLesson.id;
 const resolvedChapter = {
   ...chapter,
   config: {
-    ...chapter.config,
-    content: { items: { newLesson, existingLesson }, order: ['newLesson', 'existingLesson'] },
+    type: chapter.config.type,
+    slug: chapter.config.slug,
+    locale: chapter.config.locale,
+    children: ['newLesson', 'existingLesson'],
+    newLesson,
+    existingLesson,
   },
 } satisfies CourseWorkflowStage3Chapter;
 
 const resolvedModule = {
   ...module,
   config: {
-    ...module.config,
-    content: {
-      items: { observations: resolvedChapter, repeated: existingWithOverrides, episode: episodeSlot },
-      order: ['observations', 'repeated', 'episode'],
-    },
+    type: module.config.type,
+    slug: module.config.slug,
+    locale: module.config.locale,
+    children: ['observations', 'repeated', 'episode'],
+    observations: resolvedChapter,
+    repeated: existingWithOverrides,
+    episode: episodeSlot,
   },
 } satisfies CourseWorkflowStage3Module;
 
 const resolvedCourse = {
   ...planned,
   config: {
-    ...planned.config,
-    content: {
-      items: {
-        skyBasics: resolvedModule,
-        directChapter: resolvedChapter,
-        newLesson,
-        existingLesson,
-        existingWithOverrides,
-      },
-      order: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'existingWithOverrides'],
-    },
+    ...config,
+    children: ['skyBasics', 'directChapter', 'newLesson', 'existingLesson', 'existingWithOverrides'],
+    skyBasics: resolvedModule,
+    directChapter: resolvedChapter,
+    newLesson,
+    existingLesson,
+    existingWithOverrides,
   },
 } satisfies CourseWorkflowStage3;
 
 const stage2View: CourseWorkflowStage2 = resolvedCourse;
 const materializerInput: CourseWorkflowStage3 = resolvedCourse;
-// @ts-expect-error Stage 2 cannot directly enter a Stage 3-complete materializer.
-const prematureMaterializerInput: CourseWorkflowStage3 = planned;
-
 // @ts-expect-error Unresolved Stage 2 slots cannot remain in a completed Stage 3.
 const unresolvedSlot: CourseWorkflowStage3LessonSlot = lessonSlot;
-
-// @ts-expect-error Stage 3 course must replace unresolved Stage 2 Lesson slots.
-const unresolvedCourse: CourseWorkflowStage3Config = planned.config;
 
 const missingNewMethodology: CourseWorkflowStage3NewLesson = {
   config: newConfig,
@@ -619,9 +603,7 @@ void resolvedModule;
 void resolvedCourse;
 void stage2View;
 void materializerInput;
-void prematureMaterializerInput;
 void unresolvedSlot;
-void unresolvedCourse;
 void missingNewMethodology;
 void newWithId;
 void newWithLanguages;

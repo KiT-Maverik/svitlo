@@ -9,7 +9,7 @@ const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(
 const block = (slug: string, n: number) => ({
   config: { id: id(n), slug, type: 'text', params: {}, locale: { value: { uk: 'Текст' } } },
 });
-const collection = <T>(items: Record<string, T>) => ({ items, order: Object.keys(items) });
+const collection = <T>(items: Record<string, T>) => ({ children: Object.keys(items), ...items });
 const fixture = () => ({
   config: {
     id: id(1),
@@ -49,7 +49,7 @@ test('buildAnswerWithBlocks: deterministic modular source, nested imports, sourc
   assert.match(main.content, /defineBuildAnswerWithBlocks</);
   assert.match(main.content, /TODO \(BLOCKER\)/);
   assert.match(main.content, /import \{ prompt \} from "\.\/sampleQuestion\/question\/prompt";/);
-  assert.match(main.content, /question:\s*\{\s*items:\s*\{\s*prompt\s*\}/);
+  assert.match(main.content, /question:\s*\{\s*children:\s*\["prompt"\],?\s*prompt\s*[,}]/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
   assert(!a.files.some(file => file.path.includes('/items/')));
@@ -87,11 +87,11 @@ test('buildAnswerWithBlocks: rejects delegated ContentBlock writing outside its 
 });
 test('buildAnswerWithBlocks: rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
   const noPrompt = fixture();
-  Object.assign(noPrompt.config.content.question, { items: {}, order: [] });
+  Object.assign(noPrompt.config.content.question, { children: [] });
   assert.throws(() => materializeBuildAnswerWithBlocks(noPrompt as never, context), /reviewed prompt/);
   const bad = fixture();
-  bad.config.content.question.order = ['notThere'];
-  assert.throws(() => materializeBuildAnswerWithBlocks(bad as never, context), /order/);
+  bad.config.content.question.children = ['notThere'];
+  assert.throws(() => materializeBuildAnswerWithBlocks(bad as never, context), /children/);
   assert.throws(
     () =>
       materializeBuildAnswerWithBlocks(fixture() as never, {

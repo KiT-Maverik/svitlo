@@ -34,7 +34,7 @@ function emitQuizLesson(questionId: string): Result {
       results: { visibility: 'immediate' as const, showScore: true },
     },
     locale: { title: 'Quiz', navigationLabel: 'Q' },
-    content: { items: {}, order: [] as string[] },
+    children: [] as string[],
   };
   const input = {
     type: 'lesson' as const,
@@ -47,7 +47,8 @@ function emitQuizLesson(questionId: string): Result {
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: 'Lesson' },
-    section: { items: { requiredQuiz: quiz }, order: ['requiredQuiz'] },
+    children: ['requiredQuiz'],
+    requiredQuiz: quiz,
   };
   return materializeLesson(input as unknown as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
@@ -92,7 +93,8 @@ function executeGeneratedLesson(result: Result) {
       data: (options: { languages: string[] }) => {
         base: {
           params: { quizRequiredForCompletion: boolean };
-          section: { type: string; params: { disabled?: boolean } }[];
+          children: string[];
+          requiredQuiz: { type: string; params: { disabled?: boolean } };
         };
       };
     };
@@ -104,16 +106,16 @@ test('emitted defineLesson with an enabled Quiz satisfies the real Build.data in
   assert.deepEqual(source.diagnostics, []);
   const built = executeGeneratedLesson(source).build.data({ languages: ['en'] });
   assert.equal(built.base.params.quizRequiredForCompletion, true);
-  assert.equal(built.base.section.length, 1);
-  assert.equal(built.base.section[0].type, 'quiz');
-  assert.notEqual(built.base.section[0].params.disabled, true);
+  assert.equal(built.base.children.length, 1);
+  assert.equal(built.base.requiredQuiz.type, 'quiz');
+  assert.notEqual(built.base.requiredQuiz.params.disabled, true);
   assert.doesNotThrow(() => assertLessonSourceReleaseReady(source));
 });
 
 test('real Build-valid pending Quiz stays blocked from source release without TODO comments', () => {
   const source = emitQuizLesson(reserved);
   const built = executeGeneratedLesson(source).build.data({ languages: ['en'] });
-  assert.equal(built.base.section[0].type, 'quiz');
+  assert.equal(built.base.requiredQuiz.type, 'quiz');
   assert.ok(source.diagnostics.some(d => d.code === 'pending-quiz'));
   assert.throws(() => assertLessonSourceReleaseReady(source), /reserved provisional assessment UUID/);
   const withoutComments = {
@@ -149,9 +151,10 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
       results: { visibility: 'immediate', showScore: true },
     },
     locale: { title: 'Quiz', navigationLabel: 'Q' },
-    content: { items: {}, order: [] },
+    children: [],
   });
-  const lesson = defineLesson({
+  // Infer the concrete required Quiz placement rather than the empty generic map.
+  const lesson = defineLesson<'requiredLesson', ['en'], { requiredQuiz: typeof disabledQuiz }>({
     type: 'lesson',
     id: id('01'),
     slug: 'requiredLesson',
@@ -162,7 +165,8 @@ test('disabled Quiz is rejected by the real Lesson Build API', () => {
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: 'Lesson' },
-    section: { items: { requiredQuiz: disabledQuiz }, order: ['requiredQuiz'] },
+    children: ['requiredQuiz'],
+    requiredQuiz: disabledQuiz,
   });
   assert.throws(() => lesson.build.data({ languages: ['en'] }), /Lesson requires at least one enabled Quiz section/);
 });

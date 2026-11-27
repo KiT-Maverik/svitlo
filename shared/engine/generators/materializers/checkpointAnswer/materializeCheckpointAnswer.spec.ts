@@ -18,7 +18,9 @@ const answer = () => ({
   id: id(1),
   slug: 'answer',
   type: 'checkpointAnswer' as const,
-  content: { items: { first: textBlock('first', 2), second: textBlock('second', 3) }, order: ['second', 'first'] },
+  children: ['second', 'first'],
+  first: textBlock('first', 2),
+  second: textBlock('second', 3),
 });
 function context() {
   const requests: string[] = [];
@@ -46,30 +48,24 @@ function context() {
   };
 }
 
-test('Stage 2 Checkpoint Answer follows Primitive-only source policy', () => {
+test('Stage 2 Checkpoint Answer validates Primitive-only direct children', () => {
   const valid = {
     config: {
-      ...answer(),
-      content: { items: { first: { config: textBlock('first', 2) } }, order: ['first'] },
+      id: id(1), slug: 'answer', type: 'checkpointAnswer' as const,
+      children: ['first'],
+      first: { config: textBlock('first', 2) },
     },
   };
   assert.equal(lessonWorkflowCheckpointAnswerSource_Schema.safeParse(valid).success, true);
-
   for (const kind of ['carousel', 'checkpoint']) {
     const invalid = {
       config: {
-        ...answer(),
-        content: {
-          items: { first: { config: { id: id(4), slug: 'first', type: kind, params: {}, locale: {} } } },
-          order: ['first'],
-        },
+        ...valid.config,
+        first: { config: { id: id(4), slug: 'first', type: kind, params: {}, locale: {} } },
       },
     };
-    assert.equal(
-      lessonWorkflowCheckpointAnswerSource_Schema.safeParse(invalid).success,
-      false,
-      'Reject ' + kind + ' at the Stage 2 source boundary',
-    );
+    assert.equal(lessonWorkflowCheckpointAnswerSource_Schema.safeParse(invalid).success, false,
+      'Reject ' + kind + ' at the Stage 2 source boundary');
   }
 });
 
@@ -78,7 +74,7 @@ test('CheckpointAnswer delegates each ContentBlock and preserves order, imports 
   const result = materializeCheckpointAnswer(answer(), renderer);
   assert.deepEqual(requests, ['text:first/answer/second', 'text:first/answer/first']);
   const code = result.files.at(-1)!.content;
-  assert.match(code, /defineCheckpointAnswer<"answer", typeof content.items, typeof languages>/);
+  assert.match(code, /defineCheckpointAnswer<"answer", typeof __placements, typeof languages>/);
   assert.match(code, /\bsecond,/);
   assert.ok(code.indexOf('second,') < code.indexOf('first,'));
   assert.doesNotMatch(code, /"en": "Text"/);
@@ -87,21 +83,14 @@ test('CheckpointAnswer delegates each ContentBlock and preserves order, imports 
   assert.equal(syntaxErrorCount(code), 0);
 });
 
-test('CheckpointAnswer excludes disabled draft entries without reviving them in order', () => {
+test('CheckpointAnswer fails closed on disabled authored children and stale order', () => {
   const source = answer();
-  const revised = {
-    ...source,
-    content: { items: { first: false as const, second: source.content.items.second }, order: ['second'] },
-  };
-  const result = materializeCheckpointAnswer(revised, context().renderer);
-  assert.equal(result.files.length, 2);
-  assert.doesNotMatch(result.files.at(-1)!.content, /\bfirst\b/);
   assert.throws(
-    () =>
-      materializeCheckpointAnswer(
-        { ...revised, content: { ...revised.content, order: ['first'] } },
-        context().renderer,
-      ),
+    () => materializeCheckpointAnswer({ ...source, first: false as never, children: ['second'] }, context().renderer),
+    /disabled/,
+  );
+  assert.throws(
+    () => materializeCheckpointAnswer({ ...source, children: ['first'] }, context().renderer),
     /exactly once/,
   );
 });
@@ -114,14 +103,15 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
     type: 'checkpoint' as never,
     params: {},
     locale: { title: 'Bad' },
-    content: {},
+    children: [],
   };
   assert.throws(
     () =>
       materializeCheckpointAnswer(
         {
           ...source,
-          content: { items: { bad: forbidden as never }, order: ['bad'] },
+          children: ['bad'],
+          bad: forbidden as never,
         },
         context().renderer,
       ),
@@ -131,7 +121,7 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
     id: id(6),
     slug: 'gallery',
     type: 'carousel' as never,
-    slides: { items: {}, order: [] },
+    children: [],
     params: {},
     locale: {},
   };
@@ -140,7 +130,8 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
       materializeCheckpointAnswer(
         {
           ...source,
-          content: { items: { gallery: carousel as never }, order: ['gallery'] },
+          children: ['gallery'],
+          gallery: carousel as never,
         },
         context().renderer,
       ),
@@ -151,10 +142,9 @@ test('CheckpointAnswer rejects both composite kinds, duplicate UUIDs and unsafe 
       materializeCheckpointAnswer(
         {
           ...source,
-          content: {
-            items: { first: source.content.items.first, second: { ...source.content.items.second, id: id(2) } },
-            order: ['first', 'second'],
-          },
+          first: source.first,
+          second: { ...source.second, id: id(2) },
+          children: ['first', 'second'],
         },
         context().renderer,
       ),

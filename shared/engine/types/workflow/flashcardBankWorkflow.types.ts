@@ -82,10 +82,9 @@ export type FlashcardBankWorkflowBlockNode =
       production?: { specification?: string; pending?: boolean };
     };
 
-/** FlashcardSide has exactly items/order: no UUID, slug, params or type. */
-export type FlashcardBankWorkflowSideSource = Omit<FlashcardSide_Config, 'items'> & {
-  items: Record<string, FlashcardBankWorkflowBlockNode>;
-};
+/** A semantic Flashcard Side orders direct primitive Block nodes. */
+export type FlashcardBankWorkflowSideSource = { children: string[] } &
+  Record<string, FlashcardBankWorkflowBlockNode | string[]>;
 
 /** Flags use the Engine's actual discriminated ARRAY union, never items/order. */
 export type FlashcardBankWorkflowFlags = Flashcard_Flag_Config[];
