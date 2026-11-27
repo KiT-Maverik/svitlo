@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
+import { assembleLessonData } from '../assemblers/assembleLessonProps/assembleLessonProps';
+
 import { mergeForValidation } from './_shared__configurators';
 import { defineText } from './contentBlocks/primitive/defineText';
 import { defineChapter } from './courses/defineChapter';
@@ -191,11 +193,11 @@ describe('Configurators', () => {
         assert.deepEqual(removed.base.children, []);
         assert.equal(removed.locale?.uk?.intro, undefined);
         const lessonResource = lesson.build.data(uk);
-        const lessonResult = mergeObjects(
-          mergeObjects(mergeObjects(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
-          removed.locale?.uk ?? {},
-        );
+        // Configurator sparse deletion publishes a tombstone; only the runtime
+        // assembler applies that tombstone after the resource's selected locale.
+        const lessonResult = assembleLessonData(lessonResource, 'uk', removed);
         assert.deepEqual(lesson_Data_Schema.parse(lessonResult).children, []);
+        assert.equal(Object.hasOwn(lessonResult, 'intro'), false);
       });
 
       test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {
