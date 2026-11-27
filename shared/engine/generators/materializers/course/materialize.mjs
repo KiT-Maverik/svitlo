@@ -146,17 +146,20 @@ export function materializeCourse(input, context = {}) {
   )
     throw Error(dir + '.production.languages: Course Workflow requires { document, planned }');
   if (config.type !== 'course') throw Error(dir + ': expected course Config');
-  const collection = config.content;
-  if (!record(collection) || !record(collection.items) || !Array.isArray(collection.order))
-    throw Error(dir + '.content: expected {items,order}');
-  const keys = Object.keys(collection.items),
-    order = collection.order;
+  // Ordered placements are authored directly on the Config root. The legacy
+  // content.items/order wrapper is not an accepted alternative representation.
+  if (Object.hasOwn(config, 'content')) throw Error(dir + '.content: legacy Course hierarchy wrapper is forbidden');
+  const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+  const keys = Object.keys(config).filter(key => !metadata.has(key));
+  const order = config.children;
+  if (!Array.isArray(order)) throw Error(dir + '.children: expected placement order');
   if (
+    keys.some(key => !/^[A-Za-z][A-Za-z0-9]*$/.test(key) || ['__proto__', 'prototype', 'constructor'].includes(key)) ||
     new Set(order).size !== order.length ||
     keys.length !== order.length ||
-    order.some(key => typeof key !== 'string' || !Object.hasOwn(collection.items, key))
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(config, key))
   )
-    throw Error(dir + '.content.order: each child key must appear exactly once');
+    throw Error(dir + '.children: each child key must appear exactly once');
   const planned = meta?.languages?.planned ?? config.params?.languages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.production.languages: missing source language or invalid plan');
@@ -178,13 +181,13 @@ export function materializeCourse(input, context = {}) {
     seenIds = new Set(),
     reusedLessonIds = new Set();
   for (const key of order) {
-    ensure(key, dir + '.content.items.' + key);
-    const node = collection.items[key],
+    ensure(key, dir + '.children.' + key);
+    const node = config[key],
       raw = unwrap(node);
     if (!record(raw) || typeof raw.type !== 'string')
-      throw Error(dir + '.content.items.' + key + ': missing child type');
+      throw Error(dir + '.children.' + key + ': missing child type');
     if (raw.slug !== undefined && raw.slug !== key)
-      throw Error(dir + '.content.items.' + key + ': child slug mismatch');
+      throw Error(dir + '.children.' + key + ': child slug mismatch');
     const nodeConfig = { ...raw, slug: raw.type === 'lesson' ? (raw.slug ?? key) : key };
     const nested = record(node?.config) ? { ...node, config: nodeConfig } : nodeConfig;
     const childFolder = [dir, key].filter(Boolean).join('/');
@@ -360,14 +363,14 @@ export function materializeCourse(input, context = {}) {
     if (stage1Lesson || stage1Episode || pendingAssessment) {
       const refId = stage1Lesson ? (child.lessonId ?? child.id) : child.id;
       files.push(renderPendingChildStub({ directory: childFolder, kind: raw.type, id: refId, slug: key }));
-      claim(key, 'pending ' + raw.type + ' in content.items.' + key);
+      claim(key, 'pending ' + raw.type + ' in children.' + key);
       imports.push(renderPendingChildImport({ kind: raw.type, slug: key, location: './' }));
       items[key] = key;
     } else {
       if (raw.type === 'lesson' && production(node)?.kind === 'existing') {
         if (typeof child.importPath !== 'string' || typeof child.sourceExportName !== 'string')
           throw Error(childFolder + ': verified direct Lesson import missing');
-        claim(child.sourceExportName, 'reused Lesson content.items.' + key);
+        claim(child.sourceExportName, 'reused Lesson children.' + key);
         imports.push('import { ' + child.sourceExportName + ' } from ' + JSON.stringify(child.importPath) + ';');
         if (child.extraImports !== undefined) {
           if (!Array.isArray(child.extraImports) || child.extraImports.some(line => typeof line !== 'string'))
@@ -375,12 +378,12 @@ export function materializeCourse(input, context = {}) {
           imports.push(...child.extraImports);
         }
         if (child.patchSource !== undefined) {
-          if (!inlineImports.has('placeLesson')) claim('placeLesson', 'Build helper for content.items.' + key);
+          if (!inlineImports.has('placeLesson')) claim('placeLesson', 'Build helper for children.' + key);
           inlineImports.add('placeLesson');
           items[key] = 'placeLesson(' + child.sourceExportName + ', ' + child.patchSource + ')';
         } else items[key] = child.sourceExportName;
       } else {
-        claim(child.exportName, 'content.items.' + key);
+        claim(child.exportName, 'children.' + key);
         imports.push('import { ' + child.exportName + ' } from "./' + key + '";');
         items[key] = child.exportName;
       }
@@ -394,7 +397,8 @@ export function materializeCourse(input, context = {}) {
   if (!record(config.locale) || config.locale.title === undefined || config.locale.description === undefined)
     throw Error(dir + '.config.locale: reviewed title and description required before materialization');
   const fields = { ...config, id, slug };
-  delete fields.content;
+  for (const key of keys) delete fields[key];
+  delete fields.children;
   delete fields.params;
   if (record(fields.locale)) {
     fields.locale = { ...fields.locale };
@@ -444,20 +448,16 @@ export function materializeCourse(input, context = {}) {
     ';\n' +
     [...bound.imports, ...imports].join('\n') +
     '\n\n' +
-    'const content = { items: ' +
-    itemsSource +
-    ', order: ' +
-    orderSource +
-    ' };\n\n' +
+    'const __placements = ' + itemsSource + ';\n\n' +
     'export const ' +
     exportName(slug) +
     ' = defineCourse<' +
-    [JSON.stringify(slug), 'typeof content.items', 'Languages'].join(', ') +
+    [JSON.stringify(slug), 'typeof __placements', 'Languages'].join(', ') +
     '>({\n' +
     attrs +
     '\n  params: ' +
     paramsSource +
-    ',\n  content,\n});\n';
+    ',\n  children: ' + orderSource + ',\n  ...__placements,\n});\n';
   const produced = [
     ...files,
     ...sidecars(meta, dir),
