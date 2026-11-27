@@ -78,6 +78,11 @@ const questions: QuestionResponse[] = [
   },
 ];
 
+function anotherChoice(n: number): Question_SelectOneAnswer_Data {
+  const original = questions[0] as Question_SelectOneAnswer_Data;
+  return { ...original, ...base(n), content: { ...original.content, ...base(n).content } };
+}
+
 function quiz(selected: readonly QuestionResponse[], overrides: Partial<QuizSection_Data['params']> = {}): QuizSection_Data {
   return {
     id: uuid(90),
@@ -178,7 +183,7 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('isolates attempts per UUID and does not complete before both are checked', async () => {
-    const second: Question_SelectOneAnswer_Data = { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' };
+    const second = anotherChoice(10);
     const selected = [questions[0], second];
     const complete = mount(selected, vi.fn(), loader(selected), {
       interaction: { ...quiz(selected).params.interaction, retries: 1 },
@@ -219,7 +224,7 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('applies percentage thresholds independently of a completed attempt', async () => {
-    const second: Question_SelectOneAnswer_Data = { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' };
+    const second = anotherChoice(10);
     const selected = [questions[0], second];
     const complete = mount(selected, vi.fn(), loader(selected), {
       grading: { mode: 'percentage', successThreshold: 50 },
@@ -235,11 +240,7 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('applies points threshold without confusing a failed grade with an unfinished attempt', async () => {
-    const second: Question_SelectOneAnswer_Data = {
-      ...(questions[0] as Question_SelectOneAnswer_Data),
-      ...base(10),
-      type: 'selectOneAnswer',
-    };
+    const second = anotherChoice(10);
     const selected = [questions[0], second];
     const complete = mount(selected, vi.fn(), loader(selected), {
       grading: { mode: 'points', successThreshold: 2 },
@@ -343,7 +344,7 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('does not advance a nondeferrable stepper before checking its current Question', async () => {
-    const selected = [questions[0], { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' as const }];
+    const selected = [questions[0], anotherChoice(10)];
     mount(selected, vi.fn(), loader(selected), { layout: { mode: 'stepper', showProgress: true } });
     await screen.findByText('Prompt 1');
     expect(screen.getByText('Prompt 10')).not.toBeVisible();
