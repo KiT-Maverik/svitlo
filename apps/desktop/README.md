@@ -26,10 +26,12 @@ After npm ci at the monorepo root:
     npm run test:smoke --workspace @svitlo/desktop
     npm run app:pack --workspace @svitlo/desktop
 
-Forge 8 uses the prebuilt artifacts in `dist-main/` and `dist-renderer/`; it does **not** rebuild them using a second Vite or webpack plugin.
+Forge 8 Vite Plugin builds the Electron main bundle and React renderer using Vite 8 / Rolldown.
+`app:build` calls `electron-forge package` once (including the Vite builds);
+`app:pack:make:prepared` then runs `electron-forge make --from-package` on those
+already-packaged artifacts without rebuilding Vite.
 
-    npm run app:pack:prepared --workspace @svitlo/desktop  # already built: unpacked out/
-    npm run app:pack:make:prepared --workspace @svitlo/desktop  # already built: make artifacts
+    npm run app:pack:make:prepared --workspace @svitlo/desktop  # already packaged: make artifacts
     npm run app:pack:win --workspace @svitlo/desktop    # Windows: Squirrel Setup.exe + .nupkg
     npm run app:pack:mac --workspace @svitlo/desktop    # macOS: zipped .app
     npm run app:pack:linux --workspace @svitlo/desktop  # Linux: deb
@@ -38,14 +40,15 @@ Run OS-specific commands on the corresponding host. Forge outputs are in `apps/d
 
 **Distribution differences:** Windows Squirrel is per-user and not a drop-in replacement for NSIS; Linux deb requires a Debian-compatible package manager and is not a portable AppImage. macOS ZIP contains a standalone .app to drag into Applications; it is **not** a DMG or installer and must be manually extracted. It avoids the known high-severity, build-time `image-size` advisory chain carried by Forge's DMG maker (through `electron-installer-dmg -> appdmg -> image-size@0.7.4`). Unsigned/unnotarized builds are not ready for trusted public distribution. The workflow does not add credential-based signing, auto-updates, or a publisher. Squirrel lifecycle shortcuts are handled before the application opens its window.
 
-The compiled bundles require no runtime Node.js packages; Forge packages only `dist-main/`, `dist-renderer/` and `package.json` as ASAR. The dedicated artifact verifier checks maker outputs and size but does not execute an installer.
+The compiled bundles require no runtime Node.js packages; Forge packages only `.vite/` and `package.json` as ASAR. The dedicated artifact verifier checks maker outputs and size but does not execute an installer.
 
-predev and prebuild compile `@svitlo/playground` into its own `dist/` once,
+The `preapp:start:dev` and `preapp:build` hooks compile `@svitlo/playground` into its own `dist/` once,
 then invoke the textbook's public `svitlo-playground publish` CLI to stage
 already-built book JSON and media in `apps/desktop/public`. UI Kit locales and
 flags remain independently host-staged. Vite bundles the compiled Scene registry,
-lazy chunks and published CSS into `dist-renderer`, while the Electron main
-process is bundled into `dist-main/main.cjs`. Desktop never imports authored
+lazy chunks and published CSS into `.vite/renderer/main_window`, while the Electron
+main process is bundled into `.vite/build/main.cjs`. Forge manages the dev server
+and hot restarts main when its bundle changes. Desktop never imports authored
 `*.data.ts` at runtime or needs `apps/web`.
 
 ## Security and offline boundaries

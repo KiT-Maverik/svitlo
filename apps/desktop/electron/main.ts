@@ -6,9 +6,11 @@ import { installPackagedResources, lockDownSession, openDesktopWindow } from '@s
 
 import { handleSquirrelStartup } from './squirrel.js';
 
-// main.ts is bundled into dist-main/main.cjs, independent of Next.js or a repo checkout.
-const rendererRoot = join(app.getAppPath(), 'dist-renderer');
-const devUrl = !app.isPackaged ? process.env.SVITLO_DESKTOP_DEV_URL : undefined;
+// Forge replaces this constant with the fixed Vite dev URL (or undefined for production).
+declare const MAIN_WINDOW_VITE_DEV_SERVER_URL: string | undefined;
+
+const rendererRoot = join(app.getAppPath(), '.vite/renderer/main_window');
+const devUrl = !app.isPackaged ? MAIN_WINDOW_VITE_DEV_SERVER_URL : undefined;
 
 if (process.platform === 'win32') app.setAppUserModelId('com.squirrel.Svitlo.Svitlo');
 

@@ -1,6 +1,7 @@
 # Dependencies, caches and generated output
 node_modules/
 .next/
+.vite/
 out/
 build/
 dist/

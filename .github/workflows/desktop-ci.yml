@@ -81,7 +81,7 @@ jobs:
           path: packaging-audit/*.json
           if-no-files-found: error
           retention-days: 1
-      - name: Build adapter and renderer
+      - name: Build and package Desktop using Forge Vite
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
       - name: Typecheck adapter and Desktop
         run: |
@@ -97,15 +97,13 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:integration --workspace @svitlo/desktop
       - name: Run Electron smoke under virtual display
         run: xvfb-run -a npm run test:smoke --workspace @svitlo/desktop
-      - name: Create Forge unpacked Linux build
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:prepared --workspace @svitlo/desktop
       - name: Verify unpacked executable
         run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs unpacked
       - name: Start packaged Linux executable offline
         run: xvfb-run -a npm run test:packaged --workspace @svitlo/desktop
       - name: Install Debian maker requirements
         run: sudo apt-get update && sudo apt-get install -y fakeroot dpkg
-      - name: Make Debian distribution
+      - name: Make Debian distribution from existing package
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:make:prepared --workspace @svitlo/desktop
       - name: Verify Debian artifact
         run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs linux
@@ -140,7 +138,7 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/desktop
       - name: Check Desktop types
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types --workspace @svitlo/desktop
-      - name: Forge make (includes package)
+      - name: Forge make from existing package
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:pack:make:prepared --workspace @svitlo/desktop
       - name: Verify native maker artifacts
         run: node apps/desktop/scripts/verifyPackageArtifacts/verify-package-artifacts.mjs ${{ matrix.platform }}
