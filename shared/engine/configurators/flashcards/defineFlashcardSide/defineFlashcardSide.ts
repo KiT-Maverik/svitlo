@@ -62,9 +62,10 @@ const validateSide = (phase: { children: string[] } & Record<string, unknown>, r
 
 const validatePublication = (resource: SidePublication, languages: readonly LanguageCode[], patch?: SidePublication) => {
   for (const language of languages) {
-    const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-    const updated = patch ? mergeForValidation(original, patch.base) : original;
-    const effective = patch ? mergeForValidation(updated, patch.locale?.[language] ?? {}) : updated;
+    // A Side is an atomic ordered group; a structural patch replaces it completely.
+    const effective = patch
+      ? (patch.locale?.[language] ?? patch.base)
+      : (resource.locale?.[language] ?? resource.base);
     const issues = validateSlugAddressedContainer(effective, primitiveContentBlockTypes);
     if (issues.length) throw new Error('Invalid Flashcard side Data: ' + issues.map(issue => issue.message).join('; '));
     for (const key of effective.children) {
