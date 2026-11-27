@@ -44,32 +44,32 @@ afterAll(() => {
 describe('Scripts', () => {
   describe('generateLocales', () => {
     describe('Assessment Methods', () => {
-      const directory = path.join(output, 'assessmentMethods');
+      const directory = () => path.join(output, 'assessmentMethods');
 
       it('base', () => {
-        baseSchema.parse(readJson(path.join(directory, 'base.json')));
+        baseSchema.parse(readJson(path.join(directory(), 'base.json')));
         assert.deepEqual(
-          readdirSync(directory).sort(),
+          readdirSync(directory()).sort(),
           ['base.json', ...allLanguageCodes.map(language => language + '.json')].sort(),
         );
       });
 
       for (const language of allLanguageCodes) {
         it(language, () => {
-          localeSchema.parse(readJson(path.join(directory, language + '.json')));
+          localeSchema.parse(readJson(path.join(directory(), language + '.json')));
         });
       }
     });
 
     describe('Education Standards', () => {
-      const directory = path.join(output, 'educationStandards');
+      const directory = () => path.join(output, 'educationStandards');
       const slugs = educationStandards.map(standard => standard.slug).sort();
 
       it('publishes the 14 source identities and all canonical language files', () => {
-        const base = readJson(path.join(directory, 'base.json')) as Record<string, { id: string; slug: string }>;
+        const base = readJson(path.join(directory(), 'base.json')) as Record<string, { id: string; slug: string }>;
         assert.deepEqual(Object.keys(base).sort(), slugs);
         assert.deepEqual(
-          readdirSync(directory).sort(),
+          readdirSync(directory()).sort(),
           ['base.json', ...allLanguageCodes.map(code => code + '.json')].sort(),
         );
         for (const definition of educationStandards) {
@@ -80,7 +80,7 @@ describe('Scripts', () => {
 
       for (const language of allLanguageCodes) {
         it(language, () => {
-          const base = readJson(path.join(directory, 'base.json')) as Record<
+          const base = readJson(path.join(directory(), 'base.json')) as Record<
             string,
             {
               id: string;
@@ -89,7 +89,7 @@ describe('Scripts', () => {
               description: { methodological: string };
             }
           >;
-          const locale = readJson(path.join(directory, language + '.json')) as Record<
+          const locale = readJson(path.join(directory(), language + '.json')) as Record<
             string,
             {
               description: { frontend: string };
@@ -107,17 +107,17 @@ describe('Scripts', () => {
     });
 
     describe('Components', () => {
-      const directory = path.join(output, 'components');
+      const directory = () => path.join(output, 'components');
 
       it('publishes one file per language', () => {
         assert.deepEqual(readdirSync(output).sort(), ['assessmentMethods', 'components', 'educationStandards']);
-        assert.deepEqual(readdirSync(directory).sort(), allLanguageCodes.map(language => language + '.json').sort());
+        assert.deepEqual(readdirSync(directory()).sort(), allLanguageCodes.map(language => language + '.json').sort());
       });
 
       for (const language of allLanguageCodes) {
         it(language, () => {
-          const messages = readJson(path.join(directory, language + '.json')) as Record<string, unknown>;
-          const uk = readJson(path.join(directory, 'uk.json')) as Record<string, unknown>;
+          const messages = readJson(path.join(directory(), language + '.json')) as Record<string, unknown>;
+          const uk = readJson(path.join(directory(), 'uk.json')) as Record<string, unknown>;
           assert.deepEqual(Object.keys(messages).sort(), Object.keys(uk).sort());
           assert.equal(Object.hasOwn(messages, 'assessmentMethods'), false);
         });
