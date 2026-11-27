@@ -141,17 +141,24 @@ export type Chapter_Configurator<
   };
 } & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
+type ChapterAuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Chapter_Child>,
+  Languages extends readonly LanguageCode[],
+> = Omit<Chapter_Metadata_Config, 'slug' | 'locale'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+  locale: RequireLanguages<Chapter_Config['locale'], Languages>;
+
+} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+
 /** Define a Chapter with immutable ordered child configurators and stateless Build. */
-export const defineChapter = <
+const defineChapterImplementation = <
   const Slug extends string,
   const Items extends Record<string, Chapter_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<Chapter_Metadata_Config, 'slug' | 'locale'> & {
-    slug: Slug;
-    children: Extract<keyof Items, string>[];
-    locale: RequireLanguages<Chapter_Config['locale'], Languages>;
-  } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+  config: ChapterAuthoredInput<Slug, Items, Languages>,
 ): Chapter_Configurator<Slug, Items, Languages> => {
   const metadataSchema = chapter_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
@@ -415,3 +422,26 @@ export const defineChapter = <
     },
   } as unknown as Chapter_Configurator<Slug, Items, Languages>;
 };
+
+/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
+export function defineChapter<
+  const Slug extends string,
+  const Items extends Record<string, Chapter_Child>,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(config: ChapterAuthoredInput<Slug, Items, Languages>): Chapter_Configurator<Slug, Items, Languages>;
+
+/** Infer direct placement fields from the ordered placement key literals. */
+export function defineChapter<
+  const Slug extends string,
+  const Keys extends string,
+  const Items extends Record<Keys, Chapter_Child>,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(config: Omit<Chapter_Metadata_Config, 'slug' | 'locale'> & {
+    slug: Slug;
+    children: Keys[];
+    locale: RequireLanguages<Chapter_Config['locale'], Languages>;
+  } & { [Key in Keys]: Items[Key] } &
+  ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>): Chapter_Configurator<Slug, Items, Languages>;
+export function defineChapter(config: unknown): unknown {
+  return defineChapterImplementation(config as never);
+}
