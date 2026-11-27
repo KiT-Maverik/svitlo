@@ -47,31 +47,30 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
   matchBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateNestedBlockCollection(candidate.content.pairs, 'content.pairs', ['left', 'right']);
-  if (!candidate.content.pairs.order.length) throw new Error('MatchBlocks requires at least one pair');
+  if (!candidate.content.pairs.children.length) throw new Error('MatchBlocks requires at least one pair');
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
 type Pair = { left: ContentBlock_Primitive_Configurator; right: ContentBlock_Primitive_Configurator };
+type PairMembers<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Pair ? Group[Key] : Pair;
+};
 type PairsOverride<
   Content extends ContentShape,
   AddedPairs extends Record<string, Pair>,
   Languages extends readonly LanguageCode[],
 > = {
-  items?: {
-    [Key in keyof Content['pairs']['items']]?:
-      | {
-          left?: Parameters<Content['pairs']['items'][Key]['left']['build']['overrides']>[0];
-          right?: Parameters<Content['pairs']['items'][Key]['right']['build']['overrides']>[0];
-        }
-      | false;
+  children?: Extract<keyof PairMembers<Content['pairs']> | keyof NoInfer<AddedPairs>, string>[];
+} & {
+  [Key in keyof PairMembers<Content['pairs']>]?: {
+    left?: Parameters<PairMembers<Content['pairs']>[Key]['left']['build']['overrides']>[0];
+    right?: Parameters<PairMembers<Content['pairs']>[Key]['right']['build']['overrides']>[0];
+  } | false;
+} & AddedPairs & {
+  [Key in keyof AddedPairs]: {
+    left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
+    right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
   };
-  additionalItems?: AddedPairs & {
-    [Key in keyof AddedPairs]: {
-      left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
-      right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
-    };
-  } & { [Key in keyof Content['pairs']['items']]?: never };
-  order?: Extract<keyof Content['pairs']['items'] | keyof NoInfer<AddedPairs>, string>[];
 };
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
@@ -88,7 +87,7 @@ export type Question_MatchBlocks_Overrides<
  * Ask learners to match related ContentBlocks in pairs.
  *
  * @remarks
- * Each named entry in `content.pairs.items` is one genuine
+ * Each named entry in `content.pairs` is one genuine
  * `{ left, right }` match. Author the correct semantic pair explicitly;
  * do not rely on two unrelated positional lists matching by index.
  */
@@ -102,11 +101,9 @@ export const defineMatchBlocks = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         pairs: {
-          items: {
-            [Key in keyof Content['pairs']['items']]: {
-              left: ChildSupporting<Languages, Content['pairs']['items'][Key]['left']>;
-              right: ChildSupporting<Languages, Content['pairs']['items'][Key]['right']>;
-            };
+          [Key in keyof PairMembers<Content['pairs']>]: {
+            left: ChildSupporting<Languages, PairMembers<Content['pairs']>[Key]['left']>;
+            right: ChildSupporting<Languages, PairMembers<Content['pairs']>[Key]['right']>;
           };
         };
       };
