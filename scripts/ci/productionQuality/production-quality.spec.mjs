@@ -169,9 +169,11 @@ test('manual build-once experiment is opt-in without changing reusable productio
   assert.match(engineGeneratorsWorkflow, /ci_mode:[\s\S]*?type: choice[\s\S]*?default: standard/);
   assert.match(engineGeneratorsWorkflow, /workflow_call:/);
   assert.match(engineGeneratorsWorkflow, /inputs\.ci_mode == 'build-once-engine' && '-experiment'/);
+  assert.match(engineGeneratorsWorkflow, /inputs\.ci_mode == 'build-each-engine' && '-baseline'/);
+  assert.match(engineGeneratorsWorkflow, /          - build-each-engine/);
 
   for (const id of ['publisher-isolation', 'ci-policy', 'generator-tests']) {
-    assert.match(generatorJob(id), /inputs\.ci_mode != 'build-once-engine'/);
+    assert.match(generatorJob(id), /inputs\.ci_mode != 'build-once-engine' && inputs\.ci_mode != 'build-each-engine'/);
   }
   for (const id of ['experiment-engine-producer', 'experiment-consumer-types', 'experiment-consumer-tests']) {
     assert.match(generatorJob(id), /github\.event_name == 'workflow_dispatch' && inputs\.ci_mode == 'build-once-engine'/);
@@ -219,4 +221,31 @@ test('one producer and two independent consumers exchange a same-run artifact wi
   assert.match(engine.scripts.test, /tsc -p tsconfig\.test\.json && node --test/);
   assert.equal(uiKit.scripts['precode:check:types'], undefined);
   assert.match(uiKit.scripts['code:check:types'], /tsc -p tsconfig\.json --noEmit/);
+});
+
+test('baseline has two isolated parallel Engine builders and runs identical consumer checks', () => {
+  const types = generatorJob('experiment-baseline-types');
+  const unit = generatorJob('experiment-baseline-tests');
+  for (const baseline of [types, unit]) {
+    assert.match(baseline, /github\.event_name == 'workflow_dispatch' && inputs\.ci_mode == 'build-each-engine'/);
+    assert.match(baseline, /actions\/checkout@v5/);
+    assert.match(baseline, /persist-credentials: false/);
+    assert.match(baseline, /node-version: '26'/);
+    assert.match(baseline, /cache: npm/);
+    assert.match(baseline, /npm ci --no-audit --no-fund/);
+    assert.match(baseline, /test ! -e shared\/engine\/dist/);
+    assert.equal((baseline.match(/npm run package:build --workspace @svitlo\/engine/g) || []).length, 1);
+    assert.match(baseline, /engine-artifact-guard\.mjs snapshot/);
+    assert.match(baseline, /engine-artifact-guard\.mjs verify/);
+    assert.match(baseline, /steps\.artifact\.outcome == 'success'/);
+    assert.doesNotMatch(baseline, /needs:|upload-artifact|download-artifact|SVITLO_CI_PACKAGE_BUILD_STATE/);
+  }
+  for (const id of ['experiment-baseline-types', 'experiment-consumer-types']) {
+    assert.match(generatorJob(id), /npm run code:check:types --workspace @svitlo\/ui-kit/);
+  }
+  for (const id of ['experiment-baseline-tests', 'experiment-consumer-tests']) {
+    assert.match(generatorJob(id), /npm --ignore-scripts run test --workspace @svitlo\/engine/);
+  }
+  assert.doesNotMatch(workflow, /experiment-baseline-|build-each-engine/);
+  assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
 });

@@ -88,15 +88,19 @@ spent 219.9s in root `code:check:types` (109.6s inside package builds).
 This is a baseline, **not** a measured post-change speedup. Compare an actual
 full run at the same source scope before claiming improvement.
 
-## Opt-in Engine build-once artifact proof of concept (PR #895)
+## Opt-in Engine Build Once versus Build Each benchmark (PR #895)
 
 This is **experimental, manually dispatched diagnostics**, not Production
 Quality or an approved general cross-runner build cache. It deliberately
 tests the current Studio prohibition on sharing `dist/` across runners
 without changing that repository-wide rule or any required check. The
 existing `.github/workflows/engine-generators.yml` is registered on the
-default `develop` branch; its new `workflow_dispatch` choice
-`ci_mode=build-once-engine` selects only three experiment jobs:
+default `develop` branch; its `workflow_dispatch` choices select **exactly one** manually triggered
+benchmark variant, while `ci_mode=standard` keeps the original checks.
+
+### Build Once (`ci_mode=build-once-engine`)
+
+This variant runs three jobs:
 
 1. `Experiment / Engine build producer`: checkout, independent `npm ci`,
    one canonical Engine `package:build`, compiled-export validation, and
@@ -121,6 +125,24 @@ or copies artifacts from another workflow run. Native job statuses and logs
 remain distinct. Producer upload and consumer download are timed in step
 summaries; reported size is uncompressed bytes.
 
+### Build Each control (`ci_mode=build-each-engine`)
+
+The control consists of **two independent jobs** that start in parallel,
+without a producer, artifact transfer or `needs` dependency. Each checks out
+the same ref, installs the same npm dependencies using the same Node version
+and npm cache settings, and runs one **local** Engine `package:build` before
+its consumer check. UI Kit executes exactly the same two-project TypeScript
+check as the Build Once consumer. Engine executes exactly the same explicit
+test script with `--ignore-scripts`, so `pretest` cannot introduce an
+unmeasured third Engine build. Both jobs snapshot and verify their locally
+compiled `dist/` and reject any modifications during checks. The control
+therefore performs **two Engine production builds**, versus one in Build Once.
+
+This tests both redundant builds and their real scheduling cost. The topologies
+have intentionally different runner counts and dependency edges. Do not treat
+one successful functional Build Once run as evidence of reduced latency or
+billed cost.
+
 ### Manual invocation
 
 Select the **experiment branch** explicitly. The workflow itself is already
@@ -131,11 +153,23 @@ branch would not be dispatchable.
 gh workflow run engine-generators.yml \
   --ref ci/build-once-engine-artifact-experiment \
   -f ci_mode=build-once-engine
+# Select the independent-build control on the same branch and SHA:
+gh workflow run engine-generators.yml \
+  --ref ci/build-once-engine-artifact-experiment \
+  -f ci_mode=build-each-engine
 gh run list --workflow engine-generators.yml \
   --branch ci/build-once-engine-artifact-experiment \
   --event workflow_dispatch --limit 5
 gh run view <run-id> --json jobs,createdAt,updatedAt,headSha
 ```
+
+Execute **three successful runs of each mode**, alternating their order
+(once/each, each/once, once/each) and **pinning the same commit SHA**. Wait
+for each execution to finish before dispatching the next; otherwise GitHub
+runner contention or per-mode concurrency cancellation may bias the sample.
+Retain six run links and include any failed runs instead of silently
+discarding them. These modes are not an automatic repeat or Production Quality
+gate.
 
 The ordinary `ci_mode=standard` (and calls from Production Quality) keep
 the existing generator jobs. The choice-based mode is intentionally **not**
@@ -157,7 +191,17 @@ jobs API. Do not confuse summed job-seconds with billed runner-minutes. Include
 source SHA, runner OS/Node version, and cache profile. Prior run
 [45900076927](https://github.com/KiT-Maverik/svitlo/actions/runs/45900076927)
 is historical repeated-build context, **not** a matching-SHA A/B benchmark.
-A meaningful speed/cost comparison requires a controlled equivalent baseline.
+The control now exists as the second choice. For each run record wall-clock
+from the GitHub workflow run timestamps, **sum of active job durations** from
+the Actions jobs API (all three jobs for Build Once; both for Build Each),
+runner image, Node version, cache hit or miss, build time and count, npm
+install time, transfer time, and final test outcome. Compare the **median**
+of three successful runs per variant and show the range. Summed job-seconds
+are not the same as GitHub-billed minutes; neither should be reported as
+cost savings without a comparable billing calculation. Capture failed runs
+as failures, and rerun matched pairs only after investigating failures. The
+first Build Once run #45951806063 remains functional evidence, not a
+matched-SHA datapoint for this revised benchmark.
 
 Static and failure-path checks (no npm install required):
 
@@ -166,7 +210,7 @@ node --test scripts/ci/productionQuality/production-quality.spec.mjs \
   scripts/ci/productionQuality/engine-artifact-guard.spec.mjs
 ```
 
-To roll back the PoC, remove the three `experiment-*` jobs, the
+To roll back the PoC, remove all five `experiment-*` jobs, the
 `ci_mode` dispatch option and their guards from
 `engine-generators.yml`, plus this experiment-only guard/test and docs.
 No normal production or release workflow changes are necessary.

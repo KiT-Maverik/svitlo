@@ -53,7 +53,7 @@ test('heavy PR suites run on Ready transition and can run manually on Draft bran
       assert.ok(
         yaml.includes(
           "  generator-tests:\n    # Full host/browser/generator suites only at review boundary or explicitly on demand.\n" +
-            "    if: >-\n      inputs.ci_mode != 'build-once-engine' &&\n" +
+            "    if: >-\n      inputs.ci_mode != 'build-once-engine' && inputs.ci_mode != 'build-each-engine' &&\n" +
             "      (github.event_name == 'workflow_dispatch' || !github.event.pull_request.draft)",
         ),
         'Engine generators must retain Ready/manual coverage outside the explicitly selected experiment',

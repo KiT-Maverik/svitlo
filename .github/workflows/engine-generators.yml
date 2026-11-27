@@ -39,12 +39,13 @@ on:
   workflow_dispatch:
     inputs:
       ci_mode:
-        description: 'Run normal generator checks, or the manual Engine build-once experiment'
+        description: 'Normal generator checks or manual Engine build-once/build-each benchmark'
         required: false
         type: choice
         options:
           - standard
           - build-once-engine
+          - build-each-engine
         default: standard
   workflow_call:
 
@@ -52,13 +53,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: engine-generators-${{ github.event.pull_request.number || github.ref }}${{ inputs.ci_mode == 'build-once-engine' && '-experiment' || '' }}
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}${{ inputs.ci_mode == 'build-once-engine' && '-experiment' || inputs.ci_mode == 'build-each-engine' && '-baseline' || '' }}
   cancel-in-progress: true
 
 jobs:
   publisher-isolation:
     name: Publisher isolation / no npm dependencies
-    if: ${{ inputs.ci_mode != 'build-once-engine' }}
+    if: ${{ inputs.ci_mode != 'build-once-engine' && inputs.ci_mode != 'build-each-engine' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -299,6 +300,83 @@ jobs:
           start=$(date +%s)
           npm --ignore-scripts run test --workspace @svitlo/engine
           echo "- Engine test script: $(($(date +%s) - start))s (0 Engine package:build invocations)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Reject any consumer Engine dist rewrite
+        if: ${{ !cancelled() && steps.artifact.outcome == 'success' }}
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs verify "$RUNNER_TEMP/engine-dist-before.json"
+
+  # Manual control: two independent consumers start in parallel and each builds
+  # Engine locally. No producer, dependency edge or artifact transfer.
+
+  experiment-baseline-types:
+    name: Experiment baseline / UI Kit TypeScript (own Engine build)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'build-each-engine' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies independently
+        run: |
+          start=$(date +%s)
+          npm ci --no-audit --no-fund
+          echo "- Baseline types npm ci: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Require Engine dist to be absent before local build
+        run: test ! -e shared/engine/dist
+      - name: Compile Engine locally
+        run: |
+          start=$(date +%s)
+          npm run package:build --workspace @svitlo/engine
+          echo "- Baseline types Engine package:build: $(($(date +%s) - start))s (1 invocation)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Validate and snapshot locally compiled Engine
+        id: artifact
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs snapshot "$RUNNER_TEMP/engine-dist-before.json"
+      - name: Typecheck the compiled Engine consumer
+        run: |
+          start=$(date +%s)
+          npm run code:check:types --workspace @svitlo/ui-kit
+          echo "- Baseline types check: $(($(date +%s) - start))s (0 additional Engine package:build invocations)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Reject any consumer Engine dist rewrite
+        if: ${{ !cancelled() && steps.artifact.outcome == 'success' }}
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs verify "$RUNNER_TEMP/engine-dist-before.json"
+
+  experiment-baseline-tests:
+    name: Experiment baseline / Engine unit tests (own Engine build)
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.ci_mode == 'build-each-engine' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies independently
+        run: |
+          start=$(date +%s)
+          npm ci --no-audit --no-fund
+          echo "- Baseline tests npm ci: $(($(date +%s) - start))s" >> "$GITHUB_STEP_SUMMARY"
+      - name: Require Engine dist to be absent before local build
+        run: test ! -e shared/engine/dist
+      - name: Compile Engine locally
+        run: |
+          start=$(date +%s)
+          npm run package:build --workspace @svitlo/engine
+          echo "- Baseline tests Engine package:build: $(($(date +%s) - start))s (1 invocation)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Validate and snapshot locally compiled Engine
+        id: artifact
+        run: node scripts/ci/productionQuality/engine-artifact-guard.mjs snapshot "$RUNNER_TEMP/engine-dist-before.json"
+      - name: Run complete Engine unit suite without rebuild-triggering pretest
+        run: |
+          start=$(date +%s)
+          npm --ignore-scripts run test --workspace @svitlo/engine
+          echo "- Baseline tests check: $(($(date +%s) - start))s (0 additional Engine package:build invocations)" >> "$GITHUB_STEP_SUMMARY"
       - name: Reject any consumer Engine dist rewrite
         if: ${{ !cancelled() && steps.artifact.outcome == 'success' }}
         run: node scripts/ci/productionQuality/engine-artifact-guard.mjs verify "$RUNNER_TEMP/engine-dist-before.json"
