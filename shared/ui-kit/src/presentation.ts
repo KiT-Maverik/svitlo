@@ -20,7 +20,7 @@ import {
   type Section_Data,
 } from '@svitlo/engine/runtime';
 
-export type CarouselViewProps = ContentBlock_Carousel_Data & {
+export type CarouselViewProps = Omit<ContentBlock_Carousel_Data, 'children'> & {
   locale: { title?: string; slides: ContentBlock_Carousel_SlideData[] };
 };
 
@@ -28,7 +28,7 @@ export type CheckpointItemViewProps = Omit<ContentBlock_CheckpointItem_Data, 'an
   answer: Checkpoint_Allowed_Data[];
 };
 
-export type CheckpointViewProps = ContentBlock_Checkpoint_Data & {
+export type CheckpointViewProps = Omit<ContentBlock_Checkpoint_Data, 'children'> & {
   content: CheckpointItemViewProps[];
 };
 
@@ -37,7 +37,8 @@ export type ContentBlockViewProps =
   | CarouselViewProps
   | CheckpointViewProps;
 
-export type SectionViewProps = Section_Data & { content: ContentBlockViewProps[] };
+type WithoutChildren<T> = T extends unknown ? Omit<T, 'children'> : never;
+export type SectionViewProps = WithoutChildren<Section_Data> & { content: ContentBlockViewProps[] };
 
 export type LessonViewProps = Pick<Lesson_Data, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'skills' | 'events'> & {
   section: SectionViewProps[];
@@ -86,7 +87,10 @@ export function toContentBlockProps(value: unknown): ContentBlockViewProps {
     const title = asRecord(source.locale ?? {}, 'carousel locale').title;
     if (title !== undefined && typeof title !== 'string') throw Error('Invalid Carousel title');
     return {
-      ...source,
+      id: source.id,
+      slug: source.slug,
+      type: 'carousel',
+      params: source.params,
       locale: { ...(typeof title === 'string' ? { title } : {}), slides },
     } as CarouselViewProps;
   }
@@ -108,7 +112,10 @@ export function toContentBlockProps(value: unknown): ContentBlockViewProps {
       };
     });
     if (!content.length) throw Error('Checkpoint needs an enabled item');
-    return { ...source, content } as CheckpointViewProps;
+    return {
+      id: source.id, slug: source.slug, type: 'checkpoint', params: source.params,
+      locale: source.locale, content,
+    } as CheckpointViewProps;
   }
   return source as ContentBlockViewProps;
 }
