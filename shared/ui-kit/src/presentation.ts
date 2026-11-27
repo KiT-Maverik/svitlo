@@ -14,6 +14,7 @@ import {
   type ContentBlock_Checkpoint_Data,
   type ContentBlock_CheckpointItem_Data,
   type ContentBlock_Data,
+  type ContentBlock_Primitive_Data,
   type Lesson_Data,
   type LocalizedAssessment,
   type LocalizedEpisode,
@@ -171,4 +172,14 @@ export function toAssessmentProps(data: LocalizedAssessment): AssessmentViewProp
       ...ordered(after, 'assessment after').filter(enabled).map(section),
     ],
   };
+}
+
+/** Publish-order primitive groups for standalone Question and Flashcard resources. */
+export function toPrimitiveBlockProps(group: unknown): ContentBlock_Primitive_Data[] {
+  return ordered(asRecord(group, 'primitive group'), 'primitive group')
+    .filter(enabled)
+    .map(value => {
+      primitiveContentBlockResolved_Schema.parse(value);
+      return value as ContentBlock_Primitive_Data;
+    });
 }
