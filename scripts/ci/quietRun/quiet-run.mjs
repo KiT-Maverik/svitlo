@@ -20,6 +20,15 @@ export function failureExcerpt(output, limit = 12000) {
   return (errors ? errors + '\n...\n' + tail : tail).slice(0, limit);
 }
 
+/**
+ * Only allow the exact unit-test telemetry protocol through quiet CI logs.
+ * Reject arbitrary child output, newlines and workflow-command lookalikes.
+ */
+export function isUnitWorkspaceTimingLine(line, enabled = process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
+  return enabled &&
+    /^SVITLO_CI_UNIT_TIMING @svitlo\/[a-z][a-z0-9-]* \/ (?:test|package:build) \d+\.\ds \((?:success|failure)\)$/.test(line);
+}
+
 /** Windows npm is a .cmd shim; invoke its JavaScript CLI directly without a shell. */
 export function resolveSpawnCommand(command, args, options = {}) {
   const platform = options.platform ?? process.platform;
@@ -86,10 +95,9 @@ export function run(argv = process.argv.slice(2)) {
   });
   if (!verbose) {
     const acceptLine = line => {
-      // Only GitHub diagnostic annotations are forwarded from ordinary,
-      // human-readable commands. Workflow-control and structured protocols
-      // must never be quiet-wrapped in the first place.
-      if (annotation.test(line)) process.stdout.write(line + '\n');
+      // Keep regular output quiet. Forward only GitHub annotations and the
+      // exact, opt-in unit-workspace timing protocol (not workflow commands).
+      if (annotation.test(line) || isUnitWorkspaceTimingLine(line)) process.stdout.write(line + '\n');
       if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
     };
     const record = (chunk, stream) => {
