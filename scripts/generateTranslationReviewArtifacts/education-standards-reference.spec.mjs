@@ -71,7 +71,7 @@ function built(records) {
     slug,
     id,
     build: {
-      props: ({ languages }) => ({
+      data: ({ languages }) => ({
         base: {
           id,
           slug,
@@ -201,7 +201,7 @@ test('missing target translation is visible only in disposable Markdown and not 
           id: UUID_A,
           slug: 'sampleOne',
           build: {
-            props: () => {
+            data: () => {
               called = true;
               throw Error('Strict build rejected draft');
             },
