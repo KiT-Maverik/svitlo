@@ -29,7 +29,8 @@ test('Carousel retains reviewed nested Scene production specification', () => {
     type: 'carousel',
     params: {},
     locale: {},
-    slides: { items: { visual: scene() }, order: ['visual'] },
+    children: ['visual'],
+    visual: scene(),
   };
   const result = render(carousel);
   const sceneSource = result.files.find(file => file.path.endsWith('/slides/visual/index.ts'))?.content ?? '';
@@ -50,7 +51,8 @@ test('Carousel checks pending Scene production instead of silently stripping it'
     type: 'carousel',
     params: {},
     locale: {},
-    slides: { items: { visual: scene(true) }, order: ['visual'] },
+    children: ['visual'],
+    visual: scene(true),
   };
   assert.throws(() => render(carousel), /Pending ContentBlock/);
 });
@@ -62,9 +64,8 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
     type: 'checkpoint',
     params: {},
     locale: {},
-    content: {
-      items: {
-        first: {
+    children: ['first'],
+    first: {
           config: {
             id: id(11),
             slug: 'first',
@@ -83,14 +84,12 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
                 id: id(13),
                 slug: 'answer',
                 type: 'checkpointAnswer',
-                content: { items: { visual: scene() }, order: ['visual'] },
+                children: ['visual'],
+                visual: scene(),
               },
             },
           },
         },
-      },
-      order: ['first'],
-    },
   };
   const result = render(checkpoint);
   const sceneSource = result.files.find(file => file.path.endsWith('/answer/visual/index.ts'))?.content ?? '';
@@ -101,7 +100,7 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
   assert(result.diagnostics.some(diagnostic => diagnostic.code === 'pending-temporary-specification'));
   const pending = structuredClone(checkpoint);
   (
-    pending.content.items.first.config.answer.config.content.items.visual.production as {
+    pending.first.config.answer.config.visual.production as {
       specification: string;
       pending?: boolean;
     }
