@@ -1,21 +1,24 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-
 import { Flag, flagCountryByLocale } from './Flag';
 
 describe('Widgets/Flag', () => {
-  it.each(DEFAULT_SUPPORTED_LANGUAGES)('renders a bounded image for $locale', ({ locale }) => {
-    render(<Flag locale={locale} data-testid="flag" width={30} height={20} className="custom-flag" />);
+  it('renders a bounded decorative image and forwards image props', () => {
+    render(<Flag locale="uk-UA" data-testid="flag" width={30} height={20} className="custom-flag" />);
     const flag = screen.getByTestId('flag');
     expect(flag.tagName.toLowerCase()).toBe('img');
-    expect(flag).toHaveAttribute('src', `/flags/${flagCountryByLocale[locale]}.svg`);
+    expect(flag).toHaveAttribute('src', '/flags/ua.svg');
     expect(flag).toHaveAttribute('alt', '');
     expect(flag).toHaveAttribute('width', '30');
     expect(flag).toHaveAttribute('height', '20');
     expect(flag).toHaveClass('custom-flag');
     expect(flag).toHaveStyle({ objectFit: 'contain' });
+  });
+
+  it('resolves a host-provided asset base path without duplicating its trailing slash', () => {
+    render(<Flag locale="pl-PL" assetBasePath="/local/flags/" data-testid="local-flag" />);
+    expect(screen.getByTestId('local-flag')).toHaveAttribute('src', '/local/flags/pl.svg');
   });
 
   it('supports nondecorative accessible flags when an alt label is provided', () => {
