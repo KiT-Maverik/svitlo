@@ -87,12 +87,7 @@ export const flashcard_Config_Schema = identityBase_Schema
       tags: z.array(z.string()),
       disabilities: flashcardDisabilities_Schema.optional(),
       flags: z.array(flashcardFlag_Config_Schema),
-      relationships: z
-        .strictObject({
-          items: z.record(z.string(), flashcardRelationship_Schema),
-          order: z.array(z.string()),
-        })
-        .optional(),
+      relationships: z.looseObject({ children: z.array(z.string()) }).optional(),
     }),
     // Preserve the structural Config shape for YAML/editor schema generation.
     // defineFlashcard validates that these values are built side configurators.
@@ -121,7 +116,19 @@ export const flashcard_Data_Schema = identityBase_Schema.extend({
     tags: z.array(z.string()),
     disabilities: flashcardDisabilities_Schema,
     flags: z.array(flagSchema('data')),
-    relationships: z.array(flashcardRelationship_Schema).optional(),
+    relationships: z.looseObject({ children: z.array(z.string()) }).superRefine((relationships, ctx) => {
+      const order = relationships.children;
+      const members = Object.keys(relationships).filter(key => key !== 'children');
+      if (new Set(order).size !== order.length || members.length !== order.length ||
+          members.some(key => !order.includes(key))) {
+        ctx.addIssue({ code: 'custom', message: 'Invalid Flashcard relationship children order' });
+      }
+      for (const key of members) {
+        if (!flashcardRelationship_Schema.safeParse(relationships[key]).success) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard relationship Data' });
+        }
+      }
+    }).optional(),
   }),
   content: z.strictObject({
     front: resolvedSide.refine(value => value.children.length > 0, 'Flashcard front must not be empty'),
@@ -161,10 +168,9 @@ export type Flashcard_Named_Overrides<
   Added extends Record<string, object>,
   Immutable extends keyof Items[keyof Items],
 > = {
-  items?: { [Key in keyof Items]?: IdentitySafePatch<Items[Key], Extract<Immutable, keyof Items[Key]>> | false };
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Items]?: IdentitySafePatch<Items[Key], Extract<Immutable, keyof Items[Key]>> | false } &
+  Added & { [Key in Extract<keyof Items, keyof Added>]?: never };
 
 export type Flashcard_Overrides<
   Front extends Record<string, ContentBlock_Primitive_Configurator>,
