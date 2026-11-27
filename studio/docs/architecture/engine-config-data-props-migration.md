@@ -52,15 +52,17 @@ This snippet illustrates **shape only**; it is not a valid fixture and must not 
 
 ## Workstreams and dependency gates
 
-**A — Shared contract + Course/Module/Chapter**: specify and prove literal-key safety, `children`, container Data schemas, type inference, overrides, Course references and a representative vertical slice. Own `shared/engine/configurators/_shared__configurators/**`, `.../courses/**` and required Engine type contracts. This establishes the shape for downstream work.
+**A — #906, Data contract + Course/Module/Chapter**: specify and prove literal-key safety, `children`, runtime Data schemas, type inference, sparse *built Data* overrides, reusable completed Lesson placements, Course references and a representative vertical slice. Own `shared/engine/configurators/_shared__configurators/**`, `.../courses/**` and required Engine type contracts. **A is only the Data foundation and must not be mistaken for the final authored Config API.**
 
-**B — Lesson/Episode/Sections/ContentBlocks**: migrate ordered instructional containers and applicable composites with owner-specific invariants; preserve Checkpoint/Carousel/Quest roles and localization. Depends on approved A contract; do not modify A-owned shared helpers independently.
+**A2 — #914, authored Course Config API (mandatory predecessor)**: an independent follow-on A-owned implementation task **after #906 merges into integration and before B/C/D start**. A2 owns the final Course/Module/Chapter authored `*_Config_Schema`, `defineCourse/Module/Chapter` signatures and `build.overrides` authoring API: `children` is the order at root and direct keys are child Configurators; the redundant `content.items/order` authored wrapper is eliminated. Preserve literal key typing, disabled/additional placement semantics, immutable identity and Lesson reuse. A2 must run focused TypeScript and runtime tests, document downstream impacts and be reviewed/merged before releasing B/C/D. A2 **does not** own D's generators or E's publication/runtime code.
 
-**C — Assessment/Questions/Flashcards**: migrate eligible collections, preserving scoring semantics, semantic role names, bank references, evaluation contracts and Flashcard sides. Depends on approved A contract and coordinates with B for ContentBlock interfaces.
+**B — Lesson/Episode/Sections/ContentBlocks**: migrate ordered instructional containers and applicable composites with owner-specific invariants; preserve Checkpoint/Carousel/Quest roles and localization. Depends on both approved A and A2 contracts; do not modify A-owned shared helpers independently.
 
-**D — Source materializers and staged editorial source**: update concrete TypeScript source renderers, Stage Zod/contracts and trusted generators to produce valid new Config; do not weaken static reader or transaction constraints. Depends on A+B+C's source contracts.
+**C — Assessment/Questions/Flashcards**: migrate eligible collections, preserving scoring semantics, semantic role names, bank references, evaluation contracts and Flashcard sides. Depends on approved A and A2 contracts and coordinates with B for ContentBlock interfaces.
 
-**E — Publication, runtime, assemblers**: publish canonical Data JSON and localized sparse patches; update Course/Lesson/Assessment lookup, direct placement resolution, reference composition, tree/TOC assembly. Preserve draft/production and offline behavior. Depends on A+B+C; coordinate with D for generated fixtures.
+**D — Source materializers and staged editorial source**: update concrete TypeScript source renderers, Stage Zod/contracts and trusted generators to produce valid new Config; do not weaken static reader or transaction constraints. Depends on A+A2+B+C's source contracts.
+
+**E — Publication, runtime, assemblers**: publish canonical Data JSON and localized sparse patches; update Course/Lesson/Assessment lookup, direct placement resolution, reference composition, tree/TOC assembly. Preserve draft/production and offline behavior. Depends on A+A2+B+C; coordinate with D for generated fixtures.
 
 **F — Web/adapters/UI integration and regression evidence**: introduce presentation-specific Props adapters, migrate Next.js routes and Course navigation, preserve UI Kit and app host portability, add end-to-end multilingual and draft/production regression coverage. Depends on E.
 
@@ -69,6 +71,7 @@ Parallel work is allowed only on non-overlapping owned files after the relevant 
 ## Integration acceptance
 
 - Exact changed-path ownership; no unrelated authoring rewrites, generated churn or mass rename replay.
+- #906 Data foundation and #914 authored Course/Module/Chapter Config API independently verified and merged before B/C/D begin their implementation.
 - Build/typecheck + focused positive and negative tests for each family; runtime validation rejects unsafe/reserved keys and invalid `children` references.
 - End-to-end proof: inert editorial `draft.ts` → trusted materializer → executable Configurator → `build.data()` → localized published JSON → addressable runtime Data → presentation Props → rendered Lesson.
 - Reusable Lesson with placement-specific override; nested Course/Module/Chapter; valid draft siblings; disabled/added items; 2+ locales; Question/Flashcard/Assessment references; offline-capable host; TypeScript inference tests.
@@ -78,7 +81,7 @@ Parallel work is allowed only on non-overlapping owned files after the relevant 
 
 - Sound schema representation for root-level dynamic child properties, including known nested reserved-role keys.
 - Which non-Course composites meaningfully participate in `children` versus retain semantic role maps.
-- Exact distinction of full published leaf Data versus compact Course placement references, and sparse locale diff shape.
+- Exact distinction of full published leaf Data versus compact Course placement references, and sparse locale diff shape (E #912 owns runtime publication; A/A2 must not silently invent a compactness policy).
 - Slug→Course UUID index and behavior when the author changes a slug.
 - Coordination with existing open Draft Course/Lesson PRs and any migration/re-materialization needed for their authored sources.
 
