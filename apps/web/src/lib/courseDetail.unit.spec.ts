@@ -21,7 +21,7 @@ const course = {
   type: 'course',
   params: { languages: ['en', 'uk'] },
   locale: { title: 'Selected fixture Course', description: 'Fixture description' },
-  content: { items: {}, order: [] },
+  children: [],
 } as LocalizedCourse;
 
 beforeEach(() => {
@@ -31,7 +31,7 @@ beforeEach(() => {
     type: 'course',
     languages: ['en', 'uk'],
     label: 'Selected fixture Course',
-    content: { order: [], items: {} },
+    children: [],
   });
 });
 afterEach(() => vi.clearAllMocks());
@@ -72,25 +72,21 @@ it('propagates malformed and inaccessible requested publications', async () => {
 
 it('keeps the requested interface language while routing activities through selected content language', async () => {
   const fallbackCourse = structuredClone(course);
-  fallbackCourse.content.items.lesson = { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson' };
-  fallbackCourse.content.order = ['lesson'];
+  fallbackCourse.lesson = { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson' };
+  fallbackCourse.children = ['lesson'];
   resources.fallback.mockResolvedValueOnce({ course: fallbackCourse, contentLanguage: 'uk' });
   resources.toc.mockResolvedValueOnce({
     id: courseId,
     type: 'course',
     languages: ['en', 'uk'],
     label: 'Контрольний курс',
-    content: {
-      order: ['lesson'],
-      items: {
-        lesson: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Контрольний урок' },
-      },
-    },
+    children: ['lesson'],
+    lesson: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Контрольний урок' },
   });
   const detail = await loadCourseDetail(courseId, 'en');
   expect(detail?.interfaceLanguage).toBe('en');
   expect(detail?.contentLanguage).toBe('uk');
-  expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/11111111-1111-4111-8111-00000000011c');
+  expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/lesson');
   expect(resources.toc).toHaveBeenCalledWith(courseId, 'uk');
 });
 
@@ -100,10 +96,8 @@ it('rejects a stale TOC hierarchy instead of displaying incorrect Course navigat
     type: 'course',
     languages: ['en', 'uk'],
     label: 'Course',
-    content: {
-      order: ['stale'],
-      items: { stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' } },
-    },
+    children: ['stale'],
+    stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
   });
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);
 });
