@@ -116,6 +116,4 @@ describe('NavbarPreferences in shared UI Kit', () => {
     render(<NavbarPreferences locale="ar-SA" messages={ar} onLocaleChange={setLocale} />);
     expect(screen.getByRole('combobox', { name: ar.language })).toBeVisible();
   });
-
-
 });
