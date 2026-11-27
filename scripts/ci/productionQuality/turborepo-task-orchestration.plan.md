@@ -1,6 +1,6 @@
 # Turborepo CI task orchestration — controlled proof of concept
 
-**Status:** Draft PR handoff specification. **Implementation has not started in this PR.**
+**Status:** Draft PR experiment specification. The representative A/B/C CI harness, task graph validation, and artifact guards are implemented on this branch; actual manual benchmark runs and a full production-parity decision are **not yet verified**.
 **Base:** `develop`. **Prior experiment:** [PR #895](https://github.com/KiT-Maverik/svitlo/pull/895) (Build Once versus Build Each for two Engine consumers, deliberately a different topology).
 
 ## Objective and question
@@ -93,6 +93,6 @@ Deliver a concise decision record in this PR:
 
 ## Not in scope / handoff
 
-This initial commit contains **only this specification**. The implementing agent should edit this **existing branch and PR**, not create a parallel work PR; install/configure Turbo and add the experiment with tests after inspecting latest source. Do not rewrite the monorepo, replace official root commands, delete the old scheduler, remove Studio policies, create protected required checks, or alter release/materializer security as a shortcut. Limit code change to what the PoC requires; keep permanent migration out of scope.
+The initial commit contained only this specification. The implementation now lives on the **existing branch and PR**. Turbo is pinned in experimental commands to 2.11.13 without changing the production npm lockfile; that is a PoC-only compromise, not a completed production dependency migration. Do not rewrite the monorepo, replace official root commands, delete the old scheduler, remove Studio policies, create protected required checks, or alter release/materializer security as a shortcut. Limit code change to what the PoC requires; keep permanent migration out of scope.
 
-The assistant preparing this handoff will independently review the implementing agent's PR and benchmark evidence. PR #895 remains untouched and retains its original narrowly scoped benchmark.
+Independent Development and QA review must be performed separately after manual execution; the implementing assistant must not claim to be its own independent reviewer. PR #895 remains untouched and retains its original narrowly scoped benchmark.
