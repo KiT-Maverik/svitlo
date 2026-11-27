@@ -62,6 +62,7 @@ test('Flashcard: three standalone sides, ordered flags, relationships, source lo
   assert.match(main.content, /typeof content.hint/);
   assert.match(main.content, /typeof parameters.flags/);
   assert.match(main.content, /relationshipId: "connectionOne"/);
+  assert.match(main.content, /children: \["reverseCard"\] as \["reverseCard"\]/);
   assert.match(main.content, /type: "reverse" as const/);
   assert.match(main.content, /position: "peer" as const/);
   assert.match(main.content, /TODO \(BLOCKER\)/);
