@@ -65,7 +65,7 @@ describe('Configurators', () => {
             { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
           ],
           relationships: {
-            children: ['reverseLink'],
+            children: ['reverseLink' as const],
             reverseLink: {
               relationshipId: 'r1',
               type: 'reverse' as const,
@@ -160,7 +160,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard validates disability restrictions and publishes safe overrides', () => {
-        const card = defineFlashcard({
+        const card = defineBilingualFlashcard({
           ...source,
           parameters: { ...source.parameters, disabilities: ['deafness'] },
         });
