@@ -18,7 +18,7 @@ type Content = Omit<
   question: BlockCollection;
   hint?: BlockCollection;
   explanation?: BlockCollection;
-  slots: { items: Record<string, { correctAnswer: BlockNode }>; order: string[] };
+  slots: { children: string[] } & Record<string, unknown>;
   distractors: BlockCollection;
 };
 export type FillBlanksWithBlocksSource = Omit<Question_FillBlanksWithBlocks_Config, 'content'> & { content: Content };
@@ -194,7 +194,7 @@ export function materializeFillBlanksWithBlocks(
   if (!config.content.slots.children.length) fail('content.slots', 'at least one slot required');
   for (const key of config.content.slots.children)
     if (!isRecord(config.content.slots[key]) || !config.content.slots[key].correctAnswer)
-      fail('content.slots.items.' + key, 'correctAnswer required');
+      fail('content.slots.' + key, 'correctAnswer required');
   assertCollection(config.content.distractors, 'content.distractors');
   const planned = context.languages.planned;
   if (
