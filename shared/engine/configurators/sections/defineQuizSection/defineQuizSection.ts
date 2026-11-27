@@ -399,4 +399,21 @@ export const defineQuizSection: {
   ): ReturnType<typeof defineQuizSectionImpl<Slug, Items, Languages>>;
 } = defineQuizSectionImpl;
 
-export type QuizSection_Configurator = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
+/**
+ * Widen only the parent-facing collection boundary. A concrete Section has
+ * literal child keys and a narrowed language scope; the baseline public type
+ * must not require a never[] child order or an all-language Build input.
+ * At the authoring site typeof defineQuizSection(...) retains its full
+ * Build signature and the actual child-key/locale constraints.
+ */
+type QuizSectionBase = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
+export type QuizSection_Configurator = Omit<
+  QuizSectionBase, 'children' | '__svitloLanguageScope' | 'build'
+> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<QuizSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['overrides']>;
+  };
+};
