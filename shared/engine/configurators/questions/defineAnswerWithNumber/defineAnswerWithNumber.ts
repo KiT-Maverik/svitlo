@@ -48,7 +48,12 @@ const validate = (candidate: Question_AnswerWithNumber_Config): void => {
 type ContentShape = Question_AnswerWithNumber_Config['content'];
 type AddedPromptBlocksFromPatch<Patch, Content extends ContentShape> =
   Patch extends { content: { question: infer Collection } }
-    ? AddedPlacementsFromPatch<Collection, Content['question'], ContentBlock_Primitive_Configurator, 'children'>
+    ? AddedPlacementsFromPatch<
+        Collection,
+        Record<Extract<Content['question']['children'][number], string>, unknown>,
+        ContentBlock_Primitive_Configurator,
+        'children'
+      >
     : {};
 export type Question_AnswerWithNumber_Overrides<
   Content extends ContentShape = ContentShape,
