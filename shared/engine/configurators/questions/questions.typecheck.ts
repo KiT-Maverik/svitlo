@@ -189,11 +189,12 @@ scopedMatch.build.overrides(
   },
   scope,
 );
+// @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
 scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-        // @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
+        
          secondPair: { left: onlyUkrainianBlock, right: localizedBlock } ,
         children: ['firstPair', 'secondPair'],
       },
@@ -228,11 +229,12 @@ scopedBlocks.build.overrides(
   },
   scope,
 );
+// @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
 scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
+        
          secondSlot: { correctAnswer: onlyUkrainianBlock } ,
         children: ['originalSlot', 'secondSlot'],
       },
@@ -266,11 +268,12 @@ scopedTextSlots.build.overrides(
   },
   scope,
 );
+// @ts-expect-error The added slot needs the declared English translation.
 scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error The added slot needs the declared English translation.
+        
          secondSlot: { correctAnswers: { first: { uk: 'Так' } } } ,
         children: ['originalSlot', 'secondSlot'],
       },
