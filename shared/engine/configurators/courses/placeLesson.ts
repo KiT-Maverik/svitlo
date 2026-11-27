@@ -12,7 +12,10 @@ import type { Lesson_Configurator } from '../lessons/defineLesson';
 import { sectionTypes, type Section_Configurator } from '../sections';
 import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 
-type AddedSections = Record<string, Section_Configurator>;
+type AddedSections = Record<string, {
+  readonly type: Section_Configurator['type'];
+  readonly build: { readonly overrides: (...args: never[]) => unknown };
+}>;
 type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections = {}> =
   CourseLessonBoundPatch<Lesson, Added> &
   ChildrenSupporting<Lesson['__svitloLanguageScope'], Added>;
