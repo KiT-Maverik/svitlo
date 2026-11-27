@@ -114,17 +114,24 @@ FastGate is a **typechecking gate**, not a test, coverage, lint, package-validat
 or production application-build gate. On **Ready PRs targeting `develop`**, it selects
 changed workspaces plus consumers of changed public TypeScript contracts. On **Ready
 PRs targeting any other branch** (including nested integration parents and `main`),
-it selects **only directly changed workspaces**, without downstream consumer
-expansion. For either scope, it builds prerequisite published exports needed for
+it ordinarily selects **only directly changed workspaces**, without downstream
+consumer expansion. Root-level `package.json`, `package-lock.json` and
+`tsconfig*.json` edits are the conservative exception: they select every
+eligible TypeScript workspace even with `--changed-only`, because those changes
+can affect every workspace. For either scope, it builds prerequisite published exports needed for
 TypeScript resolution in dependency order, then runs independent `code:check:types`
 checks concurrently (default two;
 `SVITLO_FASTGATE_PARALLELISM=1..8`). Web/Mobile typechecks remain sequential
 because their npm pre-hooks may rewrite shared `dist/`, making concurrent checks
 unsafe without first separating preparation from compilation. Root
 `npm run code:check:types` checks all workspaces and is not the FastGate default.
-For nested Ready PRs, a root-only manifest or root tsconfig change does not
-count as a directly edited workspace; use the existing full manual
-`workflow_dispatch` (`--all`) for such global configuration changes when needed.
+For nested Ready PRs, root-only manifest, lockfile or root TypeScript
+configuration changes automatically select all eligible TypeScript workspaces;
+they must never produce a green zero-typecheck result. The separate manual
+`workflow_dispatch` (`--all`) remains available for explicitly requested full
+diagnostics, not as a necessary workaround for root-only changes. This behavior
+is covered by positive and negative `run-fast-gate.spec.mjs` selection tests;
+actual Ready event coverage must still be verified.
 The GitHub PR trigger includes `edited` so retargeting a Ready PR also re-evaluates
 its correct branch-specific scope. GitHub also emits `edited` for description-only
 changes, even at unchanged HEAD. **Do not skip a required check job solely on
@@ -266,7 +273,8 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
   declaration surface of re-exported modules and propagates affected workspace
   typechecks through real dependencies, including transitive consumers.
   Private implementation-only edits remain scoped. Root manifest and lockfile
-  edits conservatively check all workspaces.
+  edits conservatively check all eligible TypeScript workspaces even for
+  nested Ready PRs using `--changed-only`.
 - **Owner decision:** do **not** introduce Rulesets for intermediate `integration/*`,
   historical `integration-branch`, or `agent/*` branches. Their failed checks
   remain visible to reviewers and agents but do not prevent a GitHub merge.
