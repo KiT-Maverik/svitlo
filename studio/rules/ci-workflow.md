@@ -253,9 +253,13 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
 ## Production and nested-PR enforcement follow-ups
 
 - Required `Affected content / build, taxonomy and packaging` runs the full
-  selected-content workload across at most five deterministic shards on every Ready
+  selected-content workload across at most three deterministic shards on every Ready
   main PR. Each shard installs dependencies once and preserves independent
-  publication and tarball portability checks for every eligible textbook. Production Quality does **not**
+  publication and tarball portability checks for every eligible textbook. The
+  three-shard cap was approved in PR #925 after three same-SHA full-content
+  comparisons: median shard runner time fell by about 25%, while median shard
+  wall time increased by six seconds. This tradeoff applies only to the Content
+  Build matrix; it does not authorize slower CI jobs elsewhere. Production Quality does **not**
   rerun those publication/portability suites; it retains full TypeScript, root
   tests, app builds, package artifacts and Chromium E2E coverage.
 - FastGate determines changed files from the merge-base, compares the public
