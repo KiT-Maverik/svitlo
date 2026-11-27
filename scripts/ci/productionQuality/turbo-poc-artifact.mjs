@@ -61,13 +61,15 @@ function main([mode, first, second]) {
     console.log('Artifact valid: ' + first + ' (' + tree.length + ' files)');
     return;
   }
-  if (!['snapshot', 'verify'].includes(mode) || !first || second === undefined) {
-    throw Error('Usage: turbo-poc-artifact.mjs check <key> | snapshot|verify <filename> <csv-requires>');
+  if (!['snapshot', 'verify', 'verify-content'].includes(mode) || !first || second === undefined) {
+    throw Error('Usage: turbo-poc-artifact.mjs check <key> | snapshot|verify|verify-content <filename> <csv-requires>');
   }
   const tree = capture(second);
   if (mode === 'snapshot') writeFileSync(first, JSON.stringify(tree), { flag: 'wx' });
-  else if (JSON.stringify(tree) !== readFileSync(first, 'utf8')) {
-    throw Error('A prerequisite dist changed during a consumer task');
+  else {
+    const before = JSON.parse(readFileSync(first, 'utf8'));
+    const normalize = value => mode === 'verify-content' ? JSON.stringify(value, (key, v) => key === 'mtimeNs' ? undefined : v) : JSON.stringify(value);
+    if (normalize(before) !== normalize(tree)) throw Error('A prerequisite dist changed during a consumer task');
   }
   console.log('Artifact ' + mode + ': ' + (second || '(none)'));
 }
