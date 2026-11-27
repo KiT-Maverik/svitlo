@@ -314,6 +314,34 @@ describe('Configurators', () => {
         );
       });
 
+      test('Question matching pairs keep semantic child roles sparse', () => {
+        const config = {
+          ...common('matchBlocks'),
+          content: {
+            ...prompt,
+            pairs: { children: ['pairOne'], pairOne: { left: yes, right: no } },
+          },
+        };
+        const question = defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+        assert.deepEqual(
+          question.build.overrides({ content: { pairs: {} } }, scope),
+          { base: {}, locale: undefined },
+        );
+        const localized = question.build.overrides(
+          { content: { pairs: { pairOne: { left: { locale: { value: { uk: 'Ліворуч' } } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          content: { pairs: { pairOne: { left: { locale: { value: 'Ліворуч' } } } } },
+        });
+        assert.equal(JSON.stringify(localized).includes('"right"'), false);
+        assert.deepEqual(
+          (question.build.data(scope).base.content as { pairs: { children: string[] } }).pairs.children,
+          ['pairOne'],
+        );
+      });
+
       test('Question localized answers and slots preserve semantic Data groups and sparse languages', () => {
         const text = (() => {
           const config = {
