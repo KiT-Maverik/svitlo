@@ -253,6 +253,10 @@ test('fully typed Stage 3 tree reuses one Lesson twice with independent sparse B
   second.config.children = ['second'];
   second.config.second = lesson('second', 'Two');
   src.config.children = ['moduleOne', 'newLesson'];
+  delete src.config.directEpisode;
+  delete src.config.directLesson;
+  delete first.config.episodeOne;
+  delete second.config.episodeOne;
   src.config.moduleOne = {
     ...mod(),
     config: { ...mod().config, children: ['chapterOne', 'chapterTwo'], chapterOne: first, chapterTwo: second },
@@ -315,7 +319,7 @@ test('Stage 3 provisional Episode becomes a deterministic, explicitly blocked au
   const unsafe = course();
   unsafe.config['../bad'] = unsafe.config.directLesson;
   unsafe.config.children.push('../bad');
-  assert.throws(() => materializeCourse(unsafe, ctx()), /unsafe slug/);
+  assert.throws(() => materializeCourse(unsafe, ctx()), /\.children: each child key must appear exactly once/);
   const missing = course();
   delete missing.production.languages;
   assert.throws(() => materializeCourse(missing, ctx()), /production.languages/);
@@ -391,11 +395,18 @@ test('new Lesson handoff cannot be mistaken for a finished Configurator or gener
   assert.throws(() => materializeCourse(noAssessment, ctx()), /four explicit assessment decisions/);
 });
 
-test('Course fails closed when a child import shadows generated content', () => {
+test('Course rejects a legacy content wrapper before generating imports', () => {
   const node = course();
   node.config.content = lesson('content', 'Текст');
   node.config.children.push('content');
-  assert.throws(() => materializeCourse(node, ctx()), /generated identifier collision.*content/);
+  assert.throws(() => materializeCourse(node, ctx()), /\.content: legacy Course hierarchy wrapper is forbidden/);
+});
+
+test('Course rejects valid child imports that collide with generated identifiers', () => {
+  const node = course();
+  node.config.defineCourse = lesson('defineCourse', 'Текст');
+  node.config.children.push('defineCourse');
+  assert.throws(() => materializeCourse(node, ctx()), /generated identifier collision.*defineCourse/);
 });
 
 test('Course-level Skill targets remain genuine Config fields with trusted Skill.id imports', () => {
