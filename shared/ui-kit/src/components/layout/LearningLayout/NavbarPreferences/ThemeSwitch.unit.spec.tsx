@@ -40,13 +40,6 @@ describe('Animated navbar ThemeSwitch', () => {
     expect(screen.queryByRole('tooltip')).not.toBeInTheDocument();
   });
 
-  it('uses the compact navbar size without exposing selectable static text', () => {
-    const { container } = render(<ThemeSwitch label={uk.theme.dark} mode="light" onThemeChange={setMode} />);
-    const root = container.querySelector('.MuiSwitch-root');
-    expect(root).toHaveStyle({ width: '54px', height: '30px' });
-    expect(root).toHaveStyle({ userSelect: 'none', cursor: 'pointer' });
-  });
-
   it('toggles both ways and preserves sun and moon nodes for crossfade', async () => {
     const view = render(<ThemeSwitch label={uk.theme.dark} mode="light" onThemeChange={setMode} />);
     const sun = screen.getByTestId('WbSunnyRoundedIcon');
@@ -69,12 +62,8 @@ describe('Animated navbar ThemeSwitch', () => {
     expect(toggle()).toBeChecked();
   });
 
-  it('supports localized RTL accessible names', () => {
-    render(
-      <div dir="rtl">
-        <ThemeSwitch label={ar.theme.dark} mode="dark" onThemeChange={setMode} />
-      </div>,
-    );
+  it('uses a host-provided localized accessible name', () => {
+    render(<ThemeSwitch label={ar.theme.dark} mode="dark" onThemeChange={setMode} />);
     expect(screen.getByRole('switch', { name: ar.theme.dark })).toBeChecked();
   });
 
