@@ -43,6 +43,28 @@ test('successful command preserves workflow warning annotations without noisy st
   assert.doesNotMatch(result.stdout, /ordinary noise/);
 });
 
+test('early CI warning and notice annotations survive output tail rollover exactly once', () => {
+  const result = invoke(
+    "console.log('::warning file=early.ts,line=8::early warning'); " +
+      "console.log('::notice::important note'); console.log('noise\\n'.repeat(27000))",
+  );
+  assert.equal(result.status, 0);
+  assert.equal(result.stdout.split('::warning file=early.ts,line=8::early warning').length - 1, 1);
+  assert.equal(result.stdout.split('::notice::important note').length - 1, 1);
+  assert.doesNotMatch(result.stdout, /noise/);
+});
+
+test('partial stdout annotation is not corrupted by an interleaved stderr line', () => {
+  const result = invoke(
+    "process.stdout.write('::war'); " +
+      "process.stderr.write('other stderr line\\n'); " +
+      "process.stdout.write('ning::split annotation\\n')",
+  );
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /::warning::split annotation/);
+  assert.doesNotMatch(result.stdout, /other stderr line/);
+});
+
 test('failing command retains workflow error annotation and exact exit status', () => {
   const result = invoke(
     "console.error('::error file=example.ts,line=5::first cause'); process.exit(9)",
