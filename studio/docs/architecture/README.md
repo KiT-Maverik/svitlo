@@ -60,8 +60,8 @@ Course Workflow has **ten stages**, with conditional **Stage 7 Design Assessment
 ## Reviewer constitutions
 
 - [Development Constitution](../development-constitution.md) — reserved for future development rules; **currently intentionally empty** beyond its title.
-- [Quality Constitution](../quality-constitution.md) — reserved for future quality/testing rules; **currently intentionally empty** beyond its title.
-- [Development Reviewer](../../personas/development-reviewer.persona.md) evaluates code and PRs against written architecture/Development Constitution; [Quality Assurance Reviewer](../../personas/quality-assurance-reviewer.persona.md) evaluates test effectiveness and quality evidence. **No unwritten constitutional rules may be inferred** from an empty placeholder.
+- [Quality Constitution](../quality-constitution.md) — **proposed risk-based test quality policy, pending explicit owner ratification in PR #921**. Its new testing criteria are guidance, not enforceable rules or CI gates until approved.
+- [Development Reviewer](../../personas/development-reviewer.persona.md) evaluates code and PRs against written architecture/Development Constitution; [Quality Assurance Reviewer](../../personas/quality-assurance-reviewer.persona.md) evaluates test effectiveness and quality evidence. **No unwritten Development Constitution rules or unapproved Quality Constitution clauses may be inferred.**
 
 ## Planned Product Feature Backlog
 
