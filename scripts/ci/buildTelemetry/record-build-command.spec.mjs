@@ -17,7 +17,16 @@ function fixture(t) {
 
 test('CLI requires exactly one workspace and labeled command', () => {
   assert.deepEqual(
-    parseArguments(['--workspace', '@svitlo/engine', '--origin', 'content-prepare', '--', 'npm', 'run', 'package:build']),
+    parseArguments([
+      '--workspace',
+      '@svitlo/engine',
+      '--origin',
+      'content-prepare',
+      '--',
+      'npm',
+      'run',
+      'package:build',
+    ]),
     { workspace: '@svitlo/engine', origin: 'content-prepare', command: 'npm', args: ['run', 'package:build'] },
   );
   assert.throws(() => parseArguments(['--workspace', 'engine']), /Usage/);
