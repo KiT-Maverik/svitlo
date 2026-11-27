@@ -20,6 +20,7 @@ import {
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
+  type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
@@ -40,6 +41,19 @@ import {
 
 type Block = ContentBlock_Primitive_Configurator;
 type Side = 'front' | 'back' | 'hint';
+type AddedSideFromPatch<
+  Patch,
+  Items extends Record<string, Block>,
+  Role extends Side,
+> = Patch extends { content: { [Key in Role]: infer SidePatch } }
+  ? AddedPlacementsFromPatch<SidePatch, Items, Block, 'children'>
+  : {};
+type AddedRelationshipsFromPatch<
+  Patch,
+  Relationships extends Record<string, Flashcard_Relationship>,
+> = Patch extends { parameters: { relationships: infer Group } }
+  ? AddedPlacementsFromPatch<Group, Relationships, Flashcard_Relationship, 'children'>
+  : {};
 type SidePublication = {
   base: Flashcard_DataBase['content']['front'];
   locale: Partial<Record<LanguageCode, Flashcard_DataBase['content']['front']>> | undefined;
@@ -356,7 +370,7 @@ export function defineFlashcard<
     return result;
   };
 
-  const overrides = <
+  const overridesImplementation = <
     const AddedFront extends Record<string, Block> = {},
     const AddedBack extends Record<string, Block> = {},
     const AddedHint extends Record<string, Block> = {},
@@ -477,6 +491,29 @@ export function defineFlashcard<
       );
     }
   };
+
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Flashcard_Overrides<
+        Front, Back, Hint, Relationships,
+        AddedSideFromPatch<Patch, Front, 'front'>,
+        AddedSideFromPatch<Patch, Back, 'back'>,
+        AddedSideFromPatch<Patch, Hint, 'hint'>,
+        AddedRelationshipsFromPatch<Patch, Relationships>
+      > & {
+        content?: {
+          front?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Front, 'front'>>;
+          back?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Back, 'back'>>;
+          hint?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Hint, 'hint'>>;
+        };
+      },
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: Flashcard_Overrides<Front, Back, Hint, Relationships>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
 
   const result = {
     id,
