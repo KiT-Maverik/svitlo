@@ -11,6 +11,7 @@ import type {
 import {
   buildChildData,
   buildChildOverrides,
+  mayReuseCompletedLesson,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -102,11 +103,15 @@ const validate = (config: Course_Config): void => {
       }
     }
   }
-  const seenIds = new Set<string>();
+  const seenIds = new Map<string, Record<string, unknown>>();
   for (const child of Object.values(config.content?.items ?? {})) {
     if (!isRecord(child) || typeof child.id !== 'string') continue;
-    if (seenIds.has(child.id)) errors.push('content.items: duplicate Course child ID ' + child.id);
-    seenIds.add(child.id);
+    const previous = seenIds.get(child.id);
+    if (previous && !mayReuseCompletedLesson(previous, child)) {
+      errors.push('content.items: duplicate Course child ID ' + child.id);
+    } else {
+      seenIds.set(child.id, child);
+    }
   }
   if (errors.length) throw new Error('Course validation failed: ' + errors.join('; '));
 };
@@ -187,12 +192,15 @@ export const defineCourse = <
     changes: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
-    const ids = new Set<string>();
+    const ids = new Map<string, Course_Child>();
     const entries = order.map(key => {
       const child = items[key];
       if (!child) throw new Error('Unknown Course child: ' + key);
-      if (ids.has(child.id)) throw new Error('Duplicate Course child ID: ' + child.id);
-      ids.add(child.id);
+      const previous = ids.get(child.id);
+      if (previous && !mayReuseCompletedLesson(previous, child)) {
+        throw new Error('Duplicate Course child ID: ' + child.id);
+      }
+      ids.set(child.id, child);
       const build = (child as unknown as BuildChild).build;
       if (!build || typeof build.data !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
