@@ -232,7 +232,7 @@ test('Course Stage 5 fails closed on unverified source, duplicate order and part
   assert.throws(() => materializeCourseStage5(source(), unverified), /not independently verified/);
   const unordered = source();
   unordered.config.children = ['moduleOne', 'moduleOne'];
-  assert.throws(() => materializeCourseStage5(unordered, options()), /order/);
+  assert.throws(() => materializeCourseStage5(unordered, options()), /\.children: each child key must appear exactly once/);
   const incomplete = source();
   delete incomplete.config.directLesson.production.assessment;
   assert.throws(() => materializeCourseStage5(incomplete, options()), /four explicit assessment/);
