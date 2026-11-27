@@ -278,7 +278,7 @@ export const defineCheckpointAnswer = <
   // despite SafePlacementMap rejecting reserved keys at authoring. Restore
   // ALL fixed lifecycle keys explicitly, avoiding accidental Primitive
   // shadowing of build, config, validation, or the Answer discriminator.
-  return result as Omit<
+  return result as unknown as Omit<
     typeof result, 'id' | 'slug' | 'type' | 'children' | 'validate' | 'build' | 'config'
   > & {
     readonly id: typeof id;
