@@ -20,6 +20,29 @@ describe('styledText utilities', () => {
     ]);
   });
 
+  it.each([
+    {
+      name: 'an unfinished marker',
+      source: 'Hello %_%id: name; value: John',
+      expected: [{ kind: 'text', value: 'Hello %_%id: name; value: John' }],
+    },
+    {
+      name: 'an unfinished marker followed by a complete marker',
+      source: '%_%id: first; value: John %_%id: second; value: Jane%_%',
+      expected: [
+        { kind: 'text', value: '%_%id: first; value: John ' },
+        { kind: 'fragment', id: 'second', value: 'Jane' },
+      ],
+    },
+    {
+      name: 'an unmatched closing delimiter',
+      source: 'Hello John %_%',
+      expected: [{ kind: 'text', value: 'Hello John %_%' }],
+    },
+  ])('preserves visible text for $name', ({ source, expected }) => {
+    expect(parseText(source)).toEqual(expected);
+  });
+
   it('applies styles when embedded in another element', () => {
     const content = applyStyledText({
       text: 'Hi %_%id: name; value: John%_%',
