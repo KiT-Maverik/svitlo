@@ -221,8 +221,8 @@ test('parent source identifiers refuse reserved local collisions rather than inv
 
   assert.throws(
     () => materializeCourseStage5(input, options()),
-    /generated identifier collision "content"/,
-    'a parent slug must not shadow the generated content local',
+    /legacy.*wrapper|reserved/,
+    'reserved Course placement metadata cannot become a child key',
   );
 });
 
@@ -681,7 +681,7 @@ test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners w
     assert.ok(stub?.content.includes('defineAssessmentStub({ id: ' + JSON.stringify(row.id)));
     assert.ok(stub?.content.includes('TODO (BLOCKER): Complete and validate the Assessment Configurator'));
     assert.ok(parent?.content.includes(row.slug));
-    assert.ok(parent?.content.includes('order: '));
+    assert.ok(parent?.content.includes('children: '));
     assert.doesNotMatch(parent.content, /TODO \\(BLOCKER\\): Complete and review the Assessment/);
     // The reserved Configurator and seed retain pending state without a stale status comment.
     assert.doesNotMatch(seed.content, /questionIds|defineQuizSection/);
@@ -921,7 +921,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
 
-test('Course additionalItems binds only verified Sections and retains real nested Lesson Build semantics', () => {
+test('Course direct Section references bind only verified Sections and retain real Lesson Build semantics', () => {
   const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
   const { defineLesson, defineCourse, defineContentSection, defineText, placeLesson } = createRequire(import.meta.url)(
     path.join(engineRoot, 'dist/build.js'),
