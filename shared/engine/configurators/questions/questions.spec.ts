@@ -244,6 +244,76 @@ describe('Configurators', () => {
         );
       });
 
+      test('Question prompt and scoring groups publish only explicit sparse child patches', () => {
+        const note = defineText({
+          id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
+          slug: 'note',
+          type: 'text',
+          params: {},
+          locale: { value: { en: 'Read carefully', uk: 'Читайте уважно' } },
+        });
+        const config = {
+          ...common('answerWithNumber'),
+          params: { ...params, correctAnswers: [5] },
+          locale: { placeholder: localized },
+          content: {
+            question: { children: ['promptBlock', 'note'], promptBlock, note },
+          },
+        };
+        const question = defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+
+        assert.deepEqual(question.build.overrides({}, scope), { base: {}, locale: undefined });
+        assert.deepEqual(
+          question.build.overrides({ content: { question: {} } }, scope),
+          { base: {}, locale: undefined },
+        );
+        const oneChild = question.build.overrides(
+          { content: { question: { promptBlock: { params: { disabled: true } } } } },
+          scope,
+        );
+        assert.deepEqual(oneChild.base, {
+          content: { question: { promptBlock: { params: { disabled: true } } } },
+        });
+        assert.equal(oneChild.locale, undefined);
+        const localized = question.build.overrides(
+          { content: { question: { note: { locale: { value: { uk: 'Оновлено' } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          content: { question: { note: { locale: { value: 'Оновлено' } } } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        const structural = question.build.overrides(
+          { content: { question: { note: false, children: ['promptBlock'] } } },
+          scope,
+        );
+        assert.deepEqual(
+          (structural.base.content as { question: { children: string[] } }).question.children,
+          ['promptBlock'],
+        );
+        assert.equal('note' in (structural.base.content as { question: Record<string, unknown> }).question, false);
+        assert.deepEqual(
+          (question.build.data(scope).base.content as { question: { children: string[] } }).question.children,
+          ['promptBlock', 'note'],
+        );
+
+        const selectConfig = { ...common('selectOneAnswer'), content: { ...prompt, answers } };
+        const select = defineSelectOneAnswer<
+          typeof selectConfig.slug, typeof selectConfig.content, ['en', 'uk']
+        >(selectConfig);
+        assert.deepEqual(
+          select.build.overrides({ content: { answers: { correct: {} } } }, scope),
+          { base: {}, locale: undefined },
+        );
+        assert.deepEqual(
+          select.build.overrides({
+            content: { answers: { incorrect: { no: { params: { disabled: true } } } } },
+          }, scope).base,
+          { content: { answers: { incorrect: { no: { params: { disabled: true } } } } } },
+        );
+      });
+
       test('Question localized answers and slots preserve semantic Data groups and sparse languages', () => {
         const text = (() => {
           const config = {
