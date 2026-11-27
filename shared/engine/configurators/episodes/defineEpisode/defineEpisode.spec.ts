@@ -210,7 +210,8 @@ describe('Configurators', () => {
         assert.equal(course.content.items.arrival, episode);
         assert.equal(chapter.content.items.chapterScene, chapterEpisode);
         assert.equal(module.content.items.moduleScene, moduleEpisode);
-        assert.equal(resource.base.content[1]?.type, 'episode');
+        assert.deepEqual(resource.base.children, ['module', 'arrival']);
+        assert.equal(resource.base.arrival.type, 'episode');
         assert.ok(JSON.stringify(resource.locale?.uk).includes('Прибуття'));
         const override = course.build.overrides(
           {
