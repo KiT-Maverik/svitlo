@@ -1,0 +1,49 @@
+name: Platform browser checks
+
+# A production Next.js build is needed by the package's Playwright webServer.
+# Exercise it on relevant nested Ready PRs; main promotions already use
+# Production Quality's app matrix. Pixel emulation is not native-device QA.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - 'apps/platform/**'
+      - 'package-lock.json'
+      - '.github/workflows/platform-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: platform-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: Platform desktop and mobile-viewport scenarios
+    if: github.event_name == 'workflow_dispatch' || (!github.event.pull_request.draft && github.event.pull_request.base.ref != 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install pinned dependencies
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
+      - name: Build the production Platform host
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run app:build --workspace @svitlo/platform
+      - name: Install Chromium
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/platform -- playwright install chromium --with-deps
+      - name: Execute real browser navigation and accessibility interactions
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run test:e2e --workspace @svitlo/platform
+      - uses: actions/upload-artifact@v6
+        if: failure()
+        with:
+          name: platform-browser-test-results
+          path: apps/platform/test-results/
+          if-no-files-found: ignore
