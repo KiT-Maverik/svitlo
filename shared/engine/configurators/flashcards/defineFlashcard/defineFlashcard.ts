@@ -16,6 +16,7 @@ import {
   onlyLocales,
   resolvePublicationLanguages,
   scopeBuild,
+  slugAddressedReservedKeys,
   selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -56,6 +57,9 @@ type OverrideBase = {
 };
 type NamedInput = { children: string[] } & Record<string, unknown>;
 type NamedPatch = { children?: string[] } & Record<string, unknown>;
+const isValidRelationshipKey = (key: string): boolean =>
+  /^[a-z][A-Za-z0-9]*$/.test(key) && !slugAddressedReservedKeys.some(reserved => reserved === key);
+
 const relationItems = (source: NamedInput): Record<string, unknown> =>
   Object.fromEntries(Object.entries(source).filter(([key]) => key !== 'children'));
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -138,7 +142,7 @@ const validate = (config: Flashcard_Config): void => {
   for (const [key, value] of Object.entries(
     config.parameters.relationships ? relationItems(config.parameters.relationships as NamedInput) : {},
   )) {
-    if (!/^[a-z][A-Za-z0-9]*$/.test(key) || ['__proto__', 'constructor', 'prototype'].includes(key))
+    if (!isValidRelationshipKey(key))
       throw new Error('Invalid Flashcard relationship slug: ' + key);
     const relation = flashcardRelationship_Schema.parse(value);
     if (ids.has(relation.relationshipId))
@@ -165,7 +169,7 @@ const resolveNamed = (
   let structureChanged = false;
   for (const [key, change] of Object.entries(patch ?? {})) {
     if (key === 'children') continue;
-    if (!/^[a-z][A-Za-z0-9]*$/.test(key) || ['__proto__', 'constructor', 'prototype'].includes(key)) {
+    if (!isValidRelationshipKey(key)) {
       throw new Error('Invalid Flashcard ' + label + ' slug: ' + key);
     }
     if (Object.hasOwn(original, key)) {
