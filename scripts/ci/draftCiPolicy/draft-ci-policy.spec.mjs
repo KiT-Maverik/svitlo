@@ -25,11 +25,11 @@ test('FastGate limits Ready checks to TypeScript and defers installs for Drafts'
   // typecheck share the Ready/manual gate; Drafts must not execute any of them.
   assert.equal(fast.split(guard).length - 1, 3);
   assert.match(fast, /name: Verify symbol-aware Course stub guard/);
-  assert.match(fast, /run: node --test scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/);
+  assert.match(fast, /run: node --test --test-reporter=dot scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/);
   assert.match(fast, /name: Reject newly introduced Course stub imports and uses/);
   assert.match(fast, /run: node scripts\/ci\/checkStubImports\/check-stub-imports\.mjs "\$BASE_SHA" "\$HEAD_SHA"/);
-  const focusedTests = [...fast.matchAll(/node --test [^\n]+/g)].map(match => match[0]);
-  assert.deepEqual(focusedTests, ['node --test scripts/ci/checkStubImports/check-stub-imports.spec.mjs']);
+  const focusedTests = [...fast.matchAll(/node --test --test-reporter=dot [^\n]+/g)].map(match => match[0]);
+  assert.deepEqual(focusedTests, ['node --test --test-reporter=dot scripts/ci/checkStubImports/check-stub-imports.spec.mjs']);
   assert.match(
     fast,
     /if: steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
