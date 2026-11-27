@@ -413,6 +413,7 @@ export function materializeCourseStage5(input, options = {}) {
           kind: 'typescript',
           content: [
             "import { placeLesson } from '@svitlo/engine/build';",
+            "import type { CourseLessonBoundPatch } from '@svitlo/engine/build';",
             'import { ' + lesson.exportName + ' } from ' + JSON.stringify(lesson.importPath) + ';',
             ...extraImports,
             '',
@@ -422,9 +423,10 @@ export function materializeCourseStage5(input, options = {}) {
               lesson.exportName +
               ', ' +
               patchSource +
-              ' satisfies Parameters<typeof ' +
+              ' satisfies CourseLessonBoundPatch<typeof ' +
               lesson.exportName +
-              '.build.overrides>[0]);',
+              (added.length ? ', { ' + added.map(key => JSON.stringify(key) + ': typeof ' + key).join('; ') + ' }' : '') +
+              '>);',
             '',
             renderBlockerSpecification(
               'Implement, test and verify this entire Course-owned Lesson placement override and its resources; delete this temporary specification only after the whole override is complete.',
