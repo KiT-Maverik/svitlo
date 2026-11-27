@@ -12,6 +12,7 @@ type Options = {
   allowDisabled?: boolean;
   /** Course placement keys may alias only explicitly permitted child entity types. */
   allowAliasForTypes?: readonly string[];
+  reservedKeys?: readonly string[];
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -24,7 +25,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 export function validateSluggedConfiguratorMap(
   items: unknown,
   allowedTypes: readonly string[],
-  { path = 'items', itemLabel = 'child', allowDisabled = false, allowAliasForTypes = [] }: Options = {},
+  { path = 'items', itemLabel = 'child', allowDisabled = false, allowAliasForTypes = [], reservedKeys = [] }: Options = {},
 ): SlugMapValidationIssue[] {
   if (!isRecord(items)) {
     return [{ check: 'item', path, message: 'Expected a slug-keyed configurator map' }];
@@ -33,6 +34,9 @@ export function validateSluggedConfiguratorMap(
   const issues: SlugMapValidationIssue[] = [];
   for (const [slug, child] of Object.entries(items)) {
     const at = path + '.' + slug;
+    if (reservedKeys.includes(slug)) {
+      issues.push({ check: 'slug', path: at, message: 'Reserved child placement slug: ' + slug });
+    }
     if (!camelCase_Schema.safeParse(slug).success) {
       issues.push({ check: 'slug', path: at, message: 'Invalid item slug: ' + slug });
     }
