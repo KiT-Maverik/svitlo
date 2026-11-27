@@ -83,7 +83,7 @@ describe('Configurators', () => {
             id: id('07'),
             slug: 'answer',
             type: 'checkpointAnswer',
-            content: { items: { answer }, order: ['answer'] },
+            children: ['answer'], answer,
           }),
         });
         const checkpoint = defineCheckpoint({
@@ -92,12 +92,17 @@ describe('Configurators', () => {
           type: 'checkpoint',
           params: {},
           locale: { title: 'Review' },
-          content: { items: { item }, order: ['item'] },
+          children: ['item'], item,
         });
         const output = checkpoint.build.data({ languages: ['en'] });
-        assert.equal(output.base.content.length, 1);
-        assert.equal(output.base.content[0]?.question.slug, 'question');
-        assert.equal(output.base.content[0]?.answer[0]?.slug, 'answer');
+        assert.deepEqual(output.base.children, ['item']);
+        const itemData = output.base.item as {
+          question: { slug: string };
+          answer: { children: string[]; answer: { slug: string } };
+        };
+        assert.equal(itemData.question.slug, 'question');
+        assert.deepEqual(itemData.answer.children, ['answer']);
+        assert.equal(itemData.answer.answer.slug, 'answer');
         assert.equal(output.locale, undefined);
         assert.equal(JSON.stringify(output).includes('"items"'), false);
         assert.equal(JSON.stringify(output).includes('"order"'), false);
