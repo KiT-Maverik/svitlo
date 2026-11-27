@@ -1,4 +1,5 @@
 import type { ChildrenSupporting, LanguageScope } from '#types';
+import type { SafePlacementMap } from '../../_shared__configurators';
 
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
@@ -190,41 +191,31 @@ void (null as unknown as PublishedChapterKind);
 
 // @ts-expect-error Course's inferred placement fields do not include an arbitrary child.
 publishedCourse.base.nonexistent;
-defineCourse<'invalidReserved', { id: typeof chapter }, ['en', 'uk']>({
-  id,
-  type: 'course',
-  slug: 'invalidReserved',
-  params: { languages: ['en', 'uk'] as const },
-  locale: { title: 'Course', description: 'Reserved placement' },
-  content: {
-    // @ts-expect-error Root metadata field id cannot be used as a child key.
-    items: { id: chapter },
-    order: ['id'],
-  },
-});
+/** Literal reserved-key guards apply before dynamic runtime validation. */
+const invalidCoursePlacement: SafePlacementMap<{ id: typeof chapter }> = {
+  // @ts-expect-error id is reserved entity metadata.
+  id: chapter,
+};
+const invalidModulePlacement: SafePlacementMap<{ children: typeof chapter }> = {
+  // @ts-expect-error children is the order, not an authored child.
+  children: chapter,
+};
+const invalidChapterPlacement: SafePlacementMap<{ content: typeof lesson }> = {
+  // @ts-expect-error content is a retired container field.
+  content: lesson,
+};
+void invalidCoursePlacement;
+void invalidModulePlacement;
+void invalidChapterPlacement;
 
-defineModule<'invalidChildren', { children: typeof chapter }, ['en', 'uk']>({
-  id,
-  type: 'module',
-  slug: 'invalidChildren',
-  params: {},
-  locale: { title: 'Module' },
-  content: {
-    // @ts-expect-error children is the order field, never a child placement key.
-    items: { children: chapter },
-    order: ['children'],
-  },
-});
-
-defineChapter<'invalidContent', { content: typeof lesson }, ['en', 'uk']>({
+// Old authored content.items/order is no longer accepted.
+defineChapter<'invalidLegacy', {}, ['en', 'uk']>({
   id,
   type: 'chapter',
-  slug: 'invalidContent',
+  slug: 'invalidLegacy',
   params: {},
   locale: { title: 'Chapter' },
-  content: {
-    // @ts-expect-error Obsolete content collection wrapper cannot be shadowed.
-    items: { content: lesson },
-    order: ['content'],
-  },
+  children: [],
+  // @ts-expect-error No legacy content collection in Chapter Config.
+  content: { items: {}, order: [] },
 });
