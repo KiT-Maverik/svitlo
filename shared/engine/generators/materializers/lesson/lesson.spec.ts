@@ -236,7 +236,7 @@ test('Course Stage 5 LessonWorkflowStage1 handoff never becomes full Lesson mate
         >[0],
         options,
       ),
-    /lesson\.section/,
+    /lesson\.children/,
   );
   assert.equal(delegated, 0, 'no Content, Quiz or Flashcards source was generated from Stage 1');
 });
@@ -439,7 +439,7 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
   assert.match(root, /"skills": \[testRecognizeRed\.id, testRecognizeBlue\.id\]/);
   assert.doesNotMatch(root, /skill_ref_|child_section_items_/);
   assert.match(root, /import \{ introduction \} from "\.\/sections\/introduction"/);
-  assert.match(root, /"items": \{\s*introduction,?\s*\}/);
+  assert.match(root, /const __sections = \{\s*introduction,?\s*\}/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
   const unknown = materializeLesson(
@@ -485,7 +485,7 @@ test('Lesson refuses cross-textbook Skill alias or mismatched UUID', () => {
 });
 
 test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and checkColors notes', () => {
-  const base = lesson();
+  const { introduction: _unplacedOriginal, ...base } = lesson();
   const input = {
     ...base,
     children: ['exploreColors', 'recallColors', 'checkColors'],
