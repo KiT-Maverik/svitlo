@@ -42,7 +42,8 @@ const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
 const slot = /^[a-z][a-zA-Z0-9]*$/;
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 /** Membership is indexed when the complete resolved Course is validated, not during navigation. */
-const validatedPlacementIndexes = new WeakMap<object, WeakMap<object, Set<string>>>();
+type ValidatedOrder = { readonly source: string[]; readonly size: number; readonly members: ReadonlySet<string> };
+const validatedPlacementIndexes = new WeakMap<object, WeakMap<object, ValidatedOrder>>();
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 function assertRecord(value: unknown, at: string): asserts value is Record<string, unknown> {
@@ -212,7 +213,7 @@ export function assembleCourseTree(
   if (!Array.isArray(value.params.languages) || !value.params.languages.includes(language))
     throw Error('Course does not support language ' + language);
   const visited = new Set([id]);
-  const membershipIndex = new WeakMap<object, Set<string>>();
+  const membershipIndex = new WeakMap<object, ValidatedOrder>();
   function title(node: Record<string, unknown>): void {
     assertRecord(node.locale, 'locale');
     if (typeof node.locale.title !== 'string' || !node.locale.title.trim()) throw Error('Missing localized Course title');
@@ -225,7 +226,7 @@ export function assembleCourseTree(
     const keys = Object.keys(owner).filter(key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
     if (keys.length !== children.length || keys.some(key => !children.includes(key)))
       throw Error('Unaddressed Course placement keys');
-    membershipIndex.set(owner, new Set(children));
+    membershipIndex.set(owner, { source: children, size: children.length, members: new Set(children) });
     for (const key of children) {
       if (typeof key !== 'string' || !slot.test(key) || !Object.hasOwn(owner, key))
         throw Error('Invalid Course child slot');
@@ -293,7 +294,10 @@ export function findCourseActivityByPlacement(course: LocalizedCourse, placement
   let owner: Record<string, unknown> = course;
   const path = placement.split('/');
   for (const key of path) {
-    if (!index.get(owner)?.has(key) || !Object.hasOwn(owner, key)) return undefined;
+    const validated = index.get(owner);
+    if (!validated || validated.source !== owner.children || validated.source.length !== validated.size)
+      throw Error('Course placement tree changed after validation; assemble Course again');
+    if (!validated.members.has(key) || !Object.hasOwn(owner, key)) return undefined;
     const child: unknown = owner[key];
     assertRecord(child, placement);
     owner = child;
