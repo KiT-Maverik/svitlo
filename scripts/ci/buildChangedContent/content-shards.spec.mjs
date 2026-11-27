@@ -75,11 +75,17 @@ test('three-shard diagnostic preserves full scope and failures without changing 
   const failures = [];
   const reporter = { log() {}, error() {} };
   for (const shard of candidate.include) {
-    failures.push(...runContentShard(shard.packages, (_command, args) => {
-      const path = args[args.indexOf('--package') + 1];
-      invoked.push(path);
-      return { status: path === 'content/history' ? 1 : 0 };
-    }, reporter));
+    failures.push(
+      ...runContentShard(
+        shard.packages,
+        (_command, args) => {
+          const path = args[args.indexOf('--package') + 1];
+          invoked.push(path);
+          return { status: path === 'content/history' ? 1 : 0 };
+        },
+        reporter,
+      ),
+    );
   }
   assert.deepEqual(invoked.sort(), selected.map(item => item.path).sort());
   assert.deepEqual(failures, ['content/history']);
