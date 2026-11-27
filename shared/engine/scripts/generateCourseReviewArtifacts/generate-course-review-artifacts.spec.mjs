@@ -136,7 +136,7 @@ test('generates exactly one localized Course artifact for selected UUID, preserv
       type: 'course',
       config: { base: { params: { languages: ['en', 'uk'] } } },
       build: {
-        props({ languages }) {
+        data({ languages }) {
           return {
             base: sample(),
             locale: languages[0] === 'uk' ? { uk: { locale: { title: 'Український курс' } } } : {},
