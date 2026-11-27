@@ -70,3 +70,39 @@ extended.build.data({ languages: ['en'] });
 
 void reused;
 void extended;
+
+
+import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
+
+// The same bound shape emitted by the trusted Course materializer must reach
+// the real Build operation, not stop at an inert satisfies assertion.
+const existingBoundPatch = {
+  intro: { paragraph: { locale: { value: { en: 'Bound source text' } } } },
+} satisfies CourseLessonBoundPatch<typeof lesson>;
+const boundReuse = placeLesson(lesson, existingBoundPatch);
+boundReuse.build.data({ languages: ['en'] });
+
+const addedBoundPatch = {
+  children: ['intro', 'extra'],
+  extra,
+} satisfies CourseLessonBoundPatch<typeof lesson, { extra: typeof extra }>;
+const boundAdded = placeLesson(lesson, addedBoundPatch);
+boundAdded.build.data({ languages: ['en'] });
+
+// @ts-expect-error Unlisted Section slugs are not valid placement keys.
+placeLesson(lesson, { absent: false });
+// @ts-expect-error Lesson navigation flags are booleans.
+placeLesson(lesson, { params: { sections: { allowSkipping: 'false' } } });
+// @ts-expect-error A ContentBlock cannot be installed as a Lesson Section.
+placeLesson(lesson, { children: ['intro', 'paragraph'], paragraph });
+// @ts-expect-error Identity is immutable under a Course placement.
+placeLesson(lesson, { slug: 'different' });
+// @ts-expect-error Invalid nested ContentBlock locale value.
+placeLesson(lesson, { intro: { paragraph: { locale: { value: { en: 42 } } } } });
+// @ts-expect-error The Lesson only declares the English publication language.
+boundAdded.build.data({ languages: ['uk'] });
+
+void existingBoundPatch;
+void addedBoundPatch;
+void boundReuse;
+void boundAdded;
