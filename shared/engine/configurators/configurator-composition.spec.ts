@@ -26,7 +26,7 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Introduction', navigationLabel: '1' },
-          content: { items: { text }, order: ['text'] },
+          children: ['text'], text,
         });
         const lesson = defineLesson({
           id: id('03'),
@@ -39,14 +39,14 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
           locale: { title: 'Lesson' },
-          section: { items: { intro: section }, order: ['intro'] },
+          children: ['intro'], intro: section,
         });
         const resource = lesson.build.data({ languages: ['uk'] });
         assert.deepEqual(
-          resource.base.section.map(item => item!.slug),
+          resource.base.children,
           ['intro'],
         );
-        assert.equal(resource.base.section[0]?.content[0]?.slug, 'text');
+        assert.equal((resource.base.intro as { children?: string[] })?.children?.[0], 'text');
         assert.equal(resource.locale, undefined);
         assert.equal('overrides' in lesson.config, false);
         assert.deepEqual(lesson.build.data({ languages: ['uk'] }), resource);
