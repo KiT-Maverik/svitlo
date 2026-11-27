@@ -5,31 +5,18 @@
     "scripts/textbook-tooling/**",
     "scripts/ci/productionQuality/turbo-poc-*.mjs"
   ],
-  "globalEnv": [
-    "SVITLO_MEDIA_MODE",
-    "SVITLO_TEXTBOOK",
-    "npm_config_ignore_scripts"
-  ],
+  "globalEnv": ["SVITLO_MEDIA_MODE", "SVITLO_TEXTBOOK", "npm_config_ignore_scripts"],
   "tasks": {
     "package:build": {
-      "dependsOn": [
-        "^package:build"
-      ],
-      "outputs": [
-        "dist/**"
-      ]
+      "dependsOn": ["^package:build"],
+      "outputs": ["dist/**"]
     },
     "code:check:types": {
-      "dependsOn": [
-        "package:build",
-        "^package:build"
-      ],
+      "dependsOn": ["package:build", "^package:build"],
       "cache": false
     },
     "test": {
-      "dependsOn": [
-        "code:check:types"
-      ],
+      "dependsOn": ["code:check:types"],
       "cache": false
     }
   },
