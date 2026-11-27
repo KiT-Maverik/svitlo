@@ -2,86 +2,87 @@ import { describe, expect, it } from 'vitest';
 
 import type { CourseToc } from '@svitlo/engine/runtime';
 
-import { courseTocToTopics, flattenCourseTopics } from './courseNavigation';
+import {
+  coursePlacementHref, courseTocToTopics, flattenCourseTopics, parseCoursePlacement,
+} from './courseNavigation';
 
 const toc: CourseToc = {
   id: 'course-id',
   type: 'course',
   languages: ['en', 'uk'],
   label: 'Light journey',
-  content: {
-    order: ['laboratory'],
-    items: {
-      laboratory: {
-        id: 'module-1',
-        type: 'module',
-        label: 'Light laboratory',
-        content: {
-          order: ['fundamentals', 'refraction'],
-          items: {
-            fundamentals: {
-              id: 'chapter-1',
-              type: 'chapter',
-              label: 'First steps',
-              content: {
-                order: ['reflection'],
-                items: { reflection: { id: 'lesson-1', type: 'lesson', label: 'Reflection' } },
-              },
-            },
-            refraction: { id: 'lesson-2', type: 'lesson', label: 'Refraction' },
-          },
-        },
-      },
+  children: ['laboratory'],
+  laboratory: {
+    id: 'module-1',
+    type: 'module',
+    label: 'Light laboratory',
+    children: ['fundamentals', 'refraction'],
+    fundamentals: {
+      id: 'chapter-1',
+      type: 'chapter',
+      label: 'First steps',
+      children: ['reflection'],
+      reflection: { id: 'lesson-1', type: 'lesson', label: 'Reflection' },
     },
+    refraction: { id: 'lesson-2', type: 'lesson', label: 'Refraction' },
   },
 };
 
-describe('courseTocToTopics', () => {
-  it('preserves ordered Course hierarchy and localized Lesson labels without any title lookup', () => {
-    const topics = courseTocToTopics(toc, 'uk', 'en');
-    expect(topics).toEqual([
+describe('Course TOC presentation and slug routing', () => {
+  it('preserves nested order and splits interface/content locales without scanning Lessons', () => {
+    expect(courseTocToTopics(toc, 'uk', 'en')).toEqual([
       {
-        id: 'module-1',
-        type: 'module',
-        title: 'Light laboratory',
-        children: [
+        id: 'laboratory', type: 'module', title: 'Light laboratory', children: [
           {
-            id: 'chapter-1',
-            type: 'chapter',
-            title: 'First steps',
-            children: [
-              { id: 'lesson-1', type: 'lesson', title: 'Reflection', href: '/uk/course/course-id/lesson/en/lesson-1' },
+            id: 'laboratory/fundamentals', type: 'chapter', title: 'First steps', children: [
+              {
+                id: 'laboratory/fundamentals/reflection', type: 'lesson', title: 'Reflection',
+                href: '/uk/course/course-id/lesson/en/laboratory/fundamentals/reflection',
+              },
             ],
           },
-          { id: 'lesson-2', type: 'lesson', title: 'Refraction', href: '/uk/course/course-id/lesson/en/lesson-2' },
+          {
+            id: 'laboratory/refraction', type: 'lesson', title: 'Refraction',
+            href: '/uk/course/course-id/lesson/en/laboratory/refraction',
+          },
         ],
       },
     ]);
   });
 
-  it('uses distinct placement URLs and labels for reused Lessons', () => {
+  it('uses distinct URLs for repeated canonical Lessons without ID search or query overrides', () => {
     const repeated = structuredClone(toc);
-    repeated.content.items.repeat = { id: 'lesson-1', type: 'lesson', label: 'Second placement' };
-    repeated.content.order.push('repeat');
+    repeated.children.push('repeat');
+    repeated.repeat = { id: 'lesson-1', type: 'lesson', label: 'Second placement' };
     const flat = flattenCourseTopics(courseTocToTopics(repeated, 'uk', 'en'));
-    expect(flat.map(item => item.title)).toEqual(['Reflection', 'Refraction', 'Second placement']);
+    expect(flat.map(item => item.id)).toEqual([
+      'laboratory/fundamentals/reflection', 'laboratory/refraction', 'repeat',
+    ]);
     expect(flat.map(item => item.href)).toEqual([
-      '/uk/course/course-id/lesson/en/lesson-1?placement=laboratory%2Ffundamentals%2Freflection',
-      '/uk/course/course-id/lesson/en/lesson-2',
-      '/uk/course/course-id/lesson/en/lesson-1?placement=repeat',
+      '/uk/course/course-id/lesson/en/laboratory/fundamentals/reflection',
+      '/uk/course/course-id/lesson/en/laboratory/refraction',
+      '/uk/course/course-id/lesson/en/repeat',
     ]);
   });
 
-  it('includes episodes and assessments but never links pending draft activities', () => {
+  it('retains Course-owned Episode/Assessment placements and excludes draft destinations', () => {
     const mixed = structuredClone(toc);
-    mixed.content.items.story = { id: 'episode-one', type: 'episode', label: 'Story' };
-    mixed.content.items.review = { id: 'assessment-one', type: 'assessment', label: 'Not implemented', draft: true };
-    mixed.content.order.unshift('story', 'review');
+    mixed.story = { id: 'episode-one', type: 'episode', label: 'Story' };
+    mixed.review = { id: 'assessment-one', type: 'assessment', label: 'Not implemented', draft: true };
+    mixed.children.unshift('story', 'review');
     const topics = courseTocToTopics(mixed, 'uk', 'en');
     expect(topics.slice(0, 2)).toEqual([
-      { id: 'episode-one', type: 'episode', title: 'Story', href: '/uk/course/course-id/episode/en/episode-one' },
-      { id: 'assessment-one', type: 'assessment', title: 'Not implemented' },
+      { id: 'story', type: 'episode', title: 'Story', href: '/uk/course/course-id/episode/en/story' },
+      { id: 'review', type: 'assessment', title: 'Not implemented' },
     ]);
     expect(flattenCourseTopics(topics).map(item => item.type)).toEqual(['episode', 'lesson', 'lesson']);
+  });
+
+  it('rejects unsafe malformed URLs instead of silently translating UUIDs or placement queries', () => {
+    expect(parseCoursePlacement(['laboratory', 'fundamentals', 'reflection'])).toBe('laboratory/fundamentals/reflection');
+    for (const path of [[], ['..'], ['constructor'], ['a%2Fb'], ['a', ''], ['a?placement=x']]) {
+      expect(parseCoursePlacement(path)).toBeNull();
+    }
+    expect(() => coursePlacementHref('id', 'uk', 'en', 'lesson', '../lesson')).toThrow('Unsafe');
   });
 });

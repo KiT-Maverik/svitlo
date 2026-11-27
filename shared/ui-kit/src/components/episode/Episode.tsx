@@ -7,7 +7,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type LocalizedEpisode } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '@svitlo/engine/runtime';
+import type { EpisodeViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -18,7 +19,7 @@ import { MediaVolumeControl } from '../lesson/MediaVolumeControl';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type EpisodeProps = {
-  response: LocalizedEpisode;
+  response: EpisodeViewProps;
   language: LanguageCode;
   href: string;
   courseHref: string;

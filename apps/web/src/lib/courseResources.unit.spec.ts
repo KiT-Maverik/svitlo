@@ -5,8 +5,6 @@ import { afterEach, expect, it, vi } from 'vitest';
 import type { LocalizedCourse } from '@svitlo/engine/runtime';
 
 import {
-  courseHasLesson,
-  courseLessonIds,
   loadCourseToc,
   loadCourseTree,
   loadExistingCourseTree,
@@ -51,21 +49,16 @@ const mixed = {
   type: 'course',
   params: { languages: ['en'] },
   locale: { title: 'Draft Course' },
-  content: {
-    order: ['complete', 'pending'],
-    items: {
-      complete: { id: completeId, type: 'lesson' },
-      pending: {
-        id: pendingId,
-        slug: 'pending',
-        type: 'lesson',
-        draft: true,
-        locale: { title: 'Not implemented' },
-        section: [],
-      },
-    },
+  children: ['complete', 'pending'],
+  complete: { id: completeId, type: 'lesson' },
+  pending: {
+    id: pendingId,
+    slug: 'pending',
+    type: 'lesson',
+    draft: true,
+    locale: { title: 'Not implemented' },
   },
-} as LocalizedCourse;
+} as unknown as LocalizedCourse;
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -73,10 +66,8 @@ afterEach(() => {
 });
 
 it('reads one TOC rather than standalone Lesson Props for navigation', async () => {
-  const expected = { id: courseId, content: { items: {}, order: [] } };
+  const expected = { id: courseId, children: [] };
   adapter.toc.mockResolvedValue(expected);
-  expect(courseHasLesson(mixed, pendingId)).toBe(true);
-  expect(courseLessonIds(mixed)).toEqual([completeId]);
   expect(await loadCourseToc(courseId, 'en')).toBe(expected);
   expect(adapter.toc).toHaveBeenCalledTimes(1);
   expect(adapter.toc).toHaveBeenCalledWith(courseId, 'en', undefined, 'production');

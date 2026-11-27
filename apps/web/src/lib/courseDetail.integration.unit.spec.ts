@@ -28,7 +28,7 @@ function published(id: string, source: unknown) {
         type: 'course',
         languages: record.params.languages,
         label: record.locale.title,
-        content: { items: {}, order: [] },
+        children: [],
       }),
     );
   }
@@ -39,7 +39,7 @@ function fixture(languages: string[] = ['en']) {
     type: 'course',
     params: { languages },
     locale: { title: 'Selected Course' },
-    content: { items: {}, order: [] },
+    children: [],
   };
 }
 
@@ -89,7 +89,8 @@ it('uses the selected content language for the TOC and UI-language activity link
   const lessonId = '11111111-1111-4111-8111-00000000011c';
   const data = {
     ...fixture(['uk']),
-    content: { order: ['first'], items: { first: { type: 'lesson', id: lessonId } } },
+    children: ['first'],
+    first: { type: 'lesson', id: lessonId },
   };
   published(courseId, data);
   const toc = join(courses, courseId, 'toc');
@@ -100,21 +101,22 @@ it('uses the selected content language for the TOC and UI-language activity link
       type: 'course',
       languages: ['uk'],
       label: 'Invariant title',
-      content: { order: ['first'], items: { first: { type: 'lesson', id: lessonId, label: 'Invariant Lesson' } } },
+      children: ['first'],
+      first: { type: 'lesson', id: lessonId, label: 'Invariant Lesson' },
     }),
   );
   writeFileSync(
     join(toc, 'uk.json'),
     JSON.stringify({
       label: 'Український курс',
-      content: { items: { first: { label: 'Контрольний урок' } } },
+      first: { label: 'Контрольний урок' },
     }),
   );
   const detail = await loadCourseDetail(courseId, 'en');
   expect(detail?.contentLanguage).toBe('uk');
   expect(detail?.interfaceLanguage).toBe('en');
   expect(detail?.outline).toMatchObject([
-    { title: 'Контрольний урок', href: '/en/course/' + courseId + '/lesson/uk/' + lessonId },
+    { title: 'Контрольний урок', href: '/en/course/' + courseId + '/lesson/uk/first' },
   ]);
 });
 
@@ -137,7 +139,7 @@ it('rejects a TOC published for a different Course UUID or a missing selected la
       type: 'course',
       languages: ['en'],
       label: 'Wrong Course',
-      content: { items: {}, order: [] },
+      children: [],
     }),
   );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/TOC ID or requested language mismatch/);
@@ -148,7 +150,7 @@ it('rejects a TOC published for a different Course UUID or a missing selected la
       type: 'course',
       languages: ['uk'],
       label: 'Wrong languages',
-      content: { items: {}, order: [] },
+      children: [],
     }),
   );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/TOC ID or requested language mismatch/);
@@ -163,12 +165,8 @@ it('reports a valid but stale TOC hierarchy as a publication error', async () =>
       type: 'course',
       languages: ['en'],
       label: 'Course',
-      content: {
-        order: ['stale'],
-        items: {
-          stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
-        },
-      },
+      children: ['stale'],
+      stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' },
     }),
   );
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);

@@ -15,19 +15,13 @@ import {
   selectOneAnswer_Data_Schema,
   selectQuizQuestionIds,
   type AssessmentResourceLoader,
-  type ContentBlock_Data,
+  type ContentBlock_Primitive_Data,
   type LanguageCode,
-  type Question_AnswerWithNumber_Data,
-  type Question_AnswerWithText_Data,
-  type Question_BuildAnswerWithBlocks_Data,
-  type Question_FillBlanksWithBlocks_Data,
-  type Question_FillBlanksWithText_Data,
-  type Question_MatchBlocks_Data,
-  type Question_OrderSequence_Data,
-  type Question_SelectMultipleAnswers_Data,
-  type Question_SelectOneAnswer_Data,
-  type QuizSection_Data,
 } from '@svitlo/engine/runtime';
+
+import type { SectionViewProps } from '../../presentation';
+import { toQuestionProps, type DomainQuestion, type QuestionViewProps } from '../../questionPresentation';
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -35,18 +29,9 @@ import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 import { QuestionProgress } from './QuestionProgress';
 
-type Question =
-  | Question_SelectOneAnswer_Data
-  | Question_SelectMultipleAnswers_Data
-  | Question_MatchBlocks_Data
-  | Question_AnswerWithText_Data
-  | Question_AnswerWithNumber_Data
-  | Question_OrderSequence_Data
-  | Question_BuildAnswerWithBlocks_Data
-  | Question_FillBlanksWithBlocks_Data
-  | Question_FillBlanksWithText_Data;
+type Question = QuestionViewProps;
 
-const questionSchemas: Record<Question['type'], { parse(input: unknown): unknown }> = {
+const questionSchemas: Record<DomainQuestion['type'], { parse(input: unknown): unknown }> = {
   selectOneAnswer: selectOneAnswer_Data_Schema,
   selectMultipleAnswers: selectMultipleAnswers_Data_Schema,
   matchBlocks: matchBlocks_Data_Schema,
@@ -61,7 +46,7 @@ const questionSchemas: Record<Question['type'], { parse(input: unknown): unknown
 function parseQuestion(raw: unknown, kind: string): Question {
   if (!raw || typeof raw !== 'object' || !('type' in raw) || raw.type !== kind || !(kind in questionSchemas))
     throw new Error('Invalid Question Bank kind: ' + kind);
-  return questionSchemas[kind as Question['type']].parse(raw) as Question;
+  return toQuestionProps(questionSchemas[kind as DomainQuestion['type']].parse(raw) as DomainQuestion);
 }
 
 function stableHash(value: string): number {
@@ -75,7 +60,7 @@ function shuffle<T extends { id: string }>(items: T[], seed: string): T[] {
 }
 
 /** Resolve exactly the previously selected UUIDs; reject missing, extra or duplicated resources. */
-export function selectQuizQuestions(raw: readonly Question[], ids: readonly string[]): Question[] {
+export function selectQuizQuestions(raw: readonly DomainQuestion[], ids: readonly string[]): Question[] {
   const byId = new Map<string, Question>();
   for (const entry of raw) {
     const question = parseQuestion(entry, entry.type);
@@ -93,7 +78,7 @@ export function selectQuizQuestions(raw: readonly Question[], ids: readonly stri
 function plain(value: string): string {
   return value.trim().replace(/\s+/gu, ' ').toLocaleLowerCase();
 }
-const contentLabel = (block: ContentBlock_Data): string =>
+const contentLabel = (block: ContentBlock_Primitive_Data): string =>
   block.type === 'text' ? block.locale.value : block.type === 'markdown' ? block.locale.value : block.slug;
 
 function QuestionCard({
@@ -107,7 +92,7 @@ function QuestionCard({
   question: Question;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
-  parameters: QuizSection_Data['params'];
+  parameters: QuizSectionViewProps['params'];
   onChecked: (correct: boolean | undefined) => void;
   disabled: boolean;
 }) {
@@ -170,7 +155,7 @@ function QuestionCard({
   })();
 
   const respond = (key: string, value: string) => setAnswer(previous => ({ ...previous, [key]: value }));
-  const renderer = (blocks: readonly ContentBlock_Data[]) => (
+  const renderer = (blocks: readonly ContentBlock_Primitive_Data[]) => (
     <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} />
   );
   const canRetry = attempts <= parameters.interaction.retries && !correct;
@@ -376,7 +361,7 @@ export function EngineQuestionRenderer({
   lessonId: string;
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
-  section: QuizSection_Data;
+  section: QuizSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;
@@ -448,7 +433,7 @@ function ResolvedQuiz({
 }: {
   questions: Question[];
   fallbackIds: readonly string[];
-  section: QuizSection_Data;
+  section: QuizSectionViewProps;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   onComplete?: (result: { passed: boolean; correct: number; total: number; timedOut: boolean }) => void;

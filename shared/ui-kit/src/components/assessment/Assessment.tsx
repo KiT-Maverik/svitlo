@@ -11,8 +11,9 @@ import {
   DEFAULT_SUPPORTED_LANGUAGES,
   type AssessmentResourceLoader,
   type LanguageCode,
-  type LocalizedAssessment,
 } from '@svitlo/engine/runtime';
+
+import type { AssessmentViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -24,7 +25,7 @@ import { MediaVolumeControl } from '../lesson/MediaVolumeControl';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type AssessmentProps = {
-  response: LocalizedAssessment;
+  response: AssessmentViewProps;
   language: LanguageCode;
   href: string;
   courseHref: string;

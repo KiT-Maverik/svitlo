@@ -4,14 +4,15 @@ import { describe, expect, it } from 'vitest';
 
 import type {
   AssessmentResourceLoader,
-  ContentBlock_Checkpoint_Data,
   ContentBlock_Text_Data,
   Disability,
   Flashcard_Data,
-  FlashcardsSection_Data,
-  Lesson_Data,
-  QuizSection_Data,
 } from '@svitlo/engine/runtime';
+
+import type { CheckpointViewProps, LessonViewProps, SectionViewProps } from '../../presentation';
+
+type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
@@ -30,7 +31,7 @@ const text = (number: number, value: string): ContentBlock_Text_Data => ({
   params: {},
   locale: { value },
 });
-const checkpoint = (required: boolean): ContentBlock_Checkpoint_Data => ({
+const checkpoint = (required: boolean): CheckpointViewProps => ({
   id: uuid(10),
   slug: 'checkpoint',
   type: 'checkpoint',
@@ -48,7 +49,7 @@ const checkpoint = (required: boolean): ContentBlock_Checkpoint_Data => ({
   ],
 });
 
-function fixture(required: boolean, allowNavigation = true): Lesson_Data {
+function fixture(required: boolean, allowNavigation = true): LessonViewProps {
   return {
     id: uuid(1),
     slug: 'light',
@@ -256,11 +257,11 @@ describe('Engine Props Lesson Controller', () => {
       type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
       content: {
-        front: [text(91, 'What travels in a straight line?')],
-        back: [text(92, 'Light does.')],
+        front: { children: ['prompt'], prompt: text(91, 'What travels in a straight line?') },
+        back: { children: ['answer'], answer: text(92, 'Light does.') },
       },
     };
-    const recall: FlashcardsSection_Data = {
+    const recall: FlashcardsSectionViewProps = {
       id: uuid(93),
       slug: 'recall',
       type: 'flashcards',
@@ -293,14 +294,14 @@ describe('Engine Props Lesson Controller', () => {
       slug: 'audioRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(95, 'Listen to a bell')], back: [text(96, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(95, 'Listen to a bell') }, back: { children: ['answer'], answer: text(96, 'A bell') } },
     };
     const alternative: Flashcard_Data = {
       id: uuid(97),
       slug: 'textRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
-      content: { front: [text(98, 'Which object rings?')], back: [text(99, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(98, 'Which object rings?') }, back: { children: ['answer'], answer: text(99, 'A bell') } },
     };
     response.section = [
       {
@@ -333,7 +334,7 @@ describe('Engine Props Lesson Controller', () => {
       slug: 'audioOnly',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: [text(102, 'Hear this sound')], back: [text(103, 'A bell')] },
+      content: { front: { children: ['prompt'], prompt: text(102, 'Hear this sound') }, back: { children: ['answer'], answer: text(103, 'A bell') } },
     };
     response.section = [
       {
@@ -368,15 +369,15 @@ describe('Engine Props Lesson Controller', () => {
       params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
       locale: {},
       content: {
-        question: [text(27, 'Question about light')] as [ContentBlock_Text_Data],
+        question: { children: ['prompt'], prompt: text(27, 'Question about light') },
         answers: {
-          correct: { radiation: text(28, 'Radiation') },
-          incorrect: { sound: text(29, 'Sound') },
-          distractors: {},
+          correct: { children: ['radiation'], radiation: text(28, 'Radiation') },
+          incorrect: { children: ['sound'], sound: text(29, 'Sound') },
+          distractors: { children: [] },
         },
       },
     };
-    const quiz: QuizSection_Data = {
+    const quiz: QuizSectionViewProps = {
       id: uuid(24),
       slug: 'quiz',
       type: 'quiz',

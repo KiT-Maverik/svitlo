@@ -6,10 +6,9 @@ import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import {
   createAssessmentResourceLoader,
   DEFAULT_SUPPORTED_LANGUAGES,
-  type Lesson_Data,
   type Locale,
 } from '@svitlo/engine/runtime';
-import { ImageRendererProvider, Lesson, SceneLocaleProvider, type Topic, type UiKitMessages } from '@svitlo/ui-kit';
+import { ImageRendererProvider, Lesson, SceneLocaleProvider, type LessonViewProps, type Topic, type UiKitMessages } from '@svitlo/ui-kit';
 
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
@@ -39,7 +38,7 @@ export default function WebLesson({
   messages,
   topics,
 }: {
-  response: Lesson_Data;
+  response: LessonViewProps;
   locale: Locale;
   lessonLocale?: Locale;
   href: string;
