@@ -29,11 +29,11 @@ export const sampleQuestion = defineSelectOneAnswer({
   params: { assessmentMethod: 'retrieval', restrictions: [] },
   locale: {},
   content: {
-    question: { items: { prompt }, order: ['prompt'] },
+    question: { children: ['prompt'], prompt },
     answers: {
-      correct: { items: { correct }, order: ['correct'] },
-      incorrect: { items: { incorrect }, order: ['incorrect'] },
-      distractors: { items: {}, order: [] },
+      correct: { children: ['correct'], correct },
+      incorrect: { children: ['incorrect'], incorrect },
+      distractors: { children: [] },
     },
   },
 });
