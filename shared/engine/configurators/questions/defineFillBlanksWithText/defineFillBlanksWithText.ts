@@ -231,7 +231,7 @@ export const defineFillBlanksWithText = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
     const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   >(
@@ -293,6 +293,20 @@ export const defineFillBlanksWithText = <
       );
     }
   };
+
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch & Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithText_Data>;
+    (
+      patch: Question_FillBlanksWithText_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithText_Data>;
+  } = overridesImplementation;
 
   const result = {
     id,
