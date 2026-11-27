@@ -151,7 +151,7 @@ export const defineCheckpointItem = <
     return output;
   };
 
-  const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
+  const overridesImplementation = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answer, Added> & {
       answer?: ChildrenSupporting<Languages, Added>;
     },
@@ -211,6 +211,19 @@ export const defineCheckpointItem = <
       );
     }
   };
+  const overrides: {
+    <const Added extends Record<string, Checkpoint_Allowed_Configurator>>(
+      patch: CheckpointItem_Overrides<Answer, Added> & {
+        answer?: ChildrenSupporting<Languages, Added>;
+      },
+      options: PublicationLanguageOptions<Languages>,
+    ): ItemPublication<ItemOverrideBase>;
+    (
+      patch: CheckpointItem_Overrides<Answer, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): ItemPublication<ItemOverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
