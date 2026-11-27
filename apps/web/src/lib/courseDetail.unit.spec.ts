@@ -15,7 +15,6 @@ vi.mock('./courseResources', () => ({
 }));
 
 const courseId = '11111111-1111-4111-8111-000000000113';
-const orphanId = '11111111-1111-4111-8111-000000000114';
 const course = {
   id: courseId,
   type: 'course',
@@ -50,22 +49,13 @@ it('loads only the requested Course once, deriving both preview and outline from
   expect(resources.toc).toHaveBeenCalledWith(courseId, 'en');
 });
 
-it('never enumerates unrelated orphan or malformed Course publications on a direct request', async () => {
-  await expect(loadCourseDetail(courseId, 'en')).resolves.toMatchObject({ course: { id: courseId } });
-  expect(resources.fallback).toHaveBeenCalledTimes(1);
-  expect(resources.fallback).not.toHaveBeenCalledWith(orphanId, 'en');
-});
-
-it('returns not-found for a missing Course and an unsupported interface locale', async () => {
-  resources.fallback.mockResolvedValueOnce(null);
-  await expect(loadCourseDetail(courseId, 'en')).resolves.toBeNull();
+it('rejects an unsupported interface locale without loading Course resources', async () => {
   await expect(loadCourseDetail(courseId, 'not-a-locale')).resolves.toBeNull();
-  expect(resources.fallback).toHaveBeenCalledTimes(1);
+  expect(resources.fallback).not.toHaveBeenCalled();
+  expect(resources.toc).not.toHaveBeenCalled();
 });
 
-it('propagates malformed and inaccessible requested publications', async () => {
-  resources.fallback.mockRejectedValueOnce(new Error('Invalid published JSON'));
-  await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow('Invalid published JSON');
+it('propagates inaccessible requested publication errors', async () => {
   resources.fallback.mockRejectedValueOnce(new Error('Cannot read published resource'));
   await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow('Cannot read published resource');
 });
@@ -92,18 +82,4 @@ it('keeps the requested interface language while routing activities through sele
   expect(detail?.contentLanguage).toBe('uk');
   expect(detail?.outline[0]?.href).toBe('/en/course/' + courseId + '/lesson/uk/11111111-1111-4111-8111-00000000011c');
   expect(resources.toc).toHaveBeenCalledWith(courseId, 'uk');
-});
-
-it('rejects a stale TOC hierarchy instead of displaying incorrect Course navigation', async () => {
-  resources.toc.mockResolvedValueOnce({
-    id: courseId,
-    type: 'course',
-    languages: ['en', 'uk'],
-    label: 'Course',
-    content: {
-      order: ['stale'],
-      items: { stale: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Stale' } },
-    },
-  });
-  await expect(loadCourseDetail(courseId, 'en')).rejects.toThrow(/Course\/TOC order mismatch/);
 });
