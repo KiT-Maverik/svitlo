@@ -436,8 +436,9 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   const built = realLesson.build.overrides(raw, { languages: ['uk'] });
   assert.equal(built.base.params.sections.allowSkipping, true);
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -448,8 +449,7 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
         sourcePatch: raw,
         overrideRationale: 'Verified Course-local navigation accommodation',
       },
-    },
-  };
+    };;
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(realLesson);
   const plan = materializeCourseStage5(reviewed, opts);
@@ -854,8 +854,9 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   };
   authoredSection.config.children.push('directScene', 'sceneCarousel', 'checkpoint');
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -871,8 +872,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
         },
         overrideRationale: 'Course-specific extra practice is required',
       },
-    },
-  };
+    };;
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(original);
   const plan = materializeCourse(reviewed, opts);
@@ -985,8 +985,9 @@ test('Course additionalItems binds only verified Sections and retains real neste
     },
   };
   const reviewed = source();
-  reviewed.config.content.items = {
-    reused: {
+  delete reviewed.config.moduleOne;
+  delete reviewed.config.directLesson;
+  reviewed.config.reused = {
       config: { type: 'lesson', slug: 'reused', skills: [skill] },
       production: {
         kind: 'existing',
@@ -997,8 +998,7 @@ test('Course additionalItems binds only verified Sections and retains real neste
         sourcePatch: raw,
         overrideRationale: 'Reviewed added practice Section',
       },
-    },
-  };
+    };;
   reviewed.config.children = ['reused'];
   const opts = {
     ...reuseOptions(original),
@@ -1128,7 +1128,9 @@ test('Course root scalar English title and description materialize as sparse loc
   const input = source();
   input.production.languages = { document: 'en', planned: ['en', 'uk'] };
   input.config.locale = { title: 'Sky', description: 'Explore the sky' };
-  input.config.content = { items: {}, order: [] };
+  delete input.config.moduleOne;
+  delete input.config.directLesson;
+  input.config.children = [];
   const plan = materializeCourseStage5(input, options());
   const rootSource = plan.files.find(file => file.path === root + '/index.ts')?.content ?? '';
   assert.match(rootSource, /"title": \{\s*"en": "Sky"/);
