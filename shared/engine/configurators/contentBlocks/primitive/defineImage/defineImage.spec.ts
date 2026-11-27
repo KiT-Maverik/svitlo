@@ -19,7 +19,7 @@ describe('Configurators', () => {
 
       test('publishes translated source and invariant alternative text', () => {
         const image = defineImage<'diagram', ['en', 'uk']>(config());
-        const resource = image.build.props(scope);
+        const resource = image.build.data(scope);
         assert.deepEqual(resource.base.params, { width: 640, height: 480 });
         assert.equal(resource.base.locale?.alt, 'Diagram');
         assert.deepEqual(resource.locale, { uk: { locale: { src: 'https://example.org/uk.png' } } });
@@ -30,17 +30,17 @@ describe('Configurators', () => {
         const image = defineImage<'diagram', ['en', 'uk']>(input);
         assert.equal(image.slug, 'diagram');
         input.params.width = 640;
-        assert.throws(() => image.build.props(scope), /positive|greater|too_small/i);
+        assert.throws(() => image.build.data(scope), /positive|greater|too_small/i);
         assert.throws(() => image.build.overrides({}, scope), /Invalid Image overrides/);
       });
 
       test('checks dimension constraints after sparse overrides', () => {
         const image = defineImage<'diagram', ['en', 'uk']>(config());
         assert.throws(() => image.build.overrides({ params: { fill: true } }, scope), /Invalid Image overrides/);
-        const original = image.build.props(scope);
+        const original = image.build.data(scope);
         const patch = image.build.overrides({ params: { fill: true, aspectRatio: 1.5 } }, scope);
         assert.deepEqual(patch, { base: { params: { fill: true, aspectRatio: 1.5 } }, locale: undefined });
-        assert.deepEqual(image.build.props(scope), original);
+        assert.deepEqual(image.build.data(scope), original);
         assert.throws(() => image.build.overrides({ id: 'invalid' } as never, scope), /Invalid Image overrides/);
       });
     });

@@ -7,7 +7,7 @@ import { defineText } from '../../primitive/defineText';
 import { defineYoutube } from '../../primitive/defineYoutube';
 import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 import { defineCheckpointItem } from './defineCheckpointItem';
-import { checkpoint_Config_Schema, checkpoint_Props_Schema, defineCheckpoint } from './index';
+import { checkpoint_Config_Schema, checkpoint_Data_Schema, defineCheckpoint } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -68,12 +68,12 @@ describe('Configurators', () => {
           }).success,
           true,
         );
-        assert.equal(checkpoint.build.props({ languages: ['en', 'uk'] }).base.content[0].type, 'checkpointItem');
+        assert.equal(checkpoint.build.data({ languages: ['en', 'uk'] }).base.content[0].type, 'checkpointItem');
       });
 
       test('Checkpoint publishes sorted nested Props, not authoring maps', () => {
         const { checkpoint } = example();
-        const result = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const result = checkpoint.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(
           result.base.content.map(item => item.slug),
           ['first', 'second'],
@@ -87,13 +87,13 @@ describe('Configurators', () => {
         assert.equal(result.locale?.uk?.content?.[0].question.locale.value, 'Перше?');
         assert.equal(result.locale?.uk?.content?.[1].question.locale.value, 'Second?');
         assert.equal(
-          checkpoint_Props_Schema.safeParse({
+          checkpoint_Data_Schema.safeParse({
             ...result.base,
             content: result.locale?.uk?.content,
           }).success,
           true,
         );
-        assert.equal(checkpoint_Props_Schema.safeParse({ ...result.base, content: [] }).success, false);
+        assert.equal(checkpoint_Data_Schema.safeParse({ ...result.base, content: [] }).success, false);
       });
 
       test('direct Checkpoint Config Zod rejects non-Item child kinds', () => {
@@ -125,7 +125,7 @@ describe('Configurators', () => {
 
       test('Checkpoint publishes only validated, sparse metadata overrides', () => {
         const { checkpoint } = example();
-        const before = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const before = checkpoint.build.data({ languages: ['en', 'uk'] });
         assert.deepEqual(checkpoint.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
         assert.deepEqual(
           checkpoint.build.overrides(
@@ -140,12 +140,12 @@ describe('Configurators', () => {
             locale: { uk: { locale: { title: 'Огляд' } } },
           },
         );
-        assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), before);
+        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), before);
       });
 
       test('Removing a localized item does not generate a redundant locale array', () => {
         const { checkpoint } = example();
-        const source = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const source = checkpoint.build.data({ languages: ['en', 'uk'] });
         const patch = checkpoint.build.overrides(
           { content: { items: { first: false }, order: ['second'] } },
           { languages: ['en', 'uk'] },
@@ -175,7 +175,7 @@ describe('Configurators', () => {
             order: ['later', 'second'] as ('later' | 'second')[],
           },
         };
-        const original = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const original = checkpoint.build.data({ languages: ['en', 'uk'] });
         const built = checkpoint.build.overrides(patch, { languages: ['en', 'uk'] });
         assert.deepEqual(
           built.base.content?.map(item => item.slug),
@@ -189,7 +189,7 @@ describe('Configurators', () => {
         assert.equal(built.locale?.uk?.content?.[1].question.locale.value, 'Інакше?');
         assert.equal(JSON.stringify(built).includes('additionalItems'), false);
         assert.equal(JSON.stringify(built).includes('"order"'), false);
-        assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), original);
+        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), original);
         assert.deepEqual(checkpoint.build.overrides(patch, { languages: ['en', 'uk'] }), built);
       });
 
@@ -230,15 +230,15 @@ describe('Configurators', () => {
           content: { items: { first }, order: ['first'] },
         });
 
-        assert.throws(() => checkpoint.build.props({ languages: ['en'] }), /unresolved video reference/);
-        const preview = checkpoint.build.props({ languages: ['en'], mode: 'draft' });
+        assert.throws(() => checkpoint.build.data({ languages: ['en'] }), /unresolved video reference/);
+        const preview = checkpoint.build.data({ languages: ['en'], mode: 'draft' });
         const answerBlock = preview.base.content[0].answer[0];
         assert.equal(answerBlock.type, 'youtube');
         if (answerBlock.type !== 'youtube') throw new Error('Expected a YouTube answer block');
         assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
         assert.equal(answerBlock.locale?.label, 'Pending video');
         assert.throws(
-          () => checkpoint.build.props({ languages: ['en'], mode: 'production' }),
+          () => checkpoint.build.data({ languages: ['en'], mode: 'production' }),
           /unresolved video reference/,
         );
       });
@@ -282,7 +282,7 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first; second: typeof second }, ['en', 'uk']>({
               ...base,
               content: { items: configuratorArrayToSlugMap([first, second]), order: ['first'] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /Missing slug/,
         );
         assert.throws(
@@ -290,15 +290,15 @@ describe('Configurators', () => {
             defineCheckpoint<string, { first: typeof first }, ['en', 'uk']>({
               ...base,
               content: { items: { first }, order: [] },
-            }).build.props({ languages: ['en'] }),
+            }).build.data({ languages: ['en'] }),
           /At least one active Checkpoint item/,
         );
-        const original = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const original = checkpoint.build.data({ languages: ['en', 'uk'] });
         checkpoint.content.order.reverse();
         checkpoint.content.items.first = checkpoint.content.items.second as never;
-        const modifiedOutput = checkpoint.build.props({ languages: ['en', 'uk'] });
+        const modifiedOutput = checkpoint.build.data({ languages: ['en', 'uk'] });
         modifiedOutput.base.content.reverse();
-        assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), original);
+        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), original);
       });
     });
   });

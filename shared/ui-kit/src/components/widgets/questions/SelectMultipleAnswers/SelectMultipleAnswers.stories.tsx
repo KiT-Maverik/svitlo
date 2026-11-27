@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { ContentBlock_Text_Props, Question_SelectMultipleAnswers_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Text_Data, Question_SelectMultipleAnswers_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
-const text = (slug: string, value: string): ContentBlock_Text_Props => ({
+const text = (slug: string, value: string): ContentBlock_Text_Data => ({
   id:
     '00000000-0000-4000-8000-' +
     Array.from(slug)
@@ -17,7 +17,7 @@ const text = (slug: string, value: string): ContentBlock_Text_Props => ({
   params: {},
   locale: { value },
 });
-const response: Question_SelectMultipleAnswers_Props = {
+const response: Question_SelectMultipleAnswers_Data = {
   type: 'selectMultipleAnswers',
   id: '00000000-0000-4000-8000-000000000001',
   slug: 'multipleStory',

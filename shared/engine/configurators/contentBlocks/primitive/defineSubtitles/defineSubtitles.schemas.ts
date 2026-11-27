@@ -11,13 +11,13 @@ export const subtitles_Config_Schema = kind
     ...addUnifiedLocale({ fileName: localizedMediaReference_Schema(subtitlesMediaReference_Schema) }),
   })
   .strict();
-export const subtitles_Props_Schema = kind
+export const subtitles_Data_Schema = kind
   .extend({
-    ...addUnifiedLocale({ fileLocation: localizationSwitch.props }),
+    ...addUnifiedLocale({ fileLocation: localizationSwitch.data }),
   })
   .strict();
 export type ContentBlock_Subtitles_Config = z.infer<typeof subtitles_Config_Schema>;
-export type ContentBlock_Subtitles_Props = z.infer<typeof subtitles_Props_Schema>;
+export type ContentBlock_Subtitles_Data = z.infer<typeof subtitles_Data_Schema>;
 export const subtitles_Override_Config_Schema = z.deepPartial(
   deepStrict_Schema(
     z.object({

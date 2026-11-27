@@ -33,8 +33,8 @@ describe('Configurators', () => {
             params: { language: 'python', codeAsText: source },
             locale: {},
           });
-          assert.equal(block.build.props(scope).base.params.codeAsText, source);
-          assert.equal(JSON.stringify(block.build.props(scope)).includes('code.py'), false);
+          assert.equal(block.build.data(scope).base.params.codeAsText, source);
+          assert.equal(JSON.stringify(block.build.data(scope)).includes('code.py'), false);
         } finally {
           rmSync(root, { recursive: true, force: true });
         }
@@ -55,7 +55,7 @@ describe('Configurators', () => {
 
       test('publishes original source and requested replacement values', () => {
         const code = defineCode<'sample', ['en', 'uk']>(config());
-        const resource = code.build.props(scope);
+        const resource = code.build.data(scope);
         assert.equal(resource.base.params.codeAsText, 'print(%_%NAME%_%)');
         assert.deepEqual(resource.locale, { uk: { locale: { variables: { NAME: "'Ада'" } } } });
         assert.equal(JSON.stringify(resource).includes("'Ada'"), false);
@@ -69,7 +69,7 @@ describe('Configurators', () => {
         );
         const patch = code.build.overrides({ locale: { variables: { NAME: { uk: "'Оля'" } } } }, scope);
         assert.deepEqual(patch.locale, { uk: { locale: { variables: { NAME: "'Оля'" } } } });
-        assert.equal(code.build.props(scope).locale?.uk?.locale.variables?.NAME, "'Ада'");
+        assert.equal(code.build.data(scope).locale?.uk?.locale.variables?.NAME, "'Ада'");
       });
     });
   });

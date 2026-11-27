@@ -2,8 +2,8 @@ import { camelCase_Schema, type LanguageCode } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   requireBuildContext,
   validateRequestedPublication,
@@ -20,7 +20,7 @@ type Buildable = {
   type: string;
   config: { base: { id?: string; slug?: string; type?: string }; locales: () => unknown };
   build: {
-    props: (options: { readonly languages: readonly LanguageCode[] }) => QuestPublication;
+    data: (options: { readonly languages: readonly LanguageCode[] }) => QuestPublication;
     overrides: (patch: never, options: { readonly languages: readonly LanguageCode[] }) => QuestPublication;
   };
 };
@@ -28,7 +28,7 @@ type Buildable = {
 const record = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
 const buildable = (value: unknown): value is Buildable =>
-  record(value) && record(value.build) && typeof value.build.props === 'function';
+  record(value) && record(value.build) && typeof value.build.data === 'function';
 
 export function assertQuestChild(value: unknown, kind: string, at: string, key?: string): void {
   if (
@@ -62,7 +62,7 @@ export function assertQuestMap(value: unknown, kind: string, path: string): void
 export function projectQuestTree(node: unknown, patch?: unknown): QuestPublication {
   const { languages } = requireBuildContext();
   if (buildable(node)) {
-    return patch === undefined ? buildChildProps(node) : buildChildOverrides(node, patch);
+    return patch === undefined ? buildChildData(node) : buildChildOverrides(node, patch);
   }
   if (node === null) {
     if (patch !== undefined) throw new Error('Cannot override an absent Quest media track');

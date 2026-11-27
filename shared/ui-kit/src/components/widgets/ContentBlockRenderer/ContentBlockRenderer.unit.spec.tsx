@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest';
 
 import {
   UNRESOLVED_RESOURCE_UUID,
-  type ContentBlock_Checkpoint_Props,
-  type ContentBlock_Markdown_Props,
-  type ContentBlock_Subtitles_Props,
-  type ContentBlock_Text_Props,
+  type ContentBlock_Checkpoint_Data,
+  type ContentBlock_Markdown_Data,
+  type ContentBlock_Subtitles_Data,
+  type ContentBlock_Text_Data,
 } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
@@ -14,7 +14,7 @@ import { questionBlockLabel } from '../questions/response/QuestionContent';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import type { ContentBlockResponse, SceneRegistry } from './types';
 
-const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+const textBlock = (id: string, value: string): ContentBlock_Text_Data => ({
   id,
   slug: 'textBlock',
   type: 'text',
@@ -23,14 +23,14 @@ const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
 });
 const first = textBlock('first', 'First block');
 const last = textBlock('last', 'Last block');
-const markdown = (id: string, value: string): ContentBlock_Markdown_Props => ({
+const markdown = (id: string, value: string): ContentBlock_Markdown_Data => ({
   id,
   slug: 'markdown',
   type: 'markdown',
   params: {},
   locale: { value },
 });
-const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Props): ContentBlock_Checkpoint_Props => ({
+const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Data): ContentBlock_Checkpoint_Data => ({
   id,
   slug: 'checkpoint',
   type: 'checkpoint',
@@ -139,7 +139,7 @@ describe('ContentBlockRenderer', () => {
   });
 
   it('exposes a standalone WebVTT captions asset as an accessible link and question label', () => {
-    const captions: ContentBlock_Subtitles_Props = {
+    const captions: ContentBlock_Subtitles_Data = {
       id: 'captions',
       slug: 'captions',
       type: 'subtitles',
@@ -191,7 +191,7 @@ describe('ContentBlockRenderer guard and state coverage', () => {
 
   it('preserves an expanded and checked checkpoint when a sibling text block changes', () => {
     const originalCheckpoint = checkpoint('persistent-checkpoint', 'What did you learn?', last);
-    const persistentCheckpoint: ContentBlock_Checkpoint_Props = {
+    const persistentCheckpoint: ContentBlock_Checkpoint_Data = {
       ...originalCheckpoint,
       params: { enableChecks: true },
     };

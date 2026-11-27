@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -22,42 +22,42 @@ import {
   validateRequestedPublication,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { assessment_Props_Schema } from '../../assessments/defineAssessment';
-import { episode_Props_Schema } from '../../episodes/defineEpisode';
-import { lesson_Props_Schema } from '../../lessons/defineLesson';
+import { assessment_Data_Schema } from '../../assessments/defineAssessment';
+import { episode_Data_Schema } from '../../episodes/defineEpisode';
+import { lesson_Data_Schema } from '../../lessons/defineLesson';
 import {
   chapter_Config_Schema,
+  chapter_Data_Schema,
   chapter_Override_Config_Schema,
-  chapter_Props_Schema,
   type Chapter_Child,
-  type Chapter_Child_Props,
+  type Chapter_Child_Data,
   type Chapter_Config,
+  type Chapter_Data,
   type Chapter_Locale,
   type Chapter_Metadata_Overrides,
   type Chapter_Overrides,
-  type Chapter_Props,
 } from './defineChapter.schemas';
 
 type ChildResource = {
-  base: DeepPartial<Chapter_Child_Props>;
-  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Child_Props>>> | undefined;
+  base: DeepPartial<Chapter_Child_Data>;
+  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Child_Data>>> | undefined;
 };
 type BuildChild = {
   build: {
-    props: (options: PublicationLanguageOptions) => ChildResource;
+    data: (options: PublicationLanguageOptions) => ChildResource;
     overrides: (value: never, options: PublicationLanguageOptions) => ChildResource;
   };
 };
 type ChapterPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Data>>> | undefined;
 };
-type ChapterPropsBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
-  locale?: DeepPartial<Chapter_Locale<'props'>>;
-  content: DeepPartial<Chapter_Child_Props>[];
+type ChapterDataBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
+  locale?: DeepPartial<Chapter_Locale<'data'>>;
+  content: DeepPartial<Chapter_Child_Data>[];
 };
 type ChapterOverrideBase = Chapter_Metadata_Overrides & {
-  content?: DeepPartial<Chapter_Child_Props>[];
+  content?: DeepPartial<Chapter_Child_Data>[];
 };
 type ChapterConfigBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale: DeepPartial<Chapter_Locale<'config'>>;
@@ -83,7 +83,7 @@ const validate = (config: Chapter_Config): void => {
       if (
         !isRecord(child) ||
         !isRecord(child.build) ||
-        typeof child.build.props !== 'function' ||
+        typeof child.build.data !== 'function' ||
         typeof child.build.overrides !== 'function'
       ) {
         errors.push('content.items.' + slug + ': child must expose the stateless Build API');
@@ -110,23 +110,23 @@ const validate = (config: Chapter_Config): void => {
   if (errors.length) throw new Error('Chapter validation failed: ' + errors.join('; '));
 };
 
-const parseChild = (value: unknown): Chapter_Child_Props => {
+const parseChild = (value: unknown): Chapter_Child_Data => {
   if (!isRecord(value)) throw new Error('Expected resolved Chapter child Props');
   switch (value.type) {
     case 'lesson': {
-      const parsed = lesson_Props_Schema.safeParse(value);
+      const parsed = lesson_Data_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Props;
+      return structuredClone(value) as Chapter_Child_Data;
     }
     case 'episode': {
-      const parsed = episode_Props_Schema.safeParse(value);
+      const parsed = episode_Data_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Props;
+      return structuredClone(value) as Chapter_Child_Data;
     }
     case 'assessment': {
-      const parsed = assessment_Props_Schema.safeParse(value);
+      const parsed = assessment_Data_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
-      return structuredClone(value) as Chapter_Child_Props;
+      return structuredClone(value) as Chapter_Child_Data;
     }
     default:
       throw new Error('Unsupported Chapter child type: ' + String(value.type));
@@ -148,7 +148,7 @@ export type Chapter_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    props(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterPropsBase>;
+    data(options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase>;
     overrides<const Added extends Record<string, Chapter_Child> = {}>(
       patch: Chapter_Overrides<Items, Added> & {
         content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
@@ -187,14 +187,14 @@ export const defineChapter = <
 
   const splitOwnLocale = (value: DeepPartial<Chapter_Config['locale']>) => {
     const own = splitLocalizedFields(value);
-    const files: Partial<Record<LanguageCode, DeepPartial<Chapter_Props>>> = {};
+    const files: Partial<Record<LanguageCode, DeepPartial<Chapter_Data>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
       files[language as LanguageCode] = {
-        locale: fields as DeepPartial<Chapter_Locale<'props'>>,
+        locale: fields as DeepPartial<Chapter_Locale<'data'>>,
       };
     }
     return {
-      invariant: own.base as DeepPartial<Chapter_Locale<'props'>>,
+      invariant: own.base as DeepPartial<Chapter_Locale<'data'>>,
       files,
     };
   };
@@ -215,10 +215,10 @@ export const defineChapter = <
     const entries = order.map(key => {
       const raw = items[key];
       const build = (raw as unknown as BuildChild).build;
-      if (!build || typeof build.props !== 'function' || typeof build.overrides !== 'function') {
+      if (!build || typeof build.data !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
-      const resource = buildChildProps({ build });
+      const resource = buildChildData({ build });
       const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { key, resource, patch };
     });
@@ -236,7 +236,7 @@ export const defineChapter = <
         key,
       ),
     );
-    const locale: Partial<Record<LanguageCode, Chapter_Child_Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Chapter_Child_Data[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ key, resource, patch }) => {
         const original = mergeForValidation<Record<string, unknown>>(
@@ -272,7 +272,7 @@ export const defineChapter = <
     locale: onlyStrings(authored.locale),
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterPropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): ChapterPublication<ChapterDataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -284,7 +284,7 @@ export const defineChapter = <
       const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
-    const result: ChapterPublication<ChapterPropsBase> = {
+    const result: ChapterPublication<ChapterDataBase> = {
       base: {
         id,
         slug,
@@ -296,7 +296,7 @@ export const defineChapter = <
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
-      chapter_Props_Schema.parse(
+      chapter_Data_Schema.parse(
         mergeForValidation<Record<string, unknown>>(
           result.base as Record<string, unknown>,
           (result.locale?.[language] ?? {}) as Record<string, unknown>,
@@ -360,7 +360,7 @@ export const defineChapter = <
         if (
           !isRecord(child) ||
           !isRecord(child.build) ||
-          typeof child.build.props !== 'function' ||
+          typeof child.build.data !== 'function' ||
           typeof child.build.overrides !== 'function' ||
           !isRecord(child.config) ||
           !isRecord(child.config.base) ||
@@ -404,7 +404,7 @@ export const defineChapter = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       // Reject an override when its four-layer resolved Props are invalid for any requested locale.
-      validateRequestedPublication(chapter_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(chapter_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -420,7 +420,7 @@ export const defineChapter = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<Chapter_Locale<'config'>> } => ({

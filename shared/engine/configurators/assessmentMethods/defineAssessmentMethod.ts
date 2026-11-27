@@ -11,22 +11,22 @@ import {
 import type { AssessmentMethodSlug } from '../questions/assessmentMethod.schemas';
 import {
   assessmentMethod_Config_Schema,
-  assessmentMethod_Props_Schema,
+  assessmentMethod_Data_Schema,
   type AssessmentMethod_Config,
-  type AssessmentMethod_Props,
+  type AssessmentMethod_Data,
 } from './defineAssessmentMethod.schemas';
 
 type AssessmentMethodPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Data>>> | undefined;
 };
 
 /** The locale splitter projects authored dictionaries into Props strings. */
 const project = (source: DeepPartial<Pick<AssessmentMethod_Config, 'title' | 'description'>>) => {
   const split = splitLocalizedFields(source);
   return {
-    base: split.base as DeepPartial<AssessmentMethod_Props>,
-    locale: split.locale as Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Props>>> | undefined,
+    base: split.base as DeepPartial<AssessmentMethod_Data>,
+    locale: split.locale as Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Data>>> | undefined,
   };
 };
 
@@ -39,9 +39,9 @@ export type AssessmentMethod_Configurator<
   readonly slug: Slug;
   readonly type: 'assessmentMethod';
   readonly build: {
-    props(
+    data(
       options: PublicationLanguageOptions<Languages>,
-    ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }>;
+    ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Data> & { id: string; slug: string }>;
   };
 } & LanguageScope<Languages>;
 
@@ -57,21 +57,21 @@ export function defineAssessmentMethod<
   const slug = config.slug;
   const copyAuthored = () => assessmentMethod_Config_Schema.parse(structuredClone(authored));
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> => {
+  ): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Data> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ title: current.title, description: current.description });
-    const result: AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> = {
+    const result: AssessmentMethodPublication<DeepPartial<AssessmentMethod_Data> & { id: string; slug: string }> = {
       base: { id, slug, ...own.base },
       locale: selectPublicationLocales(
-        own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'],
+        own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Data>>['locale'],
         languages,
       ),
     };
     for (const language of languages) {
-      assessmentMethod_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+      assessmentMethod_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -80,7 +80,7 @@ export function defineAssessmentMethod<
     id,
     slug,
     type: 'assessmentMethod' as const,
-    build: scopeBuild({ props }),
+    build: scopeBuild({ data }),
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }

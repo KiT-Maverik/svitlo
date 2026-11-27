@@ -1,60 +1,60 @@
 import {
-  assessment_Draft_Props_Schema,
-  assessment_Props_Schema,
-  type Assessment_Draft_Props,
-  type Assessment_Props,
+  assessment_Data_Schema,
+  assessment_Draft_Data_Schema,
+  type Assessment_Data,
+  type Assessment_Draft_Data,
 } from '../../configurators/assessments/defineAssessment/defineAssessment.schemas';
-import { carousel_Props_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
-import { checkpoint_Props_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
-import { audio_Props_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
-import { code_Props_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
-import { image_Props_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
-import { markdown_Props_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
-import { scene_Props_Schema } from '../../configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
-import { subtitles_Props_Schema } from '../../configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
-import { text_Props_Schema } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
-import { video_Props_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
-import { youtube_Props_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
+import { carousel_Data_Schema } from '../../configurators/contentBlocks/composite/defineCarousel/defineCarousel.schemas';
+import { checkpoint_Data_Schema } from '../../configurators/contentBlocks/composite/defineCheckpoint/defineCheckpoint.schemas';
+import { audio_Data_Schema } from '../../configurators/contentBlocks/primitive/defineAudio/defineAudio.schemas';
+import { code_Data_Schema } from '../../configurators/contentBlocks/primitive/defineCode/defineCode.schemas';
+import { image_Data_Schema } from '../../configurators/contentBlocks/primitive/defineImage/defineImage.schemas';
+import { markdown_Data_Schema } from '../../configurators/contentBlocks/primitive/defineMarkdown/defineMarkdown.schemas';
+import { scene_Data_Schema } from '../../configurators/contentBlocks/primitive/defineScene/defineScene.schemas';
+import { subtitles_Data_Schema } from '../../configurators/contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
+import { text_Data_Schema } from '../../configurators/contentBlocks/primitive/defineText/defineText.schemas';
+import { video_Data_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
+import { youtube_Data_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 import {
-  episode_Draft_Props_Schema,
-  episode_Props_Schema,
-  type Episode_Draft_Props,
-  type Episode_Props,
+  episode_Data_Schema,
+  episode_Draft_Data_Schema,
+  type Episode_Data,
+  type Episode_Draft_Data,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
 import {
-  lesson_Draft_Props_Schema,
-  type Lesson_Draft_Props,
+  lesson_Draft_Data_Schema,
+  type Lesson_Draft_Data,
 } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import { codingTaskSection_Props_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
+import { codingTaskSection_Data_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import {
-  contentSection_Props_Schema,
-  type Content_Section_Props,
+  contentSection_Data_Schema,
+  type Content_Section_Data,
 } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
-import { learningFlowSection_Props_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
-import { practiceSection_Props_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
+import { learningFlowSection_Data_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+import { practiceSection_Data_Schema } from '../../configurators/sections/definePracticeSection/definePracticeSection.schemas';
 import {
-  quizSection_Props_Schema,
-  type QuizSection_Props,
+  quizSection_Data_Schema,
+  type QuizSection_Data,
 } from '../../configurators/sections/defineQuizSection/defineQuizSection.schemas';
-import type { Section_Props } from '../../configurators/sections/section.types';
+import type { Section_Data } from '../../configurators/sections/section.types';
 import { languageCode_Schema, type LanguageCode } from '../../schemas';
 import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLesson';
 
-export type EpisodeSection = Exclude<Section_Props, { type: 'quiz' | 'flashcards' }>;
-export type LocalizedEpisode = Omit<Episode_Props, 'section'> & { section: EpisodeSection[] };
+export type EpisodeSection = Exclude<Section_Data, { type: 'quiz' | 'flashcards' }>;
+export type LocalizedEpisode = Omit<Episode_Data, 'section'> & { section: EpisodeSection[] };
 /** Zod's resolved block schema retains opaque fields, but runtime validation below
  * resolves every Section/ContentBlock against the concrete kind schemas. */
-export type LocalizedAssessment = Omit<Assessment_Props, 'section'> & {
-  section: (Content_Section_Props | QuizSection_Props)[];
+export type LocalizedAssessment = Omit<Assessment_Data, 'section'> & {
+  section: (Content_Section_Data | QuizSection_Data)[];
 };
 export type LocalizedCourseContent = { items: Record<string, LocalizedCourseNode>; order: string[] };
 export type LocalizedCourseNode =
   | CourseLessonEntry
-  | Lesson_Draft_Props
+  | Lesson_Draft_Data
   | LocalizedEpisode
-  | Episode_Draft_Props
+  | Episode_Draft_Data
   | LocalizedAssessment
-  | Assessment_Draft_Props
+  | Assessment_Draft_Data
   | {
       type: 'module' | 'chapter';
       id: string;
@@ -102,31 +102,31 @@ function merge(base: unknown, patch: unknown): unknown {
 }
 
 const sectionSchemas = {
-  content: contentSection_Props_Schema,
-  practice: practiceSection_Props_Schema,
-  codingTask: codingTaskSection_Props_Schema,
-  learningFlow: learningFlowSection_Props_Schema,
+  content: contentSection_Data_Schema,
+  practice: practiceSection_Data_Schema,
+  codingTask: codingTaskSection_Data_Schema,
+  learningFlow: learningFlowSection_Data_Schema,
 } as const;
 
-const assessmentSectionSchemas = { content: contentSection_Props_Schema, quiz: quizSection_Props_Schema } as const;
+const assessmentSectionSchemas = { content: contentSection_Data_Schema, quiz: quizSection_Data_Schema } as const;
 
 const blockSchemas = {
-  text: text_Props_Schema,
-  markdown: markdown_Props_Schema,
-  code: code_Props_Schema,
-  image: image_Props_Schema,
-  video: video_Props_Schema,
-  audio: audio_Props_Schema,
-  subtitles: subtitles_Props_Schema,
-  youtube: youtube_Props_Schema,
-  carousel: carousel_Props_Schema,
-  checkpoint: checkpoint_Props_Schema,
-  scene: scene_Props_Schema,
+  text: text_Data_Schema,
+  markdown: markdown_Data_Schema,
+  code: code_Data_Schema,
+  image: image_Data_Schema,
+  video: video_Data_Schema,
+  audio: audio_Data_Schema,
+  subtitles: subtitles_Data_Schema,
+  youtube: youtube_Data_Schema,
+  carousel: carousel_Data_Schema,
+  checkpoint: checkpoint_Data_Schema,
+  scene: scene_Data_Schema,
 } as const;
 
 /** Episode.events is an opaque JSON authoring field, not an implemented reaction protocol. */
 export function validateEpisodeRuntime(value: unknown, language: LanguageCode): LocalizedEpisode {
-  const episode = episode_Props_Schema.parse(value);
+  const episode = episode_Data_Schema.parse(value);
   if (!episode.params.languages.includes(language) || !episode.locale.title.trim() || !episode.section.length)
     throw Error('Episode requires an active locale and nonempty ordered Sections');
   if (Object.keys(episode.events ?? {}).length) throw Error('Unsupported Episode event semantics');
@@ -149,7 +149,7 @@ export function validateEpisodeRuntime(value: unknown, language: LanguageCode): 
 
 /** Completed Assessments reuse published Content/Quiz Sections, not Lesson banks. */
 export function validateAssessmentRuntime(value: unknown, language: LanguageCode): LocalizedAssessment {
-  const assessment = assessment_Props_Schema.parse(value);
+  const assessment = assessment_Data_Schema.parse(value);
   if (!assessment.params.languages.includes(language) || !assessment.locale.title.trim()) {
     throw Error('Assessment requires an active locale and a localized title');
   }
@@ -269,13 +269,13 @@ export function assembleCourseTree(
         if (node.slug !== key) throw Error('Invalid Course stub placement: ' + key);
         switch (node.type) {
           case 'lesson':
-            lesson_Draft_Props_Schema.parse(node);
+            lesson_Draft_Data_Schema.parse(node);
             break;
           case 'episode':
-            episode_Draft_Props_Schema.parse(node);
+            episode_Draft_Data_Schema.parse(node);
             break;
           case 'assessment':
-            assessment_Draft_Props_Schema.parse(node);
+            assessment_Draft_Data_Schema.parse(node);
             break;
           default:
             throw Error('Invalid Course draft child kind at ' + key);
@@ -312,11 +312,11 @@ export function assembleCourseTree(
 export type CourseActivity = {
   node:
     | CourseLessonEntry
-    | Lesson_Draft_Props
+    | Lesson_Draft_Data
     | LocalizedEpisode
-    | Episode_Draft_Props
+    | Episode_Draft_Data
     | LocalizedAssessment
-    | Assessment_Draft_Props;
+    | Assessment_Draft_Data;
   placement: string;
 };
 export function courseActivities(course: LocalizedCourse): CourseActivity[] {
@@ -336,17 +336,17 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
 export function findCourseEpisode(
   course: LocalizedCourse,
   id: string,
-): LocalizedEpisode | Episode_Draft_Props | undefined {
+): LocalizedEpisode | Episode_Draft_Data | undefined {
   return courseActivities(course)
     .map(item => item.node)
-    .find((node): node is LocalizedEpisode | Episode_Draft_Props => node.type === 'episode' && node.id === id);
+    .find((node): node is LocalizedEpisode | Episode_Draft_Data => node.type === 'episode' && node.id === id);
 }
 
 export function findCourseAssessment(
   course: LocalizedCourse,
   id: string,
-): LocalizedAssessment | Assessment_Draft_Props | undefined {
+): LocalizedAssessment | Assessment_Draft_Data | undefined {
   return courseActivities(course)
     .map(item => item.node)
-    .find((node): node is LocalizedAssessment | Assessment_Draft_Props => node.type === 'assessment' && node.id === id);
+    .find((node): node is LocalizedAssessment | Assessment_Draft_Data => node.type === 'assessment' && node.id === id);
 }

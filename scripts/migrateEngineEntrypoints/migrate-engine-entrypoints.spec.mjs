@@ -20,8 +20,8 @@ test('migrates Skill domains and groups to build', () => {
 });
 test('routes runtime modules and type-only imports', () => {
   assert.equal(
-    rewriteEngineEntrypoints("import type { Lesson_Props } from '@svitlo/engine';", 'apps/web/src/lesson.ts'),
-    "import type { Lesson_Props } from '@svitlo/engine/runtime';",
+    rewriteEngineEntrypoints("import type { Lesson_Data } from '@svitlo/engine';", 'apps/web/src/lesson.ts'),
+    "import type { Lesson_Data } from '@svitlo/engine/runtime';",
   );
 });
 test('rejects authoring APIs in applications', () => {

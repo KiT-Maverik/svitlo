@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { loadPublishedLesson, loadPublishedUiKitMessages, packagedAssessmentLoader } from '@svitlo/adapter-electron';
-import { getLocaleDirection, type Lesson_Props, type Locale } from '@svitlo/engine/runtime';
+import { getLocaleDirection, type Lesson_Data, type Locale } from '@svitlo/engine/runtime';
 import { resolveScene } from '@svitlo/playground/scenes';
 import {
   createLessonLearningLayout,
@@ -32,7 +32,7 @@ const LessonLayout = createLessonLearningLayout({ useLocale: useDesktopLocale })
 
 type DataState =
   | { status: 'loading' }
-  | { status: 'ready'; response: Lesson_Props; messages: UiKitMessages }
+  | { status: 'ready'; response: Lesson_Data; messages: UiKitMessages }
   | { status: 'error'; error: string };
 
 function readRoute(): LessonRoute | null {

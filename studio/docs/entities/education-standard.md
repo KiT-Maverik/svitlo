@@ -18,7 +18,7 @@ No requirements hierarchy, children, localized official names, translated method
 
 ## Publication and ownership
 
-The only public method is `standard.build.props({ languages })`. Requested languages must form an explicit nonempty, unique subset of the canonical language roster. Validation of the **full authored Config** occurs before selecting any translations. The output is JSON-compatible and independently owned:
+The only public method is `standard.build.data({ languages })`. Requested languages must form an explicit nonempty, unique subset of the canonical language roster. Validation of the **full authored Config** occurs before selecting any translations. The output is JSON-compatible and independently owned:
 
 ```ts
 {
@@ -35,7 +35,7 @@ The only public method is `standard.build.props({ languages })`. Requested langu
 }
 ```
 
-`base` is invariant across publication languages; each selected `locale[lang]` contains only the Props-shaped frontend-description fragment. Merging `base` with one requested locale must satisfy `educationStandard_Props_Schema`. Consumers must retain original-name `lang` metadata; no UI renderer or runtime registry is introduced here.
+`base` is invariant across publication languages; each selected `locale[lang]` contains only the Props-shaped frontend-description fragment. Merging `base` with one requested locale must satisfy `educationStandard_Data_Schema`. Consumers must retain original-name `lang` metadata; no UI renderer or runtime registry is introduced here.
 
 Build exports the `defineEducationStandard` factory. Runtime exports only the Config/Props schemas and types. There is no separate package of default locales or automatic English fallback. The approved global authored catalog lives in `shared/ui-kit/data/definitions/educationStandards/`, with original-language source records under `data/<country>/*.data.ts`. UI Kit's existing locale generator publishes `public/data/uiKit/educationStandards/base.json` and `<language>.json` alongside UI component and Assessment Method dictionaries. Only published JSON is consumed at runtime, never authored configurators. The standards publisher is a UI Kit build-time generator, not a separate `@svitlo/education-standards` workspace or a runtime registry.
 

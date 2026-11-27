@@ -40,7 +40,7 @@ export const runWithBuildContext = <Languages extends readonly LanguageCode[], R
 /** Internal-only accessor: calling without a public Build operation is an error. */
 export const requireBuildContext = (): BuildContext => {
   const context = buildScope.getStore();
-  if (!context) throw new Error('No active Build Context; call a public build.props/overrides operation first');
+  if (!context) throw new Error('No active Build Context; call a public build.data/overrides operation first');
   return context;
 };
 
@@ -50,12 +50,12 @@ export const requireBuildContext = (): BuildContext => {
  */
 export const scopeBuild = <Build extends object>(build: Build): Build => {
   const wrapped = { ...build } as Record<string, unknown>;
-  for (const method of ['props', 'overrides'] as const) {
+  for (const method of ['data', 'overrides'] as const) {
     const original = (build as Record<string, unknown>)[method];
     if (typeof original !== 'function') continue;
     const invoke = original as (...args: unknown[]) => unknown;
     wrapped[method] = (...args: unknown[]) => {
-      const optionsIndex = method === 'props' ? 0 : 1;
+      const optionsIndex = method === 'data' ? 0 : 1;
       return runWithBuildContext(args[optionsIndex] as PublicationLanguageOptions, context => {
         // Public implementations and inner direct calls use the same normalized,
         // immutable options object as every composed child.
@@ -69,10 +69,10 @@ export const scopeBuild = <Build extends object>(build: Build): Build => {
 };
 
 /** Compose a child without requiring a common return type across distinct unions. */
-export const buildChildProps = <Child extends { readonly build: { readonly props: (options: never) => unknown } }>(
+export const buildChildData = <Child extends { readonly build: { readonly data: (options: never) => unknown } }>(
   child: Child,
-): ReturnType<Child['build']['props']> =>
-  child.build.props(requireBuildContext() as never) as ReturnType<Child['build']['props']>;
+): ReturnType<Child['build']['data']> =>
+  child.build.data(requireBuildContext() as never) as ReturnType<Child['build']['data']>;
 
 /** Compose sparse child changes in the same scope without mutating the source. */
 export const buildChildOverrides = <

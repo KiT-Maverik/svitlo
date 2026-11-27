@@ -16,7 +16,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
 import { renderFlashcardReference } from './flashcard-reference.mjs';
-import { resolveEntityPath, assembleLessonProps } from '@svitlo/engine/runtime';
+import { resolveEntityPath, assembleLessonData } from '@svitlo/engine/runtime';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
@@ -149,7 +149,7 @@ export async function loadLesson(entry, packageDirectory) {
       typeof value === 'object' &&
       !Array.isArray(value) &&
       value.type === 'lesson' &&
-      typeof value.build?.props === 'function',
+      typeof value.build?.data === 'function',
   );
   if (lessonExports.length !== 1)
     throw new Error(`Expected exactly one exported Lesson configurator in ${entry}, found ${lessonExports.length}`);
@@ -202,9 +202,9 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
       if (!Array.isArray(declared) || !declared.includes(options.locale))
         throw new Error('Requested locale is not declared in the source Lesson: ' + options.locale);
     }
-    if (typeof lesson.build?.props !== 'function') throw new Error('Lesson is missing the Configurator Build API');
-    const publication = lesson.build.props({ languages: [options.locale] });
-    const resolved = assembleLessonProps(publication, options.locale);
+    if (typeof lesson.build?.data !== 'function') throw new Error('Lesson is missing the Configurator Build API');
+    const publication = lesson.build.data({ languages: [options.locale] });
+    const resolved = assembleLessonData(publication, options.locale);
     let markdown = renderLessonMarkdown({
       lesson: resolved,
       locale: options.locale,

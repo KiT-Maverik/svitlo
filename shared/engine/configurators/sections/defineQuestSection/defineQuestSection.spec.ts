@@ -16,7 +16,7 @@ describe('Configurators > Sections > defineQuestSection', () => {
 
   test('publishes nested Stage/Task maps without an order array', () => {
     const { quest } = fixture();
-    const resource = quest.build.props(languages);
+    const resource = quest.build.data(languages);
     assert.equal(resource.base.type, 'quest');
     assert.equal((resource.base.stages as Record<string, unknown>).start !== undefined, true);
     assert.equal(JSON.stringify(resource.base).includes('order'), false);
@@ -27,9 +27,9 @@ describe('Configurators > Sections > defineQuestSection', () => {
 
   test('publishes targeted Stage patches without mutating authored Quest', () => {
     const { stage, task, quest } = fixture();
-    assert.equal(stage.build.props(languages).base.type, 'questStage');
-    assert.equal(task.build.props(languages).base.type, 'questTask');
-    const original = JSON.stringify(quest.build.props(languages));
+    assert.equal(stage.build.data(languages).base.type, 'questStage');
+    assert.equal(task.build.data(languages).base.type, 'questTask');
+    const original = JSON.stringify(quest.build.data(languages));
     const changed = quest.build.overrides(
       {
         stages: { start: { content: { video: { small: { locale: { label: { uk: 'Економна якість' } } } } } } },
@@ -37,7 +37,7 @@ describe('Configurators > Sections > defineQuestSection', () => {
       languages,
     );
     assert.ok(changed.locale?.uk);
-    assert.equal(JSON.stringify(quest.build.props(languages)), original, 'patch must be stateless');
+    assert.equal(JSON.stringify(quest.build.data(languages)), original, 'patch must be stateless');
     assert.throws(() => quest.build.overrides({ id: id('20') } as never, languages), /QuestSection overrides/);
     assert.throws(() => quest.build.overrides({ tasks: { unknown: {} } } as never, languages), /Unknown Quest child/);
   });

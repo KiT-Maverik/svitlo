@@ -38,12 +38,12 @@ describe('Configurators', () => {
           locale: {},
           slides: { items: { picture }, order: ['picture'] },
         });
-        assert.doesNotThrow(() => picture.build.props({ languages: ['en'] }));
-        assert.doesNotThrow(() => recording.build.props({ languages: ['en', 'uk'] }));
-        assert.doesNotThrow(() => movie.build.props({ languages: ['en'] }));
-        assert.doesNotThrow(() => carousel.build.props({ languages: ['en'] }));
-        assert.equal(picture.build.props({ languages: ['en'] }).base.locale?.src, uuid + '.png');
-        assert.equal(movie.build.props({ languages: ['en'] }).base.locale?.poster, uuid + '.jpg');
+        assert.doesNotThrow(() => picture.build.data({ languages: ['en'] }));
+        assert.doesNotThrow(() => recording.build.data({ languages: ['en', 'uk'] }));
+        assert.doesNotThrow(() => movie.build.data({ languages: ['en'] }));
+        assert.doesNotThrow(() => carousel.build.data({ languages: ['en'] }));
+        assert.equal(picture.build.data({ languages: ['en'] }).base.locale?.src, uuid + '.png');
+        assert.equal(movie.build.data({ languages: ['en'] }).base.locale?.poster, uuid + '.jpg');
       });
 
       test('rejects incorrect media categories and paths, not missing physical files', () => {
@@ -91,10 +91,7 @@ describe('Configurators', () => {
           params: { width: 10, height: 10 },
           locale: { fileName: 'https://example.com/media/image.png', alt: 'Remote' },
         });
-        assert.equal(
-          picture.build.props({ languages: ['en'] }).base.locale?.src,
-          'https://example.com/media/image.png',
-        );
+        assert.equal(picture.build.data({ languages: ['en'] }).base.locale?.src, 'https://example.com/media/image.png');
       });
     });
   });

@@ -37,18 +37,18 @@ if (skills.length) {
       typeof item.id !== 'string' ||
       item.config?.base?.id !== item.id ||
       item.config?.base?.slug !== item.slug ||
-      typeof item.build?.props !== 'function'
+      typeof item.build?.data !== 'function'
     )
       throw Error('Invalid trusted Skill registry member');
     if (registered.has(item.id)) throw Error('Duplicate Skill in trusted taxonomy ' + item.id);
     registered.set(item.id, item);
   };
   for (const domain of Object.values(taxonomy)) {
-    if (!domain || domain.type !== 'skillDomain' || !domain.id || !domain.build?.props)
+    if (!domain || domain.type !== 'skillDomain' || !domain.id || !domain.build?.data)
       throw Error('Invalid trusted SkillDomain export');
     for (const skill of Object.values(domain.skills ?? {})) register(skill);
     for (const group of Object.values(domain.groups ?? {})) {
-      if (!group || group.type !== 'skillGroup' || !group.id || !group.build?.props)
+      if (!group || group.type !== 'skillGroup' || !group.id || !group.build?.data)
         throw Error('Invalid trusted SkillGroup');
       for (const skill of Object.values(group.skills ?? {})) register(skill);
     }
@@ -131,7 +131,7 @@ for (const reference of sections) {
     configurator.config?.base?.id !== id ||
     configurator.config.base.slug !== slug ||
     configurator.config.base.type !== configurator.type ||
-    typeof configurator.build?.props !== 'function' ||
+    typeof configurator.build?.data !== 'function' ||
     typeof configurator.build?.overrides !== 'function'
   )
     throw Error('Trusted Section dependency export mismatch');

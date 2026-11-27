@@ -6,7 +6,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { mergeCourseProps } from '../../../shared/engine/generators/courses/publishCourseData.mjs';
+import { mergeCourseData } from '../../../shared/engine/generators/courses/publishCourseData.mjs';
 
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 // Reserved UUIDv8 namespace allocated only by the Lesson draft scaffolder.
@@ -193,7 +193,7 @@ function verifyCourseDependencies(staticRoot, manifest) {
     }
     for (const language of languages) {
       const localePath = path.join(folder, language + '.json');
-      const course = mergeCourseProps(base, fs.existsSync(localePath) ? json(localePath) : undefined);
+      const course = mergeCourseData(base, fs.existsSync(localePath) ? json(localePath) : undefined);
       function visit(node) {
         if (!isRecord(node) || !uuid.test(node.id ?? '')) throw new Error('Invalid generated Course node');
         if (node.type === 'episode') return;
@@ -206,8 +206,8 @@ function verifyCourseDependencies(staticRoot, manifest) {
             throw new Error('Course Lesson identity/language mismatch: ' + node.id + ' / ' + language);
           }
           const localized = path.join(owner, language + '.json');
-          const effective = mergeCourseProps(
-            mergeCourseProps(lesson, fs.existsSync(localized) ? json(localized) : undefined),
+          const effective = mergeCourseData(
+            mergeCourseData(lesson, fs.existsSync(localized) ? json(localized) : undefined),
             node.overrides,
           );
           if (

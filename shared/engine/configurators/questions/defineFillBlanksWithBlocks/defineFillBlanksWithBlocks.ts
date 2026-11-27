@@ -34,11 +34,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithBlocks_Config_Schema,
+  fillBlanksWithBlocks_Data_Schema,
   fillBlanksWithBlocks_Override_Config_Schema,
-  fillBlanksWithBlocks_Props_Schema,
   type Question_FillBlanksWithBlocks_Config,
+  type Question_FillBlanksWithBlocks_Data,
   type Question_FillBlanksWithBlocks_MetadataOverrides,
-  type Question_FillBlanksWithBlocks_Props,
 } from './defineFillBlanksWithBlocks.schemas';
 
 const metadataSchema = fillBlanksWithBlocks_Config_Schema.omit({ content: true });
@@ -154,9 +154,9 @@ export const defineFillBlanksWithBlocks = <
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
+  ): QuestionResourcePublication<Question_FillBlanksWithBlocks_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -175,8 +175,8 @@ export const defineFillBlanksWithBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_FillBlanksWithBlocks_Props>;
-    validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_FillBlanksWithBlocks_Data>;
+    validateQuestionPublication(fillBlanksWithBlocks_Data_Schema, languages, resource);
     return resource;
   };
 
@@ -186,7 +186,7 @@ export const defineFillBlanksWithBlocks = <
   >(
     patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Props> => {
+  ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -221,8 +221,8 @@ export const defineFillBlanksWithBlocks = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
-      validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
+      validateQuestionPublication(fillBlanksWithBlocks_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -242,7 +242,7 @@ export const defineFillBlanksWithBlocks = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

@@ -32,11 +32,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectMultipleAnswers_Config_Schema,
+  selectMultipleAnswers_Data_Schema,
   selectMultipleAnswers_Override_Config_Schema,
-  selectMultipleAnswers_Props_Schema,
   type Question_SelectMultipleAnswers_Config,
+  type Question_SelectMultipleAnswers_Data,
   type Question_SelectMultipleAnswers_MetadataOverrides,
-  type Question_SelectMultipleAnswers_Props,
 } from './defineSelectMultipleAnswers.schemas';
 
 const metadataSchema = selectMultipleAnswers_Config_Schema.omit({ content: true });
@@ -173,9 +173,9 @@ export const defineSelectMultipleAnswers = <
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_SelectMultipleAnswers_Props> => {
+  ): QuestionResourcePublication<Question_SelectMultipleAnswers_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -194,15 +194,15 @@ export const defineSelectMultipleAnswers = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_SelectMultipleAnswers_Props>;
-    validateQuestionPublication(selectMultipleAnswers_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_SelectMultipleAnswers_Data>;
+    validateQuestionPublication(selectMultipleAnswers_Data_Schema, languages, resource);
     return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_SelectMultipleAnswers_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_SelectMultipleAnswers_Props> => {
+  ): QuestionOverridePublication<Question_SelectMultipleAnswers_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -237,8 +237,8 @@ export const defineSelectMultipleAnswers = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_SelectMultipleAnswers_Props>;
-      validateQuestionPublication(selectMultipleAnswers_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_SelectMultipleAnswers_Data>;
+      validateQuestionPublication(selectMultipleAnswers_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -258,7 +258,7 @@ export const defineSelectMultipleAnswers = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

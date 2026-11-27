@@ -35,9 +35,9 @@ export const markdown_Override_Config_Schema: z.ZodType<ContentBlock_Markdown_Ov
   ),
 );
 
-export type ContentBlock_Markdown_PropsBase = z.infer<typeof markdownBase> & {
-  locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
+export type ContentBlock_Markdown_DataBase = z.infer<typeof markdownBase> & {
+  locale?: DeepPartial<ContentBlock_Markdown_Locale<'data'>>;
 };
 
-export const markdown_Props_Schema = markdownBase.extend(addUnifiedLocale(locale('props')));
-export type ContentBlock_Markdown_Props = z.infer<typeof markdown_Props_Schema>;
+export const markdown_Data_Schema = markdownBase.extend(addUnifiedLocale(locale('data')));
+export type ContentBlock_Markdown_Data = z.infer<typeof markdown_Data_Schema>;

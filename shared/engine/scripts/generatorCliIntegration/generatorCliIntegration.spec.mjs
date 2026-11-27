@@ -37,7 +37,7 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
       lessonId +
       "', slug: 'testLesson', type: 'lesson', " +
       "config: { base: { params: { languages: ['en', 'uk'] } } }, " +
-      "build: { props({ languages }) { return { base: { id: '" +
+      "build: { data({ languages }) { return { base: { id: '" +
       lessonId +
       "', type: 'lesson', params: { languages } }, locale: { uk: { locale: { title: 'Тестовий урок' } } } }; } } };";
     fs.writeFileSync(path.join(lessonFolder, 'lesson.data.ts'), lessonSource);
@@ -47,7 +47,7 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
       courseId +
       "', slug: 'testCourse', type: 'course', " +
       "config: { base: { params: { languages: ['en'] } } }, " +
-      "content: { items: {}, order: [] }, build: { props({ languages }) { return { base: { id: '" +
+      "content: { items: {}, order: [] }, build: { data({ languages }) { return { base: { id: '" +
       courseId +
       "', slug: 'testCourse', type: 'course', params: { languages }, " +
       "locale: { title: 'Testing' }, content: [] } }; } } };";

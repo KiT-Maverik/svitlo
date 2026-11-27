@@ -17,9 +17,9 @@ const section = defineContentSection<'intro', { greeting: typeof text }, ['uk']>
   locale: { title: 'Introduction', navigationLabel: '1' },
   content: { items: { greeting: text }, order: ['greeting'] },
 });
-section.build.props({ languages: ['uk'] });
+section.build.data({ languages: ['uk'] });
 // @ts-expect-error A Section with only Ukrainian support cannot publish English.
-section.build.props({ languages: ['en'] });
+section.build.data({ languages: ['en'] });
 
 const skill = defineSkill({
   id: 'b775647f-203d-481a-a1c7-4d331c779d63',
@@ -34,4 +34,4 @@ const group = defineSkillGroup({
   description: { methodological: 'Foundations', frontend: 'Learning' },
   skills: { reading: skill },
 });
-group.build.props({ languages: ['uk'] });
+group.build.data({ languages: ['uk'] });

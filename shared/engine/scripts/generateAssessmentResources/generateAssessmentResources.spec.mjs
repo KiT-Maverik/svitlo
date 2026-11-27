@@ -6,7 +6,7 @@ import test from 'node:test';
 import { collectAssessmentConfigurators, render } from './generateAssessmentResources.mjs';
 import {
   loadLessonData,
-  assembleLessonProps,
+  assembleLessonData,
   selectQuizQuestionIds,
   validateAssessmentReferences,
 } from '@svitlo/engine/build';
@@ -34,7 +34,7 @@ const question = (key, number, type = 'selectOneAnswer') => ({
   id: id(number),
   slug: key,
   type,
-  build: { props: () => ({ base: { id: id(number), slug: key, type } }) },
+  build: { data: () => ({ base: { id: id(number), slug: key, type } }) },
 });
 const card = (key, number) => question(key, number, 'flashcard');
 
@@ -129,8 +129,8 @@ test('Engine fixture independently publishes localized Question and Flashcard bo
 
 test('Engine fixture Quiz UUID references resolve against its independent Question manifest', async () => {
   const lesson = await loadLessonData(lessonEntry);
-  const published = lesson.build.props({ languages: ['uk'] });
-  const response = assembleLessonProps(published, 'uk');
+  const published = lesson.build.data({ languages: ['uk'] });
+  const response = assembleLessonData(published, 'uk');
   assert.equal(Object.hasOwn(response, 'questions'), false);
   assert.equal(Object.hasOwn(response, 'flashcards'), false);
   const quiz = response.section.find(item => item.type === 'quiz');

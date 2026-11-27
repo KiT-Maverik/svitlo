@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
@@ -22,10 +22,10 @@ import type {
 } from '../defineCheckpointAnswer';
 import {
   checkpointItem_Config_Schema,
-  checkpointItem_Props_Schema,
+  checkpointItem_Data_Schema,
   type CheckpointItem_Overrides,
   type ContentBlock_CheckpointItem_Config,
-  type ContentBlock_CheckpointItem_Props,
+  type ContentBlock_CheckpointItem_Data,
 } from './defineCheckpointItem.schemas';
 
 export type CheckpointItemValidationIssue = { check: string; path: string; message: string };
@@ -65,7 +65,7 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
     question.config.base.type !== 'text' ||
     question.config.base.slug !== question.slug ||
     !isObject(question.build) ||
-    typeof question.build.props !== 'function' ||
+    typeof question.build.data !== 'function' ||
     typeof question.build.overrides !== 'function'
   )
     fail('question', 'question', 'Question must be a Text configurator');
@@ -82,7 +82,7 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
     answer.config.base.id !== answer.id ||
     answer.config.base.slug !== answer.slug ||
     !isObject(answer.build) ||
-    typeof answer.build.props !== 'function' ||
+    typeof answer.build.data !== 'function' ||
     typeof answer.build.overrides !== 'function'
   )
     fail('answer', 'answer', 'Answer must be a defineCheckpointAnswer configurator');
@@ -91,7 +91,7 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   if (!result.success) throw new CheckpointItemValidationError(result);
 };
 
-type AnswerResource = ReturnType<ContentBlock_CheckpointAnswer_Configurator['build']['props']>;
+type AnswerResource = ReturnType<ContentBlock_CheckpointAnswer_Configurator['build']['data']>;
 type AnswerOverride = {
   base: { content?: ItemBase['answer'] };
   locale: Partial<Record<LanguageCode, { content: Record<string, unknown>[] }>> | undefined;
@@ -99,8 +99,8 @@ type AnswerOverride = {
 type ItemLocale = { question?: Record<string, unknown>; answer?: Record<string, unknown>[] };
 type ItemFiles = Partial<Record<LanguageCode, ItemLocale>>;
 type ItemPublication<Base> = { base: Base; locale: ItemFiles | undefined };
-type ItemBase = Pick<ContentBlock_CheckpointItem_Props, 'id' | 'slug' | 'type' | 'check'> & {
-  question: ReturnType<ContentBlock_CheckpointItem_Config['question']['build']['props']>['base'];
+type ItemBase = Pick<ContentBlock_CheckpointItem_Data, 'id' | 'slug' | 'type' | 'check'> & {
+  question: ReturnType<ContentBlock_CheckpointItem_Config['question']['build']['data']>['base'];
   answer: AnswerResource['base']['content'];
 };
 type ItemOverrideBase = {
@@ -124,11 +124,11 @@ export const defineCheckpointItem = <
   const { id, type, slug, question, answer, check } = config;
   const base = { id, type, slug, ...(check !== undefined ? { check } : {}) };
 
-  const props = (options: PublicationLanguageOptions<Languages>): ItemPublication<ItemBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): ItemPublication<ItemBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ id, type, slug, question, answer, ...(check !== undefined ? { check } : {}) });
-    const builtQuestion = buildChildProps(question);
-    const builtAnswer = buildChildProps(answer);
+    const builtQuestion = buildChildData(question);
+    const builtAnswer = buildChildData(answer);
     const locale: ItemFiles = {};
     for (const [language, fields] of Object.entries(builtAnswer.locale ?? {})) {
       (locale[language as LanguageCode] ??= {}).answer = fields.content;
@@ -144,7 +144,7 @@ export const defineCheckpointItem = <
       },
       locale: Object.keys(locale).length ? locale : undefined,
     };
-    validateRequestedPublication(checkpointItem_Props_Schema, output, languages);
+    validateRequestedPublication(checkpointItem_Data_Schema, output, languages);
     return output;
   };
 
@@ -183,7 +183,7 @@ export const defineCheckpointItem = <
           (locale[language as LanguageCode] ??= {}).answer = fields.content;
       }
       output.locale = Object.keys(locale).length ? locale : undefined;
-      validateRequestedPublication(checkpointItem_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(checkpointItem_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -200,7 +200,7 @@ export const defineCheckpointItem = <
     answer,
     ...(check !== undefined ? { check } : {}),
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: { base, locales: () => ({ locale: {} }), validate },
   } as const;
   return result as typeof result & LanguageScope<Languages>;

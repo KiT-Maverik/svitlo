@@ -7,10 +7,10 @@ The build/publish-time serializer is `publishSkillTree.mjs`. It writes one
 ## Ownership
 
 - Authoring configurators own validation, nested composition, ordering and
-  language-specific `build.props({ languages })`.
+  language-specific `build.data({ languages })`.
 - The caller can use
   `scripts/generators/data/prepare-skills-publication.mjs` to gather complete
-  `SkillDomain.build.props({ languages })` results under their domain slugs.
+  `SkillDomain.build.data({ languages })` results under their domain slugs.
 - The generator owns **only** deterministic serialization and replacement of
   the dedicated `generated/skills/` directory. It never invokes configurators
   or interprets/merges their Props.

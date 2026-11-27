@@ -51,7 +51,7 @@ function currentFiles(root) {
 }
 
 /** Read-only, byte-exact verification including stale generated files. */
-export function checkLessonProps(root, files, mode = 'lesson') {
+export function checkLessonData(root, files, mode = 'lesson') {
   validateFiles(files, mode);
   const actual = currentFiles(root);
   const changed = [...files]
@@ -70,7 +70,7 @@ export function checkLessonProps(root, files, mode = 'lesson') {
  * If the final rename fails, restore the previous output instead of leaving
  * a partially published directory. Files outside root are never touched.
  */
-export function publishLessonProps(root, files, mode = 'lesson') {
+export function publishLessonData(root, files, mode = 'lesson') {
   validateFiles(files, mode);
   currentFiles(root);
   const destination = path.resolve(root);

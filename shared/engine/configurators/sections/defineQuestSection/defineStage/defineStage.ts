@@ -7,7 +7,7 @@ import type { ContentBlock_Image_Overrides } from '../../../contentBlocks/primit
 import type { ContentBlock_Subtitles_Overrides } from '../../../contentBlocks/primitive/defineSubtitles/defineSubtitles.schemas';
 import type { ContentBlock_Video_Overrides } from '../../../contentBlocks/primitive/defineVideo/defineVideo.schemas';
 import { assertQuestChild, nestQuestPublication, projectQuestTree, validateQuestPublication } from '../quest.utils';
-import { stage_Config_Schema, stage_Props_Schema, type Stage_Config } from './defineStage.schemas';
+import { stage_Config_Schema, stage_Data_Schema, type Stage_Config } from './defineStage.schemas';
 
 export type Stage_Overrides = {
   content?: {
@@ -48,11 +48,11 @@ export const defineStage = <
     image: config.content.image,
     subtitles: config.content.subtitles,
   };
-  const props = (options: PublicationLanguageOptions<Languages>) => {
+  const data = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...authoredMetadata, content });
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree(content), 'content');
-    validateQuestPublication(stage_Props_Schema, output, languages);
+    validateQuestPublication(stage_Data_Schema, output, languages);
     return output;
   };
   const overrides = (patch: Stage_Overrides, options: PublicationLanguageOptions<Languages>) => {
@@ -66,7 +66,7 @@ export const defineStage = <
     )
       throw new Error('Invalid QuestStage overrides');
     const output = nestQuestPublication({}, projectQuestTree(content, patch.content ?? {}), 'content');
-    validateQuestPublication(stage_Props_Schema, props(options), languages, output);
+    validateQuestPublication(stage_Data_Schema, data(options), languages, output);
     return output;
   };
   const result = {
@@ -75,7 +75,7 @@ export const defineStage = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: { id, slug, type },
       locales: () => ({}),

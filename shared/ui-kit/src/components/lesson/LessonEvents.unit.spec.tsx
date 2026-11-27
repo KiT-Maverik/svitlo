@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor, within } from '@testing-library/rea
 import { useEffect } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Scene_Props, Lesson_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Scene_Data, Lesson_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
@@ -12,7 +12,7 @@ import { Lesson } from './Lesson';
 import { createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
-const celebration: ContentBlock_Scene_Props = {
+const celebration: ContentBlock_Scene_Data = {
   id: uuid(50),
   slug: 'celebration',
   type: 'scene',
@@ -21,7 +21,7 @@ const celebration: ContentBlock_Scene_Props = {
 };
 const received: string[] = [];
 
-function SceneContent({ locales }: { locales: ContentBlock_Scene_Props['locale']['value'] }) {
+function SceneContent({ locales }: { locales: ContentBlock_Scene_Data['locale']['value'] }) {
   const { dismiss } = useLessonEventScene();
   const title =
     locales && typeof locales === 'object' && 'title' in locales && typeof locales.title === 'string'
@@ -61,7 +61,7 @@ function Layout({ messages, ...props }: LessonLearningLayoutProps) {
     </>
   );
 }
-function lesson(): Lesson_Props {
+function lesson(): Lesson_Data {
   return {
     id: uuid(54),
     slug: 'eventsLesson',
@@ -115,7 +115,7 @@ function lesson(): Lesson_Props {
   };
 }
 
-function showLesson(overrides?: Record<string, ContentBlock_Scene_Props | false>, response = lesson()) {
+function showLesson(overrides?: Record<string, ContentBlock_Scene_Data | false>, response = lesson()) {
   return render(
     <Lesson
       response={response}

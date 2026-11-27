@@ -10,7 +10,7 @@ import {
   localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
 } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Configurator, ContentBlock_Data } from '../../contentBlocks/contentBlock.types';
 
 const params = paramsBase_Schema.shape.params.extend({
   skippable: z.boolean().optional(),
@@ -44,18 +44,18 @@ export const flashcardsSection_Config_Schema = sectionBase.extend({
 });
 export type FlashcardsSection_Config = z.infer<typeof flashcardsSection_Config_Schema>;
 
-export const flashcardsSection_Props_Schema = sectionBase.extend({
-  ...addUnifiedLocale(locale('props')),
+export const flashcardsSection_Data_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('data')),
   content: z.array(contentBlockResolved_Schema),
 });
-export type FlashcardsSection_Props = Omit<z.infer<typeof flashcardsSection_Props_Schema>, 'content'> & {
-  content: ContentBlock_Props[];
+export type FlashcardsSection_Data = Omit<z.infer<typeof flashcardsSection_Data_Schema>, 'content'> & {
+  content: ContentBlock_Data[];
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type FlashcardsSection_PropsBase = Pick<FlashcardsSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
-  locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
-  content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
+export type FlashcardsSection_DataBase = Pick<FlashcardsSection_Data, 'id' | 'slug' | 'type' | 'params'> & {
+  locale?: DeepPartial<FlashcardsSection_Locale<'data'>>;
+  content: ReturnType<ContentBlock_Configurator['build']['data']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */

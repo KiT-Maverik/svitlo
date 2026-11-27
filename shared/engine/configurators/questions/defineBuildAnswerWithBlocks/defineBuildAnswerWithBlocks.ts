@@ -31,11 +31,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   buildAnswerWithBlocks_Config_Schema,
+  buildAnswerWithBlocks_Data_Schema,
   buildAnswerWithBlocks_Override_Config_Schema,
-  buildAnswerWithBlocks_Props_Schema,
   type Question_BuildAnswerWithBlocks_Config,
+  type Question_BuildAnswerWithBlocks_Data,
   type Question_BuildAnswerWithBlocks_MetadataOverrides,
-  type Question_BuildAnswerWithBlocks_Props,
 } from './defineBuildAnswerWithBlocks.schemas';
 
 const metadataSchema = buildAnswerWithBlocks_Config_Schema.omit({ content: true });
@@ -127,9 +127,9 @@ export const defineBuildAnswerWithBlocks = <
     return { base, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
+  ): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -148,15 +148,15 @@ export const defineBuildAnswerWithBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props>;
-    validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_BuildAnswerWithBlocks_Data>;
+    validateQuestionPublication(buildAnswerWithBlocks_Data_Schema, languages, resource);
     return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Primitive_Configurator> = {}>(
     patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props> => {
+  ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -191,8 +191,8 @@ export const defineBuildAnswerWithBlocks = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
-      validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Data>;
+      validateQuestionPublication(buildAnswerWithBlocks_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -212,7 +212,7 @@ export const defineBuildAnswerWithBlocks = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

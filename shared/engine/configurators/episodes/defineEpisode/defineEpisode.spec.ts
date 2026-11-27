@@ -8,7 +8,7 @@ import { defineCourse } from '../../courses/defineCourse';
 import { defineModule } from '../../courses/defineModule';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineEpisode } from './defineEpisode';
-import { episode_Props_Schema, episodeConfigurator_Schema } from './defineEpisode.schemas';
+import { episode_Data_Schema, episodeConfigurator_Schema } from './defineEpisode.schemas';
 
 describe('Configurators', () => {
   describe('Episodes', () => {
@@ -44,7 +44,7 @@ describe('Configurators', () => {
 
       test('Episode is an independent JSON-safe configurator with sparse locale and no Lesson pedagogy', () => {
         const episode = makeEpisode();
-        const resource = episode.build.props({ languages: ['en', 'uk'] });
+        const resource = episode.build.data({ languages: ['en', 'uk'] });
         assert.equal(episodeConfigurator_Schema.safeParse(episode).success, true);
         assert.equal(episode.type, 'episode');
         assert.equal(episode.section.items.intro, intro);
@@ -61,7 +61,7 @@ describe('Configurators', () => {
         assert.equal(resource.locale?.uk?.locale?.title, 'Прибуття');
         assert.ok(JSON.stringify(resource.locale?.uk?.section).includes('Ви заходите до зали'));
         assert.equal(
-          episode_Props_Schema.safeParse(mergeForValidation(resource.base, resource.locale?.uk ?? {})).success,
+          episode_Data_Schema.safeParse(mergeForValidation(resource.base, resource.locale?.uk ?? {})).success,
           true,
         );
         assert.doesNotThrow(() => JSON.stringify(resource));
@@ -69,7 +69,7 @@ describe('Configurators', () => {
 
       test('Episode overrides metadata and Section children without modifying the canonical Episode', () => {
         const episode = makeEpisode();
-        const original = episode.build.props({ languages: ['en', 'uk'] });
+        const original = episode.build.data({ languages: ['en', 'uk'] });
         const result = episode.build.overrides(
           {
             locale: { title: { uk: 'Нове прибуття' } },
@@ -87,8 +87,8 @@ describe('Configurators', () => {
         );
         assert.equal(result.locale?.uk?.locale?.title, 'Нове прибуття');
         assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Відчиніть двері'));
-        assert.ok(JSON.stringify(episode.build.props({ languages: ['en', 'uk'] })).includes('Ви заходите до зали'));
-        assert.deepEqual(episode.build.props({ languages: ['en', 'uk'] }), original);
+        assert.ok(JSON.stringify(episode.build.data({ languages: ['en', 'uk'] })).includes('Ви заходите до зали'));
+        assert.deepEqual(episode.build.data({ languages: ['en', 'uk'] }), original);
 
         const extra = defineContentSection<'extra', {}, typeof languages>({
           id: id('04'),
@@ -139,25 +139,25 @@ describe('Configurators', () => {
               locale: { title: 'Invalid' },
               section: { items: {}, order: [] },
               skills: [],
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /skills/,
         );
       });
 
       test('Episode respects selected publication languages, validates requested scope and remains stateless', () => {
         const episode = makeEpisode();
-        const single = episode.build.props({ languages: ['uk'] });
+        const single = episode.build.data({ languages: ['uk'] });
         assert.deepEqual(single.base.params.languages, ['uk']);
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);
         const patched = episode.build.overrides({ locale: { title: { uk: 'Новий' } } }, { languages: ['uk'] });
         assert.deepEqual(patched.locale, { uk: { locale: { title: 'Новий' } } });
         assert.throws(
-          () => episode.build.props({ languages: ['pl'] as never }),
+          () => episode.build.data({ languages: ['pl'] as never }),
           /does not support publication language/,
         );
-        assert.throws(() => episode.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => episode.build.props({ languages: ['uk', 'uk'] }), /unique/);
+        assert.throws(() => episode.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => episode.build.data({ languages: ['uk', 'uk'] }), /unique/);
       });
 
       test('Course, Module and Chapter accept separately owned Episodes as direct children', () => {
@@ -206,7 +206,7 @@ describe('Configurators', () => {
           locale: { title: 'Story', description: 'A journey' },
           content: { items: { module, arrival: episode }, order: ['module', 'arrival'] },
         });
-        const resource = course.build.props({ languages: ['en', 'uk'] });
+        const resource = course.build.data({ languages: ['en', 'uk'] });
         assert.equal(course.content.items.arrival, episode);
         assert.equal(chapter.content.items.chapterScene, chapterEpisode);
         assert.equal(module.content.items.moduleScene, moduleEpisode);

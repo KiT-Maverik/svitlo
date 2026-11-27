@@ -33,11 +33,11 @@ import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   matchBlocks_Config_Schema,
+  matchBlocks_Data_Schema,
   matchBlocks_Override_Config_Schema,
-  matchBlocks_Props_Schema,
   type Question_MatchBlocks_Config,
+  type Question_MatchBlocks_Data,
   type Question_MatchBlocks_MetadataOverrides,
-  type Question_MatchBlocks_Props,
 } from './defineMatchBlocks.schemas';
 
 const metadataSchema = matchBlocks_Config_Schema.omit({ content: true });
@@ -141,9 +141,9 @@ export const defineMatchBlocks = <
     return { base: { pairs: result.base }, locale };
   };
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionResourcePublication<Question_MatchBlocks_Props> => {
+  ): QuestionResourcePublication<Question_MatchBlocks_Data> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyMetadata(), content: initialContent });
     const metadata = copyMetadata();
@@ -162,8 +162,8 @@ export const defineMatchBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as unknown as QuestionResourcePublication<Question_MatchBlocks_Props>;
-    validateQuestionPublication(matchBlocks_Props_Schema, languages, resource);
+    } as unknown as QuestionResourcePublication<Question_MatchBlocks_Data>;
+    validateQuestionPublication(matchBlocks_Data_Schema, languages, resource);
     return resource;
   };
 
@@ -173,7 +173,7 @@ export const defineMatchBlocks = <
   >(
     patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
     options: PublicationLanguageOptions<Languages>,
-  ): QuestionOverridePublication<Question_MatchBlocks_Props> => {
+  ): QuestionOverridePublication<Question_MatchBlocks_Data> => {
     try {
       const languages = resolvePublicationLanguages(options);
       validate({ ...copyMetadata(), content: initialContent });
@@ -208,8 +208,8 @@ export const defineMatchBlocks = <
       const publication = {
         base,
         locale: finishFiles(files),
-      } as QuestionOverridePublication<Question_MatchBlocks_Props>;
-      validateQuestionPublication(matchBlocks_Props_Schema, languages, props(options), publication);
+      } as QuestionOverridePublication<Question_MatchBlocks_Data>;
+      validateQuestionPublication(matchBlocks_Data_Schema, languages, data(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
@@ -229,7 +229,7 @@ export const defineMatchBlocks = <
     type,
     content,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),

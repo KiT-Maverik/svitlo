@@ -8,7 +8,7 @@ import * as runtime from '../../../runtime';
 import { defineEducationStandard } from './defineEducationStandard';
 import {
   educationStandard_Config_Schema,
-  educationStandard_Props_Schema,
+  educationStandard_Data_Schema,
   type EducationStandard_Config,
 } from './defineEducationStandard.schemas';
 
@@ -68,7 +68,7 @@ const validConfig = {
 const invalidPublication = (edit: (value: EducationStandard_Config) => void) => {
   const config = structuredClone(validConfig) as EducationStandard_Config;
   edit(config);
-  return () => defineEducationStandard(config).build.props({ languages: ['uk'] });
+  return () => defineEducationStandard(config).build.data({ languages: ['uk'] });
 };
 
 describe('Configurators', () => {
@@ -88,7 +88,7 @@ describe('Configurators', () => {
         assert.equal(standard.slug, 'sampleStandard');
         assert.equal(standard.type, 'educationStandard');
         assert.deepEqual(Object.keys(standard).sort(), ['build', 'id', 'slug', 'type']);
-        assert.deepEqual(Object.keys(standard.build), ['props']);
+        assert.deepEqual(Object.keys(standard.build), ['data']);
         assert.equal('overrides' in standard.build, false);
         assert.equal('config' in standard, false);
         assert.equal('validate' in standard, false);
@@ -96,11 +96,11 @@ describe('Configurators', () => {
         assert.equal(publicBuildExport, defineEducationStandard);
         assert.equal('defineEducationStandard' in runtime, false);
         assert.equal(runtime.educationStandard_Config_Schema, educationStandard_Config_Schema);
-        assert.equal(runtime.educationStandard_Props_Schema, educationStandard_Props_Schema);
+        assert.equal(runtime.educationStandard_Data_Schema, educationStandard_Data_Schema);
       });
 
       test('one-language publication retains invariant name, methodology and optional metadata', () => {
-        const resource = defineEducationStandard(validConfig).build.props({ languages: ['uk'] });
+        const resource = defineEducationStandard(validConfig).build.data({ languages: ['uk'] });
         assert.deepEqual(resource.base, {
           id: validConfig.id,
           slug: validConfig.slug,
@@ -117,11 +117,11 @@ describe('Configurators', () => {
           ...resource.base,
           description: { ...resource.base.description, ...resource.locale.uk!.description },
         };
-        assert.deepEqual(educationStandard_Props_Schema.parse(merged), merged);
+        assert.deepEqual(educationStandard_Data_Schema.parse(merged), merged);
       });
 
       test('an arbitrary canonical language has only its own Props-shaped fragment', () => {
-        const resource = defineEducationStandard(validConfig).build.props({ languages: ['qm'] });
+        const resource = defineEducationStandard(validConfig).build.data({ languages: ['qm'] });
         assert.deepEqual(Object.keys(resource.locale), ['qm']);
         assert.deepEqual(resource.locale.qm, { description: { frontend: frontend.qm } });
         assert.equal(resource.base.description.methodological, validConfig.description.methodological);
@@ -132,12 +132,12 @@ describe('Configurators', () => {
       test('authoring input and earlier results are independent across Build calls', () => {
         const input = structuredClone(validConfig);
         const standard = defineEducationStandard(input);
-        const first = standard.build.props({ languages: ['uk', 'en'] });
+        const first = standard.build.data({ languages: ['uk', 'en'] });
         input.description.frontend.uk = 'Mutated source';
         input.name = 'Mutated name';
         first.base.name = 'Mutated publication';
         first.locale.uk!.description.frontend = 'Mutated translation';
-        const next = standard.build.props({ languages: ['uk'] });
+        const next = standard.build.data({ languages: ['uk'] });
         assert.equal(next.base.name, validConfig.name);
         assert.equal(next.locale.uk?.description.frontend, frontend.uk);
         assert.deepEqual(Object.keys(next.locale), ['uk']);
@@ -254,16 +254,16 @@ describe('Configurators', () => {
           defineEducationStandard({
             ...validConfig,
             params: undefined,
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
       });
 
       test('publication request rejects unknown, duplicated and empty language scopes', () => {
         const standard = defineEducationStandard(validConfig);
-        assert.throws(() => standard.build.props({ languages: [] }));
-        assert.throws(() => standard.build.props({ languages: ['uk', 'uk'] }));
-        assert.throws(() => standard.build.props({ languages: ['xx'] } as never));
-        assert.throws(() => standard.build.props({} as never));
+        assert.throws(() => standard.build.data({ languages: [] }));
+        assert.throws(() => standard.build.data({ languages: ['uk', 'uk'] }));
+        assert.throws(() => standard.build.data({ languages: ['xx'] } as never));
+        assert.throws(() => standard.build.data({} as never));
       });
     });
   });

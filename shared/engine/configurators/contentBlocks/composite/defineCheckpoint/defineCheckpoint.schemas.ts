@@ -8,11 +8,11 @@ import type { Configurator_Mode } from '../../../configurator.schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../../contentBlock.schemas';
 import type {
   ContentBlock_CheckpointItem_Configurator,
-  ContentBlock_CheckpointItem_Props,
+  ContentBlock_CheckpointItem_Data,
 } from './defineCheckpointItem';
-import { checkpointItem_Props_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
+import { checkpointItem_Data_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
 
-export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Props } from './defineCheckpointAnswer';
+export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Data } from './defineCheckpointAnswer';
 
 const contentBlockBase = createContentBlockBaseSchema('checkpoint');
 
@@ -41,7 +41,7 @@ export type ContentBlock_Checkpoint_Locale<Mode extends Configurator_Mode> = z.i
 type OrderedContent<Item> = { items: Record<string, Item>; order: string[] };
 
 export type Checkpoint_Config_Item = ContentBlock_CheckpointItem_Configurator;
-export type Checkpoint_Props_Item = ContentBlock_CheckpointItem_Props;
+export type Checkpoint_Data_Item = ContentBlock_CheckpointItem_Data;
 
 export const checkpoint_Config_Schema = checkpointBase.extend({
   ...addUnifiedLocale(locale('config')),
@@ -82,16 +82,16 @@ export type Checkpoint_Overrides<
   };
 };
 
-export type ContentBlock_Checkpoint_PropsBase = z.infer<typeof checkpointBase> & {
-  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
-  content: ReturnType<ContentBlock_CheckpointItem_Configurator['build']['props']>['base'][];
+export type ContentBlock_Checkpoint_DataBase = z.infer<typeof checkpointBase> & {
+  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'data'>>;
+  content: ReturnType<ContentBlock_CheckpointItem_Configurator['build']['data']>['base'][];
 };
 
 /** Runtime Props contain the fully ordered collection, never authoring maps. */
-export const checkpoint_Props_Schema = checkpointBase.extend({
-  ...addUnifiedLocale(locale('props')),
-  content: z.array(checkpointItem_Props_Schema).min(1),
+export const checkpoint_Data_Schema = checkpointBase.extend({
+  ...addUnifiedLocale(locale('data')),
+  content: z.array(checkpointItem_Data_Schema).min(1),
 });
-export type ContentBlock_Checkpoint_Props = Omit<z.infer<typeof checkpoint_Props_Schema>, 'content'> & {
-  content: ContentBlock_CheckpointItem_Props[];
+export type ContentBlock_Checkpoint_Data = Omit<z.infer<typeof checkpoint_Data_Schema>, 'content'> & {
+  content: ContentBlock_CheckpointItem_Data[];
 };

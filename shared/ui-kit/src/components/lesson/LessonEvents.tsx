@@ -5,11 +5,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { createContext, Suspense, useContext, useEffect, useState } from 'react';
 
-import { scene_Props_Schema, type ContentBlock_Scene_Props, type Lesson_Props } from '@svitlo/engine/runtime';
+import { scene_Data_Schema, type ContentBlock_Scene_Data, type Lesson_Data } from '@svitlo/engine/runtime';
 
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
-export type EventScene = ContentBlock_Scene_Props;
+export type EventScene = ContentBlock_Scene_Data;
 type LessonEventName = 'lessonStarted' | 'lessonCompleted' | 'quizCompleted' | 'quizFailed';
 export type LessonEventSceneMap = Readonly<Record<string, EventScene | false>>;
 
@@ -62,13 +62,13 @@ export function useLessonEventScene() {
 
 /** Program override keys are checked; an app cannot introduce unregistered custom event IDs. */
 export function resolveLessonEventScenes(
-  authored: Lesson_Props['events'],
+  authored: Lesson_Data['events'],
   overrides: LessonEventSceneMap | undefined,
 ): LessonEventSceneMap {
   const builtIn = new Set<string>(['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed']);
   const result: Record<string, EventScene | false> = {};
   for (const [eventId, reaction] of Object.entries(authored ?? {})) {
-    result[eventId] = reaction === false ? false : scene_Props_Schema.parse(reaction);
+    result[eventId] = reaction === false ? false : scene_Data_Schema.parse(reaction);
   }
   for (const [eventId, reaction] of Object.entries(overrides ?? {})) {
     if (!builtIn.has(eventId) && !Object.hasOwn(result, eventId)) {

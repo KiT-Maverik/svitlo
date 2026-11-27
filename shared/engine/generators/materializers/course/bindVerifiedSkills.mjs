@@ -40,7 +40,7 @@ export function bindVerifiedSkills(
       item.slug !== binding.slug ||
       item.config?.base?.id !== id ||
       item.config?.base?.slug !== binding.slug ||
-      typeof item.build?.props !== 'function'
+      typeof item.build?.data !== 'function'
     )
       throw Error(directory + ': unapproved, stale or mismatched Skill binding ' + id);
     const entry = { exportName: binding.exportName, importPath: binding.importPath, sourceSha: binding.sourceSha };

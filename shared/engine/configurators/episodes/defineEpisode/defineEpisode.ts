@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -25,11 +25,11 @@ import {
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
   episode_Config_Schema,
+  episode_Data_Schema,
   episode_Override_Metadata_Schema,
-  episode_Props_Schema,
   type Episode_Config,
+  type Episode_DataBase,
   type Episode_Overrides,
-  type Episode_PropsBase,
 } from './defineEpisode.schemas';
 
 type SectionResource = {
@@ -38,17 +38,17 @@ type SectionResource = {
 };
 type SectionBuild = {
   build: {
-    props(options: PublicationLanguageOptions): SectionResource;
+    data(options: PublicationLanguageOptions): SectionResource;
     overrides(patch: never, options: PublicationLanguageOptions): SectionResource;
   };
 };
-type LocaleBody = { locale?: { title?: string }; section?: Episode_PropsBase['section'] };
+type LocaleBody = { locale?: { title?: string }; section?: Episode_DataBase['section'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Episode_Config['params'], 'languages'>>;
   locale?: { title?: string };
-  section?: Episode_PropsBase['section'];
+  section?: Episode_DataBase['section'];
   events?: Record<string, unknown>;
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -69,7 +69,7 @@ const validate = (config: Episode_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -145,14 +145,14 @@ export const defineEpisode = <
       const child = items[key];
       if (!child) throw new Error('Unknown Episode Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
-      const resource = buildChildProps({ build });
+      const resource = buildChildData({ build });
       const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as Episode_PropsBase['section'];
-    const locale: Partial<Record<LanguageCode, Episode_PropsBase['section']>> = {};
+    ) as Episode_DataBase['section'];
+    const locale: Partial<Record<LanguageCode, Episode_DataBase['section']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -167,7 +167,7 @@ export const defineEpisode = <
         );
         const withBasePatch = patch ? mergeForValidation(translated, patch.base) : translated;
         return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
-      }) as Episode_PropsBase['section'];
+      }) as Episode_DataBase['section'];
     }
     return { base, locale };
   };
@@ -181,7 +181,7 @@ export const defineEpisode = <
     return languages;
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<Episode_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<Episode_DataBase> => {
     const languages = publicationLanguages(options);
     validate({ ...copyAuthored(), section: { items: initialSections, order: initialOrder } });
     const own = copyAuthored();
@@ -191,7 +191,7 @@ export const defineEpisode = <
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).section = values;
     }
-    const result: Publication<Episode_PropsBase> = structuredClone({
+    const result: Publication<Episode_DataBase> = structuredClone({
       base: {
         id,
         slug,
@@ -203,7 +203,7 @@ export const defineEpisode = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateRequestedPublication(episode_Props_Schema, result, languages);
+    validateRequestedPublication(episode_Data_Schema, result, languages);
     return result;
   };
 
@@ -291,7 +291,7 @@ export const defineEpisode = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateRequestedPublication(episode_Props_Schema, props(options), languages, result);
+      validateRequestedPublication(episode_Data_Schema, data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -308,7 +308,7 @@ export const defineEpisode = <
     draft: false as const,
     section,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: configBase,
       locales: (): { locale: DeepPartial<Episode_Config['locale']> } => ({

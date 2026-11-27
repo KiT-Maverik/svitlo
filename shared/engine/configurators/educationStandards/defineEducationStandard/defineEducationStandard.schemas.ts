@@ -62,11 +62,11 @@ export const educationStandard_Config_Schema = z.strictObject({
 export type EducationStandard_Config = z.infer<typeof educationStandard_Config_Schema>;
 
 /** One resolved publication language, never an all-language dictionary. */
-export const educationStandard_Props_Schema = z.strictObject({
+export const educationStandard_Data_Schema = z.strictObject({
   ...common,
   description: z.strictObject({
     methodological: requiredText_Schema,
     frontend: localeText_Schema.refine(value => value.trim().length > 0, 'Text must not be blank'),
   }),
 });
-export type EducationStandard_Props = z.infer<typeof educationStandard_Props_Schema>;
+export type EducationStandard_Data = z.infer<typeof educationStandard_Data_Schema>;

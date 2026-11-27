@@ -4,7 +4,7 @@ import test, { describe } from 'node:test';
 import { configuratorArrayToSlugMap } from '../../../../_shared__configurators';
 import { defineText } from '../../../primitive/defineText';
 import { defineCheckpointAnswer } from '../defineCheckpointAnswer';
-import { checkpointItem_Config_Schema, checkpointItem_Props_Schema, defineCheckpointItem } from './index';
+import { checkpointItem_Config_Schema, checkpointItem_Data_Schema, defineCheckpointItem } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -65,7 +65,7 @@ describe('Configurators', () => {
 
       test('CheckpointItem builds sorted Props without items, order, or configurators', () => {
         const { item } = example();
-        const built = item.build.props({ languages: ['en', 'uk'] });
+        const built = item.build.data({ languages: ['en', 'uk'] });
         assert.equal('assemble' in item, false);
         assert.deepEqual(
           built.base.answer.map(child => child.slug),
@@ -82,9 +82,9 @@ describe('Configurators', () => {
           built.locale?.en?.answer?.map(child => child.locale),
           [{ value: 'Second' }, { value: 'Always visible' }],
         );
-        assert.deepEqual(item.build.props({ languages: ['en', 'uk'] }), built);
+        assert.deepEqual(item.build.data({ languages: ['en', 'uk'] }), built);
         assert.equal(
-          checkpointItem_Props_Schema.safeParse({
+          checkpointItem_Data_Schema.safeParse({
             ...built.base,
             question: { ...built.base.question, ...built.locale?.uk?.question },
             answer: built.locale?.uk?.answer,
@@ -154,7 +154,7 @@ describe('Configurators', () => {
             },
           },
         };
-        const original = item.build.props({ languages: ['en', 'uk'] });
+        const original = item.build.data({ languages: ['en', 'uk'] });
         const built = item.build.overrides(change, { languages: ['en', 'uk'] });
         assert.deepEqual(
           built.base.answer?.map(child => child.slug),
@@ -166,7 +166,7 @@ describe('Configurators', () => {
         );
         assert.equal(JSON.stringify(built).includes('additionalItems'), false);
         assert.equal(JSON.stringify(built).includes('"items"'), false);
-        assert.deepEqual(item.build.props({ languages: ['en', 'uk'] }), original);
+        assert.deepEqual(item.build.data({ languages: ['en', 'uk'] }), original);
         assert.deepEqual(item.build.overrides(change, { languages: ['en', 'uk'] }), built);
       });
 
@@ -267,22 +267,22 @@ describe('Configurators', () => {
 
       test('CheckpointItem Props schema checks concrete answer types', () => {
         const { item } = example();
-        const built = item.build.props({ languages: ['en', 'uk'] });
+        const built = item.build.data({ languages: ['en', 'uk'] });
         const resolved = {
           ...built.base,
           question: { ...built.base.question, ...built.locale?.en?.question },
           answer: built.locale?.en?.answer,
         };
-        assert.equal(checkpointItem_Props_Schema.safeParse(resolved).success, true);
+        assert.equal(checkpointItem_Data_Schema.safeParse(resolved).success, true);
         assert.equal(
-          checkpointItem_Props_Schema.safeParse({
+          checkpointItem_Data_Schema.safeParse({
             ...resolved,
             answer: [{ id: firstId, slug: 'first', type: 'checkpoint' }],
           }).success,
           false,
         );
         assert.equal(
-          checkpointItem_Props_Schema.safeParse({
+          checkpointItem_Data_Schema.safeParse({
             ...resolved,
             answer: [{ id: firstId, slug: 'first', type: 'text', locale: { value: 'Missing params' } }],
           }).success,

@@ -8,8 +8,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -24,12 +24,12 @@ import {
 } from '../../_shared__configurators';
 import {
   assessment_Config_Schema,
+  assessment_Data_Schema,
   assessment_Override_Metadata_Schema,
-  assessment_Props_Schema,
   type Assessment_Config,
   type Assessment_Content_Section_Configurator,
+  type Assessment_DataBase,
   type Assessment_Overrides,
-  type Assessment_PropsBase,
   type Assessment_Quiz_Configurator,
   type Assessment_Section_Configurator,
 } from './defineAssessment.schemas';
@@ -42,17 +42,17 @@ type SectionResource = {
 };
 type SectionBuild = {
   build: {
-    props(options: PublicationLanguageOptions): SectionResource;
+    data(options: PublicationLanguageOptions): SectionResource;
     overrides(patch: never, options: PublicationLanguageOptions): SectionResource;
   };
 };
-type LocaleBody = { locale?: { title?: string }; section?: Assessment_PropsBase['section'] };
+type LocaleBody = { locale?: { title?: string }; section?: Assessment_DataBase['section'] };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Assessment_Config['params'], 'languages'>>;
   locale?: { title?: string };
-  section?: Assessment_PropsBase['section'];
+  section?: Assessment_DataBase['section'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -98,7 +98,7 @@ const validate = (config: Assessment_Config): void => {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
-      typeof child.build.props !== 'function' ||
+      typeof child.build.data !== 'function' ||
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
@@ -179,14 +179,14 @@ export const defineAssessment = <
       const child = items[key];
       if (!child) throw new Error('Unknown Assessment Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
-      const resource = buildChildProps({ build });
+      const resource = buildChildData({ build });
       const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as Assessment_PropsBase['section'];
-    const locale: Partial<Record<LanguageCode, Assessment_PropsBase['section']>> = {};
+    ) as Assessment_DataBase['section'];
+    const locale: Partial<Record<LanguageCode, Assessment_DataBase['section']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -201,7 +201,7 @@ export const defineAssessment = <
         );
         const withBasePatch = patch ? mergeForValidation(translated, patch.base) : translated;
         return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
-      }) as Assessment_PropsBase['section'];
+      }) as Assessment_DataBase['section'];
     }
     return { base, locale };
   };
@@ -215,7 +215,7 @@ export const defineAssessment = <
     return languages;
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): Publication<Assessment_PropsBase> => {
+  const data = (options: PublicationLanguageOptions<Languages>): Publication<Assessment_DataBase> => {
     const languages = publicationLanguages(options);
     validate({ ...copyAuthored(), before, quiz, after });
     const own = copyAuthored();
@@ -225,7 +225,7 @@ export const defineAssessment = <
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCode] ??= {}).section = values;
     }
-    const result: Publication<Assessment_PropsBase> = structuredClone({
+    const result: Publication<Assessment_DataBase> = structuredClone({
       base: {
         id,
         slug,
@@ -236,7 +236,7 @@ export const defineAssessment = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateRequestedPublication(assessment_Props_Schema, result, languages);
+    validateRequestedPublication(assessment_Data_Schema, result, languages);
     return result;
   };
 
@@ -347,7 +347,7 @@ export const defineAssessment = <
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateRequestedPublication(assessment_Props_Schema, props(options), languages, result);
+      validateRequestedPublication(assessment_Data_Schema, data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -366,7 +366,7 @@ export const defineAssessment = <
     quiz,
     after,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base: configBase,
       locales: (): { locale: DeepPartial<Assessment_Config['locale']> } => ({

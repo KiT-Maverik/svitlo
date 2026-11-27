@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 
-import { assessment_Completed_Props_Schema, assessmentConfigurator_Schema } from '../../assessments/defineAssessment';
-import { episode_Completed_Props_Schema, episodeConfigurator_Schema } from '../../episodes/defineEpisode';
-import { lesson_Completed_Props_Schema, lessonConfigurator_Schema } from '../../lessons/defineLesson';
+import { assessment_Completed_Data_Schema, assessmentConfigurator_Schema } from '../../assessments/defineAssessment';
+import { episode_Completed_Data_Schema, episodeConfigurator_Schema } from '../../episodes/defineEpisode';
+import { lesson_Completed_Data_Schema, lessonConfigurator_Schema } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineCourse } from '../defineCourse';
 import { defineModule } from '../defineModule';
@@ -33,8 +33,8 @@ describe('Configurators', () => {
           assert.equal(draft.config.base.id, draft.id);
           assert.equal(draft.config.base.slug, draft.slug);
           assert.equal(draft.config.base.type, draft.type);
-          const first = draft.build.props({ languages: ['en'] });
-          const another = draft.build.props({ languages: ['en'] });
+          const first = draft.build.data({ languages: ['en'] });
+          const another = draft.build.data({ languages: ['en'] });
           assert.deepEqual(first, another);
           assert.equal(first.base.draft, true);
           assert.equal(first.base.id, draft.id);
@@ -62,15 +62,15 @@ describe('Configurators', () => {
           assert.doesNotThrow(() => draft.validate());
           assert.doesNotThrow(() => JSON.stringify(first));
           if (kind === 'lesson') {
-            assert.equal(lesson_Completed_Props_Schema.safeParse(first.base).success, false);
+            assert.equal(lesson_Completed_Data_Schema.safeParse(first.base).success, false);
             assert.equal(lessonConfigurator_Schema.safeParse(draft).success, false);
           }
           if (kind === 'episode') {
-            assert.equal(episode_Completed_Props_Schema.safeParse(first.base).success, false);
+            assert.equal(episode_Completed_Data_Schema.safeParse(first.base).success, false);
             assert.equal(episodeConfigurator_Schema.safeParse(draft).success, false);
           }
           if (kind === 'assessment') {
-            assert.equal(assessment_Completed_Props_Schema.safeParse(first.base).success, false);
+            assert.equal(assessment_Completed_Data_Schema.safeParse(first.base).success, false);
             assert.equal(assessmentConfigurator_Schema.safeParse(draft).success, false);
           }
         }
@@ -88,7 +88,7 @@ describe('Configurators', () => {
           locale: { title: 'Draft', description: 'Only a preview' },
           content: { items: { renamedSlot: stub }, order: ['renamedSlot'] },
         });
-        assert.throws(() => course.build.props({ languages: ['en'] }), /immutable child identity/i);
+        assert.throws(() => course.build.data({ languages: ['en'] }), /immutable child identity/i);
       });
 
       test('Course, Module and Chapter each retain the original ordered draft placement', () => {
@@ -119,7 +119,7 @@ describe('Configurators', () => {
           locale: { title: 'Course', description: 'Draft preview' },
           content: { items: { module, lessonSlot: lesson }, order: ['lessonSlot', 'module'] },
         });
-        const result = course.build.props({ languages: ['en'] });
+        const result = course.build.data({ languages: ['en'] });
         const root = result.base as unknown as {
           content: Array<{
             type: string;

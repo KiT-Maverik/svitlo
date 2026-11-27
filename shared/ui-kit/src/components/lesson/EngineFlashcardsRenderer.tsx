@@ -6,8 +6,8 @@ import { useEffect, useMemo, useState } from 'react';
 import type {
   AssessmentResourceLoader,
   Disability,
-  Flashcard_Props,
-  FlashcardsSection_Props,
+  Flashcard_Data,
+  FlashcardsSection_Data,
   LanguageCode,
 } from '@svitlo/engine/runtime';
 
@@ -31,7 +31,7 @@ export function EngineFlashcardsRenderer({
   language: LanguageCode;
   assessmentLoader?: AssessmentResourceLoader;
   accessNeeds?: readonly Disability[];
-  section: FlashcardsSection_Props;
+  section: FlashcardsSection_Data;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
 }) {
@@ -42,7 +42,7 @@ export function EngineFlashcardsRenderer({
   const [load, setLoad] = useState<{
     identity: string;
     status: 'loading' | 'ready' | 'error';
-    cards: readonly Flashcard_Props[];
+    cards: readonly Flashcard_Data[];
     fallbackIds: readonly string[];
   }>({ identity, status: 'loading', cards: [], fallbackIds: [] });
 
@@ -118,9 +118,9 @@ function ResolvedFlashcards({
   messages,
   sceneRegistry,
 }: {
-  cards: readonly Flashcard_Props[];
+  cards: readonly Flashcard_Data[];
   fallbackIds: readonly string[];
-  section: FlashcardsSection_Props;
+  section: FlashcardsSection_Data;
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
 }) {
@@ -133,7 +133,7 @@ function ResolvedFlashcards({
   };
   const content = useMemo(() => section.content, [section.content]);
   if (!card) return <Typography role="alert">{messages.learningLayout.preparingLessonError}</Typography>;
-  const render = (blocks: Flashcard_Props['content']['front']) => (
+  const render = (blocks: Flashcard_Data['content']['front']) => (
     <EngineContentBlockRenderer blocks={blocks} messages={messages} sceneRegistry={sceneRegistry} />
   );
   return (

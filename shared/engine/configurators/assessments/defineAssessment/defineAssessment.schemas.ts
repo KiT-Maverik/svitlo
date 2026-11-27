@@ -8,9 +8,9 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentSection_Configurator } from '../../sections/defineContentSection/defineContentSection';
-import { contentSection_Props_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
+import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
 import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
-import { quizSection_Props_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
+import { quizSection_Data_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 
 /** The one Quiz is structurally separate from optional supporting Content Sections. */
 export type Assessment_Content_Section_Configurator = ConfiguratorChild<ContentSection_Configurator>;
@@ -41,10 +41,10 @@ export const assessment_Config_Schema = identity
   .strict();
 export type Assessment_Config = z.infer<typeof assessment_Config_Schema>;
 
-const completedAssessment_Props_Schema = identity
+const completedAssessment_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
-    section: z.array(z.union([contentSection_Props_Schema, quizSection_Props_Schema])),
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
+    section: z.array(z.union([contentSection_Data_Schema, quizSection_Data_Schema])),
   })
   .strict()
   .refine(
@@ -55,11 +55,11 @@ const completedAssessment_Props_Schema = identity
   );
 
 /** Course Stage 5 drafts can be rendered, but never count as a completed Quiz. */
-export const assessment_Draft_Props_Schema = identity
+export const assessment_Draft_Data_Schema = identity
   .extend({
-    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.data }),
     draft: z.literal(true),
-    section: z.array(contentSection_Props_Schema).nonempty(),
+    section: z.array(contentSection_Data_Schema).nonempty(),
   })
   .strict()
   .refine(
@@ -78,14 +78,14 @@ export const assessment_Draft_Props_Schema = identity
       ),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',
   );
-export const assessment_Completed_Props_Schema = completedAssessment_Props_Schema;
-export const assessment_Props_Schema = z.union([completedAssessment_Props_Schema, assessment_Draft_Props_Schema]);
-export type Assessment_Draft_Props = z.infer<typeof assessment_Draft_Props_Schema>;
-export type Assessment_Props = z.infer<typeof assessment_Props_Schema>;
-export type Assessment_PropsBase = Pick<Assessment_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export const assessment_Completed_Data_Schema = completedAssessment_Data_Schema;
+export const assessment_Data_Schema = z.union([completedAssessment_Data_Schema, assessment_Draft_Data_Schema]);
+export type Assessment_Draft_Data = z.infer<typeof assessment_Draft_Data_Schema>;
+export type Assessment_Data = z.infer<typeof assessment_Data_Schema>;
+export type Assessment_DataBase = Pick<Assessment_Data, 'id' | 'slug' | 'type' | 'params'> & {
   draft?: true;
   locale?: { title?: string };
-  section: ReturnType<Assessment_Section_Configurator['build']['props']>['base'][];
+  section: ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
 };
 
 export type Assessment_Metadata_Overrides = {
@@ -122,7 +122,7 @@ export const assessmentConfigurator_Schema = z.custom<{
   readonly id: string;
   readonly slug: string;
   readonly type: 'assessment';
-  readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
+  readonly build: { readonly data: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
   value =>
     value !== null &&
@@ -137,8 +137,8 @@ export const assessmentConfigurator_Schema = z.custom<{
     'build' in value &&
     value.build !== null &&
     typeof value.build === 'object' &&
-    'props' in value.build &&
-    typeof value.build.props === 'function' &&
+    'data' in value.build &&
+    typeof value.build.data === 'function' &&
     'overrides' in value.build &&
     typeof value.build.overrides === 'function',
   { message: 'Expected defineAssessment Build configurator, not an editorial draft' },

@@ -7,9 +7,9 @@ import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Stage_Configurator } from './defineStage';
-import { stage_Props_Schema } from './defineStage/defineStage.schemas';
+import { stage_Data_Schema } from './defineStage/defineStage.schemas';
 import type { Task_Configurator } from './defineTask';
-import { task_Props_Schema } from './defineTask/defineTask.schemas';
+import { task_Data_Schema } from './defineTask/defineTask.schemas';
 
 const kind = <const Type extends string>(type: Type) => identityBase_Schema.extend({ type: z.literal(type) });
 const section = kind('quest').extend({
@@ -22,15 +22,15 @@ export const questSection_Config_Schema = section
     tasks: z.record(camelCase_Schema, z.custom<Task_Configurator>()),
   })
   .strict();
-export const questSection_Props_Schema = section
+export const questSection_Data_Schema = section
   .extend({
-    ...addUnifiedLocale({ title: localizationSwitch.props, navigationLabel: localizationSwitch.props }),
-    stages: z.record(camelCase_Schema, stage_Props_Schema),
-    tasks: z.record(camelCase_Schema, task_Props_Schema),
+    ...addUnifiedLocale({ title: localizationSwitch.data, navigationLabel: localizationSwitch.data }),
+    stages: z.record(camelCase_Schema, stage_Data_Schema),
+    tasks: z.record(camelCase_Schema, task_Data_Schema),
   })
   .strict();
 export type QuestSection_Config = z.infer<typeof questSection_Config_Schema>;
-export type QuestSection_Props = z.infer<typeof questSection_Props_Schema>;
+export type QuestSection_Data = z.infer<typeof questSection_Data_Schema>;
 export const questSection_Override_Metadata_Schema = z.deepPartial(
   deepStrict_Schema(
     z.object({

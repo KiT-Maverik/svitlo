@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Checkpoint_Data, ContentBlock_Text_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
-const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+const textBlock = (id: string, value: string): ContentBlock_Text_Data => ({
   id,
   slug: 'textBlock',
   type: 'text',
@@ -24,7 +24,7 @@ function checkpointItem(id: string, question: string, answer: string) {
   };
 }
 
-function CheckpointStory(props: ContentBlock_Checkpoint_Props) {
+function CheckpointStory(props: ContentBlock_Checkpoint_Data) {
   // Use the real dispatcher so the answers render as regular content blocks.
   return <ContentBlockRenderer messages={enUiKitMessages} blocks={[props]} />;
 }

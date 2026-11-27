@@ -8,26 +8,26 @@ import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configura
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import {
-  assessment_Props_Schema,
-  type Assessment_Props,
+  assessment_Data_Schema,
+  type Assessment_Data,
 } from '../../assessments/defineAssessment/defineAssessment.schemas';
 import type { Assessment_Draft_Configurator } from '../../assessments/defineAssessment/defineAssessmentDraft';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
 import {
-  episode_Props_Schema,
-  type Episode_Draft_Props,
-  type Episode_Props,
+  episode_Data_Schema,
+  type Episode_Data,
+  type Episode_Draft_Data,
 } from '../../episodes/defineEpisode/defineEpisode.schemas';
 import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
 import {
-  lesson_Props_Schema,
-  type Lesson_Draft_Props,
-  type Lesson_Props,
+  lesson_Data_Schema,
+  type Lesson_Data,
+  type Lesson_Draft_Data,
 } from '../../lessons/defineLesson/defineLesson.schemas';
 import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import { chapter_Props_Schema, type Chapter_Props } from '../defineChapter/defineChapter.schemas';
+import { chapter_Data_Schema, type Chapter_Data } from '../defineChapter/defineChapter.schemas';
 import type {
   Assessment_Stub_Configurator,
   Episode_Stub_Configurator,
@@ -56,8 +56,8 @@ export type Module_Child = ConfiguratorChild<
   | Episode_Stub_Configurator
   | Assessment_Stub_Configurator
 >;
-export type Module_Child_Props =
-  Chapter_Props | Lesson_Props | Episode_Props | Assessment_Props | Lesson_Draft_Props | Episode_Draft_Props;
+export type Module_Child_Data =
+  Chapter_Data | Lesson_Data | Episode_Data | Assessment_Data | Lesson_Draft_Data | Episode_Draft_Data;
 
 export const module_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
@@ -91,8 +91,8 @@ export type Module_Overrides<
   };
 };
 
-export const module_Props_Schema = identity.extend({
-  ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema, assessment_Props_Schema])),
+export const module_Data_Schema = identity.extend({
+  ...addUnifiedLocale(locale('data')),
+  content: z.array(z.union([chapter_Data_Schema, lesson_Data_Schema, episode_Data_Schema, assessment_Data_Schema])),
 });
-export type Module_Props = z.infer<typeof module_Props_Schema>;
+export type Module_Data = z.infer<typeof module_Data_Schema>;

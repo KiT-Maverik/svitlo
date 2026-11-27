@@ -42,11 +42,11 @@ export const code_Override_Config_Schema: z.ZodType<ContentBlock_Code_Overrides>
   ),
 );
 
-export type ContentBlock_Code_PropsBase = z.infer<typeof codeBase> & {
-  locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
+export type ContentBlock_Code_DataBase = z.infer<typeof codeBase> & {
+  locale?: DeepPartial<ContentBlock_Code_Locale<'data'>>;
 };
 
 // Code can contain only params.codeAsText, with neither title nor replacements.
 // An invariant-only resource therefore legitimately omits its optional locale.
-export const code_Props_Schema = codeBase.extend({ locale: z.object(locale('props')).optional() });
-export type ContentBlock_Code_Props = z.infer<typeof code_Props_Schema>;
+export const code_Data_Schema = codeBase.extend({ locale: z.object(locale('data')).optional() });
+export type ContentBlock_Code_Data = z.infer<typeof code_Data_Schema>;

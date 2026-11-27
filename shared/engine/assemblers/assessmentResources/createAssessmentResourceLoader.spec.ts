@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import type { ContentBlock_Props } from '../../configurators/contentBlocks/contentBlock.types';
+import type { ContentBlock_Data } from '../../configurators/contentBlocks/contentBlock.types';
 import { defineText } from '../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineSelectOneAnswer } from '../../configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer';
 import { createAssessmentResourceLoader, type ReadAssessmentFiles } from './createAssessmentResourceLoader';
 
-function textValue(block: ContentBlock_Props | undefined): string {
+function textValue(block: ContentBlock_Data | undefined): string {
   assert.equal(block?.type, 'text');
   if (block?.type !== 'text') throw new Error('Expected a resolved Text block');
   return block.locale.value;
@@ -202,7 +202,7 @@ test('a completed Question is published and resolved separately with the request
     locale: {},
     content,
   });
-  const publication = question.build.props({ languages: ['en', 'uk'] });
+  const publication = question.build.data({ languages: ['en', 'uk'] });
   const { renderAssessmentResourceFiles } =
     await import('../../generators/assessments/renderAssessmentResourceFiles.utils');
   const generated = renderAssessmentResourceFiles([

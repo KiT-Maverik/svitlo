@@ -1,4 +1,4 @@
-import type { AssessmentMethodSlug, Question_AnswerWithNumber_Props } from '@svitlo/engine/runtime';
+import type { AssessmentMethodSlug, Question_AnswerWithNumber_Data } from '@svitlo/engine/runtime';
 
 const valid: AssessmentMethodSlug = 'retrieval';
 void valid;
@@ -11,7 +11,7 @@ void badKey;
 const badUuid: AssessmentMethodSlug = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 void badUuid;
 
-type NumericQuestionParams = Question_AnswerWithNumber_Props['params'];
+type NumericQuestionParams = Question_AnswerWithNumber_Data['params'];
 type Assert<T extends true> = T;
 type HasAssessmentMethod = Assert<'assessmentMethod' extends keyof NumericQuestionParams ? true : false>;
 type HasRestrictions = Assert<'restrictions' extends keyof NumericQuestionParams ? true : false>;

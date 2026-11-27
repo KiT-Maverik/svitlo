@@ -1,23 +1,23 @@
-import type { Skill_Props } from '../../configurators/skills/defineSkill/defineSkill.schemas';
+import type { Skill_Data } from '../../configurators/skills/defineSkill/defineSkill.schemas';
 import {
-  skillDomain_Props_Schema,
-  type SkillDomain_Props,
+  skillDomain_Data_Schema,
+  type SkillDomain_Data,
 } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
-import type { SkillGroup_Props } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
+import type { SkillGroup_Data } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import type { DeepPartial } from '../../types/transformer.types';
 
 /** One published file contains the whole slug-keyed Domain tree. */
-export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;
+export type Skills_Base = Record<string, DeepPartial<SkillDomain_Data> & Pick<SkillDomain_Data, 'id' | 'slug'>>;
 /** Scalar metadata may be sparse; published child collection arrays are complete Props replacements. */
-export type SkillDomain_PublishedPatch = Omit<DeepPartial<SkillDomain_Props>, 'id' | 'slug' | 'skills' | 'groups'> & {
+export type SkillDomain_PublishedPatch = Omit<DeepPartial<SkillDomain_Data>, 'id' | 'slug' | 'skills' | 'groups'> & {
   id?: never;
   slug?: never;
-  skills?: Skill_Props[];
-  groups?: SkillGroup_Props[];
+  skills?: Skill_Data[];
+  groups?: SkillGroup_Data[];
 };
 /** Configurator Build expresses locale output as a sparse DeepPartial; validate identity at runtime. */
-export type Skills_Locale = Record<string, DeepPartial<SkillDomain_Props>>;
+export type Skills_Locale = Record<string, DeepPartial<SkillDomain_Data>>;
 
 export type Skills_Publication = {
   base: Skills_Base;
@@ -29,7 +29,7 @@ export type Skills_Overrides = {
   locale?: Partial<Record<LanguageCode, Record<string, SkillDomain_PublishedPatch>>>;
 };
 
-export type Skills_Props = Record<string, SkillDomain_Props>;
+export type Skills_Data = Record<string, SkillDomain_Data>;
 
 const forbiddenKeys = new Set(['__proto__', 'prototype', 'constructor']);
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -143,7 +143,7 @@ export function assembleSkills(
   resource: Skills_Publication,
   language: LanguageCode,
   overrides?: Skills_Overrides,
-): Skills_Props {
+): Skills_Data {
   languageCode_Schema.parse(language);
   const base = asRecord(resource.base, 'base');
   const resourceLocale = asRecord(resource.locale?.[language] ?? {}, 'locale/' + language);
@@ -163,7 +163,7 @@ export function assembleSkills(
   checkLayerKeys(base, overrideBase, 'overrides/base');
   checkLayerKeys(base, overrideLocale, 'overrides/locale/' + language);
 
-  const result: Skills_Props = {};
+  const result: Skills_Data = {};
   for (const [slug, value] of Object.entries(base)) {
     try {
       let merged: unknown = value;
@@ -178,7 +178,7 @@ export function assembleSkills(
         checkNestedIdentities(value, next, 'base/' + slug);
         merged = next;
       }
-      const props = skillDomain_Props_Schema.parse(merged);
+      const props = skillDomain_Data_Schema.parse(merged);
       if (props.slug !== slug) throw new Error('Domain slug does not match its published key');
       result[slug] = props;
     } catch (error) {

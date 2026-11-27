@@ -11,7 +11,7 @@ export type QuestionPublication<Base, Locales = QuestionFiles> = {
   locale: Locales | undefined;
 };
 
-/** The resource base can omit translations, while each published child keeps its Props structure. */
+/** The resource base can omit translations, while each published child keeps its Data structure. */
 export type QuestionPublishedValue<Value> = Value extends readonly [infer First, ...infer Rest]
   ? [QuestionPublishedValue<First>, ...Array<QuestionPublishedValue<Rest[number]>>]
   : Value extends readonly (infer Item)[]
@@ -22,7 +22,7 @@ export type QuestionPublishedValue<Value> = Value extends readonly [infer First,
         } & (Value extends { locale: infer OwnLocale extends object } ? { locale?: Partial<OwnLocale> } : {})
       : Value;
 
-type QuestionPropsShape = {
+type QuestionDataShape = {
   id: string;
   slug: string;
   type: string;
@@ -32,12 +32,12 @@ type QuestionPropsShape = {
 };
 
 /** Concrete, entity-specific publication shapes; arrays are resolved before publication. */
-export type QuestionResourcePublication<Props extends QuestionPropsShape> = QuestionPublication<
-  Pick<Props, 'id' | 'slug' | 'type' | 'params'> & {
-    locale: Partial<Props['locale']>;
-    content: QuestionPublishedValue<Props['content']>;
+export type QuestionResourcePublication<Data extends QuestionDataShape> = QuestionPublication<
+  Pick<Data, 'id' | 'slug' | 'type' | 'params'> & {
+    locale: Partial<Data['locale']>;
+    content: QuestionPublishedValue<Data['content']>;
   },
-  QuestionLocaleFiles<Props>
+  QuestionLocaleFiles<Data>
 >;
 
 /** Sparse object fields, but published arrays are always complete atomic replacements. */
@@ -47,21 +47,21 @@ export type QuestionSparseValue<Value> = Value extends readonly unknown[]
     ? { [Key in keyof Value]?: QuestionSparseValue<Value[Key]> }
     : Value;
 
-export type QuestionOverridePublication<Props extends QuestionPropsShape> = QuestionPublication<
+export type QuestionOverridePublication<Data extends QuestionDataShape> = QuestionPublication<
   {
-    params?: QuestionSparseValue<Props['params']>;
-    locale?: Partial<Props['locale']>;
-    content?: Partial<QuestionPublishedValue<Props['content']>>;
+    params?: QuestionSparseValue<Data['params']>;
+    locale?: Partial<Data['locale']>;
+    content?: Partial<QuestionPublishedValue<Data['content']>>;
   },
-  QuestionLocaleFiles<Props>
+  QuestionLocaleFiles<Data>
 >;
 
-export type QuestionLocaleFiles<Props extends QuestionPropsShape> = Partial<
+export type QuestionLocaleFiles<Data extends QuestionDataShape> = Partial<
   Record<
     LanguageCode,
     {
-      locale?: Partial<Props['locale']>;
-      content?: Partial<QuestionPublishedValue<Props['content']>>;
+      locale?: Partial<Data['locale']>;
+      content?: Partial<QuestionPublishedValue<Data['content']>>;
     }
   >
 >;

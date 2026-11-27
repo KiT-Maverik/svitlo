@@ -10,8 +10,8 @@ import type {
 } from '#types';
 
 import {
+  buildChildData,
   buildChildOverrides,
-  buildChildProps,
   mergeForValidation,
   onlyLocales,
   onlyStrings,
@@ -26,27 +26,27 @@ import {
 } from '../../../_shared__configurators';
 import {
   carousel_Config_Schema,
+  carousel_Data_Schema,
   carousel_Override_Config_Schema,
-  carousel_Props_Schema,
-  carousel_Slide_Props_Schema,
+  carousel_Slide_Data_Schema,
   carouselSlideTypes,
   type Carousel_Metadata_Overrides,
   type ContentBlock_Carousel_Config,
+  type ContentBlock_Carousel_DataBase,
   type ContentBlock_Carousel_Locale,
   type ContentBlock_Carousel_Overrides,
-  type ContentBlock_Carousel_PropsBase,
   type ContentBlock_Carousel_SlideConfigurator,
-  type ContentBlock_Carousel_SlideProps,
+  type ContentBlock_Carousel_SlideData,
 } from './defineCarousel.schemas';
 
 type Slide = ContentBlock_Carousel_SlideConfigurator;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
-type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };
+type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'data'>> };
 type CarouselLocaleFiles = Partial<Record<LanguageCode, CarouselLocaleBody>>;
 type CarouselPublication<Base> = { base: Base; locale: CarouselLocaleFiles | undefined };
 type CarouselOverrideBase = {
   params?: Carousel_Metadata_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -72,7 +72,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
       if (
         !isRecord(slide) ||
         !isRecord(slide.build) ||
-        typeof slide.build.props !== 'function' ||
+        typeof slide.build.data !== 'function' ||
         typeof slide.build.overrides !== 'function'
       ) {
         issues.push({
@@ -126,11 +126,11 @@ export const defineCarousel = <
     const files: CarouselLocaleFiles = {};
     for (const [language, fields] of Object.entries(locale ?? {})) {
       files[language as LanguageCode] = {
-        locale: fields as DeepPartial<ContentBlock_Carousel_Locale<'props'>>,
+        locale: fields as DeepPartial<ContentBlock_Carousel_Locale<'data'>>,
       };
     }
     return {
-      invariant: invariant as DeepPartial<ContentBlock_Carousel_Locale<'props'>>,
+      invariant: invariant as DeepPartial<ContentBlock_Carousel_Locale<'data'>>,
       files,
     };
   };
@@ -140,14 +140,14 @@ export const defineCarousel = <
     order: readonly string[],
     patches: Record<string, unknown> = {},
   ): {
-    base: ContentBlock_Carousel_SlideProps[] | undefined;
-    locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
+    base: ContentBlock_Carousel_SlideData[] | undefined;
+    locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideData[]>>;
   } => {
     const { languages } = requireBuildContext();
     const entries = order
       .map(key => {
         const slide = items[key];
-        const resource = buildChildProps(slide);
+        const resource = buildChildData(slide);
         const patch = Object.hasOwn(patches, key)
           ? (buildChildOverrides(slide, patches[key] as never) as unknown as SlidePatch)
           : undefined;
@@ -161,7 +161,7 @@ export const defineCarousel = <
       });
     if (!entries.length) throw new Error('At least one active Carousel slide is required');
 
-    const arraySchema = z.array(carousel_Slide_Props_Schema).min(1);
+    const arraySchema = z.array(carousel_Slide_Data_Schema).min(1);
     const invariant = entries.map(({ resource, patch }) => mergeForValidation(resource.base, patch?.base ?? {}));
     const parsedInvariant = arraySchema.safeParse(invariant);
 
@@ -170,7 +170,7 @@ export const defineCarousel = <
         ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
-    const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>> = {};
+    const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideData[]>> = {};
     for (const language of translatedLanguages) {
       const values = entries.map(({ resource, patch }) => {
         const withLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
@@ -200,9 +200,9 @@ export const defineCarousel = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): CarouselPublication<ContentBlock_Carousel_PropsBase> => {
+  ): CarouselPublication<ContentBlock_Carousel_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
     const metadata = copyAuthored();
@@ -233,7 +233,7 @@ export const defineCarousel = <
       },
       locale: Object.keys(files).length ? files : undefined,
     };
-    validateRequestedPublication(carousel_Props_Schema, result, languages);
+    validateRequestedPublication(carousel_Data_Schema, result, languages);
     return result;
   };
 
@@ -296,7 +296,7 @@ export const defineCarousel = <
         if (
           !isRecord(slide) ||
           !isRecord(slide.build) ||
-          typeof slide.build.props !== 'function' ||
+          typeof slide.build.data !== 'function' ||
           typeof slide.build.overrides !== 'function'
         ) {
           throw new Error('New Carousel slide must expose the Build API: ' + key);
@@ -325,7 +325,7 @@ export const defineCarousel = <
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active Carousel slide is required');
 
-      const sourcePublication = props(options);
+      const sourcePublication = data(options);
       const modifiesSlides =
         Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.slides?.order !== undefined;
       if (modifiesSlides) {
@@ -350,7 +350,7 @@ export const defineCarousel = <
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
-      validateRequestedPublication(carousel_Props_Schema, sourcePublication, languages, output);
+      validateRequestedPublication(carousel_Data_Schema, sourcePublication, languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -366,7 +366,7 @@ export const defineCarousel = <
     type,
     slides,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

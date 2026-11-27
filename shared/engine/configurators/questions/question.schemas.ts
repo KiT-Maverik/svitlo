@@ -4,7 +4,7 @@ import { disability_Schema, type LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
-import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Props } from '../contentBlocks';
+import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Data } from '../contentBlocks';
 import {
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
@@ -37,7 +37,7 @@ export const questionCommonContent_Config_Schema = z.object({
 });
 
 /** Published content is fully resolved and ordered, with no configurator objects. */
-export const questionCommonContent_Props_Schema = z.object({
+export const questionCommonContent_Data_Schema = z.object({
   question: z.array(primitiveContentBlockResolved_Schema).min(1),
   hint: z.array(primitiveContentBlockResolved_Schema).optional(),
   explanation: z.array(primitiveContentBlockResolved_Schema).optional(),
@@ -49,7 +49,7 @@ export type QuestionContent<Block = ContentBlock_Primitive_Configurator> = {
   explanation?: OrderedBlocks<Block>;
 };
 
-export type QuestionPublishedContent<Block = ContentBlock_Primitive_Props> = {
+export type QuestionPublishedContent<Block = ContentBlock_Primitive_Data> = {
   question: [Block, ...Block[]];
   hint?: Block[];
   explanation?: Block[];

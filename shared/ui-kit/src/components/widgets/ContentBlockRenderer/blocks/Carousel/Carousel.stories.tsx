@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
 
-import type { ContentBlock_Carousel_SlideProps, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Carousel_SlideData, ContentBlock_Scene_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { Carousel } from './Carousel';
@@ -22,7 +22,7 @@ function illustration(sky: string, center: string, accent: string) {
   return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
 
-const slides: ContentBlock_Carousel_SlideProps[] = [
+const slides: ContentBlock_Carousel_SlideData[] = [
   {
     id: 'story-morning',
     slug: 'morning',
@@ -58,7 +58,7 @@ const slides: ContentBlock_Carousel_SlideProps[] = [
   },
 ];
 
-function InteractiveDemo({ locales }: { locales: ContentBlock_Scene_Props['locale']['value'] }) {
+function InteractiveDemo({ locales }: { locales: ContentBlock_Scene_Data['locale']['value'] }) {
   const [attempts, setAttempts] = useState(0);
   return (
     <div style={{ padding: '2rem', minHeight: '100%' }}>

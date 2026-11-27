@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Image_Data } from '@svitlo/engine/runtime';
 
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Image } from './Image';
 import { ImageRendererProvider, type ImageRendererProps } from './ImageRenderer';
 
-const response: ContentBlock_Image_Props = {
+const response: ContentBlock_Image_Data = {
   id: 'image-1',
   slug: 'image-1',
   type: 'image',
@@ -93,7 +93,7 @@ describe('Image content block', () => {
 
   it('renders fill mode within an aspect-ratio container', () => {
     setOnline(true);
-    const fillResponse: ContentBlock_Image_Props = {
+    const fillResponse: ContentBlock_Image_Data = {
       id: response.id,
       slug: response.slug,
       type: 'image',

@@ -14,24 +14,22 @@ import {
 } from '../../../_shared__configurators';
 import {
   markdown_Config_Schema,
+  markdown_Data_Schema,
   markdown_Override_Config_Schema,
-  markdown_Props_Schema,
   type ContentBlock_Markdown_Config,
+  type ContentBlock_Markdown_DataBase,
   type ContentBlock_Markdown_Locale,
   type ContentBlock_Markdown_Overrides,
-  type ContentBlock_Markdown_PropsBase,
 } from './defineMarkdown.schemas';
 
-type MarkdownLocaleFiles = Partial<
-  Record<LanguageCode, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>
->;
-type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
+type MarkdownLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Markdown_Locale<'data'>> }>>;
+type MarkdownDataPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
   base: Base;
   locale: LocaleFiles | undefined;
 };
-type MarkdownOverridePropsBase = {
+type MarkdownOverrideDataBase = {
   params?: ContentBlock_Markdown_Overrides['params'];
-  locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
+  locale?: DeepPartial<ContentBlock_Markdown_Locale<'data'>>;
 };
 
 type MarkdownAuthoringConfig<Slug extends string, Languages extends readonly LanguageCode[]> = Omit<
@@ -49,9 +47,9 @@ const validate = (config: ContentBlock_Markdown_Config): void => {
   parseAndValidate(config);
 };
 
-const buildMarkdownProps = (
+const buildMarkdownData = (
   config: ContentBlock_Markdown_Config,
-): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
+): MarkdownDataPublication<ContentBlock_Markdown_DataBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -60,9 +58,9 @@ const buildMarkdownProps = (
     slug,
     params,
     ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'data'>> }
       : {}),
-  } satisfies ContentBlock_Markdown_PropsBase;
+  } satisfies ContentBlock_Markdown_DataBase;
   return {
     base,
     locale: (locale === undefined
@@ -74,13 +72,13 @@ const buildMarkdownProps = (
 
 const buildMarkdownPatch = (
   patch: ContentBlock_Markdown_Overrides,
-): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+): MarkdownDataPublication<MarkdownOverrideDataBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
       ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'data'>> }
         : {}),
     },
     locale: (locale === undefined
@@ -167,20 +165,20 @@ export const defineMarkdown = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  const props = (
+  const data = (
     options: PublicationLanguageOptions<Languages>,
-  ): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
+  ): MarkdownDataPublication<ContentBlock_Markdown_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    const result = buildMarkdownProps(parseAndValidate(copyAuthored()));
+    const result = buildMarkdownData(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
-    validateRequestedPublication(markdown_Props_Schema, result, languages);
+    validateRequestedPublication(markdown_Data_Schema, result, languages);
     return result;
   };
 
   const overrides = (
     patch: ContentBlock_Markdown_Overrides,
     options: PublicationLanguageOptions<Languages>,
-  ): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+  ): MarkdownDataPublication<MarkdownOverrideDataBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);
@@ -188,7 +186,7 @@ export const defineMarkdown = <
       validate(effective);
       const output = buildMarkdownPatch(structuredClone(parsedPatch));
       output.locale = selectPublicationLocales(output.locale, languages);
-      validateRequestedPublication(markdown_Props_Schema, props(options), languages, output);
+      validateRequestedPublication(markdown_Data_Schema, data(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -204,7 +202,7 @@ export const defineMarkdown = <
     slug,
     type,
     validate,
-    build: scopeBuild({ props, overrides }),
+    build: scopeBuild({ data, overrides }),
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({

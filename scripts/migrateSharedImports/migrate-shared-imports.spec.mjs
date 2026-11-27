@@ -32,7 +32,7 @@ test('rewrites type-only, dynamic import and re-exports while preserving Engine 
     "import type { Two } from '@svitlo/indexdb/config';",
     "export { Widget } from '@svitlo/ui-kit/widgets';",
     "const mod = import('@svitlo/adapter-nextjs/image');",
-    "import type { Lesson_Props } from '@svitlo/engine/runtime';",
+    "import type { Lesson_Data } from '@svitlo/engine/runtime';",
   ].join('\n');
   const result = migrateSharedImports(source);
   assert.match(result.code, /import type \{ One, Two \} from '@svitlo\/indexdb';/);

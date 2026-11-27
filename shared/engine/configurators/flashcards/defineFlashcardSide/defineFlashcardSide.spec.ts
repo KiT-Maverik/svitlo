@@ -34,13 +34,13 @@ describe('Configurators', () => {
         assert.equal('id' in side, false);
         assert.equal('slug' in side, false);
         assert.deepEqual(
-          side.build.props({ languages: ['en'] }).base.map(item => item.slug),
+          side.build.data({ languages: ['en'] }).base.map(item => item.slug),
           ['first'],
         );
-        assert.deepEqual(Object.keys(side.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
-        const values = side.build.props({ languages: ['uk'] }).locale?.uk;
+        assert.deepEqual(Object.keys(side.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
+        const values = side.build.data({ languages: ['uk'] }).locale?.uk;
         assert.equal((values?.[0]?.locale as { value?: string })?.value, 'Питання');
-        assert.doesNotThrow(() => JSON.stringify(side.build.props({ languages: ['uk'] })));
+        assert.doesNotThrow(() => JSON.stringify(side.build.data({ languages: ['uk'] })));
       });
 
       test('supports typed child overrides, additions and ordering without mutating the side', () => {
@@ -59,7 +59,7 @@ describe('Configurators', () => {
         assert.equal((patched.locale?.uk?.[1]?.locale as { value?: string })?.value, 'Нове питання');
         assert.deepEqual(side.order, ['first']);
         assert.deepEqual(
-          side.build.props({ languages: ['uk'] }).base.map(item => item.slug),
+          side.build.data({ languages: ['uk'] }).base.map(item => item.slug),
           ['first'],
         );
       });
@@ -85,13 +85,13 @@ describe('Configurators', () => {
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
             items: { first },
             order: ['missing'],
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
             items: { first: first.config.base } as never,
             order: ['first'],
-          }).build.props({ languages: ['en'] }),
+          }).build.data({ languages: ['en'] }),
         );
       });
 
@@ -116,7 +116,7 @@ describe('Configurators', () => {
             defineFlashcardSide({
               items: { carousel },
               order: ['carousel'],
-            } as never).build.props({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /Primitive ContentBlock Configurator/,
         );
         assert.throws(
@@ -136,8 +136,8 @@ describe('Configurators', () => {
         const empty = defineFlashcardSide({ items: {}, order: [] });
         assert.doesNotThrow(() => empty.validate());
         assert.throws(() => empty.validate(true), /At least one item/);
-        assert.throws(() => side.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => side.build.props({ languages: ['en', 'en'] }), /unique/);
+        assert.throws(() => side.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => side.build.data({ languages: ['en', 'en'] }), /unique/);
       });
     });
   });

@@ -12,7 +12,7 @@ import {
 } from 'react';
 
 import { exitNativeApp, registerNativeBackButton } from '@svitlo/adapter-capacitor';
-import { getLocaleDirection, type Lesson_Props, type Locale } from '@svitlo/engine/runtime';
+import { getLocaleDirection, type Lesson_Data, type Locale } from '@svitlo/engine/runtime';
 import {
   createLessonLearningLayout,
   Lesson,
@@ -110,7 +110,7 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
     </Box>
   );
 }
-type LessonData = { response: Lesson_Props; messages: UiKitMessages };
+type LessonData = { response: Lesson_Data; messages: UiKitMessages };
 type LoadState =
   | { status: 'loading' }
   | { status: 'error'; message: string }

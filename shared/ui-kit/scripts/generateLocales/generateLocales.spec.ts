@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { beforeAll, describe, it } from 'vitest';
 import { z } from 'zod';
 
-import { allLanguageCodes, assessmentMethod_Props_Schema, educationStandard_Props_Schema } from '@svitlo/engine/build';
+import { allLanguageCodes, assessmentMethod_Data_Schema, educationStandard_Data_Schema } from '@svitlo/engine/build';
 
 import * as assessmentMethods from '../../data/definitions/assessmentMethods';
 import { educationStandards } from '../../data/definitions/educationStandards';
@@ -16,8 +16,8 @@ import { educationStandards } from '../../data/definitions/educationStandards';
 const root = fileURLToPath(new URL('../../../../', import.meta.url));
 const output = path.join(root, 'content/playground/public/data/uiKit');
 const methods = z.enum(Object.keys(assessmentMethods));
-const baseSchema = z.record(methods, assessmentMethod_Props_Schema.pick({ id: true, slug: true }).strict());
-const localeSchema = z.record(methods, assessmentMethod_Props_Schema.pick({ title: true, description: true }).strict());
+const baseSchema = z.record(methods, assessmentMethod_Data_Schema.pick({ id: true, slug: true }).strict());
+const localeSchema = z.record(methods, assessmentMethod_Data_Schema.pick({ title: true, description: true }).strict());
 const readJson = (filename: string): unknown => JSON.parse(readFileSync(filename, 'utf8'));
 
 beforeAll(() => {
@@ -85,7 +85,7 @@ describe('Scripts', () => {
           >;
           assert.deepEqual(Object.keys(locale).sort(), slugs);
           for (const slug of slugs) {
-            educationStandard_Props_Schema.parse({
+            educationStandard_Data_Schema.parse({
               ...base[slug],
               description: { ...base[slug].description, ...locale[slug].description },
             });

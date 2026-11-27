@@ -15,7 +15,7 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { forwardRef, useState, type ReactNode } from 'react';
 
-import type { Flashcard_Flag_Props } from '@svitlo/engine/runtime';
+import type { Flashcard_Flag_Data } from '@svitlo/engine/runtime';
 
 import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 import styles from './Flashcard.module.css';
@@ -28,7 +28,7 @@ export interface FlashcardProps {
   question: ReactNode;
   answer: ReactNode;
   /** Serializable, type-safe metadata from Flashcard response data. */
-  flags?: readonly Flashcard_Flag_Props[];
+  flags?: readonly Flashcard_Flag_Data[];
   /** Optional presentation-only labels for host-specific UI. */
   labels?: readonly FlashcardLabel[];
   revealed?: boolean;

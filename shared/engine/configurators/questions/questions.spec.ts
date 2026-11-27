@@ -13,7 +13,7 @@ import {
   defineOrderSequence,
   defineSelectMultipleAnswers,
   defineSelectOneAnswer,
-  selectOneAnswer_Props_Schema,
+  selectOneAnswer_Data_Schema,
 } from './index';
 
 describe('Configurators', () => {
@@ -128,13 +128,13 @@ describe('Configurators', () => {
           assert.equal(question.id, id);
           assert.equal(question.slug, 'questionOne');
           assert.equal(question.config.base.type, question.type);
-          assert.equal(typeof question.build.props, 'function');
+          assert.equal(typeof question.build.data, 'function');
           assert.equal(typeof question.build.overrides, 'function');
           assert.equal('override' in question, false);
           assert.equal('disable' in question, false);
           assert.equal('overrides' in question.config, false);
-          const a = question.build.props(scope);
-          const b = question.build.props(scope);
+          const a = question.build.data(scope);
+          const b = question.build.data(scope);
           assert.deepEqual(a, b);
           assert.deepEqual((a.base.content as { question: { slug: string }[] }).question[0].slug, 'promptBlock');
           assert.doesNotThrow(() => JSON.stringify(a));
@@ -145,7 +145,7 @@ describe('Configurators', () => {
         }
         assert.equal(
           (
-            instances[0].build.props(scope).base.content as unknown as {
+            instances[0].build.data(scope).base.content as unknown as {
               answers: { correct: { yes: { slug: string } } };
             }
           ).answers.correct.yes.slug,
@@ -153,19 +153,19 @@ describe('Configurators', () => {
         );
         assert.equal(
           (
-            instances[2].build.props(scope).base.content as unknown as {
+            instances[2].build.data(scope).base.content as unknown as {
               pairs: { pairOne: { left: { slug: string } } };
             }
           ).pairs.pairOne.left.slug,
           'yes',
         );
         assert.equal(
-          (instances[5].build.props(scope).base.content as { sequence: { slug: string }[] }).sequence[0].slug,
+          (instances[5].build.data(scope).base.content as { sequence: { slug: string }[] }).sequence[0].slug,
           'yes',
         );
         assert.equal(
           (
-            instances[6].build.props(scope).base.content as {
+            instances[6].build.data(scope).base.content as {
               correctSequence: { slug: string }[];
             }
           ).correctSequence[0].slug,
@@ -173,7 +173,7 @@ describe('Configurators', () => {
         );
         assert.equal(
           (
-            instances[7].build.props(scope).base.content as {
+            instances[7].build.data(scope).base.content as {
               slots: { selector: string }[];
             }
           ).slots[0].selector,
@@ -238,7 +238,7 @@ describe('Configurators', () => {
         );
         assert.deepEqual(
           (
-            question.build.props(scope).base.content as {
+            question.build.data(scope).base.content as {
               question: { slug: string }[];
             }
           ).question[0].slug,
@@ -254,7 +254,7 @@ describe('Configurators', () => {
           };
           return defineAnswerWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        const props = text.build.props(scope);
+        const props = text.build.data(scope);
         assert.deepEqual((props.locale?.uk as { locale: { correctAnswers: string[] } }).locale.correctAnswers, [
           'Yes',
           'Відповідь',
@@ -282,7 +282,7 @@ describe('Configurators', () => {
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        assert.deepEqual((blanks.build.props(scope).locale?.uk as { locale: { slots: unknown[] } }).locale.slots, [
+        assert.deepEqual((blanks.build.data(scope).locale?.uk as { locale: { slots: unknown[] } }).locale.slots, [
           { selector: 'one', correctAnswers: ['Yes', 'Відповідь'] },
         ]);
         const sparse = blanks.build.overrides(
@@ -303,17 +303,17 @@ describe('Configurators', () => {
         };
         const question = defineAnswerWithNumber<typeof input.slug, typeof input.content, ['en', 'uk']>(input);
         assert.equal(answerWithNumber_Config_Schema.safeParse(input).success, true);
-        const first = question.build.props(scope);
+        const first = question.build.data(scope);
         const patch = question.build.overrides({ params: { correctAnswers: [7], restrictions: [] } }, scope);
         assert.deepEqual((patch.base.params as { correctAnswers: number[] }).correctAnswers, [7]);
         (patch.base.params as { correctAnswers: number[] }).correctAnswers.push(8);
         assert.deepEqual(
-          (question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers,
+          (question.build.data(scope).base.params as { correctAnswers: number[] }).correctAnswers,
           [1, 2],
         );
         (first.base.params as { correctAnswers: number[] }).correctAnswers.push(3);
         assert.deepEqual(
-          (question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers,
+          (question.build.data(scope).base.params as { correctAnswers: number[] }).correctAnswers,
           [1, 2],
         );
         assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never, scope));
@@ -458,10 +458,10 @@ describe('Configurators', () => {
           };
           return defineSelectOneAnswer<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        const built = question.build.props(scope);
+        const built = question.build.data(scope);
         assert.deepEqual(built.base.locale, {});
         assert.equal(built.locale, undefined);
-        assert.equal(selectOneAnswer_Props_Schema.safeParse(built.base).success, true);
+        assert.equal(selectOneAnswer_Data_Schema.safeParse(built.base).success, true);
         // A sparse patch must not inject empty locale data.
         const patch = question.build.overrides({ params: { restrictions: [] } }, scope);
         assert.equal(Object.hasOwn(patch.base, 'locale'), false);
@@ -481,7 +481,7 @@ describe('Configurators', () => {
           };
           return defineAnswerWithText<typeof config.slug, typeof config.content, ['en', 'uk', 'pl']>(config);
         })();
-        const published = question.build.props({ languages: ['uk'] });
+        const published = question.build.data({ languages: ['uk'] });
         assert.deepEqual(Object.keys(published.locale ?? {}), ['uk']);
         assert.deepEqual((published.locale?.uk as { locale: { correctAnswers: string[] } }).locale.correctAnswers, [
           'Так',
@@ -502,10 +502,10 @@ describe('Configurators', () => {
           undefined,
         );
 
-        assert.throws(() => question.build.props({ languages: [] }), /nonempty languages/);
-        assert.throws(() => question.build.props({ languages: ['uk', 'uk'] }), /unique/);
-        assert.throws(() => question.build.props({ languages: ['bad'] as never }));
-        assert.throws(() => (question.build.props as (options?: unknown) => unknown)(), /languages/);
+        assert.throws(() => question.build.data({ languages: [] }), /nonempty languages/);
+        assert.throws(() => question.build.data({ languages: ['uk', 'uk'] }), /unique/);
+        assert.throws(() => question.build.data({ languages: ['bad'] as never }));
+        assert.throws(() => (question.build.data as (options?: unknown) => unknown)(), /languages/);
       });
 
       test('publication validates selected child translations without requiring unselected ones', () => {
@@ -525,7 +525,7 @@ describe('Configurators', () => {
           };
           return defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        assert.deepEqual(Object.keys(question.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
+        assert.deepEqual(Object.keys(question.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
 
         const missing = defineText<'missingEnglish', ['uk']>({
           id,
@@ -543,10 +543,10 @@ describe('Configurators', () => {
           };
           return defineAnswerWithNumber<typeof config.slug, typeof config.content, ['uk']>(config);
         })();
-        assert.doesNotThrow(() => badQuestion.build.props({ languages: ['uk'] }));
+        assert.doesNotThrow(() => badQuestion.build.data({ languages: ['uk'] }));
         // Requesting an unsupported locale here is intentional: exercise the runtime guard.
         assert.throws(
-          () => badQuestion.build.props({ languages: ['en' as never] }),
+          () => badQuestion.build.data({ languages: ['en' as never] }),
           /ContentBlock publication|Invalid publication for language en/,
         );
       });
@@ -559,7 +559,7 @@ describe('Configurators', () => {
           };
           return defineOrderSequence<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        assert.equal(question.build.props({ languages: ['uk', 'en'] }).locale, undefined);
+        assert.equal(question.build.data({ languages: ['uk', 'en'] }).locale, undefined);
       });
 
       test('nested child overrides publish only the explicitly requested locale', () => {
@@ -605,9 +605,9 @@ describe('Configurators', () => {
           };
           return defineAnswerWithText<typeof config.slug, typeof config.content, ['uk']>(config);
         })();
-        assert.doesNotThrow(() => answer.build.props({ languages: ['uk'] }));
+        assert.doesNotThrow(() => answer.build.data({ languages: ['uk'] }));
         // Explicitly bypass the compile-time scope to verify the runtime rejection.
-        assert.throws(() => answer.build.props({ languages: ['en' as never] }), /Incomplete accepted-answer set/);
+        assert.throws(() => answer.build.data({ languages: ['en' as never] }), /Incomplete accepted-answer set/);
 
         const slot = (() => {
           const config = {
@@ -620,8 +620,8 @@ describe('Configurators', () => {
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['uk']>(config);
         })();
-        assert.doesNotThrow(() => slot.build.props({ languages: ['uk'] }));
-        assert.throws(() => slot.build.props({ languages: ['en' as never] }), /Incomplete text slot/);
+        assert.doesNotThrow(() => slot.build.data({ languages: ['uk'] }));
+        assert.throws(() => slot.build.data({ languages: ['en' as never] }), /Incomplete text slot/);
       });
     });
   });

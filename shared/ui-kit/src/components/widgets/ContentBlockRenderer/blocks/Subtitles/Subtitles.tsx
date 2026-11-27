@@ -1,6 +1,6 @@
 'use client';
 
-import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Subtitles_Props } from '@svitlo/engine/runtime';
+import { UNRESOLVED_RESOURCE_UUID, type ContentBlock_Subtitles_Data } from '@svitlo/engine/runtime';
 
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { localizedAttributes, subtitlesResourceLabel } from '../../utils';
@@ -14,7 +14,7 @@ import { localizedAttributes, subtitlesResourceLabel } from '../../utils';
 export function Subtitles({
   locale: { fileLocation },
   unavailableMessage,
-}: ContentBlock_Subtitles_Props & { unavailableMessage?: string }) {
+}: ContentBlock_Subtitles_Data & { unavailableMessage?: string }) {
   const language = useContentLanguage();
   if (fileLocation.includes(UNRESOLVED_RESOURCE_UUID)) {
     return (

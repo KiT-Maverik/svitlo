@@ -4,14 +4,14 @@ import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.util
  * Published Lesson Props. The Configurator has already validated and built this
  * value; the generator must not reassemble or reinterpret its nested content.
  */
-export type LessonPropsPublication = {
+export type LessonDataPublication = {
   base: { id: string; type?: string; draft?: boolean };
   locale?: object | undefined;
 };
 
 export type LessonPublicationEntry = {
   source: string;
-  publication: LessonPropsPublication;
+  publication: LessonDataPublication;
 };
 
 /** Reject silent JSON.stringify data loss before a completed publication reaches disk. */
@@ -64,7 +64,7 @@ const json = (value: unknown, source: string): string => {
  * The returned map is suitable for an atomic directory publisher. Every source
  * Lesson ID must be globally unique within the supplied publication batch.
  */
-export function renderLessonPropsFiles(entries: readonly LessonPublicationEntry[]): Map<string, string> {
+export function renderLessonDataFiles(entries: readonly LessonPublicationEntry[]): Map<string, string> {
   const files = new Map<string, string>();
   const owners = new Map<string, string>();
 

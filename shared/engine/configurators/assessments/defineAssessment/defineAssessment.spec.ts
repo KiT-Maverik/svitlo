@@ -9,7 +9,7 @@ import { defineModule } from '../../courses/defineModule';
 import { defineContentSection } from '../../sections/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection';
 import { defineAssessment } from './defineAssessment';
-import { assessment_Props_Schema, assessmentConfigurator_Schema } from './defineAssessment.schemas';
+import { assessment_Data_Schema, assessmentConfigurator_Schema } from './defineAssessment.schemas';
 import { defineAssessmentDraft } from './defineAssessmentDraft';
 
 describe('Course-owned Assessment Configurator', () => {
@@ -69,7 +69,7 @@ describe('Course-owned Assessment Configurator', () => {
 
   test('builds a complete localized Assessment reusing Content and Quiz', () => {
     const assessment = makeAssessment('finalAssessment', '10', '11');
-    const result = assessment.build.props({ languages: ['en', 'uk'] });
+    const result = assessment.build.data({ languages: ['en', 'uk'] });
     assert.equal(assessmentConfigurator_Schema.safeParse(assessment).success, true);
     assert.deepEqual(
       result.base.section.map(s => s.type),
@@ -78,7 +78,7 @@ describe('Course-owned Assessment Configurator', () => {
     assert.equal(result.locale?.uk?.locale?.title, 'Перевірка');
     assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Оберіть відповідь'));
     assert.equal(
-      assessment_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
+      assessment_Data_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
       true,
     );
     assert.equal('questions' in result.base, false);
@@ -99,7 +99,7 @@ describe('Course-owned Assessment Configurator', () => {
           locale: { title: 'Incomplete' },
           before: { items: { intro }, order: ['intro'] },
           quiz: undefined as never,
-        }).build.props({ languages: ['en'] }),
+        }).build.data({ languages: ['en'] }),
       /Quiz/,
     );
     assert.throws(() => assessment.build.overrides({ quiz: false as never }, { languages: ['en'] }), /Quiz/);
@@ -127,7 +127,7 @@ describe('Course-owned Assessment Configurator', () => {
           before: { items: { intro }, order: ['intro'] },
           quiz: makeQuiz('18'),
           after: { items: { intro }, order: ['intro'] },
-        }).build.props({ languages: ['en'] }),
+        }).build.data({ languages: ['en'] }),
       /unique/,
     );
   });
@@ -156,7 +156,7 @@ describe('Course-owned Assessment Configurator', () => {
       locale: { title: 'Not implemented' },
       preview,
     });
-    const result = draft.build.props({ languages: ['en'] });
+    const result = draft.build.data({ languages: ['en'] });
     assert.equal(result.base.draft, true);
     assert.equal(result.base.section.length, 1);
     assert.equal(result.base.section[0]?.type, 'content');
@@ -164,17 +164,17 @@ describe('Course-owned Assessment Configurator', () => {
       result.base.section[0]?.content.map(block => block.type),
       ['text'],
     );
-    assert.equal(assessment_Props_Schema.safeParse(result.base).success, true);
+    assert.equal(assessment_Data_Schema.safeParse(result.base).success, true);
     assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
   });
 
   test('preserves identity and isolates localized overrides', () => {
     const assessment = makeAssessment('review', '20', '21');
-    const original = assessment.build.props({ languages: ['en', 'uk'] });
+    const original = assessment.build.data({ languages: ['en', 'uk'] });
     const patch = assessment.build.overrides({ locale: { title: { uk: 'Підсумок' } } }, { languages: ['uk'] });
     assert.deepEqual(patch.base, {});
     assert.equal(patch.locale?.uk?.locale?.title, 'Підсумок');
-    assert.deepEqual(assessment.build.props({ languages: ['en', 'uk'] }), original);
+    assert.deepEqual(assessment.build.data({ languages: ['en', 'uk'] }), original);
     assert.throws(
       () => assessment.build.overrides({ id: id('22') } as never, { languages: ['en'] }),
       /Unknown Assessment override field/,
@@ -213,7 +213,7 @@ describe('Course-owned Assessment Configurator', () => {
       locale: { title: 'Course', description: 'Course description' },
       content: { items: { module, finalAssessment }, order: ['module', 'finalAssessment'] },
     });
-    const result = course.build.props({ languages: ['en', 'uk'] });
+    const result = course.build.data({ languages: ['en', 'uk'] });
     assert.equal(result.base.content[1]?.type, 'assessment');
     const moduleContent = result.base.content[0] as {
       content: Array<{ type: string; content?: Array<{ type: string }> }>;

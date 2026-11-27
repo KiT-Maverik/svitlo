@@ -208,7 +208,7 @@ export function verifyBuiltStandards(entries, built, registered) {
       item?.type !== 'educationStandard' ||
       !UUID.test(item.id) ||
       byId.has(item.id.toLowerCase()) ||
-      typeof item.build?.props !== 'function'
+      typeof item.build?.data !== 'function'
     ) {
       throw Error('Invalid or duplicated EducationStandard build record');
     }
@@ -223,7 +223,7 @@ export function verifyBuiltStandards(entries, built, registered) {
         typeof frontend[language] === 'string' && frontend[language].trim() && frontend[language].trim() !== MISSING,
     );
     if (!complete) continue; // Partial Code is previewed statically, never published.
-    const props = item.build.props({ languages: [...registered] });
+    const props = item.build.data({ languages: [...registered] });
     if (
       props.base.id !== config.id ||
       props.base.slug !== config.slug ||

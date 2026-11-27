@@ -40,7 +40,7 @@ for (const workspace of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit', 
 }
 run(process.execPath, [join(repoRoot, 'scripts/ci/packageBuildReuse/package-build-reuse.mjs'), selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
-const { assembleLessonProps } = await import('@svitlo/engine/runtime');
+const { assembleLessonData } = await import('@svitlo/engine/runtime');
 const publicRoot = join(mobileRoot, 'public');
 // npm ci may not link a binary generated during build, so execute the
 // published package binary from its validated manifest path directly.
@@ -86,7 +86,7 @@ for (const bucket of readdirSync(lessonsRoot, { withFileTypes: true })) {
     for (const language of languages) {
       const localeFile = join(directory, language + '.json');
       const locale = existsSync(localeFile) ? { [language]: JSON.parse(readFileSync(localeFile, 'utf8')) } : undefined;
-      const props = assembleLessonProps({ base, locale }, language);
+      const props = assembleLessonData({ base, locale }, language);
       if (props.id !== lesson.name || bucket.name !== lesson.name.at(-1)) {
         throw new Error('Published Lesson ID mismatch: ' + lesson.name);
       }

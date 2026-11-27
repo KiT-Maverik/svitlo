@@ -1,20 +1,20 @@
 import type {
   AssessmentMethodSlug,
-  ContentBlock_Text_Props,
-  Lesson_Props,
-  Question_SelectOneAnswer_Props,
+  ContentBlock_Text_Data,
+  Lesson_Data,
+  Question_SelectOneAnswer_Data,
 } from '@svitlo/engine/runtime';
 
 // A textbook can extend published Engine Props without redefining their contracts.
-type MathLesson = Lesson_Props & { readonly subject: 'math' };
-type MathQuestion = Question_SelectOneAnswer_Props & { readonly difficulty: 'advanced' };
+type MathLesson = Lesson_Data & { readonly subject: 'math' };
+type MathQuestion = Question_SelectOneAnswer_Data & { readonly difficulty: 'advanced' };
 
 type Assert<T extends true> = T;
 type Extends<A, B> = [A] extends [B] ? true : false;
 
-type LessonExtensionPreservesBase = Assert<Extends<MathLesson, Lesson_Props>>;
-type QuestionExtensionPreservesBase = Assert<Extends<MathQuestion, Question_SelectOneAnswer_Props>>;
-type TextBlockHasLocaleValue = Assert<'value' extends keyof ContentBlock_Text_Props['locale'] ? true : false>;
+type LessonExtensionPreservesBase = Assert<Extends<MathLesson, Lesson_Data>>;
+type QuestionExtensionPreservesBase = Assert<Extends<MathQuestion, Question_SelectOneAnswer_Data>>;
+type TextBlockHasLocaleValue = Assert<'value' extends keyof ContentBlock_Text_Data['locale'] ? true : false>;
 
 void (undefined as unknown as LessonExtensionPreservesBase);
 void (undefined as unknown as QuestionExtensionPreservesBase);
