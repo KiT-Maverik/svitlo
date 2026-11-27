@@ -180,3 +180,61 @@ const invalidPlacementChildren: ChildrenSupporting<['en', 'uk'], { shadow: typeo
   shadow: englishOnlyPlacement,
 };
 void invalidPlacementChildren;
+
+
+/** A's Data surface: placement keys are literals, never a generic content array. */
+const publishedCourse = course.build.data({ languages: ['en'] });
+type PublishedCourseChildKeys = Expect<Equal<(typeof publishedCourse.base.children)[number], 'module' | 'chapter'>>;
+type PublishedModuleKind = Expect<Equal<NonNullable<typeof publishedCourse.base.module.type>, 'module'>>;
+type PublishedChapterKind = Expect<Equal<NonNullable<typeof publishedCourse.base.chapter.type>, 'chapter'>>;
+void (null as unknown as PublishedCourseChildKeys);
+void (null as unknown as PublishedModuleKind);
+void (null as unknown as PublishedChapterKind);
+
+// @ts-expect-error Course's inferred placement fields do not include an arbitrary child.
+publishedCourse.base.nonexistent;
+defineChapter<'badOrder', { lesson: typeof lesson }, ['en', 'uk']>({
+  id, slug: 'badOrder', type: 'chapter', params: {}, locale: { title: 'Chapter' },
+  content: { items: { lesson },
+    // @ts-expect-error A Chapter's child order cannot reference a missing placement key.
+    order: ['missingLesson'] },
+});
+
+defineCourse<'invalidReserved', { id: typeof chapter }, ['en', 'uk']>({
+  id,
+  type: 'course',
+  slug: 'invalidReserved',
+  params: { languages: ['en', 'uk'] as const },
+  locale: { title: 'Course', description: 'Reserved placement' },
+  content: {
+    // @ts-expect-error Root metadata field id cannot be used as a child key.
+    items: { id: chapter },
+    order: ['id'],
+  },
+});
+
+defineModule<'invalidChildren', { children: typeof chapter }, ['en', 'uk']>({
+  id,
+  type: 'module',
+  slug: 'invalidChildren',
+  params: {},
+  locale: { title: 'Module' },
+  content: {
+    // @ts-expect-error children is the order field, never a child placement key.
+    items: { children: chapter },
+    order: ['children'],
+  },
+});
+
+defineChapter<'invalidContent', { content: typeof lesson }, ['en', 'uk']>({
+  id,
+  type: 'chapter',
+  slug: 'invalidContent',
+  params: {},
+  locale: { title: 'Chapter' },
+  content: {
+    // @ts-expect-error Obsolete content collection wrapper cannot be shadowed.
+    items: { content: lesson },
+    order: ['content'],
+  },
+});
