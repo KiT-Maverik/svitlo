@@ -1,5 +1,4 @@
-import type { Lesson_Metadata_Overrides } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
-import type { DeepPartial } from '../transformer.types';
+import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { LessonWorkflowStage2Section } from './lessonWorkflow.types';
 
 /**
@@ -31,37 +30,16 @@ export type CourseLessonNewSection = {
  * The trusted binder resolves only those exact descriptors, never executable
  * authored values.
  */
-type StructuralFields = 'id' | 'slug' | 'type' | 'draft' | 'children' | 'validate' | 'build' | 'config';
-type AuthoredKeys<Node> = Exclude<keyof Node, StructuralFields>;
-
-/** Project a sparse authoring patch from an identified Configurator without
- * erasing its literal children through a generic build.overrides signature.
- * Identity is immutable; child metadata retains its actual authored base type.
- */
-type ExistingNodePatch<Node> =
-  Node extends { readonly config: { readonly base: infer Base } }
-    ? Omit<DeepPartial<Base>, 'id' | 'type' | 'slug' | 'children'> & {
-        children?: string[];
-      } & { [Key in AuthoredKeys<Node>]?: ExistingNodePatch<Node[Key]> | false }
-    : never;
-
-type LessonLike = { readonly type: 'lesson'; readonly children: readonly string[] };
-type ExistingLessonPatch<Lesson extends LessonLike> = {
-  [Key in AuthoredKeys<Lesson>]?: ExistingNodePatch<Lesson[Key]> | false;
-};
-type GenericLessonPatch = Lesson_Metadata_Overrides & { children?: string[] } & Record<string, unknown>;
+type ConcretePatch<Lesson extends Lesson_Configurator> =
+  Parameters<Lesson['build']['overrides']>[0];
 type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
-type VerifiedAdded<Lesson extends LessonLike, Added extends Record<string, AddedReference>> = {
-  [Key in keyof Added]: Key extends AuthoredKeys<Lesson> ? never : Added[Key];
+type VerifiedAdded<
+  Lesson extends Lesson_Configurator,
+  Added extends Record<string, AddedReference>,
+> = {
+  [Key in keyof Added]: Key extends keyof ConcretePatch<Lesson> ? never : Added[Key];
 };
-/** Generic Stage references remain inert and are validated by trusted Zod/Build;
- * a concrete typeof Lesson recovers literal keys and nested locale patch types.
- */
 export type CourseLessonSourcePatch<
-  Lesson extends LessonLike,
+  Lesson extends Lesson_Configurator,
   Added extends Record<string, AddedReference> = {},
-> = (
-  string extends keyof Lesson
-    ? GenericLessonPatch
-    : Lesson_Metadata_Overrides & { children?: string[] } & ExistingLessonPatch<Lesson>
-) & VerifiedAdded<Lesson, Added>;
+> = ConcretePatch<Lesson> & VerifiedAdded<Lesson, Added>;
