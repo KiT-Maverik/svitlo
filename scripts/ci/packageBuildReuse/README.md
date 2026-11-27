@@ -51,6 +51,18 @@ Each line records a versioned event with timestamp, `GITHUB_RUN_ID`,
 `package:build`, outcome (`built`, `reused`, or `failed`),
 request duration (including dist validation), checked-out clean source revision
 (or `null`), and successful dist SHA-256 digest (or `null` on failure).
+For helper-managed builds, `rebuildReason` classifies the *existing*
+fail-closed decision as `missing-state-record`, `unverified-source`,
+`source-revision-changed`, `dependency-versions-changed`,
+`missing-or-invalid-dist`, or `dist-digest-changed`. Verified `reused`
+events have no rebuild reason. The `sourceAfterBuildRevision` field captures
+the source verification already performed after compilation; `null` means
+Git could not verify the post-build tracked worktree, not proof of a particular
+file mutation. The job summary groups each reason by workspace and counts
+builds with unverified post-build sources, so no artifacts must be downloaded
+to diagnose repeated Engine builds. **These reason labels only describe
+decisions; they never enable reuse or weaken output checks.**
+
 A failure to write this **optional diagnostic** logs a warning and never turns a
 failed compiler into a success or a successful build into a failure. JSONL is
 not a trusted cache, not an artifact permission grant, and must not be shared
