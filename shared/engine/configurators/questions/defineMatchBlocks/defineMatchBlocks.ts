@@ -165,7 +165,7 @@ export const defineMatchBlocks = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
     const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   >(
@@ -221,6 +221,20 @@ export const defineMatchBlocks = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch & Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairsFromPatch<Patch, Content>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_MatchBlocks_Data>;
+    (
+      patch: Question_MatchBlocks_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_MatchBlocks_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
