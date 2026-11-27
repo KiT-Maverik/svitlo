@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
-import test, { describe } from 'node:test';
+import { describe, test } from 'node:test';
 
-import { configuratorArrayToSlugMap, mergeForValidation } from '../../../_shared__configurators';
+import { mergeForValidation } from '../../../_shared__configurators';
 import { UNRESOLVED_YOUTUBE_HREF } from '../../../../schemas/media.schemas';
 import { defineText } from '../../primitive/defineText';
 import { defineYoutube } from '../../primitive/defineYoutube';
@@ -9,297 +9,186 @@ import { defineCheckpointAnswer } from './defineCheckpointAnswer';
 import { defineCheckpointItem } from './defineCheckpointItem';
 import { checkpoint_Config_Schema, checkpoint_Data_Schema, defineCheckpoint } from './index';
 
-describe('Configurators', () => {
-  describe('ContentBlocks', () => {
-    describe('defineCheckpoint', () => {
-      const ids = Array.from({ length: 10 }, (_, i) => 'b775647f-203d-481a-a1c7-4d331c779d6' + i);
-      const text = <const Slug extends string>(id: string, slug: Slug, value: string | { en: string; uk: string }) =>
-        defineText<Slug, ['en', 'uk']>({ id, slug, type: 'text', params: {}, locale: { value } });
+const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
+const scope = { languages: ['en', 'uk'] as const };
+const text = <const Slug extends string>(slug: Slug, suffix: string, value: string | { en: string; uk: string }) =>
+  defineText<Slug, ['en', 'uk']>({
+    id: id(suffix), slug, type: 'text', params: {}, locale: { value },
+  });
+const item = <const Slug extends string>(
+  slug: Slug, suffix: string, questionSuffix: string, answerSuffix: string, textSuffix: string,
+  value: string | { en: string; uk: string },
+) => {
+  const question = text('question', questionSuffix, value);
+  const answerText = text('answerText', textSuffix, 'Invariant answer');
+  const answer = defineCheckpointAnswer<
+    'answer', { answerText: typeof answerText }, ['en', 'uk']
+  >({
+    id: id(answerSuffix), slug: 'answer', type: 'checkpointAnswer',
+    children: ['answerText'], answerText,
+  });
+  return defineCheckpointItem<Slug, typeof answer, typeof question, ['en', 'uk']>({
+    id: id(suffix), slug, type: 'checkpointItem',
+    check: true, question, answer,
+  });
+};
 
-      const makeItem = <const Slug extends string>(
-        slug: Slug,
-        id: string,
-        questionId: string,
-        answerId: string,
-        value: string | { en: string; uk: string },
-      ) => {
-        const answer = text(answerId, 'answer', 'Invariant answer');
-        const question = text(questionId, 'question', value);
-        const compositeIdSuffix = { first: 'a', second: 'b', later: 'c' }[slug as 'first' | 'second' | 'later'];
-        const answerConfigurator = defineCheckpointAnswer<'answer', { answer: typeof answer }, ['en', 'uk']>({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d6' + compositeIdSuffix,
-          slug: 'answer',
-          type: 'checkpointAnswer',
-          content: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
-        });
-        return defineCheckpointItem<Slug, typeof answerConfigurator, typeof question, ['en', 'uk']>({
-          id,
-          slug,
-          type: 'checkpointItem',
-          question,
-          answer: answerConfigurator,
-        });
-      };
+const example = () => {
+  const first = item('first', '61', '62', '63', '64', { en: 'First?', uk: 'Перше?' });
+  const second = item('second', '65', '66', '67', '68', 'Second?');
+  const checkpoint = defineCheckpoint<
+    'review', { first: typeof first; second: typeof second }, ['en', 'uk']
+  >({
+    id: id('60'), slug: 'review', type: 'checkpoint',
+    params: { enableChecks: true, requireCompletion: true },
+    locale: { title: { en: 'Review', uk: 'Перевірка' } },
+    children: ['first', 'second'], first, second,
+  });
+  return { checkpoint, first, second };
+};
 
-      const example = () => {
-        const first = makeItem('first', ids[1], ids[2], ids[3], { en: 'First?', uk: 'Перше?' });
-        const second = makeItem('second', ids[4], ids[5], ids[6], 'Second?');
-        const checkpoint = defineCheckpoint<'review', { first: typeof first; second: typeof second }, ['en', 'uk']>({
-          id: ids[0],
-          slug: 'review',
-          type: 'checkpoint',
-          params: {},
-          locale: { title: 'Review' },
-          content: { items: configuratorArrayToSlugMap([first, second]), order: ['first', 'second'] },
-        });
-        return { checkpoint, first, second };
-      };
+describe('defineCheckpoint slug-addressed CheckpointItems', () => {
+  test('validates typed Items, preserves author order and publishes direct Data paths', () => {
+    const { checkpoint, first, second } = example();
+    assert.equal(checkpoint_Config_Schema.safeParse({
+      id: checkpoint.id, slug: checkpoint.slug, type: checkpoint.type,
+      params: { enableChecks: true, requireCompletion: true },
+      locale: { title: 'Review' },
+      children: ['second', 'first'], first, second,
+    }).success, true);
+    const result = checkpoint.build.data(scope);
+    assert.deepEqual(result.base.children, ['first', 'second']);
+    assert.equal((result.base.first as { type: string }).type, 'checkpointItem');
+    assert.equal((result.base.first as { id: string }).id, first.id);
+    assert.equal((result.base.second as { id: string }).id, second.id);
+    assert.equal(result.base.params.enableChecks, true);
+    assert.equal(result.base.params.requireCompletion, true);
+    assert.equal((result.base.first as { check: boolean }).check, true);
+    assert.equal(
+      (((result.locale?.uk?.first as Record<string, unknown>).question as { locale: { value: string } }).locale.value),
+      'Перше?',
+    );
+    const localized = mergeForValidation(result.base, result.locale?.uk ?? {});
+    assert.equal(checkpoint_Data_Schema.safeParse(localized).success, true);
+    assert.equal(JSON.stringify(result).includes('"items"'), false);
+    assert.equal(JSON.stringify(result).includes('"order"'), false);
+  });
 
-      test('Checkpoint accepts valid CheckpointItem configurators without treating them as renderable ContentBlocks', () => {
-        const { checkpoint, first } = example();
-        assert.equal(
-          checkpoint_Config_Schema.safeParse({
-            id: ids[0],
-            slug: 'review',
-            type: 'checkpoint',
-            params: {},
-            locale: { title: 'Review' },
-            content: { items: { first }, order: ['first'] },
-          }).success,
-          true,
-        );
-        assert.equal(checkpoint.build.data({ languages: ['en', 'uk'] }).base.content[0].type, 'checkpointItem');
-      });
+  test('publishes sparse metadata and isolated nested Text/Answer locale patches', () => {
+    const { checkpoint } = example();
+    const before = checkpoint.build.data(scope);
+    assert.deepEqual(checkpoint.build.overrides({}, scope), { base: {}, locale: undefined });
+    const changed = checkpoint.build.overrides({
+      params: { enableChecks: false },
+      locale: { title: { uk: 'Новий огляд' } },
+      second: {
+        question: { locale: { value: { uk: 'Інакше?' } } },
+        answer: { answerText: { locale: { value: { uk: 'Відповідь' } } } },
+      },
+    }, scope);
+    assert.deepEqual(changed.base.params, { enableChecks: false });
+    assert.equal(changed.base.children, undefined);
+    assert.equal(changed.base.first, undefined);
+    assert.equal((changed.locale?.uk?.locale as { title: string }).title, 'Новий огляд');
+    const second = changed.locale?.uk?.second as {
+      question: { locale: { value: string } };
+      answer: { answerText: { locale: { value: string } } };
+    };
+    assert.equal(second.question.locale.value, 'Інакше?');
+    assert.equal(second.answer.answerText.locale.value, 'Відповідь');
+    assert.deepEqual(checkpoint.build.data(scope), before);
+  });
 
-      test('Checkpoint publishes sorted nested Props, not authoring maps', () => {
-        const { checkpoint } = example();
-        const result = checkpoint.build.data({ languages: ['en', 'uk'] });
-        assert.deepEqual(
-          result.base.content.map(item => item.slug),
-          ['first', 'second'],
-        );
-        assert.equal('order' in result.base, false);
-        assert.equal('items' in result.base.content, false);
-        assert.deepEqual(
-          result.locale?.uk?.content?.map(item => item.slug),
-          ['first', 'second'],
-        );
-        assert.equal(result.locale?.uk?.content?.[0].question.locale.value, 'Перше?');
-        assert.equal(result.locale?.uk?.content?.[1].question.locale.value, 'Second?');
-        assert.equal(
-          checkpoint_Data_Schema.safeParse({
-            ...result.base,
-            content: result.locale?.uk?.content,
-          }).success,
-          true,
-        );
-        assert.equal(checkpoint_Data_Schema.safeParse({ ...result.base, content: [] }).success, false);
-      });
+  test('add/remove/reorder uses one replacement children list and no mutable state', () => {
+    const { checkpoint } = example();
+    const later = item('later', '69', '6a', '6b', '6c', { en: 'Later?', uk: 'Потім?' });
+    const before = checkpoint.build.data(scope);
+    const patch = checkpoint.build.overrides({
+      first: false,
+      second: { question: { locale: { value: { uk: 'Інакше?' } } } },
+      later,
+      children: ['later', 'second'],
+    }, scope);
+    assert.deepEqual(patch.base.children, ['later', 'second']);
+    assert.equal(patch.base.first, false);
+    assert.equal((patch.base.later as { id: string }).id, later.id);
+    assert.equal(
+      (((patch.locale?.uk?.second as Record<string, unknown>).question as { locale: { value: string } }).locale.value),
+      'Інакше?',
+    );
+    assert.equal(checkpoint.build.data(scope).base.children.includes('first'), true);
+    assert.deepEqual(checkpoint.build.data(scope), before);
+  });
 
-      test('direct Checkpoint Config Zod rejects non-Item child kinds', () => {
-        const { checkpoint, first } = example();
-        const input = {
-          id: checkpoint.id,
-          slug: checkpoint.slug,
-          type: 'checkpoint',
-          params: {},
-          locale: { title: 'Review' },
-          content: { items: { first }, order: ['first'] },
-        };
-        assert.equal(checkpoint_Config_Schema.safeParse(input).success, true);
-        for (const invalid of [
-          { id: ids[5], slug: 'first', type: 'carousel' },
-          { id: ids[5], slug: 'first', type: 'text' },
-          null,
-        ]) {
-          assert.equal(
-            checkpoint_Config_Schema.safeParse({
-              ...input,
-              content: { items: { first: invalid }, order: ['first'] },
-            }).success,
-            false,
-            'Reject non-CheckpointItem at the direct Config schema',
-          );
-        }
-      });
+  test('rejects unknown, duplicated, reserved and wrong-kind CheckpointItem keys', () => {
+    const { first, second } = example();
+    const metadata = {
+      id: id('60'), slug: 'review', type: 'checkpoint' as const,
+      params: {}, locale: { title: 'Review' },
+    };
+    const cases = [
+      { ...metadata, children: [], first },
+      { ...metadata, children: ['first'], first, second },
+      { ...metadata, children: ['first', 'first'], first },
+      { ...metadata, children: ['unknown'], first },
+      { ...metadata, children: ['first'], first, content: first },
+      { ...metadata, children: ['bad-key'], 'bad-key': first },
+      { ...metadata, children: ['first'], first: text('first', '72', 'Not an Item') },
+    ];
+    for (const candidate of cases) {
+      assert.equal(checkpoint_Config_Schema.safeParse(candidate).success, false);
+      assert.throws(() => defineCheckpoint(candidate as never).build.data({ languages: ['en'] }));
+    }
+  });
 
-      test('Checkpoint publishes only validated, sparse metadata overrides', () => {
-        const { checkpoint } = example();
-        const before = checkpoint.build.data({ languages: ['en', 'uk'] });
-        assert.deepEqual(checkpoint.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-        assert.deepEqual(
-          checkpoint.build.overrides(
-            {
-              params: { disabled: true },
-              locale: { title: { uk: 'Огляд' } },
-            },
-            { languages: ['en', 'uk'] },
-          ),
-          {
-            base: { params: { disabled: true } },
-            locale: { uk: { locale: { title: 'Огляд' } } },
-          },
-        );
-        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), before);
-      });
+  test('rejects malformed overrides, identity changes and disabled mandatory question', () => {
+    const { checkpoint, first } = example();
+    for (const patch of [
+      { id: id('80') },
+      { slug: 'renamed' },
+      { type: 'checkpoint' },
+      { params: { typo: true } },
+      { children: ['second', 'unknown'] },
+      { children: ['first', 'first', 'second'] },
+      { first: false },
+      { first: false, second: false, children: [] },
+      { another: false },
+      { another: first, children: ['first', 'second', 'another'] },
+      { first: { question: { params: { disabled: true } } } },
+      { content: { items: { first: false } } },
+    ])
+      assert.throws(() => checkpoint.build.overrides(patch as never, scope), /Invalid Checkpoint overrides/);
+  });
 
-      test('Removing a localized item does not generate a redundant locale array', () => {
-        const { checkpoint } = example();
-        const source = checkpoint.build.data({ languages: ['en', 'uk'] });
-        const patch = checkpoint.build.overrides(
-          { content: { items: { first: false }, order: ['second'] } },
-          { languages: ['en', 'uk'] },
-        );
-        assert.deepEqual(
-          patch.base.content?.map(item => item.slug),
-          ['second'],
-        );
-        assert.equal(patch.locale, undefined);
-        const resolved = mergeForValidation(
-          mergeForValidation(source.base, source.locale?.uk as never),
-          patch.base as never,
-        );
-        assert.deepEqual(
-          resolved.content.map(item => item.slug),
-          ['second'],
-        );
-      });
-
-      test('Checkpoint can add, disable, reorder, and deeply override existing items', () => {
-        const { checkpoint } = example();
-        const later = makeItem('later', ids[7], ids[8], ids[9], { en: 'Later?', uk: 'Потім?' });
-        const patch = {
-          content: {
-            items: { first: false as const, second: { question: { locale: { value: { uk: 'Інакше?' } } } } },
-            additionalItems: configuratorArrayToSlugMap([later]),
-            order: ['later', 'second'] as ('later' | 'second')[],
-          },
-        };
-        const original = checkpoint.build.data({ languages: ['en', 'uk'] });
-        const built = checkpoint.build.overrides(patch, { languages: ['en', 'uk'] });
-        assert.deepEqual(
-          built.base.content?.map(item => item.slug),
-          ['later', 'second'],
-        );
-        assert.deepEqual(
-          built.locale?.uk?.content?.map(item => item.slug),
-          ['later', 'second'],
-        );
-        assert.equal(built.locale?.uk?.content?.[0].question.locale.value, 'Потім?');
-        assert.equal(built.locale?.uk?.content?.[1].question.locale.value, 'Інакше?');
-        assert.equal(JSON.stringify(built).includes('additionalItems'), false);
-        assert.equal(JSON.stringify(built).includes('"order"'), false);
-        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), original);
-        assert.deepEqual(checkpoint.build.overrides(patch, { languages: ['en', 'uk'] }), built);
-      });
-
-      test('Draft mode reaches pending media inside Checkpoint Item Answer without weakening publication', () => {
-        const pendingVideo = defineYoutube({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d70',
-          slug: 'pendingVideo',
-          type: 'youtube',
-          params: { mode: 'link' },
-          locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Pending video' },
-        });
-        const answer = defineCheckpointAnswer({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d71',
-          slug: 'answer',
-          type: 'checkpointAnswer',
-          content: { items: { pendingVideo }, order: ['pendingVideo'] },
-        });
-        const question = defineText({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d72',
-          slug: 'question',
-          type: 'text',
-          params: {},
-          locale: { value: 'Where is the shadow?' },
-        });
-        const first = defineCheckpointItem({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d73',
-          slug: 'first',
-          type: 'checkpointItem',
-          question,
-          answer,
-        });
-        const checkpoint = defineCheckpoint({
-          id: 'b775647f-203d-481a-a1c7-4d331c779d74',
-          slug: 'review',
-          type: 'checkpoint',
-          params: {},
-          locale: { title: 'Review' },
-          content: { items: { first }, order: ['first'] },
-        });
-
-        assert.throws(() => checkpoint.build.data({ languages: ['en'] }), /unresolved video reference/);
-        const preview = checkpoint.build.data({ languages: ['en'], mode: 'draft' });
-        const answerBlock = preview.base.content[0].answer[0];
-        assert.equal(answerBlock.type, 'youtube');
-        if (answerBlock.type !== 'youtube') throw new Error('Expected a YouTube answer block');
-        assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
-        assert.equal(answerBlock.locale?.label, 'Pending video');
-        assert.throws(
-          () => checkpoint.build.data({ languages: ['en'], mode: 'production' }),
-          /unresolved video reference/,
-        );
-      });
-
-      test('Checkpoint requires exactly all active item slugs, once each', () => {
-        const { checkpoint, first } = example();
-        const invalid: [unknown, RegExp][] = [
-          [{ content: { order: ['first'] } }, /Missing slug: second/],
-          [{ content: { order: ['first', 'second', 'unknown'] } }, /Unknown slug: unknown/],
-          [{ content: { order: ['first', 'first', 'second'] } }, /Duplicate slug: first/],
-          [{ content: { items: { first: false }, order: ['first', 'second'] } }, /Unknown slug: first/],
-          [{ content: { items: { first: false } } }, /content.order is required/],
-          [{ content: { items: { first: false, second: false }, order: [] } }, /At least one active Checkpoint item/],
-          [{ content: { items: { other: false }, order: ['first', 'second'] } }, /unknown existing Checkpoint item/],
-          [
-            { content: { additionalItems: configuratorArrayToSlugMap([first]), order: ['first', 'second'] } },
-            /Duplicate Checkpoint item slug/,
-          ],
-          [{ content: { additionalItems: { other: false }, order: ['first', 'second', 'other'] } }, /Checkpoint item/],
-          [{ content: { additionalItems: { later: first }, order: ['first', 'second', 'later'] } }, /slug/],
-          [{ content: { unexpected: true } }, /Unknown Checkpoint content override field/],
-          [{ id: ids[0] }, /Unknown Checkpoint override field/],
-          [{ slug: 'renamed' }, /Unknown Checkpoint override field/],
-          [{ type: 'checkpoint' }, /Unknown Checkpoint override field/],
-          [{ params: { typo: true } }, /Invalid Checkpoint overrides/],
-          [
-            { content: { items: { first: { question: { params: { disabled: true } } } } } },
-            /Invalid Checkpoint Item overrides/,
-          ],
-        ];
-        for (const [patch, message] of invalid) {
-          assert.throws(() => checkpoint.build.overrides(patch as never, { languages: ['en', 'uk'] }), message);
-        }
-      });
-
-      test('Checkpoint rejects invalid authored collections and preserves authored snapshots', () => {
-        const { checkpoint, first, second } = example();
-        const base = { id: ids[0], slug: 'bad', type: 'checkpoint' as const, params: {}, locale: { title: 'Review' } };
-        assert.throws(
-          () =>
-            defineCheckpoint<string, { first: typeof first; second: typeof second }, ['en', 'uk']>({
-              ...base,
-              content: { items: configuratorArrayToSlugMap([first, second]), order: ['first'] },
-            }).build.data({ languages: ['en'] }),
-          /Missing slug/,
-        );
-        assert.throws(
-          () =>
-            defineCheckpoint<string, { first: typeof first }, ['en', 'uk']>({
-              ...base,
-              content: { items: { first }, order: [] },
-            }).build.data({ languages: ['en'] }),
-          /At least one active Checkpoint item/,
-        );
-        const original = checkpoint.build.data({ languages: ['en', 'uk'] });
-        checkpoint.content.order.reverse();
-        checkpoint.content.items.first = checkpoint.content.items.second as never;
-        const modifiedOutput = checkpoint.build.data({ languages: ['en', 'uk'] });
-        modifiedOutput.base.content.reverse();
-        assert.deepEqual(checkpoint.build.data({ languages: ['en', 'uk'] }), original);
-      });
+  test('keeps pending media in nested Answer draft-only without changing paths or validation', () => {
+    const pendingVideo = defineYoutube({
+      id: id('70'), slug: 'pendingVideo', type: 'youtube',
+      params: { mode: 'link' },
+      locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Pending video' },
     });
+    const answer = defineCheckpointAnswer({
+      id: id('71'), slug: 'answer', type: 'checkpointAnswer',
+      children: ['pendingVideo'], pendingVideo,
+    });
+    const question = defineText({
+      id: id('72'), slug: 'question', type: 'text',
+      params: {}, locale: { value: 'Where is the shadow?' },
+    });
+    const first = defineCheckpointItem({
+      id: id('73'), slug: 'first', type: 'checkpointItem', question, answer,
+    });
+    const checkpoint = defineCheckpoint({
+      id: id('74'), slug: 'review', type: 'checkpoint',
+      params: {}, locale: { title: 'Review' },
+      children: ['first'], first,
+    });
+    assert.throws(() => checkpoint.build.data({ languages: ['en'] }), /unresolved video reference/);
+    const preview = checkpoint.build.data({ languages: ['en'], mode: 'draft' });
+    const item = preview.base.first as { answer: Record<string, unknown> };
+    assert.equal((item.answer.pendingVideo as { type: string }).type, 'youtube');
+    assert.throws(
+      () => checkpoint.build.data({ languages: ['en'], mode: 'production' }),
+      /unresolved video reference/,
+    );
   });
 });
