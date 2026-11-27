@@ -19,12 +19,13 @@ import {
   validateEffectiveQuestionMetadata,
   validateQuestionPublication,
   type OrderedBlockPatch,
+  type BlockMembers,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -45,6 +46,10 @@ const validate = (candidate: Question_AnswerWithNumber_Config): void => {
 };
 
 type ContentShape = Question_AnswerWithNumber_Config['content'];
+type AddedPromptBlocksFromPatch<Patch, Content extends ContentShape> =
+  Patch extends { content: { question: infer Collection } }
+    ? AddedPlacementsFromPatch<Collection, BlockMembers<Content['question']>, ContentBlock_Primitive_Configurator, 'children'>
+    : {};
 export type Question_AnswerWithNumber_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -162,6 +167,10 @@ export const defineAnswerWithNumber = <
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   /** Preserve the exact existing-child override call alongside inferred additions. */
   const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch & Question_AnswerWithNumber_Overrides<Content, AddedPromptBlocksFromPatch<Patch, Content>, Languages>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_AnswerWithNumber_Data>;
     <const Added extends Record<string, ContentBlock_Primitive_Configurator>>(
       patch: Question_AnswerWithNumber_Overrides<Content, Added, Languages>,
       options: PublicationLanguageOptions<Languages>,
