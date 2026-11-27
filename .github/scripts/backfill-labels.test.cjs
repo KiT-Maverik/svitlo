@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const backfill = require('./backfill-labels.cjs');
 
 test('historical backfill resolves all scoped paths and preserves existing scopes', async () => {
+  const expectedRepo = { owner: 'KiT-Maverik', repo: 'svitlo' };
   const pulls = [
     {
       number: 101,
@@ -103,10 +104,12 @@ test('historical backfill resolves all scoped paths and preserves existing scope
     pulls: { list() {}, listFiles() {} },
     issues: {
       listForRepo() {},
-      async addLabels({ issue_number, labels }) {
+      async addLabels({ owner, repo, issue_number, labels }) {
+        assert.deepEqual({ owner, repo }, expectedRepo);
         added.set(issue_number, [...(added.get(issue_number) || []), ...labels]);
       },
-      async removeLabel({ issue_number, name }) {
+      async removeLabel({ owner, repo, issue_number, name }) {
+        assert.deepEqual({ owner, repo }, expectedRepo);
         removed.push({ issue_number, name });
       },
     },
@@ -114,6 +117,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
   const github = {
     rest,
     async paginate(endpoint, options) {
+      assert.deepEqual({ owner: options.owner, repo: options.repo }, expectedRepo);
       if (endpoint === rest.pulls.list) return pulls;
       if (endpoint === rest.issues.listForRepo) return issues;
       if (endpoint === rest.pulls.listFiles) {
@@ -124,7 +128,7 @@ test('historical backfill resolves all scoped paths and preserves existing scope
   };
   await backfill({
     github,
-    context: { repo: { owner: 'KiT-Maverik', repo: 'svitlo-web' } },
+    context: { repo: expectedRepo },
     core: {
       info() {},
       error(message) {

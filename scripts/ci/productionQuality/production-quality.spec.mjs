@@ -90,7 +90,13 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.match(workflow, /branches: \[main\]/);
   assert.match(workflow, /opened, reopened, synchronize, edited, ready_for_review/);
   assert.match(workflow, /name: Production \/ source policy/);
+  assert.match(workflow, /github\.event\.pull_request\.head\.repo\.full_name/);
   assert.match(workflow, /needs: policy/);
+  assert.match(workflow, /name: Build all distributable packages/);
+  assert.match(workflow, /name: Verify compiled public package artifacts/);
+  assert.match(workflow, /name: Build application and all needed workspace dependencies/);
+  assert.match(workflow, /name: Validate compiled application resources\n        if: matrix\.integration/);
+  assert.match(workflow, /name: Run application E2E suite\n        if: matrix\.e2e/);
   assert.match(workflow, /matrix: \$\{\{ fromJSON\(needs\.policy\.outputs\.apps\) \}\}/);
   assert.match(workflow, /fail-fast: false/);
   assert.match(workflow, /if: matrix.e2e/);
