@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { renderBlockerTodo, renderBlockerSpecification } from './renderBlockerTodo.mjs';
+import { renderBlockerTodo, renderBlockerSpecification } from '../renderBlockerTodo.mjs';
 
 test('blocker todo emits exactly one physical line even with pasted line breaks', () => {
   const todo = renderBlockerTodo('Implement reviewed media\r\n  and test keyboard access.');

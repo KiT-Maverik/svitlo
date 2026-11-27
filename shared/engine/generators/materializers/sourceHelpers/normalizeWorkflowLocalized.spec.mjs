@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { normalizeWorkflowLocalized } from './normalizeWorkflowLocalized.mjs';
+import { normalizeWorkflowLocalized } from '../normalizeWorkflowLocalized.mjs';
 
 test('reviewed source-language scalar is language keyed, never invariant', () => {
   assert.deepEqual(normalizeWorkflowLocalized('Sky', 'en', 'course.locale.title', ['en', 'uk']), { en: 'Sky' });
