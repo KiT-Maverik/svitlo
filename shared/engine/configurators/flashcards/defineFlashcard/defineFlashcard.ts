@@ -369,9 +369,9 @@ export function defineFlashcard<
       AddedRelationships
     > & {
       content?: {
-        front?: { additionalItems?: AddedFront & ChildrenSupporting<Languages, AddedFront> };
-        back?: { additionalItems?: AddedBack & ChildrenSupporting<Languages, AddedBack> };
-        hint?: { additionalItems?: AddedHint & ChildrenSupporting<Languages, AddedHint> };
+        front?: AddedFront & ChildrenSupporting<Languages, AddedFront>;
+        back?: AddedBack & ChildrenSupporting<Languages, AddedBack>;
+        hint?: AddedHint & ChildrenSupporting<Languages, AddedHint>;
       };
     },
     options: PublicationLanguageOptions<Languages>,
