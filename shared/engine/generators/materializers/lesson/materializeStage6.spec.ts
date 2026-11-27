@@ -164,7 +164,7 @@ test('reviewed source yields deterministic ordinary Lesson and nested Section/Co
   assert(!paths.includes(folder + 'sections/introduction/prompt/specification.md'));
   const root = result.files.find(file => file.path === folder + 'index.ts')!.content;
   assert.match(root, /defineLesson<"basics"/);
-  assert.match(root, /"order": \["introduction"\]/);
+  assert.match(root, /"children": \["introduction"\]/);
   assert.match(root, /"id": "12345678-1234-4234-8234-123456789001"/);
   assert.doesNotMatch(root, /"methodology":/);
   assert.match(
@@ -309,19 +309,19 @@ test('generated complete Lesson runs actual Config build.data(), not a mocked fa
   const lesson = load('index.ts').basics as {
     build: {
       data: (opts: { languages: string[] }) => {
-        base: { section: { type: string }[]; skills: string[] };
+        base: { children: string[]; introduction: { type: string }; skills: string[] };
       };
     };
   };
   const props = lesson.build.data({ languages: ['en'] });
-  assert.equal(props.base.section.length, 1);
-  assert.equal(props.base.section[0].type, 'content');
+  assert.equal(props.base.children.length, 1);
+  assert.equal(props.base.introduction.type, 'content');
   assert.deepEqual(props.base.skills, [verifiedMathSkillId]);
 });
 test('Lesson Stage 1 remains insufficient; completed Stage 2 can materialize regardless of origin', () => {
   const stage1 = valid();
-  delete (stage1.config as unknown as { section?: unknown }).section;
-  assert.throws(() => produce(stage1), /expected authored \{ items, order \}/);
+  delete (stage1.config as unknown as { children?: unknown }).children;
+  assert.throws(() => produce(stage1), /children|Invalid Lesson Stage 2 input/);
   assert.equal(produce().lessonId, id('01'));
 });
 test('standalone and Course-originated Stage 2 inputs use identical source materialization', () => {
@@ -425,7 +425,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       children: [],
     },
     production: { purpose: 'Reviewed assessment' },
-  } as LessonWorkflowStage2SectionNode;
+  } as LessonWorkflowStage2Section;
   input.config.reviewCards = {
     config: {
       type: 'flashcards',
@@ -436,7 +436,7 @@ test('authored enabled Quiz and Flashcards Sections pass separate source materia
       children: [],
     },
     production: { purpose: 'Reviewed recall practice' },
-  } as LessonWorkflowStage2SectionNode;
+  } as LessonWorkflowStage2Section;
   input.config.children.push('reviewQuiz', 'reviewCards');
   input.config.params = {
     ...input.config.params,
@@ -848,7 +848,7 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const lessonRoot = plan.files.find(file => file.path === folder + 'index.ts')?.content ?? '';
   assert.match(lessonRoot, /TODO \(BLOCKER\): Implement and verify Quest runtime support or remove the Quest/);
   assert.doesNotMatch(lessonRoot, /child_section_items_quest|\.\/sections\/quest/);
-  assert.match(lessonRoot, /"order": \["introduction"\]/);
+  assert.match(lessonRoot, /"children": \["introduction"\]/);
   assert(plan.files.some(file => file.path === folder + 'sections/quest/index.ts'));
   assert(plan.files.some(file => file.path === folder + 'sections/quest/stages.ts'));
   assert(plan.files.some(file => file.path === folder + 'sections/quest/tasks.ts'));
@@ -967,7 +967,8 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
       id: id('33'),
       slug: 'transition',
       locale: lesson.config.locale,
-      section: lesson.config,
+      children: [...lesson.config.children],
+    introduction: lesson.config.introduction,
     },
     production: {
       focus: 'Reviewed transition',
@@ -1149,9 +1150,9 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
   const section = {
     ...original,
     config: {
-      prompt: original.config.prompt,
+      ...original.config,
       children: ['prompt', 'shadowScene', 'shadowCarousel'],
-    prompt: original.config.prompt,
+      prompt: original.config.prompt,
           shadowScene: scene('95', 'shadowScene'),
           shadowCarousel: {
             config: {
