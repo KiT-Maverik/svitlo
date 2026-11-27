@@ -417,4 +417,18 @@ export const defineCarousel = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_Carousel_Configurator = ReturnType<typeof defineCarousel>;
+type DefinedCarousel = ReturnType<typeof defineCarousel>;
+/** The parent-facing union erases a composite's generic placement index. */
+export type ContentBlock_Carousel_Configurator = Pick<
+  DefinedCarousel, 'validate' | 'config'
+> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'carousel';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['overrides']>;
+  };
+};
