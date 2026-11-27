@@ -62,6 +62,8 @@ test('Flashcard: three standalone sides, ordered flags, relationships, source lo
   assert.match(main.content, /typeof content.hint/);
   assert.match(main.content, /typeof parameters.flags/);
   assert.match(main.content, /relationshipId: "connectionOne"/);
+  assert.match(main.content, /type: "reverse" as const/);
+  assert.match(main.content, /position: "peer" as const/);
   assert.match(main.content, /TODO \(BLOCKER\)/);
   assert.doesNotMatch(main.content, /NOT REVIEWED/);
   for (const role of ['front', 'back', 'hint'])
@@ -105,6 +107,16 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
       }),
     /languages.planned/,
   );
+});
+
+
+test('Flashcard materializer rejects invalid relationship type and position before source generation', () => {
+  const invalidType = fixture();
+  invalidType.config.parameters.relationships.reverseCard.type = 'unknown' as never;
+  assert.throws(() => materializeFlashcard(invalidType as never, context), /invalid relationship type, position or identity/);
+  const invalidPosition = fixture();
+  invalidPosition.config.parameters.relationships.reverseCard.position = 'above' as never;
+  assert.throws(() => materializeFlashcard(invalidPosition as never, context), /invalid relationship type, position or identity/);
 });
 
 // Stage 1 from the Lesson Flow is bank-level editorial input, not a complete Flashcard.
