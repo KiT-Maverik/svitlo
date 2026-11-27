@@ -245,7 +245,7 @@ describe('Configurators', () => {
       });
 
       test('Question prompt and scoring groups publish only explicit sparse child patches', () => {
-        const note = defineText({
+        const note = defineText<'note', ['en', 'uk']>({
           id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
           slug: 'note',
           type: 'text',
@@ -275,15 +275,15 @@ describe('Configurators', () => {
           content: { question: { promptBlock: { params: { disabled: true } } } },
         });
         assert.equal(oneChild.locale, undefined);
-        const localized = question.build.overrides(
+        const localizedPatch = question.build.overrides(
           { content: { question: { note: { locale: { value: { uk: 'Оновлено' } } } } } },
           { languages: ['uk'] },
         );
-        assert.deepEqual(localized.base, {});
-        assert.deepEqual(localized.locale?.uk, {
+        assert.deepEqual(localizedPatch.base, {});
+        assert.deepEqual(localizedPatch.locale?.uk, {
           content: { question: { note: { locale: { value: 'Оновлено' } } } },
         });
-        assert.equal(localized.locale?.en, undefined);
+        assert.equal(localizedPatch.locale?.en, undefined);
         const structural = question.build.overrides(
           { content: { question: { note: false, children: ['promptBlock'] } } },
           scope,
