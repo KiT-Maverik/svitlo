@@ -509,26 +509,26 @@ test('Course Lesson seed refuses an authored title without the reviewed document
 
 test('inventory follows all four Episode nesting levels and retains repeated Lesson placements', () => {
   const input = patchedSource();
-  const top = input.config.content;
-  const module = top.items.moduleOne.config.content;
-  const nested = module.items.chapterOne.config.content;
-  top.items.directEpisode = episode();
-  top.items.directChapter = chapter();
-  top.items.directChapter.config.slug = 'directChapter';
-  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
-  module.items.moduleEpisode = episode();
-  module.order = ['moduleEpisode', 'chapterOne'];
-  nested.items.reused = {
-    ...top.items.directLesson,
-    config: { ...top.items.directLesson.config, slug: 'reused' },
+  const top = input.config;
+  const module = top.moduleOne.config;
+  const nested = module.chapterOne.config;
+  top.directEpisode = episode();
+  top.directChapter = chapter();
+  top.directChapter.config.slug = 'directChapter';
+  top.children = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.moduleEpisode = episode();
+  module.children = ['moduleEpisode', 'chapterOne'];
+  nested.reused = {
+    ...top.directLesson,
+    config: { ...top.directLesson.config, slug: 'reused' },
     production: {
-      ...top.items.directLesson.production,
+      ...top.directLesson.production,
       existing: { id: reusedLessonId },
       sourcePatch: undefined,
       overrideRationale: undefined,
     },
   };
-  nested.order.push('reused');
+  nested.children.push('reused');
   const result = materializeCourseStage5(input, reuseOptions());
   const { lessons, episodes } = result.inventory;
   assert.deepEqual(
@@ -564,32 +564,32 @@ const assessmentSlot = (...dependencies) => ({
 
 test('reviewed Course preview with four Episodes, three Assessments and two new Lessons has nine owned stubs', () => {
   const input = patchedSource();
-  const top = input.config.content;
-  const module = top.items.moduleOne.config.content;
-  const chapterContent = module.items.chapterOne.config.content;
-  top.items.directEpisode = episode();
-  top.items.directChapter = chapter();
-  top.items.directChapter.config.slug = 'directChapter';
-  top.order = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
-  module.items.moduleEpisode = episode();
-  module.order = ['moduleEpisode', 'chapterOne'];
-  chapterContent.items.reused = {
-    ...top.items.directLesson,
-    config: { ...top.items.directLesson.config, slug: 'reused' },
+  const top = input.config;
+  const module = top.moduleOne.config;
+  const chapterContent = module.chapterOne.config;
+  top.directEpisode = episode();
+  top.directChapter = chapter();
+  top.directChapter.config.slug = 'directChapter';
+  top.children = ['directEpisode', 'moduleOne', 'directChapter', 'directLesson'];
+  module.moduleEpisode = episode();
+  module.children = ['moduleEpisode', 'chapterOne'];
+  chapterContent.reused = {
+    ...top.directLesson,
+    config: { ...top.directLesson.config, slug: 'reused' },
     production: {
-      ...top.items.directLesson.production,
+      ...top.directLesson.production,
       existing: { id: reusedLessonId },
       sourcePatch: undefined,
       overrideRationale: undefined,
     },
   };
-  chapterContent.order.push('reused');
-  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  chapterContent.order.push('chapterReview');
-  module.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  module.order.push('moduleReview');
-  top.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
-  top.order.push('finalReview');
+  chapterContent.children.push('reused');
+  chapterContent.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  chapterContent.children.push('chapterReview');
+  module.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  module.children.push('moduleReview');
+  top.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
+  top.children.push('finalReview');
   const plan = materializeCourseStage5(input, reuseOptions());
   assert.equal(plan.inventory.episodes.length, 4);
   assert.equal(plan.inventory.assessments.length, 3);
@@ -628,16 +628,16 @@ test('reviewed Course preview with four Episodes, three Assessments and two new 
 
 test('Course Stage 5 reserves Assessments at Course, Module and Chapter owners with verified upstream Lessons', () => {
   const input = source();
-  const rootContent = input.config.content;
-  const moduleContent = rootContent.items.moduleOne.config.content;
-  const chapterContent = moduleContent.items.chapterOne.config.content;
+  const rootContent = input.config;
+  const moduleContent = rootContent.moduleOne.config;
+  const chapterContent = moduleContent.chapterOne.config;
 
-  chapterContent.items.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  chapterContent.order.push('chapterReview');
-  moduleContent.items.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
-  moduleContent.order.push('moduleReview');
-  rootContent.items.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
-  rootContent.order.push('finalReview');
+  chapterContent.chapterReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  chapterContent.children.push('chapterReview');
+  moduleContent.moduleReview = assessmentSlot('moduleOne/chapterOne/lessonOne');
+  moduleContent.children.push('moduleReview');
+  rootContent.finalReview = assessmentSlot('moduleOne/chapterOne/lessonOne', 'directLesson');
+  rootContent.children.push('finalReview');
 
   const result = materializeCourseStage5(input, options());
   assert.equal(result.inventory.assessments.length, 3);
@@ -700,16 +700,16 @@ test('legacy Course draft dependencies normalize to flat published Lesson placem
 
 test('Course Assessment placement rejects missing, forward, repeated and ambiguous Lesson dependencies', () => {
   const base = source();
-  const content = base.config.content;
-  content.items.finalReview = assessmentSlot('missingLesson');
-  content.order.push('finalReview');
+  const content = base.config;
+  content.finalReview = assessmentSlot('missingLesson');
+  content.children.push('finalReview');
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
-  content.items.finalReview = assessmentSlot('directLesson', 'directLesson');
+  content.finalReview = assessmentSlot('directLesson', 'directLesson');
   assert.throws(() => materializeCourseStage5(base, options()), /duplicat/i);
 
-  content.items.finalReview = assessmentSlot('directLesson');
-  content.order.unshift(content.order.pop());
+  content.finalReview = assessmentSlot('directLesson');
+  content.children.unshift(content.children.pop());
   assert.throws(() => materializeCourseStage5(base, options()), /unresolved|forward/);
 
   const another = source();
@@ -717,8 +717,8 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   another.config.children.push('finalReview');
   another.config.moduleOne.config.chapterOne.config.chapterReview =
     assessmentSlot('directLesson');
-  const chapter = another.config.moduleOne.config.chapterOne.config.content;
-  chapter.order.push('chapterReview');
+  const chapter = another.config.moduleOne.config.chapterOne.config;
+  chapter.children.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
 });
 
