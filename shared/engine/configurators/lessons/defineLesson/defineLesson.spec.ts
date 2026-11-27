@@ -163,7 +163,7 @@ describe('Configurators', () => {
         assert.equal('programId' in lesson.build.data({ languages: ['en'] }).base, false);
         assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
         assert.equal(lesson.intro, section);
-        assert.equal(built.base.intro?.slug, 'intro');
+        assert.equal((built.base.intro as {slug?: string})?.slug, 'intro');
         assert.equal((built.base.intro as {children?: string[]})?.children?.[0], 'paragraph');
         assert.equal(built.locale?.uk?.locale?.title, 'Приклад');
         assert.equal(textValue((built.locale?.uk?.intro as { paragraph?: unknown })?.paragraph), 'Привіт');
@@ -239,8 +239,8 @@ describe('Configurators', () => {
           ...input,
           children: ['intro', 'banklessRecall'], intro: section, banklessRecall: recall,
         });
-        assert.equal(withQuiz.build.data({ languages: ['en'] }).base.banklessQuiz?.type, 'quiz');
-        assert.equal(withRecall.build.data({ languages: ['en'] }).base.banklessRecall?.type, 'flashcards');
+        assert.equal((withQuiz.build.data({ languages: ['en'] }).base.banklessQuiz as {type?: string})?.type, 'quiz');
+        assert.equal((withRecall.build.data({ languages: ['en'] }).base.banklessRecall as {type?: string})?.type, 'flashcards');
         assert.deepEqual(quiz.build.data({ languages: ['en'] }).base.params.selection, {
           mode: 'all',
           questionIds: [id('64')],
