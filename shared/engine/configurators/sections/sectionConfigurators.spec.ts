@@ -37,8 +37,7 @@ describe('Configurators', () => {
         children: ['prompt'], prompt,
       });
       const textValue = (value: unknown): string | undefined => {
-        if (!value || typeof value !== 'object' || !('type' in value) ||
-            value.type !== 'text' || !('locale' in value)) return undefined;
+        if (!value || typeof value !== 'object' || !('locale' in value)) return undefined;
         return (value.locale as { value?: string } | undefined)?.value;
       };
 
