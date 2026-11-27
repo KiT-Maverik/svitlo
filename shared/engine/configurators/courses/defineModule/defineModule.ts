@@ -149,7 +149,7 @@ export const defineModule = <
 >(
   config: Omit<Module_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: Extract<keyof Items, string>[] };
+    content: { items: Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>; order: string[] };
     locale: RequireLanguages<Module_Config['locale'], Languages>;
   },
 ): Module_Configurator<Slug, Items, Languages> => {
@@ -415,5 +415,5 @@ export const defineModule = <
       }),
       validate,
     },
-  } as Module_Configurator<Slug, Items, Languages>;
+  } as unknown as Module_Configurator<Slug, Items, Languages>;
 };
