@@ -176,69 +176,60 @@ export const defineChapter = <
     };
   };
 
+  /** One-level, placement-keyed assembly; each child validates its own Data. */
   const buildContent = (
     items: Record<string, Chapter_Child>,
     order: readonly string[],
-    patches: Record<string, unknown> = {},
+    changes: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
     const ids = new Set<string>();
-    for (const key of order) {
+    const entries = order.map(key => {
       const child = items[key];
       if (!child) throw new Error('Unknown Chapter child: ' + key);
       if (ids.has(child.id)) throw new Error('Duplicate Chapter child ID: ' + child.id);
       ids.add(child.id);
-    }
-    const entries = order.map(key => {
-      const raw = items[key];
-      const build = (raw as unknown as BuildChild).build;
+      const build = (child as unknown as BuildChild).build;
       if (!build || typeof build.data !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildData({ build });
-      const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
+      const patch = Object.hasOwn(changes, key)
+        ? buildChildOverrides({ build }, changes[key] as never)
+        : undefined;
       return { key, resource, patch };
     });
-    // Course placement keys may alias standalone Lessons, without editing their immutable source identity.
-    const embedAtPlacement = (value: Record<string, unknown>, key: string): Record<string, unknown> =>
-      value.type === 'lesson' ? { ...value, slug: key } : value;
-    // Child resources are already validated; avoid recursive generic inference on
-    // the whole nested Course/Lesson union while merging sparse published fragments.
-    const base = entries.map(({ key, resource, patch }) =>
-      embedAtPlacement(
-        mergeForValidation<Record<string, unknown>>(
-          resource.base as Record<string, unknown>,
-          (patch?.base ?? {}) as Record<string, unknown>,
-        ),
-        key,
-      ),
-    );
-    const locale: Partial<Record<LanguageCode, Chapter_Child_Data[]>> = {};
+    const base: Record<string, DeepPartial<Chapter_Child_Data>> = {};
+    const patches: Record<string, ChildResource> = {};
+    for (const { key, resource, patch } of entries) {
+      // Preserve the source Lesson slug; the surrounding key is its placement.
+      base[key] = mergeForValidation<Record<string, unknown>>(
+        resource.base as Record<string, unknown>,
+        (patch?.base ?? {}) as Record<string, unknown>,
+      ) as DeepPartial<Chapter_Child_Data>;
+      if (patch) patches[key] = patch;
+    }
+    const locale: Partial<Record<LanguageCode, Record<string, DeepPartial<Chapter_Child_Data>>>> = {};
     for (const language of languages) {
-      const resolved = entries.map(({ key, resource, patch }) => {
-        const original = mergeForValidation<Record<string, unknown>>(
+      const fragments: Record<string, DeepPartial<Chapter_Child_Data>> = {};
+      for (const { key, resource, patch } of entries) {
+        if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
+        const localized = mergeForValidation<Record<string, unknown>>(
           resource.base as Record<string, unknown>,
           (resource.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         const withBasePatch = mergeForValidation<Record<string, unknown>>(
-          original,
+          localized,
           (patch?.base ?? {}) as Record<string, unknown>,
         );
-        const effective = mergeForValidation<Record<string, unknown>>(
+        fragments[key] = mergeForValidation<Record<string, unknown>>(
           withBasePatch,
           (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
-        );
-        return parseChild(embedAtPlacement(effective, key));
-      });
-      // Inspect the published envelope without recursively expanding nested Lesson unions.
-      const hasTranslatedChild = entries.some(({ resource, patch }) => {
-        const ownLocales: Partial<Record<LanguageCode, unknown>> | undefined = resource.locale;
-        const patchLocales: Partial<Record<LanguageCode, unknown>> | undefined = patch?.locale;
-        return ownLocales?.[language] !== undefined || patchLocales?.[language] !== undefined;
-      });
-      if (hasTranslatedChild) locale[language] = resolved;
+        ) as DeepPartial<Chapter_Child_Data>;
+      }
+      if (Object.keys(fragments).length) locale[language] = fragments;
     }
-    return { base, locale };
+    return { base, locale, patches };
   };
 
   const base: ChapterConfigBase = {
