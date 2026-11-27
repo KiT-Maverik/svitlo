@@ -15,6 +15,7 @@ on:
       - 'scripts/ci/requiredCheckReuse/**'
       - 'scripts/ci/packageBuildReuse/**'
       - 'scripts/ci/buildTelemetry/**'
+      - 'scripts/runFastGate/**'
       - 'scripts/ci/draftCiPolicy/**'
       - 'scripts/ci/productionQuality/**'
       - 'scripts/ci/releaseSource/**'
@@ -82,6 +83,8 @@ jobs:
         run: node --test --test-reporter=dot scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
       - name: Verify direct build-command tracing and summary
         run: node --test --test-reporter=spec scripts/ci/buildTelemetry/*.spec.mjs
+      - name: Verify FastGate nested root and changed-workspace selection
+        run: node --test --test-reporter=spec scripts/runFastGate/run-fast-gate.spec.mjs
       - name: Parse touched CI orchestration scripts without npm dependencies
         run: |
           node --check scripts/ci/buildChangedContent/build-changed-content.mjs
