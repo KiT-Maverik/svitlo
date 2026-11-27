@@ -177,11 +177,13 @@ function checkSides(card: Card, slug: string): void {
     const items = Object.fromEntries(Object.entries(side).filter(([key]) => key !== 'children'));
     assertBankOrder(items, side.children, 'Flashcard ' + slug + ' ' + role, role !== 'hint');
     for (const key of side.children) {
-      const node = side[key];
-      if (!node || Array.isArray(node)) throw new Error('Invalid Flashcard Side child ' + key);
-      const config = 'config' in node ? node.config : node;
-      if (config.slug !== key)
+      const node: unknown = side[key];
+      if (!record(node) || !record(node.config))
+        throw new Error('Invalid Flashcard Side child ' + key);
+      const config = node.config;
+      if (typeof config.slug !== 'string' || config.slug !== key)
         throw new Error('Flashcard Side Block slug mismatch at ' + slug + '/' + role + '/' + key);
+      if (typeof config.id !== 'string') throw new Error('Flashcard Side Block ID required');
       assertBankUuid(config.id, 'Flashcard Side ContentBlock');
     }
   }
