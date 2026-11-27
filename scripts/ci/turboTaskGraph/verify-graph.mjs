@@ -34,7 +34,7 @@ export function verifyTurboConfiguration(root, lock, config) {
     check(JSON.stringify(task.dependsOn) === JSON.stringify(['^package:build']), 'Unsafe task prerequisites: ' + operation);
     check(
       /^turbo run /.test(root.scripts?.[operation] || '') &&
-      root.scripts[operation].includes('--cache=local:off'),
+      root.scripts[operation].includes('--cache=local:,remote:'),
       'Root operation must use uncached Turbo: ' + operation,
     );
   }
@@ -99,7 +99,7 @@ export function verifyLiveTurboGraph() {
   verifyTurboConfiguration(root, lock, config);
   const binary = join(repo, 'node_modules', '.bin', process.platform === 'win32' ? 'turbo.cmd' : 'turbo');
   check(existsSync(binary), 'Run npm ci before verifying Turbo --dry=json');
-  const result = spawnSync(binary, ['run', ...turboOperations, '--dry=json', '--cache=local:off'], {
+  const result = spawnSync(binary, ['run', ...turboOperations, '--dry=json', '--cache=local:,remote:'], {
     cwd: repo,
     encoding: 'utf8',
     maxBuffer: 64 * 1024 * 1024,

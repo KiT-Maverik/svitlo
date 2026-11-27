@@ -32,5 +32,6 @@
   },
   "remoteCache": {
     "enabled": false
-  }
+  },
+  "envMode": "loose"
 }
