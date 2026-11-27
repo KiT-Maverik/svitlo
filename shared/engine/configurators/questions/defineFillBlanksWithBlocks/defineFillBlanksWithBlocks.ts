@@ -182,7 +182,7 @@ export const defineFillBlanksWithBlocks = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
     const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   >(
@@ -238,6 +238,20 @@ export const defineFillBlanksWithBlocks = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch & Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
+    (
+      patch: Question_FillBlanksWithBlocks_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
