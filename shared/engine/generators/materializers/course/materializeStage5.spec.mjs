@@ -206,7 +206,7 @@ test('Course Stage 5 composes nested modules, chapters, episode intents and new-
   assert.match(constants, /export type Languages = typeof languages/);
 });
 
-test('parent source identifiers refuse reserved local collisions rather than inventing aliases', () => {
+test('Stage 5 rejects a retired Course content placement wrapper before generating imports', () => {
   const input = source();
   const module = input.config.moduleOne;
   module.config.slug = 'content';
@@ -221,8 +221,8 @@ test('parent source identifiers refuse reserved local collisions rather than inv
 
   assert.throws(
     () => materializeCourseStage5(input, options()),
-    /legacy.*wrapper|reserved/,
-    'reserved Course placement metadata cannot become a child key',
+    /Incomplete reviewed Course Stage 3 hierarchy or required methodology/,
+    'reserved Course content cannot masquerade as a direct child placement',
   );
 });
 
