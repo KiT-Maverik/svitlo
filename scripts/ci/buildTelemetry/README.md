@@ -40,7 +40,9 @@ command's exit status.
 The Ready and manually requested FastGate jobs also trace each required
 prerequisite `package:build` (origin `fastgate-prerequisite`), without
 changing which workspaces are selected for typechecking. Production Quality's
-`types` job emits per-workspace `packageBuildReuse` events and its summary;
+`types` job emits per-workspace `packageBuildReuse` events and its summary,
+including bounded tracked source filenames when source verification is lost;
+the captured names help identify which package build changed the worktree.
 its job-local state remains the only authority for verified reuse. All three
 paths remain deferred for an ordinary Draft PR. A missing or invalid optional telemetry file is
 reported as a warning, **not** a skipped test or an invented performance result.
