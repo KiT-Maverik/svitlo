@@ -10,6 +10,7 @@ import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentSection_Configurator } from '../../sections/defineContentSection/defineContentSection';
 import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
+import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
 import type { QuizSection_Configurator } from '../../sections/defineQuizSection/defineQuizSection';
 import { quizSection_Data_Schema } from '../../sections/defineQuizSection/defineQuizSection.schemas';
 
@@ -80,14 +81,12 @@ export const assessment_Draft_Data_Schema = identity
   .refine(
     value =>
       value.preview.params.disabled !== true &&
-      value.preview.content.some(
-        block =>
-          block.type === 'text' &&
-          typeof block.locale === 'object' &&
-          block.locale !== null &&
-          'value' in block.locale &&
-          block.locale.value === 'Not implemented',
-      ),
+      value.preview.children.some(key => {
+        const text = text_Data_Schema.safeParse(value.preview[key]);
+        return text.success &&
+          text.data.params.disabled !== true &&
+          text.data.locale.value === 'Not implemented';
+      }),
     'Assessment draft preview requires a real Not implemented Text ContentBlock',
   );
 export const assessment_Completed_Data_Schema = completedAssessment_Data_Schema;
