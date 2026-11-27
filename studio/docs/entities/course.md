@@ -30,9 +30,9 @@ A Course selects and orders reusable instructional Lessons, retains historical a
 
 ## Course teaching outcomes and referenced educational standards
 
-**Owner boundary:** only Course Config/Props has `params.outcomes/prerequisites`. Module/Chapter Stage 2/3 `production.outcomes/prerequisites` are educational methodology: verify Skill UUIDs and write them to `methodology.md`; do not add Skill imports or targets to `defineModule/defineChapter` `params` or runtime Props. Legacy `config.params.outcomes/prerequisites` inputs are rejected explicitly, with migration to reviewed `production` required.
+**Owner boundary:** only Course Config/Data has `params.outcomes/prerequisites`. Module/Chapter Stage 2/3 `production.outcomes/prerequisites` are educational methodology: verify Skill UUIDs and write them to `methodology.md`; do not add Skill imports or targets to `defineModule/defineChapter` `params` or published runtime Data. Legacy `config.params.outcomes/prerequisites` inputs are rejected explicitly, with migration to reviewed `production` required.
 
-Current Engine Course Config/Props support optional `params.outcomes` with
+Current Engine Course Config/Data support optional `params.outcomes` with
 `skills`, `skillGroups`, `skillDomains` UUID arrays. This describes
 **intended competencies to teach**; existing `params.prerequisites`
 describes **entry conditions** and remains separate. Referencing a Domain or
@@ -82,7 +82,7 @@ Generated TypeScript must always be valid against the current type contracts. Un
 
 ## Boundaries
 
-This change does **not** install Course-specific Scene renderers, write static Course JSON, provide a Course runtime, or change the Lesson registry. The existing textbook-generated Scene registry is the only registry intended for the final composed package.
+Course publication writes immutable, locale-scoped JSON from completed Engine Data, and the shared runtime assembles validated Course trees with independently referenced Lessons. Web navigation resolves activities by the verified Course placement path. This does **not** authorize a second Course-specific Scene registry; the existing textbook-generated Scene registry remains the source of executable Scenes.
 
 ## Playground published-course prototype
 
