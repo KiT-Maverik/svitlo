@@ -141,17 +141,24 @@ export type Module_Configurator<
   };
 } & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
 
+type ModuleAuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Module_Child>,
+  Languages extends readonly LanguageCode[],
+> = Omit<Module_Metadata_Config, 'slug' | 'locale'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+  locale: RequireLanguages<Module_Config['locale'], Languages>;
+
+} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+
 /** Define a Module with immutable ordered child configurators and stateless Build. */
-export const defineModule = <
+const defineModuleImplementation = <
   const Slug extends string,
   const Items extends Record<string, Module_Child>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<Module_Metadata_Config, 'slug' | 'locale'> & {
-    slug: Slug;
-    children: Extract<keyof Items, string>[];
-    locale: RequireLanguages<Module_Config['locale'], Languages>;
-  } & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+  config: ModuleAuthoredInput<Slug, Items, Languages>,
 ): Module_Configurator<Slug, Items, Languages> => {
   const metadataSchema = module_Metadata_Config_Schema;
   const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
@@ -415,3 +422,26 @@ export const defineModule = <
     },
   } as unknown as Module_Configurator<Slug, Items, Languages>;
 };
+
+/** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
+export function defineModule<
+  const Slug extends string,
+  const Items extends Record<string, Module_Child>,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(config: ModuleAuthoredInput<Slug, Items, Languages>): Module_Configurator<Slug, Items, Languages>;
+
+/** Infer direct placement fields from the ordered placement key literals. */
+export function defineModule<
+  const Slug extends string,
+  const Keys extends string,
+  const Items extends Record<Keys, Module_Child>,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(config: Omit<Module_Metadata_Config, 'slug' | 'locale'> & {
+    slug: Slug;
+    children: Keys[];
+    locale: RequireLanguages<Module_Config['locale'], Languages>;
+  } & { [Key in Keys]: Items[Key] } &
+  ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>): Module_Configurator<Slug, Items, Languages>;
+export function defineModule(config: unknown): unknown {
+  return defineModuleImplementation(config as never);
+}
