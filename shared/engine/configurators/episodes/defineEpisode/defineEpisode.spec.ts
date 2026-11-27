@@ -8,7 +8,12 @@ import { defineCourse } from '../../courses/defineCourse';
 import { defineModule } from '../../courses/defineModule';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineEpisode } from './defineEpisode';
-import { episode_Data_Schema, episodeConfigurator_Schema } from './defineEpisode.schemas';
+import {
+  episode_Completed_Data_Schema,
+  episode_Draft_Data_Schema,
+  episode_Data_Schema,
+  episodeConfigurator_Schema,
+} from './defineEpisode.schemas';
 
 describe('Configurators', () => {
   describe('Episodes', () => {
@@ -41,6 +46,46 @@ describe('Configurators', () => {
           children: ['intro'], intro,
           events: { enter: { trigger: 'onStart' } },
         });
+
+      test('completed Episode Data rejects Draft markers, and Draft requires a valid Content Section and Text placeholder', () => {
+        const episode = makeEpisode();
+        const built = episode.build.data({ languages: ['en'] });
+        const completed = mergeForValidation(built.base, built.locale?.en ?? {});
+        assert.equal(episode_Completed_Data_Schema.safeParse(completed).success, true);
+
+        // Draft must never fall through the completed arm of the union.
+        const missingPlaceholder = { ...completed, draft: true };
+        assert.equal(episode_Completed_Data_Schema.safeParse(missingPlaceholder).success, false);
+        assert.equal(episode_Draft_Data_Schema.safeParse(missingPlaceholder).success, false);
+        assert.equal(episode_Data_Schema.safeParse(missingPlaceholder).success, false);
+
+        const intro = completed.intro as Record<string, unknown>;
+        const line = intro.line as Record<string, unknown>;
+        const validDraft = {
+          ...completed,
+          draft: true,
+          intro: {
+            ...intro,
+            line: { ...line, locale: { value: 'Not implemented' } },
+          },
+        };
+        assert.equal(episode_Completed_Data_Schema.safeParse(validDraft).success, false);
+        assert.equal(episode_Draft_Data_Schema.safeParse(validDraft).success, true);
+        assert.equal(episode_Data_Schema.safeParse(validDraft).success, true);
+
+        // A structural parent cannot treat an arbitrary Section or forged Text as a draft.
+        const invalidKind = { ...validDraft, intro: { ...validDraft.intro, type: 'quiz' } };
+        assert.equal(episode_Draft_Data_Schema.safeParse(invalidKind).success, false);
+        assert.equal(episode_Data_Schema.safeParse(invalidKind).success, false);
+        const forgedText = {
+          ...validDraft,
+          intro: { ...validDraft.intro, line: { type: 'text', locale: { value: 'Not implemented' } } },
+        };
+        assert.equal(episode_Draft_Data_Schema.safeParse(forgedText).success, false);
+        assert.equal(episode_Data_Schema.safeParse(forgedText).success, false);
+        const disabled = { ...validDraft, intro: { ...validDraft.intro, params: { disabled: true } } };
+        assert.equal(episode_Data_Schema.safeParse(disabled).success, false);
+      });
 
       test('Episode is an independent JSON-safe configurator with sparse locale and no Lesson pedagogy', () => {
         const episode = makeEpisode();
