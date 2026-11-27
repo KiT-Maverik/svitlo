@@ -138,10 +138,18 @@ export function formatUnitWorkspaceTiming(name, script, durationMs, passed) {
     !['test', 'package:build'].includes(script) ||
     !Number.isFinite(durationMs) ||
     durationMs < 0
-  ) return null;
+  )
+    return null;
   return (
-    'SVITLO_CI_UNIT_TIMING ' + name + ' / ' + script + ' ' +
-    (durationMs / 1000).toFixed(1) + 's (' + (passed ? 'success' : 'failure') + ')'
+    'SVITLO_CI_UNIT_TIMING ' +
+    name +
+    ' / ' +
+    script +
+    ' ' +
+    (durationMs / 1000).toFixed(1) +
+    's (' +
+    (passed ? 'success' : 'failure') +
+    ')'
   );
 }
 
@@ -161,7 +169,9 @@ function runStepSync({ name, script }) {
   });
   if (process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
     const notice = formatUnitWorkspaceTiming(
-      name, script, Number(process.hrtime.bigint() - startedAt) / 1_000_000,
+      name,
+      script,
+      Number(process.hrtime.bigint() - startedAt) / 1_000_000,
       !result.error && result.status === 0,
     );
     if (notice) console.log(notice);

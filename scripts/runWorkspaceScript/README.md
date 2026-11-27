@@ -17,7 +17,7 @@ failures; no workspace is dropped to improve latency.
 
 Root `npm test` is intentionally **exhaustive** and currently executes
 workspace tests sequentially with npm `pretest`/`posttest` hooks intact.
-`SVITLO_CI_UNIT_TEST_TIMINGS=1` adds *passive*, validated
+`SVITLO_CI_UNIT_TEST_TIMINGS=1` adds _passive_, validated
 `SVITLO_CI_UNIT_TIMING` text lines for each actual `package:build`
 prerequisite and workspace `test` invocation. Each line contains the
 workspace, operation, wall time and success/failure, including npm lifecycle

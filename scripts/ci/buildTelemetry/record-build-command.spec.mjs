@@ -65,11 +65,16 @@ test('direct compiler command runs once with passive, source-labeled telemetry',
 test('an unsuccessful build is recorded as failed and still fails the caller', t => {
   const f = fixture(t);
   assert.throws(
-    () => runBuildCommand({
-      workspace: '@svitlo/engine', origin: 'content-prepare', command: 'npm', args: ['run'],
-      root: f.root, env: { SVITLO_CI_BUILD_TELEMETRY: f.file },
-      spawn: () => ({ status: 17 }),
-    }),
+    () =>
+      runBuildCommand({
+        workspace: '@svitlo/engine',
+        origin: 'content-prepare',
+        command: 'npm',
+        args: ['run'],
+        root: f.root,
+        env: { SVITLO_CI_BUILD_TELEMETRY: f.file },
+        spawn: () => ({ status: 17 }),
+      }),
     /exit 17/,
   );
   assert.equal(JSON.parse(readFileSync(f.file, 'utf8')).outcome, 'failed');
@@ -83,15 +88,27 @@ test('an unavailable optional sink cannot hide a compiler error or fail a succes
   console.warn = (...parts) => warnings.push(parts.join(' '));
   try {
     runBuildCommand({
-      workspace: '@svitlo/engine', origin: 'content-shard', command: 'npm', args: ['run'],
-      root: f.root, env: { SVITLO_CI_BUILD_TELEMETRY: badFile },
+      workspace: '@svitlo/engine',
+      origin: 'content-shard',
+      command: 'npm',
+      args: ['run'],
+      root: f.root,
+      env: { SVITLO_CI_BUILD_TELEMETRY: badFile },
       spawn: () => ({ status: 0 }),
     });
-    assert.throws(() => runBuildCommand({
-      workspace: '@svitlo/engine', origin: 'content-shard', command: 'npm', args: ['run'],
-      root: f.root, env: { SVITLO_CI_BUILD_TELEMETRY: badFile },
-      spawn: () => ({ status: 2 }),
-    }), /exit 2/);
+    assert.throws(
+      () =>
+        runBuildCommand({
+          workspace: '@svitlo/engine',
+          origin: 'content-shard',
+          command: 'npm',
+          args: ['run'],
+          root: f.root,
+          env: { SVITLO_CI_BUILD_TELEMETRY: badFile },
+          spawn: () => ({ status: 2 }),
+        }),
+      /exit 2/,
+    );
   } finally {
     console.warn = oldWarn;
   }
@@ -103,8 +120,16 @@ test('commands are unchanged when telemetry is disabled', t => {
   const f = fixture(t);
   let calls = 0;
   runBuildCommand({
-    workspace: '@svitlo/ui-kit', origin: 'content-fallback', command: 'npm', args: ['run'],
-    root: f.root, env: {}, spawn: () => { calls++; return { status: 0 }; },
+    workspace: '@svitlo/ui-kit',
+    origin: 'content-fallback',
+    command: 'npm',
+    args: ['run'],
+    root: f.root,
+    env: {},
+    spawn: () => {
+      calls++;
+      return { status: 0 };
+    },
   });
   assert.equal(calls, 1);
 });
@@ -114,17 +139,24 @@ test('CLI forwards the original command, its exit status and optional JSONL', t 
   const cli = fileURLToPath(new URL('./record-build-command.mjs', import.meta.url));
   const args = ['--workspace', '@svitlo/engine', '--origin', 'content-shard', '--'];
   const env = { ...process.env, SVITLO_CI_BUILD_TELEMETRY: f.file, GITHUB_SHA: 'fixture-head' };
-  const ok = spawnSync(process.execPath, [
-    cli, ...args, process.execPath, '-e', 'process.stdout.write("original command ran")',
-  ], { cwd: f.root, env, encoding: 'utf8' });
+  const ok = spawnSync(
+    process.execPath,
+    [cli, ...args, process.execPath, '-e', 'process.stdout.write("original command ran")'],
+    { cwd: f.root, env, encoding: 'utf8' },
+  );
   assert.equal(ok.status, 0, ok.stderr);
   assert.match(ok.stdout, /original command ran/);
-  const bad = spawnSync(process.execPath, [
-    cli, ...args, process.execPath, '-e', 'process.exit(13)',
-  ], { cwd: f.root, env, encoding: 'utf8' });
+  const bad = spawnSync(process.execPath, [cli, ...args, process.execPath, '-e', 'process.exit(13)'], {
+    cwd: f.root,
+    env,
+    encoding: 'utf8',
+  });
   assert.equal(bad.status, 1, bad.stderr);
   assert.match(bad.stderr, /exit 13/);
   const records = readFileSync(f.file, 'utf8').trim().split('\n').map(JSON.parse);
-  assert.deepEqual(records.map(record => record.outcome), ['built', 'failed']);
+  assert.deepEqual(
+    records.map(record => record.outcome),
+    ['built', 'failed'],
+  );
   assert.ok(records.every(record => record.checkoutSha === 'fixture-head'));
 });

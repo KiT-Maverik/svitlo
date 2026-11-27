@@ -20,11 +20,20 @@ export function summarizeBuilds(lines) {
       typeof event.workspace !== 'string' ||
       !Number.isFinite(event.durationMs) ||
       event.durationMs < 0
-    ) throw new Error('Invalid build telemetry event');
+    )
+      throw new Error('Invalid build telemetry event');
     const key = (event.origin || event.recordKind || 'reuse-helper') + ' | ' + event.workspace;
     const row = rows.get(key) || {
-      key, requests: 0, built: 0, reused: 0, failed: 0, durationMs: 0,
-      rebuildReasons: {}, unverifiedAfterBuild: 0, sourceChecks: {}, dirtyTrackedFiles: [],
+      key,
+      requests: 0,
+      built: 0,
+      reused: 0,
+      failed: 0,
+      durationMs: 0,
+      rebuildReasons: {},
+      unverifiedAfterBuild: 0,
+      sourceChecks: {},
+      dirtyTrackedFiles: [],
     };
     row.requests++;
     row[event.outcome]++;
@@ -35,8 +44,11 @@ export function summarizeBuilds(lines) {
       }
       row.rebuildReasons[event.rebuildReason] = (row.rebuildReasons[event.rebuildReason] || 0) + 1;
     }
-    if (event.outcome === 'built' && Object.hasOwn(event, 'sourceAfterBuildRevision') &&
-      event.sourceAfterBuildRevision === null) {
+    if (
+      event.outcome === 'built' &&
+      Object.hasOwn(event, 'sourceAfterBuildRevision') &&
+      event.sourceAfterBuildRevision === null
+    ) {
       row.unverifiedAfterBuild++;
     }
     if (event.sourceCheck) {
@@ -46,8 +58,7 @@ export function summarizeBuilds(lines) {
       row.sourceChecks[event.sourceCheck] = (row.sourceChecks[event.sourceCheck] || 0) + 1;
     }
     if (event.dirtyTrackedFiles) {
-      if (!Array.isArray(event.dirtyTrackedFiles) ||
-        event.dirtyTrackedFiles.some(path => typeof path !== 'string')) {
+      if (!Array.isArray(event.dirtyTrackedFiles) || event.dirtyTrackedFiles.some(path => typeof path !== 'string')) {
         throw new Error('Invalid tracked file diagnostic');
       }
       for (const path of event.dirtyTrackedFiles) {
@@ -69,13 +80,30 @@ export function formatBuildSummary({ total, rows }) {
     '| Origin and workspace | Requests | Built | Verified reuse | Failed | Request seconds | Rebuild reasons | Unverified after build |',
     '| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |',
     ...rows.map(row => {
-      const reasons = Object.entries(row.rebuildReasons || {})
-        .sort(([a], [b]) => a.localeCompare(b))
-        .map(([reason, count]) => reason + ': ' + count)
-        .join(', ') || '—';
-      return '| ' + row.key.replaceAll('|', '/') + ' | ' + row.requests + ' | ' + row.built +
-        ' | ' + row.reused + ' | ' + row.failed + ' | ' + (row.durationMs / 1000).toFixed(2) +
-        ' | ' + reasons + ' | ' + (row.unverifiedAfterBuild || 0) + ' |';
+      const reasons =
+        Object.entries(row.rebuildReasons || {})
+          .sort(([a], [b]) => a.localeCompare(b))
+          .map(([reason, count]) => reason + ': ' + count)
+          .join(', ') || '—';
+      return (
+        '| ' +
+        row.key.replaceAll('|', '/') +
+        ' | ' +
+        row.requests +
+        ' | ' +
+        row.built +
+        ' | ' +
+        row.reused +
+        ' | ' +
+        row.failed +
+        ' | ' +
+        (row.durationMs / 1000).toFixed(2) +
+        ' | ' +
+        reasons +
+        ' | ' +
+        (row.unverifiedAfterBuild || 0) +
+        ' |'
+      );
     }),
     '',
     ...(rows.some(row => Object.keys(row.sourceChecks || {}).length)
@@ -83,14 +111,16 @@ export function formatBuildSummary({ total, rows }) {
           'Git source verification at invalidation (tracked filenames only; no file contents):',
           '| Origin and workspace | Git verification results | Tracked paths (at most 12) |',
           '| --- | --- | --- |',
-          ...rows.filter(row => Object.keys(row.sourceChecks || {}).length).map(row => {
-            const checks = Object.entries(row.sourceChecks)
-              .sort(([a], [b]) => a.localeCompare(b))
-              .map(([status, count]) => status + ': ' + count)
-              .join(', ');
-            const paths = row.dirtyTrackedFiles.map(path => path.replaceAll('|', '/')).join(', ') || '—';
-            return '| ' + row.key.replaceAll('|', '/') + ' | ' + checks + ' | ' + paths + ' |';
-          }),
+          ...rows
+            .filter(row => Object.keys(row.sourceChecks || {}).length)
+            .map(row => {
+              const checks = Object.entries(row.sourceChecks)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .map(([status, count]) => status + ': ' + count)
+                .join(', ');
+              const paths = row.dirtyTrackedFiles.map(path => path.replaceAll('|', '/')).join(', ') || '—';
+              return '| ' + row.key.replaceAll('|', '/') + ' | ' + checks + ' | ' + paths + ' |';
+            }),
           '',
         ]
       : []),

@@ -69,19 +69,10 @@ test('root selection becoming narrower automatically restores previously overlap
 test('drifting root selection, missing compiled tests and unsafe paths fail closed', t => {
   const { root, selectors, writeRoot } = fixture(t);
   writeRoot('.test-build/missing/*.spec.js');
-  assert.throws(
-    () => planGeneratorTests({ root, uniqueOnly: true, selectors }),
-    /No compiled tests for selector/,
-  );
+  assert.throws(() => planGeneratorTests({ root, uniqueOnly: true, selectors }), /No compiled tests for selector/);
   writeRoot('.*');
-  assert.throws(
-    () => planGeneratorTests({ root, uniqueOnly: true, selectors }),
-    /Unsafe test selector/,
-  );
-  assert.throws(
-    () => planGeneratorTests({ root, selectors: ['../other/*.spec.js'] }),
-    /Unsafe test selector/,
-  );
+  assert.throws(() => planGeneratorTests({ root, uniqueOnly: true, selectors }), /Unsafe test selector/);
+  assert.throws(() => planGeneratorTests({ root, selectors: ['../other/*.spec.js'] }), /Unsafe test selector/);
   assert.throws(
     () => planGeneratorTests({ root, selectors: ['shared/engine/missing/*.spec.js'] }),
     /No compiled tests for selector/,
@@ -91,10 +82,7 @@ test('drifting root selection, missing compiled tests and unsafe paths fail clos
 test('cannot replace the complete generator suite with an empty job', t => {
   const { root, selectors, writeRoot } = fixture(t);
   writeRoot('.test-build/generators/lessons/*.spec.js scripts/generatorOnly.spec.mjs');
-  assert.throws(
-    () => planGeneratorTests({ root, uniqueOnly: true, selectors }),
-    /Missing generator-only tests/,
-  );
+  assert.throws(() => planGeneratorTests({ root, uniqueOnly: true, selectors }), /Missing generator-only tests/);
 });
 
 test('the optimized selection is opt-in only for an explicit true input', () => {
@@ -106,7 +94,8 @@ test('the optimized selection is opt-in only for an explicit true input', () => 
 });
 
 test('Engine npm unit selector parser accounts for every direct input', () => {
-  const command = 'tsc -p tsconfig.test.json && node --test .test-build/a/*.spec.js generators/skills/publishSkillTree.spec.mjs && node ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs && node --test ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs';
+  const command =
+    'tsc -p tsconfig.test.json && node --test .test-build/a/*.spec.js generators/skills/publishSkillTree.spec.mjs && node ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs && node --test ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs';
   assert.deepEqual(rootEngineTestSelectors(command), [
     'shared/engine/.test-build/a/*.spec.js',
     'shared/engine/generators/skills/publishSkillTree.spec.mjs',

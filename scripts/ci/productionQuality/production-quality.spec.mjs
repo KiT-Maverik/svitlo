@@ -145,20 +145,32 @@ test('Ready main runs the full Engine generator suite once through required Prod
     workflow,
     /  generators:\s*\n    name: Production \/ Engine generators\s*\n    needs: policy\s*\n[\s\S]*?uses: \.\/\.github\/workflows\/engine-generators\.yml\s*\n    with:\s*\n[\s\S]*?run_full_generator_tests: true/,
   );
-  assert.match(workflow, /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/);
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
 });
 
 test('production-exclusive generator selection requires exhaustive unit and strict verify', () => {
   const target = engineGeneratorsWorkflow.split('  generator-tests:\n')[1];
   assert.ok(target);
-  assert.match(engineGeneratorsWorkflow, /only_unit_unique_generator_tests:\s*\n        type: boolean\s*\n        default: false/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /only_unit_unique_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
   assert.match(target, /SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: \$\{\{ inputs\.only_unit_unique_generator_tests \}\}/);
   assert.match(target, /run: node scripts\/ci\/productionQuality\/select-generator-tests\.mjs/);
-  assert.match(engineGeneratorsWorkflow, /scripts\/ci\/productionQuality\/production-quality\.spec\.mjs scripts\/ci\/productionQuality\/select-generator-tests\.spec\.mjs/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /scripts\/ci\/productionQuality\/production-quality\.spec\.mjs scripts\/ci\/productionQuality\/select-generator-tests\.spec\.mjs/,
+  );
   assert.match(workflow, /only_unit_unique_generator_tests: true/);
   assert.match(workflow, /run_full_generator_tests: true/);
   assert.match(workflow, /name: Test every eligible workspace[\s\S]*?-- npm test/);
-  assert.match(workflow, /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/);
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
   assert.match(workflow, /status !== 'success'/);
 });
 
@@ -170,17 +182,12 @@ test('standalone and reusable Engine generators have distinct cancellation group
   const engineGroup = engineGeneratorsWorkflow.match(
     /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
   )?.[1];
-  const productionGroup = workflow.match(
-    /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
-  )?.[1];
+  const productionGroup = workflow.match(/concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/)?.[1];
   assert.equal(
     engineGroup,
     'engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}',
   );
-  assert.equal(
-    productionGroup,
-    'production-quality-${{ github.event.pull_request.number || github.ref }}',
-  );
+  assert.equal(productionGroup, 'production-quality-${{ github.event.pull_request.number || github.ref }}');
   // Model only these two documented substitutions (not the GitHub evaluator).
   const evaluateGroup = (template, workflowName, prNumber) =>
     template

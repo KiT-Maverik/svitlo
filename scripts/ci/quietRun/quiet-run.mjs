@@ -25,8 +25,12 @@ export function failureExcerpt(output, limit = 12000) {
  * Reject arbitrary child output, newlines and workflow-command lookalikes.
  */
 export function isUnitWorkspaceTimingLine(line, enabled = process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
-  return enabled &&
-    /^SVITLO_CI_UNIT_TIMING @svitlo\/[a-z][a-z0-9-]* \/ (?:test|package:build) \d+\.\ds \((?:success|failure)\)$/.test(line);
+  return (
+    enabled &&
+    /^SVITLO_CI_UNIT_TIMING @svitlo\/[a-z][a-z0-9-]* \/ (?:test|package:build) \d+\.\ds \((?:success|failure)\)$/.test(
+      line,
+    )
+  );
 }
 
 /** Windows npm is a .cmd shim; invoke its JavaScript CLI directly without a shell. */

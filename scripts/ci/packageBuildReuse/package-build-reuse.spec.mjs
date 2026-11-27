@@ -87,10 +87,9 @@ test('changed and missing outputs rebuild dependents; new source invalidates all
   f.runner.ensure('b');
   assert.deepEqual(f.calls, ['a', 'b', 'a', 'b', 'b']);
   assert.deepEqual(
-    f.events.filter(event => event.outcome === 'built').map(({ workspace, rebuildReason }) => [
-      workspace,
-      rebuildReason,
-    ]),
+    f.events
+      .filter(event => event.outcome === 'built')
+      .map(({ workspace, rebuildReason }) => [workspace, rebuildReason]),
     [
       ['a', 'missing-state-record'],
       ['b', 'missing-state-record'],
@@ -105,7 +104,10 @@ test('changed and missing outputs rebuild dependents; new source invalidates all
   assert.equal(readBuildState(f.stateFile, f.root).stats.built, 7);
   assert.deepEqual(
     f.events.slice(-2).map(({ workspace, rebuildReason }) => [workspace, rebuildReason]),
-    [['a', 'source-revision-changed'], ['b', 'source-revision-changed']],
+    [
+      ['a', 'source-revision-changed'],
+      ['b', 'source-revision-changed'],
+    ],
   );
 });
 
@@ -142,10 +144,12 @@ test('dirty or unknown source prevents reuse even with intact artifacts', t => {
   f.runner.ensure('a');
   assert.deepEqual(f.calls, ['a', 'a']);
   assert.equal(readBuildState(f.stateFile, f.root).stats.reused, 0);
-  assert.deepEqual(f.events.map(event => event.rebuildReason), ['unverified-source', 'unverified-source']);
+  assert.deepEqual(
+    f.events.map(event => event.rebuildReason),
+    ['unverified-source', 'unverified-source'],
+  );
   assert.equal(f.events[0].sourceAfterBuildRevision, null);
 });
-
 
 test('a build which dirties tracked source explains later fail-closed recompilations', t => {
   const packages = [ws('a', 'shared/a')];
@@ -169,7 +173,9 @@ test('a build which dirties tracked source explains later fail-closed recompilat
   runner.ensure('a');
   assert.deepEqual(
     events.map(({ rebuildReason, sourceRevision, sourceAfterBuildRevision }) => [
-      rebuildReason, sourceRevision, sourceAfterBuildRevision,
+      rebuildReason,
+      sourceRevision,
+      sourceAfterBuildRevision,
     ]),
     [
       ['missing-state-record', 'commit-1', null],
@@ -339,7 +345,12 @@ test('telemetry records actual compiler, verified reuse and failure per workspac
   f.runner.ensure('b');
   assert.deepEqual(
     f.events.map(({ workspace, outcome }) => [workspace, outcome]),
-    [['a', 'built'], ['b', 'built'], ['a', 'reused'], ['b', 'reused']],
+    [
+      ['a', 'built'],
+      ['b', 'built'],
+      ['a', 'reused'],
+      ['b', 'reused'],
+    ],
   );
   for (const event of f.events) {
     assert.equal(event.sourceRevision, 'commit-1');
@@ -385,16 +396,10 @@ test('telemetry JSONL is job-local, source-labeled and never written into checko
     () => appendBuildTelemetry({ root: f.root, file: join(f.root, 'unsafe.jsonl'), event }),
     /outside the repository/,
   );
-  assert.throws(
-    () => appendBuildTelemetry({ root: f.root, file: 'relative.jsonl', event }),
-    /absolute/,
-  );
+  assert.throws(() => appendBuildTelemetry({ root: f.root, file: 'relative.jsonl', event }), /absolute/);
   const linkedFile = join(dirname(f.stateFile), 'linked-telemetry.jsonl');
   symlinkSync(join(f.root, 'inside-repo.jsonl'), linkedFile);
-  assert.throws(
-    () => appendBuildTelemetry({ root: f.root, file: linkedFile, event }),
-    /symlink/,
-  );
+  assert.throws(() => appendBuildTelemetry({ root: f.root, file: linkedFile, event }), /symlink/);
   const linkedFolder = join(dirname(f.stateFile), 'linked-checkout');
   symlinkSync(f.root, linkedFolder, 'dir');
   assert.throws(
@@ -405,7 +410,9 @@ test('telemetry JSONL is job-local, source-labeled and never written into checko
 
 test('unavailable optional telemetry cannot convert a valid build or failed compiler into success', t => {
   const f = fixture(t, { packages: [ws('a', 'shared/a')] });
-  const reporter = () => { throw new Error('trace sink unavailable'); };
+  const reporter = () => {
+    throw new Error('trace sink unavailable');
+  };
   const runner = createPackageBuildReuse({
     root: f.root,
     packages: [ws('a', 'shared/a')],
@@ -431,7 +438,9 @@ test('unavailable optional telemetry cannot convert a valid build or failed comp
       root: f.root,
       packages: [ws('a', 'shared/a')],
       stateFile: f.stateFile,
-      runBuild: () => { throw new Error('real compiler failed'); },
+      runBuild: () => {
+        throw new Error('real compiler failed');
+      },
       sourceRevision: () => 'commit-1',
       onBuildEvent: reporter,
     });

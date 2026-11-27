@@ -51,7 +51,7 @@ Each line records a versioned event with timestamp, `GITHUB_RUN_ID`,
 `package:build`, outcome (`built`, `reused`, or `failed`),
 request duration (including dist validation), checked-out clean source revision
 (or `null`), and successful dist SHA-256 digest (or `null` on failure).
-For helper-managed builds, `rebuildReason` classifies the *existing*
+For helper-managed builds, `rebuildReason` classifies the _existing_
 fail-closed decision as `missing-state-record`, `unverified-source`,
 `source-revision-changed`, `dependency-versions-changed`,
 `missing-or-invalid-dist`, or `dist-digest-changed`. Verified `reused`
@@ -84,6 +84,7 @@ invocations across the selected jobs before claiming total CI build savings. Dra
 these expensive commands and cannot produce a Production baseline.
 
 Validation without CI:
+
 ```sh
 node --test scripts/ci/packageBuildReuse/package-build-reuse.spec.mjs
 ```

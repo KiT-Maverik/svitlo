@@ -94,11 +94,7 @@ test('nested Ready PR unrelated root or workflow changes do not broaden typechec
     changedOnly: true,
   });
   assert.deepEqual([...selection.affected], []);
-  const changedWorkspace = chooseChecks(
-    ['README.md', 'content/math/src/demo.ts'],
-    packages,
-    { changedOnly: true },
-  );
+  const changedWorkspace = chooseChecks(['README.md', 'content/math/src/demo.ts'], packages, { changedOnly: true });
   assert.deepEqual([...changedWorkspace.affected], ['@svitlo/math']);
 });
 

@@ -14,49 +14,55 @@ const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 
 // Original generator-tests step selectors, kept byte-for-byte in one place.
 export const generatorSelectors = Object.freeze([
-  "shared/engine/.test-build/generators/lessons/*.spec.js",
-  "shared/engine/generators/courses/publishCourseData.spec.mjs",
-  "shared/engine/generators/skills/publishSkillTree.spec.mjs",
-  "shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs",
-  "shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs",
-  "shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs",
-  "shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js",
-  "shared/engine/.test-build/assemblers/courseToc/*.spec.js",
-  "shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs",
-  "shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs",
-  "shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs",
-  "shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs",
-  "shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs",
-  "scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs",
-  "scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs",
-  "scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs",
-  "shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs",
-  "shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs",
-  "shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs",
-  "shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs",
-  "shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs",
-  "shared/engine/generators/materializers/course/*.spec.mjs",
-  "shared/engine/generators/materializers/module/*.spec.mjs",
-  "shared/engine/generators/materializers/chapter/*.spec.mjs",
-  "shared/engine/generators/materializers/lesson/*.spec.mjs",
-  "shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js",
-  "shared/engine/.test-build/generators/materializers/lesson/*.spec.js",
-  "shared/engine/.test-build/generators/materializers/scene/*.spec.js",
-  "shared/engine/.test-build/generators/materializers/episode/*.spec.js",
-  "shared/engine/.test-build/generators/materializers/questStage/*.spec.js",
-  "shared/engine/.test-build/generators/materializers/questTask/*.spec.js",
-  "scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs",
-  "shared/engine/.test-build/generators/materializers/bankSource/*.spec.js",
-  "scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs",
-  "scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs"
+  'shared/engine/.test-build/generators/lessons/*.spec.js',
+  'shared/engine/generators/courses/publishCourseData.spec.mjs',
+  'shared/engine/generators/skills/publishSkillTree.spec.mjs',
+  'shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs',
+  'shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs',
+  'shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs',
+  'shared/engine/.test-build/assemblers/assembleCourseLesson/assembleCourseTree.spec.js',
+  'shared/engine/.test-build/assemblers/courseToc/*.spec.js',
+  'shared/engine/scripts/generateCourseReviewArtifacts/generate-course-review-artifacts.spec.mjs',
+  'shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs',
+  'shared/engine/scripts/sceneScaffolding/sceneScaffolding.spec.mjs',
+  'shared/engine/scripts/generateQuestionReviewArtifacts/*.spec.mjs',
+  'shared/engine/scripts/generateFlashcardReviewArtifacts/generate-flashcard-review-artifacts.spec.mjs',
+  'scripts/generateTranslationReviewArtifacts/agent-reference-command.spec.mjs',
+  'scripts/generateTranslationReviewArtifacts/education-standards-reference.spec.mjs',
+  'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.spec.mjs',
+  'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
+  'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs',
+  'shared/engine/scripts/generateAssessmentResources/generateAssessmentResources.spec.mjs',
+  'shared/engine/scripts/loadAuthoredConfigurators/resolveMaterializedEntrypoint.spec.mjs',
+  'shared/engine/scripts/loadAuthoredConfigurators/typedEditorialDrafts.spec.mjs',
+  'shared/engine/generators/materializers/course/*.spec.mjs',
+  'shared/engine/generators/materializers/module/*.spec.mjs',
+  'shared/engine/generators/materializers/chapter/*.spec.mjs',
+  'shared/engine/generators/materializers/lesson/*.spec.mjs',
+  'shared/engine/.test-build/generators/materializers/directMaterialization/*.spec.js',
+  'shared/engine/.test-build/generators/materializers/lesson/*.spec.js',
+  'shared/engine/.test-build/generators/materializers/scene/*.spec.js',
+  'shared/engine/.test-build/generators/materializers/episode/*.spec.js',
+  'shared/engine/.test-build/generators/materializers/questStage/*.spec.js',
+  'shared/engine/.test-build/generators/materializers/questTask/*.spec.js',
+  'scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs',
+  'shared/engine/.test-build/generators/materializers/bankSource/*.spec.js',
+  'scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs',
+  'scripts/textbook-tooling/buildTextbook/stageTextbookAssets.spec.mjs',
 ]);
 
 /** Root Engine npm test must keep its exhaustive Node file selection. */
 export function rootEngineTestSelectors(testScript) {
   if (typeof testScript !== 'string') throw new Error('Engine npm test command missing');
-  const match = /^tsc -p tsconfig\.test\.json && node --test (.+?) && node \.\.\/\.\.\/scripts\/checkEngineRuntimeGraph\/check-engine-runtime-graph\.mjs && node --test /.exec(testScript);
+  const match =
+    /^tsc -p tsconfig\.test\.json && node --test (.+?) && node \.\.\/\.\.\/scripts\/checkEngineRuntimeGraph\/check-engine-runtime-graph\.mjs && node --test /.exec(
+      testScript,
+    );
   if (!match) throw new Error('Engine npm test routing changed; refuse to skip generator tests');
-  const paths = match[1].trim().split(/\s+/).map(path => 'shared/engine/' + path);
+  const paths = match[1]
+    .trim()
+    .split(/\s+/)
+    .map(path => 'shared/engine/' + path);
   if (!paths.length) throw new Error('Empty Engine npm test selection');
   return paths;
 }
@@ -97,10 +103,18 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   try {
     if (process.argv.length !== 2) throw new Error('Usage: select-generator-tests.mjs');
     const plan = planGeneratorTests({ uniqueOnly: selectMode(process.env.SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS) });
-    console.log('Engine generator regression: executing ' + plan.selected.length + '/' + plan.all.length +
-      ' files; ' + plan.coveredByUnit.length + ' covered by required root npm test');
+    console.log(
+      'Engine generator regression: executing ' +
+        plan.selected.length +
+        '/' +
+        plan.all.length +
+        ' files; ' +
+        plan.coveredByUnit.length +
+        ' covered by required root npm test',
+    );
     const result = spawnSync(process.execPath, ['--test', '--test-reporter=dot', ...plan.selected], {
-      cwd: repo, stdio: 'inherit'
+      cwd: repo,
+      stdio: 'inherit',
     });
     if (result.error) throw result.error;
     if (result.status !== 0) process.exitCode = result.status || 1;

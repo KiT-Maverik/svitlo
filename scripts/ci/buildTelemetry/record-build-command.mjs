@@ -59,7 +59,8 @@ export function runBuildCommand({
   }
   if (!success) {
     throw new Error(
-      workspace + ' / package:build failed' +
+      workspace +
+        ' / package:build failed' +
         (result.error
           ? ': ' + result.error.message + ' (' + origin + ')'
           : ' (' + origin + ', exit ' + result.status + ')'),

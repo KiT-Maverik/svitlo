@@ -38,11 +38,16 @@ test('root test planning retains every eligible workspace and npm lifecycle hook
   const expected = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, 'test')).map(pkg => pkg.name);
   assert.deepEqual(plan.selected, expected);
   assert.deepEqual(
-    plan.steps.filter(step => step.script === 'test').map(step => step.name).sort(),
+    plan.steps
+      .filter(step => step.script === 'test')
+      .map(step => step.name)
+      .sort(),
     expected.slice().sort(),
   );
-  assert.equal(new Set(plan.steps.filter(step => step.script === 'package:build').map(step => step.name)).size,
-    plan.steps.filter(step => step.script === 'package:build').length);
+  assert.equal(
+    new Set(plan.steps.filter(step => step.script === 'package:build').map(step => step.name)).size,
+    plan.steps.filter(step => step.script === 'package:build').length,
+  );
   for (const pkg of packages.filter(pkg => pkg.scripts?.pretest)) {
     assert.ok(expected.includes(pkg.name), 'Missing npm pretest owner: ' + pkg.name);
   }

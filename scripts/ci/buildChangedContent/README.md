@@ -52,12 +52,12 @@ All three paired measurements used exactly the same commit
 `d9ffc591d15009736f5e664a7303d1e6fc780e2c` (17/17 packages per
 variant, all jobs successful; full Production Quality also passed):
 
-| Run | Five-shard wall / total runner seconds | Three-shard wall / total runner seconds |
-| --- | --- | --- |
-| [46058035050](https://github.com/KiT-Maverik/svitlo/actions/runs/46058035050) | 66 / 304 | 59 / 168 |
-| [46058613129](https://github.com/KiT-Maverik/svitlo/actions/runs/46058613129) | 79 / 329 | 85 / 230 |
-| [46059163590](https://github.com/KiT-Maverik/svitlo/actions/runs/46059163590) | 84 / 307 | 152 / 298 |
-| **Median** | **79 / 307** | **85 / 230** |
+| Run                                                                           | Five-shard wall / total runner seconds | Three-shard wall / total runner seconds |
+| ----------------------------------------------------------------------------- | -------------------------------------- | --------------------------------------- |
+| [46058035050](https://github.com/KiT-Maverik/svitlo/actions/runs/46058035050) | 66 / 304                               | 59 / 168                                |
+| [46058613129](https://github.com/KiT-Maverik/svitlo/actions/runs/46058613129) | 79 / 329                               | 85 / 230                                |
+| [46059163590](https://github.com/KiT-Maverik/svitlo/actions/runs/46059163590) | 84 / 307                               | 152 / 298                               |
+| **Median**                                                                    | **79 / 307**                           | **85 / 230**                            |
 
 Three shards reduced median runner seconds by about **25%** for the shard
 group, but increased median group wall time by about **7.6%** and showed

@@ -54,7 +54,7 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   at experiment SHA `de4eb900b7d16bd2f1032b3c6257b347ab930760` completed all 16 jobs and
   passed an A/B/B/A comparison of the **full 54-file test step** (48.936s and
   49.095s) against **11 generator-only files** (7.692s and 7.768s): mean
-  **49.016s vs 7.730s**, or **41.286s (84.2%)** less *selected step time*.
+  **49.016s vs 7.730s**, or **41.286s (84.2%)** less _selected step time_.
   This is not a matched reduction in entire workflow wall time or billed minutes.
 
   Further [Production Quality #46076287045](https://github.com/KiT-Maverik/svitlo/actions/runs/46076287045)
@@ -72,6 +72,7 @@ aggregate: any failed, cancelled, missing or skipped dependency must fail it.
   every npm lifecycle environment setting, the independent runners' hidden
   state, or the actual Ready `develop → main` concurrency/cancellation event.
   No compiled output is shared between runners.
+
 - `components` selects Playground and Web only. The root `npm test` already
   covers UI Kit and Math component suites. The existing workspace planner builds
   exactly the selected tests' dependency closure; root npm script semantics
