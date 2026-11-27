@@ -50,7 +50,7 @@ type SlotMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Slot ? Group[Key] : Slot;
 };
 type SlotChanges<Content extends ContentShape> = {
-  [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
+  [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<SlotMembers<Content['slots']>[Key]> | false;
 };
 type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
   Patch extends { content: { slots: infer Collection } }
