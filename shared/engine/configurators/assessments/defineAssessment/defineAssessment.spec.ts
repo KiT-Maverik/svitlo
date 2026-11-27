@@ -217,6 +217,9 @@ describe('Course-owned Assessment Configurator', () => {
     assert.deepEqual(result.base.children, ['module', 'finalAssessment']);
     assert.equal(result.base.finalAssessment.type, 'assessment');
     assert.deepEqual(result.base.module.children, ['chapter', 'moduleAssessment']);
-    assert.equal(result.base.module.chapter.chapterAssessment.type, 'assessment');
+    const nestedChapter = result.base.module.chapter as {
+      chapterAssessment: { type: string };
+    };
+    assert.equal(nestedChapter.chapterAssessment.type, 'assessment');
   });
 });
