@@ -66,6 +66,8 @@ const relationshipTypes = new Set<Flashcard_Relationship_Type>([
   'precedes',
 ]);
 const safeName = /^[a-z][A-Za-z0-9]*$/;
+const record = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
 
 function validateStage1(
   input: Pick<FlashcardBankWorkflowStage1, 'production'>,
