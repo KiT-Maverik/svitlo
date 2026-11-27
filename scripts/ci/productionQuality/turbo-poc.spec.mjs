@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { capture, inspect } from './turbo-poc-artifact.mjs';
-import { checkGraph, focus, operations } from './turbo-poc-graph.mjs';
+import { checkActionsGraph, checkGraph, focus, operations } from './turbo-poc-graph.mjs';
 import { discoverWorkspaces, planWorkspaceOperation } from '../../runWorkspaceScript/run-workspace-script.mjs';
 
 const root = fileURLToPath(new URL('../../..', import.meta.url));
@@ -62,6 +62,20 @@ test('representative graph uses the actual npm manifests and reports old-planner
   // The old root test planner does not build content/math itself; this PoC
   // explicitly does so for every variant before Math typechecking/tests.
   assert.ok(!earlierBuilds.includes('@svitlo/math'));
+});
+
+test('real distributed GitHub needs preserve Turbo task dependencies and reject bad DAGs', () => {
+  assert.deepEqual(checkActionsGraph(graph(), workflow), { jobs: 9 });
+  const missing = workflow.replace(
+    'needs: [turbo-b-math-build]',
+    'needs: []',
+  );
+  assert.throws(() => checkActionsGraph(graph(), missing), /GitHub needs missing task dependency/);
+  const cyclic = workflow.replace(
+    'needs: [turbo-b-engine-build]',
+    'needs: [turbo-b-engine-build, turbo-b-engine-tests]',
+  );
+  assert.throws(() => checkActionsGraph(graph(), cyclic), /Cyclic benchmark job graph/);
 });
 
 test('dry-run graph rejects missing tasks, missing build/type edges and absent canonical scripts', () => {
