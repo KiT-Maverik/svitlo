@@ -59,6 +59,15 @@ export function verifyTurboGraph(dry, workspaces) {
         Boolean(pkg.dependencies?.['@svitlo/engine'] || pkg.devDependencies?.['@svitlo/engine']),
         'Textbook builder requires a declared Engine build dependency: ' + pkg.name,
       );
+      // The same builder needs compiled UI Kit when publishing Scenes/styles.
+      // Without this manifest edge, Turbo may race the UI Kit dist replacement
+      // with a nested fallback build; a successful single run cannot rule it out.
+      if (pkg.exports?.['./scenes'] || pkg.exports?.['./styles']) {
+        check(
+          Boolean(pkg.dependencies?.['@svitlo/ui-kit'] || pkg.devDependencies?.['@svitlo/ui-kit']),
+          'Textbook builder with Scenes/styles requires a declared UI Kit build dependency: ' + pkg.name,
+        );
+      }
     }
     for (const operation of turboOperations) {
       if (Object.hasOwn(pkg.scripts || {}, operation)) expected.add(pkg.name + '#' + operation);

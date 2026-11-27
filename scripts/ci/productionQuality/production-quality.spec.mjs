@@ -169,6 +169,9 @@ test('Turbo migration retains protected verification and bounds scheduling to pa
   assert.match(workflow, /scripts\/ci\/turboTaskGraph\/verify-graph\.spec\.mjs/);
   const packageJob = workflow.split('\n  packages:\n')[1].split('\n  apps:\n')[0];
   assert.match(packageJob, /npm run repo:check:turbo/);
+  assert.match(packageJob, /node --test scripts\/ci\/turboTaskGraph\/verify-execution\.spec\.mjs/);
+  assert.ok(packageJob.indexOf('verify-execution.spec.mjs') < packageJob.indexOf('npm run package:build'));
+
   assert.match(packageJob, /npm run package:build/);
   assert.match(packageJob, /npm run repo:check:artifacts/);
   assert.doesNotMatch(packageJob, /SVITLO_CI_PACKAGE_BUILD_STATE|package-build-reuse\.mjs --summary/);

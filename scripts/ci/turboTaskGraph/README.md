@@ -6,6 +6,9 @@ run authored content or publish results.
 
 - `package:build`: build all eligible workspaces with prerequisite exports
   ordered through npm workspace dependencies and development dependencies.
+  The shared textbook builder always needs compiled Engine; textbooks with
+  Scene/style exports additionally need UI Kit. Both are checked against
+  declared manifests to prevent nested fallback builds racing `dist/`.
 - `code:lint:check`: lint all eligible workspaces after declared buildable
   package prerequisites.
 - `npm run repo:check:turbo`: require pinned root npm/Turbo/lockfile,

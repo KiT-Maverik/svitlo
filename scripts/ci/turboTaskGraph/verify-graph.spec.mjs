@@ -7,7 +7,13 @@ import { verifyTurboConfiguration, verifyTurboGraph } from './verify-graph.mjs';
 const manifest = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
 const lock = JSON.parse(readFileSync(new URL('../../../package-lock.json', import.meta.url), 'utf8'));
 const config = JSON.parse(readFileSync(new URL('../../../turbo.json', import.meta.url), 'utf8'));
-const pkg = (name, scripts, dependencies = {}, devDependencies = {}) => ({ name, scripts, dependencies, devDependencies });
+const pkg = (name, scripts, dependencies = {}, devDependencies = {}, exports = {}) => ({
+  name,
+  scripts,
+  dependencies,
+  devDependencies,
+  exports,
+});
 
 const fixtures = [
   pkg('@svitlo/engine', { 'package:build': 'compile' }),
@@ -117,4 +123,48 @@ test('textbook builder must declare a real build-time Engine dependency', () => 
   synthetic.tasks.push({ taskId: '@svitlo/engine#package:build', dependencies: [] });
   synthetic.tasks[0].dependencies.push('@svitlo/engine#package:build');
   assert.deepEqual(verifyTurboGraph(synthetic, [engine, corrected]), { tasks: 2, builds: 2, lint: 0 });
+});
+
+// The shared textbook builder checks Scene/style exports *before* building;
+// a missing UI Kit manifest edge can race another Turbo task writing dist/.
+test('Scene/style textbooks must declare UI Kit and Turbo must order its build', () => {
+  const build = 'node ../../scripts/textbook-tooling/buildTextbook/build.mjs';
+  const engine = pkg('@svitlo/engine', { 'package:build': 'compile' });
+  const uiKit = pkg('@svitlo/ui-kit', { 'package:build': 'compile' }, { '@svitlo/engine': '0.0.0' });
+  const sceneBook = pkg('@svitlo/scene-book', { 'package:build': build },
+    { '@svitlo/engine': '0.0.0' }, {}, { './scenes': { default: './dist/scenes/index.js' } });
+  const dry = {
+    tasks: [
+      { taskId: '@svitlo/engine#package:build', dependencies: [] },
+      { taskId: '@svitlo/ui-kit#package:build', dependencies: ['@svitlo/engine#package:build'] },
+      { taskId: '@svitlo/scene-book#package:build', dependencies: ['@svitlo/engine#package:build'] },
+    ],
+  };
+  assert.throws(
+    () => verifyTurboGraph(dry, [engine, uiKit, sceneBook]),
+    /Scenes\/styles requires a declared UI Kit build dependency/,
+  );
+
+  const declared = { ...sceneBook, devDependencies: { '@svitlo/ui-kit': '0.0.0' } };
+  assert.throws(
+    () => verifyTurboGraph(dry, [engine, uiKit, declared]),
+    /Missing Turbo dependency edge: @svitlo\/scene-book#package:build -> @svitlo\/ui-kit#package:build/,
+  );
+  dry.tasks[2].dependencies.push('@svitlo/ui-kit#package:build');
+  assert.deepEqual(verifyTurboGraph(dry, [engine, uiKit, declared]), { tasks: 3, builds: 3, lint: 0 });
+
+  const stylesOnly = { ...sceneBook, exports: { './styles': './dist/styles.css' } };
+  assert.throws(() => verifyTurboGraph(dry, [engine, uiKit, stylesOnly]), /UI Kit build dependency/);
+});
+
+test('every real Scene/style textbook declares both builder prerequisites', () => {
+  const workspaces = discoverWorkspaces();
+  const builder = workspaces.filter(w => w.scripts?.['package:build']?.includes('scripts/textbook-tooling/buildTextbook/build.mjs'));
+  const scenes = builder.filter(w => w.exports?.['./scenes'] || w.exports?.['./styles']);
+  assert.ok(scenes.length >= 5, 'Fixture must exercise actual Scene-bearing textbooks');
+  for (const book of scenes) {
+    for (const dep of ['@svitlo/engine', '@svitlo/ui-kit']) {
+      assert.ok(book.dependencies?.[dep] || book.devDependencies?.[dep], book.name + ' missing ' + dep);
+    }
+  }
 });

@@ -98,6 +98,10 @@ and the real npm workspace graph with bounded concurrency 2. Run
 `--dry=json` task graph against all eligible npm workspaces. The
 source-policy job runs deterministic graph tests without npm installation;
 the package worker must verify the installed CLI's graph before building.
+The package worker also runs an isolated real Turbo failure-propagation smoke
+fixture: a failing upstream build must fail the command and prevent a dependent
+build. This test requires the installed Turbo binary and does not run in the
+pre-install source-policy job.
 
 Both cache sources are disabled (`--cache=local:,remote:`) and each task has
 `cache: false`; no remote service, cross-run `dist/` or persistent remote

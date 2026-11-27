@@ -23,7 +23,8 @@
     "@types/node": "^20",
     "eslint": "^9",
     "typescript": "^5",
-    "esbuild": "^0.28.2"
+    "esbuild": "^0.28.2",
+    "@svitlo/ui-kit": "0.0.0"
   },
   "bin": {
     "svitlo-health-safety": "./dist/publish.mjs"
