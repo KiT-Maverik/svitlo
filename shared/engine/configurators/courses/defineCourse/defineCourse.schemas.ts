@@ -75,10 +75,16 @@ export type Course_Child = ConfiguratorChild<
 export type Course_Child_Data =
   Module_Data | Chapter_Data | Lesson_Data | Episode_Data | Assessment_Data | Lesson_Draft_Data | Episode_Draft_Data;
 
-export const course_Config_Schema = identity.extend({
+export const course_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
+});
+export const course_Config_Schema = course_Metadata_Config_Schema.extend({
   children: z.array(z.string()),
-}).catchall(z.unknown());
+}).catchall(z.unknown()).superRefine((value, context) => {
+  for (const issue of validateSlugAddressedContainer(value, ['module', 'chapter', 'lesson', 'episode', 'assessment'])) {
+    context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+});
 export type Course_Config = z.infer<typeof course_Config_Schema>;
 
 export type Course_Metadata_Overrides = {
