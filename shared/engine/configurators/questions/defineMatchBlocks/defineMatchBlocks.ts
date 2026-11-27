@@ -28,7 +28,7 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -55,6 +55,11 @@ type Pair = { left: ContentBlock_Primitive_Configurator; right: ContentBlock_Pri
 type PairMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Pair ? Group[Key] : Pair;
 };
+type AddedPairsFromPatch<Patch, Content extends ContentShape> =
+  Patch extends { content: { pairs: infer Collection } }
+    ? AddedPlacementsFromPatch<Collection, PairMembers<Content['pairs']>, Pair, 'children'>
+    : {};
+
 type PairsOverride<
   Content extends ContentShape,
   AddedPairs extends Record<string, Pair>,
@@ -161,10 +166,10 @@ export const defineMatchBlocks = <
   };
 
   const overrides = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedPairs extends Record<string, Pair> = {},
   >(
-    patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
+    patch: Patch & Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_MatchBlocks_Data> => {
     try {
