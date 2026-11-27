@@ -53,6 +53,7 @@ export type Module_Child_Data =
 export const module_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
 });
+export type Module_Metadata_Config = z.infer<typeof module_Metadata_Config_Schema>;
 export const module_Config_Schema = module_Metadata_Config_Schema.extend({
   children: z.array(z.string()),
 }).catchall(z.unknown()).superRefine((value, context) => {
