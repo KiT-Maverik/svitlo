@@ -80,6 +80,9 @@ describe('Configurators', () => {
         );
         assert.equal(result.base.content[0]?.question.slug, 'question');
         assert.equal(result.base.content[0]?.answer[0]?.slug, 'answer');
+        const serialized = JSON.stringify(result);
+        assert.equal(serialized.includes('"items"'), false);
+        assert.equal(serialized.includes('"order"'), false);
         assert.equal('order' in result.base, false);
         assert.equal('items' in result.base.content, false);
         assert.deepEqual(
