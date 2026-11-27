@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { AssessmentResourceLoader, ContentBlock_Text_Data, QuizSection_Data } from '@svitlo/engine/runtime';
+import type { AssessmentResourceLoader, ContentBlock_Text_Data, Question_SelectOneAnswer_Data, QuizSection_Data } from '@svitlo/engine/runtime';
 
 import type { QuestionResponse } from '#types/questions';
 
@@ -166,7 +166,7 @@ function chooseCorrect(type: QuestionResponse['type']) {
 describe('active Engine Quiz renderer', () => {
   it.each(questions)('grades canonical $type response rather than counting widgets', async question => {
     const complete = mount([question]);
-    await screen.findByText(question.content.question[0].locale.value);
+    await screen.findByText('Prompt ' + (questions.indexOf(question) + 1));
     chooseCorrect(question.type);
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
     await waitFor(() =>
@@ -176,7 +176,8 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('isolates attempts per UUID and does not complete before both are checked', async () => {
-    const selected = [questions[0], { ...questions[0], ...base(10), type: 'selectOneAnswer' as const }];
+    const second: Question_SelectOneAnswer_Data = { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' };
+    const selected = [questions[0], second];
     const complete = mount(selected, vi.fn(), loader(selected), {
       interaction: { ...quiz(selected).params.interaction, retries: 1 },
     });
@@ -216,7 +217,8 @@ describe('active Engine Quiz renderer', () => {
   });
 
   it('applies percentage thresholds independently of a completed attempt', async () => {
-    const selected = [questions[0], { ...questions[0], ...base(10), type: 'selectOneAnswer' as const }];
+    const second: Question_SelectOneAnswer_Data = { ...(questions[0] as Question_SelectOneAnswer_Data), ...base(10), type: 'selectOneAnswer' };
+    const selected = [questions[0], second];
     const complete = mount(selected, vi.fn(), loader(selected), {
       grading: { mode: 'percentage', successThreshold: 50 },
     });
