@@ -587,7 +587,7 @@ describe('Configurators', () => {
               question: {
                 
                   translatedPrompt: { locale: { value: { uk: 'Оновлено', en: 'Updated', pl: 'Zmienione' } } },
-                ,
+
               },
             },
           },
