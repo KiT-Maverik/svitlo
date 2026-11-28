@@ -11,8 +11,8 @@ const story = defineContentSection({
     title: 'A short adventure',
     navigationLabel: 'Story',
   },
-  content: {
-    items: {
+  children: ['storyCopy'],
+
       storyCopy: defineMarkdown({
         id: '29487190-d13e-5f8f-8a41-c22e37d2e0b2',
         slug: 'storyCopy',
@@ -23,9 +23,6 @@ const story = defineContentSection({
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         },
       }),
-    },
-    order: ['storyCopy'],
-  },
 });
 
 /** Narrative content is a Course-owned Lesson, not an Episode. */
@@ -44,5 +41,6 @@ export const lightStory = defineLesson({
     },
   },
   locale: { title: 'The secret of light · Story' },
-  section: { items: { story }, order: ['story'] },
+  children: ['story'],
+ story,
 });

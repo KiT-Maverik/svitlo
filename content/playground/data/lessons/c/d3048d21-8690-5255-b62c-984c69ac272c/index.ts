@@ -54,8 +54,6 @@ export const howLightMoves = defineLesson({
     },
   },
   locale: { title: howLightMovesTitle },
-  section: {
-    items: { content: contentSection, practice: practiceSection, quiz: quizSection },
-    order: ['content', 'practice', 'quiz'],
-  },
+  children: ['theory', 'practice', 'quiz'],
+ theory: contentSection, practice: practiceSection, quiz: quizSection,
 });

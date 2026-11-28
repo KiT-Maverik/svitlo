@@ -14,8 +14,8 @@ const storyBridge = defineContentSection({
     title: 'A surprise in the laboratory',
     navigationLabel: 'Story bridge',
   },
-  content: {
-    items: {
+  children: ['bridgeCopy'],
+
       bridgeCopy: defineMarkdown({
         id: '641f0eea-bd05-5db2-bcc4-14a153b7c7a1',
         slug: 'bridgeCopy',
@@ -25,9 +25,6 @@ const storyBridge = defineContentSection({
           value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
         },
       }),
-    },
-    order: ['bridgeCopy'],
-  },
 });
 
 /**
@@ -51,13 +48,10 @@ export const courseHowLightMoves = defineLesson({
     },
   },
   locale: { title: howLightMovesTitle },
-  section: {
-    items: {
-      practice: howLightMoves.section.items.practice,
+  children: ['practice', 'storyBridge', 'theory', 'contentBlockGallery'],
+
+      practice: howLightMoves.practice,
       storyBridge,
-      content: howLightMoves.section.items.content,
+      theory: howLightMoves.theory,
       contentBlockGallery,
-    },
-    order: ['practice', 'storyBridge', 'content', 'contentBlockGallery'],
-  },
 });

@@ -1,5 +1,4 @@
 import {
-  configuratorArrayToSlugMap,
   defineAudio,
   defineCarousel,
   defineCheckpoint,
@@ -74,8 +73,8 @@ const localCarousel = defineCarousel({
     allowFullscreen: true,
   },
   locale: { title: 'CAROUSEL · Interactive image gallery' },
-  slides: {
-    items: {
+  children: ['whale', 'light', 'prism'],
+
       whale: defineImage({
         id: '7cbc27a9-ed06-552b-a9e4-fb06d08e58cf',
         slug: 'whale',
@@ -109,9 +108,6 @@ const localCarousel = defineCarousel({
           caption: 'An illustration of light dispersion.',
         },
       }),
-    },
-    order: ['whale', 'light', 'prism'],
-  },
 });
 
 const localVideo = defineVideo({
@@ -157,9 +153,8 @@ const interactiveCheckpoint = defineCheckpoint({
   type: 'checkpoint',
   params: { enableChecks: true, showIndices: true },
   locale: { title: 'CHECKPOINT · Expand and mark the answer' },
-  content: {
-    items: configuratorArrayToSlugMap([
-      defineCheckpointItem({
+  children: ['revealAnswer'],
+revealAnswer: defineCheckpointItem({
         id: '327be513-a21f-5d66-9bb1-7890c672de14',
         slug: 'revealAnswer',
         type: 'checkpointItem',
@@ -175,23 +170,16 @@ const interactiveCheckpoint = defineCheckpoint({
           id: '93befd3a-30f8-431a-a2d8-41d3983c5e99',
           slug: 'revealAnswerContent',
           type: 'checkpointAnswer',
-          content: {
-            items: configuratorArrayToSlugMap([
-              defineText({
+          children: ['checkpointAnswer'],
+checkpointAnswer: defineText({
                 id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
                 slug: 'checkpointAnswer',
                 type: 'text',
                 params: {},
                 locale: { value: 'Open the checkpoint row, then mark it complete.' },
               }),
-            ]),
-            order: ['checkpointAnswer'],
-          },
         }),
       }),
-    ]),
-    order: ['revealAnswer'],
-  },
 });
 
 /** Complete authoring fixture for all ten ContentBlock types. */
@@ -204,20 +192,7 @@ export const contentBlockGallery = defineLearningFlowSection({
     title: 'Content blocks · gallery',
     navigationLabel: 'Content blocks',
   },
-  content: {
-    items: {
-      plainText,
-      formattedMarkdown,
-      highlightedCode,
-      localImage,
-      localCarousel,
-      localVideo,
-      localAudio,
-      youtubeEmbed,
-      lightRayDiagram,
-      interactiveCheckpoint,
-    },
-    order: [
+  children: [
       'plainText',
       'formattedMarkdown',
       'highlightedCode',
@@ -229,5 +204,15 @@ export const contentBlockGallery = defineLearningFlowSection({
       'lightRayDiagram',
       'interactiveCheckpoint',
     ],
-  },
+
+      plainText,
+      formattedMarkdown,
+      highlightedCode,
+      localImage,
+      localCarousel,
+      localVideo,
+      localAudio,
+      youtubeEmbed,
+      lightRayDiagram,
+      interactiveCheckpoint,
 });

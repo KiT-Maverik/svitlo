@@ -40,12 +40,12 @@ const title = {
 
 export const contentSection = defineContentSection({
   id: '32376510-b49a-5da8-91d7-e13cf162c9f9',
-  slug: 'content',
+  slug: 'theory',
   type: 'content',
   params: {},
   locale: { title, navigationLabel: title },
-  content: {
-    items: {
+  children: ['p1', 'lightRayDiagram', 'p2', 'lightPropagationSimulation', 'p3', 'checkpoint'],
+
       p1: defineMarkdown({
         id: '11b1f7f2-9ef2-4c79-9a84-d809165c50d7',
         slug: 'p1',
@@ -76,7 +76,4 @@ export const contentSection = defineContentSection({
       lightRayDiagram,
       lightPropagationSimulation,
       checkpoint,
-    },
-    order: ['p1', 'lightRayDiagram', 'p2', 'lightPropagationSimulation', 'p3', 'checkpoint'],
-  },
 });

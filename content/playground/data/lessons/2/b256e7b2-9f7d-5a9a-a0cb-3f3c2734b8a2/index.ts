@@ -12,8 +12,6 @@ export const lightExploration = defineLesson({
   skills: [testExplainLightTravel.id],
   params: { ...howLightMoves.config.base.params, quizRequiredForCompletion: false, languages: howLightMoves_languages },
   locale: { title: 'Light Lab · Exploration (demo)' },
-  section: {
-    items: { content: howLightMoves.section.items.content, practice: howLightMoves.section.items.practice },
-    order: ['content', 'practice'],
-  },
+  children: ['theory', 'practice'],
+ theory: howLightMoves.theory, practice: howLightMoves.practice,
 });
