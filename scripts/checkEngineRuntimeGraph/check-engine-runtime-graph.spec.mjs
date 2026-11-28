@@ -79,3 +79,16 @@ test('rejects node:async_hooks transitively in a runtime barrel', async t => {
     /Node-only imports in Engine runtime browser bundle|Could not resolve "node:async_hooks"/,
   );
 });
+
+test('rejects build-only Node dependencies loaded eagerly by a compiled CommonJS barrel', async t => {
+  const entry = createFixture(t, {
+    'runtime.ts': "export { value } from './consumer.js';\n",
+    'consumer.js': "const { safe } = require('./barrel.js');\nexports.value = safe;\n",
+    'barrel.js': "Object.assign(exports, require('./buildContext.js'));\nexports.safe = 42;\n",
+    'buildContext.js': "const { AsyncLocalStorage } = require('node:async_hooks');\nexports.scope = new AsyncLocalStorage();\n",
+  });
+  await assert.rejects(
+    checkEngineRuntimeGraph(entry),
+    /Node-only imports in Engine runtime browser bundle|Could not resolve "node:async_hooks"/,
+  );
+});
