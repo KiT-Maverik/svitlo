@@ -25,11 +25,16 @@ test('FastGate limits Ready checks to TypeScript and defers installs for Drafts'
   // typecheck share the Ready/manual gate; Drafts must not execute any of them.
   assert.equal(fast.split(guard).length - 1, 3);
   assert.match(fast, /name: Verify symbol-aware Course stub guard/);
-  assert.match(fast, /run: node --test scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/);
+  assert.match(
+    fast,
+    /run: node --test --test-reporter=dot scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/,
+  );
   assert.match(fast, /name: Reject newly introduced Course stub imports and uses/);
   assert.match(fast, /run: node scripts\/ci\/checkStubImports\/check-stub-imports\.mjs "\$BASE_SHA" "\$HEAD_SHA"/);
-  const focusedTests = [...fast.matchAll(/node --test [^\n]+/g)].map(match => match[0]);
-  assert.deepEqual(focusedTests, ['node --test scripts/ci/checkStubImports/check-stub-imports.spec.mjs']);
+  const focusedTests = [...fast.matchAll(/node --test --test-reporter=dot [^\n]+/g)].map(match => match[0]);
+  assert.deepEqual(focusedTests, [
+    'node --test --test-reporter=dot scripts/ci/checkStubImports/check-stub-imports.spec.mjs',
+  ]);
   assert.match(
     fast,
     /if: steps.reuse.outputs.reuse != 'true' && github.event_name == 'pull_request' && !github.event.pull_request.draft && steps.scope.outputs.run == 'true'/,
@@ -39,9 +44,8 @@ test('FastGate limits Ready checks to TypeScript and defers installs for Drafts'
   assert.doesNotMatch(fast, /test:coverage|test:components|app:build/);
 });
 
-test('heavy PR suites run on Ready transition and can run manually on Draft branches', () => {
+test('heavy PR suites remain Ready/manual, with production generator duplication excluded', () => {
   for (const [file, job] of [
-    ['engine-generators.yml', 'generator-tests'],
     ['contentblock-build-api.yml', 'verify'],
     ['db-controllers-e2e.yml', 'browser-controllers'],
     ['desktop-ci.yml', 'desktop'],
@@ -58,6 +62,19 @@ test('heavy PR suites run on Ready transition and can run manually on Draft bran
       file + ' must guard its expensive job while permitting manual runs',
     );
   }
+
+  const engine = workflow('engine-generators.yml');
+  assert.match(engine, /types: \[opened, reopened, synchronize, ready_for_review\]/);
+  assert.match(engine, /\n  workflow_dispatch:/);
+  assert.match(engine, /\n  workflow_call:\s*\n    inputs:/);
+  assert.match(engine, /run_full_generator_tests:\s*\n        type: boolean\s*\n        default: false/);
+  const full = engine.split('\n  generator-tests:\n')[1];
+  assert.ok(full, 'Engine generator full suite must remain defined');
+  assert.match(
+    full,
+    /github\.event_name == 'workflow_dispatch' \|\|\s*\n\s*\(!github\.event\.pull_request\.draft &&\s*\n\s*\(github\.event\.pull_request\.base\.ref != 'main' \|\| inputs\.run_full_generator_tests\)\)/,
+    'Manual dispatch and standalone Ready PRs must run; direct Ready main avoids a second full suite',
+  );
 });
 
 test('mobile and production already require Ready and preserve manual diagnostics', () => {

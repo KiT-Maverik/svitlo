@@ -239,7 +239,10 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     assert.throws(() => checkpoint.build.data({ languages: ['en'] }), /unresolved video reference/);
     const preview = checkpoint.build.data({ languages: ['en'], mode: 'draft' });
     const item = preview.base.first as { answer: Record<string, unknown> };
-    assert.equal((item.answer.pendingVideo as { type: string }).type, 'youtube');
+    const answerBlock = item.answer.pendingVideo as { type: string; locale?: { href?: string; label?: string } };
+    assert.equal(answerBlock.type, 'youtube');
+    assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
+    assert.equal(answerBlock.locale?.label, 'Pending video');
     assert.throws(
       () => checkpoint.build.data({ languages: ['en'], mode: 'production' }),
       /unresolved video reference/,

@@ -81,3 +81,7 @@ apps/web/src/generated/
 # Web composition is generated from an explicit build selection
 apps/web/public/.svitlo/
 apps/web/public/textbooks/
+
+# Mobile publisher ownership manifest is generated from the selected package.
+# It must not become tracked source or invalidate job-local verified builds.
+apps/mobile/public/.svitlo/

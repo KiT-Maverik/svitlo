@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Test production source and parallel workflow contracts
-        run: node --test scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs
+        run: node --test --test-reporter=dot scripts/ci/releaseSource/check-release-source.spec.mjs scripts/ci/productionQuality/production-quality.spec.mjs scripts/ci/turboTaskGraph/verify-graph.spec.mjs
       - name: Reject non-develop production source
         if: github.event_name == 'pull_request'
         env:
@@ -87,10 +87,14 @@ jobs:
       - name: Typecheck all eligible workspaces
         env:
           SVITLO_WEB_TEST_SELECTION: web-fixture-alpha
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-production-types-builds.jsonl
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run code:check:types
       - name: Report package build reuse
         if: always()
         run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
+      - name: Report per-workspace TypeScript build requests
+        if: always()
+        run: node scripts/ci/buildTelemetry/summarize-builds.mjs --file "${{ runner.temp }}/svitlo-production-types-builds.jsonl"
 
   unit:
     name: Production / unit tests
@@ -108,6 +112,10 @@ jobs:
       - name: Initialize job-local package build reuse
         run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
       - name: Test every eligible workspace
+        env:
+          # Passive timing annotations: every workspace test and prerequisite build
+          # retains the canonical npm lifecycle and sequential execution.
+          SVITLO_CI_UNIT_TEST_TIMINGS: '1'
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm test
       - name: Report package build reuse
         if: always()
@@ -119,6 +127,12 @@ jobs:
     # Reuse the authoritative generator suite, including pinned Docker-worker
     # round trips. Root npm test does not cover its CI-only security regressions.
     uses: ./.github/workflows/engine-generators.yml
+    with:
+      # Required on main promotions: direct Engine generators skips only
+      # its duplicate expensive job; this reuse must run the complete suite.
+      run_full_generator_tests: true
+      # Mandatory unit job runs the exhaustive Engine npm test.
+      only_unit_unique_generator_tests: true
 
   components:
     name: Production / extra component tests
@@ -172,15 +186,14 @@ jobs:
           cache: npm
       - name: Install pinned dependencies
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
-      - name: Initialize job-local package build reuse
-        run: echo "SVITLO_CI_PACKAGE_BUILD_STATE=$RUNNER_TEMP/svitlo-production-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT.json" >> "$GITHUB_ENV"
+      - name: Verify Turborepo task DAG against eligible workspaces
+        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:turbo
+      - name: Verify failed Turbo prerequisite blocks downstream builds
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/turboTaskGraph/verify-execution.spec.mjs
       - name: Build all distributable packages
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build
       - name: Verify compiled public package artifacts
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:artifacts
-      - name: Report package build reuse
-        if: always()
-        run: node scripts/ci/packageBuildReuse/package-build-reuse.mjs --summary
 
   apps:
     name: Production / ${{ matrix.slug }}

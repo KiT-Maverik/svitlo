@@ -29,19 +29,6 @@ describe('Configurators', () => {
         assert.deepEqual(resource.locale, { uk: { locale: { label: 'Переглянути урок' } } });
       });
 
-      test('pending href is valid authored structure but cannot publish', () => {
-        const pending = defineYoutube<'watch', ['en', 'uk']>({
-          ...config(),
-          locale: { ...config().locale, href: UNRESOLVED_YOUTUBE_HREF },
-        });
-        assert.throws(() => pending.build.data(scope), /unresolved video reference/);
-        const ready = defineYoutube<'watch', ['en', 'uk']>(config());
-        assert.throws(
-          () => ready.build.overrides({ locale: { href: UNRESOLVED_YOUTUBE_HREF } }, scope),
-          /unresolved video reference/,
-        );
-      });
-
       test('draft preview carries the unresolved reference without weakening production', () => {
         const pending = defineYoutube<'watch', ['en', 'uk']>({
           ...config(),

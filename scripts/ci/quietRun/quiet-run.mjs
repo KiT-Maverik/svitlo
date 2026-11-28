@@ -7,6 +7,7 @@
 import { spawn } from 'node:child_process';
 import { appendFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { StringDecoder } from 'node:string_decoder';
 
 export function failureExcerpt(output, limit = 12000) {
   const lines = output.split(/\r?\n/);
@@ -17,6 +18,19 @@ export function failureExcerpt(output, limit = 12000) {
     .slice(0, 4000);
   const tail = lines.slice(-65).join('\n').slice(-8000);
   return (errors ? errors + '\n...\n' + tail : tail).slice(0, limit);
+}
+
+/**
+ * Only allow the exact unit-test telemetry protocol through quiet CI logs.
+ * Reject arbitrary child output, newlines and workflow-command lookalikes.
+ */
+export function isUnitWorkspaceTimingLine(line, enabled = process.env.SVITLO_CI_UNIT_TEST_TIMINGS === '1') {
+  return (
+    enabled &&
+    /^SVITLO_CI_UNIT_TIMING @svitlo\/[a-z][a-z0-9-]* \/ (?:test|package:build) \d+\.\ds \((?:success|failure)\)$/.test(
+      line,
+    )
+  );
 }
 
 /** Windows npm is a .cmd shim; invoke its JavaScript CLI directly without a shell. */
@@ -68,8 +82,15 @@ export function run(argv = process.argv.slice(2)) {
   // Preserve the first actionable diagnostics, even if later log volume
   // exceeds the rolling tail cap. Avoid retaining entire successful logs.
   const diagnostics = [];
-  let pending = '';
+  // stdout/stderr have independent chunk boundaries. Never combine partial
+  // lines from different streams or lose an early GitHub diagnostic when the
+  // bounded output tail rolls over.
+  const streams = [
+    { decoder: new StringDecoder('utf8'), pending: '' },
+    { decoder: new StringDecoder('utf8'), pending: '' },
+  ];
   const actionable = /(?:^|\s)(?:error TS\d+|Error:|FAIL|not ok|fatal:)|::error|\[error\]/i;
+  const annotation = /^::(?:error|warning|notice)(?:\s|::)/;
   const spawnCommand = resolveSpawnCommand(command, args);
   const child = spawn(spawnCommand.command, spawnCommand.args, {
     stdio: verbose ? 'inherit' : ['inherit', 'pipe', 'pipe'],
@@ -77,18 +98,24 @@ export function run(argv = process.argv.slice(2)) {
     env: process.env,
   });
   if (!verbose) {
-    const record = chunk => {
-      const raw = chunk.toString('utf8');
+    const acceptLine = line => {
+      // Keep regular output quiet. Forward only GitHub annotations and the
+      // exact, opt-in unit-workspace timing protocol (not workflow commands).
+      if (annotation.test(line) || isUnitWorkspaceTimingLine(line)) process.stdout.write(line + '\n');
+      if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
+    };
+    const record = (chunk, stream) => {
+      const raw = stream.decoder.write(chunk);
       output += raw;
       if (output.length > 128000) output = output.slice(-128000);
-      const parts = (pending + raw).split(/\r?\n/);
-      pending = parts.pop().slice(-512);
-      for (const line of parts) {
-        if (diagnostics.length < 25 && actionable.test(line)) diagnostics.push(line.slice(0, 400));
-      }
+      const parts = (stream.pending + raw).split(/\r?\n/);
+      // Keep the *prefix* of an excessively long partial line: it can hold
+      // the first cause or GitHub annotation marker. Bound retained memory.
+      stream.pending = parts.pop().slice(0, 8192);
+      for (const line of parts) acceptLine(line);
     };
-    child.stdout.on('data', record);
-    child.stderr.on('data', record);
+    child.stdout.on('data', chunk => record(chunk, streams[0]));
+    child.stderr.on('data', chunk => record(chunk, streams[1]));
   }
   child.once('error', error => {
     failure = error;
@@ -100,16 +127,15 @@ export function run(argv = process.argv.slice(2)) {
     const message = status + ' ' + title + ' (' + seconds + 's)';
     if (passed) {
       console.log(message);
-      for (const line of output.split(/\r?\n/)) {
-        if (/^::(?:error|warning|notice)(?:\s|::)/.test(line)) console.log(line);
-      }
     } else {
       console.error(message + ' (exit ' + String(code ?? signal ?? failure?.message) + ')');
-      if (!verbose)
-        console.error(
-          failureExcerpt(diagnostics.join('\n') + '\n' + output) ||
-            String(failure?.message || 'No child diagnostic output'),
-        );
+      if (!verbose) {
+        const excerpt = failureExcerpt(diagnostics.join('\n') + '\n' + output).trim();
+        // A spawn error may have no child stdout/stderr at all; always retain
+        // that first cause rather than mistaking a newline for a diagnostic.
+        const cause = failure?.message || '';
+        console.error([cause, excerpt].filter(Boolean).join('\n') || 'No child diagnostic output');
+      }
     }
     if (process.env.GITHUB_STEP_SUMMARY) {
       appendFileSync(

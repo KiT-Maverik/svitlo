@@ -133,6 +133,31 @@ describe('Configurators', () => {
         children: ['module'], module: courseModule,
       });
 
+      test('Configurator publication is data-only, ordered and repeatable across entity boundaries', () => {
+        // Keep shared Build/Data invariants in one place. Entity-specific semantics
+        // (Question answers, Flashcard sides, Lesson sections) retain their own tests.
+        const publishers = [
+          ['Text', () => paragraph.build.data(uk)],
+          ['Section', () => introduction.build.data(uk)],
+          ['Question', () => numeric.build.data(uk)],
+          ['Flashcard', () => card.build.data(uk)],
+          ['Lesson', () => lesson.build.data(uk)],
+          ['Chapter', () => chapter.build.data(uk)],
+          ['Module', () => courseModule.build.data(uk)],
+          ['Course', () => course.build.data(uk)],
+        ] as const;
+
+        for (const [entity, publish] of publishers) {
+          const resource = publish();
+          const json = JSON.stringify(resource);
+          for (const authoringField of ['items', 'order', 'additionalItems', 'build']) {
+            assert.equal(json.includes('"' + authoringField + '"'), false, entity + ' leaked ' + authoringField);
+          }
+          assert.doesNotThrow(() => JSON.parse(json), entity + ' must publish JSON data');
+          assert.deepEqual(publish(), resource, entity + ' Build must not mutate its source');
+        }
+      });
+
       test('Course → Module → Chapter → Lesson → Section → ContentBlock omit independent assessment banks', () => {
         const resource = course.build.data(uk);
         const json = JSON.stringify(resource);

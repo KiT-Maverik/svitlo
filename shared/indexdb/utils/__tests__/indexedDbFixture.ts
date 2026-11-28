@@ -37,12 +37,15 @@ export function installIndexedDbFixture(existingStores: readonly string[] = []) 
   let closeCount = 0;
   let abortCount = 0;
   let transactionFailure: Error | undefined;
+  let objectStoreFailure: Error | undefined;
+  let getFailure: Error | undefined;
   let putFailure: Error | undefined;
 
   const readRequest = createRequest<unknown>(undefined);
   const writeRequest = createRequest<IDBValidKey>('saved');
   const store = {
     get(key: IDBValidKey) {
+      if (getFailure) throw getFailure;
       reads.push(key);
       return readRequest.request;
     },
@@ -69,6 +72,7 @@ export function installIndexedDbFixture(existingStores: readonly string[] = []) 
       abortCount += 1;
     },
     objectStore: name => {
+      if (objectStoreFailure) throw objectStoreFailure;
       selectedStores.push(name);
       return store;
     },
@@ -154,6 +158,12 @@ export function installIndexedDbFixture(existingStores: readonly string[] = []) 
     },
     throwOnTransaction: (error: Error) => {
       transactionFailure = error;
+    },
+    throwOnObjectStore: (error: Error) => {
+      objectStoreFailure = error;
+    },
+    throwOnGet: (error: Error) => {
+      getFailure = error;
     },
     throwOnPut: (error: Error) => {
       putFailure = error;

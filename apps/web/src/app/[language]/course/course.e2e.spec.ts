@@ -149,69 +149,18 @@ test('Course detail keeps its requested language without displaying a fallback n
   await expect(page.getByTestId('course-language-notice')).toHaveCount(0);
 });
 
-test('Course detail ignores unrelated empty and corrupt UUID directories', async ({ page }) => {
-  const { mkdir, writeFile, rm } = await import('node:fs/promises');
-  const { join } = await import('node:path');
-  const sibling = '11111111-1111-4111-8111-0000000002fe';
-  const directory = join(process.cwd(), 'public/data/courses', sibling);
-  await mkdir(directory, { recursive: true });
-  try {
-    await page.goto('/en/course/' + courseId);
-    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
-    await writeFile(join(directory, 'base.json'), '{corrupt unrelated publication');
-    await page.reload();
-    await expect(page.getByRole('heading', { name: 'Controlled Course', level: 1 })).toBeVisible();
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
-});
+// This invalid TOC is published once by the Web-owned fixture builder. No
+// browser worker may create or remove files beneath the shared host public root.
+test('Mismatched published Course TOC displays an accessible recovery path', async ({ page }) => {
+  const invalidTocCourseId = '11111111-1111-4111-8111-0000000002fc';
+  await page.goto('/en/course/' + invalidTocCourseId);
 
-test('A corrupt requested Course reaches the publication failure path, not an unrelated 404', async ({ request }) => {
-  const { mkdir, writeFile, rm } = await import('node:fs/promises');
-  const { join } = await import('node:path');
-  const invalidId = '11111111-1111-4111-8111-0000000002fd';
-  const directory = join(process.cwd(), 'public/data/courses', invalidId);
-  await mkdir(directory, { recursive: true });
-  try {
-    await writeFile(join(directory, 'base.json'), '{malformed requested Course');
-    const response = await request.get('/en/course/' + invalidId);
-    // Next 16's streamed shell can commit HTTP 200 before the server error
-    // boundary renders. Regardless of streaming status, this must not be
-    // reported as a nonexistent Course.
-    expect(response.status()).not.toBe(404);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
-});
-
-test('Corrupt TOC for a requested Course displays the localized error boundary', async ({ page }) => {
-  const { mkdir, writeFile, rm } = await import('node:fs/promises');
-  const { join } = await import('node:path');
-  const id = '11111111-1111-4111-8111-0000000002fc';
-  const directory = join(process.cwd(), 'public/data/courses', id);
-  await mkdir(join(directory, 'toc'), { recursive: true });
-  try {
-    await writeFile(
-      join(directory, 'base.json'),
-      JSON.stringify({
-        id,
-        type: 'course',
-        params: { languages: ['en'] },
-        locale: { title: 'Valid Course' },
-        content: { items: {}, order: [] },
-      }),
-    );
-    await writeFile(join(directory, 'toc/base.json'), '{corrupt published TOC');
-    const response = await page.goto('/en/course/' + id);
-    expect(response?.status()).not.toBe(404);
-    const error = page.getByTestId('course-load-error');
-    await expect(error).toHaveAttribute('role', 'alert');
-    await expect(error).toBeVisible();
-    await expect(error).toContainText('Unable to load this course');
-    await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'All courses' })).toHaveAttribute('href', '/en/courses');
-    await expect(page.getByRole('heading', { name: 'Valid Course' })).toHaveCount(0);
-  } finally {
-    await rm(directory, { recursive: true, force: true });
-  }
+  // Next's streamed response status is not evidence of a usable error UI.
+  const error = page.getByTestId('course-load-error');
+  await expect(error).toHaveAttribute('role', 'alert');
+  await expect(error).toBeVisible();
+  await expect(error).toContainText('Unable to load this course');
+  await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'All courses' })).toHaveAttribute('href', '/en/courses');
+  await expect(page.getByRole('heading', { name: 'Broken TOC fixture Course' })).toHaveCount(0);
 });

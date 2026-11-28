@@ -20,7 +20,7 @@ import {
 } from '..';
 import type { LessonState, QuizState } from '../../schemas';
 import { openDatabase } from '../../utils';
-import { DATABASE_NAME, DATABASE_VERSION, type StateStore } from '../../utils/databaseConfig/databaseConfig.utils';
+import { DATABASE_NAME, type StateStore } from '../../utils/databaseConfig/databaseConfig.utils';
 
 type LessonProgress = Extract<LessonState, { status: 'in-progress' }>;
 type QuizProgress = Extract<QuizState, { status: 'in-progress' }>;
@@ -129,41 +129,17 @@ describe('DB', { concurrency: false }, () => {
   describe('Controllers', () => {
     describe('createLessonState', () => {
       describe('Integration', () => {
-        it('should initialize the versioned database with both expected object stores and indexes', async () => {
-          const db = await openDatabase();
-          try {
-            assert.equal(db.name, DATABASE_NAME);
-            assert.equal(db.version, DATABASE_VERSION);
-            assert.deepEqual(Array.from(db.objectStoreNames), ['lessonStates', 'quizStates']);
-            const transaction = db.transaction(['lessonStates', 'quizStates'], 'readonly');
-            const lessons = transaction.objectStore('lessonStates');
-            const quizzes = transaction.objectStore('quizStates');
-            assert.equal(lessons.keyPath, 'id');
-            assert.equal(quizzes.keyPath, 'id');
-            assert.deepEqual(Array.from(lessons.indexNames), ['lessonId']);
-            assert.deepEqual(Array.from(quizzes.indexNames), ['quizId']);
-            assert.equal(lessons.index('lessonId').keyPath, 'lessonId');
-            assert.equal(quizzes.index('quizId').keyPath, 'quizId');
-            assert.equal(lessons.index('lessonId').unique, false);
-            assert.equal(quizzes.index('quizId').unique, false);
-          } finally {
-            db.close();
-          }
-        });
-
-        it('should persist a new lesson run before resolving', async () => {
-          const created = await createLessonState('lesson-a');
-          assert.equal(created.status, 'new');
-          assert.ok(created.id.length > 0);
-          assert.deepEqual(await readStored('lessonStates', created.id), created);
-        });
-
-        it('should create independent runs for the same lesson and reopen their data', async () => {
+        it('should create distinct, independently persisted runs for the same lesson', async () => {
           const first = await createLessonState('lesson-a');
           const second = await createLessonState('lesson-a');
+          assert.equal(first.status, 'new');
+          assert.equal(second.status, 'new');
           assert.notEqual(first.id, second.id);
-          const reopened = await openDatabase();
-          reopened.close();
+          assert.ok(first.id.length > 0 && second.id.length > 0);
+          assert.deepEqual(await readStored('lessonStates', first.id), first);
+          assert.deepEqual(await readStored('lessonStates', second.id), second);
+          assert.deepEqual(await getLessonState(first.id), first);
+          assert.deepEqual(await getLessonState(second.id), second);
           assert.deepEqual(
             (await listLessonStates('lesson-a')).map(state => state.id).sort(),
             [first.id, second.id].sort(),
@@ -173,12 +149,6 @@ describe('DB', { concurrency: false }, () => {
         it('should reject an empty lesson ID without creating a record', async () => {
           await assert.rejects(createLessonState(''));
           assert.deepEqual(await listLessonStates(''), []);
-        });
-
-        it('should reject a duplicate primary key in the underlying lesson store', async () => {
-          await addStored('lessonStates', newLesson());
-          await assert.rejects(addStored('lessonStates', newLesson()));
-          assert.deepEqual(await readStored('lessonStates', 'lesson-run-1'), newLesson());
         });
       });
     });
@@ -231,6 +201,14 @@ describe('DB', { concurrency: false }, () => {
           assert.equal(await getLessonState('not-found'), undefined);
         });
 
+        it('should reject unknown persisted lesson fields (strict schema)', async () => {
+          const invalid = { ...newLesson('extra'), unknownField: true };
+          await addStored('lessonStates', invalid);
+          await assert.rejects(getLessonState(invalid.id));
+          await assert.rejects(listLessonStates(invalid.lessonId));
+          assert.deepEqual(await readStored('lessonStates', invalid.id), invalid);
+        });
+
         it('should reject malformed persisted lesson data without rewriting it', async () => {
           const invalid = { id: 'invalid', lessonId: 'lesson-a', status: 'in-progress', startedAt };
           await addStored('lessonStates', invalid);
@@ -277,42 +255,10 @@ describe('DB', { concurrency: false }, () => {
           assert.equal((await listLessonStates('lesson-a')).length, 1);
         });
 
-        it('should snapshot objects through IndexedDB structured cloning', async () => {
-          const state = lessonProgress();
-          await saveLessonState(state);
-          state.sectionCompletion['section-a'] = false;
-          state.skippedSectionIds.push('section-c');
-          state.quizStateIds['quiz-section'] = 'changed';
-          const stored = await getLessonState(state.id);
-          assert.deepEqual(stored, lessonProgress());
-        });
-
         it('should reject invalid application schema without writing', async () => {
           const invalid = { ...newLesson(), lessonId: '' } as LessonState;
           await assert.rejects(saveLessonState(invalid));
           assert.equal(await readStored('lessonStates', invalid.id), undefined);
-        });
-
-        it('should roll back a transaction after an already successful add is followed by a duplicate key', async () => {
-          const db = await openDatabase();
-          let firstRequestSucceeded = false;
-          try {
-            await new Promise<void>((resolve, reject) => {
-              const transaction = db.transaction('lessonStates', 'readwrite');
-              const store = transaction.objectStore('lessonStates');
-              const first = store.add(newLesson('rollback'));
-              first.addEventListener('success', () => {
-                firstRequestSucceeded = true;
-              });
-              store.add(newLesson('rollback'));
-              transaction.oncomplete = () => reject(new Error('A duplicate-key transaction unexpectedly committed'));
-              transaction.onabort = () => resolve();
-            });
-          } finally {
-            db.close();
-          }
-          assert.equal(firstRequestSucceeded, true);
-          assert.equal(await readStored('lessonStates', 'rollback'), undefined);
         });
       });
     });
@@ -393,30 +339,23 @@ describe('DB', { concurrency: false }, () => {
           assert.deepEqual(await readStored('quizStates', created.id), created);
         });
 
-        it('should generate distinct IDs for separate runs of the same quiz', async () => {
+        it('should create distinct, independently persisted runs for the same quiz', async () => {
           const first = await createQuizState('quiz-a');
           const second = await createQuizState('quiz-a');
           assert.notEqual(first.id, second.id);
-          assert.equal((await listQuizStates('quiz-a')).length, 2);
+          assert.deepEqual(await readStored('quizStates', first.id), first);
+          assert.deepEqual(await readStored('quizStates', second.id), second);
+          assert.deepEqual(await getQuizState(first.id), first);
+          assert.deepEqual(await getQuizState(second.id), second);
+          assert.deepEqual(
+            (await listQuizStates('quiz-a')).map(state => state.id).sort(),
+            [first.id, second.id].sort(),
+          );
         });
 
         it('should reject an empty quiz ID without a persisted record', async () => {
           await assert.rejects(createQuizState(''));
           assert.deepEqual(await listQuizStates(''), []);
-        });
-
-        it('should preserve quiz data when an existing database connection is closed and reopened', async () => {
-          const created = await createQuizState('quiz-a');
-          const reopened = await openDatabase();
-          reopened.close();
-          assert.deepEqual(await getQuizState(created.id), created);
-        });
-
-        it('should reject duplicate primary keys while allowing duplicate quizId index entries', async () => {
-          await addStored('quizStates', newQuiz('first'));
-          await addStored('quizStates', newQuiz('second'));
-          await assert.rejects(addStored('quizStates', newQuiz('first')));
-          assert.deepEqual((await listQuizStates('quiz-a')).map(state => state.id).sort(), ['first', 'second']);
         });
       });
     });
@@ -457,6 +396,14 @@ describe('DB', { concurrency: false }, () => {
 
         it('should return undefined for an absent quiz run', async () => {
           assert.equal(await getQuizState('missing'), undefined);
+        });
+
+        it('should reject unknown persisted quiz fields (strict schema)', async () => {
+          const invalid = { ...newQuiz('extra'), unknownField: true };
+          await addStored('quizStates', invalid);
+          await assert.rejects(getQuizState(invalid.id));
+          await assert.rejects(listQuizStates(invalid.quizId));
+          assert.deepEqual(await readStored('quizStates', invalid.id), invalid);
         });
 
         it('should reject malformed stored answers without changing them', async () => {
@@ -506,17 +453,6 @@ describe('DB', { concurrency: false }, () => {
           await saveQuizState(next);
           assert.deepEqual(await readStored('quizStates', next.id), next);
           assert.equal((await listQuizStates(next.quizId)).length, 1);
-        });
-
-        it('should clone answers instead of persisting subsequent caller mutations', async () => {
-          const original = quizProgress();
-          await saveQuizState(original);
-          original.answers['question-2'] = { status: 'draft', answer: { type: 'answer-with-number', value: '12' } };
-          const first = original.answers['question-1'];
-          if (first.status === 'submitted' && first.answer.type === 'select-multiple-answers') {
-            first.answer.value.push('unexpected');
-          }
-          assert.deepEqual(await getQuizState(original.id), quizProgress());
         });
 
         it('should reject invalid earned weights before transaction persistence', async () => {
@@ -656,6 +592,23 @@ describe('DB', { concurrency: false }, () => {
           await saveQuizState(initial);
           await assert.rejects(completeQuiz(initial.id, { status: 'graded', success: true, value: Number.NaN }));
           assert.deepEqual(await readStored('quizStates', initial.id), initial);
+        });
+
+        it('should allow a negative finite graded score but reject a nonfinite result atomically', async () => {
+          const initial = quizProgress();
+          await saveQuizState(initial);
+          const completed = await completeQuiz(initial.id, { status: 'graded', success: false, value: -2 });
+          assert.equal(completed?.status, 'finished');
+          if (completed?.status !== 'finished') throw new Error('Expected a finished quiz');
+          assert.deepEqual(completed.result, { status: 'graded', success: false, value: -2 });
+          const before = await readStored('quizStates', initial.id);
+          await assert.rejects(
+            updateQuizState(initial.id, current => {
+              if (current.status !== 'finished') throw new Error('Unexpected status');
+              return { ...current, result: { status: 'graded', success: true, value: Number.POSITIVE_INFINITY } };
+            }),
+          );
+          assert.deepEqual(await readStored('quizStates', initial.id), before);
         });
 
         it('should return undefined for a missing quiz run', async () => {

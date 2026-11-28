@@ -90,7 +90,13 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.match(workflow, /branches: \[main\]/);
   assert.match(workflow, /opened, reopened, synchronize, edited, ready_for_review/);
   assert.match(workflow, /name: Production \/ source policy/);
+  assert.match(workflow, /github\.event\.pull_request\.head\.repo\.full_name/);
   assert.match(workflow, /needs: policy/);
+  assert.match(workflow, /name: Build all distributable packages/);
+  assert.match(workflow, /name: Verify compiled public package artifacts/);
+  assert.match(workflow, /name: Build application and all needed workspace dependencies/);
+  assert.match(workflow, /name: Validate compiled application resources\n        if: matrix\.integration/);
+  assert.match(workflow, /name: Run application E2E suite\n        if: matrix\.e2e/);
   assert.match(workflow, /matrix: \$\{\{ fromJSON\(needs\.policy\.outputs\.apps\) \}\}/);
   assert.match(workflow, /fail-fast: false/);
   assert.match(workflow, /if: matrix.e2e/);
@@ -112,6 +118,86 @@ test('parallel production topology preserves every gate and produces one strict 
   assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
   // The source guard and unit test run before any use of npm ci.
   assert.ok(workflow.indexOf('check-release-source.mjs') < workflow.indexOf('npm ci'));
+});
+
+test('Ready main runs the full Engine generator suite once through required Production Quality', () => {
+  // Engine generators is a direct Ready PR workflow AND a reusable production
+  // gate. Preserve its cheap direct Draft/security checks on all PR targets,
+  // without dispatching two independently installed full suites on main.
+  assert.match(engineGeneratorsWorkflow, /  pull_request:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  workflow_dispatch:\s*\n/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /  workflow_call:\s*\n    inputs:\s*\n[\s\S]*?run_full_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
+  assert.match(engineGeneratorsWorkflow, /  publisher-isolation:\s*\n/);
+  assert.match(engineGeneratorsWorkflow, /  ci-policy:\s*\n/);
+  const generatorTests = engineGeneratorsWorkflow.split('\n  generator-tests:\n')[1];
+  assert.ok(generatorTests, 'missing complete generator-tests job');
+  assert.match(
+    generatorTests,
+    /github\.event_name == 'workflow_dispatch' \|\|\s*\n\s*\(!github\.event\.pull_request\.draft &&\s*\n\s*\(github\.event\.pull_request\.base\.ref != 'main' \|\| inputs\.run_full_generator_tests\)\)/,
+  );
+  assert.match(generatorTests, /Run targeted generator and CLI regression tests/);
+  assert.match(generatorTests, /Test typed Bank source and PR-command security/);
+  assert.match(generatorTests, /Test typed Lesson Stage 6 source and PR-command security/);
+  assert.match(
+    workflow,
+    /  generators:\s*\n    name: Production \/ Engine generators\s*\n    needs: policy\s*\n[\s\S]*?uses: \.\/\.github\/workflows\/engine-generators\.yml\s*\n    with:\s*\n[\s\S]*?run_full_generator_tests: true/,
+  );
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
+});
+
+test('production-exclusive generator selection requires exhaustive unit and strict verify', () => {
+  const target = engineGeneratorsWorkflow.split('  generator-tests:\n')[1];
+  assert.ok(target);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /only_unit_unique_generator_tests:\s*\n        type: boolean\s*\n        default: false/,
+  );
+  assert.match(target, /SVITLO_CI_ONLY_UNIQUE_GENERATOR_TESTS: \$\{\{ inputs\.only_unit_unique_generator_tests \}\}/);
+  assert.match(target, /run: node scripts\/ci\/productionQuality\/select-generator-tests\.mjs/);
+  assert.match(
+    engineGeneratorsWorkflow,
+    /scripts\/ci\/productionQuality\/production-quality\.spec\.mjs scripts\/ci\/productionQuality\/select-generator-tests\.spec\.mjs/,
+  );
+  assert.match(workflow, /only_unit_unique_generator_tests: true/);
+  assert.match(workflow, /run_full_generator_tests: true/);
+  assert.match(workflow, /name: Test every eligible workspace[\s\S]*?-- npm test/);
+  assert.match(
+    workflow,
+    /needs: \[reuse, policy, repository, types, unit, generators, components, lint, packages, apps\]/,
+  );
+  assert.match(workflow, /status !== 'success'/);
+});
+
+test('standalone and reusable Engine generators have distinct cancellation groups', () => {
+  // GitHub Actions evaluates github.workflow in the called workflow as the
+  // caller's workflow name, not the reusable file name. On a Ready main
+  // promotion both workflows see the same PR number; if their groups match,
+  // cancel-in-progress can cancel the required reusable Production gate.
+  const engineGroup = engineGeneratorsWorkflow.match(
+    /concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/,
+  )?.[1];
+  const productionGroup = workflow.match(/concurrency:\n(?:.*\n)*?  group: (.+)\n  cancel-in-progress: true/)?.[1];
+  assert.equal(
+    engineGroup,
+    'engine-generators-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}',
+  );
+  assert.equal(productionGroup, 'production-quality-${{ github.event.pull_request.number || github.ref }}');
+  // Model only these two documented substitutions (not the GitHub evaluator).
+  const evaluateGroup = (template, workflowName, prNumber) =>
+    template
+      .replace('${{ github.workflow }}', workflowName)
+      .replace('${{ github.event.pull_request.number || github.ref }}', String(prNumber));
+  const standalone = evaluateGroup(engineGroup, 'Engine generators', 925);
+  const called = evaluateGroup(engineGroup, 'Production quality', 925);
+  const parent = evaluateGroup(productionGroup, 'Production quality', 925);
+  assert.notEqual(standalone, called, 'standalone must not cancel the production reusable call');
+  assert.notEqual(called, parent, 'reusable must not cancel its own Production Quality parent');
 });
 
 test('PR comment command dispatches the unchanged full production workflow', () => {
@@ -156,4 +242,24 @@ test('Mobile E2E serves the already-built production bundle and checks offline r
     /name: Validate compiled Mobile offline bundle\s*\n\s*if: matrix\.workspace == '@svitlo\/mobile'\s*\n\s*run: .*npm run app:check:bundle --workspace/,
   );
   assert.match(mobile.scripts.test, /scripts\/serveBuilt\/\*\.test\.mjs/);
+});
+
+test('Turbo migration retains protected verification and bounds scheduling to package/lint', () => {
+  const root = JSON.parse(readFileSync(new URL('../../../package.json', import.meta.url), 'utf8'));
+  const turbo = JSON.parse(readFileSync(new URL('../../../turbo.json', import.meta.url), 'utf8'));
+  assert.match(root.scripts['package:build'], /^turbo run package:build /);
+  assert.match(root.scripts['code:lint:check'], /^turbo run code:lint:check /);
+  assert.equal(turbo.tasks['package:build'].cache, false);
+  assert.equal(turbo.tasks['code:lint:check'].cache, false);
+  assert.equal(turbo.envMode, 'loose');
+  assert.match(workflow, /scripts\/ci\/turboTaskGraph\/verify-graph\.spec\.mjs/);
+  const packageJob = workflow.split('\n  packages:\n')[1].split('\n  apps:\n')[0];
+  assert.match(packageJob, /npm run repo:check:turbo/);
+  assert.match(packageJob, /node --test scripts\/ci\/turboTaskGraph\/verify-execution\.spec\.mjs/);
+  assert.ok(packageJob.indexOf('verify-execution.spec.mjs') < packageJob.indexOf('npm run package:build'));
+
+  assert.match(packageJob, /npm run package:build/);
+  assert.match(packageJob, /npm run repo:check:artifacts/);
+  assert.doesNotMatch(packageJob, /SVITLO_CI_PACKAGE_BUILD_STATE|package-build-reuse\.mjs --summary/);
+  assert.equal(workflow.split('name: Production Quality / verify').length - 1, 1);
 });

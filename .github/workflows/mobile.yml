@@ -3,7 +3,7 @@ name: Mobile host checks
 on:
   pull_request:
     types: [ready_for_review, reopened, synchronize]
-    branches: [main, develop]
+    # Nested integration PRs also require the Ready mobile checks.
     paths:
       - 'apps/mobile/**'
       - 'shared/adapters/capacitor/**'
@@ -62,7 +62,7 @@ jobs:
       - run: node scripts/ci/quietRun/quiet-run.mjs -- npm exec --workspace @svitlo/mobile -- cap sync android
       - name: Compile debug APK without signing
         working-directory: apps/mobile/android
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon --quiet
   ios:
     name: iOS Simulator build (manual)
     if: github.event_name == 'workflow_dispatch'

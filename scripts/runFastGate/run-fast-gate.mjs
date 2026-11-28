@@ -6,7 +6,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { changedFiles } from '../ci/prDiff/changed-files.mjs';
 import { partitionBuildMutatingHosts, runParallelTypechecks } from '../runWorkspaceScript/typecheck-scheduler.mjs';
-import { changedPublicContracts } from './public-contract-impact.mjs';
 
 export { partitionBuildMutatingHosts };
 
@@ -112,9 +111,14 @@ export function chooseChecks(changed, workspaces, { publicChanges = [], changedO
     if (pkg) affected.add(pkg.name);
     if (pkg && file === pkg.path + '/package.json') triggers.add(pkg.name);
   }
-  // Non-develop Ready PRs typecheck only directly edited workspaces.
-  // Their dependency builds are still prepared later for TypeScript resolution.
-  if (changedOnly) return { affected };
+  // Non-develop Ready PRs ordinarily check directly edited workspaces.
+  // Root dependency and TypeScript configuration changes can affect every
+  // workspace, however: a zero-target result is unsafe even in a nested PR.
+  // Dependency builds are still prepared later for TypeScript resolution.
+  if (changedOnly) {
+    if (global || lockChange) for (const name of packages.keys()) affected.add(name);
+    return { affected };
+  }
   for (const file of publicChanges) {
     const pkg = packageFor(file, workspaces);
     if (pkg) triggers.add(pkg.name);
@@ -149,7 +153,12 @@ export function shouldBuildDependency(owner, dependency) {
 async function runGate(changed, base, head, { changedOnly = false } = {}) {
   const workspaces = expandWorkspaces();
   const all = new Map(workspaces.map(workspace => [workspace.name, workspace]));
-  const publicChanges = !changedOnly && base && head ? changedPublicContracts(changed, workspaces, base, head) : [];
+  // Only public-signature comparisons need TypeScript. Keep the scope planner
+  // npm-free so root-only nested PR regression tests run during cheap Draft CI.
+  const publicChanges =
+    !changedOnly && base && head
+      ? (await import('./public-contract-impact.mjs')).changedPublicContracts(changed, workspaces, base, head)
+      : [];
   if (publicChanges.length) console.log('Changed public contracts: ' + publicChanges.join(', '));
   const plan = chooseChecks(changed, workspaces, { publicChanges, changedOnly });
 
@@ -164,7 +173,23 @@ async function runGate(changed, base, head, { changedOnly = false } = {}) {
       ensureSharedDependencies(dep, next);
       const dependency = all.get(dep);
       if (shouldBuildDependency(pkg, dependency) && !built.has(dep)) {
-        exec('npm', ['run', 'package:build', '--workspace', dep]);
+        if (process.env.SVITLO_CI_BUILD_TELEMETRY) {
+          exec(process.execPath, [
+            'scripts/ci/buildTelemetry/record-build-command.mjs',
+            '--workspace',
+            dep,
+            '--origin',
+            'fastgate-prerequisite',
+            '--',
+            'npm',
+            'run',
+            'package:build',
+            '--workspace',
+            dep,
+          ]);
+        } else {
+          exec('npm', ['run', 'package:build', '--workspace', dep]);
+        }
         built.add(dep);
       }
     }

@@ -58,7 +58,9 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/ci/verifyProductionAssets/verify-production-assets.spec.mjs
       - name: Build Engine runtime for assessment reference tests
         if: steps.plan.outputs.has_builds == 'true'
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+        env:
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-content-builds.jsonl
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/buildTelemetry/record-build-command.mjs --workspace @svitlo/engine --origin content-prepare -- npm run package:build --workspace @svitlo/engine
       - name: Test published assessment resource references
         if: steps.plan.outputs.has_builds == 'true'
         run: node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/textbook-tooling/verifyAssessmentSelections/verifyAssessmentSelections.spec.mjs
@@ -73,6 +75,9 @@ jobs:
         run: |
           node scripts/ci/quietRun/quiet-run.mjs -- npm run repo:check:packages
           node scripts/ci/quietRun/quiet-run.mjs -- node --test scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs
+      - name: Summarize observed preparation builds
+        if: always() && steps.plan.outputs.has_builds == 'true'
+        run: node scripts/ci/buildTelemetry/summarize-builds.mjs --file "${{ runner.temp }}/svitlo-content-builds.jsonl"
 
   build:
     name: Content / ${{ matrix.id }}
@@ -80,7 +85,7 @@ jobs:
     if: needs.prepare.outputs.has_builds == 'true'
     strategy:
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
       matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -97,9 +102,12 @@ jobs:
         run: node scripts/ci/quietRun/quiet-run.mjs -- npm ci --no-audit --no-fund
       # Each content shard has its own checkout and needs the built Engine runtime.
       - name: Build Engine for content shard
-        run: node scripts/ci/quietRun/quiet-run.mjs -- npm run package:build --workspace @svitlo/engine
+        env:
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-content-builds.jsonl
+        run: node scripts/ci/quietRun/quiet-run.mjs -- node scripts/ci/buildTelemetry/record-build-command.mjs --workspace @svitlo/engine --origin content-shard -- npm run package:build --workspace @svitlo/engine
       - name: Verify each selected textbook or agent scope
         env:
+          SVITLO_CI_BUILD_TELEMETRY: ${{ runner.temp }}/svitlo-content-builds.jsonl
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
@@ -108,6 +116,9 @@ jobs:
           SVITLO_MEDIA_MODE: ${{ (github.event_name == 'pull_request' && (github.base_ref != 'main' || github.event.pull_request.draft)) && 'draft' || 'production' }}
           CONTENT_SHARD_PACKAGES: ${{ toJSON(matrix.packages) }}
         run: node scripts/ci/buildChangedContent/content-shards.mjs
+      - name: Summarize observed build commands in this shard
+        if: always()
+        run: node scripts/ci/buildTelemetry/summarize-builds.mjs --file "${{ runner.temp }}/svitlo-content-builds.jsonl"
 
   verify:
     # Keep this exact required status context from the Protect main ruleset.

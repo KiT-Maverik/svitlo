@@ -78,9 +78,24 @@ test('non-develop PRs check only directly changed workspaces, not public API con
   assert.deepEqual([...twoChanged.affected].sort(), ['@svitlo/engine', '@svitlo/indexdb']);
 });
 
-test('non-develop PR root-only changes do not select untouched workspaces', () => {
-  const selection = chooseChecks(['package.json', 'package-lock.json'], packages, { changedOnly: true });
+test('nested Ready PR root dependency and TypeScript configuration edits fail closed', () => {
+  for (const filename of ['package.json', 'package-lock.json', 'tsconfig.json', 'tsconfig.base.json']) {
+    const selection = chooseChecks([filename], packages, { changedOnly: true });
+    assert.deepEqual(
+      [...selection.affected].sort(),
+      packages.map(pkg => pkg.name).sort(),
+      filename + ' must not yield a green zero-typecheck result',
+    );
+  }
+});
+
+test('nested Ready PR unrelated root or workflow changes do not broaden typechecks', () => {
+  const selection = chooseChecks(['README.md', '.github/workflows/fast-gate.yml'], packages, {
+    changedOnly: true,
+  });
   assert.deepEqual([...selection.affected], []);
+  const changedWorkspace = chooseChecks(['README.md', 'content/math/src/demo.ts'], packages, { changedOnly: true });
+  assert.deepEqual([...changedWorkspace.affected], ['@svitlo/math']);
 });
 
 test('selects only changed subject workspaces', () => {
@@ -133,7 +148,12 @@ test('FastGate is strictly typecheck-only and still always emits the required st
   assert.match(workflow, /Typecheck changed workspaces and public API consumers/);
   assert.match(workflow, /No changed TypeScript workspace or dependency config/);
   assert.match(workflow, /steps\.scope\.outputs\.run == 'true'/);
-  assert.doesNotMatch(workflow, /node --test|test:coverage|test:components|app:build|Scoped quality checks/);
+  assert.match(
+    workflow,
+    /node --test --test-reporter=dot scripts\/ci\/checkStubImports\/check-stub-imports\.spec\.mjs/,
+    'The narrowly scoped Course stub safety regression is permitted in FastGate',
+  );
+  assert.doesNotMatch(workflow, /test:coverage|test:components|app:build|Scoped quality checks/);
   assert.match(runner, /code:check:types/);
   assert.doesNotMatch(runner, /['"](?:test(?::[a-z-]+)?|app:build)['"]/);
   assert.match(coverage, /github\.event\.comment\.body == '\/engine-coverage'/);

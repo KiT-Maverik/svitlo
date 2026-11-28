@@ -10,9 +10,18 @@ export async function updateState<T extends { id: string }>(
   const database = await openDatabase();
 
   return new Promise((resolve, reject) => {
-    const transaction = database.transaction(storeName, 'readwrite');
-    const store = transaction.objectStore(storeName);
-    const request = store.get(id);
+    let transaction: IDBTransaction;
+    let request: IDBRequest;
+    let store: IDBObjectStore;
+    try {
+      transaction = database.transaction(storeName, 'readwrite');
+      store = transaction.objectStore(storeName);
+      request = store.get(id);
+    } catch (error) {
+      database.close();
+      reject(error);
+      return;
+    }
     let updated: T | undefined;
     let failure: unknown;
 

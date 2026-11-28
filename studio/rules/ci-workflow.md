@@ -114,17 +114,24 @@ FastGate is a **typechecking gate**, not a test, coverage, lint, package-validat
 or production application-build gate. On **Ready PRs targeting `develop`**, it selects
 changed workspaces plus consumers of changed public TypeScript contracts. On **Ready
 PRs targeting any other branch** (including nested integration parents and `main`),
-it selects **only directly changed workspaces**, without downstream consumer
-expansion. For either scope, it builds prerequisite published exports needed for
+it ordinarily selects **only directly changed workspaces**, without downstream
+consumer expansion. Root-level `package.json`, `package-lock.json` and
+`tsconfig*.json` edits are the conservative exception: they select every
+eligible TypeScript workspace even with `--changed-only`, because those changes
+can affect every workspace. For either scope, it builds prerequisite published exports needed for
 TypeScript resolution in dependency order, then runs independent `code:check:types`
 checks concurrently (default two;
 `SVITLO_FASTGATE_PARALLELISM=1..8`). Web/Mobile typechecks remain sequential
 because their npm pre-hooks may rewrite shared `dist/`, making concurrent checks
 unsafe without first separating preparation from compilation. Root
 `npm run code:check:types` checks all workspaces and is not the FastGate default.
-For nested Ready PRs, a root-only manifest or root tsconfig change does not
-count as a directly edited workspace; use the existing full manual
-`workflow_dispatch` (`--all`) for such global configuration changes when needed.
+For nested Ready PRs, root-only manifest, lockfile or root TypeScript
+configuration changes automatically select all eligible TypeScript workspaces;
+they must never produce a green zero-typecheck result. The separate manual
+`workflow_dispatch` (`--all`) remains available for explicitly requested full
+diagnostics, not as a necessary workaround for root-only changes. This behavior
+is covered by positive and negative `run-fast-gate.spec.mjs` selection tests;
+actual Ready event coverage must still be verified.
 The GitHub PR trigger includes `edited` so retargeting a Ready PR also re-evaluates
 its correct branch-specific scope. GitHub also emits `edited` for description-only
 changes, even at unchanged HEAD. **Do not skip a required check job solely on
@@ -138,6 +145,27 @@ npm install: Draft defers distribution builds, Ready `develop` selects impacted
 textbooks, and Ready `main` or manual dispatch builds all. With zero selected
 textbooks, avoid `npm ci` while emitting the same stable required status.
 Do not rerun the full Engine suite during an unrelated Biology build.
+
+## Turborepo package and lint orchestration
+
+Root `package:build` and `code:lint:check` use local, pinned Turborepo OSS
+over the real npm workspace graph. `scripts/ci/turboTaskGraph/verify-graph.mjs`
+checks the installed Turbo dry-run for complete eligible task coverage,
+development-dependency build edges and no missing, duplicate or cyclic tasks.
+Source-policy tests run before dependency installation; the production
+package worker verifies the real graph after `npm ci` and before building.
+
+Turbo package/lint tasks disable both local and remote caching, run with
+bounded concurrency, and retain the inherited npm/CI environment. The
+standalone packages worker no longer initializes a build-reuse state.
+All other workers that need job-local SHA-verified repeat-build protection
+retain their helper. FastGate impacted/public-contract selection, exhaustive
+TypeScript checks, npm pre-hooks, root tests, selected components, host
+builds, Docker-isolated generator/materialization, content publication,
+E2E/Chromium and protected `verify` aggregation remain independent. Do
+not assume full CI parity or speedup without matched head-pinned runs.
+See the [Production Quality runbook](../../scripts/ci/productionQuality/README.md)
+for verification and rollback.
 
 ## Parallel production validation and package-build reuse
 
@@ -168,7 +196,8 @@ Production TypeScript checks use `SVITLO_TYPECHECK_PARALLELISM=4` by default
 (range 1–8), while FastGate retains its separate existing parallelism setting.
 
 Each runner installs its own pinned dependencies and prepares only the
-required local build outputs. `SVITLO_CI_PACKAGE_BUILD_STATE` remains
+required local build outputs. The package worker uses Turbo without a reuse
+state; in the other applicable jobs `SVITLO_CI_PACKAGE_BUILD_STATE` remains
 **strictly local to a job**. The root workspace aggregator, Engine/adapter
 test hooks and Web/Mobile/Desktop content preparation use
 `scripts/ci/packageBuildReuse/package-build-reuse.mjs` to reuse builds within
@@ -189,6 +218,9 @@ Affected Content status. Implementation details and validation commands:
 **Diagnostic report transport:** `/agent-artifacts generate`, `/get lesson`, `/engine-coverage` and `/repo-audit` upload one-day Actions artifacts; no report publisher commits to PR branches. See [Agent CI reports](../docs/architecture/agent-ci-artifacts.md). The obsolete `Agent CI Artifacts / clean` workflow is deleted. Remove that required context from branch rulesets before merging, while preserving all other required checks.
 
 ## Quiet logs and agents
+
+- For direct, human-readable `node --test` invocations on CI, prefer Node's native `--test-reporter=dot`: successful tests have compact output, but failures still include failing test names, causes and nonzero status. Do **not** set a global reporter through `NODE_OPTIONS`, change test selection or force this mode on protocol/output-producing tests. This affects selected verify, policy, generator and coverage-report unit-test steps, not every script run by npm.
+- The log optimization audit for all workflows and its source-SHA-pinned baseline are in [CI log output optimization](../docs/architecture/ci-log-output-optimization.md). Runner, checkout, setup and third-party Action output can dominate success logs even when application commands are quiet; no fixed per-job log-size limit or token-saving claim is justified by this work. Before/after measurements must match comparable scope, and agent-fetched excerpts must be measured separately from complete server logs.
 
 - Prefer `node scripts/ci/quietRun/quiet-run.mjs -- <command> [args...]` for installs, tests, builds and typechecks. Success prints status and duration, failure preserves the nonzero exit and bounded useful diagnostics; `SVITLO_CI_VERBOSE=1` enables full output on an intentional rerun.
 - Never wrap a command whose stdout is consumed by another process or by GitHub, including structured JSON, workflow-command output, a shell pipeline, GitHub API/token operations and source generation. Preserve `GITHUB_OUTPUT`, error annotations and all security checks. Do not upload potentially sensitive full successful logs.
@@ -228,16 +260,21 @@ Dedicated EducationStandard catalog/reference GitHub workflows are removed. Exis
 ## Production and nested-PR enforcement follow-ups
 
 - Required `Affected content / build, taxonomy and packaging` runs the full
-  selected-content workload across at most five deterministic shards on every Ready
+  selected-content workload across at most three deterministic shards on every Ready
   main PR. Each shard installs dependencies once and preserves independent
-  publication and tarball portability checks for every eligible textbook. Production Quality does **not**
+  publication and tarball portability checks for every eligible textbook. The
+  three-shard cap was approved in PR #925 after three same-SHA full-content
+  comparisons: median shard runner time fell by about 25%, while median shard
+  wall time increased by six seconds. This tradeoff applies only to the Content
+  Build matrix; it does not authorize slower CI jobs elsewhere. Production Quality does **not**
   rerun those publication/portability suites; it retains full TypeScript, root
   tests, app builds, package artifacts and Chromium E2E coverage.
 - FastGate determines changed files from the merge-base, compares the public
   declaration surface of re-exported modules and propagates affected workspace
   typechecks through real dependencies, including transitive consumers.
   Private implementation-only edits remain scoped. Root manifest and lockfile
-  edits conservatively check all workspaces.
+  edits conservatively check all eligible TypeScript workspaces even for
+  nested Ready PRs using `--changed-only`.
 - **Owner decision:** do **not** introduce Rulesets for intermediate `integration/*`,
   historical `integration-branch`, or `agent/*` branches. Their failed checks
   remain visible to reviewers and agents but do not prevent a GitHub merge.

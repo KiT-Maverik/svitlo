@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { fixtureJsonForSkillUrl, TEST_SKILL_NODES_UK, TEST_SKILLS_DOMAIN_SLUGS } from './skillsData.fixture';
+import { TEST_SKILL_NODES_UK } from './skillsData.fixture';
 import { SkillsMindMap } from './SkillsMindMap';
 import { SkillsPageSettingsProvider } from './SkillsPageSettingsContext';
 
@@ -30,11 +30,11 @@ describe('Skills mind-map touch gestures', () => {
   beforeEach(() => {
     document.documentElement.lang = 'uk';
     window.history.replaceState({}, '', '/skillAnalytics');
+    // Skills pages receive server-resolved props; a client fetch is a regression.
     vi.stubGlobal(
       'fetch',
-      vi.fn(async (url: string) => {
-        const data: unknown = fixtureJsonForSkillUrl(url);
-        return { ok: data !== null, status: data !== null ? 200 : 404, json: async () => data };
+      vi.fn(() => {
+        throw new Error('Unexpected client-side Skills fetch');
       }),
     );
   });

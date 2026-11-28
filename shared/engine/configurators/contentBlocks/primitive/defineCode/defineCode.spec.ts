@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import { describe, test } from 'node:test';
 import { pathToFileURL } from 'node:url';
 
-import { defineCode, readCodeSource } from './index';
+import { code_Data_Schema, defineCode, readCodeSource } from './index';
 
 const id = 'e5235ac2-2c44-4c10-8c48-3c7bad649011';
 const scope = { languages: ['uk'] as const };
@@ -33,8 +33,11 @@ describe('Configurators', () => {
             params: { language: 'python', codeAsText: source },
             locale: {},
           });
-          assert.equal(block.build.data(scope).base.params.codeAsText, source);
-          assert.equal(JSON.stringify(block.build.data(scope)).includes('code.py'), false);
+          const published = block.build.data(scope);
+          assert.equal(published.base.params.codeAsText, source);
+          assert.equal(code_Data_Schema.safeParse(published.base).success, true);
+          assert.equal(published.locale, undefined);
+          assert.equal(JSON.stringify(published).includes('code.py'), false);
         } finally {
           rmSync(root, { recursive: true, force: true });
         }

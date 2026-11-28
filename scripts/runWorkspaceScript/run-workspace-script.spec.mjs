@@ -7,6 +7,7 @@ import {
   planWorkspaceOperation,
   planTypecheckPhases,
   environmentForWorkspace,
+  formatUnitWorkspaceTiming,
 } from './run-workspace-script.mjs';
 
 const ws = (name, path, scripts, deps = []) => ({
@@ -14,6 +15,42 @@ const ws = (name, path, scripts, deps = []) => ({
   path,
   scripts,
   dependencies: Object.fromEntries(deps.map(dep => [dep, '*'])),
+});
+
+test('opt-in unit timing text identifies distinct build and test steps without source data', () => {
+  assert.equal(
+    formatUnitWorkspaceTiming('@svitlo/engine', 'test', 6432.4, true),
+    'SVITLO_CI_UNIT_TIMING @svitlo/engine / test 6.4s (success)',
+  );
+  assert.equal(
+    formatUnitWorkspaceTiming('@svitlo/ui-kit', 'package:build', 991.9, false),
+    'SVITLO_CI_UNIT_TIMING @svitlo/ui-kit / package:build 1.0s (failure)',
+  );
+  assert.equal(formatUnitWorkspaceTiming('@svitlo/engine', 'code:check:types', 22, true), null);
+  assert.equal(formatUnitWorkspaceTiming('fake\\n::error::injection', 'test', 1, false), null);
+  assert.equal(formatUnitWorkspaceTiming('@svitlo/engine', 'test', -1, true), null);
+  assert.equal(formatUnitWorkspaceTiming('@svitlo/engine', 'test', Number.NaN, true), null);
+});
+
+test('root test planning retains every eligible workspace and npm lifecycle hook', () => {
+  const packages = discoverWorkspaces();
+  const plan = planWorkspaceOperation(packages, 'test');
+  const expected = packages.filter(pkg => Object.hasOwn(pkg.scripts || {}, 'test')).map(pkg => pkg.name);
+  assert.deepEqual(plan.selected, expected);
+  assert.deepEqual(
+    plan.steps
+      .filter(step => step.script === 'test')
+      .map(step => step.name)
+      .sort(),
+    expected.slice().sort(),
+  );
+  assert.equal(
+    new Set(plan.steps.filter(step => step.script === 'package:build').map(step => step.name)).size,
+    plan.steps.filter(step => step.script === 'package:build').length,
+  );
+  for (const pkg of packages.filter(pkg => pkg.scripts?.pretest)) {
+    assert.ok(expected.includes(pkg.name), 'Missing npm pretest owner: ' + pkg.name);
+  }
 });
 
 test('builds dependencies in order and never builds an eligible package twice', () => {
@@ -158,7 +195,13 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
-  assert.equal(packages.length, 30);
+  const lock = JSON.parse(readFileSync(fileURLToPath(new URL('../../package-lock.json', import.meta.url)), 'utf8'));
+  assert.ok(packages.length > 0, 'workspace discovery must return package manifests');
+  assert.equal(new Set(packages.map(pkg => pkg.name)).size, packages.length, 'workspace names must be unique');
+  assert.equal(new Set(packages.map(pkg => pkg.path)).size, packages.length, 'workspace paths must be unique');
+  for (const pkg of packages) {
+    assert.equal(lock.packages[pkg.path]?.name, pkg.name, 'workspace must match the lockfile: ' + pkg.path);
+  }
   for (const fixture of ['@svitlo/web-fixture-alpha', '@svitlo/web-fixture-beta']) {
     assert(
       packages.some(pkg => pkg.name === fixture),

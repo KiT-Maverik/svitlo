@@ -262,6 +262,25 @@ describe('DB', () => {
         assert.equal(fixture.closeCount, 1);
       });
 
+      for (const setup of ['transaction', 'objectStore', 'get'] as const) {
+        it(`should close exactly once and preserve a synchronous ${setup} setup error`, async t => {
+          const fixture = installIndexedDbFixture();
+          t.after(fixture.restore);
+          const failure = new Error(`Failed to create ${setup}`);
+          if (setup === 'transaction') fixture.throwOnTransaction(failure);
+          if (setup === 'objectStore') fixture.throwOnObjectStore(failure);
+          if (setup === 'get') fixture.throwOnGet(failure);
+
+          const result = updateState('lessonStates', 'a', parseState, current => current);
+          fixture.succeedOpen();
+
+          await assert.rejects(result, (error: unknown) => error === failure);
+          assert.equal(fixture.closeCount, 1);
+          assert.equal(fixture.abortCount, 0);
+          assert.deepEqual(fixture.writes, []);
+        });
+      }
+
       it('should propagate database-open failures without creating a transaction', async t => {
         const fixture = installIndexedDbFixture();
         t.after(fixture.restore);

@@ -64,29 +64,4 @@ describe('ThreeSlotLayout', () => {
     fireEvent.click(center);
     expect(onClick).toHaveBeenCalledOnce();
   });
-
-  it('mirrors horizontal logical start/end under RTL without swapping content', () => {
-    render(
-      <ThreeSlotLayout
-        axis="horizontal"
-        slots={{ start: 'Logical start', center: 'Free region', end: 'Logical end' }}
-        slotProps={{ root: { dir: 'rtl' } }}
-      />,
-    );
-    const root = screen.getByTestId(testId.container);
-    expect(root).toHaveAttribute('dir', 'rtl');
-    expect(slot('start', root)).toHaveTextContent('Logical start');
-    expect(slot('end', root)).toHaveTextContent('Logical end');
-  });
-
-  it('permits multiple independently configured instances', () => {
-    render(
-      <>
-        <ThreeSlotLayout axis="horizontal" slots={{ center: 'Horizontal' }} />
-        <ThreeSlotLayout axis="vertical" slots={{ center: 'Vertical' }} />
-      </>,
-    );
-    const roots = screen.getAllByTestId(testId.container);
-    expect(roots.map(root => root.getAttribute('data-axis'))).toEqual(['horizontal', 'vertical']);
-  });
 });

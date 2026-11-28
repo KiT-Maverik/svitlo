@@ -132,7 +132,12 @@ async function exercise({
       } else throw Error('Unexpected GitHub request: ' + method + ' ' + route);
       return { ok: true, status: 200, json: async () => payload };
     };
-    return { calls, result: await publish(root, meta) };
+    try {
+      return { calls, result: await publish(root, meta) };
+    } catch (error) {
+      error.calls = [...calls];
+      throw error;
+    }
   } finally {
     globalThis.fetch = originalFetch;
     for (const [key, value] of Object.entries(env)) {
@@ -162,18 +167,20 @@ test('typed publisher makes one atomic no-force draft deletion + index creation 
   assert.equal(lease.data.sha, 'd'.repeat(40));
 });
 
-test('stale HEAD refuses branch write after constructing candidate commit', async () => {
-  let calls;
-  await assert.rejects(async () => {
-    try {
-      const result = await exercise({ advance: true });
-      calls = result.calls;
-    } catch (error) {
-      throw error;
-    }
-  }, /HEAD advanced/);
-  // A failed call cannot return its local logs; remote HEAD verification
-  // still fails before PATCH. The throw is the observable safety assertion.
+test('stale HEAD refuses the branch write after constructing a candidate commit', async () => {
+  await assert.rejects(
+    () => exercise({ advance: true }),
+    error => {
+      assert.match(error.message, /HEAD advanced/);
+      assert.equal(error.calls.filter(call => call.route === 'git/commits' && call.method === 'POST').length, 1);
+      assert.equal(
+        error.calls.filter(call => call.method === 'PATCH').length,
+        0,
+        'stale HEAD must never advance a ref',
+      );
+      return true;
+    },
+  );
 });
 
 test('PR prose edits do not affect publishing or its atomic branch lease', async () => {
@@ -182,8 +189,23 @@ test('PR prose edits do not affect publishing or its atomic branch lease', async
 });
 
 test('tampered manifest and unauthorized actor are rejected before any write', async () => {
-  await assert.rejects(() => exercise({ corruptArtifact: true }), /SHA256 attestation/);
-  await assert.rejects(() => exercise({ permission: 'read' }), /permission/);
+  for (const [options, expected] of [
+    [{ corruptArtifact: true }, /SHA256 attestation/],
+    [{ permission: 'read' }, /permission/],
+  ]) {
+    await assert.rejects(
+      () => exercise(options),
+      error => {
+        assert.match(error.message, expected);
+        assert.equal(
+          error.calls.filter(call => call.method === 'POST' || call.method === 'PATCH').length,
+          0,
+          'rejected publisher must not create Git objects or update refs',
+        );
+        return true;
+      },
+    );
+  }
 });
 
 test('non-fast-forward branch lease is never forced or silently retried', async () => {

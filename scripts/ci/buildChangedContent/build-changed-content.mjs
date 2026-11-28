@@ -16,6 +16,26 @@ function run(command, args, cwd = repo) {
     throw new Error(command + ' ' + args.join(' ') + ' failed' + (result.error ? ': ' + result.error.message : ''));
   }
 }
+
+/** Preserve npm build semantics while optionally measuring direct CI requests. */
+function runPackageBuild(name, origin) {
+  const args = ['run', 'package:build', '--workspace', name];
+  if (process.env.SVITLO_CI_BUILD_TELEMETRY) {
+    run(process.execPath, [
+      'scripts/ci/buildTelemetry/record-build-command.mjs',
+      '--workspace',
+      name,
+      '--origin',
+      origin,
+      '--',
+      'npm',
+      ...args,
+    ]);
+  } else {
+    run('npm', args);
+  }
+}
+
 export function contentWorkspaces() {
   const result = [];
   for (const folder of ['content', 'content/languages']) {
@@ -61,7 +81,7 @@ function validateAgent({ workspace, domains }) {
     'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs',
     workspace.path + '/data/skills',
   ]);
-  run('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
+  runPackageBuild('@svitlo/engine', 'skills-agent-engine');
   const file = join(repo, workspace.path, 'tsconfig.agent-ci.tmp.json');
   try {
     writeFileSync(
@@ -85,11 +105,11 @@ function validateAgent({ workspace, domains }) {
 function verifyPackage(pkg, changed) {
   console.log('::group::' + pkg.name);
   try {
-    run('npm', ['run', 'package:build', '--workspace', pkg.name]); // includes Skills graph checks
+    runPackageBuild(pkg.name, 'content-textbook'); // includes Skills graph checks
     if (pkg.scripts['code:lint:check']) run('npm', ['run', 'code:lint:check', '--workspace', pkg.name]);
     if (pkg.name === '@svitlo/math' && changed.some(f => f.startsWith('content/math/'))) {
       run('npm', ['run', 'test:types', '--workspace', pkg.name]);
-      run('npm', ['run', 'test:components', '--workspace', pkg.name]);
+      run('npm', ['test', '--workspace', pkg.name]);
     }
     const cwd = join(repo, pkg.path);
     const publisher = join(repo, 'scripts/textbook-tooling/publishTextbook/test-publish.mjs');
