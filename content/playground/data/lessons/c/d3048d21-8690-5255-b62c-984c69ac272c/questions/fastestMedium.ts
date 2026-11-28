@@ -12,7 +12,8 @@ export const fastestMedium = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: 'f671bcff-e9a1-5d7a-afd0-f28b4d591078',
           slug: 'question',
@@ -53,11 +54,11 @@ export const fastestMedium = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['vacuumFastest'],
+
         vacuumFastest: defineText({
           id: '03aa97f3-2e49-56b0-b3ae-a3d289eb1dcd',
           slug: 'vacuumFastest',
@@ -98,12 +99,12 @@ export const fastestMedium = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['vacuumFastest'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['vacuum'],
+
           vacuum: defineText({
             id: 'c0985811-54b5-5a43-9382-2726a24923ea',
             slug: 'vacuum',
@@ -144,11 +145,11 @@ export const fastestMedium = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['vacuum'],
+        
       },
       distractors: {
-        items: {
+        children: ['water'],
+
           water: defineText({
             id: '2235c6a8-ce3e-5d2c-a987-ab1702e88420',
             slug: 'water',
@@ -189,11 +190,11 @@ export const fastestMedium = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['water'],
+        
       },
       incorrect: {
-        items: {
+        children: ['air'],
+
           air: defineText({
             id: 'c37f2103-b856-5bd3-81b7-c4f8af9a0203',
             slug: 'air',
@@ -234,8 +235,7 @@ export const fastestMedium = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['air'],
+        
       },
     },
   },

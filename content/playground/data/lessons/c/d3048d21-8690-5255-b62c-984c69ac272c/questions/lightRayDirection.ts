@@ -12,7 +12,8 @@ export const lightRayDirection = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: '8fbda15a-7184-519c-a6c1-a7da64575a05',
           slug: 'question',
@@ -53,11 +54,11 @@ export const lightRayDirection = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['direction'],
+
         direction: defineText({
           id: 'a0954fb2-7acf-5943-bafe-7d0b3e4b784e',
           slug: 'direction',
@@ -98,12 +99,12 @@ export const lightRayDirection = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['direction'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['direction'],
+
           direction: defineText({
             id: '1c7f5a04-96e4-5ffa-9f50-7f92b20a78cb',
             slug: 'direction',
@@ -144,11 +145,11 @@ export const lightRayDirection = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['direction'],
+        
       },
       distractors: {
-        items: {
+        children: ['particleSize'],
+
           particleSize: defineText({
             id: '9bf58589-f3c2-523c-8d9e-5900989b3711',
             slug: 'particleSize',
@@ -189,11 +190,11 @@ export const lightRayDirection = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['particleSize'],
+        
       },
       incorrect: {
-        items: {
+        children: ['sourceTemperature'],
+
           sourceTemperature: defineText({
             id: 'a718aef4-1ea6-5ac8-ba77-84aa4417a5db',
             slug: 'sourceTemperature',
@@ -234,8 +235,7 @@ export const lightRayDirection = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['sourceTemperature'],
+        
       },
     },
   },

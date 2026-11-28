@@ -1,5 +1,4 @@
 import {
-  configuratorArrayToSlugMap,
   defineCheckpoint,
   defineCheckpointAnswer,
   defineCheckpointItem,
@@ -45,9 +44,8 @@ export const checkpoint = defineCheckpoint({
       zh: '试着解释',
     },
   },
-  content: {
-    items: configuratorArrayToSlugMap([
-      defineCheckpointItem({
+  children: ['sourceLocation', 'animationSpeed', 'opaqueObjectShadow'],
+sourceLocation: defineCheckpointItem({
         id: '327be513-a21f-5d66-9bb1-7890c672de11',
         slug: 'sourceLocation',
         type: 'checkpointItem',
@@ -95,9 +93,8 @@ export const checkpoint = defineCheckpoint({
           id: '2db51350-5ba9-4f2c-ab1e-853649a87105',
           slug: 'sourceLocationAnswerContent',
           type: 'checkpointAnswer',
-          content: {
-            items: configuratorArrayToSlugMap([
-              defineText({
+          children: ['lightSourcePositionAnswer'],
+lightSourcePositionAnswer: defineText({
                 id: 'f87ad205-5981-4791-94ff-e6be5132f28b',
                 slug: 'lightSourcePositionAnswer',
                 type: 'text',
@@ -137,12 +134,9 @@ export const checkpoint = defineCheckpoint({
                   },
                 },
               }),
-            ]),
-            order: ['lightSourcePositionAnswer'],
-          },
         }),
       }),
-      defineCheckpointItem({
+animationSpeed: defineCheckpointItem({
         id: '327be513-a21f-5d66-9bb1-7890c672de12',
         slug: 'animationSpeed',
         type: 'checkpointItem',
@@ -190,9 +184,8 @@ export const checkpoint = defineCheckpoint({
           id: 'd6da0975-4cda-43eb-9a2e-dbbef6fa3e39',
           slug: 'animationSpeedAnswerContent',
           type: 'checkpointAnswer',
-          content: {
-            items: configuratorArrayToSlugMap([
-              defineText({
+          children: ['animationSpeedAnswer'],
+animationSpeedAnswer: defineText({
                 id: '254655af-de7b-42e4-8f74-04a568b48f6d',
                 slug: 'animationSpeedAnswer',
                 type: 'text',
@@ -232,12 +225,9 @@ export const checkpoint = defineCheckpoint({
                   },
                 },
               }),
-            ]),
-            order: ['animationSpeedAnswer'],
-          },
         }),
       }),
-      defineCheckpointItem({
+opaqueObjectShadow: defineCheckpointItem({
         id: '327be513-a21f-5d66-9bb1-7890c672de13',
         slug: 'opaqueObjectShadow',
         type: 'checkpointItem',
@@ -285,9 +275,8 @@ export const checkpoint = defineCheckpoint({
           id: 'e5633a6b-a4eb-4f23-b82e-0f8ba7a4dc4c',
           slug: 'opaqueObjectShadowAnswerContent',
           type: 'checkpointAnswer',
-          content: {
-            items: configuratorArrayToSlugMap([
-              defineText({
+          children: ['opaqueObjectShadowAnswer'],
+opaqueObjectShadowAnswer: defineText({
                 id: '9eece55a-e495-452b-8645-ead0a1570842',
                 slug: 'opaqueObjectShadowAnswer',
                 type: 'text',
@@ -327,12 +316,6 @@ export const checkpoint = defineCheckpoint({
                   },
                 },
               }),
-            ]),
-            order: ['opaqueObjectShadowAnswer'],
-          },
         }),
       }),
-    ]),
-    order: ['sourceLocation', 'animationSpeed', 'opaqueObjectShadow'],
-  },
 });

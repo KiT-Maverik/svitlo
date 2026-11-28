@@ -12,7 +12,8 @@ export const airVacuumSpeed = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: '4a239502-091e-59a4-b57f-0c4c059de468',
           slug: 'question',
@@ -53,11 +54,11 @@ export const airVacuumSpeed = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['slowerInAir'],
+
         slowerInAir: defineText({
           id: 'e83e3897-1eac-532f-bc5c-6639bf5d29e9',
           slug: 'slowerInAir',
@@ -98,12 +99,12 @@ export const airVacuumSpeed = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['slowerInAir'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['slowerInAir'],
+
           slowerInAir: defineText({
             id: '8c031b64-fcae-5197-9ba4-0b0f42d4b386',
             slug: 'slowerInAir',
@@ -144,11 +145,11 @@ export const airVacuumSpeed = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['slowerInAir'],
+        
       },
       distractors: {
-        items: {
+        children: ['fasterInAir'],
+
           fasterInAir: defineText({
             id: '68d0a7e2-8813-5a2b-b620-a7ccf562e703',
             slug: 'fasterInAir',
@@ -189,11 +190,11 @@ export const airVacuumSpeed = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['fasterInAir'],
+        
       },
       incorrect: {
-        items: {
+        children: ['sameSpeed'],
+
           sameSpeed: defineText({
             id: '76e70b25-0fef-519e-89df-6350c8feea41',
             slug: 'sameSpeed',
@@ -234,8 +235,7 @@ export const airVacuumSpeed = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['sameSpeed'],
+        
       },
     },
   },

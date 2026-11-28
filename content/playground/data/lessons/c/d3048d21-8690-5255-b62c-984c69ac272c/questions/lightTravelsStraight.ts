@@ -12,7 +12,8 @@ export const lightTravelsStraight = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: '42b21cc4-14a5-5159-8c28-aa1fb0309c95',
           slug: 'question',
@@ -53,11 +54,11 @@ export const lightTravelsStraight = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['straightLine'],
+
         straightLine: defineText({
           id: '7c16616c-d8b5-54d5-bb17-7257f8289c52',
           slug: 'straightLine',
@@ -98,12 +99,12 @@ export const lightTravelsStraight = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['straightLine'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['straightLine'],
+
           straightLine: defineText({
             id: '4431da6c-745c-5eda-8dfb-7443e99d16ee',
             slug: 'straightLine',
@@ -144,11 +145,11 @@ export const lightTravelsStraight = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['straightLine'],
+        
       },
       distractors: {
-        items: {
+        children: ['curve'],
+
           curve: defineText({
             id: 'b32eb866-d619-5cad-9a89-bd4b96470385',
             slug: 'curve',
@@ -189,11 +190,11 @@ export const lightTravelsStraight = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['curve'],
+        
       },
       incorrect: {
-        items: {
+        children: ['circle'],
+
           circle: defineText({
             id: 'e63111e7-011e-5294-9a18-c43e8d093f41',
             slug: 'circle',
@@ -234,8 +235,7 @@ export const lightTravelsStraight = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['circle'],
+        
       },
     },
   },

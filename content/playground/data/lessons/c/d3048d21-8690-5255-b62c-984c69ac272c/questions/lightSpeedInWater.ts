@@ -12,7 +12,8 @@ export const lightSpeedInWater = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: '802c89a1-87bc-5f24-9190-92b8f145b5e0',
           slug: 'question',
@@ -53,11 +54,11 @@ export const lightSpeedInWater = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['decreases'],
+
         decreases: defineText({
           id: '3cff3b68-c893-58e4-a32c-72a291f6b324',
           slug: 'decreases',
@@ -98,12 +99,12 @@ export const lightSpeedInWater = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['decreases'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['decreases'],
+
           decreases: defineText({
             id: '71d00332-0a6a-57ee-b4a0-1b790b861383',
             slug: 'decreases',
@@ -144,11 +145,11 @@ export const lightSpeedInWater = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['decreases'],
+        
       },
       distractors: {
-        items: {
+        children: ['unchanged'],
+
           unchanged: defineText({
             id: '72ba744e-7ec1-5692-9408-da33f99343a9',
             slug: 'unchanged',
@@ -189,11 +190,11 @@ export const lightSpeedInWater = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['unchanged'],
+        
       },
       incorrect: {
-        items: {
+        children: ['increases'],
+
           increases: defineText({
             id: '95a775a8-abfc-5305-8eed-64f6ce715d0f',
             slug: 'increases',
@@ -234,8 +235,7 @@ export const lightSpeedInWater = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['increases'],
+        
       },
     },
   },

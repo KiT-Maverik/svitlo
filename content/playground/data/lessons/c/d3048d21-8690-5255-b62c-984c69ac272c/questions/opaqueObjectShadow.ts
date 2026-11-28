@@ -12,7 +12,8 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
   locale: {},
   content: {
     question: {
-      items: {
+      children: ['question'],
+
         question: defineText({
           id: '449b5f02-dcf0-50c9-9c18-a379fd78589c',
           slug: 'question',
@@ -53,11 +54,11 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['question'],
+      
     },
     explanation: {
-      items: {
+      children: ['shadow'],
+
         shadow: defineText({
           id: '9096e740-cc30-58df-80d2-bc6e42789fc6',
           slug: 'shadow',
@@ -98,12 +99,12 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
             },
           },
         }),
-      },
-      order: ['shadow'],
+      
     },
     answers: {
       correct: {
-        items: {
+        children: ['shadow'],
+
           shadow: defineText({
             id: 'a2eb0999-1548-5369-b2ec-2cf4c4b79a71',
             slug: 'shadow',
@@ -144,11 +145,11 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['shadow'],
+        
       },
       distractors: {
-        items: {
+        children: ['vacuum'],
+
           vacuum: defineText({
             id: '175d4b62-a7b2-57ac-9551-1653840cc9ac',
             slug: 'vacuum',
@@ -189,11 +190,11 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['vacuum'],
+        
       },
       incorrect: {
-        items: {
+        children: ['newLightSource'],
+
           newLightSource: defineText({
             id: '916bb013-5312-5d6b-8faa-ca665f89bdd6',
             slug: 'newLightSource',
@@ -234,8 +235,7 @@ export const opaqueObjectShadow = defineSelectOneAnswer({
               },
             },
           }),
-        },
-        order: ['newLightSource'],
+        
       },
     },
   },

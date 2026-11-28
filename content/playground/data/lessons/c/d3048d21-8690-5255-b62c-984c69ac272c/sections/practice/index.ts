@@ -41,8 +41,8 @@ export const practiceSection = definePracticeSection({
   type: 'practice',
   params: { skippable: true },
   locale: { title, navigationLabel: title },
-  content: {
-    items: {
+  children: ['task', 'showcase'],
+
       task: defineText({
         id: 'ae0cafb2-acdc-4eea-849b-582de3882f61',
         slug: 'task',
@@ -84,7 +84,4 @@ export const practiceSection = definePracticeSection({
         },
       }),
       showcase,
-    },
-    order: ['task', 'showcase'],
-  },
 });
