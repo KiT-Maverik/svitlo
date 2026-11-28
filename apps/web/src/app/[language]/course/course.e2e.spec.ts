@@ -93,7 +93,7 @@ test('selected content package publishes canonical Course, Lesson, Question Data
 test('Course detail renders the selected package hierarchy and opens a published Lesson', async ({ page }) => {
   await page.goto('/uk/course/' + courseId);
   await expect(page.getByRole('heading', { name: 'Контрольний курс', level: 1 })).toBeVisible();
-  await expect(page.getByText('Контрольний модуль')).toBeVisible();
+  await expect(page.getByText('Контрольний модуль').first()).toBeVisible();
   await expect(page.getByText('Контрольна глава')).toBeVisible();
   await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
     'href',
@@ -123,7 +123,7 @@ test('Course sidebar retains real group titles and active Lesson state', async (
   const sidebar = page.getByRole('navigation', { name: 'Список тем' });
   const moduleButton = sidebar.getByRole('button', { name: 'Контрольний модуль' }).first();
   const chapterButton = sidebar.getByRole('button', { name: 'Контрольна глава' }).first();
-  const active = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + lessonId + '"]');
+  const active = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + courseLessonPlacement + '"]');
   await expect(moduleButton).toHaveAttribute('aria-expanded', 'true');
   await expect(chapterButton).toHaveAttribute('aria-expanded', 'true');
   await expect(active).toHaveAttribute('aria-current', 'page');
