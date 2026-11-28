@@ -470,7 +470,7 @@ export function generateFlashcardReviewArtifacts({
           for (const side of ['front', 'back', 'hint']) {
             const group = card.content[side];
             if (!group) continue;
-            lines.push('### ' + side + ' (' + group.order.length + ' blocks)', '');
+            lines.push('### ' + side + ' (' + group.children.length + ' blocks)', '');
             for (const name of group.children) {
               const block = group[name];
               lines.push('#### ' + safeText(name) + ' — ' + safeText(block.type) + ' (' + block.id + ')', '');
