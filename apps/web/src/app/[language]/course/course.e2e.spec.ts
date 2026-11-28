@@ -76,6 +76,17 @@ test('selected content package publishes canonical Course, Lesson, Question Data
   expect(question.content.answers.correct.children).toEqual(['answerCorrect']);
   expect(question.content.answers.incorrect.children).toEqual(['answerWrong']);
   expect(question.content.answers.distractors.children).toEqual([]);
+
+  const storyResponse = await request.get('/data/courses/11111111-1111-4111-8111-000000000140/base.json');
+  expect(storyResponse.ok()).toBe(true);
+  const story = await storyResponse.json();
+  expect(story.children).toEqual(['opening', 'module', 'direct', 'finalLesson']);
+  expect(story.opening.children).toEqual(['opening', 'closing']);
+  expect(story.opening.opening.children).toEqual(['narration', 'picture', 'fixtureScene']);
+  expect(story.module.children).toEqual(['moduleStory', 'nested']);
+  expect(story.module.nested.children).toEqual(['nestedStory', 'repeat']);
+  expect(story.module.nested.repeat).toEqual({ id: lessonId, type: 'lesson' });
+  expect(story.finalLesson.overrides.locale.title).toBe('Controlled Lesson 2');
 });
 
 test('Course detail renders the selected package hierarchy and opens a published Lesson', async ({ page }) => {
