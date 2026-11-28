@@ -118,7 +118,7 @@ test('rejects unknown, unsafe or disabled placement paths and mismatched identit
   assert.throws(() => assembleCourseLesson(input), /Unaddressed or disabled Course publication placement/);
   const different = fixture();
   different.lesson.base.id = id(99);
-  assert.throws(() => assembleCourseLesson(different), /identity/i);
+  assert.throws(() => assembleCourseLesson(different), /Standalone Lesson publication ID\/type mismatch/);
 });
 
 test('direct Lesson selection indexes validated order without scanning sibling arrays', () => {
