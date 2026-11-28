@@ -3,20 +3,28 @@ import { Suspense } from 'react';
 
 import { loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
 import {
-  DEFAULT_SUPPORTED_LANGUAGES, findCourseActivityByPlacement, validateAssessmentRuntime,
+  DEFAULT_SUPPORTED_LANGUAGES,
+  findCourseActivityByPlacement,
+  validateAssessmentRuntime,
 } from '@svitlo/engine/runtime';
 import { toAssessmentProps } from '@svitlo/ui-kit';
 
 import WebAssessment from '@/components/pages/Assessment/Assessment';
 import {
-  assertCourseTocMatchesTree, coursePlacementHref, courseTocToTopics,
-  flattenCourseTopics, parseCoursePlacement,
+  assertCourseTocMatchesTree,
+  coursePlacementHref,
+  courseTocToTopics,
+  flattenCourseTopics,
+  parseCoursePlacement,
 } from '@/lib/courseNavigation';
 import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{
-    language: string; courseId: string; assessmentLanguage: string; placement: string[];
+    language: string;
+    courseId: string;
+    assessmentLanguage: string;
+    placement: string[];
   }>;
 };
 
@@ -70,7 +78,13 @@ async function Content({ params }: Props) {
 
 export default function AssessmentPage(props: Props) {
   return (
-    <Suspense fallback={<div role="status" aria-busy="true">Loading assessment…</div>}>
+    <Suspense
+      fallback={
+        <div role="status" aria-busy="true">
+          Loading assessment…
+        </div>
+      }
+    >
       <Content {...props} />
     </Suspense>
   );

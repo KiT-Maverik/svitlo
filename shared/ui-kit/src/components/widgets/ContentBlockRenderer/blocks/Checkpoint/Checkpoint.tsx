@@ -10,14 +10,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Button from '@mui/material/Button';
 import { createElement, useEffect, useId, useState } from 'react';
 
-import {
-  DEFAULT_SUPPORTED_LANGUAGES,
-  getLocaleDirection,
-} from '@svitlo/engine/runtime';
-
-import type { CheckpointViewProps } from '../../../../../presentation';
+import { DEFAULT_SUPPORTED_LANGUAGES, getLocaleDirection } from '@svitlo/engine/runtime';
 
 import type { Checkpoint_Locale } from '../../../../../../data/locale/checkpoint';
+import type { CheckpointViewProps } from '../../../../../presentation';
 import { useOptionalLessonActions } from '../../../../lesson/LessonOperationsContext';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import type { RenderNested } from '../../types';

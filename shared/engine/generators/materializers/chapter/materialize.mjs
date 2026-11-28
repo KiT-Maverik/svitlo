@@ -149,10 +149,8 @@ export function materializeChapter(input, context = {}) {
     ensure(key, dir + '.children.' + key);
     const node = config[key],
       raw = unwrap(node);
-    if (!record(raw) || typeof raw.type !== 'string')
-      throw Error(dir + '.children.' + key + ': missing child type');
-    if (raw.slug !== undefined && raw.slug !== key)
-      throw Error(dir + '.children.' + key + ': child slug mismatch');
+    if (!record(raw) || typeof raw.type !== 'string') throw Error(dir + '.children.' + key + ': missing child type');
+    if (raw.slug !== undefined && raw.slug !== key) throw Error(dir + '.children.' + key + ': child slug mismatch');
     const nodeConfig = { ...raw, slug: raw.type === 'lesson' ? (raw.slug ?? key) : key };
     const nested = record(node?.config) ? { ...node, config: nodeConfig } : nodeConfig;
     const childFolder = [dir, key].filter(Boolean).join('/');
@@ -411,7 +409,9 @@ export function materializeChapter(input, context = {}) {
     ';\n' +
     imports.join('\n') +
     '\n\n' +
-    'const __placements = ' + itemsSource + ';\n\n' +
+    'const __placements = ' +
+    itemsSource +
+    ';\n\n' +
     'export const ' +
     exportName(slug) +
     ' = defineChapter<' +
@@ -420,7 +420,9 @@ export function materializeChapter(input, context = {}) {
     attrs +
     '\n  params: ' +
     paramsSource +
-    ',\n  children: ' + orderSource + ',\n  ...__placements,\n});\n';
+    ',\n  children: ' +
+    orderSource +
+    ',\n  ...__placements,\n});\n';
   const produced = [
     ...files,
     ...sidecars(meta, dir),

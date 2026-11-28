@@ -14,13 +14,13 @@ const section = () => ({
   params: {},
   locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
   children: ['prompt'],
-    prompt: {
-        id: id('03'),
-        slug: 'prompt',
-        type: 'text',
-        params: {},
-        locale: { value: { en: 'Read', uk: 'Читай' } },
-      },
+  prompt: {
+    id: id('03'),
+    slug: 'prompt',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'Read', uk: 'Читай' } },
+  },
 });
 const lesson = () => ({
   id: id('01'),
@@ -34,7 +34,7 @@ const lesson = () => ({
   },
   locale: { title: { en: 'Basics', uk: 'Основи' } },
   children: ['introduction'],
-    introduction: section(),
+  introduction: section(),
 });
 const renderContentBlock = (child: { slug: string }, o: { directory: string }) => ({
   exportName: child.slug,
@@ -490,29 +490,28 @@ test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and
     ...base,
     children: ['exploreColors', 'recallColors', 'checkColors'],
     exploreColors: {
-          config: { ...section(), slug: 'exploreColors' },
-          production: {
-            purpose: 'Guided exploration and formative reflection without graded evidence.',
-            pedagogicalIntent: 'Compare without positional cues.',
-            specification: 'Use the two reviewed examples.',
-          },
-        },
-        recallColors: {
-          config: { ...section(), id: id('55'), slug: 'recallColors' },
-          production: {
-            purpose: 'Required independent Flashcard Bank selection will be integrated in Stage 8.',
-            pedagogicalIntent: 'Retrieval (canonical slug retrieval) practice for both approved color terms.',
-          },
-        },
-        checkColors: {
-          config: { ...section(), id: id('56'), slug: 'checkColors' },
-          production: {
-            purpose:
-              'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
-            pedagogicalIntent:
-              'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
-          },
-        },
+      config: { ...section(), slug: 'exploreColors' },
+      production: {
+        purpose: 'Guided exploration and formative reflection without graded evidence.',
+        pedagogicalIntent: 'Compare without positional cues.',
+        specification: 'Use the two reviewed examples.',
+      },
+    },
+    recallColors: {
+      config: { ...section(), id: id('55'), slug: 'recallColors' },
+      production: {
+        purpose: 'Required independent Flashcard Bank selection will be integrated in Stage 8.',
+        pedagogicalIntent: 'Retrieval (canonical slug retrieval) practice for both approved color terms.',
+      },
+    },
+    checkColors: {
+      config: { ...section(), id: id('56'), slug: 'checkColors' },
+      production: {
+        purpose:
+          'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
+        pedagogicalIntent: 'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
+      },
+    },
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
     documentLanguage: 'en',
@@ -590,9 +589,9 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
     ...l,
     children: ['introduction'],
     introduction: {
-          config: section(),
-          production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
-        },
+      config: section(),
+      production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
+    },
   };
   let acknowledged: unknown;
   const output = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
@@ -603,10 +602,7 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
     },
   });
   assert.equal(acknowledged, undefined);
-  assert.equal(
-    (input.introduction.production as Record<string, unknown>).methodologyIntegrated,
-    undefined,
-  );
+  assert.equal((input.introduction.production as Record<string, unknown>).methodologyIntegrated, undefined);
   const markdown = output.files.find(f => f.path === 'methodology.md')?.content ?? '';
   assert.match(markdown, /Source purpose/);
   assert.doesNotMatch(markdown, /Excluded provenance/);
@@ -618,9 +614,9 @@ test('Lesson input Section production is immutable after successful handoff', ()
     ...l,
     children: ['introduction'],
     introduction: {
-          config: section(),
-          production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
-        },
+      config: section(),
+      production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
+    },
   };
   const original = structuredClone(input);
   let handedOff = false;

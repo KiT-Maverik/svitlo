@@ -110,8 +110,11 @@ export function materializeEpisode(input, context = {}) {
   const own = new Set(['id', 'slug', 'type', 'params', 'locale', 'events', 'draft', 'children']);
   const keys = Object.keys(config).filter(key => !own.has(key));
   const order = config.children;
-  if (keys.length !== order.length || new Set(order).size !== order.length ||
-      order.some(key => typeof key !== 'string' || !Object.hasOwn(config, key) || own.has(key)))
+  if (
+    keys.length !== order.length ||
+    new Set(order).size !== order.length ||
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(config, key) || own.has(key))
+  )
     throw Error(dir + '.children: each Section placement required exactly once');
   const planned = config.params?.languages ?? meta?.plannedLanguages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
@@ -128,8 +131,7 @@ export function materializeEpisode(input, context = {}) {
     const raw = unwrap(config[key]);
     if (!['content', 'practice', 'codingTask', 'learningFlow'].includes(raw?.type))
       throw Error(dir + ': unsupported Episode production Section: ' + raw?.type);
-    if (raw?.slug !== undefined && raw.slug !== key)
-      throw Error(dir + '.children.' + key + ': Section slug mismatch');
+    if (raw?.slug !== undefined && raw.slug !== key) throw Error(dir + '.children.' + key + ': Section slug mismatch');
     if (typeof context.materializeSection !== 'function')
       throw Error(dir + '.sections.' + key + ': concrete Section renderer required (Agent B)');
     const reviewed = production(config[key]);
@@ -206,7 +208,9 @@ export function materializeEpisode(input, context = {}) {
     'const languages = ' +
     JSON.stringify([lang]) +
     ' as const satisfies SupportedLanguages;\n' +
-    'const __sections = ' + sectionMap + ';\n\n' +
+    'const __sections = ' +
+    sectionMap +
+    ';\n\n' +
     warning +
     'export const ' +
     exportName(slug) +
@@ -216,7 +220,9 @@ export function materializeEpisode(input, context = {}) {
     attrs +
     '\n  params: { ' +
     paramFields +
-    ' languages },\n  children: ' + JSON.stringify(order) + ',\n  ...__sections,\n});\n';
+    ' languages },\n  children: ' +
+    JSON.stringify(order) +
+    ',\n  ...__sections,\n});\n';
   const produced = [
     ...files,
     ...sidecars(meta, dir, sectionNotes),

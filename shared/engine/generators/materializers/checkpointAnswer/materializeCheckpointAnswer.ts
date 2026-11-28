@@ -99,7 +99,8 @@ export function materializeCheckpointAnswer(config: CheckpointAnswerSource, cont
   const enabled = Object.entries(config).filter(
     (entry): entry is [string, CheckpointAnswerBlockSource] => !metadata.has(entry[0]),
   );
-  if (enabled.some(([, value]) => typeof value === 'boolean')) throw new Error('CheckpointAnswer: disabled children cannot be authored');
+  if (enabled.some(([, value]) => typeof value === 'boolean'))
+    throw new Error('CheckpointAnswer: disabled children cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||

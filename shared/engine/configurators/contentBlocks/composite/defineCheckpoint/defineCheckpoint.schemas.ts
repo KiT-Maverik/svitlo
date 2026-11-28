@@ -10,11 +10,9 @@ import {
 } from '../../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { Configurator_Mode } from '../../../configurator.schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../../contentBlock.schemas';
-import type {
-  ContentBlock_CheckpointItem_Configurator,
-} from './defineCheckpointItem';
-import { checkpointItem_Data_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
 import { hasConfiguratorBuildIdentity } from './configuratorBoundary';
+import type { ContentBlock_CheckpointItem_Configurator } from './defineCheckpointItem';
+import { checkpointItem_Data_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
 
 export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Data } from './defineCheckpointAnswer';
 
@@ -58,14 +56,16 @@ export const checkpoint_Config_Schema = checkpoint_Metadata_Config_Schema
     for (const key of value.children) {
       const child = value[key];
       if (hasConfiguratorBuildIdentity(child, 'checkpointItem')) continue;
-      ctx.addIssue({ code: 'custom', path: [key], message: 'Checkpoint requires CheckpointItem configurators with a valid Build API and identity' });
+      ctx.addIssue({
+        code: 'custom',
+        path: [key],
+        message: 'Checkpoint requires CheckpointItem configurators with a valid Build API and identity',
+      });
     }
   });
 export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;
 
-export type Checkpoint_Metadata_Overrides = DeepPartial<
-  Pick<ContentBlock_Checkpoint_Config, 'params' | 'locale'>
->;
+export type Checkpoint_Metadata_Overrides = DeepPartial<Pick<ContentBlock_Checkpoint_Config, 'params' | 'locale'>>;
 export const checkpoint_Override_Config_Schema: z.ZodType<Checkpoint_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
@@ -82,9 +82,10 @@ export type Checkpoint_Overrides<
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
 } & {
   [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
-} & Added & SafePlacementMap<Added> & {
-  [Key in keyof Items & keyof Added]?: never;
-};
+} & Added &
+  SafePlacementMap<Added> & {
+    [Key in keyof Items & keyof Added]?: never;
+  };
 
 /** Domain Data stays slug-addressable. UI arrays are a later presenter concern. */
 export type ContentBlock_Checkpoint_DataBase = z.infer<typeof checkpointBase> & {

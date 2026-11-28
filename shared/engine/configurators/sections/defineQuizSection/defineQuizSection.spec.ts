@@ -40,7 +40,8 @@ describe('Configurators', () => {
           slug: 'quiz',
           params: quizParams,
           locale: { title: 'Quiz', navigationLabel: 'Q' },
-          children: ['prompt'], prompt,
+          children: ['prompt'],
+          prompt,
         });
 
       test('Content Section rejects authored raw blocks and allows valid build overrides', () => {
@@ -50,15 +51,13 @@ describe('Configurators', () => {
           slug: 'intro',
           params: {},
           locale: { title: { en: 'Theory', uk: 'Теорія' }, navigationLabel: '1' },
-          children: ['prompt'], prompt,
+          children: ['prompt'],
+          prompt,
         });
         assert.equal(section.build.data({ languages: ['en', 'uk'] }).base.slug, 'intro');
-        assert.deepEqual(
-          section.build
-            .overrides({ children: ['prompt'] }, { languages: ['en', 'uk'] })
-            .base.children,
-          ['prompt'],
-        );
+        assert.deepEqual(section.build.overrides({ children: ['prompt'] }, { languages: ['en', 'uk'] }).base.children, [
+          'prompt',
+        ]);
         assert.deepEqual(section.config.locales(), { locale: { title: { en: 'Theory', uk: 'Теорія' } } });
         assert.throws(() =>
           defineContentSection({
@@ -119,7 +118,8 @@ describe('Configurators', () => {
           () =>
             makeQuiz().build.overrides(
               {
-                children: [], prompt: false,
+                children: [],
+                prompt: false,
               },
               { languages: ['en', 'uk'] },
             ),
@@ -143,7 +143,8 @@ describe('Configurators', () => {
               slug: 'badQuiz',
               params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
               locale: { title: 'Quiz', navigationLabel: 'Q' },
-              children: ['prompt'], prompt,
+              children: ['prompt'],
+              prompt,
             }).build.data({ languages: ['en'] }),
           /unknown ContentBlock/,
         );
@@ -204,7 +205,8 @@ describe('Configurators', () => {
           slug: 'badDisabledQuiz',
           params: quizParams,
           locale: { title: 'Quiz', navigationLabel: 'Q' },
-          children: ['prompt'], prompt: disabledPrompt,
+          children: ['prompt'],
+          prompt: disabledPrompt,
         });
         assert.equal(deferredQuiz.slug, 'badDisabledQuiz');
         assert.throws(
@@ -228,7 +230,10 @@ describe('Configurators', () => {
           /screen starting references disabled ContentBlock: prompt/,
         );
         // A rejected override cannot alter the authored configurator.
-        assert.equal((quiz.build.data({ languages: ['uk'] }).base.prompt as { params: { disabled?: boolean } })?.params.disabled, undefined);
+        assert.equal(
+          (quiz.build.data({ languages: ['uk'] }).base.prompt as { params: { disabled?: boolean } })?.params.disabled,
+          undefined,
+        );
       });
 
       test('Quiz accepts atomic screen-reference removal together with nested disable or structural removal', () => {
@@ -241,14 +246,22 @@ describe('Configurators', () => {
           { languages: ['en', 'uk'] },
         );
         assert.deepEqual(disabled.base.params?.screen?.starting?.content, []);
-        assert.equal((disabled.base.prompt as {params?: {disabled?: boolean}})?.params?.disabled, true);
-        assert.equal(Object.hasOwn(disabled.base.prompt as object, 'slug'), false, 'sparse child patches cannot repeat identity');
-        assert.equal((quiz.build.data({ languages: ['uk'] }).base.prompt as { params: { disabled?: boolean } })?.params.disabled, undefined);
+        assert.equal((disabled.base.prompt as { params?: { disabled?: boolean } })?.params?.disabled, true);
+        assert.equal(
+          Object.hasOwn(disabled.base.prompt as object, 'slug'),
+          false,
+          'sparse child patches cannot repeat identity',
+        );
+        assert.equal(
+          (quiz.build.data({ languages: ['uk'] }).base.prompt as { params: { disabled?: boolean } })?.params.disabled,
+          undefined,
+        );
 
         const removed = quiz.build.overrides(
           {
             params: { screen: { starting: { content: [] } } },
-            children: [], prompt: false,
+            children: [],
+            prompt: false,
           },
           { languages: ['en', 'uk'] },
         );
@@ -271,7 +284,9 @@ describe('Configurators', () => {
           slug: 'withExtra',
           params: quizParams,
           locale: { title: 'Quiz', navigationLabel: 'Q' },
-          children: ['prompt', 'other'], prompt, other,
+          children: ['prompt', 'other'],
+          prompt,
+          other,
         });
         const result = quiz.build.overrides(
           {
@@ -279,7 +294,7 @@ describe('Configurators', () => {
           },
           { languages: ['uk'] },
         );
-        assert.equal((result.base.other as {params?: {disabled?: boolean}})?.params?.disabled, true);
+        assert.equal((result.base.other as { params?: { disabled?: boolean } })?.params?.disabled, true);
         assert.deepEqual(quiz.build.data({ languages: ['uk'] }).base.params.screen?.starting?.content, ['prompt']);
       });
 
@@ -301,7 +316,8 @@ describe('Configurators', () => {
               },
             },
             locale: { title: 'Quiz', navigationLabel: 'Q' },
-            children: ['prompt'], prompt,
+            children: ['prompt'],
+            prompt,
           });
           assert.throws(
             () =>

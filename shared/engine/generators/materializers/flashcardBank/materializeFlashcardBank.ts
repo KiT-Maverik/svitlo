@@ -125,14 +125,13 @@ type Card = FlashcardBankWorkflowStage3['config']['flashcards']['items'][string]
 
 /** Expand a single reviewed edge into both existing immutable Card UUID endpoints. */
 type RelationProjection = { children: string[] } & Record<string, Flashcard_Relationship | string[]>;
-function projectRelationships(
-  bank: FlashcardBankWorkflowStage3,
-): Readonly<Record<string, RelationProjection>> {
+function projectRelationships(bank: FlashcardBankWorkflowStage3): Readonly<Record<string, RelationProjection>> {
   const cards = bank.config.flashcards.items;
   const edges = bank.config.relationships;
   assertBankOrder(edges.items, edges.order, 'Flashcard relationship graph', false);
-  const projected: Record<string, RelationProjection> =
-    Object.fromEntries(bank.config.flashcards.order.map(slug => [slug, { children: [] }]));
+  const projected: Record<string, RelationProjection> = Object.fromEntries(
+    bank.config.flashcards.order.map(slug => [slug, { children: [] }]),
+  );
   const seenIds = new Set<string>();
   const seenPairs = new Set<string>();
   for (const key of edges.order) {
@@ -180,8 +179,7 @@ function checkSides(card: Card, slug: string): void {
     assertBankOrder(items, side.children, 'Flashcard ' + slug + ' ' + role, role !== 'hint');
     for (const key of side.children) {
       const node: unknown = side[key];
-      if (!record(node) || !record(node.config))
-        throw new Error('Invalid Flashcard Side child ' + key);
+      if (!record(node) || !record(node.config)) throw new Error('Invalid Flashcard Side child ' + key);
       const config = node.config;
       if (typeof config.slug !== 'string' || config.slug !== key)
         throw new Error('Flashcard Side Block slug mismatch at ' + slug + '/' + role + '/' + key);

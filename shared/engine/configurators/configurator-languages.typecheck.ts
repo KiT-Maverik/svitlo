@@ -15,7 +15,8 @@ const section = defineContentSection<'intro', { greeting: typeof text }, ['uk']>
   type: 'content',
   params: {},
   locale: { title: 'Introduction', navigationLabel: '1' },
-  children: ['greeting'], greeting: text,
+  children: ['greeting'],
+  greeting: text,
 });
 section.build.data({ languages: ['uk'] });
 // @ts-expect-error A Section with only Ukrainian support cannot publish English.

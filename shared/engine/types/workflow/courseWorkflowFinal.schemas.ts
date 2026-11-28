@@ -39,11 +39,17 @@ const stagedPlacements = <T extends z.ZodObject, Child extends z.ZodType>(metada
         new Set(order).size !== order.length ||
         order.some(key => !Object.hasOwn(value, key) || own.has(key))
       ) {
-        ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every direct Course child must be ordered exactly once' });
+        ctx.addIssue({
+          code: 'custom',
+          path: ['children'],
+          message: 'Every direct Course child must be ordered exactly once',
+        });
       }
       for (const key of keys) {
-        if (!/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
-            ['content', 'items', 'order', 'additionalItems', 'constructor', 'prototype', '__proto__'].includes(key)) {
+        if (
+          !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+          ['content', 'items', 'order', 'additionalItems', 'constructor', 'prototype', '__proto__'].includes(key)
+        ) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Unsafe or reserved Course placement key' });
           continue;
         }
@@ -157,14 +163,17 @@ const module_Schema = z.strictObject({
 
 /** Review approval, imported dependencies and provenance are verified separately. */
 export const courseWorkflowStage3_Schema = z.strictObject({
-  config: stagedPlacements(course_Metadata_Config_Schema.pick({ id: true, type: true, slug: true }).extend({
-    params: course_Metadata_Config_Schema.shape.params
-      .omit({ languages: true, scenarioMode: true })
-      .partial()
-      .extend({ languages: z.never().optional(), scenarioMode: z.never().optional() })
-      .optional(),
-    locale: course_Metadata_Config_Schema.shape.locale.partial().optional(),
-  }), z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot, assessmentSlot])),
+  config: stagedPlacements(
+    course_Metadata_Config_Schema.pick({ id: true, type: true, slug: true }).extend({
+      params: course_Metadata_Config_Schema.shape.params
+        .omit({ languages: true, scenarioMode: true })
+        .partial()
+        .extend({ languages: z.never().optional(), scenarioMode: z.never().optional() })
+        .optional(),
+      locale: course_Metadata_Config_Schema.shape.locale.partial().optional(),
+    }),
+    z.union([module_Schema, chapter, newLesson, existingLesson, episodeSlot, assessmentSlot]),
+  ),
   production: z.strictObject({
     languages: workflowLanguages_Schema,
     methodology: z.strictObject({

@@ -37,9 +37,9 @@ export type OrderedBlockPatch<
   Languages extends readonly LanguageCode[] = [],
 > = {
   children?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
-} & { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false } &
-  Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added> &
-  { [Key in Extract<keyof Children, keyof Added>]?: never };
+} & { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false } & Added &
+  ChildrenSupporting<Languages, Added> &
+  SafePlacementMap<Added> & { [Key in Extract<keyof Children, keyof Added>]?: never };
 
 export type ResolvableBlockPatch = { children?: string[] } & Record<string, unknown>;
 
@@ -116,7 +116,8 @@ const directChildren = (source: Record<string, unknown>): Record<string, Block> 
 export function validateBlockCollection(value: unknown, path: string, nonEmpty = false): void {
   if (!isRecord(value)) throw new Error(path + ': expected ordered slug-addressed object');
   const issues = validateSlugAddressedContainer(value, primitiveContentBlockTypes);
-  if (issues.length) throw new Error(issues.map(issue => path + '.' + issue.path.join('.') + ': ' + issue.message).join('; '));
+  if (issues.length)
+    throw new Error(issues.map(issue => path + '.' + issue.path.join('.') + ': ' + issue.message).join('; '));
   const order = value.children as string[];
   if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
   for (const [key, child] of Object.entries(directChildren(value))) validateBlock(child, key);
@@ -209,8 +210,10 @@ export const resolveBlockCollection = (
     if (slugAddressedReservedKeys.some(reserved => reserved === key))
       throw new Error('Reserved ' + path + ' child slug: ' + key);
     if (Object.hasOwn(original, key)) {
-      if (change === false) { enabled[key] = false; structural = true; }
-      else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
+      if (change === false) {
+        enabled[key] = false;
+        structural = true;
+      } else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
       else throw new Error('Invalid child override at ' + path + '.' + key);
     } else {
       validateBlock(change, key);
@@ -238,9 +241,7 @@ export const resolveBlockCollection = (
     if (!entries.some(entry => entry.locale[language] !== undefined)) continue;
     locale[language] = {
       children: [...order],
-      ...Object.fromEntries(entries.map(entry => [
-        entry.key, cloneJson(entry.locale[language] ?? entry.base),
-      ])),
+      ...Object.fromEntries(entries.map(entry => [entry.key, cloneJson(entry.locale[language] ?? entry.base)])),
     };
   }
   // A structural change explicitly replaces the ordered group. Otherwise

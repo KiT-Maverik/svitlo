@@ -1,4 +1,3 @@
-import type { SafePlacementMap } from '../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -19,23 +18,24 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSlugAddressedPublication,
-  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import {
   module_Config_Schema,
-  module_Metadata_Config_Schema,
   module_Data_Schema,
+  module_Metadata_Config_Schema,
   module_Override_Config_Schema,
   type Module_Child,
   type Module_Child_Data,
   type Module_Config,
-  type Module_Metadata_Config,
   type Module_Data,
   type Module_Locale,
+  type Module_Metadata_Config,
   type Module_Metadata_Overrides,
   type Module_Overrides,
 } from './defineModule.schemas';
@@ -54,7 +54,10 @@ type ModulePublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Module_Data>>> | undefined;
 };
-type ModuleDataBase<Items extends Record<string, Module_Child>> = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type ModuleDataBase<Items extends Record<string, Module_Child>> = Pick<
+  Module_Config,
+  'id' | 'slug' | 'type' | 'params'
+> & {
   locale?: DeepPartial<Module_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
 } & { [Key in keyof Items]: DeepPartial<Extract<Module_Child_Data, { type: Items[Key]['type'] }>> };
@@ -79,22 +82,34 @@ const validate = (config: Module_Config): void => {
   const parsed = module_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.path + ': ' + issue.message),
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(
+      issue => issue.path + ': ' + issue.message,
+    ),
     ...validateSluggedConfiguratorMap(items, allowedChildren, {
-      path: 'children', itemLabel: 'Module child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+      path: 'children',
+      itemLabel: 'Module child',
+      allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   for (const [slug, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function') {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function'
+    ) {
       errors.push('children.' + slug + ': child must expose the stateless Build API');
       continue;
     }
-    if (!isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id ||
-        ('draft' in child && child.draft === true && child.slug !== slug) ||
-        (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      ('draft' in child && child.draft === true && child.slug !== slug) ||
+      (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
+      child.config.base.type !== child.type
+    ) {
       errors.push('children.' + slug + ': immutable child identity does not match its authored metadata');
     }
   }
@@ -113,12 +128,10 @@ const validate = (config: Module_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
-type ModuleNewPlacements<
-  Items extends Record<string, Module_Child>,
-  Patch extends Record<string, unknown>,
-> = {
-  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
-    Patch[Key] extends Module_Child ? Patch[Key] : never;
+type ModuleNewPlacements<Items extends Record<string, Module_Child>, Patch extends Record<string, unknown>> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]: Patch[Key] extends Module_Child
+    ? Patch[Key]
+    : never;
 };
 
 export type Module_Configurator<
@@ -137,12 +150,17 @@ export type Module_Configurator<
       patch: Patch & {
         children: Extract<keyof Items | keyof Patch, string>[];
       } & {
-        [Key in keyof Patch]:
-          Key extends 'params' ? Module_Metadata_Overrides['params']
-            : Key extends 'locale' ? Module_Metadata_Overrides['locale']
-            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
-            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
-            : Patch[Key] extends Module_Child ? Patch[Key] : never;
+        [Key in keyof Patch]: Key extends 'params'
+          ? Module_Metadata_Overrides['params']
+          : Key extends 'locale'
+            ? Module_Metadata_Overrides['locale']
+            : Key extends 'children'
+              ? Extract<keyof Items | keyof Patch, string>[]
+              : Key extends keyof Items
+                ? Parameters<Items[Key]['build']['overrides']>[0] | false
+                : Patch[Key] extends Module_Child
+                  ? Patch[Key]
+                  : never;
       } & ChildrenSupporting<Languages, ModuleNewPlacements<Items, Patch>> &
         SafePlacementMap<ModuleNewPlacements<Items, Patch>>,
       options: PublicationLanguageOptions<Languages>,
@@ -157,7 +175,8 @@ export type Module_Configurator<
     locales: () => { locale: DeepPartial<Module_Locale<'config'>> };
     validate: typeof validate;
   };
-} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) &
+  LanguageScope<Languages>;
 
 type ModuleAuthoredInput<
   Slug extends string,
@@ -167,8 +186,9 @@ type ModuleAuthoredInput<
   slug: Slug;
   children: Extract<keyof Items, string>[];
   locale: RequireLanguages<Module_Config['locale'], Languages>;
-
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items>;
 
 /** Define a Module with immutable ordered child configurators and stateless Build. */
 const defineModuleImplementation = <
@@ -179,7 +199,13 @@ const defineModuleImplementation = <
   config: ModuleAuthoredInput<Slug, Items, Languages>,
 ): Module_Configurator<Slug, Items, Languages> => {
   const metadataSchema = module_Metadata_Config_Schema;
-  const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
+  const metadataInput = {
+    id: config.id,
+    type: config.type,
+    slug: config.slug,
+    params: config.params,
+    locale: config.locale,
+  };
   const authored: Omit<Module_Metadata_Config, never> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
@@ -222,9 +248,7 @@ const defineModuleImplementation = <
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildData({ build });
-      const patch = Object.hasOwn(changes, key)
-        ? buildChildOverrides({ build }, changes[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(changes, key) ? buildChildOverrides({ build }, changes[key] as never) : undefined;
       return { key, resource, patch };
     });
     const base: Record<string, DeepPartial<Module_Child_Data>> = {};
@@ -341,7 +365,10 @@ const defineModuleImplementation = <
         else additions[key] = change as Module_Child;
       }
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'children', itemLabel: 'Module child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Module child',
+        allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -443,8 +470,7 @@ const defineModuleImplementation = <
 
 type ModuleInferredBase = Module_Metadata_Config & { children: string[] };
 type ModuleInferredChildren<Config> = {
-  [Key in Exclude<keyof Config, keyof ModuleInferredBase>]:
-    Config[Key] extends Module_Child ? Config[Key] : never;
+  [Key in Exclude<keyof Config, keyof ModuleInferredBase>]: Config[Key] extends Module_Child ? Config[Key] : never;
 };
 
 /** The inferred scope is the intersection of every child's advertised languages. */
@@ -461,8 +487,7 @@ type ModuleChildLanguages<Children extends Record<string, Module_Child>> = Exclu
 type ModuleTitleLanguages<Title> = Title extends string ? LanguageCode : Extract<keyof Title, LanguageCode>;
 type ModuleInferredLanguages<Config extends ModuleInferredBase> = readonly [
   Extract<
-    ModuleChildLanguages<ModuleInferredChildren<Config>> &
-      ModuleTitleLanguages<Config['locale']['title']>,
+    ModuleChildLanguages<ModuleInferredChildren<Config>> & ModuleTitleLanguages<Config['locale']['title']>,
     LanguageCode
   >,
 ];
@@ -475,21 +500,14 @@ export function defineModule<
 >(config: ModuleAuthoredInput<Slug, Items, Languages>): Module_Configurator<Slug, Items, Languages>;
 
 /** Infer direct children and the languages supported by ALL children and the own title. */
-export function defineModule<
-  const Config extends ModuleInferredBase,
->(
+export function defineModule<const Config extends ModuleInferredBase>(
   config: Config &
     ModuleInferredChildren<Config> & {
       children: Extract<keyof ModuleInferredChildren<Config>, string>[];
       locale: RequireLanguages<Module_Config['locale'], ModuleInferredLanguages<Config>>;
-    } &
-    ChildrenSupporting<ModuleInferredLanguages<Config>, ModuleInferredChildren<Config>> &
+    } & ChildrenSupporting<ModuleInferredLanguages<Config>, ModuleInferredChildren<Config>> &
     SafePlacementMap<ModuleInferredChildren<Config>>,
-): Module_Configurator<
-  Config['slug'],
-  ModuleInferredChildren<Config>,
-  ModuleInferredLanguages<Config>
->;
+): Module_Configurator<Config['slug'], ModuleInferredChildren<Config>, ModuleInferredLanguages<Config>>;
 export function defineModule(config: unknown): unknown {
   return defineModuleImplementation(config as never);
 }

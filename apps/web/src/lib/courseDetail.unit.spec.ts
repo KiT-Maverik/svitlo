@@ -71,7 +71,7 @@ it('keeps the requested interface language while routing activities through sele
     languages: ['en', 'uk'],
     label: 'Контрольний курс',
     children: ['lesson'],
-      lesson: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Контрольний урок' },
+    lesson: { id: '11111111-1111-4111-8111-00000000011c', type: 'lesson', label: 'Контрольний урок' },
   });
   const detail = await loadCourseDetail(courseId, 'en');
   expect(detail?.interfaceLanguage).toBe('en');

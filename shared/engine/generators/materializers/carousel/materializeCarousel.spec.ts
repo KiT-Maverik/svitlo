@@ -84,20 +84,13 @@ test('Carousel rejects disabled authored entries, duplicate and stale child orde
     () => materializeCarousel({ ...draft, children: ['diagram', 'diagram'] }, context().renderer),
     /exactly once/,
   );
-  assert.throws(
-    () => materializeCarousel({ ...draft, children: [] }, context().renderer),
-    /exactly once/,
-  );
+  assert.throws(() => materializeCarousel({ ...draft, children: [] }, context().renderer), /exactly once/);
 });
 
 test('Carousel rejects mismatched kinds, duplicate IDs, bad paths and missing source locale', () => {
   const original = carousel();
   assert.throws(
-    () =>
-      materializeCarousel(
-        { ...original, diagram: { ...image, type: 'checkpoint' as never } },
-        context().renderer,
-      ),
+    () => materializeCarousel({ ...original, diagram: { ...image, type: 'checkpoint' as never } }, context().renderer),
     /invalid child/,
   );
   assert.throws(

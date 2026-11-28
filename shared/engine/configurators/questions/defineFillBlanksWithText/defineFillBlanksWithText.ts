@@ -27,17 +27,17 @@ import {
   onlyLocales,
   onlyStrings,
   scopeBuild,
-  validateOrderedKeys,
   slugAddressedReservedKeys,
+  validateOrderedKeys,
   type AddedPlacementsFromPatch,
 } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
-  fillBlanksWithTextSlot_Config_Schema,
   fillBlanksWithText_Data_Schema,
   fillBlanksWithText_Override_Config_Schema,
+  fillBlanksWithTextSlot_Config_Schema,
   type Question_FillBlanksWithText_Config,
   type Question_FillBlanksWithText_Data,
   type Question_FillBlanksWithText_MetadataOverrides,
@@ -53,26 +53,25 @@ type SlotChanges<Content extends ContentShape> = {
   [Key in keyof SlotMembers<Content['slots']>]?: DeepPartial<Slot> | false;
 };
 /** Key-specific source validation keeps existing slot translations sparse. */
-type LiteralSlotsPatch<
-  Patch,
-  Content extends ContentShape,
-  Languages extends readonly LanguageCode[],
-> = Patch extends { content: { slots: infer Group } }
+type LiteralSlotsPatch<Patch, Content extends ContentShape, Languages extends readonly LanguageCode[]> = Patch extends {
+  content: { slots: infer Group };
+}
   ? Group extends Record<string, unknown>
-    ? [Exclude<keyof Patch, 'params' | 'locale' | 'content'> |
-       Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation' | 'slots'>] extends [never]
+    ? [
+        | Exclude<keyof Patch, 'params' | 'locale' | 'content'>
+        | Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation' | 'slots'>,
+      ] extends [never]
       ? {
           content: QuestionCommonPatch<Content, {}, Languages> & {
             slots: {
-              [Key in keyof Group]:
-                Key extends 'children'
-                  ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
-                  : Key extends keyof SlotMembers<Content['slots']>
-                    ? DeepPartial<Slot> | false
-                    : Key extends (typeof slugAddressedReservedKeys)[number]
-                      ? never
-                      : Group[Key] extends Slot
-                        ? Group[Key] & RequireLanguages<Group[Key], Languages>
+              [Key in keyof Group]: Key extends 'children'
+                ? Extract<keyof SlotMembers<Content['slots']> | keyof Group, string>[]
+                : Key extends keyof SlotMembers<Content['slots']>
+                  ? DeepPartial<Slot> | false
+                  : Key extends (typeof slugAddressedReservedKeys)[number]
+                    ? never
+                    : Group[Key] extends Slot
+                      ? Group[Key] & RequireLanguages<Group[Key], Languages>
                       : never;
             };
           };
@@ -81,10 +80,9 @@ type LiteralSlotsPatch<
     : never
   : never;
 
-type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
-  Patch extends { content: { slots: infer Collection } }
-    ? AddedPlacementsFromPatch<Collection, SlotMembers<Content['slots']>, Slot, 'children'>
-    : {};
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> = Patch extends { content: { slots: infer Collection } }
+  ? AddedPlacementsFromPatch<Collection, SlotMembers<Content['slots']>, Slot, 'children'>
+  : {};
 
 type SlotsOverride<
   Content extends ContentShape,
@@ -92,7 +90,9 @@ type SlotsOverride<
   Languages extends readonly LanguageCode[],
 > = {
   children?: Extract<keyof SlotMembers<Content['slots']> | keyof NoInfer<AddedSlots>, string>[];
-} & SlotChanges<Content> & AddedSlots & RequireLanguages<AddedSlots, Languages>;
+} & SlotChanges<Content> &
+  AddedSlots &
+  RequireLanguages<AddedSlots, Languages>;
 
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
@@ -114,14 +114,19 @@ const slotsOf = (value: { children: string[] } & Record<string, unknown>): SlotM
 
 const validateSlots = (value: ContentShape['slots']): void => {
   const items = slotsOf(value);
-  const issues = validateOrderedKeys({ items, order: value.children }, {
-    path: 'content.slots', requireNonEmpty: true,
-  });
+  const issues = validateOrderedKeys(
+    { items, order: value.children },
+    {
+      path: 'content.slots',
+      requireNonEmpty: true,
+    },
+  );
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
   if (!value.children.length) throw new Error('FillBlanksWithText requires at least one slot');
   for (const [selector, item] of Object.entries(items)) {
     camelCase_Schema.parse(selector);
-    if (slugAddressedReservedKeys.some(key => key === selector)) throw new Error('Reserved text slot slug: ' + selector);
+    if (slugAddressedReservedKeys.some(key => key === selector))
+      throw new Error('Reserved text slot slug: ' + selector);
     slotSchema.parse(item);
   }
 };
@@ -184,8 +189,10 @@ export const defineFillBlanksWithText = <
       if (slugAddressedReservedKeys.some(reserved => reserved === key))
         throw new Error('Reserved text slot slug: ' + key);
       if (Object.hasOwn(original, key)) {
-        if (change === false) { effective[key] = false; structural = true; }
-        else {
+        if (change === false) {
+          effective[key] = false;
+          structural = true;
+        } else {
           const validated = slotPatchSchema.parse(change);
           translatedChanges[key] = validated;
           effective[key] = slotSchema.parse(mergeForValidation(cloneJson(original[key]), validated));
@@ -212,9 +219,12 @@ export const defineFillBlanksWithText = <
     if (patch === undefined) return resolved;
     const modifies = Object.keys(patch).length > 0;
     if (!modifies) return { locale: {}, base: undefined };
-    const affected = structural || patch.children !== undefined
-      ? Object.keys(resolved.locale)
-      : Object.keys(projectSlotList(original, languages, translatedChanges as never, initialContent.slots.children).locale);
+    const affected =
+      structural || patch.children !== undefined
+        ? Object.keys(resolved.locale)
+        : Object.keys(
+            projectSlotList(original, languages, translatedChanges as never, initialContent.slots.children).locale,
+          );
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
       const language = code as LanguageCode;
@@ -264,7 +274,8 @@ export const defineFillBlanksWithText = <
     const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   >(
-    patch: Patch & Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+    patch: Patch &
+      Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithText_Data> => {
     try {

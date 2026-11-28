@@ -44,23 +44,30 @@ type BuiltChild = {
 };
 type SectionKind = 'content' | 'practice' | 'codingTask' | 'learningFlow' | 'quiz' | 'flashcards';
 type SectionChild = BuiltChild & { readonly type: SectionKind };
-type ChildKeys<Parent, Child> = Extract<{
-  [Key in keyof Parent]-?: [Parent[Key]] extends [never] ? never : Parent[Key] extends Child ? Key : never;
-}[keyof Parent], string>;
+type ChildKeys<Parent, Child> = Extract<
+  {
+    [Key in keyof Parent]-?: [Parent[Key]] extends [never] ? never : Parent[Key] extends Child ? Key : never;
+  }[keyof Parent],
+  string
+>;
 type SectionKeys<Lesson> = ChildKeys<Lesson, SectionChild>;
 type BlockKeys<Section> = ChildKeys<Section, BuiltChild>;
 
-type SectionMetadata<Section> =
-  Section extends { readonly type: 'content' } ? ContentSection_MetadataOverrides :
-  Section extends { readonly type: 'practice' } ? PracticeSection_MetadataOverrides :
-  Section extends { readonly type: 'codingTask' } ? CodingTaskSection_MetadataOverrides :
-  Section extends { readonly type: 'learningFlow' } ? LearningFlowSection_MetadataOverrides :
-  Section extends { readonly type: 'quiz' } ? QuizSection_MetadataOverrides :
-  Section extends { readonly type: 'flashcards' } ? FlashcardsSection_MetadataOverrides :
-  never;
+type SectionMetadata<Section> = Section extends { readonly type: 'content' }
+  ? ContentSection_MetadataOverrides
+  : Section extends { readonly type: 'practice' }
+    ? PracticeSection_MetadataOverrides
+    : Section extends { readonly type: 'codingTask' }
+      ? CodingTaskSection_MetadataOverrides
+      : Section extends { readonly type: 'learningFlow' }
+        ? LearningFlowSection_MetadataOverrides
+        : Section extends { readonly type: 'quiz' }
+          ? QuizSection_MetadataOverrides
+          : Section extends { readonly type: 'flashcards' }
+            ? FlashcardsSection_MetadataOverrides
+            : never;
 
-type ExistingBlockPatch<Block> =
-  Block extends BuiltChild ? Parameters<Block['build']['overrides']>[0] : never;
+type ExistingBlockPatch<Block> = Block extends BuiltChild ? Parameters<Block['build']['overrides']>[0] : never;
 type ExistingSectionPatch<Section> = SectionMetadata<Section> & {
   children?: BlockKeys<Section>[];
 } & {
@@ -68,21 +75,13 @@ type ExistingSectionPatch<Section> = SectionMetadata<Section> & {
 };
 
 type AddedReference = CourseLessonSectionReference | CourseLessonNewSection;
-type ExistingLessonPatch<
-  Lesson,
-  Added extends Record<string, unknown>,
-> = Lesson_Metadata_Overrides & {
+type ExistingLessonPatch<Lesson, Added extends Record<string, unknown>> = Lesson_Metadata_Overrides & {
   children?: Extract<SectionKeys<Lesson> | keyof Added, string>[];
 } & {
   [Key in SectionKeys<Lesson>]?: ExistingSectionPatch<Lesson[Key]> | false;
 };
-type VerifiedAdded<
-  Lesson,
-  Added extends Record<string, unknown>,
-> = {
-  [Key in keyof Added]: Key extends keyof Lesson | keyof Lesson_Metadata_Overrides | 'children'
-    ? never
-    : Added[Key];
+type VerifiedAdded<Lesson, Added extends Record<string, unknown>> = {
+  [Key in keyof Added]: Key extends keyof Lesson | keyof Lesson_Metadata_Overrides | 'children' ? never : Added[Key];
 };
 
 /**

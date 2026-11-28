@@ -80,10 +80,13 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
   const parsed = carousel_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items, order: config.children }, {
-      path: 'children',
-      requireNonEmpty: true,
-    }).map(issue => issue.message),
+    ...validateOrderedKeys(
+      { items, order: config.children },
+      {
+        path: 'children',
+        requireNonEmpty: true,
+      },
+    ).map(issue => issue.message),
     ...validateSluggedConfiguratorMap(items, carouselSlideTypes, {
       path: 'children',
       itemLabel: 'Carousel slide',
@@ -99,10 +102,8 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
       if (ids.has(slide.id)) errors.push('Duplicate Carousel slide ID: ' + slide.id);
       ids.add(slide.id);
     }
-    if (
-      hasBuildAPI(slide, key) &&
-      (!isRecord(slide.config.base.params) || slide.config.base.params.disabled !== true)
-    ) enabled++;
+    if (hasBuildAPI(slide, key) && (!isRecord(slide.config.base.params) || slide.config.base.params.disabled !== true))
+      enabled++;
   }
   if (!enabled) errors.push('At least one active Carousel slide is required');
   if (errors.length) throw new Error('Invalid Carousel slides: ' + errors.join('; '));
@@ -115,7 +116,9 @@ type AuthoredInput<
 > = Pick<ContentBlock_Carousel_Config, 'id' | 'type' | 'params' | 'locale'> & {
   slug: Slug;
   children: Extract<keyof Items, string>[];
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
   ConfigWithLanguages<ContentBlock_Carousel_Config, Languages>;
 
 /**
@@ -129,7 +132,9 @@ export const defineCarousel = <
   const Slug extends string,
   const Items extends Record<string, Slide>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: AuthoredInput<Slug, Items, Languages>) => {
+>(
+  config: AuthoredInput<Slug, Items, Languages>,
+) => {
   const metadataInput = {
     id: config.id,
     slug: config.slug,
@@ -180,7 +185,8 @@ export const defineCarousel = <
         !Object.hasOwn(changes, key) &&
         isRecord(slide.config.base.params) &&
         slide.config.base.params.disabled === true
-      ) continue;
+      )
+        continue;
       const resource = buildChildData(slide) as unknown as SlidePublication;
       const patch = Object.hasOwn(changes, key)
         ? (buildChildOverrides(slide, changes[key] as never) as unknown as SlidePublication)
@@ -316,7 +322,8 @@ export const defineCarousel = <
           !Object.hasOwn(childPatches, key) &&
           isRecord(child.config.base.params) &&
           child.config.base.params.disabled === true
-        ) continue;
+        )
+          continue;
         const resource = buildChildData(child) as unknown as SlidePublication;
         const patched = childPatches[key];
         const effective = patched ? mergeForValidation(resource.base, patched.base) : resource.base;
@@ -352,7 +359,10 @@ export const defineCarousel = <
         if (!originalEnabled.has(key)) {
           output.base[key] = mergeForValidation(resource.base, childPatches[key]?.base ?? {});
           for (const language of languages) {
-            const fragment = mergeForValidation(resource.locale?.[language] ?? {}, childPatches[key]?.locale?.[language] ?? {});
+            const fragment = mergeForValidation(
+              resource.locale?.[language] ?? {},
+              childPatches[key]?.locale?.[language] ?? {},
+            );
             if (Object.keys(fragment).length) (files[language] ??= {})[key] = fragment;
           }
         } else {
@@ -379,8 +389,7 @@ export const defineCarousel = <
       return published;
     } catch (error) {
       throw new Error(
-        'Invalid Carousel overrides for ' + id + ': ' +
-          (error instanceof Error ? error.message : String(error)),
+        'Invalid Carousel overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -388,7 +397,8 @@ export const defineCarousel = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & ContentBlock_Carousel_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Slide>> &
+      patch: Patch &
+        ContentBlock_Carousel_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Slide>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Slide>>,
       options: PublicationLanguageOptions<Languages>,
     ): CarouselPublication<CarouselOverrideBase>;
@@ -419,9 +429,7 @@ export const defineCarousel = <
 
 type DefinedCarousel = ReturnType<typeof defineCarousel>;
 /** The parent-facing union erases a composite's generic placement index. */
-export type ContentBlock_Carousel_Configurator = Pick<
-  DefinedCarousel, 'validate' | 'config'
-> & {
+export type ContentBlock_Carousel_Configurator = Pick<DefinedCarousel, 'validate' | 'config'> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'carousel';

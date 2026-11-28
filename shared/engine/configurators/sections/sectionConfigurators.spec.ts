@@ -34,7 +34,8 @@ describe('Configurators', () => {
         type,
         params: {},
         locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
-        children: ['prompt' as const], prompt,
+        children: ['prompt' as const],
+        prompt,
       });
       const textValue = (value: unknown): string | undefined => {
         if (!value || typeof value !== 'object' || !('locale' in value)) return undefined;
@@ -67,44 +68,64 @@ describe('Configurators', () => {
         const patch = { prompt: { locale: { value: { uk: value } } } };
         const options = { languages };
         switch (section.type) {
-          case 'content': return section.build.overrides(patch, options);
-          case 'practice': return section.build.overrides(patch, options);
-          case 'codingTask': return section.build.overrides(patch, options);
-          case 'learningFlow': return section.build.overrides(patch, options);
-          case 'flashcards': return section.build.overrides(patch, options);
+          case 'content':
+            return section.build.overrides(patch, options);
+          case 'practice':
+            return section.build.overrides(patch, options);
+          case 'codingTask':
+            return section.build.overrides(patch, options);
+          case 'learningFlow':
+            return section.build.overrides(patch, options);
+          case 'flashcards':
+            return section.build.overrides(patch, options);
         }
       };
 
       const overrideSkipping = (section: ReturnType<(typeof definitions)[number]>, skippable: boolean) => {
         const options = { languages: ['en', 'uk'] as const };
         switch (section.type) {
-          case 'content': return section.build.overrides({ params: { skippable } }, options);
-          case 'practice': return section.build.overrides({ params: { skippable } }, options);
-          case 'codingTask': return section.build.overrides({ params: { skippable } }, options);
-          case 'learningFlow': return section.build.overrides({ params: { skippable } }, options);
-          case 'flashcards': return section.build.overrides({ params: { skippable } }, options);
+          case 'content':
+            return section.build.overrides({ params: { skippable } }, options);
+          case 'practice':
+            return section.build.overrides({ params: { skippable } }, options);
+          case 'codingTask':
+            return section.build.overrides({ params: { skippable } }, options);
+          case 'learningFlow':
+            return section.build.overrides({ params: { skippable } }, options);
+          case 'flashcards':
+            return section.build.overrides({ params: { skippable } }, options);
         }
       };
 
       const replacePrompt = (section: ReturnType<(typeof definitions)[number]>) => {
         const options = { languages: ['en', 'uk'] as const };
         switch (section.type) {
-          case 'content': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
-          case 'practice': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
-          case 'codingTask': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
-          case 'learningFlow': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
-          case 'flashcards': return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'content':
+            return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'practice':
+            return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'codingTask':
+            return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'learningFlow':
+            return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
+          case 'flashcards':
+            return section.build.overrides({ children: ['extra'], prompt: false, extra }, options);
         }
       };
 
       const overrideTitle = (section: ReturnType<(typeof definitions)[number]>) => {
         const options = { languages: ['en', 'uk'] as const };
         switch (section.type) {
-          case 'content': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
-          case 'practice': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
-          case 'codingTask': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
-          case 'learningFlow': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
-          case 'flashcards': return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'content':
+            return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'practice':
+            return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'codingTask':
+            return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'learningFlow':
+            return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
+          case 'flashcards':
+            return section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, options);
         }
       };
 
@@ -122,14 +143,8 @@ describe('Configurators', () => {
           assert.equal('overrides' in section.config, false);
           const original = section.build.data({ languages: ['en', 'uk'] });
           assert.equal(original.base.params.skippable, undefined);
-          assert.deepEqual(
-            overrideSkipping(section, false).base.params,
-            { skippable: false },
-          );
-          assert.deepEqual(
-            overrideSkipping(section, true).base.params,
-            { skippable: true },
-          );
+          assert.deepEqual(overrideSkipping(section, false).base.params, { skippable: false });
+          assert.deepEqual(overrideSkipping(section, true).base.params, { skippable: true });
           assert.equal((original.base.prompt as { slug?: string })?.slug, 'prompt');
           assert.equal(textValue(original.locale?.uk?.prompt), 'Питання');
           assert.deepEqual(original.locale?.uk?.locale, { title: 'Назва' });
@@ -137,36 +152,24 @@ describe('Configurators', () => {
           assert.doesNotThrow(() => JSON.stringify(original));
 
           const changed = replacePrompt(section);
-          assert.deepEqual(
-            changed.base.children,
-            ['extra'],
-          );
+          assert.deepEqual(changed.base.children, ['extra']);
           assert.deepEqual(changed.locale, undefined, 'invariant replacement needs no translated file');
-          assert.equal((section.build.data({ languages: ['en', 'uk'] }).base.prompt as {slug?: string})?.slug, 'prompt');
-          assert.deepEqual(section.children, ['prompt']);
-          assert.deepEqual(
-            original.base.children,
-            ['prompt'],
+          assert.equal(
+            (section.build.data({ languages: ['en', 'uk'] }).base.prompt as { slug?: string })?.slug,
+            'prompt',
           );
+          assert.deepEqual(section.children, ['prompt']);
+          assert.deepEqual(original.base.children, ['prompt']);
           assert.equal(textValue(section.build.data({ languages: ['en', 'uk'] }).locale?.uk?.prompt), 'Питання');
 
           const sparse = overrideTitle(section);
           assert.deepEqual(sparse.base, {});
           assert.deepEqual(sparse.locale, { uk: { locale: { title: 'Оновлено' } } });
 
+          assert.throws(() => rejectPatch(section, { prompt: false }), /children is required/);
+          assert.throws(() => rejectPatch(section, { children: ['prompt'], extra }), /Unlisted|Missing slug|unlisted/i);
           assert.throws(
-            () =>
-              rejectPatch(section, { prompt: false }),
-            /children is required/,
-          );
-          assert.throws(
-            () =>
-              rejectPatch(section, { children: ['prompt'], extra }),
-            /Unlisted|Missing slug|unlisted/i,
-          );
-          assert.throws(
-            () =>
-              rejectPatch(section, { children: ['prompt', 'extra', 'extra'], extra }),
+            () => rejectPatch(section, { children: ['prompt', 'extra', 'extra'], extra }),
             /Duplicate slug|Duplicate placement/i,
           );
           assert.throws(
@@ -187,26 +190,14 @@ describe('Configurators', () => {
             ...patch,
           } as never).build.data({ languages: ['en', 'uk'] });
 
-        assert.throws(
-          () => author({ children: ['prompt', 'prompt'] }),
-          /Duplicate placement|Duplicate slug/,
-        );
-        assert.throws(
-          () => author({ children: [] }),
-          /Unlisted|Missing slug|unlisted/i,
-        );
+        assert.throws(() => author({ children: ['prompt', 'prompt'] }), /Duplicate placement|Duplicate slug/);
+        assert.throws(() => author({ children: [] }), /Unlisted|Missing slug|unlisted/i);
         assert.throws(
           () => author({ children: ['prompt', 'missing'] }),
           /Unknown or disabled|Unknown child|Missing slug/,
         );
-        assert.throws(
-          () => author({ content: extra }),
-          /Reserved child placement slug|Reserved child/,
-        );
-        assert.throws(
-          () => author({ prompt: { ...prompt, type: 'lesson' } }),
-          /Unsupported child type|Unsupported/,
-        );
+        assert.throws(() => author({ content: extra }), /Reserved child placement slug|Reserved child/);
+        assert.throws(() => author({ prompt: { ...prompt, type: 'lesson' } }), /Unsupported child type|Unsupported/);
         assert.throws(
           () => author({ children: ['prompt', 'other'], other: { ...prompt, slug: 'other' } }),
           /Duplicate Section ContentBlock ID|Duplicate child ID/,
@@ -233,7 +224,10 @@ describe('Configurators', () => {
           assert.equal(textValue(base.locale?.uk?.prompt), 'Питання');
           if (typeof one.base.prompt === 'object' && one.base.prompt !== null)
             (one.base.prompt as { slug?: string }).slug = 'tampered';
-          assert.equal((section.build.data({ languages: ['en', 'uk'] }).base.prompt as {slug?: string})?.slug, 'prompt');
+          assert.equal(
+            (section.build.data({ languages: ['en', 'uk'] }).base.prompt as { slug?: string })?.slug,
+            'prompt',
+          );
         }
       });
 

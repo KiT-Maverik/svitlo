@@ -19,15 +19,15 @@ import {
   type LanguageCode,
 } from '@svitlo/engine/runtime';
 
-import type { SectionViewProps } from '../../presentation';
-import { toQuestionProps, type DomainQuestion, type QuestionViewProps } from '../../questionPresentation';
-type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
-
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { SectionViewProps } from '../../presentation';
+import { toQuestionProps, type DomainQuestion, type QuestionViewProps } from '../../questionPresentation';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
 import { QuestionProgress } from './QuestionProgress';
+
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 type Question = QuestionViewProps;
 

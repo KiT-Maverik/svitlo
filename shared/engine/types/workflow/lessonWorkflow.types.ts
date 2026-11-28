@@ -75,29 +75,37 @@ export type LessonWorkflowStage1 = z.infer<typeof lessonWorkflowStage1_Schema>;
 export type LessonWorkflowOrdered<Child> = { children: string[] } & Record<string, Child | string[]>;
 
 export function workflowChildren_Schema<Metadata extends z.ZodObject, Child extends z.ZodType>(
-  metadata: Metadata, child: Child,
+  metadata: Metadata,
+  child: Child,
 ) {
-  return metadata.extend({ children: z.array(z.string()) }).catchall(z.unknown()).superRefine((source, ctx) => {
-    const own = new Set([...Object.keys(metadata.shape), 'children']);
-    const keys = Object.keys(source).filter(key => !own.has(key));
-    const children: string[] = Array.isArray(source.children) ? source.children : [];
-    if (keys.length !== children.length ||
+  return metadata
+    .extend({ children: z.array(z.string()) })
+    .catchall(z.unknown())
+    .superRefine((source, ctx) => {
+      const own = new Set([...Object.keys(metadata.shape), 'children']);
+      const keys = Object.keys(source).filter(key => !own.has(key));
+      const children: string[] = Array.isArray(source.children) ? source.children : [];
+      if (
+        keys.length !== children.length ||
         new Set(children).size !== children.length ||
-        children.some(key => !Object.hasOwn(source, key) || own.has(key))) {
-      ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every authored child must be ordered once' });
-    }
-    for (const key of keys) {
-      if (!/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
-          ['items', 'order', 'content', 'slides', 'section', 'constructor', 'prototype', '__proto__'].includes(key)) {
-        ctx.addIssue({ code: 'custom', path: [key], message: 'Unsafe or reserved child placement key' });
-        continue;
+        children.some(key => !Object.hasOwn(source, key) || own.has(key))
+      ) {
+        ctx.addIssue({ code: 'custom', path: ['children'], message: 'Every authored child must be ordered once' });
       }
-      const parsed = child.safeParse(source[key]);
-      if (!parsed.success)
-        for (const issue of parsed.error.issues)
-          ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
-    }
-  }) as unknown as z.ZodType<z.output<Metadata> & { children: string[] } & Record<string, unknown>>;
+      for (const key of keys) {
+        if (
+          !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+          ['items', 'order', 'content', 'slides', 'section', 'constructor', 'prototype', '__proto__'].includes(key)
+        ) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Unsafe or reserved child placement key' });
+          continue;
+        }
+        const parsed = child.safeParse(source[key]);
+        if (!parsed.success)
+          for (const issue of parsed.error.issues)
+            ctx.addIssue({ code: 'custom', path: [key, ...issue.path], message: issue.message });
+      }
+    }) as unknown as z.ZodType<z.output<Metadata> & { children: string[] } & Record<string, unknown>>;
 }
 
 /** Retained only for named semantic Quest groups that are explicitly unordered. */
@@ -178,16 +186,15 @@ const simpleBlock_Schema = z.union(
 );
 export type LessonWorkflowStage2SimpleBlock = z.infer<typeof simpleBlock_Schema>;
 
-const carouselNode_Schema = node(workflowChildren_Schema(
-  carousel_Metadata_Config_Schema, z.union([imageNode_Schema, sceneNode_Schema]),
-));
+const carouselNode_Schema = node(
+  workflowChildren_Schema(carousel_Metadata_Config_Schema, z.union([imageNode_Schema, sceneNode_Schema])),
+);
 export type LessonWorkflowStage2Carousel = z.infer<typeof carouselNode_Schema>;
 
 /** Editorial Checkpoint Answer uses the exhaustively classified Primitive nodes. */
-export const lessonWorkflowCheckpointAnswerSource_Schema = node(workflowChildren_Schema(
-  z.object(checkpointAnswer_Config_Schema.shape).omit({ children: true }),
-  simpleBlock_Schema,
-));
+export const lessonWorkflowCheckpointAnswerSource_Schema = node(
+  workflowChildren_Schema(z.object(checkpointAnswer_Config_Schema.shape).omit({ children: true }), simpleBlock_Schema),
+);
 export type LessonWorkflowStage2CheckpointAnswer = z.infer<typeof lessonWorkflowCheckpointAnswerSource_Schema>;
 
 const checkpointItemNode_Schema = node(
@@ -198,18 +205,18 @@ const checkpointItemNode_Schema = node(
 );
 export type LessonWorkflowStage2CheckpointItem = z.infer<typeof checkpointItemNode_Schema>;
 
-const checkpointNode_Schema = node(workflowChildren_Schema(
-  checkpoint_Metadata_Config_Schema, checkpointItemNode_Schema,
-));
+const checkpointNode_Schema = node(
+  workflowChildren_Schema(checkpoint_Metadata_Config_Schema, checkpointItemNode_Schema),
+);
 export type LessonWorkflowStage2Checkpoint = z.infer<typeof checkpointNode_Schema>;
 
 const block_Schema = z.union([simpleBlock_Schema, carouselNode_Schema, checkpointNode_Schema]);
 export type LessonWorkflowStage2Block = z.infer<typeof block_Schema>;
 
 /** Ordinary Section children remain in one ordered direct placement collection. */
-export const lessonWorkflowContentSection_Schema = node(workflowChildren_Schema(
-  contentSection_Metadata_Config_Schema, block_Schema,
-));
+export const lessonWorkflowContentSection_Schema = node(
+  workflowChildren_Schema(contentSection_Metadata_Config_Schema, block_Schema),
+);
 export const lessonWorkflowOrdinarySection_Schema = z.union([
   lessonWorkflowContentSection_Schema,
   node(workflowChildren_Schema(practiceSection_Metadata_Config_Schema, block_Schema)),
@@ -222,7 +229,8 @@ export const lessonWorkflowQuizSection_Schema = z.strictObject({
   config: workflowChildren_Schema(
     quizSection_Metadata_Config_Schema.extend({
       params: quizSection_Metadata_Config_Schema.shape.params.partial(),
-    }), block_Schema,
+    }),
+    block_Schema,
   ),
   production: nodeProduction_Schema,
 });
@@ -232,7 +240,8 @@ const flashcardsSectionNode_Schema = z.strictObject({
   config: workflowChildren_Schema(
     flashcardsSection_Metadata_Config_Schema.extend({
       params: flashcardsSection_Metadata_Config_Schema.shape.params.partial(),
-    }), block_Schema,
+    }),
+    block_Schema,
   ),
   production: nodeProduction_Schema,
 });

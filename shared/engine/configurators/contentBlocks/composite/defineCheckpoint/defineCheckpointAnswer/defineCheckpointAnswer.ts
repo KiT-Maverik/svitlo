@@ -78,26 +78,34 @@ const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
     result.errors.push({ check, path, message });
   };
   const parsed = checkpointAnswer_Config_Schema.safeParse(config);
-  if (!parsed.success)
-    for (const issue of parsed.error.issues) fail('metadata', issue.path.join('.'), issue.message);
+  if (!parsed.success) for (const issue of parsed.error.issues) fail('metadata', issue.path.join('.'), issue.message);
   const blocks = isRecord(config) ? directBlocks(config) : {};
   for (const issue of validateOrderedKeys(
-    { items: blocks, order: config?.children }, { path: 'children', requireNonEmpty: true },
+    { items: blocks, order: config?.children },
+    { path: 'children', requireNonEmpty: true },
   ))
     fail(issue.check, issue.path, issue.message);
   for (const issue of validateSluggedConfiguratorMap(blocks, primitiveContentBlockTypes, {
-    path: 'children', itemLabel: 'Checkpoint Answer Primitive', reservedKeys: slugAddressedReservedKeys,
+    path: 'children',
+    itemLabel: 'Checkpoint Answer Primitive',
+    reservedKeys: slugAddressedReservedKeys,
   }))
     fail(issue.check, issue.path, issue.message);
   if (!Array.isArray(config?.children) || !config.children.length)
     fail('children', 'children', 'At least one active answer is required');
   const ids = new Set<string>();
   for (const [key, child] of Object.entries(blocks)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== key ||
-        child.config.base.type !== child.type)
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    )
       fail('child', key, 'Invalid Answer Primitive Build API or identity: ' + key);
     if (isRecord(child) && typeof child.id === 'string') {
       if (ids.has(child.id)) fail('id', key, 'Duplicate answer child ID: ' + child.id);
@@ -115,7 +123,9 @@ type AuthoredInput<
 > = Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'type'> & {
   slug: Slug;
   children: Extract<keyof Items, string>[];
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items>;
 
 /**
  * Independently identified and ordered Checkpoint Answer. It owns only
@@ -126,7 +136,9 @@ export const defineCheckpointAnswer = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: AuthoredInput<Slug, Items, Languages>) => {
+>(
+  config: AuthoredInput<Slug, Items, Languages>,
+) => {
   const { id, type, slug } = config;
   const initialItems = directBlocks(config) as unknown as Items;
   const initialOrder = [...config.children];
@@ -160,9 +172,7 @@ export const defineCheckpointAnswer = <
       for (const { key, original, patch } of entries) {
         // Locale files are sparse fragments, not fully resolved child Data.
         // Invariant identity/params stay in base and are merged for validation.
-        const translated = mergeForValidation(
-          original.locale?.[language] ?? {}, patch?.locale?.[language] ?? {},
-        );
+        const translated = mergeForValidation(original.locale?.[language] ?? {}, patch?.locale?.[language] ?? {});
         if (Object.keys(translated).length) fragments[key] = translated;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
@@ -204,7 +214,9 @@ export const defineCheckpointAnswer = <
         else additions[key] = value as unknown as Block;
       }
       const issues = validateSluggedConfiguratorMap(additions, primitiveContentBlockTypes, {
-        path: 'children', itemLabel: 'Answer Primitive', reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Answer Primitive',
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const source = data(options);
@@ -250,9 +262,7 @@ export const defineCheckpointAnswer = <
       // Default to the published active order, never the authored order
       // containing disabled Config children.
       const order = patch.children ?? source.base.children;
-      const ordered = validateOrderedKeys(
-        { items: enabled, order }, { path: 'children', requireNonEmpty: true },
-      );
+      const ordered = validateOrderedKeys({ items: enabled, order }, { path: 'children', requireNonEmpty: true });
       if (ordered.length) throw new Error(ordered.map(issue => issue.message).join('; '));
       validate({ ...base, children: [...order], ...enabled });
       const built = buildContent(enabled, order, childPatches);
@@ -273,8 +283,7 @@ export const defineCheckpointAnswer = <
           if (childBase === false || (isRecord(childBase) && Object.keys(childBase).length))
             output.base[key] = childBase;
         }
-        for (const key of Object.keys(additions))
-          if (Object.hasOwn(enabled, key)) output.base[key] = built.base[key];
+        for (const key of Object.keys(additions)) if (Object.hasOwn(enabled, key)) output.base[key] = built.base[key];
         for (const language of languages) {
           const fragment: Record<string, unknown> = {};
           for (const key of Object.keys(additions)) {
@@ -296,7 +305,9 @@ export const defineCheckpointAnswer = <
       return output;
     } catch (error) {
       throw new Error(
-        'Invalid Checkpoint Answer overrides for ' + id + ': ' +
+        'Invalid Checkpoint Answer overrides for ' +
+          id +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
@@ -309,7 +320,8 @@ export const defineCheckpointAnswer = <
   const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & CheckpointAnswer_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+      patch: Patch &
+        CheckpointAnswer_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): AnswerPublication<AnswerOverrideBase>;
@@ -322,7 +334,9 @@ export const defineCheckpointAnswer = <
 
   const result = {
     ...initialItems,
-    id, slug, type,
+    id,
+    slug,
+    type,
     children: [...initialOrder],
     validate,
     build: buildApi,
@@ -333,7 +347,8 @@ export const defineCheckpointAnswer = <
   // ALL fixed lifecycle keys explicitly, avoiding accidental Primitive
   // shadowing of build, config, validation, or the Answer discriminator.
   return result as unknown as Omit<
-    typeof result, 'id' | 'slug' | 'type' | 'children' | 'validate' | 'build' | 'config'
+    typeof result,
+    'id' | 'slug' | 'type' | 'children' | 'validate' | 'build' | 'config'
   > & {
     readonly id: typeof id;
     readonly slug: typeof slug;
@@ -356,9 +371,7 @@ type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
  * keyof Record<string, Primitive> includes lifecycle keys, making the parent
  * boundary an impossible Record<string, never>.
  */
-export type ContentBlock_CheckpointAnswer_Configurator = Pick<
-  DefinedAnswer, 'validate' | 'config'
-> & {
+export type ContentBlock_CheckpointAnswer_Configurator = Pick<DefinedAnswer, 'validate' | 'config'> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'checkpointAnswer';
@@ -366,9 +379,6 @@ export type ContentBlock_CheckpointAnswer_Configurator = Pick<
   readonly __svitloLanguageScope: readonly LanguageCode[];
   readonly build: {
     data(options: PublicationLanguageOptions): ReturnType<DefinedAnswer['build']['data']>;
-    overrides(
-      patch: never,
-      options: PublicationLanguageOptions,
-    ): ReturnType<DefinedAnswer['build']['overrides']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedAnswer['build']['overrides']>;
   };
 };

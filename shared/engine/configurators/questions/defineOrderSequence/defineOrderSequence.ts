@@ -47,7 +47,10 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.sequence, 'content.sequence', true);
   candidate.content.sequence.children.forEach(key =>
-    assertEnabledBlock((candidate.content.sequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.sequence.' + key),
+    assertEnabledBlock(
+      (candidate.content.sequence[key] as ContentBlock_Primitive_Configurator).config.base,
+      'content.sequence.' + key,
+    ),
   );
 };
 
@@ -100,7 +103,9 @@ export const defineOrderSequence = <
 
   const extraContent = (source: Content, languages: readonly LanguageCode[], patch?: ResolvableBlockPatch) => {
     const result = resolveBlockCollection(source.sequence, languages, patch, 'content.sequence', true);
-    result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.sequence.' + key));
+    result.effectiveBase.children.forEach(key =>
+      assertEnabledBlock(result.effectiveBase[key], 'content.sequence.' + key),
+    );
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, entries] of Object.entries(result.locale)) locale[language] = { sequence: entries };
     return { base: Object.keys(result.base).length ? { sequence: result.base } : {}, locale };

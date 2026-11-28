@@ -22,14 +22,14 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
-  type SafePlacementMap,
   type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
-  lesson_Metadata_Config_Schema,
   lesson_Config_Schema,
   lesson_Data_Schema,
+  lesson_Metadata_Config_Schema,
   lesson_Override_Metadata_Schema,
   type Lesson_Config,
   type Lesson_DataBase,
@@ -75,7 +75,9 @@ const validate = (config: Lesson_Config): void => {
   const parsed = lesson_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items: sections, order: config.children }, { path: 'children' }).map(issue => issue.message),
+    ...validateOrderedKeys({ items: sections, order: config.children }, { path: 'children' }).map(
+      issue => issue.message,
+    ),
     ...validateSluggedConfiguratorMap(sections, sectionTypes, {
       path: 'children',
       itemLabel: 'Lesson Section',
@@ -102,14 +104,16 @@ const validate = (config: Lesson_Config): void => {
       ids.add(child.id);
     }
   }
-  if (config.params.quizRequiredForCompletion &&
-      !config.children.some(key => {
-        const section = sections[key];
-        if (!isRecord(section) || section.type !== 'quiz' ||
-            !isRecord(section.config) || !isRecord(section.config.base)) return false;
-        const params = section.config.base.params;
-        return !isRecord(params) || params.disabled !== true;
-      })) {
+  if (
+    config.params.quizRequiredForCompletion &&
+    !config.children.some(key => {
+      const section = sections[key];
+      if (!isRecord(section) || section.type !== 'quiz' || !isRecord(section.config) || !isRecord(section.config.base))
+        return false;
+      const params = section.config.base.params;
+      return !isRecord(params) || params.disabled !== true;
+    })
+  ) {
     errors.push('Lesson requires at least one enabled Quiz section');
   }
   if (errors.length) throw new Error('Lesson validation failed: ' + errors.join('; '));
@@ -124,9 +128,9 @@ type LessonAuthoredInput<
   params: Omit<Lesson_Config['params'], 'languages'> & { languages: Languages };
   locale: RequireLanguages<Lesson_Config['locale'], Languages>;
   children: Extract<keyof Sections, string>[];
-} & Sections & ChildrenSupporting<Languages, Sections> &
+} & Sections &
+  ChildrenSupporting<Languages, Sections> &
   SafePlacementMap<Sections> & { [Key in keyof Sections]: Key extends 'events' ? never : Sections[Key] };
-
 
 /**
  * Infer child keys from the entire authoring literal before validating the
@@ -135,9 +139,7 @@ type LessonAuthoredInput<
  */
 type LessonChildKeys<Input> = Exclude<keyof Input, keyof Lesson_Metadata_Config | 'children'>;
 type InferredLessonSections<Input> = {
-  [Key in LessonChildKeys<Input>]: Input[Key] extends Section_Configurator
-    ? Input[Key]
-    : Section_Configurator;
+  [Key in LessonChildKeys<Input>]: Input[Key] extends Section_Configurator ? Input[Key] : Section_Configurator;
 };
 type InferredLessonLanguages<Input extends { params: { languages: readonly LanguageCode[] } }> =
   Input['params']['languages'] extends readonly [LanguageCode, ...LanguageCode[]]
@@ -173,7 +175,9 @@ const defineLessonImpl = <
   const initialOrder = [...config.children];
 
   const configBase = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     skills: [...authored.skills],
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
@@ -238,7 +242,9 @@ const defineLessonImpl = <
   };
 
   const originalConfig = () => ({
-    ...copyAuthored(), children: [...initialOrder], ...initialSections,
+    ...copyAuthored(),
+    children: [...initialOrder],
+    ...initialSections,
   });
 
   const data = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_DataBase> => {
@@ -253,7 +259,9 @@ const defineLessonImpl = <
     }
     const result: Publication<Lesson_DataBase> = structuredClone({
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         skills: [...own.skills],
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(translated.invariant).length ? { locale: translated.invariant } : {}),
@@ -264,9 +272,7 @@ const defineLessonImpl = <
       locale: Object.keys(files).length ? files : undefined,
     });
     for (const language of languages) {
-      lesson_Data_Schema.parse(
-        mergeForValidation(result.base, result.locale?.[language] ?? {}),
-      );
+      lesson_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -280,13 +286,16 @@ const defineLessonImpl = <
       validate(originalConfig());
       if (!isRecord(patch)) throw new Error('Expected Lesson overrides object');
       const metadataPatch = lesson_Override_Metadata_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) =>
-          key === 'params' || key === 'locale' || key === 'events')),
+        Object.fromEntries(
+          Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale' || key === 'events'),
+        ),
       );
-      const mergedMetadata = metadataSchema.parse(mergeForValidation<Record<string, unknown>>(
-        copyAuthored() as Record<string, unknown>,
-        metadataPatch as Record<string, unknown>,
-      ));
+      const mergedMetadata = metadataSchema.parse(
+        mergeForValidation<Record<string, unknown>>(
+          copyAuthored() as Record<string, unknown>,
+          metadataPatch as Record<string, unknown>,
+        ),
+      );
       const own = splitLocale(metadataPatch.locale ?? {});
       const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: Publication<OverrideBase> = {
@@ -312,7 +321,9 @@ const defineLessonImpl = <
         else additions[key] = value as Section_Configurator;
       }
       const issues = validateSluggedConfiguratorMap(additions, sectionTypes, {
-        path: 'children', itemLabel: 'Lesson Section', reservedKeys: [...extraReserved],
+        path: 'children',
+        itemLabel: 'Lesson Section',
+        reservedKeys: [...extraReserved],
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Section_Configurator | false> = { ...initialSections };
@@ -335,7 +346,7 @@ const defineLessonImpl = <
       if (structureChanged && patch.children === undefined)
         throw new Error('Lesson children order is required when adding or disabling Sections');
       const order = patch.children ?? initialOrder;
-      const orderIssues = validateOrderedKeys({items: active, order}, {path:'children', allowDisabled:true});
+      const orderIssues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
       if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
       const enabled = Object.fromEntries(
         Object.entries(active).filter((entry): entry is [string, Section_Configurator] => entry[1] !== false),
@@ -343,10 +354,15 @@ const defineLessonImpl = <
       validate({ ...mergedMetadata, children: [...order], ...enabled });
       // A Section override may disable the last Quiz even when its placement stays.
       const effectiveSections = buildSections(enabled, order, childPatches);
-      if (mergedMetadata.params.quizRequiredForCompletion &&
-          !Object.values(effectiveSections.base).some(section =>
-            isRecord(section) && section.type === 'quiz' &&
-            (!isRecord(section.params) || section.params.disabled !== true))) {
+      if (
+        mergedMetadata.params.quizRequiredForCompletion &&
+        !Object.values(effectiveSections.base).some(
+          section =>
+            isRecord(section) &&
+            section.type === 'quiz' &&
+            (!isRecord(section.params) || section.params.disabled !== true),
+        )
+      ) {
         throw new Error('Lesson requires at least one enabled Quiz section');
       }
       if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
@@ -390,11 +406,15 @@ const defineLessonImpl = <
    */
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & Lesson_Overrides<Sections, AddedPlacementsFromPatch<
-        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
-      >> & ChildrenSupporting<Languages, AddedPlacementsFromPatch<
-        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'
-      >>,
+      patch: Patch &
+        Lesson_Overrides<
+          Sections,
+          AddedPlacementsFromPatch<Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'>
+        > &
+        ChildrenSupporting<
+          Languages,
+          AddedPlacementsFromPatch<Patch, Sections, Section_Configurator, 'params' | 'locale' | 'children'>
+        >,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase> & Pick<Lesson_Metadata_Config, 'id'>;
     (
@@ -404,7 +424,9 @@ const defineLessonImpl = <
   } = overridesImplementation;
 
   const result = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     draft: false as const,
     children: [...initialOrder],
     ...initialSections,
@@ -426,19 +448,17 @@ const defineLessonImpl = <
  * Keep the explicit three-generic API for existing specialized authoring.
  */
 export const defineLesson: {
-  <const Input extends Omit<Lesson_Metadata_Config, 'slug' | 'params' | 'locale'> & {
-    slug: string;
-    params: Omit<Lesson_Config['params'], 'languages'> & {
-      languages: readonly [LanguageCode, ...LanguageCode[]];
-    };
-    locale: Lesson_Config['locale'];
-  }>(
-    config: Input & LessonAuthoredInput<
-      Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
-    >,
-  ): ReturnType<typeof defineLessonImpl<
-    Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>
-  >>;
+  <
+    const Input extends Omit<Lesson_Metadata_Config, 'slug' | 'params' | 'locale'> & {
+      slug: string;
+      params: Omit<Lesson_Config['params'], 'languages'> & {
+        languages: readonly [LanguageCode, ...LanguageCode[]];
+      };
+      locale: Lesson_Config['locale'];
+    },
+  >(
+    config: Input & LessonAuthoredInput<Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>>,
+  ): ReturnType<typeof defineLessonImpl<Input['slug'], InferredLessonLanguages<Input>, InferredLessonSections<Input>>>;
   <
     const Slug extends string,
     const Languages extends readonly [LanguageCode, ...LanguageCode[]],
@@ -454,16 +474,17 @@ export const defineLesson: {
  * Concrete source Lessons keep their own literal Section keys and language
  * scopes at the placeLesson/Course call site.
  */
-type LessonBaseConfigurator = ReturnType<typeof defineLessonImpl<
-  string, readonly [LanguageCode, ...LanguageCode[]], {}
->>;
-export type Lesson_Configurator = Omit<
-  LessonBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'
-> & {
+type LessonBaseConfigurator = ReturnType<
+  typeof defineLessonImpl<string, readonly [LanguageCode, ...LanguageCode[]], {}>
+>;
+export type Lesson_Configurator = Omit<LessonBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'> & {
   readonly children: readonly string[];
   readonly __svitloLanguageScope: readonly LanguageCode[];
   readonly build: Omit<LessonBaseConfigurator['build'], 'data' | 'overrides'> & {
     data(options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['data']>;
-    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<LessonBaseConfigurator['build']['overrides']>;
+    overrides(
+      patch: never,
+      options: PublicationLanguageOptions,
+    ): ReturnType<LessonBaseConfigurator['build']['overrides']>;
   };
 };

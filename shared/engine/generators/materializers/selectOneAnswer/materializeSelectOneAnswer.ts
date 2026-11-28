@@ -144,14 +144,24 @@ function checkPath(value: string): void {
   )
     fail(value, 'unsafe destination path');
 }
-function assertCollection(value: unknown, location: string): asserts value is { children: string[] } & Record<string, unknown> {
-  if (!isRecord(value) || !Array.isArray(value.children) ||
-      Object.hasOwn(value, 'items') || Object.hasOwn(value, 'order'))
+function assertCollection(
+  value: unknown,
+  location: string,
+): asserts value is { children: string[] } & Record<string, unknown> {
+  if (
+    !isRecord(value) ||
+    !Array.isArray(value.children) ||
+    Object.hasOwn(value, 'items') ||
+    Object.hasOwn(value, 'order')
+  )
     fail(location, 'expected direct child keys and children order');
   const order = value.children;
   const keys = Object.keys(value).filter(key => key !== 'children');
-  if (keys.length !== order.length || new Set(order).size !== keys.length ||
-      order.some(key => typeof key !== 'string' || !Object.hasOwn(value, key)))
+  if (
+    keys.length !== order.length ||
+    new Set(order).size !== keys.length ||
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(value, key))
+  )
     fail(location + '.children', 'children must include every child once');
   for (const key of keys) safeSlug(key, location + '.' + key);
 }
@@ -235,8 +245,7 @@ export function materializeSelectOneAnswer(node: SelectOneAnswerNode, context: S
       if (typeof child.id !== 'string' || !validUUID.test(child.id))
         fail(location + '.id', 'existing child UUID required');
       safeSlug(child.slug, location + '.slug');
-      if (child.slug !== parts.at(-1))
-        fail(location + '.slug', 'child slug must match collection key');
+      if (child.slug !== parts.at(-1)) fail(location + '.slug', 'child slug must match collection key');
       // Keep semantic Question roles, but discard source-only content/items wrappers.
       const childPath = parts.slice(1).join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;

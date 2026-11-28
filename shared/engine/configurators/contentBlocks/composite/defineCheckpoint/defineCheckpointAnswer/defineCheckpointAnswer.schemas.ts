@@ -7,7 +7,6 @@ import {
 } from '../../../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import { primitiveContentBlockConfigurator_Schema } from '../../../contentBlock.schemas';
-import { hasConfiguratorBuildIdentity } from '../configuratorBoundary';
 import type {
   ContentBlock_Audio_Configurator,
   ContentBlock_Audio_Data,
@@ -61,6 +60,7 @@ import type {
   ContentBlock_Youtube_DataBase,
 } from '../../../primitive/defineYoutube';
 import { youtube_Data_Schema } from '../../../primitive/defineYoutube/defineYoutube.schemas';
+import { hasConfiguratorBuildIdentity } from '../configuratorBoundary';
 
 export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Audio_Configurator
@@ -104,22 +104,40 @@ export const checkpointAnswer_Config_Schema = answerBase
     let enabled = 0;
     for (const key of value.children) {
       const child = value[key];
-      const valid = primitiveContentBlockConfigurator_Schema.safeParse(child).success &&
-        hasConfiguratorBuildIdentity(child);
+      const valid =
+        primitiveContentBlockConfigurator_Schema.safeParse(child).success && hasConfiguratorBuildIdentity(child);
       if (!valid) {
-        ctx.addIssue({ code: 'custom', path: [key], message: 'CheckpointAnswer requires a Primitive Configurator with a valid Build API and identity' });
+        ctx.addIssue({
+          code: 'custom',
+          path: [key],
+          message: 'CheckpointAnswer requires a Primitive Configurator with a valid Build API and identity',
+        });
       }
-      if (child !== null && typeof child === 'object' && !Array.isArray(child) &&
-          'config' in child && child.config !== null && typeof child.config === 'object' &&
-          'base' in child.config && child.config.base !== null && typeof child.config.base === 'object' &&
-          'params' in child.config.base && child.config.base.params !== null &&
-          typeof child.config.base.params === 'object' && 'disabled' in child.config.base.params &&
-          child.config.base.params.disabled === true) continue;
+      if (
+        child !== null &&
+        typeof child === 'object' &&
+        !Array.isArray(child) &&
+        'config' in child &&
+        child.config !== null &&
+        typeof child.config === 'object' &&
+        'base' in child.config &&
+        child.config.base !== null &&
+        typeof child.config.base === 'object' &&
+        'params' in child.config.base &&
+        child.config.base.params !== null &&
+        typeof child.config.base.params === 'object' &&
+        'disabled' in child.config.base.params &&
+        child.config.base.params.disabled === true
+      )
+        continue;
       if (valid) enabled++;
     }
-    if (enabled === 0) ctx.addIssue({
-      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
-    });
+    if (enabled === 0)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['children'],
+        message: 'At least one enabled answer child is required',
+      });
   });
 export type ContentBlock_CheckpointAnswer_Config = z.infer<typeof checkpointAnswer_Config_Schema>;
 
@@ -150,9 +168,12 @@ export const checkpointAnswer_Data_Schema = answerBase
         enabled++;
       }
     }
-    if (!enabled) ctx.addIssue({
-      code: 'custom', path: ['children'], message: 'At least one enabled answer child is required',
-    });
+    if (!enabled)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['children'],
+        message: 'At least one enabled answer child is required',
+      });
   });
 export type ContentBlock_CheckpointAnswer_Data = z.infer<typeof checkpointAnswer_Data_Schema>;
 export type CheckpointAnswer_Overrides<
@@ -162,6 +183,7 @@ export type CheckpointAnswer_Overrides<
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
 } & {
   [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
-} & Added & SafePlacementMap<Added> & {
-  [Key in keyof Items & keyof Added]?: never;
-};
+} & Added &
+  SafePlacementMap<Added> & {
+    [Key in keyof Items & keyof Added]?: never;
+  };

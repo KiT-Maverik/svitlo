@@ -16,8 +16,8 @@ import {
   onlyLocales,
   resolvePublicationLanguages,
   scopeBuild,
-  slugAddressedReservedKeys,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
   type AddedPlacementsFromPatch,
@@ -41,17 +41,14 @@ import {
 
 type Block = ContentBlock_Primitive_Configurator;
 type Side = 'front' | 'back' | 'hint';
-type AddedSideFromPatch<
-  Patch,
-  Items extends Record<string, Block>,
-  Role extends Side,
-> = Patch extends { content: { [Key in Role]: infer SidePatch } }
+type AddedSideFromPatch<Patch, Items extends Record<string, Block>, Role extends Side> = Patch extends {
+  content: { [Key in Role]: infer SidePatch };
+}
   ? AddedPlacementsFromPatch<SidePatch, Items, Block, 'children'>
   : {};
-type AddedRelationshipsFromPatch<
-  Patch,
-  Relationships extends Record<string, Flashcard_Relationship>,
-> = Patch extends { parameters: { relationships: infer Group } }
+type AddedRelationshipsFromPatch<Patch, Relationships extends Record<string, Flashcard_Relationship>> = Patch extends {
+  parameters: { relationships: infer Group };
+}
   ? AddedPlacementsFromPatch<Group, Relationships, Flashcard_Relationship, 'children'>
   : {};
 type SidePublication = {
@@ -89,8 +86,11 @@ const mergeSideLayers = (original: Record<string, unknown>, changes: Record<stri
       }
     }
   }
-  if (isRecord(changes.parameters) && isRecord(merged.parameters) &&
-      Object.hasOwn(changes.parameters, 'relationships')) {
+  if (
+    isRecord(changes.parameters) &&
+    isRecord(merged.parameters) &&
+    Object.hasOwn(changes.parameters, 'relationships')
+  ) {
     merged.parameters.relationships = structuredClone(changes.parameters.relationships);
   }
   return merged;
@@ -107,9 +107,7 @@ const validatePublication = (
       resource.base as Record<string, unknown>,
       (resource.locale?.[language] ?? {}) as Record<string, unknown>,
     );
-    const withPatch = patch
-      ? mergeSideLayers(original, patch.base as Record<string, unknown>)
-      : original;
+    const withPatch = patch ? mergeSideLayers(original, patch.base as Record<string, unknown>) : original;
     const effective = patch
       ? mergeSideLayers(withPatch, (patch.locale?.[language] ?? {}) as Record<string, unknown>)
       : withPatch;
@@ -156,8 +154,7 @@ const validate = (config: Flashcard_Config): void => {
   for (const [key, value] of Object.entries(
     config.parameters.relationships ? relationItems(config.parameters.relationships as NamedInput) : {},
   )) {
-    if (!isValidRelationshipKey(key))
-      throw new Error('Invalid Flashcard relationship slug: ' + key);
+    if (!isValidRelationshipKey(key)) throw new Error('Invalid Flashcard relationship slug: ' + key);
     const relation = flashcardRelationship_Schema.parse(value);
     if (ids.has(relation.relationshipId))
       throw new Error('Duplicate Flashcard relationship ID: ' + relation.relationshipId);
@@ -187,8 +184,10 @@ const resolveNamed = (
       throw new Error('Invalid Flashcard ' + label + ' slug: ' + key);
     }
     if (Object.hasOwn(original, key)) {
-      if (change === false) { active[key] = false; structureChanged = true; }
-      else active[key] = parseUpdate(original[key] as Record<string, unknown>, change);
+      if (change === false) {
+        active[key] = false;
+        structureChanged = true;
+      } else active[key] = parseUpdate(original[key] as Record<string, unknown>, change);
     } else {
       active[key] = parseItem(change);
       structureChanged = true;
@@ -451,9 +450,7 @@ export function defineFlashcard<
         },
       );
       newParams.relationships =
-        candidate.parameters.relationships || relationships.changed
-          ? relationships.collection
-          : undefined;
+        candidate.parameters.relationships || relationships.changed ? relationships.collection : undefined;
       if (relationships.changed) {
         (output.base.parameters ??= {}).relationships = buildRelationships(newParams.relationships);
       }
@@ -494,19 +491,23 @@ export function defineFlashcard<
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & Flashcard_Overrides<
-        Front, Back, Hint, Relationships,
-        AddedSideFromPatch<Patch, Front, 'front'>,
-        AddedSideFromPatch<Patch, Back, 'back'>,
-        AddedSideFromPatch<Patch, Hint, 'hint'>,
-        AddedRelationshipsFromPatch<Patch, Relationships>
-      > & {
-        content?: {
-          front?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Front, 'front'>>;
-          back?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Back, 'back'>>;
-          hint?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Hint, 'hint'>>;
-        };
-      },
+      patch: Patch &
+        Flashcard_Overrides<
+          Front,
+          Back,
+          Hint,
+          Relationships,
+          AddedSideFromPatch<Patch, Front, 'front'>,
+          AddedSideFromPatch<Patch, Back, 'back'>,
+          AddedSideFromPatch<Patch, Hint, 'hint'>,
+          AddedRelationshipsFromPatch<Patch, Relationships>
+        > & {
+          content?: {
+            front?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Front, 'front'>>;
+            back?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Back, 'back'>>;
+            hint?: ChildrenSupporting<Languages, AddedSideFromPatch<Patch, Hint, 'hint'>>;
+          };
+        },
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
     (

@@ -2,7 +2,6 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import type { CarouselViewProps } from '../../../../../presentation';
-
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentBlockRenderer, type ResponseOf, type SceneRegistry } from '../../ContentBlockRenderer';
 

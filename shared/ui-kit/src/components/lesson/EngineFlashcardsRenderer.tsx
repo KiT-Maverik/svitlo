@@ -5,20 +5,20 @@ import { useEffect, useMemo, useState } from 'react';
 
 import type {
   AssessmentResourceLoader,
+  ContentBlock_Primitive_Data,
   Disability,
   Flashcard_Data,
-  ContentBlock_Primitive_Data,
   LanguageCode,
 } from '@svitlo/engine/runtime';
 
-import { toPrimitiveBlockProps, type SectionViewProps } from '../../presentation';
-type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
-
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import { toPrimitiveBlockProps, type SectionViewProps } from '../../presentation';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { Flashcard } from '../widgets/Flashcard/Flashcard';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+
+type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
 
 /** Only the explicitly selected cards are fetched from the independent Lesson bank. */
 export function EngineFlashcardsRenderer({

@@ -10,27 +10,42 @@ import { placeLesson } from './placeLesson';
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const paragraph = defineText<'paragraph', ['en', 'uk']>({
-  id: id('01'), slug: 'paragraph', type: 'text', params: {},
+  id: id('01'),
+  slug: 'paragraph',
+  type: 'text',
+  params: {},
   locale: { value: { en: 'Original', uk: 'Оригінал' } },
 });
 const intro = defineContentSection<'intro', { paragraph: typeof paragraph }, ['en', 'uk']>({
-  id: id('02'), slug: 'intro', type: 'content', params: {},
+  id: id('02'),
+  slug: 'intro',
+  type: 'content',
+  params: {},
   locale: { title: 'Introduction', navigationLabel: 'Intro' },
-  children: ['paragraph'], paragraph,
+  children: ['paragraph'],
+  paragraph,
 });
 const lesson = defineLesson({
-  id: id('03'), slug: 'sourceLesson', type: 'lesson', skills: [],
+  id: id('03'),
+  slug: 'sourceLesson',
+  type: 'lesson',
+  skills: [],
   params: {
     quizRequiredForCompletion: false,
     languages: ['en', 'uk'] as const,
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
   },
   locale: { title: { en: 'Source', uk: 'Джерело' } },
-  children: ['intro'], intro,
+  children: ['intro'],
+  intro,
 });
 const extra = defineContentSection({
-  id: id('04'), slug: 'extra', type: 'content', params: {},
-  locale: { title: 'Extra', navigationLabel: 'Extra' }, children: [],
+  id: id('04'),
+  slug: 'extra',
+  type: 'content',
+  params: {},
+  locale: { title: 'Extra', navigationLabel: 'Extra' },
+  children: [],
 });
 
 type Built = ReturnType<typeof lesson.build.data>;
@@ -69,10 +84,7 @@ test('Trusted added Section is published under its direct key and exact replacem
   assert.equal(lesson.build.data({ languages: ['en'] }).base.extra, undefined);
   lesson_Completed_Data_Schema.parse(effective(data, 'en'));
 
-  const patch = placed.build.overrides(
-    { params: { sections: { allowNavigation: false } } },
-    { languages: ['en'] },
-  );
+  const patch = placed.build.overrides({ params: { sections: { allowNavigation: false } } }, { languages: ['en'] });
   assert.deepEqual(patch.base.children, ['intro', 'extra']);
   assert.equal(patch.base.params?.sections?.allowNavigation, false);
   assert.equal((patch.base.extra as { type: string }).type, 'content');
@@ -81,17 +93,11 @@ test('Trusted added Section is published under its direct key and exact replacem
 test('A later placement override reorders or removes an existing added Section without mutating it', () => {
   const placed = placeLesson(lesson, { children: ['intro', 'extra'], extra });
 
-  const reordered = placed.build.overrides(
-    { children: ['extra', 'intro'] },
-    { languages: ['en'] },
-  );
+  const reordered = placed.build.overrides({ children: ['extra', 'intro'] }, { languages: ['en'] });
   assert.deepEqual(reordered.base.children, ['extra', 'intro']);
   assert.equal((reordered.base.extra as { type: string }).type, 'content');
 
-  const removed = placed.build.overrides(
-    { children: ['intro'], extra: false },
-    { languages: ['uk'] },
-  );
+  const removed = placed.build.overrides({ children: ['intro'], extra: false }, { languages: ['uk'] });
   assert.deepEqual(removed.base.children, ['intro']);
   assert.equal(removed.base.extra, undefined);
 
@@ -100,13 +106,21 @@ test('A later placement override reorders or removes an existing added Section w
   assert.deepEqual(lesson.build.data({ languages: ['en'] }).base.children, ['intro']);
 
   const unknown = defineContentSection({
-    id: id('07'), slug: 'unknown', type: 'content', params: {},
-    locale: { title: 'Unknown', navigationLabel: 'Unknown' }, children: [],
+    id: id('07'),
+    slug: 'unknown',
+    type: 'content',
+    params: {},
+    locale: { title: 'Unknown', navigationLabel: 'Unknown' },
+    children: [],
   });
-  assert.throws(() => Reflect.apply(placed.build.overrides, placed.build, [
-    { children: ['intro', 'extra', 'unknown'], unknown },
-    { languages: ['en'] },
-  ]), /Unknown added Lesson Section in placement override: unknown/);
+  assert.throws(
+    () =>
+      Reflect.apply(placed.build.overrides, placed.build, [
+        { children: ['intro', 'extra', 'unknown'], unknown },
+        { languages: ['en'] },
+      ]),
+    /Unknown added Lesson Section in placement override: unknown/,
+  );
 });
 
 test('A disabled Section is removed from completed Data, not published as a false tombstone', () => {
@@ -134,12 +148,23 @@ test('Invalid forged additions, stale children, identity edits and legacy envelo
   const invoke = (patch: unknown) => Reflect.apply(placeLesson, undefined, [lesson, patch]);
   assert.throws(() => invoke({ id: id('05') }), /immutable Lesson placement field/);
   assert.throws(() => invoke({ section: { additionalItems: { extra } } }), /plain JSON Config/);
-  assert.throws(() => invoke({
-    children: ['intro', 'fake'],
-    fake: { id: id('06'), slug: 'fake', type: 'content' },
-  }).build.data({ languages: ['en'] }), /Section/);
-  assert.throws(() => invoke({ children: ['missing'] }).build.data({ languages: ['en'] }), /Unknown slug: missing; Missing slug: intro/);
-  assert.throws(() => invoke({
-    locale: { title: () => 'untrusted' },
-  }), /plain JSON Config/);
+  assert.throws(
+    () =>
+      invoke({
+        children: ['intro', 'fake'],
+        fake: { id: id('06'), slug: 'fake', type: 'content' },
+      }).build.data({ languages: ['en'] }),
+    /Section/,
+  );
+  assert.throws(
+    () => invoke({ children: ['missing'] }).build.data({ languages: ['en'] }),
+    /Unknown slug: missing; Missing slug: intro/,
+  );
+  assert.throws(
+    () =>
+      invoke({
+        locale: { title: () => 'untrusted' },
+      }),
+    /plain JSON Config/,
+  );
 });

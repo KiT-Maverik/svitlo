@@ -15,8 +15,8 @@ import {
 } from 'react';
 
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
-import type { LessonViewProps, SectionViewProps } from '../../presentation';
 
+import type { LessonViewProps, SectionViewProps } from '../../presentation';
 import {
   LearningLayoutBottomBar,
   LearningLayoutTopBar,

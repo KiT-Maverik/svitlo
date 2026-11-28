@@ -1,5 +1,5 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import type { ChildSupporting, ChildrenSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
+import type { ChildrenSupporting, ChildSupporting, ConfigWithLanguages, DeepPartial, LanguageScope } from '#types';
 
 import {
   cloneJson,
@@ -18,8 +18,8 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   validateQuestionPublication,
-  type OrderedBlockPatch,
   type BlockMembers,
+  type OrderedBlockPatch,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
   type QuestionOverridePublication,
@@ -57,20 +57,21 @@ type LiteralPromptPatch<
   Languages extends readonly LanguageCode[],
 > = Patch extends { content: { question: infer Group } }
   ? Group extends Record<string, unknown>
-    ? [Exclude<keyof Patch, 'params' | 'locale' | 'content'> |
-       Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation'>] extends [never]
+    ? [
+        | Exclude<keyof Patch, 'params' | 'locale' | 'content'>
+        | Exclude<keyof Patch['content'], 'question' | 'hint' | 'explanation'>,
+      ] extends [never]
       ? {
           content: {
             question: {
-              [Key in keyof Group]:
-                Key extends 'children'
-                  ? Extract<Content['question']['children'][number] | keyof Group, string>[]
-                  : Key extends keyof BlockMembers<Content['question']>
-                    ? Parameters<BlockMembers<Content['question']>[Key]['build']['overrides']>[0] | false
-                    : Key extends (typeof slugAddressedReservedKeys)[number]
-                      ? never
-                      : Group[Key] extends ContentBlock_Primitive_Configurator
-                        ? ChildSupporting<Languages, Group[Key]>
+              [Key in keyof Group]: Key extends 'children'
+                ? Extract<Content['question']['children'][number] | keyof Group, string>[]
+                : Key extends keyof BlockMembers<Content['question']>
+                  ? Parameters<BlockMembers<Content['question']>[Key]['build']['overrides']>[0] | false
+                  : Key extends (typeof slugAddressedReservedKeys)[number]
+                    ? never
+                    : Group[Key] extends ContentBlock_Primitive_Configurator
+                      ? ChildSupporting<Languages, Group[Key]>
                       : never;
             };
           } & Pick<QuestionCommonPatch<Content, {}, Languages>, 'hint' | 'explanation'>;

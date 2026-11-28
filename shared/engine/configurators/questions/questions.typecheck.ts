@@ -23,12 +23,12 @@ const common = {
   slug: 'questionOne' as const,
   params,
   locale: {},
-  content: { question: {  answerBlock: block , children: ['answerBlock'] } },
+  content: { question: { answerBlock: block, children: ['answerBlock'] } },
 };
 const answers = {
-  correct: {  answerBlock: block , children: ['answerBlock'] },
-  incorrect: {  children: [] },
-  distractors: {  children: [] },
+  correct: { answerBlock: block, children: ['answerBlock'] },
+  incorrect: { children: [] },
+  distractors: { children: [] },
 };
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { ...common.content, answers } });
 const multiple = defineSelectMultipleAnswers({
@@ -39,7 +39,7 @@ const multiple = defineSelectMultipleAnswers({
 const matched = defineMatchBlocks({
   ...common,
   type: 'matchBlocks',
-  content: { ...common.content, pairs: {  firstPair: { left: block, right: block } , children: ['firstPair'] } },
+  content: { ...common.content, pairs: { firstPair: { left: block, right: block }, children: ['firstPair'] } },
 });
 const text = defineAnswerWithText({
   ...common,
@@ -55,7 +55,7 @@ const number = defineAnswerWithNumber({
 const order = defineOrderSequence({
   ...common,
   type: 'orderSequence',
-  content: { ...common.content, sequence: {  answerBlock: block , children: ['answerBlock'] } },
+  content: { ...common.content, sequence: { answerBlock: block, children: ['answerBlock'] } },
 });
 const build = defineBuildAnswerWithBlocks({
   ...common,
@@ -63,8 +63,8 @@ const build = defineBuildAnswerWithBlocks({
   locale: { placeholder: 'Build' },
   content: {
     ...common.content,
-    correctSequence: {  answerBlock: block , children: ['answerBlock'] },
-    distractors: {  children: [] },
+    correctSequence: { answerBlock: block, children: ['answerBlock'] },
+    distractors: { children: [] },
   },
 });
 const blocks = defineFillBlanksWithBlocks({
@@ -73,15 +73,15 @@ const blocks = defineFillBlanksWithBlocks({
   locale: { placeholder: 'Fill' },
   content: {
     ...common.content,
-    slots: {  slot: { correctAnswer: block } , children: ['slot'] },
-    distractors: {  children: [] },
+    slots: { slot: { correctAnswer: block }, children: ['slot'] },
+    distractors: { children: [] },
   },
 });
 const blanks = defineFillBlanksWithText({
   ...common,
   type: 'fillBlanksWithText',
   locale: { placeholder: 'Fill' },
-  content: { ...common.content, slots: {  slot: { correctAnswers: { first: 'yes' } } , children: ['slot'] } },
+  content: { ...common.content, slots: { slot: { correctAnswers: { first: 'yes' } }, children: ['slot'] } },
 });
 
 type OneSlug = Expect<Equal<typeof one.slug, 'questionOne'>>;
@@ -100,7 +100,7 @@ type PromptBlock = Expect<Equal<typeof order.content.question.answerBlock, typeo
 // @ts-expect-error IDs are immutable in sparse overrides.
 one.build.overrides({ id }, scope);
 // @ts-expect-error A nested question patch cannot change a child slug.
-one.build.overrides({ content: { question: {  answerBlock: { slug: 'another' }  } } }, scope);
+one.build.overrides({ content: { question: { answerBlock: { slug: 'another' } } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
 number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
 // @ts-expect-error A Question cannot accept arbitrary content role names.
@@ -110,7 +110,10 @@ number.build.overrides({ content: { question: { children: ['answerBlock', 'items
 // @ts-expect-error An unrecognized role is not part of text-slot Config patches.
 blanks.build.overrides({ content: { otherRole: { children: [] } } }, scope);
 // @ts-expect-error Reserved slot keys cannot be authored as additional named gaps.
-blanks.build.overrides({ content: { slots: { children: ['slot', 'items'], items: { correctAnswers: { first: 'yes' } } } } }, scope);
+blanks.build.overrides(
+  { content: { slots: { children: ['slot', 'items'], items: { correctAnswers: { first: 'yes' } } } } },
+  scope,
+);
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
@@ -126,7 +129,7 @@ const localizedBlock = defineText<'localizedBlock', ['uk', 'en']>({
   params: {},
   locale: { value: { uk: 'Так', en: 'Yes' } },
 });
-const localContent = { question: {  localizedBlock , children: ['localizedBlock'] } };
+const localContent = { question: { localizedBlock, children: ['localizedBlock'] } };
 const validLanguageChild = defineAnswerWithNumber<'validLanguageChild', typeof localContent, ['uk']>({
   id,
   slug: 'validLanguageChild',
@@ -174,7 +177,7 @@ const onlyUkrainianBlock = defineText<'onlyUkrainianBlock', ['uk']>({
 const scopedPairContent = {
   ...localContent,
   pairs: {
-     firstPair: { left: localizedBlock, right: anotherLocalizedBlock } ,
+    firstPair: { left: localizedBlock, right: anotherLocalizedBlock },
     children: ['firstPair'],
   },
 };
@@ -190,7 +193,7 @@ scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-         secondPair: { left: anotherLocalizedBlock, right: localizedBlock } ,
+        secondPair: { left: anotherLocalizedBlock, right: localizedBlock },
         children: ['firstPair', 'secondPair'],
       },
     },
@@ -202,8 +205,7 @@ scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-        
-         secondPair: { left: onlyUkrainianBlock, right: localizedBlock } ,
+        secondPair: { left: onlyUkrainianBlock, right: localizedBlock },
         children: ['firstPair', 'secondPair'],
       },
     },
@@ -215,8 +217,8 @@ scopedMatch.build.overrides({ content: { pairs: { children: ['missingPair'] } } 
 
 const scopedSlotContent = {
   ...localContent,
-  slots: {  originalSlot: { correctAnswer: localizedBlock } , children: ['originalSlot'] },
-  distractors: {  anotherLocalizedBlock , children: ['anotherLocalizedBlock'] },
+  slots: { originalSlot: { correctAnswer: localizedBlock }, children: ['originalSlot'] },
+  distractors: { anotherLocalizedBlock, children: ['anotherLocalizedBlock'] },
 };
 const scopedBlocks = defineFillBlanksWithBlocks<'scopedBlocks', typeof scopedSlotContent, ['uk', 'en']>({
   id,
@@ -230,7 +232,7 @@ scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-         secondSlot: { correctAnswer: anotherLocalizedBlock } ,
+        secondSlot: { correctAnswer: anotherLocalizedBlock },
         children: ['originalSlot', 'secondSlot'],
       },
     },
@@ -242,8 +244,7 @@ scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-        
-         secondSlot: { correctAnswer: onlyUkrainianBlock } ,
+        secondSlot: { correctAnswer: onlyUkrainianBlock },
         children: ['originalSlot', 'secondSlot'],
       },
     },
@@ -255,7 +256,7 @@ scopedBlocks.build.overrides({ content: { slots: { children: ['unknownSlot'] } }
 
 const scopedTextSlotContent = {
   ...localContent,
-  slots: {  originalSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } , children: ['originalSlot'] },
+  slots: { originalSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } }, children: ['originalSlot'] },
 };
 const scopedTextSlots = defineFillBlanksWithText<'scopedTextSlots', typeof scopedTextSlotContent, ['uk', 'en']>({
   id,
@@ -269,7 +270,7 @@ scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-         secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } ,
+        secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } },
         children: ['originalSlot', 'secondSlot'],
       },
     },
@@ -281,8 +282,7 @@ scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-        
-         secondSlot: { correctAnswers: { first: { uk: 'Так' } } } ,
+        secondSlot: { correctAnswers: { first: { uk: 'Так' } } },
         children: ['originalSlot', 'secondSlot'],
       },
     },
@@ -297,8 +297,7 @@ void [scopedMatch, scopedBlocks, scopedTextSlots];
 const numberResource = number.build.data(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
 const numberPrompt = numberResource.base.content.question.answerBlock;
-if (!numberPrompt || typeof numberPrompt !== 'object' ||
-    Array.isArray(numberPrompt) || !('slug' in numberPrompt)) {
+if (!numberPrompt || typeof numberPrompt !== 'object' || Array.isArray(numberPrompt) || !('slug' in numberPrompt)) {
   throw new Error('Published Question answerBlock must have a slug');
 }
 const typedPromptSlug: string = numberPrompt.slug;

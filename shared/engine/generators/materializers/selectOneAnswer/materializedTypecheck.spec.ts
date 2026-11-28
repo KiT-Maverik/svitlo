@@ -89,11 +89,11 @@ test('materialized Question + Flashcard + Side modules typecheck against real En
           relationships: {
             children: ['reverse'],
             reverse: {
-                relationshipId: 'reverseConnection',
-                type: 'reverse',
-                position: 'peer',
-                relatedFlashcardId: uuid(11),
-              },
+              relationshipId: 'reverseConnection',
+              type: 'reverse',
+              position: 'peer',
+              relatedFlashcardId: uuid(11),
+            },
           },
         },
         content: {

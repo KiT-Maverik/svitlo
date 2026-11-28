@@ -67,8 +67,7 @@ export const projectAnswerList = (
 };
 
 /** Preserve ordered named slot identity while keeping accepted answers atomic. */
-export type LocalizedSlotData = { children: string[] } &
-  Record<string, { correctAnswers: string[] } | string[]>;
+export type LocalizedSlotData = { children: string[] } & Record<string, { correctAnswers: string[] } | string[]>;
 
 export const projectSlotList = (
   original: LocalizedSlotList,
@@ -90,25 +89,36 @@ export const projectSlotList = (
   }
   const toData = (language?: LanguageCode): LocalizedSlotData => ({
     children: [...selected],
-    ...Object.fromEntries(entries.map(([selector, slot]) => [
-      selector,
-      { correctAnswers: Object.values(slot.correctAnswers).map(value => {
-        const resolved = language ? resolve(value, language) : typeof value === 'string' ? value : undefined;
-        if (resolved === undefined)
-          throw new Error('Incomplete text slot ' + selector + (language ? ' for language ' + language : ' in invariant source'));
-        return resolved;
-      }) },
-    ])),
+    ...Object.fromEntries(
+      entries.map(([selector, slot]) => [
+        selector,
+        {
+          correctAnswers: Object.values(slot.correctAnswers).map(value => {
+            const resolved = language ? resolve(value, language) : typeof value === 'string' ? value : undefined;
+            if (resolved === undefined)
+              throw new Error(
+                'Incomplete text slot ' + selector + (language ? ' for language ' + language : ' in invariant source'),
+              );
+            return resolved;
+          }),
+        },
+      ]),
+    ),
   });
   const allInvariant = entries.every(([, slot]) =>
-    Object.values(slot.correctAnswers).every(value => typeof value === 'string'));
+    Object.values(slot.correctAnswers).every(value => typeof value === 'string'),
+  );
   const structural = patch !== undefined && Object.keys(patch).some(key => !Object.hasOwn(original, key));
-  const invariantChanged = patch !== undefined &&
+  const invariantChanged =
+    patch !== undefined &&
     Object.values(patch).some(slot =>
-      Object.values(slot?.correctAnswers ?? {}).some(value => typeof value === 'string'));
-  const affected = allInvariant ? []
-    : !patch || structural || invariantChanged ? languages
-    : languages.filter(language => knownLanguages(patch).includes(language));
+      Object.values(slot?.correctAnswers ?? {}).some(value => typeof value === 'string'),
+    );
+  const affected = allInvariant
+    ? []
+    : !patch || structural || invariantChanged
+      ? languages
+      : languages.filter(language => knownLanguages(patch).includes(language));
   const locale: Files<LocalizedSlotData> = {};
   for (const language of affected) locale[language] = toData(language);
   return { ...(allInvariant ? { base: toData() } : {}), locale };

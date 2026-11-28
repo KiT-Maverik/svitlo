@@ -9,7 +9,6 @@ import {
 } from '@svitlo/engine/runtime';
 
 import type { CheckpointViewProps } from '../../../presentation';
-
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 import { questionBlockLabel } from '../questions/response/QuestionContent';
 import { ContentBlockRenderer } from './ContentBlockRenderer';

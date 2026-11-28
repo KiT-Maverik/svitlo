@@ -2,9 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import type { CourseToc } from '@svitlo/engine/runtime';
 
-import {
-  coursePlacementHref, courseTocToTopics, flattenCourseTopics, parseCoursePlacement,
-} from './courseNavigation';
+import { coursePlacementHref, courseTocToTopics, flattenCourseTopics, parseCoursePlacement } from './courseNavigation';
 
 const toc: CourseToc = {
   id: 'course-id',
@@ -32,17 +30,27 @@ describe('Course TOC presentation and slug routing', () => {
   it('preserves nested order and splits interface/content locales without scanning Lessons', () => {
     expect(courseTocToTopics(toc, 'uk', 'en')).toEqual([
       {
-        id: 'laboratory', type: 'module', title: 'Light laboratory', children: [
+        id: 'laboratory',
+        type: 'module',
+        title: 'Light laboratory',
+        children: [
           {
-            id: 'laboratory/fundamentals', type: 'chapter', title: 'First steps', children: [
+            id: 'laboratory/fundamentals',
+            type: 'chapter',
+            title: 'First steps',
+            children: [
               {
-                id: 'laboratory/fundamentals/reflection', type: 'lesson', title: 'Reflection',
+                id: 'laboratory/fundamentals/reflection',
+                type: 'lesson',
+                title: 'Reflection',
                 href: '/uk/course/course-id/lesson/en/laboratory/fundamentals/reflection',
               },
             ],
           },
           {
-            id: 'laboratory/refraction', type: 'lesson', title: 'Refraction',
+            id: 'laboratory/refraction',
+            type: 'lesson',
+            title: 'Refraction',
             href: '/uk/course/course-id/lesson/en/laboratory/refraction',
           },
         ],
@@ -56,7 +64,9 @@ describe('Course TOC presentation and slug routing', () => {
     repeated.repeat = { id: 'lesson-1', type: 'lesson', label: 'Second placement' };
     const flat = flattenCourseTopics(courseTocToTopics(repeated, 'uk', 'en'));
     expect(flat.map(item => item.id)).toEqual([
-      'laboratory/fundamentals/reflection', 'laboratory/refraction', 'repeat',
+      'laboratory/fundamentals/reflection',
+      'laboratory/refraction',
+      'repeat',
     ]);
     expect(flat.map(item => item.href)).toEqual([
       '/uk/course/course-id/lesson/en/laboratory/fundamentals/reflection',
@@ -79,7 +89,9 @@ describe('Course TOC presentation and slug routing', () => {
   });
 
   it('rejects unsafe malformed URLs instead of silently translating UUIDs or placement queries', () => {
-    expect(parseCoursePlacement(['laboratory', 'fundamentals', 'reflection'])).toBe('laboratory/fundamentals/reflection');
+    expect(parseCoursePlacement(['laboratory', 'fundamentals', 'reflection'])).toBe(
+      'laboratory/fundamentals/reflection',
+    );
     for (const path of [[], ['..'], ['constructor'], ['a%2Fb'], ['a', ''], ['a?placement=x']]) {
       expect(parseCoursePlacement(path)).toBeNull();
     }

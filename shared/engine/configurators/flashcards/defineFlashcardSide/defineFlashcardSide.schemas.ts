@@ -16,8 +16,9 @@ export type FlashcardSide_Config = z.infer<typeof flashcardSide_Config_Schema>;
 
 export type FlashcardSide_Overrides<Items extends Record<string, Block>, Added extends Record<string, Block> = {}> = {
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } &
-  Added & { [Key in Extract<keyof Added, keyof Items>]?: never };
+} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } & Added & {
+    [Key in Extract<keyof Added, keyof Items>]?: never;
+  };
 
 /** A built Side exposes its exact authored slug-addressable members. */
 export const flashcardSideConfigurator_Schema = z.custom<FlashcardSide_Configurator>(

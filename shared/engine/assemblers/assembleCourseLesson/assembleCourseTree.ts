@@ -16,10 +16,15 @@ import { text_Data_Schema } from '../../configurators/contentBlocks/primitive/de
 import { video_Data_Schema } from '../../configurators/contentBlocks/primitive/defineVideo/defineVideo.schemas';
 import { youtube_Data_Schema } from '../../configurators/contentBlocks/primitive/defineYoutube/defineYoutube.schemas';
 import {
-  episode_Completed_Data_Schema, episode_Draft_Data_Schema,
-  type Episode_Data, type Episode_Draft_Data,
+  episode_Completed_Data_Schema,
+  episode_Draft_Data_Schema,
+  type Episode_Data,
+  type Episode_Draft_Data,
 } from '../../configurators/episodes/defineEpisode/defineEpisode.schemas';
-import { lesson_Draft_Data_Schema, type Lesson_Draft_Data } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import {
+  lesson_Draft_Data_Schema,
+  type Lesson_Draft_Data,
+} from '../../configurators/lessons/defineLesson/defineLesson.schemas';
 import { codingTaskSection_Data_Schema } from '../../configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
 import { contentSection_Data_Schema } from '../../configurators/sections/defineContentSection/defineContentSection.schemas';
 import { learningFlowSection_Data_Schema } from '../../configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
@@ -31,8 +36,12 @@ import type { CourseLessonEntry, CoursePublishedTree } from './assembleCourseLes
 export type LocalizedEpisode = Episode_Data;
 export type LocalizedAssessment = Exclude<Assessment_Data, Assessment_Draft_Data>;
 export type LocalizedCourseNode =
-  | CourseLessonEntry | Lesson_Draft_Data | LocalizedEpisode | Episode_Draft_Data
-  | LocalizedAssessment | Assessment_Draft_Data
+  | CourseLessonEntry
+  | Lesson_Draft_Data
+  | LocalizedEpisode
+  | Episode_Draft_Data
+  | LocalizedAssessment
+  | Assessment_Draft_Data
   | { id: string; type: 'module' | 'chapter'; children: string[]; locale: { title: string }; [key: string]: unknown };
 export type LocalizedCourse = CoursePublishedTree & {
   locale: { title: string };
@@ -61,11 +70,19 @@ function assertSafeJson(value: unknown, ancestors = new Set<object>()): void {
     return;
   }
   if (!record(value)) {
-    if (value !== null && typeof value !== 'string' && typeof value !== 'boolean' &&
-        !(typeof value === 'number' && Number.isFinite(value))) throw Error('Non-JSON Course value');
+    if (
+      value !== null &&
+      typeof value !== 'string' &&
+      typeof value !== 'boolean' &&
+      !(typeof value === 'number' && Number.isFinite(value))
+    )
+      throw Error('Non-JSON Course value');
     return;
   }
-  if (ancestors.has(value) || (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null))
+  if (
+    ancestors.has(value) ||
+    (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)
+  )
     throw Error('Invalid Course JSON object');
   ancestors.add(value);
   for (const [key, child] of Object.entries(value)) {
@@ -105,10 +122,17 @@ const sectionSchemas = {
   learningFlow: learningFlowSection_Data_Schema,
 } as const;
 const blocks = {
-  text: text_Data_Schema, markdown: markdown_Data_Schema, code: code_Data_Schema,
-  image: image_Data_Schema, video: video_Data_Schema, audio: audio_Data_Schema,
-  subtitles: subtitles_Data_Schema, youtube: youtube_Data_Schema,
-  carousel: carousel_Data_Schema, checkpoint: checkpoint_Data_Schema, scene: scene_Data_Schema,
+  text: text_Data_Schema,
+  markdown: markdown_Data_Schema,
+  code: code_Data_Schema,
+  image: image_Data_Schema,
+  video: video_Data_Schema,
+  audio: audio_Data_Schema,
+  subtitles: subtitles_Data_Schema,
+  youtube: youtube_Data_Schema,
+  carousel: carousel_Data_Schema,
+  checkpoint: checkpoint_Data_Schema,
+  scene: scene_Data_Schema,
 } as const;
 
 function validateSection(value: unknown, at: string, allowed: readonly string[]): void {
@@ -123,8 +147,13 @@ function validateSection(value: unknown, at: string, allowed: readonly string[])
       throw Error('Invalid Section placement at ' + at);
     const block: unknown = value[key];
     assertRecord(block, at + '/' + key);
-    if (typeof block.id !== 'string' || !uuid.test(block.id) || ids.has(block.id) ||
-        !Object.hasOwn(blocks, String(block.type))) throw Error('Invalid Section block at ' + at + '/' + key);
+    if (
+      typeof block.id !== 'string' ||
+      !uuid.test(block.id) ||
+      ids.has(block.id) ||
+      !Object.hasOwn(blocks, String(block.type))
+    )
+      throw Error('Invalid Section block at ' + at + '/' + key);
     ids.add(block.id);
     blocks[block.type as keyof typeof blocks].parse(block);
   }
@@ -169,15 +198,26 @@ export function validateAssessmentRuntime(value: unknown, language: LanguageCode
 function verifyIdentity(base: unknown, selected: unknown, at: string): void {
   assertRecord(base, at);
   assertRecord(selected, at);
-  if (base.id !== selected.id || base.type !== selected.type || base.draft !== selected.draft ||
-      (base.slug !== undefined && base.slug !== selected.slug)) throw Error('Localized Course identity changed at ' + at);
+  if (
+    base.id !== selected.id ||
+    base.type !== selected.type ||
+    base.draft !== selected.draft ||
+    (base.slug !== undefined && base.slug !== selected.slug)
+  )
+    throw Error('Localized Course identity changed at ' + at);
   // Language availability is authored identity, never locale-dependent metadata.
-  if (base.type === 'course' || base.type === 'episode' || base.type === 'assessment' ||
-      (base.type === 'lesson' && base.draft === true)) {
+  if (
+    base.type === 'course' ||
+    base.type === 'episode' ||
+    base.type === 'assessment' ||
+    (base.type === 'lesson' && base.draft === true)
+  ) {
     assertRecord(base.params, at + '/params');
     assertRecord(selected.params, at + '/params');
-    if (!Array.isArray(base.params.languages) ||
-        JSON.stringify(base.params.languages) !== JSON.stringify(selected.params.languages)) {
+    if (
+      !Array.isArray(base.params.languages) ||
+      JSON.stringify(base.params.languages) !== JSON.stringify(selected.params.languages)
+    ) {
       throw Error('Localized Course language scope changed at ' + at);
     }
   }
@@ -192,7 +232,8 @@ function verifyIdentity(base: unknown, selected: unknown, at: string): void {
       return;
     }
     for (const phase of ['before', 'after']) {
-      const a = base[phase], b = selected[phase];
+      const a = base[phase],
+        b = selected[phase];
       assertRecord(a, at + '/' + phase);
       assertRecord(b, at + '/' + phase);
       if (JSON.stringify(a.children) !== JSON.stringify(b.children)) throw Error('Localized Assessment order changed');
@@ -225,14 +266,16 @@ export function assembleCourseTree(
   const membershipIndex = new WeakMap<object, ValidatedOrder>();
   function title(node: Record<string, unknown>): void {
     assertRecord(node.locale, 'locale');
-    if (typeof node.locale.title !== 'string' || !node.locale.title.trim()) throw Error('Missing localized Course title');
+    if (typeof node.locale.title !== 'string' || !node.locale.title.trim())
+      throw Error('Missing localized Course title');
   }
   function visit(owner: Record<string, unknown>, parent: 'course' | 'module' | 'chapter'): void {
     title(owner);
     const children = owner.children;
-    if (!Array.isArray(children) || new Set(children).size !== children.length)
-      throw Error('Invalid Course children');
-    const keys = Object.keys(owner).filter(key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
+    if (!Array.isArray(children) || new Set(children).size !== children.length) throw Error('Invalid Course children');
+    const keys = Object.keys(owner).filter(
+      key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key),
+    );
     if (keys.length !== children.length || keys.some(key => !children.includes(key)))
       throw Error('Unaddressed Course placement keys');
     membershipIndex.set(owner, { source: children, size: children.length, members: new Set(children) });
@@ -246,10 +289,17 @@ export function assembleCourseTree(
         if (mode !== 'draft' || node.draft !== true || node.slug !== key)
           throw Error('Course draft stub cannot be assembled for production at ' + key);
         switch (node.type) {
-          case 'lesson': lesson_Draft_Data_Schema.parse(node); break;
-          case 'episode': episode_Draft_Data_Schema.parse(node); break;
-          case 'assessment': assessment_Draft_Data_Schema.parse(node); break;
-          default: throw Error('Invalid Course draft child kind');
+          case 'lesson':
+            lesson_Draft_Data_Schema.parse(node);
+            break;
+          case 'episode':
+            episode_Draft_Data_Schema.parse(node);
+            break;
+          case 'assessment':
+            assessment_Draft_Data_Schema.parse(node);
+            break;
+          default:
+            throw Error('Invalid Course draft child kind');
         }
       } else if (node.type === 'lesson') {
         // Completed Lesson is a compact reference, not a duplicate full Lesson payload.
@@ -259,8 +309,12 @@ export function assembleCourseTree(
       } else if (node.type === 'episode') validateEpisodeRuntime(node, language);
       else if (node.type === 'assessment') validateAssessmentRuntime(node, language);
       else {
-        if ((node.type !== 'module' && node.type !== 'chapter') || parent === 'chapter' ||
-            (parent === 'module' && node.type === 'module')) throw Error('Invalid Course hierarchy');
+        if (
+          (node.type !== 'module' && node.type !== 'chapter') ||
+          parent === 'chapter' ||
+          (parent === 'module' && node.type === 'module')
+        )
+          throw Error('Invalid Course hierarchy');
         visit(node, node.type);
       }
       if (visited.has(node.id)) throw Error('Duplicate Course-owned identity: ' + node.id);
@@ -276,8 +330,13 @@ export function assembleCourseTree(
 }
 
 export type CourseActivity = {
-  node: CourseLessonEntry | Lesson_Draft_Data | LocalizedEpisode | Episode_Draft_Data |
-    LocalizedAssessment | Assessment_Draft_Data;
+  node:
+    | CourseLessonEntry
+    | Lesson_Draft_Data
+    | LocalizedEpisode
+    | Episode_Draft_Data
+    | LocalizedAssessment
+    | Assessment_Draft_Data;
   placement: string;
 };
 export function courseActivities(course: LocalizedCourse): CourseActivity[] {
@@ -298,8 +357,11 @@ export function courseActivities(course: LocalizedCourse): CourseActivity[] {
 
 /** O(depth) navigation over a tree whose exhaustive child order was validated at assembly. */
 export function findCourseActivityByPlacement(course: LocalizedCourse, placement: string): CourseActivity | undefined {
-  if (typeof placement !== 'string' || !placement ||
-      placement.split('/').some(key => !slot.test(key) || forbidden.has(key)))
+  if (
+    typeof placement !== 'string' ||
+    !placement ||
+    placement.split('/').some(key => !slot.test(key) || forbidden.has(key))
+  )
     throw Error('Unsafe Course placement path');
   const index = validatedPlacementIndexes.get(course);
   if (!index) throw Error('Course placement lookup requires an assembled, validated Course');
@@ -317,11 +379,19 @@ export function findCourseActivityByPlacement(course: LocalizedCourse, placement
   if (!['lesson', 'episode', 'assessment'].includes(String(owner.type))) return undefined;
   return { node: owner as CourseActivity['node'], placement };
 }
-export function findCourseEpisode(course: LocalizedCourse, id: string): LocalizedEpisode | Episode_Draft_Data | undefined {
-  return courseActivities(course).map(item => item.node)
+export function findCourseEpisode(
+  course: LocalizedCourse,
+  id: string,
+): LocalizedEpisode | Episode_Draft_Data | undefined {
+  return courseActivities(course)
+    .map(item => item.node)
     .find((node): node is LocalizedEpisode | Episode_Draft_Data => node.type === 'episode' && node.id === id);
 }
-export function findCourseAssessment(course: LocalizedCourse, id: string): LocalizedAssessment | Assessment_Draft_Data | undefined {
-  return courseActivities(course).map(item => item.node)
+export function findCourseAssessment(
+  course: LocalizedCourse,
+  id: string,
+): LocalizedAssessment | Assessment_Draft_Data | undefined {
+  return courseActivities(course)
+    .map(item => item.node)
     .find((node): node is LocalizedAssessment | Assessment_Draft_Data => node.type === 'assessment' && node.id === id);
 }

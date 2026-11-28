@@ -22,8 +22,11 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
   // A Lesson override has direct Section placement keys and root children.
   // Only explicit inert $create/$ref nodes require trusted binding.
   const metadata = new Set(['params', 'locale', 'events', 'children']);
-  const additions = Object.fromEntries(Object.entries(raw).filter(([key, value]) =>
-    !metadata.has(key) && record(value) && (own(value, '$create') || own(value, '$ref'))));
+  const additions = Object.fromEntries(
+    Object.entries(raw).filter(
+      ([key, value]) => !metadata.has(key) && record(value) && (own(value, '$create') || own(value, '$ref')),
+    ),
+  );
   let patch = raw;
   if (Object.keys(additions).length) {
     if (

@@ -73,9 +73,11 @@ describe('Course-owned Assessment Configurator', () => {
     const result = assessment.build.data({ languages: ['en', 'uk'] });
     assert.equal(assessmentConfigurator_Schema.safeParse(assessment).success, true);
     assert.deepEqual(
-      [...result.base.before.children.map(key => (result.base.before[key] as { type: string }).type),
-       result.base.quiz.type,
-       ...result.base.after.children.map(key => (result.base.after[key] as { type: string }).type)],
+      [
+        ...result.base.before.children.map(key => (result.base.before[key] as { type: string }).type),
+        result.base.quiz.type,
+        ...result.base.after.children.map(key => (result.base.after[key] as { type: string }).type),
+      ],
       ['content', 'quiz'],
     );
     assert.equal(result.locale?.uk?.locale?.title, 'Перевірка');
@@ -115,10 +117,7 @@ describe('Course-owned Assessment Configurator', () => {
   test('permits supporting Sections to be removed without disabling the one Quiz', () => {
     const assessment = makeAssessment('withOptionalIntro', '15', '16');
     const patch = assessment.build.overrides({ before: { intro: false, children: [] } }, { languages: ['en'] });
-    assert.deepEqual(
-      patch.base.before?.children,
-      [],
-    );
+    assert.deepEqual(patch.base.before?.children, []);
     assert.throws(
       () =>
         defineAssessment({
@@ -138,11 +137,15 @@ describe('Course-owned Assessment Configurator', () => {
   test('Assessment phase patches never republish untouched Sections or inherited translations', () => {
     const assessment = makeAssessment('sparsePhase', '69', '70');
     assert.deepEqual(assessment.build.overrides({ before: {} }, { languages: ['en', 'uk'] }), {
-      base: {}, locale: undefined,
+      base: {},
+      locale: undefined,
     });
-    const patch = assessment.build.overrides({
-      before: { intro: { locale: { title: { uk: 'Нові інструкції' } } } },
-    }, { languages: ['uk'] });
+    const patch = assessment.build.overrides(
+      {
+        before: { intro: { locale: { title: { uk: 'Нові інструкції' } } } },
+      },
+      { languages: ['uk'] },
+    );
     assert.deepEqual(patch.base, {});
     assert.deepEqual(patch.locale?.uk?.before, {
       intro: { locale: { title: 'Нові інструкції' } },
@@ -153,8 +156,12 @@ describe('Course-owned Assessment Configurator', () => {
 
   test('rejects invalid supporting phase keys and unknown or stale ordered placements', () => {
     const metadata = {
-      id: id('60'), slug: 'phaseValidation', type: 'assessment' as const,
-      params: { languages }, locale: { title: 'Review' }, quiz: makeQuiz('61'),
+      id: id('60'),
+      slug: 'phaseValidation',
+      type: 'assessment' as const,
+      params: { languages },
+      locale: { title: 'Review' },
+      quiz: makeQuiz('61'),
     };
     const publish = (before: unknown) =>
       defineAssessment({ ...metadata, before } as never).build.data({ languages: ['en'] });
@@ -211,36 +218,54 @@ describe('Course-owned Assessment Configurator', () => {
     assert.equal(assessment_Data_Schema.safeParse(result.base).success, true);
     const counterfeit = structuredClone(result.base);
     (counterfeit.preview as Record<string, unknown>).message = {
-      type: 'text', locale: { value: 'Not implemented' },
+      type: 'text',
+      locale: { value: 'Not implemented' },
     };
     assert.equal(assessment_Data_Schema.safeParse(counterfeit).success, false);
     assert.throws(() => draft.build.overrides({} as never, { languages: ['en'] }), /cannot be overridden/);
     // A well-formed non-placeholder Text block must not make a Draft publishable.
     const otherText = defineText({
-      id: id('54'), slug: 'different', type: 'text', params: {},
+      id: id('54'),
+      slug: 'different',
+      type: 'text',
+      params: {},
       locale: { value: 'Other content' },
     });
     const noPlaceholder = defineContentSection({
-      id: id('55'), slug: 'preview', type: 'content', params: {},
+      id: id('55'),
+      slug: 'preview',
+      type: 'content',
+      params: {},
       locale: { title: 'Preview', navigationLabel: 'Preview' },
-      children: ['different'], different: otherText,
+      children: ['different'],
+      different: otherText,
     });
     const metadata = {
-      id: id('56'), slug: 'badDraft', type: 'assessment' as const,
-      params: { languages }, locale: { title: 'Not implemented' },
+      id: id('56'),
+      slug: 'badDraft',
+      type: 'assessment' as const,
+      params: { languages },
+      locale: { title: 'Not implemented' },
     };
     assert.throws(
       () => defineAssessmentDraft({ ...metadata, preview: noPlaceholder }).build.data({ languages: ['en'] }),
       /Not implemented Text ContentBlock/,
     );
     const disabledPlaceholder = defineText({
-      id: id('57'), slug: 'disabledPlaceholder', type: 'text',
-      params: { disabled: true }, locale: { value: 'Not implemented' },
+      id: id('57'),
+      slug: 'disabledPlaceholder',
+      type: 'text',
+      params: { disabled: true },
+      locale: { value: 'Not implemented' },
     });
     const disabledPreview = defineContentSection({
-      id: id('58'), slug: 'preview', type: 'content', params: {},
+      id: id('58'),
+      slug: 'preview',
+      type: 'content',
+      params: {},
       locale: { title: 'Preview', navigationLabel: 'Preview' },
-      children: ['disabledPlaceholder'], disabledPlaceholder,
+      children: ['disabledPlaceholder'],
+      disabledPlaceholder,
     });
     assert.throws(
       () => defineAssessmentDraft({ ...metadata, preview: disabledPreview }).build.data({ languages: ['en'] }),
@@ -271,7 +296,8 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'chapter',
       params: {},
       locale: { title: 'Chapter' },
-      children: ['chapterAssessment'], chapterAssessment,
+      children: ['chapterAssessment'],
+      chapterAssessment,
     });
     const module = defineModule<
       'module',
@@ -283,7 +309,9 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'module',
       params: {},
       locale: { title: 'Module' },
-      children: ['chapter', 'moduleAssessment'], chapter, moduleAssessment,
+      children: ['chapter', 'moduleAssessment'],
+      chapter,
+      moduleAssessment,
     });
     const course = defineCourse({
       id: id('42'),
@@ -291,7 +319,9 @@ describe('Course-owned Assessment Configurator', () => {
       type: 'course',
       params: { languages },
       locale: { title: 'Course', description: 'Course description' },
-      children: ['module', 'finalAssessment'], module, finalAssessment,
+      children: ['module', 'finalAssessment'],
+      module,
+      finalAssessment,
     });
     const result = course.build.data({ languages: ['en', 'uk'] });
     assert.deepEqual(result.base.children, ['module', 'finalAssessment']);

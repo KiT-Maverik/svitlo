@@ -12,15 +12,23 @@ const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const scope = { languages: ['en', 'uk'] as const };
 const text = <const Slug extends string>(slug: Slug, suffix: string, value: string | { en: string; uk: string }) =>
   defineText<Slug, ['en', 'uk']>({
-    id: id(suffix), slug, type: 'text', params: {}, locale: { value },
+    id: id(suffix),
+    slug,
+    type: 'text',
+    params: {},
+    locale: { value },
   });
 
 const example = () => {
   const first = text('first', '71', 'Invariant');
   const second = text('second', '72', { en: 'Second', uk: 'Другий' });
   const answer = defineCheckpointAnswer<'answer', { first: typeof first; second: typeof second }, ['en', 'uk']>({
-    id: id('73'), slug: 'answer', type: 'checkpointAnswer',
-    children: ['second', 'first'], first, second,
+    id: id('73'),
+    slug: 'answer',
+    type: 'checkpointAnswer',
+    children: ['second', 'first'],
+    first,
+    second,
   });
   return { answer, first, second };
 };
@@ -31,7 +39,14 @@ const en = (output: ReturnType<ReturnType<typeof example>['answer']['build']['da
 describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
   test('preserves identity, author order and directly addressable Data', () => {
     const { answer, first, second } = example();
-    const config = { id: answer.id, slug: answer.slug, type: answer.type, children: ['second', 'first'], first, second };
+    const config = {
+      id: answer.id,
+      slug: answer.slug,
+      type: answer.type,
+      children: ['second', 'first'],
+      first,
+      second,
+    };
     assert.equal(checkpointAnswer_Config_Schema.safeParse(config).success, true);
     for (const fake of [
       { id: first.id, slug: first.slug, type: 'text' },
@@ -66,12 +81,15 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     const third = text('third', '75', { en: 'Third', uk: 'Третій' });
     const original = answer.build.data(scope);
     assert.deepEqual(answer.build.overrides({}, scope), { base: {}, locale: undefined });
-    const patch = answer.build.overrides({
-      first: false,
-      second: { locale: { value: { uk: 'Змінено' } } },
-      third,
-      children: ['third', 'second'],
-    }, scope);
+    const patch = answer.build.overrides(
+      {
+        first: false,
+        second: { locale: { value: { uk: 'Змінено' } } },
+        third,
+        children: ['third', 'second'],
+      },
+      scope,
+    );
     assert.deepEqual(patch.base.children, ['third', 'second']);
     assert.equal(patch.base.first, false);
     assert.equal((patch.base.third as { id: string }).id, third.id);
@@ -79,18 +97,29 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
     assert.equal(patch.locale?.en?.second, undefined);
     assert.equal(JSON.stringify(patch).includes('additionalItems'), false);
     assert.deepEqual(answer.build.data(scope), original);
-    assert.deepEqual(answer.build.overrides({
-      first: false, second: { locale: { value: { uk: 'Змінено' } } },
-      third, children: ['third', 'second'],
-    }, scope), patch);
+    assert.deepEqual(
+      answer.build.overrides(
+        {
+          first: false,
+          second: { locale: { value: { uk: 'Змінено' } } },
+          third,
+          children: ['third', 'second'],
+        },
+        scope,
+      ),
+      patch,
+    );
   });
 
   test('locale-only Answer patch omits empty invariant child fragments', () => {
     const { answer } = example();
     const original = answer.build.data(scope);
-    const patch = answer.build.overrides({
-      second: { locale: { value: { uk: 'Друга відповідь' } } },
-    }, scope);
+    const patch = answer.build.overrides(
+      {
+        second: { locale: { value: { uk: 'Друга відповідь' } } },
+      },
+      scope,
+    );
     assert.deepEqual(patch.base, {});
     assert.deepEqual(patch.locale?.uk, { second: { locale: { value: 'Друга відповідь' } } });
     assert.equal(patch.locale?.en, undefined);
@@ -104,14 +133,23 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       /children is required/,
     );
     assert.throws(
-      () => answer.build.overrides({
-        first: { params: { disabled: true } }, children: ['second', 'first'],
-      }, scope),
+      () =>
+        answer.build.overrides(
+          {
+            first: { params: { disabled: true } },
+            children: ['second', 'first'],
+          },
+          scope,
+        ),
       /Invalid Checkpoint Answer overrides/,
     );
-    const patch = answer.build.overrides({
-      first: { params: { disabled: true } }, children: ['second'],
-    }, scope);
+    const patch = answer.build.overrides(
+      {
+        first: { params: { disabled: true } },
+        children: ['second'],
+      },
+      scope,
+    );
     assert.deepEqual(patch, { base: { children: ['second'], first: false }, locale: undefined });
     const merged = mergeForValidation(answer.build.data(scope).base, patch.base);
     delete merged.first;
@@ -122,30 +160,51 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
   test('authored disabled Primitives stay in Config but are absent from published Data', () => {
     const { second } = example();
     const first = defineText<'first', ['en', 'uk']>({
-      id: id('75'), slug: 'first', type: 'text',
-      params: { disabled: true }, locale: { value: { en: 'Hidden', uk: 'Сховано' } },
+      id: id('75'),
+      slug: 'first',
+      type: 'text',
+      params: { disabled: true },
+      locale: { value: { en: 'Hidden', uk: 'Сховано' } },
     });
     const answer = defineCheckpointAnswer<'answer', { first: typeof first; second: typeof second }, ['en', 'uk']>({
-      id: id('76'), slug: 'answer', type: 'checkpointAnswer',
-      children: ['first', 'second'], first, second,
+      id: id('76'),
+      slug: 'answer',
+      type: 'checkpointAnswer',
+      children: ['first', 'second'],
+      first,
+      second,
     });
     const data = answer.build.data({ languages: ['uk'] });
     assert.deepEqual(data.base.children, ['second']);
     assert.equal(data.base.first, undefined);
     assert.deepEqual(data.locale?.uk, { second: { locale: { value: 'Другий' } } });
-    assert.equal(checkpointAnswer_Data_Schema.safeParse(
-      mergeForValidation(data.base, data.locale?.uk ?? {}),
-    ).success, true);
+    assert.equal(
+      checkpointAnswer_Data_Schema.safeParse(mergeForValidation(data.base, data.locale?.uk ?? {})).success,
+      true,
+    );
     assert.deepEqual(answer.build.overrides({}, { languages: ['uk'] }), {
-      base: {}, locale: undefined,
+      base: {},
+      locale: undefined,
     });
-    assert.throws(() => answer.build.overrides({
-      first: { locale: { value: { uk: 'Ще' } } },
-    } as never, { languages: ['uk'] }), /already disabled/);
-    assert.throws(() => defineCheckpointAnswer<'allHidden', { first: typeof first }, ['en', 'uk']>({
-      id: id('77'), slug: 'allHidden', type: 'checkpointAnswer',
-      children: ['first'], first,
-    }).build.data({ languages: ['uk'] }));
+    assert.throws(
+      () =>
+        answer.build.overrides(
+          {
+            first: { locale: { value: { uk: 'Ще' } } },
+          } as never,
+          { languages: ['uk'] },
+        ),
+      /already disabled/,
+    );
+    assert.throws(() =>
+      defineCheckpointAnswer<'allHidden', { first: typeof first }, ['en', 'uk']>({
+        id: id('77'),
+        slug: 'allHidden',
+        type: 'checkpointAnswer',
+        children: ['first'],
+        first,
+      }).build.data({ languages: ['uk'] }),
+    );
   });
 
   test('rejects missing, repeated, orphaned, reserved, and unsafe placements', () => {
@@ -170,31 +229,53 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
   test('rejects Carousel/Checkpoint composites, but accepts Scene Primitive', () => {
     const { answer } = example();
     const image = defineImage({
-      id: id('76'), slug: 'image', type: 'image',
+      id: id('76'),
+      slug: 'image',
+      type: 'image',
       params: { fill: true, aspectRatio: 1.5 },
       locale: { fileName: 'https://example.com/image.png', alt: 'An image' },
     });
     const carousel = defineCarousel<'carousel', { image: typeof image }>({
-      id: id('77'), slug: 'carousel', type: 'carousel', params: {}, locale: {},
-      children: ['image'], image,
+      id: id('77'),
+      slug: 'carousel',
+      type: 'carousel',
+      params: {},
+      locale: {},
+      children: ['image'],
+      image,
     });
-    assert.throws(() => answer.build.overrides({ carousel, children: ['second', 'first', 'carousel'] } as never, scope));
-    assert.throws(() => defineCheckpointAnswer({
-      id: id('78'), slug: 'bad', type: 'checkpointAnswer', children: ['carousel'], carousel,
-    } as never).build.data({ languages: ['en'] }));
+    assert.throws(() =>
+      answer.build.overrides({ carousel, children: ['second', 'first', 'carousel'] } as never, scope),
+    );
+    assert.throws(() =>
+      defineCheckpointAnswer({
+        id: id('78'),
+        slug: 'bad',
+        type: 'checkpointAnswer',
+        children: ['carousel'],
+        carousel,
+      } as never).build.data({ languages: ['en'] }),
+    );
     const scene = defineScene<'activity', ['en', 'uk']>({
-      id: id('79'), slug: 'activity', type: 'scene', params: {},
+      id: id('79'),
+      slug: 'activity',
+      type: 'scene',
+      params: {},
       locale: { value: { en: 'Choose', uk: 'Обери' } },
     });
     const valid = defineCheckpointAnswer<'sceneAnswer', { activity: typeof scene }, ['en', 'uk']>({
-      id: id('80'), slug: 'sceneAnswer', type: 'checkpointAnswer',
-      children: ['activity'], activity: scene,
+      id: id('80'),
+      slug: 'sceneAnswer',
+      type: 'checkpointAnswer',
+      children: ['activity'],
+      activity: scene,
     });
     const built = valid.build.data({ languages: ['uk'], mode: 'draft' });
     assert.equal((built.base.activity as { type: string }).type, 'scene');
-    assert.equal(checkpointAnswer_Data_Schema.safeParse(
-      mergeForValidation(built.base, built.locale?.uk ?? {}),
-    ).success, true);
+    assert.equal(
+      checkpointAnswer_Data_Schema.safeParse(mergeForValidation(built.base, built.locale?.uk ?? {})).success,
+      true,
+    );
   });
 
   test('rejects unknown, identity and invalid child override mutations', () => {

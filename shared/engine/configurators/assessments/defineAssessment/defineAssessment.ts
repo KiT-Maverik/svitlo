@@ -1,5 +1,4 @@
 import type { LanguageCode } from '#schemas';
-import type { SafePlacementMap } from '../../_shared__configurators';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -18,11 +17,12 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
-  splitLocalizedFields,
-  validateSlugAddressedContainer,
   slugAddressedReservedKeys,
+  splitLocalizedFields,
   validateRequestedPublication,
+  validateSlugAddressedContainer,
   validateSluggedConfiguratorMap,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import {
   assessment_Config_Schema,
@@ -31,8 +31,8 @@ import {
   type Assessment_Config,
   type Assessment_Content_Section_Configurator,
   type Assessment_DataBase,
-  type Assessment_Phase_DataBase,
   type Assessment_Overrides,
+  type Assessment_Phase_DataBase,
   type Assessment_Quiz_Configurator,
   type Assessment_Section_Configurator,
 } from './defineAssessment.schemas';
@@ -83,8 +83,10 @@ const validatePhase = (phase: Phase, name: string): void => {
   });
   if (issues.length || errors.length) {
     throw new Error(
-      [...issues.map(issue => name + '.' + issue.path.join('.') + ': ' + issue.message),
-       ...errors.map(issue => issue.message)].join('; '),
+      [
+        ...issues.map(issue => name + '.' + issue.path.join('.') + ': ' + issue.message),
+        ...errors.map(issue => issue.message),
+      ].join('; '),
     );
   }
 };
@@ -137,8 +139,9 @@ const validate = (config: Assessment_Config): void => {
 
 /** Exclude the structural order field from direct, literal-key child inference. */
 type PhaseChildMap<Group extends { children: string[] }> = {
-  [Key in Exclude<keyof Group, 'children'>]:
-    Group[Key] extends Assessment_Content_Section_Configurator ? Group[Key] : never;
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Assessment_Content_Section_Configurator
+    ? Group[Key]
+    : never;
 };
 
 /**
@@ -158,12 +161,12 @@ export const defineAssessment = <
     slug: Slug;
     params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Assessment_Config['locale'], Languages>;
-    before?: Before & { children: Extract<Exclude<keyof Before, 'children'>, string>[] } &
-      PhaseChildMap<Before> & ChildrenSupporting<Languages, PhaseChildMap<Before>> &
+    before?: Before & { children: Extract<Exclude<keyof Before, 'children'>, string>[] } & PhaseChildMap<Before> &
+      ChildrenSupporting<Languages, PhaseChildMap<Before>> &
       SafePlacementMap<PhaseChildMap<Before>>;
     quiz: Quiz;
-    after?: After & { children: Extract<Exclude<keyof After, 'children'>, string>[] } &
-      PhaseChildMap<After> & ChildrenSupporting<Languages, PhaseChildMap<After>> &
+    after?: After & { children: Extract<Exclude<keyof After, 'children'>, string>[] } & PhaseChildMap<After> &
+      ChildrenSupporting<Languages, PhaseChildMap<After>> &
       SafePlacementMap<PhaseChildMap<After>>;
   },
 ) => {
@@ -218,7 +221,9 @@ export const defineAssessment = <
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
-    const locale: Partial<Record<LanguageCode, ReturnType<Assessment_Section_Configurator['build']['data']>['base'][]>> = {};
+    const locale: Partial<
+      Record<LanguageCode, ReturnType<Assessment_Section_Configurator['build']['data']>['base'][]>
+    > = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -238,8 +243,9 @@ export const defineAssessment = <
     return {
       base,
       locale,
-      patches: Object.fromEntries(entries.filter(entry => entry.patch)
-        .map(entry => [entry.key, entry.patch])) as Record<string, SectionResource>,
+      patches: Object.fromEntries(
+        entries.filter(entry => entry.patch).map(entry => [entry.key, entry.patch]),
+      ) as Record<string, SectionResource>,
     };
   };
 
@@ -255,7 +261,9 @@ export const defineAssessment = <
   function buildPhase(phase: Phase, patches?: Record<string, unknown>, sparse?: false): CompletedPhase;
   function buildPhase(phase: Phase, patches: Record<string, unknown>, sparse: boolean): CompletedPhase | SparsePhase;
   function buildPhase(
-    phase: Phase, patches: Record<string, unknown> = {}, sparse = false,
+    phase: Phase,
+    patches: Record<string, unknown> = {},
+    sparse = false,
   ): CompletedPhase | SparsePhase {
     const built = buildSections(phaseItems(phase), phase.children, patches);
     if (sparse) {
@@ -264,8 +272,7 @@ export const defineAssessment = <
       for (const [key, published] of Object.entries(built.patches)) {
         if (Object.keys(published.base).length) base[key] = structuredClone(published.base);
         for (const [language, value] of Object.entries(published.locale ?? {})) {
-          (locale[language as LanguageCode] ??= {})[key] =
-            structuredClone(value);
+          (locale[language as LanguageCode] ??= {})[key] = structuredClone(value);
         }
       }
       return { base, locale };
@@ -305,7 +312,10 @@ export const defineAssessment = <
       if (beforeBuilt.locale[language]) (files[language] ??= {}).before = beforeBuilt.locale[language];
       if (afterBuilt.locale[language]) (files[language] ??= {}).after = afterBuilt.locale[language];
       if (quizBuilt.locale?.[language]) {
-        (files[language] ??= {}).quiz = mergeForValidation(quizBuilt.base, quizBuilt.locale[language]) as Assessment_DataBase['quiz'];
+        (files[language] ??= {}).quiz = mergeForValidation(
+          quizBuilt.base,
+          quizBuilt.locale[language],
+        ) as Assessment_DataBase['quiz'];
       }
     }
     const result: Publication<Assessment_DataBase> = structuredClone({
@@ -425,16 +435,14 @@ export const defineAssessment = <
       const updatedAfter = phase('after', after, patch.after);
       validate({ ...mergedMetadata, before: updatedBefore, quiz, after: updatedAfter });
       if (patch.before !== undefined) {
-        const built = buildPhase(updatedBefore, childPatches,
-          !Object.hasOwn(patch.before, 'children'));
+        const built = buildPhase(updatedBefore, childPatches, !Object.hasOwn(patch.before, 'children'));
         if (Object.keys(built.base).length) output.base.before = built.base;
         for (const [language, value] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= {}).before = value;
         }
       }
       if (patch.after !== undefined) {
-        const built = buildPhase(updatedAfter, childPatches,
-          !Object.hasOwn(patch.after, 'children'));
+        const built = buildPhase(updatedAfter, childPatches, !Object.hasOwn(patch.after, 'children'));
         if (Object.keys(built.base).length) output.base.after = built.base;
         for (const [language, value] of Object.entries(built.locale)) {
           (files[language as LanguageCode] ??= {}).after = value;

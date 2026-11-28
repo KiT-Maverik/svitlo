@@ -18,8 +18,16 @@ const mergeQuestionLayer = (original: object, patch: object) => {
   const merged = mergeForValidation(original, patch);
   const own = isRecord(patch) ? patch : {};
   if (isRecord(merged) && isRecord(merged.content) && isRecord(own.content)) {
-    for (const field of ['question', 'hint', 'explanation', 'pairs', 'slots',
-                         'sequence', 'correctSequence', 'distractors'] as const) {
+    for (const field of [
+      'question',
+      'hint',
+      'explanation',
+      'pairs',
+      'slots',
+      'sequence',
+      'correctSequence',
+      'distractors',
+    ] as const) {
       if (isRecord(own.content[field]) && Array.isArray(own.content[field].children)) {
         merged.content[field] = structuredClone(own.content[field]);
       }
@@ -33,8 +41,13 @@ const mergeQuestionLayer = (original: object, patch: object) => {
       }
     }
   }
-  if (isRecord(merged) && isRecord(merged.locale) && isRecord(own.locale) &&
-      isRecord(own.locale.slots) && Array.isArray(own.locale.slots.children)) {
+  if (
+    isRecord(merged) &&
+    isRecord(merged.locale) &&
+    isRecord(own.locale) &&
+    isRecord(own.locale.slots) &&
+    Array.isArray(own.locale.slots.children)
+  ) {
     merged.locale.slots = structuredClone(own.locale.slots);
   }
   return merged;

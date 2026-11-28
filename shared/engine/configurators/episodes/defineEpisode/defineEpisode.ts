@@ -22,14 +22,14 @@ import {
   validateOrderedKeys,
   validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
-  type SafePlacementMap,
   type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import { sectionTypes, type Section_Configurator } from '../../sections';
 import {
-  episode_Metadata_Config_Schema,
   episode_Config_Schema,
   episode_Data_Schema,
+  episode_Metadata_Config_Schema,
   episode_Override_Metadata_Schema,
   type Episode_Config,
   type Episode_DataBase,
@@ -72,7 +72,9 @@ const validate = (config: Episode_Config): void => {
   const parsed = episode_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items: sections, order: config.children }, { path: 'children' }).map(issue => issue.message),
+    ...validateOrderedKeys({ items: sections, order: config.children }, { path: 'children' }).map(
+      issue => issue.message,
+    ),
     ...validateSluggedConfiguratorMap(sections, sectionTypes, {
       path: 'children',
       itemLabel: 'Episode Section',
@@ -111,7 +113,8 @@ type EpisodeAuthoredInput<
   params: Omit<Episode_Config['params'], 'languages'> & { languages: Languages };
   locale: RequireLanguages<Episode_Config['locale'], Languages>;
   children: Extract<keyof Sections, string>[];
-} & Sections & ChildrenSupporting<Languages, Sections> &
+} & Sections &
+  ChildrenSupporting<Languages, Sections> &
   SafePlacementMap<Sections> & { [Key in keyof Sections]: Key extends 'events' ? never : Sections[Key] };
 
 type EpisodeChildKeys<Input> = Exclude<keyof Input, keyof Episode_Metadata_Config | 'children'>;
@@ -147,7 +150,9 @@ const defineEpisodeImpl = <
   const initialOrder = [...config.children];
 
   const configBase = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
     ...(authored.events !== undefined ? { events: structuredClone(authored.events) } : {}),
@@ -211,7 +216,9 @@ const defineEpisodeImpl = <
   };
 
   const originalConfig = () => ({
-    ...copyAuthored(), children: [...initialOrder], ...initialSections,
+    ...copyAuthored(),
+    children: [...initialOrder],
+    ...initialSections,
   });
 
   const data = (options: PublicationLanguageOptions<Languages>): Publication<Episode_DataBase> => {
@@ -226,7 +233,9 @@ const defineEpisodeImpl = <
     }
     const result: Publication<Episode_DataBase> = structuredClone({
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(translated.invariant).length ? { locale: translated.invariant } : {}),
         ...(own.events !== undefined ? { events: own.events } : {}),
@@ -236,9 +245,7 @@ const defineEpisodeImpl = <
       locale: Object.keys(files).length ? files : undefined,
     });
     for (const language of languages) {
-      episode_Data_Schema.parse(
-        mergeForValidation(result.base, result.locale?.[language] ?? {}),
-      );
+      episode_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
     }
     return result;
   };
@@ -252,13 +259,16 @@ const defineEpisodeImpl = <
       validate(originalConfig());
       if (!isRecord(patch)) throw new Error('Expected Episode overrides object');
       const metadataPatch = episode_Override_Metadata_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) =>
-          key === 'params' || key === 'locale' || key === 'events')),
+        Object.fromEntries(
+          Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale' || key === 'events'),
+        ),
       );
-      const mergedMetadata = metadataSchema.parse(mergeForValidation<Record<string, unknown>>(
-        copyAuthored() as Record<string, unknown>,
-        metadataPatch as Record<string, unknown>,
-      ));
+      const mergedMetadata = metadataSchema.parse(
+        mergeForValidation<Record<string, unknown>>(
+          copyAuthored() as Record<string, unknown>,
+          metadataPatch as Record<string, unknown>,
+        ),
+      );
       const own = splitLocale(metadataPatch.locale ?? {});
       const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: Publication<OverrideBase> = {
@@ -284,7 +294,9 @@ const defineEpisodeImpl = <
         else additions[key] = value as Section_Configurator;
       }
       const issues = validateSluggedConfiguratorMap(additions, sectionTypes, {
-        path: 'children', itemLabel: 'Episode Section', reservedKeys: [...extraReserved],
+        path: 'children',
+        itemLabel: 'Episode Section',
+        reservedKeys: [...extraReserved],
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Section_Configurator | false> = { ...initialSections };
@@ -307,7 +319,7 @@ const defineEpisodeImpl = <
       if (structureChanged && patch.children === undefined)
         throw new Error('Episode children order is required when adding or disabling Sections');
       const order = patch.children ?? initialOrder;
-      const orderIssues = validateOrderedKeys({items: active, order}, {path:'children', allowDisabled:true});
+      const orderIssues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
       if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
       const enabled = Object.fromEntries(
         Object.entries(active).filter((entry): entry is [string, Section_Configurator] => entry[1] !== false),
@@ -348,22 +360,25 @@ const defineEpisodeImpl = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & Episode_Overrides<Sections, AddedPlacementsFromPatch<
-        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'
-      >> & ChildrenSupporting<Languages, AddedPlacementsFromPatch<
-        Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'
-      >>,
+      patch: Patch &
+        Episode_Overrides<
+          Sections,
+          AddedPlacementsFromPatch<Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'>
+        > &
+        ChildrenSupporting<
+          Languages,
+          AddedPlacementsFromPatch<Patch, Sections, Section_Configurator, 'params' | 'locale' | 'events' | 'children'>
+        >,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
-    (
-      patch: Episode_Overrides<Sections, {}>,
-      options: PublicationLanguageOptions<Languages>,
-    ): Publication<OverrideBase>;
+    (patch: Episode_Overrides<Sections, {}>, options: PublicationLanguageOptions<Languages>): Publication<OverrideBase>;
   } = overridesImplementation;
 
   const result = {
     ...initialSections,
-    id, slug, type,
+    id,
+    slug,
+    type,
     draft: false as const,
     children: [...initialOrder],
     validate,
@@ -380,20 +395,18 @@ const defineEpisodeImpl = <
 };
 
 export const defineEpisode: {
-  <const Input extends Omit<Episode_Metadata_Config, 'slug' | 'params' | 'locale'> & {
-    slug: string;
-    params: Omit<Episode_Config['params'], 'languages'> & {
-      languages: readonly [LanguageCode, ...LanguageCode[]];
-    };
-    locale: Episode_Config['locale'];
-    children: string[];
-  }>(
-    config: Input & EpisodeAuthoredInput<
-      Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>
-    >,
-  ): ReturnType<typeof defineEpisodeImpl<
-    Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>
-  >>;
+  <
+    const Input extends Omit<Episode_Metadata_Config, 'slug' | 'params' | 'locale'> & {
+      slug: string;
+      params: Omit<Episode_Config['params'], 'languages'> & {
+        languages: readonly [LanguageCode, ...LanguageCode[]];
+      };
+      locale: Episode_Config['locale'];
+      children: string[];
+    },
+  >(
+    config: Input & EpisodeAuthoredInput<Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>>,
+  ): ReturnType<typeof defineEpisodeImpl<Input['slug'], Input['params']['languages'], InferredEpisodeSections<Input>>>;
   <
     const Slug extends string,
     const Languages extends readonly [LanguageCode, ...LanguageCode[]],
@@ -403,16 +416,17 @@ export const defineEpisode: {
   ): ReturnType<typeof defineEpisodeImpl<Slug, Languages, Sections>>;
 } = defineEpisodeImpl;
 
-type EpisodeBaseConfigurator = ReturnType<typeof defineEpisodeImpl<
-  string, readonly [LanguageCode, ...LanguageCode[]], {}
->>;
-export type Episode_Configurator = Omit<
-  EpisodeBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'
-> & {
+type EpisodeBaseConfigurator = ReturnType<
+  typeof defineEpisodeImpl<string, readonly [LanguageCode, ...LanguageCode[]], {}>
+>;
+export type Episode_Configurator = Omit<EpisodeBaseConfigurator, 'children' | '__svitloLanguageScope' | 'build'> & {
   readonly children: readonly string[];
   readonly __svitloLanguageScope: readonly LanguageCode[];
   readonly build: Omit<EpisodeBaseConfigurator['build'], 'data' | 'overrides'> & {
     data(options: PublicationLanguageOptions): ReturnType<EpisodeBaseConfigurator['build']['data']>;
-    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<EpisodeBaseConfigurator['build']['overrides']>;
+    overrides(
+      patch: never,
+      options: PublicationLanguageOptions,
+    ): ReturnType<EpisodeBaseConfigurator['build']['overrides']>;
   };
 };

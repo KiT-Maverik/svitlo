@@ -1,16 +1,17 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema } from '#schemas';
-import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
-import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
-import type { Configurator_Mode } from '../../configurator.schemas';
 import {
-  localizationSwitch as contentBlockLocalizationSwitch,
-} from '../../contentBlocks/contentBlock.schemas';
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
+import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
 
 const params = paramsBase_Schema.shape.params.extend({
@@ -49,10 +50,11 @@ export const flashcardsSection_Config_Schema = flashcardsSection_Metadata_Config
   });
 export type FlashcardsSection_Config = z.infer<typeof flashcardsSection_Config_Schema>;
 
-export const flashcardsSection_Data_Schema = sectionBase.extend({
-  ...addUnifiedLocale(locale('data')),
-  children: z.array(z.string()),
-})
+export const flashcardsSection_Data_Schema = sectionBase
+  .extend({
+    ...addUnifiedLocale(locale('data')),
+    children: z.array(z.string()),
+  })
   .catchall(z.unknown())
   .superRefine((value, ctx) => {
     for (const issue of validateSlugAddressedContainer(value, contentBlockTypes)) {
@@ -84,5 +86,5 @@ export type FlashcardsSection_Overrides<
   Added extends Record<string, ContentBlock_Configurator> = {},
 > = FlashcardsSection_MetadataOverrides & {
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } &
-  Added & SafePlacementMap<Added> & { [Key in keyof Items & keyof Added]?: never };
+} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } & Added &
+  SafePlacementMap<Added> & { [Key in keyof Items & keyof Added]?: never };

@@ -1,4 +1,3 @@
-import type { SafePlacementMap } from '../../_shared__configurators';
 import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -19,23 +18,24 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSlugAddressedPublication,
-  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import {
   course_Config_Schema,
-  course_Metadata_Config_Schema,
   course_Data_Schema,
+  course_Metadata_Config_Schema,
   course_Override_Config_Schema,
   type Course_Child,
   type Course_Child_Data,
   type Course_Config,
-  type Course_Metadata_Config,
   type Course_Data,
   type Course_Locale,
+  type Course_Metadata_Config,
   type Course_Metadata_Overrides,
   type Course_Overrides,
 } from './defineCourse.schemas';
@@ -54,7 +54,10 @@ type CoursePublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Course_Data>>> | undefined;
 };
-type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type CourseDataBase<Items extends Record<string, Course_Child>> = Pick<
+  Course_Config,
+  'id' | 'slug' | 'type' | 'params'
+> & {
   locale?: DeepPartial<Course_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
 } & { [Key in keyof Items]: DeepPartial<Extract<Course_Child_Data, { type: Items[Key]['type'] }>> };
@@ -79,22 +82,34 @@ const validate = (config: Course_Config): void => {
   const parsed = course_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.path + ': ' + issue.message),
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(
+      issue => issue.path + ': ' + issue.message,
+    ),
     ...validateSluggedConfiguratorMap(items, allowedChildren, {
-      path: 'children', itemLabel: 'Course child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+      path: 'children',
+      itemLabel: 'Course child',
+      allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   for (const [slug, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function') {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function'
+    ) {
       errors.push('children.' + slug + ': child must expose the stateless Build API');
       continue;
     }
-    if (!isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id ||
-        ('draft' in child && child.draft === true && child.slug !== slug) ||
-        (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      ('draft' in child && child.draft === true && child.slug !== slug) ||
+      (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
+      child.config.base.type !== child.type
+    ) {
       errors.push('children.' + slug + ': immutable child identity does not match its authored metadata');
     }
   }
@@ -113,12 +128,10 @@ const validate = (config: Course_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
-type CourseNewPlacements<
-  Items extends Record<string, Course_Child>,
-  Patch extends Record<string, unknown>,
-> = {
-  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
-    Patch[Key] extends Course_Child ? Patch[Key] : never;
+type CourseNewPlacements<Items extends Record<string, Course_Child>, Patch extends Record<string, unknown>> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]: Patch[Key] extends Course_Child
+    ? Patch[Key]
+    : never;
 };
 
 export type Course_Configurator<
@@ -137,12 +150,17 @@ export type Course_Configurator<
       patch: Patch & {
         children: Extract<keyof Items | keyof Patch, string>[];
       } & {
-        [Key in keyof Patch]:
-          Key extends 'params' ? Course_Metadata_Overrides['params']
-            : Key extends 'locale' ? Course_Metadata_Overrides['locale']
-            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
-            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
-            : Patch[Key] extends Course_Child ? Patch[Key] : never;
+        [Key in keyof Patch]: Key extends 'params'
+          ? Course_Metadata_Overrides['params']
+          : Key extends 'locale'
+            ? Course_Metadata_Overrides['locale']
+            : Key extends 'children'
+              ? Extract<keyof Items | keyof Patch, string>[]
+              : Key extends keyof Items
+                ? Parameters<Items[Key]['build']['overrides']>[0] | false
+                : Patch[Key] extends Course_Child
+                  ? Patch[Key]
+                  : never;
       } & ChildrenSupporting<Languages, CourseNewPlacements<Items, Patch>> &
         SafePlacementMap<CourseNewPlacements<Items, Patch>>,
       options: PublicationLanguageOptions<Languages>,
@@ -157,7 +175,8 @@ export type Course_Configurator<
     locales: () => { locale: DeepPartial<Course_Locale<'config'>> };
     validate: typeof validate;
   };
-} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) &
+  LanguageScope<Languages>;
 
 type CourseAuthoredInput<
   Slug extends string,
@@ -168,8 +187,9 @@ type CourseAuthoredInput<
   children: Extract<keyof Items, string>[];
   locale: RequireLanguages<Course_Config['locale'], Languages>;
   params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
-
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items>;
 
 /** Define a Course with immutable ordered child configurators and stateless Build. */
 const defineCourseImplementation = <
@@ -180,8 +200,16 @@ const defineCourseImplementation = <
   config: CourseAuthoredInput<Slug, Items, Languages>,
 ): Course_Configurator<Slug, Items, Languages> => {
   const metadataSchema = course_Metadata_Config_Schema;
-  const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
-  const authored: Omit<Course_Metadata_Config, 'params'> & { params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] } } = structuredClone(metadataInput);
+  const metadataInput = {
+    id: config.id,
+    type: config.type,
+    slug: config.slug,
+    params: config.params,
+    locale: config.locale,
+  };
+  const authored: Omit<Course_Metadata_Config, 'params'> & {
+    params: Omit<Course_Config['params'], 'languages'> & { languages: readonly LanguageCode[] };
+  } = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
   const slug = config.slug;
@@ -223,9 +251,7 @@ const defineCourseImplementation = <
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildData({ build });
-      const patch = Object.hasOwn(changes, key)
-        ? buildChildOverrides({ build }, changes[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(changes, key) ? buildChildOverrides({ build }, changes[key] as never) : undefined;
       return { key, resource, patch };
     });
     const base: Record<string, DeepPartial<Course_Child_Data>> = {};
@@ -352,7 +378,10 @@ const defineCourseImplementation = <
         else additions[key] = change as Course_Child;
       }
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'children', itemLabel: 'Course child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Course child',
+        allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -458,8 +487,7 @@ type CourseInferredBase = Omit<Course_Metadata_Config, 'slug' | 'params'> & {
   children: string[];
 };
 type CourseInferredChildren<Config> = {
-  [Key in Exclude<keyof Config, keyof CourseInferredBase>]:
-    Config[Key] extends Course_Child ? Config[Key] : never;
+  [Key in Exclude<keyof Config, keyof CourseInferredBase>]: Config[Key] extends Course_Child ? Config[Key] : never;
 };
 
 /** Explicit authoring generics preserve the historical <Slug, Items, Languages> order. */
@@ -470,15 +498,12 @@ export function defineCourse<
 >(config: CourseAuthoredInput<Slug, Items, Languages>): Course_Configurator<Slug, Items, Languages>;
 
 /** Infer the exact child Configurator types from every direct root placement. */
-export function defineCourse<
-  const Config extends CourseInferredBase,
->(
+export function defineCourse<const Config extends CourseInferredBase>(
   config: Config &
     CourseInferredChildren<Config> & {
       children: Extract<keyof CourseInferredChildren<Config>, string>[];
       locale: RequireLanguages<Course_Config['locale'], Config['params']['languages']>;
-    } &
-    ChildrenSupporting<Config['params']['languages'], CourseInferredChildren<Config>> &
+    } & ChildrenSupporting<Config['params']['languages'], CourseInferredChildren<Config>> &
     SafePlacementMap<CourseInferredChildren<Config>>,
 ): Course_Configurator<Config['slug'], CourseInferredChildren<Config>, Config['params']['languages']>;
 export function defineCourse(config: unknown): unknown {

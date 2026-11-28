@@ -36,4 +36,8 @@ export type { LessonProductionAssessmentRequirements } from './lessonAssessment.
 
 export type { AssessmentWorkflowSeed } from './assessmentWorkflow.types';
 
-export type { CourseLessonSourcePatch, CourseLessonBoundPatch, CourseLessonSectionReference } from './courseLessonSourcePatch.types';
+export type {
+  CourseLessonSourcePatch,
+  CourseLessonBoundPatch,
+  CourseLessonSectionReference,
+} from './courseLessonSourcePatch.types';

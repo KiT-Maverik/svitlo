@@ -10,10 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type TouchEvent } from 'react';
 
 import type { ContentBlock_Carousel_SlideData } from '@svitlo/engine/runtime';
-import type { CarouselViewProps } from '../../../../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { CarouselViewProps } from '../../../../../presentation';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import type { SceneRegistry } from '../../types';
 import { localizedAttributes } from '../../utils';

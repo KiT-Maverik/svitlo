@@ -102,8 +102,14 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
         type: 'flashcard',
         parameters: { tags: [], disabilities: [], flags: [] },
         content: {
-          front: { children: ['front'], front: { id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } } },
-          back: { children: ['back'], back: { id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Back' } } },
+          front: {
+            children: ['front'],
+            front: { id: frontId, slug: 'front', type: 'text', params: {}, locale: { value: 'Front' } },
+          },
+          back: {
+            children: ['back'],
+            back: { id: backId, slug: 'back', type: 'text', params: {}, locale: { value: 'Back' } },
+          },
         },
       },
       locale: {
@@ -163,7 +169,11 @@ test('loader resolves a complete published Flashcard in one scoped batch and cac
   assert.equal(requests.length, count, 'No additional files for cached locale');
   flashcardSideBlock(second.items[0], 'front').slug = 'modified';
   const third = await loader.loadFlashcards({ language: 'uk', ids: [cardId] });
-  assert.equal(flashcardSideBlock(third.items[0], 'front').slug, 'front', 'Cached Props must be returned as independent snapshots');
+  assert.equal(
+    flashcardSideBlock(third.items[0], 'front').slug,
+    'front',
+    'Cached Props must be returned as independent snapshots',
+  );
   const en = await loader.loadFlashcards({ language: 'en', ids: [cardId] });
   assert.equal(textValue(flashcardSideBlock(en.items[0], 'back')), 'Back');
   assert.equal(requests.length, count + 1, 'Different locale needs separate selected files');

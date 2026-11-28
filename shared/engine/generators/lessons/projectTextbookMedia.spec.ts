@@ -259,7 +259,9 @@ test('complete typed Lesson source publishes all authored locales without Previe
       type: 'content',
       params: {},
       locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
-      children: ['paragraph', 'diagram'], paragraph, diagram,
+      children: ['paragraph', 'diagram'],
+      paragraph,
+      diagram,
     });
     const lesson = defineLesson({
       id: '550e8400-e29b-41d4-a716-446655440007',
@@ -272,12 +274,14 @@ test('complete typed Lesson source publishes all authored locales without Previe
         sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
       },
       locale: { title: { en: 'Real lesson', uk: 'Справжній урок' } },
-      children: ['introduction'], introduction: section,
+      children: ['introduction'],
+      introduction: section,
     });
     const publication = lesson.build.data({ languages: ['en', 'uk'] });
     const { result, diagnostics } = publish(root, publication, 'production');
     assert.deepEqual(diagnostics, []);
-    const publishedImage = (result.base.introduction as { diagram: { type: string; locale: { src?: string } } }).diagram;
+    const publishedImage = (result.base.introduction as { diagram: { type: string; locale: { src?: string } } })
+      .diagram;
     const originalImage = (publication.base.introduction as { diagram: { locale: { src?: string } } }).diagram;
     assert.equal(publishedImage?.type, 'image');
     assert.equal(

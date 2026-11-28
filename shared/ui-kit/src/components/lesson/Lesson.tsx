@@ -3,10 +3,10 @@
 import { useMemo, type ComponentType } from 'react';
 
 import type { AssessmentResourceLoader, Disability, LanguageCode } from '@svitlo/engine/runtime';
-import type { LessonViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { LessonViewProps } from '../../presentation';
 import type { Topic } from '../layout/LearningLayout/CourseTopicList';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';

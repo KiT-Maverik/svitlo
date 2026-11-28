@@ -1,12 +1,14 @@
 import { z } from 'zod';
 
-import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
-
 import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import type { Assessment_Data } from '../../assessments/defineAssessment/defineAssessment.schemas';
@@ -54,13 +56,16 @@ export const module_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
 });
 export type Module_Metadata_Config = z.infer<typeof module_Metadata_Config_Schema>;
-export const module_Config_Schema = module_Metadata_Config_Schema.extend({
-  children: z.array(z.string()),
-}).catchall(z.unknown()).superRefine((value, context) => {
-  for (const issue of validateSlugAddressedContainer(value, ['chapter', 'lesson', 'episode', 'assessment'])) {
-    context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
-  }
-});
+export const module_Config_Schema = module_Metadata_Config_Schema
+  .extend({
+    children: z.array(z.string()),
+  })
+  .catchall(z.unknown())
+  .superRefine((value, context) => {
+    for (const issue of validateSlugAddressedContainer(value, ['chapter', 'lesson', 'episode', 'assessment'])) {
+      context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+  });
 export type Module_Config = z.infer<typeof module_Config_Schema>;
 
 export type Module_Metadata_Overrides = {
@@ -83,7 +88,8 @@ export type Module_Overrides<
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
 } & {
   [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
-} & Added & SafePlacementMap<Added> & { [Key in Extract<keyof Items, keyof Added>]?: never };
+} & Added &
+  SafePlacementMap<Added> & { [Key in Extract<keyof Items, keyof Added>]?: never };
 
 export const module_Data_Schema = identity
   .extend({

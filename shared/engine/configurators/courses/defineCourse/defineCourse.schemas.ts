@@ -1,13 +1,15 @@
 import { z } from 'zod';
 
-import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
-
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type { Assessment_Configurator } from '../../assessments/defineAssessment/defineAssessment';
 import type { Assessment_Data } from '../../assessments/defineAssessment/defineAssessment.schemas';
@@ -79,13 +81,22 @@ export const course_Metadata_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
 });
 export type Course_Metadata_Config = z.infer<typeof course_Metadata_Config_Schema>;
-export const course_Config_Schema = course_Metadata_Config_Schema.extend({
-  children: z.array(z.string()),
-}).catchall(z.unknown()).superRefine((value, context) => {
-  for (const issue of validateSlugAddressedContainer(value, ['module', 'chapter', 'lesson', 'episode', 'assessment'])) {
-    context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
-  }
-});
+export const course_Config_Schema = course_Metadata_Config_Schema
+  .extend({
+    children: z.array(z.string()),
+  })
+  .catchall(z.unknown())
+  .superRefine((value, context) => {
+    for (const issue of validateSlugAddressedContainer(value, [
+      'module',
+      'chapter',
+      'lesson',
+      'episode',
+      'assessment',
+    ])) {
+      context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+  });
 export type Course_Config = z.infer<typeof course_Config_Schema>;
 
 export type Course_Metadata_Overrides = {
@@ -118,7 +129,8 @@ export type Course_Overrides<
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
 } & {
   [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false;
-} & Added & SafePlacementMap<Added> & { [Key in Extract<keyof Items, keyof Added>]?: never };
+} & Added &
+  SafePlacementMap<Added> & { [Key in Extract<keyof Items, keyof Added>]?: never };
 
 export const course_Data_Schema = identity
   .extend({
@@ -129,7 +141,13 @@ export const course_Data_Schema = identity
   // reparse child-owned internal content or treat semantic roles as children.
   .catchall(z.unknown())
   .superRefine((value, context) => {
-    for (const issue of validateSlugAddressedContainer(value, ['module', 'chapter', 'lesson', 'episode', 'assessment'])) {
+    for (const issue of validateSlugAddressedContainer(value, [
+      'module',
+      'chapter',
+      'lesson',
+      'episode',
+      'assessment',
+    ])) {
       context.addIssue({ code: 'custom', path: issue.path, message: issue.message });
     }
   });

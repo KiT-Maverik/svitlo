@@ -46,5 +46,7 @@ export const orderSequence_Data_Schema = questionBase.extend({
   }),
 });
 export type Question_OrderSequence_Data = Omit<z.infer<typeof orderSequence_Data_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & { sequence: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'] };
+  content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
+    sequence: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
+  };
 };

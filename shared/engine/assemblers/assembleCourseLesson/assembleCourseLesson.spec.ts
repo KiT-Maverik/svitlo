@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+
 import { assembleCourseLesson, type AssembleCourseLessonInput } from './assembleCourseLesson';
 
 const id = (n: number) => '11111111-1111-4111-8111-' + n.toString(16).padStart(12, '0');
@@ -9,17 +10,25 @@ const courseId = id(2);
 
 function fixture(): AssembleCourseLessonInput {
   return {
-    courseId, lessonId, placement: 'laboratory/demo', language: 'uk',
+    courseId,
+    lessonId,
+    placement: 'laboratory/demo',
+    language: 'uk',
     lesson: {
       base: {
-        id: lessonId, slug: 'originalLesson', type: 'lesson', skills: [],
+        id: lessonId,
+        slug: 'originalLesson',
+        type: 'lesson',
+        skills: [],
         params: {
-          languages: ['en', 'uk'], quizRequiredForCompletion: false,
+          languages: ['en', 'uk'],
+          quizRequiredForCompletion: false,
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: 'Original lesson' },
         children: ['intro', 'review'],
-        intro: section(10, 'intro'), review: section(11, 'review'),
+        intro: section(10, 'intro'),
+        review: section(11, 'review'),
       },
       locale: {
         uk: { locale: { title: 'Український урок' }, intro: { locale: { title: 'Вступ' } } },
@@ -28,12 +37,19 @@ function fixture(): AssembleCourseLessonInput {
     },
     course: {
       base: {
-        id: courseId, slug: 'course', type: 'course',
+        id: courseId,
+        slug: 'course',
+        type: 'course',
         params: { languages: ['en', 'uk'] },
         children: ['laboratory'],
         laboratory: {
-          id: id(3), slug: 'laboratory', type: 'module', params: {}, locale: { title: 'Laboratory' },
-          children: ['demo'], demo: { id: lessonId, type: 'lesson', overrides: {} },
+          id: id(3),
+          slug: 'laboratory',
+          type: 'module',
+          params: {},
+          locale: { title: 'Laboratory' },
+          children: ['demo'],
+          demo: { id: lessonId, type: 'lesson', overrides: {} },
         },
       },
     },
@@ -41,9 +57,11 @@ function fixture(): AssembleCourseLessonInput {
 }
 
 function courseSlot(input: AssembleCourseLessonInput): { overrides: Record<string, unknown> } {
-  return (input.course.base.laboratory as {
-    demo: { overrides: Record<string, unknown> };
-  }).demo;
+  return (
+    input.course.base.laboratory as {
+      demo: { overrides: Record<string, unknown> };
+    }
+  ).demo;
 }
 function localeSlot(overrides: Record<string, unknown>): object {
   return { laboratory: { demo: { overrides } } };
@@ -102,10 +120,7 @@ test('repeated Lesson UUIDs require explicit placement and keep independent cont
   input.course.base.children.push('second');
   input.course.base.second = { id: lessonId, type: 'lesson', overrides: { locale: { title: 'Second placement' } } };
   assert.equal(assembleCourseLesson(input).locale.title, 'Український урок');
-  assert.equal(
-    assembleCourseLesson({ ...input, placement: 'second' }).locale.title,
-    'Second placement',
-  );
+  assert.equal(assembleCourseLesson({ ...input, placement: 'second' }).locale.title, 'Second placement');
   assert.throws(() => assembleCourseLesson({ ...input, placement: undefined }), /Ambiguous Lesson ID/);
 });
 
@@ -127,7 +142,9 @@ test('direct Lesson selection indexes validated order without scanning sibling a
   const module = root.laboratory as { children: string[] };
   for (const order of [root.children, module.children]) {
     Object.defineProperty(order, 'includes', {
-      value: () => { throw Error('direct route must not search sibling order'); },
+      value: () => {
+        throw Error('direct route must not search sibling order');
+      },
     });
   }
   const first = assembleCourseLesson(input);
@@ -156,20 +173,11 @@ test('same-length in-place edits invalidate mutable Course publication membershi
 
   assert.equal(assembleCourseLesson(input).id, lessonId);
   slot.children[0] = 'renamed'; // same array identity and length; old Set is stale.
-  assert.throws(
-    () => assembleCourseLesson(input),
-    /Unaddressed or disabled Course publication placement/,
-  );
+  assert.throws(() => assembleCourseLesson(input), /Unaddressed or disabled Course publication placement/);
   slot.renamed = slot.demo;
   delete (slot as unknown as Record<string, unknown>).demo;
-  assert.throws(
-    () => assembleCourseLesson(input),
-    /Unknown Course placement/,
-  );
-  assert.equal(
-    assembleCourseLesson({ ...input, placement: 'laboratory/renamed' }).id,
-    lessonId,
-  );
+  assert.throws(() => assembleCourseLesson(input), /Unknown Course placement/);
+  assert.equal(assembleCourseLesson({ ...input, placement: 'laboratory/renamed' }).id, lessonId);
   // Replacing a direct child without changing order must also be observed:
   // a cached snapshot of the old child would incorrectly resolve lessonId.
   slot.renamed = { id: id(99), type: 'lesson' };
@@ -190,8 +198,12 @@ test('frozen published Courses can reuse indexed navigation without owning the c
   Object.freeze(root);
   assert.equal(assembleCourseLesson(input).id, lessonId);
   assert.equal(assembleCourseLesson(input).id, lessonId);
-  assert.throws(() => { module.children[0] = 'changed'; }, TypeError);
-  assert.throws(() => { (module as unknown as Record<string, unknown>).demo = { id: id(99), type: 'lesson' }; }, TypeError);
+  assert.throws(() => {
+    module.children[0] = 'changed';
+  }, TypeError);
+  assert.throws(() => {
+    (module as unknown as Record<string, unknown>).demo = { id: id(99), type: 'lesson' };
+  }, TypeError);
   assert.equal(assembleCourseLesson(input).id, lessonId);
 });
 
@@ -215,7 +227,9 @@ test('rejects incomplete Lesson payloads and production draft references', () =>
   assert.throws(() => assembleCourseLesson(input), /draft/i);
   const other = fixture();
   (other.course.base.laboratory as Record<string, unknown>).demo = {
-    id: lessonId, type: 'lesson', draft: true,
+    id: lessonId,
+    type: 'lesson',
+    draft: true,
   };
   assert.throws(() => assembleCourseLesson(other), /draft/i);
 });

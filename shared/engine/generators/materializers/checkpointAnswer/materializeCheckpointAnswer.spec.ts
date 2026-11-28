@@ -51,7 +51,9 @@ function context() {
 test('Stage 2 Checkpoint Answer validates Primitive-only direct children', () => {
   const valid = {
     config: {
-      id: id(1), slug: 'answer', type: 'checkpointAnswer' as const,
+      id: id(1),
+      slug: 'answer',
+      type: 'checkpointAnswer' as const,
       children: ['first'],
       first: { config: textBlock('first', 2) },
     },
@@ -64,8 +66,11 @@ test('Stage 2 Checkpoint Answer validates Primitive-only direct children', () =>
         first: { config: { id: id(4), slug: 'first', type: kind, params: {}, locale: {} } },
       },
     };
-    assert.equal(lessonWorkflowCheckpointAnswerSource_Schema.safeParse(invalid).success, false,
-      'Reject ' + kind + ' at the Stage 2 source boundary');
+    assert.equal(
+      lessonWorkflowCheckpointAnswerSource_Schema.safeParse(invalid).success,
+      false,
+      'Reject ' + kind + ' at the Stage 2 source boundary',
+    );
   }
 });
 

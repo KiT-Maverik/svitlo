@@ -55,10 +55,9 @@ type Pair = { left: ContentBlock_Primitive_Configurator; right: ContentBlock_Pri
 type PairMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Pair ? Group[Key] : Pair;
 };
-type AddedPairsFromPatch<Patch, Content extends ContentShape> =
-  Patch extends { content: { pairs: infer Collection } }
-    ? AddedPlacementsFromPatch<Collection, PairMembers<Content['pairs']>, Pair, 'children'>
-    : {};
+type AddedPairsFromPatch<Patch, Content extends ContentShape> = Patch extends { content: { pairs: infer Collection } }
+  ? AddedPlacementsFromPatch<Collection, PairMembers<Content['pairs']>, Pair, 'children'>
+  : {};
 
 type PairsOverride<
   Content extends ContentShape,
@@ -67,16 +66,18 @@ type PairsOverride<
 > = {
   children?: Extract<keyof PairMembers<Content['pairs']> | keyof NoInfer<AddedPairs>, string>[];
 } & {
-  [Key in keyof PairMembers<Content['pairs']>]?: {
-    left?: Parameters<PairMembers<Content['pairs']>[Key]['left']['build']['overrides']>[0];
-    right?: Parameters<PairMembers<Content['pairs']>[Key]['right']['build']['overrides']>[0];
-  } | false;
+  [Key in keyof PairMembers<Content['pairs']>]?:
+    | {
+        left?: Parameters<PairMembers<Content['pairs']>[Key]['left']['build']['overrides']>[0];
+        right?: Parameters<PairMembers<Content['pairs']>[Key]['right']['build']['overrides']>[0];
+      }
+    | false;
 } & AddedPairs & {
-  [Key in keyof AddedPairs]: {
-    left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
-    right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
+    [Key in keyof AddedPairs]: {
+      left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
+      right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
+    };
   };
-};
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},

@@ -66,30 +66,30 @@ test('Checkpoint retains reviewed Scene production in its nested answer ContentB
     locale: {},
     children: ['first'],
     first: {
+      config: {
+        id: id(11),
+        slug: 'first',
+        type: 'checkpointItem',
+        question: {
           config: {
-            id: id(11),
-            slug: 'first',
-            type: 'checkpointItem',
-            question: {
-              config: {
-                id: id(12),
-                slug: 'prompt',
-                type: 'text',
-                params: {},
-                locale: { value: { uk: 'Питання' } },
-              },
-            },
-            answer: {
-              config: {
-                id: id(13),
-                slug: 'answer',
-                type: 'checkpointAnswer',
-                children: ['visual'],
-                visual: scene(),
-              },
-            },
+            id: id(12),
+            slug: 'prompt',
+            type: 'text',
+            params: {},
+            locale: { value: { uk: 'Питання' } },
           },
         },
+        answer: {
+          config: {
+            id: id(13),
+            slug: 'answer',
+            type: 'checkpointAnswer',
+            children: ['visual'],
+            visual: scene(),
+          },
+        },
+      },
+    },
   };
   const result = render(checkpoint);
   const sceneSource = result.files.find(file => file.path.endsWith('/answer/visual/index.ts'))?.content ?? '';

@@ -1,18 +1,35 @@
 import { z } from 'zod';
 
-import { camelCase_Schema } from '#schemas';
-import type { LanguageCode } from '#schemas';
+import { camelCase_Schema, type LanguageCode } from '#schemas';
 
 import { mergeForValidation } from '../assemblyFields.utils';
 
 /** Fixed Data fields plus unsafe JS object keys and the retired collection envelope. */
 export const slugAddressedReservedKeys = [
-  'id', 'type', 'slug', 'params', 'locale', 'children',
-  'content', 'items', 'order', 'additionalItems', 'additionalChildren',
-  '__proto__', 'prototype', 'constructor', 'toString', 'valueOf',
-  'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable',
-  'toLocaleString', '__defineGetter__', '__defineSetter__',
-  '__lookupGetter__', '__lookupSetter__',
+  'id',
+  'type',
+  'slug',
+  'params',
+  'locale',
+  'children',
+  'content',
+  'items',
+  'order',
+  'additionalItems',
+  'additionalChildren',
+  '__proto__',
+  'prototype',
+  'constructor',
+  'toString',
+  'valueOf',
+  'hasOwnProperty',
+  'isPrototypeOf',
+  'propertyIsEnumerable',
+  'toLocaleString',
+  '__defineGetter__',
+  '__defineSetter__',
+  '__lookupGetter__',
+  '__lookupSetter__',
 ] as const;
 
 /** Compile-time mapped key rejection; Exclude<string, Keys> does not block literal reserved names. */
@@ -41,8 +58,7 @@ export type AddedPlacementsFromPatch<
   Allowed,
   OwnKeys extends PropertyKey = 'children' | 'params' | 'locale',
 > = {
-  [Key in Exclude<keyof Patch, keyof Existing | OwnKeys>]:
-    Patch[Key] extends Allowed ? Patch[Key] : never;
+  [Key in Exclude<keyof Patch, keyof Existing | OwnKeys>]: Patch[Key] extends Allowed ? Patch[Key] : never;
 };
 
 const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
@@ -166,7 +182,9 @@ export const validateSlugAddressedPublication = (
       schema.parse(effective);
     } catch (error) {
       throw new Error(
-        'Invalid publication for language ' + language + ': ' +
+        'Invalid publication for language ' +
+          language +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );

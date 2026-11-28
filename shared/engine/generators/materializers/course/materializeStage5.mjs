@@ -390,8 +390,12 @@ export function materializeCourseStage5(input, options = {}) {
         const disabled = originals.filter(key => rawPatch[key] === false);
         const expected = [...originals.filter(key => !disabled.includes(key)), ...added];
         const order = rawPatch.children;
-        if (!Array.isArray(order) || order.length !== expected.length ||
-            new Set(order).size !== expected.length || order.some(key => !expected.includes(key)))
+        if (
+          !Array.isArray(order) ||
+          order.length !== expected.length ||
+          new Set(order).size !== expected.length ||
+          order.some(key => !expected.includes(key))
+        )
           throw Error(context.directory + ': Course-owned Section children must include all and only active Sections');
       }
       placementDiagnostics = Object.values(binding.createdSections).flatMap(section => section.diagnostics ?? []);
@@ -425,7 +429,9 @@ export function materializeCourseStage5(input, options = {}) {
               patchSource +
               ' satisfies CourseLessonBoundPatch<typeof ' +
               lesson.exportName +
-              (added.length ? ', { ' + added.map(key => JSON.stringify(key) + ': typeof ' + key).join('; ') + ' }' : '') +
+              (added.length
+                ? ', { ' + added.map(key => JSON.stringify(key) + ': typeof ' + key).join('; ') + ' }'
+                : '') +
               '>);',
             '',
             renderBlockerSpecification(
@@ -446,7 +452,9 @@ export function materializeCourseStage5(input, options = {}) {
         if (created.length) {
           checkedPatch = { ...binding.patch };
           for (const key of created) delete checkedPatch[key];
-          checkedPatch.children = (binding.patch.children ?? lesson.configurator.children).filter(key => !created.includes(key));
+          checkedPatch.children = (binding.patch.children ?? lesson.configurator.children).filter(
+            key => !created.includes(key),
+          );
         }
         const built = lesson.configurator.build.overrides(checkedPatch, { languages: patchLanguages });
         if (built.id !== existing.id)

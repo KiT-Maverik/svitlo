@@ -51,7 +51,10 @@ export const selectMultipleAnswers_Data_Schema = questionBase.extend({
   ...addUnifiedLocale({}),
   content: questionCommonContent_Data_Schema.extend({
     answers: z.object({
-      correct: questionBlockCollection_Data_Schema.refine(group => group.children.length > 0, 'A correct answer is required'),
+      correct: questionBlockCollection_Data_Schema.refine(
+        group => group.children.length > 0,
+        'A correct answer is required',
+      ),
       incorrect: questionBlockCollection_Data_Schema,
       distractors: questionBlockCollection_Data_Schema,
     }),

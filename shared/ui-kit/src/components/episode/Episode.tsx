@@ -8,10 +8,10 @@ import Typography from '@mui/material/Typography';
 import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '@svitlo/engine/runtime';
-import type { EpisodeViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { EpisodeViewProps } from '../../presentation';
 import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import { EngineContentBlockRenderer } from '../lesson/EngineContentBlockRenderer';
 import { MediaSettingsProvider } from '../lesson/MediaSettings';

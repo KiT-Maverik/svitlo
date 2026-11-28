@@ -154,12 +154,13 @@ export type CourseWorkflowStage2AssessmentSlot = {
  */
 type StagePlacementConfig = { children: string[]; content?: never; items?: never; order?: never };
 export type CourseWorkflowStage2ChapterChild =
-  | CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
+  CourseWorkflowStage2LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
 export type CourseWorkflowStage2Chapter = {
   config: Pick<Chapter_Config, 'type' | 'slug' | 'locale'> & {
     id?: never;
     params?: Partial<Chapter_Config['params']>;
-  } & StagePlacementConfig & Record<string, unknown>;
+  } & StagePlacementConfig &
+    Record<string, unknown>;
   production: CourseWorkflowStage2UnitProduction;
 };
 
@@ -168,7 +169,8 @@ export type CourseWorkflowStage2Module = {
   config: Pick<Module_Config, 'type' | 'slug' | 'locale'> & {
     id?: never;
     params?: Partial<Module_Config['params']>;
-  } & StagePlacementConfig & Record<string, unknown>;
+  } & StagePlacementConfig &
+    Record<string, unknown>;
   production: CourseWorkflowStage2UnitProduction;
 };
 
@@ -300,7 +302,7 @@ export type CourseWorkflowStage3LessonSlot = CourseWorkflowStage3NewLesson | Cou
  * direct-children hierarchy. Concrete nesting is checked at the Zod boundary.
  */
 export type CourseWorkflowStage3ChapterChild =
-  | CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
+  CourseWorkflowStage3LessonSlot | CourseWorkflowStage2EpisodeSlot | CourseWorkflowStage2AssessmentSlot;
 export type CourseWorkflowStage3Chapter = Omit<CourseWorkflowStage2Chapter, 'config'> & {
   config: CourseWorkflowStage2Chapter['config'];
 };

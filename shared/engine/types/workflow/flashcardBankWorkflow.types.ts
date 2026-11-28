@@ -83,8 +83,10 @@ export type FlashcardBankWorkflowBlockNode =
     };
 
 /** A semantic Flashcard Side orders direct primitive Block nodes. */
-export type FlashcardBankWorkflowSideSource = { children: string[] } &
-  Record<string, FlashcardBankWorkflowBlockNode | string[]>;
+export type FlashcardBankWorkflowSideSource = { children: string[] } & Record<
+  string,
+  FlashcardBankWorkflowBlockNode | string[]
+>;
 
 /** Flags use the Engine's actual discriminated ARRAY union, never items/order. */
 export type FlashcardBankWorkflowFlags = Flashcard_Flag_Config[];

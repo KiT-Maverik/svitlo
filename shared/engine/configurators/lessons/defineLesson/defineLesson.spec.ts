@@ -12,9 +12,9 @@ import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSe
 import { defineLesson } from './defineLesson';
 import {
   lesson_Completed_Data_Schema,
-  lesson_Draft_Data_Schema,
-  lesson_Data_Schema,
   lesson_Config_Schema,
+  lesson_Data_Schema,
+  lesson_Draft_Data_Schema,
   lessonConfigurator_Schema,
 } from './defineLesson.schemas';
 
@@ -35,12 +35,13 @@ describe('Configurators', () => {
         slug: 'intro',
         params: {},
         locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
-        children: ['paragraph'], paragraph: text,
+        children: ['paragraph'],
+        paragraph: text,
       });
       const textValue = (block: unknown): string | undefined => {
-        if (block === undefined || block === null || typeof block !== 'object' ||
-            !('locale' in block)) return undefined;
-        return (block.locale as {value?: string} | undefined)?.value;
+        if (block === undefined || block === null || typeof block !== 'object' || !('locale' in block))
+          return undefined;
+        return (block.locale as { value?: string } | undefined)?.value;
       };
       const makeLesson = () =>
         defineLesson({
@@ -54,7 +55,8 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
           locale: { title: { en: 'Example', uk: 'Приклад' } },
-          children: ['intro' as const], intro: section,
+          children: ['intro' as const],
+          intro: section,
         });
 
       test('completed Lesson Data rejects Draft markers, and Draft requires a valid Content Section and Text placeholder', () => {
@@ -127,7 +129,9 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Media', navigationLabel: '1' },
-          children: ['pendingVideo', 'pendingScene'], pendingVideo: video, pendingScene: scene,
+          children: ['pendingVideo', 'pendingScene'],
+          pendingVideo: video,
+          pendingScene: scene,
         });
         const lesson = defineLesson({
           id: id('a4'),
@@ -140,12 +144,13 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
           locale: { title: 'Draft media' },
-          children: ['media'], media,
+          children: ['media'],
+          media,
         });
         const draft = lesson.build.data({ languages: ['uk'], mode: 'draft' });
         assert.match(JSON.stringify(draft.base), new RegExp(UNRESOLVED_YOUTUBE_HREF));
         assert.equal(draft.locale?.en, undefined);
-        assert.equal((draft.locale?.uk?.media as {children?: string[]})?.children?.length, 2);
+        assert.equal((draft.locale?.uk?.media as { children?: string[] })?.children?.length, 2);
         assert.throws(() => lesson.build.data({ languages: ['uk'] }), /unresolved video reference|Scene/i);
         assert.deepEqual(lesson.build.data({ languages: ['uk'], mode: 'draft' }), draft);
       });
@@ -181,7 +186,8 @@ describe('Configurators', () => {
             grade: { min: 1, max: 4 },
           },
           locale: { title: 'For early learners' },
-          children: ['intro' as const], intro: section,
+          children: ['intro' as const],
+          intro: section,
         };
         const lesson = defineLesson(input);
         const built = lesson.build.data({ languages: ['en'] });
@@ -212,11 +218,11 @@ describe('Configurators', () => {
         assert.equal('programId' in lesson.build.data({ languages: ['en'] }).base, false);
         assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
         assert.equal(lesson.intro, section);
-        assert.equal((built.base.intro as {slug?: string})?.slug, 'intro');
-        assert.equal((built.base.intro as {children?: string[]})?.children?.[0], 'paragraph');
+        assert.equal((built.base.intro as { slug?: string })?.slug, 'intro');
+        assert.equal((built.base.intro as { children?: string[] })?.children?.[0], 'paragraph');
         assert.equal(built.locale?.uk?.locale?.title, 'Приклад');
         assert.equal(textValue((built.locale?.uk?.intro as { paragraph?: unknown })?.paragraph), 'Привіт');
-        assert.equal((built.locale?.en?.intro as {locale?: {title?: string}})?.locale?.title, 'Introduction');
+        assert.equal((built.locale?.en?.intro as { locale?: { title?: string } })?.locale?.title, 'Introduction');
         assert.equal('flashcards' in built.base, false);
         assert.equal('questions' in built.base, false);
         assert.equal(lessonConfigurator_Schema.safeParse(lesson).success, true);
@@ -243,7 +249,8 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
           locale: { title: 'Bankless Lesson' },
-          children: ['intro' as const], intro: section,
+          children: ['intro' as const],
+          intro: section,
         };
         const lesson = defineLesson(input);
         const built = lesson.build.data({ languages: ['en'] });
@@ -282,25 +289,28 @@ describe('Configurators', () => {
         });
         const withQuiz = defineLesson({
           ...input,
-          children: ['intro', 'banklessQuiz'], intro: section, banklessQuiz: quiz,
+          children: ['intro', 'banklessQuiz'],
+          intro: section,
+          banklessQuiz: quiz,
         });
         const withRecall = defineLesson({
           ...input,
-          children: ['intro' as const, 'banklessRecall' as const], intro: section, banklessRecall: recall,
+          children: ['intro' as const, 'banklessRecall' as const],
+          intro: section,
+          banklessRecall: recall,
         });
-        assert.equal((withQuiz.build.data({ languages: ['en'] }).base.banklessQuiz as {type?: string})?.type, 'quiz');
-        assert.equal((withRecall.build.data({ languages: ['en'] }).base.banklessRecall as {type?: string})?.type, 'flashcards');
+        assert.equal((withQuiz.build.data({ languages: ['en'] }).base.banklessQuiz as { type?: string })?.type, 'quiz');
+        assert.equal(
+          (withRecall.build.data({ languages: ['en'] }).base.banklessRecall as { type?: string })?.type,
+          'flashcards',
+        );
         assert.deepEqual(quiz.build.data({ languages: ['en'] }).base.params.selection, {
           mode: 'all',
           questionIds: [id('64')],
         });
         assert.deepEqual(recall.build.data({ languages: ['en'] }).base.params.selection, { flashcardIds: [id('65')] });
         assert.deepEqual(
-          lesson.build
-            .overrides(
-              { children: ['intro', 'banklessQuiz'], banklessQuiz: quiz },
-              { languages: ['en'] },
-            )
+          lesson.build.overrides({ children: ['intro', 'banklessQuiz'], banklessQuiz: quiz }, { languages: ['en'] })
             .base.children,
           ['intro', 'banklessQuiz'],
         );
@@ -334,7 +344,8 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'Unscoped section', navigationLabel: '1' },
-          children: ['sparseText'], sparseText,
+          children: ['sparseText'],
+          sparseText,
         });
         // @ts-expect-error Intentionally incompatible child scope must fail at the authoring call.
         const lesson = defineLesson({
@@ -416,10 +427,12 @@ describe('Configurators', () => {
           Object.keys(updated.base).filter(key => key === 'intro'),
           ['intro'],
         );
-        assert.equal(textValue((updated.locale?.uk?.intro as {paragraph?: unknown})?.paragraph), 'Новий текст');
+        assert.equal(textValue((updated.locale?.uk?.intro as { paragraph?: unknown })?.paragraph), 'Новий текст');
         assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
         assert.equal(
-          textValue((lesson.build.data({ languages: ['en', 'uk'] }).locale?.uk?.intro as {paragraph?: unknown})?.paragraph),
+          textValue(
+            (lesson.build.data({ languages: ['en', 'uk'] }).locale?.uk?.intro as { paragraph?: unknown })?.paragraph,
+          ),
           'Привіт',
         );
 
@@ -433,22 +446,18 @@ describe('Configurators', () => {
         });
         const changed = lesson.build.overrides(
           {
-            children: ['extra'], intro: false, extra: second,
+            children: ['extra'],
+            intro: false,
+            extra: second,
             params: { sections: { allowSkipping: true } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          changed.base.children,
-          ['extra'],
-        );
+        assert.deepEqual(changed.base.children, ['extra']);
         assert.equal(changed.locale, undefined);
         assert.deepEqual(changed.base.params?.sections, { allowSkipping: true });
         assert.deepEqual(lesson.children, ['intro']);
-        assert.deepEqual(
-          lesson.build.data({ languages: ['en', 'uk'] }).base.children,
-          ['intro'],
-        );
+        assert.deepEqual(lesson.build.data({ languages: ['en', 'uk'] }).base.children, ['intro']);
         assert.throws(
           () => lesson.build.overrides({ intro: false }, { languages: ['en', 'uk'] }),
           /children.*required/,
@@ -496,7 +505,8 @@ describe('Configurators', () => {
               ...lesson.config.base,
               programId: id('04'),
               locale: { title: 'Legacy' },
-              children: ['intro' as const], intro: section,
+              children: ['intro' as const],
+              intro: section,
             } as never).build.data({ languages: ['en'] }),
           /programId/,
         );
@@ -516,7 +526,8 @@ describe('Configurators', () => {
                 sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
               },
               locale: { title: 'Wrong' },
-              children: ['wrongKey'], wrongKey: section,
+              children: ['wrongKey'],
+              wrongKey: section,
             }).build.data({ languages: ['en'] }),
           /matching .* configurator/,
         );
@@ -537,7 +548,8 @@ describe('Configurators', () => {
           type: 'content',
           params: {},
           locale: { title: 'English', navigationLabel: '1' },
-          children: ['englishOnly'], englishOnly: text,
+          children: ['englishOnly'],
+          englishOnly: text,
         });
         const quiz = defineQuizSection<'review', {}, ['en', 'zh']>({
           id: id('b3'),
@@ -572,7 +584,9 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
           },
           locale: { title: 'English scope' },
-          children: ['english', 'review'], english, review: quiz,
+          children: ['english', 'review'],
+          english,
+          review: quiz,
         });
         assert.doesNotThrow(() => lesson.build.data({ languages: ['en'], mode: 'draft' }));
         assert.doesNotThrow(() => lesson.build.data({ languages: ['en'] }));
@@ -581,11 +595,7 @@ describe('Configurators', () => {
         assert.throws(() => lesson.build.data({ languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(() => lesson.build.overrides({}, { languages: ['en', 'zh'] }), /Invalid publication/);
         assert.throws(
-          () =>
-            lesson.build.overrides(
-              { children: ['english'], review: false },
-              { languages: ['en'] },
-            ),
+          () => lesson.build.overrides({ children: ['english'], review: false }, { languages: ['en'] }),
           /at least one enabled Quiz/,
         );
       });
@@ -606,7 +616,8 @@ describe('Configurators', () => {
 
         const deferred = defineLesson({
           ...lessonInput,
-          children: ['intro' as const], intro: section,
+          children: ['intro' as const],
+          intro: section,
         });
         assert.equal(deferred.slug, 'quizRequiredLesson');
         assert.throws(() => deferred.build.data({ languages: ['en', 'uk'] }), /at least one enabled Quiz/);
@@ -636,14 +647,17 @@ describe('Configurators', () => {
         });
         const required = defineLesson({
           ...lessonInput,
-          children: ['intro', 'knowledgeQuiz'], intro: section, knowledgeQuiz: quiz,
+          children: ['intro', 'knowledgeQuiz'],
+          intro: section,
+          knowledgeQuiz: quiz,
         });
         assert.doesNotThrow(() => required.build.data({ languages: ['en', 'uk'] }));
         assert.throws(
           () =>
             required.build.overrides(
               {
-                children: ['intro'], knowledgeQuiz: false,
+                children: ['intro'],
+                knowledgeQuiz: false,
               },
               { languages: ['en', 'uk'] },
             ),
@@ -662,7 +676,8 @@ describe('Configurators', () => {
         assert.doesNotThrow(() =>
           required.build.overrides(
             {
-              children: ['knowledgeQuiz'], intro: false,
+              children: ['knowledgeQuiz'],
+              intro: false,
             },
             { languages: ['en', 'uk'] },
           ),
@@ -680,7 +695,8 @@ describe('Configurators', () => {
           () =>
             defineLesson({
               ...lessonInput,
-              children: ['disabledQuiz'], disabledQuiz,
+              children: ['disabledQuiz'],
+              disabledQuiz,
             }).build.data({ languages: ['en'] }),
           /at least one enabled Quiz/,
         );
@@ -692,7 +708,7 @@ describe('Configurators', () => {
         assert.deepEqual(single.base.params.languages, ['uk']);
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);
-        assert.equal(textValue((single.locale?.uk?.intro as {paragraph?: unknown})?.paragraph), 'Привіт');
+        assert.equal(textValue((single.locale?.uk?.intro as { paragraph?: unknown })?.paragraph), 'Привіт');
         const patched = lesson.build.overrides(
           {
             intro: { locale: { title: { uk: 'Новий' } } },

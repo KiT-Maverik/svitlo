@@ -1,13 +1,18 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import { assembleCourseToc } from './courseToc';
 
 const id = (n: number) => '11111111-1111-4111-8111-' + n.toString(16).padStart(12, '0');
 const base = {
-  id: id(1), type: 'course', languages: ['en', 'uk'],
+  id: id(1),
+  type: 'course',
+  languages: ['en', 'uk'],
   children: ['module', 'again', 'review'],
   module: {
-    id: id(2), type: 'module', children: ['first'],
+    id: id(2),
+    type: 'module',
+    children: ['first'],
     first: { id: id(3), type: 'lesson' },
   },
   again: { id: id(3), type: 'lesson', label: 'Second placement' },
@@ -25,8 +30,14 @@ test('sparse translation preserves direct slugs, order, and reused Lesson UUIDs'
 
 test('rejects missing labels, changed order, changed identity and unsafe keys', () => {
   assert.throws(() => assembleCourseToc(base, undefined, id(1), 'en'), /Missing localized/);
-  assert.throws(() => assembleCourseToc(base, { ...uk, children: ['again', 'module', 'review'] }, id(1), 'uk'), /order changed/);
-  assert.throws(() => assembleCourseToc(base, { ...uk, module: { ...uk.module, id: id(55) } }, id(1), 'uk'), /identity changed/);
+  assert.throws(
+    () => assembleCourseToc(base, { ...uk, children: ['again', 'module', 'review'] }, id(1), 'uk'),
+    /order changed/,
+  );
+  assert.throws(
+    () => assembleCourseToc(base, { ...uk, module: { ...uk.module, id: id(55) } }, id(1), 'uk'),
+    /identity changed/,
+  );
   assert.throws(() => assembleCourseToc(base, uk, id(1), 'pl'), /requested language/);
   assert.throws(() => assembleCourseToc(base, JSON.parse('{"__proto__":{"label":"unsafe"}}'), id(1), 'uk'), /Unsafe/);
 });
@@ -40,7 +51,13 @@ test('draft activities are previews, never production navigation entries', () =>
 });
 
 test('rejects hidden, duplicate and reserved placements', () => {
-  assert.throws(() => assembleCourseToc({ ...base, extra: { id: id(99), type: 'lesson' } }, uk, id(1), 'uk'), /Unaddressed/);
-  assert.throws(() => assembleCourseToc({ ...base, children: ['module', 'module', 'review'] }, uk, id(1), 'uk'), /order/);
+  assert.throws(
+    () => assembleCourseToc({ ...base, extra: { id: id(99), type: 'lesson' } }, uk, id(1), 'uk'),
+    /Unaddressed/,
+  );
+  assert.throws(
+    () => assembleCourseToc({ ...base, children: ['module', 'module', 'review'] }, uk, id(1), 'uk'),
+    /order/,
+  );
   assert.throws(() => assembleCourseToc({ ...base, children: ['module', 'content', 'review'] }, uk, id(1), 'uk'));
 });

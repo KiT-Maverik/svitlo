@@ -188,37 +188,46 @@ function plan(
     if (result.production) metadata.set(result.config.id, result.production);
     const current = { ...result.config };
     const ordered = (collection: unknown, name: string, preserveEnvelope: boolean) => {
-      if (!record(collection) || !Array.isArray(collection.children) ||
-          Object.hasOwn(collection, 'content') || Object.hasOwn(collection, 'slides'))
+      if (
+        !record(collection) ||
+        !Array.isArray(collection.children) ||
+        Object.hasOwn(collection, 'content') ||
+        Object.hasOwn(collection, 'slides')
+      )
         throw Error(name + ': expected root children');
-      const own = new Set(['id','type','slug','params','locale','children','draft']);
+      const own = new Set(['id', 'type', 'slug', 'params', 'locale', 'children', 'draft']);
       const members = Object.entries(collection).filter(([key]) => !own.has(key));
       const keys = members.map(([key]) => key);
-      if (keys.length !== collection.children.length ||
-          new Set(collection.children).size !== keys.length ||
-          collection.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key) || own.has(key)))
+      if (
+        keys.length !== collection.children.length ||
+        new Set(collection.children).size !== keys.length ||
+        collection.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key) || own.has(key))
+      )
         throw Error(name + '.children: invalid authored child order');
       return {
         children: [...collection.children],
-        ...Object.fromEntries(members.map(([key, child]) => {
-          const node = plain(child, name + '.' + key);
-          if (node.config.slug !== key) throw Error(name + '.' + key + ': child key/slug mismatch');
-          const normalized = unwrap(child, name + '.' + key);
-          return [key, preserveEnvelope
-            ? { config: normalized, ...(node.production ? { production: node.production } : {}) }
-            : normalized];
-        })),
+        ...Object.fromEntries(
+          members.map(([key, child]) => {
+            const node = plain(child, name + '.' + key);
+            if (node.config.slug !== key) throw Error(name + '.' + key + ': child key/slug mismatch');
+            const normalized = unwrap(child, name + '.' + key);
+            return [
+              key,
+              preserveEnvelope
+                ? { config: normalized, ...(node.production ? { production: node.production } : {}) }
+                : normalized,
+            ];
+          }),
+        ),
       };
     };
-    if (['content', 'quiz'].includes(current.type))
-      Object.assign(current, ordered(current, path, true));
+    if (['content', 'quiz'].includes(current.type)) Object.assign(current, ordered(current, path, true));
     else if (current.type === 'carousel' || current.type === 'checkpoint')
       Object.assign(current, ordered(current, path, false));
     else if (current.type === 'checkpointItem') {
       current.question = unwrap(current.question, path + '.question');
       current.answer = unwrap(current.answer, path + '.answer');
-    } else if (current.type === 'checkpointAnswer')
-      Object.assign(current, ordered(current, path, false));
+    } else if (current.type === 'checkpointAnswer') Object.assign(current, ordered(current, path, false));
     return current;
   };
   const before = config.before ?? { children: [] };
@@ -227,8 +236,11 @@ function plan(
   const phaseItems = (phase: { children: string[] } & Record<string, unknown>, label: string) => {
     const members = Object.entries(phase).filter(([key]) => key !== 'children');
     const keys = members.map(([key]) => key);
-    if (keys.length !== phase.children.length || new Set(phase.children).size !== keys.length ||
-        phase.children.some(key => !Object.hasOwn(phase, key) || key === 'children'))
+    if (
+      keys.length !== phase.children.length ||
+      new Set(phase.children).size !== keys.length ||
+      phase.children.some(key => !Object.hasOwn(phase, key) || key === 'children')
+    )
       throw Error('Assessment ' + label + ': invalid direct Section children');
     return Object.fromEntries(members);
   };
@@ -391,10 +403,16 @@ function plan(
     planned.length > 1
       ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.')
       : '',
-    'const before = { children: ' + JSON.stringify(before.children) + ', ' +
-      before.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') + ' };',
-    'const after = { children: ' + JSON.stringify(after.children) + ', ' +
-      after.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') + ' };',
+    'const before = { children: ' +
+      JSON.stringify(before.children) +
+      ', ' +
+      before.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
+      ' };',
+    'const after = { children: ' +
+      JSON.stringify(after.children) +
+      ', ' +
+      after.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
+      ' };',
 
     'export const ' +
       exportName(config.slug) +

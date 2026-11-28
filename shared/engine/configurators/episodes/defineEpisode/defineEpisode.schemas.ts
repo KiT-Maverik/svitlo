@@ -1,11 +1,14 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
 import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
@@ -134,7 +137,9 @@ export type Episode_Metadata_Overrides = {
 // JSON event payloads can be recursive: keep them outside deepPartial to
 // avoid unbounded Zod/TypeScript schema expansion.
 export const episode_Override_Metadata_Schema: z.ZodType<Episode_Metadata_Overrides> = z.strictObject({
-  params: z.deepPartial(deepStrict_Schema(episode_Metadata_Config_Schema.shape.params.omit({ languages: true }))).optional(),
+  params: z
+    .deepPartial(deepStrict_Schema(episode_Metadata_Config_Schema.shape.params.omit({ languages: true })))
+    .optional(),
   locale: z.deepPartial(deepStrict_Schema(episode_Metadata_Config_Schema.shape.locale)).optional(),
   events: z.record(z.string(), z.json()).optional(),
 });
@@ -147,7 +152,8 @@ export type Episode_Overrides<
   children?: Extract<keyof Sections | keyof NoInfer<Added>, string>[];
 } & {
   [Key in keyof Sections]?: Parameters<Sections[Key]['build']['overrides']>[0] | false;
-} & Added & SafePlacementMap<Added> & { [Key in keyof Sections & keyof Added]?: never };
+} & Added &
+  SafePlacementMap<Added> & { [Key in keyof Sections & keyof Added]?: never };
 
 export const episodeConfigurator_Schema = z.custom<{
   readonly id: string;

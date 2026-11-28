@@ -14,8 +14,8 @@ import {
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
-  type AddedPlacementsFromPatch,
   validateRequestedPublication,
+  type AddedPlacementsFromPatch,
 } from '../../../../_shared__configurators';
 import type {
   Checkpoint_Allowed_Configurator,
@@ -152,17 +152,19 @@ export const defineCheckpointItem = <
   };
 
   type AuthorAnswerChildren = {
-    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]:
-      Extract<Answer[Key], Checkpoint_Allowed_Configurator>;
+    [Key in keyof Answer as Answer[Key] extends Checkpoint_Allowed_Configurator ? Key : never]: Extract<
+      Answer[Key],
+      Checkpoint_Allowed_Configurator
+    >;
   };
-  type NestedAnswerAdditions<Patch> =
-    Patch extends { answer: infer AnswerPatch }
-      ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
-      : {};
+  type NestedAnswerAdditions<Patch> = Patch extends { answer: infer AnswerPatch }
+    ? AddedPlacementsFromPatch<AnswerPatch, AuthorAnswerChildren, Checkpoint_Allowed_Configurator, 'children'>
+    : {};
   const overridesImplementation = <const Patch extends Record<string, unknown>>(
-    patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
-      answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
-    },
+    patch: Patch &
+      CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+        answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
+      },
     options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
     try {
@@ -222,9 +224,10 @@ export const defineCheckpointItem = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
-        answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
-      },
+      patch: Patch &
+        CheckpointItem_Overrides<Answer, NestedAnswerAdditions<Patch>> & {
+          answer?: ChildrenSupporting<Languages, NestedAnswerAdditions<Patch>>;
+        },
       options: PublicationLanguageOptions<Languages>,
     ): ItemPublication<ItemOverrideBase>;
     (
@@ -253,9 +256,7 @@ export const defineCheckpointItem = <
  * patches; collections enforce the published discriminator and language scope.
  */
 type DefinedCheckpointItem = ReturnType<typeof defineCheckpointItem>;
-export type ContentBlock_CheckpointItem_Configurator = Pick<
-  DefinedCheckpointItem, 'validate' | 'config'
-> & {
+export type ContentBlock_CheckpointItem_Configurator = Pick<DefinedCheckpointItem, 'validate' | 'config'> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'checkpointItem';

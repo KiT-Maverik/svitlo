@@ -20,8 +20,7 @@ const questionBase = createQuestionBaseSchema('fillBlanksWithText');
 const params = questionBase.shape.params;
 
 export const fillBlanksWithTextSlot_Config_Schema = z.strictObject({
-  correctAnswers: z.record(z.string(), localizationSwitch.config)
-    .refine(value => Object.keys(value).length > 0),
+  correctAnswers: z.record(z.string(), localizationSwitch.config).refine(value => Object.keys(value).length > 0),
 });
 export const fillBlanksWithText_Config_Schema = questionBase.extend({
   params,
@@ -50,16 +49,20 @@ export const fillBlanksWithText_Data_Schema = questionBase.extend({
   ...addUnifiedLocale({
     slots: z.looseObject({ children: z.array(z.string()) }).superRefine((slots, ctx) => {
       const keys = Object.keys(slots).filter(key => key !== 'children');
-      if (new Set(slots.children).size !== slots.children.length ||
-          slots.children.length !== keys.length || keys.some(key => !slots.children.includes(key))) {
+      if (
+        new Set(slots.children).size !== slots.children.length ||
+        slots.children.length !== keys.length ||
+        keys.some(key => !slots.children.includes(key))
+      ) {
         ctx.addIssue({ code: 'custom', message: 'Invalid text slot order' });
       }
       for (const key of keys) {
         if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved text-slot placement key' });
         }
-        if (!z.strictObject({ correctAnswers: z.array(localizationSwitch.data).min(1) })
-          .safeParse(slots[key]).success) {
+        if (
+          !z.strictObject({ correctAnswers: z.array(localizationSwitch.data).min(1) }).safeParse(slots[key]).success
+        ) {
           ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid text slot data' });
         }
       }

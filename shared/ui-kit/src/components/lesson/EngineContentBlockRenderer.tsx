@@ -1,10 +1,10 @@
 'use client';
 
 import type { LanguageCode } from '@svitlo/engine/runtime';
-import type { ContentBlockViewProps } from '../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { ContentBlockViewProps } from '../../presentation';
 import { ContentBlockRenderer, type SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 /** The lesson bridge accepts only assembled Engine Props, not authoring Config. */

@@ -20,7 +20,12 @@ const lessonTypes = sourceLesson => [
 const sectionType = (sourceLesson, key) =>
   'type SectionPatch = Parameters<typeof ' + sourceLesson.exportName + '.' + key + '.build.overrides<{}>>[0];';
 const blockType = (sourceLesson, sectionKey, blockKey) =>
-  'type BlockPatch = Parameters<typeof ' + sourceLesson.exportName + '.' + sectionKey + '.' + blockKey +
+  'type BlockPatch = Parameters<typeof ' +
+  sourceLesson.exportName +
+  '.' +
+  sectionKey +
+  '.' +
+  blockKey +
   '.build.overrides>[0];';
 const clean = (value, where) => {
   if (!slug.test(value) || reserved.has(value)) throw Error(where + ': invalid Course-owned override path');
@@ -116,7 +121,8 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
         path: directory + '/sections/' + sectionKey + '/index.ts',
         kind: 'typescript',
         content:
-          dependency + '\n' +
+          dependency +
+          '\n' +
           (sectionKey === exportName
             ? 'export { ' + exportName + ' };\n'
             : 'export const ' + sectionKey + ' = ' + exportName + ';\n'),
@@ -129,7 +135,9 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
     const childRefs = new Map();
     const childImports = [];
     const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [
-      sourceLesson.exportName, 'SectionPatch', sectionKey,
+      sourceLesson.exportName,
+      'SectionPatch',
+      sectionKey,
     ]);
     const ownSection = new Set(['params', 'locale', 'children']);
     for (const [blockKey, blockPatch] of Object.entries(sectionPatch).filter(([key]) => !ownSection.has(key))) {
@@ -137,11 +145,14 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
       if (!record(blockPatch)) continue;
       const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
       createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [
-        sourceLesson.exportName, 'SectionPatch', 'BlockPatch',
+        sourceLesson.exportName,
+        'SectionPatch',
+        'BlockPatch',
       ])(blockKey, path);
       childNames(blockKey, path);
       files.push({
-        path, kind: 'typescript',
+        path,
+        kind: 'typescript',
         content: [
           ...lessonTypes(sourceLesson),
           blockType(sourceLesson, sectionKey, blockKey),
@@ -157,7 +168,9 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
       path: directory + '/sections/' + sectionKey + '/index.ts',
       kind: 'typescript',
       content: [
-        ...lessonTypes(sourceLesson), ...childImports, sectionType(sourceLesson, sectionKey),
+        ...lessonTypes(sourceLesson),
+        ...childImports,
+        sectionType(sourceLesson, sectionKey),
         '',
         'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ' satisfies SectionPatch;',
         '',

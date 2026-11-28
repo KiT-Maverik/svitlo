@@ -7,13 +7,19 @@ import { toLessonProps } from '@svitlo/ui-kit';
 
 import WebLesson from '@/components/pages/Lesson/Lesson';
 import {
-  assertCourseTocMatchesTree, coursePlacementHref, courseTocToTopics, parseCoursePlacement,
+  assertCourseTocMatchesTree,
+  coursePlacementHref,
+  courseTocToTopics,
+  parseCoursePlacement,
 } from '@/lib/courseNavigation';
 import { loadCourseToc, loadExistingCourseTree } from '@/lib/courseResources';
 
 type Props = {
   params: Promise<{
-    language: string; courseId: string; lessonLanguage: string; placement: string[];
+    language: string;
+    courseId: string;
+    lessonLanguage: string;
+    placement: string[];
   }>;
 };
 
@@ -60,7 +66,13 @@ async function Content({ params }: Props) {
 
 export default function CourseLessonPage(props: Props) {
   return (
-    <Suspense fallback={<div role="status" aria-busy="true">Loading lesson…</div>}>
+    <Suspense
+      fallback={
+        <div role="status" aria-busy="true">
+          Loading lesson…
+        </div>
+      }
+    >
       <Content {...props} />
     </Suspense>
   );

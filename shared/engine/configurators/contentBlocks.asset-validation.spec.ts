@@ -36,7 +36,8 @@ describe('Configurators', () => {
           type: 'carousel',
           params: {},
           locale: {},
-          children: ['picture'], picture,
+          children: ['picture'],
+          picture,
         });
         assert.doesNotThrow(() => picture.build.data({ languages: ['en'] }));
         assert.doesNotThrow(() => recording.build.data({ languages: ['en', 'uk'] }));

@@ -6,7 +6,11 @@
 import { defineText } from '../../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
-import type { CourseLessonBoundPatch, CourseLessonSourcePatch, CourseLessonSectionReference } from '../../../types/workflow/courseLessonSourcePatch.types';
+import type {
+  CourseLessonBoundPatch,
+  CourseLessonSectionReference,
+  CourseLessonSourcePatch,
+} from '../../../types/workflow/courseLessonSourcePatch.types';
 
 const paragraph = defineText<'paragraph', ['en', 'uk']>({
   id: '663572e7-bd85-4516-86e2-3de07d209e01',

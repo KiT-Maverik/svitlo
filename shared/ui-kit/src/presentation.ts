@@ -5,9 +5,9 @@
  */
 import {
   carousel_Slide_Data_Schema,
-  primitiveContentBlockResolved_Schema,
   checkpointItem_Data_Schema,
   contentBlockResolved_Schema,
+  primitiveContentBlockResolved_Schema,
   type Checkpoint_Allowed_Data,
   type ContentBlock_Carousel_Data,
   type ContentBlock_Carousel_SlideData,
@@ -25,7 +25,10 @@ export type CarouselViewProps = Pick<ContentBlock_Carousel_Data, 'id' | 'slug' |
   locale: { title?: string; slides: ContentBlock_Carousel_SlideData[] };
 };
 
-export type CheckpointItemViewProps = Pick<ContentBlock_CheckpointItem_Data, 'id' | 'slug' | 'type' | 'check' | 'question'> & {
+export type CheckpointItemViewProps = Pick<
+  ContentBlock_CheckpointItem_Data,
+  'id' | 'slug' | 'type' | 'check' | 'question'
+> & {
   answer: Checkpoint_Allowed_Data[];
 };
 
@@ -34,9 +37,7 @@ export type CheckpointViewProps = Pick<ContentBlock_Checkpoint_Data, 'id' | 'slu
 };
 
 export type ContentBlockViewProps =
-  | Exclude<ContentBlock_Data, { type: 'carousel' | 'checkpoint' }>
-  | CarouselViewProps
-  | CheckpointViewProps;
+  Exclude<ContentBlock_Data, { type: 'carousel' | 'checkpoint' }> | CarouselViewProps | CheckpointViewProps;
 
 /** Explicit picks preserve discriminants even when domain Data has a catchall index signature. */
 type ProjectSection<T extends Section_Data> = T extends unknown
@@ -58,8 +59,7 @@ const safeKey = /^[a-z][a-zA-Z0-9]*$/;
 const dangerous = new Set(['__proto__', 'constructor', 'prototype']);
 
 function asRecord(value: unknown, at: string): Record<string, unknown> {
-  if (!value || typeof value !== 'object' || Array.isArray(value))
-    throw Error('Invalid presentation Data at ' + at);
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('Invalid presentation Data at ' + at);
   return value as Record<string, unknown>;
 }
 
@@ -99,26 +99,32 @@ export function toContentBlockProps(value: unknown): ContentBlockViewProps {
     } as CarouselViewProps;
   }
   if (source.type === 'checkpoint') {
-    const content = ordered(source, 'checkpoint').filter(enabled).map(raw => {
-      const item = checkpointItem_Data_Schema.parse(raw);
-      return {
-        id: item.id,
-        slug: item.slug,
-        type: item.type,
-        ...(item.check ? { check: item.check } : {}),
-        question: item.question,
-        answer: ordered(item.answer, 'checkpoint answer')
-          .filter(enabled)
-          .map(answer => {
-            primitiveContentBlockResolved_Schema.parse(answer);
-            return answer as Checkpoint_Allowed_Data;
-          }),
-      };
-    });
+    const content = ordered(source, 'checkpoint')
+      .filter(enabled)
+      .map(raw => {
+        const item = checkpointItem_Data_Schema.parse(raw);
+        return {
+          id: item.id,
+          slug: item.slug,
+          type: item.type,
+          ...(item.check ? { check: item.check } : {}),
+          question: item.question,
+          answer: ordered(item.answer, 'checkpoint answer')
+            .filter(enabled)
+            .map(answer => {
+              primitiveContentBlockResolved_Schema.parse(answer);
+              return answer as Checkpoint_Allowed_Data;
+            }),
+        };
+      });
     if (!content.length) throw Error('Checkpoint needs an enabled item');
     return {
-      id: source.id, slug: source.slug, type: 'checkpoint', params: source.params,
-      locale: source.locale, content,
+      id: source.id,
+      slug: source.slug,
+      type: 'checkpoint',
+      params: source.params,
+      locale: source.locale,
+      content,
     } as CheckpointViewProps;
   }
   return source as ContentBlockViewProps;
@@ -159,8 +165,12 @@ export function toLessonProps(data: Lesson_Data): LessonViewProps {
 
 export function toEpisodeProps(data: LocalizedEpisode): EpisodeViewProps {
   return {
-    id: data.id, type: data.type, slug: data.slug,
-    params: data.params, locale: data.locale, section: sections(data),
+    id: data.id,
+    type: data.type,
+    slug: data.slug,
+    params: data.params,
+    locale: data.locale,
+    section: sections(data),
   };
 }
 
@@ -168,7 +178,11 @@ export function toAssessmentProps(data: LocalizedAssessment): AssessmentViewProp
   const before = asRecord(data.before, 'assessment before');
   const after = asRecord(data.after, 'assessment after');
   return {
-    id: data.id, type: data.type, slug: data.slug, params: data.params, locale: data.locale,
+    id: data.id,
+    type: data.type,
+    slug: data.slug,
+    params: data.params,
+    locale: data.locale,
     section: [
       ...ordered(before, 'assessment before').filter(enabled).map(section),
       section(data.quiz),

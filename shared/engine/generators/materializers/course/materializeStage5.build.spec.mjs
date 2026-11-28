@@ -219,7 +219,6 @@ test('canonical Stage3 Course hierarchy and UUID Course Lesson seed typecheck ag
   );
 });
 
-
 /**
  * Compile REAL emitted Course-local Lesson patch modules, not only source-text
  * snapshots or transpileModule syntax. The Configurator import is authored
@@ -232,42 +231,59 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
   const lessonId = '1368c1c9-2fd8-4007-b2c8-6bbfd98d5111';
   const textConfig = {
     id: '663572e7-bd85-4516-86e2-3de07d209e20',
-    slug: 'paragraph', type: 'text', params: {},
+    slug: 'paragraph',
+    type: 'text',
+    params: {},
     locale: { value: { uk: 'Прочитай' } },
   };
   const sectionConfig = {
     id: '663572e7-bd85-4516-86e2-3de07d209e21',
-    slug: 'intro', type: 'content', params: {},
+    slug: 'intro',
+    type: 'content',
+    params: {},
     locale: { title: 'Вступ', navigationLabel: '1' },
     children: ['paragraph'],
   };
   const lessonConfig = {
-    id: lessonId, slug: 'independentLesson', type: 'lesson', skills: [lightSkill],
+    id: lessonId,
+    slug: 'independentLesson',
+    type: 'lesson',
+    skills: [lightSkill],
     params: {
-      languages: ['uk'], quizRequiredForCompletion: false,
+      languages: ['uk'],
+      quizRequiredForCompletion: false,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
-    locale: { title: { uk: 'Окремий урок' } }, children: ['intro', 'recap'],
+    locale: { title: { uk: 'Окремий урок' } },
+    children: ['intro', 'recap'],
   };
   const recapTextConfig = {
     id: '663572e7-bd85-4516-86e2-3de07d209e24',
-    slug: 'recapText', type: 'text', params: {},
+    slug: 'recapText',
+    type: 'text',
+    params: {},
     locale: { value: { uk: 'Повторення' } },
   };
   const recapConfig = {
     id: '663572e7-bd85-4516-86e2-3de07d209e25',
-    slug: 'recap', type: 'content', params: {},
+    slug: 'recap',
+    type: 'content',
+    params: {},
     locale: { title: 'Повторення', navigationLabel: '3' },
     children: ['recapText'],
   };
   const extraText = {
     id: '663572e7-bd85-4516-86e2-3de07d209e22',
-    slug: 'message', type: 'text', params: {},
+    slug: 'message',
+    type: 'text',
+    params: {},
     locale: { value: { uk: 'Практика' } },
   };
   const extraConfig = {
     id: '663572e7-bd85-4516-86e2-3de07d209e23',
-    slug: 'practice', type: 'content', params: {},
+    slug: 'practice',
+    type: 'content',
+    params: {},
     locale: { title: 'Практика', navigationLabel: '2' },
     children: ['message'],
   };
@@ -286,7 +302,8 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
   reviewed.config.reused = {
     config: { type: 'lesson', slug: 'reused', skills: [lightSkill] },
     production: {
-      kind: 'existing', existing: { id: lessonId },
+      kind: 'existing',
+      existing: { id: lessonId },
       matching: {
         sourceSha,
         methodologySourcePath: 'content/playground/data/lessons/1/' + lessonId + '/methodology.md',
@@ -294,16 +311,21 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
         languageEvidence: 'Verified uk source and text coverage',
       },
       assessment: {
-        questionBankRequired: false, flashcardBankRequired: false,
-        quizSectionRequired: false, flashcardsSectionRequired: false,
+        questionBankRequired: false,
+        flashcardBankRequired: false,
+        quizSectionRequired: false,
+        flashcardsSectionRequired: false,
       },
       sourceExportName: 'independentLesson',
       sourcePatch: {
         intro: { paragraph: { locale: { value: { uk: 'Інший текст' } } } },
         recap: false,
         practice: {
-          $ref: 'lesson-section', lessonId,
-          sectionId: practice.id, sourceSha, exportName: 'practice',
+          $ref: 'lesson-section',
+          lessonId,
+          sectionId: practice.id,
+          sourceSha,
+          exportName: 'practice',
         },
         children: ['intro', 'practice'],
       },
@@ -320,12 +342,20 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
       assert.ok(modulePath, 'Unexpected Skill');
       const slug = modulePath.split('/').at(-1);
       return {
-        approved: true, id: skillId, slug, exportName: slug,
+        approved: true,
+        id: skillId,
+        slug,
+        exportName: slug,
         importPath: '#skillsData/' + modulePath,
         sourcePath: 'content/playground/data/skills/' + modulePath + '.ts',
         sourceSha: 'a'.repeat(40),
-        configurator: { id: skillId, slug, type: 'skill',
-          config: { base: { id: skillId, slug } }, build: { data() {} } },
+        configurator: {
+          id: skillId,
+          slug,
+          type: 'skill',
+          config: { base: { id: skillId, slug } },
+          build: { data() {} },
+        },
       };
     },
     resolveExistingLesson(request) {
@@ -375,30 +405,42 @@ test('generated Course Lesson patch typechecks concrete nested, disabled and add
     '});',
     '',
   ].join('\n');
-  const files = [...plan.files,
+  const files = [
+    ...plan.files,
     { path: lessonPath, kind: 'typescript', content: lessonModule },
-    { path: practicePath, kind: 'typescript', content: practiceModule }];
+    { path: practicePath, kind: 'typescript', content: practiceModule },
+  ];
   const additionalPaths = {
     ['#lessonsData/1/' + lessonId + '/index']: ['temp/stage5-course-build/' + lessonPath],
     ['#lessonsData/1/' + lessonId + '/sections/practice']: ['temp/stage5-course-build/' + practicePath],
   };
-  const format = errors => errors.map(error => {
-    const loc = error.file?.getLineAndCharacterOfPosition(error.start ?? 0);
-    return (error.file?.fileName ?? '<compiler>') + ':' + (loc ? loc.line + 1 : 0) +
-      ' TS' + error.code + ': ' + ts.flattenDiagnosticMessageText(error.messageText, ' ');
-  });
+  const format = errors =>
+    errors.map(error => {
+      const loc = error.file?.getLineAndCharacterOfPosition(error.start ?? 0);
+      return (
+        (error.file?.fileName ?? '<compiler>') +
+        ':' +
+        (loc ? loc.line + 1 : 0) +
+        ' TS' +
+        error.code +
+        ': ' +
+        ts.flattenDiagnosticMessageText(error.messageText, ' ')
+      );
+    });
   assert.deepEqual(format(diagnostics(files, additionalPaths)), []);
 
-  const unknownPlacement = files.map(file => file.path === emittedPath
-    ? { ...file, content: file.content.replace('"recap": false', '"unknownSection": false') }
-    : file);
+  const unknownPlacement = files.map(file =>
+    file.path === emittedPath
+      ? { ...file, content: file.content.replace('"recap": false', '"unknownSection": false') }
+      : file,
+  );
   assert.ok(
     diagnostics(unknownPlacement, additionalPaths).some(error => error.file?.fileName.endsWith(emittedPath)),
     'unknown Lesson Section must fail generated placement TypeScript',
   );
-  const invalid = files.map(file => file.path === blockPath
-    ? { ...file, content: file.content.replace('"Інший текст"', '23') }
-    : file);
+  const invalid = files.map(file =>
+    file.path === blockPath ? { ...file, content: file.content.replace('"Інший текст"', '23') } : file,
+  );
   assert.ok(
     diagnostics(invalid, additionalPaths).some(error => error.file?.fileName.endsWith(blockPath)),
     'incorrect nested localized value must fail generated ContentBlock TypeScript',

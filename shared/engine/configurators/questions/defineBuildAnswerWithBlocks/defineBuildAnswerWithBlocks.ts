@@ -47,7 +47,10 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
   candidate.content.correctSequence.children.forEach(key =>
-    assertEnabledBlock((candidate.content.correctSequence[key] as ContentBlock_Primitive_Configurator).config.base, 'content.correctSequence.' + key),
+    assertEnabledBlock(
+      (candidate.content.correctSequence[key] as ContentBlock_Primitive_Configurator).config.base,
+      'content.correctSequence.' + key,
+    ),
   );
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
@@ -120,7 +123,9 @@ export const defineBuildAnswerWithBlocks = <
         field === 'correctSequence',
       );
       if (field === 'correctSequence') {
-        result.effectiveBase.children.forEach(key => assertEnabledBlock(result.effectiveBase[key], 'content.correctSequence.' + key));
+        result.effectiveBase.children.forEach(key =>
+          assertEnabledBlock(result.effectiveBase[key], 'content.correctSequence.' + key),
+        );
       }
       if (Object.keys(result.base).length) base[field] = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {})[field] = entries;

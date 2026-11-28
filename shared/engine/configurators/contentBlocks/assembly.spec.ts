@@ -1,15 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
-import {
-  defineAudio,
-  defineCode,
-  defineImage,
-  defineMarkdown,
-  defineScene,
-  defineVideo,
-  defineYoutube,
-} from './index';
+import { defineAudio, defineCode, defineImage, defineMarkdown, defineScene, defineVideo, defineYoutube } from './index';
 
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
@@ -406,7 +398,6 @@ describe('Configurators', () => {
           );
         }
       });
-
     });
   });
 });

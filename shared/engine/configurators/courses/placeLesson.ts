@@ -8,9 +8,9 @@ import {
   scopeBuild,
   slugAddressedReservedKeys,
 } from '../_shared__configurators';
+import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 import type { Lesson_Configurator } from '../lessons/defineLesson';
 import { sectionTypes, type Section_Configurator } from '../sections';
-import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 
 /**
  * Mirror the trusted bound-source Section capability (not the erased parent
@@ -22,8 +22,10 @@ type BoundSectionChild = {
   readonly build: { readonly overrides: (...args: never[]) => unknown };
 };
 type AddedSections = Record<string, BoundSectionChild>;
-type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections = {}> =
-  CourseLessonBoundPatch<Lesson, Added> &
+type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections = {}> = CourseLessonBoundPatch<
+  Lesson,
+  Added
+> &
   ChildrenSupporting<Lesson['__svitloLanguageScope'], Added>;
 
 /**
@@ -31,41 +33,48 @@ type LessonPatch<Lesson extends Lesson_Configurator, Added extends AddedSections
  * A generic Added=Record<string, Section> would poison every existing key
  * with never and silently discard all useful inference.
  */
-type ExplicitPatchKeys<Patch> =
-  string extends keyof Patch ? never :
-  number extends keyof Patch ? never :
-  symbol extends keyof Patch ? never :
-  Extract<keyof Patch, string>;
+type ExplicitPatchKeys<Patch> = string extends keyof Patch
+  ? never
+  : number extends keyof Patch
+    ? never
+    : symbol extends keyof Patch
+      ? never
+      : Extract<keyof Patch, string>;
 type AddedFromPatch<Lesson, Patch> = {
-  [Key in Exclude<ExplicitPatchKeys<Patch>, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>]:
-    Patch[Key] extends BoundSectionChild ? Patch[Key] : never;
+  [
+    Key in Exclude<ExplicitPatchKeys<Patch>, keyof Lesson | 'params' | 'locale' | 'events' | 'children'>
+  ]: Patch[Key] extends BoundSectionChild ? Patch[Key] : never;
 };
 /**
  * A later placement override may reorder/remove an already trusted Section,
  * but must not be forced to resupply it or introduce unbound Section slugs.
  * Keep Added in the children union while making its direct entries optional.
  */
-type ChainedPlacementPatch<Lesson extends Lesson_Configurator, Added extends AddedSections> =
-  Omit<CourseLessonBoundPatch<Lesson, Added>, keyof Added> & {
-    [Key in keyof Added]?: Added[Key] | false;
-  };
+type ChainedPlacementPatch<Lesson extends Lesson_Configurator, Added extends AddedSections> = Omit<
+  CourseLessonBoundPatch<Lesson, Added>,
+  keyof Added
+> & {
+  [Key in keyof Added]?: Added[Key] | false;
+};
 
 type VerifiedPatchKeys<Lesson extends Lesson_Configurator, Patch> = {
   [Key in keyof Patch]: Key extends keyof CourseLessonBoundPatch<Lesson>
     ? unknown
     : Key extends keyof Lesson
       ? never
-      : Patch[Key] extends BoundSectionChild ? unknown : never;
+      : Patch[Key] extends BoundSectionChild
+        ? unknown
+        : never;
 };
 
 /**
  * A placement owns its patch snapshot, not the independently authored Lesson.
  * Added Sections are trusted Build Configurators, never executable draft input.
  */
-export type PlacedLesson<
-  Lesson extends Lesson_Configurator,
-  Added extends AddedSections = {},
-> = Omit<Lesson, 'build'> & {
+export type PlacedLesson<Lesson extends Lesson_Configurator, Added extends AddedSections = {}> = Omit<
+  Lesson,
+  'build'
+> & {
   readonly build: Omit<Lesson['build'], 'overrides'> & {
     overrides(
       patch: ChainedPlacementPatch<Lesson, Added>,
@@ -81,13 +90,9 @@ export type PlacedLesson<
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 const isPlainObject = (value: unknown): value is Record<string, unknown> =>
-  isObject(value) &&
-  (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
+  isObject(value) && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
 const metadataKeys = new Set(['params', 'locale', 'events', 'children']);
-const prohibitedKeys = new Set<string>([
-  ...slugAddressedReservedKeys.filter(key => !metadataKeys.has(key)),
-  'skills',
-]);
+const prohibitedKeys = new Set<string>([...slugAddressedReservedKeys.filter(key => !metadataKeys.has(key)), 'skills']);
 
 /** Reject functions, accessors, prototype keys, cycles and non-JSON patch data. */
 const assertPlain = (value: unknown, trail = 'patch', seen = new Set<object>()): void => {
@@ -107,8 +112,7 @@ const assertPlain = (value: unknown, trail = 'patch', seen = new Set<object>()):
   } else {
     if (Object.getOwnPropertySymbols(value).length) throw new Error('Symbol in Lesson placement at ' + trail);
     for (const [key, property] of Object.entries(Object.getOwnPropertyDescriptors(value))) {
-      if (['__proto__', 'prototype', 'constructor'].includes(key) ||
-          !Object.hasOwn(property, 'value')) {
+      if (['__proto__', 'prototype', 'constructor'].includes(key) || !Object.hasOwn(property, 'value')) {
         throw new Error('Unsafe Lesson placement key or accessor at ' + trail + '.' + key);
       }
       assertPlain(property.value, trail + '.' + key, seen);
@@ -119,14 +123,21 @@ const assertPlain = (value: unknown, trail = 'patch', seen = new Set<object>()):
 
 /** Guard the *real* trusted Section identity and Build interface at a direct key. */
 const isVerifiedSection = (value: unknown, key: string): value is Section_Configurator => {
-  if (!isObject(value) || !sectionTypes.some(type => type === value.type) ||
-      value.slug !== key || typeof value.id !== 'string' ||
-      !isObject(value.config) || !isObject(value.config.base) ||
-      value.config.base.id !== value.id ||
-      value.config.base.slug !== key || value.config.base.type !== value.type ||
-      !isObject(value.build) ||
-      typeof value.build.data !== 'function' ||
-      typeof value.build.overrides !== 'function') return false;
+  if (
+    !isObject(value) ||
+    !sectionTypes.some(type => type === value.type) ||
+    value.slug !== key ||
+    typeof value.id !== 'string' ||
+    !isObject(value.config) ||
+    !isObject(value.config.base) ||
+    value.config.base.id !== value.id ||
+    value.config.base.slug !== key ||
+    value.config.base.type !== value.type ||
+    !isObject(value.build) ||
+    typeof value.build.data !== 'function' ||
+    typeof value.build.overrides !== 'function'
+  )
+    return false;
   return true;
 };
 
@@ -134,10 +145,7 @@ const isVerifiedSection = (value: unknown, key: string): value is Section_Config
  * Only direct *new* Section keys may hold trusted Configurators. Every other
  * value is independently cloned JSON. Never recursively clone Build methods.
  */
-const snapshotPatch = <Patch>(
-  patch: Patch,
-  existingKeys: ReadonlySet<string>,
-): Patch => {
+const snapshotPatch = <Patch>(patch: Patch, existingKeys: ReadonlySet<string>): Patch => {
   if (!isPlainObject(patch)) throw new Error('Lesson placement patch must be a plain Config object');
   const snapshot: Record<string, unknown> = {};
   for (const [key, property] of Object.entries(Object.getOwnPropertyDescriptors(patch))) {
@@ -180,13 +188,9 @@ const withoutDisabledSections = (
  * direct keys. The original Lesson's Build is the final validation boundary.
  * Neither source Config nor its locale publication is mutated.
  */
-export function placeLesson<
-  const Lesson extends Lesson_Configurator,
-  const Patch extends Record<string, unknown>,
->(
+export function placeLesson<const Lesson extends Lesson_Configurator, const Patch extends Record<string, unknown>>(
   source: Lesson,
-  patch: Patch & LessonPatch<Lesson, AddedFromPatch<Lesson, Patch>> &
-    VerifiedPatchKeys<Lesson, Patch>,
+  patch: Patch & LessonPatch<Lesson, AddedFromPatch<Lesson, Patch>> & VerifiedPatchKeys<Lesson, Patch>,
 ): PlacedLesson<Lesson, AddedFromPatch<Lesson, Patch>> {
   if (
     source?.type !== 'lesson' ||
@@ -199,9 +203,9 @@ export function placeLesson<
   const existingKeys = new Set<string>(source.children);
   const authored = snapshotPatch(patch, existingKeys);
   const addedKeys = new Set(
-    Object.keys(authored).filter(key =>
-      !existingKeys.has(key) &&
-      isVerifiedSection((authored as Record<string, unknown>)[key], key)),
+    Object.keys(authored).filter(
+      key => !existingKeys.has(key) && isVerifiedSection((authored as Record<string, unknown>)[key], key),
+    ),
   );
 
   const composed = (additional: unknown): Record<string, unknown> => {
@@ -222,9 +226,8 @@ export function placeLesson<
       }
       // New trusted Section instances and complete array/order replacements
       // are atomic; metadata and existing nested Config patches merge by key.
-      combined[key] = isVerifiedSection(value, key) || key === 'events'
-        ? value
-        : merge({ value: prior }, { value }).value;
+      combined[key] =
+        isVerifiedSection(value, key) || key === 'events' ? value : merge({ value: prior }, { value }).value;
     }
     return combined;
   };
@@ -236,7 +239,8 @@ export function placeLesson<
       const changeBase = changed.base as Record<string, unknown>;
       const base = withoutDisabledSections(
         merge(original.base as Record<string, unknown>, changeBase),
-        changeBase, existingKeys,
+        changeBase,
+        existingKeys,
       );
       const files: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
       for (const code of options.languages) {
@@ -246,9 +250,9 @@ export function placeLesson<
           (original.locale?.[code] ?? {}) as Record<string, unknown>,
         );
         files[code] = withoutDisabledSections(
-          merge(merge(before, changeBase),
-            (changed.locale?.[code] ?? {}) as Record<string, unknown>),
-          changeBase, existingKeys,
+          merge(merge(before, changeBase), (changed.locale?.[code] ?? {}) as Record<string, unknown>),
+          changeBase,
+          existingKeys,
         );
       }
       return {

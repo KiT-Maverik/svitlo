@@ -156,9 +156,11 @@ function validateSections(source: Source): void {
   if (!Array.isArray(source.children) || Object.hasOwn(source, 'section'))
     throw new Error('lesson.children: expected direct Section placements');
   const keys = Object.keys(source).filter(key => !lessonFields.has(key));
-  if (keys.length !== source.children.length ||
-      new Set(source.children).size !== keys.length ||
-      source.children.some(key => !Object.hasOwn(source, key) || lessonFields.has(key)))
+  if (
+    keys.length !== source.children.length ||
+    new Set(source.children).size !== keys.length ||
+    source.children.some(key => !Object.hasOwn(source, key) || lessonFields.has(key))
+  )
     throw new Error('lesson.children: expected every Section exactly once');
   const ids = new Set<string>([source.id]);
   for (const key of keys) {
@@ -426,7 +428,9 @@ export function materializeLesson(config: Source, options: Options): Result {
       message: blockers.join(' '),
       severity: 'warning',
     });
-  const metadata = Object.fromEntries(Object.entries(config).filter(([key]) => lessonFields.has(key) && key !== 'children'));
+  const metadata = Object.fromEntries(
+    Object.entries(config).filter(([key]) => lessonFields.has(key) && key !== 'children'),
+  );
   const params = { ...(isObject(metadata.params) ? metadata.params : {}), languages: imported('languages') };
   const own = {
     ...metadata,

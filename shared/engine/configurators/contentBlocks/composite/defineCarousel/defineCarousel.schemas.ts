@@ -92,8 +92,8 @@ export const carousel_Config_Schema = carousel_Metadata_Config_Schema
         });
         continue;
       }
-      if ((child as { config: { base: { params: { disabled?: boolean } } } })
-        .config.base.params.disabled !== true) activeSlides++;
+      if ((child as { config: { base: { params: { disabled?: boolean } } } }).config.base.params.disabled !== true)
+        activeSlides++;
     }
     if (!activeSlides) {
       ctx.addIssue({
@@ -105,9 +105,7 @@ export const carousel_Config_Schema = carousel_Metadata_Config_Schema
   });
 export type ContentBlock_Carousel_Config = z.infer<typeof carousel_Config_Schema>;
 
-export type Carousel_Metadata_Overrides = DeepPartial<
-  Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>
->;
+export type Carousel_Metadata_Overrides = DeepPartial<Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>>;
 export const carousel_Override_Config_Schema: z.ZodType<Carousel_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
@@ -122,8 +120,8 @@ export type ContentBlock_Carousel_Overrides<
   Added extends Record<string, ContentBlock_Carousel_SlideConfigurator> = {},
 > = Carousel_Metadata_Overrides & {
   children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } &
-  Added & SafePlacementMap<Added> & { [Key in keyof Items & keyof Added]?: never };
+} & { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false } & Added &
+  SafePlacementMap<Added> & { [Key in keyof Items & keyof Added]?: never };
 
 export type ContentBlock_Carousel_DataBase = z.infer<typeof carouselBase> & {
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;

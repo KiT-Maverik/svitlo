@@ -57,10 +57,14 @@ export const defineAssessmentDraft = <
   const validate = () => {
     copyAuthored();
     const candidate: unknown = preview;
-    if (!isRecord(candidate) || candidate.type !== 'content' ||
-        !isRecord(candidate.config) || !isRecord(candidate.config.base) ||
-        !isRecord(candidate.config.base.params) ||
-        candidate.config.base.params.disabled === true) {
+    if (
+      !isRecord(candidate) ||
+      candidate.type !== 'content' ||
+      !isRecord(candidate.config) ||
+      !isRecord(candidate.config.base) ||
+      !isRecord(candidate.config.base.params) ||
+      candidate.config.base.params.disabled === true
+    ) {
       throw new Error('Assessment draft preview requires an enabled Content Section');
     }
     const language = authored.params.languages[0];
@@ -75,9 +79,7 @@ export const defineAssessmentDraft = <
     const hasPlaceholder = effective.children.some((key: unknown) => {
       if (typeof key !== 'string') return false;
       const text = text_Data_Schema.safeParse(effective[key]);
-      return text.success &&
-        text.data.params.disabled !== true &&
-        text.data.locale.value === 'Not implemented';
+      return text.success && text.data.params.disabled !== true && text.data.locale.value === 'Not implemented';
     });
     if (!hasPlaceholder) {
       throw new Error('Assessment draft requires an enabled Not implemented Text ContentBlock');

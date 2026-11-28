@@ -38,11 +38,7 @@ describe('Configurators', () => {
           fileName: 'https://example.com/b.png',
           alt: 'Second',
         });
-        const carousel = defineCarousel<
-          'gallery',
-          { first: typeof first; second: typeof second },
-          ['en', 'uk']
-        >({
+        const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
           id: ids[0],
           slug: 'gallery',
           type: 'carousel',
@@ -71,29 +67,57 @@ describe('Configurators', () => {
           params: {},
           locale: {},
         };
-        assert.equal(carousel_Config_Schema.safeParse({
-          ...base, children: ['first', 'activity'], first, activity,
-        }).success, true);
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            children: ['first', 'activity'],
+            first,
+            activity,
+          }).success,
+          true,
+        );
 
         // A matching kind, slug, and UUID must not bypass the Configurator API.
         const impostor = { id: ids[4], slug: 'fake', type: 'image' };
-        assert.equal(carousel_Config_Schema.safeParse({
-          ...base, children: ['fake'], fake: impostor,
-        }).success, false, 'Shallow Image/Scene impostors must fail the public Config schema');
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            children: ['fake'],
+            fake: impostor,
+          }).success,
+          false,
+          'Shallow Image/Scene impostors must fail the public Config schema',
+        );
         const malformedIdentity = {
           ...first,
           config: { ...first.config, base: { ...first.config.base, id: ids[6] } },
         };
-        assert.equal(carousel_Config_Schema.safeParse({
-          ...base, children: ['first'], first: malformedIdentity,
-        }).success, false, 'Child Build identity must match the declared Configurator identity');
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            children: ['first'],
+            first: malformedIdentity,
+          }).success,
+          false,
+          'Child Build identity must match the declared Configurator identity',
+        );
 
-        assert.equal(carousel_Config_Schema.safeParse({
-          ...base, children: [],
-        }).success, false, 'An empty authored Carousel is invalid');
-        assert.equal(carousel_Data_Schema.safeParse({
-          ...base, children: [],
-        }).success, false, 'An empty published Carousel is invalid');
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            children: [],
+          }).success,
+          false,
+          'An empty authored Carousel is invalid',
+        );
+        assert.equal(
+          carousel_Data_Schema.safeParse({
+            ...base,
+            children: [],
+          }).success,
+          false,
+          'An empty published Carousel is invalid',
+        );
 
         const text = defineText({ id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' } });
         for (const forbidden of [
@@ -103,13 +127,25 @@ describe('Configurators', () => {
           false,
           null,
         ]) {
-          assert.equal(carousel_Config_Schema.safeParse({
-            ...base, children: ['invalid'], invalid: forbidden,
-          }).success, false);
+          assert.equal(
+            carousel_Config_Schema.safeParse({
+              ...base,
+              children: ['invalid'],
+              invalid: forbidden,
+            }).success,
+            false,
+          );
         }
-        assert.equal(carousel_Config_Schema.safeParse({
-          ...base, children: ['first'], first, slides: { items: { first }, order: ['first'] },
-        }).success, false, 'Legacy parallel slide collection must be rejected');
+        assert.equal(
+          carousel_Config_Schema.safeParse({
+            ...base,
+            children: ['first'],
+            first,
+            slides: { items: { first }, order: ['first'] },
+          }).success,
+          false,
+          'Legacy parallel slide collection must be rejected',
+        );
       });
 
       test('publishes direct, ordered, sparse Data with immutable slide identities', () => {
@@ -133,9 +169,8 @@ describe('Configurators', () => {
         assert.equal(JSON.stringify(resource).includes('"items"'), false);
         assert.equal(JSON.stringify(resource).includes('"order"'), false);
         assert.equal(
-          carousel_Data_Schema.safeParse(
-            mergeForValidation(resource.base, (resource.locale?.uk ?? {}) as never),
-          ).success,
+          carousel_Data_Schema.safeParse(mergeForValidation(resource.base, (resource.locale?.uk ?? {}) as never))
+            .success,
           true,
         );
       });
@@ -143,22 +178,21 @@ describe('Configurators', () => {
       test('public Data schema requires at least one effective enabled Image or Scene', () => {
         const { carousel } = example();
         const resource = carousel.build.data(scope);
-        const completed = mergeForValidation(
-          resource.base, (resource.locale?.en ?? {}) as never,
-        ) as Record<string, unknown>;
+        const completed = mergeForValidation(resource.base, (resource.locale?.en ?? {}) as never) as Record<
+          string,
+          unknown
+        >;
         assert.equal(carousel_Data_Schema.safeParse(completed).success, true);
 
         const oneDisabled = structuredClone(completed);
         (oneDisabled.first as { params: { disabled?: boolean } }).params.disabled = true;
-        assert.equal(
-          carousel_Data_Schema.safeParse(oneDisabled).success, true,
-          'An enabled slide is still available',
-        );
+        assert.equal(carousel_Data_Schema.safeParse(oneDisabled).success, true, 'An enabled slide is still available');
 
         const allDisabled = structuredClone(oneDisabled);
         (allDisabled.second as { params: { disabled?: boolean } }).params.disabled = true;
         assert.equal(
-          carousel_Data_Schema.safeParse(allDisabled).success, false,
+          carousel_Data_Schema.safeParse(allDisabled).success,
+          false,
           'All-disabled effective Data must fail the exported schema',
         );
 
@@ -166,7 +200,8 @@ describe('Configurators', () => {
         singleDisabled.children = ['first'];
         delete singleDisabled.second;
         assert.equal(
-          carousel_Data_Schema.safeParse(singleDisabled).success, false,
+          carousel_Data_Schema.safeParse(singleDisabled).success,
+          false,
           'A single disabled slide is not an active Carousel',
         );
       });
@@ -183,11 +218,7 @@ describe('Configurators', () => {
           params: {},
           locale: { value: { instruction: { en: 'Choose', uk: 'Обери' } } },
         });
-        const carousel = defineCarousel<
-          'mixed',
-          { picture: typeof picture; activity: typeof activity },
-          ['en', 'uk']
-        >({
+        const carousel = defineCarousel<'mixed', { picture: typeof picture; activity: typeof activity }, ['en', 'uk']>({
           id: ids[0],
           slug: 'mixed',
           type: 'carousel',
@@ -202,24 +233,29 @@ describe('Configurators', () => {
         assert.equal((built.base.activity as Record<string, unknown>).type, 'scene');
         assert.deepEqual(built.locale?.uk?.activity, { locale: { value: { instruction: 'Обери' } } });
         assert.equal(
-          carousel_Data_Schema.safeParse(
-            mergeForValidation(built.base, (built.locale?.uk ?? {}) as never),
-          ).success,
+          carousel_Data_Schema.safeParse(mergeForValidation(built.base, (built.locale?.uk ?? {}) as never)).success,
           true,
         );
       });
 
       test('keeps invariant slides exclusively in base and does not duplicate locale files', () => {
         const first = image('first', ids[1], {
-          fileName: 'https://example.com/base.png', alt: 'Base',
+          fileName: 'https://example.com/base.png',
+          alt: 'Base',
         });
         const carousel = defineCarousel<'gallery', { first: typeof first }, ['en', 'uk']>({
-          id: ids[0], slug: 'gallery', type: 'carousel',
-          params: {}, locale: {}, children: ['first'], first,
+          id: ids[0],
+          slug: 'gallery',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          children: ['first'],
+          first,
         });
         assert.deepEqual(carousel.build.data(scope).base.children, ['first']);
         assert.deepEqual((carousel.build.data(scope).base.first as Record<string, unknown>).locale, {
-          src: 'https://example.com/base.png', alt: 'Base',
+          src: 'https://example.com/base.png',
+          alt: 'Base',
         });
         assert.equal(carousel.build.data(scope).locale, undefined);
         assert.deepEqual(carousel.build.overrides({}, scope), { base: {}, locale: undefined });
@@ -228,13 +264,19 @@ describe('Configurators', () => {
       test('patches children sparsely; structural changes require explicit order', () => {
         const { carousel } = example();
         const later = defineScene<'later', ['en', 'uk']>({
-          id: ids[4], slug: 'later', type: 'scene', params: {},
+          id: ids[4],
+          slug: 'later',
+          type: 'scene',
+          params: {},
           locale: { value: { en: 'Later', uk: 'Пізніше' } },
         });
         const before = carousel.build.data(scope);
-        const nonstructural = carousel.build.overrides({
-          second: { locale: { alt: { uk: 'Другий' } } },
-        }, scope);
+        const nonstructural = carousel.build.overrides(
+          {
+            second: { locale: { alt: { uk: 'Другий' } } },
+          },
+          scope,
+        );
         assert.equal(nonstructural.base.children, undefined);
         assert.deepEqual(nonstructural.base.second, {});
         assert.deepEqual(nonstructural.locale?.uk?.second, { locale: { alt: 'Другий' } });
@@ -263,7 +305,10 @@ describe('Configurators', () => {
           [{ children: ['first', 'first', 'second'] }, /Duplicate slug: first|Duplicate placement slug/],
           [{ children: ['first', 'second', 'unknown'] }, /Unknown slug: unknown|Unknown or disabled child/],
           [{ first: false }, /children is required/],
-          [{ first: false, second: false, children: [] }, /At least one active Carousel slide|At least one item is required/],
+          [
+            { first: false, second: false, children: [] },
+            /At least one active Carousel slide|At least one item is required/,
+          ],
           [{ missing: false }, /Carousel slide|matching/],
           [{ first: { locale: { typo: 'invalid' } } }, /Invalid Image overrides/],
           [{ first: { id: ids[6] } }, /Invalid Image overrides/],
@@ -274,51 +319,89 @@ describe('Configurators', () => {
           [{ children: ['second', 'first'], first: { slug: 'changed' } }, /Invalid Image overrides/],
           [{ other: first, children: ['other', 'first', 'second'] }, /Carousel slide|slug/],
           [{ constructor: first, children: ['second', 'first', 'constructor'] }, /Reserved child/],
-          [{ another: image('another', ids[1], { fileName: 'https://example.com/c.png', alt: 'C' }),
-             children: ['second', 'first', 'another'] }, /Duplicate child ID|Duplicate Carousel slide ID/],
+          [
+            {
+              another: image('another', ids[1], { fileName: 'https://example.com/c.png', alt: 'C' }),
+              children: ['second', 'first', 'another'],
+            },
+            /Duplicate child ID|Duplicate Carousel slide ID/,
+          ],
         ];
         for (const [patch, reason] of invalid) {
           assert.throws(() => carousel.build.overrides(patch as never, scope), reason);
         }
         const text = defineText({
-          id: ids[5], slug: 'text', type: 'text', params: {}, locale: { value: 'No' },
+          id: ids[5],
+          slug: 'text',
+          type: 'text',
+          params: {},
+          locale: { value: 'No' },
         });
-        assert.throws(() => Reflect.apply(defineCarousel, undefined, [{
-          id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
-          children: ['text'], text,
-        }]).build.data({ languages: ['en'] }), /Invalid Carousel slides/);
+        assert.throws(
+          () =>
+            Reflect.apply(defineCarousel, undefined, [
+              {
+                id: ids[0],
+                slug: 'bad',
+                type: 'carousel',
+                params: {},
+                locale: {},
+                children: ['text'],
+                text,
+              },
+            ]).build.data({ languages: ['en'] }),
+          /Invalid Carousel slides/,
+        );
       });
 
       test('disabled slides do not publish and an empty effective Carousel is invalid', () => {
         const { carousel } = example();
-        const disabled = carousel.build.overrides({
-          first: { params: { disabled: true } },
-          children: ['second'],
-        }, scope);
+        const disabled = carousel.build.overrides(
+          {
+            first: { params: { disabled: true } },
+            children: ['second'],
+          },
+          scope,
+        );
         assert.deepEqual(disabled.base.children, ['second']);
         assert.equal(disabled.base.first, false);
 
-        assert.throws(() => carousel.build.overrides({
-          first: { params: { disabled: true } },
-          second: { params: { disabled: true } },
-          children: [],
-        }, scope), /At least one item is required/);
+        assert.throws(
+          () =>
+            carousel.build.overrides(
+              {
+                first: { params: { disabled: true } },
+                second: { params: { disabled: true } },
+                children: [],
+              },
+              scope,
+            ),
+          /At least one item is required/,
+        );
 
         const only = defineImage({
-          id: ids[4], slug: 'only', type: 'image',
+          id: ids[4],
+          slug: 'only',
+          type: 'image',
           params: { fill: true, aspectRatio: 1, disabled: true },
           locale: { fileName: 'https://example.com/a.png', alt: 'A' },
         });
         const invalid = defineCarousel<'bad', { only: typeof only }>({
-          id: ids[0], slug: 'bad', type: 'carousel', params: {}, locale: {},
-          children: ['only'], only,
+          id: ids[0],
+          slug: 'bad',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          children: ['only'],
+          only,
         });
         assert.throws(() => invalid.build.data({ languages: ['en'] }), /At least one active Carousel slide/);
       });
 
       test('disabled authored slides do not constrain requested language scope', () => {
         const available = image('available', ids[1], {
-          fileName: 'https://example.com/available.png', alt: 'Available',
+          fileName: 'https://example.com/available.png',
+          alt: 'Available',
         });
         const disabled = defineImage<'disabled', ['en']>({
           id: ids[6],
@@ -330,11 +413,15 @@ describe('Configurators', () => {
             alt: { en: 'Only English' },
           },
         });
-        const carousel = defineCarousel<
-          'gallery', { disabled: typeof disabled; available: typeof available }, ['en']
-        >({
-          id: ids[0], slug: 'gallery', type: 'carousel', params: {}, locale: {},
-          children: ['disabled', 'available'], disabled, available,
+        const carousel = defineCarousel<'gallery', { disabled: typeof disabled; available: typeof available }, ['en']>({
+          id: ids[0],
+          slug: 'gallery',
+          type: 'carousel',
+          params: {},
+          locale: {},
+          children: ['disabled', 'available'],
+          disabled,
+          available,
         });
         // Simulate an untyped caller: explicit parent/child authoring scopes remain
         // statically enforced, but a disabled child must not block runtime selection.

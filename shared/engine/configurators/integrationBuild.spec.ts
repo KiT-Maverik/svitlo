@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
 import { assembleLessonData } from '../assemblers/assembleLessonProps/assembleLessonProps';
-
 import { mergeForValidation } from './_shared__configurators';
 import { defineText } from './contentBlocks/primitive/defineText';
 import { defineChapter } from './courses/defineChapter';
@@ -42,7 +41,8 @@ describe('Configurators', () => {
         type: 'content',
         params: {},
         locale: { title: { uk: 'Вступ', en: 'Introduction' }, navigationLabel: '1' },
-        children: ['paragraph'], paragraph,
+        children: ['paragraph'],
+        paragraph,
       });
 
       const questionPrompt = defineText<'questionPrompt', ['uk', 'en']>({
@@ -106,7 +106,8 @@ describe('Configurators', () => {
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
-        children: ['intro'], intro: introduction,
+        children: ['intro'],
+        intro: introduction,
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
         id: id('09'),
@@ -114,7 +115,8 @@ describe('Configurators', () => {
         type: 'chapter',
         params: {},
         locale: { title: { uk: 'Розділ', en: 'Chapter' } },
-        children: ['lesson'], lesson,
+        children: ['lesson'],
+        lesson,
       });
       const courseModule = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
         id: id('10'),
@@ -122,7 +124,8 @@ describe('Configurators', () => {
         type: 'module',
         params: {},
         locale: { title: { uk: 'Модуль', en: 'Module' } },
-        children: ['chapter'], chapter,
+        children: ['chapter'],
+        chapter,
       });
       const course = defineCourse<'course', { module: typeof courseModule }, ['uk']>({
         id: id('11'),
@@ -130,7 +133,8 @@ describe('Configurators', () => {
         type: 'course',
         params: { languages: ['uk'] as const },
         locale: { title: { uk: 'Курс' }, description: 'Universal introduction' },
-        children: ['module'], module: courseModule,
+        children: ['module'],
+        module: courseModule,
       });
 
       test('Configurator publication is data-only, ordered and repeatable across entity boundaries', () => {
@@ -211,7 +215,8 @@ describe('Configurators', () => {
 
         const removed = lesson.build.overrides(
           {
-            intro: false, children: [],
+            intro: false,
+            children: [],
           },
           uk,
         );

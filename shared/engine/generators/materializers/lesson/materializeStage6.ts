@@ -132,15 +132,22 @@ function createStage2Normalizer(initialIds: readonly string[]) {
   const scenes: { id: string; slug: string; specification?: string }[] = [];
   const seen = new Set<string>(initialIds);
   const ordered = (value: unknown, location: string, wrapped: boolean) => {
-    if (!isRecord(value) || !Array.isArray(value.children) ||
-        Object.hasOwn(value, 'content') || Object.hasOwn(value, 'section') || Object.hasOwn(value, 'slides'))
+    if (
+      !isRecord(value) ||
+      !Array.isArray(value.children) ||
+      Object.hasOwn(value, 'content') ||
+      Object.hasOwn(value, 'section') ||
+      Object.hasOwn(value, 'slides')
+    )
       throw new Error(location + ': expected direct root children');
     const own = new Set(['id', 'type', 'slug', 'params', 'locale', 'skills', 'events', 'draft', 'children']);
     const collection = Object.fromEntries(Object.entries(value).filter(([key]) => !own.has(key)));
     const keys = Object.keys(collection);
-    if (keys.length !== value.children.length ||
-        new Set(value.children).size !== keys.length ||
-        value.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key)))
+    if (
+      keys.length !== value.children.length ||
+      new Set(value.children).size !== keys.length ||
+      value.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key))
+    )
       throw new Error(location + '.children: every authored child must be ordered once');
     const items: Record<string, unknown> = {};
     for (const key of keys) {

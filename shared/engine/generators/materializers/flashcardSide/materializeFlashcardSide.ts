@@ -59,7 +59,12 @@ function safeSlug(value: unknown, location: string): string {
 }
 /** All children must be accounted for once; do not silently reorder or drop blocks. */
 function assertSide(source: FlashcardSideSource, role: FlashcardSideContext['role']): void {
-  if (!record(source) || !Array.isArray(source.children) || Object.hasOwn(source, 'items') || Object.hasOwn(source, 'order'))
+  if (
+    !record(source) ||
+    !Array.isArray(source.children) ||
+    Object.hasOwn(source, 'items') ||
+    Object.hasOwn(source, 'order')
+  )
     fail('content.' + role, 'expected direct child keys and children order');
   const keys = Object.keys(source).filter(key => key !== 'children');
   if (

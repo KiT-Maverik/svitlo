@@ -150,9 +150,11 @@ function validateCollection(content: Source, location: string): void {
   if (!isObject(content) || !Array.isArray(content.children) || Object.hasOwn(content, 'content'))
     throw new Error(location + ': expected direct children');
   const keys = Object.keys(content).filter(key => !sectionFields.has(key));
-  if (keys.length !== content.children.length ||
-      new Set(content.children).size !== keys.length ||
-      content.children.some(k => typeof k !== 'string' || !Object.hasOwn(content, k) || sectionFields.has(k)))
+  if (
+    keys.length !== content.children.length ||
+    new Set(content.children).size !== keys.length ||
+    content.children.some(k => typeof k !== 'string' || !Object.hasOwn(content, k) || sectionFields.has(k))
+  )
     throw new Error(location + '.children: expected every child once');
   const ids = new Set<string>();
   for (const key of keys) {
@@ -210,7 +212,9 @@ export function materializeCodingTaskSection(config: Source, options: Options): 
     items[key] = imported(name);
     imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
   }
-  const rest = Object.fromEntries(Object.entries(config).filter(([key]) => sectionFields.has(key) && key !== 'children'));
+  const rest = Object.fromEntries(
+    Object.entries(config).filter(([key]) => sectionFields.has(key) && key !== 'children'),
+  );
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
   const own = { ...metadata, children: [...config.children], ...items };
   const name = exportName(config.slug);

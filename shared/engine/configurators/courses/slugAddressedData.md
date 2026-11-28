@@ -16,20 +16,31 @@ Canonical authored `defineCourse`, `defineModule` and `defineChapter` take
 ```ts
 // Shape only; IDs, locale completeness and child sources are illustrative.
 const chapter = defineChapter({
-  id: chapterUuid, type: 'chapter', slug: 'practice', params: {},
+  id: chapterUuid,
+  type: 'chapter',
+  slug: 'practice',
+  params: {},
   locale: { title: 'Practice' },
-  children: ['review'], review: existingLesson,
+  children: ['review'],
+  review: existingLesson,
 });
 const module = defineModule({
-  id: moduleUuid, type: 'module', slug: 'shapes', params: {},
+  id: moduleUuid,
+  type: 'module',
+  slug: 'shapes',
+  params: {},
   locale: { title: 'Shapes' },
-  children: ['practice'], practice: chapter,
+  children: ['practice'],
+  practice: chapter,
 });
 const course = defineCourse({
-  id: courseUuid, type: 'course', slug: 'intro',
+  id: courseUuid,
+  type: 'course',
+  slug: 'intro',
   params: { languages: ['en'] as const },
   locale: { title: 'Course', description: 'Shapes' },
-  children: ['shapes'], shapes: module,
+  children: ['shapes'],
+  shapes: module,
 });
 ```
 
@@ -85,11 +96,11 @@ E #912. No copies of standalone Lesson source are authored by this operation.
 
 The allowed child kinds are:
 
-| Owner | Direct child kinds |
-| --- | --- |
-| Course | Module, Chapter, Lesson, Episode, Assessment |
-| Module | Chapter, Lesson, Episode, Assessment |
-| Chapter | Lesson, Episode, Assessment |
+| Owner   | Direct child kinds                           |
+| ------- | -------------------------------------------- |
+| Course  | Module, Chapter, Lesson, Episode, Assessment |
+| Module  | Chapter, Lesson, Episode, Assessment         |
+| Chapter | Lesson, Episode, Assessment                  |
 
 Existing draft Lesson/Episode/Assessment placements remain allowed by their
 respective Configurator contracts. The parent checks **only its direct
@@ -114,18 +125,9 @@ wraps **only its own** localized fields as `locale[language].locale`.
 The canonical authored `build.overrides()` patch uses direct keys:
 
 ```ts
-course.build.overrides(
-  { shapes: { locale: { title: 'New shapes' } } },
-  { languages: ['en'] },
-);
-course.build.overrides(
-  { children: ['shapes', 'extra'], extra: additionalModule },
-  { languages: ['en'] },
-);
-course.build.overrides(
-  { children: ['extra'], shapes: false, extra: additionalModule },
-  { languages: ['en'] },
-);
+course.build.overrides({ shapes: { locale: { title: 'New shapes' } } }, { languages: ['en'] });
+course.build.overrides({ children: ['shapes', 'extra'], extra: additionalModule }, { languages: ['en'] });
+course.build.overrides({ children: ['extra'], shapes: false, extra: additionalModule }, { languages: ['en'] });
 ```
 
 Existing placements accept the child's own sparse authored override or
@@ -163,7 +165,7 @@ versus production selection, multilingual scope and origin identity.
 ## Dependency handoff
 
 **B — Lesson/Episode/Sections/ContentBlocks:** Follow the above `children` +
-direct keyed Data layout *only* for genuinely ordered child collections.
+direct keyed Data layout _only_ for genuinely ordered child collections.
 Do not introduce this Course-specific Config helper as a universal factory.
 Keep fixed Checkpoint/Carousel/Quiz/Quest roles and child-kind restrictions.
 

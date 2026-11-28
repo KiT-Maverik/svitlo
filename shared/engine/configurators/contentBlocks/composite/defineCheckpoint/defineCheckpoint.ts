@@ -26,9 +26,9 @@ import {
   type SafePlacementMap,
 } from '../../../_shared__configurators';
 import {
-  checkpoint_Metadata_Config_Schema,
   checkpoint_Config_Schema,
   checkpoint_Data_Schema,
+  checkpoint_Metadata_Config_Schema,
   checkpoint_Override_Config_Schema,
   type Checkpoint_Metadata_Overrides,
   type Checkpoint_Overrides,
@@ -91,26 +91,34 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
     result.errors.push({ check, path, message });
   };
   const parsed = checkpoint_Config_Schema.safeParse(config);
-  if (!parsed.success)
-    for (const issue of parsed.error.issues) fail('metadata', issue.path.join('.'), issue.message);
+  if (!parsed.success) for (const issue of parsed.error.issues) fail('metadata', issue.path.join('.'), issue.message);
   const items = isRecord(config) ? directItems(config) : {};
   for (const issue of validateOrderedKeys(
-    { items, order: config?.children }, { path: 'children', requireNonEmpty: true },
+    { items, order: config?.children },
+    { path: 'children', requireNonEmpty: true },
   ))
     fail(issue.check, issue.path, issue.message);
   for (const issue of validateSluggedConfiguratorMap(items, ['checkpointItem'], {
-    path: 'children', itemLabel: 'Checkpoint Item', reservedKeys: slugAddressedReservedKeys,
+    path: 'children',
+    itemLabel: 'Checkpoint Item',
+    reservedKeys: slugAddressedReservedKeys,
   }))
     fail(issue.check, issue.path, issue.message);
   if (!Array.isArray(config?.children) || !config.children.length)
     fail('children', 'children', 'At least one active Checkpoint item is required');
   const ids = new Set<string>();
   for (const [key, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== key ||
-        child.config.base.type !== child.type)
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    )
       fail('item', key, 'Invalid Checkpoint Item Build API or identity: ' + key);
     if (isRecord(child) && typeof child.id === 'string') {
       if (ids.has(child.id)) fail('id', key, 'Duplicate Checkpoint Item ID: ' + child.id);
@@ -128,7 +136,9 @@ type AuthoredInput<
 > = Pick<ContentBlock_Checkpoint_Config, 'id' | 'type' | 'params' | 'locale'> & {
   slug: Slug;
   children: Extract<keyof Items, string>[];
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
   ConfigWithLanguages<ContentBlock_Checkpoint_Config, Languages>;
 
 /**
@@ -142,11 +152,16 @@ export const defineCheckpoint = <
   const Slug extends string,
   const Items extends Record<string, CheckpointItem>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: AuthoredInput<Slug, Items, Languages>) => {
+>(
+  config: AuthoredInput<Slug, Items, Languages>,
+) => {
   // Snapshot serializable metadata, retaining separate immutable child references.
   const authored = structuredClone({
-    id: config.id, slug: config.slug, type: config.type,
-    params: config.params, locale: config.locale,
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
   });
   const metadataSchema = checkpoint_Metadata_Config_Schema;
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
@@ -156,7 +171,9 @@ export const defineCheckpoint = <
   const originalConfig = () => ({ ...copyAuthored(), children: [...initialOrder], ...initialItems });
 
   const base = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   };
@@ -201,9 +218,7 @@ export const defineCheckpoint = <
       for (const { key, resource, patch } of entries) {
         // Preserve the Item's sparse question/answer locale paths: do not
         // inject its invariant id, question Data or Answer Data here.
-        const translated = mergeForValidation(
-          resource.locale?.[language] ?? {}, patch?.locale?.[language] ?? {},
-        );
+        const translated = mergeForValidation(resource.locale?.[language] ?? {}, patch?.locale?.[language] ?? {});
         if (Object.keys(translated).length) fragments[key] = translated;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
@@ -211,7 +226,9 @@ export const defineCheckpoint = <
     return { base, locale, childPatches };
   };
 
-  const data = (options: PublicationLanguageOptions<Languages>): CheckpointPublication<ContentBlock_Checkpoint_DataBase> => {
+  const data = (
+    options: PublicationLanguageOptions<Languages>,
+  ): CheckpointPublication<ContentBlock_Checkpoint_DataBase> => {
     const languages = resolvePublicationLanguages(options);
     validate(originalConfig());
     const metadata = copyAuthored();
@@ -222,7 +239,9 @@ export const defineCheckpoint = <
       Object.assign((files[language as LanguageCode] ??= {}), fragments);
     const output: CheckpointPublication<ContentBlock_Checkpoint_DataBase> = structuredClone({
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         children: [...initialOrder],
@@ -270,7 +289,9 @@ export const defineCheckpoint = <
         else additions[key] = value as CheckpointItem;
       }
       const issues = validateSluggedConfiguratorMap(additions, ['checkpointItem'], {
-        path: 'children', itemLabel: 'Checkpoint Item', reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Checkpoint Item',
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, CheckpointItem | false> = { ...initialItems };
@@ -294,7 +315,8 @@ export const defineCheckpoint = <
         throw new Error('children is required when adding or disabling Checkpoint Items');
       const order = patch.children ?? initialOrder;
       const orderIssues = validateOrderedKeys(
-        { items: active, order }, { path: 'children', allowDisabled: true, requireNonEmpty: true },
+        { items: active, order },
+        { path: 'children', allowDisabled: true, requireNonEmpty: true },
       );
       if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active Checkpoint item is required');
@@ -349,8 +371,7 @@ export const defineCheckpoint = <
       return output;
     } catch (error) {
       throw new Error(
-        'Invalid Checkpoint overrides for ' + id + ': ' +
-          (error instanceof Error ? error.message : String(error)),
+        'Invalid Checkpoint overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -358,7 +379,8 @@ export const defineCheckpoint = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & Checkpoint_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, CheckpointItem>> &
+      patch: Patch &
+        Checkpoint_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, CheckpointItem>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, CheckpointItem>>,
       options: PublicationLanguageOptions<Languages>,
     ): CheckpointPublication<CheckpointOverrideBase>;
@@ -370,7 +392,9 @@ export const defineCheckpoint = <
 
   const result = {
     ...initialItems,
-    id, slug, type,
+    id,
+    slug,
+    type,
     children: [...initialOrder],
     validate,
     build: scopeBuild({ data, overrides }),
@@ -387,9 +411,7 @@ export const defineCheckpoint = <
 
 type DefinedCheckpoint = ReturnType<typeof defineCheckpoint>;
 /** The parent-facing union erases a composite's generic placement index. */
-export type ContentBlock_Checkpoint_Configurator = Pick<
-  DefinedCheckpoint, 'validate' | 'config'
-> & {
+export type ContentBlock_Checkpoint_Configurator = Pick<DefinedCheckpoint, 'validate' | 'config'> & {
   readonly id: string;
   readonly slug: string;
   readonly type: 'checkpoint';

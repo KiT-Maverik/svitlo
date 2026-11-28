@@ -13,36 +13,51 @@ const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const scope = { languages: ['en', 'uk'] as const };
 const text = <const Slug extends string>(slug: Slug, suffix: string, value: string | { en: string; uk: string }) =>
   defineText<Slug, ['en', 'uk']>({
-    id: id(suffix), slug, type: 'text', params: {}, locale: { value },
+    id: id(suffix),
+    slug,
+    type: 'text',
+    params: {},
+    locale: { value },
   });
 const item = <const Slug extends string>(
-  slug: Slug, suffix: string, questionSuffix: string, answerSuffix: string, textSuffix: string,
+  slug: Slug,
+  suffix: string,
+  questionSuffix: string,
+  answerSuffix: string,
+  textSuffix: string,
   value: string | { en: string; uk: string },
 ) => {
   const question = text('question', questionSuffix, value);
   const answerText = text('answerText', textSuffix, 'Invariant answer');
-  const answer = defineCheckpointAnswer<
-    'answer', { answerText: typeof answerText }, ['en', 'uk']
-  >({
-    id: id(answerSuffix), slug: 'answer', type: 'checkpointAnswer',
-    children: ['answerText'], answerText,
+  const answer = defineCheckpointAnswer<'answer', { answerText: typeof answerText }, ['en', 'uk']>({
+    id: id(answerSuffix),
+    slug: 'answer',
+    type: 'checkpointAnswer',
+    children: ['answerText'],
+    answerText,
   });
   return defineCheckpointItem<Slug, typeof answer, typeof question, ['en', 'uk']>({
-    id: id(suffix), slug, type: 'checkpointItem',
-    check: true, question, answer,
+    id: id(suffix),
+    slug,
+    type: 'checkpointItem',
+    check: true,
+    question,
+    answer,
   });
 };
 
 const example = () => {
   const first = item('first', '61', '62', '63', '64', { en: 'First?', uk: 'Перше?' });
   const second = item('second', '65', '66', '67', '68', 'Second?');
-  const checkpoint = defineCheckpoint<
-    'review', { first: typeof first; second: typeof second }, ['en', 'uk']
-  >({
-    id: id('60'), slug: 'review', type: 'checkpoint',
+  const checkpoint = defineCheckpoint<'review', { first: typeof first; second: typeof second }, ['en', 'uk']>({
+    id: id('60'),
+    slug: 'review',
+    type: 'checkpoint',
     params: { enableChecks: true, requireCompletion: true },
     locale: { title: { en: 'Review', uk: 'Перевірка' } },
-    children: ['first', 'second'], first, second,
+    children: ['first', 'second'],
+    first,
+    second,
   });
   return { checkpoint, first, second };
 };
@@ -50,12 +65,19 @@ const example = () => {
 describe('defineCheckpoint slug-addressed CheckpointItems', () => {
   test('validates typed Items, preserves author order and publishes direct Data paths', () => {
     const { checkpoint, first, second } = example();
-    assert.equal(checkpoint_Config_Schema.safeParse({
-      id: checkpoint.id, slug: checkpoint.slug, type: checkpoint.type,
-      params: { enableChecks: true, requireCompletion: true },
-      locale: { title: 'Review' },
-      children: ['second', 'first'], first, second,
-    }).success, true);
+    assert.equal(
+      checkpoint_Config_Schema.safeParse({
+        id: checkpoint.id,
+        slug: checkpoint.slug,
+        type: checkpoint.type,
+        params: { enableChecks: true, requireCompletion: true },
+        locale: { title: 'Review' },
+        children: ['second', 'first'],
+        first,
+        second,
+      }).success,
+      true,
+    );
     const result = checkpoint.build.data(scope);
     assert.deepEqual(result.base.children, ['first', 'second']);
     assert.equal((result.base.first as { type: string }).type, 'checkpointItem');
@@ -71,16 +93,19 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     const localized = mergeForValidation(result.base, result.locale?.uk ?? {});
     assert.equal(checkpoint_Data_Schema.safeParse(localized).success, true);
     const firstData = localized.first as { question: { params: Record<string, unknown> } };
-    assert.equal(checkpoint_Data_Schema.safeParse({
-      ...localized,
-      first: {
-        ...firstData,
-        question: {
-          ...firstData.question,
-          params: { ...firstData.question.params, disabled: true },
+    assert.equal(
+      checkpoint_Data_Schema.safeParse({
+        ...localized,
+        first: {
+          ...firstData,
+          question: {
+            ...firstData.question,
+            params: { ...firstData.question.params, disabled: true },
+          },
         },
-      },
-    }).success, false);
+      }).success,
+      false,
+    );
     assert.equal(JSON.stringify(result).includes('"items"'), false);
     assert.equal(JSON.stringify(result).includes('"order"'), false);
   });
@@ -89,17 +114,33 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     const question = text('question', '81', { en: 'Where?', uk: 'Де?' });
     const answerText = text('answerText', '82', { en: 'Here', uk: 'Тут' });
     const unchanged = text('unchanged', '83', 'Invariant');
-    const answer = defineCheckpointAnswer<'answer', { answerText: typeof answerText; unchanged: typeof unchanged }, ['en', 'uk']>({
-      id: id('84'), slug: 'answer', type: 'checkpointAnswer',
-      children: ['answerText', 'unchanged'], answerText, unchanged,
+    const answer = defineCheckpointAnswer<
+      'answer',
+      { answerText: typeof answerText; unchanged: typeof unchanged },
+      ['en', 'uk']
+    >({
+      id: id('84'),
+      slug: 'answer',
+      type: 'checkpointAnswer',
+      children: ['answerText', 'unchanged'],
+      answerText,
+      unchanged,
     });
     const first = defineCheckpointItem<'first', typeof answer, typeof question, ['en', 'uk']>({
-      id: id('85'), slug: 'first', type: 'checkpointItem', question, answer,
+      id: id('85'),
+      slug: 'first',
+      type: 'checkpointItem',
+      question,
+      answer,
     });
     const checkpoint = defineCheckpoint<'review', { first: typeof first }, ['en', 'uk']>({
-      id: id('86'), slug: 'review', type: 'checkpoint',
-      params: {}, locale: { title: { en: 'Review', uk: 'Огляд' } },
-      children: ['first'], first,
+      id: id('86'),
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: { en: 'Review', uk: 'Огляд' } },
+      children: ['first'],
+      first,
     });
     const published = checkpoint.build.data({ languages: ['uk'] });
     assert.deepEqual(published.locale, {
@@ -111,26 +152,28 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
         },
       },
     });
-    assert.equal(published.locale?.uk?.first && (
-      (published.locale.uk.first as Record<string, unknown>).id
-    ), undefined);
-    assert.equal(checkpoint_Data_Schema.safeParse(
-      mergeForValidation(published.base, published.locale?.uk ?? {}),
-    ).success, true);
+    assert.equal(published.locale?.uk?.first && (published.locale.uk.first as Record<string, unknown>).id, undefined);
+    assert.equal(
+      checkpoint_Data_Schema.safeParse(mergeForValidation(published.base, published.locale?.uk ?? {})).success,
+      true,
+    );
   });
 
   test('publishes sparse metadata and isolated nested Text/Answer locale patches', () => {
     const { checkpoint } = example();
     const before = checkpoint.build.data(scope);
     assert.deepEqual(checkpoint.build.overrides({}, scope), { base: {}, locale: undefined });
-    const changed = checkpoint.build.overrides({
-      params: { enableChecks: false },
-      locale: { title: { uk: 'Новий огляд' } },
-      second: {
-        question: { locale: { value: { uk: 'Інакше?' } } },
-        answer: { answerText: { locale: { value: { uk: 'Відповідь' } } } },
+    const changed = checkpoint.build.overrides(
+      {
+        params: { enableChecks: false },
+        locale: { title: { uk: 'Новий огляд' } },
+        second: {
+          question: { locale: { value: { uk: 'Інакше?' } } },
+          answer: { answerText: { locale: { value: { uk: 'Відповідь' } } } },
+        },
       },
-    }, scope);
+      scope,
+    );
     assert.deepEqual(changed.base.params, { enableChecks: false });
     assert.equal(changed.base.children, undefined);
     assert.equal(changed.base.first, undefined);
@@ -148,17 +191,20 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     const { checkpoint } = example();
     const later = item('later', '69', '6a', '6b', '6c', { en: 'Later?', uk: 'Потім?' });
     const before = checkpoint.build.data(scope);
-    const patch = checkpoint.build.overrides({
-      first: false,
-      second: { question: { locale: { value: { uk: 'Інакше?' } } } },
-      later,
-      children: ['later', 'second'],
-    }, scope);
+    const patch = checkpoint.build.overrides(
+      {
+        first: false,
+        second: { question: { locale: { value: { uk: 'Інакше?' } } } },
+        later,
+        children: ['later', 'second'],
+      },
+      scope,
+    );
     assert.deepEqual(patch.base.children, ['later', 'second']);
     assert.equal(patch.base.first, false);
     assert.equal((patch.base.later as { id: string }).id, later.id);
     assert.equal(
-      (((patch.locale?.uk?.second as Record<string, unknown>).question as { locale: { value: string } }).locale.value),
+      ((patch.locale?.uk?.second as Record<string, unknown>).question as { locale: { value: string } }).locale.value,
       'Інакше?',
     );
     assert.equal(checkpoint.build.data(scope).base.children.includes('first'), true);
@@ -168,8 +214,11 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
   test('rejects unknown, duplicated, reserved and wrong-kind CheckpointItem keys', () => {
     const { first, second } = example();
     const metadata = {
-      id: id('60'), slug: 'review', type: 'checkpoint' as const,
-      params: {}, locale: { title: 'Review' },
+      id: id('60'),
+      slug: 'review',
+      type: 'checkpoint' as const,
+      params: {},
+      locale: { title: 'Review' },
     };
     const cases = [
       { ...metadata, children: [], first },
@@ -189,9 +238,14 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
       { ...first, build: {} },
       { ...first, config: { base: { id: id('70'), slug: 'first', type: 'checkpointItem' } } },
     ]) {
-      assert.equal(checkpoint_Config_Schema.safeParse({
-        ...metadata, children: ['first'], first: impostor,
-      }).success, false);
+      assert.equal(
+        checkpoint_Config_Schema.safeParse({
+          ...metadata,
+          children: ['first'],
+          first: impostor,
+        }).success,
+        false,
+      );
     }
   });
 
@@ -216,25 +270,41 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
 
   test('keeps pending media in nested Answer draft-only without changing paths or validation', () => {
     const pendingVideo = defineYoutube({
-      id: id('70'), slug: 'pendingVideo', type: 'youtube',
+      id: id('70'),
+      slug: 'pendingVideo',
+      type: 'youtube',
       params: { mode: 'link' },
       locale: { href: UNRESOLVED_YOUTUBE_HREF, label: 'Pending video' },
     });
     const answer = defineCheckpointAnswer<'answer', { pendingVideo: typeof pendingVideo }, ['en']>({
-      id: id('71'), slug: 'answer', type: 'checkpointAnswer',
-      children: ['pendingVideo'], pendingVideo,
+      id: id('71'),
+      slug: 'answer',
+      type: 'checkpointAnswer',
+      children: ['pendingVideo'],
+      pendingVideo,
     });
     const question = defineText({
-      id: id('72'), slug: 'question', type: 'text',
-      params: {}, locale: { value: 'Where is the shadow?' },
+      id: id('72'),
+      slug: 'question',
+      type: 'text',
+      params: {},
+      locale: { value: 'Where is the shadow?' },
     });
     const first = defineCheckpointItem<'first', typeof answer, typeof question, ['en']>({
-      id: id('73'), slug: 'first', type: 'checkpointItem', question, answer,
+      id: id('73'),
+      slug: 'first',
+      type: 'checkpointItem',
+      question,
+      answer,
     });
     const checkpoint = defineCheckpoint<'review', { first: typeof first }, ['en']>({
-      id: id('74'), slug: 'review', type: 'checkpoint',
-      params: {}, locale: { title: 'Review' },
-      children: ['first'], first,
+      id: id('74'),
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: 'Review' },
+      children: ['first'],
+      first,
     });
     assert.throws(() => checkpoint.build.data({ languages: ['en'] }), /unresolved video reference/);
     const preview = checkpoint.build.data({ languages: ['en'], mode: 'draft' });
@@ -243,9 +313,6 @@ describe('defineCheckpoint slug-addressed CheckpointItems', () => {
     assert.equal(answerBlock.type, 'youtube');
     assert.equal(answerBlock.locale?.href, UNRESOLVED_YOUTUBE_HREF);
     assert.equal(answerBlock.locale?.label, 'Pending video');
-    assert.throws(
-      () => checkpoint.build.data({ languages: ['en'], mode: 'production' }),
-      /unresolved video reference/,
-    );
+    assert.throws(() => checkpoint.build.data({ languages: ['en'], mode: 'production' }), /unresolved video reference/);
   });
 });

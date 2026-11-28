@@ -47,7 +47,10 @@ export const buildAnswerWithBlocks_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.data }),
   content: questionCommonContent_Data_Schema.extend({
-    correctSequence: questionBlockCollection_Data_Schema.refine(group => group.children.length > 0, 'A correct sequence is required'),
+    correctSequence: questionBlockCollection_Data_Schema.refine(
+      group => group.children.length > 0,
+      'A correct sequence is required',
+    ),
     distractors: questionBlockCollection_Data_Schema,
   }),
 });

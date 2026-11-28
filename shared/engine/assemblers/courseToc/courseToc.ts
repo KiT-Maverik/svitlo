@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 
 /** Direct placement keys are canonical Data. Presentation arrays belong to UI adapters. */
@@ -19,13 +20,15 @@ const forbidden = new Set(['__proto__', 'constructor', 'prototype']);
 const slot = /^[a-z][a-zA-Z0-9]*$/;
 const record = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v);
 const rootSchema = z.looseObject({
-  id: z.uuid(), type: z.literal('course'),
+  id: z.uuid(),
+  type: z.literal('course'),
   languages: z.array(languageCode_Schema).nonempty(),
   label: z.string().trim().min(1).optional(),
   children: z.array(z.string()),
 });
 const nodeSchema = z.looseObject({
-  id: z.uuid(), type: z.enum(['module', 'chapter', 'lesson', 'episode', 'assessment']),
+  id: z.uuid(),
+  type: z.enum(['module', 'chapter', 'lesson', 'episode', 'assessment']),
   label: z.string().trim().min(1).optional(),
   draft: z.literal(true).optional(),
   children: z.array(z.string()).optional(),
@@ -35,8 +38,12 @@ function safeJson(value: unknown, seen = new Set<object>()): void {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
   if (typeof value === 'number' && Number.isFinite(value)) return;
   if (typeof value !== 'object' || value === null || seen.has(value)) throw Error('Invalid TOC JSON value');
-  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype &&
-      Object.getPrototypeOf(value) !== null) throw Error('Invalid TOC JSON object');
+  if (
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) !== Object.prototype &&
+    Object.getPrototypeOf(value) !== null
+  )
+    throw Error('Invalid TOC JSON object');
   seen.add(value);
   if (Array.isArray(value)) {
     for (let index = 0; index < value.length; index++) {
@@ -71,9 +78,8 @@ function validateTree(value: unknown, complete: boolean, mode: 'draft' | 'produc
     const children = owner.children;
     if (!Array.isArray(children) || new Set(children).size !== children.length)
       throw Error('Invalid Course TOC order at ' + at);
-    const metadata = parent === 'course'
-      ? ['id', 'type', 'languages', 'label', 'children']
-      : ['id', 'type', 'label', 'children'];
+    const metadata =
+      parent === 'course' ? ['id', 'type', 'languages', 'label', 'children'] : ['id', 'type', 'label', 'children'];
     const slots = Object.keys(owner).filter(key => !metadata.includes(key));
     if (slots.length !== children.length || slots.some(key => !children.includes(key)))
       throw Error('Unaddressed Course TOC slot at ' + at);
@@ -93,8 +99,10 @@ function validateTree(value: unknown, complete: boolean, mode: 'draft' | 'produc
           throw Error('Invalid Course TOC hierarchy at ' + at + '/' + key);
         if (node.children === undefined) throw Error('Missing TOC children at ' + at + '/' + key);
         visit(node, node.type, at + '/' + key);
-      } else if (node.children !== undefined ||
-          Object.keys(node).some(field => !['id', 'type', 'label', 'draft'].includes(field))) {
+      } else if (
+        node.children !== undefined ||
+        Object.keys(node).some(field => !['id', 'type', 'label', 'draft'].includes(field))
+      ) {
         throw Error('Unexpected activity TOC placements at ' + at + '/' + key);
       }
     }
@@ -104,14 +112,17 @@ function validateTree(value: unknown, complete: boolean, mode: 'draft' | 'produc
 }
 /** Translation can only change labels, never the addressable Course hierarchy. */
 function assertSameStructure(base: CourseToc, selected: CourseToc): void {
-  if (base.id !== selected.id || base.type !== selected.type ||
-      JSON.stringify(base.languages) !== JSON.stringify(selected.languages))
+  if (
+    base.id !== selected.id ||
+    base.type !== selected.type ||
+    JSON.stringify(base.languages) !== JSON.stringify(selected.languages)
+  )
     throw Error('Localized Course TOC root identity changed');
   function walk(a: Record<string, unknown>, b: Record<string, unknown>): void {
-    if (JSON.stringify(a.children) !== JSON.stringify(b.children))
-      throw Error('Localized Course TOC order changed');
+    if (JSON.stringify(a.children) !== JSON.stringify(b.children)) throw Error('Localized Course TOC order changed');
     for (const key of a.children as string[]) {
-      const x = a[key], y = b[key];
+      const x = a[key],
+        y = b[key];
       if (!record(x) || !record(y) || x.id !== y.id || x.type !== y.type || x.draft !== y.draft)
         throw Error('Localized Course TOC identity changed at ' + key);
       if (x.type === 'module' || x.type === 'chapter') walk(x, y);

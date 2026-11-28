@@ -27,8 +27,9 @@ export type DomainQuestion =
 
 type Block = ContentBlock_Primitive_Data;
 type Common = { question: Block[]; hint?: Block[]; explanation?: Block[] };
-type Presented<T extends DomainQuestion, Additional extends object = object> =
-  Omit<T, 'content'> & { content: Common & Additional };
+type Presented<T extends DomainQuestion, Additional extends object = object> = Omit<T, 'content'> & {
+  content: Common & Additional;
+};
 
 type Answers = { answers: { correct: Block[]; incorrect: Block[]; distractors: Block[] } };
 type Pairs = { pairs: Record<string, { left: Block; right: Block }> };
@@ -98,10 +99,12 @@ export function toQuestionProps(question: DomainQuestion): QuestionViewProps {
         ...question,
         content: {
           ...base,
-          pairs: Object.fromEntries(orderedEntries(question.content.pairs, 'matching pairs').map(([key, value]) => {
-            const pair = asRecord(value, 'pair');
-            return [key, { left: primitive(pair.left), right: primitive(pair.right) }];
-          })),
+          pairs: Object.fromEntries(
+            orderedEntries(question.content.pairs, 'matching pairs').map(([key, value]) => {
+              const pair = asRecord(value, 'pair');
+              return [key, { left: primitive(pair.left), right: primitive(pair.right) }];
+            }),
+          ),
         },
       } as QuestionViewProps;
     case 'orderSequence':

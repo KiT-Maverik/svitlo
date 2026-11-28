@@ -57,9 +57,20 @@ const validPlacement = /^[a-z][a-zA-Z0-9]*$/;
 type VerifiedChildren = { readonly source: string[]; readonly count: number; readonly keys: ReadonlySet<string> };
 const verifiedPublications = new WeakMap<object, WeakMap<object, VerifiedChildren>>();
 const reservedPlacementKeys = new Set([
-  'id', 'slug', 'type', 'params', 'locale', 'children',
-  'content', 'items', 'order', 'additionalItems', 'additionalChildren',
-  '__proto__', 'constructor', 'prototype',
+  'id',
+  'slug',
+  'type',
+  'params',
+  'locale',
+  'children',
+  'content',
+  'items',
+  'order',
+  'additionalItems',
+  'additionalChildren',
+  '__proto__',
+  'constructor',
+  'prototype',
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -119,21 +130,29 @@ function verifiedChildren(root: Record<string, unknown>): WeakMap<object, Verifi
       throw new Error('Invalid Course publication children');
     if (!Object.isFrozen(parent) || !Object.isFrozen(order)) immutable = false;
     const keys = new Set(order);
-    const placements = Object.keys(parent).filter(key =>
-      !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key));
+    const placements = Object.keys(parent).filter(
+      key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key),
+    );
     if (placements.length !== keys.size || placements.some(key => !keys.has(key)))
       throw new Error('Unaddressed or disabled Course publication placement');
     for (const slug of order) {
-      if (typeof slug !== 'string' || !validPlacement.test(slug) ||
-          reservedPlacementKeys.has(slug) || !Object.hasOwn(parent, slug))
+      if (
+        typeof slug !== 'string' ||
+        !validPlacement.test(slug) ||
+        reservedPlacementKeys.has(slug) ||
+        !Object.hasOwn(parent, slug)
+      )
         throw new Error('Unsafe or unknown Course publication placement');
       const node: unknown = parent[slug];
-      if (!isRecord(node) || typeof node.id !== 'string')
-        throw new Error('Invalid Course child at ' + slug);
+      if (!isRecord(node) || typeof node.id !== 'string') throw new Error('Invalid Course child at ' + slug);
       if (!Object.isFrozen(node)) immutable = false;
       if (node.type === 'module' || node.type === 'chapter') {
-        if (parentType === 'chapter' || (parentType === 'module' && node.type === 'module') ||
-            node.slug !== slug || visited.has(node.id))
+        if (
+          parentType === 'chapter' ||
+          (parentType === 'module' && node.type === 'module') ||
+          node.slug !== slug ||
+          visited.has(node.id)
+        )
           throw new Error('Invalid Course publication hierarchy at ' + slug);
         visited.add(node.id);
         visit(node, node.type);
@@ -163,13 +182,15 @@ function findLesson(
     if (!published.keys.has(slug) || !Object.hasOwn(parent, slug))
       throw new Error('Unknown Course placement at ' + location);
     const node: unknown = parent[slug];
-    if (!isRecord(node) || typeof node.id !== 'string')
-      throw new Error('Invalid Course child at ' + location);
+    if (!isRecord(node) || typeof node.id !== 'string') throw new Error('Invalid Course child at ' + location);
     return node;
   };
   if (placement !== undefined) {
-    if (typeof placement !== 'string' || !placement ||
-        placement.split('/').some(segment => !validPlacement.test(segment) || forbiddenKeys.has(segment)))
+    if (
+      typeof placement !== 'string' ||
+      !placement ||
+      placement.split('/').some(segment => !validPlacement.test(segment) || forbiddenKeys.has(segment))
+    )
       throw new Error('Unsafe Course placement path');
     const path = placement.split('/');
     let node = root;
@@ -225,11 +246,17 @@ function getOverride(
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
-    if (forbiddenOverrideKeys.has(key) || (!allowedOverrideKeys.has(key) && (!validPlacement.test(key) || forbiddenKeys.has(key))))
+    if (
+      forbiddenOverrideKeys.has(key) ||
+      (!allowedOverrideKeys.has(key) && (!validPlacement.test(key) || forbiddenKeys.has(key)))
+    )
       throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
-  if (node.overrides.children !== undefined && (!Array.isArray(node.overrides.children) ||
-      node.overrides.children.some(key => typeof key !== 'string' || !validPlacement.test(key))))
+  if (
+    node.overrides.children !== undefined &&
+    (!Array.isArray(node.overrides.children) ||
+      node.overrides.children.some(key => typeof key !== 'string' || !validPlacement.test(key)))
+  )
     throw new Error('Invalid Lesson override children at ' + label);
   if (isRecord(node.overrides.params) && Object.hasOwn(node.overrides.params, 'languages')) {
     throw new Error('Course Lesson overrides cannot override Lesson supported languages');

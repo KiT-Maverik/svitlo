@@ -203,7 +203,8 @@ function projectToc(value) {
   if (title !== undefined && (typeof title !== 'string' || !title.trim()))
     throw Error('Invalid resolved Course TOC title: ' + value.id);
   const result = {
-    id: value.id, type: value.type,
+    id: value.id,
+    type: value.type,
     ...(title !== undefined ? { label: title } : {}),
   };
   if (value.draft === true) {

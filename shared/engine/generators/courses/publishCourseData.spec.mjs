@@ -4,12 +4,17 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import {
-  defineChapter, defineCourse, defineLesson, defineModule, defineEpisode,
-  defineContentSection, defineText, placeLesson, defineLessonStub,
+  defineChapter,
+  defineCourse,
+  defineLesson,
+  defineModule,
+  defineEpisode,
+  defineContentSection,
+  defineText,
+  placeLesson,
+  defineLessonStub,
 } from '@svitlo/engine/build';
-import {
-  assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode,
-} from '@svitlo/engine/runtime';
+import { assembleCourseTree, assembleCourseLesson, courseActivities, findCourseEpisode } from '@svitlo/engine/runtime';
 import { mergeCourseData, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const id = n => '11111111-1111-4111-8111-' + n.toString(16).padStart(12, '0');
@@ -19,29 +24,59 @@ function fixture() {
   const lesson = { id: id(4), slug: 'originalLesson', type: 'lesson' };
   const chapter = { id: id(3), slug: 'chapter', type: 'chapter', children: ['practice'], practice: lesson };
   const module = { id: id(2), slug: 'module', type: 'module', children: ['chapter'], chapter };
-  const fullLesson = { ...lesson, skills: ['private skill'], children: [],
-    params: { languages, quizRequiredForCompletion: false }, locale: { title: 'Lesson' } };
+  const fullLesson = {
+    ...lesson,
+    skills: ['private skill'],
+    children: [],
+    params: { languages, quizRequiredForCompletion: false },
+    locale: { title: 'Lesson' },
+  };
   const base = {
-    id: id(1), slug: 'course', type: 'course', params: { languages },
+    id: id(1),
+    slug: 'course',
+    type: 'course',
+    params: { languages },
     locale: { title: 'Course', description: 'Example' },
     children: ['module'],
     module: {
-      id: id(2), slug: 'module', type: 'module', params: {}, locale: { title: 'Module' },
+      id: id(2),
+      slug: 'module',
+      type: 'module',
+      params: {},
+      locale: { title: 'Module' },
       children: ['chapter'],
       chapter: {
-        id: id(3), slug: 'chapter', type: 'chapter', params: {}, locale: { title: 'Chapter' },
-        children: ['practice'], practice: fullLesson,
+        id: id(3),
+        slug: 'chapter',
+        type: 'chapter',
+        params: {},
+        locale: { title: 'Chapter' },
+        children: ['practice'],
+        practice: fullLesson,
       },
     },
   };
   const course = {
-    id: id(1), slug: 'course', type: 'course', children: ['module'], module,
+    id: id(1),
+    slug: 'course',
+    type: 'course',
+    children: ['module'],
+    module,
     config: { base: { params: { languages } } },
-    build: { data: () => ({
-      base: structuredClone(base),
-      locale: { uk: { locale: { title: 'Курс' }, module: { locale: { title: 'Модуль' },
-        chapter: { locale: { title: 'Розділ' }, practice: { locale: { title: 'Урок' } } } } } },
-    }) },
+    build: {
+      data: () => ({
+        base: structuredClone(base),
+        locale: {
+          uk: {
+            locale: { title: 'Курс' },
+            module: {
+              locale: { title: 'Модуль' },
+              chapter: { locale: { title: 'Розділ' }, practice: { locale: { title: 'Урок' } } },
+            },
+          },
+        },
+      }),
+    },
   };
   return course;
 }
@@ -107,7 +142,9 @@ test('publishes atomically, checks bytes, removes stale own files and preserves 
     fs.writeFileSync(path.join(root, 'base.json'), '{}');
     assert.throws(() => publishCourse(course, { packageRoot: home, check: true }), /Stale Course/);
     assert.throws(() => publishCourse(course, { outputRoot: path.join(home, 'missing'), check: true }));
-  } finally { fs.rmSync(home, { recursive: true, force: true }); }
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
 });
 
 test('symlinked output directories cannot be used as a publication target', () => {
@@ -116,14 +153,22 @@ test('symlinked output directories cannot be used as a publication target', () =
     fs.mkdirSync(path.join(home, 'real'));
     fs.symlinkSync(path.join(home, 'real'), path.join(home, 'alias'), 'dir');
     assert.throws(() => publishCourse(fixture(), { outputRoot: path.join(home, 'alias', 'courses') }), /Symlink/);
-  } finally { fs.rmSync(home, { recursive: true, force: true }); }
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
 });
 
 function realLesson(n = 10) {
   return defineLesson({
-    id: id(n), slug: 'originalLesson', type: 'lesson', skills: [],
-    params: { languages, quizRequiredForCompletion: false,
-      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
+    id: id(n),
+    slug: 'originalLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
     locale: { title: { en: 'Original', uk: 'Оригінал' } },
     children: [],
   });
@@ -132,67 +177,131 @@ function realLesson(n = 10) {
 test('real configurators retain contextual Lesson alias and independent sparse placement patches', () => {
   const lesson = realLesson();
   const chapter = defineChapter({
-    id: id(11), slug: 'chapter', type: 'chapter', params: {}, locale: { title: 'Chapter' },
+    id: id(11),
+    slug: 'chapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
     children: ['adapted'],
-    adapted: placeLesson(lesson, { params: { sections: { allowSkipping: false } },
-      locale: { title: { uk: 'Тіньова практика' } } }),
+    adapted: placeLesson(lesson, {
+      params: { sections: { allowSkipping: false } },
+      locale: { title: { uk: 'Тіньова практика' } },
+    }),
   });
   const module = defineModule({
-    id: id(12), slug: 'module', type: 'module', params: {}, locale: { title: 'Module' },
-    children: ['chapter'], chapter,
+    id: id(12),
+    slug: 'module',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    children: ['chapter'],
+    chapter,
   });
   const course = defineCourse({
-    id: id(13), slug: 'course', type: 'course',
-    params: { languages }, locale: { title: 'Course', description: 'Two placements' },
+    id: id(13),
+    slug: 'course',
+    type: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Two placements' },
     children: ['module', 'direct'],
-    module, direct: placeLesson(lesson, { locale: { title: 'Direct title' } }),
+    module,
+    direct: placeLesson(lesson, { locale: { title: 'Direct title' } }),
   });
   const files = renderCourseFiles(course);
   const base = JSON.parse(files.get('base.json'));
   const localized = mergeCourseData(base, JSON.parse(files.get('uk.json')));
   assert.deepEqual(base.module.chapter.adapted, {
-    id: lesson.id, type: 'lesson',
+    id: lesson.id,
+    type: 'lesson',
     overrides: { params: { sections: { allowSkipping: false } } },
   });
   assert.equal(base.direct.overrides.locale.title, 'Direct title');
   assert.equal(localized.module.chapter.adapted.overrides.locale.title, 'Тіньова практика');
   const resource = lesson.build.data({ languages });
   const publication = { base, locale: { uk: JSON.parse(files.get('uk.json')) } };
-  assert.equal(assembleCourseLesson({ courseId: course.id, lessonId: lesson.id, language: 'uk',
-    placement: 'module/chapter/adapted', lesson: resource, course: publication }).locale.title, 'Тіньова практика');
-  assert.equal(assembleCourseLesson({ courseId: course.id, lessonId: lesson.id, language: 'uk',
-    placement: 'direct', lesson: resource, course: publication }).locale.title, 'Direct title');
-  assert.throws(() => assembleCourseLesson({ courseId: course.id, lessonId: lesson.id,
-    language: 'uk', lesson: resource, course: publication }), /Ambiguous Lesson ID/);
+  assert.equal(
+    assembleCourseLesson({
+      courseId: course.id,
+      lessonId: lesson.id,
+      language: 'uk',
+      placement: 'module/chapter/adapted',
+      lesson: resource,
+      course: publication,
+    }).locale.title,
+    'Тіньова практика',
+  );
+  assert.equal(
+    assembleCourseLesson({
+      courseId: course.id,
+      lessonId: lesson.id,
+      language: 'uk',
+      placement: 'direct',
+      lesson: resource,
+      course: publication,
+    }).locale.title,
+    'Direct title',
+  );
+  assert.throws(
+    () =>
+      assembleCourseLesson({
+        courseId: course.id,
+        lessonId: lesson.id,
+        language: 'uk',
+        lesson: resource,
+        course: publication,
+      }),
+    /Ambiguous Lesson ID/,
+  );
   assert.equal(lesson.build.data({ languages }).base.params.sections.allowSkipping, true);
   assert(!files.get('base.json').includes('"skills"'));
 });
 
 test('real completed Course-owned Episode keeps ordered Sections and localized Data', () => {
   const text = defineText({
-    id: id(21), slug: 'line', type: 'text', params: {},
+    id: id(21),
+    slug: 'line',
+    type: 'text',
+    params: {},
     locale: { value: { en: 'Hello', uk: 'Привіт' } },
   });
   const section = defineContentSection({
-    id: id(22), slug: 'intro', type: 'content', params: {},
+    id: id(22),
+    slug: 'intro',
+    type: 'content',
+    params: {},
     locale: { title: 'Introduction', navigationLabel: '1' },
-    children: ['line'], line: text,
+    children: ['line'],
+    line: text,
   });
   const episode = defineEpisode({
-    id: id(23), slug: 'story', type: 'episode', params: { languages },
+    id: id(23),
+    slug: 'story',
+    type: 'episode',
+    params: { languages },
     locale: { title: { en: 'Story', uk: 'Історія' } },
-    children: ['intro'], intro: section,
+    children: ['intro'],
+    intro: section,
   });
   const course = defineCourse({
-    id: id(24), slug: 'course', type: 'course', params: { languages },
+    id: id(24),
+    slug: 'course',
+    type: 'course',
+    params: { languages },
     locale: { title: 'Course', description: 'Story' },
-    children: ['story'], story: episode,
+    children: ['story'],
+    story: episode,
   });
   const files = renderCourseFiles(course);
   const localized = assembleCourseTree(
-    JSON.parse(files.get('base.json')), JSON.parse(files.get('uk.json')), course.id, 'uk',
+    JSON.parse(files.get('base.json')),
+    JSON.parse(files.get('uk.json')),
+    course.id,
+    'uk',
   );
-  assert.deepEqual(courseActivities(localized).map(entry => entry.placement), ['story']);
+  assert.deepEqual(
+    courseActivities(localized).map(entry => entry.placement),
+    ['story'],
+  );
   const selected = findCourseEpisode(localized, episode.id);
   assert.equal(selected?.locale.title, 'Історія');
   assert.deepEqual(selected?.children, ['intro']);
@@ -202,9 +311,13 @@ test('real completed Course-owned Episode keeps ordered Sections and localized D
 test('Draft child can be previewed but cannot be published to production', () => {
   const pending = defineLessonStub({ id: id(44), slug: 'pending' });
   const course = defineCourse({
-    id: id(45), slug: 'course', type: 'course', params: { languages: ['en'] },
+    id: id(45),
+    slug: 'course',
+    type: 'course',
+    params: { languages: ['en'] },
     locale: { title: 'Work in progress', description: 'Draft only' },
-    children: ['pending'], pending,
+    children: ['pending'],
+    pending,
   });
   assert.throws(() => renderCourseFiles(course), /draft stub/i);
   const files = renderCourseFiles(course, { languages: ['en'], mode: 'draft' });

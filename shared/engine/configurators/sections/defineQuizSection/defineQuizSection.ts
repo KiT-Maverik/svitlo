@@ -25,12 +25,12 @@ import {
   type AddedPlacementsFromPatch,
   type SafePlacementMap,
 } from '../../_shared__configurators';
-import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/assessmentResources';
+import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
-  quizSection_Metadata_Config_Schema,
   quizSection_Config_Schema,
   quizSection_Data_Schema,
+  quizSection_Metadata_Config_Schema,
   quizSection_Override_Config_Schema,
   type QuizSection_Config,
   type QuizSection_DataBase,
@@ -97,16 +97,24 @@ const validate = (config: QuizSection_Config): void => {
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
     ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.message),
     ...validateSluggedConfiguratorMap(items, contentBlockTypes, {
-      path: 'children', itemLabel: 'Section ContentBlock', reservedKeys: slugAddressedReservedKeys,
+      path: 'children',
+      itemLabel: 'Section ContentBlock',
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.message),
   ];
   const ids = new Set<string>();
   for (const [key, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== key ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    ) {
       errors.push('Invalid Section ContentBlock Build API or identity: ' + key);
     }
     if (isRecord(child) && typeof child.id === 'string') {
@@ -118,10 +126,16 @@ const validate = (config: QuizSection_Config): void => {
     validateGrading(parsed.data.params.grading);
     selectQuizQuestionIds(parsed.data.params.selection, parsed.data.id);
     const disabled = new Set(
-      Object.entries(items).filter(([, value]) =>
-        isRecord(value) && isRecord(value.config) && isRecord(value.config.base) &&
-        isRecord(value.config.base.params) && value.config.base.params.disabled === true,
-      ).map(([key]) => key),
+      Object.entries(items)
+        .filter(
+          ([, value]) =>
+            isRecord(value) &&
+            isRecord(value.config) &&
+            isRecord(value.config.base) &&
+            isRecord(value.config.base.params) &&
+            value.config.base.params.disabled === true,
+        )
+        .map(([key]) => key),
     );
     validateScreenReferences(parsed.data.params.screen, new Set(Object.keys(items)), disabled);
   }
@@ -135,7 +149,9 @@ type AuthoredInput<
 > = Pick<QuizSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
   slug: Slug;
   children: Extract<keyof Items, string>[];
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
   ConfigWithLanguages<QuizSection_Config, Languages>;
 
 /** Infer authored block slugs without treating Quiz metadata as child blocks. */
@@ -149,9 +165,17 @@ const defineQuizSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: AuthoredInput<Slug, Items, Languages>) => {
+>(
+  config: AuthoredInput<Slug, Items, Languages>,
+) => {
   const metadataSchema = quizSection_Metadata_Config_Schema;
-  const metadataInput = { id: config.id, slug: config.slug, type: config.type, params: config.params, locale: config.locale };
+  const metadataInput = {
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
+  };
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
@@ -159,7 +183,9 @@ const defineQuizSectionImpl = <
   const initialOrder = [...config.children];
 
   const base = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   };
@@ -199,12 +225,12 @@ const defineQuizSectionImpl = <
       const fragments: Record<string, unknown> = {};
       for (const { key, resource, patch } of entries) {
         if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
-        const translated = mergeForValidation(resource.base,
-          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>);
+        const translated = mergeForValidation(
+          resource.base,
+          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
+        );
         const withPatch = patch ? mergeForValidation(translated, patch.base) : translated;
-        fragments[key] = patch?.locale?.[language]
-          ? mergeForValidation(withPatch, patch.locale[language])
-          : withPatch;
+        fragments[key] = patch?.locale?.[language] ? mergeForValidation(withPatch, patch.locale[language]) : withPatch;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
     }
@@ -225,7 +251,9 @@ const defineQuizSectionImpl = <
     }
     const result: Publication<QuizSection_DataBase> = structuredClone({
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         children: [...initialOrder],
@@ -278,7 +306,9 @@ const defineQuizSectionImpl = <
         else additions[key] = value as Block;
       }
       const issues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-        path: 'children', itemLabel: 'Section ContentBlock', reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Section ContentBlock',
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Block | false> = { ...initialItems };
@@ -309,8 +339,8 @@ const defineQuizSectionImpl = <
       validate({ ...mergedMetadata, children: [...order], ...enabled });
       const built = buildBlocks(enabled, order, childPatches);
       const effectiveDisabled = new Set(
-        Object.entries(built.base).filter(([, value]) =>
-          isRecord(value) && isRecord(value.params) && value.params.disabled === true)
+        Object.entries(built.base)
+          .filter(([, value]) => isRecord(value) && isRecord(value.params) && value.params.disabled === true)
           .map(([key]) => key),
       );
       validateScreenReferences(mergedMetadata.params.screen, new Set(order), effectiveDisabled);
@@ -342,7 +372,9 @@ const defineQuizSectionImpl = <
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid defineQuizSection overrides for ' + id + ': ' +
+        'Invalid defineQuizSection overrides for ' +
+          id +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
@@ -356,7 +388,8 @@ const defineQuizSectionImpl = <
    */
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & QuizSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+      patch: Patch &
+        QuizSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
@@ -367,7 +400,9 @@ const defineQuizSectionImpl = <
   } = overridesImplementation;
 
   const result = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     children: [...initialOrder],
     ...initialItems,
     validate,
@@ -385,13 +420,13 @@ const defineQuizSectionImpl = <
 
 /** Preserve both literal-inferred and explicitly parameterized Quiz Sections. */
 export const defineQuizSection: {
-  <const Input extends Pick<QuizSection_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
-    children: string[];
-  }>(
+  <
+    const Input extends Pick<QuizSection_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+      children: string[];
+    },
+  >(
     config: Input & AuthoredInput<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>,
-  ): ReturnType<typeof defineQuizSectionImpl<
-    Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes
-  >>;
+  ): ReturnType<typeof defineQuizSectionImpl<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>>;
   <
     const Slug extends string,
     const Items extends Record<string, Block>,
@@ -409,9 +444,7 @@ export const defineQuizSection: {
  * Build signature and the actual child-key/locale constraints.
  */
 type QuizSectionBase = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
-export type QuizSection_Configurator = Omit<
-  QuizSectionBase, 'children' | '__svitloLanguageScope' | 'build'
-> & {
+export type QuizSection_Configurator = Omit<QuizSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
   readonly children: readonly string[];
   readonly __svitloLanguageScope: readonly LanguageCode[];
   readonly build: Omit<QuizSectionBase['build'], 'data' | 'overrides'> & {

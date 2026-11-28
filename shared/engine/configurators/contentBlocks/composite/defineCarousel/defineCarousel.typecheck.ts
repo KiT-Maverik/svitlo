@@ -17,11 +17,7 @@ const scene = defineScene<'activity', ['en', 'uk']>({
   params: {},
   locale: { value: { en: 'Choose', uk: 'Обери' } },
 });
-const carousel = defineCarousel<
-  'gallery',
-  { picture: typeof picture; activity: typeof scene },
-  ['uk']
->({
+const carousel = defineCarousel<'gallery', { picture: typeof picture; activity: typeof scene }, ['uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d73',
   slug: 'gallery',
   type: 'carousel',

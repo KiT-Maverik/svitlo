@@ -55,7 +55,10 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  assertEnabledBlock((groups.correct[groups.correct.children[0]] as ContentBlock_Primitive_Configurator).config.base, 'content.answers.correct');
+  assertEnabledBlock(
+    (groups.correct[groups.correct.children[0]] as ContentBlock_Primitive_Configurator).config.base,
+    'content.answers.correct',
+  );
 };
 
 type ContentShape = Question_SelectOneAnswer_Config['content'];
@@ -152,7 +155,10 @@ export const defineSelectOneAnswer = <
     if (correctCount !== 1) {
       throw new Error('SelectOneAnswer has an invalid number of correct answers');
     }
-    assertEnabledBlock(complete.correct.effectiveBase[complete.correct.effectiveBase.children[0]], 'content.answers.correct');
+    assertEnabledBlock(
+      complete.correct.effectiveBase[complete.correct.effectiveBase.children[0]],
+      'content.answers.correct',
+    );
     const activeKeys = groups.flatMap(group => complete[group].effectiveBase.children);
     if (new Set(activeKeys).size !== activeKeys.length) {
       throw new Error('An answer cannot occur in multiple scoring groups');

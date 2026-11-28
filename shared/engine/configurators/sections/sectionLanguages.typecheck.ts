@@ -1,6 +1,6 @@
 import type { ChildrenSupporting, ChildSupporting } from '#types';
-import type { SafePlacementMap } from '../_shared__configurators';
 
+import type { SafePlacementMap } from '../_shared__configurators';
 import { defineText } from '../contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../lessons/defineLesson/defineLesson';
 import { defineContentSection } from './defineContentSection/defineContentSection';
@@ -27,7 +27,7 @@ function authoringLanguageContracts() {
   const forbidden: ChildSupporting<['en', 'uk'], typeof ukText> = ukText;
   void allowed;
   void forbidden;
-  
+
   // Metadata and the previous collection wrapper are not valid placement keys.
   // @ts-expect-error 'children' is reserved and cannot hold a ContentBlock configurator.
   const forbiddenChildrenKey: SafePlacementMap<{ children: typeof enUkText }> = { children: enUkText };
@@ -42,7 +42,8 @@ function authoringLanguageContracts() {
     type: 'content',
     params: {},
     locale: { title: { en: 'Intro', uk: 'Вступ' }, navigationLabel: '1' },
-    children: ['paragraph'], paragraph: enUkText,
+    children: ['paragraph'],
+    paragraph: enUkText,
   });
   // @ts-expect-error Build publication always requires explicit selected languages.
   bilingual.build.data();
@@ -72,7 +73,8 @@ function authoringLanguageContracts() {
     type: 'content',
     params: {},
     locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
-    children: ['ukOnly'], ukOnly: ukText,
+    children: ['ukOnly'],
+    ukOnly: ukText,
   });
 
   const impossible: ChildrenSupporting<['en', 'uk'], { onlyUkrainian: typeof ukrainian }> = {
@@ -92,12 +94,10 @@ function authoringLanguageContracts() {
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
     },
     locale: { title: { uk: 'Урок' } },
-    children: ['intro'], intro: bilingual,
+    children: ['intro'],
+    intro: bilingual,
   });
-  lesson.build.overrides(
-    { intro: { locale: { title: { uk: 'Оновлено' } } } },
-    { languages: ['uk'] },
-  );
+  lesson.build.overrides({ intro: { locale: { title: { uk: 'Оновлено' } } } }, { languages: ['uk'] });
   // @ts-expect-error Lesson supports only the authored Ukrainian publication scope.
   lesson.build.data({ languages: ['en'] });
 }

@@ -90,7 +90,8 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   const enabled = Object.entries(config).filter(
     (entry): entry is [string, CheckpointItemSource] => !metadata.has(entry[0]),
   );
-  if (enabled.some(([, value]) => typeof value === 'boolean')) throw new Error('Checkpoint: disabled children cannot be authored');
+  if (enabled.some(([, value]) => typeof value === 'boolean'))
+    throw new Error('Checkpoint: disabled children cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||
@@ -139,9 +140,7 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
     entries.push('    ' + renderSourceItem(key, name) + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(target + '/')) {
-        throw new Error(
-          'Checkpoint.children.' + key + ': child emitted a file outside its owned directory: ' + f.path,
-        );
+        throw new Error('Checkpoint.children.' + key + ': child emitted a file outside its owned directory: ' + f.path);
       }
       if (paths.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Checkpoint: duplicate output path ' + f.path);

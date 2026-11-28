@@ -2,7 +2,10 @@
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
  */
-import { flashcardRelationship_Schema, type Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import {
+  flashcardRelationship_Schema,
+  type Flashcard_Config,
+} from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
   materializeFlashcardSide,
@@ -155,7 +158,12 @@ function validateParameters(params: FlashcardSource['parameters']): void {
   }
   const relations = params.relationships;
   if (relations !== undefined) {
-    if (!record(relations) || !Array.isArray(relations.children) || Object.hasOwn(relations, 'items') || Object.hasOwn(relations, 'order'))
+    if (
+      !record(relations) ||
+      !Array.isArray(relations.children) ||
+      Object.hasOwn(relations, 'items') ||
+      Object.hasOwn(relations, 'order')
+    )
       fail('parameters.relationships', 'expected direct relation keys and children order');
     const keys = Object.keys(relations).filter(key => key !== 'children');
     if (

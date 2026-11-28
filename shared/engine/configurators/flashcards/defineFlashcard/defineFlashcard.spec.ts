@@ -4,11 +4,11 @@ import test, { describe } from 'node:test';
 import { defineText } from '../../contentBlocks/primitive/defineText/defineText';
 import { defineFlashcardSide } from '../defineFlashcardSide';
 import { defineFlashcard } from './defineFlashcard';
-import type { Flashcard_Config } from './defineFlashcard.schemas';
 import {
   flashcard_Config_Schema,
   flashcard_Data_Schema,
   flashcardConfigurator_Schema,
+  type Flashcard_Config,
 } from './defineFlashcard.schemas';
 
 describe('Configurators', () => {
@@ -183,18 +183,14 @@ describe('Configurators', () => {
         const card = defineBilingualFlashcard(source);
         assert.equal(card.content.front.front, front);
         assert.equal(card.build.data({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.children,
-          ['front'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
         assert.deepEqual(
           card.build.data({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x!.type),
           ['list', 'acronym'],
         );
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.children,
-          ['reverseLink'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.children, [
+          'reverseLink',
+        ]);
         assert.equal(textValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
         assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
         assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
@@ -220,15 +216,9 @@ describe('Configurators', () => {
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          first.base.content?.front?.children,
-          ['extra'],
-        );
+        assert.deepEqual(first.base.content?.front?.children, ['extra']);
         assert.deepEqual(first.locale, undefined);
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.children,
-          ['front'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
         const second = card.build.overrides(
           {
             parameters: {
@@ -266,10 +256,7 @@ describe('Configurators', () => {
           base: {},
           locale: undefined,
         });
-        const changedBase = side.build.overrides(
-          { extra: { params: { disabled: true } } },
-          { languages: ['uk'] },
-        );
+        const changedBase = side.build.overrides({ extra: { params: { disabled: true } } }, { languages: ['uk'] });
         assert.deepEqual(changedBase.base, { extra: { params: { disabled: true } } });
         assert.equal(changedBase.locale, undefined);
         const localized = side.build.overrides(
@@ -282,10 +269,7 @@ describe('Configurators', () => {
         });
         assert.equal(localized.locale?.en, undefined);
         assert.equal('extra' in (localized.locale?.uk ?? {}), false);
-        const structural = side.build.overrides(
-          { front: false, children: ['extra'] },
-          { languages: ['uk'] },
-        );
+        const structural = side.build.overrides({ front: false, children: ['extra'] }, { languages: ['uk'] });
         assert.deepEqual(structural.base.children, ['extra']);
         assert.equal('front' in structural.base, false);
         assert.equal('extra' in structural.base, true);
@@ -377,7 +361,10 @@ describe('Configurators', () => {
             ...source,
             content: {
               ...source.content,
-              front: defineFlashcardSide({ children: ['front'], front: front.config.base } as never) as unknown as typeof source.content.front,
+              front: defineFlashcardSide({
+                children: ['front'],
+                front: front.config.base,
+              } as never) as unknown as typeof source.content.front,
             },
           }).build.data({ languages: ['en'] }),
         );
@@ -393,10 +380,7 @@ describe('Configurators', () => {
 
         const card = defineBilingualFlashcard(source);
         assert.throws(
-          () => card.build.overrides(
-            { content: { front: { children: ['missing'] } } } as never,
-            { languages: ['en'] },
-          ),
+          () => card.build.overrides({ content: { front: { children: ['missing'] } } } as never, { languages: ['en'] }),
           /Invalid Flashcard overrides/,
         );
         assert.deepEqual(card.build.data({ languages: ['en'] }).base.content.front.children, ['front']);
@@ -412,17 +396,18 @@ describe('Configurators', () => {
         assert.deepEqual(cleared.base.parameters?.relationships?.children, []);
         assert.deepEqual(card.build.data({ languages: ['en'] }), original);
         assert.throws(
-          () => defineBilingualFlashcard({
-            ...source,
-            parameters: {
-              ...source.parameters,
-              relationships: {
-                children: ['reverseLink', 'duplicate'],
-                reverseLink: source.parameters.relationships.reverseLink,
-                duplicate: { ...source.parameters.relationships.reverseLink },
-              },
-            } as never,
-          }).build.data({ languages: ['en'] }),
+          () =>
+            defineBilingualFlashcard({
+              ...source,
+              parameters: {
+                ...source.parameters,
+                relationships: {
+                  children: ['reverseLink', 'duplicate'],
+                  reverseLink: source.parameters.relationships.reverseLink,
+                  duplicate: { ...source.parameters.relationships.reverseLink },
+                },
+              } as never,
+            }).build.data({ languages: ['en'] }),
           /Duplicate Flashcard relationship ID/,
         );
       });
@@ -430,23 +415,25 @@ describe('Configurators', () => {
       test('Flashcard rejects all-disabled required sides and reserved relationship keys', () => {
         const card = defineBilingualFlashcard(source);
         assert.throws(
-          () => card.build.overrides(
-            { content: { front: { front: { params: { disabled: true } } } } },
-            { languages: ['en'] },
-          ),
+          () =>
+            card.build.overrides(
+              { content: { front: { front: { params: { disabled: true } } } } },
+              { languages: ['en'] },
+            ),
           /enabled ContentBlock/,
         );
         assert.throws(
-          () => defineFlashcard({
-            ...source,
-            parameters: {
-              ...source.parameters,
-              relationships: {
-                children: ['items'],
-                items: source.parameters.relationships.reverseLink,
+          () =>
+            defineFlashcard({
+              ...source,
+              parameters: {
+                ...source.parameters,
+                relationships: {
+                  children: ['items'],
+                  items: source.parameters.relationships.reverseLink,
+                },
               },
-            },
-          } as never).build.data({ languages: ['en'] }),
+            } as never).build.data({ languages: ['en'] }),
           /Invalid Flashcard relationship slug: items/,
         );
       });

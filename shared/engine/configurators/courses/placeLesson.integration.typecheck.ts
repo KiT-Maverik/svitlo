@@ -1,3 +1,4 @@
+import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 import { defineText } from '../contentBlocks/primitive/defineText';
 import { defineLesson } from '../lessons/defineLesson';
 import { defineContentSection } from '../sections/defineContentSection';
@@ -70,9 +71,6 @@ extended.build.data({ languages: ['en'] });
 
 void reused;
 void extended;
-
-
-import type { CourseLessonBoundPatch } from '../../types/workflow/courseLessonSourcePatch.types';
 
 // The same bound shape emitted by the trusted Course materializer must reach
 // the real Build operation, not stop at an inert satisfies assertion.

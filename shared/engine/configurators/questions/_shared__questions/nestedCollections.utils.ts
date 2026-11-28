@@ -1,6 +1,5 @@
-import type { LanguageCode } from '#schemas';
+import { camelCase_Schema, type LanguageCode } from '#schemas';
 
-import { camelCase_Schema } from '#schemas';
 import { slugAddressedReservedKeys, validateOrderedKeys } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { assertEnabledBlock, cloneJson, isRecord, resolveChild, validateBlock } from './collections.utils';
@@ -33,8 +32,11 @@ const validateNested = (source: NestedCollection, path: string, fields: readonly
   for (const [key, entry] of Object.entries(entries)) {
     if (slugAddressedReservedKeys.some(value => value === key) || !camelCase_Schema.safeParse(key).success)
       throw new Error('Unsafe nested Question placement key: ' + key);
-    if (!isRecord(entry) || Object.keys(entry).length !== fields.length ||
-        fields.some(field => !Object.hasOwn(entry, field))) {
+    if (
+      !isRecord(entry) ||
+      Object.keys(entry).length !== fields.length ||
+      fields.some(field => !Object.hasOwn(entry, field))
+    ) {
       throw new Error('Invalid nested Question item at ' + path + '.' + key);
     }
     for (const field of fields) {
@@ -66,8 +68,10 @@ const resolveNested = (
     if (slugAddressedReservedKeys.some(value => value === key) || !camelCase_Schema.safeParse(key).success)
       throw new Error('Unsafe ' + path + ' placement key: ' + key);
     if (Object.hasOwn(original, key)) {
-      if (change === false) { active[key] = false; structural = true; }
-      else {
+      if (change === false) {
+        active[key] = false;
+        structural = true;
+      } else {
         if (!isRecord(change) || Object.keys(change).some(field => !fields.includes(field)))
           throw new Error('Unexpected nested Question field at ' + path + '.' + key);
         changes[key] = change;
@@ -79,7 +83,8 @@ const resolveNested = (
       structural = true;
     }
   }
-  if (structural && patch?.children === undefined) throw new Error(path + '.children is required for additions/removals');
+  if (structural && patch?.children === undefined)
+    throw new Error(path + '.children is required for additions/removals');
   const order = patch?.children ?? source.children;
   if (!Array.isArray(order)) throw new Error(path + '.children must be an array');
   const issues = validateOrderedKeys({ items: active, order }, { path, allowDisabled: true });
@@ -98,26 +103,31 @@ const resolveNested = (
     }
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
     if (patch !== undefined && patch.children === undefined) {
-      const nestedBase = Object.fromEntries(fields.filter(field =>
-        built[field].patch && Object.keys(built[field].patch!.base).length,
-      ).map(field => [field, cloneJson(built[field].patch!.base)]));
+      const nestedBase = Object.fromEntries(
+        fields
+          .filter(field => built[field].patch && Object.keys(built[field].patch!.base).length)
+          .map(field => [field, cloneJson(built[field].patch!.base)]),
+      );
       if (Object.keys(nestedBase).length) sparseBase[key] = nestedBase;
       for (const language of languages) {
-        const nestedLocale = Object.fromEntries(fields.filter(field =>
-          built[field].patch?.locale?.[language] !== undefined,
-        ).map(field => [field, cloneJson(built[field].patch!.locale![language])]));
+        const nestedLocale = Object.fromEntries(
+          fields
+            .filter(field => built[field].patch?.locale?.[language] !== undefined)
+            .map(field => [field, cloneJson(built[field].patch!.locale![language])]),
+        );
         if (Object.keys(nestedLocale).length) {
           (sparseLocale[language] ??= {} as ResolvedNested)[key] = nestedLocale;
         }
       }
     }
     const affected = new Set<LanguageCode>();
-    for (const field of fields) for (const language of Object.keys(built[field].locale))
-      affected.add(language as LanguageCode);
+    for (const field of fields)
+      for (const language of Object.keys(built[field].locale)) affected.add(language as LanguageCode);
     for (const language of affected) {
       const group = (locale[language] ??= { children: [...order] });
-      group[key] = Object.fromEntries(fields.map(field =>
-        [field, cloneJson(built[field].locale[language] ?? built[field].base)]));
+      group[key] = Object.fromEntries(
+        fields.map(field => [field, cloneJson(built[field].locale[language] ?? built[field].base)]),
+      );
     }
   }
   for (const group of Object.values(locale)) {

@@ -1,4 +1,3 @@
-import type { SafePlacementMap } from '../../_shared__configurators';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -19,23 +18,24 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSlugAddressedPublication,
-  slugAddressedReservedKeys,
   validateSluggedConfiguratorMap,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import {
   chapter_Config_Schema,
-  chapter_Metadata_Config_Schema,
   chapter_Data_Schema,
+  chapter_Metadata_Config_Schema,
   chapter_Override_Config_Schema,
   type Chapter_Child,
   type Chapter_Child_Data,
   type Chapter_Config,
-  type Chapter_Metadata_Config,
   type Chapter_Data,
   type Chapter_Locale,
+  type Chapter_Metadata_Config,
   type Chapter_Metadata_Overrides,
   type Chapter_Overrides,
 } from './defineChapter.schemas';
@@ -54,7 +54,10 @@ type ChapterPublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Data>>> | undefined;
 };
-type ChapterDataBase<Items extends Record<string, Chapter_Child>> = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
+type ChapterDataBase<Items extends Record<string, Chapter_Child>> = Pick<
+  Chapter_Config,
+  'id' | 'slug' | 'type' | 'params'
+> & {
   locale?: DeepPartial<Chapter_Locale<'data'>>;
   children: Extract<keyof Items, string>[];
 } & { [Key in keyof Items]: DeepPartial<Extract<Chapter_Child_Data, { type: Items[Key]['type'] }>> };
@@ -79,22 +82,34 @@ const validate = (config: Chapter_Config): void => {
   const parsed = chapter_Config_Schema.safeParse(config);
   const errors = [
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
-    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.path + ': ' + issue.message),
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(
+      issue => issue.path + ': ' + issue.message,
+    ),
     ...validateSluggedConfiguratorMap(items, allowedChildren, {
-      path: 'children', itemLabel: 'Chapter child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+      path: 'children',
+      itemLabel: 'Chapter child',
+      allowAliasForTypes: ['lesson'],
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.path + ': ' + issue.message),
   ];
   for (const [slug, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function') {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function'
+    ) {
       errors.push('children.' + slug + ': child must expose the stateless Build API');
       continue;
     }
-    if (!isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id ||
-        ('draft' in child && child.draft === true && child.slug !== slug) ||
-        (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      ('draft' in child && child.draft === true && child.slug !== slug) ||
+      (child.type === 'lesson' ? child.config.base.slug !== child.slug : child.config.base.slug !== slug) ||
+      child.config.base.type !== child.type
+    ) {
       errors.push('children.' + slug + ': immutable child identity does not match its authored metadata');
     }
   }
@@ -113,12 +128,10 @@ const validate = (config: Chapter_Config): void => {
  * Stable, non-recursive declaration surface avoids TS7056 while preserving
  * the exact item keys and type-level child language scopes.
  */
-type ChapterNewPlacements<
-  Items extends Record<string, Chapter_Child>,
-  Patch extends Record<string, unknown>,
-> = {
-  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]:
-    Patch[Key] extends Chapter_Child ? Patch[Key] : never;
+type ChapterNewPlacements<Items extends Record<string, Chapter_Child>, Patch extends Record<string, unknown>> = {
+  [Key in Exclude<keyof Patch, keyof Items | 'params' | 'locale' | 'children'>]: Patch[Key] extends Chapter_Child
+    ? Patch[Key]
+    : never;
 };
 
 export type Chapter_Configurator<
@@ -137,12 +150,17 @@ export type Chapter_Configurator<
       patch: Patch & {
         children: Extract<keyof Items | keyof Patch, string>[];
       } & {
-        [Key in keyof Patch]:
-          Key extends 'params' ? Chapter_Metadata_Overrides['params']
-            : Key extends 'locale' ? Chapter_Metadata_Overrides['locale']
-            : Key extends 'children' ? Extract<keyof Items | keyof Patch, string>[]
-            : Key extends keyof Items ? Parameters<Items[Key]['build']['overrides']>[0] | false
-            : Patch[Key] extends Chapter_Child ? Patch[Key] : never;
+        [Key in keyof Patch]: Key extends 'params'
+          ? Chapter_Metadata_Overrides['params']
+          : Key extends 'locale'
+            ? Chapter_Metadata_Overrides['locale']
+            : Key extends 'children'
+              ? Extract<keyof Items | keyof Patch, string>[]
+              : Key extends keyof Items
+                ? Parameters<Items[Key]['build']['overrides']>[0] | false
+                : Patch[Key] extends Chapter_Child
+                  ? Patch[Key]
+                  : never;
       } & ChildrenSupporting<Languages, ChapterNewPlacements<Items, Patch>> &
         SafePlacementMap<ChapterNewPlacements<Items, Patch>>,
       options: PublicationLanguageOptions<Languages>,
@@ -157,7 +175,8 @@ export type Chapter_Configurator<
     locales: () => { locale: DeepPartial<Chapter_Locale<'config'>> };
     validate: typeof validate;
   };
-} & (string extends keyof Items ? {} : Readonly<Items>) & LanguageScope<Languages>;
+} & (string extends keyof Items ? {} : Readonly<Items>) &
+  LanguageScope<Languages>;
 
 type ChapterAuthoredInput<
   Slug extends string,
@@ -167,8 +186,9 @@ type ChapterAuthoredInput<
   slug: Slug;
   children: Extract<keyof Items, string>[];
   locale: RequireLanguages<Chapter_Config['locale'], Languages>;
-
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>;
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items>;
 
 /** Define a Chapter with immutable ordered child configurators and stateless Build. */
 const defineChapterImplementation = <
@@ -179,7 +199,13 @@ const defineChapterImplementation = <
   config: ChapterAuthoredInput<Slug, Items, Languages>,
 ): Chapter_Configurator<Slug, Items, Languages> => {
   const metadataSchema = chapter_Metadata_Config_Schema;
-  const metadataInput = { id: config.id, type: config.type, slug: config.slug, params: config.params, locale: config.locale };
+  const metadataInput = {
+    id: config.id,
+    type: config.type,
+    slug: config.slug,
+    params: config.params,
+    locale: config.locale,
+  };
   const authored: Omit<Chapter_Metadata_Config, never> = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, type } = authored;
@@ -222,9 +248,7 @@ const defineChapterImplementation = <
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
       const resource = buildChildData({ build });
-      const patch = Object.hasOwn(changes, key)
-        ? buildChildOverrides({ build }, changes[key] as never)
-        : undefined;
+      const patch = Object.hasOwn(changes, key) ? buildChildOverrides({ build }, changes[key] as never) : undefined;
       return { key, resource, patch };
     });
     const base: Record<string, DeepPartial<Chapter_Child_Data>> = {};
@@ -341,7 +365,10 @@ const defineChapterImplementation = <
         else additions[key] = change as Chapter_Child;
       }
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'children', itemLabel: 'Chapter child', allowAliasForTypes: ['lesson'], reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Chapter child',
+        allowAliasForTypes: ['lesson'],
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -443,8 +470,7 @@ const defineChapterImplementation = <
 
 type ChapterInferredBase = Chapter_Metadata_Config & { children: string[] };
 type ChapterInferredChildren<Config> = {
-  [Key in Exclude<keyof Config, keyof ChapterInferredBase>]:
-    Config[Key] extends Chapter_Child ? Config[Key] : never;
+  [Key in Exclude<keyof Config, keyof ChapterInferredBase>]: Config[Key] extends Chapter_Child ? Config[Key] : never;
 };
 
 /** The inferred scope is the intersection of every child's advertised languages. */
@@ -461,8 +487,7 @@ type ChapterChildLanguages<Children extends Record<string, Chapter_Child>> = Exc
 type ChapterTitleLanguages<Title> = Title extends string ? LanguageCode : Extract<keyof Title, LanguageCode>;
 type ChapterInferredLanguages<Config extends ChapterInferredBase> = readonly [
   Extract<
-    ChapterChildLanguages<ChapterInferredChildren<Config>> &
-      ChapterTitleLanguages<Config['locale']['title']>,
+    ChapterChildLanguages<ChapterInferredChildren<Config>> & ChapterTitleLanguages<Config['locale']['title']>,
     LanguageCode
   >,
 ];
@@ -475,21 +500,14 @@ export function defineChapter<
 >(config: ChapterAuthoredInput<Slug, Items, Languages>): Chapter_Configurator<Slug, Items, Languages>;
 
 /** Infer direct children and the languages supported by ALL children and the own title. */
-export function defineChapter<
-  const Config extends ChapterInferredBase,
->(
+export function defineChapter<const Config extends ChapterInferredBase>(
   config: Config &
     ChapterInferredChildren<Config> & {
       children: Extract<keyof ChapterInferredChildren<Config>, string>[];
       locale: RequireLanguages<Chapter_Config['locale'], ChapterInferredLanguages<Config>>;
-    } &
-    ChildrenSupporting<ChapterInferredLanguages<Config>, ChapterInferredChildren<Config>> &
+    } & ChildrenSupporting<ChapterInferredLanguages<Config>, ChapterInferredChildren<Config>> &
     SafePlacementMap<ChapterInferredChildren<Config>>,
-): Chapter_Configurator<
-  Config['slug'],
-  ChapterInferredChildren<Config>,
-  ChapterInferredLanguages<Config>
->;
+): Chapter_Configurator<Config['slug'], ChapterInferredChildren<Config>, ChapterInferredLanguages<Config>>;
 export function defineChapter(config: unknown): unknown {
   return defineChapterImplementation(config as never);
 }

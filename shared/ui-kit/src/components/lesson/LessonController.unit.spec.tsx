@@ -10,10 +10,6 @@ import type {
 } from '@svitlo/engine/runtime';
 
 import type { CheckpointViewProps, LessonViewProps, SectionViewProps } from '../../presentation';
-
-type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
-type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
-
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -22,6 +18,9 @@ import { Lesson } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
 import { useLessonEventBus } from './LessonEvents';
 import { useLessonNavigation } from './LessonNavigation';
+
+type FlashcardsSectionViewProps = Extract<SectionViewProps, { type: 'flashcards' }>;
+type QuizSectionViewProps = Extract<SectionViewProps, { type: 'quiz' }>;
 
 const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
 const text = (number: number, value: string): ContentBlock_Text_Data => ({
@@ -296,14 +295,20 @@ describe('Engine Props Lesson Controller', () => {
       slug: 'audioRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: ['deafness'], flags: [] },
-      content: { front: { children: ['prompt'], prompt: text(95, 'Listen to a bell') }, back: { children: ['answer'], answer: text(96, 'A bell') } },
+      content: {
+        front: { children: ['prompt'], prompt: text(95, 'Listen to a bell') },
+        back: { children: ['answer'], answer: text(96, 'A bell') },
+      },
     };
     const alternative: Flashcard_Data = {
       id: uuid(97),
       slug: 'textRecall',
       type: 'flashcard',
       parameters: { tags: [], disabilities: [], flags: [] },
-      content: { front: { children: ['prompt'], prompt: text(98, 'Which object rings?') }, back: { children: ['answer'], answer: text(99, 'A bell') } },
+      content: {
+        front: { children: ['prompt'], prompt: text(98, 'Which object rings?') },
+        back: { children: ['answer'], answer: text(99, 'A bell') },
+      },
     };
     response.section = [
       {

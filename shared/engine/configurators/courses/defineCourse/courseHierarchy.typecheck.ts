@@ -1,6 +1,6 @@
 import type { ChildrenSupporting, LanguageScope } from '#types';
-import type { SafePlacementMap } from '../../_shared__configurators';
 
+import type { SafePlacementMap } from '../../_shared__configurators';
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule, type Module_Child } from '../defineModule';
@@ -19,7 +19,8 @@ const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['en', 'uk']
   slug: 'chapter',
   params: {},
   locale: { title: { en: 'Chapter', uk: 'Розділ' } },
-  children: ['lesson'], lesson,
+  children: ['lesson'],
+  lesson,
 });
 const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -27,7 +28,8 @@ const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>
   slug: 'module',
   params: {},
   locale: { title: 'Module' },
-  children: ['chapter'], chapter,
+  children: ['chapter'],
+  chapter,
 });
 const course = defineCourse<'course', { module: typeof module; chapter: typeof chapter }, ['en', 'uk']>({
   id,
@@ -35,7 +37,9 @@ const course = defineCourse<'course', { module: typeof module; chapter: typeof c
   slug: 'course',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Introduction' },
-  children: ['module', 'chapter'], module, chapter,
+  children: ['module', 'chapter'],
+  module,
+  chapter,
 });
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
@@ -58,7 +62,8 @@ const courseEnglish = defineCourse<'courseEnglish', { chapter: typeof chapter },
   slug: 'courseEnglish',
   params: { languages: ['en'] as const },
   locale: { title: { en: 'Course' }, description: 'Introduction' },
-  children: ['chapter'], chapter,
+  children: ['chapter'],
+  chapter,
 });
 
 // Parent's languages must be covered by every child, never the other way around.
@@ -136,7 +141,8 @@ const placedChapter = defineChapter<'placedChapter', { shadow: typeof shadow }, 
   slug: 'placedChapter',
   params: {},
   locale: { title: 'Placed chapter' },
-  children: ['shadow'], shadow,
+  children: ['shadow'],
+  shadow,
 });
 const placedModule = defineModule<'placedModule', { placedChapter: typeof placedChapter }, ['en', 'uk']>({
   id,
@@ -144,7 +150,8 @@ const placedModule = defineModule<'placedModule', { placedChapter: typeof placed
   slug: 'placedModule',
   params: {},
   locale: { title: 'Placed module' },
-  children: ['placedChapter'], placedChapter,
+  children: ['placedChapter'],
+  placedChapter,
 });
 const placedCourse = defineCourse<
   'placedCourse',
@@ -160,7 +167,10 @@ const placedCourse = defineCourse<
   slug: 'placedCourse',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: 'Course', description: 'Placement type-check' },
-  children: ['placedModule', 'directLesson', 'lessonAgain'], placedModule, directLesson: lesson, lessonAgain,
+  children: ['placedModule', 'directLesson', 'lessonAgain'],
+  placedModule,
+  directLesson: lesson,
+  lessonAgain,
 });
 placedCourse.build.data({ languages: ['uk'] });
 placedCourse.build.overrides(
@@ -178,7 +188,6 @@ const invalidPlacementChildren: ChildrenSupporting<['en', 'uk'], { shadow: typeo
   shadow: englishOnlyPlacement,
 };
 void invalidPlacementChildren;
-
 
 /** Inferred owners advertise exactly the languages all children and own locale can publish. */
 const inferredEnglishChapter = defineChapter({

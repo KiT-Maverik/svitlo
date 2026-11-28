@@ -232,10 +232,10 @@ const checkpointSource: CheckpointSource = {
 };
 const compositeSide: FlashcardBankWorkflowSideSource = {
   children: ['gallery', 'checkpoint'],
-    // @ts-expect-error Carousel is not an eligible Flashcard Side child.
-    gallery: carouselSource,
-    // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
-    checkpoint: checkpointSource,
+  // @ts-expect-error Carousel is not an eligible Flashcard Side child.
+  gallery: carouselSource,
+  // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
+  checkpoint: checkpointSource,
 };
 // The broad legacy type accepts the structurally typed object, but the final Stage 3 schema rejects both kind discriminants.
 const incompatibleCompositeSide: FlashcardSideSource = compositeSide;

@@ -10,8 +10,8 @@ import { defineContentSection } from '../../sections/defineContentSection/define
 import { defineEpisode } from './defineEpisode';
 import {
   episode_Completed_Data_Schema,
-  episode_Draft_Data_Schema,
   episode_Data_Schema,
+  episode_Draft_Data_Schema,
   episodeConfigurator_Schema,
 } from './defineEpisode.schemas';
 
@@ -34,7 +34,8 @@ describe('Configurators', () => {
         type: 'content',
         params: {},
         locale: { title: 'Arrival', navigationLabel: '1' },
-        children: ['line'], line,
+        children: ['line'],
+        line,
       });
       const makeEpisode = () =>
         defineEpisode({
@@ -43,7 +44,8 @@ describe('Configurators', () => {
           type: 'episode',
           params: { languages },
           locale: { title: { en: 'Arrival', uk: 'Прибуття' } },
-          children: ['intro'], intro,
+          children: ['intro'],
+          intro,
           events: { enter: { trigger: 'onStart' } },
         });
 
@@ -98,10 +100,7 @@ describe('Configurators', () => {
         assert.equal('flashcards' in resource.base, false);
         assert.equal('questions' in resource.base, false);
         assert.deepEqual(resource.base.events, { enter: { trigger: 'onStart' } });
-        assert.deepEqual(
-          resource.base.children,
-          ['intro'],
-        );
+        assert.deepEqual(resource.base.children, ['intro']);
         assert.deepEqual(episode.config.locales(), { locale: { title: { en: 'Arrival', uk: 'Прибуття' } } });
         assert.equal(resource.locale?.uk?.locale?.title, 'Прибуття');
         assert.ok(JSON.stringify(resource.locale?.uk?.intro).includes('Ви заходите до зали'));
@@ -141,14 +140,13 @@ describe('Configurators', () => {
         });
         const reordered = episode.build.overrides(
           {
-            children: ['extra'], intro: false, extra,
+            children: ['extra'],
+            intro: false,
+            extra,
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          reordered.base.children,
-          ['extra'],
-        );
+        assert.deepEqual(reordered.base.children, ['extra']);
         assert.deepEqual(episode.children, ['intro']);
         assert.throws(
           () => episode.build.overrides({ intro: false }, { languages: ['en', 'uk'] }),
@@ -159,8 +157,7 @@ describe('Configurators', () => {
           /Duplicate placement slug|Duplicate slug/,
         );
         assert.throws(
-          () =>
-            episode.build.overrides({ missing: false } as never, { languages: ['en', 'uk'] }),
+          () => episode.build.overrides({ missing: false } as never, { languages: ['en', 'uk'] }),
           /Expected|Build API|child|Unknown Episode Section/,
         );
         assert.throws(
@@ -225,7 +222,8 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: 'Chapter' },
-          children: ['chapterScene'], chapterScene: chapterEpisode,
+          children: ['chapterScene'],
+          chapterScene: chapterEpisode,
         });
         const module = defineModule<
           'module',
@@ -237,7 +235,9 @@ describe('Configurators', () => {
           type: 'module',
           params: {},
           locale: { title: 'Module' },
-          children: ['chapter', 'moduleScene'], chapter, moduleScene: moduleEpisode,
+          children: ['chapter', 'moduleScene'],
+          chapter,
+          moduleScene: moduleEpisode,
         });
         const course = defineCourse<'course', { module: typeof module; arrival: typeof episode }, typeof languages>({
           id: id('07'),
@@ -245,7 +245,9 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages, scenarioMode: 'story' },
           locale: { title: 'Story', description: 'A journey' },
-          children: ['module', 'arrival'], module, arrival: episode,
+          children: ['module', 'arrival'],
+          module,
+          arrival: episode,
         });
         const resource = course.build.data({ languages: ['en', 'uk'] });
         assert.equal(course.arrival, episode);

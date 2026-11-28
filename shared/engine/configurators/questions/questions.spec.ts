@@ -23,8 +23,10 @@ describe('Configurators', () => {
       const atPath = (value: unknown, ...keys: string[]): unknown => {
         let current: unknown = value;
         for (const key of keys) {
-          assert.ok(current !== null && typeof current === 'object' && key in current,
-            'Missing output property: ' + key);
+          assert.ok(
+            current !== null && typeof current === 'object' && key in current,
+            'Missing output property: ' + key,
+          );
           current = (current as Record<string, unknown>)[key];
         }
         return current;
@@ -69,7 +71,7 @@ describe('Configurators', () => {
           (() => {
             const config = {
               ...common('matchBlocks'),
-              content: { ...prompt, pairs: {  pairOne: { left: yes, right: no } , children: ['pairOne'] } },
+              content: { ...prompt, pairs: { pairOne: { left: yes, right: no }, children: ['pairOne'] } },
             };
             return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
           })(),
@@ -109,7 +111,7 @@ describe('Configurators', () => {
               locale: { placeholder: localized },
               content: {
                 ...prompt,
-                slots: {  slotOne: { correctAnswer: yes } , children: ['slotOne'] },
+                slots: { slotOne: { correctAnswer: yes }, children: ['slotOne'] },
                 distractors: collection(no),
               },
             };
@@ -122,7 +124,7 @@ describe('Configurators', () => {
               content: {
                 ...prompt,
                 slots: {
-                   slotOne: { correctAnswers: { first: 'Yes', second: localized } } ,
+                  slotOne: { correctAnswers: { first: 'Yes', second: localized } },
                   children: ['slotOne'],
                 },
               },
@@ -166,14 +168,8 @@ describe('Configurators', () => {
           ).pairs.pairOne.left.slug,
           'yes',
         );
-        assert.equal(
-          atPath(instances[5].build.data(scope).base.content, 'sequence', 'yes', 'slug'),
-          'yes',
-        );
-        assert.equal(
-          atPath(instances[6].build.data(scope).base.content, 'correctSequence', 'yes', 'slug'),
-          'yes',
-        );
+        assert.equal(atPath(instances[5].build.data(scope).base.content, 'sequence', 'yes', 'slug'), 'yes');
+        assert.equal(atPath(instances[6].build.data(scope).base.content, 'correctSequence', 'yes', 'slug'), 'yes');
         assert.equal(
           (
             instances[7].build.data(scope).base.content as {
@@ -197,23 +193,20 @@ describe('Configurators', () => {
           {
             content: {
               question: {
-                 promptBlock: false ,
-                 extra ,
+                promptBlock: false,
+                extra,
                 children: ['extra'],
               },
             },
           },
           scope,
         );
-        assert.deepEqual(
-          (override.base.content as { question: { children: string[] } }).question.children,
-          ['extra'],
-        );
+        assert.deepEqual((override.base.content as { question: { children: string[] } }).question.children, ['extra']);
         assert.throws(
           () =>
             question.build.overrides(
               {
-                content: { question: {  promptBlock: false  } },
+                content: { question: { promptBlock: false } },
               },
               scope,
             ),
@@ -233,7 +226,7 @@ describe('Configurators', () => {
           () =>
             question.build.overrides(
               {
-                content: { question: {  promptBlock: { id: 'changed' } as never  } },
+                content: { question: { promptBlock: { id: 'changed' } as never } },
               },
               scope,
             ),
@@ -264,10 +257,10 @@ describe('Configurators', () => {
         const question = defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
 
         assert.deepEqual(question.build.overrides({}, scope), { base: {}, locale: undefined });
-        assert.deepEqual(
-          question.build.overrides({ content: { question: {} } }, scope),
-          { base: {}, locale: undefined },
-        );
+        assert.deepEqual(question.build.overrides({ content: { question: {} } }, scope), {
+          base: {},
+          locale: undefined,
+        });
         const oneChild = question.build.overrides(
           { content: { question: { promptBlock: { params: { disabled: true } } } } },
           scope,
@@ -289,10 +282,9 @@ describe('Configurators', () => {
           { content: { question: { note: false, children: ['promptBlock'] } } },
           scope,
         );
-        assert.deepEqual(
-          (structural.base.content as { question: { children: string[] } }).question.children,
-          ['promptBlock'],
-        );
+        assert.deepEqual((structural.base.content as { question: { children: string[] } }).question.children, [
+          'promptBlock',
+        ]);
         assert.equal('note' in (structural.base.content as { question: Record<string, unknown> }).question, false);
         assert.deepEqual(
           (question.build.data(scope).base.content as { question: { children: string[] } }).question.children,
@@ -300,17 +292,20 @@ describe('Configurators', () => {
         );
 
         const selectConfig = { ...common('selectOneAnswer'), content: { ...prompt, answers } };
-        const select = defineSelectOneAnswer<
-          typeof selectConfig.slug, typeof selectConfig.content, ['en', 'uk']
-        >(selectConfig);
-        assert.deepEqual(
-          select.build.overrides({ content: { answers: { correct: {} } } }, scope),
-          { base: {}, locale: undefined },
+        const select = defineSelectOneAnswer<typeof selectConfig.slug, typeof selectConfig.content, ['en', 'uk']>(
+          selectConfig,
         );
+        assert.deepEqual(select.build.overrides({ content: { answers: { correct: {} } } }, scope), {
+          base: {},
+          locale: undefined,
+        });
         assert.deepEqual(
-          select.build.overrides({
-            content: { answers: { incorrect: { no: { params: { disabled: true } } } } },
-          }, scope).base,
+          select.build.overrides(
+            {
+              content: { answers: { incorrect: { no: { params: { disabled: true } } } } },
+            },
+            scope,
+          ).base,
           { content: { answers: { incorrect: { no: { params: { disabled: true } } } } } },
         );
       });
@@ -324,10 +319,7 @@ describe('Configurators', () => {
           },
         };
         const question = defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        assert.deepEqual(
-          question.build.overrides({ content: { pairs: {} } }, scope),
-          { base: {}, locale: undefined },
-        );
+        assert.deepEqual(question.build.overrides({ content: { pairs: {} } }, scope), { base: {}, locale: undefined });
         const localized = question.build.overrides(
           { content: { pairs: { pairOne: { left: { locale: { value: { uk: 'Ліворуч' } } } } } } },
           { languages: ['uk'] },
@@ -374,26 +366,38 @@ describe('Configurators', () => {
             locale: { placeholder: localized },
             content: {
               ...prompt,
-              slots: {  one: { correctAnswers: { yes: 'Yes', another: localized } } , children: ['one'] },
+              slots: { one: { correctAnswers: { yes: 'Yes', another: localized } }, children: ['one'] },
             },
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
-        assert.deepEqual((blanks.build.data(scope).locale?.uk as {
-          locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
-        }).locale.slots, {
-          children: ['one'], one: { correctAnswers: ['Yes', 'Відповідь'] },
-        });
+        assert.deepEqual(
+          (
+            blanks.build.data(scope).locale?.uk as {
+              locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
+            }
+          ).locale.slots,
+          {
+            children: ['one'],
+            one: { correctAnswers: ['Yes', 'Відповідь'] },
+          },
+        );
         const sparse = blanks.build.overrides(
-          { content: { slots: {  one: { correctAnswers: { another: { uk: 'Так' } } }  } } },
+          { content: { slots: { one: { correctAnswers: { another: { uk: 'Так' } } } } } },
           scope,
         );
         assert.equal(sparse.locale?.en, undefined);
-        assert.deepEqual((sparse.locale?.uk as {
-          locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
-        }).locale.slots, {
-          children: ['one'], one: { correctAnswers: ['Yes', 'Так'] },
-        });
+        assert.deepEqual(
+          (
+            sparse.locale?.uk as {
+              locale: { slots: { children: string[]; one: { correctAnswers: string[] } } };
+            }
+          ).locale.slots,
+          {
+            children: ['one'],
+            one: { correctAnswers: ['Yes', 'Так'] },
+          },
+        );
       });
 
       test('numeric scoring values remain atomic and Question build results are isolated', () => {
@@ -427,10 +431,7 @@ describe('Configurators', () => {
         })();
         assert.throws(
           () =>
-            one.build.overrides(
-              { content: { answers: { correct: {  yes: { params: { disabled: true } }  } } } },
-              scope,
-            ),
+            one.build.overrides({ content: { answers: { correct: { yes: { params: { disabled: true } } } } } }, scope),
           /enabled ContentBlock/,
         );
 
@@ -444,7 +445,7 @@ describe('Configurators', () => {
         assert.throws(
           () =>
             multiple.build.overrides(
-              { content: { answers: { correct: {  yes: { params: { disabled: true } }  } } } },
+              { content: { answers: { correct: { yes: { params: { disabled: true } } } } } },
               scope,
             ),
           /enabled ContentBlock/,
@@ -453,16 +454,13 @@ describe('Configurators', () => {
         const match = (() => {
           const config = {
             ...common('matchBlocks'),
-            content: { ...prompt, pairs: {  pairOne: { left: yes, right: no } , children: ['pairOne'] } },
+            content: { ...prompt, pairs: { pairOne: { left: yes, right: no }, children: ['pairOne'] } },
           };
           return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
         assert.throws(
           () =>
-            match.build.overrides(
-              { content: { pairs: {  pairOne: { left: { params: { disabled: true } } }  } } },
-              scope,
-            ),
+            match.build.overrides({ content: { pairs: { pairOne: { left: { params: { disabled: true } } } } } }, scope),
           /enabled ContentBlock/,
         );
 
@@ -472,7 +470,7 @@ describe('Configurators', () => {
             locale: { placeholder: 'Fill' },
             content: {
               ...prompt,
-              slots: {  slotOne: { correctAnswer: yes } , children: ['slotOne'] },
+              slots: { slotOne: { correctAnswer: yes }, children: ['slotOne'] },
               distractors: collection(no),
             },
           };
@@ -482,7 +480,7 @@ describe('Configurators', () => {
           () =>
             blanks.build.overrides(
               {
-                content: { slots: {  slotOne: { correctAnswer: { params: { disabled: true } } }  } },
+                content: { slots: { slotOne: { correctAnswer: { params: { disabled: true } } } } },
               },
               scope,
             ),
@@ -497,11 +495,7 @@ describe('Configurators', () => {
           return defineOrderSequence<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
         assert.throws(
-          () =>
-            sequence.build.overrides(
-              { content: { sequence: {  yes: { params: { disabled: true } }  } } },
-              scope,
-            ),
+          () => sequence.build.overrides({ content: { sequence: { yes: { params: { disabled: true } } } } }, scope),
           /enabled ContentBlock/,
         );
 
@@ -514,11 +508,7 @@ describe('Configurators', () => {
           return defineBuildAnswerWithBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
         })();
         assert.throws(
-          () =>
-            built.build.overrides(
-              { content: { correctSequence: {  yes: { params: { disabled: true } }  } } },
-              scope,
-            ),
+          () => built.build.overrides({ content: { correctSequence: { yes: { params: { disabled: true } } } } }, scope),
           /enabled ContentBlock/,
         );
       });
@@ -537,7 +527,7 @@ describe('Configurators', () => {
             content: {
               ...prompt,
               answers: {
-                correct: {  yes, secondCorrect , children: ['yes', 'secondCorrect'] },
+                correct: { yes, secondCorrect, children: ['yes', 'secondCorrect'] },
                 incorrect: collection(no),
                 distractors: collection(maybe),
               },
@@ -549,7 +539,7 @@ describe('Configurators', () => {
           () =>
             multi.build.overrides(
               {
-                content: { answers: { correct: {  yes: { params: { disabled: true } }  } } },
+                content: { answers: { correct: { yes: { params: { disabled: true } } } } },
               },
               scope,
             ),
@@ -690,16 +680,17 @@ describe('Configurators', () => {
           {
             content: {
               question: {
-                
-                  translatedPrompt: { locale: { value: { uk: 'Оновлено', en: 'Updated', pl: 'Zmienione' } } },
-
+                translatedPrompt: { locale: { value: { uk: 'Оновлено', en: 'Updated', pl: 'Zmienione' } } },
               },
             },
           },
           { languages: ['uk'] },
         );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        assert.equal(atPath(patch.locale?.uk, 'content', 'question', 'translatedPrompt', 'locale', 'value'), 'Оновлено');
+        assert.equal(
+          atPath(patch.locale?.uk, 'content', 'question', 'translatedPrompt', 'locale', 'value'),
+          'Оновлено',
+        );
       });
 
       test('localized answer and text-slot projections reject only missing selected translations', () => {
@@ -720,7 +711,7 @@ describe('Configurators', () => {
             locale: { placeholder: 'Answer' },
             content: {
               ...prompt,
-              slots: {  firstSlot: { correctAnswers: { yes: { uk: 'Так' } } } , children: ['firstSlot'] },
+              slots: { firstSlot: { correctAnswers: { yes: { uk: 'Так' } } }, children: ['firstSlot'] },
             },
           };
           return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['uk']>(config);

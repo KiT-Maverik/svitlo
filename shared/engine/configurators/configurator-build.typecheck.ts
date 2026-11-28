@@ -25,7 +25,8 @@ const answer = defineCheckpointAnswer<'answer', { intro: typeof text }, ['en', '
   id: 'b775647f-203d-481a-a1c7-4d331c779d64',
   type: 'checkpointAnswer',
   slug: 'answer',
-  children: ['intro'], intro: text,
+  children: ['intro'],
+  intro: text,
 });
 const item = defineCheckpointItem<'item', typeof answer, typeof text, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d62',
@@ -40,7 +41,8 @@ const checkpoint = defineCheckpoint<'review', { item: typeof item }, ['en', 'uk'
   slug: 'review',
   params: {},
   locale: { title: 'Review' },
-  children: ['item'], item,
+  children: ['item'],
+  item,
 });
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
 checkpoint.build.data({ languages: ['en'] });

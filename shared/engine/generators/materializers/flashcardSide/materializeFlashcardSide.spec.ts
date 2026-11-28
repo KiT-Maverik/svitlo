@@ -72,10 +72,7 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
 test('FlashcardSide: order/role/slug and create-only protections', () => {
   const first = block('first', 1);
   assert.throws(() => materializeFlashcardSide({ children: [], first }, context), /order/);
-  assert.throws(
-    () => materializeFlashcardSide({ children: [] }, context),
-    /required front\/back cannot be empty/,
-  );
+  assert.throws(() => materializeFlashcardSide({ children: [] }, context), /required front\/back cannot be empty/);
   assert.doesNotThrow(() => materializeFlashcardSide({ children: [] }, { ...context, role: 'hint' }));
   assert.throws(
     () =>

@@ -25,7 +25,13 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 export function validateSluggedConfiguratorMap(
   items: unknown,
   allowedTypes: readonly string[],
-  { path = 'items', itemLabel = 'child', allowDisabled = false, allowAliasForTypes = [], reservedKeys = [] }: Options = {},
+  {
+    path = 'items',
+    itemLabel = 'child',
+    allowDisabled = false,
+    allowAliasForTypes = [],
+    reservedKeys = [],
+  }: Options = {},
 ): SlugMapValidationIssue[] {
   if (!isRecord(items)) {
     return [{ check: 'item', path, message: 'Expected a slug-keyed configurator map' }];

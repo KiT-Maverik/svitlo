@@ -62,8 +62,11 @@ function withProduction(config: PlainBlock, authored: unknown): BlockNode {
 }
 /** Read only canonical authored placements. Internal maps are not publication wrappers. */
 function ordered(value: unknown, at: string): { items: Record<string, unknown>; order: string[] } {
-  if (!isRecord(value) || !Array.isArray(value.children) ||
-      ['items', 'order', 'slides', 'content'].some(key => Object.hasOwn(value, key))) {
+  if (
+    !isRecord(value) ||
+    !Array.isArray(value.children) ||
+    ['items', 'order', 'slides', 'content'].some(key => Object.hasOwn(value, key))
+  ) {
     throw new Error(at + ': expected direct child placements and children order');
   }
   const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);

@@ -3,12 +3,15 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
+import { createAssessmentResourceLoader, DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
 import {
-  createAssessmentResourceLoader,
-  DEFAULT_SUPPORTED_LANGUAGES,
-  type Locale,
-} from '@svitlo/engine/runtime';
-import { ImageRendererProvider, Lesson, SceneLocaleProvider, type LessonViewProps, type Topic, type UiKitMessages } from '@svitlo/ui-kit';
+  ImageRendererProvider,
+  Lesson,
+  SceneLocaleProvider,
+  type LessonViewProps,
+  type Topic,
+  type UiKitMessages,
+} from '@svitlo/ui-kit';
 
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';

@@ -19,12 +19,15 @@ const compact = value => JSON.stringify(value);
 
 /** Traverse the published, slug-addressed order without accepting legacy positional Props. */
 export function orderedLessonChildren(owner, label) {
-  if (!isRecord(owner) || !Array.isArray(owner.children) ||
-      new Set(owner.children).size !== owner.children.length)
+  if (!isRecord(owner) || !Array.isArray(owner.children) || new Set(owner.children).size !== owner.children.length)
     throw new Error(label + ' is missing valid ordered children');
   return owner.children.map(key => {
-    if (typeof key !== 'string' || !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
-        !Object.hasOwn(owner, key) || !isRecord(owner[key]))
+    if (
+      typeof key !== 'string' ||
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+      !Object.hasOwn(owner, key) ||
+      !isRecord(owner[key])
+    )
       throw new Error(label + ' has invalid child placement: ' + String(key));
     return owner[key];
   });
@@ -154,9 +157,13 @@ export function renderLessonMarkdown({
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
   const sections = orderedLessonChildren(lesson, 'Lesson');
-  if (Object.hasOwn(lesson, 'section') ||
-      ['questions', 'flashcards'].some(key => Object.hasOwn(lesson, key) && !lesson.children.includes(key))) {
-    throw new Error('Lesson must contain slug-addressed Section Data only; assessment banks are reviewed independently');
+  if (
+    Object.hasOwn(lesson, 'section') ||
+    ['questions', 'flashcards'].some(key => Object.hasOwn(lesson, key) && !lesson.children.includes(key))
+  ) {
+    throw new Error(
+      'Lesson must contain slug-addressed Section Data only; assessment banks are reviewed independently',
+    );
   }
   if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {
     throw new Error('Lesson Data must contain a resolved locale.title');

@@ -20,16 +20,29 @@ export function coursePlacementHref(
   placement: string,
 ): string {
   const path = placement.split('/');
-  if (!path.length || path.some(key => !routeKey.test(key) || forbidden.has(key))) throw Error('Unsafe Course route placement');
+  if (!path.length || path.some(key => !routeKey.test(key) || forbidden.has(key)))
+    throw Error('Unsafe Course route placement');
   return (
-    '/' + encodeURIComponent(interfaceLanguage) + '/course/' + encodeURIComponent(courseId) +
-    '/' + type + '/' + encodeURIComponent(contentLanguage) + '/' + path.map(encodeURIComponent).join('/')
+    '/' +
+    encodeURIComponent(interfaceLanguage) +
+    '/course/' +
+    encodeURIComponent(courseId) +
+    '/' +
+    type +
+    '/' +
+    encodeURIComponent(contentLanguage) +
+    '/' +
+    path.map(encodeURIComponent).join('/')
   );
 }
 
 /** Extract only a validated placement path; never reinterpret UUIDs or query strings as paths. */
 export function parseCoursePlacement(path: readonly string[]): string | null {
-  if (!Array.isArray(path) || !path.length || path.some(key => typeof key !== 'string' || !routeKey.test(key) || forbidden.has(key)))
+  if (
+    !Array.isArray(path) ||
+    !path.length ||
+    path.some(key => typeof key !== 'string' || !routeKey.test(key) || forbidden.has(key))
+  )
     return null;
   return path.join('/');
 }
@@ -37,8 +50,11 @@ export function parseCoursePlacement(path: readonly string[]): string | null {
 function tocNode(value: unknown): CourseTocNode {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw Error('Invalid Course TOC node');
   const node = value as CourseTocNode;
-  if (!['module', 'chapter', 'lesson', 'episode', 'assessment'].includes(node.type) ||
-      typeof node.id !== 'string' || typeof node.label !== 'string')
+  if (
+    !['module', 'chapter', 'lesson', 'episode', 'assessment'].includes(node.type) ||
+    typeof node.id !== 'string' ||
+    typeof node.label !== 'string'
+  )
     throw Error('Invalid localized Course TOC node');
   return node;
 }
@@ -90,8 +106,11 @@ export function assertCourseTocMatchesTree(course: LocalizedCourse, toc: CourseT
   function verify(actual: Record<string, unknown>, derived: Record<string, unknown>, path: string): void {
     const actualOrder = actual.children;
     const tocOrder = derived.children;
-    if (!Array.isArray(actualOrder) || !Array.isArray(tocOrder) ||
-        JSON.stringify(actualOrder) !== JSON.stringify(tocOrder))
+    if (
+      !Array.isArray(actualOrder) ||
+      !Array.isArray(tocOrder) ||
+      JSON.stringify(actualOrder) !== JSON.stringify(tocOrder)
+    )
       throw new Error('Published Course/TOC order mismatch at ' + path);
     for (const key of actualOrder) {
       const a = courseNode(actual[key]);

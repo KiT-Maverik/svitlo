@@ -127,10 +127,7 @@ test('Checkpoint materializes Item → Text + Answer → Primitive Scene/Text', 
 test('Checkpoint requires exact active order, correct item type and stable child UUIDs', () => {
   const input = example();
   const options = { directory: '', documentLanguage: 'uk', languagesImport: './languages', renderItem: primitive };
-  assert.throws(
-    () => materializeCheckpoint({ ...input, children: [] }, options),
-    /exactly once/,
-  );
+  assert.throws(() => materializeCheckpoint({ ...input, children: [] }, options), /exactly once/);
   assert.throws(
     () =>
       materializeCheckpoint(
@@ -144,11 +141,7 @@ test('Checkpoint requires exact active order, correct item type and stable child
     /invalid kind/,
   );
   assert.throws(
-    () =>
-      materializeCheckpoint(
-        { ...input, first: { ...input.first, id: input.id } },
-        options,
-      ),
+    () => materializeCheckpoint({ ...input, first: { ...input.first, id: input.id } }, options),
     /duplicate UUID/,
   );
   assert.throws(() => materializeCheckpoint(input, { ...options, directory: '../escape' }), /unsafe source/);
@@ -157,10 +150,7 @@ test('Checkpoint requires exact active order, correct item type and stable child
 test('Checkpoint rejects disabled authored child values rather than publishing tombstones', () => {
   const input = example();
   const options = { directory: '', documentLanguage: 'uk', languagesImport: './languages', renderItem: primitive };
-  assert.throws(
-    () => materializeCheckpoint({ ...input, first: false as never }, options),
-    /disabled/,
-  );
+  assert.throws(() => materializeCheckpoint({ ...input, first: false as never }, options), /disabled/);
 });
 
 test('Checkpoint rejects a delegated item that writes into another module', () => {

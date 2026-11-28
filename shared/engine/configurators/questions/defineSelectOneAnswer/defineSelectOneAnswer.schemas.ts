@@ -50,7 +50,10 @@ export const selectOneAnswer_Data_Schema = questionBase.extend({
   ...addUnifiedLocale({}),
   content: questionCommonContent_Data_Schema.extend({
     answers: z.object({
-      correct: questionBlockCollection_Data_Schema.refine(group => group.children.length === 1, 'Exactly one correct answer'),
+      correct: questionBlockCollection_Data_Schema.refine(
+        group => group.children.length === 1,
+        'Exactly one correct answer',
+      ),
       incorrect: questionBlockCollection_Data_Schema,
       distractors: questionBlockCollection_Data_Schema,
     }),

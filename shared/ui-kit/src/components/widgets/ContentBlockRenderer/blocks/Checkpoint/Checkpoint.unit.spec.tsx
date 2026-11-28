@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import type { ContentBlock_Text_Data } from '@svitlo/engine/runtime';
-import type { CheckpointViewProps } from '../../../../../presentation';
 
+import type { CheckpointViewProps } from '../../../../../presentation';
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { Checkpoint } from './Checkpoint';

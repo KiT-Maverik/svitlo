@@ -232,7 +232,10 @@ test('Course Stage 5 fails closed on unverified source, duplicate order and part
   assert.throws(() => materializeCourseStage5(source(), unverified), /not independently verified/);
   const unordered = source();
   unordered.config.children = ['moduleOne', 'moduleOne'];
-  assert.throws(() => materializeCourseStage5(unordered, options()), /\.children: each child key must appear exactly once/);
+  assert.throws(
+    () => materializeCourseStage5(unordered, options()),
+    /\.children: each child key must appear exactly once/,
+  );
   const incomplete = source();
   delete incomplete.config.directLesson.production.assessment;
   assert.throws(() => materializeCourseStage5(incomplete, options()), /four explicit assessment/);
@@ -439,17 +442,17 @@ test('verified built sparse Lesson override round-trips through real Lesson and 
   delete reviewed.config.moduleOne;
   delete reviewed.config.directLesson;
   reviewed.config.reused = {
-      config: { type: 'lesson', slug: 'reused', skills: [skill] },
-      production: {
-        kind: 'existing',
-        existing: { id: realLesson.id },
-        matching,
-        assessment,
-        sourceExportName: 'independentLesson',
-        sourcePatch: raw,
-        overrideRationale: 'Verified Course-local navigation accommodation',
-      },
-    };
+    config: { type: 'lesson', slug: 'reused', skills: [skill] },
+    production: {
+      kind: 'existing',
+      existing: { id: realLesson.id },
+      matching,
+      assessment,
+      sourceExportName: 'independentLesson',
+      sourcePatch: raw,
+      overrideRationale: 'Verified Course-local navigation accommodation',
+    },
+  };
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(realLesson);
   const plan = materializeCourseStage5(reviewed, opts);
@@ -716,8 +719,7 @@ test('Course Assessment placement rejects missing, forward, repeated and ambiguo
   const another = source();
   another.config.finalReview = assessmentSlot('directLesson');
   another.config.children.push('finalReview');
-  another.config.moduleOne.config.chapterOne.config.chapterReview =
-    assessmentSlot('directLesson');
+  another.config.moduleOne.config.chapterOne.config.chapterReview = assessmentSlot('directLesson');
   const chapter = another.config.moduleOne.config.chapterOne.config;
   chapter.children.push('chapterReview');
   assert.throws(() => materializeCourseStage5(another, options()), /unresolved|forward/);
@@ -750,19 +752,20 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'practice',
       params: {},
       locale: { title: { uk: 'Власна практика' }, navigationLabel: '1' },
-      children: ['message'], message: {
-            config: {
-              id: '663572e7-bd85-4516-86e2-3de07d209e30',
-              type: 'text',
-              slug: 'message',
-              params: {},
-              locale: { value: { uk: 'Тільки для цього курсу' } },
-            },
-            production: {
-              purpose: 'Explain the Course-only evidence with a real example.',
-              pedagogicalIntent: 'Keep this Text rationale only with this placement.',
-            },
-          },
+      children: ['message'],
+      message: {
+        config: {
+          id: '663572e7-bd85-4516-86e2-3de07d209e30',
+          type: 'text',
+          slug: 'message',
+          params: {},
+          locale: { value: { uk: 'Тільки для цього курсу' } },
+        },
+        production: {
+          purpose: 'Explain the Course-only evidence with a real example.',
+          pedagogicalIntent: 'Keep this Text rationale only with this placement.',
+        },
+      },
     },
   };
   const scene = (id, slug) => ({
@@ -788,7 +791,8 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'sceneCarousel',
       params: { showArrows: true },
       locale: { title: { uk: 'Порівняй сцени' } },
-      children: ['nestedScene'], nestedScene: scene(nestedSceneId, 'nestedScene'),
+      children: ['nestedScene'],
+      nestedScene: scene(nestedSceneId, 'nestedScene'),
     },
     production: { purpose: 'Verify a nested Carousel Scene' },
   };
@@ -800,42 +804,44 @@ test('new Course-owned Section and Text block materialize below an overridden Le
       slug: 'checkpoint',
       params: { requireCompletion: true },
       locale: { title: 'Check' },
-      children: ['first'], first: {
-            production: { pedagogicalIntent: 'Prompt a learner to explain the observation.' },
+      children: ['first'],
+      first: {
+        production: { pedagogicalIntent: 'Prompt a learner to explain the observation.' },
+        config: {
+          id: '663572e7-bd85-4516-86e2-3de07d209e36',
+          type: 'checkpointItem',
+          slug: 'first',
+          check: true,
+          question: {
             config: {
-              id: '663572e7-bd85-4516-86e2-3de07d209e36',
-              type: 'checkpointItem',
-              slug: 'first',
-              check: true,
-              question: {
+              id: '663572e7-bd85-4516-86e2-3de07d209e37',
+              type: 'text',
+              slug: 'question',
+              params: {},
+              locale: { value: { uk: 'Що змінилося?' } },
+            },
+            production: { purpose: 'Ask learners to name the shadow change.' },
+          },
+          answer: {
+            config: {
+              id: '663572e7-bd85-4516-86e2-3de07d209e38',
+              type: 'checkpointAnswer',
+              slug: 'answer',
+              children: ['explanation'],
+              explanation: {
                 config: {
-                  id: '663572e7-bd85-4516-86e2-3de07d209e37',
+                  id: '663572e7-bd85-4516-86e2-3de07d209e39',
                   type: 'text',
-                  slug: 'question',
+                  slug: 'explanation',
                   params: {},
-                  locale: { value: { uk: 'Що змінилося?' } },
+                  locale: { value: { uk: 'Тінь стала іншою.' } },
                 },
-                production: { purpose: 'Ask learners to name the shadow change.' },
-              },
-              answer: {
-                config: {
-                  id: '663572e7-bd85-4516-86e2-3de07d209e38',
-                  type: 'checkpointAnswer',
-                  slug: 'answer',
-                  children: ['explanation'], explanation: {
-                        config: {
-                          id: '663572e7-bd85-4516-86e2-3de07d209e39',
-                          type: 'text',
-                          slug: 'explanation',
-                          params: {},
-                          locale: { value: { uk: 'Тінь стала іншою.' } },
-                        },
-                        production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
-                      },
-                },
+                production: { pedagogicalIntent: 'Explain the evidence without memorized phrases.' },
               },
             },
           },
+        },
+      },
     },
   };
   authoredSection.config.children.push('directScene', 'sceneCarousel', 'checkpoint');
@@ -843,20 +849,20 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   delete reviewed.config.moduleOne;
   delete reviewed.config.directLesson;
   reviewed.config.reused = {
-      config: { type: 'lesson', slug: 'reused', skills: [skill] },
-      production: {
-        kind: 'existing',
-        existing: { id: original.id },
-        matching,
-        assessment,
-        sourceExportName: 'independentLesson',
-        sourcePatch: {
-          children: ['practice'],
-          practice: { $create: 'course-section', source: authoredSection },
-        },
-        overrideRationale: 'Course-specific extra practice is required',
+    config: { type: 'lesson', slug: 'reused', skills: [skill] },
+    production: {
+      kind: 'existing',
+      existing: { id: original.id },
+      matching,
+      assessment,
+      sourceExportName: 'independentLesson',
+      sourcePatch: {
+        children: ['practice'],
+        practice: { $create: 'course-section', source: authoredSection },
       },
-    };
+      overrideRationale: 'Course-specific extra practice is required',
+    },
+  };
   reviewed.config.children = ['reused'];
   const opts = reuseOptions(original);
   const plan = materializeCourse(reviewed, opts);
@@ -872,10 +878,7 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal((wrapper?.match(/TODO \(BLOCKER\):/g) ?? []).length, 1);
   assert.match(wrapper ?? '', /Course-specific extra practice is required/);
   assert.match(wrapper ?? '', /Course-only exhibition practice/);
-  assert.match(
-    wrapper ?? '',
-    /practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/,
-  );
+  assert.match(wrapper ?? '', /practice\.source \(content 663572e7-bd85-4516-86e2-3de07d209e31\) production\.purpose/);
   assert.match(wrapper ?? '', /production\.pedagogicalIntent:\n \* Keep this Text rationale only with this placement/);
   assert.match(wrapper ?? '', /Explain the Course-only evidence with a real example/);
   assert.match(wrapper ?? '', /Verify a nested Carousel Scene/);
@@ -912,12 +915,10 @@ test('new Course-owned Section and Text block materialize below an overridden Le
   assert.equal(plan.inventory.lessons[0].overrideSourcePath, root + '/reused/index.ts');
   assert.deepEqual(plan.files, materializeCourse(reviewed, opts).files);
   const invalid = structuredClone(reviewed);
-  invalid.config.reused.production.sourcePatch.practice.source.config.slug =
-    'other';
+  invalid.config.reused.production.sourcePatch.practice.source.config.slug = 'other';
   assert.throws(() => materializeCourse(invalid, opts), /invalid or untrusted Course-owned Section/);
   const collision = structuredClone(reviewed);
-  collision.config.reused.production.sourcePatch.practice.source.config.id =
-    original.id;
+  collision.config.reused.production.sourcePatch.practice.source.config.id = original.id;
   assert.throws(() => materializeCourse(collision, opts), /duplicate\/invalid Course-owned Section or Block UUID/);
 });
 
@@ -969,17 +970,17 @@ test('Course direct Section references bind only verified Sections and retain re
   delete reviewed.config.moduleOne;
   delete reviewed.config.directLesson;
   reviewed.config.reused = {
-      config: { type: 'lesson', slug: 'reused', skills: [skill] },
-      production: {
-        kind: 'existing',
-        existing: { id: original.id },
-        matching,
-        assessment,
-        sourceExportName: 'independentLesson',
-        sourcePatch: raw,
-        overrideRationale: 'Reviewed added practice Section',
-      },
-    };
+    config: { type: 'lesson', slug: 'reused', skills: [skill] },
+    production: {
+      kind: 'existing',
+      existing: { id: original.id },
+      matching,
+      assessment,
+      sourceExportName: 'independentLesson',
+      sourcePatch: raw,
+      overrideRationale: 'Reviewed added practice Section',
+    },
+  };
   reviewed.config.children = ['reused'];
   const opts = {
     ...reuseOptions(original),

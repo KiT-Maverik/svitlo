@@ -139,8 +139,10 @@ export const questionBankWorkflowBlockConfig_Schema = simpleBlock_Schema;
 export const questionBankWorkflowBlockNode_Schema = simpleBlockNode_Schema;
 // Avoid serializing the entire recursive Block schema at every Question kind.
 const block_Schema: z.ZodType<z.infer<typeof questionBankWorkflowBlockNode_Schema>> = simpleBlockNode_Schema;
-const blocks_Schema: z.ZodType<{ children: string[] } & Record<string, unknown>> =
-  workflowChildren_Schema(z.looseObject({}), block_Schema);
+const blocks_Schema: z.ZodType<{ children: string[] } & Record<string, unknown>> = workflowChildren_Schema(
+  z.looseObject({}),
+  block_Schema,
+);
 const commonContent_Schema = z.strictObject({
   question: blocks_Schema,
   hint: blocks_Schema.optional(),
@@ -155,7 +157,8 @@ const questionContent = {
   selectOneAnswer: commonContent_Schema.extend({ answers: answerSets_Schema }),
   selectMultipleAnswers: commonContent_Schema.extend({ answers: answerSets_Schema }),
   matchBlocks: commonContent_Schema.extend({
-    pairs: workflowChildren_Schema(z.looseObject({}),
+    pairs: workflowChildren_Schema(
+      z.looseObject({}),
       z.strictObject({
         left: block_Schema,
         right: block_Schema,

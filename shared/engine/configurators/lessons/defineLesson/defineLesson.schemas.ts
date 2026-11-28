@@ -1,12 +1,15 @@
 import { z } from 'zod';
 
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { validateSlugAddressedContainer, type SafePlacementMap } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import type { DeepPartial } from '#types';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { ageRange_Schema, gradeRange_Schema } from '../../_shared__configurators/audienceRange.schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import {
+  validateSlugAddressedContainer,
+  type SafePlacementMap,
+} from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { text_Data_Schema } from '../../contentBlocks/primitive/defineText/defineText.schemas';
 import { contentSection_Data_Schema } from '../../sections/defineContentSection/defineContentSection.schemas';
@@ -173,8 +176,9 @@ export type Lesson_Overrides<
   AddedSections extends Record<string, Section_Configurator> = {},
 > = Lesson_Metadata_Overrides & {
   children?: Extract<keyof Sections | keyof NoInfer<AddedSections>, string>[];
-} & ExistingPatches<Sections> & AddedSections & SafePlacementMap<AddedSections> &
-  { [Key in keyof Sections & keyof AddedSections]?: never };
+} & ExistingPatches<Sections> &
+  AddedSections &
+  SafePlacementMap<AddedSections> & { [Key in keyof Sections & keyof AddedSections]?: never };
 
 export const lessonConfigurator_Schema = z.custom<{
   readonly id: string;

@@ -53,8 +53,11 @@ export const fillBlanksWithBlocks_Data_Schema = questionBase.extend({
   content: questionCommonContent_Data_Schema.extend({
     slots: z.looseObject({ children: z.array(z.string()) }).superRefine((slots, ctx) => {
       const keys = Object.keys(slots).filter(key => key !== 'children');
-      if (new Set(slots.children).size !== slots.children.length ||
-          slots.children.length !== keys.length || keys.some(key => !slots.children.includes(key))) {
+      if (
+        new Set(slots.children).size !== slots.children.length ||
+        slots.children.length !== keys.length ||
+        keys.some(key => !slots.children.includes(key))
+      ) {
         ctx.addIssue({ code: 'custom', message: 'Invalid slot order' });
       }
       for (const key of keys) {

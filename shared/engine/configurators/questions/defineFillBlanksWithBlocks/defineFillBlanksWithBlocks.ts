@@ -58,10 +58,9 @@ type SlotBlock = { correctAnswer: ContentBlock_Primitive_Configurator };
 type SlotBlockMembers<Group extends { children: string[] }> = {
   [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends SlotBlock ? Group[Key] : SlotBlock;
 };
-type AddedSlotsFromPatch<Patch, Content extends ContentShape> =
-  Patch extends { content: { slots: infer Collection } }
-    ? AddedPlacementsFromPatch<Collection, SlotBlockMembers<Content['slots']>, SlotBlock, 'children'>
-    : {};
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> = Patch extends { content: { slots: infer Collection } }
+  ? AddedPlacementsFromPatch<Collection, SlotBlockMembers<Content['slots']>, SlotBlock, 'children'>
+  : {};
 
 type SlotBlocksOverride<
   Content extends ContentShape,
@@ -70,14 +69,16 @@ type SlotBlocksOverride<
 > = {
   children?: Extract<keyof SlotBlockMembers<Content['slots']> | keyof NoInfer<AddedSlots>, string>[];
 } & {
-  [Key in keyof SlotBlockMembers<Content['slots']>]?: {
-    correctAnswer?: Parameters<SlotBlockMembers<Content['slots']>[Key]['correctAnswer']['build']['overrides']>[0];
-  } | false;
+  [Key in keyof SlotBlockMembers<Content['slots']>]?:
+    | {
+        correctAnswer?: Parameters<SlotBlockMembers<Content['slots']>[Key]['correctAnswer']['build']['overrides']>[0];
+      }
+    | false;
 } & AddedSlots & {
-  [Key in keyof AddedSlots]: {
-    correctAnswer: ChildSupporting<Languages, AddedSlots[Key]['correctAnswer']>;
+    [Key in keyof AddedSlots]: {
+      correctAnswer: ChildSupporting<Languages, AddedSlots[Key]['correctAnswer']>;
+    };
   };
-};
 export type Question_FillBlanksWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -186,7 +187,8 @@ export const defineFillBlanksWithBlocks = <
     const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
   >(
-    patch: Patch & Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+    patch: Patch &
+      Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data> => {
     try {
@@ -243,7 +245,8 @@ export const defineFillBlanksWithBlocks = <
       const Patch extends Record<string, unknown>,
       const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
     >(
-      patch: Patch & Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+      patch: Patch &
+        Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
       options: PublicationLanguageOptions<Languages>,
     ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
     (

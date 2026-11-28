@@ -11,7 +11,11 @@ import { defineText } from '../../../configurators/contentBlocks/primitive/defin
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
 import { episodeWorkflowStage2_Schema } from '../../../types/workflow/episodeWorkflow.types';
-import { lessonWorkflowStage2_Schema, type LessonWorkflowStage2, type LessonWorkflowStage2Section } from '../../../types/workflow/lessonWorkflow.types';
+import {
+  lessonWorkflowStage2_Schema,
+  type LessonWorkflowStage2,
+  type LessonWorkflowStage2Section,
+} from '../../../types/workflow/lessonWorkflow.types';
 import {
   assertLessonStage6ReleaseReady,
   materializeLessonStage6,
@@ -40,26 +44,26 @@ const valid = () => ({
     locale: { title: { en: 'Basics' } },
     children: ['introduction'],
     introduction: {
+      config: {
+        type: 'content' as const,
+        id: id('02'),
+        slug: 'introduction',
+        params: {},
+        locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
+        children: ['prompt'],
+        prompt: {
           config: {
-            type: 'content' as const,
-            id: id('02'),
-            slug: 'introduction',
+            id: id('03'),
+            type: 'text' as const,
+            slug: 'prompt',
             params: {},
-            locale: { title: { en: 'Introduction' }, navigationLabel: '1' },
-            children: ['prompt'],
-    prompt: {
-                  config: {
-                    id: id('03'),
-                    type: 'text' as const,
-                    slug: 'prompt',
-                    params: {},
-                    locale: { value: { en: 'Read and reflect' } },
-                  },
-                  production: { purpose: 'Introduce the source fact', specification: 'Preserve this guidance' },
-                },
+            locale: { value: { en: 'Read and reflect' } },
           },
-          production: { purpose: 'First concept', specification: 'Reviewed sequence' },
+          production: { purpose: 'Introduce the source fact', specification: 'Preserve this guidance' },
         },
+      },
+      production: { purpose: 'First concept', specification: 'Reviewed sequence' },
+    },
   },
   production: {
     languages: { document: 'en', planned: ['en'] },
@@ -734,112 +738,112 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
       ...base.config,
       skills: [verifiedMathSkillId],
       children: ['introduction', 'quest'],
-    introduction: {
-            ...base.config.introduction,
+      introduction: {
+        ...base.config.introduction,
+        config: {
+          ...base.config.introduction.config,
+          children: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
+          prompt: base.config.introduction.config.prompt,
+          image: image('image', '09'),
+          video: video('video', '10'),
+          audio: audio('audio', '11'),
+          subtitles: subtitles('subtitles', '12'),
+          link: {
             config: {
-              ...base.config.introduction.config,
-              children: ['prompt', 'image', 'video', 'audio', 'subtitles', 'link', 'embed', 'carousel', 'checkpoint'],
-    prompt: base.config.introduction.config.prompt,
-                  image: image('image', '09'),
-                  video: video('video', '10'),
-                  audio: audio('audio', '11'),
-                  subtitles: subtitles('subtitles', '12'),
-                  link: {
-                    config: {
-                      id: id('13'),
-                      slug: 'link',
-                      type: 'youtube',
-                      params: { mode: 'link' },
-                      locale: { label: 'Open video' },
-                    },
-                    production: resource('Offer the source video'),
-                  },
-                  embed: {
-                    config: {
-                      id: id('14'),
-                      slug: 'embed',
-                      type: 'youtube',
-                      params: { mode: 'embed' },
-                      locale: { label: 'Watch video', href: { uk: 'https://www.youtube.com/watch?v=real' } },
-                    },
-                    production: resource('Show the source video'),
-                  },
-                  carousel: {
-                    config: {
-                      id: id('15'),
-                      slug: 'carousel',
-                      type: 'carousel',
-                      params: {},
-                      locale: {},
-                      children: ['slide'],
-    slide: image('slide', '16', id('29') + '.png'),
-                    },
-                  },
-                  checkpoint: {
-                    config: {
-                      id: id('17'),
-                      slug: 'checkpoint',
-                      type: 'checkpoint',
-                      params: { requireCompletion: true },
-                      locale: { title: 'Check' },
-                      children: ['first'],
-    first: {
-                            config: {
-                              id: id('18'),
-                              slug: 'first',
-                              type: 'checkpointItem',
-                              check: true,
-                              question: {
-                                config: {
-                                  id: id('19'),
-                                  slug: 'question',
-                                  type: 'text',
-                                  params: {},
-                                  locale: { value: 'What happened?' },
-                                },
-                                production: { purpose: 'Ask the learner' },
-                              },
-                              answer: {
-                                config: {
-                                  id: id('20'),
-                                  slug: 'answer',
-                                  type: 'checkpointAnswer',
-                                  children: ['answerImage'],
-    answerImage: image('answerImage', '21'),
-                                },
-                              },
-                            },
-                          },
-                    },
-                  },
+              id: id('13'),
+              slug: 'link',
+              type: 'youtube',
+              params: { mode: 'link' },
+              locale: { label: 'Open video' },
+            },
+            production: resource('Offer the source video'),
+          },
+          embed: {
+            config: {
+              id: id('14'),
+              slug: 'embed',
+              type: 'youtube',
+              params: { mode: 'embed' },
+              locale: { label: 'Watch video', href: { uk: 'https://www.youtube.com/watch?v=real' } },
+            },
+            production: resource('Show the source video'),
+          },
+          carousel: {
+            config: {
+              id: id('15'),
+              slug: 'carousel',
+              type: 'carousel',
+              params: {},
+              locale: {},
+              children: ['slide'],
+              slide: image('slide', '16', id('29') + '.png'),
             },
           },
-          quest: {
+          checkpoint: {
             config: {
-              id: id('22'),
-              slug: 'quest',
-              type: 'quest',
-              params: {},
-              locale: { title: 'Quest', navigationLabel: 'Q' },
-              stages: {
-                start: {
-                  config: {
-                    id: id('23'),
-                    slug: 'start',
-                    type: 'questStage',
-                    content: {
-                      video: { medium: video('medium', '24'), small: video('small', '25', id('30') + '.mp4') },
-                      audio: { dialogue: audio('dialogue', '26'), narration: null, background: null },
-                      image: image('questImage', '27'),
-                      subtitles: subtitles('questSubtitles', '31'),
+              id: id('17'),
+              slug: 'checkpoint',
+              type: 'checkpoint',
+              params: { requireCompletion: true },
+              locale: { title: 'Check' },
+              children: ['first'],
+              first: {
+                config: {
+                  id: id('18'),
+                  slug: 'first',
+                  type: 'checkpointItem',
+                  check: true,
+                  question: {
+                    config: {
+                      id: id('19'),
+                      slug: 'question',
+                      type: 'text',
+                      params: {},
+                      locale: { value: 'What happened?' },
+                    },
+                    production: { purpose: 'Ask the learner' },
+                  },
+                  answer: {
+                    config: {
+                      id: id('20'),
+                      slug: 'answer',
+                      type: 'checkpointAnswer',
+                      children: ['answerImage'],
+                      answerImage: image('answerImage', '21'),
                     },
                   },
                 },
               },
-              tasks: { start: { config: { id: id('32'), slug: 'start', type: 'questTask', scene } } },
             },
-            production: { ...resource('Guide practice'), runtimeStatus: 'unimplemented' },
           },
+        },
+      },
+      quest: {
+        config: {
+          id: id('22'),
+          slug: 'quest',
+          type: 'quest',
+          params: {},
+          locale: { title: 'Quest', navigationLabel: 'Q' },
+          stages: {
+            start: {
+              config: {
+                id: id('23'),
+                slug: 'start',
+                type: 'questStage',
+                content: {
+                  video: { medium: video('medium', '24'), small: video('small', '25', id('30') + '.mp4') },
+                  audio: { dialogue: audio('dialogue', '26'), narration: null, background: null },
+                  image: image('questImage', '27'),
+                  subtitles: subtitles('questSubtitles', '31'),
+                },
+              },
+            },
+          },
+          tasks: { start: { config: { id: id('32'), slug: 'start', type: 'questTask', scene } } },
+        },
+        production: { ...resource('Guide practice'), runtimeStatus: 'unimplemented' },
+      },
     },
     production: { ...base.production, languages: { document: 'en', planned: ['en'] } },
   };
@@ -930,7 +934,9 @@ test('typed Stage 2 media placeholders survive nested materialization and fail p
   const blocks = resolved.config.introduction as { config: { type: string } & Record<string, unknown> };
   if (blocks.config.type !== 'content') throw new Error('Expected content Section');
   for (const slug of ['link', 'embed']) {
-    const block = blocks.config[slug] as { config: { type: string; locale: { href?: string | Record<string, string> } } };
+    const block = blocks.config[slug] as {
+      config: { type: string; locale: { href?: string | Record<string, string> } };
+    };
     if (block.config.type !== 'youtube') throw new Error('Expected YouTube block');
     block.config.locale.href =
       slug === 'link'
@@ -968,7 +974,7 @@ test('Episode shares ordinary Section contracts without importing Lesson assessm
       slug: 'transition',
       locale: lesson.config.locale,
       children: [...lesson.config.children],
-    introduction: lesson.config.introduction,
+      introduction: lesson.config.introduction,
     },
     production: {
       focus: 'Reviewed transition',
@@ -1153,19 +1159,19 @@ test('shared Section renderer preserves direct and nested Scene sources and pend
       ...original.config,
       children: ['prompt', 'shadowScene', 'shadowCarousel'],
       prompt: original.config.prompt,
-          shadowScene: scene('95', 'shadowScene'),
-          shadowCarousel: {
-            config: {
-              id: id('96'),
-              type: 'carousel' as const,
-              slug: 'shadowCarousel',
-              params: { showArrows: true },
-              locale: { title: { en: 'Compare shadows' } },
-              children: ['nestedScene'],
-    nestedScene: scene('97', 'nestedScene'),
-            },
-            production: { purpose: 'Exercise nested Scene materialization' },
-          },
+      shadowScene: scene('95', 'shadowScene'),
+      shadowCarousel: {
+        config: {
+          id: id('96'),
+          type: 'carousel' as const,
+          slug: 'shadowCarousel',
+          params: { showArrows: true },
+          locale: { title: { en: 'Compare shadows' } },
+          children: ['nestedScene'],
+          nestedScene: scene('97', 'nestedScene'),
+        },
+        production: { purpose: 'Exercise nested Scene materialization' },
+      },
     },
   };
   const result = materializeWorkflowSection(section as unknown as Parameters<typeof materializeWorkflowSection>[0], {

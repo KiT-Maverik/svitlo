@@ -27,9 +27,9 @@ import {
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
-  practiceSection_Metadata_Config_Schema,
   practiceSection_Config_Schema,
   practiceSection_Data_Schema,
+  practiceSection_Metadata_Config_Schema,
   practiceSection_Override_Config_Schema,
   type PracticeSection_Config,
   type PracticeSection_DataBase,
@@ -62,7 +62,6 @@ const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children']
 const directBlocks = (config: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
 
-
 /** Each Section owns only the ContentBlock collection boundary, not child internals. */
 const validate = (config: PracticeSection_Config): void => {
   const items = directBlocks(config);
@@ -71,16 +70,24 @@ const validate = (config: PracticeSection_Config): void => {
     ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
     ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.message),
     ...validateSluggedConfiguratorMap(items, contentBlockTypes, {
-      path: 'children', itemLabel: 'Section ContentBlock', reservedKeys: slugAddressedReservedKeys,
+      path: 'children',
+      itemLabel: 'Section ContentBlock',
+      reservedKeys: slugAddressedReservedKeys,
     }).map(issue => issue.message),
   ];
   const ids = new Set<string>();
   for (const [key, child] of Object.entries(items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== key ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    ) {
       errors.push('Invalid Section ContentBlock Build API or identity: ' + key);
     }
     if (isRecord(child) && typeof child.id === 'string') {
@@ -88,7 +95,7 @@ const validate = (config: PracticeSection_Config): void => {
       ids.add(child.id);
     }
   }
-  
+
   if (errors.length) throw new Error('Section validation failed: ' + errors.join('; '));
 };
 
@@ -99,7 +106,9 @@ type AuthoredInput<
 > = Pick<PracticeSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
   slug: Slug;
   children: Extract<keyof Items, string>[];
-} & Items & ChildrenSupporting<Languages, Items> & SafePlacementMap<Items> &
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
   ConfigWithLanguages<PracticeSection_Config, Languages>;
 
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
@@ -107,9 +116,17 @@ export const definePracticeSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: AuthoredInput<Slug, Items, Languages>) => {
+>(
+  config: AuthoredInput<Slug, Items, Languages>,
+) => {
   const metadataSchema = practiceSection_Metadata_Config_Schema;
-  const metadataInput = { id: config.id, slug: config.slug, type: config.type, params: config.params, locale: config.locale };
+  const metadataInput = {
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
+  };
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
@@ -117,7 +134,9 @@ export const definePracticeSection = <
   const initialOrder = [...config.children];
 
   const base = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   };
@@ -157,12 +176,12 @@ export const definePracticeSection = <
       const fragments: Record<string, unknown> = {};
       for (const { key, resource, patch } of entries) {
         if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
-        const translated = mergeForValidation(resource.base,
-          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>);
+        const translated = mergeForValidation(
+          resource.base,
+          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
+        );
         const withPatch = patch ? mergeForValidation(translated, patch.base) : translated;
-        fragments[key] = patch?.locale?.[language]
-          ? mergeForValidation(withPatch, patch.locale[language])
-          : withPatch;
+        fragments[key] = patch?.locale?.[language] ? mergeForValidation(withPatch, patch.locale[language]) : withPatch;
       }
       if (Object.keys(fragments).length) locale[language] = fragments;
     }
@@ -183,7 +202,9 @@ export const definePracticeSection = <
     }
     const result: Publication<PracticeSection_DataBase> = structuredClone({
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         children: [...initialOrder],
@@ -194,7 +215,6 @@ export const definePracticeSection = <
     for (const language of languages) {
       const effective = mergeForValidation(result.base, result.locale?.[language] ?? {});
       const parsed = practiceSection_Data_Schema.parse(effective);
-      
     }
     return result;
   };
@@ -235,7 +255,9 @@ export const definePracticeSection = <
         else additions[key] = value as Block;
       }
       const issues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-        path: 'children', itemLabel: 'Section ContentBlock', reservedKeys: slugAddressedReservedKeys,
+        path: 'children',
+        itemLabel: 'Section ContentBlock',
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Block | false> = { ...initialItems };
@@ -265,7 +287,7 @@ export const definePracticeSection = <
       );
       validate({ ...mergedMetadata, children: [...order], ...enabled });
       const built = buildBlocks(enabled, order, childPatches);
-      
+
       if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
         if (structureChanged || patch.children !== undefined) output.base.children = [...order];
         for (const [key, value] of Object.entries(changes)) {
@@ -292,7 +314,9 @@ export const definePracticeSection = <
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid definePracticeSection overrides for ' + id + ': ' +
+        'Invalid definePracticeSection overrides for ' +
+          id +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
@@ -301,7 +325,8 @@ export const definePracticeSection = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & PracticeSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+      patch: Patch &
+        PracticeSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
       options: PublicationLanguageOptions<Languages>,
     ): Publication<OverrideBase>;
@@ -312,7 +337,9 @@ export const definePracticeSection = <
   } = overridesImplementation;
 
   const result = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     children: [...initialOrder],
     ...initialItems,
     validate,

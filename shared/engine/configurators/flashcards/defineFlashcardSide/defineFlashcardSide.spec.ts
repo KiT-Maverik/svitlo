@@ -25,17 +25,15 @@ describe('Configurators', () => {
         locale: { value: 'Invariant' },
       });
       const side = defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-        children: ['first'], first,
+        children: ['first'],
+        first,
       });
 
       test('publishes ordered children with complete selected locale arrays and no invented identity', () => {
         assert.equal(flashcardSideConfigurator_Schema.safeParse(side).success, true);
         assert.equal('id' in side, false);
         assert.equal('slug' in side, false);
-        assert.deepEqual(
-          side.build.data({ languages: ['en'] }).base.children,
-          ['first'],
-        );
+        assert.deepEqual(side.build.data({ languages: ['en'] }).base.children, ['first']);
         assert.deepEqual(Object.keys(side.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
         const values = side.build.data({ languages: ['uk'] }).locale?.uk;
         assert.equal((values?.first as { locale?: { value?: string } } | undefined)?.locale?.value, 'Питання');
@@ -51,30 +49,19 @@ describe('Configurators', () => {
           },
           { languages: ['uk'] },
         );
-        assert.deepEqual(
-          patched.base.children,
-          ['second', 'first'],
+        assert.deepEqual(patched.base.children, ['second', 'first']);
+        assert.equal(
+          (patched.locale?.uk?.first as { locale?: { value?: string } } | undefined)?.locale?.value,
+          'Нове питання',
         );
-        assert.equal((patched.locale?.uk?.first as { locale?: { value?: string } } | undefined)?.locale?.value, 'Нове питання');
         assert.deepEqual(side.children, ['first']);
-        assert.deepEqual(
-          side.build.data({ languages: ['uk'] }).base.children,
-          ['first'],
-        );
+        assert.deepEqual(side.build.data({ languages: ['uk'] }).base.children, ['first']);
       });
 
       test('rejects identity patches, invalid additions, unknown keys and structurally invalid order', () => {
-        assert.throws(() =>
-          side.build.overrides({ first: { slug: 'hacked' } } as never, { languages: ['en'] }),
-        );
-        assert.throws(
-          () => side.build.overrides({ second }, { languages: ['en'] }),
-          /children.*required/,
-        );
-        assert.throws(
-          () => side.build.overrides({ first } as never, { languages: ['en'] }),
-          /patch/,
-        );
+        assert.throws(() => side.build.overrides({ first: { slug: 'hacked' } } as never, { languages: ['en'] }));
+        assert.throws(() => side.build.overrides({ second }, { languages: ['en'] }), /children.*required/);
+        assert.throws(() => side.build.overrides({ first } as never, { languages: ['en'] }), /patch/);
         assert.throws(
           () => side.build.overrides({ missing: false } as never, { languages: ['en'] }),
           /Invalid Flashcard side child/,
@@ -82,12 +69,14 @@ describe('Configurators', () => {
         assert.throws(() => side.build.overrides({ first: false, children: ['first'] }, { languages: ['en'] }));
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-            children: ['missing'] as never, first,
+            children: ['missing'] as never,
+            first,
           }).build.data({ languages: ['en'] }),
         );
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-            children: ['first'], first: first.config.base as never,
+            children: ['first'],
+            first: first.config.base as never,
           }).build.data({ languages: ['en'] }),
         );
       });
@@ -106,12 +95,14 @@ describe('Configurators', () => {
           type: 'carousel',
           params: {},
           locale: {},
-          children: ['image'], image,
+          children: ['image'],
+          image,
         });
         assert.throws(
           () =>
             defineFlashcardSide({
-              children: ['carousel'], carousel,
+              children: ['carousel'],
+              carousel,
             } as never).build.data({ languages: ['en'] }),
           /Unsupported Flashcard ContentBlock type: carousel/,
         );

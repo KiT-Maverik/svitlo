@@ -47,7 +47,9 @@ it('does not count a Course-owned Assessment as a Lesson or Module', () => {
     slug: 'review',
     params: { languages: ['uk'] },
     locale: { title: 'Review' },
-    before: { children: [] }, quiz: {}, after: { children: [] },
+    before: { children: [] },
+    quiz: {},
+    after: { children: [] },
   };
   courseModule.children.push('review');
   expect(toCoursePreview(withAssessment)).toMatchObject({ lessons: 1, modules: 1 });

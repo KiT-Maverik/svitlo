@@ -11,17 +11,20 @@ function record(value: unknown): Record<string, unknown> {
 /** Count placement occurrences, not unique Lesson IDs: a Lesson may be reused. */
 function counts(owner: Record<string, unknown>): Count {
   if (!Array.isArray(owner.children)) throw Error('Missing Course child order');
-  return owner.children.reduce<Count>((total, key: string) => {
-    const node = record(owner[key]);
-    if (node.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
-    if (node.type === 'episode' || node.type === 'assessment') return total;
-    if (node.type !== 'module' && node.type !== 'chapter') throw Error('Invalid Course activity');
-    const nested = counts(node);
-    return {
-      lessons: total.lessons + nested.lessons,
-      modules: total.modules + nested.modules + (node.type === 'module' ? 1 : 0),
-    };
-  }, { lessons: 0, modules: 0 });
+  return owner.children.reduce<Count>(
+    (total, key: string) => {
+      const node = record(owner[key]);
+      if (node.type === 'lesson') return { ...total, lessons: total.lessons + 1 };
+      if (node.type === 'episode' || node.type === 'assessment') return total;
+      if (node.type !== 'module' && node.type !== 'chapter') throw Error('Invalid Course activity');
+      const nested = counts(node);
+      return {
+        lessons: total.lessons + nested.lessons,
+        modules: total.modules + nested.modules + (node.type === 'module' ? 1 : 0),
+      };
+    },
+    { lessons: 0, modules: 0 },
+  );
 }
 
 /** Presentation-only preview; resolved Course domain Data remains slug-addressable. */

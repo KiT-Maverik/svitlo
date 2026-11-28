@@ -1,9 +1,10 @@
 import type { ComponentType, ReactNode } from 'react';
 
 import type { LanguageCode } from '@svitlo/engine/runtime';
-import type { ContentBlockViewProps } from '../../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
+
+import type { ContentBlockViewProps } from '../../../presentation';
 
 /** Quiz is a Section; ContentBlock contains renderable resources only. */
 export type ContentBlockResponse = ContentBlockViewProps;

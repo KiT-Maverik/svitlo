@@ -28,12 +28,20 @@ const audio = defineAudio<'audio', ['en']>({
   locale: { title: { en: 'Narration' }, fileName: 'https://example.com/a.mp3' },
 });
 const firstSlide = defineImage<'first', ['en']>({
-  id, slug: 'first', type: 'image', params: { fill: true, aspectRatio: 1.5 },
+  id,
+  slug: 'first',
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
   locale: { fileName: 'https://example.com/image.png', alt: 'Alt' },
 });
 const carousel = defineCarousel<'carousel', { first: typeof firstSlide }, ['en']>({
-  id, slug: 'carousel', type: 'carousel', params: {}, locale: {},
-  children: ['first'], first: firstSlide,
+  id,
+  slug: 'carousel',
+  type: 'carousel',
+  params: {},
+  locale: {},
+  children: ['first'],
+  first: firstSlide,
 });
 const code = defineCode<'code', ['en']>({
   id,
@@ -288,7 +296,8 @@ const typedCarouselSupports = defineCarousel<
   type: 'carousel',
   params: {},
   locale: { title: 'Gallery' },
-  children: ['bilingual'], bilingual: bilingualSlideForGallery,
+  children: ['bilingual'],
+  bilingual: bilingualSlideForGallery,
 });
 void typedCarouselSupports;
 
@@ -311,12 +320,11 @@ const mixedCarousel = defineCarousel<'mixedGallery', { image: typeof image; scen
   type: 'carousel',
   params: {},
   locale: { title: { en: 'Explore' } },
-  children: ['image', 'scene'], image, scene,
+  children: ['image', 'scene'],
+  image,
+  scene,
 });
-mixedCarousel.build.overrides(
-  { scene: { locale: { value: { heading: { en: 'Updated' } } } } },
-  { languages: ['en'] },
-);
+mixedCarousel.build.overrides({ scene: { locale: { value: { heading: { en: 'Updated' } } } } }, { languages: ['en'] });
 defineCarousel({
   id,
   slug: 'invalidChild',

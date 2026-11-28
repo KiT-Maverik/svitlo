@@ -1,6 +1,5 @@
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AddedPlacementsFromPatch, SafePlacementMap } from '../../_shared__configurators';
 
 import {
   buildChildData,
@@ -12,13 +11,12 @@ import {
   slugAddressedReservedKeys,
   validateSlugAddressedContainer,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import { primitiveContentBlockTypes, type ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import { primitiveContentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import {
-  flashcardSide_Config_Schema,
-  type FlashcardSide_Overrides,
-} from './defineFlashcardSide.schemas';
+import { flashcardSide_Config_Schema, type FlashcardSide_Overrides } from './defineFlashcardSide.schemas';
 
 type Block = ContentBlock_Primitive_Configurator;
 type BlockResource = {
@@ -44,33 +42,53 @@ const validateSide = (phase: { children: string[] } & Record<string, unknown>, r
   });
   if (issues.length || errors.length) {
     throw new Error(
-      [...issues.map(issue => issue.path.join('.') + ': ' + issue.message),
-       ...errors.map(issue => issue.message)].join('; '),
+      [...issues.map(issue => issue.path.join('.') + ': ' + issue.message), ...errors.map(issue => issue.message)].join(
+        '; ',
+      ),
     );
   }
-  if (requireNonEmpty && !phase.children.some(key => {
-    const child = members[key];
-    return isRecord(child) && isRecord(child.config) && isRecord(child.config.base) &&
-      isRecord(child.config.base.params) && child.config.base.params.disabled !== true;
-  })) throw new Error('At least one enabled item is required in Flashcard side');
+  if (
+    requireNonEmpty &&
+    !phase.children.some(key => {
+      const child = members[key];
+      return (
+        isRecord(child) &&
+        isRecord(child.config) &&
+        isRecord(child.config.base) &&
+        isRecord(child.config.base.params) &&
+        child.config.base.params.disabled !== true
+      );
+    })
+  )
+    throw new Error('At least one enabled item is required in Flashcard side');
   for (const [key, child] of Object.entries(members)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.data !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== key ||
-        child.config.base.type !== child.type) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    ) {
       throw new Error('Invalid Flashcard ContentBlock Build API or identity: ' + key);
     }
   }
 };
 
-const validatePublication = (resource: SidePublication, languages: readonly LanguageCode[], patch?: SidePublication) => {
+const validatePublication = (
+  resource: SidePublication,
+  languages: readonly LanguageCode[],
+  patch?: SidePublication,
+) => {
   for (const language of languages) {
     // A new children array replaces the whole group; scalar/child patches stay sparse.
     const layer = (original: SideData, changes: SideData | undefined): SideData =>
       changes && Array.isArray(changes.children)
         ? structuredClone(changes)
-        : mergeForValidation(original, changes ?? {}) as SideData;
+        : (mergeForValidation(original, changes ?? {}) as SideData);
     const original = layer(resource.base, resource.locale?.[language]);
     const changed = patch ? layer(original, patch.base) : original;
     const effective = patch ? layer(changed, patch.locale?.[language]) : changed;
@@ -95,7 +113,8 @@ const defineFlashcardSideImpl = <
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: { children: Extract<keyof Items, string>[] } & Items &
-    ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+    ChildrenSupporting<Languages, Items> &
+    SafePlacementMap<Items>,
 ) => {
   const initialOrder = [...config.children];
   const initialItems = directChildren(config) as Items;
@@ -118,14 +137,15 @@ const defineFlashcardSideImpl = <
     });
     if (sparse) {
       const base = Object.fromEntries(
-        entries.filter(entry => entry.patch && Object.keys(entry.patch.base).length).map(
-          entry => [entry.key, entry.patch!.base],
-        ),
+        entries
+          .filter(entry => entry.patch && Object.keys(entry.patch.base).length)
+          .map(entry => [entry.key, entry.patch!.base]),
       ) as SideData;
       const locale: SideFiles = {};
       for (const code of languages) {
         const translated = Object.fromEntries(
-          entries.filter(entry => entry.patch?.locale?.[code] !== undefined)
+          entries
+            .filter(entry => entry.patch?.locale?.[code] !== undefined)
             .map(entry => [entry.key, entry.patch!.locale![code]]),
         ) as SideData;
         if (Object.keys(translated).length) locale[code] = translated;
@@ -134,21 +154,30 @@ const defineFlashcardSideImpl = <
     }
     const base: SideData = {
       children: [...sorted],
-      ...Object.fromEntries(entries.map(({ key, resource, patch }) => [
-        key, patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-      ])),
+      ...Object.fromEntries(
+        entries.map(({ key, resource, patch }) => [
+          key,
+          patch ? mergeForValidation(resource.base, patch.base) : resource.base,
+        ]),
+      ),
     };
     const locale: SideFiles = {};
     for (const code of languages) {
-      if (!entries.some(({ resource, patch }) =>
-        resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined)) continue;
+      if (
+        !entries.some(
+          ({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined,
+        )
+      )
+        continue;
       locale[code] = {
         children: [...sorted],
-        ...Object.fromEntries(entries.map(({ key, resource, patch }) => {
-          const translated = mergeForValidation(resource.base, resource.locale?.[code] ?? {});
-          const basePatch = patch ? mergeForValidation(translated, patch.base) : translated;
-          return [key, patch?.locale?.[code] ? mergeForValidation(basePatch, patch.locale[code]) : basePatch];
-        })),
+        ...Object.fromEntries(
+          entries.map(({ key, resource, patch }) => {
+            const translated = mergeForValidation(resource.base, resource.locale?.[code] ?? {});
+            const basePatch = patch ? mergeForValidation(translated, patch.base) : translated;
+            return [key, patch?.locale?.[code] ? mergeForValidation(basePatch, patch.locale[code]) : basePatch];
+          }),
+        ),
       };
     }
     return { base, locale: Object.keys(locale).length ? locale : undefined };
@@ -164,7 +193,9 @@ const defineFlashcardSideImpl = <
 
   const overridesImplementation = <const Added extends Record<string, Block> = {}>(
     patch: FlashcardSide_Overrides<Items, Added> &
-      Added & ChildrenSupporting<Languages, Added> & SafePlacementMap<Added>,
+      Added &
+      ChildrenSupporting<Languages, Added> &
+      SafePlacementMap<Added>,
     options: PublicationLanguageOptions<Languages>,
   ): SidePublication => {
     const languages = resolvePublicationLanguages(options);
@@ -179,8 +210,10 @@ const defineFlashcardSideImpl = <
         throw new Error('Reserved Flashcard side slug: ' + key);
       }
       if (Object.hasOwn(initialItems, key)) {
-        if (change === false) { active[key] = false; structural = true; }
-        else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
+        if (change === false) {
+          active[key] = false;
+          structural = true;
+        } else if (isRecord(change) && !isRecord(change.build)) childPatches[key] = change;
         else throw new Error('Flashcard child patch must be sparse object or false: ' + key);
       } else {
         const candidate: unknown = change;
@@ -198,7 +231,10 @@ const defineFlashcardSideImpl = <
     }
     const sorted = patch.children ?? initialOrder;
     if (!Array.isArray(sorted)) throw new Error('Flashcard side.children must be an array');
-    const enabled = Object.fromEntries(Object.entries(active).filter(([, child]) => child !== false)) as Record<string, Block>;
+    const enabled = Object.fromEntries(Object.entries(active).filter(([, child]) => child !== false)) as Record<
+      string,
+      Block
+    >;
     validateSide({ children: [...sorted], ...enabled });
     const result = structuredClone(buildContent(enabled, sorted, childPatches, patch.children === undefined));
     validatePublication(data(options), languages, result);
@@ -207,14 +243,12 @@ const defineFlashcardSideImpl = <
 
   const overrides: {
     <const Patch extends Record<string, unknown>>(
-      patch: Patch & FlashcardSide_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block, 'children'>> &
+      patch: Patch &
+        FlashcardSide_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block, 'children'>> &
         ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block, 'children'>>,
       options: PublicationLanguageOptions<Languages>,
     ): SidePublication;
-    (
-      patch: FlashcardSide_Overrides<Items, {}>,
-      options: PublicationLanguageOptions<Languages>,
-    ): SidePublication;
+    (patch: FlashcardSide_Overrides<Items, {}>, options: PublicationLanguageOptions<Languages>): SidePublication;
   } = overridesImplementation;
 
   const result = {
@@ -229,16 +263,14 @@ const defineFlashcardSideImpl = <
 
 export const defineFlashcardSide: {
   <const Input extends { children: string[] }>(
-    config: Input & { children: Extract<keyof InferredSideBlocks<Input>, string>[] } &
-      InferredSideBlocks<Input> & ChildrenSupporting<AllLanguageCodes, InferredSideBlocks<Input>> &
+    config: Input & { children: Extract<keyof InferredSideBlocks<Input>, string>[] } & InferredSideBlocks<Input> &
+      ChildrenSupporting<AllLanguageCodes, InferredSideBlocks<Input>> &
       SafePlacementMap<InferredSideBlocks<Input>>,
   ): ReturnType<typeof defineFlashcardSideImpl<InferredSideBlocks<Input>, AllLanguageCodes>>;
-  <
-    const Items extends Record<string, Block>,
-    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
-  >(
+  <const Items extends Record<string, Block>, const Languages extends readonly LanguageCode[] = AllLanguageCodes>(
     config: { children: Extract<keyof Items, string>[] } & Items &
-      ChildrenSupporting<Languages, Items> & SafePlacementMap<Items>,
+      ChildrenSupporting<Languages, Items> &
+      SafePlacementMap<Items>,
   ): ReturnType<typeof defineFlashcardSideImpl<Items, Languages>>;
 } = defineFlashcardSideImpl;
 

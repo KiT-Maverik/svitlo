@@ -1,5 +1,6 @@
 import type { Lesson_Configurator } from '../../configurators/lessons/defineLesson/defineLesson';
 import type { Lesson_Config } from '../../configurators/lessons/defineLesson/defineLesson.schemas';
+import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 import type {
   CourseWorkflowLessonSeed,
   CourseWorkflowStage1,
@@ -9,13 +10,13 @@ import type {
   CourseWorkflowStage1Production,
   CourseWorkflowStage2,
   CourseWorkflowStage2Chapter,
-  CourseWorkflowStage2Config,
-  CourseWorkflowStage2ModuleChild,
   CourseWorkflowStage2ChapterChild,
+  CourseWorkflowStage2Config,
   CourseWorkflowStage2EpisodeProduction,
   CourseWorkflowStage2EpisodeSlot,
   CourseWorkflowStage2LessonSlot,
   CourseWorkflowStage2Module,
+  CourseWorkflowStage2ModuleChild,
   CourseWorkflowStage3,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3ExistingLesson,
@@ -28,7 +29,6 @@ import type {
   CourseWorkflowStage3NewLessonConfig,
 } from './courseWorkflow.types';
 import type { LessonProductionAssessmentRequirements } from './lessonAssessment.types';
-import type { CourseLessonSourcePatch } from './courseLessonSourcePatch.types';
 
 const config = {
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -360,7 +360,9 @@ const existingLesson = {
   },
 } satisfies CourseWorkflowStage3ExistingLesson;
 
-const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies CourseLessonSourcePatch<typeof importedLesson>;
+const rawPatch = { params: { sections: { allowSkipping: false } } } satisfies CourseLessonSourcePatch<
+  typeof importedLesson
+>;
 const existingWithOverrides = {
   config: { ...existingConfig, slug: 'dayNightPractice' },
   production: {

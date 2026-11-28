@@ -91,7 +91,8 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages: ['en'] as const },
           locale: { title: 'Draft', description: 'Only a preview' },
-          children: ['renamedSlot'], renamedSlot: stub,
+          children: ['renamedSlot'],
+          renamedSlot: stub,
         });
         assert.throws(() => course.build.data({ languages: ['en'] }), /immutable child identity/i);
       });
@@ -106,7 +107,8 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: 'Chapter' },
-          children: ['assessmentSlot'], assessmentSlot: assessment,
+          children: ['assessmentSlot'],
+          assessmentSlot: assessment,
         });
         const module = defineModule({
           id: id('25'),
@@ -114,7 +116,9 @@ describe('Configurators', () => {
           type: 'module',
           params: {},
           locale: { title: 'Module' },
-          children: ['episodeSlot', 'chapter'], chapter, episodeSlot: episode,
+          children: ['episodeSlot', 'chapter'],
+          chapter,
+          episodeSlot: episode,
         });
         const course = defineCourse({
           id: id('26'),
@@ -122,7 +126,9 @@ describe('Configurators', () => {
           type: 'course',
           params: { languages: ['en'] as const },
           locale: { title: 'Course', description: 'Draft preview' },
-          children: ['lessonSlot', 'module'], module, lessonSlot: lesson,
+          children: ['lessonSlot', 'module'],
+          module,
+          lessonSlot: lesson,
         });
         const result = course.build.data({ languages: ['en'] });
         const root = result.base as unknown as Record<string, unknown> & { children: string[] };

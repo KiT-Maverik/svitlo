@@ -91,7 +91,10 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
   assert.throws(() => materializeFlashcard(duplicate as never, context), /duplicate built-in/);
   const missing = fixture();
   missing.config.content.front.children = [];
-  assert.throws(() => materializeFlashcard(missing as never, context), /content\.front\.(?:children|order): order must include every item once/);
+  assert.throws(
+    () => materializeFlashcard(missing as never, context),
+    /content\.front\.(?:children|order): order must include every item once/,
+  );
   assert.throws(
     () =>
       materializeFlashcard(fixture() as never, {
@@ -110,14 +113,19 @@ test('Flashcard: source locale, duplicate flags, missing bank and pre-existing c
   );
 });
 
-
 test('Flashcard materializer rejects invalid relationship type and position before source generation', () => {
   const invalidType = fixture();
   invalidType.config.parameters.relationships.reverseCard.type = 'unknown' as never;
-  assert.throws(() => materializeFlashcard(invalidType as never, context), /invalid relationship type, position or identity/);
+  assert.throws(
+    () => materializeFlashcard(invalidType as never, context),
+    /invalid relationship type, position or identity/,
+  );
   const invalidPosition = fixture();
   invalidPosition.config.parameters.relationships.reverseCard.position = 'above' as never;
-  assert.throws(() => materializeFlashcard(invalidPosition as never, context), /invalid relationship type, position or identity/);
+  assert.throws(
+    () => materializeFlashcard(invalidPosition as never, context),
+    /invalid relationship type, position or identity/,
+  );
 });
 
 // Stage 1 from the Lesson Flow is bank-level editorial input, not a complete Flashcard.

@@ -38,8 +38,12 @@ function episodeSceneDrafts(input: EpisodeWorkflowStage2, documentLanguage: stri
       }
       return;
     }
-    if (['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(config.type) &&
-        Array.isArray(config.children)) {
+    if (
+      ['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(
+        config.type,
+      ) &&
+      Array.isArray(config.children)
+    ) {
       for (const key of config.children) visit(config[key]);
     } else if (config.type === 'checkpointItem') {
       visit(config.question);

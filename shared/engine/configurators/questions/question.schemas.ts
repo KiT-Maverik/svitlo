@@ -3,10 +3,10 @@ import { z } from 'zod';
 import { disability_Schema, type LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
-import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import { validateSlugAddressedContainer } from '../_shared__configurators';
-import { primitiveContentBlockTypes } from '../contentBlocks/contentBlock.constants';
+import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Data } from '../contentBlocks';
+import { primitiveContentBlockTypes } from '../contentBlocks/contentBlock.constants';
 import {
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
@@ -37,18 +37,20 @@ export const questionCommonContent_Config_Schema = z.object({
 });
 
 /** Data retains stable child slugs; presentation arrays are a later adapter concern. */
-export const questionBlockCollection_Data_Schema = z.looseObject({
-  children: z.array(z.string()),
-}).superRefine((group, ctx) => {
-  for (const issue of validateSlugAddressedContainer(group, primitiveContentBlockTypes)) {
-    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
-  }
-  for (const key of group.children) {
-    if (typeof key === 'string' && !primitiveContentBlockResolved_Schema.safeParse(group[key]).success) {
-      ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Question ContentBlock Data' });
+export const questionBlockCollection_Data_Schema = z
+  .looseObject({
+    children: z.array(z.string()),
+  })
+  .superRefine((group, ctx) => {
+    for (const issue of validateSlugAddressedContainer(group, primitiveContentBlockTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
     }
-  }
-});
+    for (const key of group.children) {
+      if (typeof key === 'string' && !primitiveContentBlockResolved_Schema.safeParse(group[key]).success) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Question ContentBlock Data' });
+      }
+    }
+  });
 
 export const questionCommonContent_Data_Schema = z.object({
   question: questionBlockCollection_Data_Schema.refine(
@@ -76,8 +78,9 @@ export type QuestionMetadataOverrides<Config extends { params: object; locale: o
 
 /** Parent language coverage must be a subset of each nested ContentBlock's scope. */
 type Members<Group extends { children: string[] }> = {
-  [Key in Exclude<keyof Group, 'children'>]:
-    Group[Key] extends ContentBlock_Primitive_Configurator ? Group[Key] : ContentBlock_Primitive_Configurator;
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends ContentBlock_Primitive_Configurator
+    ? Group[Key]
+    : ContentBlock_Primitive_Configurator;
 };
 
 export type QuestionChildrenSupporting<Languages extends readonly LanguageCode[], Content extends QuestionContent> = {
