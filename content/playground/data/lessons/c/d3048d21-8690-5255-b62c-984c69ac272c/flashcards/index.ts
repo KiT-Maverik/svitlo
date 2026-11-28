@@ -15,11 +15,11 @@ const lightTravelsStraightFlashcard = defineFlashcard({
   content: {
     front: defineFlashcardSide({
       children: ['question'],
- question: lightTravelsStraight.content.question.question 
+      question: lightTravelsStraight.content.question.question
     }),
     back: defineFlashcardSide({
       children: ['straightLine'],
- straightLine: lightTravelsStraight.content.answers.correct.straightLine 
+      straightLine: lightTravelsStraight.content.answers.correct.straightLine
     }),
   },
 });
@@ -34,11 +34,11 @@ const fastestMediumFlashcard = defineFlashcard({
   content: {
     front: defineFlashcardSide({
       children: ['question'],
- question: fastestMedium.content.question.question 
+      question: fastestMedium.content.question.question
     }),
     back: defineFlashcardSide({
       children: ['vacuum'],
- vacuum: fastestMedium.content.answers.correct.vacuum 
+      vacuum: fastestMedium.content.answers.correct.vacuum
     }),
   },
 });
@@ -53,11 +53,11 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
   content: {
     front: defineFlashcardSide({
       children: ['question'],
- question: opaqueObjectShadow.content.question.question 
+      question: opaqueObjectShadow.content.question.question
     }),
     back: defineFlashcardSide({
       children: ['shadow'],
- shadow: opaqueObjectShadow.content.answers.correct.shadow 
+      shadow: opaqueObjectShadow.content.answers.correct.shadow
     }),
   },
 });
