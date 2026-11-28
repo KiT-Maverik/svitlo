@@ -302,7 +302,7 @@ describe('Configurators', () => {
           first: { params: { disabled: true } },
           second: { params: { disabled: true } },
           children: [],
-        }, scope), /At least one active Carousel slide/);
+        }, scope), /At least one item is required/);
 
         const only = defineImage({
           id: ids[4], slug: 'only', type: 'image',
