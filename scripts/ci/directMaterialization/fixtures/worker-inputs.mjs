@@ -217,7 +217,7 @@ function questionBlock(slug, n) {
     },
   };
 }
-const collection = items => ({ items, order: Object.keys(items) });
+const collection = items => ({ children: Object.keys(items), ...items });
 export function questionStage3() {
   const question = {
     config: {
@@ -255,7 +255,7 @@ export function flashcardStage3() {
     params: {},
     locale: { value: { uk: 'Коротке формулювання' } },
   });
-  const side = (slug, n) => ({ items: { [slug]: text(slug, n) }, order: [slug] });
+  const side = (slug, n) => ({ children: [slug], [slug]: text(slug, n) });
   const card = (slug, n) => ({
     config: {
       id: id(n),
