@@ -381,4 +381,13 @@ export const definePracticeSection: {
   ): ReturnType<typeof definePracticeSectionImpl<Slug, Items, Languages>>;
 } = definePracticeSectionImpl;
 
-export type PracticeSection_Configurator = ReturnType<typeof definePracticeSection>;
+/** Parent collections depend on the Build protocol, not the concrete child-key index. */
+type PracticeSectionBase = ReturnType<typeof definePracticeSectionImpl<string, {}, AllLanguageCodes>>;
+export type PracticeSection_Configurator = Omit<PracticeSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<PracticeSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<PracticeSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<PracticeSectionBase['build']['overrides']>;
+  };
+};

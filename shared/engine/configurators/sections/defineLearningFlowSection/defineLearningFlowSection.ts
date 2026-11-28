@@ -381,4 +381,13 @@ export const defineLearningFlowSection: {
   ): ReturnType<typeof defineLearningFlowSectionImpl<Slug, Items, Languages>>;
 } = defineLearningFlowSectionImpl;
 
-export type LearningFlowSection_Configurator = ReturnType<typeof defineLearningFlowSection>;
+/** Parent collections depend on the Build protocol, not the concrete child-key index. */
+type LearningFlowSectionBase = ReturnType<typeof defineLearningFlowSectionImpl<string, {}, AllLanguageCodes>>;
+export type LearningFlowSection_Configurator = Omit<LearningFlowSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<LearningFlowSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<LearningFlowSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<LearningFlowSectionBase['build']['overrides']>;
+  };
+};
