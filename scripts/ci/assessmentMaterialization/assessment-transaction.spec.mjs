@@ -152,12 +152,12 @@ test('trusted transaction checks real upstream Lesson and Question Bank source f
           'import { lesson as child_' + slug + ' } from "#lessonsData/' + id.at(-1) + '/' + id + '/index";\n',
       )
       .join('') +
-    'const content = { items: { ' +
+    'const __placements = { ' +
     lessonImports.map(({ slug }) => JSON.stringify(slug) + ': child_' + slug).join(', ') +
-    ' }, order: ' +
-    JSON.stringify(lessonImports.map(({ slug }) => slug)) +
     ' };\n' +
-    'export const demo = defineCourse({ content });\n';
+    'export const demo = defineCourse({ children: ' +
+    JSON.stringify(lessonImports.map(({ slug }) => slug)) +
+    ', ...__placements });\n';
   const contents = new Map([
     [courseParent, parent([{ slug: 'newLesson', id: lessonId }])],
     [lessonRoot + 'index.ts', 'export const lesson = defineLesson({});'],
