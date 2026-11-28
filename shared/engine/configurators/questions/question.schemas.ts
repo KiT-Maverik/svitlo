@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { disability_Schema, type LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
-import { validateSlugAddressedContainer } from '../_shared__configurators';
+import { validateSlugAddressedContainer } from '../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Data } from '../contentBlocks';
 import { primitiveContentBlockTypes } from '../contentBlocks/contentBlock.constants';
