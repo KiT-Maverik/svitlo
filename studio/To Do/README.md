@@ -83,9 +83,10 @@
 - [Teacher Classes Assignments](./teacher/teacher-classes-assignments.md)
 - [Teacher Research AND Product Discovery](./teacher/teacher-research-and-product-discovery.md)
 
-### Sponsors, Announcements & Reputation (4)
+### Sponsors, Announcements, Reputation & Contributions (5)
 
 - [Backend Announcements](./community/backend-announcements.md)
+- [Crowd AI Contributor Studio](./community/crowd-ai-contributor-studio.md)
 - [Fair Reputation](./community/fair-reputation.md)
 - [Sponsor Acknowledgements](./community/sponsor-acknowledgements.md)
 - [Sponsors AND Rankings](./community/sponsors-and-rankings.md)
@@ -105,6 +106,6 @@
 
 ---
 
-**Total planned feature documents:** 64. The previous immutable-builder quality task was resolved as an Engine code/typecheck change (see [Git-First Typed Content](../docs/architecture/git-first-typed-content.md)); it is no longer a planned feature.
+**Total planned feature documents:** 65. The previous immutable-builder quality task was resolved as an Engine code/typecheck change (see [Git-First Typed Content](../docs/architecture/git-first-typed-content.md)); it is no longer a planned feature.
 
 **Curation rules:** Preserve open decisions as questions, distinguish proposed versus existing contracts, do not assign invented completion dates or guarantees, and update each item when a decision, prototype, implementation PR or test result actually exists. Planned features may depend on other items; descriptions are **not** authorization to start multiple implementation streams simultaneously.
