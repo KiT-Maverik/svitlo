@@ -30,13 +30,13 @@ test('new Course publication is a compact slug-keyed hierarchy, not full nested 
   const base = course('uk').base;
   assert.equal(base.type, 'course');
   assert.equal(base.id, courseId);
-  assert.deepEqual(base.content.order, ['lightLaboratory']);
-  const module = base.content.items.lightLaboratory;
-  assert.deepEqual(module.content.order, ['lightFoundations', 'lightExploration']);
-  const chapter = module.content.items.lightFoundations;
-  const child = chapter.content.items.lightDiscovery;
+  assert.deepEqual(base.children, ['lightLaboratory']);
+  const module = base.lightLaboratory;
+  assert.deepEqual(module.children, ['lightFoundations', 'lightExploration']);
+  const chapter = module.lightFoundations;
+  const child = chapter.lightDiscovery;
   assert.deepEqual(child, { type: 'lesson', id: lessonId });
-  assert.equal(Object.hasOwn(child, 'section'), false);
+  assert.equal(Object.hasOwn(child, 'children'), false);
   assert(files.includes('data/courses/' + courseId + '/base.json'));
 });
 
@@ -45,7 +45,7 @@ test('localized Course files are sparse and do not repeat unchanged siblings', (
   if (localized !== undefined) {
     assert.equal(Object.hasOwn(localized, 'id'), false);
     assert.equal(Object.hasOwn(localized, 'type'), false);
-    assert.equal(Object.hasOwn(localized.content ?? {}, 'order'), false);
+    assert.equal(Object.hasOwn(localized, 'children'), false);
   } else {
     assert.equal(files.includes('data/courses/' + courseId + '/uk.json'), false);
   }
@@ -62,7 +62,9 @@ test('Course-context Lesson assembler consumes actual published Course and Lesso
   });
   assert.equal(props.id, lessonId);
   assert.equal(props.type, 'lesson');
-  assert(Array.isArray(props.section));
+  assert.deepEqual(props.children, ['theory', 'practice']);
+  assert.equal(props.theory.type, 'content');
+  assert.equal(props.practice.type, 'practice');
   assert.equal(typeof props.locale.title, 'string');
 });
 
@@ -79,7 +81,7 @@ test('Course demonstration Lessons never expose a Quiz without their own publish
       'demo Lesson ' + id + ' must not claim a required unowned Quiz',
     );
     assert(
-      !base.section.some(section => section.type === 'quiz' || section.type === 'flashcards'),
+      !base.children.some(slug => base[slug].type === 'quiz' || base[slug].type === 'flashcards'),
       'demo Lesson ' + id + ' must not refer to independently owned assessment banks',
     );
   }
@@ -99,9 +101,9 @@ test('compiled manifest carries sparse localized Course TOC for portable hosts',
   assert.equal(files.includes(path + 'uk.json'), localized !== undefined);
   const resolved = assembleCourseToc(base, localized, courseId, 'uk');
   assert.equal(resolved.id, courseId);
-  assert.equal(resolved.content.items.lightLaboratory.type, 'module');
-  assert.equal(resolved.content.items.lightLaboratory.content.items.lightFoundations.type, 'chapter');
-  const lessonNode = resolved.content.items.lightLaboratory.content.items.lightFoundations.content.items.lightDiscovery;
+  assert.equal(resolved.lightLaboratory.type, 'module');
+  assert.equal(resolved.lightLaboratory.lightFoundations.type, 'chapter');
+  const lessonNode = resolved.lightLaboratory.lightFoundations.lightDiscovery;
   assert.equal(lessonNode.id, lessonId);
   assert.equal(typeof lessonNode.label, 'string');
   assert(!JSON.stringify(base).includes('"section"'));

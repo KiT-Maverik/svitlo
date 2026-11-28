@@ -277,18 +277,26 @@ function assertCourseInventory(manifest, meta, entries) {
           // independent of any comment content, and require exactly one
           // colocated, removable blocker at the end of this owned module.
           const placementCall = 'export const ' + row.slug + ' = placeLesson(' + row.sourceExportName + ', ';
-          const checkedPatch = ' satisfies Parameters<typeof ' + row.sourceExportName + '.build.overrides>[0]);';
+          const checkedPatch = ' satisfies CourseLessonBoundPatch<typeof ' + row.sourceExportName;
           const placementStart = source.indexOf(placementCall);
           const patchEnd = placementStart < 0 ? -1 : source.indexOf(checkedPatch, placementStart);
-          const remainder = patchEnd < 0 ? '' : source.slice(patchEnd + checkedPatch.length).trim();
+          const typedSuffix = patchEnd < 0 ? '' : source.slice(patchEnd + checkedPatch.length);
+          // The concrete materializer emits a typed Lesson patch, optionally
+          // bound to the exact names of approved added Section configurators.
+          const sectionType = /"[A-Za-z][A-Za-z0-9]*": typeof [A-Za-z_$][A-Za-z0-9_$]*/.source;
+          const typedPattern = new RegExp('^(?:, \\{ ' + sectionType + '(?:; ' + sectionType + ')* \\})?>\\);');
+          const typedPatch = typedPattern.exec(typedSuffix);
+          const remainder = typedPatch ? typedSuffix.slice(typedPatch[0].length).trim() : '';
           const footer =
             '/*\n' +
             ' * TODO (BLOCKER): Implement, test and verify this entire Course-owned Lesson placement override and its resources; delete this temporary specification only after the whole override is complete.';
           if (
             imported.split('\n').filter(item => item === originalLine).length !== 1 ||
+            !source.includes("import type { CourseLessonBoundPatch } from '@svitlo/engine/build';") ||
             !source.includes("import { placeLesson } from '@svitlo/engine/build';") ||
             placementStart < 0 ||
             patchEnd < 0 ||
+            !typedPatch ||
             source.indexOf(placementCall, placementStart + placementCall.length) !== -1 ||
             !remainder.startsWith(footer) ||
             !remainder.includes(' * Course Lesson placement override rationale:') ||

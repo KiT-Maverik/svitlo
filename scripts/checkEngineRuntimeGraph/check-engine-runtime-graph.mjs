@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /** Browser bundle guard: resolve the actual runtime dependency graph with esbuild. */
 import { build } from 'esbuild';
+import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -16,7 +17,9 @@ export async function checkEngineRuntimeGraph(entry = defaultEntry) {
     metafile: true,
     platform: 'browser',
     format: 'esm',
-    packages: 'external',
+    // Only third-party dependencies are external. Package-private #schemas/
+    // #configurators imports must be resolved to expose build-only CJS barrels.
+    external: ['zod', '@svitlo/engine', '@svitlo/engine/*'],
     logLevel: 'silent',
   });
   const inputs = Object.keys(result.metafile.inputs);
@@ -48,5 +51,18 @@ export async function checkEngineRuntimeGraph(entry = defaultEntry) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const checked = await checkEngineRuntimeGraph();
-  console.log('Engine runtime browser dependency graph verified (' + checked + ' internal inputs).');
+  // The published Engine runtime uses CommonJS. ESM tree-shaking may omit
+  // build-only re-exports from a shared barrel, while CommonJS requires the
+  // entire barrel and pulls Node-only imports into the Web browser bundle.
+  // Validate the actual compiled artifact as well as the TypeScript source.
+  const compiledRuntime = resolve(root, 'shared/engine/dist/runtime.js');
+  if (!existsSync(compiledRuntime)) throw new Error('Compiled Engine runtime is missing: ' + compiledRuntime);
+  const compiled = await checkEngineRuntimeGraph(compiledRuntime);
+  console.log(
+    'Engine runtime browser dependency graph verified (' +
+      checked +
+      ' source inputs; ' +
+      compiled +
+      ' compiled CommonJS inputs).',
+  );
 }

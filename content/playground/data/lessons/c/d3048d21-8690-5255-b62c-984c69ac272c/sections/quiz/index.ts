@@ -70,5 +70,5 @@ export const quizSection = defineQuizSection({
     },
   },
   locale: { title, navigationLabel: title },
-  content: { items: {}, order: [] },
+  children: [],
 });

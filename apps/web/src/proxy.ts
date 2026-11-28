@@ -12,6 +12,8 @@ import { DEFAULT_SUPPORTED_LANGUAGES, resolveEntityPath } from '@svitlo/engine/r
  */
 const codes = new Set<string>(DEFAULT_SUPPORTED_LANGUAGES.map(entry => entry.language));
 const uuid = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+const placementSegment = /^[a-z][a-zA-Z0-9]*$/;
+const forbiddenPlacements = new Set(['__proto__', 'constructor', 'prototype']);
 
 const record = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -62,45 +64,44 @@ function invalidDirectCourseBase(publicRoot: string, courseId: string): boolean 
   }
 }
 
-function courseContainsEpisode(node: unknown, episodeId: string, language: string): boolean {
-  if (!record(node)) return false;
-  if (node.type === 'episode') return node.id === episodeId && supportsLanguage(node, language);
-  if (!record(node.content) || !record(node.content.items)) return false;
-  return Object.values(node.content.items).some(child => courseContainsEpisode(child, episodeId, language));
+/**
+ * Preflight only the addressed child chain. Each segment must appear in its
+ * owner's canonical children order; unrelated Course branches are not scanned.
+ */
+function courseActivityAtPlacement(course: Record<string, unknown>, placement: readonly string[]): Record<string, unknown> | undefined {
+  let owner = course;
+  for (const [index, key] of placement.entries()) {
+    if (
+      !placementSegment.test(key) ||
+      forbiddenPlacements.has(key) ||
+      !Array.isArray(owner.children) ||
+      !owner.children.includes(key)
+    ) return undefined;
+    const child = owner[key];
+    if (!record(child)) return undefined;
+    if (index < placement.length - 1 && child.type !== 'module' && child.type !== 'chapter') return undefined;
+    owner = child;
+  }
+  return owner;
 }
 
-function courseIncludesEpisode(publicRoot: string, courseId: string, episodeId: string, language: string): boolean {
-  if (!uuid.test(courseId) || !uuid.test(episodeId)) return false;
+function courseHasActivity(
+  publicRoot: string,
+  courseId: string,
+  placement: readonly string[],
+  type: 'lesson' | 'episode',
+  contentLanguage: string,
+): boolean {
+  if (!uuid.test(courseId) || !placement.length) return false;
   const normalized = courseId.toLowerCase();
   const course = readPublicationBase(path.join(publicRoot, 'data', 'courses', normalized, 'base.json'));
-  return (
-    !!course &&
-    course.id === normalized &&
-    course.type === 'course' &&
-    supportsLanguage(course, language) &&
-    courseContainsEpisode(course, episodeId.toLowerCase(), language)
-  );
-}
-
-function courseContainsLesson(node: unknown, lessonId: string): boolean {
-  if (!record(node)) return false;
-  if (node.type === 'lesson') return node.id === lessonId;
-  if (!record(node.content) || !record(node.content.items)) return false;
-  return Object.values(node.content.items).some(child => courseContainsLesson(child, lessonId));
-}
-
-function courseIncludesLesson(publicRoot: string, courseId: string, lessonId: string, language: string): boolean {
-  if (!uuid.test(courseId)) return false;
-  const normalized = courseId.toLowerCase();
-  const file = path.join(publicRoot, 'data', 'courses', normalized, 'base.json');
-  const course = readPublicationBase(file);
-  return (
-    !!course &&
-    course.id === normalized &&
-    course.type === 'course' &&
-    supportsLanguage(course, language) &&
-    courseContainsLesson(course, lessonId)
-  );
+  if (!course || course.id !== normalized || course.type !== 'course' || !supportsLanguage(course, contentLanguage))
+    return false;
+  const activity = courseActivityAtPlacement(course, placement);
+  if (!activity || activity.type !== type || typeof activity.id !== 'string') return false;
+  return type === 'lesson'
+    ? lessonExists(publicRoot, activity.id, contentLanguage)
+    : supportsLanguage(activity, contentLanguage);
 }
 
 /** Pure routing decision with an injectable publication directory for regression tests. */
@@ -124,16 +125,9 @@ export function isInvalidPublishedRoute(pathname: string, publicRoot: string): b
   if (parts[1] === 'course' && parts.length === 3) {
     return !codes.has(language) || invalidDirectCourseBase(publicRoot, parts[2]);
   }
-  if (parts[1] === 'course' && parts[3] === 'episode') {
-    if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
-    return !courseIncludesEpisode(publicRoot, parts[2], parts[5], parts[4]);
-  }
-  if (parts[1] === 'course' && parts[3] === 'lesson') {
-    if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
-    const [courseId, lessonId] = [parts[2], parts[5]];
-    return (
-      !lessonExists(publicRoot, lessonId, parts[4]) || !courseIncludesLesson(publicRoot, courseId, lessonId, parts[4])
-    );
+  if (parts[1] === 'course' && (parts[3] === 'lesson' || parts[3] === 'episode')) {
+    if (parts.length < 6 || !codes.has(language) || !codes.has(parts[4])) return true;
+    return !courseHasActivity(publicRoot, parts[2], parts.slice(5), parts[3], parts[4]);
   }
   return false;
 }

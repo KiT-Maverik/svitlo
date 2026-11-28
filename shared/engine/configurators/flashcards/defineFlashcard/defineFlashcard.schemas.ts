@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
-import { validateSlugAddressedContainer } from '../../_shared__configurators';
+import { validateSlugAddressedContainer } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { disability_Schema } from '../../../schemas/disabilities.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';

@@ -148,7 +148,13 @@ type AuthoredInput<
  * Only the last completed Item satisfies requireCompletion when enabled;
  * Item.check and enableChecks remain independent of the collection layout.
  */
-export const defineCheckpoint = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefineCheckpointChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'children'>;
+type InferredDefineCheckpointChildren<Input> = {
+  [Key in DefineCheckpointChildKeys<Input>]: Input[Key] extends CheckpointItem ? Input[Key] : CheckpointItem;
+};
+
+const defineCheckpointImpl = <
   const Slug extends string,
   const Items extends Record<string, CheckpointItem>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -408,6 +414,26 @@ export const defineCheckpoint = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const defineCheckpoint: {
+  <
+    const Input extends Pick<ContentBlock_Checkpoint_Config, 'id' | 'type' | 'params' | 'locale'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefineCheckpointChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineCheckpointImpl<Input['slug'], InferredDefineCheckpointChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, CheckpointItem>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineCheckpointImpl<Slug, Items, Languages>>;
+} = defineCheckpointImpl;
 
 type DefinedCheckpoint = ReturnType<typeof defineCheckpoint>;
 /** The parent-facing union erases a composite's generic placement index. */

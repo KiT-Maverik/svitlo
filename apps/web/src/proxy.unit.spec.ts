@@ -34,21 +34,14 @@ function fixture() {
       id: courseId,
       type: 'course',
       params: { languages: ['en', 'uk'] },
-      content: {
-        order: ['lab'],
-        items: {
-          lab: {
-            id: 'module',
-            type: 'module',
-            content: {
-              order: ['intro', 'story'],
-              items: {
-                intro: { id: lessonId, type: 'lesson' },
-                story: { id: episodeId, type: 'episode', params: { languages: ['uk'] } },
-              },
-            },
-          },
-        },
+      children: ['lab'],
+      lab: {
+        id: '11111111-1111-4111-8111-000000000142',
+        type: 'module',
+        slug: 'lab',
+        children: ['intro', 'story'],
+        intro: { id: lessonId, type: 'lesson' },
+        story: { id: episodeId, type: 'episode', params: { languages: ['uk'] } },
       },
     }),
   );
@@ -65,7 +58,7 @@ describe('HTTP status preflight for streamed educational routes', () => {
     expect(isInvalidPublishedRoute('/uk/lesson/uk/' + lessonId, root)).toBe(false);
     expect(isInvalidPublishedRoute('/en/lesson/uk/' + lessonId, root)).toBe(false);
     expect(isInvalidPublishedRoute('/uk/lesson/' + lessonId, root)).toBe(false);
-    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/en/' + lessonId, root)).toBe(false);
+    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/en/lab/intro', root)).toBe(false);
     expect(isInvalidPublishedRoute('/uk/courses', root)).toBe(false);
     expect(isInvalidPublishedRoute('/uk/course/' + courseId, root)).toBe(false);
   });
@@ -88,15 +81,15 @@ describe('HTTP status preflight for streamed educational routes', () => {
 
   it('rejects absent Course members and obsolete Episode URLs before streaming starts', () => {
     const root = fixture();
-    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/uk/' + otherId, root)).toBe(true);
-    expect(isInvalidPublishedRoute('/uk/course/' + otherId + '/lesson/uk/' + lessonId, root)).toBe(true);
+    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/uk/lab/missing', root)).toBe(true);
+    expect(isInvalidPublishedRoute('/uk/course/' + otherId + '/lesson/uk/lab/intro', root)).toBe(true);
     expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/episode/' + retiredEpisodeId, root)).toBe(true);
   });
 
   it('treats corrupt or incomplete publications as unavailable, not as a successful route', () => {
     const root = fixture();
     writeFileSync(path.join(root, 'data', 'courses', courseId, 'base.json'), '{not json');
-    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/uk/' + lessonId, root)).toBe(true);
+    expect(isInvalidPublishedRoute('/uk/course/' + courseId + '/lesson/uk/lab/intro', root)).toBe(true);
     expect(isInvalidPublishedRoute('/uk/lesson/uk/' + lessonId, root)).toBe(false);
     writeFileSync(
       path.join(root, 'data', 'lessons', '1', lessonId, 'base.json'),
@@ -112,14 +105,30 @@ describe('HTTP status preflight for streamed educational routes', () => {
 
 it('admits only canonical localized Episode routes for actual Course members', () => {
   const root = fixture();
-  expect(isInvalidPublishedRoute('/en/course/' + courseId + '/episode/uk/' + episodeId, root)).toBe(false);
+  expect(isInvalidPublishedRoute('/en/course/' + courseId + '/episode/uk/lab/story', root)).toBe(false);
   for (const route of [
-    '/uk/course/' + courseId + '/episode/en/' + episodeId,
-    '/uk/course/' + courseId + '/episode/uk/' + otherId,
-    '/uk/course/' + otherId + '/episode/uk/' + episodeId,
-    '/xx/course/' + courseId + '/episode/uk/' + episodeId,
-    '/uk/course/' + courseId + '/episode/xx/' + episodeId,
-    '/uk/course/' + courseId + '/episode/' + episodeId,
+    '/uk/course/' + courseId + '/episode/en/lab/story',
+    '/uk/course/' + courseId + '/episode/uk/lab/missing',
+    '/uk/course/' + otherId + '/episode/uk/lab/story',
+    '/xx/course/' + courseId + '/episode/uk/lab/story',
+    '/uk/course/' + courseId + '/episode/xx/lab/story',
+    '/uk/course/' + courseId + '/episode/lab/story',
+  ])
+    expect(isInvalidPublishedRoute(route, root), route).toBe(true);
+});
+
+it('rejects unsafe, unordered, misplaced and wrong-kind Course paths without scanning siblings', () => {
+  const root = fixture();
+  const prefix = '/uk/course/' + courseId;
+  for (const route of [
+    prefix + '/lesson/uk/intro',
+    prefix + '/lesson/uk/lab/story',
+    prefix + '/episode/uk/lab/intro',
+    prefix + '/lesson/uk/lab/intro/extra',
+    prefix + '/lesson/uk/lab/constructor',
+    prefix + '/lesson/uk/lab/%2e%2e',
+    prefix + '/lesson/uk/lab',
+    prefix + '/episode/uk/lab/missing',
   ])
     expect(isInvalidPublishedRoute(route, root), route).toBe(true);
 });

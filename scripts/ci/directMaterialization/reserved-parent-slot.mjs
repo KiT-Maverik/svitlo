@@ -23,7 +23,101 @@ function singleProperty(object, key) {
   return found[0];
 }
 
-/** Resolve an integrated Lesson from the exact Course/Module/Chapter content slot.
+/** Verify the generated Course/Module/Chapter parent without executing source.
+ * It must own one literal __placements map, an exact children array and a
+ * single final spread of that map into the exported Configurator.
+ */
+function immediateParent(ast, allowedOwners) {
+  const statements = ast.statements.filter(ts.isVariableStatement);
+  if (
+    statements.length !== 2 ||
+    statements.some(statement =>
+      statement.declarationList.declarations.length !== 1 ||
+      !(statement.declarationList.flags & ts.NodeFlags.Const),
+    )
+  )
+    throw Error('Unexpected executable or extra parent variable declaration');
+  const declarations = statements.map(statement => statement.declarationList.declarations[0]);
+  const collections = declarations.filter(declaration =>
+    ts.isIdentifier(declaration.name) && declaration.name.text === '__placements',
+  );
+  if (collections.length !== 1 || !ts.isObjectLiteralExpression(unwrap(collections[0].initializer)))
+    throw Error('Missing exact immediate parent placements collection');
+  const placements = unwrap(collections[0].initializer);
+  const owners = declarations.filter(declaration => {
+    const call = unwrap(declaration.initializer);
+    return (
+      ts.isCallExpression(call) &&
+      ts.isIdentifier(call.expression) &&
+      allowedOwners.includes(call.expression.text) &&
+      call.arguments.length === 1 &&
+      ts.isObjectLiteralExpression(unwrap(call.arguments[0]))
+    );
+  });
+  if (owners.length !== 1 || owners[0] === collections[0])
+    throw Error('Unexpected immediate Course owner Configurator');
+  const owner = owners[0];
+  const ownerStatement = statements.find(statement => statement.declarationList.declarations[0] === owner);
+  if (!(ts.getCombinedModifierFlags(ownerStatement) & ts.ModifierFlags.Export))
+    throw Error('Parent Configurator must be exported');
+  const call = unwrap(owner.initializer);
+  const object = unwrap(call.arguments[0]);
+  const spreads = object.properties.filter(ts.isSpreadAssignment);
+  if (
+    spreads.length !== 1 ||
+    object.properties.at(-1) !== spreads[0] ||
+    !ts.isIdentifier(spreads[0].expression) ||
+    spreads[0].expression.text !== '__placements'
+  )
+    throw Error('Parent must spread its one literal placements map last');
+  const childrenNode = unwrap(singleProperty(object, 'children').initializer);
+  if (!ts.isArrayLiteralExpression(childrenNode)) throw Error('Parent children order must be literal');
+  const entries = placements.properties.map(property => {
+    if (ts.isShorthandPropertyAssignment(property) && safe(property.name.text))
+      return { key: property.name.text, value: property.name };
+    if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
+      throw Error('Unexpected immediate parent placement syntax');
+    return { key: name(property.name), value: unwrap(property.initializer) };
+  });
+  const ordered = childrenNode.elements.map(element => {
+    const node = unwrap(element);
+    if (!ts.isStringLiteral(node) || !safe(node.text)) throw Error('Unsafe parent children order');
+    return node.text;
+  });
+  if (
+    entries.length !== ordered.length ||
+    new Set(entries.map(entry => entry.key)).size !== entries.length ||
+    new Set(ordered).size !== ordered.length ||
+    entries.some(entry => !ordered.includes(entry.key)) ||
+    object.properties.some(property =>
+      ts.isPropertyAssignment(property) && entries.some(entry => name(property.name) === entry.key),
+    )
+  )
+    throw Error('Incomplete, duplicated or shadowed immediate parent children');
+  let references = 0;
+  const visit = node => {
+    if (ts.isIdentifier(node) && node.text === '__placements') references++;
+    ts.forEachChild(node, visit);
+  };
+  ts.forEachChild(ast, visit);
+  const generics = call.typeArguments;
+  if (
+    generics?.length &&
+    (
+      generics.length !== 3 ||
+      !ts.isTypeQueryNode(generics[1]) ||
+      !ts.isIdentifier(generics[1].exprName) ||
+      generics[1].exprName.text !== '__placements'
+    )
+  )
+    throw Error('Unexpected parent placements generic type reference');
+  // The real generated Configurator also has one type-only typeof reference.
+  if (references !== (generics?.length ? 3 : 2))
+    throw Error('Ambiguous or untrusted parent placements reference');
+  return { entries, ordered, ownerName: call.expression.text };
+}
+
+/** Resolve an integrated Lesson from the exact Course/Module/Chapter placement slot.
  * Independent Lessons live in #lessonsData, not inside a Course placement.
  * Inspect the pinned immediate-parent AST; never search import text/comments or
  * infer a bank owner from an arbitrary sibling import.
@@ -45,39 +139,8 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   )
     throw Error('Unexpected integrated Course Lesson parent syntax');
   const imports = ast.statements.filter(ts.isImportDeclaration);
-  const declarations = ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(statement => [...statement.declarationList.declarations]);
-  const collections = declarations.filter(
-    declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'content',
-  );
-  if (collections.length !== 1 || !ts.isObjectLiteralExpression(unwrap(collections[0].initializer)))
-    throw Error('Integrated Lesson requires one immediate parent content collection');
-  const collection = unwrap(collections[0].initializer);
-  if (collection.properties.length !== 2) throw Error('Unexpected Course Lesson content shape');
-  const items = unwrap(singleProperty(collection, 'items').initializer);
-  const order = unwrap(singleProperty(collection, 'order').initializer);
-  if (!ts.isObjectLiteralExpression(items) || !ts.isArrayLiteralExpression(order))
-    throw Error('Integrated Lesson parent items/order must be literal');
-  const entries = items.properties.map(property => {
-    if (ts.isShorthandPropertyAssignment(property) && safe(property.name.text))
-      return { key: property.name.text, value: property.name };
-    if (!ts.isPropertyAssignment(property) || !safe(name(property.name)))
-      throw Error('Unexpected integrated Lesson item syntax');
-    return { key: name(property.name), value: unwrap(property.initializer) };
-  });
-  const keys = order.elements.map(element => {
-    const node = unwrap(element);
-    if (!ts.isStringLiteral(node) || !safe(node.text)) throw Error('Invalid integrated Lesson parent order');
-    return node.text;
-  });
-  if (
-    keys.length !== entries.length ||
-    new Set(keys).size !== keys.length ||
-    new Set(entries.map(entry => entry.key)).size !== entries.length ||
-    entries.some(entry => !keys.includes(entry.key))
-  )
-    throw Error('Integrated Lesson parent items/order mismatch');
+  const definitions = ownerKinds.map(kind => 'define' + kind[0].toUpperCase() + kind.slice(1));
+  const { entries, ownerName } = immediateParent(ast, definitions);
   const item = entries.find(entry => entry.key === slug)?.value;
   if (!item) throw Error('Upstream Lesson is not integrated into its reviewed Course slot');
   const direct = ts.isIdentifier(item);
@@ -121,33 +184,15 @@ export function resolveIntegratedCourseLesson(source, { slug, ownerKind }) {
   };
   ts.forEachChild(ast, visit);
   if (occurrences.count !== 2) throw Error('Ambiguous integrated Lesson import reference');
-  const definitions = ownerKinds.map(kind => 'define' + kind[0].toUpperCase() + kind.slice(1));
-  const parents = declarations.filter(declaration => {
-    const call = unwrap(declaration.initializer);
-    return (
-      ts.isCallExpression(call) &&
-      ts.isIdentifier(call.expression) &&
-      definitions.includes(call.expression.text) &&
-      call.arguments.length === 1 &&
-      ts.isObjectLiteralExpression(unwrap(call.arguments[0])) &&
-      unwrap(call.arguments[0]).properties.some(
-        property => ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content',
-      )
-    );
-  });
   if (
-    parents.length !== 1 ||
     !imports.some(
       statement =>
         ts.isStringLiteral(statement.moduleSpecifier) &&
         statement.moduleSpecifier.text === '@svitlo/engine/build' &&
         statement.importClause?.namedBindings &&
         ts.isNamedImports(statement.importClause.namedBindings) &&
-        statement.importClause.namedBindings.elements.some(
-          element =>
-            !element.isTypeOnly &&
-            !element.propertyName &&
-            element.name.text === unwrap(parents[0].initializer).expression.text,
+        statement.importClause.namedBindings.elements.some(element =>
+          !element.isTypeOnly && !element.propertyName && element.name.text === ownerName,
         ),
     )
   )
@@ -283,36 +328,10 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
     )
   )
     throw Error('Ambiguous imported Course stub');
-  const variable = ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(statement => [...statement.declarationList.declarations])
-    .filter(declaration => ts.isIdentifier(declaration.name) && declaration.name.text === 'content');
-  if (variable.length !== 1 || !ts.isObjectLiteralExpression(unwrap(variable[0].initializer)))
-    throw Error('Missing exact immediate parent content collection');
-  const collection = unwrap(variable[0].initializer);
-  if (collection.properties.length !== 2) throw Error('Unrecognized parent items/order shape');
-  const itemNode = unwrap(singleProperty(collection, 'items').initializer);
-  const orderNode = unwrap(singleProperty(collection, 'order').initializer);
-  if (!ts.isObjectLiteralExpression(itemNode) || !ts.isArrayLiteralExpression(orderNode))
-    throw Error('Parent items/order must be literals');
-  const items = itemNode.properties.map(property => {
-    if (ts.isShorthandPropertyAssignment(property) && safe(property.name.text))
-      return { key: property.name.text, value: property.name };
-    if (!ts.isPropertyAssignment(property) || !safe(name(property.name))) throw Error('Unexpected parent item syntax');
-    return { key: name(property.name), value: unwrap(property.initializer) };
-  });
-  const ordered = orderNode.elements.map(element => {
-    const node = unwrap(element);
-    if (!ts.isStringLiteral(node) || !safe(node.text)) throw Error('Unsafe parent order');
-    return node.text;
-  });
-  if (
-    items.length !== ordered.length ||
-    new Set(items.map(item => item.key)).size !== items.length ||
-    new Set(ordered).size !== ordered.length ||
-    items.some(item => !ordered.includes(item.key))
-  )
-    throw Error('Incomplete or duplicate immediate parent order');
+  const ownerDepth = depth - 1;
+  const allowedOwners =
+    ownerDepth === 0 ? ['defineCourse'] : ownerDepth === 1 ? ['defineModule', 'defineChapter'] : ['defineChapter'];
+  const { entries: items, ownerName: owner } = immediateParent(ast, allowedOwners);
   const owned = items.find(item => item.key === slug);
   if (!owned || !ts.isIdentifier(owned.value) || owned.value.text !== slug)
     throw Error('Course pending child slot does not use its approved stub export');
@@ -323,42 +342,6 @@ export function verifyPendingCourseParent(source, { kind, id, slug, placement, s
   };
   ts.forEachChild(ast, visit);
   if (references !== 2) throw Error('Course pending stub export has ambiguous references');
-  // A Chapter may belong directly to a Course or to a Module. Path depth
-  // constrains the legal owners but cannot distinguish the two at level one.
-  const ownerDepth = depth - 1;
-  const allowedOwners =
-    ownerDepth === 0 ? ['defineCourse'] : ownerDepth === 1 ? ['defineModule', 'defineChapter'] : ['defineChapter'];
-  const parents = ast.statements
-    .filter(ts.isVariableStatement)
-    .flatMap(statement => [...statement.declarationList.declarations])
-    .filter(declaration => {
-      const init = unwrap(declaration.initializer);
-      return (
-        ts.isCallExpression(init) &&
-        ts.isIdentifier(init.expression) &&
-        allowedOwners.includes(init.expression.text) &&
-        init.arguments.length === 1 &&
-        ts.isObjectLiteralExpression(unwrap(init.arguments[0])) &&
-        unwrap(init.arguments[0]).properties.some(
-          property => ts.isShorthandPropertyAssignment(property) && name(property.name) === 'content',
-        )
-      );
-    });
-  if (parents.length !== 1) throw Error('Unexpected immediate Course stub owner Configurator');
-  const owner = unwrap(parents[0].initializer).expression.text;
-  const statements = ast.statements.filter(ts.isVariableStatement);
-  if (
-    statements.length !== 2 ||
-    statements.some(
-      statement =>
-        statement.declarationList.declarations.length !== 1 || !(statement.declarationList.flags & ts.NodeFlags.Const),
-    ) ||
-    !parents.every(declaration =>
-      statements.some(statement => statement.declarationList.declarations[0] === declaration),
-    )
-  )
-    throw Error('Unexpected executable or extra parent variable declaration');
-
   const builds = imported.filter(
     statement =>
       ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === '@svitlo/engine/build',

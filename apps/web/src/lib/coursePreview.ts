@@ -30,10 +30,11 @@ function counts(owner: Record<string, unknown>): Count {
 /** Presentation-only preview; resolved Course domain Data remains slug-addressable. */
 export function toCoursePreview(course: LocalizedCourse): CoursePreview {
   const total = counts(course);
+  const description = 'description' in course.locale ? course.locale.description : undefined;
   return {
     id: course.id,
     title: course.locale.title,
-    description: typeof course.locale.description === 'string' ? course.locale.description : '',
+    description: typeof description === 'string' ? description : '',
     category: '',
     level: '',
     lessons: total.lessons,

@@ -28,7 +28,7 @@ export function independentLessonConfig(sourceId = reusedLessonId, slug = 'indep
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { uk: 'Незалежний урок' } },
-    section: { items: {}, order: [] },
+    children: [],
   };
 }
 export function lessonStage2() {
@@ -43,34 +43,26 @@ export function lessonStage2() {
         sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
       locale: { title: { uk: 'Основи' } },
-      section: {
-        items: {
-          intro: {
+      children: ['intro'],
+      intro: {
+        config: {
+          id: '12345678-1234-4234-8234-123456789002',
+          slug: 'intro',
+          type: 'content',
+          params: {},
+          locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
+          children: ['prompt'],
+          prompt: {
             config: {
-              id: '12345678-1234-4234-8234-123456789002',
-              slug: 'intro',
-              type: 'content',
+              id: '12345678-1234-4234-8234-123456789003',
+              slug: 'prompt',
+              type: 'text',
               params: {},
-              locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
-              content: {
-                items: {
-                  prompt: {
-                    config: {
-                      id: '12345678-1234-4234-8234-123456789003',
-                      slug: 'prompt',
-                      type: 'text',
-                      params: {},
-                      locale: { value: { uk: 'Прочитай цей текст' } },
-                    },
-                  },
-                },
-                order: ['prompt'],
-              },
+              locale: { value: { uk: 'Прочитай цей текст' } },
             },
-            production: { purpose: 'Introduce the concept', specification: 'Text-only source' },
           },
         },
-        order: ['intro'],
+        production: { purpose: 'Introduce the concept', specification: 'Text-only source' },
       },
     },
     production: {
@@ -124,29 +116,23 @@ export function courseStage3() {
       slug: 'skyBasics',
       params: { age: { min: 6, max: 10 } },
       locale: { title: { uk: 'Небо' }, description: { uk: 'Спостереження' } },
-      content: {
-        items: {
-          newLesson,
-          reused: {
-            config: { type: 'lesson', slug: 'reused', skills: [skillId] },
-            production: {
-              ...baseExisting(reusedLessonId, 'independentLesson'),
-            },
-          },
-          overridden: {
-            config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
-            production: {
-              ...baseExisting(overriddenLessonId, 'overriddenLesson'),
-              sourcePatch: patch,
-              overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
-            },
-          },
-          episodeOne: {
-            config: { type: 'episode' },
-            production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
-          },
+      children: ['newLesson', 'reused', 'overridden', 'episodeOne'],
+      newLesson,
+      reused: {
+        config: { type: 'lesson', slug: 'reused', skills: [skillId] },
+        production: { ...baseExisting(reusedLessonId, 'independentLesson') },
+      },
+      overridden: {
+        config: { type: 'lesson', slug: 'overridden', skills: [skillId] },
+        production: {
+          ...baseExisting(overriddenLessonId, 'overriddenLesson'),
+          sourcePatch: patch,
+          overrideRationale: 'Adjust Course-local navigation without modifying the Lesson',
         },
-        order: ['newLesson', 'reused', 'overridden', 'episodeOne'],
+      },
+      episodeOne: {
+        config: { type: 'episode' },
+        production: { focus: 'Observation and reflection', purpose: 'Narrative transition to practice' },
       },
     },
     production: {
@@ -175,33 +161,25 @@ export function episodeStage2(episodeId) {
       type: 'episode',
       slug: 'episodeOne',
       locale: { title: { uk: 'Зміна сцени' } },
-      section: {
-        items: {
-          intro: {
+      children: ['intro'],
+      intro: {
+        config: {
+          id: '663572e7-bd85-4516-86e2-3de07d209e05',
+          type: 'content',
+          slug: 'intro',
+          params: {},
+          locale: { title: { uk: 'Початок' }, navigationLabel: '1' },
+          children: ['prompt'],
+          prompt: {
             config: {
-              id: '663572e7-bd85-4516-86e2-3de07d209e05',
-              type: 'content',
-              slug: 'intro',
+              id: '663572e7-bd85-4516-86e2-3de07d209e06',
+              type: 'text',
+              slug: 'prompt',
               params: {},
-              locale: { title: { uk: 'Початок' }, navigationLabel: '1' },
-              content: {
-                items: {
-                  prompt: {
-                    config: {
-                      id: '663572e7-bd85-4516-86e2-3de07d209e06',
-                      type: 'text',
-                      slug: 'prompt',
-                      params: {},
-                      locale: { value: { uk: 'Подивіться навколо' } },
-                    },
-                  },
-                },
-                order: ['prompt'],
-              },
+              locale: { value: { uk: 'Подивіться навколо' } },
             },
           },
         },
-        order: ['intro'],
       },
     },
     production: {
@@ -239,7 +217,7 @@ function questionBlock(slug, n) {
     },
   };
 }
-const collection = items => ({ items, order: Object.keys(items) });
+const collection = items => ({ children: Object.keys(items), ...items });
 export function questionStage3() {
   const question = {
     config: {
@@ -277,7 +255,7 @@ export function flashcardStage3() {
     params: {},
     locale: { value: { uk: 'Коротке формулювання' } },
   });
-  const side = (slug, n) => ({ items: { [slug]: text(slug, n) }, order: [slug] });
+  const side = (slug, n) => ({ children: [slug], [slug]: text(slug, n) });
   const card = (slug, n) => ({
     config: {
       id: id(n),

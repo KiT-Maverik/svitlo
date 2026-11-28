@@ -8,6 +8,14 @@ the same finished fixture Course trees and known localized fixture Lesson.
 They exercise the host's published-TOC path without importing authored
 Playground data or adding a separate production generator.
 
+Fixture publications now use canonical Engine Data throughout: Courses, Lessons,
+Episodes, Sections and Question block groups store ordered `children` plus direct
+slug-keyed placements. Course Lesson entries remain compact UUID references,
+including a reused Lesson with a placement-specific title override. The fixture
+builder derives sparse Course, Lesson, Question and TOC locale fragments from
+fully localized examples; locale patches cannot change ordered child identity.
+Presentation arrays are produced only by host adapters, never published as Data.
+
 Alpha also publishes a **test-only invalid-TOC Course** at UUID
 `11111111-1111-4111-8111-0000000002fc`: its English Course base is valid,
 but `toc/base.json` contains valid JSON with a mismatched Course UUID.

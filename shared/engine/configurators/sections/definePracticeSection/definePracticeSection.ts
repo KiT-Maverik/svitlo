@@ -112,7 +112,13 @@ type AuthoredInput<
   ConfigWithLanguages<PracticeSection_Config, Languages>;
 
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const definePracticeSection = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefinePracticeSectionChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'children'>;
+type InferredDefinePracticeSectionChildren<Input> = {
+  [Key in DefinePracticeSectionChildKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+const definePracticeSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -355,4 +361,33 @@ export const definePracticeSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type PracticeSection_Configurator = ReturnType<typeof definePracticeSection>;
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const definePracticeSection: {
+  <
+    const Input extends Pick<PracticeSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefinePracticeSectionChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof definePracticeSectionImpl<Input['slug'], InferredDefinePracticeSectionChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof definePracticeSectionImpl<Slug, Items, Languages>>;
+} = definePracticeSectionImpl;
+
+/** Parent collections depend on the Build protocol, not the concrete child-key index. */
+type PracticeSectionBase = ReturnType<typeof definePracticeSectionImpl<string, {}, AllLanguageCodes>>;
+export type PracticeSection_Configurator = Omit<PracticeSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<PracticeSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<PracticeSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<PracticeSectionBase['build']['overrides']>;
+  };
+};

@@ -21,20 +21,16 @@ const reviewed = {
   config: {
     ...handoff.config,
     locale: { title: { uk: 'Дія' } },
-    section: {
-      items: {
-        intro: {
-          config: {
-            id: '663572e7-bd85-4516-86e2-3de07d209e05',
-            type: 'content',
-            slug: 'intro',
-            params: {},
-            locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
-            content: { items: {}, order: [] },
-          },
-        },
+    children: ['intro'],
+    intro: {
+      config: {
+        id: '663572e7-bd85-4516-86e2-3de07d209e05',
+        type: 'content',
+        slug: 'intro',
+        params: {},
+        locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
+        children: [],
       },
-      order: ['intro'],
     },
   },
   production: {
@@ -69,16 +65,15 @@ const stubSource =
   JSON.stringify(episodeId) +
   ', slug: "episodeOne" });\n';
 const parent =
-  "import { defineCourse, defineLessonStub } from '@svitlo/engine/build';\n" +
+  "import { defineCourse } from '@svitlo/engine/build';\n" +
+  'import { before } from "./before/stub";\n' +
   'import { episodeOne } from "./episodeOne/stub";\n' +
-  'const content = { items: { ' +
-  '"before": defineLessonStub({ id: "00000000-0000-4000-8000-000000000001", slug: "before" }), ' +
-  'episodeOne, ' +
-  '"after": defineLessonStub({ id: "00000000-0000-4000-8000-000000000002", slug: "after" }) ' +
-  '}, order: ["before", "episodeOne", "after"] };\n' +
+  'import { after } from "./after/stub";\n' +
+  'const __placements = { before, episodeOne, after };\n' +
   'export const demo = defineCourse({ id: ' +
   JSON.stringify(courseId) +
-  ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, content });\n';
+  ', slug: "demo", type: "course", params: {}, locale: { title: "Test", description: "Test" }, ' +
+  'children: ["before", "episodeOne", "after"], ...__placements });\n';
 test('Episode source discovery preserves direct and nested owners without structural content directories', () => {
   for (const [path, parent] of [
     ['episodeOne', 'index.ts'],
@@ -127,7 +122,7 @@ test('trusted Episode plan creates only owned source and retains Course parent/s
   for (const changed of [
     parent.replace('import { episodeOne }', 'import { other }'),
     parent.replace('episodeOne', 'episodeOne: unreviewed'),
-    parent.replace('order: ["before", "episodeOne", "after"]', 'order: ["before", "after"]'),
+    parent.replace('children: ["before", "episodeOne", "after"]', 'children: ["before", "after"]'),
   ])
     assert.throws(() => composeEpisodeDirectPlan(handoff, reviewed, meta, changed, stubSource, worker));
   assert.throws(

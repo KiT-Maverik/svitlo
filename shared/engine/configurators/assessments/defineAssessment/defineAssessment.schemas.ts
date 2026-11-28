@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
 import type { DeepPartial, PublicationLanguageOptions } from '#types';
 
-import { validateSlugAddressedContainer } from '../../_shared__configurators';
+import { validateSlugAddressedContainer } from '../../_shared__configurators/slugAddressedContainer/slugAddressedContainer.utils';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';

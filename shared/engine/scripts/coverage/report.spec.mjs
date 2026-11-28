@@ -15,6 +15,10 @@ describe('Engine coverage invocation parsing', () => {
       ),
       ['.test-build/lessons/*.spec.js', 'scripts/coverage/report.spec.mjs'],
     );
+    assert.deepEqual(
+      engineTestPatterns('tsc -p tsconfig.test.json && node --test first.spec.js && node check.mjs && node --test second.spec.js third.spec.js'),
+      ['first.spec.js', 'second.spec.js', 'third.spec.js'],
+    );
     assert.throws(() => engineTestPatterns('tsc -p tsconfig.test.json'), /Unsupported Engine test command/);
   });
 });

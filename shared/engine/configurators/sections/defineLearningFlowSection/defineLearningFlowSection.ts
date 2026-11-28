@@ -112,7 +112,13 @@ type AuthoredInput<
   ConfigWithLanguages<LearningFlowSection_Config, Languages>;
 
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const defineLearningFlowSection = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefineLearningFlowSectionChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'children'>;
+type InferredDefineLearningFlowSectionChildren<Input> = {
+  [Key in DefineLearningFlowSectionChildKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+const defineLearningFlowSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -355,4 +361,33 @@ export const defineLearningFlowSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type LearningFlowSection_Configurator = ReturnType<typeof defineLearningFlowSection>;
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const defineLearningFlowSection: {
+  <
+    const Input extends Pick<LearningFlowSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefineLearningFlowSectionChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineLearningFlowSectionImpl<Input['slug'], InferredDefineLearningFlowSectionChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineLearningFlowSectionImpl<Slug, Items, Languages>>;
+} = defineLearningFlowSectionImpl;
+
+/** Parent collections depend on the Build protocol, not the concrete child-key index. */
+type LearningFlowSectionBase = ReturnType<typeof defineLearningFlowSectionImpl<string, {}, AllLanguageCodes>>;
+export type LearningFlowSection_Configurator = Omit<LearningFlowSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<LearningFlowSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<LearningFlowSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<LearningFlowSectionBase['build']['overrides']>;
+  };
+};

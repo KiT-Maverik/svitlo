@@ -23,7 +23,7 @@ const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(
 const block = (slug: string, n: number) => ({
   config: { id: id(n), slug, type: 'text', params: {}, locale: { value: { uk: 'Текст' } } },
 });
-const collection = <T>(items: Record<string, T>) => ({ items, order: Object.keys(items) });
+const collection = <T>(items: Record<string, T>) => ({ children: Object.keys(items), ...items });
 const makeContext = (kind: string) => ({
   directory: 'questions/' + kind,
   languages: stageLanguages,
@@ -266,7 +266,7 @@ for (const { kind, fixture, context, render } of suites) {
     assert.match(main.content, new RegExp('define' + kind[0].toUpperCase() + kind.slice(1) + '<'));
     assert.match(main.content, /TODO \(BLOCKER\)/);
     assert.match(main.content, /import \{ prompt \} from "\.\/sampleQuestion\/question\/prompt";/);
-    assert.match(main.content, /question:\s*\{\s*items:\s*\{\s*prompt\s*\}/);
+    assert.match(main.content, /question:\s*\{\s*children:\s*\[/);
     assert.doesNotMatch(main.content, /NOT REVIEWED/);
     assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
     for (const role of extraChildPaths[kind] ?? []) {
@@ -316,11 +316,12 @@ for (const { kind, fixture, context, render } of suites) {
 
   test(kind + ': rejects missing questions, incorrect order, and pre-existing authored outputs', () => {
     const noPrompt = fixture();
-    Object.assign(noPrompt.config.content.question, { items: {}, order: [] });
+    noPrompt.config.content.question.children = [];
+    Reflect.deleteProperty(noPrompt.config.content.question, 'prompt');
     assert.throws(() => render(noPrompt, context), /reviewed prompt/);
     const bad = fixture();
-    bad.config.content.question.order = ['notThere'];
-    assert.throws(() => render(bad, context), /order/);
+    bad.config.content.question.children = ['notThere'];
+    assert.throws(() => render(bad, context), /children/);
     assert.throws(
       () => render(fixture(), { ...context, existingPaths: new Set(['questions/' + kind + '/sampleQuestion.ts']) }),
       /no clobber/,
@@ -352,15 +353,17 @@ test('selectOneAnswer: rejects duplicate child bindings instead of silently alia
   Object.assign(question.config.content, { hint: collection({ prompt: block('prompt', 8) }) });
   assert.throws(
     () => materializeSelectOneAnswer(question as never, contextSelectOneAnswer),
-    /generated identifier collision.*content.question.items.prompt.*content.hint.items.prompt/,
+    /generated identifier collision.*content.question.prompt.*content.hint.prompt/,
   );
 });
 
-test('selectOneAnswer: preserves a real block slug named items', () => {
+test('selectOneAnswer: rejects a retired items collection key as an authored placement', () => {
   const question = fixtureSelectOneAnswer();
   Object.assign(question.config.content.question, collection({ items: block('items', 9) }));
-  const result = materializeSelectOneAnswer(question as never, contextSelectOneAnswer);
-  assert(result.files.some(file => file.path.endsWith('/question/items/index.ts')));
+  assert.throws(
+    () => materializeSelectOneAnswer(question as never, contextSelectOneAnswer),
+    /expected direct child keys and children order/,
+  );
 });
 
 test('selectOneAnswer: refuses imported child without a generated entrypoint', () => {
@@ -382,7 +385,7 @@ test('selectMultipleAnswers: rejects duplicate child bindings instead of aliasin
   Object.assign(question.config.content, { hint: collection({ prompt: block('prompt', 8) }) });
   assert.throws(
     () => materializeSelectMultipleAnswers(question as never, contextSelectMultipleAnswers),
-    /generated identifier collision.*content.question.items.prompt.*content.hint.items.prompt/,
+    /generated identifier collision.*content.question.prompt.*content.hint.prompt/,
   );
 });
 

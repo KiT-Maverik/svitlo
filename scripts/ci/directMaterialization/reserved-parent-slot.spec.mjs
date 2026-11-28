@@ -38,30 +38,18 @@ function parent(kind, depth, directChapter = false) {
   const id = ids[kind];
   const prefix = './';
   const source =
-    'import { ' +
-    owner +
-    ", defineLessonStub } from '@svitlo/engine/build';\n" +
-    'import { ' +
-    slug +
-    ' } from "' +
-    prefix +
-    slug +
-    '/stub";\n' +
-    'const content = {\n' +
-    '  items: { before: defineLessonStub({ id: ' +
-    JSON.stringify(ids.sibling) +
-    ', slug: "before" }),\n' +
-    '    ' +
-    slug +
-    ',\n' +
-    '    after: defineLessonStub({ id: "44444444-4444-4444-8444-444444444444", slug: "after" }) },\n' +
-    '  order: ["before", ' +
-    JSON.stringify(slug) +
-    ', "after"],\n' +
+    'import { ' + owner + " } from '@svitlo/engine/build';\n" +
+    'import { before } from "./before/stub";\n' +
+    'import { ' + slug + ' } from "./' + slug + '/stub";\n' +
+    'import { after } from "./after/stub";\n' +
+    'const __placements = {\n' +
+    '  before,\n' +
+    '  ' + slug + ',\n' +
+    '  after,\n' +
     '};\n' +
-    'export const parent = ' +
-    owner +
-    '({ id: "55555555-5555-4555-8555-555555555555", type: "course", slug: "parent", content });\n';
+    'export const parent = ' + owner +
+    '({ id: "55555555-5555-4555-8555-555555555555", type: "course", slug: "parent", ' +
+    'children: ["before", ' + JSON.stringify(slug) + ', "after"], ...__placements });\n';
   return {
     source,
     kind,
@@ -85,8 +73,8 @@ for (const kind of ['lesson', 'episode', 'assessment']) {
       assert.throws(() =>
         verifyPendingCourseParent(
           source.replace(
-            'order: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]',
-            'order: ["before", "after"]',
+            'children: ["before", ' + JSON.stringify(allocation.slug) + ', "after"]',
+            'children: ["before", "after"]',
           ),
           allocation,
         ),
@@ -122,17 +110,17 @@ test('read-only reservation rejects foreign, executable, aliased or malformed st
     assert.throws(() => verifyOwnedCourseStub(candidate, allocation));
     assert.throws(() => verifyPendingCourseParent(source, { ...allocation, stubSource: candidate }));
   }
-  const annotated = source.replace('const content', '// TODO (BLOCKER): human review is editorial only\nconst content');
+  const annotated = source.replace('const __placements', '// TODO (BLOCKER): human review is editorial only\nconst __placements');
   assert.equal(verifyPendingCourseParent(annotated, allocation), true);
   for (const changed of [
     source.replace('import { story }', 'import { other_story }'),
     source.replace('story,\n', 'other_story,\n'),
     source.replace('from "./story/stub"', 'from "./content/foreign/stub"'),
     source.replace('defineCourse', 'defineChapter'),
-    source.replace('const content', 'const changed'),
-    source.replace('order: ["before", "story", "after"]', 'order: ["after", "story", "after"]'),
+    source.replace('const __placements', 'const changed'),
+    source.replace('children: ["before", "story", "after"]', 'children: ["after", "story", "after"]'),
     source + '\nprocess.exit(1);',
-    source.replace('const content', 'const also = story;\nconst content'),
+    source.replace('const __placements', 'const also = story;\nconst __placements'),
   ])
     assert.throws(() => verifyPendingCourseParent(changed, allocation));
 });
@@ -185,12 +173,9 @@ test('mixed Course child stubs remain reserved independently with unchanged orde
   const source =
     'import { defineCourse } from "@svitlo/engine/build";\n' +
     slots.map(slot => 'import { ' + slot.slug + ' } from "./' + slot.slug + '/stub";\n').join('') +
-    'const content = { items: {' +
-    slots.map(slot => slot.slug).join(', ') +
-    '}, order: ' +
-    JSON.stringify(slots.map(slot => slot.slug)) +
-    ' };\n' +
-    'export const owner = defineCourse({ content });\n';
+    'const __placements = { ' + slots.map(slot => slot.slug).join(', ') + ' };\n' +
+    'export const owner = defineCourse({ children: ' +
+    JSON.stringify(slots.map(slot => slot.slug)) + ', ...__placements });\n';
   for (const slot of slots)
     assert.equal(verifyPendingCourseParent(source, { ...slot, stubSource: stubSource(slot) }), true);
   assert.ok(slots.every(slot => source.includes('/' + slot.slug + '/stub')));
@@ -277,10 +262,9 @@ test('Assessment resolves Lesson banks from exact Course/Module/Chapter parent i
         'import { ' + definition + (overridden ? ', placeLesson' : '') + ' } from "@svitlo/engine/build";',
         'import { sibling } from "#lessonsData/' + siblingId.at(-1) + '/' + siblingId + '/index";',
         'import { lesson } from "#lessonsData/' + lessonId.at(-1) + '/' + lessonId + '/index";',
-        'const content = { items: { "other": sibling, "newLesson": ' +
-          (overridden ? 'placeLesson(lesson, {})' : 'lesson') +
-          ' }, order: ["other", "newLesson"] };',
-        'export const owner = ' + definition + '({ content });',
+        'const __placements = { "other": sibling, "newLesson": ' +
+          (overridden ? 'placeLesson(lesson, {})' : 'lesson') + ' };',
+        'export const owner = ' + definition + '({ children: ["other", "newLesson"], ...__placements });',
       ].join('\n') + '\n'
     );
   };

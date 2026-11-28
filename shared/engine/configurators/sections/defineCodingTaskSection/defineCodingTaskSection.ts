@@ -355,4 +355,13 @@ export const defineCodingTaskSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type CodingTaskSection_Configurator = ReturnType<typeof defineCodingTaskSection>;
+/** Parent collections depend on the Build protocol, not the concrete child-key index. */
+type CodingTaskSectionBase = ReturnType<typeof defineCodingTaskSection<string, {}, AllLanguageCodes>>;
+export type CodingTaskSection_Configurator = Omit<CodingTaskSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<CodingTaskSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<CodingTaskSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<CodingTaskSectionBase['build']['overrides']>;
+  };
+};

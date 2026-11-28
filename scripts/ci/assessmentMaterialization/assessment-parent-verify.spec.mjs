@@ -11,12 +11,12 @@ const stubSource =
   JSON.stringify(id) +
   ', slug: "review" });\n';
 const importLine = 'import { review } from "./review/stub";\n';
-const source =
+const validSource =
   "import { defineModule } from '@svitlo/engine/build';\n" +
+  'import { before } from "./before";\n' +
   importLine +
-  'const content = { items: { before, review }, order: ["before", "review"] };\n' +
-  'export const moduleOne = defineModule({ content });\n';
-const validSource = source.replace('const content', 'import { before } from "./before";\nconst content');
+  'const __placements = { before, review };\n' +
+  'export const moduleOne = defineModule({ children: ["before", "review"], ...__placements });\n';
 const allocation = {
   kind: 'assessment',
   id,
@@ -28,7 +28,7 @@ const allocation = {
 test('Assessment preserves an exact pending Course slot without mutating parent', () => {
   assert.equal(verifyPendingCourseParent(validSource, allocation), true);
   assert.ok(validSource.includes(importLine));
-  assert.match(validSource, /order: \["before", "review"\]/);
+  assert.match(validSource, /children: \["before", "review"\]/);
 });
 
 test('Assessment read-only validation rejects foreign parent/UUID/stub and malformed content', () => {
@@ -48,7 +48,7 @@ test('Assessment read-only validation rejects foreign parent/UUID/stub and malfo
     validSource.replace('import { review }', 'import { foreign }'),
     validSource.replace('review', 'review: before'),
     validSource.replace('["before", "review"]', '["review", "review"]'),
-    validSource.replace('const content', 'const unexpected = 1;\nconst content'),
+    validSource.replace('const __placements', 'const unexpected = 1;\nconst __placements'),
   ])
     assert.throws(() => verifyPendingCourseParent(edited, allocation));
 });

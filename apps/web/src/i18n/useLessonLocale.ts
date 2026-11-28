@@ -17,26 +17,26 @@ function languageForLocale(locale: Locale) {
   return language;
 }
 
-/** Lessons and Course-owned Episodes may select a separate content language. */
+/** Preserve the full nested placement when changing interface or content language. */
 function lessonRoute(pathname: string) {
-  const lesson = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+)\/?$/.exec(pathname);
+  const lesson = /^\/([a-z]{2})(\/course\/[^/]+)?\/lesson\/(?:([a-z]{2})\/)?([^/]+(?:\/[^/]+)*)\/?$/.exec(pathname);
   if (lesson) {
     return {
       kind: 'lesson' as const,
       interfaceLanguage: languageForCode(lesson[1]),
       lessonLanguage: languageForCode(lesson[3] ?? lesson[1]),
-      entryId: lesson[4],
+      entryPath: lesson[4],
       routePrefix: lesson[2] ?? '',
     };
   }
-  const episode = /^\/([a-z]{2})(\/course\/[^/]+)\/episode\/([a-z]{2})\/([^/]+)\/?$/.exec(pathname);
+  const episode = /^\/([a-z]{2})(\/course\/[^/]+)\/episode\/([a-z]{2})\/([^/]+(?:\/[^/]+)*)\/?$/.exec(pathname);
   if (episode) {
     const interfaceLanguage = languageForCode(episode[1]);
     return {
       kind: 'episode' as const,
       interfaceLanguage,
       lessonLanguage: languageForCode(episode[3]),
-      entryId: episode[4],
+      entryPath: episode[4],
       routePrefix: episode[2],
     };
   }
@@ -50,7 +50,7 @@ export function useLessonLanguage() {
 export function useLessonLocale() {
   const pathname = usePathname();
   const router = useRouter();
-  const { kind, interfaceLanguage, lessonLanguage, entryId, routePrefix } = lessonRoute(pathname);
+  const { kind, interfaceLanguage, lessonLanguage, entryPath, routePrefix } = lessonRoute(pathname);
 
   const navigate = useCallback(
     (interfaceCode: string, lessonCode: string) => {
@@ -59,11 +59,11 @@ export function useLessonLocale() {
       const query = params.toString();
       const nextPath =
         kind === 'episode'
-          ? `/${interfaceCode}${routePrefix}/episode/${lessonCode}/${entryId}`
-          : `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${entryId}`;
+          ? `/${interfaceCode}${routePrefix}/episode/${lessonCode}/${entryPath}`
+          : `/${interfaceCode}${routePrefix}/lesson/${lessonCode}/${entryPath}`;
       router.replace(nextPath + (query ? `?${query}` : ''), { scroll: false });
     },
-    [entryId, kind, routePrefix, router],
+    [entryPath, kind, routePrefix, router],
   );
 
   const setLocale = useCallback(

@@ -132,7 +132,13 @@ type AuthoredInput<
  * Primitive placements. The Item retains this identified role in domain Data;
  * the presentation adapter may project the ordered blocks for the learner.
  */
-export const defineCheckpointAnswer = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefineCheckpointAnswerChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'children'>;
+type InferredDefineCheckpointAnswerChildren<Input> = {
+  [Key in DefineCheckpointAnswerChildKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+const defineCheckpointAnswerImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -364,6 +370,26 @@ export const defineCheckpointAnswer = <
  * common conditional ConfiguratorChild helper. Erase only its patch parameter
  * at the parent collection boundary, retaining the concrete direct children.
  */
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const defineCheckpointAnswer: {
+  <
+    const Input extends Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'type'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefineCheckpointAnswerChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineCheckpointAnswerImpl<Input['slug'], InferredDefineCheckpointAnswerChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineCheckpointAnswerImpl<Slug, Items, Languages>>;
+} = defineCheckpointAnswerImpl;
+
 type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
 /**
  * Collection parents check a CheckpointAnswer through fixed identity and
