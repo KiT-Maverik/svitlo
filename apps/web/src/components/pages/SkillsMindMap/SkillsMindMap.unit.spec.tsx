@@ -28,25 +28,6 @@ describe('SkillsMindMap', () => {
     window.history.replaceState({}, '', '/');
   });
 
-  it('loads only the selected language and toggles an individual Group', async () => {
-    render(
-      <SkillsPageSettingsProvider>
-        <SkillsPagePreferences />
-        <SkillsMindMap domains={TEST_SKILL_NODES_UK} />
-      </SkillsPageSettingsProvider>,
-    );
-    const node = await screen.findByTestId('skill-node-testWarmColors');
-    expect(node).toHaveAttribute('aria-expanded', 'true');
-    expect(screen.getByTestId('skill-node-testRed')).toBeVisible();
-
-    fireEvent.click(node);
-    expect(screen.queryByTestId('skill-node-testRed')).not.toBeInTheDocument();
-    expect(screen.getByTestId('skill-node-testWarmColors')).toHaveAttribute('aria-expanded', 'false');
-    fireEvent.click(screen.getByTestId('skill-node-testWarmColors'));
-    expect(screen.getByTestId('skill-node-testRed')).toBeInTheDocument();
-    expect(globalThis.fetch).not.toHaveBeenCalled();
-  });
-
   it('starts compact with visible mastery, expands the description and Pump action, then collapses again', async () => {
     render(
       <SkillsPageSettingsProvider>
@@ -125,11 +106,14 @@ describe('SkillsMindMap', () => {
     );
     const leaf = await screen.findByTestId('skill-node-testRed');
     const group = screen.getByTestId('skill-node-testWarmColors');
+    expect(group).toHaveAttribute('aria-expanded', 'true');
     fireEvent.click(within(leaf).getByRole('button', { name: /Інформація про скіл/ }));
     expect(leaf).toHaveAttribute('data-expanded', 'true');
     fireEvent.click(group);
+    expect(group).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByTestId('skill-node-testRed')).not.toBeInTheDocument();
     fireEvent.click(group);
+    expect(group).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByTestId('skill-node-testRed')).toHaveAttribute('data-expanded', 'true');
     fireEvent.click(screen.getByRole('button', { name: 'Згорнути все' }));
     expect(screen.queryByTestId('skill-node-testRed')).not.toBeInTheDocument();
