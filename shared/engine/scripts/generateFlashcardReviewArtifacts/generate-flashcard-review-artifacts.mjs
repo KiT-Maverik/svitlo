@@ -315,17 +315,19 @@ function loadBank(filename, lessonRoot, lessonId) {
       const group = card.content[side];
       if (!group) continue;
       if (
-        !record(group.items) ||
-        !Array.isArray(group.order) ||
-        (side !== 'hint' && !group.order.length) ||
-        new Set(group.order).size !== group.order.length ||
-        group.order.length !== Object.keys(group.items).length ||
-        group.order.some(key => !Object.hasOwn(group.items, key))
+        !record(group) ||
+        !Array.isArray(group.children) ||
+        Object.hasOwn(group, 'items') ||
+        Object.hasOwn(group, 'order') ||
+        (side !== 'hint' && !group.children.length) ||
+        new Set(group.children).size !== group.children.length ||
+        group.children.length !== Object.keys(group).length - 1 ||
+        group.children.some(key => typeof key !== 'string' || !SLUG.test(key) || !Object.hasOwn(group, key))
       ) {
         throw new Error('Invalid ordered Flashcard ' + name + '/' + side);
       }
-      for (const slug of group.order) {
-        const block = group.items[slug];
+      for (const slug of group.children) {
+        const block = group[slug];
         if (!record(block) || block.slug !== slug || !UUID.test(block.id ?? '') || typeof block.type !== 'string') {
           throw new Error('Invalid Flashcard block: ' + name + '/' + side + '/' + slug);
         }
@@ -469,8 +471,8 @@ export function generateFlashcardReviewArtifacts({
             const group = card.content[side];
             if (!group) continue;
             lines.push('### ' + side + ' (' + group.order.length + ' blocks)', '');
-            for (const name of group.order) {
-              const block = group.items[name];
+            for (const name of group.children) {
+              const block = group[name];
               lines.push('#### ' + safeText(name) + ' — ' + safeText(block.type) + ' (' + block.id + ')', '');
               localizedValues(block, 'content/' + side + '/' + name, sourceLanguage, locale, lines, result);
             }

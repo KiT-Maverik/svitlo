@@ -15,14 +15,14 @@ const original = [
   '  ...{"id":"bb75647f-203d-481a-a1c7-4d331c779d35","slug":"hello","parameters":{',
   '    "flags":[{"type":"acronym","value":{"en":"ABC","uk":"АБВ"}}]}},',
   '  content: {',
-  '    front: defineFlashcardSide({items: {"question": defineText({',
+  '    front: defineFlashcardSide({children: ["question"], question: defineText({',
   '      id: "bb75647f-203d-481a-a1c7-4d331c779d36", slug: "question", type: "text", params: {},',
   '      locale: {value: {en: "Hello", uk: "Привіт"}}',
-  '    })}, order: ["question"]}),',
-  '    back: defineFlashcardSide({items: {"answer": defineText({',
+  '    })}),',
+  '    back: defineFlashcardSide({children: ["answer"], answer: defineText({',
   '      id: "bb75647f-203d-481a-a1c7-4d331c779d37", slug: "answer", type: "text", params: {},',
   '      locale: {value: {en: "Greeting", uk: "Вітання"}}',
-  '    })}, order: ["answer"]})',
+  '    })})',
   '  }',
   '});',
   'export const flashcards = {items: {"hello": flashcard_0}};',
@@ -86,6 +86,22 @@ test('missing translated text marks only the requested bank locale as not review
     fs.rmSync(state.root, { recursive: true, force: true });
   }
 });
+test('retired items/order and orphan child slugs cannot produce review-ready Flashcards', () => {
+  for (const invalid of ['order: ["question"]', 'children: ["unknown"]']) {
+    const state = fixture();
+    try {
+      const source = path.join(state.directory, 'index.ts');
+      fs.writeFileSync(source, fs.readFileSync(source, 'utf8').replace('children: ["question"]', invalid));
+      state.run();
+      assert.equal(state.manifest.generated.length, 0);
+      assert.equal(state.manifest.failures.length, 1);
+      assert.match(state.manifest.failures[0].error, /Invalid ordered Flashcard hello\/front/);
+    } finally {
+      fs.rmSync(state.root, { recursive: true, force: true });
+    }
+  }
+});
+
 test('dynamic authoring expressions fail closed without emitting partial references', () => {
   const state = fixture({ dynamic: true });
   try {
@@ -205,7 +221,7 @@ test('copied real bank marks missing imported Question locale as not review-read
     const target = path.join(questionsDir, 'lightTravelsStraight.ts');
     const source = fs.readFileSync(target, 'utf8');
     const incomplete = source.replace(
-      "              uk: 'Як поширюється світло в прозорому однорідному середовищі?',\n",
+      "uk: 'Як поширюється світло в прозорому однорідному середовищі?',",
       '',
     );
     assert.notEqual(incomplete, source, 'test uses actual authored source, not synthetic text');
