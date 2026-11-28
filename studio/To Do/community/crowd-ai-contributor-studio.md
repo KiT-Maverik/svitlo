@@ -10,7 +10,7 @@ Svitlo could invite a global community to help make trustworthy interactive lear
 
 Translation is the most constrained first use case, not the destination. The same contribution infrastructure could eventually support methodology review, Lesson content creation, educational experience review, Question/Flashcard Banks, accessibility audits, localized media descriptions, and tightly controlled resource production.
 
-The possible economic benefit is **avoided AI-production expenditure per *accepted, equivalent-quality* contribution**, not a transfer of subscription credits to Svitlo and not a promise of “free production.” Contributors' time, technical review, scientific/editorial review, model-judge calls, infrastructure, fraud mitigation, provider limits, and rework remain real costs.
+The possible economic benefit is **avoided AI-production expenditure per _accepted, equivalent-quality_ contribution**, not a transfer of subscription credits to Svitlo and not a promise of “free production.” Contributors' time, technical review, scientific/editorial review, model-judge calls, infrastructure, fraud mitigation, provider limits, and rework remain real costs.
 
 **Non-goals:** hosting a general-purpose AI proxy; extracting/shared-pooling subscribers' tokens; giving contributors unrestricted repository access; replacing qualified review with Zod/LLM verdicts; silently weakening required locales; paying for arbitrary token consumption; exposing children to contributor tooling; or declaring AI-authored content fit for publication automatically.
 
@@ -38,7 +38,7 @@ Svitlo should compile task-specific prompts from the actual Studio Persona/Skill
 
 Two technically different product experiences must not be conflated:
 
-- **ChatGPT-hosted integration:** a Svitlo plugin/MCP app operating *inside* ChatGPT calls narrowly scoped Svitlo tools. The ChatGPT user works in their own ChatGPT environment; the server receives only explicitly authorized task data and submitted output.
+- **ChatGPT-hosted integration:** a Svitlo plugin/MCP app operating _inside_ ChatGPT calls narrowly scoped Svitlo tools. The ChatGPT user works in their own ChatGPT environment; the server receives only explicitly authorized task data and submitted output.
 - **Svitlo-hosted website:** the contributor views a custom side-by-side interface on Svitlo and, if permitted, uses **Sign in with ChatGPT / ChatGPT plan usage** to run eligible AI operations. This is not equivalent to basic login and does not automatically grant the website access to a subscriber's compute/billing. Remote-hosted usage and eligibility must be approved and tested.
 - **Fallback:** Svitlo-funded OpenAI API or another provider, when budgeted and permitted. The provider-agnostic JSON contract should allow multiple backends without bypassing quality/safety checks.
 
@@ -66,16 +66,16 @@ Contributor (personal AI, explicitly initiated)
 
 Components to explore:
 
-| Component | Responsibility |
-| --- | --- |
-| Task Registry/Orchestrator | Discover eligible entity x stage x locale tasks, dependencies, authorized actions and duplicate work. The registry is an **index**, not a second editable editorial truth. |
-| Context Extractor | Read reviewed canonical Git data; derive a bounded, task-specific structured payload, stable keys and source snapshot. |
-| Contributor Gateway | Authenticate contributor, obtain explicit provider consent, authorize submission and enforce rate/size limits and retention policy. |
-| Shared Contract/Validator | Strict Zod schemas, exact allowed keys, source hashes, placeholders, safe text constraints; on both client and server. |
-| AI Risk/Quality Judge | Advisory structured verdict on fidelity, language, child appropriateness, terminology, suspicious instructions, science; no write tools or publishing privileges. |
-| Review Workspace | Independent source-vs-target assessment; human dispute resolution and authorized corrections with pinned evidence. |
-| Integration Coordinator | Idempotency, conflict detection, branch routing, atomic trusted commits, originating/target PR linkage and feedback. |
-| Materializer | Convert safe **transport JSON** into localized entries in the **existing canonical typed objects** (or exact stage-specific handoff) without changing unrelated fields/identities. |
+| Component                  | Responsibility                                                                                                                                                                     |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Task Registry/Orchestrator | Discover eligible entity x stage x locale tasks, dependencies, authorized actions and duplicate work. The registry is an **index**, not a second editable editorial truth.         |
+| Context Extractor          | Read reviewed canonical Git data; derive a bounded, task-specific structured payload, stable keys and source snapshot.                                                             |
+| Contributor Gateway        | Authenticate contributor, obtain explicit provider consent, authorize submission and enforce rate/size limits and retention policy.                                                |
+| Shared Contract/Validator  | Strict Zod schemas, exact allowed keys, source hashes, placeholders, safe text constraints; on both client and server.                                                             |
+| AI Risk/Quality Judge      | Advisory structured verdict on fidelity, language, child appropriateness, terminology, suspicious instructions, science; no write tools or publishing privileges.                  |
+| Review Workspace           | Independent source-vs-target assessment; human dispute resolution and authorized corrections with pinned evidence.                                                                 |
+| Integration Coordinator    | Idempotency, conflict detection, branch routing, atomic trusted commits, originating/target PR linkage and feedback.                                                               |
+| Materializer               | Convert safe **transport JSON** into localized entries in the **existing canonical typed objects** (or exact stage-specific handoff) without changing unrelated fields/identities. |
 
 A separate `svitlo-contributions` repository is an **option**, not an architectural prerequisite. It can isolate high-volume, data-only external submissions and their review/status checks. A staging service plus trusted contributions in the current monorepo is an alternative. Do not use Git submodules, subtree sync or blind cherry-picking to transfer contributions: the intended unit is a **validated typed patch**, not arbitrary commits.
 
@@ -135,18 +135,18 @@ Proposed labels **subject to future label-catalog approval**, not existing Svitl
 
 The central risk is **not only malformed JSON**. Strict Zod protects types/keys, not meaning or downstream interpretation of strings.
 
-| Threat | Required defense |
-| --- | --- |
-| Arbitrary fields, altered IDs, schema drift | Recursive strict schema, exact key allowlists and immutable source hashes on server. |
-| XSS, Markdown/HTML/SVG or malicious links | Render safe text; sanitize/limit rich content and URL schemes; content-security policy; review link targets. |
-| Code injection into canonical TypeScript | Only trusted AST/string serializer; never evaluate contributor code; allowlisted AST edits and output diff inspection. |
-| Prompt injection against authoring/decision/review agents | Treat text as untrusted data, tool-less judge, independent context, narrow privileges; do not rely on model saying “safe.” |
-| GitHub token exposure or malicious workflow | Least-privilege GitHub App; separate untrusted-read and trusted-publish contexts; no secrets in untrusted job; no checkout-and-execute of PR source; never run contributor `package.json`/scripts. |
-| Semantic/scientific misinformation, child-inappropriate text | Source comparison, glossary, scientific reviewer, qualified human escalation, no automatic publication. |
-| AI judge false positives/false negatives or bias | Labeled adversarial evaluation set, calibrated review policy, manual resolution and regression tests; do not treat confidence as measured probability. |
-| Flooding, incentive gaming and costs | Per-user/task rate limits, anti-Sybil controls, bounded requests, retries/cost ceilings, duplicates/low-value submission detection. |
-| Stale source, simultaneous volunteers, overwrites | Source SHA pinning, idempotency keys, branch lease/concurrency locks and per-entity/per-locale conflict policy. |
-| IP/licensing and personal/child data leakage | Contributor rights declaration, OpenAI/provider data-sharing disclosure, approved licensing, no child accounts/records in authoring prompts, retention/deletion/access controls. |
+| Threat                                                       | Required defense                                                                                                                                                                                   |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Arbitrary fields, altered IDs, schema drift                  | Recursive strict schema, exact key allowlists and immutable source hashes on server.                                                                                                               |
+| XSS, Markdown/HTML/SVG or malicious links                    | Render safe text; sanitize/limit rich content and URL schemes; content-security policy; review link targets.                                                                                       |
+| Code injection into canonical TypeScript                     | Only trusted AST/string serializer; never evaluate contributor code; allowlisted AST edits and output diff inspection.                                                                             |
+| Prompt injection against authoring/decision/review agents    | Treat text as untrusted data, tool-less judge, independent context, narrow privileges; do not rely on model saying “safe.”                                                                         |
+| GitHub token exposure or malicious workflow                  | Least-privilege GitHub App; separate untrusted-read and trusted-publish contexts; no secrets in untrusted job; no checkout-and-execute of PR source; never run contributor `package.json`/scripts. |
+| Semantic/scientific misinformation, child-inappropriate text | Source comparison, glossary, scientific reviewer, qualified human escalation, no automatic publication.                                                                                            |
+| AI judge false positives/false negatives or bias             | Labeled adversarial evaluation set, calibrated review policy, manual resolution and regression tests; do not treat confidence as measured probability.                                             |
+| Flooding, incentive gaming and costs                         | Per-user/task rate limits, anti-Sybil controls, bounded requests, retries/cost ceilings, duplicates/low-value submission detection.                                                                |
+| Stale source, simultaneous volunteers, overwrites            | Source SHA pinning, idempotency keys, branch lease/concurrency locks and per-entity/per-locale conflict policy.                                                                                    |
+| IP/licensing and personal/child data leakage                 | Contributor rights declaration, OpenAI/provider data-sharing disclosure, approved licensing, no child accounts/records in authoring prompts, retention/deletion/access controls.                   |
 
 The AI can be allowed to **recommend** reject/review/accept, but deterministic policy and owner-authorized editorial review control execution. A successful judge verdict is **not** proof that a contribution is harmless or educationally correct. A GitHub PR does not execute source by itself; triggered CI, generators and imported TS **can** execute code, so do not extrapolate “PRs do not execute” to every workflow.
 
@@ -171,18 +171,18 @@ For large-scale volume, multiple independently reviewed locales of the same enti
 
 The live [Lesson Workflow](../../skills/lesson-workflow/README.md) has **ten stages** and is the authority; a user-facing “seven buttons” layout is only a grouped view:
 
-| Current Lesson stage | Potential crowd task | Review/authorization boundary |
-| --- | --- | --- |
-| 1. Methodology | Produce/critique a methodology proposal | Authorized Methodologist; preserve learning outcomes, evidence and sources. |
-| 2. Content Creation | Screenplay/Section design + learner-facing copy | Educational Screenwriter role and exact Stage 2 typed contract. |
-| 3. Content Review | Independently audit the complete Stage 2 source | Different agent/context, pinned SHA, corrections on the same PR. |
-| 4. Experience Review | Accessibility, pacing, cognitive UX and resource plan | Learning Experience Expert. |
-| 5. Methodology Compliance | Validate full Lesson against approved learning objectives | Methodologist; no backward loop or manufactured approval. |
-| 6. Resource Production | Trusted source handoff, media, interactive Scenes/code | Coding Agent in a *separate trusted implementation/security environment*. Arbitrary contributed TSX is **out of scope for translation MVP**. |
-| 7. Questions | Create/review independently owned Question Bank | Actual bank's own typed seven-stage workflow, references and review. |
-| 8. Flashcards | Create/review independently owned Flashcard Bank | Independent seven-stage process, after Questions or authorized N/A. |
-| 9. Translation | Localize completed typed source and descriptions | Existing entity-owned PR; no English placeholders for missing required text. |
-| 10. Translation Review | Independently review all requested locales | Pinned source-derived references; distinct reviewer; human-quality threshold. |
+| Current Lesson stage      | Potential crowd task                                      | Review/authorization boundary                                                                                                                |
+| ------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Methodology            | Produce/critique a methodology proposal                   | Authorized Methodologist; preserve learning outcomes, evidence and sources.                                                                  |
+| 2. Content Creation       | Screenplay/Section design + learner-facing copy           | Educational Screenwriter role and exact Stage 2 typed contract.                                                                              |
+| 3. Content Review         | Independently audit the complete Stage 2 source           | Different agent/context, pinned SHA, corrections on the same PR.                                                                             |
+| 4. Experience Review      | Accessibility, pacing, cognitive UX and resource plan     | Learning Experience Expert.                                                                                                                  |
+| 5. Methodology Compliance | Validate full Lesson against approved learning objectives | Methodologist; no backward loop or manufactured approval.                                                                                    |
+| 6. Resource Production    | Trusted source handoff, media, interactive Scenes/code    | Coding Agent in a _separate trusted implementation/security environment_. Arbitrary contributed TSX is **out of scope for translation MVP**. |
+| 7. Questions              | Create/review independently owned Question Bank           | Actual bank's own typed seven-stage workflow, references and review.                                                                         |
+| 8. Flashcards             | Create/review independently owned Flashcard Bank          | Independent seven-stage process, after Questions or authorized N/A.                                                                          |
+| 9. Translation            | Localize completed typed source and descriptions          | Existing entity-owned PR; no English placeholders for missing required text.                                                                 |
+| 10. Translation Review    | Independently review all requested locales                | Pinned source-derived references; distinct reviewer; human-quality threshold.                                                                |
 
 Course, Episode, Question, Flashcard and Assessment each have **their own current workflow**; future task cards must load the actual matching Persona/Skill. A methodological plan is not a finished Lesson; source materialization is not completion of resources or QA; passing TypeScript is not pedagogical approval; Question Bank and Quiz Section are distinct entities. Publish only after the usual ownership, source/materialization, locale, accessibility, media, human QA and branch protections.
 
@@ -194,7 +194,7 @@ An early expansion may safely prioritize **read-only reviews, questions, flashca
 
 Let:
 
-- `C_alt` = actual *avoidable* cost to produce the same **accepted-quality** result internally (AI model calls, attempts, necessary human production time and infrastructure).
+- `C_alt` = actual _avoidable_ cost to produce the same **accepted-quality** result internally (AI model calls, attempts, necessary human production time and infrastructure).
 - `p` = proportion of staged contributions that reach equivalent-quality acceptance after review.
 - `C_gate` = average validation/judge/moderation cost **per attempt**, paid even on rejected submissions.
 - `C_review` = incremental qualified editorial review/integration cost **per accepted** contribution (exclude costs shared equally with the alternative).
@@ -223,9 +223,10 @@ These numbers are **scenario inputs**, not measured tokens, current vendor rates
 - Then net value per accepted translation is `$0.104 − $0.03/0.8 = $0.0665`.
 - To generate **$10 of avoided internal production expenditure** at these assumptions requires **151 accepted translations**, corresponding to roughly 189 attempts at an 80% acceptance rate. Real paid human review could make this unattractive.
 
-Alternative **illustrative Lesson-creation** scenario: $1.50 avoidable in-house AI work per accepted-equivalent task minus $0.50 all-in crowd quality/integration/reward costs yields $1.00 net; **10 accepted tasks** offset $10. This is *not* a prediction of what completed, educationally sound interactive Lessons actually cost. Expensive code, media, scientific review and QA could dominate, and the same $1.50 may not purchase equivalent finished content.
+Alternative **illustrative Lesson-creation** scenario: $1.50 avoidable in-house AI work per accepted-equivalent task minus $0.50 all-in crowd quality/integration/reward costs yields $1.00 net; **10 accepted tasks** offset $10. This is _not_ a prediction of what completed, educationally sound interactive Lessons actually cost. Expensive code, media, scientific review and QA could dominate, and the same $1.50 may not purchase equivalent finished content.
 
 A hypothetical “Svitlo Premium for $10” exchange must distinguish:
+
 1. **$10 retail price** (not automatically a $10 platform cost).
 2. **Marginal service cost** for an additional user, especially under offline-first delivery.
 3. **Lost expected paid revenue** if the rewarded volunteer would otherwise subscribe.
@@ -234,7 +235,7 @@ A hypothetical “Svitlo Premium for $10” exchange must distinguish:
 
 For example, if the only actual business cost of providing a benefit were $0.50, translation break-even in the optimistic scenario above would be **8 accepted translations**; however, this excludes revenue displacement and all omitted reviewer/support cost and **must not** be used as an offer or promise.
 
-**Do not launch a points-to-premium exchange until economics *and* provider terms are approved.** If permitted, reward **verified educational contributions** (field-level/lesson-level acceptance, successful independent review), not token volume, retries or automatic job counts. Candidate incentives: optional community recognition, privacy-respecting contributor profile, nonmonetary acknowledgements, donor-backed scholarships, or explicit paid-feature credits after legal/provider review. Never disadvantage a child who cannot contribute AI resources, nor lock essential educational access behind labor.
+**Do not launch a points-to-premium exchange until economics _and_ provider terms are approved.** If permitted, reward **verified educational contributions** (field-level/lesson-level acceptance, successful independent review), not token volume, retries or automatic job counts. Candidate incentives: optional community recognition, privacy-respecting contributor profile, nonmonetary acknowledgements, donor-backed scholarships, or explicit paid-feature credits after legal/provider review. Never disadvantage a child who cannot contribute AI resources, nor lock essential educational access behind labor.
 
 ### Metrics for an evidence-based pilot
 
@@ -252,7 +253,7 @@ Track: accepted unique outputs per entity x locale x stage; useful coverage delt
 
 **Phase 4 — broader task catalog:** Questions, Flashcards, independent review, source-language copy/scenario, and later resource/Scene production only in separately vetted execution environments; measure real economics and editorial latency.
 
-**Phase 5 — sustainable recognition/rewards:** evaluate subscription credits or a nonmonetary alternative *only after* provider approval, anti-fraud analysis, pricing and qualified reviewer capacity are established.
+**Phase 5 — sustainable recognition/rewards:** evaluate subscription credits or a nonmonetary alternative _only after_ provider approval, anti-fraud analysis, pricing and qualified reviewer capacity are established.
 
 ### Exit criteria for a meaningful MVP
 
