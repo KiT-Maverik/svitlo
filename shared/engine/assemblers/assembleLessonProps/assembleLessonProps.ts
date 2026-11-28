@@ -56,7 +56,7 @@ function merge(previous: unknown, next: unknown): unknown {
 
 function checkFragment(fragment: unknown, label: string): void {
   if (fragment === undefined) return;
-  if (!isRecord(fragment)) throw new Error('Invalid published Lesson ' + label + ': expected Props object');
+  if (!isRecord(fragment)) throw new Error('Invalid published Lesson ' + label + ': expected Data object');
 
   for (const field of ['id', 'slug', 'type']) {
     if (Object.hasOwn(fragment, field)) {
@@ -70,11 +70,11 @@ function checkFragment(fragment: unknown, label: string): void {
 
 /**
  * Pure, cross-platform Lesson assembler. Hosts read the files; this function
- * resolves exactly one requested language and produces validated frontend Props.
+ * resolves exactly one requested language and produces validated domain Data.
  *
  * Precedence: resource.base -> resource.locale[language] ->
  *             override.base -> override.locale[language].
- * A published Props array always replaces the complete earlier array.
+ * A published Data array always replaces the complete earlier array.
  */
 export function assembleLessonData(
   resource: PublishedLessonDataResource,
@@ -83,7 +83,7 @@ export function assembleLessonData(
 ): Lesson_Data {
   const selected = languageCode_Schema.parse(language);
   if (!isRecord(resource) || !isRecord(resource.base)) {
-    throw new Error('Invalid published Lesson resource: missing base Props object');
+    throw new Error('Invalid published Lesson resource: missing base Data object');
   }
 
   const { base } = resource;
@@ -103,9 +103,9 @@ export function assembleLessonData(
   }
 
   try {
-    // Zod parses a fresh Props value; clone the unknown child payloads as well.
+    // Zod parses a fresh Data value; clone the unknown child payloads as well.
     return structuredClone(lesson_Data_Schema.parse(resolved)) as Lesson_Data;
   } catch (error) {
-    throw new Error('Invalid assembled Lesson Props for ' + selected, { cause: error });
+    throw new Error('Invalid assembled Lesson Data for ' + selected, { cause: error });
   }
 }
