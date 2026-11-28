@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 
 const courseId = '11111111-1111-4111-8111-000000000113';
 const lessonId = '11111111-1111-4111-8111-00000000011c';
+const courseLessonPlacement = 'fixtureModule/fixtureChapter/fixtureLesson';
 
 test('selected content package publishes canonical Course, Lesson, Question Data and derived TOC', async ({
   request,
@@ -96,9 +97,9 @@ test('Course detail renders the selected package hierarchy and opens a published
   await expect(page.getByText('Контрольна глава')).toBeVisible();
   await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
     'href',
-    '/uk/course/' + courseId + '/lesson/uk/' + lessonId,
+    '/uk/course/' + courseId + '/lesson/uk/' + courseLessonPlacement,
   );
-  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
+  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + courseLessonPlacement);
   await expect(page.getByRole('heading', { name: 'Контрольний урок', level: 1 })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
@@ -107,17 +108,17 @@ test('Course detail renders the selected package hierarchy and opens a published
 });
 
 test('Course Lesson separates interface language and content language', async ({ page }) => {
-  await page.goto('/uk/course/' + courseId + '/lesson/en/' + lessonId);
+  await page.goto('/uk/course/' + courseId + '/lesson/en/' + courseLessonPlacement);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + lessonId);
+  await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + courseLessonPlacement);
 });
 
 test('Course sidebar retains real group titles and active Lesson state', async ({ page }) => {
-  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
+  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + courseLessonPlacement);
   await page.getByRole('button', { name: 'Відкрити список тем' }).click();
   const sidebar = page.getByRole('navigation', { name: 'Список тем' });
   const moduleButton = sidebar.getByRole('button', { name: 'Контрольний модуль' }).first();
@@ -134,8 +135,8 @@ test('Course sidebar retains real group titles and active Lesson state', async (
 
 test('Unknown Course membership and removed Episode URL return 404', async ({ request }) => {
   for (const route of [
-    '/uk/course/' + courseId + '/lesson/uk/ffffffff-ffff-ffff-ffff-ffffffffffff',
-    '/uk/course/' + courseId + '/episode/11111111-1111-4111-8111-000000000129',
+    '/uk/course/' + courseId + '/lesson/uk/fixtureModule/fixtureChapter/missingLesson',
+    '/uk/course/' + courseId + '/episode/uk/fixtureModule/fixtureChapter/removedEpisode',
   ])
     expect((await request.get(route)).status()).toBe(404);
 });
@@ -152,10 +153,9 @@ test('Episode host renders localized media and registered Scene, then follows re
   page,
 }) => {
   const story = '11111111-1111-4111-8111-000000000140';
-  const episode = '11111111-1111-4111-8111-000000000141';
   await page.goto('/uk/course/' + story);
   await page.getByRole('link', { name: /Контрольний епізод 321/ }).click();
-  await expect(page).toHaveURL('/uk/course/' + story + '/episode/uk/' + episode);
+  await expect(page).toHaveURL('/uk/course/' + story + '/episode/uk/opening');
   await expect(page.getByRole('heading', { name: 'Контрольний епізод 321', level: 1 })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Контрольна інтерактивна сцена' })).toBeVisible();
@@ -165,8 +165,8 @@ test('Episode host renders localized media and registered Scene, then follows re
     .getByRole('link', { name: /Контрольний епізод 322/ })
     .first()
     .click();
-  await expect(page).toHaveURL('/uk/course/' + story + '/episode/uk/11111111-1111-4111-8111-000000000142');
-  await page.goto('/uk/course/' + story + '/lesson/uk/' + lessonId + '?placement=finalLesson');
+  await expect(page).toHaveURL('/uk/course/' + story + '/episode/uk/module/moduleStory');
+  await page.goto('/uk/course/' + story + '/lesson/uk/finalLesson');
   await expect(page.getByRole('heading', { name: 'Контрольний урок 2', level: 1 })).toBeVisible();
 });
 
@@ -188,10 +188,10 @@ test('Course detail falls back to a published content language and keeps interfa
   await expect(page.getByRole('heading', { name: 'Контрольний курс', level: 1 })).toBeVisible();
   await expect(page.getByRole('link', { name: /Контрольний урок/ })).toHaveAttribute(
     'href',
-    '/pl/course/' + courseId + '/lesson/uk/' + lessonId,
+    '/pl/course/' + courseId + '/lesson/uk/' + courseLessonPlacement,
   );
   await page.getByRole('link', { name: /Контрольний урок/ }).click();
-  await expect(page).toHaveURL('/pl/course/' + courseId + '/lesson/uk/' + lessonId);
+  await expect(page).toHaveURL('/pl/course/' + courseId + '/lesson/uk/' + courseLessonPlacement);
 });
 
 test('Course detail keeps its requested language without displaying a fallback notice', async ({ page }) => {
