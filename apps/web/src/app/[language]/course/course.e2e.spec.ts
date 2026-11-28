@@ -3,40 +3,79 @@ import { expect, test } from '@playwright/test';
 const courseId = '11111111-1111-4111-8111-000000000113';
 const lessonId = '11111111-1111-4111-8111-00000000011c';
 
-test('selected content package publishes Course and Lesson Engine Props, not legacy resources', async ({ request }) => {
-  const [courseResource, lessonResource, tocResource, localizedTocResource] = await Promise.all([
-    request.get('/data/courses/' + courseId + '/base.json'),
-    request.get('/data/lessons/c/' + lessonId + '/base.json'),
-    request.get('/data/courses/' + courseId + '/toc/base.json'),
-    request.get('/data/courses/' + courseId + '/toc/uk.json'),
-  ]);
-  expect(courseResource.ok()).toBe(true);
-  expect(lessonResource.ok()).toBe(true);
-  expect(tocResource.ok()).toBe(true);
-  expect(localizedTocResource.ok()).toBe(true);
+test('selected content package publishes canonical Course, Lesson, Question Data and derived TOC', async ({
+  request,
+}) => {
+  const [courseResource, lessonResource, questionResource, tocResource, localizedTocResource, localizedCourseResource] =
+    await Promise.all([
+      request.get('/data/courses/' + courseId + '/base.json'),
+      request.get('/data/lessons/c/' + lessonId + '/base.json'),
+      request.get('/data/questions/a/11111111-1111-4111-8111-00000000012a/base.json'),
+      request.get('/data/courses/' + courseId + '/toc/base.json'),
+      request.get('/data/courses/' + courseId + '/toc/uk.json'),
+      request.get('/data/courses/' + courseId + '/uk.json'),
+    ]);
+  for (const resource of [
+    courseResource,
+    lessonResource,
+    questionResource,
+    tocResource,
+    localizedTocResource,
+    localizedCourseResource,
+  ])
+    expect(resource.ok()).toBe(true);
+
   const toc = await tocResource.json();
-  const localizedToc = await localizedTocResource.json();
   expect(toc.type).toBe('course');
-  expect(toc.content.order).toEqual(['fixtureModule']);
-  expect(toc.content.items.fixtureModule.content.items.fixtureChapter.content.items.fixtureLesson).toMatchObject({
-    type: 'lesson',
-    id: lessonId,
+  expect(toc.children).toEqual(['fixtureModule']);
+  expect(toc.fixtureModule.children).toEqual(['fixtureChapter']);
+  expect(toc.fixtureModule.fixtureChapter.children).toEqual(['fixtureLesson']);
+  expect(toc.fixtureModule.fixtureChapter.fixtureLesson).toMatchObject({ type: 'lesson', id: lessonId });
+  expect(toc).not.toHaveProperty('content');
+
+  const localizedToc = await localizedTocResource.json();
+  expect(localizedToc).toMatchObject({
+    label: 'Контрольний курс',
+    fixtureModule: {
+      label: 'Контрольний модуль',
+      fixtureChapter: { label: 'Контрольна глава' },
+    },
   });
-  expect(localizedToc.content.items.fixtureModule).toHaveProperty('label', 'Контрольний модуль');
-  expect(JSON.stringify(toc)).not.toContain('"section"');
+  expect(localizedToc).not.toHaveProperty('children');
+  expect(localizedToc.fixtureModule).not.toHaveProperty('children');
+
   const published = await courseResource.json();
   expect(published.type).toBe('course');
-  expect(published.content.order).toEqual(['fixtureModule']);
-  const fixtureModule = published.content.items.fixtureModule;
-  expect(fixtureModule.type).toBe('module');
-  expect(fixtureModule.content.order).toEqual(['fixtureChapter']);
-  const chapter = fixtureModule.content.items.fixtureChapter;
-  expect(chapter.type).toBe('chapter');
-  expect(chapter.content.items.fixtureLesson).toEqual({ type: 'lesson', id: lessonId });
+  expect(published.children).toEqual(['fixtureModule']);
+  const fixtureModule = published.fixtureModule;
+  expect(fixtureModule).toMatchObject({ type: 'module', slug: 'fixtureModule', children: ['fixtureChapter'] });
+  const chapter = fixtureModule.fixtureChapter;
+  expect(chapter).toMatchObject({ type: 'chapter', slug: 'fixtureChapter', children: ['fixtureLesson'] });
+  expect(chapter.fixtureLesson).toEqual({ type: 'lesson', id: lessonId });
+  expect(published).not.toHaveProperty('content');
+
+  const localizedCourse = await localizedCourseResource.json();
+  expect(localizedCourse).toMatchObject({
+    locale: { title: 'Контрольний курс' },
+    fixtureModule: { locale: { title: 'Контрольний модуль' } },
+  });
+  expect(localizedCourse).not.toHaveProperty('children');
+  expect(localizedCourse.fixtureModule).not.toHaveProperty('children');
+
   const lesson = await lessonResource.json();
   expect(lesson.type).toBe('lesson');
-  expect(lesson.section.map((section: { type: string }) => section.type)).toEqual(['content', 'practice', 'quiz']);
+  expect(lesson.children).toEqual(['fixtureIntro', 'fixturePractice', 'fixtureQuiz']);
+  expect(lesson.fixtureIntro.children).toEqual(['fixtureText', 'fixtureImage', 'fixtureScene']);
+  expect(lesson.fixturePractice.children).toEqual(['practiceText']);
+  expect(lesson.fixtureQuiz.children).toEqual([]);
+  expect(lesson).not.toHaveProperty('section');
   expect(lesson.params.languages).toEqual(expect.arrayContaining(['uk', 'en', 'ar', 'qm']));
+
+  const question = await questionResource.json();
+  expect(question.content.question.children).toEqual(['questionText']);
+  expect(question.content.answers.correct.children).toEqual(['answerCorrect']);
+  expect(question.content.answers.incorrect.children).toEqual(['answerWrong']);
+  expect(question.content.answers.distractors.children).toEqual([]);
 });
 
 test('Course detail renders the selected package hierarchy and opens a published Lesson', async ({ page }) => {
