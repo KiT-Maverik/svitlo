@@ -28,7 +28,8 @@ const input = (kind: string) => ({
   slug: 'introduction',
   params: {},
   locale: { title: { en: 'Start', uk: 'Початок' }, navigationLabel: '1' },
-  content: { items: { prompt: block('prompt') }, order: ['prompt'] },
+  children: ['prompt'],
+  prompt: block('prompt'),
 });
 const renderContentBlock = (config: ChildConfig, options: { directory: string; languagesImport: string }) => ({
   exportName: config.slug,
@@ -71,7 +72,7 @@ for (const { kind, render } of suites) {
     renderContentBlock,
   };
 
-  test(sectionType + ': delegates exact subtree and preserves explicit collection/order/source locale', () => {
+  test(sectionType + ': delegates direct ordered children and preserves source locale', () => {
     const config = input(sectionType);
     const first = render(config, options);
     assert.deepEqual(first, render(config, options));
@@ -85,7 +86,7 @@ for (const { kind, render } of suites) {
     assert.match(root, /\.\/prompt/);
     if (sectionType === 'content') {
       assert.match(root, /import \{ prompt \} from "\.\/prompt"/);
-      assert.match(root, /"items": \{\s*prompt,?\s*\}/);
+      assert.match(root, /\bprompt,/);
       assert.doesNotMatch(root, /child_content_items_/);
     }
     const parsed = ts.transpileModule(root, {
@@ -98,8 +99,8 @@ for (const { kind, render } of suites) {
       'generated TS must parse without errors',
     );
     assert.match(root, new RegExp('define' + kind[0].toUpperCase() + kind.slice(1)));
-    assert.match(root, /typeof content.items, typeof languages/);
-    assert.match(root, /"order": \["prompt"\]/);
+    assert.match(root, /typeof __blocks, typeof languages/);
+    assert.match(root, /"children": \["prompt"\]/);
     assert.match(root, /"en": "Start"/);
     assert.doesNotMatch(root, /"uk": "Початок"/);
     assert.deepEqual(config, input(sectionType), 'input must remain unchanged');
@@ -107,13 +108,13 @@ for (const { kind, render } of suites) {
 
   test(sectionType + ': fails closed for invalid ordering, identifiers and path escapes', () => {
     const config = input(sectionType);
-    config.content.order = [];
+    config.children = [];
     assert.throws(
       () => render(config, { documentLanguage: 'en', languagesImport: './languages', renderContentBlock }),
-      /order/,
+      /children/,
     );
     const other = input(sectionType);
-    other.content.items.prompt.slug = 'mismatch';
+    other.prompt.slug = 'mismatch';
     assert.throws(
       () => render(other, { documentLanguage: 'en', languagesImport: './languages', renderContentBlock }),
       /identity/,
