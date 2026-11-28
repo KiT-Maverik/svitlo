@@ -112,7 +112,13 @@ type AuthoredInput<
   ConfigWithLanguages<PracticeSection_Config, Languages>;
 
 /** Stateless Section authoring with direct ordered ContentBlock placements. */
-export const definePracticeSection = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefinePracticeSectionChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'children'>;
+type InferredDefinePracticeSectionChildren<Input> = {
+  [Key in DefinePracticeSectionChildKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+const definePracticeSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -354,5 +360,25 @@ export const definePracticeSection = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const definePracticeSection: {
+  <
+    const Input extends Pick<PracticeSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefinePracticeSectionChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof definePracticeSectionImpl<Input['slug'], InferredDefinePracticeSectionChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof definePracticeSectionImpl<Slug, Items, Languages>>;
+} = definePracticeSectionImpl;
 
 export type PracticeSection_Configurator = ReturnType<typeof definePracticeSection>;

@@ -128,7 +128,13 @@ type AuthoredInput<
  * `slides[]` is a later UI Props projection, not an authored or Data field.
  * Slide materialization keeps the existing `slides/<slug>/` source folders.
  */
-export const defineCarousel = <
+/** Infer literal child placement keys before checking the Configurator's Build/locale constraints. */
+type DefineCarouselChildKeys<Input> = Exclude<keyof Input, 'id' | 'type' | 'slug' | 'params' | 'locale' | 'children'>;
+type InferredDefineCarouselChildren<Input> = {
+  [Key in DefineCarouselChildKeys<Input>]: Input[Key] extends Slide ? Input[Key] : Slide;
+};
+
+const defineCarouselImpl = <
   const Slug extends string,
   const Items extends Record<string, Slide>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
@@ -426,6 +432,26 @@ export const defineCarousel = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
+
+
+/** Preserve explicit generic authoring and infer directly keyed children from ordinary literals. */
+export const defineCarousel: {
+  <
+    const Input extends Pick<ContentBlock_Carousel_Config, 'id' | 'type' | 'params' | 'locale'> & {
+      slug: string;
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredDefineCarouselChildren<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineCarouselImpl<Input['slug'], InferredDefineCarouselChildren<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Slide>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineCarouselImpl<Slug, Items, Languages>>;
+} = defineCarouselImpl;
 
 type DefinedCarousel = ReturnType<typeof defineCarousel>;
 /** The parent-facing union erases a composite's generic placement index. */
