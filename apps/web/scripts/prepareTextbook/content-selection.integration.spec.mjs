@@ -54,9 +54,17 @@ test('production preparation switches two independent packages and cleans stale 
     assert(existsSync(join(publicRoot, 'textbooks/web-fixture-alpha/marker.txt')));
     assert.match(readFileSync(join(generatedRoot, 'textbookScenes.ts'), 'utf8'), /@svitlo\/web-fixture-alpha\/scenes/);
     assert.match(readFileSync(join(generatedRoot, 'textbookStyles.ts'), 'utf8'), /@svitlo\/web-fixture-alpha\/styles/);
-    const en = JSON.parse(readFileSync(join(publicRoot, 'data/lessons/c', lesson, 'en.json'), 'utf8'));
+    const lessonDir = join(publicRoot, 'data/lessons/c', lesson);
+    const base = JSON.parse(readFileSync(join(lessonDir, 'base.json'), 'utf8'));
+    assert.deepEqual(base.children, ['fixtureIntro', 'fixturePractice', 'fixtureQuiz']);
+    assert.deepEqual(base.fixtureIntro.children, ['fixtureText', 'fixtureImage', 'fixtureScene']);
+    assert.equal(base.fixtureIntro.fixtureScene.locale.value, 'Controlled interactive scene');
+    const en = JSON.parse(readFileSync(join(lessonDir, 'en.json'), 'utf8'));
     assert.equal(en.locale.title, 'Controlled Lesson');
-    assert.equal(en.section[0].content[2].locale.value, 'Controlled interactive scene');
+    assert(!Object.hasOwn(en, 'fixtureIntro'), 'unchanged English content must not be republished');
+    const uk = JSON.parse(readFileSync(join(lessonDir, 'uk.json'), 'utf8'));
+    assert.equal(uk.fixtureIntro.fixtureScene.locale.value, 'Контрольна інтерактивна сцена');
+    assert(!Object.hasOwn(uk, 'children'), 'locale patches must not replace ordered placements');
 
     // Host-owned and unrelated files must survive an ownership-based switch.
     mkdirSync(orphanCourse, { recursive: true });
