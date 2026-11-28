@@ -13,5 +13,6 @@ export const lightExploration = defineLesson({
   params: { ...howLightMoves.config.base.params, quizRequiredForCompletion: false, languages: howLightMoves_languages },
   locale: { title: 'Light Lab · Exploration (demo)' },
   children: ['theory', 'practice'],
- theory: howLightMoves.theory, practice: howLightMoves.practice,
+  theory: howLightMoves.theory,
+  practice: howLightMoves.practice,
 });

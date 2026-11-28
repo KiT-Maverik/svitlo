@@ -13,7 +13,9 @@ const lightFoundations = defineChapter({
   params: { iconKey: 'book-open' },
   locale: { title: 'Light: first steps' },
   children: ['lightDiscovery', 'lightStory', 'courseHowLightMoves'],
- lightDiscovery, lightStory, courseHowLightMoves,
+  lightDiscovery,
+  lightStory,
+  courseHowLightMoves,
 });
 
 const lightLaboratory = defineModule({
@@ -23,7 +25,8 @@ const lightLaboratory = defineModule({
   params: { iconKey: 'layers' },
   locale: { title: 'The Light Laboratory' },
   children: ['lightFoundations', 'lightExploration'],
- lightFoundations, lightExploration,
+  lightFoundations,
+  lightExploration,
 });
 
 /** Authoring-time Course; future assembly resolves nested Lesson configurators. */
@@ -35,8 +38,8 @@ export const playgroundLightCourse = defineCourse({
   locale: {
     title: 'Playground · Light Journey',
     description:
-      'A demonstration Course with Modules, a Chapter, a Course-owned story Lesson and a Course-specific Lesson composition.',
+    'A demonstration Course with Modules, a Chapter, a Course-owned story Lesson and a Course-specific Lesson composition.',
   },
   children: ['lightLaboratory'],
- lightLaboratory,
+  lightLaboratory,
 });

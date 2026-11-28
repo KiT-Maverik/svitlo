@@ -45,35 +45,34 @@ export const contentSection = defineContentSection({
   params: {},
   locale: { title, navigationLabel: title },
   children: ['p1', 'lightRayDiagram', 'p2', 'lightPropagationSimulation', 'p3', 'checkpoint'],
-
-      p1: defineMarkdown({
-        id: '11b1f7f2-9ef2-4c79-9a84-d809165c50d7',
-        slug: 'p1',
-        type: 'markdown',
-        params: {},
-        locale: {
-          value: readMarkdown(new URL('./markdown/p1/locale/', import.meta.url).href, howLightMoves_languages),
-        },
-      }),
-      p2: defineMarkdown({
-        id: 'c0b0d3f7-3507-4331-9852-23fd57e49ba7',
-        slug: 'p2',
-        type: 'markdown',
-        params: {},
-        locale: {
-          value: readMarkdown(new URL('./markdown/p2/locale/', import.meta.url).href, howLightMoves_languages),
-        },
-      }),
-      p3: defineMarkdown({
-        id: '4f3ff32e-a70c-49a0-b730-dfe27f685106',
-        slug: 'p3',
-        type: 'markdown',
-        params: {},
-        locale: {
-          value: readMarkdown(new URL('./markdown/p3/locale/', import.meta.url).href, howLightMoves_languages),
-        },
-      }),
-      lightRayDiagram,
-      lightPropagationSimulation,
-      checkpoint,
+  p1: defineMarkdown({
+    id: '11b1f7f2-9ef2-4c79-9a84-d809165c50d7',
+    slug: 'p1',
+    type: 'markdown',
+    params: {},
+    locale: {
+      value: readMarkdown(new URL('./markdown/p1/locale/', import.meta.url).href, howLightMoves_languages),
+    },
+  }),
+  p2: defineMarkdown({
+    id: 'c0b0d3f7-3507-4331-9852-23fd57e49ba7',
+    slug: 'p2',
+    type: 'markdown',
+    params: {},
+    locale: {
+      value: readMarkdown(new URL('./markdown/p2/locale/', import.meta.url).href, howLightMoves_languages),
+    },
+  }),
+  p3: defineMarkdown({
+    id: '4f3ff32e-a70c-49a0-b730-dfe27f685106',
+    slug: 'p3',
+    type: 'markdown',
+    params: {},
+    locale: {
+      value: readMarkdown(new URL('./markdown/p3/locale/', import.meta.url).href, howLightMoves_languages),
+    },
+  }),
+  lightRayDiagram,
+  lightPropagationSimulation,
+  checkpoint,
 });

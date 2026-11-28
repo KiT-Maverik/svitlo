@@ -15,24 +15,23 @@ const storyBridge = defineContentSection({
     navigationLabel: 'Story bridge',
   },
   children: ['bridgeCopy'],
-
-      bridgeCopy: defineMarkdown({
-        id: '641f0eea-bd05-5db2-bcc4-14a153b7c7a1',
-        slug: 'bridgeCopy',
-        type: 'markdown',
-        params: {},
-        locale: {
-          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
-        },
-      }),
+  bridgeCopy: defineMarkdown({
+    id: '641f0eea-bd05-5db2-bcc4-14a153b7c7a1',
+    slug: 'bridgeCopy',
+    type: 'markdown',
+    params: {},
+    locale: {
+      value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A small story between lesson sections.',
+    },
+  }),
 });
 
 /**
- * Course-specific Lesson composition. Reuse universal content without
- * changing the original howLightMoves Lesson or introducing override factories.
- * The canonical Lesson owns Quiz assessment resources, so this independently
- * identified demo reuses only teaching Sections; no unresolved Quiz is published.
- */
+* Course-specific Lesson composition. Reuse universal content without
+* changing the original howLightMoves Lesson or introducing override factories.
+* The canonical Lesson owns Quiz assessment resources, so this independently
+* identified demo reuses only teaching Sections; no unresolved Quiz is published.
+*/
 export const courseHowLightMoves = defineLesson({
   id: 'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
   slug: 'courseHowLightMoves',
@@ -49,9 +48,8 @@ export const courseHowLightMoves = defineLesson({
   },
   locale: { title: howLightMovesTitle },
   children: ['practice', 'storyBridge', 'theory', 'contentBlockGallery'],
-
-      practice: howLightMoves.practice,
-      storyBridge,
-      theory: howLightMoves.theory,
-      contentBlockGallery,
+  practice: howLightMoves.practice,
+  storyBridge,
+  theory: howLightMoves.theory,
+  contentBlockGallery,
 });
