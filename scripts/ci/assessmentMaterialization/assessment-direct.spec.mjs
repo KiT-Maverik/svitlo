@@ -31,20 +31,18 @@ const reviewed = () => ({
     type: 'assessment',
     locale: { title: { uk: 'Підсумкове оцінювання' } },
     before: {
-      items: {
-        intro: {
+      children: ['intro'],
+      intro: {
           config: {
             id: sectionId,
             slug: 'intro',
             type: 'content',
             params: {},
             locale: { title: { uk: 'Інструкція' }, navigationLabel: '1' },
-            content: { items: {}, order: [] },
+            children: [],
           },
           production: { purpose: 'Clarify the rules' },
         },
-      },
-      order: ['intro'],
     },
     quiz: {
       config: {
@@ -67,11 +65,11 @@ const reviewed = () => ({
           results: { visibility: 'immediate', showScore: true },
         },
         locale: { title: { uk: 'Запитання' }, navigationLabel: 'Q' },
-        content: { items: {}, order: [] },
+        children: [],
       },
       production: { purpose: 'Verify the approved evidence' },
     },
-    after: { items: {}, order: [] },
+    after: { children: [] },
   },
   production: {
     purpose: 'Collect evidence after upstream lessons',
@@ -150,11 +148,11 @@ test('Assessment Stage 2 requires exactly one non-disabled Quiz and Content-only
   assert.equal(assessmentWorkflowStage2_Schema.safeParse(disabled).success, false);
 
   const secondQuiz = reviewed();
-  secondQuiz.config.after.items.extra = {
+  secondQuiz.config.after.extra = {
     ...secondQuiz.config.quiz,
     config: { ...secondQuiz.config.quiz.config, slug: 'extra' },
   };
-  secondQuiz.config.after.order.push('extra');
+  secondQuiz.config.after.children.push('extra');
   assert.equal(assessmentWorkflowStage2_Schema.safeParse(secondQuiz).success, false);
 });
 
