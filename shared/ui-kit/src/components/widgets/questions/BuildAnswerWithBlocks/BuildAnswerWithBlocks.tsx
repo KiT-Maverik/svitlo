@@ -2,7 +2,7 @@
 
 import { Stack, Typography } from '@mui/material';
 
-import type { Question_BuildAnswerWithBlocks_Data } from '@svitlo/engine/runtime';
+import type { QuestionViewProps } from '../../../../questionPresentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -17,7 +17,7 @@ export function BuildAnswerWithBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_BuildAnswerWithBlocks_Data;
+  response: Extract<QuestionViewProps, { type: 'buildAnswerWithBlocks' }>;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
