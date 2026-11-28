@@ -3,7 +3,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
 
-import type { Question_MatchBlocks_Data } from '@svitlo/engine/runtime';
+import type { QuestionViewProps } from '../../../../questionPresentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -17,7 +17,7 @@ export function MatchBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_MatchBlocks_Data;
+  response: Extract<QuestionViewProps, { type: 'matchBlocks' }>;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
