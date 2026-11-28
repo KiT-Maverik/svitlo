@@ -143,7 +143,7 @@ test('direct Lesson selection indexes validated order without scanning sibling a
   const changed = fixture();
   assert.equal(assembleCourseLesson(changed).id, lessonId);
   changed.course.base.children = [];
-  assert.throws(() => assembleCourseLesson(changed), /Course placement|hierarchy changed/);
+  assert.throws(() => assembleCourseLesson(changed), /Unaddressed or disabled Course publication placement/);
 });
 
 test('same-length in-place edits invalidate mutable Course publication membership', () => {
