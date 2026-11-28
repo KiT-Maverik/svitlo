@@ -284,9 +284,7 @@ function assertCourseInventory(manifest, meta, entries) {
           // The concrete materializer emits a typed Lesson patch, optionally
           // bound to the exact names of approved added Section configurators.
           const sectionType = /"[A-Za-z][A-Za-z0-9]*": typeof [A-Za-z_$][A-Za-z0-9_$]*/.source;
-          const typedPattern = new RegExp(
-            '^(?:, \\{ ' + sectionType + '(?:; ' + sectionType + ')* \\})?>\\);',
-          );
+          const typedPattern = new RegExp('^(?:, \\{ ' + sectionType + '(?:; ' + sectionType + ')* \\})?>\\);');
           const typedPatch = typedPattern.exec(typedSuffix);
           const remainder = typedPatch ? typedSuffix.slice(typedPatch[0].length).trim() : '';
           const footer =
