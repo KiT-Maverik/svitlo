@@ -50,7 +50,7 @@ Do not assume a $10 OpenAI subscription can be transferred to Svitlo; proposed $
 
 ## 4. Proposed system boundaries
 
-`
+```
 Contributor (personal AI, explicitly initiated)
     -> Svitlo web / ChatGPT MCP interface
     -> Extractor (approved entity/locale/stage fields only)
@@ -62,7 +62,7 @@ Contributor (personal AI, explicitly initiated)
     -> Trusted contribution coordinator + materializer
     -> Existing canonical entity-owned Git PR
     -> Existing Ready/CI/publication gates
-`
+```
 
 Components to explore:
 
@@ -169,7 +169,7 @@ For large-scale volume, multiple independently reviewed locales of the same enti
 
 ## 9. Expanding from translation to actual educational production
 
-The live [Lesson Workflow](../skills/lesson-workflow/README.md) has **ten stages** and is the authority; a user-facing “seven buttons” layout is only a grouped view:
+The live [Lesson Workflow](../../skills/lesson-workflow/README.md) has **ten stages** and is the authority; a user-facing “seven buttons” layout is only a grouped view:
 
 | Current Lesson stage | Potential crowd task | Review/authorization boundary |
 | --- | --- | --- |
@@ -278,19 +278,19 @@ Track: accepted unique outputs per entity x locale x stage; useful coverage delt
 
 ## Related existing repository guidance and backlog ideas
 
-- [Product To Do index](./README.md)
-- [Architecture and product principles](../docs/architecture/README.md)
-- [Git-First Typed Content](../docs/architecture/git-first-typed-content.md)
-- [Internationalization & Inclusive Access](../docs/architecture/internationalization-and-accessibility.md)
-- [Typed production materialization](../docs/architecture/typed-production-materialization.md)
-- [Lesson Workflow](../skills/lesson-workflow/README.md)
-- [Translation Workflow](../skills/translation-workflow/README.md)
-- [GitHub/CI policy](../rules/ci-workflow.md)
-- [Referral Rewards & Subscription Credits](../To%20Do/growth/referrals-and-subscriptions.md)
-- [Regional Pricing & Grants](../To%20Do/growth/regional-pricing-and-grants.md)
-- [Non-Toxic Reputation](../To%20Do/community/fair-reputation.md)
-- [Scientific Editorial Verification](../To%20Do/growth/scientific-editorial-verification.md)
-- [PR Content Change Manifest](../To%20Do/platform/pr-change-manifest.md)
+- [Product To Do index](../README.md)
+- [Architecture and product principles](../../docs/architecture/README.md)
+- [Git-First Typed Content](../../docs/architecture/git-first-typed-content.md)
+- [Internationalization & Inclusive Access](../../docs/architecture/internationalization-and-accessibility.md)
+- [Typed production materialization](../../docs/architecture/typed-production-materialization.md)
+- [Lesson Workflow](../../skills/lesson-workflow/README.md)
+- [Translation Workflow](../../skills/translation-workflow/README.md)
+- [GitHub/CI policy](../../rules/ci-workflow.md)
+- [Referral Rewards & Subscription Credits](../growth/referrals-and-subscriptions.md)
+- [Regional Pricing & Grants](../growth/regional-pricing-and-grants.md)
+- [Non-Toxic Reputation](./fair-reputation.md)
+- [Scientific Editorial Verification](../growth/scientific-editorial-verification.md)
+- [PR Content Change Manifest](../platform/pr-change-manifest.md)
 - [OpenAI Sign in with ChatGPT Terms](https://openai.com/policies/sign-in-with-chatgpt-terms/)
 - [OpenAI Sign in with ChatGPT open-source integration article](https://developers.openai.com/cookbook/articles/sign-in-with-chatgpt)
 
