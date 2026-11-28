@@ -41,7 +41,7 @@ beforeEach(() => {
     type: 'course',
     params: { languages: ['en', 'uk'] },
     locale: { title: 'Published ' + id },
-    content: { items: {}, order: [] },
+    children: [],
   }));
 });
 afterEach(() => {
