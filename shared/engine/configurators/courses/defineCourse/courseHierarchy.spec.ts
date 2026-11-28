@@ -513,7 +513,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
       }),
     /Invalid Lesson overrides/,
   );
-  assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);
+  assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /Lesson placement requires plain JSON Config at patch\.locale\.title/);
 });
 
 test('F4: English Course placement composes a multilingual required-Quiz Lesson with an English-only additional Section', () => {
