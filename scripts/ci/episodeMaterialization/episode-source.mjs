@@ -82,13 +82,29 @@ export function verifyEpisodeHandoff(handoff, reviewed, meta) {
     !nonempty(q.specification)
   )
     throw Error('Complete reviewed Episode scenario and specification required');
+  // Stage 2 owns ordered, slug-addressed Sections directly; the old
+  // section.items/order wrapper is not a valid reviewed Episode Config.
+  const metadata = new Set(['id', 'slug', 'type', 'params', 'locale', 'events', 'children']);
+  const sectionKeys = Object.keys(b).filter(key => !metadata.has(key));
+  const children = b.children;
   if (
-    Object.keys(b).some(key => !['id', 'slug', 'type', 'params', 'locale', 'section', 'events'].includes(key)) ||
-    Object.keys(b.events ?? {}).length ||
-    b.params?.languages !== undefined ||
-    !record(b.section?.items) ||
-    !Array.isArray(b.section.order) ||
-    !b.section.order.length
+    (b.events !== undefined && (!record(b.events) || Object.keys(b.events).length > 0)) ||
+    (b.params !== undefined && (!record(b.params) || Object.hasOwn(b.params, 'languages'))) ||
+    !Array.isArray(children) ||
+    children.length === 0 ||
+    children.length !== sectionKeys.length ||
+    new Set(children).size !== children.length ||
+    children.some(key => !safe(key) || metadata.has(key) || !Object.hasOwn(b, key)) ||
+    sectionKeys.some(key => {
+      const entry = b[key];
+      const section = record(entry?.config) ? entry.config : entry;
+      return (
+        !safe(key) ||
+        !record(section) ||
+        !['content', 'practice', 'codingTask', 'learningFlow'].includes(section.type) ||
+        (section.slug !== undefined && section.slug !== key)
+      );
+    })
   )
     throw Error('Complete Episode source Sections required; no Lesson-owned fields or publication language params');
   if (!nonempty(typeof b.locale?.title === 'string' ? b.locale.title : b.locale?.title?.[languages.document]))
