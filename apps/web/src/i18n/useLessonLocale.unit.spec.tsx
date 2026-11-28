@@ -50,6 +50,29 @@ describe('independent lesson and interface locales from route', () => {
     expect(replace).toHaveBeenCalledWith(`/uk/course/course-one/lesson/de/${lessonId}`, { scroll: false });
   });
 
+  it('keeps every nested Course Lesson placement segment across both language switches', () => {
+    const placement = 'moduleOne/chapterOne/lessonOne';
+    vi.mocked(usePathname).mockReturnValue('/uk/course/course-one/lesson/en/' + placement);
+    const { result } = renderHook(() => useLessonLocale());
+    expect(result.current.locale).toBe('uk-UA');
+    expect(result.current.lessonLocale).toBe('en-US');
+    act(() => result.current.setLocale('fr-FR'));
+    expect(replace).toHaveBeenCalledWith('/fr/course/course-one/lesson/en/' + placement, { scroll: false });
+    act(() => result.current.setLessonLocale!('ar-SA'));
+    expect(replace).toHaveBeenCalledWith('/uk/course/course-one/lesson/ar/' + placement, { scroll: false });
+  });
+
+  it('retains a nested Episode placement without offering Lesson language controls', () => {
+    const placement = 'moduleOne/chapterOne/storyOne';
+    vi.mocked(usePathname).mockReturnValue('/uk/course/course-one/episode/en/' + placement);
+    const { result } = renderHook(() => useLessonLocale());
+    expect(result.current.locale).toBe('uk-UA');
+    expect(result.current.lessonLocale).toBeUndefined();
+    expect(result.current.setLessonLocale).toBeUndefined();
+    act(() => result.current.setLocale('de-DE'));
+    expect(replace).toHaveBeenCalledWith('/de/course/course-one/episode/en/' + placement, { scroll: false });
+  });
+
   it('upgrades legacy URLs to the explicit lesson locale on selection', () => {
     vi.mocked(usePathname).mockReturnValue(`/uk/lesson/${lessonId}`);
     const { result } = renderHook(() => useLessonLocale());
