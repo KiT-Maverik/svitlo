@@ -124,7 +124,7 @@ describe('Configurators', () => {
               } as never,
               { languages: ['en'] },
             ),
-          /Unsupported Flashcard ContentBlock type: carousel/,
+          /New Flashcard side child must be a primitive ContentBlock Configurator: carousel/,
         );
       });
 
