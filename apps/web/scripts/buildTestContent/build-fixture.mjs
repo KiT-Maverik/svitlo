@@ -38,6 +38,10 @@ function publish(file, content) {
 function block(n, slug, type, params, locale) {
   return { id: uuid(n), slug, type, params, locale };
 }
+/** Builder convenience: never publish presentation arrays of child Data. */
+function ordered(...nodes) {
+  return { children: nodes.map(node => node.slug), ...Object.fromEntries(nodes.map(node => [node.slug, node])) };
+}
 
 write(
   'textbook/index.js',
@@ -145,14 +149,14 @@ if (id === 'web-fixture-alpha') {
   };
   function sections(lang) {
     const t = translations[lang];
-    return [
+    return ordered(
       {
         id: uuid(0x101),
         slug: 'fixtureIntro',
         type: 'content',
         params: {},
         locale: { title: t[1], navigationLabel: t[1] },
-        content: [
+        ...ordered(
           block(0x102, 'fixtureText', 'text', {}, { value: t[5] }),
           block(
             0x103,
@@ -162,7 +166,7 @@ if (id === 'web-fixture-alpha') {
             { src: '/textbooks/web-fixture-alpha/beam.svg', alt: t[4] },
           ),
           block(0x117, 'fixtureScene', 'scene', {}, { value: t[4] }),
-        ],
+        ),
       },
       {
         id: uuid(0x104),
@@ -170,7 +174,7 @@ if (id === 'web-fixture-alpha') {
         type: 'practice',
         params: {},
         locale: { title: t[2], navigationLabel: t[2] },
-        content: [block(0x105, 'practiceText', 'text', {}, { value: t[5] })],
+        ...ordered(block(0x105, 'practiceText', 'text', {}, { value: t[5] })),
       },
       {
         id: uuid(0x106),
@@ -192,9 +196,9 @@ if (id === 'web-fixture-alpha') {
           results: { visibility: 'immediate', showScore: true },
         },
         locale: { title: t[3], navigationLabel: t[3] },
-        content: [],
+        children: [],
       },
-    ];
+    );
   }
   const lessonDir = 'data/lessons/c/' + LESSON + '/';
   publish(lessonDir + 'base.json', {
@@ -208,10 +212,13 @@ if (id === 'web-fixture-alpha') {
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: translations.en[0] },
-    section: sections('en'),
+    ...sections('en'),
   });
   for (const lang of languages) {
-    publish(lessonDir + lang + '.json', { locale: { title: translations[lang][0] }, section: sections(lang) });
+    publish(lessonDir + lang + '.json', {
+      locale: { title: translations[lang][0] },
+      ...sparseDifference(sections('en'), sections(lang)),
+    });
   }
   function question(lang) {
     const t = translations[lang];
@@ -222,11 +229,11 @@ if (id === 'web-fixture-alpha') {
       params: { assessmentMethod: 'retrieval', restrictions: [] },
       locale: {},
       content: {
-        question: [block(0x121, 'questionText', 'text', {}, { value: t[10] })],
+        question: ordered(block(0x121, 'questionText', 'text', {}, { value: t[10] })),
         answers: {
-          correct: { answerCorrect: block(0x122, 'answerCorrect', 'text', {}, { value: t[11] }) },
-          incorrect: { answerWrong: block(0x123, 'answerWrong', 'text', {}, { value: t[12] }) },
-          distractors: {},
+          correct: ordered(block(0x122, 'answerCorrect', 'text', {}, { value: t[11] })),
+          incorrect: ordered(block(0x123, 'answerWrong', 'text', {}, { value: t[12] })),
+          distractors: { children: [] },
         },
       },
     };
@@ -234,7 +241,8 @@ if (id === 'web-fixture-alpha') {
   const questionDir = 'data/questions/a/' + QUESTION + '/';
   const qbase = question('en');
   publish(questionDir + 'base.json', qbase);
-  for (const lang of languages) publish(questionDir + lang + '.json', { content: question(lang).content });
+  for (const lang of languages)
+    publish(questionDir + lang + '.json', { content: sparseDifference(qbase.content, question(lang).content) ?? {} });
   publish('data/assessments/manifest.json', {
     entries: {
       [QUESTION]: {
@@ -258,14 +266,14 @@ if (id === 'web-fixture-alpha') {
       type: 'episode',
       params: { languages },
       locale: { title: storyTitles[lang] + ' ' + n },
-      section: [
+      ...ordered(
         {
           id: uuid(n + 0x20),
           slug: 'opening',
           type: 'content',
           params: {},
           locale: { title: t[1], navigationLabel: t[1] },
-          content: [
+          ...ordered(
             block(n + 0x40, 'narration', 'text', {}, { value: t[5] }),
             block(
               n + 0x60,
@@ -275,7 +283,7 @@ if (id === 'web-fixture-alpha') {
               { src: '/textbooks/web-fixture-alpha/beam.svg', alt: t[4] },
             ),
             block(0x117, 'fixtureScene', 'scene', {}, { value: t[4] }),
-          ],
+          ),
         },
         {
           id: uuid(n + 0x80),
@@ -283,20 +291,19 @@ if (id === 'web-fixture-alpha') {
           type: 'practice',
           params: {},
           locale: { title: t[2], navigationLabel: t[2] },
-          content: [block(n + 0xa0, 'closingText', 'text', {}, { value: t[5] })],
+          ...ordered(block(n + 0xa0, 'closingText', 'text', {}, { value: t[5] })),
         },
-      ],
+      ),
     };
   }
   function story(lang) {
     const t = translations[lang];
-    const collection = (items, order) => ({ items, order });
-    const chapter = (n, slug, children) => ({
+    const chapter = (n, slug, placements) => ({
       id: uuid(n),
       slug,
       type: 'chapter',
       locale: { title: t[9] },
-      content: children,
+      ...placements,
     });
     const lesson = { id: LESSON, type: 'lesson' };
     return {
@@ -304,44 +311,32 @@ if (id === 'web-fixture-alpha') {
       type: 'course',
       params: { languages },
       locale: { title: storyTitles[lang], description: t[7] },
-      content: collection(
-        {
-          opening: episode(lang, 0x141, 'opening'),
-          module: {
-            id: uuid(0x145),
-            type: 'module',
-            locale: { title: t[8] },
-            content: collection(
-              {
-                moduleStory: episode(lang, 0x142, 'moduleStory'),
-                nested: chapter(
-                  0x146,
-                  'nested',
-                  collection({ nestedStory: episode(lang, 0x143, 'nestedStory'), repeat: lesson }, [
-                    'nestedStory',
-                    'repeat',
-                  ]),
-                ),
-              },
-              ['moduleStory', 'nested'],
-            ),
-          },
-          direct: chapter(
-            0x147,
-            'direct',
-            collection({ directStory: episode(lang, 0x144, 'directStory') }, ['directStory']),
-          ),
-          finalLesson: { ...lesson, overrides: { locale: { title: t[0] + ' 2' } } },
-        },
-        ['opening', 'module', 'direct', 'finalLesson'],
-      ),
+      children: ['opening', 'module', 'direct', 'finalLesson'],
+      opening: episode(lang, 0x141, 'opening'),
+      module: {
+        id: uuid(0x145),
+        slug: 'module',
+        type: 'module',
+        locale: { title: t[8] },
+        children: ['moduleStory', 'nested'],
+        moduleStory: episode(lang, 0x142, 'moduleStory'),
+        nested: chapter(0x146, 'nested', {
+          children: ['nestedStory', 'repeat'],
+          nestedStory: episode(lang, 0x143, 'nestedStory'),
+          repeat: lesson,
+        }),
+      },
+      direct: chapter(0x147, 'direct', {
+        children: ['directStory'],
+        directStory: episode(lang, 0x144, 'directStory'),
+      }),
+      finalLesson: { ...lesson, overrides: { locale: { title: t[0] + ' 2' } } },
     };
   }
   publish('data/courses/' + STORY + '/base.json', story('en'));
   for (const lang of languages)
     publish('data/courses/' + STORY + '/' + lang + '.json', {
-      locale: story(lang).locale,
-      content: story(lang).content,
+      ...sparseDifference(story('en'), story(lang)),
     });
   function course(lang) {
     const t = translations[lang];
@@ -350,39 +345,28 @@ if (id === 'web-fixture-alpha') {
       type: 'course',
       params: { languages },
       locale: { title: t[6], description: t[7] },
-      content: {
-        items: {
-          fixtureModule: {
-            type: 'module',
-            id: MODULE,
-            locale: { title: t[8] },
-            content: {
-              items: {
-                fixtureChapter: {
-                  type: 'chapter',
-                  id: CHAPTER,
-                  locale: { title: t[9] },
-                  content: {
-                    items: {
-                      fixtureLesson: { type: 'lesson', id: LESSON },
-                    },
-                    order: ['fixtureLesson'],
-                  },
-                },
-              },
-              order: ['fixtureChapter'],
-            },
-          },
+      children: ['fixtureModule'],
+      fixtureModule: {
+        type: 'module',
+        id: MODULE,
+        slug: 'fixtureModule',
+        locale: { title: t[8] },
+        children: ['fixtureChapter'],
+        fixtureChapter: {
+          type: 'chapter',
+          id: CHAPTER,
+          slug: 'fixtureChapter',
+          locale: { title: t[9] },
+          children: ['fixtureLesson'],
+          fixtureLesson: { type: 'lesson', id: LESSON },
         },
-        order: ['fixtureModule'],
       },
     };
   }
   publish('data/courses/' + COURSE + '/base.json', course('en'));
   for (const lang of languages)
     publish('data/courses/' + COURSE + '/' + lang + '.json', {
-      locale: course(lang).locale,
-      content: course(lang).content,
+      ...sparseDifference(course('en'), course(lang)),
     });
   // Immutable negative fixture: JSON passes the publication gate, but the
   // TOC references a different Course UUID and fails runtime identity checks.
@@ -393,23 +377,23 @@ if (id === 'web-fixture-alpha') {
     type: 'course',
     params: { languages: ['en'] },
     locale: { title: 'Broken TOC fixture Course', description: 'Error boundary fixture' },
-    content: { items: {}, order: [] },
+    children: [],
   });
   publish('data/courses/' + ERROR_COURSE + '/toc/base.json', {
     id: uuid(0x2ff),
     type: 'course',
     languages: ['en'],
     label: 'Wrong Course TOC',
-    content: { items: {}, order: [] },
+    children: [],
   });
 
   // The Web contract fixture is synthetic rather than Engine-authored. Keep its
   // published TOC derived from its finished Course trees and the published
   // fixture Lesson's selected language; never hardcode a second navigation tree.
   function derivedToc(courseData, lang) {
-    const toContent = content => ({
-      order: [...content.order],
-      items: Object.fromEntries(content.order.map(key => [key, project(content.items[key])])),
+    const toPlacements = owner => ({
+      children: [...owner.children],
+      ...Object.fromEntries(owner.children.map(key => [key, project(owner[key])])),
     });
     const project = node => {
       const value = {
@@ -417,17 +401,19 @@ if (id === 'web-fixture-alpha') {
         type: node.type,
         label: node.type === 'lesson' ? (node.overrides?.locale?.title ?? translations[lang][0]) : node.locale.title,
       };
-      return node.type === 'module' || node.type === 'chapter' ? { ...value, content: toContent(node.content) } : value;
+      return node.type === 'module' || node.type === 'chapter' ? { ...value, ...toPlacements(node) } : value;
     };
     return {
       id: courseData.id,
       type: 'course',
       languages,
       label: courseData.locale.title,
-      content: toContent(courseData.content),
+      ...toPlacements(courseData),
     };
   }
-  const isRecord = item => item !== null && typeof item === 'object' && !Array.isArray(item);
+  function isRecord(item) {
+    return item !== null && typeof item === 'object' && !Array.isArray(item);
+  }
   function sparseDifference(base, localized) {
     if (JSON.stringify(base) === JSON.stringify(localized)) return undefined;
     if (!isRecord(base) || !isRecord(localized)) return structuredClone(localized);
