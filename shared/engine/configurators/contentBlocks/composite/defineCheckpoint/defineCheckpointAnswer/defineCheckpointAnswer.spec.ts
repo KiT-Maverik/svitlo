@@ -151,7 +151,9 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       scope,
     );
     assert.deepEqual(patch, { base: { children: ['second'], first: false }, locale: undefined });
-    const merged = mergeForValidation(answer.build.data(scope).base, patch.base);
+    const original = answer.build.data(scope);
+    const localized = mergeForValidation(original.base, original.locale?.en ?? {});
+    const merged = mergeForValidation(localized, patch.base);
     delete merged.first;
     assert.equal(checkpointAnswer_Data_Schema.safeParse(merged).success, true);
     assert.deepEqual(answer.build.data(scope).base.children, ['second', 'first']);
@@ -221,7 +223,11 @@ describe('defineCheckpointAnswer slug-addressed Primitive children', () => {
       { ...metadata, children: ['first'], first: { ...first, type: 'checkpoint' } },
     ];
     for (const candidate of invalid) {
-      assert.equal(checkpointAnswer_Config_Schema.safeParse(candidate).success, false);
+      assert.equal(
+        checkpointAnswer_Config_Schema.safeParse(candidate).success,
+        false,
+        'Invalid CheckpointAnswer placement unexpectedly accepted: ' + JSON.stringify(Object.keys(candidate as object)),
+      );
       assert.throws(() => defineCheckpointAnswer(candidate as never).build.data({ languages: ['en'] }));
     }
   });
