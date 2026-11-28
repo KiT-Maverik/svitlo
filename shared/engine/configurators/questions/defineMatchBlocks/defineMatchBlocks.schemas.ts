@@ -26,13 +26,7 @@ export const matchBlocks_Config_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Config_Schema.extend({
-    pairs: z.object({
-      items: z.record(
-        z.string(),
-        z.object({ left: primitiveContentBlockConfigurator_Schema, right: primitiveContentBlockConfigurator_Schema }),
-      ),
-      order: z.array(z.string()),
-    }),
+    pairs: z.looseObject({ children: z.array(z.string()) }),
   }),
 });
 export type Question_MatchBlocks_Config = z.infer<typeof matchBlocks_Config_Schema>;
@@ -52,14 +46,32 @@ export const matchBlocks_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({}),
   content: questionCommonContent_Data_Schema.extend({
-    pairs: z.record(
-      z.string(),
-      z.object({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema }),
-    ),
+    pairs: z.looseObject({ children: z.array(z.string()) }).superRefine((pairs, ctx) => {
+      const keys = Object.keys(pairs).filter(key => key !== 'children');
+      if (
+        new Set(pairs.children).size !== pairs.children.length ||
+        pairs.children.length !== keys.length ||
+        keys.some(key => !pairs.children.includes(key))
+      ) {
+        ctx.addIssue({ code: 'custom', message: 'Invalid pair order' });
+      }
+      for (const key of keys) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved pair placement key' });
+        }
+        if (
+          !z
+            .strictObject({ left: primitiveContentBlockResolved_Schema, right: primitiveContentBlockResolved_Schema })
+            .safeParse(pairs[key]).success
+        ) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid matching pair' });
+        }
+      }
+    }),
   }),
 });
 export type Question_MatchBlocks_Data = Omit<z.infer<typeof matchBlocks_Data_Schema>, 'content'> & {
   content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
-    pairs: Record<string, { left: ContentBlock_Primitive_Data; right: ContentBlock_Primitive_Data }>;
+    pairs: { children: string[] } & Record<string, unknown>;
   };
 };

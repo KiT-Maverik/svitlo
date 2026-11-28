@@ -13,16 +13,20 @@ const keyPath = path => JSON.stringify(path);
 const lessonImportPattern = /^#lessonsData\/[0-9a-f]\/[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}\/index$/i;
 const lessonTypes = sourceLesson => [
   'import type { ' + sourceLesson.exportName + ' } from ' + JSON.stringify(sourceLesson.importPath) + ';',
-  'type LessonPatch = Parameters<typeof ' + sourceLesson.exportName + '.build.overrides>[0];',
 ];
-const sectionType = key =>
-  'type SectionPatch = Exclude<NonNullable<NonNullable<LessonPatch["section"]>["items"]>[' +
-  JSON.stringify(key) +
-  '], undefined | false>;';
-const blockType = key =>
-  'type BlockPatch = Exclude<NonNullable<NonNullable<SectionPatch["content"]>["items"]>[' +
-  JSON.stringify(key) +
-  '], undefined | false>';
+// Specialize each real existing Section's generic Build with NO added blocks.
+// Extracting Parameters from an unspecialized generic overrides method widens
+// Added to its constraint and can make valid existing child patches `never`.
+const sectionType = (sourceLesson, key) =>
+  'type SectionPatch = Parameters<typeof ' + sourceLesson.exportName + '.' + key + '.build.overrides<{}>>[0];';
+const blockType = (sourceLesson, sectionKey, blockKey) =>
+  'type BlockPatch = Parameters<typeof ' +
+  sourceLesson.exportName +
+  '.' +
+  sectionKey +
+  '.' +
+  blockKey +
+  '.build.overrides>[0];';
 const clean = (value, where) => {
   if (!slug.test(value) || reserved.has(value)) throw Error(where + ': invalid Course-owned override path');
 };
@@ -41,7 +45,7 @@ function literal(value, path = [], references = new Map()) {
     // Extracting a nested override from a contextual Build call would widen
     // its order tuple to string[]. Preserve the exact valid keys across files
     // with a mutable tuple (readonly "as const" is not assignable to Build).
-    if (path.at(-1) === 'order' && value.every(v => typeof v === 'string'))
+    if (path.at(-1) === 'children' && value.every(v => typeof v === 'string'))
       return body + ' as [' + value.map(v => JSON.stringify(v)).join(', ') + ']';
     return body;
   }
@@ -86,69 +90,15 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
   const files = [];
   const sceneScaffolds = [];
   const rootRefs = new Map();
-  const section = rawPatch.section;
-  if (record(section) && record(section.items)) {
-    for (const [sectionKey, sectionPatch] of Object.entries(section.items)) {
-      clean(sectionKey, 'section.items');
-      if (!record(sectionPatch)) continue; // disabled entries stay false in parent
-      const childRefs = new Map();
-      const childImports = [];
-      const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [
-        sourceLesson.exportName,
-        'LessonPatch',
-        'SectionPatch',
-        sectionKey,
-      ]);
-      const content = sectionPatch.content;
-      if (record(content) && record(content.items)) {
-        for (const [blockKey, blockPatch] of Object.entries(content.items)) {
-          clean(blockKey, 'section.content.items');
-          if (!record(blockPatch)) continue;
-          const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
-          createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [
-            sourceLesson.exportName,
-            'LessonPatch',
-            'SectionPatch',
-            'BlockPatch',
-          ])(blockKey, path);
-          childNames(blockKey, path);
-          files.push({
-            path,
-            kind: 'typescript',
-            content: [
-              ...lessonTypes(sourceLesson),
-              sectionType(sectionKey),
-              blockType(blockKey) + ';',
-              '',
-              'export const ' + blockKey + ' = ' + literal(blockPatch) + ' satisfies BlockPatch;',
-              '',
-            ].join('\n'),
-          });
-          childImports.push('import { ' + blockKey + ' } from "./' + blockKey + '";');
-          childRefs.set(keyPath(['content', 'items', blockKey]), blockKey);
-        }
-      }
-      files.push({
-        path: directory + '/sections/' + sectionKey + '/index.ts',
-        kind: 'typescript',
-        content: [
-          ...lessonTypes(sourceLesson),
-          ...childImports,
-          sectionType(sectionKey),
-          '',
-          'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ' satisfies SectionPatch;',
-          '',
-        ].join('\n'),
-      });
-      imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
-      rootRefs.set(keyPath(['section', 'items', sectionKey]), sectionKey);
-    }
-  }
-  if (record(section) && record(section.additionalItems)) {
-    const aliases = binding.aliases ?? {};
-    for (const [sectionKey] of Object.entries(section.additionalItems)) {
-      clean(sectionKey, 'section.additionalItems');
-      const exportName = aliases[sectionKey];
+  // Lesson patch children are root-level Section keys. New Sections arrive
+  // only from the pinned trusted binder, never executable editorial imports.
+  const metadata = new Set(['params', 'locale', 'events', 'children']);
+  const sectionEntries = Object.entries(rawPatch).filter(([key]) => !metadata.has(key));
+  for (const [sectionKey, sectionPatch] of sectionEntries) {
+    clean(sectionKey, 'Lesson Section override');
+    if (sectionPatch === false) continue;
+    const exportName = binding.aliases?.[sectionKey];
+    if (exportName !== undefined) {
       if (typeof exportName !== 'string' || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exportName))
         throw Error('Missing trusted added Section binding: ' + sectionKey);
       const created = binding.createdSections?.[sectionKey];
@@ -162,7 +112,7 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
           sceneScaffolds.push(...created.sceneScaffolds);
         }
         imports.push('import { ' + created.exportName + ' } from "./sections/' + sectionKey + '";');
-        rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), created.exportName);
+        rootRefs.set(keyPath([sectionKey]), created.exportName);
         continue;
       }
       const dependency = binding.imports.find(line => line.includes('import { ' + exportName + ' } from '));
@@ -178,8 +128,56 @@ export function renderCourseLessonPatch({ directory, rawPatch, binding, sourceLe
             : 'export const ' + sectionKey + ' = ' + exportName + ';\n'),
       });
       imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
-      rootRefs.set(keyPath(['section', 'additionalItems', sectionKey]), sectionKey);
+      rootRefs.set(keyPath([sectionKey]), sectionKey);
+      continue;
     }
+    if (!record(sectionPatch)) throw Error('Invalid Lesson Section override at ' + sectionKey);
+    const childRefs = new Map();
+    const childImports = [];
+    const childNames = createSourceIdentifierRegistry('Course Lesson section ' + sectionKey, [
+      sourceLesson.exportName,
+      'SectionPatch',
+      sectionKey,
+    ]);
+    const ownSection = new Set(['params', 'locale', 'children']);
+    for (const [blockKey, blockPatch] of Object.entries(sectionPatch).filter(([key]) => !ownSection.has(key))) {
+      clean(blockKey, 'Section ContentBlock override');
+      if (!record(blockPatch)) continue;
+      const path = directory + '/sections/' + sectionKey + '/' + blockKey + '/index.ts';
+      createSourceIdentifierRegistry('Course Lesson block ' + blockKey, [
+        sourceLesson.exportName,
+        'SectionPatch',
+        'BlockPatch',
+      ])(blockKey, path);
+      childNames(blockKey, path);
+      files.push({
+        path,
+        kind: 'typescript',
+        content: [
+          ...lessonTypes(sourceLesson),
+          blockType(sourceLesson, sectionKey, blockKey),
+          '',
+          'export const ' + blockKey + ' = ' + literal(blockPatch) + ' satisfies BlockPatch;',
+          '',
+        ].join('\n'),
+      });
+      childImports.push('import { ' + blockKey + ' } from "./' + blockKey + '";');
+      childRefs.set(keyPath([blockKey]), blockKey);
+    }
+    files.push({
+      path: directory + '/sections/' + sectionKey + '/index.ts',
+      kind: 'typescript',
+      content: [
+        ...lessonTypes(sourceLesson),
+        ...childImports,
+        sectionType(sourceLesson, sectionKey),
+        '',
+        'export const ' + sectionKey + ' = ' + literal(sectionPatch, [], childRefs) + ' satisfies SectionPatch;',
+        '',
+      ].join('\n'),
+    });
+    imports.push('import { ' + sectionKey + ' } from "./sections/' + sectionKey + '";');
+    rootRefs.set(keyPath([sectionKey]), sectionKey);
   }
   return {
     files,

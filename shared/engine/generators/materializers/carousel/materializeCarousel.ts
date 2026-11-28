@@ -4,9 +4,7 @@ import type { SceneSource } from '../scene/materializeScene';
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
 export type CarouselSlideSource = ContentBlock_Image_Config | SceneSource;
-export type CarouselSource = Omit<ContentBlock_Carousel_Config, 'slides'> & {
-  slides: { items: Record<string, CarouselSlideSource | false>; order: string[] };
-};
+export type CarouselSource = ContentBlock_Carousel_Config & { children: string[] };
 export type CarouselFile = {
   path: string;
   content: string;
@@ -88,21 +86,23 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
     throw new Error('Carousel: reviewed source language and languages import are required');
   }
   const directory = safeDir(context.directory);
-  const slides = config.slides;
-  if (!record(slides) || !record(slides.items) || !Array.isArray(slides.order)) {
-    throw new Error('Carousel.slides: expected { items, order }');
+  if (!Array.isArray(config.children) || Object.hasOwn(config, 'slides')) {
+    throw new Error('Carousel: expected direct slide keys and children order');
   }
-  const enabled = Object.entries(slides.items).filter(
-    (entry): entry is [string, CarouselSlideSource] => entry[1] !== false,
+  const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+  const enabled = Object.entries(config).filter(
+    (entry): entry is [string, CarouselSlideSource] => !metadata.has(entry[0]),
   );
+  if (enabled.some(([, value]) => typeof value === 'boolean'))
+    throw new Error('Carousel: disabled slides cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||
-    slides.order.length !== keys.length ||
-    new Set(slides.order).size !== keys.length ||
-    slides.order.some(key => !keys.includes(key))
+    config.children.length !== keys.length ||
+    new Set(config.children).size !== keys.length ||
+    config.children.some(key => !keys.includes(key))
   ) {
-    throw new Error('Carousel.slides.order: list every enabled slide exactly once');
+    throw new Error('Carousel.config.children: list every enabled slide exactly once');
   }
   const ids = new Set<string>();
   for (const [key, slide] of enabled) {
@@ -117,7 +117,7 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
       ids.has(slide.id) ||
       slide.id === config.id
     ) {
-      throw new Error('Carousel.slides.items.' + key + ': invalid child type, slug or duplicate UUID');
+      throw new Error('Carousel.children.' + key + ': invalid child type, slug or duplicate UUID');
     }
     ids.add(slide.id);
   }
@@ -132,22 +132,19 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   ]);
   const entries: string[] = [];
   const emitted = new Set<string>();
-  for (const key of slides.order) {
-    const child = slides.items[key];
-    if (child === false) continue;
+  for (const key of config.children) {
+    const child = config[key] as CarouselSlideSource;
     const childDirectory = (directory ? directory + '/' : '') + 'slides/' + key;
     const result = context.renderChild(child, childDirectory);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
-      throw new Error('Carousel.slides.items.' + key + ': child materializer returned no valid export');
+      throw new Error('Carousel.children.' + key + ': child materializer returned no valid export');
     }
-    const name = claim(result.exportName, 'slides.items.' + key);
+    const name = claim(result.exportName, 'children.' + key);
     imports.push('import { ' + name + ' } from ' + JSON.stringify('./slides/' + key) + ';');
     entries.push('    ' + renderSourceItem(key, name) + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(childDirectory + '/')) {
-        throw new Error(
-          'Carousel.slides.items.' + key + ': child emitted a file outside its owned directory: ' + f.path,
-        );
+        throw new Error('Carousel.children.' + key + ': child emitted a file outside its owned directory: ' + f.path);
       }
       if (emitted.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Carousel: duplicate child source destination ' + f.path);
@@ -159,7 +156,7 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
   }
   const own = { ...config, locale: localized(config.locale, context.documentLanguage, 'carousel.locale') };
   const ownFields = Object.entries(own)
-    .filter(([key]) => key !== 'slides')
+    .filter(([key]) => metadata.has(key) && key !== 'children')
     .map(([key, value]) => '  ' + JSON.stringify(key) + ': ' + expression(value, 'carousel.' + key, 1) + ',');
   const exportName = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
   const code = [
@@ -167,20 +164,18 @@ export function materializeCarousel(config: CarouselSource, context: CarouselCon
     'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
     ...imports,
     '',
-    'const slides = {',
-    '  items: {',
+    'const __placements = {',
     ...entries,
-    '  },',
-    '  order: ' + expression(slides.order, 'carousel.slides.order', 1) + ',',
     '};',
     '',
     'export const ' +
       exportName +
       ' = defineCarousel<' +
       JSON.stringify(config.slug) +
-      ', typeof slides.items, typeof languages>({',
+      ', typeof __placements, typeof languages>({',
     ...ownFields,
-    '  slides,',
+    '  children: ' + expression(config.children, 'carousel.children', 1) + ',',
+    '  ...__placements,',
     '});',
     '',
   ].join('\n');

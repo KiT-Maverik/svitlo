@@ -7,7 +7,8 @@ export type {
   CourseWorkflowStage1StandardAlignment,
   CourseWorkflowStage2,
   CourseWorkflowStage2Config,
-  CourseWorkflowStage2Content,
+  CourseWorkflowStage2ModuleChild,
+  CourseWorkflowStage2ChapterChild,
   CourseWorkflowStage2Module,
   CourseWorkflowStage2Chapter,
   CourseWorkflowStage2LessonSlot,
@@ -17,7 +18,8 @@ export type {
   CourseWorkflowStage2UnitProduction,
   CourseWorkflowStage3,
   CourseWorkflowStage3Config,
-  CourseWorkflowStage3Content,
+  CourseWorkflowStage3ModuleChild,
+  CourseWorkflowStage3ChapterChild,
   CourseWorkflowStage3Module,
   CourseWorkflowStage3Chapter,
   CourseWorkflowStage3LessonSlot,
@@ -34,4 +36,8 @@ export type { LessonProductionAssessmentRequirements } from './lessonAssessment.
 
 export type { AssessmentWorkflowSeed } from './assessmentWorkflow.types';
 
-export type { CourseLessonSourcePatch, CourseLessonSectionReference } from './courseLessonSourcePatch.types';
+export type {
+  CourseLessonSourcePatch,
+  CourseLessonBoundPatch,
+  CourseLessonSectionReference,
+} from './courseLessonSourcePatch.types';

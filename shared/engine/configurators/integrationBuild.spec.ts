@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test, { describe } from 'node:test';
 
+import { assembleLessonData } from '../assemblers/assembleLessonProps/assembleLessonProps';
 import { mergeForValidation } from './_shared__configurators';
 import { defineText } from './contentBlocks/primitive/defineText';
 import { defineChapter } from './courses/defineChapter';
@@ -40,7 +41,8 @@ describe('Configurators', () => {
         type: 'content',
         params: {},
         locale: { title: { uk: 'Вступ', en: 'Introduction' }, navigationLabel: '1' },
-        content: { items: { paragraph }, order: ['paragraph'] },
+        children: ['paragraph'],
+        paragraph,
       });
 
       const questionPrompt = defineText<'questionPrompt', ['uk', 'en']>({
@@ -51,7 +53,7 @@ describe('Configurators', () => {
         locale: { value: { uk: 'Скільки?', en: 'How many?' } },
       });
       const questionContent = {
-        question: { items: { questionPrompt }, order: ['questionPrompt'] },
+        question: { children: ['questionPrompt'], questionPrompt },
       };
       const numeric = defineAnswerWithNumber<'numeric', typeof questionContent, ['uk', 'en']>({
         id: id('04'),
@@ -89,8 +91,8 @@ describe('Configurators', () => {
         slug: 'card',
         parameters: { tags: [], flags: [{ type: 'warning' }] },
         content: {
-          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ items: { front }, order: ['front'] }),
-          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ items: { back }, order: ['back'] }),
+          front: defineFlashcardSide<{ front: typeof front }, ['uk', 'en']>({ children: ['front'], front }),
+          back: defineFlashcardSide<{ back: typeof back }, ['uk', 'en']>({ children: ['back'], back }),
         },
       });
       const lesson = defineLesson({
@@ -104,7 +106,8 @@ describe('Configurators', () => {
           sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
         locale: { title: { uk: 'Урок', en: 'Lesson' } },
-        section: { items: { intro: introduction }, order: ['intro'] },
+        children: ['intro'],
+        intro: introduction,
       });
       const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
         id: id('09'),
@@ -112,7 +115,8 @@ describe('Configurators', () => {
         type: 'chapter',
         params: {},
         locale: { title: { uk: 'Розділ', en: 'Chapter' } },
-        content: { items: { lesson }, order: ['lesson'] },
+        children: ['lesson'],
+        lesson,
       });
       const courseModule = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
         id: id('10'),
@@ -120,7 +124,8 @@ describe('Configurators', () => {
         type: 'module',
         params: {},
         locale: { title: { uk: 'Модуль', en: 'Module' } },
-        content: { items: { chapter }, order: ['chapter'] },
+        children: ['chapter'],
+        chapter,
       });
       const course = defineCourse<'course', { module: typeof courseModule }, ['uk']>({
         id: id('11'),
@@ -128,11 +133,12 @@ describe('Configurators', () => {
         type: 'course',
         params: { languages: ['uk'] as const },
         locale: { title: { uk: 'Курс' }, description: 'Universal introduction' },
-        content: { items: { module: courseModule }, order: ['module'] },
+        children: ['module'],
+        module: courseModule,
       });
 
       test('Configurator publication is data-only, ordered and repeatable across entity boundaries', () => {
-        // Keep shared Build/Props invariants in one place. Entity-specific semantics
+        // Keep shared Build/Data invariants in one place. Entity-specific semantics
         // (Question answers, Flashcard sides, Lesson sections) retain their own tests.
         const publishers = [
           ['Text', () => paragraph.build.data(uk)],
@@ -167,17 +173,14 @@ describe('Configurators', () => {
         assert.ok(json.includes('Привіт'));
         assert.equal(json.includes('Скільки?'), false, 'Question Bank must remain independent of Lesson');
         assert.equal(json.includes('Відповідь'), false, 'Flashcard Bank must remain independent of Lesson');
+        assert.equal(json.includes('"additionalItems"'), false);
+        assert.equal(json.includes('"order"'), false);
+        assert.equal(json.includes('"build"'), false);
 
         const resolved = mergeObjects(resource.base, resource.locale?.uk ?? {});
         assert.doesNotThrow(() => course_Data_Schema.parse(resolved));
         assert.deepEqual(resource.base.params.languages, ['uk']);
         assert.deepEqual(lesson.build.data(uk).base.params.languages, ['uk']);
-        assert.deepEqual(
-          lesson.build.data(uk).base.section.map(section => section.slug),
-          ['intro'],
-        );
-        assert.equal(lesson.build.data(uk).base.section[0]?.content[0]?.slug, 'paragraph');
-        assert.equal('overrides' in lesson.config, false);
         assert.deepEqual(Object.keys(paragraph.build.data({ languages: ['pl'] }).locale ?? {}), ['pl']);
         assert.throws(() => course.build.data({ languages: ['en'] } as never), /does not support publication language/);
       });
@@ -185,27 +188,11 @@ describe('Configurators', () => {
       test('Nested Course override composes a complete, language-scoped atomic tree and leaves authored resources untouched', () => {
         const patch = course.build.overrides(
           {
-            content: {
-              items: {
-                module: {
-                  content: {
-                    items: {
-                      chapter: {
-                        content: {
-                          items: {
-                            lesson: {
-                              section: {
-                                items: {
-                                  intro: {
-                                    content: { items: { paragraph: { locale: { value: { uk: 'Оновлений текст' } } } } },
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
+            module: {
+              chapter: {
+                lesson: {
+                  intro: {
+                    paragraph: { locale: { value: { uk: 'Оновлений текст' } } },
                   },
                 },
               },
@@ -228,18 +215,25 @@ describe('Configurators', () => {
 
         const removed = lesson.build.overrides(
           {
-            section: { items: { intro: false }, order: [] },
+            intro: false,
+            children: [],
           },
           uk,
         );
-        assert.deepEqual(removed.base.section, []);
-        assert.equal(removed.locale?.uk?.section, undefined);
+        assert.deepEqual(removed.base.children, []);
+        assert.equal(removed.locale?.uk?.intro, undefined);
         const lessonResource = lesson.build.data(uk);
-        const lessonResult = mergeObjects(
-          mergeObjects(mergeObjects(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
-          removed.locale?.uk ?? {},
+        // Configurator sparse deletion publishes a tombstone; only the runtime
+        // assembler applies that tombstone after the resource's selected locale.
+        const lessonResult = assembleLessonData(
+          lessonResource,
+          'uk',
+          // Published Configurator patches are JSON data; the Build generic
+          // exposes events as unknown until final assembler schema validation.
+          removed as unknown as NonNullable<Parameters<typeof assembleLessonData>[2]>,
         );
-        assert.deepEqual(lesson_Data_Schema.parse(lessonResult).section, []);
+        assert.deepEqual(lesson_Data_Schema.parse(lessonResult).children, []);
+        assert.equal(Object.hasOwn(lessonResult, 'intro'), false);
       });
 
       test('Independent Question and Flashcard configurators publish without serializing banks into Lesson', () => {

@@ -3,7 +3,7 @@
 import { Stack } from '@mui/material';
 import { useContext } from 'react';
 
-import type { Question_SelectOneAnswer_Data } from '@svitlo/engine/runtime';
+import type { QuestionViewProps } from '../../../../questionPresentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -18,24 +18,24 @@ export function SelectOneAnswer({
   sceneRegistry,
   messages,
 }: {
-  response: Question_SelectOneAnswer_Data;
+  response: Extract<QuestionViewProps, { type: 'selectOneAnswer' }>;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
   const completion = useContext(QuestionCompletionContext);
   const optionsUnordered = [
-    ...Object.entries(response.content.answers.correct).map(([slug, block]) => ({
-      id: 'correct:' + slug,
+    ...response.content.answers.correct.map(block => ({
+      id: 'correct:' + block.id,
       block,
       correct: true,
     })),
-    ...Object.entries(response.content.answers.incorrect).map(([slug, block]) => ({
-      id: 'incorrect:' + slug,
+    ...response.content.answers.incorrect.map(block => ({
+      id: 'incorrect:' + block.id,
       block,
       correct: false,
     })),
-    ...Object.entries(response.content.answers.distractors).map(([slug, block]) => ({
-      id: 'distractor:' + slug,
+    ...response.content.answers.distractors.map(block => ({
+      id: 'distractor:' + block.id,
       block,
       correct: false,
     })),

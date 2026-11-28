@@ -7,15 +7,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useEffect, useRef, useState } from 'react';
 
-import {
-  DEFAULT_SUPPORTED_LANGUAGES,
-  type AssessmentResourceLoader,
-  type LanguageCode,
-  type LocalizedAssessment,
-} from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES, type AssessmentResourceLoader, type LanguageCode } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { AssessmentViewProps } from '../../presentation';
 import CourseTopicList, { type Topic } from '../layout/LearningLayout/CourseTopicList';
 import { EngineContentBlockRenderer } from '../lesson/EngineContentBlockRenderer';
 import { EngineQuestionRenderer } from '../lesson/EngineQuestionRenderer';
@@ -24,7 +20,7 @@ import { MediaVolumeControl } from '../lesson/MediaVolumeControl';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 export type AssessmentProps = {
-  response: LocalizedAssessment;
+  response: AssessmentViewProps;
   language: LanguageCode;
   href: string;
   courseHref: string;

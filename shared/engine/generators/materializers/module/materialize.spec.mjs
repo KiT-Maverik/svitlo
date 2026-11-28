@@ -36,7 +36,7 @@ const section = (slug, id) => ({
   slug,
   params: {},
   locale: { title: { uk: 'Розділ' } },
-  content: { items: {}, order: [] },
+  children: [],
 });
 const ep = (slug = 'episodeOne', id = IDs.episode) => ({
   config: {
@@ -45,7 +45,8 @@ const ep = (slug = 'episodeOne', id = IDs.episode) => ({
     slug,
     params: { languages: ['uk', 'en'] },
     locale: { title: { uk: 'Пригода', en: 'Journey' } },
-    section: { items: { opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5') }, order: ['opening'] },
+    children: ['opening'],
+    opening: section('opening', '1e2e9488-6304-4d87-b597-f13ac724c3b5'),
   },
   production: { focus: 'Narrative situation', purpose: 'Contextual transition' },
 });
@@ -89,7 +90,8 @@ const ch = (slug = 'chapterOne') => ({
     type: 'chapter',
     slug,
     locale: { title: { uk: 'Глава' } },
-    content: { items: { episodeOne: ep() }, order: ['episodeOne'] },
+    children: ['episodeOne'],
+    episodeOne: ep(),
   },
   production: { ...unitProduction },
 });
@@ -98,7 +100,8 @@ const mod = (slug = 'moduleOne') => ({
     type: 'module',
     slug,
     locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapterOne: ch() }, order: ['chapterOne'] },
+    children: ['chapterOne'],
+    chapterOne: ch(),
   },
   production: { ...unitProduction },
 });
@@ -109,14 +112,10 @@ const course = () => ({
     slug: 'rootCourse',
     params: { age: { min: 6, max: 10 } },
     locale: { title: { uk: 'Курс', en: 'Course' }, description: { uk: 'Про курс', en: 'Description' } },
-    content: {
-      items: {
-        moduleOne: mod(),
-        directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
-        directLesson: lesson('directLesson', 'Зміна'),
-      },
-      order: ['moduleOne', 'directEpisode', 'directLesson'],
-    },
+    children: ['moduleOne', 'directEpisode', 'directLesson'],
+    moduleOne: mod(),
+    directEpisode: ep('directEpisode', 'ec4a2e1f-5f42-40ef-a879-e668b59b8d04'),
+    directLesson: lesson('directLesson', 'Зміна'),
   },
   production: {
     languages: { document: 'uk', planned: ['uk', 'en'] },
@@ -211,8 +210,8 @@ const syntax = files => {
 
 test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and UUIDs', () => {
   const value = mod();
-  value.config.content.items.directLesson = lesson('directLesson', 'Додано');
-  value.config.content.order.push('directLesson');
+  value.config.directLesson = lesson('directLesson', 'Додано');
+  value.config.children.push('directLesson');
   const out = materializeModule(value, ctx());
   assert.ok(out.files.some(file => file.path === 'chapterOne/index.ts'));
   assert.ok(!out.files.some(file => file.path === 'directLesson/index.ts'));
@@ -232,8 +231,8 @@ test('Module uses Stage 2/3 wrapped Chapter/Lesson nodes and optional params and
 });
 test('Module rejects Stage 2 unresolved Lesson slots', () => {
   const value = mod();
-  value.config.content.items.placeholder = { config: { type: 'lesson', skills: [skillId] } };
-  value.config.content.order.push('placeholder');
+  value.config.placeholder = { config: { type: 'lesson', skills: [skillId] } };
+  value.config.children.push('placeholder');
   assert.throws(() => materializeModule(value, ctx()), /production.kind/);
 });
 test('Module refuses unsafe source directory', () => {
@@ -251,12 +250,22 @@ test('Module rejects legacy Skill targets in config.params rather than dropping 
   }
 });
 
-test('Module rejects a child canonical import that collides with generated locals', () => {
+test('Module rejects the retired content wrapper before import generation', () => {
   const node = mod();
-  const child = node.config.content.items.chapterOne;
+  const child = node.config.chapterOne;
   child.config.slug = 'content';
-  delete node.config.content.items.chapterOne;
-  node.config.content.items.content = child;
-  node.config.content.order = ['content'];
-  assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*content/);
+  delete node.config.chapterOne;
+  node.config.content = child;
+  node.config.children = ['content'];
+  assert.throws(() => materializeModule(node, ctx()), /\.content: legacy Course hierarchy wrapper is forbidden/);
+});
+
+test('Module rejects a valid child import that collides with generated identifiers', () => {
+  const node = mod();
+  const child = node.config.chapterOne;
+  child.config.slug = 'defineModule';
+  delete node.config.chapterOne;
+  node.config.defineModule = child;
+  node.config.children = ['defineModule'];
+  assert.throws(() => materializeModule(node, ctx()), /generated identifier collision.*defineModule/);
 });

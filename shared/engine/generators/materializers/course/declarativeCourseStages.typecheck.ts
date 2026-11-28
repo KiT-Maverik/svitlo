@@ -37,19 +37,15 @@ const stage1 = { config, production } satisfies CourseWorkflowStage1;
 const stage2 = {
   config: {
     ...config,
-    content: {
-      items: {
-        firstObservation: { config: { type: 'lesson' as const, skills: [skillId] as [string] } },
-        transition: {
-          config: { type: 'episode' as const },
-          production: { focus: 'New context', purpose: 'Connect observations' },
-        },
-        finalAssessment: {
-          config: { type: 'assessment' as const, locale: { title: { uk: 'Перевірка' } } },
-          production: { purpose: 'Collect evidence', lessonDependencies: ['content/firstObservation'] as [string] },
-        },
-      },
-      order: ['firstObservation', 'transition', 'finalAssessment'],
+    children: ['firstObservation', 'transition', 'finalAssessment'],
+    firstObservation: { config: { type: 'lesson' as const, skills: [skillId] as [string] } },
+    transition: {
+      config: { type: 'episode' as const },
+      production: { focus: 'New context', purpose: 'Connect observations' },
+    },
+    finalAssessment: {
+      config: { type: 'assessment' as const, locale: { title: { uk: 'Перевірка' } } },
+      production: { purpose: 'Collect evidence', lessonDependencies: ['firstObservation'] as [string] },
     },
   },
   production,
@@ -58,40 +54,36 @@ const stage2 = {
 const stage3 = {
   config: {
     ...config,
-    content: {
-      items: {
-        firstObservation: {
-          config: {
-            type: 'lesson' as const,
-            slug: 'firstObservation',
-            skills: [skillId],
-            locale: { title: { uk: 'Спостереження' } },
-          },
-          production: {
-            kind: 'new' as const,
-            objective: 'Identify changes',
-            depth: 'First steps',
-            sequenceReason: 'Before synthesis',
-            assessmentEvidence: 'Explain observation',
-            methodology: 'Reviewed teaching approach',
-            assessment: {
-              questionBankRequired: true,
-              flashcardBankRequired: false,
-              quizSectionRequired: true,
-              flashcardsSectionRequired: false,
-            },
-          },
-        },
-        transition: {
-          config: { type: 'episode' as const },
-          production: { focus: 'New context', purpose: 'Connect observations' },
-        },
-        finalAssessment: {
-          config: { type: 'assessment' as const, locale: { title: { uk: 'Перевірка' } } },
-          production: { purpose: 'Collect evidence', lessonDependencies: ['content/firstObservation'] },
+    children: ['firstObservation', 'transition', 'finalAssessment'],
+    firstObservation: {
+      config: {
+        type: 'lesson' as const,
+        slug: 'firstObservation',
+        skills: [skillId],
+        locale: { title: { uk: 'Спостереження' } },
+      },
+      production: {
+        kind: 'new' as const,
+        objective: 'Identify changes',
+        depth: 'First steps',
+        sequenceReason: 'Before synthesis',
+        assessmentEvidence: 'Explain observation',
+        methodology: 'Reviewed teaching approach',
+        assessment: {
+          questionBankRequired: true,
+          flashcardBankRequired: false,
+          quizSectionRequired: true,
+          flashcardsSectionRequired: false,
         },
       },
-      order: ['firstObservation', 'transition', 'finalAssessment'],
+    },
+    transition: {
+      config: { type: 'episode' as const },
+      production: { focus: 'New context', purpose: 'Connect observations' },
+    },
+    finalAssessment: {
+      config: { type: 'assessment' as const, locale: { title: { uk: 'Перевірка' } } },
+      production: { purpose: 'Collect evidence', lessonDependencies: ['firstObservation'] },
     },
   },
   production,

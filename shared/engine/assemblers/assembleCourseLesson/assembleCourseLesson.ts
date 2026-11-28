@@ -11,7 +11,7 @@ import {
 
 /**
  * The Course generator publishes a Lesson reference in a slug-keyed hierarchy, not standalone Lesson
- * Props. The sparse overrides come from the Lesson configurator Build API.
+ * Data. The sparse overrides come from the Lesson configurator Build API.
  */
 export type CourseLessonEntry = {
   type: 'lesson';
@@ -19,22 +19,19 @@ export type CourseLessonEntry = {
   overrides?: NonNullable<PublishedLessonDataOverride['base']>;
 };
 
-export type CoursePublishedContent = {
-  items: Record<string, CoursePublishedNode>;
-  order: string[];
-};
-
+/** Published Course containers retain direct placement keys, never authored Config or UI arrays. */
 export type CoursePublishedNode =
   | CourseLessonEntry
   | Episode_DataBase
   | Assessment_DataBase
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  | { id: string; type: 'module' | 'chapter'; children: string[]; [placementSlug: string]: unknown };
 
 export type CoursePublishedTree = {
   type: 'course';
   id: string;
   params: { languages: readonly LanguageCode[] };
-  content: CoursePublishedContent;
+  children: string[];
+  [placementSlug: string]: unknown;
 };
 
 export type PublishedCourseDataFiles = {
@@ -53,7 +50,28 @@ export type AssembleCourseLessonInput = {
 };
 
 const forbiddenKeys = new Set(['__proto__', 'constructor', 'prototype']);
-const allowedOverrideKeys = new Set(['params', 'locale', 'section', 'events']);
+const allowedOverrideKeys = new Set(['params', 'locale', 'children', 'events']);
+const forbiddenOverrideKeys = new Set(['id', 'slug', 'type', 'skills', 'draft']);
+const validPlacement = /^[a-z][a-zA-Z0-9]*$/;
+/** An exhaustive order index is verified once per immutable published Course resource. */
+type VerifiedChildren = { readonly source: string[]; readonly count: number; readonly keys: ReadonlySet<string> };
+const verifiedPublications = new WeakMap<object, WeakMap<object, VerifiedChildren>>();
+const reservedPlacementKeys = new Set([
+  'id',
+  'slug',
+  'type',
+  'params',
+  'locale',
+  'children',
+  'content',
+  'items',
+  'order',
+  'additionalItems',
+  'additionalChildren',
+  '__proto__',
+  'constructor',
+  'prototype',
+]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
@@ -73,7 +91,7 @@ function assertJson(value: unknown, at: string, seen = new Set<object>()): void 
     const entries = Array.isArray(value) ? value.entries() : Object.entries(value);
     for (const [key, item] of entries) {
       if (typeof key === 'string' && forbiddenKeys.has(key)) {
-        throw new Error('Unsafe published Props key at ' + at + '/' + key);
+        throw new Error('Unsafe published Data key at ' + at + '/' + key);
       }
       assertJson(item, at + '/' + key, seen);
     }
@@ -92,70 +110,133 @@ function assertCourseRoot(root: unknown, courseId: string, label: string): Recor
   return root;
 }
 
-/** The root hierarchy is keyed by slugs; order is an independent ordered index. */
+/**
+ * The producer emits exhaustive direct keys; establish that boundary once before
+ * resolving routes. Reuse membership sets for later placements of the same resource.
+ * If a host changes an ordered array, it must load/revalidate a fresh publication.
+ */
+function verifiedChildren(root: Record<string, unknown>): WeakMap<object, VerifiedChildren> {
+  const previous = verifiedPublications.get(root);
+  if (previous) return previous;
+  const index = new WeakMap<object, VerifiedChildren>();
+  const visited = new Set<string>();
+  // Cache only when the caller supplied an immutable hierarchy. For mutable
+  // JSON, revalidate every call so same-length in-place edits and replaced
+  // child objects cannot leave a trusted stale index behind.
+  let immutable = true;
+  function visit(parent: Record<string, unknown>, parentType: 'course' | 'module' | 'chapter'): void {
+    const order = parent.children;
+    if (!Array.isArray(order) || new Set(order).size !== order.length)
+      throw new Error('Invalid Course publication children');
+    if (!Object.isFrozen(parent) || !Object.isFrozen(order)) immutable = false;
+    const keys = new Set(order);
+    const placements = Object.keys(parent).filter(
+      key => !['id', 'slug', 'type', 'params', 'locale', 'children'].includes(key),
+    );
+    if (placements.length !== keys.size || placements.some(key => !keys.has(key)))
+      throw new Error('Unaddressed or disabled Course publication placement');
+    for (const slug of order) {
+      if (
+        typeof slug !== 'string' ||
+        !validPlacement.test(slug) ||
+        reservedPlacementKeys.has(slug) ||
+        !Object.hasOwn(parent, slug)
+      )
+        throw new Error('Unsafe or unknown Course publication placement');
+      const node: unknown = parent[slug];
+      if (!isRecord(node) || typeof node.id !== 'string') throw new Error('Invalid Course child at ' + slug);
+      if (!Object.isFrozen(node)) immutable = false;
+      if (node.type === 'module' || node.type === 'chapter') {
+        if (
+          parentType === 'chapter' ||
+          (parentType === 'module' && node.type === 'module') ||
+          node.slug !== slug ||
+          visited.has(node.id)
+        )
+          throw new Error('Invalid Course publication hierarchy at ' + slug);
+        visited.add(node.id);
+        visit(node, node.type);
+      } else if (!['lesson', 'episode', 'assessment'].includes(String(node.type))) {
+        throw new Error('Unsupported Course activity at ' + slug);
+      }
+    }
+    index.set(parent, { source: order, count: order.length, keys });
+  }
+  visit(root, 'course');
+  if (immutable) verifiedPublications.set(root, index);
+  return index;
+}
+
+/** Direct placement lookup: O(depth) after one-time publication integrity validation. */
 function findLesson(
   root: Record<string, unknown>,
   lessonId: string,
   label: string,
   placement?: string,
 ): { node: Record<string, unknown>; path: string[] } | undefined {
-  let match: { node: Record<string, unknown>; path: string[] } | undefined;
-  const visit = (content: unknown, at: string, prefix: string[]): void => {
-    if (!isRecord(content) || !isRecord(content.items) || !Array.isArray(content.order)) {
-      throw new Error('Invalid Course content at ' + at);
-    }
-    const items = content.items;
-    const order = content.order;
-    if (
-      order.length !== Object.keys(items).length ||
-      new Set(order).size !== order.length ||
-      order.some(slug => typeof slug !== 'string' || forbiddenKeys.has(slug) || !Object.hasOwn(items, slug))
-    ) {
-      throw new Error('Invalid Course order at ' + at);
-    }
-    for (const slug of order) {
-      const location = at + '/' + slug;
-      const raw = items[slug];
-      if (!isRecord(raw) || typeof raw.id !== 'string') throw new Error('Invalid Course child at ' + location);
-      if (Object.hasOwn(raw, 'draft'))
-        throw new Error('Course draft stub cannot be assembled as a completed Lesson at ' + location);
-      if (raw.type === 'lesson') {
-        if (raw.id === lessonId && (placement === undefined || [...prefix, slug].join('/') === placement)) {
-          if (match) throw new Error('Duplicate Lesson ID ' + lessonId + ' in ' + label + ' Course publication');
-          match = { node: raw, path: [...prefix, slug] };
-        }
-      } else if (raw.type === 'module' || raw.type === 'chapter') {
-        visit(raw.content, location + '/content', [...prefix, slug]);
-      } else if (raw.type === 'episode' || raw.type === 'assessment') {
-        // Course-owned Episodes and Assessments are not Lesson references.
-        continue;
-      } else {
-        throw new Error('Unsupported Course child type at ' + location);
-      }
-    }
+  const index = verifiedChildren(root);
+  const child = (parent: Record<string, unknown>, slug: string, location: string): Record<string, unknown> => {
+    const published = index.get(parent);
+    if (!published || published.source !== parent.children || published.source.length !== published.count)
+      throw new Error('Unknown Course placement: publication hierarchy changed since validation at ' + location);
+    if (!published.keys.has(slug) || !Object.hasOwn(parent, slug))
+      throw new Error('Unknown Course placement at ' + location);
+    const node: unknown = parent[slug];
+    if (!isRecord(node) || typeof node.id !== 'string') throw new Error('Invalid Course child at ' + location);
+    return node;
   };
-  visit(root.content, label + '/content', []);
+  if (placement !== undefined) {
+    if (
+      typeof placement !== 'string' ||
+      !placement ||
+      placement.split('/').some(segment => !validPlacement.test(segment) || forbiddenKeys.has(segment))
+    )
+      throw new Error('Unsafe Course placement path');
+    const path = placement.split('/');
+    let node = root;
+    for (const slug of path) node = child(node, slug, label + '/' + placement);
+    if (node.type !== 'lesson' || node.id !== lessonId)
+      throw new Error('Lesson ID or kind mismatch at placement ' + placement);
+    if (Object.hasOwn(node, 'draft')) throw new Error('Course draft Lesson cannot be assembled');
+    return { node, path };
+  }
+
+  let match: { node: Record<string, unknown>; path: string[] } | undefined;
+  function visit(parent: Record<string, unknown>, path: string[]): void {
+    const verified = index.get(parent);
+    if (!verified || verified.source !== parent.children || verified.source.length !== verified.count)
+      throw new Error('Invalid Course children at ' + label + '/' + path.join('/'));
+    for (const slug of verified.source) {
+      if (typeof slug !== 'string' || !validPlacement.test(slug) || forbiddenKeys.has(slug))
+        throw new Error('Unsafe Course child path at ' + label);
+      const node = child(parent, slug, label + '/' + [...path, slug].join('/'));
+      if (node.type === 'lesson' && node.id === lessonId) {
+        if (match) throw new Error('Ambiguous Lesson ID ' + lessonId + '; specify a placement path');
+        match = { node, path: [...path, slug] };
+      }
+      if (node.type === 'module' || node.type === 'chapter') visit(node, [...path, slug]);
+      else if (!['lesson', 'episode', 'assessment'].includes(String(node.type)))
+        throw new Error('Unsupported Course child at ' + slug);
+    }
+  }
+  visit(root, []);
   return match;
 }
 
-/** Locale JSON contains only changed items along an immutable base-tree path. */
+/** Locale fragments follow exactly the same direct placement keys as the base tree. */
 function findLocalizedLesson(
   localeRoot: Record<string, unknown> | undefined,
   path: readonly string[],
   label: string,
 ): Record<string, unknown> | undefined {
-  let parent: Record<string, unknown> | undefined = localeRoot;
+  let node: Record<string, unknown> | undefined = localeRoot;
   for (const slug of path) {
-    if (!parent || parent.content === undefined) return undefined;
-    if (!isRecord(parent.content) || !isRecord(parent.content.items)) {
-      throw new Error('Invalid Course content at ' + label + '/' + slug);
-    }
-    const item: unknown = parent.content.items[slug];
-    if (item === undefined) return undefined;
-    if (!isRecord(item)) throw new Error('Invalid Course child at ' + label + '/' + slug);
-    parent = item;
+    if (!node || !Object.hasOwn(node, slug)) return undefined;
+    const next: unknown = node[slug];
+    if (!isRecord(next)) throw new Error('Invalid localized Course child at ' + label + '/' + slug);
+    node = next;
   }
-  return parent;
+  return node;
 }
 
 function getOverride(
@@ -165,8 +246,18 @@ function getOverride(
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
-    if (!allowedOverrideKeys.has(key)) throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
+    if (
+      forbiddenOverrideKeys.has(key) ||
+      (!allowedOverrideKeys.has(key) && (!validPlacement.test(key) || forbiddenKeys.has(key)))
+    )
+      throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
+  if (
+    node.overrides.children !== undefined &&
+    (!Array.isArray(node.overrides.children) ||
+      node.overrides.children.some(key => typeof key !== 'string' || !validPlacement.test(key)))
+  )
+    throw new Error('Invalid Lesson override children at ' + label);
   if (isRecord(node.overrides.params) && Object.hasOwn(node.overrides.params, 'languages')) {
     throw new Error('Course Lesson overrides cannot override Lesson supported languages');
   }
@@ -176,7 +267,7 @@ function getOverride(
 
 /**
  * Compose one Course Lesson using the canonical standalone Lesson assembler.
- * It owns the four-layer Props merge and final lesson_Data_Schema validation:
+ * It owns the four-layer Data merge and final lesson_Data_Schema validation:
  *
  *   Lesson base -> Lesson locale -> Course override base -> Course override locale.
  *
@@ -194,7 +285,7 @@ export function assembleCourseLesson({
     throw new Error('Standalone Lesson publication ID/type mismatch');
   }
   if (Object.hasOwn(lesson.base, 'draft'))
-    throw new Error('Standalone Lesson draft cannot be assembled as completed Props');
+    throw new Error('Standalone Lesson draft cannot be assembled as completed Data');
   const base = assertCourseRoot(course.base, courseId, 'base');
   if (base.type !== 'course' || base.id !== courseId) throw new Error('Missing Course base identity');
   if (!isRecord(base.params) || !Array.isArray(base.params.languages) || !base.params.languages.includes(language)) {
@@ -203,9 +294,14 @@ export function assembleCourseLesson({
 
   const baseMatch = findLesson(base, lessonId, 'base', placement);
   if (!baseMatch) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
+  if (Object.hasOwn(baseMatch.node, 'draft')) throw new Error('Course draft Lesson cannot be assembled');
+  if (Object.keys(baseMatch.node).some(field => !['id', 'type', 'overrides'].includes(field)))
+    throw new Error('Course Lesson must be a compact published reference');
 
   const localeData = course.locale?.[language];
   const localeRoot = localeData === undefined ? undefined : assertCourseRoot(localeData, courseId, language);
+  if (localeRoot && isRecord(localeRoot.params) && Object.hasOwn(localeRoot.params, 'languages'))
+    throw new Error('Localized Course cannot override params.languages');
   const localeNode = findLocalizedLesson(localeRoot, baseMatch.path, language);
   if (
     localeNode &&
@@ -215,7 +311,7 @@ export function assembleCourseLesson({
     throw new Error('Localized Lesson identity mismatch');
   }
   if (localeNode && Object.hasOwn(localeNode, 'draft'))
-    throw new Error('Localized Course draft stub cannot be assembled as completed Props');
+    throw new Error('Localized Course draft stub cannot be assembled as completed Data');
   const basePatch = getOverride(baseMatch.node, 'base');
   const localePatch = getOverride(localeNode, language);
 
@@ -227,10 +323,10 @@ export function assembleCourseLesson({
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
         } satisfies PublishedLessonDataOverride);
 
-  // Reuse the canonical Lesson Props validator with the published keyed Course hierarchy.
+  // Reuse the canonical Lesson Data validator with the published keyed Course hierarchy.
   try {
     return assembleLessonData(lesson, language, overrides);
   } catch (error) {
-    throw new Error('Invalid assembled Course Lesson Props for ' + language, { cause: error });
+    throw new Error('Invalid assembled Course Lesson Data for ' + language, { cause: error });
   }
 }

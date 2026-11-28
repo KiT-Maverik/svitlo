@@ -66,38 +66,45 @@ export const projectAnswerList = (
   };
 };
 
-/** Named slot selectors and accepted values become resolved positional UI props only after Build. */
+/** Preserve ordered named slot identity while keeping accepted answers atomic. */
+export type LocalizedSlotData = { children: string[] } & Record<string, { correctAnswers: string[] } | string[]>;
+
 export const projectSlotList = (
   original: LocalizedSlotList,
   languages: readonly LanguageCode[],
   patch?: Partial<LocalizedSlotList>,
   order?: readonly string[],
-): Projection<Array<{ selector: string; correctAnswers: string[] }>> => {
+): Projection<LocalizedSlotData> => {
   const effective = patch ? mergeForValidation(cloneJson(original), patch) : cloneJson(original);
-  const entries = (order ?? Object.keys(effective)).map(selector => {
+  const selected = order ?? Object.keys(effective);
+  if (new Set(selected).size !== selected.length || selected.length !== Object.keys(effective).length)
+    throw new Error('Incomplete or duplicate text slot children');
+  const entries = selected.map(selector => {
     if (!Object.hasOwn(effective, selector)) throw new Error('Unknown text slot selector: ' + selector);
     return [selector, effective[selector]!] as const;
   });
-  if (new Set(entries.map(([selector]) => selector)).size !== entries.length) {
-    throw new Error('Duplicate text slot selector');
-  }
   for (const [selector, slot] of entries) {
-    if (!camelCase_Schema.safeParse(selector).success || !isRecord(slot) || !isRecord(slot.correctAnswers)) {
+    if (!camelCase_Schema.safeParse(selector).success || !isRecord(slot) || !isRecord(slot.correctAnswers))
       throw new Error('Invalid named text slot: ' + selector);
-    }
   }
-  const toArray = (language?: LanguageCode) =>
-    entries.map(([selector, slot]) => ({
-      selector,
-      correctAnswers: Object.values(slot.correctAnswers).map(value => {
-        const resolved = language ? resolve(value, language) : typeof value === 'string' ? value : undefined;
-        if (resolved === undefined)
-          throw new Error(
-            'Incomplete text slot ' + selector + (language ? ' for language ' + language : ' in invariant source'),
-          );
-        return resolved;
-      }),
-    }));
+  const toData = (language?: LanguageCode): LocalizedSlotData => ({
+    children: [...selected],
+    ...Object.fromEntries(
+      entries.map(([selector, slot]) => [
+        selector,
+        {
+          correctAnswers: Object.values(slot.correctAnswers).map(value => {
+            const resolved = language ? resolve(value, language) : typeof value === 'string' ? value : undefined;
+            if (resolved === undefined)
+              throw new Error(
+                'Incomplete text slot ' + selector + (language ? ' for language ' + language : ' in invariant source'),
+              );
+            return resolved;
+          }),
+        },
+      ]),
+    ),
+  });
   const allInvariant = entries.every(([, slot]) =>
     Object.values(slot.correctAnswers).every(value => typeof value === 'string'),
   );
@@ -112,7 +119,7 @@ export const projectSlotList = (
     : !patch || structural || invariantChanged
       ? languages
       : languages.filter(language => knownLanguages(patch).includes(language));
-  const locale: Files<Array<{ selector: string; correctAnswers: string[] }>> = {};
-  for (const language of affected) locale[language] = toArray(language);
-  return { ...(allInvariant ? { base: toArray() } : {}), locale };
+  const locale: Files<LocalizedSlotData> = {};
+  for (const language of affected) locale[language] = toData(language);
+  return { ...(allInvariant ? { base: toData() } : {}), locale };
 };

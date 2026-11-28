@@ -2,9 +2,7 @@ import type { ContentBlock_Checkpoint_Config } from '../../../configurators/cont
 import type { CheckpointItemSource } from '../checkpointItem/materializeCheckpointItem';
 import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdentifiers.mjs';
 
-export type CheckpointSource = Omit<ContentBlock_Checkpoint_Config, 'content'> & {
-  content: { items: Record<string, CheckpointItemSource | false>; order: string[] };
-};
+export type CheckpointSource = ContentBlock_Checkpoint_Config & { children: string[] };
 export type CheckpointFile = {
   path: string;
   content: string;
@@ -85,20 +83,23 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
     throw new Error('Checkpoint: documentLanguage and languages import are required');
   }
   const directory = safeDirectory(context.directory);
-  if (!record(config.content) || !record(config.content.items) || !Array.isArray(config.content.order)) {
-    throw new Error('Checkpoint.content: expected { items, order }');
+  if (!Array.isArray(config.children) || Object.hasOwn(config, 'content')) {
+    throw new Error('Checkpoint: expected direct child keys and children order');
   }
-  const enabled = Object.entries(config.content.items).filter(
-    (entry): entry is [string, CheckpointItemSource] => entry[1] !== false,
+  const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+  const enabled = Object.entries(config).filter(
+    (entry): entry is [string, CheckpointItemSource] => !metadata.has(entry[0]),
   );
+  if (enabled.some(([, value]) => typeof value === 'boolean'))
+    throw new Error('Checkpoint: disabled children cannot be authored');
   const keys = enabled.map(([key]) => key);
   if (
     !keys.length ||
-    config.content.order.length !== keys.length ||
-    new Set(config.content.order).size !== keys.length ||
-    config.content.order.some(key => !keys.includes(key))
+    config.children.length !== keys.length ||
+    new Set(config.children).size !== keys.length ||
+    config.children.some(key => !keys.includes(key))
   ) {
-    throw new Error('Checkpoint.content.order: list each enabled CheckpointItem exactly once');
+    throw new Error('Checkpoint.children: list each enabled CheckpointItem exactly once');
   }
   const ids = new Set<string>([config.id]);
   for (const [key, item] of enabled) {
@@ -112,7 +113,7 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
       !uuid.test(item.id) ||
       ids.has(item.id)
     ) {
-      throw new Error('Checkpoint.content.items.' + key + ': invalid kind, slug or duplicate UUID');
+      throw new Error('Checkpoint.children.' + key + ': invalid kind, slug or duplicate UUID');
     }
     ids.add(item.id);
   }
@@ -127,22 +128,19 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   ]);
   const entries: string[] = [];
   const paths = new Set<string>();
-  for (const key of config.content.order) {
-    const child = config.content.items[key];
-    if (child === false) continue;
+  for (const key of config.children) {
+    const child = config[key] as CheckpointItemSource;
     const target = (directory ? directory + '/' : '') + key;
     const result = context.renderItem(child, target);
     if (!result || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(result.exportName)) {
-      throw new Error('Checkpoint.content.items.' + key + ': child materializer returned invalid export');
+      throw new Error('Checkpoint.children.' + key + ': child materializer returned invalid export');
     }
-    const name = claim(result.exportName, 'content.items.' + key);
+    const name = claim(result.exportName, 'children.' + key);
     imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
     entries.push('    ' + renderSourceItem(key, name) + ',');
     for (const f of result.files) {
       if (!f.path.startsWith(target + '/')) {
-        throw new Error(
-          'Checkpoint.content.items.' + key + ': child emitted a file outside its owned directory: ' + f.path,
-        );
+        throw new Error('Checkpoint.children.' + key + ': child emitted a file outside its owned directory: ' + f.path);
       }
       if (paths.has(f.path) || f.path === (directory ? directory + '/' : '') + 'index.ts') {
         throw new Error('Checkpoint: duplicate output path ' + f.path);
@@ -154,7 +152,7 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
   }
   const source = { ...config, locale: localized(config.locale, context.documentLanguage, 'checkpoint.locale') };
   const fields = Object.entries(source)
-    .filter(([key]) => key !== 'content')
+    .filter(([key]) => metadata.has(key) && key !== 'children')
     .map(([key, value]) => '  ' + JSON.stringify(key) + ': ' + literal(value, 'checkpoint.' + key, 1) + ',');
   const exportName = reserved.has(config.slug) ? 'config_' + config.slug : config.slug;
   const code = [
@@ -162,20 +160,18 @@ export function materializeCheckpoint(config: CheckpointSource, context: Checkpo
     'import { languages } from ' + JSON.stringify(context.languagesImport) + ';',
     ...imports,
     '',
-    'const content = {',
-    '  items: {',
+    'const __placements = {',
     ...entries,
-    '  },',
-    '  order: ' + literal(config.content.order, 'checkpoint.content.order', 1) + ',',
     '};',
     '',
     'export const ' +
       exportName +
       ' = defineCheckpoint<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>({',
+      ', typeof __placements, typeof languages>({',
     ...fields,
-    '  content,',
+    '  children: ' + literal(config.children, 'checkpoint.children', 1) + ',',
+    '  ...__placements,',
     '});',
     '',
   ].join('\n');

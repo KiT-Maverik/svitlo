@@ -65,7 +65,7 @@ const incompleteAssessments: LessonWorkflowStage1Production = {
 const earlySection: LessonWorkflowStage1Config = {
   ...standalone.config,
   // @ts-expect-error Sections belong only to Stage 2, not Course or Lesson Stage 1.
-  section: { items: {}, order: [] },
+  children: [],
 };
 
 const earlyLanguageConfig: LessonWorkflowStage1Config = {
@@ -169,10 +169,9 @@ const intro = {
       title: { uk: 'Світло' },
       navigationLabel: { uk: 'Вступ' },
     },
-    content: {
-      items: { observe: text, lightExperiment: scene },
-      order: ['observe', 'lightExperiment'],
-    },
+    children: ['observe', 'lightExperiment'],
+    observe: text,
+    lightExperiment: scene,
   },
   production: { purpose: 'Introduce light observation and examples.' },
 } satisfies LessonWorkflowStage2Section;
@@ -185,7 +184,7 @@ const quizIntent = {
     type: 'quiz',
     params: {},
     locale: { title: { uk: 'Перевірка' }, navigationLabel: { uk: 'Квіз' } },
-    content: { items: {}, order: [] },
+    children: [],
   },
   production: { purpose: 'Assess the agreed cognitive method; no fabricated Question UUIDs.' },
 } satisfies LessonWorkflowStage2QuizSection;
@@ -194,10 +193,9 @@ const stage2 = {
   ...standalone,
   config: {
     ...standalone.config,
-    section: {
-      items: { introduction: intro, checkUnderstanding: quizIntent },
-      order: ['introduction', 'checkUnderstanding'],
-    },
+    children: ['introduction', 'checkUnderstanding'],
+    introduction: intro,
+    checkUnderstanding: quizIntent,
   },
 } satisfies LessonWorkflowStage2;
 
@@ -224,7 +222,7 @@ const missingSections: LessonWorkflowStage2 = {
   config: standalone.config,
 };
 
-// @ts-expect-error Checkpoint cannot omit nested ordered content.
+// @ts-expect-error Checkpoint cannot omit its required nested children.
 const invalidCheckpoint: LessonWorkflowStage2Checkpoint = { config: text.config };
 
 void scene;

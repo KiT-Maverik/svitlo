@@ -10,7 +10,7 @@ import { createSourceIdentifierRegistry } from '../sourceIdentifiers.mjs';
 
 type PlainBlock = { id: string; slug: string; type: string } & Record<string, unknown>;
 type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
-type BlockCollection = { items: Record<string, BlockNode>; order: string[] };
+type BlockCollection = { children: string[] } & Record<string, unknown>;
 type Content = Omit<
   Question_FillBlanksWithBlocks_Config['content'],
   'question' | 'hint' | 'explanation' | 'slots' | 'distractors'
@@ -18,7 +18,7 @@ type Content = Omit<
   question: BlockCollection;
   hint?: BlockCollection;
   explanation?: BlockCollection;
-  slots: { items: Record<string, { correctAnswer: BlockNode }>; order: string[] };
+  slots: { children: string[] } & Record<string, unknown>;
   distractors: BlockCollection;
 };
 export type FillBlanksWithBlocksSource = Omit<Question_FillBlanksWithBlocks_Config, 'content'> & { content: Content };
@@ -120,11 +120,11 @@ const collectionPaths = new Set([
   'content.distractors',
 ]);
 const childPatterns = [
-  'content.question.items.*',
-  'content.hint.items.*',
-  'content.explanation.items.*',
-  'content.slots.items.*.correctAnswer',
-  'content.distractors.items.*',
+  'content.question.*',
+  'content.hint.*',
+  'content.explanation.*',
+  'content.slots.*.correctAnswer',
+  'content.distractors.*',
 ];
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -149,19 +149,23 @@ function checkPath(value: string): void {
 function assertCollection(
   value: unknown,
   location: string,
-): asserts value is { items: Record<string, unknown>; order: string[] } {
-  if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order))
-    fail(location, 'expected items/order collection');
-  const items = value.items;
-  const order = value.order;
-  const keys = Object.keys(items);
+): asserts value is { children: string[] } & Record<string, unknown> {
+  if (
+    !isRecord(value) ||
+    !Array.isArray(value.children) ||
+    Object.hasOwn(value, 'items') ||
+    Object.hasOwn(value, 'order')
+  )
+    fail(location, 'expected direct child keys and children order');
+  const order = value.children;
+  const keys = Object.keys(value).filter(key => key !== 'children');
   if (
     keys.length !== order.length ||
     new Set(order).size !== keys.length ||
-    order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(value, key))
   )
-    fail(location + '.order', 'order must include each item exactly once');
-  for (const key of keys) safeSlug(key, location + '.items.' + key);
+    fail(location + '.children', 'children must include each child once');
+  for (const key of keys) safeSlug(key, location + '.' + key);
 }
 /** Prune only true locale-code dictionaries, not ordinary maps (e.g. accepted answers). */
 function sourceLocale(value: unknown, language: string, location: string): unknown {
@@ -193,14 +197,14 @@ export function materializeFillBlanksWithBlocks(
     fail('languages.document', 'valid source locale required');
   if (!isRecord(config.params) || !isRecord(config.content)) fail('config', 'params/content required');
   assertCollection(config.content.question, 'content.question');
-  if (!config.content.question.order.length) fail('content.question', 'reviewed prompt required');
+  if (!config.content.question.children.length) fail('content.question', 'reviewed prompt required');
   if (config.content.hint !== undefined) assertCollection(config.content.hint, 'content.hint');
   if (config.content.explanation !== undefined) assertCollection(config.content.explanation, 'content.explanation');
   assertCollection(config.content.slots, 'content.slots');
-  if (!config.content.slots.order.length) fail('content.slots', 'at least one slot required');
-  for (const key of config.content.slots.order)
-    if (!isRecord(config.content.slots.items[key]) || !config.content.slots.items[key].correctAnswer)
-      fail('content.slots.items.' + key, 'correctAnswer required');
+  if (!config.content.slots.children.length) fail('content.slots', 'at least one slot required');
+  for (const key of config.content.slots.children)
+    if (!isRecord(config.content.slots[key]) || !config.content.slots[key].correctAnswer)
+      fail('content.slots.' + key, 'correctAnswer required');
   assertCollection(config.content.distractors, 'content.distractors');
   const planned = context.languages.planned;
   if (
@@ -234,7 +238,7 @@ export function materializeFillBlanksWithBlocks(
   };
   const render = (value: unknown, parts: string[], depth = 0): string => {
     const location = parts.join('.');
-    if (childPatterns.some(pattern => matches(pattern, parts))) {
+    if (parts.at(-1) !== 'children' && childPatterns.some(pattern => matches(pattern, parts))) {
       if (!isRecord(value)) fail(location, 'nested ContentBlock Config required');
       const child = isRecord(value.config) ? value.config : value;
       if (!isRecord(child) || typeof child.type !== 'string' || !allowedBlocks.has(child.type))
@@ -242,10 +246,10 @@ export function materializeFillBlanksWithBlocks(
       if (typeof child.id !== 'string' || !validUUID.test(child.id))
         fail(location + '.id', 'existing child UUID required');
       safeSlug(child.slug, location + '.slug');
-      if (parts.at(-2) === 'items' && child.slug !== parts.at(-1))
+      if (parts[1] !== 'slots' && child.slug !== parts.at(-1))
         fail(location + '.slug', 'child slug must match collection key');
       // Preserve slot identity and correct-answer role without source-only items wrappers.
-      const childPath = parts[1] === 'slots' ? ['slots', parts[3], parts[4]].join('/') : [parts[1], parts[3]].join('/');
+      const childPath = parts.slice(1).join('/');
       const childDir = context.directory + '/' + name + '/' + childPath;
       checkPath(childDir);
       const out = context.materializeBlock(
@@ -278,7 +282,7 @@ export function materializeFillBlanksWithBlocks(
       const path = [...parts, key];
       const rendered = render(item, path, depth + 1);
       const keySource = validIdentifier.test(key) && key !== '__proto__' ? key : JSON.stringify(key);
-      const isChild = childPatterns.some(pattern => matches(pattern, path));
+      const isChild = path.at(-1) !== 'children' && childPatterns.some(pattern => matches(pattern, path));
       return '  '.repeat(depth + 1) + (isChild && rendered === key ? keySource : keySource + ': ' + rendered);
     });
     return entries.length ? '{\n' + entries.join(',\n') + '\n' + '  '.repeat(depth) + '}' : '{}';

@@ -66,10 +66,11 @@ const reverseAnswer: ContentBlock_Text_Config = {
   params: {},
   locale: { value: { uk: 'Орбіта.' } },
 };
-const front = { items: { prompt: first }, order: ['prompt'] } satisfies FlashcardBankWorkflowSideSource;
+const front = { children: ['prompt'], prompt: first } satisfies FlashcardBankWorkflowSideSource;
 const back = {
-  items: { answer, example: code },
-  order: ['answer', 'example'],
+  children: ['answer', 'example'],
+  answer,
+  example: code,
 } satisfies FlashcardBankWorkflowSideSource;
 const flags = [
   { type: 'list', count: 2 },
@@ -82,7 +83,7 @@ const card: FlashcardBankWorkflowCardConfig = {
   id: uuid,
   slug: 'orbitRecall',
   parameters: { tags: ['astronomy'], disabilities: [], flags },
-  content: { front, back, hint: { items: { cue: hintBlock }, order: ['cue'] } },
+  content: { front, back, hint: { children: ['cue'], cue: hintBlock } },
 };
 
 const stage1 = {
@@ -138,8 +139,8 @@ const stage2 = {
             slug: 'orbitReverse',
             parameters: { ...card.parameters, flags: [] },
             content: {
-              front: { items: { prompt: reversePrompt }, order: ['prompt'] },
-              back: { items: { answer: reverseAnswer }, order: ['answer'] },
+              front: { children: ['prompt'], prompt: reversePrompt },
+              back: { children: ['answer'], answer: reverseAnswer },
             },
           },
           production: {
@@ -203,13 +204,15 @@ const carouselSource: CarouselSource = {
   type: 'carousel',
   params: {},
   locale: {},
-  slides: { items: { slide: reviewedImage }, order: ['slide'] },
+  children: ['slide'],
+  slide: reviewedImage,
 };
 const checkpointAnswerSource: CheckpointAnswerSource = {
   id: 'b775647f-203d-481a-a1c7-4d331c000031',
   slug: 'answer',
   type: 'checkpointAnswer',
-  content: { items: { example: code }, order: ['example'] },
+  children: ['example'],
+  example: code,
 };
 const checkpointItemSource: CheckpointItemSource = {
   id: 'b775647f-203d-481a-a1c7-4d331c000032',
@@ -224,16 +227,15 @@ const checkpointSource: CheckpointSource = {
   type: 'checkpoint',
   params: {},
   locale: { title: { uk: 'Самоперевірка' } },
-  content: { items: { item: checkpointItemSource }, order: ['item'] },
+  children: ['item'],
+  item: checkpointItemSource,
 };
 const compositeSide: FlashcardBankWorkflowSideSource = {
-  items: {
-    // @ts-expect-error Carousel is not an eligible Flashcard Side child.
-    gallery: carouselSource,
-    // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
-    checkpoint: checkpointSource,
-  },
-  order: ['gallery', 'checkpoint'],
+  children: ['gallery', 'checkpoint'],
+  // @ts-expect-error Carousel is not an eligible Flashcard Side child.
+  gallery: carouselSource,
+  // @ts-expect-error Checkpoint is not an eligible Flashcard Side child.
+  checkpoint: checkpointSource,
 };
 // The broad legacy type accepts the structurally typed object, but the final Stage 3 schema rejects both kind discriminants.
 const incompatibleCompositeSide: FlashcardSideSource = compositeSide;
@@ -248,7 +250,7 @@ const materializerCard: FlashcardNode = {
     ...card,
     parameters: {
       ...card.parameters,
-      relationships: { items: { orbitReverse: expandedRelation }, order: ['orbitReverse'] },
+      relationships: { children: ['orbitReverse'], orbitReverse: expandedRelation },
     },
   },
   production: { pending: false },
@@ -283,8 +285,8 @@ const badFlag: FlashcardBankWorkflowFlags = [
 const keyedFlags: FlashcardBankWorkflowFlags = { items: {}, order: [] };
 
 const forbiddenSideIdentity: FlashcardBankWorkflowSideSource = {
-  items: { prompt: first },
-  order: ['prompt'],
+  children: ['prompt'],
+  prompt: first,
   // @ts-expect-error Sides are not separately UUID-addressed entities.
   id: uuid,
 };

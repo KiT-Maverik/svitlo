@@ -1,14 +1,15 @@
 'use client';
 
-import type { ContentBlock_Data, LanguageCode } from '@svitlo/engine/runtime';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { ContentBlockViewProps } from '../../presentation';
 import { ContentBlockRenderer, type SceneRegistry } from '../widgets/ContentBlockRenderer';
 
 /** The lesson bridge accepts only assembled Engine Props, not authoring Config. */
 export type EngineContentBlockRendererProps = {
-  blocks: readonly ContentBlock_Data[];
+  blocks: readonly ContentBlockViewProps[];
   messages: UiKitMessages;
   sceneRegistry?: SceneRegistry;
   language?: LanguageCode;

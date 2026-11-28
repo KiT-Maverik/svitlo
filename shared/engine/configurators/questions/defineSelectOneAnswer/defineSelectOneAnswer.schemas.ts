@@ -9,6 +9,7 @@ import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlo
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
+  questionBlockCollection_Data_Schema,
   questionCommonContent_Config_Schema,
   questionCommonContent_Data_Schema,
   type QuestionContent,
@@ -49,18 +50,21 @@ export const selectOneAnswer_Data_Schema = questionBase.extend({
   ...addUnifiedLocale({}),
   content: questionCommonContent_Data_Schema.extend({
     answers: z.object({
-      correct: z.record(z.string(), primitiveContentBlockResolved_Schema),
-      incorrect: z.record(z.string(), primitiveContentBlockResolved_Schema),
-      distractors: z.record(z.string(), primitiveContentBlockResolved_Schema),
+      correct: questionBlockCollection_Data_Schema.refine(
+        group => group.children.length === 1,
+        'Exactly one correct answer',
+      ),
+      incorrect: questionBlockCollection_Data_Schema,
+      distractors: questionBlockCollection_Data_Schema,
     }),
   }),
 });
 export type Question_SelectOneAnswer_Data = Omit<z.infer<typeof selectOneAnswer_Data_Schema>, 'content'> & {
   content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
     answers: {
-      correct: Record<string, ContentBlock_Primitive_Data>;
-      incorrect: Record<string, ContentBlock_Primitive_Data>;
-      distractors: Record<string, ContentBlock_Primitive_Data>;
+      correct: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
+      incorrect: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
+      distractors: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
     };
   };
 };

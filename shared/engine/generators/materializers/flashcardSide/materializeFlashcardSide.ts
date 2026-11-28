@@ -13,9 +13,7 @@ import { createSourceIdentifierRegistry, renderSourceItem } from '../sourceIdent
 
 export type PlainBlock = { id: string; slug: string; type: ContentBlock_Primitive_Type } & Record<string, unknown>;
 export type BlockNode = PlainBlock | { config: PlainBlock; production?: Record<string, unknown> };
-export type FlashcardSideSource = Omit<FlashcardSide_Config, 'items'> & {
-  items: Record<string, BlockNode>;
-};
+export type FlashcardSideSource = FlashcardSide_Config & { children: string[] };
 export type SourceFile = { path: string; content: string; kind: 'typescript' | 'markdown' | 'code' };
 export type SourceDiagnostic = { path: string; code: string; message: string; severity: 'warning' };
 export type ChildResult = { exportName: string; files: SourceFile[]; diagnostics?: SourceDiagnostic[] };
@@ -61,17 +59,22 @@ function safeSlug(value: unknown, location: string): string {
 }
 /** All children must be accounted for once; do not silently reorder or drop blocks. */
 function assertSide(source: FlashcardSideSource, role: FlashcardSideContext['role']): void {
-  if (!record(source) || !record(source.items) || !Array.isArray(source.order))
-    fail('content.' + role, 'expected items/order');
-  const keys = Object.keys(source.items);
   if (
-    keys.length !== source.order.length ||
-    new Set(source.order).size !== keys.length ||
-    source.order.some(key => typeof key !== 'string' || !Object.hasOwn(source.items, key))
+    !record(source) ||
+    !Array.isArray(source.children) ||
+    Object.hasOwn(source, 'items') ||
+    Object.hasOwn(source, 'order')
+  )
+    fail('content.' + role, 'expected direct child keys and children order');
+  const keys = Object.keys(source).filter(key => key !== 'children');
+  if (
+    keys.length !== source.children.length ||
+    new Set(source.children).size !== keys.length ||
+    source.children.some(key => typeof key !== 'string' || !Object.hasOwn(source, key))
   )
     fail('content.' + role + '.order', 'order must include every item once');
   if (role !== 'hint' && keys.length === 0) fail('content.' + role, 'required front/back cannot be empty');
-  for (const key of keys) safeSlug(key, 'content.' + role + '.items.' + key);
+  for (const key of keys) safeSlug(key, 'content.' + role + '.children.' + key);
 }
 export function materializeFlashcardSide(source: FlashcardSideSource, context: FlashcardSideContext): ChildResult {
   assertSide(source, context.role);
@@ -95,19 +98,20 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
     'defineFlashcardSide',
     'Languages',
     'items',
+    'children',
     context.role,
   ]);
-  for (const key of source.order) {
-    const node = source.items[key];
-    if (!record(node)) fail('items.' + key, 'plain ContentBlock Config required');
+  for (const key of source.children) {
+    const node = source[key];
+    if (!record(node)) fail('children.' + key, 'plain ContentBlock Config required');
     const candidate: unknown = record(node.config) ? node.config : node;
     if (!record(candidate) || typeof candidate.type !== 'string' || !allowed.has(candidate.type))
-      fail('items.' + key, 'unsupported concrete ContentBlock');
+      fail('children.' + key, 'unsupported concrete ContentBlock');
     const child = candidate;
     if (typeof child.id !== 'string' || !validUUID.test(child.id))
-      fail('items.' + key + '.id', 'existing block UUID required');
-    if (safeSlug(child.slug, 'items.' + key + '.slug') !== key)
-      fail('items.' + key + '.slug', 'slug must equal map key');
+      fail('children.' + key + '.id', 'existing block UUID required');
+    if (safeSlug(child.slug, 'children.' + key + '.slug') !== key)
+      fail('children.' + key + '.slug', 'slug must equal map key');
     // The role directory already owns this collection. Avoid a redundant /items/ layer.
     const childDir = context.directory + '/' + key;
     safePath(childDir);
@@ -116,14 +120,14 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
       { directory: childDir, documentLanguage: context.languages.document },
     );
     if (!output || !identifier.test(output.exportName) || !Array.isArray(output.files))
-      fail('items.' + key, 'invalid delegated ContentBlock output');
+      fail('children.' + key, 'invalid delegated ContentBlock output');
     for (const file of output.files) {
       if (!file.path.startsWith(childDir + '/'))
-        fail('items.' + key, 'delegated ContentBlock escaped its assigned directory');
+        fail('children.' + key, 'delegated ContentBlock escaped its assigned directory');
     }
     if (!output.files.some(file => file.path === childDir + '/index.ts' && file.kind === 'typescript'))
-      fail('items.' + key, 'missing delegated ContentBlock index.ts');
-    const name = claim(output.exportName, 'items.' + key);
+      fail('children.' + key, 'missing delegated ContentBlock index.ts');
+    const name = claim(output.exportName, 'children.' + key);
     imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
     entries.push('  ' + renderSourceItem(key, name) + ',');
     files.push(...output.files);
@@ -144,9 +148,9 @@ export function materializeFlashcardSide(source: FlashcardSideSource, context: F
       context.role +
       ' = defineFlashcardSide<typeof items, ' +
       (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(context.languages.document) + ']') +
-      '>({ items, order: ' +
-      JSON.stringify(source.order) +
-      ' });',
+      '>({ children: ' +
+      JSON.stringify(source.children) +
+      ', ...items });',
     '',
   ].join('\n');
   files.push({ path: context.directory + '/index.ts', content: sourceText, kind: 'typescript' });

@@ -1,6 +1,6 @@
 # Checkpoint Answer Configurator and typed Lesson source layout
 
-**Current Engine Build contract:** `defineCheckpoint` owns ordered Checkpoint Items; each `defineCheckpointItem` owns one mandatory, non-disableable `defineText` question and one `defineCheckpointAnswer` child. The Answer has immutable `id`, `slug`, `type: 'checkpointAnswer'` and a validated `content: { items, order }` collection. Answer children accept **only Primitive ContentBlocks**; neither Carousel nor recursive Checkpoint is legal. The Item's published Props project the Answer back into ordered learner-visible answer blocks without adding an extra runtime wrapper. No legacy bare Answer collection is supported.
+**Current Engine Build contract:** `defineCheckpoint` owns ordered Checkpoint Items; each `defineCheckpointItem` owns one mandatory, non-disableable `defineText` question and one `defineCheckpointAnswer` child. The Answer has immutable `id`, `slug`, `type: 'checkpointAnswer'` and a validated root `children: string[]` with direct slug-keyed Primitive ContentBlock children. Answer children accept **only Primitive ContentBlocks**; neither Carousel nor recursive Checkpoint is legal. The Item's published Props project the Answer back into ordered learner-visible answer blocks without adding an extra runtime wrapper. No legacy bare Answer collection is supported.
 
 ## Canonical authored source layout
 
@@ -20,7 +20,7 @@ sections/<sectionSlug>/<checkpointSlug>/
         code.ts / text.md / locale/...       # only when the concrete Primitive kind owns them
 ```
 
-Question is a flat role folder because there is always one Text child. Answer owns a separately typed and validated collection of Primitive blocks. A Primitive may own implementation/media resources but never an authored ContentBlock child collection. The old Checkpoint → Answer → Carousel → Scene fixture is invalid; use a direct Answer → Scene child or place the Carousel in a sibling ordinary Section slot. Never group nested Blocks by type, invent missing IDs, flatten Answer into an untyped collection or reintroduce a YAML source renderer. Likewise, Carousel child files belong in `slides/<slideSlug>/`, without an `items` directory. Section-level production notes must be incorporated into the Lesson methodology; `specification.md` is not emitted for Sections. These filesystem conventions do not alter the Configurator `items/order` contracts.
+Question is a flat role folder because there is always one Text child. Answer owns a separately typed and validated collection of Primitive blocks. A Primitive may own implementation/media resources but never an authored ContentBlock child collection. The old Checkpoint → Answer → Carousel → Scene fixture is invalid; use a direct Answer → Scene child or place the Carousel in a sibling ordinary Section slot. Never group nested Blocks by type, invent missing IDs, flatten Answer into an untyped collection or reintroduce a YAML source renderer. Likewise, Carousel child files belong in `slides/<slideSlug>/`, without an `items` directory. Section-level production notes must be incorporated into the Lesson methodology; `specification.md` is not emitted for Sections. These filesystem conventions preserve the Configurator's direct `children` and keyed-child contract; they do not introduce an `items/order` wrapper.
 
 ## Review and verification
 

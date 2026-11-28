@@ -6,7 +6,11 @@
 import { defineText } from '../../../configurators/contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
 import { defineContentSection } from '../../../configurators/sections/defineContentSection/defineContentSection';
-import type { CourseLessonSourcePatch } from '../../../types/workflow/courseLessonSourcePatch.types';
+import type {
+  CourseLessonBoundPatch,
+  CourseLessonSectionReference,
+  CourseLessonSourcePatch,
+} from '../../../types/workflow/courseLessonSourcePatch.types';
 
 const paragraph = defineText<'paragraph', ['en', 'uk']>({
   id: '663572e7-bd85-4516-86e2-3de07d209e01',
@@ -21,7 +25,8 @@ const intro = defineContentSection<'intro', { paragraph: typeof paragraph }, ['e
   slug: 'intro',
   params: {},
   locale: { title: 'Introduction', navigationLabel: '1' },
-  content: { items: { paragraph }, order: ['paragraph'] },
+  children: ['paragraph'],
+  paragraph,
 });
 const practice = defineContentSection<'practice', { paragraph: typeof paragraph }, ['en', 'uk']>({
   id: '663572e7-bd85-4516-86e2-3de07d209e04',
@@ -29,7 +34,8 @@ const practice = defineContentSection<'practice', { paragraph: typeof paragraph 
   slug: 'practice',
   params: {},
   locale: { title: 'Practice', navigationLabel: '2' },
-  content: { items: { paragraph }, order: ['paragraph'] },
+  children: ['paragraph'],
+  paragraph,
 });
 export const lesson = defineLesson({
   id: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -42,41 +48,29 @@ export const lesson = defineLesson({
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   locale: { title: { en: 'Lesson', uk: 'Урок' } },
-  section: { items: { intro }, order: ['intro'] },
+  children: ['intro'],
+  intro,
 });
-type ActualPatch = Parameters<typeof lesson.build.overrides>[0];
+type ActualPatch = CourseLessonSourcePatch<typeof lesson>;
 const changed = {
   params: { sections: { allowSkipping: false } },
-  section: {
-    items: {
-      intro: {
-        content: { items: { paragraph: { locale: { value: { uk: 'Інший текст' } } } } },
-      },
-    },
-  },
+  intro: { paragraph: { locale: { value: { uk: 'Інший текст' } } } },
 } satisfies ActualPatch;
-const added = {
-  section: { additionalItems: { practice }, order: ['intro', 'practice'] },
-} satisfies ActualPatch;
-const disabled = { section: { items: { intro: false }, order: [] } } satisfies ActualPatch;
+// This is the trusted post-binding form, not an executable editorial source.
+const added = { practice, children: ['intro', 'practice'] } satisfies CourseLessonBoundPatch<
+  typeof lesson,
+  { practice: typeof practice }
+>;
+// The real generic Build API must remain callable for a pure metadata override.
+// A/A2 owns placeLesson and the generic Section-addition Build contract.
+void lesson.build.overrides({ params: { sections: { allowSkipping: false } } }, { languages: ['en', 'uk'] });
+const disabled = { intro: false, children: [] } satisfies ActualPatch;
 const invalidSlug = {
-  section: {
-    items: {
-      // @ts-expect-error Existing section keys are inferred from the actual Lesson, not string.
-      absent: false,
-    },
-  },
-} satisfies ActualPatch;
-const invalidAdditionalSlug = {
-  section: {
-    additionalItems: {
-      // @ts-expect-error An existing child cannot be added again via additionalItems.
-      intro,
-    },
-  },
+  // @ts-expect-error Only existing Section keys or explicitly authorized additions are valid.
+  absent: false,
 } satisfies ActualPatch;
 const invalidValue = {
-  // @ts-expect-error Boolean Lesson navigation fields reject string values.
+  // @ts-expect-error Boolean Lesson navigation fields reject strings.
   params: { sections: { allowSkipping: 'false' } },
 } satisfies ActualPatch;
 
@@ -84,11 +78,10 @@ void changed;
 void added;
 void disabled;
 void invalidSlug;
-void invalidAdditionalSlug;
 void invalidValue;
 
 /** The canonical inert Course source keeps actual nested Lesson typing. */
-type ReviewedPatch = CourseLessonSourcePatch<typeof lesson>;
+type ReviewedPatch = CourseLessonSourcePatch<typeof lesson, { practice: CourseLessonSectionReference }>;
 const sectionRef = {
   $ref: 'lesson-section' as const,
   lessonId: '663572e7-bd85-4516-86e2-3de07d209e03',
@@ -98,40 +91,26 @@ const sectionRef = {
 };
 const reviewed = {
   params: { sections: { allowNavigation: false } },
-  section: {
-    items: { intro: { content: { items: { paragraph: { locale: { value: { uk: 'Додатковий текст' } } } } } } },
-    additionalItems: { practice: sectionRef },
-    order: ['intro', 'practice'],
-  },
+  intro: { paragraph: { locale: { value: { uk: 'Додатковий текст' } } } },
+  practice: sectionRef,
+  children: ['intro', 'practice'],
 } satisfies ReviewedPatch;
-const reviewedDisabled = { section: { items: { intro: false }, order: [] } } satisfies ReviewedPatch;
+const reviewedDisabled = { intro: false, children: [] } satisfies CourseLessonSourcePatch<typeof lesson>;
 const invalidReviewChild = {
-  section: {
-    items: {
-      // @ts-expect-error Reviewed Lesson does not contain this Section.
-      invented: false,
-    },
-  },
+  // @ts-expect-error Existing Lesson cannot disable an unknown Section.
+  invented: false,
 } satisfies ReviewedPatch;
 const invalidReviewAddition = {
-  section: {
-    additionalItems: {
-      // @ts-expect-error Existing Section cannot be reintroduced as an addition.
-      intro: sectionRef,
-    },
-  },
+  // @ts-expect-error A known original Section cannot be inserted as an inert addition.
+  intro: sectionRef,
 } satisfies ReviewedPatch;
 const invalidReviewMetadata = {
   // @ts-expect-error SourcePatch retains Lesson's exact navigation booleans.
   params: { sections: { allowNavigation: 'false' } },
 } satisfies ReviewedPatch;
 const invalidReviewReference = {
-  section: {
-    additionalItems: {
-      // @ts-expect-error Course drafts accept inert descriptors, not executable Configurators.
-      practice,
-    },
-  },
+  // @ts-expect-error Reviewed source must use an inert descriptor for an added Section.
+  practice,
 } satisfies ReviewedPatch;
 void reviewed;
 void reviewedDisabled;

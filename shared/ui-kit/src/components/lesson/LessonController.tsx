@@ -14,8 +14,9 @@ import {
   useState,
 } from 'react';
 
-import { DEFAULT_SUPPORTED_LANGUAGES, type Lesson_Data, type Section_Data } from '@svitlo/engine/runtime';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
+import type { LessonViewProps, SectionViewProps } from '../../presentation';
 import {
   LearningLayoutBottomBar,
   LearningLayoutTopBar,
@@ -38,7 +39,7 @@ import { MediaVolumeControl } from './MediaVolumeControl';
 
 const DEFAULT_LESSON_EVENTS = ['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed'] as const;
 
-type SectionParams = Lesson_Data['params']['sections'];
+type SectionParams = LessonViewProps['params']['sections'];
 const EMPTY_EDITABLE: readonly EditableSectionParam[] = [];
 export type EditableSectionParam = keyof SectionParams;
 type TopBarState = { title: string };
@@ -51,7 +52,7 @@ type SectionState = {
 };
 type BottomBarState = { nextDisabled: boolean; backDisabled: boolean; skipDisabled: boolean };
 type Runtime = {
-  params: Lesson_Data['params'];
+  params: LessonViewProps['params'];
   topBar: TopBarState;
   stepper: StepperState;
   section: SectionState;
@@ -89,14 +90,14 @@ export type LessonActions<CustomEvents extends string = never> = {
   publishEvent: (eventId: CustomEvents) => void;
   completeCheckpoint: (sectionId: string, checkpointId: string) => void;
   /** Event-time snapshot readers; these are NOT reactive subscriptions. */
-  getParams: () => Lesson_Data['params'];
+  getParams: () => LessonViewProps['params'];
   getTopBar: () => TopBarState;
   getSection: () => SectionState;
   getBottomBar: () => BottomBarState;
 };
 
 const ParamsContext = createContext<{
-  values: Lesson_Data['params'];
+  values: LessonViewProps['params'];
   editable: readonly EditableSectionParam[];
 } | null>(null);
 const TopBarContext = createContext<TopBarState | null>(null);
@@ -116,7 +117,7 @@ const BottomBarContext = createContext<{ nextDisabled: boolean; backDisabled: bo
   null,
 );
 
-function requiredCheckpointIds(section: Section_Data): string[] {
+function requiredCheckpointIds(section: SectionViewProps): string[] {
   if (section.type === 'quiz') return [];
   return section.content
     .filter(
@@ -129,7 +130,7 @@ function requiredCheckpointIds(section: Section_Data): string[] {
 }
 
 /** Lesson permission is inherited unless the Section opts out; Quizzes have extra gates. */
-function canSkipSection(section: Section_Data | undefined, allowSkipping: boolean): boolean {
+function canSkipSection(section: SectionViewProps | undefined, allowSkipping: boolean): boolean {
   return !!(
     allowSkipping &&
     section &&
@@ -142,14 +143,14 @@ function hasNextBlocker(state: Runtime, step: number): boolean {
   return Object.values(state.nextBlockers).some(registeredStep => registeredStep === step);
 }
 
-function canLeaveSection(state: Runtime, response: Lesson_Data, index: number): boolean {
+function canLeaveSection(state: Runtime, response: LessonViewProps, index: number): boolean {
   const section = response.section[index];
   if (!section) return false;
   if (section.type === 'quiz' && section.params.isBlocker && !state.section.completedQuizIds[section.id]) return false;
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 
-function canMoveTo(state: Runtime, response: Lesson_Data, target: number, direct: boolean): boolean {
+function canMoveTo(state: Runtime, response: LessonViewProps, target: number, direct: boolean): boolean {
   const from = state.section.step;
   if (!Number.isInteger(target) || target < 0 || target >= response.section.length) return false;
   if (target === from) return true;
@@ -165,7 +166,7 @@ function canMoveTo(state: Runtime, response: Lesson_Data, target: number, direct
 function reduce(
   state: Runtime,
   action: Command,
-  response: Lesson_Data,
+  response: LessonViewProps,
   editable: readonly EditableSectionParam[],
 ): Runtime {
   switch (action.type) {

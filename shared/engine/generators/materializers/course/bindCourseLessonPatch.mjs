@@ -8,7 +8,7 @@ const sectionRefKeys = new Set(['$ref', 'lessonId', 'sectionId', 'sourceSha', 'e
 
 /**
  * The only declarative-to-Configurator binding needed by Course overrides.
- * All non-additionalItems bytes stay the authored sparse patch. A trusted
+ * All non-reference bytes stay the authored sparse patch. A trusted
  * resolver authorizes each specific Section before the real Lesson Build API
  * validates the complete effective candidate; a source SHA alone is not trust.
  *
@@ -19,14 +19,21 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
   const aliases = new Map();
   const imports = [];
   const createdSections = {};
-  const additions = raw.section?.additionalItems;
+  // A Lesson override has direct Section placement keys and root children.
+  // Only explicit inert $create/$ref nodes require trusted binding.
+  const metadata = new Set(['params', 'locale', 'events', 'children']);
+  const additions = Object.fromEntries(
+    Object.entries(raw).filter(
+      ([key, value]) => !metadata.has(key) && record(value) && (own(value, '$create') || own(value, '$ref')),
+    ),
+  );
   let patch = raw;
-  if (additions !== undefined) {
+  if (Object.keys(additions).length) {
     if (
       !record(additions) ||
       (Object.getPrototypeOf(additions) !== Object.prototype && Object.getPrototypeOf(additions) !== null)
     )
-      throw Error(placementPath + ': section.additionalItems must be a plain reference map');
+      throw Error(placementPath + ': direct Section reference map must be plain');
     const bound = {};
     for (const [key, reference] of Object.entries(additions)) {
       // A Course-owned Section is inert editorial source, not an imported
@@ -125,13 +132,12 @@ export function bindCourseLessonPatch(raw, { resolveAddedSection, renderAddedSec
       imports.push('import { ' + request.exportName + ' } from ' + JSON.stringify(importPath) + ';');
       Object.defineProperty(bound, key, { value: section, enumerable: true, writable: true, configurable: true });
     }
-    patch = { ...raw, section: { ...raw.section, additionalItems: bound } };
+    patch = { ...raw, ...bound };
   }
   // Avoid string substitution: an author may legitimately write the same
   // marker as text. Only exact Section reference positions become identifiers.
   const render = (value, path = []) => {
-    if (path.length === 3 && path[0] === 'section' && path[1] === 'additionalItems' && aliases.has(path[2]))
-      return aliases.get(path[2]);
+    if (path.length === 1 && aliases.has(path[0])) return aliases.get(path[0]);
     if (
       value === null ||
       typeof value === 'string' ||

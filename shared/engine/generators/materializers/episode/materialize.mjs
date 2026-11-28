@@ -101,23 +101,21 @@ export function materializeEpisode(input, context = {}) {
   const lang = source(context);
   if (authored?.type !== 'episode') throw Error(dir + ': expected episode Config');
   const provisional =
-    !record(authored.section) && record(meta) && meta.focus !== undefined && meta.purpose !== undefined;
+    !Array.isArray(authored.children) && record(meta) && meta.focus !== undefined && meta.purpose !== undefined;
   if (provisional) return materializeEpisodeDraft(input, context);
   const config = authored;
-  if (!record(config.section) || !record(config.section.items) || !Array.isArray(config.section.order))
-    throw Error(dir + '.section: missing complete Episode Sections');
+  if (!Array.isArray(config.children) || Object.hasOwn(config, 'section'))
+    throw Error(dir + '.children: missing direct Episode Section placements');
   const { id, slug } = identity(config, context, dir, 'episode');
-  const collection = config.section;
-  if (!record(collection) || !record(collection.items) || !Array.isArray(collection.order))
-    throw Error(dir + '.section: expected {items,order}');
-  const keys = Object.keys(collection.items),
-    order = collection.order;
+  const own = new Set(['id', 'slug', 'type', 'params', 'locale', 'events', 'draft', 'children']);
+  const keys = Object.keys(config).filter(key => !own.has(key));
+  const order = config.children;
   if (
     keys.length !== order.length ||
     new Set(order).size !== order.length ||
-    order.some(key => typeof key !== 'string' || !Object.hasOwn(collection.items, key))
+    order.some(key => typeof key !== 'string' || !Object.hasOwn(config, key) || own.has(key))
   )
-    throw Error(dir + '.section.order: each Section key required exactly once');
+    throw Error(dir + '.children: each Section placement required exactly once');
   const planned = config.params?.languages ?? meta?.plannedLanguages ?? context.plannedLanguages ?? [lang];
   if (!Array.isArray(planned) || !planned.includes(lang) || new Set(planned).size !== planned.length)
     throw Error(dir + '.params.languages: invalid source scope');
@@ -129,15 +127,14 @@ export function materializeEpisode(input, context = {}) {
     seenIds = new Set(),
     sectionNotes = [];
   for (const key of order) {
-    ensure(key, dir + '.section.items.' + key);
-    const raw = unwrap(collection.items[key]);
+    ensure(key, dir + '.children.' + key);
+    const raw = unwrap(config[key]);
     if (!['content', 'practice', 'codingTask', 'learningFlow'].includes(raw?.type))
       throw Error(dir + ': unsupported Episode production Section: ' + raw?.type);
-    if (raw?.slug !== undefined && raw.slug !== key)
-      throw Error(dir + '.section.items.' + key + ': Section slug mismatch');
+    if (raw?.slug !== undefined && raw.slug !== key) throw Error(dir + '.children.' + key + ': Section slug mismatch');
     if (typeof context.materializeSection !== 'function')
       throw Error(dir + '.sections.' + key + ': concrete Section renderer required (Agent B)');
-    const reviewed = production(collection.items[key]);
+    const reviewed = production(config[key]);
     // Section sidecars were retired: preserve reviewed Section intent in the
     // Episode-owned narrative specification before enabling the handoff.
     const notes = [];
@@ -158,9 +155,9 @@ export function materializeEpisode(input, context = {}) {
         if (notes.length) sectionNotes.push('## Section: ' + key + ' (' + raw.type + ')\n\n' + notes.join('\n\n'));
       }
     }
-    const node = record(collection.items[key]?.config)
+    const node = record(config[key]?.config)
       ? {
-          ...collection.items[key],
+          ...config[key],
           config: { ...raw, slug: key },
           ...(integrated ? { production: { ...reviewed, methodologyIntegrated: true } } : {}),
         }
@@ -172,14 +169,15 @@ export function materializeEpisode(input, context = {}) {
     if (typeof childId !== 'string' || !uuid.test(childId)) throw Error(location + ': Section UUID missing');
     if (seenIds.has(childId)) throw Error(location + ': duplicate Section UUID');
     seenIds.add(childId);
-    const name = claim(child.exportName, 'section.items.' + key);
+    const name = claim(child.exportName, 'children.' + key);
     imports.push('import { ' + name + ' } from "./sections/' + key + '";');
     items[key] = name;
     files.push(...child.files);
     diagnostics.push(...(child.diagnostics ?? []));
   }
   const fields = { ...config, id, slug };
-  delete fields.section;
+  for (const key of keys) delete fields[key];
+  delete fields.children;
   delete fields.params;
   if (record(fields.locale)) {
     fields.locale = { ...fields.locale };
@@ -210,21 +208,21 @@ export function materializeEpisode(input, context = {}) {
     'const languages = ' +
     JSON.stringify([lang]) +
     ' as const satisfies SupportedLanguages;\n' +
-    'const section = { items: ' +
+    'const __sections = ' +
     sectionMap +
-    ', order: ' +
-    JSON.stringify(order) +
-    ' };\n\n' +
+    ';\n\n' +
     warning +
     'export const ' +
     exportName(slug) +
     ' = defineEpisode<' +
-    [JSON.stringify(slug), 'typeof languages', 'typeof section.items'].join(', ') +
+    [JSON.stringify(slug), 'typeof languages', 'typeof __sections'].join(', ') +
     '>({\n' +
     attrs +
     '\n  params: { ' +
     paramFields +
-    ' languages },\n  section,\n});\n';
+    ' languages },\n  children: ' +
+    JSON.stringify(order) +
+    ',\n  ...__sections,\n});\n';
   const produced = [
     ...files,
     ...sidecars(meta, dir, sectionNotes),

@@ -3,8 +3,10 @@ import { z } from 'zod';
 import { disability_Schema, type LanguageCode } from '#schemas';
 import type { ChildrenSupporting, DeepPartial } from '#types';
 
+import { validateSlugAddressedContainer } from '../_shared__configurators';
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import type { ContentBlock_Primitive_Configurator, ContentBlock_Primitive_Data } from '../contentBlocks';
+import { primitiveContentBlockTypes } from '../contentBlocks/contentBlock.constants';
 import {
   primitiveContentBlockConfigurator_Schema,
   primitiveContentBlockResolved_Schema,
@@ -23,11 +25,9 @@ export const createQuestionBaseSchema = <const Type extends Question_Type>(type:
     }),
   });
 
-/** Authoring collections are slug maps, never positional arrays. */
-export const questionBlockCollection_Config_Schema = z.object({
-  // Child Config validation belongs to the child; Question.validate checks its collection.
-  items: z.record(z.string(), primitiveContentBlockConfigurator_Schema),
-  order: z.array(z.string()),
+/** Fixed question/hint/explanation roles contain independent ordered block groups. */
+export const questionBlockCollection_Config_Schema = z.looseObject({
+  children: z.array(z.string()),
 });
 
 export const questionCommonContent_Config_Schema = z.object({
@@ -36,11 +36,29 @@ export const questionCommonContent_Config_Schema = z.object({
   explanation: questionBlockCollection_Config_Schema.optional(),
 });
 
-/** Published content is fully resolved and ordered, with no configurator objects. */
+/** Data retains stable child slugs; presentation arrays are a later adapter concern. */
+export const questionBlockCollection_Data_Schema = z
+  .looseObject({
+    children: z.array(z.string()),
+  })
+  .superRefine((group, ctx) => {
+    for (const issue of validateSlugAddressedContainer(group, primitiveContentBlockTypes)) {
+      ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+    }
+    for (const key of group.children) {
+      if (typeof key === 'string' && !primitiveContentBlockResolved_Schema.safeParse(group[key]).success) {
+        ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Question ContentBlock Data' });
+      }
+    }
+  });
+
 export const questionCommonContent_Data_Schema = z.object({
-  question: z.array(primitiveContentBlockResolved_Schema).min(1),
-  hint: z.array(primitiveContentBlockResolved_Schema).optional(),
-  explanation: z.array(primitiveContentBlockResolved_Schema).optional(),
+  question: questionBlockCollection_Data_Schema.refine(
+    group => group.children.length > 0,
+    'Question requires at least one prompt ContentBlock',
+  ),
+  hint: questionBlockCollection_Data_Schema.optional(),
+  explanation: questionBlockCollection_Data_Schema.optional(),
 });
 
 export type QuestionContent<Block = ContentBlock_Primitive_Configurator> = {
@@ -48,11 +66,10 @@ export type QuestionContent<Block = ContentBlock_Primitive_Configurator> = {
   hint?: OrderedBlocks<Block>;
   explanation?: OrderedBlocks<Block>;
 };
-
 export type QuestionPublishedContent<Block = ContentBlock_Primitive_Data> = {
-  question: [Block, ...Block[]];
-  hint?: Block[];
-  explanation?: Block[];
+  question: { children: string[] } & Record<string, Block | string[]>;
+  hint?: { children: string[] } & Record<string, Block | string[]>;
+  explanation?: { children: string[] } & Record<string, Block | string[]>;
 };
 
 export type QuestionMetadataOverrides<Config extends { params: object; locale: object }> = DeepPartial<
@@ -60,8 +77,14 @@ export type QuestionMetadataOverrides<Config extends { params: object; locale: o
 >;
 
 /** Parent language coverage must be a subset of each nested ContentBlock's scope. */
+type Members<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends ContentBlock_Primitive_Configurator
+    ? Group[Key]
+    : ContentBlock_Primitive_Configurator;
+};
+
 export type QuestionChildrenSupporting<Languages extends readonly LanguageCode[], Content extends QuestionContent> = {
-  question: { items: ChildrenSupporting<Languages, Content['question']['items']> };
-  hint?: { items: ChildrenSupporting<Languages, NonNullable<Content['hint']>['items']> };
-  explanation?: { items: ChildrenSupporting<Languages, NonNullable<Content['explanation']>['items']> };
+  question: ChildrenSupporting<Languages, Members<Content['question']>>;
+  hint?: ChildrenSupporting<Languages, Members<NonNullable<Content['hint']>>>;
+  explanation?: ChildrenSupporting<Languages, Members<NonNullable<Content['explanation']>>>;
 };

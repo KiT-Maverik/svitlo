@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
@@ -19,16 +17,19 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
-  validateRequestedPublication,
+  validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../../_shared__configurators';
 import {
   carousel_Config_Schema,
   carousel_Data_Schema,
+  carousel_Metadata_Config_Schema,
   carousel_Override_Config_Schema,
-  carousel_Slide_Data_Schema,
   carouselSlideTypes,
   type Carousel_Metadata_Overrides,
   type ContentBlock_Carousel_Config,
@@ -36,93 +37,120 @@ import {
   type ContentBlock_Carousel_Locale,
   type ContentBlock_Carousel_Overrides,
   type ContentBlock_Carousel_SlideConfigurator,
-  type ContentBlock_Carousel_SlideData,
 } from './defineCarousel.schemas';
 
 type Slide = ContentBlock_Carousel_SlideConfigurator;
-type SlidePatch = ReturnType<Slide['build']['overrides']>;
-type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'data'>> };
+type SlidePublication = {
+  base: Record<string, unknown>;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
+};
+type CarouselLocaleBody = {
+  locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;
+  [placementSlug: string]: unknown;
+};
 type CarouselLocaleFiles = Partial<Record<LanguageCode, CarouselLocaleBody>>;
 type CarouselPublication<Base> = { base: Base; locale: CarouselLocaleFiles | undefined };
 type CarouselOverrideBase = {
   params?: Carousel_Metadata_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'data'>>;
+  children?: string[];
+  [placementSlug: string]: unknown;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children']);
+const directSlides = (config: Record<string, unknown>): Record<string, unknown> =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
 
-/** Validate Carousel metadata and its collection boundary, never slide internals. */
+const hasBuildAPI = (slide: unknown, key: string): slide is Slide =>
+  isRecord(slide) &&
+  isRecord(slide.build) &&
+  typeof slide.build.data === 'function' &&
+  typeof slide.build.overrides === 'function' &&
+  isRecord(slide.config) &&
+  isRecord(slide.config.base) &&
+  slide.config.base.id === slide.id &&
+  slide.config.base.slug === key &&
+  slide.config.base.type === slide.type;
+
+/** Validate the Carousel collection boundary, leaving slide internals to the children. */
 const validate = (config: ContentBlock_Carousel_Config): void => {
+  const items = directSlides(config);
   const parsed = carousel_Config_Schema.safeParse(config);
-  if (!parsed.success) throw new Error('Invalid Carousel Config: ' + parsed.error.message);
+  const errors = [
+    ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
+    ...validateOrderedKeys(
+      { items, order: config.children },
+      {
+        path: 'children',
+        requireNonEmpty: true,
+      },
+    ).map(issue => issue.message),
+    ...validateSluggedConfiguratorMap(items, carouselSlideTypes, {
+      path: 'children',
+      itemLabel: 'Carousel slide',
+      reservedKeys: slugAddressedReservedKeys,
+    }).map(issue => issue.message),
+  ];
 
-  const issues: { check: string; path: string; message: string }[] = validateOrderedKeys(config.slides, {
-    path: 'slides',
-    requireNonEmpty: true,
-  });
-  if (isRecord(config.slides) && isRecord(config.slides.items)) {
-    issues.push(
-      ...validateSluggedConfiguratorMap(config.slides.items, carouselSlideTypes, {
-        path: 'slides.items',
-        itemLabel: 'Carousel slide',
-      }),
-    );
-    for (const [key, slide] of Object.entries(config.slides.items)) {
-      if (
-        !isRecord(slide) ||
-        !isRecord(slide.build) ||
-        typeof slide.build.data !== 'function' ||
-        typeof slide.build.overrides !== 'function'
-      ) {
-        issues.push({
-          check: 'item',
-          path: 'slides.items.' + key,
-          message: 'Carousel slide must expose the Build API',
-        });
-      }
+  const ids = new Set<string>();
+  let enabled = 0;
+  for (const [key, slide] of Object.entries(items)) {
+    if (!hasBuildAPI(slide, key)) errors.push('Invalid Carousel slide Build API or identity: ' + key);
+    if (isRecord(slide) && typeof slide.id === 'string') {
+      if (ids.has(slide.id)) errors.push('Duplicate Carousel slide ID: ' + slide.id);
+      ids.add(slide.id);
     }
+    if (hasBuildAPI(slide, key) && (!isRecord(slide.config.base.params) || slide.config.base.params.disabled !== true))
+      enabled++;
   }
-  if (issues.length) throw new Error('Invalid Carousel slides: ' + issues.map(issue => issue.message).join('; '));
+  if (!enabled) errors.push('At least one active Carousel slide is required');
+  if (errors.length) throw new Error('Invalid Carousel slides: ' + errors.join('; '));
 };
 
+type AuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Slide>,
+  Languages extends readonly LanguageCode[],
+> = Pick<ContentBlock_Carousel_Config, 'id' | 'type' | 'params' | 'locale'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
+  ConfigWithLanguages<ContentBlock_Carousel_Config, Languages>;
+
 /**
- * Display images and registered interactive Scenes in one ordered Carousel.
+ * Order a direct, slug-addressed collection of Image/Scene slides.
  *
- * @remarks
- * Author each slide with `defineImage` or `defineScene`. `slides.order` controls the
- * pedagogical sequence; at least one slide must remain enabled.
- *
- * @example
- * ```ts
- * slides: {
- *   items: configuratorArrayToSlugMap([firstSlide, secondSlide]),
- *   order: ['firstSlide', 'secondSlide'],
- * }
- * ```
+ * `children` is the only authoritative order in Config and domain Data;
+ * `slides[]` is a later UI Props projection, not an authored or Data field.
+ * Slide materialization keeps the existing `slides/<slug>/` source folders.
  */
 export const defineCarousel = <
   const Slug extends string,
   const Items extends Record<string, Slide>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<ContentBlock_Carousel_Config, 'slug' | 'slides'> & {
-    slug: Slug;
-    slides: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  } & ConfigWithLanguages<ContentBlock_Carousel_Config, Languages>,
+  config: AuthoredInput<Slug, Items, Languages>,
 ) => {
-  const metadataSchema = carousel_Config_Schema.omit({ slides: true });
-  const { slides: _slides, ...metadataInput } = config;
-  const authored: Omit<ContentBlock_Carousel_Config, 'slides'> = structuredClone(metadataInput);
-  const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
-  const { id, type } = authored;
-  const slug = config.slug;
-  const initialItems: Items = { ...config.slides.items };
-  const initialOrder = [...config.slides.order];
-  const slides = { items: { ...initialItems }, order: [...initialOrder] };
+  const metadataInput = {
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
+  };
+  const authored = structuredClone(metadataInput);
+  const copyAuthored = () => carousel_Metadata_Config_Schema.parse(structuredClone(authored));
+  const { id, slug, type } = authored;
+  const initialItems = directSlides(config) as unknown as Items;
+  const initialOrder = [...config.children];
+  const originalConfig = () => ({ ...copyAuthored(), children: [...initialOrder], ...initialItems });
 
-  const splitOwnLocale = (input: DeepPartial<ContentBlock_Carousel_Locale<'config'>>) => {
-    const { base: invariant, locale } = splitLocalizedFields(input);
+  const ownLocale = (input: DeepPartial<ContentBlock_Carousel_Locale<'config'>>) => {
+    const { base, locale } = splitLocalizedFields(input);
     const files: CarouselLocaleFiles = {};
     for (const [language, fields] of Object.entries(locale ?? {})) {
       files[language as LanguageCode] = {
@@ -130,66 +158,54 @@ export const defineCarousel = <
       };
     }
     return {
-      invariant: invariant as DeepPartial<ContentBlock_Carousel_Locale<'data'>>,
+      invariant: base as DeepPartial<ContentBlock_Carousel_Locale<'data'>>,
       files,
     };
   };
 
+  /** Compose direct child Data without materializing UI positional arrays. */
   const buildSlides = (
     items: Record<string, Slide>,
     order: readonly string[],
-    patches: Record<string, unknown> = {},
-  ): {
-    base: ContentBlock_Carousel_SlideData[] | undefined;
-    locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideData[]>>;
-  } => {
+    changes: Record<string, unknown> = {},
+  ) => {
     const { languages } = requireBuildContext();
-    const entries = order
-      .map(key => {
-        const slide = items[key];
-        const resource = buildChildData(slide);
-        const patch = Object.hasOwn(patches, key)
-          ? (buildChildOverrides(slide, patches[key] as never) as unknown as SlidePatch)
-          : undefined;
-        return { resource, patch };
-      })
-      .filter(({ resource, patch }) => {
-        // Disabled children are absent from resolved Carousel Props, like other nested
-        // ContentBlocks. Preserve the authored collection and its order unchanged.
-        const effective = mergeForValidation(resource.base, patch?.base ?? {});
-        return effective.params.disabled !== true;
-      });
-    if (!entries.length) throw new Error('At least one active Carousel slide is required');
+    const base: Record<string, unknown> = {};
+    const locale: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
+    const patches: Record<string, SlidePublication> = {};
+    const resources: Record<string, SlidePublication> = {};
+    const active: string[] = [];
 
-    const arraySchema = z.array(carousel_Slide_Data_Schema).min(1);
-    const invariant = entries.map(({ resource, patch }) => mergeForValidation(resource.base, patch?.base ?? {}));
-    const parsedInvariant = arraySchema.safeParse(invariant);
+    for (const key of order) {
+      const slide = items[key];
+      if (!slide) throw new Error('Missing Carousel slide: ' + key);
+      // Disabled authored children are absent from Data. They must not force a
+      // translated resource to exist for an otherwise unrelated Build scope.
+      if (
+        !Object.hasOwn(changes, key) &&
+        isRecord(slide.config.base.params) &&
+        slide.config.base.params.disabled === true
+      )
+        continue;
+      const resource = buildChildData(slide) as unknown as SlidePublication;
+      const patch = Object.hasOwn(changes, key)
+        ? (buildChildOverrides(slide, changes[key] as never) as unknown as SlidePublication)
+        : undefined;
+      const mergedBase = patch ? mergeForValidation(resource.base, patch.base) : resource.base;
+      if (isRecord(mergedBase.params) && mergedBase.params.disabled === true) continue;
 
-    const translatedLanguages = languages.filter(language =>
-      entries.some(
-        ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
-      ),
-    );
-    const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideData[]>> = {};
-    for (const language of translatedLanguages) {
-      const values = entries.map(({ resource, patch }) => {
-        const withLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const withPatchBase = mergeForValidation(withLocale, patch?.base ?? {});
-        return mergeForValidation(withPatchBase, patch?.locale?.[language] ?? {});
-      });
-      const parsed = arraySchema.safeParse(values);
-      if (!parsed.success) {
-        throw new Error('Incomplete Carousel slides for ' + language + ': ' + parsed.error.message, {
-          cause: parsed.error,
-        });
+      active.push(key);
+      base[key] = resource.base;
+      resources[key] = resource;
+      if (patch) patches[key] = patch;
+      for (const language of languages) {
+        if (resource.locale?.[language] !== undefined) {
+          (locale[language] ??= {})[key] = resource.locale[language];
+        }
       }
-      localized[language] = parsed.data;
     }
-
-    if (!parsedInvariant.success && !translatedLanguages.length) {
-      throw new Error('Carousel slides must be invariant or complete in their localized files');
-    }
-    return { base: parsedInvariant.success ? parsedInvariant.data : undefined, locale: localized };
+    if (!active.length) throw new Error('At least one active Carousel slide is required');
+    return { order: active, base, locale, patches, resources };
   };
 
   const base = {
@@ -198,66 +214,54 @@ export const defineCarousel = <
     type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<ContentBlock_Carousel_Config>;
+  };
 
   const data = (
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<ContentBlock_Carousel_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
+    validate(originalConfig());
     const metadata = copyAuthored();
-    const own = splitOwnLocale(metadata.locale);
-    const built = buildSlides(initialItems, initialOrder);
+    const own = ownLocale(metadata.locale);
+    const slides = buildSlides(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
-
-    for (const [language, entries] of Object.entries(built.locale)) {
-      (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
-    }
-    if (!built.base) {
-      for (const language of Object.keys(files) as LanguageCode[]) {
-        if (!files[language]?.locale.slides) {
-          throw new Error('Carousel slides are missing for localized title language ' + language);
-        }
-      }
+    for (const [language, fragments] of Object.entries(slides.locale)) {
+      Object.assign((files[language as LanguageCode] ??= {}), fragments);
     }
 
-    const result = {
+    const result: CarouselPublication<ContentBlock_Carousel_DataBase> = structuredClone({
       base: {
         id,
         slug,
         type,
         params: metadata.params,
-        ...(Object.keys(own.invariant).length || built.base
-          ? { locale: { ...own.invariant, ...(built.base ? { slides: built.base } : {}) } }
-          : {}),
+        ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
+        children: slides.order,
+        ...slides.base,
       },
       locale: Object.keys(files).length ? files : undefined,
-    };
-    validateRequestedPublication(carousel_Data_Schema, result, languages);
+    });
+    for (const language of languages) {
+      carousel_Data_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Slide> = {}>(
-    patch: ContentBlock_Carousel_Overrides<Items, Added> & {
-      slides?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
-    },
+  const overridesImplementation = <const Added extends Record<string, Slide> = {}>(
+    patch: ContentBlock_Carousel_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): CarouselPublication<CarouselOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), slides: { items: initialItems, order: initialOrder } });
+      validate(originalConfig());
       if (!isRecord(patch)) throw new Error('Expected Carousel overrides object');
-      for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'slides'].includes(key)) {
-          throw new Error('Unknown Carousel override field: ' + key);
-        }
-      }
-      const metadataPatch = carousel_Override_Config_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'slides')),
-      );
-      metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
 
-      const own = splitOwnLocale(metadataPatch.locale ?? {});
+      const metadataPatch = carousel_Override_Config_Schema.parse(
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
+      );
+      carousel_Metadata_Config_Schema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      const own = ownLocale(metadataPatch.locale ?? {});
+      const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: CarouselPublication<CarouselOverrideBase> = {
         base: {
           ...(metadataPatch.params !== undefined ? { params: metadataPatch.params } : {}),
@@ -265,93 +269,124 @@ export const defineCarousel = <
         },
         locale: undefined,
       };
-      const files = selectPublicationLocales(own.files, languages) ?? {};
 
-      if (patch.slides !== undefined && !isRecord(patch.slides)) {
-        throw new Error('slides must be an object');
-      }
-      if (patch.slides) {
-        for (const key of Object.keys(patch.slides)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) {
-            throw new Error('Unknown Carousel slides override field: ' + key);
-          }
+      if (patch.children !== undefined && !Array.isArray(patch.children))
+        throw new Error('children must be a replacement order array');
+
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Slide> = {};
+      for (const [key, value] of Object.entries(patch)) {
+        if (ownFields.has(key)) {
+          if (key !== 'params' && key !== 'locale' && key !== 'children')
+            throw new Error('Immutable Carousel override field: ' + key);
+          continue;
         }
+        if (Object.hasOwn(initialItems, key)) changes[key] = value;
+        else additions[key] = value as Slide;
       }
-      const changes = patch.slides?.items ?? {};
-      if (!isRecord(changes)) throw new Error('slides.items must be a slug-keyed object');
-      const additions = patch.slides?.additionalItems ?? {};
-      if (!isRecord(additions)) throw new Error('slides.additionalItems must be a slug-keyed configurator map');
-
-      const addedIssues = validateSluggedConfiguratorMap(additions, carouselSlideTypes, {
-        path: 'slides.additionalItems',
+      const issues = validateSluggedConfiguratorMap(additions, carouselSlideTypes, {
+        path: 'children',
         itemLabel: 'Carousel slide',
+        reservedKeys: slugAddressedReservedKeys,
       });
-      if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
-
-      const active: Record<string, Slide | false> = { ...initialItems };
-      const childPatches: Record<string, unknown> = {};
-      let structureChanged = Object.keys(additions).length > 0;
-      for (const [key, slide] of Object.entries(additions)) {
-        if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Carousel slide slug: ' + key);
-        if (
-          !isRecord(slide) ||
-          !isRecord(slide.build) ||
-          typeof slide.build.data !== 'function' ||
-          typeof slide.build.overrides !== 'function'
-        ) {
-          throw new Error('New Carousel slide must expose the Build API: ' + key);
-        }
-        active[key] = slide as Slide;
-      }
-      for (const [key, change] of Object.entries(changes)) {
-        if (!Object.hasOwn(initialItems, key))
-          throw new Error('Cannot override an unknown existing Carousel slide: ' + key);
-        if (change === false) {
-          active[key] = false;
-          structureChanged = true;
-        } else {
-          if (!isRecord(change)) throw new Error('Carousel slide overrides must be objects or false: ' + key);
-          childPatches[key] = change;
-        }
-      }
-      if (structureChanged && patch.slides?.order === undefined) {
-        throw new Error('slides.order is required when adding or disabling Carousel slides');
-      }
-      const order = patch.slides?.order ?? initialOrder;
-      const issues = validateOrderedKeys(
-        { items: active, order },
-        { path: 'slides', allowDisabled: true, requireNonEmpty: true },
-      );
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-      if (!order.length) throw new Error('At least one active Carousel slide is required');
 
-      const sourcePublication = data(options);
-      const modifiesSlides =
-        Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.slides?.order !== undefined;
-      if (modifiesSlides) {
-        const enabled = Object.fromEntries(
-          Object.entries(active).filter((entry): entry is [string, Slide] => entry[1] !== false),
-        );
-        const built = buildSlides(enabled, order, childPatches);
-        if (built.base) output.base.locale = { ...output.base.locale, slides: built.base };
-        for (const [language, entries] of Object.entries(built.locale)) {
-          (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
+      for (const [key, child] of Object.entries(additions)) {
+        if (!hasBuildAPI(child, key)) throw new Error('Invalid added Carousel slide Build API or identity: ' + key);
+      }
+      const candidates: Record<string, Slide | false> = { ...initialItems };
+      for (const [key, child] of Object.entries(additions)) {
+        if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Carousel slide slug: ' + key);
+        candidates[key] = child;
+      }
+
+      const childPatches: Record<string, SlidePublication> = {};
+      const originalEnabled = new Set(data(options).base.children);
+      let structural = Object.keys(additions).length > 0;
+      for (const [key, change] of Object.entries(changes)) {
+        if (change === false) {
+          candidates[key] = false;
+          structural = true;
+        } else {
+          if (!isRecord(change)) throw new Error('Carousel slide patch must be an object or false: ' + key);
+          const child = initialItems[key];
+          const resolved = buildChildOverrides(child, change as never) as unknown as SlidePublication;
+          childPatches[key] = resolved;
         }
-        // When a localized child is disabled or removed, the remaining slides may
-        // be invariant. Override the original language-specific arrays as well;
-        // otherwise the old arrays would resurrect the removed slide at assembly.
-        if (built.base) {
+      }
+
+      const enabled: Record<string, Slide> = {};
+      for (const [key, child] of Object.entries(candidates)) {
+        if (child === false) continue;
+        if (
+          !Object.hasOwn(childPatches, key) &&
+          isRecord(child.config.base.params) &&
+          child.config.base.params.disabled === true
+        )
+          continue;
+        const resource = buildChildData(child) as unknown as SlidePublication;
+        const patched = childPatches[key];
+        const effective = patched ? mergeForValidation(resource.base, patched.base) : resource.base;
+        if (isRecord(effective.params) && effective.params.disabled === true) {
+          if (originalEnabled.has(key)) structural = true;
+          continue;
+        }
+        if (!originalEnabled.has(key)) structural = true;
+        enabled[key] = child;
+      }
+      if (structural && patch.children === undefined)
+        throw new Error('children is required when adding or disabling Carousel slides');
+      const order = patch.children ?? initialOrder.filter(key => Object.hasOwn(enabled, key));
+      // Only effective active slides belong in the resolved order. An authored
+      // disabled slide can remain addressable in Config but is absent from Data.
+      const activeOrderIssues = validateOrderedKeys(
+        { items: enabled, order },
+        { path: 'children', requireNonEmpty: true },
+      );
+      if (activeOrderIssues.length) {
+        throw new Error(activeOrderIssues.map(issue => issue.message).join('; '));
+      }
+      validate({ ...copyAuthored(), children: [...order], ...enabled });
+      const built = buildSlides(enabled, order, changes);
+
+      if (structural || patch.children !== undefined) output.base.children = [...built.order];
+      for (const [key, change] of Object.entries(changes)) {
+        if (!Object.hasOwn(enabled, key)) {
+          output.base[key] = false;
+          continue;
+        }
+        const resource = buildChildData(enabled[key]) as unknown as SlidePublication;
+        if (!originalEnabled.has(key)) {
+          output.base[key] = mergeForValidation(resource.base, childPatches[key]?.base ?? {});
           for (const language of languages) {
-            if (sourcePublication.locale?.[language]?.locale.slides && !built.locale[language]) {
-              (files[language] ??= { locale: {} }).locale.slides = structuredClone(built.base);
-            }
+            const fragment = mergeForValidation(
+              resource.locale?.[language] ?? {},
+              childPatches[key]?.locale?.[language] ?? {},
+            );
+            if (Object.keys(fragment).length) (files[language] ??= {})[key] = fragment;
           }
+        } else {
+          output.base[key] = childPatches[key]?.base ?? {};
+          for (const language of languages) {
+            const fragment = childPatches[key]?.locale?.[language];
+            if (fragment !== undefined) (files[language] ??= {})[key] = fragment;
+          }
+        }
+      }
+      for (const [key, child] of Object.entries(additions)) {
+        if (!Object.hasOwn(enabled, key)) continue;
+        const resource = buildChildData(child) as unknown as SlidePublication;
+        output.base[key] = resource.base;
+        for (const language of languages) {
+          const fragment = resource.locale?.[language];
+          if (fragment !== undefined) (files[language] ??= {})[key] = fragment;
         }
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
-      validateRequestedPublication(carousel_Data_Schema, sourcePublication, languages, output);
-      return output;
+      const published = structuredClone(output);
+      validateSlugAddressedPublication(carousel_Data_Schema, data(options), languages, published);
+      return published;
     } catch (error) {
       throw new Error(
         'Invalid Carousel overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
@@ -360,11 +395,25 @@ export const defineCarousel = <
     }
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch &
+        ContentBlock_Carousel_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Slide>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Slide>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+    (
+      patch: ContentBlock_Carousel_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): CarouselPublication<CarouselOverrideBase>;
+  } = overridesImplementation;
+
   const result = {
+    ...initialItems,
     id,
     slug,
     type,
-    slides,
+    children: [...initialOrder],
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -378,4 +427,16 @@ export const defineCarousel = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_Carousel_Configurator = ReturnType<typeof defineCarousel>;
+type DefinedCarousel = ReturnType<typeof defineCarousel>;
+/** The parent-facing union erases a composite's generic placement index. */
+export type ContentBlock_Carousel_Configurator = Pick<DefinedCarousel, 'validate' | 'config'> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'carousel';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedCarousel['build']['overrides']>;
+  };
+};

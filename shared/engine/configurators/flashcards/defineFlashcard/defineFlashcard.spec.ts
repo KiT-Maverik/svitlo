@@ -8,6 +8,7 @@ import {
   flashcard_Config_Schema,
   flashcard_Data_Schema,
   flashcardConfigurator_Schema,
+  type Flashcard_Config,
 } from './defineFlashcard.schemas';
 
 describe('Configurators', () => {
@@ -42,10 +43,11 @@ describe('Configurators', () => {
         params: {},
         locale: { value: 'More' },
       });
-      const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
-        const block = blocks?.[0];
-        if (block?.type !== 'text') return undefined;
-        return (block.locale as { value?: string } | undefined)?.value;
+      const textValue = (side: ({ children: string[] } & Record<string, unknown>) | undefined): string | undefined => {
+        const key = side?.children[0];
+        const block = key ? side?.[key] : undefined;
+        if (!block || typeof block !== 'object' || !('type' in block) || block.type !== 'text') return undefined;
+        return (('locale' in block ? block.locale : undefined) as { value?: string } | undefined)?.value;
       };
       const flagValue = (flags: readonly unknown[] | undefined, index: number): string | undefined => {
         const flag = flags?.[index];
@@ -64,25 +66,24 @@ describe('Configurators', () => {
             { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
           ],
           relationships: {
-            items: {
-              reverseLink: {
-                relationshipId: 'r1',
-                type: 'reverse' as const,
-                relatedFlashcardId: id('a5'),
-                position: 'peer' as const,
-              },
+            children: ['reverseLink' as const],
+            reverseLink: {
+              relationshipId: 'r1',
+              type: 'reverse' as const,
+              relatedFlashcardId: id('a5'),
+              position: 'peer' as const,
             },
-            order: ['reverseLink'],
           },
         },
         content: {
-          front: defineFlashcardSide<{ front: typeof front }, ['en', 'uk']>({ items: { front }, order: ['front'] }),
-          back: defineFlashcardSide<{ back: typeof back }, ['en', 'uk']>({ items: { back }, order: ['back'] }),
-          hint: defineFlashcardSide<{ hint: typeof hint }, ['en', 'uk']>({ items: { hint }, order: ['hint'] }),
+          front: defineFlashcardSide<{ front: typeof front }, ['en', 'uk']>({ children: ['front'], front }),
+          back: defineFlashcardSide<{ back: typeof back }, ['en', 'uk']>({ children: ['back'], back }),
+          hint: defineFlashcardSide<{ hint: typeof hint }, ['en', 'uk']>({ children: ['hint'], hint }),
         },
       };
       const defineBilingualFlashcard = (
-        config: Omit<typeof source, 'content'> & {
+        config: Omit<typeof source, 'content' | 'parameters'> & {
+          parameters: typeof source.parameters & Pick<Flashcard_Config['parameters'], 'disabilities'>;
           content: {
             front: typeof source.content.front;
             back: typeof source.content.back;
@@ -92,11 +93,11 @@ describe('Configurators', () => {
       ) =>
         defineFlashcard<
           typeof source.slug,
-          typeof source.content.front.items,
-          typeof source.content.back.items,
-          typeof source.content.hint.items,
+          Pick<typeof source.content.front, 'front'>,
+          Pick<typeof source.content.back, 'back'>,
+          Pick<typeof source.content.hint, 'hint'>,
           typeof source.parameters.flags,
-          typeof source.parameters.relationships.items,
+          Pick<typeof source.parameters.relationships, 'reverseLink'>,
           ['en', 'uk']
         >(config);
 
@@ -106,8 +107,8 @@ describe('Configurators', () => {
           slug: 'invariantFlashcard',
           parameters: { tags: [], flags: [] },
           content: {
-            front: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
-            back: defineFlashcardSide({ items: { extra }, order: ['extra'] }),
+            front: defineFlashcardSide({ children: ['extra'], extra }),
+            back: defineFlashcardSide({ children: ['extra'], extra }),
           },
         });
         const resource = card.build.data({ languages: ['en', 'uk'] });
@@ -161,7 +162,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard validates disability restrictions and publishes safe overrides', () => {
-        const card = defineFlashcard({
+        const card = defineBilingualFlashcard({
           ...source,
           parameters: { ...source.parameters, disabilities: ['deafness'] },
         });
@@ -180,20 +181,16 @@ describe('Configurators', () => {
 
       test('Flashcard composes ordered sides and unordered flag arrays as JSON-only published Props', () => {
         const card = defineBilingualFlashcard(source);
-        assert.equal(card.content.front.items.front, front);
+        assert.equal(card.content.front.front, front);
         assert.equal(card.build.data({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug),
-          ['front'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
         assert.deepEqual(
           card.build.data({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x!.type),
           ['list', 'acronym'],
         );
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId),
-          ['r1'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.parameters.relationships?.children, [
+          'reverseLink',
+        ]);
         assert.equal(textValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
         assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
         assert.equal(flagValue(card.build.data({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
@@ -215,19 +212,13 @@ describe('Configurators', () => {
         const card = defineBilingualFlashcard(source);
         const first = card.build.overrides(
           {
-            content: { front: { items: { front: false }, additionalItems: { extra }, order: ['extra'] } },
+            content: { front: { front: false, extra, children: ['extra'] } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          first.base.content?.front?.map(block => block.slug),
-          ['extra'],
-        );
+        assert.deepEqual(first.base.content?.front?.children, ['extra']);
         assert.deepEqual(first.locale, undefined);
-        assert.deepEqual(
-          card.build.data({ languages: ['en', 'uk'] }).base.content.front.map(block => block.slug),
-          ['front'],
-        );
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
         const second = card.build.overrides(
           {
             parameters: {
@@ -252,7 +243,59 @@ describe('Configurators', () => {
         );
         assert.deepEqual(cleared.base.parameters?.flags, []);
         assert.equal(cleared.locale, undefined);
-        assert.equal(card.content.front.items.front, front);
+        assert.equal(card.content.front.front, front);
+      });
+
+      test('Flashcard Side publishes no inherited siblings for sparse patches', () => {
+        const side = defineFlashcardSide<{ front: typeof front; extra: typeof extra }, ['en', 'uk']>({
+          children: ['front', 'extra'],
+          front,
+          extra,
+        });
+        assert.deepEqual(side.build.overrides({}, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        const changedBase = side.build.overrides({ extra: { params: { disabled: true } } }, { languages: ['uk'] });
+        assert.deepEqual(changedBase.base, { extra: { params: { disabled: true } } });
+        assert.equal(changedBase.locale, undefined);
+        const localized = side.build.overrides(
+          { front: { locale: { value: { uk: 'Нове запитання' } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk, {
+          front: { locale: { value: 'Нове запитання' } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        assert.equal('extra' in (localized.locale?.uk ?? {}), false);
+        const structural = side.build.overrides({ front: false, children: ['extra'] }, { languages: ['uk'] });
+        assert.deepEqual(structural.base.children, ['extra']);
+        assert.equal('front' in structural.base, false);
+        assert.equal('extra' in structural.base, true);
+        assert.deepEqual(side.build.data({ languages: ['en', 'uk'] }).base.children, ['front', 'extra']);
+      });
+
+      test('Flashcard parent preserves sparse Side patches and only replaces explicitly ordered groups', () => {
+        const card = defineBilingualFlashcard(source);
+        assert.deepEqual(card.build.overrides({}, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        assert.deepEqual(card.build.overrides({ content: { front: {} } }, { languages: ['uk'] }), {
+          base: {},
+          locale: undefined,
+        });
+        const localized = card.build.overrides(
+          { content: { front: { front: { locale: { value: { uk: 'Нове запитання' } } } } } },
+          { languages: ['uk'] },
+        );
+        assert.deepEqual(localized.base, {});
+        assert.deepEqual(localized.locale?.uk?.content?.front, {
+          front: { locale: { value: 'Нове запитання' } },
+        });
+        assert.equal(localized.locale?.en, undefined);
+        assert.deepEqual(card.build.data({ languages: ['en', 'uk'] }).base.content.front.children, ['front']);
       });
 
       test('Flashcard rejects invalid metadata, identity, duplicate flags and empty mandatory side', () => {
@@ -265,7 +308,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                content: { front: { items: { front: false }, order: [] } },
+                content: { front: { front: false, children: [] } },
               },
               { languages: ['en', 'uk'] },
             ),
@@ -275,11 +318,11 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                content: { front: { additionalItems: { extra } } },
+                content: { front: { extra } },
               },
               { languages: ['en', 'uk'] },
             ),
-          /order is required/,
+          /children is required/,
         );
         assert.throws(
           () =>
@@ -295,7 +338,7 @@ describe('Configurators', () => {
           () =>
             card.build.overrides(
               {
-                parameters: { relationships: { items: { reverseLink: { relationshipId: 'changed' } } } },
+                parameters: { relationships: { reverseLink: { relationshipId: 'changed' } } },
               } as never,
               { languages: ['en', 'uk'] },
             ),
@@ -319,11 +362,79 @@ describe('Configurators', () => {
             content: {
               ...source.content,
               front: defineFlashcardSide({
-                items: { front: front.config.base } as never,
-                order: ['front'],
-              }) as unknown as typeof source.content.front,
+                children: ['front'],
+                front: front.config.base,
+              } as never) as unknown as typeof source.content.front,
             },
           }).build.data({ languages: ['en'] }),
+        );
+      });
+
+      test('rejects unsafe, stale and unknown Side children without weakening front/back roles', () => {
+        const wrongOrder = defineFlashcardSide({ children: ['missing'], front } as never);
+        assert.throws(() => wrongOrder.build.data({ languages: ['en'] }), /Unknown or disabled child/);
+        const stale = defineFlashcardSide({ children: [], front } as never);
+        assert.throws(() => stale.build.data({ languages: ['en'] }), /Unlisted\/stale child/);
+        const reserved = defineFlashcardSide({ children: ['items'], items: front } as never);
+        assert.throws(() => reserved.build.data({ languages: ['en'] }), /Reserved child placement slug/);
+
+        const card = defineBilingualFlashcard(source);
+        assert.throws(
+          () => card.build.overrides({ content: { front: { children: ['missing'] } } } as never, { languages: ['en'] }),
+          /Invalid Flashcard overrides/,
+        );
+        assert.deepEqual(card.build.data({ languages: ['en'] }).base.content.front.children, ['front']);
+      });
+
+      test('relationship references keep identity and support atomic structural changes', () => {
+        const card = defineBilingualFlashcard(source);
+        const original = card.build.data({ languages: ['en'] });
+        const cleared = card.build.overrides(
+          { parameters: { relationships: { reverseLink: false, children: [] } } },
+          { languages: ['en'] },
+        );
+        assert.deepEqual(cleared.base.parameters?.relationships?.children, []);
+        assert.deepEqual(card.build.data({ languages: ['en'] }), original);
+        assert.throws(
+          () =>
+            defineBilingualFlashcard({
+              ...source,
+              parameters: {
+                ...source.parameters,
+                relationships: {
+                  children: ['reverseLink', 'duplicate'],
+                  reverseLink: source.parameters.relationships.reverseLink,
+                  duplicate: { ...source.parameters.relationships.reverseLink },
+                },
+              } as never,
+            }).build.data({ languages: ['en'] }),
+          /Duplicate Flashcard relationship ID/,
+        );
+      });
+
+      test('Flashcard rejects all-disabled required sides and reserved relationship keys', () => {
+        const card = defineBilingualFlashcard(source);
+        assert.throws(
+          () =>
+            card.build.overrides(
+              { content: { front: { front: { params: { disabled: true } } } } },
+              { languages: ['en'] },
+            ),
+          /enabled ContentBlock/,
+        );
+        assert.throws(
+          () =>
+            defineFlashcard({
+              ...source,
+              parameters: {
+                ...source.parameters,
+                relationships: {
+                  children: ['items'],
+                  items: source.parameters.relationships.reverseLink,
+                },
+              },
+            } as never).build.data({ languages: ['en'] }),
+          /Invalid Flashcard relationship slug: items/,
         );
       });
 

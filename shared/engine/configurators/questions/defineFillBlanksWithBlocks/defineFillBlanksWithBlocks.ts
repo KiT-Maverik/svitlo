@@ -22,6 +22,7 @@ import {
   validateEffectiveQuestionMetadata,
   validateNestedBlockCollection,
   validateQuestionPublication,
+  type BlockMembers,
   type OrderedBlockPatch,
   type PublicationLanguageOptions,
   type QuestionCommonPatch,
@@ -29,7 +30,7 @@ import {
   type QuestionResourcePublication,
   type ResolvableBlockPatch,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -48,28 +49,36 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
   fillBlanksWithBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateNestedBlockCollection(candidate.content.slots, 'content.slots', ['correctAnswer']);
-  if (!candidate.content.slots.order.length) throw new Error('FillBlanksWithBlocks requires at least one slot');
+  if (!candidate.content.slots.children.length) throw new Error('FillBlanksWithBlocks requires at least one slot');
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
 
 type ContentShape = Question_FillBlanksWithBlocks_Config['content'];
 type SlotBlock = { correctAnswer: ContentBlock_Primitive_Configurator };
+type SlotBlockMembers<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends SlotBlock ? Group[Key] : SlotBlock;
+};
+type AddedSlotsFromPatch<Patch, Content extends ContentShape> = Patch extends { content: { slots: infer Collection } }
+  ? AddedPlacementsFromPatch<Collection, SlotBlockMembers<Content['slots']>, SlotBlock, 'children'>
+  : {};
+
 type SlotBlocksOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, SlotBlock>,
   Languages extends readonly LanguageCode[],
 > = {
-  items?: {
-    [Key in keyof Content['slots']['items']]?:
-      { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false;
-  };
-  additionalItems?: AddedSlots & {
+  children?: Extract<keyof SlotBlockMembers<Content['slots']> | keyof NoInfer<AddedSlots>, string>[];
+} & {
+  [Key in keyof SlotBlockMembers<Content['slots']>]?:
+    | {
+        correctAnswer?: Parameters<SlotBlockMembers<Content['slots']>[Key]['correctAnswer']['build']['overrides']>[0];
+      }
+    | false;
+} & AddedSlots & {
     [Key in keyof AddedSlots]: {
       correctAnswer: ChildSupporting<Languages, AddedSlots[Key]['correctAnswer']>;
     };
-  } & { [Key in keyof Content['slots']['items']]?: never };
-  order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
-};
+  };
 export type Question_FillBlanksWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -78,7 +87,7 @@ export type Question_FillBlanksWithBlocks_Overrides<
 > = Question_FillBlanksWithBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
     slots?: SlotBlocksOverride<Content, AddedSlots, Languages>;
-    distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
+    distractors?: OrderedBlockPatch<BlockMembers<Content['distractors']>, Added, Languages>;
   };
 };
 
@@ -86,7 +95,7 @@ export type Question_FillBlanksWithBlocks_Overrides<
  * Author named gaps whose correct answers are ContentBlocks.
  *
  * @remarks
- * Each entry in `content.slots.items` owns one `correctAnswer`
+ * Each entry in `content.slots` owns one `correctAnswer`
  * configurator. Use `content.distractors` for plausible incorrect blocks.
  * The slots define where the correct blocks belong, so keep at least one
  * active slot and use meaningful stable slot names.
@@ -101,13 +110,11 @@ export const defineFillBlanksWithBlocks = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         slots: {
-          items: {
-            [Key in keyof Content['slots']['items']]: {
-              correctAnswer: ChildSupporting<Languages, Content['slots']['items'][Key]['correctAnswer']>;
-            };
+          [Key in keyof SlotBlockMembers<Content['slots']>]: {
+            correctAnswer: ChildSupporting<Languages, SlotBlockMembers<Content['slots']>[Key]['correctAnswer']>;
           };
         };
-        distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
+        distractors: ChildrenSupporting<Languages, BlockMembers<Content['distractors']>>;
       };
   } & ConfigWithLanguages<Question_FillBlanksWithBlocks_Config, Languages>,
 ) => {
@@ -131,11 +138,7 @@ export const defineFillBlanksWithBlocks = <
     source: Content,
     languages: readonly LanguageCode[],
     patch?: {
-      slots?: {
-        items?: Record<string, unknown>;
-        additionalItems?: Record<string, unknown>;
-        order?: string[];
-      };
+      slots?: { children?: string[]; [key: string]: unknown };
       distractors?: ResolvableBlockPatch;
     },
   ) => {
@@ -143,12 +146,12 @@ export const defineFillBlanksWithBlocks = <
     const locale: Record<string, Record<string, unknown>> = {};
     if (!patch || patch.slots !== undefined) {
       const result = resolveSlotBlocks(source.slots, languages, patch?.slots as never);
-      base.slots = result.base;
+      if (Object.keys(result.base).length) base.slots = result.base;
       for (const [language, slots] of Object.entries(result.locale)) (locale[language] ??= {}).slots = slots;
     }
     if (!patch || patch.distractors !== undefined) {
       const result = resolveBlockCollection(source.distractors, languages, patch?.distractors, 'content.distractors');
-      base.distractors = result.base;
+      if (Object.keys(result.base).length) base.distractors = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {}).distractors = entries;
     }
     return { base, locale };
@@ -180,11 +183,12 @@ export const defineFillBlanksWithBlocks = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedSlots extends Record<string, SlotBlock> = {},
   >(
-    patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
+    patch: Patch &
+      Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data> => {
     try {
@@ -236,6 +240,21 @@ export const defineFillBlanksWithBlocks = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch &
+        Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlotsFromPatch<Patch, Content>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
+    (
+      patch: Question_FillBlanksWithBlocks_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,

@@ -8,17 +8,19 @@ import {
   requireBuildContext,
   resolvePublicationLanguages,
   scopeBuild,
+  slugAddressedReservedKeys,
   validateOrderedKeys,
   validateRequestedPublication,
+  validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../../../_shared__configurators';
-import type { ConfiguratorChild } from '../../../../../types/configuratorChild';
 import { primitiveContentBlockTypes } from '../../../contentBlock.constants';
 import {
   checkpointAnswer_Config_Schema,
   checkpointAnswer_Data_Schema,
   type Checkpoint_Allowed_Configurator,
-  type Checkpoint_Allowed_DataBase,
   type CheckpointAnswer_Overrides,
   type ContentBlock_CheckpointAnswer_Config,
 } from './defineCheckpointAnswer.schemas';
@@ -36,11 +38,36 @@ export class CheckpointAnswerValidationError extends Error {
   }
 }
 
-const allowedTypes = primitiveContentBlockTypes;
-const isObject = (value: unknown): value is Record<string, unknown> =>
-  value !== null && typeof value === 'object' && !Array.isArray(value);
+type Block = Checkpoint_Allowed_Configurator;
+type BlockResource = {
+  base: Record<string, unknown>;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
+};
+type BlockPatch = {
+  base: DeepPartial<Record<string, unknown>>;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
+};
+type AnswerLocaleFiles = Partial<Record<LanguageCode, Record<string, unknown>>>;
+type AnswerPublication<Base> = { base: Base; locale: AnswerLocaleFiles | undefined };
+type AnswerBase = Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'slug' | 'type'> & {
+  children: string[];
+  [placementSlug: string]: unknown;
+};
+type AnswerOverrideBase = { children?: string[]; [placementSlug: string]: unknown };
 
-/** Validate Answer identity and collection boundaries; children own their validation. */
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+const ownFields = new Set(['id', 'slug', 'type', 'children']);
+const directBlocks = (config: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
+/** Disabled authored children remain in Config, but never enter canonical Data. */
+const enabledAuthoredOrder = (items: Record<string, Block>, order: readonly string[]) =>
+  order.filter(key => {
+    const params = items[key]?.config.base.params;
+    return !isRecord(params) || params.disabled !== true;
+  });
+
+/** Parent owns the Primitive-only collection boundary; each child validates itself. */
 const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
   const result: CheckpointAnswerValidationResult = {
     success: true,
@@ -52,190 +79,229 @@ const validate = (config: ContentBlock_CheckpointAnswer_Config): void => {
   };
   const parsed = checkpointAnswer_Config_Schema.safeParse(config);
   if (!parsed.success) for (const issue of parsed.error.issues) fail('metadata', issue.path.join('.'), issue.message);
-
-  const content = config?.content;
-  for (const issue of validateOrderedKeys(content, { path: 'content', requireNonEmpty: true }))
+  const blocks = isRecord(config) ? directBlocks(config) : {};
+  for (const issue of validateOrderedKeys(
+    { items: blocks, order: config?.children },
+    { path: 'children', requireNonEmpty: true },
+  ))
     fail(issue.check, issue.path, issue.message);
-  if (isObject(content) && isObject(content.items) && Array.isArray(content.order)) {
-    for (const issue of validateSluggedConfiguratorMap(content.items, allowedTypes, {
-      path: 'content.items',
-      itemLabel: 'answer',
-    }))
-      fail(issue.check, issue.path, issue.message);
-    for (const [key, child] of Object.entries(content.items)) {
-      if (
-        !isObject(child) ||
-        !isObject(child.build) ||
-        typeof child.build.data !== 'function' ||
-        typeof child.build.overrides !== 'function'
-      )
-        fail('content', 'content.items.' + key, 'Answer must expose the ContentBlock Build API');
+  for (const issue of validateSluggedConfiguratorMap(blocks, primitiveContentBlockTypes, {
+    path: 'children',
+    itemLabel: 'Checkpoint Answer Primitive',
+    reservedKeys: slugAddressedReservedKeys,
+  }))
+    fail(issue.check, issue.path, issue.message);
+  if (!Array.isArray(config?.children) || !config.children.length)
+    fail('children', 'children', 'At least one active answer is required');
+  const ids = new Set<string>();
+  for (const [key, child] of Object.entries(blocks)) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.data !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
+    )
+      fail('child', key, 'Invalid Answer Primitive Build API or identity: ' + key);
+    if (isRecord(child) && typeof child.id === 'string') {
+      if (ids.has(child.id)) fail('id', key, 'Duplicate answer child ID: ' + child.id);
+      ids.add(child.id);
     }
   }
   result.success = result.errors.length === 0;
   if (!result.success) throw new CheckpointAnswerValidationError(result);
 };
 
-type ChildPublication = {
-  base: Checkpoint_Allowed_DataBase;
-  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
-};
-type ChildPatchPublication = Omit<ChildPublication, 'base'> & {
-  base: DeepPartial<Checkpoint_Allowed_DataBase>;
-};
-type AnswerLocaleFiles = Partial<Record<LanguageCode, { content: Record<string, unknown>[] }>>;
-type AnswerPublication<Base> = { base: Base; locale: AnswerLocaleFiles | undefined };
-type AnswerBase = Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'slug' | 'type'> & {
-  content: Checkpoint_Allowed_DataBase[];
-};
-type AnswerOverrideBase = { content?: Checkpoint_Allowed_DataBase[] };
+type AuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Block>,
+  Languages extends readonly LanguageCode[],
+> = Pick<ContentBlock_CheckpointAnswer_Config, 'id' | 'type'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items>;
 
 /**
- * Independently identified and ordered Checkpoint Answer. The Answer id comes
- * from authored Config; no runtime or scaffolder-generated IDs are allowed.
- * Its parent CheckpointItem publishes only the ordered ContentBlocks array.
+ * Independently identified and ordered Checkpoint Answer. It owns only
+ * Primitive placements. The Item retains this identified role in domain Data;
+ * the presentation adapter may project the ordered blocks for the learner.
  */
 export const defineCheckpointAnswer = <
   const Slug extends string,
-  const Items extends Record<string, Checkpoint_Allowed_Configurator>,
+  const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<ContentBlock_CheckpointAnswer_Config, 'slug' | 'content'> & {
-    slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  },
+  config: AuthoredInput<Slug, Items, Languages>,
 ) => {
   const { id, type, slug } = config;
-  const initialItems: Items = { ...config.content.items };
-  const initialOrder = [...config.content.order];
-  const content = { items: { ...initialItems }, order: [...initialOrder] };
+  const initialItems = directBlocks(config) as unknown as Items;
+  const initialOrder = [...config.children];
   const base = { id, slug, type } as const;
-
-  const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
-    buildChildData(child) as unknown as ChildPublication;
-  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
-    buildChildOverrides(child, patch as never) as unknown as ChildPatchPublication;
+  const originalConfig = () => ({ ...base, children: [...initialOrder], ...initialItems });
 
   const buildContent = (
-    items: Record<string, Checkpoint_Allowed_Configurator>,
+    items: Record<string, Block>,
     order: readonly string[],
     patches: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
-      const original = buildChild(child);
-      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key]) : undefined;
-      return { original, patch };
+      if (!child) throw new Error('Missing Answer Primitive: ' + key);
+      const original = buildChildData(child) as unknown as BlockResource;
+      const patch = Object.hasOwn(patches, key)
+        ? (buildChildOverrides(child, patches[key] as never) as unknown as BlockPatch)
+        : undefined;
+      return { key, original, patch };
     });
-    const bases = entries.map(({ original, patch }) =>
-      patch ? mergeForValidation(original.base, patch.base) : original.base,
-    );
-    const locales: AnswerLocaleFiles = {};
-    for (const language of languages) {
-      if (
-        !entries.some(
-          ({ original, patch }) => original.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
-        )
-      )
-        continue;
-      locales[language] = {
-        content: entries.map(({ original, patch }) => {
-          const source = mergeForValidation(original.base, original.locale?.[language] ?? {});
-          const withBase = patch ? mergeForValidation(source, patch.base) : source;
-          return patch?.locale?.[language] ? mergeForValidation(withBase, patch.locale[language]) : withBase;
-        }),
-      };
+    const base: Record<string, unknown> = {};
+    const childPatches: Record<string, BlockPatch> = {};
+    for (const { key, original, patch } of entries) {
+      base[key] = patch ? mergeForValidation(original.base, patch.base) : original.base;
+      if (patch) childPatches[key] = patch;
     }
-    return { bases, locales };
+    const locale: AnswerLocaleFiles = {};
+    for (const language of languages) {
+      const fragments: Record<string, unknown> = {};
+      for (const { key, original, patch } of entries) {
+        // Locale files are sparse fragments, not fully resolved child Data.
+        // Invariant identity/params stay in base and are merged for validation.
+        const translated = mergeForValidation(original.locale?.[language] ?? {}, patch?.locale?.[language] ?? {});
+        if (Object.keys(translated).length) fragments[key] = translated;
+      }
+      if (Object.keys(fragments).length) locale[language] = fragments;
+    }
+    return { base, locale, childPatches };
   };
 
   const data = (options: PublicationLanguageOptions<Languages>): AnswerPublication<AnswerBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
-    const built = buildContent(initialItems, initialOrder);
-    const output = {
-      base: { id, slug, type, content: built.bases },
-      locale: Object.keys(built.locales).length ? built.locales : undefined,
-    };
+    validate(originalConfig());
+    const enabledOrder = enabledAuthoredOrder(initialItems, initialOrder);
+    const built = buildContent(initialItems, enabledOrder);
+    const output: AnswerPublication<AnswerBase> = structuredClone({
+      base: { id, slug, type, children: enabledOrder, ...built.base },
+      locale: Object.keys(built.locale).length ? built.locale : undefined,
+    });
     validateRequestedPublication(checkpointAnswer_Data_Schema, output, languages);
     return output;
   };
 
-  const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
-    patch: CheckpointAnswer_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
-    },
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
+    patch: CheckpointAnswer_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): AnswerPublication<AnswerOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ id, type, slug, content: { items: initialItems, order: initialOrder } });
-      if (!isObject(patch)) throw new Error('Expected an overrides object');
-      for (const key of Object.keys(patch))
-        if (key !== 'content') throw new Error('Unknown Answer override field: ' + key);
-      if (patch.content !== undefined && !isObject(patch.content)) throw new Error('content must be an object');
-      if (patch.content)
-        for (const key of Object.keys(patch.content))
-          if (!['items', 'additionalItems', 'order'].includes(key))
-            throw new Error('Unknown Answer content override field: ' + key);
-
-      const changes = patch.content?.items ?? {};
-      const additions = patch.content?.additionalItems ?? {};
-      if (!isObject(changes)) throw new Error('content.items must be a slug-keyed object');
-      if (!isObject(additions)) throw new Error('content.additionalItems must be a slug-keyed map');
-      const issues = validateSluggedConfiguratorMap(additions, allowedTypes, {
-        path: 'content.additionalItems',
-        itemLabel: 'ContentBlock',
+      validate(originalConfig());
+      if (!isRecord(patch)) throw new Error('Expected an Answer overrides object');
+      if (patch.children !== undefined && !Array.isArray(patch.children))
+        throw new Error('children must be a replacement order array');
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Block> = {};
+      for (const [key, value] of Object.entries(patch)) {
+        if (ownFields.has(key)) {
+          if (key !== 'children') throw new Error('Immutable Answer override field: ' + key);
+          continue;
+        }
+        if (Object.hasOwn(initialItems, key)) changes[key] = value;
+        else additions[key] = value as unknown as Block;
+      }
+      const issues = validateSluggedConfiguratorMap(additions, primitiveContentBlockTypes, {
+        path: 'children',
+        itemLabel: 'Answer Primitive',
+        reservedKeys: slugAddressedReservedKeys,
       });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-
-      const enabled: Record<string, Checkpoint_Allowed_Configurator | false> = { ...initialItems };
+      const source = data(options);
+      const initiallyEnabled = new Set(source.base.children);
+      const active: Record<string, Block | false> = { ...initialItems };
       const childPatches: Record<string, unknown> = {};
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate answer slug: ' + key);
-        if (
-          !isObject(child) ||
-          !isObject(child.build) ||
-          typeof child.build.data !== 'function' ||
-          typeof child.build.overrides !== 'function'
-        )
-          throw new Error('New ContentBlock must expose the Build API: ' + key);
-        enabled[key] = child as Checkpoint_Allowed_Configurator;
+        active[key] = child;
       }
       for (const [key, value] of Object.entries(changes)) {
-        if (!Object.hasOwn(initialItems, key)) throw new Error('Cannot override an unknown existing answer: ' + key);
         if (value === false) {
-          enabled[key] = false;
+          active[key] = false;
           structureChanged = true;
-        } else {
-          if (!isObject(value)) throw new Error('Answer overrides must be objects or false: ' + key);
+        } else if (isRecord(value)) {
           childPatches[key] = value;
+        } else {
+          throw new Error('Answer child override must be an object or false: ' + key);
         }
       }
-      if (structureChanged && patch.content?.order === undefined)
-        throw new Error('content.order is required when adding or disabling answers');
-      const order = patch.content?.order ?? initialOrder;
-      const orderIssues = validateOrderedKeys(
-        { items: enabled, order },
-        { path: 'content', allowDisabled: true, requireNonEmpty: true },
-      );
-      if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
-      if (!order.length) throw new Error('At least one active answer is required');
-
-      const output: AnswerPublication<AnswerOverrideBase> = { base: {}, locale: undefined };
-      if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
-        const active = Object.fromEntries(
-          Object.entries(enabled).filter(
-            (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
-          ),
-        );
-        const built = buildContent(active, order, childPatches);
-        output.base.content = built.bases;
-        output.locale = Object.keys(built.locales).length ? built.locales : undefined;
+      const enabled: Record<string, Block> = {};
+      for (const [key, child] of Object.entries(active)) {
+        if (child === false) continue;
+        let disabled = isRecord(child.config.base.params) && child.config.base.params.disabled === true;
+        if (Object.hasOwn(childPatches, key)) {
+          const original = buildChildData(child) as unknown as BlockResource;
+          const childPatch = buildChildOverrides(child, childPatches[key] as never) as unknown as BlockPatch;
+          const effective = mergeForValidation(original.base, childPatch.base);
+          disabled = isRecord(effective.params) && effective.params.disabled === true;
+        }
+        if (disabled) {
+          if (initiallyEnabled.has(key)) structureChanged = true;
+          if (Object.hasOwn(childPatches, key) && !initiallyEnabled.has(key))
+            throw new Error('Cannot patch an already disabled Answer Primitive: ' + key);
+          continue;
+        }
+        if (!initiallyEnabled.has(key)) structureChanged = true;
+        enabled[key] = child;
       }
-      validateRequestedPublication(checkpointAnswer_Data_Schema, data(options), languages, output);
+      if (structureChanged && patch.children === undefined)
+        throw new Error('children is required when adding or disabling answers');
+      // Default to the published active order, never the authored order
+      // containing disabled Config children.
+      const order = patch.children ?? source.base.children;
+      const ordered = validateOrderedKeys({ items: enabled, order }, { path: 'children', requireNonEmpty: true });
+      if (ordered.length) throw new Error(ordered.map(issue => issue.message).join('; '));
+      validate({ ...base, children: [...order], ...enabled });
+      const built = buildContent(enabled, order, childPatches);
+      const output: AnswerPublication<AnswerOverrideBase> = { base: {}, locale: undefined };
+      const files: AnswerLocaleFiles = {};
+      if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
+        if (structureChanged || patch.children !== undefined) output.base.children = [...order];
+        for (const [key] of Object.entries(changes)) {
+          // A params.disabled override is a structural removal, not a live
+          // child with a disabled param and a stale position in children.
+          const childBase = !Object.hasOwn(enabled, key)
+            ? false
+            : !initiallyEnabled.has(key)
+              ? built.base[key]
+              : (built.childPatches[key]?.base ?? {});
+          // Locale-only patches must not manufacture empty invariant child
+          // fragments in sparse published Data.
+          if (childBase === false || (isRecord(childBase) && Object.keys(childBase).length))
+            output.base[key] = childBase;
+        }
+        for (const key of Object.keys(additions)) if (Object.hasOwn(enabled, key)) output.base[key] = built.base[key];
+        for (const language of languages) {
+          const fragment: Record<string, unknown> = {};
+          for (const key of Object.keys(additions)) {
+            if (Object.hasOwn(enabled, key) && built.locale[language]?.[key] !== undefined)
+              fragment[key] = built.locale[language][key];
+          }
+          for (const key of Object.keys(childPatches)) {
+            if (!Object.hasOwn(enabled, key)) continue;
+            const localized = !initiallyEnabled.has(key)
+              ? built.locale[language]?.[key]
+              : built.childPatches[key]?.locale?.[language];
+            if (localized !== undefined) fragment[key] = localized;
+          }
+          if (Object.keys(fragment).length) files[language] = fragment;
+        }
+      }
+      output.locale = Object.keys(files).length ? files : undefined;
+      validateSlugAddressedPublication(checkpointAnswer_Data_Schema, source, languages, output);
       return output;
     } catch (error) {
       throw new Error(
@@ -248,15 +314,71 @@ export const defineCheckpointAnswer = <
     }
   };
 
+  // Authored placement keys cannot override the Answer's fixed identity.
+  // Keeping identity after the generic spread also preserves the literal
+  // checkpointAnswer discriminator in ReturnType<typeof defineCheckpointAnswer>.
+  const configApi = { base, locales: () => ({ locale: {} }), validate } as const;
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch &
+        CheckpointAnswer_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): AnswerPublication<AnswerOverrideBase>;
+    (
+      patch: CheckpointAnswer_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): AnswerPublication<AnswerOverrideBase>;
+  } = overridesImplementation;
+  const buildApi = scopeBuild({ data, overrides });
+
   const result = {
+    ...initialItems,
     id,
     slug,
     type,
-    content,
+    children: [...initialOrder],
     validate,
-    build: scopeBuild({ data, overrides }),
-    config: { base, locales: () => ({ locale: {} }), validate },
+    build: buildApi,
+    config: configApi,
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  // Generic direct placements can have arbitrary keys at the type level,
+  // despite SafePlacementMap rejecting reserved keys at authoring. Restore
+  // ALL fixed lifecycle keys explicitly, avoiding accidental Primitive
+  // shadowing of build, config, validation, or the Answer discriminator.
+  return result as unknown as Omit<
+    typeof result,
+    'id' | 'slug' | 'type' | 'children' | 'validate' | 'build' | 'config'
+  > & {
+    readonly id: typeof id;
+    readonly slug: typeof slug;
+    readonly type: typeof type;
+    readonly children: string[];
+    readonly validate: typeof validate;
+    readonly build: typeof buildApi;
+    readonly config: typeof configApi;
+  } & LanguageScope<Languages>;
 };
-export type ContentBlock_CheckpointAnswer_Configurator = ConfiguratorChild<ReturnType<typeof defineCheckpointAnswer>>;
+/**
+ * The higher-order generic Build overrides method cannot be extracted by the
+ * common conditional ConfiguratorChild helper. Erase only its patch parameter
+ * at the parent collection boundary, retaining the concrete direct children.
+ */
+type DefinedAnswer = ReturnType<typeof defineCheckpointAnswer>;
+/**
+ * Collection parents check a CheckpointAnswer through fixed identity and
+ * Build capabilities only. Do not project ReturnType's generic placement map:
+ * keyof Record<string, Primitive> includes lifecycle keys, making the parent
+ * boundary an impossible Record<string, never>.
+ */
+export type ContentBlock_CheckpointAnswer_Configurator = Pick<DefinedAnswer, 'validate' | 'config'> & {
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'checkpointAnswer';
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: {
+    data(options: PublicationLanguageOptions): ReturnType<DefinedAnswer['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<DefinedAnswer['build']['overrides']>;
+  };
+};

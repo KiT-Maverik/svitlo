@@ -30,13 +30,14 @@ describe('Configurators', () => {
           params: {},
           locale: { fileName: uuid + '.mp4', posterFileName: uuid + '.jpg', label: 'Movie' },
         });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'carousel', { picture: typeof picture }>({
           id,
           slug: 'carousel',
           type: 'carousel',
           params: {},
           locale: {},
-          slides: { items: { picture }, order: ['picture'] },
+          children: ['picture'],
+          picture,
         });
         assert.doesNotThrow(() => picture.build.data({ languages: ['en'] }));
         assert.doesNotThrow(() => recording.build.data({ languages: ['en', 'uk'] }));

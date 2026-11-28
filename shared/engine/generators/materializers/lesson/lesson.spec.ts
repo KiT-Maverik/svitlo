@@ -13,17 +13,13 @@ const section = () => ({
   type: 'content',
   params: {},
   locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
-  content: {
-    items: {
-      prompt: {
-        id: id('03'),
-        slug: 'prompt',
-        type: 'text',
-        params: {},
-        locale: { value: { en: 'Read', uk: 'Читай' } },
-      },
-    },
-    order: ['prompt'],
+  children: ['prompt'],
+  prompt: {
+    id: id('03'),
+    slug: 'prompt',
+    type: 'text',
+    params: {},
+    locale: { value: { en: 'Read', uk: 'Читай' } },
   },
 });
 const lesson = () => ({
@@ -37,7 +33,8 @@ const lesson = () => ({
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   locale: { title: { en: 'Basics', uk: 'Основи' } },
-  section: { items: { introduction: section() }, order: ['introduction'] },
+  children: ['introduction'],
+  introduction: section(),
 });
 const renderContentBlock = (child: { slug: string }, o: { directory: string }) => ({
   exportName: child.slug,
@@ -72,8 +69,8 @@ test('Lesson source retains immutable ID, order and source-only active languages
     0,
     'generated TS must parse without errors',
   );
-  assert.match(root, /defineLesson<"basics", Languages, typeof section.items>/);
-  assert.match(root, /"order": \["introduction"\]/);
+  assert.match(root, /defineLesson<"basics", Languages, typeof __sections>/);
+  assert.match(root, /"children": \["introduction"\]/);
   assert.match(root, new RegExp(id('01')));
   assert.match(root, /"en": "Basics"/);
   assert.doesNotMatch(root, /"uk": "Основи"/);
@@ -135,7 +132,7 @@ test('Missing enabled Quiz refuses complete Lesson emission before delegating ch
 });
 test('Rejects duplicate order, mismatched Section slug and unsafe paths', () => {
   const l = lesson();
-  l.section.order = [];
+  l.children = [];
   assert.throws(
     () =>
       materializeLesson(l as Parameters<typeof materializeLesson>[0], {
@@ -144,10 +141,10 @@ test('Rejects duplicate order, mismatched Section slug and unsafe paths', () => 
           throw Error('never');
         },
       }),
-    /order/,
+    /children/,
   );
   const x = lesson();
-  x.section.items.introduction.slug = 'bad';
+  x.introduction.slug = 'bad';
   assert.throws(
     () =>
       materializeLesson(x as Parameters<typeof materializeLesson>[0], {
@@ -239,7 +236,7 @@ test('Course Stage 5 LessonWorkflowStage1 handoff never becomes full Lesson mate
         >[0],
         options,
       ),
-    /lesson\.section/,
+    /lesson\.children/,
   );
   assert.equal(delegated, 0, 'no Content, Quiz or Flashcards source was generated from Stage 1');
 });
@@ -377,10 +374,9 @@ test('Disabled Quiz/Flashcards do not satisfy mandatory enabled-Section requirem
   const disabledFlashcards = { id: id('13'), slug: 'pendingCards', type: 'flashcards', params: { disabled: true } };
   const input = {
     ...l,
-    section: {
-      items: { ...l.section.items, pendingQuiz: disabledQuiz, pendingCards: disabledFlashcards },
-      order: ['introduction', 'pendingQuiz', 'pendingCards'],
-    },
+    children: ['introduction', 'pendingQuiz', 'pendingCards'],
+    pendingQuiz: disabledQuiz,
+    pendingCards: disabledFlashcards,
   };
   const noDelegate = () => {
     throw Error('must not emit incomplete Section');
@@ -443,7 +439,7 @@ test('Lesson emits package-scoped imported Skill Configurators without textbook 
   assert.match(root, /"skills": \[testRecognizeRed\.id, testRecognizeBlue\.id\]/);
   assert.doesNotMatch(root, /skill_ref_|child_section_items_/);
   assert.match(root, /import \{ introduction \} from "\.\/sections\/introduction"/);
-  assert.match(root, /"items": \{\s*introduction,?\s*\}/);
+  assert.match(root, /const __sections = \{\s*introduction,?\s*\}/);
   assert.doesNotMatch(root, /"00000000-0000-4000-8000-000000000001"/);
   assert.doesNotMatch(root, /TODO \(BLOCKER\): Verify Skill/);
   const unknown = materializeLesson(
@@ -489,37 +485,32 @@ test('Lesson refuses cross-textbook Skill alias or mismatched UUID', () => {
 });
 
 test('Lesson methodology preserves reviewed #813 exploreColors, recallColors and checkColors notes', () => {
-  const base = lesson();
+  const { introduction: _unplacedOriginal, ...base } = lesson();
   const input = {
     ...base,
-    section: {
-      items: {
-        exploreColors: {
-          config: { ...section(), slug: 'exploreColors' },
-          production: {
-            purpose: 'Guided exploration and formative reflection without graded evidence.',
-            pedagogicalIntent: 'Compare without positional cues.',
-            specification: 'Use the two reviewed examples.',
-          },
-        },
-        recallColors: {
-          config: { ...section(), id: id('55'), slug: 'recallColors' },
-          production: {
-            purpose: 'Required independent Flashcard Bank selection will be integrated in Stage 8.',
-            pedagogicalIntent: 'Retrieval (canonical slug retrieval) practice for both approved color terms.',
-          },
-        },
-        checkColors: {
-          config: { ...section(), id: id('56'), slug: 'checkColors' },
-          production: {
-            purpose:
-              'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
-            pedagogicalIntent:
-              'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
-          },
-        },
+    children: ['exploreColors', 'recallColors', 'checkColors'],
+    exploreColors: {
+      config: { ...section(), slug: 'exploreColors' },
+      production: {
+        purpose: 'Guided exploration and formative reflection without graded evidence.',
+        pedagogicalIntent: 'Compare without positional cues.',
+        specification: 'Use the two reviewed examples.',
       },
-      order: ['exploreColors', 'recallColors', 'checkColors'],
+    },
+    recallColors: {
+      config: { ...section(), id: id('55'), slug: 'recallColors' },
+      production: {
+        purpose: 'Required independent Flashcard Bank selection will be integrated in Stage 8.',
+        pedagogicalIntent: 'Retrieval (canonical slug retrieval) practice for both approved color terms.',
+      },
+    },
+    checkColors: {
+      config: { ...section(), id: id('56'), slug: 'checkColors' },
+      production: {
+        purpose:
+          'Required independent Question Bank selection and assessment settings will be integrated in Stage 7; no invented Question IDs or grading.',
+        pedagogicalIntent: 'Classification (canonical slug classification): obtain distinct evidence for both Skills.',
+      },
     },
   };
   const result = materializeLesson(input as Parameters<typeof materializeLesson>[0], {
@@ -596,14 +587,10 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
   const l = lesson();
   const input = {
     ...l,
-    section: {
-      items: {
-        introduction: {
-          config: section(),
-          production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
-        },
-      },
-      order: ['introduction'],
+    children: ['introduction'],
+    introduction: {
+      config: section(),
+      production: { purpose: 'Source purpose', sourceEvidence: 'Excluded provenance' },
     },
   };
   let acknowledged: unknown;
@@ -615,10 +602,7 @@ test('Lesson does not acknowledge Section notes omitted from methodology', () =>
     },
   });
   assert.equal(acknowledged, undefined);
-  assert.equal(
-    (input.section.items.introduction.production as Record<string, unknown>).methodologyIntegrated,
-    undefined,
-  );
+  assert.equal((input.introduction.production as Record<string, unknown>).methodologyIntegrated, undefined);
   const markdown = output.files.find(f => f.path === 'methodology.md')?.content ?? '';
   assert.match(markdown, /Source purpose/);
   assert.doesNotMatch(markdown, /Excluded provenance/);
@@ -628,14 +612,10 @@ test('Lesson input Section production is immutable after successful handoff', ()
   const l = lesson();
   const input = {
     ...l,
-    section: {
-      items: {
-        introduction: {
-          config: section(),
-          production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
-        },
-      },
-      order: ['introduction'],
+    children: ['introduction'],
+    introduction: {
+      config: section(),
+      production: { purpose: 'Reviewed purpose', pedagogicalIntent: 'Distinct review intent' },
     },
   };
   const original = structuredClone(input);

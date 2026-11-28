@@ -18,9 +18,7 @@ function childLanguagesImport(parentImport: string, nestedDepth: number): string
 }
 export type ChildConfig = { id: string; slug: string; type: string; [key: string]: unknown };
 export type SourceChild = ChildConfig | { config: ChildConfig; production?: Record<string, unknown> };
-export type Source = Omit<LearningFlowSection_Config, 'content'> & {
-  content: { items: Record<string, SourceChild>; order: string[] };
-};
+export type Source = LearningFlowSection_Config & { children: string[] };
 export type GeneratedFile = {
   path: string;
   content: string;
@@ -147,23 +145,24 @@ const outputPath = (value: string): string => {
   return value;
 };
 const exportName = (value: string) => (reserved.has(value) ? 'config_' + value : value);
-function validateCollection(content: Source['content'], location: string): void {
-  if (!isObject(content) || !isObject(content.items) || !Array.isArray(content.order))
-    throw new Error(location + ': expected { items, order }');
-  const keys = Object.keys(content.items);
+const sectionFields = new Set(['id', 'type', 'slug', 'params', 'locale', 'children', 'draft']);
+function validateCollection(content: Source, location: string): void {
+  if (!isObject(content) || !Array.isArray(content.children) || Object.hasOwn(content, 'content'))
+    throw new Error(location + ': expected direct children');
+  const keys = Object.keys(content).filter(key => !sectionFields.has(key));
   if (
-    keys.length !== content.order.length ||
-    new Set(content.order).size !== keys.length ||
-    content.order.some(k => typeof k !== 'string' || !Object.hasOwn(content.items, k))
+    keys.length !== content.children.length ||
+    new Set(content.children).size !== keys.length ||
+    content.children.some(k => typeof k !== 'string' || !Object.hasOwn(content, k) || sectionFields.has(k))
   )
-    throw new Error(location + '.order: expected every item key exactly once');
+    throw new Error(location + '.children: expected every child once');
   const ids = new Set<string>();
   for (const key of keys) {
-    pathPart(key, location + '.items.' + key);
-    const child = childConfig(content.items[key]).config;
+    pathPart(key, location + '.' + key);
+    const child = childConfig(content[key] as SourceChild).config;
     if (!isObject(child) || child.slug !== key || typeof child.type !== 'string' || !uuid.test(child.id))
-      throw new Error(location + '.items.' + key + ': mismatched child identity/type/UUID');
-    if (ids.has(child.id)) throw new Error(location + '.items.' + key + ': duplicate child UUID ' + child.id);
+      throw new Error(location + '.' + key + ': mismatched child identity/type/UUID');
+    if (ids.has(child.id)) throw new Error(location + '.' + key + ': duplicate child UUID');
     ids.add(child.id);
   }
 }
@@ -176,7 +175,7 @@ export function materializeLearningFlowSection(config: Source, options: Options)
   pathPart(config.slug, 'learningFlow.slug');
   if (!localeKey.test(options.documentLanguage)) throw new Error('learningFlow: invalid documentLanguage');
   if (!/^(?:\.\.?\/|#|@)/.test(options.languagesImport)) throw new Error('learningFlow: unsafe languages import');
-  validateCollection(config.content, 'learningFlow.content');
+  validateCollection(config, 'learningFlow.content');
   const files: GeneratedFile[] = [];
   const diagnostics: Diagnostic[] = [];
   const imports: string[] = [];
@@ -194,8 +193,8 @@ export function materializeLearningFlowSection(config: Source, options: Options)
     seenFiles.add(file.path);
     files.push(file);
   };
-  for (const key of Object.keys(config.content.items).sort()) {
-    const node = childConfig(config.content.items[key]);
+  for (const key of [...config.children].sort()) {
+    const node = childConfig(config[key] as SourceChild);
     const childDirectory = [directory, key].filter(Boolean).join('/');
     const child = options.renderContentBlock(node.config, {
       directory: childDirectory,
@@ -213,9 +212,11 @@ export function materializeLearningFlowSection(config: Source, options: Options)
     items[key] = imported(name);
     imports.push('import { ' + name + ' } from ' + JSON.stringify('./' + key) + ';');
   }
-  const { content: _ignored, ...rest } = config;
+  const rest = Object.fromEntries(
+    Object.entries(config).filter(([key]) => sectionFields.has(key) && key !== 'children'),
+  );
   const metadata = { ...rest, locale: filterLocale(rest.locale, options.documentLanguage) };
-  const own = { ...metadata, content: imported('content') };
+  const own = { ...metadata, children: [...config.children], ...items };
   const name = exportName(config.slug);
   const blocker: string[] = [];
   const sectionNotes = Object.keys(options.production ?? {}).filter(
@@ -246,20 +247,20 @@ export function materializeLearningFlowSection(config: Source, options: Options)
       message: blocker.join(' '),
       severity: 'warning',
     });
-  const contentValue = { items, order: [...config.content.order] };
+  const contentValue = items;
   const source = [
     "import { defineLearningFlowSection } from '@svitlo/engine/build';",
     'import { languages } from ' + JSON.stringify(options.languagesImport) + ';',
     ...imports,
     '',
     ...blocker,
-    'const content = ' + render(contentValue) + ';',
+    'const __blocks = ' + render(contentValue) + ';',
     '',
     'export const ' +
       name +
       ' = defineLearningFlowSection<' +
       JSON.stringify(config.slug) +
-      ', typeof content.items, typeof languages>(',
+      ', typeof __blocks, typeof languages>(',
     render(own) + ');',
     '',
   ].join('\n');

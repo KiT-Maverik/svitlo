@@ -1,5 +1,6 @@
 import type { ChildrenSupporting, ChildSupporting } from '#types';
 
+import type { SafePlacementMap } from '../_shared__configurators';
 import { defineText } from '../contentBlocks/primitive/defineText/defineText';
 import { defineLesson } from '../lessons/defineLesson/defineLesson';
 import { defineContentSection } from './defineContentSection/defineContentSection';
@@ -27,13 +28,22 @@ function authoringLanguageContracts() {
   void allowed;
   void forbidden;
 
+  // Metadata and the previous collection wrapper are not valid placement keys.
+  // @ts-expect-error 'children' is reserved and cannot hold a ContentBlock configurator.
+  const forbiddenChildrenKey: SafePlacementMap<{ children: typeof enUkText }> = { children: enUkText };
+  // @ts-expect-error 'content' is reserved, not a second nested collection alias.
+  const forbiddenContentKey: SafePlacementMap<{ content: typeof enUkText }> = { content: enUkText };
+  void forbiddenChildrenKey;
+  void forbiddenContentKey;
+
   const bilingual = defineContentSection<'intro', { paragraph: typeof enUkText }, ['en', 'uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e03',
     slug: 'intro',
     type: 'content',
     params: {},
     locale: { title: { en: 'Intro', uk: 'Вступ' }, navigationLabel: '1' },
-    content: { items: { paragraph: enUkText }, order: ['paragraph'] },
+    children: ['paragraph'],
+    paragraph: enUkText,
   });
   // @ts-expect-error Build publication always requires explicit selected languages.
   bilingual.build.data();
@@ -41,26 +51,18 @@ function authoringLanguageContracts() {
   bilingual.build.data({ languages: ['pl'] });
   // @ts-expect-error Patch publication also requires explicit selected languages.
   bilingual.build.overrides({});
+  // @ts-expect-error A new child must support every authored language of the Section.
   bilingual.build.overrides(
     {
-      content: {
-        additionalItems: {
-          // @ts-expect-error A new child must support every language of the parent Section.
-          ukOnly: ukText,
-        },
-        order: ['paragraph', 'ukOnly'],
-      },
+      children: ['paragraph', 'ukOnly'],
+      ukOnly: ukText,
     },
     { languages: ['uk'] },
   );
   bilingual.build.overrides(
     {
-      content: {
-        items: {
-          // @ts-expect-error Existing child slugs remain literal keys; unknown keys are rejected.
-          missing: false,
-        },
-      },
+      // @ts-expect-error Unknown child slugs cannot be removed as if they already existed.
+      missing: false,
     },
     { languages: ['uk'] },
   );
@@ -71,7 +73,8 @@ function authoringLanguageContracts() {
     type: 'content',
     params: {},
     locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
-    content: { items: { ukOnly: ukText }, order: ['ukOnly'] },
+    children: ['ukOnly'],
+    ukOnly: ukText,
   });
 
   const impossible: ChildrenSupporting<['en', 'uk'], { onlyUkrainian: typeof ukrainian }> = {
@@ -91,12 +94,10 @@ function authoringLanguageContracts() {
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
     },
     locale: { title: { uk: 'Урок' } },
-    section: { items: { intro: bilingual }, order: ['intro'] },
+    children: ['intro'],
+    intro: bilingual,
   });
-  lesson.build.overrides(
-    { section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } },
-    { languages: ['uk'] },
-  );
+  lesson.build.overrides({ intro: { locale: { title: { uk: 'Оновлено' } } } }, { languages: ['uk'] });
   // @ts-expect-error Lesson supports only the authored Ukrainian publication scope.
   lesson.build.data({ languages: ['en'] });
 }

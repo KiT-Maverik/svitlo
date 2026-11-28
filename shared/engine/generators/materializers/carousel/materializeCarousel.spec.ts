@@ -26,7 +26,9 @@ const carousel = () => ({
   type: 'carousel' as const,
   params: { loop: true, transition: 'fade' as const },
   locale: { title: { uk: 'Галерея', en: 'Gallery' } },
-  slides: { items: { diagram: image, interactive: scene }, order: ['interactive', 'diagram'] },
+  children: ['interactive', 'diagram'],
+  diagram: image,
+  interactive: scene,
 });
 const context = () => {
   const paths: string[] = [];
@@ -62,7 +64,7 @@ test('Carousel delegates Image/Scene children in authored order without manufact
   assert.ok(actual.files.every(file => !file.path.includes('/slides/items/')));
   assert.equal(actual.exportName, 'gallery');
   const code = actual.files.at(-1)!.content;
-  assert.match(code, /defineCarousel<"gallery", typeof slides.items, typeof languages>/);
+  assert.match(code, /defineCarousel<"gallery", typeof __placements, typeof languages>/);
   assert.match(code, /import \{ interactive \}/);
   assert.match(code, /import \{ diagram \}/);
   assert.ok(code.indexOf('interactive,') < code.indexOf('diagram,'));
@@ -72,34 +74,23 @@ test('Carousel delegates Image/Scene children in authored order without manufact
   assert.equal(syntaxErrorCount(code), 0);
 });
 
-test('Carousel omits explicitly disabled draft children, but requires exact active order', () => {
+test('Carousel rejects disabled authored entries, duplicate and stale child ordering', () => {
   const draft = carousel();
-  const disabled = {
-    ...draft,
-    slides: { items: { diagram: false as const, interactive: scene }, order: ['interactive'] },
-  };
-  const actual = materializeCarousel(disabled, context().renderer);
-  assert.equal(actual.files.length, 2);
-  assert.doesNotMatch(actual.files.at(-1)!.content, /\bdiagram\b/);
   assert.throws(
-    () =>
-      materializeCarousel({ ...draft, slides: { ...draft.slides, order: ['diagram', 'diagram'] } }, context().renderer),
-    /exactly once/,
+    () => materializeCarousel({ ...draft, diagram: false as never, children: ['interactive'] }, context().renderer),
+    /disabled/,
   );
   assert.throws(
-    () => materializeCarousel({ ...draft, slides: { ...draft.slides, order: [] } }, context().renderer),
+    () => materializeCarousel({ ...draft, children: ['diagram', 'diagram'] }, context().renderer),
     /exactly once/,
   );
+  assert.throws(() => materializeCarousel({ ...draft, children: [] }, context().renderer), /exactly once/);
 });
 
 test('Carousel rejects mismatched kinds, duplicate IDs, bad paths and missing source locale', () => {
   const original = carousel();
   assert.throws(
-    () =>
-      materializeCarousel(
-        { ...original, slides: { items: { diagram: { ...image, type: 'checkpoint' as never } }, order: ['diagram'] } },
-        context().renderer,
-      ),
+    () => materializeCarousel({ ...original, diagram: { ...image, type: 'checkpoint' as never } }, context().renderer),
     /invalid child/,
   );
   assert.throws(
@@ -107,10 +98,9 @@ test('Carousel rejects mismatched kinds, duplicate IDs, bad paths and missing so
       materializeCarousel(
         {
           ...original,
-          slides: {
-            items: { diagram: image, interactive: { ...scene, id: image.id } },
-            order: ['diagram', 'interactive'],
-          },
+          diagram: image,
+          interactive: { ...scene, id: image.id },
+          children: ['diagram', 'interactive'],
         },
         context().renderer,
       ),
@@ -146,10 +136,9 @@ test('Carousel child Scene can remain a pending Config draft without pretending 
   const output = materializeCarousel(
     {
       ...source,
-      slides: {
-        items: { diagram: image, interactive: pending },
-        order: ['interactive', 'diagram'],
-      },
+      diagram: image,
+      interactive: pending,
+      children: ['interactive', 'diagram'],
     },
     context().renderer,
   );

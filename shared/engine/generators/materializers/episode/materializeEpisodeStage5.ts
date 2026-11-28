@@ -38,22 +38,19 @@ function episodeSceneDrafts(input: EpisodeWorkflowStage2, documentLanguage: stri
       }
       return;
     }
-    const collection = config.type === 'carousel' ? config.slides : config.content;
     if (
       ['content', 'practice', 'codingTask', 'learningFlow', 'checkpointAnswer', 'checkpoint', 'carousel'].includes(
         config.type,
       ) &&
-      isRecord(collection) &&
-      isRecord(collection.items) &&
-      Array.isArray(collection.order)
+      Array.isArray(config.children)
     ) {
-      for (const key of collection.order) visit(collection.items[key]);
+      for (const key of config.children) visit(config[key]);
     } else if (config.type === 'checkpointItem') {
       visit(config.question);
       visit(config.answer);
     }
   };
-  for (const key of input.config.section.order) visit(input.config.section.items[key]);
+  for (const key of input.config.children) visit(input.config[key]);
   return files;
 }
 export type EpisodeStage5Plan = {

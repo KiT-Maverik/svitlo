@@ -2,7 +2,10 @@
  * Source-only Flashcard materialization. Each side is a separate Configurator,
  * never an anonymous copied ContentBlock map. No synthetic card, answer, or relationship IDs.
  */
-import type { Flashcard_Config } from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+import {
+  flashcardRelationship_Schema,
+  type Flashcard_Config,
+} from '../../../configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
 import type { LanguageCode, SupportedLanguages } from '../../../schemas/languages.schemas';
 import {
   materializeFlashcardSide,
@@ -108,10 +111,23 @@ function sourceValue(value: unknown, language: string, location: string): unknow
   return Object.fromEntries(keys.map(key => [key, sourceValue(value[key], language, location + '.' + key)]));
 }
 function literal(value: unknown, location: string, level = 0): string {
-  if (value === null || typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
+  if (typeof value === 'string') {
+    // Dynamic relationship keys have no contextual literal type in Flashcard_Config.
+    // Keep the validated discriminants narrow in emitted source generics.
+    const discriminant = /^parameters\.relationships\.[a-z][A-Za-z0-9]*\.(?:type|position)$/.test(location);
+    return JSON.stringify(value) + (discriminant ? ' as const' : '');
+  }
+  if (value === null || typeof value === 'boolean') return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
-  if (Array.isArray(value))
-    return '[' + value.map((entry, i) => literal(entry, location + '[' + i + ']', level + 1)).join(', ') + ']';
+  if (Array.isArray(value)) {
+    const list = '[' + value.map((entry, i) => literal(entry, location + '[' + i + ']', level + 1)).join(', ') + ']';
+    if (location === 'parameters.relationships.children') {
+      if (value.some(child => typeof child !== 'string')) fail(location, 'relationship placement keys must be strings');
+      // Preserve exact keys in defineFlashcard's typed relationship placement order.
+      return list + ' as [' + value.map(key => JSON.stringify(key)).join(', ') + ']';
+    }
+    return list;
+  }
   if (!record(value)) fail(location, 'unsupported authored value');
   const entries = Object.entries(value).map(
     ([key, item]) =>
@@ -142,25 +158,33 @@ function validateParameters(params: FlashcardSource['parameters']): void {
   }
   const relations = params.relationships;
   if (relations !== undefined) {
-    if (!record(relations) || !record(relations.items) || !Array.isArray(relations.order))
-      fail('parameters.relationships', 'expected items/order');
-    const keys = Object.keys(relations.items);
     if (
-      keys.length !== relations.order.length ||
-      new Set(relations.order).size !== keys.length ||
-      relations.order.some(key => !Object.hasOwn(relations.items, key))
+      !record(relations) ||
+      !Array.isArray(relations.children) ||
+      Object.hasOwn(relations, 'items') ||
+      Object.hasOwn(relations, 'order')
     )
-      fail('parameters.relationships.order', 'all relationship keys required exactly once');
+      fail('parameters.relationships', 'expected direct relation keys and children order');
+    const keys = Object.keys(relations).filter(key => key !== 'children');
+    if (
+      keys.length !== relations.children.length ||
+      new Set(relations.children).size !== keys.length ||
+      relations.children.some(key => !Object.hasOwn(relations, key))
+    )
+      fail('parameters.relationships.children', 'all relationship keys required exactly once');
     const ids = new Set<string>();
-    for (const [key, relation] of Object.entries(relations.items)) {
+    for (const key of keys) {
+      const relation = relations[key];
       if (
         !slug.test(key) ||
         !record(relation) ||
         typeof relation.relationshipId !== 'string' ||
         !uuid.test(relation.relatedFlashcardId as string)
       )
-        fail('parameters.relationships.items.' + key, 'valid relationship identity and real target UUID required');
-      if (ids.has(relation.relationshipId)) fail('parameters.relationships.items.' + key, 'duplicate relationshipId');
+        fail('parameters.relationships.' + key, 'valid relationship identity and real target UUID required');
+      if (!flashcardRelationship_Schema.safeParse(relation).success)
+        fail('parameters.relationships.' + key, 'invalid relationship type, position or identity');
+      if (ids.has(relation.relationshipId)) fail('parameters.relationships.' + key, 'duplicate relationshipId');
       ids.add(relation.relationshipId);
     }
   }
@@ -239,10 +263,10 @@ export function materializeFlashcard(node: FlashcardNode, context: FlashcardCont
   const generics =
     '<' +
     JSON.stringify(config.slug) +
-    ', typeof content.front.items, typeof content.back.items, ' +
-    (hint ? 'typeof content.hint.items' : '{}') +
+    ', Pick<typeof content.front, (typeof content.front.children)[number]>, Pick<typeof content.back, (typeof content.back.children)[number]>, ' +
+    (hint ? 'Pick<typeof content.hint, (typeof content.hint.children)[number]>' : '{}') +
     ', typeof parameters.flags, ' +
-    (config.parameters.relationships ? 'typeof parameters.relationships.items' : '{}') +
+    (config.parameters.relationships ? "Omit<typeof parameters.relationships, 'children'>" : '{}') +
     ', ' +
     (context.ownerLanguagesImport ? 'Languages' : '[' + JSON.stringify(languages) + ']') +
     '>';

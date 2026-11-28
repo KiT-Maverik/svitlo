@@ -17,14 +17,19 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   learningFlowSection_Config_Schema,
   learningFlowSection_Data_Schema,
+  learningFlowSection_Metadata_Config_Schema,
   learningFlowSection_Override_Config_Schema,
   type LearningFlowSection_Config,
   type LearningFlowSection_DataBase,
@@ -42,60 +47,36 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = {
-  locale?: DeepPartial<LearningFlowSection_Locale<'data'>>;
-  content?: LearningFlowSection_DataBase['content'];
-};
+type LocaleBody = { locale?: DeepPartial<LearningFlowSection_Locale<'data'>>; [placement: string]: unknown };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: LearningFlowSection_MetadataOverrides['params'];
   locale?: DeepPartial<LearningFlowSection_Locale<'data'>>;
-  content?: LearningFlowSection_DataBase['content'];
+  children?: string[];
+  [placement: string]: unknown;
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children']);
+const directBlocks = (config: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
 
-/** Validate the effective Props for each explicitly requested publication locale. */
-const validateResolvedData = (
-  resource: Publication<unknown>,
-  languages: readonly LanguageCode[],
-  patch?: Publication<unknown>,
-): void => {
-  for (const language of languages) {
-    const base = mergeForValidation(
-      resource.base as Record<string, unknown>,
-      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
-    );
-    const patched = patch ? mergeForValidation(base, patch.base as DeepPartial<Record<string, unknown>>) : base;
-    const resolved = patch
-      ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
-      : patched;
-    try {
-      learningFlowSection_Data_Schema.parse(resolved);
-    } catch (error) {
-      throw new Error(
-        'Invalid defineLearningFlowSection Props for language ' +
-          language +
-          ': ' +
-          (error instanceof Error ? error.message : String(error)),
-        { cause: error },
-      );
-    }
-  }
-};
-
+/** Each Section owns only the ContentBlock collection boundary, not child internals. */
 const validate = (config: LearningFlowSection_Config): void => {
-  learningFlowSection_Config_Schema.parse(config);
-  const issues = [
-    ...validateOrderedKeys(config.content, { path: 'content' }),
-    ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
-      path: 'content.items',
-      itemLabel: 'ContentBlock',
-    }),
+  const items = directBlocks(config);
+  const parsed = learningFlowSection_Config_Schema.safeParse(config);
+  const errors = [
+    ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.message),
+    ...validateSluggedConfiguratorMap(items, contentBlockTypes, {
+      path: 'children',
+      itemLabel: 'Section ContentBlock',
+      reservedKeys: slugAddressedReservedKeys,
+    }).map(issue => issue.message),
   ];
-  if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-  for (const [key, child] of Object.entries(config.content.items)) {
+  const ids = new Set<string>();
+  for (const [key, child] of Object.entries(items)) {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
@@ -104,34 +85,53 @@ const validate = (config: LearningFlowSection_Config): void => {
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
       child.config.base.id !== child.id ||
-      child.config.base.type !== child.type ||
-      child.config.base.slug !== key
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
     ) {
-      throw new Error('Invalid Section ContentBlock Build API or identity: ' + key);
+      errors.push('Invalid Section ContentBlock Build API or identity: ' + key);
+    }
+    if (isRecord(child) && typeof child.id === 'string') {
+      if (ids.has(child.id)) errors.push('Duplicate Section ContentBlock ID: ' + child.id);
+      ids.add(child.id);
     }
   }
+
+  if (errors.length) throw new Error('Section validation failed: ' + errors.join('; '));
 };
 
-/** Stateless Section authoring with ordered ContentBlock children. */
+type AuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Block>,
+  Languages extends readonly LanguageCode[],
+> = Pick<LearningFlowSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
+  ConfigWithLanguages<LearningFlowSection_Config, Languages>;
+
+/** Stateless Section authoring with direct ordered ContentBlock placements. */
 export const defineLearningFlowSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<LearningFlowSection_Config, 'slug' | 'content'> & {
-    slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  } & ConfigWithLanguages<LearningFlowSection_Config, Languages>,
+  config: AuthoredInput<Slug, Items, Languages>,
 ) => {
-  // Metadata is copied; children hold independent, immutable authoring snapshots.
-  const metadataSchema = learningFlowSection_Config_Schema.omit({ content: true });
-  const { content: _content, ...metadataInput } = config;
-  const authored: Omit<LearningFlowSection_Config, 'content'> = structuredClone(metadataInput);
+  const metadataSchema = learningFlowSection_Metadata_Config_Schema;
+  const metadataInput = {
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
+  };
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
-  const { id, type, slug } = authored;
-  const initialItems: Items = { ...config.content.items };
-  const initialOrder = [...config.content.order];
-  const content = { items: { ...initialItems }, order: [...initialOrder] };
+  const { id, slug, type } = authored;
+  const initialItems = directBlocks(config) as unknown as Items;
+  const initialOrder = [...config.children];
 
   const base = {
     id,
@@ -139,7 +139,7 @@ export const defineLearningFlowSection = <
     type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<LearningFlowSection_Config>;
+  };
 
   const ownLocale = (input: DeepPartial<LearningFlowSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
@@ -150,88 +150,89 @@ export const defineLearningFlowSection = <
     return { invariant: split.base as DeepPartial<LearningFlowSection_Locale<'data'>>, files };
   };
 
-  const buildContent = (
+  const buildBlocks = (
     items: Record<string, Block>,
     order: readonly string[],
-    patches: Record<string, unknown> = {},
+    changes: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
+      if (!child) throw new Error('Missing ContentBlock: ' + key);
       const resource = buildChildData(child) as unknown as ChildResource;
-      const patch = Object.hasOwn(patches, key)
-        ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
+      const patch = Object.hasOwn(changes, key)
+        ? (buildChildOverrides(child, changes[key] as never) as unknown as ChildPatch)
         : undefined;
-      return { resource, patch };
+      return { key, resource, patch };
     });
-    const bases = entries.map(({ resource, patch }) =>
-      patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as LearningFlowSection_DataBase['content'];
-    const locales: Partial<Record<LanguageCode, LearningFlowSection_DataBase['content']>> = {};
+    const base: Record<string, unknown> = {};
+    const childPatches: Record<string, ChildPatch> = {};
+    for (const { key, resource, patch } of entries) {
+      base[key] = patch ? mergeForValidation(resource.base, patch.base) : resource.base;
+      if (patch) childPatches[key] = patch;
+    }
+    const locale: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
     for (const language of languages) {
-      if (
-        !entries.some(
-          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
-        )
-      )
-        continue;
-      locales[language] = entries.map(({ resource, patch }) => {
-        const withResourceLocale = mergeForValidation(
+      const fragments: Record<string, unknown> = {};
+      for (const { key, resource, patch } of entries) {
+        if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
+        const translated = mergeForValidation(
           resource.base,
           (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
         );
-        const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
-        return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as LearningFlowSection_DataBase['content'];
+        const withPatch = patch ? mergeForValidation(translated, patch.base) : translated;
+        fragments[key] = patch?.locale?.[language] ? mergeForValidation(withPatch, patch.locale[language]) : withPatch;
+      }
+      if (Object.keys(fragments).length) locale[language] = fragments;
     }
-    return { bases, locales };
+    return { base, locale, childPatches };
   };
+
+  const originalConfig = () => ({ ...copyAuthored(), children: [...initialOrder], ...initialItems });
 
   const data = (options: PublicationLanguageOptions<Languages>): Publication<LearningFlowSection_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+    validate(originalConfig());
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder);
+    const children = buildBlocks(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
-    for (const [language, entries] of Object.entries(children.locales)) {
-      (files[language as LanguageCode] ??= {}).content = entries;
+    for (const [language, fragments] of Object.entries(children.locale)) {
+      Object.assign((files[language as LanguageCode] ??= {}), fragments);
     }
-    const result = structuredClone({
+    const result: Publication<LearningFlowSection_DataBase> = structuredClone({
       base: {
         id,
         slug,
         type,
         params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
-        content: children.bases,
+        children: [...initialOrder],
+        ...children.base,
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateResolvedData(result, languages);
+    for (const language of languages) {
+      const effective = mergeForValidation(result.base, result.locale?.[language] ?? {});
+      const parsed = learningFlowSection_Data_Schema.parse(effective);
+    }
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: LearningFlowSection_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
-    },
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
+    patch: LearningFlowSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
-      if (!isRecord(patch)) throw new Error('Expected an overrides object');
-      for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'content'].includes(key)) {
-          throw new Error('Unknown Section override field: ' + key);
-        }
-      }
+      validate(originalConfig());
+      if (!isRecord(patch)) throw new Error('Expected Section overrides object');
       const metadataPatch = learningFlowSection_Override_Config_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
       );
-      const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      const mergedMetadata = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const own = ownLocale(metadataPatch.locale ?? {});
+      const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: Publication<OverrideBase> = {
         base: {
           ...(metadataPatch.params !== undefined ? { params: metadataPatch.params } : {}),
@@ -239,76 +240,77 @@ export const defineLearningFlowSection = <
         },
         locale: undefined,
       };
-      const files = selectPublicationLocales(own.files, languages) ?? {};
-      if (patch.content !== undefined && !isRecord(patch.content)) {
-        throw new Error('content must be an object');
-      }
-      for (const key of Object.keys(patch.content ?? {})) {
-        if (!['items', 'additionalItems', 'order'].includes(key)) {
-          throw new Error('Unknown Section content override field: ' + key);
-        }
-      }
-      const changes = patch.content?.items ?? {};
-      const additions = patch.content?.additionalItems ?? {};
-      if (!isRecord(changes)) throw new Error('content.items must be an object');
-      if (!isRecord(additions)) throw new Error('content.additionalItems must be an object');
-      const addedIssues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-        path: 'content.additionalItems',
-        itemLabel: 'ContentBlock',
-      });
-      if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
+      if (patch.children !== undefined && !Array.isArray(patch.children))
+        throw new Error('children must be a replacement order array');
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Block> = {};
+      for (const [key, value] of Object.entries(patch)) {
+        if (ownFields.has(key)) {
+          if (key !== 'params' && key !== 'locale' && key !== 'children')
+            throw new Error('Immutable Section override field: ' + key);
+          continue;
+        }
+        if (Object.hasOwn(initialItems, key)) changes[key] = value;
+        else additions[key] = value as Block;
+      }
+      const issues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
+        path: 'children',
+        itemLabel: 'Section ContentBlock',
+        reservedKeys: slugAddressedReservedKeys,
+      });
+      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Block | false> = { ...initialItems };
       const childPatches: Record<string, unknown> = {};
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Section ContentBlock slug: ' + key);
-        if (
-          !isRecord(child) ||
-          !isRecord(child.build) ||
-          typeof child.build.data !== 'function' ||
-          typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config) ||
-          !isRecord(child.config.base) ||
-          child.config.base.id !== child.id ||
-          child.config.base.type !== child.type ||
-          child.config.base.slug !== key
-        ) {
-          throw new Error('New Section ContentBlock must expose a valid Build API: ' + key);
-        }
-        active[key] = child as Block;
+        active[key] = child;
       }
-      for (const [key, change] of Object.entries(changes)) {
-        if (!Object.hasOwn(initialItems, key)) throw new Error('Unknown existing Section ContentBlock: ' + key);
-        if (change === false) {
+      for (const [key, value] of Object.entries(changes)) {
+        if (value === false) {
           active[key] = false;
           structureChanged = true;
+        } else if (isRecord(value)) {
+          childPatches[key] = value;
         } else {
-          if (!isRecord(change)) throw new Error('Section ContentBlock patch must be an object or false: ' + key);
-          childPatches[key] = change;
+          throw new Error('Section ContentBlock patch must be an object or false: ' + key);
         }
       }
-      if (structureChanged && patch.content?.order === undefined) {
-        throw new Error('content.order is required when adding or disabling Section ContentBlocks');
-      }
-      const order = patch.content?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: active, order }, { path: 'content', allowDisabled: true });
-      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+      if (structureChanged && patch.children === undefined)
+        throw new Error('children is required when adding or disabling ContentBlocks');
+      const order = patch.children ?? initialOrder;
+      const orderIssues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
+      if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
       const enabled = Object.fromEntries(
         Object.entries(active).filter((entry): entry is [string, Block] => entry[1] !== false),
       );
-      // Parent semantic invariants (notably Quiz screen references) must use the active collection.
-      validate({ ...candidate, content: { items: enabled, order: [...order] } });
-      if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
-        const built = buildContent(enabled, order, childPatches);
-        output.base.content = built.bases;
-        for (const [language, entries] of Object.entries(built.locales)) {
-          (files[language as LanguageCode] ??= {}).content = entries;
+      validate({ ...mergedMetadata, children: [...order], ...enabled });
+      const built = buildBlocks(enabled, order, childPatches);
+
+      if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
+        if (structureChanged || patch.children !== undefined) output.base.children = [...order];
+        for (const [key, value] of Object.entries(changes)) {
+          output.base[key] = value === false ? false : (built.childPatches[key]?.base ?? {});
+        }
+        for (const key of Object.keys(additions)) output.base[key] = built.base[key];
+        for (const language of languages) {
+          const fragments: Record<string, unknown> = {};
+          for (const key of Object.keys(changes)) {
+            if (changes[key] === false) continue;
+            const translated = built.childPatches[key]?.locale?.[language];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          for (const key of Object.keys(additions)) {
+            const translated = built.locale[language]?.[key];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          if (Object.keys(fragments).length) Object.assign((files[language] ??= {}), fragments);
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateResolvedData(data(options), languages, result);
+      validateSlugAddressedPublication(learningFlowSection_Data_Schema, data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -321,11 +323,25 @@ export const defineLearningFlowSection = <
     }
   };
 
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch &
+        LearningFlowSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: LearningFlowSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
     type,
-    content,
+    children: [...initialOrder],
+    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {

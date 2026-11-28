@@ -28,7 +28,7 @@ import {
   type QuestionOverridePublication,
   type QuestionResourcePublication,
 } from '../_shared__questions';
-import { onlyLocales, onlyStrings, scopeBuild } from '../../_shared__configurators';
+import { onlyLocales, onlyStrings, scopeBuild, type AddedPlacementsFromPatch } from '../../_shared__configurators';
 import type { ContentBlock_Primitive_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
@@ -47,32 +47,37 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
   matchBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateNestedBlockCollection(candidate.content.pairs, 'content.pairs', ['left', 'right']);
-  if (!candidate.content.pairs.order.length) throw new Error('MatchBlocks requires at least one pair');
+  if (!candidate.content.pairs.children.length) throw new Error('MatchBlocks requires at least one pair');
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
 type Pair = { left: ContentBlock_Primitive_Configurator; right: ContentBlock_Primitive_Configurator };
+type PairMembers<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Pair ? Group[Key] : Pair;
+};
+type AddedPairsFromPatch<Patch, Content extends ContentShape> = Patch extends { content: { pairs: infer Collection } }
+  ? AddedPlacementsFromPatch<Collection, PairMembers<Content['pairs']>, Pair, 'children'>
+  : {};
+
 type PairsOverride<
   Content extends ContentShape,
   AddedPairs extends Record<string, Pair>,
   Languages extends readonly LanguageCode[],
 > = {
-  items?: {
-    [Key in keyof Content['pairs']['items']]?:
-      | {
-          left?: Parameters<Content['pairs']['items'][Key]['left']['build']['overrides']>[0];
-          right?: Parameters<Content['pairs']['items'][Key]['right']['build']['overrides']>[0];
-        }
-      | false;
-  };
-  additionalItems?: AddedPairs & {
+  children?: Extract<keyof PairMembers<Content['pairs']> | keyof NoInfer<AddedPairs>, string>[];
+} & {
+  [Key in keyof PairMembers<Content['pairs']>]?:
+    | {
+        left?: Parameters<PairMembers<Content['pairs']>[Key]['left']['build']['overrides']>[0];
+        right?: Parameters<PairMembers<Content['pairs']>[Key]['right']['build']['overrides']>[0];
+      }
+    | false;
+} & AddedPairs & {
     [Key in keyof AddedPairs]: {
       left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
       right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
     };
-  } & { [Key in keyof Content['pairs']['items']]?: never };
-  order?: Extract<keyof Content['pairs']['items'] | keyof NoInfer<AddedPairs>, string>[];
-};
+  };
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
@@ -88,7 +93,7 @@ export type Question_MatchBlocks_Overrides<
  * Ask learners to match related ContentBlocks in pairs.
  *
  * @remarks
- * Each named entry in `content.pairs.items` is one genuine
+ * Each named entry in `content.pairs` is one genuine
  * `{ left, right }` match. Author the correct semantic pair explicitly;
  * do not rely on two unrelated positional lists matching by index.
  */
@@ -102,11 +107,9 @@ export const defineMatchBlocks = <
     content: Content &
       QuestionChildrenSupporting<Languages, Content> & {
         pairs: {
-          items: {
-            [Key in keyof Content['pairs']['items']]: {
-              left: ChildSupporting<Languages, Content['pairs']['items'][Key]['left']>;
-              right: ChildSupporting<Languages, Content['pairs']['items'][Key]['right']>;
-            };
+          [Key in keyof PairMembers<Content['pairs']>]: {
+            left: ChildSupporting<Languages, PairMembers<Content['pairs']>[Key]['left']>;
+            right: ChildSupporting<Languages, PairMembers<Content['pairs']>[Key]['right']>;
           };
         };
       };
@@ -129,16 +132,12 @@ export const defineMatchBlocks = <
   const extraContent = (
     source: Content,
     languages: readonly LanguageCode[],
-    patch?: {
-      items?: Record<string, unknown>;
-      additionalItems?: Record<string, unknown>;
-      order?: string[];
-    },
+    patch?: { children?: string[] } & Record<string, unknown>,
   ) => {
     const result = resolvePairMap(source.pairs, languages, patch as never);
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, pairs] of Object.entries(result.locale)) locale[language] = { pairs };
-    return { base: { pairs: result.base }, locale };
+    return { base: Object.keys(result.base).length ? { pairs: result.base } : {}, locale };
   };
 
   const data = (
@@ -167,11 +166,11 @@ export const defineMatchBlocks = <
     return resource;
   };
 
-  const overrides = <
+  const overridesImplementation = <
+    const Patch extends Record<string, unknown>,
     const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
-    const AddedPairs extends Record<string, Pair> = {},
   >(
-    patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
+    patch: Patch & Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairsFromPatch<Patch, Content>>,
     options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_MatchBlocks_Data> => {
     try {
@@ -223,6 +222,20 @@ export const defineMatchBlocks = <
   };
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const overrides: {
+    <
+      const Patch extends Record<string, unknown>,
+      const Added extends Record<string, ContentBlock_Primitive_Configurator> = {},
+    >(
+      patch: Patch & Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairsFromPatch<Patch, Content>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_MatchBlocks_Data>;
+    (
+      patch: Question_MatchBlocks_Overrides<Content, {}, Languages, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): QuestionOverridePublication<Question_MatchBlocks_Data>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,

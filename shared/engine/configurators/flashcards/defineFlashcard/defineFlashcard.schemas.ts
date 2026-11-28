@@ -3,9 +3,11 @@ import { z } from 'zod';
 import { deepStrict_Schema } from '#schemas';
 import type { DeepPartial } from '#types';
 
+import { validateSlugAddressedContainer } from '../../_shared__configurators';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { disability_Schema } from '../../../schemas/disabilities.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
+import { primitiveContentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import {
   localizationSwitch as contentBlockLocalizationSwitch,
   primitiveContentBlockResolved_Schema,
@@ -85,12 +87,7 @@ export const flashcard_Config_Schema = identityBase_Schema
       tags: z.array(z.string()),
       disabilities: flashcardDisabilities_Schema.optional(),
       flags: z.array(flashcardFlag_Config_Schema),
-      relationships: z
-        .strictObject({
-          items: z.record(z.string(), flashcardRelationship_Schema),
-          order: z.array(z.string()),
-        })
-        .optional(),
+      relationships: z.looseObject({ children: z.array(z.string()) }).optional(),
     }),
     // Preserve the structural Config shape for YAML/editor schema generation.
     // defineFlashcard validates that these values are built side configurators.
@@ -103,37 +100,88 @@ export const flashcard_Config_Schema = identityBase_Schema
   .strict();
 export type Flashcard_Config = z.infer<typeof flashcard_Config_Schema>;
 
-const resolvedBlocks = z.array(primitiveContentBlockResolved_Schema);
+const resolvedSide = z.looseObject({ children: z.array(z.string()) }).superRefine((side, ctx) => {
+  for (const issue of validateSlugAddressedContainer(side, primitiveContentBlockTypes)) {
+    ctx.addIssue({ code: 'custom', path: issue.path, message: issue.message });
+  }
+  for (const key of side.children) {
+    if (typeof key === 'string' && !primitiveContentBlockResolved_Schema.safeParse(side[key]).success) {
+      ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard side ContentBlock Data' });
+    }
+  }
+});
 export const flashcard_Data_Schema = identityBase_Schema.extend({
   type: z.literal('flashcard'),
   parameters: paramsBase_Schema.shape.params.extend({
     tags: z.array(z.string()),
     disabilities: flashcardDisabilities_Schema,
     flags: z.array(flagSchema('data')),
-    relationships: z.array(flashcardRelationship_Schema).optional(),
+    relationships: z
+      .looseObject({ children: z.array(z.string()) })
+      .superRefine((relationships, ctx) => {
+        const order = relationships.children;
+        const members = Object.keys(relationships).filter(key => key !== 'children');
+        if (
+          new Set(order).size !== order.length ||
+          members.length !== order.length ||
+          members.some(key => !order.includes(key))
+        ) {
+          ctx.addIssue({ code: 'custom', message: 'Invalid Flashcard relationship children order' });
+        }
+        const ids = new Set<string>();
+        for (const key of members) {
+          if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+            ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved relationship placement key' });
+          }
+          const parsed = flashcardRelationship_Schema.safeParse(relationships[key]);
+          if (!parsed.success) {
+            ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid Flashcard relationship Data' });
+            continue;
+          }
+          if (ids.has(parsed.data.relationshipId)) {
+            ctx.addIssue({ code: 'custom', path: [key], message: 'Duplicate Flashcard relationship ID' });
+          }
+          ids.add(parsed.data.relationshipId);
+        }
+      })
+      .optional(),
   }),
   content: z.strictObject({
-    front: resolvedBlocks.min(1),
-    back: resolvedBlocks.min(1),
-    hint: resolvedBlocks.optional(),
+    front: resolvedSide.refine(
+      value =>
+        value.children.some(key => {
+          const block = value[key] as { params?: { disabled?: boolean } } | undefined;
+          return block?.params?.disabled !== true;
+        }),
+      'Flashcard front requires an enabled ContentBlock',
+    ),
+    back: resolvedSide.refine(
+      value =>
+        value.children.some(key => {
+          const block = value[key] as { params?: { disabled?: boolean } } | undefined;
+          return block?.params?.disabled !== true;
+        }),
+      'Flashcard back requires an enabled ContentBlock',
+    ),
+    hint: resolvedSide.optional(),
   }),
 });
-export type Flashcard_Data = Omit<z.infer<typeof flashcard_Data_Schema>, 'content'> & {
-  content: {
-    front: ContentBlock_Primitive_Data[];
-    back: ContentBlock_Primitive_Data[];
-    hint?: ContentBlock_Primitive_Data[];
-  };
-};
+export type Flashcard_Data = z.infer<typeof flashcard_Data_Schema>;
 
 export type Flashcard_DataBase = Pick<Flashcard_Data, 'id' | 'slug' | 'type'> & {
   parameters: Omit<Flashcard_Data['parameters'], 'flags'> & {
     flags: DeepPartial<Flashcard_Flag_Data>[];
   };
   content: {
-    front: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
-    back: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
-    hint?: ReturnType<ContentBlock_Primitive_Configurator['build']['data']>['base'][];
+    front: ReturnType<
+      import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']
+    >['base'];
+    back: ReturnType<
+      import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']
+    >['base'];
+    hint?: ReturnType<
+      import('../defineFlashcardSide/defineFlashcardSide').FlashcardSide_Configurator['build']['data']
+    >['base'];
   };
 };
 
@@ -156,10 +204,10 @@ export type Flashcard_Named_Overrides<
   Added extends Record<string, object>,
   Immutable extends keyof Items[keyof Items],
 > = {
-  items?: { [Key in keyof Items]?: IdentitySafePatch<Items[Key], Extract<Immutable, keyof Items[Key]>> | false };
-  additionalItems?: Added & { [Key in keyof Items]?: never };
-  order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
-};
+  children?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+} & { [Key in keyof Items]?: IdentitySafePatch<Items[Key], Extract<Immutable, keyof Items[Key]>> | false } & Added & {
+    [Key in Extract<keyof Items, keyof Added>]?: never;
+  };
 
 export type Flashcard_Overrides<
   Front extends Record<string, ContentBlock_Primitive_Configurator>,

@@ -190,52 +190,64 @@ function plan(
     const ordered = (collection: unknown, name: string, preserveEnvelope: boolean) => {
       if (
         !record(collection) ||
-        !record(collection.items) ||
-        !Array.isArray(collection.order) ||
-        new Set(collection.order).size !== collection.order.length ||
-        Object.keys(collection.items).length !== collection.order.length ||
-        collection.order.some(
-          key => typeof key !== 'string' || !Object.hasOwn(collection.items as Record<string, unknown>, key),
-        )
+        !Array.isArray(collection.children) ||
+        Object.hasOwn(collection, 'content') ||
+        Object.hasOwn(collection, 'slides')
       )
-        throw Error(name + ': invalid authored order');
+        throw Error(name + ': expected root children');
+      const own = new Set(['id', 'type', 'slug', 'params', 'locale', 'children', 'draft']);
+      const members = Object.entries(collection).filter(([key]) => !own.has(key));
+      const keys = members.map(([key]) => key);
+      if (
+        keys.length !== collection.children.length ||
+        new Set(collection.children).size !== keys.length ||
+        collection.children.some(key => typeof key !== 'string' || !Object.hasOwn(collection, key) || own.has(key))
+      )
+        throw Error(name + '.children: invalid authored child order');
       return {
-        items: Object.fromEntries(
-          Object.entries(collection.items).map(([key, child]) => {
+        children: [...collection.children],
+        ...Object.fromEntries(
+          members.map(([key, child]) => {
             const node = plain(child, name + '.' + key);
             if (node.config.slug !== key) throw Error(name + '.' + key + ': child key/slug mismatch');
             const normalized = unwrap(child, name + '.' + key);
             return [
               key,
               preserveEnvelope
-                ? {
-                    config: normalized,
-                    ...(node.production ? { production: node.production } : {}),
-                  }
+                ? { config: normalized, ...(node.production ? { production: node.production } : {}) }
                 : normalized,
             ];
           }),
         ),
-        order: [...collection.order],
       };
     };
-    if (['content', 'quiz'].includes(current.type)) current.content = ordered(current.content, path + '.content', true);
-    else if (current.type === 'carousel') current.slides = ordered(current.slides, path + '.slides', false);
-    else if (current.type === 'checkpoint') current.content = ordered(current.content, path + '.content', false);
+    if (['content', 'quiz'].includes(current.type)) Object.assign(current, ordered(current, path, true));
+    else if (current.type === 'carousel' || current.type === 'checkpoint')
+      Object.assign(current, ordered(current, path, false));
     else if (current.type === 'checkpointItem') {
       current.question = unwrap(current.question, path + '.question');
       current.answer = unwrap(current.answer, path + '.answer');
-    } else if (current.type === 'checkpointAnswer')
-      current.content = ordered(current.content, path + '.content', false);
+    } else if (current.type === 'checkpointAnswer') Object.assign(current, ordered(current, path, false));
     return current;
   };
-  const before = config.before ?? { items: {}, order: [] };
-  const after = config.after ?? { items: {}, order: [] };
+  const before = config.before ?? { children: [] };
+  const after = config.after ?? { children: [] };
   const quizKey = config.quiz.config.slug;
-  const sectionOrder = [...before.order, quizKey, ...after.order];
+  const phaseItems = (phase: { children: string[] } & Record<string, unknown>, label: string) => {
+    const members = Object.entries(phase).filter(([key]) => key !== 'children');
+    const keys = members.map(([key]) => key);
+    if (
+      keys.length !== phase.children.length ||
+      new Set(phase.children).size !== keys.length ||
+      phase.children.some(key => !Object.hasOwn(phase, key) || key === 'children')
+    )
+      throw Error('Assessment ' + label + ': invalid direct Section children');
+    return Object.fromEntries(members);
+  };
+  const sectionOrder = [...before.children, quizKey, ...after.children];
   if (new Set(sectionOrder).size !== sectionOrder.length)
-    throw Error('Assessment: supporting Section slug collides with the sole Quiz');
-  const sectionNodes = { ...before.items, [quizKey]: config.quiz, ...after.items };
+    throw Error('Assessment: supporting Section slug collides with Quiz');
+  const sectionNodes = { ...phaseItems(before, 'before'), [quizKey]: config.quiz, ...phaseItems(after, 'after') };
   const sections = Object.fromEntries(
     Object.entries(sectionNodes).map(([key, value]) => {
       const node = plain(value, 'assessment.section.' + key);
@@ -391,24 +403,24 @@ function plan(
     planned.length > 1
       ? renderBlockerTodo('Complete and independently review all planned Assessment localizations before release.')
       : '',
-    'const before = { items: { ' +
-      before.order.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
-      ' }, order: ' +
-      JSON.stringify(before.order) +
+    'const before = { children: ' +
+      JSON.stringify(before.children) +
+      ', ' +
+      before.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
       ' };',
-    'const after = { items: { ' +
-      after.order.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
-      ' }, order: ' +
-      JSON.stringify(after.order) +
+    'const after = { children: ' +
+      JSON.stringify(after.children) +
+      ', ' +
+      after.children.map(key => renderSourceItem(key, sectionNames[key])).join(', ') +
       ' };',
 
     'export const ' +
       exportName(config.slug) +
       ' = defineAssessment<' +
       JSON.stringify(config.slug) +
-      ', typeof languages, typeof before.items, typeof ' +
+      ', typeof languages, typeof before, typeof ' +
       sectionNames[quizKey] +
-      ', typeof after.items>({',
+      ', typeof after>({',
     '  id: ' + JSON.stringify(config.id) + ', type: "assessment", slug: ' + JSON.stringify(config.slug) + ',',
     '  params: { ...' + JSON.stringify(config.params ?? {}) + ', languages },',
     '  locale: ' + JSON.stringify(reviewedLocale) + ',',

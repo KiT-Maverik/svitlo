@@ -7,6 +7,7 @@ import { defineLesson } from '../../lessons/defineLesson';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
 import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineChapter } from '../defineChapter';
+import { defineLessonStub } from '../defineCourseChildStubs';
 import { defineModule } from '../defineModule';
 import { placeLesson } from '../placeLesson';
 import { defineCourse } from './defineCourse';
@@ -26,7 +27,7 @@ describe('Configurators', () => {
         slug: 'chapter',
         params: { iconKey: 'book' },
         locale: { title: { en: 'Chapter', uk: 'Розділ', pl: 'Rozdział' } },
-        content: { items: {}, order: [] },
+        children: [],
       });
       const chapterModule = defineModule<'module', { chapter: typeof chapter }, typeof languages>({
         id: id('c3'),
@@ -34,7 +35,8 @@ describe('Configurators', () => {
         slug: 'module',
         params: {},
         locale: { title: 'Module' },
-        content: { items: { chapter }, order: ['chapter'] },
+        children: ['chapter'],
+        chapter,
       });
       const courseInput = {
         id: id('c4'),
@@ -42,26 +44,24 @@ describe('Configurators', () => {
         slug: 'course' as const,
         params: { languages, scenarioMode: 'story' as const },
         locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Course introduction' },
-        content: { items: { module: chapterModule }, order: ['module'] },
+        children: ['module'] as 'module'[],
+        module: chapterModule,
       };
       const course = defineCourse<'course', { module: typeof chapterModule }, typeof languages>(courseInput);
 
       test('Course hierarchy retains literal slugs and publishes ordered plain Props', () => {
         assert.equal(course.slug, 'course');
-        assert.equal(course.content.items.module, chapterModule);
-        assert.equal(chapterModule.content.items.chapter, chapter);
+        assert.equal(course.module, chapterModule);
+        assert.equal(chapterModule.chapter, chapter);
         const resource = course.build.data({ languages: ['en', 'uk'] });
         assert.equal(resource.base.params.scenarioMode, 'story');
+        assert.deepEqual(resource.base.children, ['module']);
         assert.deepEqual(
-          resource.base.content?.map(child => child!.slug),
-          ['module'],
-        );
-        assert.deepEqual(
-          resource.locale?.uk?.content?.map(child => child!.slug),
+          Object.keys(resource.locale?.uk ?? {}).filter(key => key !== 'locale'),
           ['module'],
         );
         assert.ok(JSON.stringify(resource.locale?.uk).includes('Розділ'));
-        assert.equal('items' in resource.base.content[0]!, false);
+        assert.equal('content' in resource.base.module!, false);
         assert.equal(JSON.stringify(resource).includes('"order"'), false);
         assert.equal(JSON.stringify(resource).includes('"build"'), false);
         assert.deepEqual(course.config.locales(), { locale: { title: { en: 'Course', uk: 'Курс' } } });
@@ -87,30 +87,25 @@ describe('Configurators', () => {
 
         const nested = course.build.overrides(
           {
-            content: { items: { module: { locale: { title: 'Unit' } } } },
+            module: { locale: { title: 'Unit' } },
           },
           { languages: ['en', 'uk'] },
         );
-        assert.deepEqual(
-          nested.base.content?.map(child => child!.slug),
-          ['module'],
-        );
-        assert.equal(nested.base.content?.[0]?.locale?.title, 'Unit');
-        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.content[0]?.locale?.title, 'Module');
+        assert.deepEqual(Object.keys(nested.base), ['module']);
+        assert.equal((nested.base.module as { locale: { title: string } }).locale.title, 'Unit');
+        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.module.locale?.title, 'Module');
 
-        const removed = course.build.overrides(
-          { content: { items: { module: false }, order: [] } },
-          { languages: ['en', 'uk'] },
-        );
-        assert.deepEqual(removed.base.content, []);
+        const removed = course.build.overrides({ children: [], module: false }, { languages: ['en', 'uk'] });
+        assert.deepEqual(removed.base.children, []);
+        assert.equal(removed.base.module, false);
         assert.equal(removed.locale, undefined, 'invariant deletion must not emit unnecessary locale files');
 
         assert.throws(
-          () => course.build.overrides({ content: { items: { module: false } } }, { languages: ['en', 'uk'] }),
-          /order is required/,
+          () => course.build.overrides({ module: false }, { languages: ['en', 'uk'] }),
+          /children is required/,
         );
         assert.throws(
-          () => course.build.overrides({ content: { order: ['module', 'module'] } }, { languages: ['en', 'uk'] }),
+          () => course.build.overrides({ children: ['module', 'module'] }, { languages: ['en', 'uk'] }),
           /Duplicate slug/,
         );
         assert.throws(
@@ -130,52 +125,43 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: { en: 'Extra', uk: 'Додатковий' } },
-          content: { items: {}, order: [] },
+          children: [],
         });
         const patch = course.build.overrides(
           {
-            content: { additionalItems: { extra }, order: ['extra', 'module'] },
+            children: ['extra', 'module'],
+            extra,
           },
           { languages: ['en', 'uk'] },
         );
+        assert.deepEqual(patch.base.children, ['extra', 'module']);
         assert.deepEqual(
-          patch.base.content?.map(child => child!.slug),
-          ['extra', 'module'],
+          Object.keys(patch.locale?.uk ?? {}).filter(key => key !== 'locale'),
+          ['extra'],
         );
-        assert.deepEqual(
-          patch.locale?.uk?.content?.map(child => child!.slug),
-          ['extra', 'module'],
-        );
-        assert.deepEqual(
-          course.build.data({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
-          ['module'],
-        );
+        assert.deepEqual(course.build.data({ languages: ['en', 'uk'] }).base.children, ['module']);
         assert.throws(
           () =>
-            course.build.overrides(
-              { content: { additionalItems: { module: extra } as never, order: ['module'] } },
-              { languages: ['en', 'uk'] },
-            ),
+            course.build.overrides({ children: ['module', 'extraAlias'], extraAlias: extra } as never, {
+              languages: ['en', 'uk'],
+            }),
           /Duplicate|does not match/,
         );
       });
 
       test('Independent Course Build calls do not mutate original children or authored input', () => {
         const first = course.build.data({ languages: ['en', 'uk'] });
-        first.base.content[0]!.slug = 'mutated';
-        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'module');
+        first.base.module.slug = 'mutated';
+        assert.equal(course.build.data({ languages: ['en', 'uk'] }).base.module.slug, 'module');
         const patch = course.build.overrides({ locale: { title: 'Replacement' } }, { languages: ['en', 'uk'] });
         assert.equal(patch.base.locale?.title, 'Replacement');
         assert.equal(course.build.data({ languages: ['en', 'uk'] }).locale?.uk?.locale?.title, 'Курс');
 
-        const authoredContent = course.content;
-        authoredContent.order.push('module');
-        assert.throws(() => course.validate({ ...courseInput, content: authoredContent } as never), /Duplicate slug/);
-        assert.deepEqual(
-          course.build.data({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug),
-          ['module'],
-        );
-        assert.deepEqual(courseInput.content.order, ['module']);
+        const authoredContent = course.children;
+        authoredContent.push('module');
+        assert.throws(() => course.validate({ ...courseInput, children: authoredContent } as never), /Duplicate slug/);
+        assert.deepEqual(course.build.data({ languages: ['en', 'uk'] }).base.children, ['module']);
+        assert.deepEqual(courseInput.children, ['module']);
       });
 
       test('Course, Module and Chapter reject wrong child types and duplicate slugs', () => {
@@ -183,7 +169,8 @@ describe('Configurators', () => {
           () =>
             defineCourse({
               ...courseInput,
-              content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] },
+              children: ['wrongKey'],
+              wrongKey: chapterModule,
             }).build.data({ languages: ['en'] }),
           /does not match configurator slug/,
         );
@@ -195,7 +182,8 @@ describe('Configurators', () => {
               type: 'module',
               params: {},
               locale: { title: 'Invalid' },
-              content: { items: { module: chapterModule }, order: ['module'] },
+              children: ['module'],
+              module: chapterModule,
             } as never).build.data({ languages: ['en'] }),
           /Unsupported Module child type/,
         );
@@ -207,7 +195,8 @@ describe('Configurators', () => {
               type: 'chapter',
               params: {},
               locale: { title: 'Invalid' },
-              content: { items: { chapter }, order: ['chapter'] },
+              children: ['chapter'],
+              chapter,
             } as never).build.data({ languages: ['en'] }),
           /Unsupported Chapter child type/,
         );
@@ -225,13 +214,15 @@ describe('Configurators', () => {
           type: 'chapter',
           params: {},
           locale: { title: 'Duplicate ID' },
-          content: { items: {}, order: [] },
+          children: [],
         });
         assert.throws(
           () =>
             defineCourse({
               ...courseInput,
-              content: { items: { module: chapterModule, copy: duplicate }, order: ['module', 'copy'] },
+              children: ['module', 'copy'],
+              module: chapterModule,
+              copy: duplicate,
             }).build.data({ languages: ['en'] }),
           /duplicate Course child ID/,
         );
@@ -251,7 +242,7 @@ describe('Configurators', () => {
 
         const override = course.build.overrides(
           {
-            content: { items: { module: { locale: { title: { uk: 'Розділ модуля', en: 'Hidden' } } } } },
+            module: { locale: { title: { uk: 'Розділ модуля', en: 'Hidden' } } },
           },
           { languages: ['uk'] },
         );
@@ -286,7 +277,7 @@ test('Course publishes optional outcomes, EducationStandard references and learn
       description: 'An accessible course',
       outcomesText: { en: 'Explain light', uk: 'Пояснювати світло' },
     },
-    content: { items: {}, order: [] },
+    children: [],
   };
   assert.equal(course_Config_Schema.safeParse(input).success, true);
   const course = defineCourse(input);
@@ -368,7 +359,7 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Standalone', uk: 'Самостійний' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const chapter = defineChapter<'chapterContext', { caseStudy: typeof lesson }, typeof languages>({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d22',
@@ -376,7 +367,8 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     type: 'chapter',
     params: {},
     locale: { title: { en: 'Chapter', uk: 'Розділ' } },
-    content: { items: { caseStudy: lesson }, order: ['caseStudy'] },
+    children: ['caseStudy'],
+    caseStudy: lesson,
   });
   const module = defineModule<'moduleContext', { chapterContext: typeof chapter }, typeof languages>({
     id: 'bb75647f-203d-481a-a1c7-4d331c779d23',
@@ -384,7 +376,8 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     type: 'module',
     params: {},
     locale: { title: { en: 'Module', uk: 'Модуль' } },
-    content: { items: { chapterContext: chapter }, order: ['chapterContext'] },
+    children: ['chapterContext'],
+    chapterContext: chapter,
   });
   const course = defineCourse<
     'courseContext',
@@ -396,39 +389,34 @@ test('Course, Module and Chapter embed independent Lesson under contextual place
     type: 'course',
     params: { languages },
     locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Testing placement aliases' },
-    content: { items: { moduleContext: module, courseReview: lesson }, order: ['moduleContext', 'courseReview'] },
+    children: ['moduleContext', 'courseReview'],
+    moduleContext: module,
+    courseReview: lesson,
   });
   const original = lesson.build.data({ languages });
   const embedded = course.build.data({ languages });
   assert.equal(original.base.slug, 'standaloneLesson');
   assert.equal(lesson.slug, 'standaloneLesson');
-  assert.equal(embedded.base.content[0]?.slug, 'moduleContext');
-  assert.match(JSON.stringify(embedded.base.content[0]), /"slug":"caseStudy"/);
-  assert.equal(embedded.base.content[1]?.slug, 'courseReview');
-  assert.match(JSON.stringify(embedded.base.content[0]), new RegExp(lesson.id));
-  assert.equal(embedded.base.content[1]?.id, lesson.id);
+  assert.equal(embedded.base.moduleContext.slug, 'moduleContext');
+  assert.match(JSON.stringify(embedded.base.moduleContext), /caseStudy/);
+  assert.equal(embedded.base.courseReview.slug, 'standaloneLesson');
+  assert.match(JSON.stringify(embedded.base.moduleContext), new RegExp(lesson.id));
+  assert.equal(embedded.base.courseReview.id, lesson.id);
   const patch = course.build.overrides(
     {
-      content: {
-        items: {
-          moduleContext: {
-            content: {
-              items: {
-                chapterContext: {
-                  content: { items: { caseStudy: { locale: { title: { uk: 'Інша назва' } } } } },
-                },
-              },
-            },
-          },
-          courseReview: { locale: { title: { en: 'Course review' } } },
+      moduleContext: {
+        chapterContext: {
+          caseStudy: { locale: { title: { uk: 'Інша назва' } } },
         },
       },
+      courseReview: { locale: { title: { en: 'Course review' } } },
     },
     { languages },
   );
-  assert.equal(patch.base.content?.[1]?.slug, 'courseReview');
-  assert.match(JSON.stringify(patch.locale?.uk?.content), /"slug":"caseStudy"/);
-  assert.match(JSON.stringify(patch.locale?.uk?.content), /Інша назва/);
+  assert.deepEqual(patch.base.children, undefined);
+  assert.ok('courseReview' in patch.base);
+  assert.match(JSON.stringify(patch.locale?.uk?.moduleContext), /caseStudy/);
+  assert.match(JSON.stringify(patch.locale?.uk?.moduleContext), /Інша назва/);
   assert.equal(original.locale?.uk?.locale?.title, 'Самостійний', 'standalone Lesson title is immutable');
 });
 
@@ -445,7 +433,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
     },
     locale: { title: { en: 'Original', uk: 'Оригінал' } },
-    section: { items: {}, order: [] },
+    children: [],
   });
   const raw = {
     params: { sections: { allowSkipping: false } },
@@ -458,7 +446,8 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     type: 'chapter',
     params: {},
     locale: { title: 'Chapter' },
-    content: { items: { shadow }, order: ['shadow'] },
+    children: ['shadow'],
+    shadow,
   });
   const module = defineModule<'contextModule', { contextChapter: typeof chapter }, typeof languages>({
     id: 'c775647f-203d-481a-a1c7-4d331c779d23',
@@ -466,7 +455,8 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     type: 'module',
     params: {},
     locale: { title: 'Module' },
-    content: { items: { contextChapter: chapter }, order: ['contextChapter'] },
+    children: ['contextChapter'],
+    contextChapter: chapter,
   });
   const course = defineCourse<
     'contextCourse',
@@ -478,20 +468,22 @@ test('Lesson placement patch resolves through original Build, survives nested Co
     type: 'course',
     params: { languages },
     locale: { title: 'Course', description: 'Lesson placements' },
-    content: { items: { contextModule: module, direct: original }, order: ['contextModule', 'direct'] },
+    children: ['contextModule', 'direct'],
+    contextModule: module,
+    direct: original,
   });
   const expectedSparse = original.build.overrides(raw, { languages });
   assert.deepEqual(shadow.build.overrides({}, { languages }), expectedSparse);
   assert.deepEqual(shadow.placement.patch, raw);
   const publication = course.build.data({ languages });
   const shadowBase = (
-    publication.base.content[0] as {
-      content: { content: { params: { sections: { allowSkipping: boolean } }; slug: string }[] }[];
+    publication.base as unknown as {
+      contextModule: { contextChapter: { shadow: { params: { sections: { allowSkipping: boolean } }; slug: string } } };
     }
-  ).content[0].content[0];
-  assert.equal(shadowBase.slug, 'shadow');
+  ).contextModule.contextChapter.shadow;
+  assert.equal(shadowBase.slug, 'originalLesson');
   assert.equal(shadowBase.params.sections.allowSkipping, false);
-  assert.equal(publication.base.content[1]?.slug, 'direct');
+  assert.equal(publication.base.direct.slug, 'originalLesson');
   assert.match(JSON.stringify(publication.locale?.uk), /Контекстний урок/);
   assert.equal(JSON.stringify(publication.locale?.en).includes('Контекстний урок'), false);
   assert.equal(original.build.data({ languages }).base.params.sections.allowSkipping, true);
@@ -509,7 +501,7 @@ test('Lesson placement patch resolves through original Build, survives nested Co
   );
   assert.throws(
     () => placeLesson(original, { id: 'c775647f-203d-481a-a1c7-4d331c779d99' } as never).build.data({ languages }),
-    /Invalid Lesson overrides/,
+    /Unsafe or immutable Lesson placement field: id/,
   );
   assert.throws(
     () =>
@@ -518,7 +510,10 @@ test('Lesson placement patch resolves through original Build, survives nested Co
       }),
     /Invalid Lesson overrides/,
   );
-  assert.throws(() => placeLesson(original, { locale: { title: () => 'bad' } } as never), /plain JSON Config patch/);
+  assert.throws(
+    () => placeLesson(original, { locale: { title: () => 'bad' } } as never),
+    /Lesson placement requires plain JSON Config at patch\.locale\.title/,
+  );
 });
 
 test('F4: English Course placement composes a multilingual required-Quiz Lesson with an English-only additional Section', () => {
@@ -537,7 +532,8 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: 'Introduction', navigationLabel: 'Intro' },
-    content: { items: { missingTranslation }, order: ['missingTranslation'] },
+    children: ['missingTranslation'],
+    missingTranslation,
   });
   const quiz = defineQuizSection<'quiz', {}, typeof bilingual>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d23',
@@ -559,7 +555,7 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
       results: { visibility: 'after-review', showScore: true },
     },
     locale: { title: 'Check', navigationLabel: 'Quiz' },
-    content: { items: {}, order: [] },
+    children: [],
   });
   const lesson = defineLesson({
     id: 'f775647f-203d-481a-a1c7-4d331c779d25',
@@ -572,7 +568,9 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
       sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
     },
     locale: { title: 'Standalone' },
-    section: { items: { intro, quiz }, order: ['intro', 'quiz'] },
+    children: ['intro', 'quiz'],
+    intro,
+    quiz,
   });
   const exhibitionNotes = defineContentSection<'exhibitionNotes', {}, typeof english>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d26',
@@ -580,10 +578,11 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'content',
     params: {},
     locale: { title: { en: 'English-only notes' }, navigationLabel: 'Notes' },
-    content: { items: {}, order: [] },
+    children: [],
   });
   const placement = placeLesson(lesson, {
-    section: { additionalItems: { exhibitionNotes }, order: ['intro', 'quiz', 'exhibitionNotes'] },
+    children: ['intro', 'quiz', 'exhibitionNotes'],
+    exhibitionNotes,
   } as never);
   const course = defineCourse<'englishCourse', { placement: typeof placement }, typeof english>({
     id: 'f775647f-203d-481a-a1c7-4d331c779d27',
@@ -591,7 +590,8 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     type: 'course',
     params: { languages: english },
     locale: { title: 'Course', description: 'English preview' },
-    content: { items: { placement }, order: ['placement'] },
+    children: ['placement'],
+    placement,
   });
 
   for (const mode of ['draft', 'production'] as const) {
@@ -599,23 +599,216 @@ test('F4: English Course placement composes a multilingual required-Quiz Lesson 
     assert.match(JSON.stringify(result), /English-only notes/);
     assert.equal(result.locale?.zh, undefined);
     const patch = course.build.overrides(
-      { content: { items: { placement: { locale: { title: 'Placed Lesson' } } } } },
+      { placement: { locale: { title: 'Placed Lesson' } } },
       { languages: ['en'], mode },
     );
     assert.match(JSON.stringify(patch), /Placed Lesson/);
     assert.equal(patch.locale?.zh, undefined);
   }
 
-  assert.deepEqual(
-    lesson.build.data({ languages: ['en'] }).base.section.map(section => section.slug),
-    ['intro', 'quiz'],
-  );
+  assert.deepEqual(lesson.build.data({ languages: ['en'] }).base.children, ['intro', 'quiz']);
   assert.throws(() => lesson.build.data({ languages: ['zh'] }), /Invalid publication/);
   assert.throws(
     () =>
-      placement.build.overrides({ section: { items: { quiz: false }, order: ['intro', 'exhibitionNotes'] } } as never, {
+      placement.build.overrides({ quiz: false, children: ['intro', 'exhibitionNotes'] } as never, {
         languages: ['en'],
       }),
     /at least one enabled Quiz/,
+  );
+});
+
+test('Completed Lesson UUID can be reused as distinct Course, Module and Chapter placements', () => {
+  const languages = ['en', 'uk'] as const;
+  const lesson = defineLesson({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d91',
+    slug: 'sourceLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      quizRequiredForCompletion: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Original', uk: 'Оригінал' } },
+    children: [],
+  });
+  const secondPlacement = placeLesson(lesson, { locale: { title: { uk: 'Повторення' } } });
+  const placements = { first: lesson, second: secondPlacement };
+  const chapter = defineChapter<'chapter', typeof placements, typeof languages>({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d92',
+    type: 'chapter',
+    slug: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    children: ['first', 'second'],
+    ...placements,
+  });
+  const module = defineModule<
+    'module',
+    { chapter: typeof chapter; first: typeof lesson; second: typeof secondPlacement },
+    typeof languages
+  >({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d93',
+    type: 'module',
+    slug: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    children: ['chapter', 'first', 'second'],
+    chapter,
+    ...placements,
+  });
+  const course = defineCourse<
+    'course',
+    { module: typeof module; first: typeof lesson; second: typeof secondPlacement },
+    typeof languages
+  >({
+    id: 'bd75647f-203d-481a-a1c7-4d331c779d94',
+    type: 'course',
+    slug: 'course',
+    params: { languages },
+    locale: { title: 'Course', description: 'Reusable placement' },
+    children: ['module', 'first', 'second'],
+    module,
+    ...placements,
+  });
+  const all = [chapter.build.data({ languages }), module.build.data({ languages }), course.build.data({ languages })];
+  for (const built of all) {
+    const base = built.base as unknown as Record<string, unknown> & {
+      children: string[];
+      first: { id: string; slug: string };
+      second: { id: string; slug: string };
+    };
+    assert.equal(base.first.id, lesson.id);
+    assert.equal(base.second.id, lesson.id);
+    assert.equal(base.first.slug, 'sourceLesson');
+    assert.equal(base.second.slug, 'sourceLesson');
+    assert.deepEqual(base.children.slice(-2), ['first', 'second']);
+    assert.match(JSON.stringify(built.locale?.uk), /Повторення/);
+  }
+  assert.equal(lesson.build.data({ languages }).locale?.uk?.locale?.title, 'Оригінал');
+  assert.equal(course_Data_Schema.safeParse(course.build.data({ languages }).base).success, true);
+  assert.equal(
+    course_Data_Schema.safeParse({
+      ...course.build.data({ languages }).base,
+      second: { ...course.build.data({ languages }).base.second, slug: 'changedSource' },
+    }).success,
+    false,
+    'reusing a UUID with a different source slug violates immutable identity',
+  );
+
+  const duplicateChapter = defineChapter({
+    id: chapter.id,
+    type: 'chapter',
+    slug: 'chapterCopy',
+    params: {},
+    locale: { title: 'Other' },
+    children: [],
+  });
+  assert.throws(
+    () =>
+      defineCourse({
+        id: 'bd75647f-203d-481a-a1c7-4d331c779d95',
+        type: 'course',
+        slug: 'badCourse',
+        params: { languages },
+        locale: { title: 'Course', description: 'Duplicate owners' },
+        children: ['chapter', 'chapterCopy'],
+        chapter,
+        chapterCopy: duplicateChapter,
+      }).build.data({ languages }),
+    /duplicate Course child ID/,
+  );
+
+  const stubId = 'bd75647f-203d-481a-a1c7-4d331c779d96';
+  const draftFirst = defineLessonStub({ id: stubId, slug: 'first' });
+  const draftSecond = defineLessonStub({ id: stubId, slug: 'second' });
+  assert.equal(
+    course_Data_Schema.safeParse({
+      ...course.build.data({ languages }).base,
+      children: ['first', 'second'],
+      first: draftFirst.build.data({ languages: ['en'] }).base,
+      second: draftSecond.build.data({ languages: ['en'] }).base,
+    }).success,
+    false,
+    'draft Lesson stubs cannot share a UUID even under distinct placement keys',
+  );
+  assert.throws(
+    () =>
+      defineChapter({
+        id: 'bd75647f-203d-481a-a1c7-4d331c779d97',
+        type: 'chapter',
+        slug: 'badChapter',
+        params: {},
+        locale: { title: 'Chapter' },
+        children: ['first', 'second'],
+        first: draftFirst,
+        second: draftSecond,
+      }).build.data({ languages: ['en'] }),
+    /duplicate Chapter child ID/,
+  );
+});
+
+test('Slug-addressed Data validates placement ordering, reserved keys and immutable child identity', () => {
+  const child = defineChapter({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d88',
+    slug: 'unit',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    children: [],
+  });
+  const course = defineCourse({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d89',
+    slug: 'keyedCourse',
+    type: 'course',
+    params: { languages: ['en'] as const },
+    locale: { title: 'Course', description: 'Addressable course' },
+    children: ['unit'],
+    unit: child,
+  });
+  const data = course.build.data({ languages: ['en'] }).base;
+  const valid = (source: unknown) => course_Data_Schema.safeParse(source).success;
+  assert.equal(valid(data), true);
+
+  const failures: [string, Record<string, unknown>][] = [
+    ['duplicate placement', { ...data, children: ['unit', 'unit'] }],
+    ['missing placement', { ...data, children: [] }],
+    ['unknown placement', { ...data, children: ['unit', 'notPresent'] }],
+    ['disabled child', { ...data, unit: false }],
+    ['stale child', { ...data, children: [], unit: data.unit }],
+    ['invalid type', { ...data, unit: { ...data.unit, type: 'question' } }],
+    ['wrong identity', { ...data, unit: { ...data.unit, slug: 'anotherChapter' } }],
+    ['missing child id', { ...data, unit: { ...data.unit, id: undefined } }],
+    ['invalid UUID', { ...data, unit: { ...data.unit, id: 'not-a-uuid' } }],
+    ['invalid authored slug', { ...data, unit: { ...data.unit, slug: 'not-valid' } }],
+    ['invalid key', { ...data, children: ['invalid-key'], 'invalid-key': data.unit }],
+    ['retired content', { ...data, content: { items: {}, order: [] } }],
+    ['reserved params', { ...data, children: ['params'] }],
+    ['unsafe JS key', Object.fromEntries([...Object.entries(data), ['constructor', data.unit]])],
+  ];
+  for (const [name, candidate] of failures) {
+    assert.equal(valid(candidate), false, name);
+  }
+  const copied = { ...data.unit, id: 'b775647f-203d-481a-a1c7-4d331c779d88', slug: 'copy' };
+  assert.equal(valid({ ...data, children: ['unit', 'copy'], copy: copied }), false, 'duplicate IDs');
+  assert.equal(
+    valid({ ...data, unit: { ...data.unit, content: { someChildOwnedField: 'opaque' } } }),
+    true,
+    'Course validates the direct child boundary, not child-owned internals',
+  );
+
+  const chapterWithReservedChild = defineChapter({
+    id: 'b775647f-203d-481a-a1c7-4d331c779d90',
+    slug: 'invalidChapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    children: ['content'],
+    content: course as never,
+  } as never);
+  assert.throws(() => chapterWithReservedChild.build.data({ languages: ['en'] }), /Reserved child placement slug/);
+  assert.throws(
+    () => course.build.overrides({ children: ['unit', 'content'], content: child } as never, { languages: ['en'] }),
+    /Reserved child placement slug/,
   );
 });

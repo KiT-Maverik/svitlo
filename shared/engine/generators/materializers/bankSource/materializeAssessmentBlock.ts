@@ -60,21 +60,27 @@ function unwrapPlain(value: unknown, at: string): Record<string, unknown> {
 function withProduction(config: PlainBlock, authored: unknown): BlockNode {
   return isRecord(authored) && isRecord(authored.production) ? { config, production: authored.production } : { config };
 }
+/** Read only canonical authored placements. Internal maps are not publication wrappers. */
 function ordered(value: unknown, at: string): { items: Record<string, unknown>; order: string[] } {
-  if (!isRecord(value) || !isRecord(value.items) || !Array.isArray(value.order)) {
-    throw new Error(at + ': expected ordered Config collection');
+  if (
+    !isRecord(value) ||
+    !Array.isArray(value.children) ||
+    ['items', 'order', 'slides', 'content'].some(key => Object.hasOwn(value, key))
+  ) {
+    throw new Error(at + ': expected direct child placements and children order');
   }
-  const items = value.items;
-  const order = value.order;
+  const metadata = new Set(['id', 'type', 'slug', 'params', 'locale', 'children']);
+  const items = Object.fromEntries(Object.entries(value).filter(([key]) => !metadata.has(key)));
+  const order = value.children;
   const keys = Object.keys(items);
   if (
     new Set(order).size !== keys.length ||
     keys.length !== order.length ||
     order.some(key => typeof key !== 'string' || !Object.hasOwn(items, key))
   ) {
-    throw new Error(at + ': every item must be ordered exactly once');
+    throw new Error(at + ': every child must be ordered exactly once');
   }
-  return { items, order: order as string[] };
+  return { items, order };
 }
 function asChildResult(out: {
   exportName: string;
@@ -181,7 +187,7 @@ export function materializeAssessmentBlock(
       );
     }
     case 'carousel': {
-      const slides = ordered(source.slides, 'Carousel slides');
+      const slides = ordered(source, 'Carousel slides');
       const items = Object.fromEntries(
         Object.entries(slides.items).map(([key, child]) => [
           key,
@@ -189,7 +195,7 @@ export function materializeAssessmentBlock(
         ]),
       );
       return asChildResult(
-        materializeCarousel({ ...source, slides: { items, order: slides.order } } as unknown as CarouselSource, {
+        materializeCarousel({ ...source, ...items } as unknown as CarouselSource, {
           directory: context.directory,
           documentLanguage,
           languagesImport,
@@ -208,13 +214,13 @@ export function materializeAssessmentBlock(
       );
     }
     case 'checkpoint': {
-      const content = ordered(source.content, 'Checkpoint items');
+      const content = ordered(source, 'Checkpoint items');
       const items = Object.fromEntries(
         Object.entries(content.items).map(([key, child]) => {
           const item = unwrap(child, 'Checkpoint item ' + key);
           const question = unwrap(item.question, 'Checkpoint question ' + key);
           const answer = unwrapPlain(item.answer, 'Checkpoint answer ' + key);
-          const answerContent = ordered(answer.content, 'Checkpoint answer content ' + key);
+          const answerContent = ordered(answer, 'Checkpoint answer content ' + key);
           const answerItems = Object.fromEntries(
             Object.entries(answerContent.items).map(([slug, block]) => [
               slug,
@@ -226,13 +232,13 @@ export function materializeAssessmentBlock(
             {
               ...item,
               question,
-              answer: { ...answer, content: { items: answerItems, order: answerContent.order } },
+              answer: { ...answer, ...answerItems },
             },
           ];
         }),
       );
       return asChildResult(
-        materializeCheckpoint({ ...source, content: { items, order: content.order } } as unknown as CheckpointSource, {
+        materializeCheckpoint({ ...source, ...items } as unknown as CheckpointSource, {
           directory: context.directory,
           documentLanguage,
           languagesImport,
@@ -241,7 +247,7 @@ export function materializeAssessmentBlock(
             // Keep its matching authored wrappers for delegated descendant calls.
             const authoredItem = unwrap(content.items[item.slug], 'Checkpoint item ' + item.slug);
             const authoredAnswer = unwrapPlain(authoredItem.answer, 'Checkpoint answer ' + item.slug);
-            const authoredBlocks = ordered(authoredAnswer.content, 'Checkpoint answer content ' + item.slug).items;
+            const authoredBlocks = ordered(authoredAnswer, 'Checkpoint answer content ' + item.slug).items;
             return materializeCheckpointItem(item as CheckpointItemSource, {
               directory,
               documentLanguage,

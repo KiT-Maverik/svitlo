@@ -27,24 +27,21 @@ const audio = defineAudio<'audio', ['en']>({
   params: {},
   locale: { title: { en: 'Narration' }, fileName: 'https://example.com/a.mp3' },
 });
-const carousel = defineCarousel({
+const firstSlide = defineImage<'first', ['en']>({
+  id,
+  slug: 'first',
+  type: 'image',
+  params: { fill: true, aspectRatio: 1.5 },
+  locale: { fileName: 'https://example.com/image.png', alt: 'Alt' },
+});
+const carousel = defineCarousel<'carousel', { first: typeof firstSlide }, ['en']>({
   id,
   slug: 'carousel',
   type: 'carousel',
   params: {},
   locale: {},
-  slides: {
-    items: {
-      first: defineImage({
-        id,
-        slug: 'first',
-        type: 'image',
-        params: { fill: true, aspectRatio: 1.5 },
-        locale: { fileName: 'https://example.com/image.png', alt: 'Alt' },
-      }),
-    },
-    order: ['first'],
-  },
+  children: ['first'],
+  first: firstSlide,
 });
 const code = defineCode<'code', ['en']>({
   id,
@@ -135,7 +132,7 @@ audio.build.data({ embed: true });
 const carouselPublished = carousel.build.data({ languages: ['en'] });
 void carouselPublished.locale?.en?.locale;
 // @ts-expect-error Localized fields are nested under the Props locale field.
-void carouselPublished.locale?.en?.slides;
+void carouselPublished.locale?.en?.locale?.slides;
 // @ts-expect-error The Build API does not support conditional embedding.
 carousel.build.data({ embed: true });
 
@@ -299,7 +296,8 @@ const typedCarouselSupports = defineCarousel<
   type: 'carousel',
   params: {},
   locale: { title: 'Gallery' },
-  slides: { items: { bilingual: bilingualSlideForGallery }, order: ['bilingual'] },
+  children: ['bilingual'],
+  bilingual: bilingualSlideForGallery,
 });
 void typedCarouselSupports;
 
@@ -310,13 +308,9 @@ defineCarousel<'invalidGallery', { ukOnly: typeof ukOnlySlide }, ['uk', 'en']>({
   type: 'carousel',
   params: {},
   locale: { title: 'Gallery' },
-  slides: {
-    items: {
-      // @ts-expect-error The parent requires en, but the slide only supports uk.
-      ukOnly: ukOnlySlide,
-    },
-    order: ['ukOnly'],
-  },
+  children: ['ukOnly'],
+  // @ts-expect-error The parent requires en, but the slide only supports uk.
+  ukOnly: ukOnlySlide,
 });
 
 /** Carousel infers the exact Image/Scene child kinds and validates localized overrides. */
@@ -326,23 +320,18 @@ const mixedCarousel = defineCarousel<'mixedGallery', { image: typeof image; scen
   type: 'carousel',
   params: {},
   locale: { title: { en: 'Explore' } },
-  slides: { items: { image, scene }, order: ['image', 'scene'] },
+  children: ['image', 'scene'],
+  image,
+  scene,
 });
-mixedCarousel.build.overrides(
-  { slides: { items: { scene: { locale: { value: { heading: { en: 'Updated' } } } } } } },
-  { languages: ['en'] },
-);
+mixedCarousel.build.overrides({ scene: { locale: { value: { heading: { en: 'Updated' } } } } }, { languages: ['en'] });
 defineCarousel({
   id,
   slug: 'invalidChild',
   type: 'carousel',
   params: {},
   locale: {},
-  slides: {
-    items: {
-      // @ts-expect-error Text is not a Carousel Image/Scene child.
-      text,
-    },
-    order: ['text'],
-  },
+  children: ['text'],
+  // @ts-expect-error Text is not a Carousel Image/Scene child.
+  text,
 });

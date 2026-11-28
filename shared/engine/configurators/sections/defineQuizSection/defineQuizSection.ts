@@ -17,15 +17,20 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
   validateOrderedKeys,
+  validateSlugAddressedPublication,
   validateSluggedConfiguratorMap,
+  type AddedPlacementsFromPatch,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import { selectQuizQuestionIds } from '../../../assemblers/assessmentResources/assessmentResources';
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   quizSection_Config_Schema,
   quizSection_Data_Schema,
+  quizSection_Metadata_Config_Schema,
   quizSection_Override_Config_Schema,
   type QuizSection_Config,
   type QuizSection_DataBase,
@@ -43,59 +48,26 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'data'>>; content?: QuizSection_DataBase['content'] };
+type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'data'>>; [placement: string]: unknown };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: QuizSection_MetadataOverrides['params'];
   locale?: DeepPartial<QuizSection_Locale<'data'>>;
-  content?: QuizSection_DataBase['content'];
+  children?: string[];
+  [placement: string]: unknown;
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+const ownFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'children']);
+const directBlocks = (config: Record<string, unknown>) =>
+  Object.fromEntries(Object.entries(config).filter(([key]) => !ownFields.has(key)));
 
-/** Enforce conditional grading semantics without decorating a deep-partial-able Zod object.
- * Zod's deepPartial refuses object refinements; the full Schema still validates the
- * mode, finite/nonnegative threshold and all other structural fields.
- */
+/** Preserve Quiz grading and selection invariants independently of content placement. */
 const validateGrading = (grading: QuizSection_Config['params']['grading']): void => {
-  if (grading?.mode === 'percentage' && grading.successThreshold > 100) {
+  if (grading?.mode === 'percentage' && grading.successThreshold > 100)
     throw new Error('Quiz percentage successThreshold must be between 0 and 100');
-  }
 };
-
-/** Validate the effective Props for each explicitly requested publication locale. */
-const validateResolvedData = (
-  resource: Publication<unknown>,
-  languages: readonly LanguageCode[],
-  patch?: Publication<unknown>,
-): void => {
-  for (const language of languages) {
-    const base = mergeForValidation(
-      resource.base as Record<string, unknown>,
-      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
-    );
-    const patched = patch ? mergeForValidation(base, patch.base as DeepPartial<Record<string, unknown>>) : base;
-    const resolved = patch
-      ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
-      : patched;
-    try {
-      const valid = quizSection_Data_Schema.parse(resolved);
-      validateGrading(valid.params.grading);
-      selectQuizQuestionIds(valid.params.selection, valid.id);
-    } catch (error) {
-      throw new Error(
-        'Invalid defineQuizSection Props for language ' +
-          language +
-          ': ' +
-          (error instanceof Error ? error.message : String(error)),
-        { cause: error },
-      );
-    }
-  }
-};
-
-/** Validate Quiz-owned references against the effective, active child collection. */
 const validateScreenReferences = (
   screen: QuizSection_Config['params']['screen'],
   activeSlugs: ReadonlySet<string>,
@@ -109,29 +81,29 @@ const validateScreenReferences = (
   ] as const;
   for (const [location, entry] of screens) {
     for (const slug of entry?.content ?? []) {
-      if (!activeSlugs.has(slug)) {
+      if (!activeSlugs.has(slug))
         throw new Error('Quiz screen references unknown ContentBlock: ' + slug + ' (' + location + ')');
-      }
-      if (disabledSlugs.has(slug)) {
+      if (disabledSlugs.has(slug))
         throw new Error('Quiz screen ' + location + ' references disabled ContentBlock: ' + slug);
-      }
     }
   }
 };
 
+/** Each Section owns only the ContentBlock collection boundary, not child internals. */
 const validate = (config: QuizSection_Config): void => {
-  const parsed = quizSection_Config_Schema.parse(config);
-  validateGrading(parsed.params.grading);
-  selectQuizQuestionIds(parsed.params.selection, parsed.id);
-  const issues = [
-    ...validateOrderedKeys(config.content, { path: 'content' }),
-    ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
-      path: 'content.items',
-      itemLabel: 'ContentBlock',
-    }),
+  const items = directBlocks(config);
+  const parsed = quizSection_Config_Schema.safeParse(config);
+  const errors = [
+    ...(!parsed.success ? parsed.error.issues.map(issue => issue.path.join('.') + ': ' + issue.message) : []),
+    ...validateOrderedKeys({ items, order: config.children }, { path: 'children' }).map(issue => issue.message),
+    ...validateSluggedConfiguratorMap(items, contentBlockTypes, {
+      path: 'children',
+      itemLabel: 'Section ContentBlock',
+      reservedKeys: slugAddressedReservedKeys,
+    }).map(issue => issue.message),
   ];
-  if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-  for (const [key, child] of Object.entries(config.content.items)) {
+  const ids = new Set<string>();
+  for (const [key, child] of Object.entries(items)) {
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
@@ -140,53 +112,75 @@ const validate = (config: QuizSection_Config): void => {
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
       child.config.base.id !== child.id ||
-      child.config.base.type !== child.type ||
-      child.config.base.slug !== key
+      child.config.base.slug !== key ||
+      child.config.base.type !== child.type
     ) {
-      throw new Error('Invalid Section ContentBlock Build API or identity: ' + key);
+      errors.push('Invalid Section ContentBlock Build API or identity: ' + key);
+    }
+    if (isRecord(child) && typeof child.id === 'string') {
+      if (ids.has(child.id)) errors.push('Duplicate Section ContentBlock ID: ' + child.id);
+      ids.add(child.id);
     }
   }
-  // Authored references must target enabled ContentBlocks (not just existing slugs).
-  const authoredDisabled = new Set(
-    Object.entries(config.content.items)
-      .filter(([, child]) => isRecord(child.config.base.params) && child.config.base.params.disabled === true)
-      .map(([key]) => key),
-  );
-  validateScreenReferences(config.params.screen, new Set(Object.keys(config.content.items)), authoredDisabled);
+  if (parsed.success) {
+    validateGrading(parsed.data.params.grading);
+    selectQuizQuestionIds(parsed.data.params.selection, parsed.data.id);
+    const disabled = new Set(
+      Object.entries(items)
+        .filter(
+          ([, value]) =>
+            isRecord(value) &&
+            isRecord(value.config) &&
+            isRecord(value.config.base) &&
+            isRecord(value.config.base.params) &&
+            value.config.base.params.disabled === true,
+        )
+        .map(([key]) => key),
+    );
+    validateScreenReferences(parsed.data.params.screen, new Set(Object.keys(items)), disabled);
+  }
+  if (errors.length) throw new Error('Section validation failed: ' + errors.join('; '));
 };
 
-/**
- * Configure a Quiz with explicitly referenced, standalone Question UUIDs.
- *
- * @remarks
- * Do not place Question configurators inside this Section's `content`.
- * Use `params.selection.questionIds` to identify the permitted Question candidates;
- * sampling and ordering apply only to this explicit list.
- *
- * The Section's ContentBlocks are available for starting and ending screens.
- * `params.screen` references their active, enabled slugs, not Question slugs.
- * A blocking Quiz cannot be skipped; for a nonblocking Quiz, skipping also
- * depends on `interaction.skippable` and the Lesson/Section policy.
- */
-export const defineQuizSection = <
+type AuthoredInput<
+  Slug extends string,
+  Items extends Record<string, Block>,
+  Languages extends readonly LanguageCode[],
+> = Pick<QuizSection_Config, 'id' | 'type' | 'params' | 'locale'> & {
+  slug: Slug;
+  children: Extract<keyof Items, string>[];
+} & Items &
+  ChildrenSupporting<Languages, Items> &
+  SafePlacementMap<Items> &
+  ConfigWithLanguages<QuizSection_Config, Languages>;
+
+/** Infer authored block slugs without treating Quiz metadata as child blocks. */
+type QuizBlockKeys<Input> = Exclude<keyof Input, 'id' | 'slug' | 'type' | 'params' | 'locale' | 'children'>;
+type InferredQuizBlocks<Input> = {
+  [Key in QuizBlockKeys<Input>]: Input[Key] extends Block ? Input[Key] : Block;
+};
+
+/** Stateless Section authoring with direct ordered ContentBlock placements. */
+const defineQuizSectionImpl = <
   const Slug extends string,
   const Items extends Record<string, Block>,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
-  config: Omit<QuizSection_Config, 'slug' | 'content'> & {
-    slug: Slug;
-    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
-  } & ConfigWithLanguages<QuizSection_Config, Languages>,
+  config: AuthoredInput<Slug, Items, Languages>,
 ) => {
-  // Metadata is copied; children hold independent, immutable authoring snapshots.
-  const metadataSchema = quizSection_Config_Schema.omit({ content: true });
-  const { content: _content, ...metadataInput } = config;
-  const authored: Omit<QuizSection_Config, 'content'> = structuredClone(metadataInput);
+  const metadataSchema = quizSection_Metadata_Config_Schema;
+  const metadataInput = {
+    id: config.id,
+    slug: config.slug,
+    type: config.type,
+    params: config.params,
+    locale: config.locale,
+  };
+  const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
-  const { id, type, slug } = authored;
-  const initialItems: Items = { ...config.content.items };
-  const initialOrder = [...config.content.order];
-  const content = { items: { ...initialItems }, order: [...initialOrder] };
+  const { id, slug, type } = authored;
+  const initialItems = directBlocks(config) as unknown as Items;
+  const initialOrder = [...config.children];
 
   const base = {
     id,
@@ -194,7 +188,7 @@ export const defineQuizSection = <
     type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
-  } satisfies DeepPartial<QuizSection_Config>;
+  };
 
   const ownLocale = (input: DeepPartial<QuizSection_Locale<'config'>>) => {
     const split = splitLocalizedFields(input);
@@ -205,88 +199,91 @@ export const defineQuizSection = <
     return { invariant: split.base as DeepPartial<QuizSection_Locale<'data'>>, files };
   };
 
-  const buildContent = (
+  const buildBlocks = (
     items: Record<string, Block>,
     order: readonly string[],
-    patches: Record<string, unknown> = {},
+    changes: Record<string, unknown> = {},
   ) => {
     const { languages } = requireBuildContext();
     const entries = order.map(key => {
       const child = items[key];
+      if (!child) throw new Error('Missing ContentBlock: ' + key);
       const resource = buildChildData(child) as unknown as ChildResource;
-      const patch = Object.hasOwn(patches, key)
-        ? (buildChildOverrides(child, patches[key] as never) as unknown as ChildPatch)
+      const patch = Object.hasOwn(changes, key)
+        ? (buildChildOverrides(child, changes[key] as never) as unknown as ChildPatch)
         : undefined;
-      return { resource, patch };
+      return { key, resource, patch };
     });
-    const bases = entries.map(({ resource, patch }) =>
-      patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as QuizSection_DataBase['content'];
-    const locales: Partial<Record<LanguageCode, QuizSection_DataBase['content']>> = {};
+    const base: Record<string, unknown> = {};
+    const childPatches: Record<string, ChildPatch> = {};
+    for (const { key, resource, patch } of entries) {
+      base[key] = patch ? mergeForValidation(resource.base, patch.base) : resource.base;
+      if (patch) childPatches[key] = patch;
+    }
+    const locale: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
     for (const language of languages) {
-      if (
-        !entries.some(
-          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
-        )
-      )
-        continue;
-      locales[language] = entries.map(({ resource, patch }) => {
-        const withResourceLocale = mergeForValidation(
+      const fragments: Record<string, unknown> = {};
+      for (const { key, resource, patch } of entries) {
+        if (resource.locale?.[language] === undefined && patch?.locale?.[language] === undefined) continue;
+        const translated = mergeForValidation(
           resource.base,
           (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
         );
-        const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
-        return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
-      }) as QuizSection_DataBase['content'];
+        const withPatch = patch ? mergeForValidation(translated, patch.base) : translated;
+        fragments[key] = patch?.locale?.[language] ? mergeForValidation(withPatch, patch.locale[language]) : withPatch;
+      }
+      if (Object.keys(fragments).length) locale[language] = fragments;
     }
-    return { bases, locales };
+    return { base, locale, childPatches };
   };
+
+  const originalConfig = () => ({ ...copyAuthored(), children: [...initialOrder], ...initialItems });
 
   const data = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_DataBase> => {
     const languages = resolvePublicationLanguages(options);
-    validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
+    validate(originalConfig());
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder);
+    const children = buildBlocks(initialItems, initialOrder);
     const files = selectPublicationLocales(own.files, languages) ?? {};
-    for (const [language, entries] of Object.entries(children.locales)) {
-      (files[language as LanguageCode] ??= {}).content = entries;
+    for (const [language, fragments] of Object.entries(children.locale)) {
+      Object.assign((files[language as LanguageCode] ??= {}), fragments);
     }
-    const result = structuredClone({
+    const result: Publication<QuizSection_DataBase> = structuredClone({
       base: {
         id,
         slug,
         type,
         params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
-        content: children.bases,
+        children: [...initialOrder],
+        ...children.base,
       },
       locale: Object.keys(files).length ? files : undefined,
     });
-    validateResolvedData(result, languages);
+    for (const language of languages) {
+      const effective = mergeForValidation(result.base, result.locale?.[language] ?? {});
+      const parsed = quizSection_Data_Schema.parse(effective);
+      validateGrading(parsed.params.grading);
+      selectQuizQuestionIds(parsed.params.selection, parsed.id);
+    }
     return result;
   };
 
-  const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: QuizSection_Overrides<Items, Added> & {
-      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
-    },
+  const overridesImplementation = <const Added extends Record<string, Block> = {}>(
+    patch: QuizSection_Overrides<Items, Added> & ChildrenSupporting<Languages, Added>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
-      validate({ ...copyAuthored(), content: { items: initialItems, order: initialOrder } });
-      if (!isRecord(patch)) throw new Error('Expected an overrides object');
-      for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'content'].includes(key)) {
-          throw new Error('Unknown Section override field: ' + key);
-        }
-      }
+      validate(originalConfig());
+      if (!isRecord(patch)) throw new Error('Expected Section overrides object');
       const metadataPatch = quizSection_Override_Config_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
       );
-      const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      const mergedMetadata = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const own = ownLocale(metadataPatch.locale ?? {});
+      const files = selectPublicationLocales(own.files, languages) ?? {};
       const output: Publication<OverrideBase> = {
         base: {
           ...(metadataPatch.params !== undefined ? { params: metadataPatch.params } : {}),
@@ -294,84 +291,84 @@ export const defineQuizSection = <
         },
         locale: undefined,
       };
-      const files = selectPublicationLocales(own.files, languages) ?? {};
-      if (patch.content !== undefined && !isRecord(patch.content)) {
-        throw new Error('content must be an object');
-      }
-      for (const key of Object.keys(patch.content ?? {})) {
-        if (!['items', 'additionalItems', 'order'].includes(key)) {
-          throw new Error('Unknown Section content override field: ' + key);
-        }
-      }
-      const changes = patch.content?.items ?? {};
-      const additions = patch.content?.additionalItems ?? {};
-      if (!isRecord(changes)) throw new Error('content.items must be an object');
-      if (!isRecord(additions)) throw new Error('content.additionalItems must be an object');
-      const addedIssues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-        path: 'content.additionalItems',
-        itemLabel: 'ContentBlock',
-      });
-      if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
+      if (patch.children !== undefined && !Array.isArray(patch.children))
+        throw new Error('children must be a replacement order array');
+      const changes: Record<string, unknown> = {};
+      const additions: Record<string, Block> = {};
+      for (const [key, value] of Object.entries(patch)) {
+        if (ownFields.has(key)) {
+          if (key !== 'params' && key !== 'locale' && key !== 'children')
+            throw new Error('Immutable Section override field: ' + key);
+          continue;
+        }
+        if (Object.hasOwn(initialItems, key)) changes[key] = value;
+        else additions[key] = value as Block;
+      }
+      const issues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
+        path: 'children',
+        itemLabel: 'Section ContentBlock',
+        reservedKeys: slugAddressedReservedKeys,
+      });
+      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const active: Record<string, Block | false> = { ...initialItems };
       const childPatches: Record<string, unknown> = {};
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Section ContentBlock slug: ' + key);
-        if (
-          !isRecord(child) ||
-          !isRecord(child.build) ||
-          typeof child.build.data !== 'function' ||
-          typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config) ||
-          !isRecord(child.config.base) ||
-          child.config.base.id !== child.id ||
-          child.config.base.type !== child.type ||
-          child.config.base.slug !== key
-        ) {
-          throw new Error('New Section ContentBlock must expose a valid Build API: ' + key);
-        }
-        active[key] = child as Block;
+        active[key] = child;
       }
-      for (const [key, change] of Object.entries(changes)) {
-        if (!Object.hasOwn(initialItems, key)) throw new Error('Unknown existing Section ContentBlock: ' + key);
-        if (change === false) {
+      for (const [key, value] of Object.entries(changes)) {
+        if (value === false) {
           active[key] = false;
           structureChanged = true;
+        } else if (isRecord(value)) {
+          childPatches[key] = value;
         } else {
-          if (!isRecord(change)) throw new Error('Section ContentBlock patch must be an object or false: ' + key);
-          childPatches[key] = change;
+          throw new Error('Section ContentBlock patch must be an object or false: ' + key);
         }
       }
-      if (structureChanged && patch.content?.order === undefined) {
-        throw new Error('content.order is required when adding or disabling Section ContentBlocks');
-      }
-      const order = patch.content?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: active, order }, { path: 'content', allowDisabled: true });
-      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+      if (structureChanged && patch.children === undefined)
+        throw new Error('children is required when adding or disabling ContentBlocks');
+      const order = patch.children ?? initialOrder;
+      const orderIssues = validateOrderedKeys({ items: active, order }, { path: 'children', allowDisabled: true });
+      if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
       const enabled = Object.fromEntries(
         Object.entries(active).filter((entry): entry is [string, Block] => entry[1] !== false),
       );
-      // Parent semantic invariants (notably Quiz screen references) must use the active collection.
-      validate({ ...candidate, content: { items: enabled, order: [...order] } });
-      if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
-        const built = buildContent(enabled, order, childPatches);
-        // An existing child may still be in the collection while disabled by its own patch.
-        // Check the final child Props, not only the authored Config or structural false entries.
-        const effectiveDisabled = new Set(
-          built.bases
-            .filter(child => isRecord(child.params) && child.params.disabled === true)
-            .map(child => child.slug),
-        );
-        validateScreenReferences(candidate.params.screen, new Set(order), effectiveDisabled);
-        output.base.content = built.bases;
-        for (const [language, entries] of Object.entries(built.locales)) {
-          (files[language as LanguageCode] ??= {}).content = entries;
+      validate({ ...mergedMetadata, children: [...order], ...enabled });
+      const built = buildBlocks(enabled, order, childPatches);
+      const effectiveDisabled = new Set(
+        Object.entries(built.base)
+          .filter(([, value]) => isRecord(value) && isRecord(value.params) && value.params.disabled === true)
+          .map(([key]) => key),
+      );
+      validateScreenReferences(mergedMetadata.params.screen, new Set(order), effectiveDisabled);
+      validateGrading(mergedMetadata.params.grading);
+      selectQuizQuestionIds(mergedMetadata.params.selection, id);
+      if (Object.keys(changes).length || Object.keys(additions).length || patch.children !== undefined) {
+        if (structureChanged || patch.children !== undefined) output.base.children = [...order];
+        for (const [key, value] of Object.entries(changes)) {
+          output.base[key] = value === false ? false : (built.childPatches[key]?.base ?? {});
+        }
+        for (const key of Object.keys(additions)) output.base[key] = built.base[key];
+        for (const language of languages) {
+          const fragments: Record<string, unknown> = {};
+          for (const key of Object.keys(changes)) {
+            if (changes[key] === false) continue;
+            const translated = built.childPatches[key]?.locale?.[language];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          for (const key of Object.keys(additions)) {
+            const translated = built.locale[language]?.[key];
+            if (translated !== undefined) fragments[key] = translated;
+          }
+          if (Object.keys(fragments).length) Object.assign((files[language] ??= {}), fragments);
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateResolvedData(data(options), languages, result);
+      validateSlugAddressedPublication(quizSection_Data_Schema, data(options), languages, result);
       return result;
     } catch (error) {
       throw new Error(
@@ -384,11 +381,30 @@ export const defineQuizSection = <
     }
   };
 
+  /**
+   * Keep a non-generic existing-child call signature as the last overload.
+   * An unspecialized generic Added map otherwise becomes Record<string, never>
+   * when Parameters<> inspects a nested concrete Configurator.
+   */
+  const overrides: {
+    <const Patch extends Record<string, unknown>>(
+      patch: Patch &
+        QuizSection_Overrides<Items, AddedPlacementsFromPatch<Patch, Items, Block>> &
+        ChildrenSupporting<Languages, AddedPlacementsFromPatch<Patch, Items, Block>>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+    (
+      patch: QuizSection_Overrides<Items, {}>,
+      options: PublicationLanguageOptions<Languages>,
+    ): Publication<OverrideBase>;
+  } = overridesImplementation;
+
   const result = {
     id,
     slug,
     type,
-    content,
+    children: [...initialOrder],
+    ...initialItems,
     validate,
     build: scopeBuild({ data, overrides }),
     config: {
@@ -402,4 +418,37 @@ export const defineQuizSection = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type QuizSection_Configurator = ReturnType<typeof defineQuizSection>;
+/** Preserve both literal-inferred and explicitly parameterized Quiz Sections. */
+export const defineQuizSection: {
+  <
+    const Input extends Pick<QuizSection_Config, 'id' | 'slug' | 'type' | 'params' | 'locale'> & {
+      children: string[];
+    },
+  >(
+    config: Input & AuthoredInput<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>,
+  ): ReturnType<typeof defineQuizSectionImpl<Input['slug'], InferredQuizBlocks<Input>, AllLanguageCodes>>;
+  <
+    const Slug extends string,
+    const Items extends Record<string, Block>,
+    const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+  >(
+    config: AuthoredInput<Slug, Items, Languages>,
+  ): ReturnType<typeof defineQuizSectionImpl<Slug, Items, Languages>>;
+} = defineQuizSectionImpl;
+
+/**
+ * Widen only the parent-facing collection boundary. A concrete Section has
+ * literal child keys and a narrowed language scope; the baseline public type
+ * must not require a never[] child order or an all-language Build input.
+ * At the authoring site typeof defineQuizSection(...) retains its full
+ * Build signature and the actual child-key/locale constraints.
+ */
+type QuizSectionBase = ReturnType<typeof defineQuizSectionImpl<string, {}, AllLanguageCodes>>;
+export type QuizSection_Configurator = Omit<QuizSectionBase, 'children' | '__svitloLanguageScope' | 'build'> & {
+  readonly children: readonly string[];
+  readonly __svitloLanguageScope: readonly LanguageCode[];
+  readonly build: Omit<QuizSectionBase['build'], 'data' | 'overrides'> & {
+    data(options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['data']>;
+    overrides(patch: never, options: PublicationLanguageOptions): ReturnType<QuizSectionBase['build']['overrides']>;
+  };
+};

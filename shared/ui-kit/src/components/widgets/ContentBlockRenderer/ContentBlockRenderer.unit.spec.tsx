@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest';
 
 import {
   UNRESOLVED_RESOURCE_UUID,
-  type ContentBlock_Checkpoint_Data,
   type ContentBlock_Markdown_Data,
   type ContentBlock_Subtitles_Data,
   type ContentBlock_Text_Data,
 } from '@svitlo/engine/runtime';
 
+import type { CheckpointViewProps } from '../../../presentation';
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 import { questionBlockLabel } from '../questions/response/QuestionContent';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
@@ -30,7 +30,7 @@ const markdown = (id: string, value: string): ContentBlock_Markdown_Data => ({
   params: {},
   locale: { value },
 });
-const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Data): ContentBlock_Checkpoint_Data => ({
+const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Data): CheckpointViewProps => ({
   id,
   slug: 'checkpoint',
   type: 'checkpoint',
@@ -191,7 +191,7 @@ describe('ContentBlockRenderer guard and state coverage', () => {
 
   it('preserves an expanded and checked checkpoint when a sibling text block changes', () => {
     const originalCheckpoint = checkpoint('persistent-checkpoint', 'What did you learn?', last);
-    const persistentCheckpoint: ContentBlock_Checkpoint_Data = {
+    const persistentCheckpoint: CheckpointViewProps = {
       ...originalCheckpoint,
       params: { enableChecks: true },
     };

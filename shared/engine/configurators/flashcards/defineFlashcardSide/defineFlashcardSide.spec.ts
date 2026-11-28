@@ -25,72 +25,58 @@ describe('Configurators', () => {
         locale: { value: 'Invariant' },
       });
       const side = defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-        items: { first },
-        order: ['first'],
+        children: ['first'],
+        first,
       });
 
       test('publishes ordered children with complete selected locale arrays and no invented identity', () => {
         assert.equal(flashcardSideConfigurator_Schema.safeParse(side).success, true);
         assert.equal('id' in side, false);
         assert.equal('slug' in side, false);
-        assert.deepEqual(
-          side.build.data({ languages: ['en'] }).base.map(item => item.slug),
-          ['first'],
-        );
+        assert.deepEqual(side.build.data({ languages: ['en'] }).base.children, ['first']);
         assert.deepEqual(Object.keys(side.build.data({ languages: ['uk'] }).locale ?? {}), ['uk']);
         const values = side.build.data({ languages: ['uk'] }).locale?.uk;
-        assert.equal((values?.[0]?.locale as { value?: string })?.value, 'Питання');
+        assert.equal((values?.first as { locale?: { value?: string } } | undefined)?.locale?.value, 'Питання');
         assert.doesNotThrow(() => JSON.stringify(side.build.data({ languages: ['uk'] })));
       });
 
       test('supports typed child overrides, additions and ordering without mutating the side', () => {
         const patched = side.build.overrides(
           {
-            items: { first: { locale: { value: { uk: 'Нове питання' } } } },
-            additionalItems: { second },
-            order: ['second', 'first'],
+            first: { locale: { value: { uk: 'Нове питання' } } },
+            second,
+            children: ['second', 'first'],
           },
           { languages: ['uk'] },
         );
-        assert.deepEqual(
-          patched.base.map(item => item.slug),
-          ['second', 'first'],
+        assert.deepEqual(patched.base.children, ['second', 'first']);
+        assert.equal(
+          (patched.locale?.uk?.first as { locale?: { value?: string } } | undefined)?.locale?.value,
+          'Нове питання',
         );
-        assert.equal((patched.locale?.uk?.[1]?.locale as { value?: string })?.value, 'Нове питання');
-        assert.deepEqual(side.order, ['first']);
-        assert.deepEqual(
-          side.build.data({ languages: ['uk'] }).base.map(item => item.slug),
-          ['first'],
-        );
+        assert.deepEqual(side.children, ['first']);
+        assert.deepEqual(side.build.data({ languages: ['uk'] }).base.children, ['first']);
       });
 
       test('rejects identity patches, invalid additions, unknown keys and structurally invalid order', () => {
-        assert.throws(() =>
-          side.build.overrides({ items: { first: { slug: 'hacked' } } } as never, { languages: ['en'] }),
-        );
+        assert.throws(() => side.build.overrides({ first: { slug: 'hacked' } } as never, { languages: ['en'] }));
+        assert.throws(() => side.build.overrides({ second }, { languages: ['en'] }), /children.*required/);
+        assert.throws(() => side.build.overrides({ first } as never, { languages: ['en'] }), /patch/);
         assert.throws(
-          () => side.build.overrides({ additionalItems: { second } }, { languages: ['en'] }),
-          /order is required/,
+          () => side.build.overrides({ missing: false } as never, { languages: ['en'] }),
+          /Invalid Flashcard side child/,
         );
-        assert.throws(
-          () => side.build.overrides({ additionalItems: { first: first } } as never, { languages: ['en'] }),
-          /Duplicate/,
-        );
-        assert.throws(
-          () => side.build.overrides({ items: { missing: false } } as never, { languages: ['en'] }),
-          /Unknown existing/,
-        );
-        assert.throws(() => side.build.overrides({ items: { first: false }, order: ['first'] }, { languages: ['en'] }));
+        assert.throws(() => side.build.overrides({ first: false, children: ['first'] }, { languages: ['en'] }));
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-            items: { first },
-            order: ['missing'],
+            children: ['missing'] as never,
+            first,
           }).build.data({ languages: ['en'] }),
         );
         assert.throws(() =>
           defineFlashcardSide<{ first: typeof first }, ['en', 'uk']>({
-            items: { first: first.config.base } as never,
-            order: ['first'],
+            children: ['first'],
+            first: first.config.base as never,
           }).build.data({ languages: ['en'] }),
         );
       });
@@ -103,39 +89,40 @@ describe('Configurators', () => {
           params: { fill: true, aspectRatio: 1.5 },
           locale: { fileName: 'https://example.com/image.png', alt: 'Image' },
         });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'carousel', { image: typeof image }>({
           id: '409a419f-5a01-46e0-aee6-4f66db492304',
           slug: 'carousel',
           type: 'carousel',
           params: {},
           locale: {},
-          slides: { items: { image }, order: ['image'] },
+          children: ['image'],
+          image,
         });
         assert.throws(
           () =>
             defineFlashcardSide({
-              items: { carousel },
-              order: ['carousel'],
+              children: ['carousel'],
+              carousel,
             } as never).build.data({ languages: ['en'] }),
-          /Primitive ContentBlock Configurator/,
+          /Unsupported Flashcard ContentBlock type: carousel/,
         );
         assert.throws(
           () =>
             side.build.overrides(
               {
-                additionalItems: { carousel },
-                order: ['first', 'carousel'],
+                carousel,
+                children: ['first', 'carousel'],
               } as never,
               { languages: ['en'] },
             ),
-          /Primitive ContentBlock Configurator/,
+          /New Flashcard side child must be a primitive ContentBlock Configurator: carousel/,
         );
       });
 
       test('supports empty optional side while required sides must remain nonempty', () => {
-        const empty = defineFlashcardSide({ items: {}, order: [] });
+        const empty = defineFlashcardSide({ children: [] });
         assert.doesNotThrow(() => empty.validate());
-        assert.throws(() => empty.validate(true), /At least one item/);
+        assert.throws(() => empty.validate(true), /At least one enabled item/);
         assert.throws(() => side.build.data({ languages: [] }), /nonempty languages/);
         assert.throws(() => side.build.data({ languages: ['en', 'en'] }), /unique/);
       });

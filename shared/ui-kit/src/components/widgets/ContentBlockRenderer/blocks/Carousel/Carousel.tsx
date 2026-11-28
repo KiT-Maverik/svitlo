@@ -9,10 +9,11 @@ import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import IconButton from '@mui/material/IconButton';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type TouchEvent } from 'react';
 
-import type { ContentBlock_Carousel_Data, ContentBlock_Carousel_SlideData } from '@svitlo/engine/runtime';
+import type { ContentBlock_Carousel_SlideData } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { CarouselViewProps } from '../../../../../presentation';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import type { SceneRegistry } from '../../types';
 import { localizedAttributes } from '../../utils';
@@ -20,7 +21,7 @@ import { Image } from '../Image/Image';
 import { Scene } from '../Scene/Scene';
 import styles from './Carousel.module.css';
 
-type Props = ContentBlock_Carousel_Data & {
+type Props = CarouselViewProps & {
   messages: Pick<UiKitMessages, 'image' | 'learningLayout'>;
   sceneRegistry?: SceneRegistry;
 };

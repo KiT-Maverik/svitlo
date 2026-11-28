@@ -36,7 +36,7 @@ const episode = {
     slug: 'story',
     params: { languages: ['uk'] },
     locale: { title: { uk: 'Історія' } },
-    section: { items: {}, order: [] },
+    children: [],
   },
   production: { focus: 'Apply observations', purpose: 'Motivate next concept' },
 };
@@ -45,7 +45,8 @@ const chapter = {
     type: 'chapter',
     slug: 'chapter',
     locale: { title: { uk: 'Розділ' } },
-    content: { items: { story: episode }, order: ['story'] },
+    children: ['story'],
+    story: episode,
   },
   production: {
     methodology: 'Explain the sequencing choice',
@@ -60,7 +61,8 @@ const module = {
     type: 'module',
     slug: 'module',
     locale: { title: { uk: 'Модуль' } },
-    content: { items: { chapter }, order: ['chapter'] },
+    children: ['chapter'],
+    chapter,
   },
   production: {
     methodology: 'Introduce the domain',
@@ -77,7 +79,8 @@ const course = {
     slug: 'skyBasics',
     params: {},
     locale: { title: { uk: 'Основи' }, description: { uk: 'Опис курсу' } },
-    content: { items: { module }, order: ['module'] },
+    children: ['module'],
+    module,
   },
   production,
 };

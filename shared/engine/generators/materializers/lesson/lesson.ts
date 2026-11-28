@@ -18,9 +18,7 @@ export type SourceChild = ChildConfig | { config: ChildConfig; production?: Reco
  * Stage 3 new Lessons lack identity, publication languages and Sections.
  * Optional audience age/grade ranges remain Config params.
  */
-export type Source = Omit<Lesson_Config, 'section'> & {
-  section: { items: Record<string, SourceChild>; order: string[] };
-};
+export type Source = Lesson_Config & { children: string[] };
 export type GeneratedFile = {
   path: string;
   content: string;
@@ -152,23 +150,25 @@ function sourceNode(value: SourceChild): { config: ChildConfig; production?: Rec
   return { config: value as ChildConfig };
 }
 /** Exact Section order; no implicit sorting or inferred child identities. */
+const lessonFields = new Set(['id', 'slug', 'type', 'params', 'locale', 'skills', 'events', 'draft', 'children']);
+/** Exact direct Section children order, rejecting missing and unsafe placement slugs. */
 function validateSections(source: Source): void {
-  if (!isObject(source.section) || !isObject(source.section.items) || !Array.isArray(source.section.order))
-    throw new Error('lesson.section: expected { items, order }');
-  const keys = Object.keys(source.section.items);
+  if (!Array.isArray(source.children) || Object.hasOwn(source, 'section'))
+    throw new Error('lesson.children: expected direct Section placements');
+  const keys = Object.keys(source).filter(key => !lessonFields.has(key));
   if (
-    keys.length !== source.section.order.length ||
-    new Set(source.section.order).size !== keys.length ||
-    source.section.order.some(key => typeof key !== 'string' || !Object.hasOwn(source.section.items, key))
+    keys.length !== source.children.length ||
+    new Set(source.children).size !== keys.length ||
+    source.children.some(key => !Object.hasOwn(source, key) || lessonFields.has(key))
   )
-    throw new Error('lesson.section.order: expected every item once');
+    throw new Error('lesson.children: expected every Section exactly once');
   const ids = new Set<string>([source.id]);
   for (const key of keys) {
-    part(key, 'lesson.section.items.' + key);
-    const { config } = sourceNode(source.section.items[key]);
+    part(key, 'lesson.children.' + key);
+    const { config } = sourceNode(source[key] as SourceChild);
     if (!isObject(config) || !uuid.test(config.id) || config.slug !== key || !sectionTypes.has(config.type))
-      throw new Error('lesson.section.items.' + key + ': invalid Section type/UUID/slug');
-    if (ids.has(config.id)) throw new Error('lesson.section.items.' + key + ': duplicate UUID ' + config.id);
+      throw new Error('lesson.children.' + key + ': invalid Section kind/UUID/slug');
+    if (ids.has(config.id)) throw new Error('lesson.children.' + key + ': duplicate Section UUID');
     ids.add(config.id);
   }
 }
@@ -195,8 +195,8 @@ export function materializeLesson(config: Source, options: Options): Result {
   // A completed Lesson must not be emitted with a missing required Section.
   // A comment alone cannot satisfy defineLesson.build.data()'s enabled-Quiz
   // invariant. Course-originated Stage 1 handoffs never invoke this materializer.
-  const enabled = config.section.order
-    .map(key => sourceNode(config.section.items[key]).config)
+  const enabled = config.children
+    .map(key => sourceNode(config[key] as SourceChild).config)
     .filter(section => !(isObject(section.params) && section.params.disabled === true));
   const hasQuiz = enabled.some(section => section.type === 'quiz');
   const hasFlashcards = enabled.some(section => section.type === 'flashcards');
@@ -252,8 +252,8 @@ export function materializeLesson(config: Source, options: Options): Result {
     weakDeviceAlternative: 'Weak-device alternative',
     readiness: 'Production readiness',
   };
-  for (const sectionKey of config.section.order) {
-    const section = sourceNode(config.section.items[sectionKey]);
+  for (const sectionKey of config.children) {
+    const section = sourceNode(config[sectionKey] as SourceChild);
     if (!section.production) continue;
     const notes: string[] = [];
     let allTransferred = true;
@@ -295,8 +295,8 @@ export function materializeLesson(config: Source, options: Options): Result {
     exported(config.slug),
   ]);
   let hasQuest = false;
-  for (const key of Object.keys(config.section.items).sort()) {
-    const node = sourceNode(config.section.items[key]);
+  for (const key of [...config.children].sort()) {
+    const node = sourceNode(config[key] as SourceChild);
     if (node.config.type === 'quest') hasQuest = true;
     const childDir = destination(dir, 'sections/' + key);
     const languagesImport = '#lessonsData/' + config.id.slice(-1).toLowerCase() + '/' + config.id + '/constants';
@@ -428,14 +428,17 @@ export function materializeLesson(config: Source, options: Options): Result {
       message: blockers.join(' '),
       severity: 'warning',
     });
-  const { section: _ignored, ...metadata } = config;
-  const params = { ...metadata.params, languages: imported('languages') };
+  const metadata = Object.fromEntries(
+    Object.entries(config).filter(([key]) => lessonFields.has(key) && key !== 'children'),
+  );
+  const params = { ...(isObject(metadata.params) ? metadata.params : {}), languages: imported('languages') };
   const own = {
     ...metadata,
     skills: resolvedSkills,
     params,
     locale: filterLocale(metadata.locale, options.documentLanguage),
-    section: imported('section'),
+    children: config.children.filter(key => Object.hasOwn(items, key)),
+    ...items,
   };
   const source = [
     "import { defineLesson } from '@svitlo/engine/build';",
@@ -445,12 +448,12 @@ export function materializeLesson(config: Source, options: Options): Result {
     '',
     ...blockers,
     ...assessmentBlockers,
-    'const section = ' + render({ items, order: config.section.order.filter(key => Object.hasOwn(items, key)) }) + ';',
+    'const __sections = ' + render(items) + ';',
     'export const ' +
       exported(config.slug) +
       ' = defineLesson<' +
       JSON.stringify(config.slug) +
-      ', Languages, typeof section.items>(',
+      ', Languages, typeof __sections>(',
     render(own) + ');',
     '',
   ].join('\n');

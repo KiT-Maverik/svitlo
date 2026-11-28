@@ -13,6 +13,7 @@ import type { ContentBlock_Primitive_Data } from '../../contentBlocks/contentBlo
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
+  questionBlockCollection_Data_Schema,
   questionCommonContent_Config_Schema,
   questionCommonContent_Data_Schema,
   type QuestionContent,
@@ -27,10 +28,7 @@ export const fillBlanksWithBlocks_Config_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
   content: questionCommonContent_Config_Schema.extend({
-    slots: z.object({
-      items: z.record(z.string(), z.object({ correctAnswer: primitiveContentBlockConfigurator_Schema })),
-      order: z.array(z.string()),
-    }),
+    slots: z.looseObject({ children: z.array(z.string()) }),
     distractors: questionBlockCollection_Config_Schema,
   }),
 });
@@ -53,13 +51,30 @@ export const fillBlanksWithBlocks_Data_Schema = questionBase.extend({
   params,
   ...addUnifiedLocale({ placeholder: localizationSwitch.data }),
   content: questionCommonContent_Data_Schema.extend({
-    slots: z.array(z.object({ selector: z.string(), correctAnswer: primitiveContentBlockResolved_Schema })),
-    distractors: z.array(primitiveContentBlockResolved_Schema),
+    slots: z.looseObject({ children: z.array(z.string()) }).superRefine((slots, ctx) => {
+      const keys = Object.keys(slots).filter(key => key !== 'children');
+      if (
+        new Set(slots.children).size !== slots.children.length ||
+        slots.children.length !== keys.length ||
+        keys.some(key => !slots.children.includes(key))
+      ) {
+        ctx.addIssue({ code: 'custom', message: 'Invalid slot order' });
+      }
+      for (const key of keys) {
+        if (['constructor', '__proto__', 'prototype', 'children', 'items', 'order'].includes(key)) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Reserved block-slot placement key' });
+        }
+        if (!z.strictObject({ correctAnswer: primitiveContentBlockResolved_Schema }).safeParse(slots[key]).success) {
+          ctx.addIssue({ code: 'custom', path: [key], message: 'Invalid block-answer slot' });
+        }
+      }
+    }),
+    distractors: questionBlockCollection_Data_Schema,
   }),
 });
 export type Question_FillBlanksWithBlocks_Data = Omit<z.infer<typeof fillBlanksWithBlocks_Data_Schema>, 'content'> & {
   content: QuestionPublishedContent<ContentBlock_Primitive_Data> & {
-    slots: { selector: string; correctAnswer: ContentBlock_Primitive_Data }[];
-    distractors: ContentBlock_Primitive_Data[];
+    slots: { children: string[] } & Record<string, unknown>;
+    distractors: QuestionPublishedContent<ContentBlock_Primitive_Data>['question'];
   };
 };

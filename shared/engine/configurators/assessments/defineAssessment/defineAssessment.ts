@@ -17,10 +17,12 @@ import {
   resolvePublicationLanguages,
   scopeBuild,
   selectPublicationLocales,
+  slugAddressedReservedKeys,
   splitLocalizedFields,
-  validateOrderedKeys,
   validateRequestedPublication,
+  validateSlugAddressedContainer,
   validateSluggedConfiguratorMap,
+  type SafePlacementMap,
 } from '../../_shared__configurators';
 import {
   assessment_Config_Schema,
@@ -30,6 +32,7 @@ import {
   type Assessment_Content_Section_Configurator,
   type Assessment_DataBase,
   type Assessment_Overrides,
+  type Assessment_Phase_DataBase,
   type Assessment_Quiz_Configurator,
   type Assessment_Section_Configurator,
 } from './defineAssessment.schemas';
@@ -46,20 +49,47 @@ type SectionBuild = {
     overrides(patch: never, options: PublicationLanguageOptions): SectionResource;
   };
 };
-type LocaleBody = { locale?: { title?: string }; section?: Assessment_DataBase['section'] };
+type LocaleBody = {
+  locale?: { title?: string };
+  before?: Record<string, unknown>;
+  quiz?: Assessment_DataBase['quiz'];
+  after?: Record<string, unknown>;
+};
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Assessment_Config['params'], 'languages'>>;
   locale?: { title?: string };
-  section?: Assessment_DataBase['section'];
+  before?: Record<string, unknown>;
+  quiz?: Record<string, unknown>;
+  after?: Record<string, unknown>;
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
-const emptyCollection = () => ({
-  items: {} as Record<string, Assessment_Content_Section_Configurator>,
-  order: [] as string[],
-});
+type Phase = { children: string[] } & Record<string, unknown>;
+const emptyCollection = (): Phase => ({ children: [] });
+const phaseItems = (phase: Phase): Record<string, Assessment_Content_Section_Configurator> =>
+  Object.fromEntries(Object.entries(phase).filter(([key]) => key !== 'children')) as Record<
+    string,
+    Assessment_Content_Section_Configurator
+  >;
+const validatePhase = (phase: Phase, name: string): void => {
+  const issues = validateSlugAddressedContainer(phase, contentSectionTypes);
+  const members = phaseItems(phase);
+  const errors = validateSluggedConfiguratorMap(members, contentSectionTypes, {
+    path: name,
+    itemLabel: 'Assessment Content Section',
+    reservedKeys: slugAddressedReservedKeys,
+  });
+  if (issues.length || errors.length) {
+    throw new Error(
+      [
+        ...issues.map(issue => name + '.' + issue.path.join('.') + ': ' + issue.message),
+        ...errors.map(issue => issue.message),
+      ].join('; '),
+    );
+  }
+};
 
 const composeSections = (input: Assessment_Config) => {
   const before = input.before ?? emptyCollection();
@@ -67,11 +97,11 @@ const composeSections = (input: Assessment_Config) => {
   if (input.quiz?.type !== 'quiz') throw new Error('Assessment must define exactly one Quiz in quiz');
   if (input.quiz.config?.base?.params?.disabled === true) throw new Error('Assessment Quiz cannot be disabled');
   const quizKey = input.quiz.slug;
-  const names = [...before.order, quizKey, ...after.order];
+  const names = [...before.children, quizKey, ...after.children];
   if (new Set(names).size !== names.length)
     throw new Error('Assessment Section slugs must be unique across before, quiz and after');
   return {
-    items: { ...before.items, [quizKey]: input.quiz, ...after.items },
+    items: { ...phaseItems(before), [quizKey]: input.quiz, ...phaseItems(after) },
     order: names,
   };
 };
@@ -79,22 +109,14 @@ const validate = (config: Assessment_Config): void => {
   assessment_Config_Schema.parse(config);
   const before = config.before ?? emptyCollection();
   const after = config.after ?? emptyCollection();
-  const issues = [
-    ...validateOrderedKeys(before, { path: 'before' }),
-    ...validateOrderedKeys(after, { path: 'after' }),
-    ...validateSluggedConfiguratorMap(before.items, contentSectionTypes, {
-      path: 'before.items',
-      itemLabel: 'Assessment Content Section',
-    }),
-    ...validateSluggedConfiguratorMap(after.items, contentSectionTypes, {
-      path: 'after.items',
-      itemLabel: 'Assessment Content Section',
-    }),
-  ];
-  if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  validatePhase(before, 'before');
+  validatePhase(after, 'after');
   const section = composeSections(config);
   const ids = new Set<string>();
-  for (const [key, child] of Object.entries(section.items)) {
+  for (const [key, candidate] of Object.entries(section.items)) {
+    // Widened generic Section child maps have dynamic placement keys. Check
+    // the concrete identity shape at runtime before using its own fields.
+    const child: unknown = candidate;
     if (
       !isRecord(child) ||
       !isRecord(child.build) ||
@@ -102,6 +124,9 @@ const validate = (config: Assessment_Config): void => {
       typeof child.build.overrides !== 'function' ||
       !isRecord(child.config) ||
       !isRecord(child.config.base) ||
+      typeof child.id !== 'string' ||
+      typeof child.slug !== 'string' ||
+      typeof child.type !== 'string' ||
       child.config.base.id !== child.id ||
       child.config.base.slug !== key ||
       child.config.base.type !== child.type
@@ -110,6 +135,13 @@ const validate = (config: Assessment_Config): void => {
     if (ids.has(child.id)) throw new Error('Duplicate Assessment Section ID: ' + child.id);
     ids.add(child.id);
   }
+};
+
+/** Exclude the structural order field from direct, literal-key child inference. */
+type PhaseChildMap<Group extends { children: string[] }> = {
+  [Key in Exclude<keyof Group, 'children'>]: Group[Key] extends Assessment_Content_Section_Configurator
+    ? Group[Key]
+    : never;
 };
 
 /**
@@ -121,17 +153,21 @@ const validate = (config: Assessment_Config): void => {
 export const defineAssessment = <
   const Slug extends string,
   const Languages extends readonly [LanguageCode, ...LanguageCode[]],
-  const Before extends Record<string, Assessment_Content_Section_Configurator> = {},
+  const Before extends { children: string[] } = { children: string[] },
   const Quiz extends Assessment_Quiz_Configurator = Assessment_Quiz_Configurator,
-  const After extends Record<string, Assessment_Content_Section_Configurator> = {},
+  const After extends { children: string[] } = { children: string[] },
 >(
   config: Omit<Assessment_Config, 'slug' | 'params' | 'locale' | 'before' | 'quiz' | 'after'> & {
     slug: Slug;
     params: Omit<Assessment_Config['params'], 'languages'> & { languages: Languages };
     locale: RequireLanguages<Assessment_Config['locale'], Languages>;
-    before?: { items: Before & ChildrenSupporting<Languages, Before>; order: string[] };
+    before?: Before & { children: Extract<Exclude<keyof Before, 'children'>, string>[] } & PhaseChildMap<Before> &
+      ChildrenSupporting<Languages, PhaseChildMap<Before>> &
+      SafePlacementMap<PhaseChildMap<Before>>;
     quiz: Quiz;
-    after?: { items: After & ChildrenSupporting<Languages, After>; order: string[] };
+    after?: After & { children: Extract<Exclude<keyof After, 'children'>, string>[] } & PhaseChildMap<After> &
+      ChildrenSupporting<Languages, PhaseChildMap<After>> &
+      SafePlacementMap<PhaseChildMap<After>>;
   },
 ) => {
   const metadataSchema = assessment_Config_Schema.omit({ before: true, quiz: true, after: true });
@@ -139,18 +175,17 @@ export const defineAssessment = <
   const authored = structuredClone(metadataInput);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
-  const before = { items: { ...(config.before?.items ?? {}) }, order: [...(config.before?.order ?? [])] };
-  const after = { items: { ...(config.after?.items ?? {}) }, order: [...(config.after?.order ?? [])] };
+  const before: Phase = { ...(config.before ?? {}), children: [...(config.before?.children ?? [])] };
+  const after: Phase = { ...(config.after ?? {}), children: [...(config.after?.children ?? [])] };
   const quiz = config.quiz;
-  const section = composeSections({
+  // Composition validates shared child identities and phase/Quiz slug collisions.
+  validate({
     ...metadataInput,
     params: { ...metadataInput.params, languages: [...metadataInput.params.languages] },
     before,
     quiz,
     after,
   } as Assessment_Config);
-  const initialSections = section.items;
-  const initialOrder = section.order;
 
   const configBase = {
     id,
@@ -181,12 +216,14 @@ export const defineAssessment = <
       const build = (child as unknown as SectionBuild).build;
       const resource = buildChildData({ build });
       const patch = Object.hasOwn(patches, key) ? buildChildOverrides({ build }, patches[key] as never) : undefined;
-      return { resource, patch };
+      return { key, resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as Assessment_DataBase['section'];
-    const locale: Partial<Record<LanguageCode, Assessment_DataBase['section']>> = {};
+    ) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
+    const locale: Partial<
+      Record<LanguageCode, ReturnType<Assessment_Section_Configurator['build']['data']>['base'][]>
+    > = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -201,11 +238,58 @@ export const defineAssessment = <
         );
         const withBasePatch = patch ? mergeForValidation(translated, patch.base) : translated;
         return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
-      }) as Assessment_DataBase['section'];
+      }) as ReturnType<Assessment_Section_Configurator['build']['data']>['base'][];
     }
-    return { base, locale };
+    return {
+      base,
+      locale,
+      patches: Object.fromEntries(
+        entries.filter(entry => entry.patch).map(entry => [entry.key, entry.patch]),
+      ) as Record<string, SectionResource>,
+    };
   };
 
+  /** A phase is fully replaced only when its ordered children are explicitly supplied. */
+  type CompletedPhase = {
+    base: Assessment_Phase_DataBase;
+    locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>>;
+  };
+  type SparsePhase = {
+    base: Record<string, unknown>;
+    locale: Partial<Record<LanguageCode, Record<string, unknown>>>;
+  };
+  function buildPhase(phase: Phase, patches?: Record<string, unknown>, sparse?: false): CompletedPhase;
+  function buildPhase(phase: Phase, patches: Record<string, unknown>, sparse: boolean): CompletedPhase | SparsePhase;
+  function buildPhase(
+    phase: Phase,
+    patches: Record<string, unknown> = {},
+    sparse = false,
+  ): CompletedPhase | SparsePhase {
+    const built = buildSections(phaseItems(phase), phase.children, patches);
+    if (sparse) {
+      const base: Record<string, unknown> = {};
+      const locale: Partial<Record<LanguageCode, Record<string, unknown>>> = {};
+      for (const [key, published] of Object.entries(built.patches)) {
+        if (Object.keys(published.base).length) base[key] = structuredClone(published.base);
+        for (const [language, value] of Object.entries(published.locale ?? {})) {
+          (locale[language as LanguageCode] ??= {})[key] = structuredClone(value);
+        }
+      }
+      return { base, locale };
+    }
+    const base = {
+      children: [...phase.children],
+      ...Object.fromEntries(phase.children.map((key, index) => [key, built.base[index]])),
+    } as Assessment_Phase_DataBase;
+    const locale: Partial<Record<LanguageCode, Assessment_Phase_DataBase>> = {};
+    for (const [language, entries] of Object.entries(built.locale)) {
+      locale[language as LanguageCode] = {
+        children: [...phase.children],
+        ...Object.fromEntries(phase.children.map((key, index) => [key, entries[index]])),
+      } as Assessment_Phase_DataBase;
+    }
+    return { base, locale };
+  }
   const publicationLanguages = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     for (const language of languages) {
@@ -220,10 +304,19 @@ export const defineAssessment = <
     validate({ ...copyAuthored(), before, quiz, after });
     const own = copyAuthored();
     const translated = splitLocale(own.locale);
-    const children = buildSections(initialSections, initialOrder);
+    const beforeBuilt = buildPhase(before);
+    const afterBuilt = buildPhase(after);
+    const quizBuilt = buildChildData(quiz) as SectionResource;
     const files = selectPublicationLocales(translated.files, languages) ?? {};
-    for (const [language, values] of Object.entries(children.locale)) {
-      (files[language as LanguageCode] ??= {}).section = values;
+    for (const language of languages) {
+      if (beforeBuilt.locale[language]) (files[language] ??= {}).before = beforeBuilt.locale[language];
+      if (afterBuilt.locale[language]) (files[language] ??= {}).after = afterBuilt.locale[language];
+      if (quizBuilt.locale?.[language]) {
+        (files[language] ??= {}).quiz = mergeForValidation(
+          quizBuilt.base,
+          quizBuilt.locale[language],
+        ) as Assessment_DataBase['quiz'];
+      }
     }
     const result: Publication<Assessment_DataBase> = structuredClone({
       base: {
@@ -232,22 +325,43 @@ export const defineAssessment = <
         type,
         params: { ...own.params, languages: [...languages] },
         ...(Object.keys(translated.invariant).length ? { locale: translated.invariant } : {}),
-        section: children.base,
+        before: beforeBuilt.base,
+        quiz: quizBuilt.base as Assessment_DataBase['quiz'],
+        after: afterBuilt.base,
       },
       locale: Object.keys(files).length ? files : undefined,
-    });
+    }) as Publication<Assessment_DataBase>;
     validateRequestedPublication(assessment_Data_Schema, result, languages);
     return result;
+  };
+
+  const validatePhasePatch = (
+    source: Publication<Assessment_DataBase>,
+    patch: Publication<OverrideBase>,
+    languages: readonly LanguageCode[],
+  ): void => {
+    const mergeLayer = (original: Record<string, unknown>, changes: Record<string, unknown>) => {
+      const merged = mergeForValidation(original, changes);
+      for (const role of ['before', 'after'] as const) {
+        if (isRecord(changes[role]) && Array.isArray(changes[role].children)) {
+          merged[role] = structuredClone(changes[role]);
+        }
+      }
+      return merged;
+    };
+    for (const language of languages) {
+      const original = mergeLayer(source.base as Record<string, unknown>, source.locale?.[language] ?? {});
+      const basePatched = mergeLayer(original, patch.base as Record<string, unknown>);
+      const localized = mergeLayer(basePatched, patch.locale?.[language] ?? {});
+      assessment_Data_Schema.parse(localized);
+    }
   };
 
   const overrides = <
     const AddedBefore extends Record<string, Assessment_Content_Section_Configurator> = {},
     const AddedAfter extends Record<string, Assessment_Content_Section_Configurator> = {},
   >(
-    patch: Assessment_Overrides<Before, Quiz, After, AddedBefore, AddedAfter> & {
-      before?: { additionalItems?: AddedBefore & ChildrenSupporting<Languages, AddedBefore> };
-      after?: { additionalItems?: AddedAfter & ChildrenSupporting<Languages, AddedAfter> };
-    },
+    patch: Assessment_Overrides<PhaseChildMap<Before>, Quiz, PhaseChildMap<After>, AddedBefore, AddedAfter>,
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
@@ -272,82 +386,78 @@ export const defineAssessment = <
         locale: undefined,
       };
       const childPatches: Record<string, unknown> = {};
-      const phase = (
-        name: 'before' | 'after',
-        original: { items: Record<string, Assessment_Content_Section_Configurator>; order: string[] },
-        changeset: unknown,
-      ) => {
+      const phase = (name: 'before' | 'after', original: Phase, changeset: unknown): Phase => {
         if (changeset === undefined) return original;
         if (!isRecord(changeset)) throw new Error(name + ' must be an object');
-        for (const key of Object.keys(changeset)) {
-          if (!['items', 'additionalItems', 'order'].includes(key))
-            throw new Error('Unknown Assessment ' + name + ' override field: ' + key);
-        }
-        const changes = changeset.items ?? {};
-        const additions = changeset.additionalItems ?? {};
-        if (!isRecord(changes) || !isRecord(additions))
-          throw new Error('Assessment ' + name + ' override maps must be objects');
-        const issues = validateSluggedConfiguratorMap(additions, contentSectionTypes, {
-          path: name + '.additionalItems',
-          itemLabel: 'Assessment Content Section',
-        });
-        if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
-        const active: Record<string, Assessment_Content_Section_Configurator | false> = { ...original.items };
-        let structural = Object.keys(additions).length > 0;
-        for (const [key, child] of Object.entries(additions)) {
-          if (Object.hasOwn(original.items, key))
-            throw new Error('Duplicate Assessment supporting Section slug: ' + key);
-          active[key] = child as Assessment_Content_Section_Configurator;
-        }
-        for (const [key, change] of Object.entries(changes)) {
-          if (!Object.hasOwn(original.items, key)) throw new Error('Unknown Assessment supporting Section: ' + key);
-          if (change === false) {
-            active[key] = false;
+        const originalItems = phaseItems(original);
+        const active: Record<string, Assessment_Content_Section_Configurator | false> = { ...originalItems };
+        let structural = false;
+        for (const [key, change] of Object.entries(changeset)) {
+          if (key === 'children') continue;
+          if (slugAddressedReservedKeys.some(reserved => reserved === key)) {
+            throw new Error('Reserved Assessment Section slug: ' + key);
+          }
+          if (Object.hasOwn(originalItems, key)) {
+            if (change === false) {
+              active[key] = false;
+              structural = true;
+            } else if (isRecord(change) && !isRecord(change.build)) {
+              childPatches[key] = change;
+            } else {
+              throw new Error('Assessment Content Section patch must be a sparse object or false: ' + key);
+            }
+          } else {
+            if (!isRecord(change) || change.type !== 'content') {
+              throw new Error('New Assessment Section must be a Content Section Configurator: ' + key);
+            }
+            active[key] = change as Assessment_Content_Section_Configurator;
             structural = true;
-          } else if (isRecord(change)) childPatches[key] = change;
-          else throw new Error('Assessment Content Section patch must be an object or false: ' + key);
+          }
         }
-        if (structural && changeset.order === undefined)
-          throw new Error(name + '.order is required when adding or disabling Sections');
-        const order = (changeset.order ?? original.order) as string[];
-        const errors = validateOrderedKeys({ items: active, order }, { path: name, allowDisabled: true });
-        if (errors.length) throw new Error(errors.map(issue => issue.message).join('; '));
-        return {
-          items: Object.fromEntries(
-            Object.entries(active).filter(
-              (entry): entry is [string, Assessment_Content_Section_Configurator] => entry[1] !== false,
-            ),
-          ),
-          order: [...order],
+        if (structural && changeset.children === undefined) {
+          throw new Error(name + '.children is required when adding or disabling Sections');
+        }
+        const children = changeset.children ?? original.children;
+        if (!Array.isArray(children)) throw new Error(name + '.children must be an array');
+        const updated: Phase = {
+          children: [...children],
+          ...Object.fromEntries(Object.entries(active).filter(([, value]) => value !== false)),
         };
+        validatePhase(updated, name);
+        return updated;
       };
-      const updatedBefore = phase('before', before, patch.before);
-      const updatedAfter = phase('after', after, patch.after);
       if (patch.quiz !== undefined) {
         if (!isRecord(patch.quiz)) throw new Error('Assessment Quiz override must be an object, never false');
         if (isRecord(patch.quiz.params) && Object.hasOwn(patch.quiz.params, 'disabled'))
           throw new Error('Assessment Quiz cannot be disabled or re-enabled via overrides');
-        childPatches[quiz.slug] = patch.quiz;
       }
-      const edited = {
-        ...mergedMetadata,
-        before: updatedBefore,
-        quiz,
-        after: updatedAfter,
-      };
-      validate(edited);
-      if (patch.before !== undefined || patch.after !== undefined || patch.quiz !== undefined) {
-        const sections = composeSections(edited);
-        const keys = [...Object.keys(sections.items)];
-        if (keys.length !== new Set(keys).size) throw new Error('Assessment Section slug collision');
-        const resolved = buildSections(sections.items, sections.order, childPatches);
-        output.base.section = resolved.base;
-        for (const [language, values] of Object.entries(resolved.locale))
-          (files[language as LanguageCode] ??= {}).section = values;
+      const updatedBefore = phase('before', before, patch.before);
+      const updatedAfter = phase('after', after, patch.after);
+      validate({ ...mergedMetadata, before: updatedBefore, quiz, after: updatedAfter });
+      if (patch.before !== undefined) {
+        const built = buildPhase(updatedBefore, childPatches, !Object.hasOwn(patch.before, 'children'));
+        if (Object.keys(built.base).length) output.base.before = built.base;
+        for (const [language, value] of Object.entries(built.locale)) {
+          (files[language as LanguageCode] ??= {}).before = value;
+        }
+      }
+      if (patch.after !== undefined) {
+        const built = buildPhase(updatedAfter, childPatches, !Object.hasOwn(patch.after, 'children'));
+        if (Object.keys(built.base).length) output.base.after = built.base;
+        for (const [language, value] of Object.entries(built.locale)) {
+          (files[language as LanguageCode] ??= {}).after = value;
+        }
+      }
+      if (patch.quiz !== undefined) {
+        const built = buildChildOverrides(quiz, patch.quiz as never) as SectionResource;
+        output.base.quiz = built.base;
+        for (const [language, value] of Object.entries(built.locale ?? {})) {
+          (files[language as LanguageCode] ??= {}).quiz = value as Assessment_DataBase['quiz'];
+        }
       }
       output.locale = Object.keys(files).length ? files : undefined;
       const result = structuredClone(output);
-      validateRequestedPublication(assessment_Data_Schema, data(options), languages, result);
+      validatePhasePatch(data(options), result, languages);
       return result;
     } catch (error) {
       throw new Error(

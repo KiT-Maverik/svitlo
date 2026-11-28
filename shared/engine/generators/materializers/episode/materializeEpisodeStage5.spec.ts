@@ -19,33 +19,25 @@ const reviewed = (): EpisodeWorkflowStage2 =>
       id: id('02'),
       slug: 'transition',
       locale: { title: { uk: 'Перехід' } },
-      section: {
-        items: {
-          introduction: {
+      children: ['introduction'],
+      introduction: {
+        config: {
+          id: id('03'),
+          type: 'content',
+          slug: 'introduction',
+          params: {},
+          locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
+          children: ['greeting'],
+          greeting: {
             config: {
-              id: id('03'),
-              type: 'content',
-              slug: 'introduction',
+              id: id('04'),
+              type: 'text',
+              slug: 'greeting',
               params: {},
-              locale: { title: { uk: 'Початок' }, navigationLabel: { uk: 'Початок' } },
-              content: {
-                items: {
-                  greeting: {
-                    config: {
-                      id: id('04'),
-                      type: 'text',
-                      slug: 'greeting',
-                      params: {},
-                      locale: { value: { uk: 'Привіт' } },
-                    },
-                  },
-                },
-                order: ['greeting'],
-              },
+              locale: { value: { uk: 'Привіт' } },
             },
           },
         },
-        order: ['introduction'],
       },
     },
     production: {

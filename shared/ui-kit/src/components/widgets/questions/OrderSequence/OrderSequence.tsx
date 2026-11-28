@@ -1,6 +1,6 @@
 'use client';
 
-import type { Question_OrderSequence_Data } from '@svitlo/engine/runtime';
+import type { QuestionViewProps } from '../../../../questionPresentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -14,7 +14,7 @@ export function OrderSequence({
   sceneRegistry,
   messages,
 }: {
-  response: Question_OrderSequence_Data;
+  response: Extract<QuestionViewProps, { type: 'orderSequence' }>;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {

@@ -1,4 +1,5 @@
-import type { ContentBlock_Data, LanguageCode } from '@svitlo/engine/runtime';
+import type { LanguageCode } from '@svitlo/engine/runtime';
+import type { ContentBlockViewProps } from '../../../../presentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -10,7 +11,7 @@ import {
   type LocalizedText,
 } from '../../ContentBlockRenderer/utils';
 
-export type QuestionBlock = ContentBlock_Data;
+export type QuestionBlock = ContentBlockViewProps;
 
 export function QuestionContent({
   blocks,

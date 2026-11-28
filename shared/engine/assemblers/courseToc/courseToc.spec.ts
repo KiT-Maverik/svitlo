@@ -8,54 +8,56 @@ const base = {
   id: id(1),
   type: 'course',
   languages: ['en', 'uk'],
-  content: {
-    order: ['module', 'again', 'review'],
-    items: {
-      module: {
-        id: id(2),
-        type: 'module',
-        content: { order: ['first'], items: { first: { id: id(3), type: 'lesson' } } },
-      },
-      again: { id: id(3), type: 'lesson', label: 'Second placement' },
-      review: { id: id(4), type: 'assessment', label: 'Review' },
-    },
+  children: ['module', 'again', 'review'],
+  module: {
+    id: id(2),
+    type: 'module',
+    children: ['first'],
+    first: { id: id(3), type: 'lesson' },
   },
+  again: { id: id(3), type: 'lesson', label: 'Second placement' },
+  review: { id: id(4), type: 'assessment', label: 'Review' },
 };
-const uk = {
-  label: 'Курс',
-  content: {
-    items: {
-      module: { label: 'Модуль', content: { items: { first: { label: 'Урок' } } } },
-    },
-  },
-};
+const uk = { label: 'Курс', module: { label: 'Модуль', first: { label: 'Урок' } } };
 
-test('assembles a sparse locale on a stable ordered hierarchy with repeated Lesson IDs', () => {
+test('sparse translation preserves direct slugs, order, and reused Lesson UUIDs', () => {
   const tree = assembleCourseToc(base, uk, id(1), 'uk');
-  assert.deepEqual(tree.content.order, ['module', 'again', 'review']);
-  assert.equal(tree.content.items.module.label, 'Модуль');
-  assert.equal(tree.content.items.again.label, 'Second placement');
+  assert.deepEqual(tree.children, ['module', 'again', 'review']);
+  assert.equal((tree.module as { label: string }).label, 'Модуль');
+  assert.equal((tree.again as { label: string }).label, 'Second placement');
+  assert.equal((tree.module as { first: { label: string } }).first.label, 'Урок');
 });
 
-test('fails closed on missing locale labels, changed identities, unsafe keys, and unsupported languages', () => {
+test('rejects missing labels, changed order, changed identity and unsafe keys', () => {
   assert.throws(() => assembleCourseToc(base, undefined, id(1), 'en'), /Missing localized/);
   assert.throws(
-    () =>
-      assembleCourseToc(
-        base,
-        { ...uk, content: { items: { ...uk.content.items, again: { id: id(5) } } } },
-        id(1),
-        'uk',
-      ),
+    () => assembleCourseToc(base, { ...uk, children: ['again', 'module', 'review'] }, id(1), 'uk'),
+    /order changed/,
+  );
+  assert.throws(
+    () => assembleCourseToc(base, { ...uk, module: { ...uk.module, id: id(55) } }, id(1), 'uk'),
     /identity changed/,
   );
   assert.throws(() => assembleCourseToc(base, uk, id(1), 'pl'), /requested language/);
-  assert.throws(() => assembleCourseToc(base, { ['__proto__']: { label: 'X' } }, id(1), 'uk'), /./);
+  assert.throws(() => assembleCourseToc(base, JSON.parse('{"__proto__":{"label":"unsafe"}}'), id(1), 'uk'), /Unsafe/);
 });
 
-test('draft activity is preview-only and never produces a playable production TOC', () => {
+test('draft activities are previews, never production navigation entries', () => {
   const pending = structuredClone(base);
-  Object.assign(pending.content.items.review, { label: 'Not implemented', draft: true });
+  Object.assign(pending.review, { label: 'Not implemented', draft: true });
   assert.throws(() => assembleCourseToc(pending, uk, id(1), 'uk'), /Draft TOC/);
-  assert.equal('draft' in assembleCourseToc(pending, uk, id(1), 'uk', 'draft').content.items.review, true);
+  const preview = assembleCourseToc(pending, uk, id(1), 'uk', 'draft');
+  assert.equal((preview.review as { draft: true }).draft, true);
+});
+
+test('rejects hidden, duplicate and reserved placements', () => {
+  assert.throws(
+    () => assembleCourseToc({ ...base, extra: { id: id(99), type: 'lesson' } }, uk, id(1), 'uk'),
+    /Unaddressed/,
+  );
+  assert.throws(
+    () => assembleCourseToc({ ...base, children: ['module', 'module', 'review'] }, uk, id(1), 'uk'),
+    /order/,
+  );
+  assert.throws(() => assembleCourseToc({ ...base, children: ['module', 'content', 'review'] }, uk, id(1), 'uk'));
 });

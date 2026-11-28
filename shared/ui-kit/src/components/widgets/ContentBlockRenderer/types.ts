@@ -1,11 +1,13 @@
 import type { ComponentType, ReactNode } from 'react';
 
-import type { ContentBlock_Data, LanguageCode } from '@svitlo/engine/runtime';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
+import type { ContentBlockViewProps } from '../../../presentation';
+
 /** Quiz is a Section; ContentBlock contains renderable resources only. */
-export type ContentBlockResponse = ContentBlock_Data;
+export type ContentBlockResponse = ContentBlockViewProps;
 export type ContentBlockType = ContentBlockResponse['type'];
 export type ResponseOf<Type extends ContentBlockType> = Extract<ContentBlockResponse, { type: Type }>;
 

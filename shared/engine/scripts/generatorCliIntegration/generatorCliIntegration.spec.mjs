@@ -47,10 +47,10 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
       courseId +
       "', slug: 'testCourse', type: 'course', " +
       "config: { base: { params: { languages: ['en'] } } }, " +
-      "content: { items: {}, order: [] }, build: { data({ languages }) { return { base: { id: '" +
+      "children: [], build: { data({ languages }) { return { base: { id: '" +
       courseId +
       "', slug: 'testCourse', type: 'course', params: { languages }, " +
-      "locale: { title: 'Testing' }, content: [] } }; } } };";
+      "locale: { title: 'Testing' }, children: [] } }; } } };";
     fs.writeFileSync(path.join(courseFolder, 'course.data.ts'), courseSource);
 
     succeeds('content:generate:lesson-props', '--write');
@@ -65,7 +65,7 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
     const courseRoot = path.join(pkg, 'generated', 'courses', courseId);
     const course = JSON.parse(fs.readFileSync(path.join(courseRoot, 'base.json')));
     assert.equal(course.id, courseId);
-    assert.deepEqual(course.content, { items: {}, order: [] });
+    assert.deepEqual(course.children, []);
     assert.equal(fs.existsSync(path.join(courseRoot, 'en.json')), false);
 
     fs.writeFileSync(path.join(pkg, 'generated', 'lessons', 'stale.json'), '{}');
@@ -145,7 +145,7 @@ test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube 
         JSON.stringify(sectionId) +
         ', slug: "media", type: "content", params: {}, ' +
         'locale: { title: "Media", navigationLabel: "Media" }, ' +
-        'content: { items: { video, scene }, order: ["video", "scene"] } });',
+        'children: ["video", "scene"], video, scene });',
       'export const lesson = defineLesson({' +
         'id: ' +
         JSON.stringify(lessonId) +
@@ -153,7 +153,7 @@ test('Standalone Lesson CLI propagates draft mode to genuine unresolved YouTube 
         'params: { languages: ["en"], quizRequiredForCompletion: false, ' +
         'sections: { allowNavigation: true, allowSkipping: true, showIndexes: false } }, ' +
         'locale: { title: "Draft Lesson" }, ' +
-        'section: { items: { media }, order: ["media"] } });',
+        'children: ["media"], media });',
     ].join('\n');
     fs.writeFileSync(path.join(lessonFolder, 'index.ts'), source);
 

@@ -29,10 +29,8 @@ test('FlashcardSide rejects Carousel and Checkpoint before delegating source gen
       () =>
         materializeFlashcardSide(
           {
-            items: {
-              nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type: type as never } },
-            },
-            order: ['nested'],
+            children: ['nested'],
+            nested: { config: { id: 'b775647f-203d-481a-a1c7-4d331c000030', slug: 'nested', type: type as never } },
           },
           context,
         ),
@@ -42,13 +40,13 @@ test('FlashcardSide rejects Carousel and Checkpoint before delegating source gen
 });
 
 test('FlashcardSide: correct child module paths, original order, no invented UUID, syntax', () => {
-  const source = { items: { second: block('second', 2), first: block('first', 1) }, order: ['first', 'second'] };
+  const source = { children: ['first', 'second'], second: block('second', 2), first: block('first', 1) };
   const output = materializeFlashcardSide(source, context);
   const root = output.files.find(file => file.path.endsWith('/front/index.ts'));
   assert.ok(root);
   assert.equal(output.exportName, 'front');
   assert.match(root.content, /defineFlashcardSide<typeof items, \["uk"\]>/);
-  assert.match(root.content, /order: \["first","second"\]/);
+  assert.match(root.content, /children: \["first","second"\]/);
   assert(!root.content.includes('id:'));
   assert(output.files.some(file => file.path.endsWith('/front/first/index.ts')));
   assert(output.files.some(file => file.path.endsWith('/front/second/index.ts')));
@@ -73,16 +71,13 @@ test('FlashcardSide: correct child module paths, original order, no invented UUI
 });
 test('FlashcardSide: order/role/slug and create-only protections', () => {
   const first = block('first', 1);
-  assert.throws(() => materializeFlashcardSide({ items: { first }, order: [] }, context), /order/);
-  assert.throws(
-    () => materializeFlashcardSide({ items: {}, order: [] }, context),
-    /required front\/back cannot be empty/,
-  );
-  assert.doesNotThrow(() => materializeFlashcardSide({ items: {}, order: [] }, { ...context, role: 'hint' }));
+  assert.throws(() => materializeFlashcardSide({ children: [], first }, context), /order/);
+  assert.throws(() => materializeFlashcardSide({ children: [] }, context), /required front\/back cannot be empty/);
+  assert.doesNotThrow(() => materializeFlashcardSide({ children: [] }, { ...context, role: 'hint' }));
   assert.throws(
     () =>
       materializeFlashcardSide(
-        { items: { first }, order: ['first'] },
+        { children: ['first'], first },
         {
           ...context,
           existingPaths: new Set(['flashcards/cardOne/content/front/index.ts']),
@@ -93,7 +88,7 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
   assert.throws(
     () =>
       materializeFlashcardSide(
-        { items: { first }, order: ['first'] },
+        { children: ['first'], first },
         {
           ...context,
           languages: { document: 'uk' as const, planned: ['en'] as const },
@@ -104,7 +99,7 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
   assert.throws(
     () =>
       materializeFlashcardSide(
-        { items: { first }, order: ['first'] },
+        { children: ['first'], first },
         {
           ...context,
           existingPaths: new Set(['flashcards/cardOne/content/front/first/index.ts']),
@@ -115,7 +110,7 @@ test('FlashcardSide: order/role/slug and create-only protections', () => {
   assert.throws(
     () =>
       materializeFlashcardSide(
-        { items: { first }, order: ['first'] },
+        { children: ['first'], first },
         {
           ...context,
           materializeBlock: () => ({
@@ -138,7 +133,7 @@ test('FlashcardSide: refuses delegated child without an importable index', () =>
   assert.throws(
     () =>
       materializeFlashcardSide(
-        { items: { first: block('first', 1) }, order: ['first'] },
+        { children: ['first'], first: block('first', 1) },
         {
           ...context,
           materializeBlock: (_node, ctx) => ({
@@ -160,6 +155,6 @@ test('FlashcardSide: editorial handoff does not synthesize front/back side conte
           throw new Error('Unexpected Stage 1 child call');
         },
       }),
-    /expected items\/order/,
+    /expected direct child keys/,
   );
 });

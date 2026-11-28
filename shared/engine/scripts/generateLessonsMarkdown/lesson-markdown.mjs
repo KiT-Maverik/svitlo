@@ -17,6 +17,22 @@ const required = (value, label) => {
 };
 const compact = value => JSON.stringify(value);
 
+/** Traverse the published, slug-addressed order without accepting legacy positional Props. */
+export function orderedLessonChildren(owner, label) {
+  if (!isRecord(owner) || !Array.isArray(owner.children) || new Set(owner.children).size !== owner.children.length)
+    throw new Error(label + ' is missing valid ordered children');
+  return owner.children.map(key => {
+    if (
+      typeof key !== 'string' ||
+      !/^[A-Za-z][A-Za-z0-9]*$/.test(key) ||
+      !Object.hasOwn(owner, key) ||
+      !isRecord(owner[key])
+    )
+      throw new Error(label + ' has invalid child placement: ' + String(key));
+    return owner[key];
+  });
+}
+
 /** Extract the actual language registry rather than maintaining a duplicate list. */
 export function supportedLanguages(repositoryRoot) {
   const source = fs.readFileSync(path.join(repositoryRoot, 'shared/engine/schemas/languages.schemas.ts'), 'utf8');
@@ -140,11 +156,17 @@ export function renderLessonMarkdown({
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (!Array.isArray(lesson.section) || Object.hasOwn(lesson, 'questions') || Object.hasOwn(lesson, 'flashcards')) {
-    throw new Error('Lesson must contain Section Props only; assessment banks are reviewed independently');
+  const sections = orderedLessonChildren(lesson, 'Lesson');
+  if (
+    Object.hasOwn(lesson, 'section') ||
+    ['questions', 'flashcards'].some(key => Object.hasOwn(lesson, key) && !lesson.children.includes(key))
+  ) {
+    throw new Error(
+      'Lesson must contain slug-addressed Section Data only; assessment banks are reviewed independently',
+    );
   }
   if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {
-    throw new Error('Lesson Props must contain a resolved locale.title');
+    throw new Error('Lesson Data must contain a resolved locale.title');
   }
   const localized = lesson;
   const lessonRoot = `${packagePath}/data/lessons/${relative}`;
@@ -244,7 +266,7 @@ export function renderLessonMarkdown({
   add('');
   add('## Lesson');
   add('');
-  for (const [index, section] of localized.section.entries()) {
+  for (const [index, section] of sections.entries()) {
     if (!record(section) || typeof section.id !== 'string' || typeof section.slug !== 'string') {
       throw new Error(`Invalid section ${index + 1}`);
     }
@@ -256,10 +278,11 @@ export function renderLessonMarkdown({
     );
     add('');
     add(`- ID: \`${section.id}\``);
-    add(`- Navigation: ${headingText(section.locale.navigationLabel)}`);
+    add(`- Navigation: ${headingText(section.locale.navigationLabel ?? section.locale.title)}`);
     add(`- Canonical: ${source(section.id, sourceEntry)}`);
+    const blocks = orderedLessonChildren(section, 'Section ' + section.slug);
     for (const [key, value] of Object.entries(section)) {
-      if (['id', 'slug', 'type', 'content', 'params'].includes(key)) continue;
+      if (['id', 'slug', 'type', 'children', 'params'].includes(key) || section.children.includes(key)) continue;
       writeValue(key, value);
     }
     if (section.type === 'quiz') {
@@ -267,12 +290,10 @@ export function renderLessonMarkdown({
       add('- **Quiz references independently published Question UUIDs; answer contents are not embedded.**');
       writeValue('Quiz parameters and selected Question UUIDs', section.params);
       if (purpose === 'flashcards') {
-        if (!Array.isArray(section.content)) throw new Error('Quiz Section is missing ordered content');
-        section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
+        blocks.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
       }
     } else {
-      if (!Array.isArray(section.content)) throw new Error(`Section ${section.slug} is missing content`);
-      section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
+      blocks.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
       if (purpose === 'flashcards' && section.type === 'flashcards') {
         if (!record(section.params?.selection) || !Array.isArray(section.params.selection.flashcardIds))
           throw new Error('Flashcards Section is missing selected Flashcard UUIDs');

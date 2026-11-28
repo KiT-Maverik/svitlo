@@ -2,7 +2,7 @@ import { posix } from 'node:path';
 
 import ts from 'typescript';
 
-import type { LessonWorkflowStage2 } from '../../../types/workflow/lessonWorkflow.types';
+import type { LessonWorkflowStage2, LessonWorkflowStage2Section } from '../../../types/workflow/lessonWorkflow.types';
 import { renderBlockerTodo } from '../renderBlockerTodo.mjs';
 import type { Result } from './lesson';
 
@@ -56,7 +56,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
     // than using an executable materializer call or intermediate const.
     if (ts.isExportAssignment(statement)) {
       const root = unwrap(statement.expression);
-      if (at(root, ['config', 'section', 'items']) && at(root, ['production'])) candidates.push(root);
+      if (at(root, ['config', 'children']) && at(root, ['production'])) candidates.push(root);
     }
     if (ts.isExpressionStatement(statement) && ts.isCallExpression(statement.expression)) {
       const call = statement.expression;
@@ -64,7 +64,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
         ts.isIdentifier(call.expression) &&
         call.expression.text === 'materializeLessonStage6' &&
         call.arguments.length === 1 &&
-        at(call.arguments[0], ['config', 'section', 'items']) &&
+        at(call.arguments[0], ['config', 'children']) &&
         at(call.arguments[0], ['production'])
       )
         candidates.push(call.arguments[0]);
@@ -73,7 +73,7 @@ function findReviewedLesson(file: ts.SourceFile): ts.Expression | undefined {
     for (const declaration of statement.declarationList.declarations) {
       if (
         declaration.initializer &&
-        at(declaration.initializer, ['config', 'section', 'items']) &&
+        at(declaration.initializer, ['config', 'children']) &&
         at(declaration.initializer, ['production'])
       )
         candidates.push(declaration.initializer);
@@ -130,8 +130,8 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     statement => ts.isExportAssignment(statement) && !statement.isExportEquals,
   );
   const selected: Selection[] = [];
-  for (const key of input.config.section.order) {
-    const node = input.config.section.items[key];
+  for (const key of input.config.children) {
+    const node = input.config[key] as LessonWorkflowStage2Section;
     if (node.config.type !== 'quiz' && node.config.type !== 'flashcards') continue;
     const kind = node.config.type;
     const field = kind === 'quiz' ? 'questionIds' : 'flashcardIds';
@@ -139,7 +139,7 @@ function pickSelections(source: string, sourcePath: string, input: LessonWorkflo
     const selection = params?.selection as Record<string, unknown> | undefined;
     const ids = selection?.[field];
     if (!Array.isArray(ids) || !ids.length) continue; // Unresolved selection stays a TODO blocker.
-    const location = ['config', 'section', 'items', key, 'config', 'params', 'selection', field];
+    const location = ['config', key, 'config', 'params', 'selection', field];
     const array = root && at(root, location);
     if (!array || !ts.isArrayLiteralExpression(unwrap(array)))
       throw new Error(

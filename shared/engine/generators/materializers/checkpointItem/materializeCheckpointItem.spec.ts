@@ -16,10 +16,8 @@ const item = () => ({
     id: id(3),
     slug: 'answer',
     type: 'checkpointAnswer' as const,
-    content: {
-      items: { option: { id: id(4), slug: 'option', type: 'text' as const, params: {}, locale: { value: 'A' } } },
-      order: ['option'],
-    },
+    children: ['option'],
+    option: { id: id(4), slug: 'option', type: 'text' as const, params: {}, locale: { value: 'A' } },
   },
 });
 const context = () => ({

@@ -207,7 +207,7 @@ test('canonical Course Stage3 validates the decoded plain object and rejects unk
       id: 'ddbb8f45-c824-4f19-9f8c-25869dc6142b',
       type: 'course',
       slug: 'pilot',
-      content: { items: {}, order: [] },
+      children: [],
     },
     production: {
       languages: { document: 'en', planned: ['en'] },
@@ -249,7 +249,7 @@ test('canonical Lesson Stage2 validates inert source with all required assessmen
       locale: { title: 'Welcome — Привіт' },
       params: { quizRequiredForCompletion: false },
       skills: ['6a5d75dc-aad8-4750-a465-b992975228e1'],
-      section: { items: {}, order: [] },
+      children: [],
       events: {},
     },
     production: {
@@ -276,7 +276,7 @@ test('schema diagnostics point to the source path and reject wrong root kind', (
   const text = [
     'import type { CourseWorkflowStage3 } from "@svitlo/engine/build";',
     'export default {',
-    '  config: { type: "course", id: "invalid", slug: "pilot", content: { items: {}, order: [] } },',
+    '  config: { type: "course", id: "invalid", slug: "pilot", children: [] },',
     '  production: {},',
     '} satisfies CourseWorkflowStage3;',
   ].join('\n');

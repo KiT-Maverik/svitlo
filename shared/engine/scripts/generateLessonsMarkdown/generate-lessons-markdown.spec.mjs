@@ -26,7 +26,7 @@ function fixture(locale = 'uk') {
     params: {},
     locale: { value: t(en, uk) },
   });
-  return {
+  const lesson = {
     id: lessonId,
     slug: 'fixtureLesson',
     type: 'lesson',
@@ -95,15 +95,18 @@ function fixture(locale = 'uk') {
             slug: 'slides',
             type: 'carousel',
             params: {},
-            locale: {
-              title: t('Gallery', 'Галерея'),
-              slides: [
-                {
-                  src: '/slides/one.png',
-                  alt: t('First beam', 'Перший промінь'),
-                  caption: t('Slide caption', 'Підпис слайда'),
-                },
-              ],
+            locale: { title: t('Gallery', 'Галерея') },
+            children: ['slideOne'],
+            slideOne: {
+              id: 'slide-one-id',
+              slug: 'slideOne',
+              type: 'image',
+              params: {},
+              locale: {
+                src: '/slides/one.png',
+                alt: t('First beam', 'Перший промінь'),
+                caption: t('Slide caption', 'Підпис слайда'),
+              },
             },
           },
           {
@@ -126,7 +129,14 @@ function fixture(locale = 'uk') {
             type: 'checkpoint',
             params: {},
             locale: { title: t('Check', 'Перевірка') },
-            content: [{ question: block('checkQuestion', 'Where?', 'Де?'), answer: [block('answer', 'Here', 'Тут')] }],
+            children: ['firstCheck'],
+            firstCheck: {
+              id: 'first-check-id',
+              slug: 'firstCheck',
+              type: 'checkpointItem',
+              question: block('checkQuestion', 'Where?', 'Де?'),
+              answer: { children: ['answer'], answer: block('answer', 'Here', 'Тут') },
+            },
           },
         ],
       },
@@ -143,6 +153,17 @@ function fixture(locale = 'uk') {
       },
     ],
   };
+  const sections = lesson.section;
+  delete lesson.section;
+  lesson.children = sections.map(section => section.slug);
+  for (const section of sections) {
+    const blocks = section.content;
+    delete section.content;
+    section.children = blocks.map(child => child.slug);
+    for (const child of blocks) section[child.slug] = child;
+    lesson[section.slug] = section;
+  }
+  return lesson;
 }
 
 function temporaryRepo() {
@@ -233,7 +254,8 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
 
   it('rejects unknown blocks and malformed Quiz Props', () => {
     const lesson = fixture();
-    lesson.section[0].content.push({ type: 'unsupported', id: 'x', slug: 'x' });
+    lesson.theory.invalid = { type: 'unsupported', id: 'x', slug: 'invalid' };
+    lesson.theory.children.push('invalid');
     assert.throws(
       () =>
         renderLessonMarkdown({
@@ -245,7 +267,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
       /Unsupported content block type/,
     );
     const broken = fixture();
-    delete broken.section[1].params;
+    delete broken.quiz.params;
     assert.throws(
       () =>
         renderLessonMarkdown({
@@ -457,16 +479,15 @@ describe('Opt-in flashcard reference (independent of the existing review consume
 
   it('keeps regular Markdown unchanged while opt-in mode includes Quiz and Flashcard Section details', () => {
     const lesson = fixture('uk');
-    lesson.section[1].content = [
-      {
-        id: 'quiz-intro',
-        slug: 'quizIntro',
-        type: 'text',
-        params: {},
-        locale: { value: 'Read before the quiz.' },
-      },
-    ];
-    lesson.section.push({
+    lesson.quiz.children = ['quizIntro'];
+    lesson.quiz.quizIntro = {
+      id: 'quiz-intro',
+      slug: 'quizIntro',
+      type: 'text',
+      params: {},
+      locale: { value: 'Read before the quiz.' },
+    };
+    lesson.flashcards = {
       id: 'cards-id',
       slug: 'flashcards',
       type: 'flashcards',
@@ -474,8 +495,9 @@ describe('Opt-in flashcard reference (independent of the existing review consume
         selection: { flashcardIds: ['00000000-0000-4000-8000-000000000002'] },
       },
       locale: { title: 'Flashcards', navigationLabel: 'Cards' },
-      content: [],
-    });
+      children: [],
+    };
+    lesson.children.push('flashcards');
     const args = { lesson, locale: 'uk', languages: ['en', 'uk'], packagePath };
     const regular = renderLessonMarkdown(args);
     const specialized = renderLessonMarkdown({ ...args, purpose: 'flashcards' });
@@ -506,23 +528,23 @@ describe('Opt-in flashcard reference (independent of the existing review consume
         'A narrated demonstration of light. Human-authored production note.\n',
       );
       const lesson = fixture('uk');
-      const audio = lesson.section[0].content.find(block => block.type === 'audio');
+      const audio = lesson.theory.narration;
       audio.locale.fileLocation = audioId + '.ogg';
       audio.locale.description = 'Explains light travelling through air.';
-      const image = lesson.section[0].content.find(block => block.type === 'image');
+      const image = lesson.theory.beam;
       image.locale.src = imgId + '.png';
-      const video = lesson.section[0].content.find(block => block.type === 'video');
+      const video = lesson.theory.film;
       video.locale.fileLocation = videoId + '.mp4';
-      const carousel = lesson.section[0].content.find(block => block.type === 'carousel');
-      carousel.locale.slides = [
-        {
-          id: 'carousel-image-id',
-          slug: 'recallPicture',
-          type: 'image',
-          params: {},
-          locale: { src: imgId + '.png', alt: 'Repeated physical image in another role' },
-        },
-      ];
+      const carousel = lesson.theory.slides;
+      carousel.children = ['recallPicture'];
+      delete carousel.slideOne;
+      carousel.recallPicture = {
+        id: 'carousel-image-id',
+        slug: 'recallPicture',
+        type: 'image',
+        params: {},
+        locale: { src: imgId + '.png', alt: 'Repeated physical image in another role' },
+      };
       const subtitles = {
         id: 'subtitle-block',
         slug: 'captions',
@@ -530,17 +552,20 @@ describe('Opt-in flashcard reference (independent of the existing review consume
         params: {},
         locale: { fileLocation: 'https://example.org/captions.vtt' },
       };
-      const checkpoint = lesson.section[0].content.find(block => block.type === 'checkpoint');
-      const item = checkpoint.content[0];
-      Object.assign(item, { type: 'checkpointItem', id: 'checkpoint-item-id', slug: 'checkpointItem' });
-      item.answer.push({
+      const checkpoint = lesson.theory.checkpoint;
+      const item = checkpoint.firstCheck;
+      item.id = 'checkpoint-item-id';
+      item.slug = 'checkpointItem';
+      item.answer.children.push('listenAgain');
+      item.answer.listenAgain = {
         id: 'checkpoint-audio-id',
         slug: 'listenAgain',
         type: 'audio',
         params: {},
         locale: { fileLocation: audioId + '.ogg', title: 'Listen and recall' },
-      });
-      lesson.section[0].content.push(subtitles);
+      };
+      lesson.theory.children.push('captions');
+      lesson.theory.captions = subtitles;
       const sources = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
       const props = {
         lesson,
@@ -586,7 +611,7 @@ describe('Opt-in flashcard reference (independent of the existing review consume
     const tmp = temporaryRepo();
     try {
       const lesson = fixture('uk');
-      const img = lesson.section[0].content.find(block => block.type === 'image');
+      const img = lesson.theory.beam;
       img.locale.src = imgId + '.png';
       const src = sourceIndex(tmp.root, path.relative(tmp.root, tmp.lessonDir));
       const args = {

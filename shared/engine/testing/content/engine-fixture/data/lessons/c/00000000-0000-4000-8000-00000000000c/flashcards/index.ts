@@ -20,8 +20,8 @@ const sampleFlashcard = defineFlashcard({
   slug: 'sampleFlashcard',
   parameters: { tags: [], flags: [] },
   content: {
-    front: defineFlashcardSide({ items: { front }, order: ['front'] }),
-    back: defineFlashcardSide({ items: { back }, order: ['back'] }),
+    front: defineFlashcardSide({ children: ['front'], front }),
+    back: defineFlashcardSide({ children: ['back'], back }),
   },
 });
 

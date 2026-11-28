@@ -23,12 +23,12 @@ const common = {
   slug: 'questionOne' as const,
   params,
   locale: {},
-  content: { question: { items: { answerBlock: block }, order: ['answerBlock'] } },
+  content: { question: { answerBlock: block, children: ['answerBlock'] } },
 };
 const answers = {
-  correct: { items: { answerBlock: block }, order: ['answerBlock'] },
-  incorrect: { items: {}, order: [] },
-  distractors: { items: {}, order: [] },
+  correct: { answerBlock: block, children: ['answerBlock'] },
+  incorrect: { children: [] },
+  distractors: { children: [] },
 };
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { ...common.content, answers } });
 const multiple = defineSelectMultipleAnswers({
@@ -39,7 +39,7 @@ const multiple = defineSelectMultipleAnswers({
 const matched = defineMatchBlocks({
   ...common,
   type: 'matchBlocks',
-  content: { ...common.content, pairs: { items: { firstPair: { left: block, right: block } }, order: ['firstPair'] } },
+  content: { ...common.content, pairs: { firstPair: { left: block, right: block }, children: ['firstPair'] } },
 });
 const text = defineAnswerWithText({
   ...common,
@@ -55,7 +55,7 @@ const number = defineAnswerWithNumber({
 const order = defineOrderSequence({
   ...common,
   type: 'orderSequence',
-  content: { ...common.content, sequence: { items: { answerBlock: block }, order: ['answerBlock'] } },
+  content: { ...common.content, sequence: { answerBlock: block, children: ['answerBlock'] } },
 });
 const build = defineBuildAnswerWithBlocks({
   ...common,
@@ -63,8 +63,8 @@ const build = defineBuildAnswerWithBlocks({
   locale: { placeholder: 'Build' },
   content: {
     ...common.content,
-    correctSequence: { items: { answerBlock: block }, order: ['answerBlock'] },
-    distractors: { items: {}, order: [] },
+    correctSequence: { answerBlock: block, children: ['answerBlock'] },
+    distractors: { children: [] },
   },
 });
 const blocks = defineFillBlanksWithBlocks({
@@ -73,15 +73,15 @@ const blocks = defineFillBlanksWithBlocks({
   locale: { placeholder: 'Fill' },
   content: {
     ...common.content,
-    slots: { items: { slot: { correctAnswer: block } }, order: ['slot'] },
-    distractors: { items: {}, order: [] },
+    slots: { slot: { correctAnswer: block }, children: ['slot'] },
+    distractors: { children: [] },
   },
 });
 const blanks = defineFillBlanksWithText({
   ...common,
   type: 'fillBlanksWithText',
   locale: { placeholder: 'Fill' },
-  content: { ...common.content, slots: { items: { slot: { correctAnswers: { first: 'yes' } } }, order: ['slot'] } },
+  content: { ...common.content, slots: { slot: { correctAnswers: { first: 'yes' } }, children: ['slot'] } },
 });
 
 type OneSlug = Expect<Equal<typeof one.slug, 'questionOne'>>;
@@ -94,15 +94,26 @@ type BuildSlug = Expect<Equal<typeof build.slug, 'questionOne'>>;
 type BlocksSlug = Expect<Equal<typeof blocks.slug, 'questionOne'>>;
 type BlanksSlug = Expect<Equal<typeof blanks.slug, 'questionOne'>>;
 type OneType = Expect<Equal<typeof one.type, 'selectOneAnswer'>>;
-type AnswerBlock = Expect<Equal<typeof one.content.answers.correct.items.answerBlock, typeof block>>;
-type PromptBlock = Expect<Equal<typeof order.content.question.items.answerBlock, typeof block>>;
+type AnswerBlock = Expect<Equal<typeof one.content.answers.correct.answerBlock, typeof block>>;
+type PromptBlock = Expect<Equal<typeof order.content.question.answerBlock, typeof block>>;
 
 // @ts-expect-error IDs are immutable in sparse overrides.
 one.build.overrides({ id }, scope);
 // @ts-expect-error A nested question patch cannot change a child slug.
-one.build.overrides({ content: { question: { items: { answerBlock: { slug: 'another' } } } } }, scope);
+one.build.overrides({ content: { question: { answerBlock: { slug: 'another' } } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
 number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
+// @ts-expect-error A Question cannot accept arbitrary content role names.
+number.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error A reserved slug is never an authored prompt child.
+number.build.overrides({ content: { question: { children: ['answerBlock', 'items'], items: block } } }, scope);
+// @ts-expect-error An unrecognized role is not part of text-slot Config patches.
+blanks.build.overrides({ content: { otherRole: { children: [] } } }, scope);
+// @ts-expect-error Reserved slot keys cannot be authored as additional named gaps.
+blanks.build.overrides(
+  { content: { slots: { children: ['slot', 'items'], items: { correctAnswers: { first: 'yes' } } } } },
+  scope,
+);
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
@@ -118,7 +129,7 @@ const localizedBlock = defineText<'localizedBlock', ['uk', 'en']>({
   params: {},
   locale: { value: { uk: 'Так', en: 'Yes' } },
 });
-const localContent = { question: { items: { localizedBlock }, order: ['localizedBlock'] } };
+const localContent = { question: { localizedBlock, children: ['localizedBlock'] } };
 const validLanguageChild = defineAnswerWithNumber<'validLanguageChild', typeof localContent, ['uk']>({
   id,
   slug: 'validLanguageChild',
@@ -166,8 +177,8 @@ const onlyUkrainianBlock = defineText<'onlyUkrainianBlock', ['uk']>({
 const scopedPairContent = {
   ...localContent,
   pairs: {
-    items: { firstPair: { left: localizedBlock, right: anotherLocalizedBlock } },
-    order: ['firstPair'],
+    firstPair: { left: localizedBlock, right: anotherLocalizedBlock },
+    children: ['firstPair'],
   },
 };
 const scopedMatch = defineMatchBlocks<'scopedMatch', typeof scopedPairContent, ['uk', 'en']>({
@@ -182,32 +193,32 @@ scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-        additionalItems: { secondPair: { left: anotherLocalizedBlock, right: localizedBlock } },
-        order: ['firstPair', 'secondPair'],
+        secondPair: { left: anotherLocalizedBlock, right: localizedBlock },
+        children: ['firstPair', 'secondPair'],
       },
     },
   },
   scope,
 );
+// @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
 scopedMatch.build.overrides(
   {
     content: {
       pairs: {
-        // @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
-        additionalItems: { secondPair: { left: onlyUkrainianBlock, right: localizedBlock } },
-        order: ['firstPair', 'secondPair'],
+        secondPair: { left: onlyUkrainianBlock, right: localizedBlock },
+        children: ['firstPair', 'secondPair'],
       },
     },
   },
   scope,
 );
 // @ts-expect-error MatchBlocks order keys must refer to authored or added pairs.
-scopedMatch.build.overrides({ content: { pairs: { order: ['missingPair'] } } }, scope);
+scopedMatch.build.overrides({ content: { pairs: { children: ['missingPair'] } } }, scope);
 
 const scopedSlotContent = {
   ...localContent,
-  slots: { items: { originalSlot: { correctAnswer: localizedBlock } }, order: ['originalSlot'] },
-  distractors: { items: { anotherLocalizedBlock }, order: ['anotherLocalizedBlock'] },
+  slots: { originalSlot: { correctAnswer: localizedBlock }, children: ['originalSlot'] },
+  distractors: { anotherLocalizedBlock, children: ['anotherLocalizedBlock'] },
 };
 const scopedBlocks = defineFillBlanksWithBlocks<'scopedBlocks', typeof scopedSlotContent, ['uk', 'en']>({
   id,
@@ -221,31 +232,31 @@ scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-        additionalItems: { secondSlot: { correctAnswer: anotherLocalizedBlock } },
-        order: ['originalSlot', 'secondSlot'],
+        secondSlot: { correctAnswer: anotherLocalizedBlock },
+        children: ['originalSlot', 'secondSlot'],
       },
     },
   },
   scope,
 );
+// @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
 scopedBlocks.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
-        additionalItems: { secondSlot: { correctAnswer: onlyUkrainianBlock } },
-        order: ['originalSlot', 'secondSlot'],
+        secondSlot: { correctAnswer: onlyUkrainianBlock },
+        children: ['originalSlot', 'secondSlot'],
       },
     },
   },
   scope,
 );
 // @ts-expect-error Block slot order cannot refer to arbitrary selectors.
-scopedBlocks.build.overrides({ content: { slots: { order: ['unknownSlot'] } } }, scope);
+scopedBlocks.build.overrides({ content: { slots: { children: ['unknownSlot'] } } }, scope);
 
 const scopedTextSlotContent = {
   ...localContent,
-  slots: { items: { originalSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } }, order: ['originalSlot'] },
+  slots: { originalSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } }, children: ['originalSlot'] },
 };
 const scopedTextSlots = defineFillBlanksWithText<'scopedTextSlots', typeof scopedTextSlotContent, ['uk', 'en']>({
   id,
@@ -259,33 +270,37 @@ scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-        additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } },
-        order: ['originalSlot', 'secondSlot'],
+        secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } },
+        children: ['originalSlot', 'secondSlot'],
       },
     },
   },
   scope,
 );
+// @ts-expect-error The added slot needs the declared English translation.
 scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
-        // @ts-expect-error The added slot needs the declared English translation.
-        additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так' } } } },
-        order: ['originalSlot', 'secondSlot'],
+        secondSlot: { correctAnswers: { first: { uk: 'Так' } } },
+        children: ['originalSlot', 'secondSlot'],
       },
     },
   },
   scope,
 );
 // @ts-expect-error Text slot order must use known or added keys.
-scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } } }, scope);
+scopedTextSlots.build.overrides({ content: { slots: { children: ['unknownSlot'] } } }, scope);
 
 void [scopedMatch, scopedBlocks, scopedTextSlots];
 
 const numberResource = number.build.data(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
-const typedPromptSlug: string = numberResource.base.content.question[0].slug;
+const numberPrompt = numberResource.base.content.question.answerBlock;
+if (!numberPrompt || typeof numberPrompt !== 'object' || Array.isArray(numberPrompt) || !('slug' in numberPrompt)) {
+  throw new Error('Published Question answerBlock must have a slug');
+}
+const typedPromptSlug: string = numberPrompt.slug;
 const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
 const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } }, scope);
 const typedSparseAnswers: number[] | undefined = numericOverride.base.params?.correctAnswers;
