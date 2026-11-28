@@ -2,7 +2,7 @@
 
 import { Stack } from '@mui/material';
 
-import type { Question_SelectMultipleAnswers_Data } from '@svitlo/engine/runtime';
+import type { QuestionViewProps } from '../../../../questionPresentation';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 
@@ -16,23 +16,23 @@ export function SelectMultipleAnswers({
   sceneRegistry,
   messages,
 }: {
-  response: Question_SelectMultipleAnswers_Data;
+  response: Extract<QuestionViewProps, { type: 'selectMultipleAnswers' }>;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
   const options = [
-    ...Object.entries(response.content.answers.correct).map(([slug, block]) => ({
-      id: 'correct:' + slug,
+    ...response.content.answers.correct.map(block => ({
+      id: 'correct:' + block.id,
       block,
       correct: true,
     })),
-    ...Object.entries(response.content.answers.incorrect).map(([slug, block]) => ({
-      id: 'incorrect:' + slug,
+    ...response.content.answers.incorrect.map(block => ({
+      id: 'incorrect:' + block.id,
       block,
       correct: false,
     })),
-    ...Object.entries(response.content.answers.distractors).map(([slug, block]) => ({
-      id: 'distractor:' + slug,
+    ...response.content.answers.distractors.map(block => ({
+      id: 'distractor:' + block.id,
       block,
       correct: false,
     })),
