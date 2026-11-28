@@ -115,7 +115,7 @@ test('rejects unknown, unsafe or disabled placement paths and mismatched identit
     assert.throws(() => assembleCourseLesson({ ...input, placement }));
   }
   input.course.base.children = [];
-  assert.throws(() => assembleCourseLesson(input), /Unknown Course placement/);
+  assert.throws(() => assembleCourseLesson(input), /Unaddressed or disabled Course publication placement/);
   const different = fixture();
   different.lesson.base.id = id(99);
   assert.throws(() => assembleCourseLesson(different), /identity/i);
