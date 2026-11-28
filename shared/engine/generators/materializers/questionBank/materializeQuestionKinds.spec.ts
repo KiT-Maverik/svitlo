@@ -23,7 +23,7 @@ const id = (n: number) => 'b775647f-203d-481a-a1c7-4d331c' + String(n).padStart(
 const block = (slug: string, n: number) => ({
   config: { id: id(n), slug, type: 'text', params: {}, locale: { value: { uk: 'Текст' } } },
 });
-const collection = <T>(items: Record<string, T>) => ({ items, order: Object.keys(items) });
+const collection = <T>(items: Record<string, T>) => ({ children: Object.keys(items), ...items });
 const makeContext = (kind: string) => ({
   directory: 'questions/' + kind,
   languages: stageLanguages,
