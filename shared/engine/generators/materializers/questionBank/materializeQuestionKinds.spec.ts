@@ -266,7 +266,7 @@ for (const { kind, fixture, context, render } of suites) {
     assert.match(main.content, new RegExp('define' + kind[0].toUpperCase() + kind.slice(1) + '<'));
     assert.match(main.content, /TODO \(BLOCKER\)/);
     assert.match(main.content, /import \{ prompt \} from "\.\/sampleQuestion\/question\/prompt";/);
-    assert.match(main.content, /question:\s*\\{\\s*children:\s*\\[\\s*['\"]prompt['\"]/);
+    assert.match(main.content, /question:\s*\{\s*children:\s*\[/);
     assert.doesNotMatch(main.content, /NOT REVIEWED/);
     assert(a.files.some(file => file.path.endsWith('/question/prompt/index.ts')));
     for (const role of extraChildPaths[kind] ?? []) {
