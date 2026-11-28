@@ -220,10 +220,7 @@ test('copied real bank marks missing imported Question locale as not review-read
     }
     const target = path.join(questionsDir, 'lightTravelsStraight.ts');
     const source = fs.readFileSync(target, 'utf8');
-    const incomplete = source.replace(
-      "uk: 'Як поширюється світло в прозорому однорідному середовищі?',",
-      '',
-    );
+    const incomplete = source.replace("uk: 'Як поширюється світло в прозорому однорідному середовищі?',", '');
     assert.notEqual(incomplete, source, 'test uses actual authored source, not synthetic text');
     fs.writeFileSync(target, incomplete);
     generateFlashcardReviewArtifacts({
