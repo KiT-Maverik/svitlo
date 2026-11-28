@@ -17,7 +17,9 @@ export async function checkEngineRuntimeGraph(entry = defaultEntry) {
     metafile: true,
     platform: 'browser',
     format: 'esm',
-    packages: 'external',
+    // Only third-party dependencies are external. Package-private #schemas/
+    // #configurators imports must be resolved to expose build-only CJS barrels.
+    external: ['zod', '@svitlo/engine', '@svitlo/engine/*'],
     logLevel: 'silent',
   });
   const inputs = Object.keys(result.metafile.inputs);
