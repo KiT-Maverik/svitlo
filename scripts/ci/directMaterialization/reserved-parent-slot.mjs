@@ -100,7 +100,20 @@ function immediateParent(ast, allowedOwners) {
     ts.forEachChild(node, visit);
   };
   ts.forEachChild(ast, visit);
-  if (references !== 2) throw Error('Ambiguous or untrusted parent placements reference');
+  const generics = call.typeArguments;
+  if (
+    generics?.length &&
+    (
+      generics.length !== 3 ||
+      !ts.isTypeQueryNode(generics[1]) ||
+      !ts.isIdentifier(generics[1].exprName) ||
+      generics[1].exprName.text !== '__placements'
+    )
+  )
+    throw Error('Unexpected parent placements generic type reference');
+  // The real generated Configurator also has one type-only typeof reference.
+  if (references !== (generics?.length ? 3 : 2))
+    throw Error('Ambiguous or untrusted parent placements reference');
   return { entries, ordered, ownerName: call.expression.text };
 }
 
